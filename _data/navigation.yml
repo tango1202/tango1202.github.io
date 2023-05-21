@@ -6,24 +6,27 @@ main:
   url: /tags/
 
 docs:
+
+- title: "Visual Studio Code로 개발환경 구축하기"
+  children:
+  - title: "1. [Github 위키 작성법] 마크다운(Markdown) 작성법"
+    url: /dev-setting/dev-markdown/
+  - title: "2. [개발설정] Visual Studio Code 로 Cpp 개발환경 구축"
+    url: /dev-setting/dev-vscode-cpp/
+  - title: "3. [개발설정] Git 사용하기"
+    url: /dev-setting/dev-git/
+  - title: "4. [개발설정] Visual Studio Code 로 Git 사용하기"
+    url: /dev-setting/dev-vscode-git/     
+  - title: "5. [개발설정] Github를 원격 레포지토리로 사용하기"
+    url: /dev-setting/dev-remote-github/ 
+  - title: "6. [개발설정] Visual Studio Code 에서 CMake 환경 구성"
+    url: /dev-setting/dev-vscode-cmake/ 
+
 - title: "카테고리"
   url: /categories/
   children:
   - title: "개발설정"
     url: /categories/#dev-setting/
-    children:
-    - title: "1. [Github 위키 작성법] 마크다운(Markdown) 작성법"
-      url: /dev-setting/dev-markdown/
-    - title: "2. [개발설정] Visual Studio Code 로 Cpp 개발환경 구축"
-      url: /dev-setting/dev-vscode-cpp/
-    - title: "3. [개발설정] Git 사용하기"
-      url: /dev-setting/dev-git/
-    - title: "4. [개발설정] Visual Studio Code 로 Git 사용하기"
-      url: /dev-setting/dev-vscode-git/     
-    - title: "5. [개발설정] Github를 원격 레포지토리로 사용하기"
-      url: /dev-setting/dev-remote-github/ 
-    - title: "6. [개발설정] Visual Studio Code 에서 CMake 환경 구성"
-      url: /dev-setting/dev-vscode-cmake/ 
   - title: "코딩론"
     url: /categories/#cording/
   - title: "C++"
