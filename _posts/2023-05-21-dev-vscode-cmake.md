@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[개발설정] Visual Studio Code 에서 CMake 환경 구성"
+title: "#6. [개발설정] Visual Studio Code 에서 CMake 환경 구성"
 categories: "dev-setting"
 tag: ["개발설정", "visual studio code", "cmake", "Windows"]
 author_profile: false

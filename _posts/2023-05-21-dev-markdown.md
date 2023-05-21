@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[Github 위키 작성법] 마크다운(Markdown) 작성법"
+title: "#1. [Github 위키 작성법] 마크다운(Markdown) 작성법"
 categories: "dev-setting"
 tag: ["개발설정", "Markdown"]
 author_profile: false

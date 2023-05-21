@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[개발설정] Visual Studio Code 로 Git 사용하기"
+title: "#4. [개발설정] Visual Studio Code 로 Git 사용하기"
 categories: "dev-setting"
 tag: ["개발설정", "Visual Studio Code", "Git", "Windows"]
 author_profile: false
