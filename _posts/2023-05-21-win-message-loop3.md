@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. 메시지 루프"
+title: "#4. 메시지 루프 - 대화상자"
 categories: "win"
 tag: ["Windows", "message", "message loop", "cpp"]
 author_profile: false
