@@ -2,6 +2,8 @@
 main:
 - title: "카테고리"
   url: /categories/
+- title: "태그"
+  url: /tags/
   # - title: "Quick-Start Guide"
   #  url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "About"
