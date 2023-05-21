@@ -9,8 +9,8 @@ docs:
 - title: "카테고리"
   url: /categories/
   children:
-    - title: "개발환경"
-      url: /categories/#dev-config/
+    - title: "개발설정"
+      url: /categories/#dev-setting/
     - title: "코딩론"
       url: /categories/#cording/
     - title: "C++"
