@@ -25,7 +25,7 @@ docs:
     - title: "6. [개발설정] Visual Studio Code 에서 CMake 환경 구성"
       url: /dev-setting/dev-vscode-cmake/ 
   - title: "코딩론"
-      url: /categories/#cording/
+    url: /categories/#cording/
   - title: "C++"
     url: /categories/#cpp/     
 - title: "태그"
