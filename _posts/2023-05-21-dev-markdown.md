@@ -157,8 +157,8 @@ ___
 
 1. 원하는 이미지를 클립보드에 복사
 2. Github 이슈 탭에서 `New Issue` 버튼 클릭
-
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b1e32b7f-6fef-4a21-bdef-b86b9d440f17)
+
 3. 이슈 내용 입력란에 클립보드의 이미지 복사하면 Github에 등록된 이미지의 URL이 표시됨
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fb86e7d4-a3bc-463f-8644-cada60d631d0)
 
