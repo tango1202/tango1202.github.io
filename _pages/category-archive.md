@@ -1,7 +1,7 @@
 ---
 title: "카테고리"
 layout: categories
-parmalink: /categories/
+permalink: /categories/
 author_profile: true
 sidebar_main: true
 ---
