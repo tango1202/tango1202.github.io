@@ -8,6 +8,7 @@ main:
 docs:
 
 - title: "카테고리"
+  url: /categories/
   children:
     - title: "개발환경"
       url: /categories/#dev-config/
