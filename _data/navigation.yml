@@ -10,11 +10,11 @@ docs:
 - title: "카테고리"
   url: /categories/
 - children:
-    -title: "개발환경"
+    - title: "개발환경"
       url: /categories/Dev-Config/
-    -title: "코딩론"
+    - title: "코딩론"
       url: /categories/Cording/
-    -title: "C++"
+    - title: "C++"
       url: /categories/Cpp/     
 - title: "태그"
   url: /tags/
