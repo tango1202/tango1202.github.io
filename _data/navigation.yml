@@ -8,13 +8,13 @@ main:
 docs:
 
 - title: "카테고리"
-- children:
+  children:
     - title: "개발환경"
-      url: /categories/Dev-Config/
+      url: /categories/#dev-config/
     - title: "코딩론"
-      url: /categories/Cording/
+      url: /categories/#cording/
     - title: "C++"
-      url: /categories/Cpp/     
+      url: /categories/#cpp/     
 - title: "태그"
   url: /tags/
 
