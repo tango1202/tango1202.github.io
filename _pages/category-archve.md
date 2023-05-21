@@ -1,5 +1,5 @@
 ---
-title: "카테고리"
+title: "Category"
 layout: categories
 parmalink: /categories/
 author_profile: true
