@@ -30,7 +30,11 @@ docs:
   - title: "코딩론"
     url: /categories/#cording/
   - title: "C++"
-    url: /categories/#cpp/     
+    url: /categories/#cpp/
+  - title: "windows"
+    url: /categories/#win/ 
+  - title: "개발방법론"
+    url: /categories/#methdology/           
 - title: "태그"
   url: /tags/
 
