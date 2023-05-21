@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "2. [개발환경] Visual Studio Code 로 Cpp 개발환경 구축"
+title: "[개발설정] Visual Studio Code 로 Cpp 개발환경 구축"
 categories: "dev-setting"
 tag: ["개발설정", "Visual Studio Code", "Cpp", "Windows"]
 author_profile: false
