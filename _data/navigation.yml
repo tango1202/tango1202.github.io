@@ -7,7 +7,7 @@ main:
 
 docs:
 
-- title: "Visual Studio Code로 개발환경 구축하기"
+- title: "Visual Studio Code로 C++ 개발환경 구축하기"
   children:
   - title: "1. [Github 위키 작성법] 마크다운(Markdown) 작성법"
     url: /dev-setting/dev-markdown/
