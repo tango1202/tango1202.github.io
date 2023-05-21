@@ -163,7 +163,7 @@ ___
 
 3. 이슈 내용 입력란에 클립보드의 이미지 복사하면 Github에 등록된 이미지의 URL이 표시됨
 
-![image]https://github.com/tango1202/tango1202.github.io/assets/133472501/fb86e7d4-a3bc-463f-8644-cada60d631d0)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fb86e7d4-a3bc-463f-8644-cada60d631d0)
 
 4. 해당 URL을 마크다운에 작성
 
