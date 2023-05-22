@@ -67,6 +67,7 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
 5. `main.cpp`에 하기 코드를 작성합니다.
 
+
 ```cpp
 #include <iostream>
 
