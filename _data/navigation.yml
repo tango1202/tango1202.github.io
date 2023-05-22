@@ -29,6 +29,8 @@ docs:
     url: /categories/#dev-setting/
   - title: "코딩론"
     url: /categories/#cording/
+  - title: "주석"
+    url: /categories/#comment/
   - title: "C++"
     url: /categories/#cpp/
   - title: "windows"
