@@ -75,7 +75,6 @@ int main() {
     return 0;
 }
 ```
-
 6. `Run/Start Debug`(F5)를 눌러 디버깅을 시작하면, 컴파일러 선택 화면이 나옵니다. `C++ (GDB/LLDB)`를 선택합니다.
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4d310420-ead2-4082-8ac7-292dca9b7867)
 
