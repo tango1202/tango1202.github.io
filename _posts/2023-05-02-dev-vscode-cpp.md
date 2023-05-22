@@ -63,18 +63,20 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fc48b1a3-b3a8-431b-b7c0-f198af367c36)
 
 4. `New Folder`버튼을 이용하여 `cpp`폴더를 만들고, 그 하위에 `src`폴더를 만듭니다. 그리고, `New File` 버튼을 이용하여 `main.cpp`파일을 생성합니다. 그러면 오른쪽에 `main.cpp` 파일이 열립니다.
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a06cbe3f-9635-4465-ad84-f6245984957a)
+
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a06cbe3f-9635-4465-ad84-f6245984957a)
 
 5. `main.cpp`에 하기 코드를 작성합니다.
 
-```cpp  
-#include <iostream>
+    ```cpp  
+    #include <iostream>
 
-int main() {
-    std::cout << "Hello World!!!" << std::endl;
-    return 0;
-}
-```
+    int main() {
+        std::cout << "Hello World!!!" << std::endl;
+        return 0;
+    }
+    ```
+
 6. `Run/Start Debug`(F5)를 눌러 디버깅을 시작하면, 컴파일러 선택 화면이 나옵니다. `C++ (GDB/LLDB)`를 선택합니다.
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4d310420-ead2-4082-8ac7-292dca9b7867)
 
