@@ -66,6 +66,7 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a06cbe3f-9635-4465-ad84-f6245984957a)
 
 5. `main.cpp`에 하기 코드를 작성합니다.
+
 ```cpp  
 #include <iostream>
 
