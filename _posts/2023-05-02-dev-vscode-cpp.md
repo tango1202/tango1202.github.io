@@ -42,7 +42,6 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 6. 설치 확인을 위해 `cmd` 에서 `gcc -v`를 입력하여 버전을 확인합니다.
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a5dfb388-5d81-4219-af88-87d6e467ad5d)
 
-
 # Visual Studio Code Extension 설치(C/C++ Extension Pack)
 
 1. `Extensions`(Ctrl+Shift+X) 탭을 클릭하여 Extension을 실행합니다. 
@@ -65,7 +64,8 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
 4. `New Folder`버튼을 이용하여 `cpp`폴더를 만들고, 그 하위에 `src`폴더를 만듭니다. 그리고, `New File` 버튼을 이용하여 `main.cpp`파일을 생성합니다. 그러면 오른쪽에 `main.cpp` 파일이 열립니다.
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a06cbe3f-9635-4465-ad84-f6245984957a)
-5. `main.cpp`에 하기 코드를 작성합니다.
+
+5. `main.cpp`에 하기 코드를 작성합니다.<br/>
 ```cpp
 #include <iostream>
 
@@ -74,7 +74,6 @@ int main() {
     return 0;
 }
 ```
-
 6. `Run/Start Debug`(F5)를 눌러 디버깅을 시작하면, 컴파일러 선택 화면이 나옵니다. `C++ (GDB/LLDB)`를 선택합니다.
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4d310420-ead2-4082-8ac7-292dca9b7867)
 
