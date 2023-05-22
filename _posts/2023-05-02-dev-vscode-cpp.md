@@ -65,7 +65,8 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 4. `New Folder`버튼을 이용하여 `cpp`폴더를 만들고, 그 하위에 `src`폴더를 만듭니다. 그리고, `New File` 버튼을 이용하여 `main.cpp`파일을 생성합니다. 그러면 오른쪽에 `main.cpp` 파일이 열립니다.
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a06cbe3f-9635-4465-ad84-f6245984957a)
 
-5. `main.cpp`에 하기 코드를 작성합니다.<br/><br/>
+5. `main.cpp`에 하기 코드를 작성합니다.
+
 ```cpp
 #include <iostream>
 
