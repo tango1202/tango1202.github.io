@@ -129,7 +129,7 @@ __볼드체__
 _이텔릭체_
 ~~취소선~~
 <u>밑줄</u>
-<span style="color:yellow">노란색</span>
+<span style="color:red">빨간색</span>
 
 `*` 과 `_` 을 2개이상 사용하여 구분선을 표시합니다.
 
@@ -349,4 +349,9 @@ Markdown 변환기에 따라 **오류** 부분이 다르게 나올 수 있습니
 |배|수상 이동수단||
 |비행기|*항공* 이동수단|마크다운의 용법이 그대로 적용됩니다.|
 
-  
+<details>
+<summary>여기를 눌러주세요</summary>
+<div markdown="1">       
+숨겨진 내용
+</div>
+</details>
