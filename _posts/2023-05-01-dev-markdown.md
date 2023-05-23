@@ -15,7 +15,7 @@ sidebar:
 
 자세한 내용은 [Markdown Guide(https://www.markdownguide.org)](https://www.markdownguide.org) 를 참고하면 됩니다.
 
-마크다운은 헤더, 코드, 특수기호, 강조와 구분선, 인용, 목록, 체크박스, 링크, 그림, 표로 구성됩니다.
+마크다운은 헤더, 코드, 특수기호, 강조와 구분선, 인용, 목록, 체크박스, 접기/펼치기, 링크, 그림, 표로 구성됩니다.
 
 # 개행
 
@@ -271,6 +271,32 @@ Markdown 변환기에 따라 **오류** 부분이 다르게 나올 수 있습니
 - [ ] 항목 1
 - [x] 항목 2
 
+# 접기/펼치기
+
+하기 태그를 이용하여 접기/펼치기를 구성합니다.
+
+```markdown
+<details>
+<summary>접기/펼치기</summary>
+<div markdown="1">
+  
+펼쳐졌을때 표시되는 내용
+  
+</div>
+</details>
+```
+
+**결과**
+
+<details>
+<summary>접기/펼치기</summary>
+<div markdown="1">
+  
+펼쳐졌을때 표시되는 내용
+  
+</div>
+</details>
+
 # 링크
 
 `[LinkText](URL)`로 화면에 표시되는 LinkText와 실제 이동할 URL을 기재합니다.
@@ -349,9 +375,3 @@ Markdown 변환기에 따라 **오류** 부분이 다르게 나올 수 있습니
 |배|수상 이동수단||
 |비행기|*항공* 이동수단|마크다운의 용법이 그대로 적용됩니다.|
 
-<details>
-<summary>여기를 눌러주세요</summary>
-<div markdown="1">       
-숨겨진 내용
-</div>
-</details>
