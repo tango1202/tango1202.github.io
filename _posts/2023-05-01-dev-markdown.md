@@ -68,7 +68,7 @@ sidebar:
 
 # 코드
 
-코드 표시를 할때 `<pre><code> 코드 </code></pre>` 나 ` ``` `로 개행하여 감쌉니다. 코드 블록은 Github에서 복사하기가 지원됩니다.
+코드 표시를 할때 `<pre><code> 코드 </code></pre>` 나 \`\`\` 로 개행하여 감쌉니다. 코드 블록은 Github에서 복사하기가 지원됩니다.
 
 <pre><code>```
 if (int i = 0; i < 10; ++i) { 
@@ -83,7 +83,7 @@ if (int i = 0; i < 10; ++i) {
 }
 ```
 
-특정 언어의 문법을 강조하고 싶으면 시작 ` ``` ` 옆에 `cpp`, `cs`, `java`, `python`, `bash`, `css`, `diff`, `html`, `http`, `ini`, `markdown`, `CMake` 를 기재하시면 됩니다.
+특정 언어의 문법을 강조하고 싶으면 시작 \`\`\` 옆에 `cpp`, `cs`, `java`, `python`, `bash`, `css`, `diff`, `html`, `http`, `ini`, `markdown`, `CMake` 를 기재하시면 됩니다.
 
 <pre><code>```cpp
 for (int i = 0; i < 10; ++i) { 
