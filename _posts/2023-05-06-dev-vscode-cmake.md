@@ -229,8 +229,22 @@ include(CPack) # 기본적으로 build 경로에 실행파일을 생성함
 
 # CMake 상태 표시줄
 
+Visual Studio Code 하단의 상태 표시줄을 보면 CMake 관련 명령들이 제공됩니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6329fe3e-45b8-456f-b465-3f94b8fa697d)
+
+1. ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/08926487-8753-49f7-ad64-95768136d77e) : `CMake:Variant` 와 동일합니다.
+
+2. ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bfda8400-307f-45db-9c4b-f84e71126e06) : 컴파일러를 선택합니다.
+
+3. ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/da42a03b-b0f4-4e23-95f6-963479bdd4e9) : `CMake:Build` 와 동일합니다.
+
+4. ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f20c0cde-f741-4cfc-9e83-a617cf05bfeb) : `CMake:Debug` 와 동일합니다.
+
+5. ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/05a89274-edfb-4e68-90a0-7ceec5b299a4) : `CMake:CMake:Run Without Debugging` 와 동일합니다.
+
 # CMake 파일 구성 변경
 
-빌드 대상인 파일의 구성이 변경되면, `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Configure` 를 다시 수행합니다. -> 확인 필요
+빌드 대상인 파일의 구성이 변경되면, `CMakelist.txt`파일의 `add_excutable()`에 파일 구성을 변경합니다.
 
 
