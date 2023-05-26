@@ -9,11 +9,11 @@ sidebar:
 ---
 
 # 개요
-Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 하려면 MinGW(GNU C++)와 Visual Studio Extension의 C/C++ Extension Pack 설치가 필요합니다.
+Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 하려면 MinGW-w64(Minimalist GNU for Windows)와 Visual Studio Extension의 C/C++ Extension Pack 설치가 필요합니다.
 
 |항목|내용|
 |--|--|
-|MinGW|C++ 컴파일러, 디버거|
+|MinGW-w64|C++ 컴파일러, 디버거|
 |Visual Studio Extension의 C/C++ Extension Pack|에디터의 C++ intelliSence 지원, 에디터의 C++ UI 테마 지원, CMake 지원|
 
 # Visual Studio Code 설치
@@ -24,33 +24,27 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
 # 컴파일러 설치(GNU C++ 컴파일러)
 
-1. 다음 링크에서 MinGW(Minimalist GNU for Windows)를 다운로드 받습니다.
+1. 다음 MinGW-w64(Minimalist GNU for Windows) 다운로드 페이지로 이동합니다.([MinGW](https://sourceforge.net/projects/mingw/files/latest/download) 도 있습니다만, C++ 상위 버전 지원이 약해서 MinGW-w64를 추천합니다.)
 
-    [MinGW(https://sourceforge.net/projects/mingw/files/latest/download)](https://sourceforge.net/projects/mingw/files/latest/download)
+    [MinGW-w64(https://sourceforge.net/projects/mingw-w64/files/)](https://sourceforge.net/projects/mingw-w64/files/)
 
-2. `minggw-get-set`을 실행하여 설치합니다.
+2. 스크롤하여 중간 즈음에 있는 `x86_64-posix-seh`을 다운로드 받습니다.
 
-3. `MinGW installation Manager`에서 `mingw-developer-toolkit`, `minw32-base`, `minw32-gcc-g++`, `msys-base`를 선택하고 `Mark for Installation`을 선택합니다.
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/63fa79fc-b4b9-4730-942a-911296afdabf)
 
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/62e87041-cda9-4796-9969-6135742f3c4d)
+3. 다운로드 받은 파일의 압축을 풀고, `mingw64` 폴더를 설치할 경로에 이동시킵니다.
 
-4. `Installation/Apply Changes` 를 실행후, 대화상자에서 `Apply`를 실행합니다.
-
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/caad6646-53f5-4359-be66-5fd6cbed4454)
-
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/361fc1b8-4f72-487c-b2b0-8248b556a574)
-
-5. `Path` 설정을 수정하기 위해, `제어판/시스템 속성`(Windows의 `작업표시줄/찾기`에서 `sysdm.cpl` 실행) 을 실행하여 , `고급`탭의 `환경 변수` 버튼 클릭후, `환경 변수` 대화상자에서 `Path`를 선택하여 `편집` 버튼을 실행합니다. `환경 변수 편집` 대화상자에 `MinGW/bin` 폴더를 추가합니다.
+4. `Path` 설정을 수정하기 위해, `제어판/시스템 속성`(Windows의 `작업표시줄/찾기`에서 `sysdm.cpl` 실행) 을 실행하여 , `고급`탭의 `환경 변수` 버튼 클릭후, `환경 변수` 대화상자에서 `Path`를 선택하여 `편집` 버튼을 실행합니다. `환경 변수 편집` 대화상자에 `mingw64/bin` 폴더를 추가합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8f9c464d-1aec-479c-b58c-81b298764fe0)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/89385f08-04f2-4a21-9086-08a52d3cd5ad)
     
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e71b182c-3eaf-4cdf-a670-ecbafef3d64f)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d7bae65a-8cc0-4315-8e45-4c8a7bcf319c)
 
 6. 설치 확인을 위해 `cmd` 에서 `gcc -v`를 입력하여 버전을 확인합니다.
 
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a5dfb388-5d81-4219-af88-87d6e467ad5d)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1893d24b-2cc0-40e9-8213-5fb095543b49)
 
 # Visual Studio Code Extension 설치(C/C++ Extension Pack)
 
@@ -93,21 +87,17 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
     }
     ```
 
-6. `Run/Start Debug`(F5)를 눌러 디버깅을 시작하면, 컴파일러 선택 화면이 나옵니다. `C++ (GDB/LLDB)`를 선택합니다.
+6. `Run/Start Debug`(F5)를 눌러 디버깅을 시작하면, 컴파일러 환경설정 선택 화면이 나옵니다. `C/C++:g++.exe build and debug active file`을 선택합니다.
 
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4d310420-ead2-4082-8ac7-292dca9b7867)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a5ecc208-5f0f-4ac1-aaed-c60ad2cf654a)
 
-7. 다음으로는 환경설정 선택화면이 나옵니다. `C/C++:g++.exe build and debug active file`을 선택합니다.
+7. 실행결과로 `EXPLORER`에 `.vscode`폴더가 추가되고, `task.json`파일이 추가되고, `main.exe`가 생성되고, `TERMINAL`에 `Hello world!!!` 가 표시되었습니다.
 
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e03ccb4e-12b5-4c38-ae13-902212e06839)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/24ecac76-958a-4c02-afef-fe6c5290e149)
 
-8. 실행결과로 `EXPLORER`에 `.vscode`폴더가 추가되고, `task.json`파일이 추가되고, `main.exe`가 생성되고, `DEBUG CONSOLE`에 `Hello world!!!` 가 표시되었습니다.
+8. `task.json`파일에는, `g++.exe`로 컴파일 및 디버깅 하기 위한 정보들이 포함됩니다.
 
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2bae95da-8e7d-444a-bf49-ac96060642ef)
-
-9. `task.json`파일에는, `g++.exe`로 컴파일 및 디버깅 하기 위한 정보들이 포함됩니다.
-
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b2223b79-5f90-41dd-bd90-c82916c6e24d)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5817ffa3-bb2d-46a9-b6cd-5952173f5a7e)
 
 # C++ 속성 설정
 
@@ -117,11 +107,11 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
 2. `C++ standard`를 `C++17`으로 변경합니다.
 
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/40903eb2-6d47-4005-971c-2dbf1588e1a1)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c524277-bbd3-467b-b4d9-da4c7bdd280e)
 
 3. 그러면 `.vscode` 에 `c_cpp_properties.json` 파일이 생성됩니다.(`cppStandard`에 `c++17`이 설정된 것을 확인할 수 있습니다.)
 
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6be7a126-faee-4334-99de-3bf57670931b)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/09d051e4-b3f8-4627-b027-b4e0471d5b04)
 
 
 
