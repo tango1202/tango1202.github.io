@@ -81,7 +81,7 @@ C++ 를 구성하는 파일이 1개 밖에 없으면 상관없지만, 여러개�
 
 11. `Abort`를 누르고, `TERMINAL`을 확인하면, 하기와 같이 `Test::Run()`이 정의되지 않았다는 메시지가 나옵니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/31afdfe8-6087-4367-9d60-fed0010bc4e8)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/31afdfe8-6087-4367-9d60-fed0010bc4e8)
 
 12. 이는 컴파일러가 main.cpp 만 컴파일하고, Test.cpp는 컴파일하지 않았기 때문입니다. CMake를 이용한 Make 환경을 구축해야 합니다.
 
@@ -232,8 +232,7 @@ Visual Studio Code 하단의 상태 표시줄을 보면 CMake 관련 명령들�
 
 1. ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/08926487-8753-49f7-ad64-95768136d77e) : `CMake:Variant` 와 동일합니다.
 
-2. ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19384004-ec0d-4fea-8fc5-3e4a7cc91e8c)
- : 컴파일러를 선택합니다.
+2. ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19384004-ec0d-4fea-8fc5-3e4a7cc91e8c) : 컴파일러를 선택합니다.
 
 3. ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/da42a03b-b0f4-4e23-95f6-963479bdd4e9) : `CMake:Build` 와 동일합니다.
 
