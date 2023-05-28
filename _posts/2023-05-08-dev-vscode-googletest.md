@@ -19,7 +19,7 @@ Visual Studio Code, CMake, C++ 환경의 단위 테스트 환경은 GoogleTest�
 
 |항목|내용|
 |--|--|
-|googletest|C++ 단위 테스트 프레임워크|
+|GoogleTest|C++ 단위 테스트 프레임워크|
 |Visual Studio Extension의 C++ TestMate|Catch2, GoogleTest, doctest 탐색기|
 
 # 사전 설치
@@ -92,6 +92,19 @@ Visual Studio Code, CMake, C++ 환경의 단위 테스트 환경은 GoogleTest�
     }
     ```
 
+5. `language_test` 하위에 `test`폴더를 만듭니다. 전체적인 구조는 다음과 같습니다.
+
+```cpp
++--language_test
+   +--cpp
+      +--src
+        +--Plus.h
+        +--Plus.cpp
+        +--Minus.h
+        +--Minus.cpp
+   +--test
+```
+
 # 테스트케이스 작성
 
 테스트케이스는 `test`폴더에 `Plus::Run()`과 `Minus::Run()`의 동작을 확인하도록 구성합니다.(`#include "gtest/gtest.h"` 은 아직 프로젝트 구성이 되지 않아 오류가 나옵니다.)
@@ -144,7 +157,11 @@ TEST(TestMinus, Test2) {
 ```cpp
 +--language_test
    +--cpp
-   |  +--src
+      +--src
+        +--Plus.h
+        +--Plus.cpp
+        +--Minus.h
+        +--Minus.cpp
    +--test
    +--googletest-1.13.0
       +--.github
