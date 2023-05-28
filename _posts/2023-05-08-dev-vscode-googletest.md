@@ -176,8 +176,8 @@ TEST(TestMinus, Test2) {
 
     # test 폴더 하위 테스트케이스 빌드
     set(TestFiles
-    test/TestPlus.cpp
-    test/TestMinus.cpp
+        test/TestPlus.cpp
+        test/TestMinus.cpp
     )
 
     # 실행파일 구성
