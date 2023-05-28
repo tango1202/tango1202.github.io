@@ -91,6 +91,7 @@ Visual Studio Code, CMake, C++ 환경의 단위 테스트 환경은 GoogleTest�
         return a - b;
     }
     ```
+
 # 테스트케이스 작성
 
 테스트케이스는 `test`폴더에 `Plus::Run()`과 `Minus::Run()`의 동작을 확인하도록 구성합니다.(`#include "gtest/gtest.h"` 은 아직 프로젝트 구성이 되지 않아 오류가 나옵니다.)
@@ -152,6 +153,7 @@ TEST(TestMinus, Test2) {
       +--googlemock
       +--googletest
 ```
+
 # cmake 빌드 구성
 
 1. `language_test`폴더에 `CMakelists.txt` 파일을 하기와 같이 작성하고 저장합니다.
