@@ -17,6 +17,17 @@ C++ 를 구성하는 파일이 여러개 라면 Make 환경을 구축해야 해�
 |Visual Studio Extension의 CMake|에디터의 CMake intelliSence 지원, C/C++ Extension Pack 설치시 포함됨|
 |Visual Studio Extension의 CMake Tools|빠른 시작, CMake 기반 빌드 환경, C/C++ Extension Pack 설치시 포함됨|
 
+# 사전 설치
+
+하기 항목이 사전에 설치되어야 합니다.
+
+|항목|내용|
+|--|--|
+|Visual Studio Code|[Visual Studio Code 설치](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-%EC%84%A4%EC%B9%98)|
+|Visual Studio Code Extension(C/C++ Extension Pack)|[Visual Studio Code Extension 설치(C/C++ Extension Pack)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-extension-%EC%84%A4%EC%B9%98cc-extension-pack)|
+|MinGW-w64|[MinGW-w64 설치(GNU C++ 컴파일러)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#mingw-w64-%EC%84%A4%EC%B9%98gnu-c-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC)|
+|Git|[Git 설치](https://tango1202.github.io/dev-setting/dev-git/#git-%EC%84%A4%EC%B9%98)|
+
 # 테스트 환경 구축(Github 활용)
 
 이전 따라하기를 참고하여 테스트 환경을 구축합니다. 

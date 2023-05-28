@@ -11,6 +11,17 @@ sidebar:
 # 개요
 Git 을 설치했다면 Visual Studio Code에서 `TERMINAL`과 UI를 통해 Git을 사용할 수 있습니다.
 
+# 사전 설치
+
+하기 항목이 사전에 설치되어야 합니다.
+
+|항목|내용|
+|--|--|
+|Visual Studio Code|[Visual Studio Code 설치](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-%EC%84%A4%EC%B9%98)|
+|Visual Studio Code Extension(C/C++ Extension Pack)|[Visual Studio Code Extension 설치(C/C++ Extension Pack)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-extension-%EC%84%A4%EC%B9%98cc-extension-pack)|
+|MinGW-w64|[MinGW-w64 설치(GNU C++ 컴파일러)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#mingw-w64-%EC%84%A4%EC%B9%98gnu-c-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC)|
+|Git|[Git 설치](https://tango1202.github.io/dev-setting/dev-git/#git-%EC%84%A4%EC%B9%98)|
+
 # 테스트 환경 구축
 
 이전 따라하기의 하기 내용을 수행합니다.
