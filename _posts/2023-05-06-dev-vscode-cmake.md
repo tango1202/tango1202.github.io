@@ -140,13 +140,9 @@ C++ 를 구성하는 파일이 1개 밖에 없으면 상관없지만, 여러개�
     |CMakeLists.txt|Makefile 생성을 위한 스크립트 파일|
     |main.cpp|CMake가 생성한 테스트용 cpp 파일|
 
-7. 가끔 하기 오류가 표시되며 `build` 폴더가 생성되지 않을 때가 있습니다. 이럴 경우  `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Reset CMake Tools Extension State(For troubleshooting)` 을 실행하고, `CMake:Quick Start` 를 재시도 합니다.
+7. 자동 생성된 `main.cpp`를 삭제합니다.(`cpp/src/main.cpp`를 삭제하면 안됩니다.)
 
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cb176898-ed24-4e74-9192-d9e1965d72be)
-
-8. 자동 생성된 `main.cpp`를 삭제합니다.(`cpp/src/main.cpp`를 삭제하면 안됩니다.)
-
-9. `.gitignore`에 `build/`추가하여 Git 관리항목에서 제외합니다.
+8. `.gitignore`에 `build/`추가하여 Git 관리항목에서 제외합니다.
 
     ```ini
     .vscode/
@@ -154,7 +150,7 @@ C++ 를 구성하는 파일이 1개 밖에 없으면 상관없지만, 여러개�
     build/
     ```
 
-10. 그러면 `245`개의 수정사항이 `5`개로 줄어듭니다. 
+9. 그러면 `245`개의 수정사항이 `5`개로 줄어듭니다. 
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cc12e571-fa5c-4b56-b2d9-e9ad190c2c49)
 
@@ -189,7 +185,19 @@ set(CPACK_PROJECT_VERSION ${PROJECT_VERSION}) # 실행파일버전
 include(CPack) # 기본적으로 build 경로에 실행파일을 생성함
 ```
 
-# CMake를 이용한 빌드와 디버깅
+# CMake 초기화(Reset)
+
+`CMake:QuickStart` 시 가끔 하기 오류가 표시되며 `build` 폴더가 생성되지 않을 때가 있습니다. 이럴 경우  `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Reset CMake Tools Extension State(For troubleshooting)` 을 실행하고, `CMake:Quick Start` 를 재시도 합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cb176898-ed24-4e74-9192-d9e1965d72be)
+
+# CMake Build 폴더 재구성(Configure)
+
+일반적으로 `CMakefiles.txt`를 수정 후 저장하면 `build`폴더가 생성됩니다. 하지만, `build` 폴더를 깔끔하게 정돈하고 싶을때도 있고, `Makefile` 변환 과정에서 이전 잔재가 남아 빌드 오류가 발생할 수도 있습니다.
+
+이럴때는 물리적으로 `build`폴더를 삭제하고, `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Configure` 를 실행하여 `build`폴더를 다시 만들 수 있습니다.
+
+# CMake를 이용한 빌드, 디버깅
 
 1. `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Build`(F7)를 하면, 빌드되고 빌드 결과물인 `test_cmake.exe` 가 `build`폴더에 생성됩니다. `OUTPUT`에는 빌드를 마쳤다는 메시지가 표시됩니다.
 
