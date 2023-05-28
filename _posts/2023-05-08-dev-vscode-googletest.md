@@ -267,7 +267,7 @@ CTest와 GoogleTest를 연동하면, UI를 통해 테스트케이스를 확인�
     gtest_discover_tests(${This}) 
     ```
 
-4. 이제 `Refesh Tests` 를 클릭하면, 하기와 같이 GoogleTest의 목록들이 모두 표시됩니다.
+4. 이제 `Refesh Tests` 를 클릭하면, 하기와 같이 GoogleTest의 테스트케이스들이 각각 표시됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/83c93526-39a6-4836-ae5d-a73f6b481197)
     
