@@ -28,7 +28,7 @@ Git 을 설치했다면 Visual Studio Code에서 `TERMINAL`과 UI를 통해 Git�
 
 1. [C++ 코드 작성과 빌드 구성](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#c-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1%EA%B3%BC-%EB%B9%8C%EB%93%9C-%EA%B5%AC%EC%84%B1) 과 [C++ 속성 설정](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#c-%EC%86%8D%EC%84%B1-%EC%84%A4%EC%A0%95)에 따라 환경을 갖춥니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4ec139bc-e6b3-4183-92e2-d4090303a4bb)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4ec139bc-e6b3-4183-92e2-d4090303a4bb)
 
 # Git 초기화
 
