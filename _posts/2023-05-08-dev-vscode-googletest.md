@@ -275,15 +275,17 @@ CTest와 GoogleTest를 연동하면, UI를 통해 테스트케이스를 확인�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cd4c2e44-e4a1-4f69-9eb7-a250b92e91bc)
 
-# testmate
+# TestMate 사용
 
-CTest는 테스트케이스가 많아지면 관리가 어렵습니다. Visual Studio Code 익스텐션중 `C++ TestMate`를 이용하면 파일단위로 트리표시가 되고, 테스트케이스 코드 위치로 이동할 수 있게 합니다. 또한 특정 테스트케이스만 실행할 수 있어, 필요한 테스트만 빠르게 확인할 수 있습니다.
+CTest는 테스트케이스를 조직화 하여 표시하지 않으므로, 테스트케이스가  많아지면 관리가 어렵습니다. 
+
+Visual Studio Code 익스텐션중 `C++ TestMate`를 이용하면, 테스트케이스가 트리로 조직화되어 표시되고, 테스트케이스 코드 위치로 이동할 수 있게 합니다. 또한 특정 테스트케이스만 실행할 수 있어, 필요한 테스트만 빠르게 확인할 수 있습니다.
 
 1. `Extension Tab`을 클릭하여 `C++ TestMate`를 설치합니다. 설치후 정상적인 반영을 위해 `View/Command Palette`(Ctrl+Shift+P) 에서 `Developer: Reload Window`를 합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c32e297-6834-42ba-bb12-12534a6b3cc6)
 
-2. `Testing` 탭을 클릭하면, 하기와 같이 `TestMate C++` 하위에 테스트 파일 하위에 테스트케이스가 표시됩니다.(만약 보이지 않는다면 `Refresh Tests`를 실행합니다.)
+2. `Testing` 탭을 클릭하면, 하기와 같이 `TestMate C++` 하위에 테스트케이스가 조직화되어 표시됩니다.(만약 보이지 않는다면 `Refresh Tests`를 실행합니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0c7067ef-793d-4e4a-a483-117d56fc411e)
 
