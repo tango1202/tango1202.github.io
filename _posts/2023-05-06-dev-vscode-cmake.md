@@ -191,7 +191,7 @@ include(CPack) # 기본적으로 build 경로에 실행파일을 생성함
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cb176898-ed24-4e74-9192-d9e1965d72be)
 
-# CMake Build 재구성(Configure)
+# CMake 빌드 재구성(Configure)
 
 일반적으로 `CMakefiles.txt`를 수정 후 저장하면 `Makefile`과 `build`폴더가 생성됩니다. 하지만, `build` 폴더를 깔끔하게 정돈하고 싶을때도 있고, `Makefile` 변환 과정에서 이전 잔재가 남아 빌드 오류가 발생할 수도 있습니다.
 
