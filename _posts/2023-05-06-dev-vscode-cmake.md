@@ -117,7 +117,7 @@ C++ 를 구성하는 파일이 1개 밖에 없으면 상관없지만, 여러개�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a854029a-5976-4c0f-b8df-2604d35ab850)
 
-3. 혹은 `CMakeLists.txt`가 없다고 표시될 수도 있는데, 그냥 `Enter`하여 나타나는 `열기`대화상자를 그냥 닫고, 다시 `CMake:Quick Start` 를 실행합니다.(이러한 경우 아마도 하기 7번의 문제 해결이 필요할 수 있습니다.)
+3. 혹은 `CMakeLists.txt`가 없다고 표시될 수도 있는데, 그냥 `Enter`하여 나타나는 `열기`대화상자를 그냥 닫고, 다시 `CMake:Quick Start` 를 실행합니다.(이러한 경우 아마도 `CMake:Reset` 이 필요할 수 있습니다. [CMake 초기화(Reset)](https://tango1202.github.io/dev-setting/dev-vscode-cmake/#cmake-%EC%B4%88%EA%B8%B0%ED%99%94reset))
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/61f39640-4001-48d4-bfef-a930662c832c)
 
@@ -193,9 +193,9 @@ include(CPack) # 기본적으로 build 경로에 실행파일을 생성함
 
 # CMake Build 폴더 재구성(Configure)
 
-일반적으로 `CMakefiles.txt`를 수정 후 저장하면 `build`폴더가 생성됩니다. 하지만, `build` 폴더를 깔끔하게 정돈하고 싶을때도 있고, `Makefile` 변환 과정에서 이전 잔재가 남아 빌드 오류가 발생할 수도 있습니다.
+일반적으로 `CMakefiles.txt`를 수정 후 저장하면 `Makefile`과 `build`폴더가 생성됩니다. 하지만, `build` 폴더를 깔끔하게 정돈하고 싶을때도 있고, `Makefile` 변환 과정에서 이전 잔재가 남아 빌드 오류가 발생할 수도 있습니다.
 
-이럴때는 물리적으로 `build`폴더를 삭제하고, `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Configure` 를 실행하여 `build`폴더를 다시 만들 수 있습니다.
+이럴때는 물리적으로 `build`폴더를 삭제하고, `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Configure` 를 실행하여 `Makefile`과 `build`폴더를 다시 만들 수 있습니다.
 
 # CMake를 이용한 빌드, 디버깅
 
