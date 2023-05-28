@@ -21,6 +21,8 @@ docs:
     url: /dev-setting/dev-remote-github/ 
   - title: "6. [개발설정] Visual Studio Code 에서 CMake 환경 구성"
     url: /dev-setting/dev-vscode-cmake/ 
+  - title: "7.  [개발설정] Visual Studio Code 에서 터미널 변경"
+    url: /dev-setting/dev-vscode-terminal/ 
 
 - title: "카테고리"
   url: /categories/
