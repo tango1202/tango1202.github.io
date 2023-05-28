@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [개발설정] Visual Studio Code 에서 단위 테스트 구축(googletest, TestMate)"
+title: "#8. [개발설정] Visual Studio Code 에서 C++ 단위 테스트 구축(googletest, TestMate)"
 categories: "dev-setting"
 tag: ["개발설정", "visual studio code", "C++", "GoogleTest", "TestMate", "CMake"]
 author_profile: false
