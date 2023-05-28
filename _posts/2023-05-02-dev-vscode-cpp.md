@@ -22,7 +22,7 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
 [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
 
-# 컴파일러 설치(GNU C++ 컴파일러)
+# MinGW-w64 설치(GNU C++ 컴파일러)
 
 1. 다음 MinGW-w64(Minimalist GNU for Windows) 다운로드 페이지로 이동합니다.([MinGW](https://sourceforge.net/projects/mingw/files/latest/download) 도 있습니다만, C++ 상위 버전 지원이 약해서 MinGW-w64를 추천합니다.)
 
