@@ -52,7 +52,8 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b8516461-6468-401d-95eb-b70d5c251c80)
 
-2. `C++`로 검색하고 `C/C++ Extension Pack`의 `install` 버튼을 클릭하여 설치후, 정상적인 반영을 위해 Visual Studio Code를 재실행합니다.
+2. `C++`로 검색하고 `C/C++ Extension Pack`의 `install` 버튼을 클릭하여 설치합니다. 그뒤 정상적인 반영을 위해 
+`Palette`(Ctrl+Shift+P) 에서 `Developer: Reload Window`를 합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19a9a392-405e-4d93-b305-831f9d3269fc)
 
