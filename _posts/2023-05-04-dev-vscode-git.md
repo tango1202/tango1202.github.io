@@ -62,7 +62,7 @@ Git 을 설치했다면 Visual Studio Code에서 `Panel(TERMINAL)`과 UI를 통�
 
 # Git 기본 사용(add, commit)
 
-1. 파일을 `add`(`staged`상태로 전환) 하기 위해서는 `+` 버튼을 클릭합니다.
+1. 파일을 `add`(staged 상태로 전환) 하기 위해서는 `+` 버튼을 클릭합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6d8f5115-ffca-4b90-aeb0-29d661aff624)
 

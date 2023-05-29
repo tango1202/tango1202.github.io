@@ -22,7 +22,7 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
 [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
 
-#Visual Studio Code 사용자 인터페이스
+# Visual Studio Code 사용자 인터페이스
 
 Visual Studio Code는 하기와 같은 인터페이스를 제공합니다.
 
@@ -39,7 +39,7 @@ Visual Studio Code는 하기와 같은 인터페이스를 제공합니다.
 
 자세한 사용자 인터페이스는 하기 링크를 참고하시기 바랍니다.
 
-[Visual Studio Code 사용자 인터페이스](https://code.visualstudio.com/docs/getstarted/userinterface)
+[Visual Studio Code 사용자 인터페이스(https://code.visualstudio.com/docs/getstarted/userinterface)](https://code.visualstudio.com/docs/getstarted/userinterface)
 
 # MinGW-w64 설치(GNU C++ 컴파일러)
 

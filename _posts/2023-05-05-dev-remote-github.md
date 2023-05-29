@@ -37,7 +37,7 @@ Github는 Git을 사용하여 소스코드를 관리하는 원격 저장소 서�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ae429ad1-e0fe-4b91-b0c6-091dfa9b88de)
 
-3. 그러면 원격 레포지토리 주소와 원격 레포지토리에 `push`하는 방법이 소개됩니다.
+3. 그러면 원격 레포지토리 주소와 원격 레포지토리에 push 하는 방법이 소개됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/aad4968e-1822-4791-9ae8-9d416d8ded31)
 
@@ -67,7 +67,7 @@ Github는 Git을 사용하여 소스코드를 관리하는 원격 저장소 서�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/828d9fec-76bf-4e67-8b6f-0cacdf3ccc1b)
 
-3. `TERMINAL`에서 하기 코드를 입력하여 원격지 레포지토리를 `origin`으로 설정합니다.(일반적으로 원격지의 이름은 origin 으로 설정합니다.)
+3. 터미널에서 하기 코드를 입력하여 원격지 레포지토리를 `origin`으로 설정합니다.(일반적으로 원격지의 이름은 origin 으로 설정합니다.)
 
     ```ini
     git remote add origin [원격 레포지토리 주소]
@@ -105,7 +105,7 @@ Github는 Git을 사용하여 소스코드를 관리하는 원격 저장소 서�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f8d5569a-e014-411b-b66c-50da80466e0f)
 
-2. `TERMINAL`에서 하기 코드를 입력하여 로컬 내용을 원격지 master 에 `push`합니다.(`pull`의 경우에서처럼 Github 로그인을 요청합니다.)
+2. 터미널에서 하기 코드를 입력하여 로컬 내용을 원격지 master 에 `push`합니다.(`pull`의 경우에서처럼 Github 로그인을 요청합니다.)
   
     ```ini
     git push origin master

@@ -32,7 +32,7 @@ C++ 를 구성하는 파일이 여러개 라면 Make 환경을 구축해야 해�
 
 이전 따라하기를 참고하여 테스트 환경을 구축합니다. 
 
-[[개발환경] Github를 원격 레포지토리로 사용하기](https://tango1202.github.io/dev-setting/dev-remote-github/)에서 `Github`에 소스코드를 `push`해 두었으므로, 이를 `pull`하여 수정하는 것으로 진행합니다.
+[[개발환경] Github를 원격 레포지토리로 사용하기](https://tango1202.github.io/dev-setting/dev-remote-github/)에서 `Github`에 소스코드를 push 해 두었으므로, 이를 pull 하여 수정하는 것으로 진행합니다.
 
 1. 탐색기에서 `language_test` 폴더를 생성합니다.
 
@@ -48,7 +48,7 @@ C++ 를 구성하는 파일이 여러개 라면 Make 환경을 구축해야 해�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c2896b56-a7ee-459c-8e0b-61205788d64a)
 
-7. cpp/src/main.cpp 파일을 하기와 같이 작성합니다.
+7. `cpp/src/main.cpp` 파일을 하기와 같이 작성합니다.
 
     ```cpp
     #include <iostream>
@@ -62,7 +62,7 @@ C++ 를 구성하는 파일이 여러개 라면 Make 환경을 구축해야 해�
     }
     ```
 
-8. cpp/src/Test.h 파일을 생성하고, 하기와 같이 작성합니다.
+8. `cpp/src/Test.h` 파일을 생성하고, 하기와 같이 작성합니다.
 
     ```cpp
     #ifndef __Test_h
@@ -75,7 +75,7 @@ C++ 를 구성하는 파일이 여러개 라면 Make 환경을 구축해야 해�
     #endif // __Test_h
     ```
 
-9. cpp/src/Test.cpp 파일을 생성하고, 하기와 같이 작성합니다.
+9. `cpp/src/Test.cpp` 파일을 생성하고, 하기와 같이 작성합니다.
 
     ```cpp
     #include "Test.h"
@@ -90,7 +90,7 @@ C++ 를 구성하는 파일이 여러개 라면 Make 환경을 구축해야 해�
     }
     ```
 
-10. main.cpp 를 활성화하고, `F5`를 눌러 디버깅을 하면, 하기와 같은 오류 메시지가 표시됩니다.(.vscode/task.json 파일도 만들어 집니다.)
+10. `main.cpp` 를 활성화하고, `F5`를 눌러 디버깅을 하면, 하기와 같은 오류 메시지가 표시됩니다.(`.vscode/task.json` 파일도 만들어 집니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8bd2f61b-1ee0-4004-8245-f166ee5c52dc)
 
@@ -187,7 +187,7 @@ set(CPACK_PROJECT_VERSION ${PROJECT_VERSION}) # 실행파일버전
 include(CPack) # 기본적으로 build 경로에 실행파일을 생성함
 ```
 
-`CTest` 는 사용하지 않고, 빌드대상은 `cpp/src/main.cpp`, `cpp/src/Test.cpp` 이므로 하기와 같이 코드를 수정합니다.
+CTest 는 사용하지 않고, 빌드대상은 `cpp/src/main.cpp`, `cpp/src/Test.cpp` 이므로 하기와 같이 코드를 수정합니다.
 
 ```CMake
 cmake_minimum_required(VERSION 3.0.0) # 최소요구버전
@@ -214,7 +214,7 @@ include(CPack) # 기본적으로 build 경로에 실행파일을 생성함
 
 # CMake를 이용한 빌드, 디버깅
 
-1. `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Build`(F7)를 하면, 빌드되고 빌드 결과물인 `test_cmake.exe` 가 `build`폴더에 생성됩니다. `OUTPUT`에는 빌드를 마쳤다는 메시지가 표시됩니다.
+1. `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Build`(F7)를 하면, 빌드되고 빌드 결과물인 `test_cmake.exe` 가 `build`폴더에 생성됩니다. `Panel(OUTPUT)`에는 빌드를 마쳤다는 메시지가 표시됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2e8f326d-1f1a-4df5-820f-23fee358304e)
 
@@ -265,7 +265,7 @@ Visual Studio Code 하단의 `Status Bar`를 보면 CMake 관련 명령들이 �
 
 # CMake 파일 구성 변경
 
-1. 빌드 대상인 파일의 구성이 변경되면, `CMakelist.txt`파일의 `add_excutable()`에 파일 구성을 변경합니다.
+1. 빌드 대상인 파일의 구성이 변경되면, `CMakelists.txt`파일의 `add_excutable()`에 파일 구성을 변경합니다.
 
     ```CMake
     add_executable(test_cmake 
