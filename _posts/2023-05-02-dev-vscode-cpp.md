@@ -9,7 +9,7 @@ sidebar:
 ---
 
 # 개요
-Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 하려면 MinGW-w64(Minimalist GNU for Windows)와 Visual Studio Extension의 C/C++ Extension Pack 설치가 필요합니다.
+Visual Studio Code 는 에디터이기 때문에, C++ 을 이용한 개발을 하려면 MinGW-w64(Minimalist GNU for Windows)와 Visual Studio Extension의 C/C++ Extension Pack 설치가 필요합니다.
 
 |항목|내용|
 |--|--|
