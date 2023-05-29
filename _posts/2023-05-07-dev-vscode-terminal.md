@@ -17,7 +17,7 @@ Windows용 Visual Studio Code의 기본 터미널은 PowerShell 입니다. 기�
 
 Git Bash는 PowerShell 보다 색상 지원이 좋습니다.
 
-1. `TERMINAL` 창에서 `Launch Profile` 버튼을 선택합니다.
+1. `Panel(TERMINAL)` 에서 `Launch Profile` 버튼을 선택합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1de2d40e-bd1d-4b4f-b527-b8b7e2ac2244)
 

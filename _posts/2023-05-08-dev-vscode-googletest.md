@@ -113,9 +113,7 @@ sidebar:
 
 `test` 폴더에 `Plus::Run()`과 `Minus::Run()`의 동작을 확인할 수 있도록 테스트케이스를 구성합니다.(아직은 프로젝트 구성이 되지 않아 `#include "gtest/gtest.h"` 에서 오류가 나옵니다.)
 
-`EXPECT_TRUE()`는 `bool` 값으로 테스트 통과 여부를 알려줍니다. 인자가 `true`인 경우 테스트를 통과(초록)하고, `false`인 경우 테스트를 실패(빨강)합니다. 
-
-`Plus::Run()`과 `Minus::Run()`함수 호출 결과와 기대치를 `==` 연산을 통해 비교한후, `EXPECT_TRUE()`로 테스트를 하였습니다.
+`EXPECT_TRUE()`는 `bool` 값으로 테스트 통과 여부를 알려줍니다. 인자가 `true`인 경우 테스트를 통과(초록)하고, `false`인 경우 테스트를 실패(빨강)합니다.(`Plus::Run()`과 `Minus::Run()`함수 호출 결과와 기대치를 `==` 연산을 통해 비교한후, `EXPECT_TRUE()`로 테스트를 하였습니다.)
 
 **language_test/cpp/src/PlusTest.cpp**
 
@@ -159,7 +157,7 @@ TEST(TestMinus, Test2) {
 
 첫번째 방법을 이용하여 `GoogleTest`를 설치하도록 하겠습니다. 
 
-1. 다음 링크에서 GoogleTest의 소스코드(zip파일)를 다운로드 받습니다.(현재 v1.13.0 버전이 release 되었습니다.)
+1. 다음 링크에서 `GoogleTest`의 소스코드(zip파일)를 다운로드 받습니다.(현재 v1.13.0 버전이 release 되었습니다.)
 
      https://github.com/google/googletest
 
@@ -242,7 +240,7 @@ TEST(TestMinus, Test2) {
 
 1. `CMake:Build`(F7)를 하여 빌드합니다.
 
-2. `CMake:Run without Debugging`(Shift+F5)를 하면, 하기와 같이 `TERMINAL`에 단위 테스트 결과가 표시됩니다. 4개의 테스트가 성공한 것을 확인할 수 있습니다.
+2. `CMake:Run without Debugging`(Shift+F5)를 하면, 하기와 같이 `Panel(TERMINAL)`에 단위 테스트 결과가 표시됩니다. 4개의 테스트가 성공한 것을 확인할 수 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/84f78c64-c128-46c1-8f67-8be1f8735902)
 
@@ -263,11 +261,11 @@ TEST(TestMinus, Test2) {
 
 터미널을 통해 단위 테스트를 확인하면, 테스트케이스가 많은 경우 확인이 어렵습니다. 그래서 UI를 지원하는 유틸리티를 이용하는게 좋은데요, 약간 아쉽긴 하지만, `CMake`에서 기본으로 제공하는 `CTest` 에 `GoogleTest`를 연동하면, UI를 통해 테스트케이스를 확인할 수 있습니다.
 
-1. 상태바의 `Run CTest`를 클릭하거나, 왼편 `Testing` 을 클릭하면, `Testing` 패널이 표시됩니다. 
+1. `Status Bar`의 `Run CTest`를 클릭하거나, 왼편 `Activity Bar`의 `Testing` 을 클릭하면, `Side Bar(TESTING)` 이 표시됩니다. 
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0248b242-d570-4f52-ad99-5c1393c846df)
 
-2. 패널의 목록에서 `Run Test`를 실행하면, 테스트 성공 여부가 아이콘으로 표시(성공 : 초록색, 실패 : 빨강색)됩니다.
+2. 목록에서 `Run Test`를 실행하면, 테스트 성공 여부가 아이콘으로 표시(성공 : 초록색, 실패 : 빨강색)됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ad984f76-c0ff-4637-89a5-1a206c58a789)
 
@@ -323,11 +321,11 @@ TEST(TestMinus, Test2) {
 
 Visual Studio Code 익스텐션중 `C++ TestMate`를 이용하면, 테스트케이스가 트리로 조직화되어 표시되고, 테스트케이스 코드 위치로 이동할 수 있게 합니다. 또한 특정 테스트케이스만 실행할 수 있어, 필요한 테스트만 빠르게 확인할 수 있습니다.
 
-1. `Extension Tab`을 클릭하여 `C++ TestMate`를 설치합니다. 설치후 정상적인 반영을 위해 `View/Command Palette`(Ctrl+Shift+P) 에서 `Developer: Reload Window`를 합니다.
+1. `Activity Bar`의 `Extensions`을 클릭하여 `C++ TestMate`를 설치합니다. 설치후 정상적인 반영을 위해 `View/Command Palette`(Ctrl+Shift+P) 에서 `Developer: Reload Window`를 합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c32e297-6834-42ba-bb12-12534a6b3cc6)
 
-2. `Testing` 탭을 클릭하면, 하기와 같이 `TestMate C++` 하위에 테스트케이스가 조직화되어 표시됩니다.(만약 보이지 않는다면 `Refresh Tests`를 실행합니다.)
+2. `Activity Bar`의 `Testing` 을 클릭하면, 하기와 같이 `TestMate C++` 하위에 테스트케이스가 조직화되어 표시됩니다.(만약 보이지 않는다면 `Refresh Tests`를 실행합니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0c7067ef-793d-4e4a-a483-117d56fc411e)
 
@@ -335,9 +333,9 @@ Visual Studio Code 익스텐션중 `C++ TestMate`를 이용하면, 테스트케�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/22d5d93d-5b65-46f2-be39-94b4d947e863)
 
-4.  테스트케이스명이나 `Goto Test`를 클릭하면, 해당 테스트케이스로 이동합니다.  
+4.  `Goto Test`를 클릭하면, 해당 테스트케이스로 이동합니다.  
 
-    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fc9c05c5-3e9a-4683-a70e-e17f6b4f3eec)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e144ef2d-a577-4472-bb71-6051da468f8c)
 
 5. 테스트케이스에서 사용한 `Plus::Run()`을 수정하기 위해, `cpp/src/Plus.cpp`로 이동하여 하기와 같이 정상 동작하도록 수정합니다.
 

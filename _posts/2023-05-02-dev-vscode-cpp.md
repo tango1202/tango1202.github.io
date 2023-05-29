@@ -22,6 +22,25 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
 [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
 
+#Visual Studio Code 사용자 인터페이스
+
+Visual Studio Code는 하기와 같은 인터페이스를 제공합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/73f52133-ffa0-46cf-b4c7-072ae90c0533)
+
+|항목|내용|
+|--|--|
+|Activity Bar|Side Bar의 보기를 전환합니다.|
+|Side Bar|Activity Bar 선택에 따라 파일 탐색기등 다양한 보기가 제공됩니다.|
+|Editor Groups|파일을 편집하는 영역입니다.|
+|Panel|기본적으로 출력, 디버그등의 정보와 터미널이 제공됩니다.|
+|Status Bar|열려있는 파일에 대한 다양한 상태가 표시됩니다.|
+
+
+자세한 사용자 인터페이스는 하기 링크를 참고하시기 바랍니다.
+
+[Visual Studio Code 사용자 인터페이스](https://code.visualstudio.com/docs/getstarted/userinterface)
+
 # MinGW-w64 설치(GNU C++ 컴파일러)
 
 1. 다음 MinGW-w64(Minimalist GNU for Windows) 다운로드 페이지로 이동합니다.([MinGW](https://sourceforge.net/projects/mingw/files/latest/download) 도 있습니다만, C++ 상위 버전 지원이 약해서 MinGW-w64를 추천합니다.)
@@ -48,12 +67,12 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
 # Visual Studio Code Extension 설치(C/C++ Extension Pack)
 
-1. `Extensions`(Ctrl+Shift+X) 탭을 클릭하여 Extension을 실행합니다.
+1. `Activity Bar`에서 `Extensions`(Ctrl+Shift+X) 을 클릭하여 Extension을 실행합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b8516461-6468-401d-95eb-b70d5c251c80)
 
-2. `C++`로 검색하고 `C/C++ Extension Pack`의 `install` 버튼을 클릭하여 설치합니다. 그뒤 정상적인 반영을 위해 
-`Palette`(Ctrl+Shift+P) 에서 `Developer: Reload Window`를 합니다.
+2. `Side Bar(EXTENSIONS)`에서 `C++`로 검색하고 `C/C++ Extension Pack`의 `install` 버튼을 클릭하여 설치합니다. 그뒤 정상적인 반영을 위해 
+`Command Palette`(Ctrl+Shift+P) 에서 `Developer: Reload Window`를 합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19a9a392-405e-4d93-b305-831f9d3269fc)
 
@@ -69,11 +88,11 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c86250d0-95ec-436f-90f6-bf0a620b711c)
 
-3. 지정한 폴더가 `EXPLORER` 패널에 열리고, MouseOver나 폴더명을 선택하면 `New File`, `New Folder`, `Refresh Explorer`,  `Collapse Folders in Explorer` 버튼이 표시됩니다.
+3. 지정한 폴더가 `Side Bar(EXPLORER)`에 열리고, MouseOver나 폴더명을 선택하면 `New File`, `New Folder`, `Refresh Explorer`,  `Collapse Folders in Explorer` 버튼이 표시됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fc48b1a3-b3a8-431b-b7c0-f198af367c36)
 
-4. `New Folder`버튼을 이용하여 `cpp`폴더를 만들고, 그 하위에 `src`폴더를 만듭니다. 그리고, `New File` 버튼을 이용하여 `main.cpp`파일을 생성합니다. 그러면 오른쪽에 `main.cpp` 파일이 열립니다.
+4. `New Folder`버튼을 이용하여 `cpp`폴더를 만들고, 그 하위에 `src`폴더를 만듭니다. 그리고, `New File` 버튼을 이용하여 `main.cpp`파일을 생성합니다. 그러면 `Editor Group`에 `main.cpp` 파일이 열립니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a06cbe3f-9635-4465-ad84-f6245984957a)
 
@@ -92,7 +111,7 @@ Visual Studio Code 는 에티터이기 때문에, C++ 을 이용한 개발을 �
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a5ecc208-5f0f-4ac1-aaed-c60ad2cf654a)
 
-7. 실행결과로 `EXPLORER`에 `.vscode`폴더가 추가되고, `task.json`파일이 추가되고, `main.exe`가 생성되고, `TERMINAL`에 `Hello world!!!` 가 표시되었습니다.
+7. 실행결과로 `Side Bar(EXPLORER)`에 `.vscode`폴더가 추가되고, `task.json`파일이 추가되고, `main.exe`가 생성되고, `Panel(TERMINAL)`에 `Hello world!!!` 가 표시되었습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/24ecac76-958a-4c02-afef-fe6c5290e149)
 

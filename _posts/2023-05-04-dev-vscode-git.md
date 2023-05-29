@@ -9,7 +9,7 @@ sidebar:
 ---
 
 # 개요
-Git 을 설치했다면 Visual Studio Code에서 `TERMINAL`과 UI를 통해 Git을 사용할 수 있습니다.
+Git 을 설치했다면 Visual Studio Code에서 `Panel(TERMINAL)`과 UI를 통해 Git을 사용할 수 있습니다.
 
 # 사전 설치
 
@@ -32,18 +32,18 @@ Git 을 설치했다면 Visual Studio Code에서 `TERMINAL`과 UI를 통해 Git�
 
 # Git 초기화
 
-1. Git을 commit 하기 위해선 `user.email`과 `user.name`설정이 필요합니다. 설정되지 않았다면, `TERMINAL`에 하기와 같이 입력합니다.(`xxx@xxx.com`, `myname` 대신 본인 정보를 입력하셔야 합니다.)
+1. Git을 commit 하기 위해선 `user.email`과 `user.name`설정이 필요합니다. 설정되지 않았다면, `Panel(TERMINAL)`에 하기와 같이 입력합니다.(`xxx@xxx.com`, `myname` 대신 본인 정보를 입력하셔야 합니다.)
 
     ```ini
     git config --global user.email "xxx@xxx.com"
     git config --global user.name "myname"
     ```
 
-2. `Source Control\Initialize Repository`을 실행합니다.
+2. `Activity Bar/Source Control/Initialize Repository`을 실행합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/70cc9568-2997-45c5-9f79-f9b1b8cec90e)
 
-3. 그러면 폴더내의 파일들이 `Changes`에 표시됩니다. 이때 파일탭등 파일정보에 `U`가 표시됩니다.(Untracked 되었다는 표시입니다.)
+3. 그러면 `Side Bar(SOURCE CONTROL)`이 표시되고, 폴더내의 파일들이 `Changes`에 표시됩니다. 이때 파일정보에 `U`가 표시됩니다.(Untracked 되었다는 표시입니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1da0a107-1f2b-41cb-817a-3c78e03f6759)
 
@@ -56,7 +56,7 @@ Git 을 설치했다면 Visual Studio Code에서 `TERMINAL`과 UI를 통해 Git�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f4a5f3b1-d268-48e8-bf28-4b3ee46c25d0)
 
-5. `Source Control`을 확인하면, 불필요한 파일들은 관리대상에서 제외되고, `.gitignore` 와 `main.cpp`만 Untracked로 관리되는 걸 확인할 수 있습니다.
+5. `Side Bar(SOURCE CONTROL)`을 확인하면, 불필요한 파일들은 관리대상에서 제외되고, `.gitignore` 와 `main.cpp`만 Untracked로 관리되는 걸 확인할 수 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2ef7af83-affe-433c-9e37-1fb0ec5db951)
 
@@ -80,7 +80,7 @@ Git 을 설치했다면 Visual Studio Code에서 `TERMINAL`과 UI를 통해 Git�
 
 # 수정 파일 비교
 
-1. `main.cpp` 파일을 하기와 같이 수정하고 저장합니다. 이때 파일탭등 파일정보에 `M`이 표시됩니다.(Modified 되었다는 표시입니다.) 또한 `Source Control`에서 `main.cpp` 파일을 선택하면, 수정된 코드를 비교하여 확인할 수 있습니다.(왼쪽은 commit된 파일, 오른쪽은 현재 Working Tree에서 수정된 파일입니다.)
+1. `main.cpp` 파일을 하기와 같이 수정하고 저장합니다. 이때 파일정보에 `M`이 표시됩니다.(Modified 되었다는 표시입니다.) 또한 `Side Bar(SOURCE CONTROL)`에서 `main.cpp` 파일을 선택하면, 수정된 코드를 비교하여 확인할 수 있습니다.(왼쪽은 commit된 파일, 오른쪽은 현재 Working Tree에서 수정된 파일입니다.)
 
     ```cpp
     #include <iostream>
@@ -94,30 +94,30 @@ Git 을 설치했다면 Visual Studio Code에서 `TERMINAL`과 UI를 통해 Git�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/686aeb29-5718-4d91-b427-653074625925)
 
-2. `TERMINAL`에서도 `git status`를 실행하여 상태를 확인할 수 있습니다.
+2. `Panel(TERMINAL)`에서도 `git status`를 실행하여 상태를 확인할 수 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/630c2699-2015-43cf-91d2-04f28811f06b)
 
 # Git Commit 되돌리기
 
-1. `Source Control/...메뉴/Commit/Undo Last Commit`을 사용하면 직전 commit을 취소할 수 있습니다. `revert`처럼 이전 commit 상태로 전환하는게 아니라, commit 명령을 취소한 상태로 전환(staged로 상태 전환)하는 것이어서, 비교적 안전하고 깔끔하게 commit 관리를 할 수 있습니다.
+1. `Side Bar(SOURCE CONROL)/...메뉴/Commit/Undo Last Commit`을 사용하면 직전 commit을 취소할 수 있습니다. `revert`처럼 이전 commit 상태로 전환하는게 아니라, commit 명령을 취소한 상태로 전환(staged로 상태 전환)하는 것이어서, 비교적 안전하고 깔끔하게 commit 관리를 할 수 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/46162d79-2339-41fe-93f1-d76a456d0a29)
 
 # GitLens 사용
 
-1. `Extension` 에서 `GitLens`를 검색하여 `install` 합니다.
+1. `Side Bar(EXTENSIONS)` 에서 `GitLens`를 검색하여 `install` 합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c75a61e2-26d4-4ad1-8e36-238c43838895)
 
-2. 그러면 `Source Control` 에 하기와 같이 다양한 메뉴가 표시됩니다. `COMMITS`에서 `Show Commit Graph`를 실행하여, commit 상황을 확인 할 수 있습니다.
+2. 그러면 `Side Bar(SOURCE CONTROL)` 에 하기와 같이 다양한 메뉴가 표시됩니다. `COMMITS`에서 `Show Commit Graph`를 실행하여, commit 상황을 확인 할 수 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/201aade6-1faf-40d4-98ea-fa9df780038e)
 
 
 # Git History 사용
 
-1. `Extension` 에서 `Git History`를 검색하여 `install` 합니다.
+1. `Side Bar(EXTENSIONS)` 에서 `Git History`를 검색하여 `install` 합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f63420c-e52e-4fd2-9bcd-59c48543a589)
 
