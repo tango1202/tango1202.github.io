@@ -42,7 +42,7 @@ Visual Studio Code + CMake + C++ 환경의 단위 테스트 구축시에는 Goog
 
 1. 탐색기에서 `language_test` 폴더를 생성합니다.
 
-2. language_test 하위에 `cpp` 폴더를 만들고, 그 하위에 `src` 폴더(소스코드가 작성될 곳)를 만듭니다.
+2. `language_test` 하위에 `cpp` 폴더를 만들고, 그 하위에 `src` 폴더(소스코드가 작성될 곳)를 만듭니다.
 
 3. Visual Studio Code 에서 `File/Open Folder` 를 실행하여 `language_test` 폴더를 엽니다.
 
