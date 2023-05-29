@@ -9,7 +9,7 @@ sidebar:
 ---
 
 # 개요
-C++ 를 구성하는 파일이 여러개 라면 Make 환경을 구축해야 해야 합니다. Makefile을 직접 작성하는 방법도 있지만, 손쉬운 유지관리를 위해 CMake를 사용하는 방법이 좋습니다. CMake를 사용하려면, CMake 설치와 Visual Studio Code Extensions에서 CMake, CMake Tools를 설치해야 합니다.
+C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환경을 구축해야 해야 합니다. Makefile을 직접 작성하는 방법도 있지만, 손쉬운 유지관리를 위해 CMake를 사용하는 방법이 좋습니다. CMake를 사용하려면, CMake 설치와 Visual Studio Code Extensions에서 CMake, CMake Tools를 설치해야 합니다.
 
 |항목|내용|
 |--|--|
