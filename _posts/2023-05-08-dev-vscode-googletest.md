@@ -113,9 +113,9 @@ Visual Studio Code + CMake + C++ 환경의 단위 테스트 구축시에는 Goog
 
 `test` 폴더에 `Plus::Run()`과 `Minus::Run()`의 동작을 확인할 수 있도록 테스트케이스를 구성합니다.(아직은 프로젝트 구성이 되지 않아 `#include "gtest/gtest.h"` 에서 오류가 나옵니다.)
 
-`EXPECT_TRUE()`는 `bool` 값으로 테스트 통과 여부를 알려줍니다. 인자가 `true`인 경우 테스트를 통과(초록)하고, `false`인 경우 테스트를 실패(빨강)합니다.(`Plus::Run()`과 `Minus::Run()`함수 호출 결과와 기대치를 `==` 연산을 통해 비교한후, `EXPECT_TRUE()`로 테스트를 하였습니다.)
+`EXPECT_TRUE()`를 이용하여 `Plus::Run()`과 `Minus::Run()`함수의 호출 결과를 테스트합니다.
 
-**language_test/cpp/src/PlusTest.cpp**
+**language_test/test/PlusTest.cpp**
 
 ```cpp
 #include "gtest/gtest.h"
@@ -130,7 +130,7 @@ TEST(TestPlus, Test2) {
 }
 ```
 
-**language_test/cpp/src/MinusTest.cpp**
+**language_test/test/MinusTest.cpp**
 
 ```cpp 
 #include "gtest/gtest.h"
