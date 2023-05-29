@@ -186,7 +186,7 @@ set(CPACK_PROJECT_VERSION ${PROJECT_VERSION}) # 실행파일버전
 include(CPack) # 기본적으로 build 경로에 실행파일을 생성함
 ```
 
-CTest 는 사용하지 않고, 빌드대상은 `cpp/src/main.cpp`, `cpp/src/Test.cpp` 이므로 하기와 같이 코드를 수정합니다.
+CTest 는 사용하지 않을 것이므로 `enable_testing()`은 제거하고, 빌드대상은 `cpp/src/main.cpp`, `cpp/src/Test.cpp` 이므로 하기와 같이 코드를 수정합니다.
 
 ```html
 cmake_minimum_required(VERSION 3.0.0) # 최소요구버전
