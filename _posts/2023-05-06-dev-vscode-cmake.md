@@ -143,7 +143,7 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a220d272-735b-472e-8d20-87ae08b18fbb)
 
-6. 그러면 `build`폴더가 생성되고, `Source Control`에 `245`개의 수정이 있고, root 폴더에 `CMakeLists.txt`파일과 `main.cpp`가 생성됩니다.
+6. 그러면 `build`폴더가 생성되고, `Source Control`에 `245`개의 수정이 있다고 표시되고, root 폴더에 `CMakeLists.txt`파일과 `main.cpp`가 생성됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/77798df4-f56d-48c7-8498-2483b98e0e89)
 
