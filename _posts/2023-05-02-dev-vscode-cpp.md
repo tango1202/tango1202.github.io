@@ -72,7 +72,7 @@ Visual Studio Code는 하기와 같은 인터페이스를 제공합니다.
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b8516461-6468-401d-95eb-b70d5c251c80)
 
 2. `Side Bar(EXTENSIONS)`에서 `C++`로 검색하고 `C/C++ Extension Pack`의 `install` 버튼을 클릭하여 설치합니다. 그뒤 정상적인 반영을 위해 
-`Command Palette`(Ctrl+Shift+P) 에서 `Developer: Reload Window`를 합니다.
+`Command Palette`(Ctrl+Shift+P) 에서 `Developer: Reload Window`를 합니다.(혹은 Visual Studio Code 를 재실행 합니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19a9a392-405e-4d93-b305-831f9d3269fc)
 
