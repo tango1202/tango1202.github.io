@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [개발설정] Visual Studio Code 에서 C++ 단위 테스트 구축(googletest, TestMate)"
+title: "#8. [개발설정] Visual Studio Code 에서 C++ 단위 테스트 구축(GoogleTest, TestMate)"
 categories: "dev-setting"
 tag: ["개발설정", "visual studio code", "C++", "GoogleTest", "TestMate", "CMake"]
 author_profile: false
@@ -198,7 +198,7 @@ GoogleTest 소스코드가 포함된 프로젝트의 빌드는 다음과 같이 
 
 1. `language_test` 폴더에 `CMakelists.txt` 파일을 하기와 같이 작성하고 저장합니다. (실행 파일은 `UnitTester.exe` 이고, `src`를 라이브러리로 빌드하고, 실행파일에 `GoogleTest`와 `src`라이브러리를 정적 링크합니다.)
 
-    ```CMake
+    ```bash
     cmake_minimum_required(VERSION 3.0.0) # 최소요구버전
     set(This UnitTester) # 빌드 타겟
     set(SrcLib SrcLib) # cpp/src 라이브러리
@@ -271,7 +271,7 @@ GoogleTest 소스코드가 포함된 프로젝트의 빌드는 다음과 같이 
 
 3. CTest가 GoogleTest의 테스트케이스를 좀더 세부적으로 찾을 수 있도록, `CMakelists.txt` 파일의 하단에 `gtest_discover_tests`를 추가하고 저장합니다.  
 
-    ```CMake
+    ```bash
     cmake_minimum_required(VERSION 3.0.0) # 최소요구버전
     set(This UnitTester) # 빌드 타겟
     set(SrcLib SrcLib) # cpp/src 라이브러리
