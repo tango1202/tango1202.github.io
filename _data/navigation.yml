@@ -23,9 +23,9 @@ docs:
     url: /dev-setting/dev-vscode-cmake/ 
   - title: "7. [개발설정] Visual Studio Code 에서 터미널 변경"
     url: /dev-setting/dev-vscode-terminal/ 
-  - title: "8. [개발설정] Visual Studio Code 에서 C++ 단위 테스트 구축(googletest, TestMate)"
+  - title: "8. [개발설정] Visual Studio Code 에서 C++ 단위 테스트 구축(GoogleTest, TestMate)"
     url: /dev-setting/dev-vscode-googletest/ 
-  - title: "9. [개발설정] googleTest로 C++ 단위 테스트 만들기"
+  - title: "9. [개발설정] GoogleTest로 C++ 단위 테스트 만들기"
     url: /dev-setting/dev-googletest/ 
 
 - title: "카테고리"
