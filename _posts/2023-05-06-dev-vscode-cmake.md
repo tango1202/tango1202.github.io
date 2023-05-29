@@ -103,7 +103,6 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
 # CMake 설치
 
 1. 다음 링크에서 CMake를 다운로드 받습니다.
-
     [CMake(https://cmake.org/download/)](https://cmake.org/download/)
 
 2. CMake `Path` 설정을 위해 `Install Options` 에서 `Add CMake to the system PATH for all users`를 선택합니다.
@@ -153,7 +152,7 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
     |`build` 폴더|빌드 과정에 필요한 임의 생성 파일들|
     |245개의 수정항목|대부분 `build` 폴더 하위에 자동 생성된 파일들|
     |CMakeLists.txt|Makefile 생성을 위한 스크립트 파일|
-    |main.cpp|CMake가 생성한 테스트용 cpp 파일|
+    |main.cpp|CMake가 생성한 기본 cpp 파일|
 
 7. 자동 생성된 `main.cpp`를 삭제합니다.(`cpp/src/main.cpp`를 삭제하면 안됩니다.)
 
