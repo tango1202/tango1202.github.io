@@ -266,7 +266,7 @@ Visual Studio Code 하단의 `Status Bar`를 보면 CMake 관련 명령들이 �
 
 1. 빌드 대상인 파일의 구성이 변경되면, `CMakelists.txt`파일의 `add_excutable()`에 파일 구성을 변경합니다.
 
-    ```cpp
+    ```bash
     add_executable(test_cmake 
         cpp/src/main.cpp 
         cpp/src/Test.cpp
