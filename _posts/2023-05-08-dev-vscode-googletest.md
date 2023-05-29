@@ -159,7 +159,7 @@ GoogleTest는
 
 1. 다음 링크에서 GoogleTest의 소스코드(zip파일)를 다운로드 받습니다.(현재 v1.13.0 버전이 release 되었습니다.)
 
-     [GoogleTest Github((https://github.com/google/googletest))](https://github.com/google/googletest)
+     [GoogleTest Github(https://github.com/google/googletest)](https://github.com/google/googletest)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1dd8d879-8bff-4d11-af31-b690f162457d)
 
