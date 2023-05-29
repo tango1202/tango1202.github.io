@@ -172,7 +172,7 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
 
 `CMakeLists.txt`파일은 `Makelist`파일로 변환된 후 `make`를 통해 빌드됩니다. `Quick Start`를 통해 자동 생성된 내용은 하기와 같습니다.(`#` 주석은 제가 붙인 것입니다.)
 
-```ruby
+```bash
 cmake_minimum_required(VERSION 3.0.0) # 최소요구버전
 project(test_cmake VERSION 0.1.0) # PROJECT_NAME 과 PROJECT_VERSION
 
