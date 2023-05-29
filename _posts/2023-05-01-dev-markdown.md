@@ -84,7 +84,7 @@ if (int i = 0; i < 10; ++i) {
 }
 ```
 
-특정 언어의 문법을 강조하고 싶으면 시작 \`\`\` 옆에 `cpp`, `cs`, `java`, `javascript`, `python`, `bash`, `css`, `diff`, `html`, `http`, `ini`, `markdown`, `CMake` 를 기재하시면 됩니다.
+특정 언어의 문법을 강조하고 싶으면 시작 \`\`\` 옆에 `cpp`, `cs`, `java`, `javascript`, `python`, `bash`, `css`, `diff`, `html`, `http`, `ini`, `markdown` 를 기재하시면 됩니다.
 
 <pre><code>```cpp
 for (int i = 0; i < 10; ++i) { 
