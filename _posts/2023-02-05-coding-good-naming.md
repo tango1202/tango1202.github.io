@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. 좋은 이름 만들기"
+title: "#5. 좋은 이름 만들기(작성중)"
 categories: "coding"
 tag: ["코딩"]
 author_profile: false
