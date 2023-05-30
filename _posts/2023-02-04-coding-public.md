@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. 최소 public"
+title: "#4. 최소 public(작성중)"
 categories: "coding"
 tag: ["코딩"]
 author_profile: false
