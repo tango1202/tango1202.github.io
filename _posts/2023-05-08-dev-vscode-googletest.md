@@ -177,6 +177,8 @@ GoogleTest는
                 +--Minus.h
                 +--Minus.cpp
         +--test
+            +-- PlusTest.cpp
+            +-- MinusTest.cpp
         +--googletest-1.13.0
             +--.github
             +--ci
@@ -302,7 +304,7 @@ GoogleTest 소스코드가 포함된 프로젝트의 빌드는 다음과 같이 
         ${SrcLib}
     )
 
-    # CTest가 googletest의 테스트케이스 정보를 찾을 수 있게 정보 제공
+    # CTest가 googletest의 테스트케이스 정보를 찾을 수 있게 함
     include(GoogleTest)
     gtest_discover_tests(${This}) 
     ```

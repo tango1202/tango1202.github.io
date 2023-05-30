@@ -106,16 +106,24 @@ Visual Studio Code는 하기와 같은 인터페이스를 제공합니다.
         return 0;
     }
     ```
+6. 폴더 구조는 다음과 같습니다. 
 
-6. `Run/Start Debug`(F5)를 눌러 디버깅을 시작하면, 컴파일러 환경설정 선택 화면이 나옵니다. `C/C++:g++.exe build and debug active file`을 선택합니다.
+    ```cpp
+    +--language_test
+        +--cpp
+            +--src
+                +--main.cpp
+    ```
+
+7. `Run/Start Debug`(F5)를 눌러 디버깅을 시작하면, 컴파일러 환경설정 선택 화면이 나옵니다. `C/C++:g++.exe build and debug active file`을 선택합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a5ecc208-5f0f-4ac1-aaed-c60ad2cf654a)
 
-7. 실행결과로 `Side Bar(EXPLORER)`에 `.vscode`폴더가 추가되고, `task.json`파일이 추가되고, `main.exe`가 생성되고, `Panel(TERMINAL)`에 `Hello world!!!` 가 표시되었습니다.
+8. 실행결과로 `Side Bar(EXPLORER)`에 `.vscode`폴더가 추가되고, `task.json`파일이 추가되고, `main.exe`가 생성되고, `Panel(TERMINAL)`에 `Hello world!!!` 가 표시되었습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/24ecac76-958a-4c02-afef-fe6c5290e149)
 
-8. `task.json`파일에는, `g++.exe`로 컴파일 및 디버깅 하기 위한 정보들이 포함됩니다.
+9. `task.json`파일에는, `g++.exe`로 컴파일 및 디버깅 하기 위한 정보들이 포함됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5817ffa3-bb2d-46a9-b6cd-5952173f5a7e)
 

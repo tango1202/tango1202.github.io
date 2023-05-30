@@ -90,15 +90,28 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
     }
     ```
 
-10. `main.cpp` 를 활성화하고, `F5`를 눌러 디버깅을 하면, 하기와 같은 오류 메시지가 표시됩니다.(`.vscode/task.json` 파일도 만들어 집니다.)
+10. 폴더 구조는 다음과 같습니다. 
+
+    ```cpp
+    +--language_test
+        +--cpp
+            +--src
+                +--main.cpp
+                +--Test.h
+                +--Test.cpp
+        +--.gitignore
+        +--README.md
+    ```
+
+11. `main.cpp` 를 활성화하고, `F5`를 눌러 디버깅을 하면, 하기와 같은 오류 메시지가 표시됩니다.(`.vscode/task.json` 파일도 만들어 집니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8bd2f61b-1ee0-4004-8245-f166ee5c52dc)
 
-11. `Abort`를 누르고, `Panel(TERMINAL)`을 확인하면, 하기와 같이 `Test::Run()`이 정의되지 않았다는 메시지가 나옵니다.
+12. `Abort`를 누르고, `Panel(TERMINAL)`을 확인하면, 하기와 같이 `Test::Run()`이 정의되지 않았다는 메시지가 나옵니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/31afdfe8-6087-4367-9d60-fed0010bc4e8)
 
-12. 이는 컴파일러가 `main.cpp` 만 컴파일하고, `Test.cpp`는 컴파일하지 않았기 때문입니다. CMake를 이용한 Make 환경을 구축해야 합니다.
+13. 이는 컴파일러가 `main.cpp` 만 컴파일하고, `Test.cpp`는 컴파일하지 않았기 때문입니다. CMake를 이용한 Make 환경을 구축해야 합니다.
 
 # CMake 설치
 

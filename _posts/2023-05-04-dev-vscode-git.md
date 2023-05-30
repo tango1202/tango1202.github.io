@@ -56,7 +56,17 @@ Git 을 설치했다면 Visual Studio Code에서 `Panel(TERMINAL)`과 UI를 통�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f4a5f3b1-d268-48e8-bf28-4b3ee46c25d0)
 
-5. `Side Bar(SOURCE CONTROL)`을 확인하면, 불필요한 파일들은 관리대상에서 제외되고, `.gitignore` 와 `main.cpp`만 Untracked로 관리되는 걸 확인할 수 있습니다.
+5. 폴더 구조는 다음과 같습니다. 
+
+    ```cpp
+    +--language_test
+        +--cpp
+            +--src
+                +--main.cpp
+        +--.gitignore
+    ```
+
+6. `Side Bar(SOURCE CONTROL)`을 확인하면, 불필요한 파일들은 관리대상에서 제외되고, `.gitignore` 와 `main.cpp`만 Untracked로 관리되는 걸 확인할 수 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2ef7af83-affe-433c-9e37-1fb0ec5db951)
 
