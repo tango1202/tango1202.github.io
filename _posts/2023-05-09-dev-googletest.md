@@ -124,7 +124,7 @@ Fixture는 하기와 같이 `::testing::Test`를 상속받아야 하며, `Setup`
 
 ```cpp
 #include <vector>
-// 테스트를 위해 임시로 만든 클래스 입니다.
+// 테스트하려는 클래스 입니다.
 class MyVector {
 private:
     std::vector<int> data;
