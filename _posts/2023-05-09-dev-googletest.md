@@ -29,10 +29,10 @@ TEST(TestSuiteName, TestName) {
 |TestSuiteName|개별 테스트 집합의 이름|
 |TestName|TestSuite에서 제공하는 개별 테스트의 이름|
 
-일반적으로 GoogleTest를 사용하는 프로젝트의 폴더 구조는 하기와 같습니다. 보통 상기 테스트케이스 파일은 `your_project_root/test` 폴더에서 관리합니다.
+일반적으로 GoogleTest를 사용하는 프로젝트의 폴더 구조는 하기와 같습니다. 보통 상기 테스트케이스 파일은 `my_project_root/test` 폴더에서 관리합니다.
 
 ```cpp
-+--your_project_root
++--my_project_root
     +--cpp
         +--src
             +--테스트하고 싶은 소스 코드들
