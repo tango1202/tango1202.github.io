@@ -131,10 +131,11 @@ public:
     int GetCount() const { return data.size(); }
 };
 
+// MyVector를 사용하는 Fixture 입니다.
 class MyFixture : public ::testing::Test {
 protected:
     // protected여서 이를 상속받은 테스트에서 접근 가능합니다.
-    MyVactor myData;
+    MyVector myData;
 protected:
     // 각 테스트에 사용할 데이터를 준비합니다.
     void SetUp() override {
