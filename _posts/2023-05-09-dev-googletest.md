@@ -29,15 +29,15 @@ TEST(TestSuiteName, TestName) {
 |TestSuiteName|개별 테스트 집합의 이름|
 |TestName|TestSuite에서 제공하는 개별 테스트의 이름|
 
-일반적으로 GoogleTest의 폴더 구조는 하기와 같습니다.
+일반적으로 GoogleTest를 사용하는 프로젝트의 폴더 구조는 하기와 같습니다. 보통 상기 테스트케이스 파일은 `your_project_root/test` 폴더에서 관리합니다.
 
 ```cpp
-+--language_test
++--your_project_root
     +--cpp
         +--src
             +--테스트하고 싶은 소스 코드들
     +--test
-        +-- 테스트케이스 파일들
+        +--테스트케이스 파일들
     +--googletest-1.13.0
         +--.github
         +--ci
@@ -49,23 +49,27 @@ TEST(TestSuiteName, TestName) {
                     +--gtest.h
 ```
 
-`test`폴더에 테스트케이스들을 작성하기 때문에 `gtest.h`를 include 하려면 `#include "../googletest-1.13.0/googletest/include/gtest/gtest.h"` 로 접근해야 합니다. 
+`test`폴더에 있는 테스트케이스 코드에서 `gtest.h`를 include 하려면 `#include "../googletest-1.13.0/googletest/include/gtest/gtest.h"` 로 접근해야 합니다. 
 
 이러한 불편을 막고자 `googletest-1.13.0/googletest/CMakelists.txt`를 보면 하기와 같이 빌드 구성시 `include_directories` 를 사용하여  `googletest-1.13.0/googletest/include` 를 사전 설정해 두었습니다.
 
 이에 따라 `#include "gtest/gtest.h"` 만 작성해도 include 가 가능합니다.
 
+**googletest-1.13.0/googletest/CMakelists.txt**
+
 ```bash
+...
 # Where Google Test's .h files can be found.
 set(gtest_build_include_dirs
     "${gtest_SOURCE_DIR}/include"
     "${gtest_SOURCE_DIR}")
 include_directories(${gtest_build_include_dirs})
+...
 ```
 
 # 테스트용 매크로 함수
 
-테스트를 수행하는 매크로는 `EXPECT` 계열과 `ASSERT` 계열이 있습니다. `EXPECT` 계열은 테스트가 실패하더라고 다음 테스트를 진행하지만, `ASSERT` 계열은 테스트가 실패하면 즉시 중단됩니다.(`EXPECT` 계열의 모든 것에 대응하는 `ASSERT` 계열이 있습니다.)
+테스트를 수행하는 매크로는 `EXPECT` 계열과 `ASSERT` 계열이 있습니다. `EXPECT` 계열은 테스트가 실패하더라도 다음 테스트를 진행하지만, `ASSERT` 계열은 테스트가 실패하면 즉시 중단됩니다.(`EXPECT` 계열의 모든 것에 대응하는 `ASSERT` 계열이 있습니다.)
 
 **일반화된 검증**
 
