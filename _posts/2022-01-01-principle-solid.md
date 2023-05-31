@@ -8,3 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
+1. Single Responsibility 
+2. Openn/Closed 
+3. Liscov substitution
+4. Interface Segregation
+5. Dpendency Inversion
