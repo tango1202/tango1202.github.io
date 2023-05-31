@@ -32,23 +32,23 @@ TEST(TestSuiteName, TestName) {
 
 일반적으로 GoogleTest의 폴더 구조는 하기와 같습니다.
 
-    ```cpp
-    +--language_test
-        +--cpp
-            +--src
-                +--테스트하고 싶은 소스 코드들
-        +--test
-            +-- 테스트케이스 파일들
-        +--googletest-1.13.0
-            +--.github
-            +--ci
-            +--docs
-            +--googlemock
-            +--googletest
-                +--include
-                    +--gtest
-                        +--gtest.h
-    ```
+```cpp
++--language_test
+    +--cpp
+        +--src
+            +--테스트하고 싶은 소스 코드들
+    +--test
+        +-- 테스트케이스 파일들
+    +--googletest-1.13.0
+        +--.github
+        +--ci
+        +--docs
+        +--googlemock
+        +--googletest
+            +--include
+                +--gtest
+                    +--gtest.h
+```
 
 `test`폴더에 테스트케이스들을 작성하기 때문에 `gtest.h`를 include 하려면 `#include "../googletest-1.13.0/googletest/include/gtest/gtest.h"` 로 접근해야 합니다. 
 
