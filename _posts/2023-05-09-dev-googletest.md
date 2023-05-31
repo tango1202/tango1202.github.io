@@ -66,7 +66,7 @@ include_directories(${gtest_build_include_dirs})
 
 # 테스트용 매크로 함수
 
-테스트를 수행하는 매크로는 `EXPECT` 계열과 `ASSERT` 계열이 있습니다. `EXPECT` 계열은 테스트가 실패하더라고 다음 테스트를 진행하지만, `ASSERT` 계열은 테스트가 실패하면 즉시 중단됩니다. 
+테스트를 수행하는 매크로는 `EXPECT` 계열과 `ASSERT` 계열이 있습니다. `EXPECT` 계열은 테스트가 실패하더라고 다음 테스트를 진행하지만, `ASSERT` 계열은 테스트가 실패하면 즉시 중단됩니다.(`EXPECT` 계열의 모든 것에 대응하는 `ASSERT` 계열이 있습니다.)
 
 **일반화된 검증**
 
