@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-리스코프 대체 원칙은 **자식 개체는 부모 개체를 완전하게 치환할 수 있어야 한다** 는 원칙입니다. 
+리스코프 치환 원칙은 **자식 개체는 부모 개체를 완전하게 치환할 수 있어야 한다** 는 원칙입니다. 
 
 조금 풀어 쓰면,
 
 1. 상속받은 자식은 부모와 is-a 관계여야 하고,
-2. 부모 클래스에서와 동등한 행위를 보장하여,
-3. 부모 클래스와 자식클래스 가 일관된 행동을 하라 
+2.자식이 부모와 다른 행동을 하지 말고,
+3. 자식이 부모와 같은 행동을 하게 하라 
 
 라는 뜻입니다.
 
@@ -54,7 +54,11 @@ public:
     // left, top, width, height를 가지고, 자식 개체들이 알아서 그려야 함
     virtual void Draw() const = 0; 
 };
+```
 
+하기는 자식 클래스 입니다. 
+
+```cpp
 // 자식 클래스 입니다.
 class Rectangle : public Shape {
 public:    
@@ -76,7 +80,11 @@ public:
         // 타원을 그립니다.
     }
 };
+```
 
+하기는 테스트 입니다. Rectangle과 Ellipse를 생성하고, Draw를 호출하여 자기 자신을 그립니다.
+
+```cpp
 TEST(TestShape, Draw) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
@@ -87,71 +95,32 @@ TEST(TestShape, Draw) {
  
      EXPECT_TRUE(rect.GetLeft() == 0 && rect.GetTop() == 0 && rect.GetWidth() == 10 && rect.GetHeight() == 20);   
     EXPECT_TRUE(ellipse.GetLeft() == 0 && ellipse.GetTop() == 0 && ellipse.GetWidth() == 10 && ellipse.GetHeight() == 20);  
- 
     for(std::vector<Shape*>::iterator itr = shapes.begin(); itr != shapes.end(); ++itr) {
         (*itr)->Draw();
     }
 }
 ```
 
-아직은 좋습니다. 이제 정사각형을 추가해 봅시다. 정사각형은 width와 height가 동일해야 합니다. 그래서 SetWidth()와 SetHeight()를 재구현하여 동기화할 필요가 있습니다. 부모클래스의 SetWidth()와 SetHeight()를 virtual로 만들고 재구현 합니다.
+아직은 좋습니다. Draw를 잘 구현했다면, 사각형과 타원을 잘 그릴 것입니다. 이제 정사각형을 추가해 봅시다. 정사각형은 width와 height가 동일해야 합니다. 그래서 SetWidth()와 SetHeight()를 재구현하여 동기화할 필요가 있습니다. 부모클래스의 SetWidth()와 SetHeight()를 virtual로 만들어 재구현 할 수 있게 합니다.
 
 ```cpp
 // 부모 클래스 입니다.
 class Shape {
-private:
-    int left;
-    int top;
-    int width;
-    int height;
-public:
-    Shape(int l, int t, int w, int h) :
-        left(l),
-        top(t),
-        width(w),
-        height(h) {
-    }
-    virtual ~Shape() {}; // 순가상. 상속해야만 사용 가능
-public:
-    int GetLeft() const {return left;}
-    int GetTop() const {return top;}
-    int GetWidth() const {return width;}
-    int GetHeight() const {return height;}
-
-    void SetLeft(int val) {left = val;}
-    void SetTop(int val) {top = val;}
+    ...
+    // 자식이 재구현할 수 있도록 virtual로 변경합니다.
     virtual void SetWidth(int val) {width = val;}
     virtual void SetHeight(int val) {height = val;}
 
-    virtual void Draw() const = 0; // 자식 개체들이 알아서 그려야 함
+    ...
 };
+```
 
-// 자식 클래스 입니다.
-class Rectangle : public Shape {
-public:    
-    Rectangle(int l, int t, int w, int h) : Shape(l, t, w, h) {}
-    ~Rectangle() override {}
-
-    virtual void Draw() const override {
-        // 사각형을 그립니다.
-    }
-};
-
-// 자식 클래스 입니다.
-class Ellipse : public Shape {
-public:
-    Ellipse(int l, int t, int w, int h) : Shape(l, t, w, h) {}
-    ~Ellipse() override {}
-
-    virtual void Draw() const override {
-        // 타원을 그립니다.
-    }
-};
-
+```cpp
 // 자식 클래스입니다. 생성자를 손보고, SetWidth와 SetHeight를 손봤습니다.
 class Square : public Shape {
 public:
-    Square(int l, int t, int w, int h) : Shape(l, t, w, w) {}
+    // h 는 무시하고 w만 사용합니다.
+    Square(int l, int t, int w, int /*h*/) : Shape(l, t, w, w) {}
     ~Square() override {}
 
     //width를 바꾸면 height도 바꿉니다.
@@ -159,16 +128,19 @@ public:
         Shape::SetWidth(val);
         Shape::SetHeight(val);
     }
-    // Height를 바꾸면 Width를 바꿉니다. 어차피 SetWidth()랑 똑같이 동작하니 SetWidth를 불러줍니다.
+    // height를 바꾸면 width를 바꿉니다. 어차피 SetWidth()랑 똑같이 동작하니 SetWidth를 불러줍니다.
     virtual void SetHeight(int val) override {
         SetWidth(val);
     }
 
     virtual void Draw() const override {
-        // 타원을 그립니다.
+        // 정사각형을 그립니다.
     }
 };
+```
+하기는 테스트 코드입니다. Square를 생성하고 Draw합니다.
 
+```cpp
 TEST(TestShape, Draw) {
 
     Rectangle rect(0, 0, 10, 20);
@@ -183,7 +155,6 @@ TEST(TestShape, Draw) {
     EXPECT_TRUE(rect.GetLeft() == 0 && rect.GetTop() == 0 && rect.GetWidth() == 10 && rect.GetHeight() == 20);   
     EXPECT_TRUE(ellipse.GetLeft() == 0 && ellipse.GetTop() == 0 && ellipse.GetWidth() == 10 && ellipse.GetHeight() == 20);  
     EXPECT_TRUE(square.GetWidth() == square.GetHeight());  
-
     for(std::vector<Shape*>::iterator itr = shapes.begin(); itr != shapes.end(); ++itr) {
         (*itr)->Draw();
     }
@@ -195,21 +166,26 @@ TEST(TestShape, Draw) {
 ```cpp
 TEST(TestShape, Draw) {
     // 모든 개체의 넓이를 2배 크게 합니다.
-    Rectangle rect(0, 0, 10, 20);
-    Ellipse ellipse(0, 0, 10, 20);
-    Square square(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
+    Rectangle shape1(0, 0, 10, 20);
+    Ellipse shape2(0, 0, 10, 20);
+    Square shape3(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
  
-    std::vector<Shape*> shapes;
-    shapes.push_back(&rect);
-    shapes.push_back(&ellipse);
-    shapes.push_back(&square);
+    // 생성시 사용했던 width이 10으로 동일하므로, 서로 같은지를 테스트 합니다.
+    EXPECT_TRUE(shape1.GetWidth() == shape2.GetWidth()):
+    EXPECT_TRUE(shape1.GetWidth() == shape3.GetWidth()):
+    
+    // 생성시 사용했던 height가 20으로 동일하므로, 서로 같은지를 테스트 합니다.
 
-    for(std::vector<Shape*>::iterator itr = shapes.begin(); itr != shapes.end(); ++itr) {
-        (*itr)->SetWidth((*itr)->GetWidth() * 2);
-    }
+    EXPECT_TRUE(shape1.GetHeight() == shape2.GetHeight()):
 
-    EXPECT_TRUE(square.GetWidth() == square.GetHeight());
-
+    // shape3은 square 입니다. height 는 width 값으로 설정됩니다.
+    EXPECT_TRUE(shape1.GetHeight() == shape3.GetHeight()):
 }
 
 ```
+
+그렇죠. Square는 width 값을 height에 세팅하니 당연히 테스트를 실패하겠죠. 이제 Square의 동작 특성을 알았으니 주의해서 사용하면 될까요? 이런 자식 개체가 또 뭐가 있을까요? 단순하게 Circle이 있겠고요, 또 더 있을 수 있을까요? 겁이나서 모든 자식개체의 소스코드와 테스트케이스들을 확인해 봐야 합니다. 이런경우가 리스코프 치환 원칙에 위배된 것입니다.
+
+자식인 Square의 SetHeight()가 부모인 Shape과는 다르게 width를 변경해 버렸습니다.
+
+
