@@ -45,4 +45,8 @@ IAnimal
 **유연한 기능 추가**
 visitAnimal
 
+**유연한 알고리즘 변경**
+strategy
 
+**유연한듯 사전 계약 traits**
+특성 정의
