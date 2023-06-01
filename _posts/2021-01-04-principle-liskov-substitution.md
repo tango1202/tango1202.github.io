@@ -61,7 +61,7 @@ public:
     Rectangle(int l, int t, int w, int h) : Shape(l, t, w, h) {}
     ~Rectangle() override {}
 
-    void Draw() const override {
+    virtual void Draw() const override {
         // 사각형을 그립니다.
     }
 };
@@ -72,7 +72,7 @@ public:
     Ellipse(int l, int t, int w, int h) : Shape(l, t, w, h) {}
     ~Ellipse() override {}
 
-    void Draw() const override {
+    virtual void Draw() const override {
         // 타원을 그립니다.
     }
 };
@@ -132,7 +132,7 @@ public:
     Rectangle(int l, int t, int w, int h) : Shape(l, t, w, h) {}
     ~Rectangle() override {}
 
-    void Draw() const override {
+    virtual void Draw() const override {
         // 사각형을 그립니다.
     }
 };
@@ -143,7 +143,7 @@ public:
     Ellipse(int l, int t, int w, int h) : Shape(l, t, w, h) {}
     ~Ellipse() override {}
 
-    void Draw() const override {
+    virtual void Draw() const override {
         // 타원을 그립니다.
     }
 };
@@ -155,16 +155,16 @@ public:
     ~Square() override {}
 
     //width를 바꾸면 height도 바꿉니다.
-    virtual void SetWidth(int val) {
+    virtual void SetWidth(int val) override {
         Shape::SetWidth(val);
         Shape::SetHeight(val);
     }
     // Height를 바꾸면 Width를 바꿉니다. 어차피 SetWidth()랑 똑같이 동작하니 SetWidth를 불러줍니다.
-    virtual void SetHeight(int val) {
+    virtual void SetHeight(int val) override {
         SetWidth(val);
     }
 
-    void Draw() const override {
+    virtual void Draw() const override {
         // 타원을 그립니다.
     }
 };
