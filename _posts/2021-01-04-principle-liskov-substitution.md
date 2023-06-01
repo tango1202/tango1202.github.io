@@ -171,10 +171,10 @@ TEST(TestShape, Draw) {
 
 ```cpp
 TEST(TestShape, Draw) {
-    // 모든 개체의 넓이를 2배 크게 합니다.
-    Rectangle shape1(0, 0, 10, 20);
-    Ellipse shape2(0, 0, 10, 20);
-    Square shape3(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
+   
+    Rectangle rect(0, 0, 10, 20);
+    Ellipse ellipse(0, 0, 10, 20);
+    Square square(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
  
     std::vector<Shape*> shapes;
     shapes.push_back(&rect);
