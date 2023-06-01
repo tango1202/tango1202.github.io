@@ -13,8 +13,8 @@ sidebar:
 조금 풀어 쓰면,
 
 1. 상속받은 자식은 부모와 is-a 관계여야 하고,
-2.자식이 부모와 다른 행동을 하지 말고,
-3. 자식이 부모와 같은 행동을 하게 하라 
+
+2.자식이 부모와 다른 행동을 하지 말고, 같은 행동을 하게 하라 
 
 라는 뜻입니다.
 
@@ -56,7 +56,7 @@ public:
 };
 ```
 
-하기는 자식 클래스 입니다. 
+하기는 자식 클래스 입니다. Draw()함수를 각각 잘 구현했다 가정하고요.
 
 ```cpp
 // 자식 클래스 입니다.
@@ -101,7 +101,11 @@ TEST(TestShape, Draw) {
 }
 ```
 
-아직은 좋습니다. Draw를 잘 구현했다면, 사각형과 타원을 잘 그릴 것입니다. 이제 정사각형을 추가해 봅시다. 정사각형은 width와 height가 동일해야 합니다. 그래서 SetWidth()와 SetHeight()를 재구현하여 동기화할 필요가 있습니다. 부모클래스의 SetWidth()와 SetHeight()를 virtual로 만들어 재구현 할 수 있게 합니다.
+아직은 좋습니다. Draw를 잘 구현했다면, 사각형과 타원을 잘 그릴 것입니다. 이제 정사각형을 추가해 봅시다. 
+
+정사각형은 width와 height가 동일해야 합니다. 그래서 SetWidth()와 SetHeight()를 재구현하여 동기화할 필요가 있습니다. 
+
+먼저 부모 클래스의 SetWidth()와 SetHeight()를 virtual로 만들어 재구현 할 수 있게 합니다.
 
 ```cpp
 // 부모 클래스 입니다.
@@ -114,6 +118,7 @@ class Shape {
     ...
 };
 ```
+다음으로 Square 클래스를 구현합니다. 생성자에서 height 값은 무시하고 width 값을 사용하도록 조정하고, SetWidth() 와 SeitHeight() 에서 width 값으로 height 값을 세팅하도록 재구현했습니다.
 
 ```cpp
 // 자식 클래스입니다. 생성자를 손보고, SetWidth와 SetHeight를 손봤습니다.
@@ -138,6 +143,7 @@ public:
     }
 };
 ```
+
 하기는 테스트 코드입니다. Square를 생성하고 Draw합니다.
 
 ```cpp
@@ -161,7 +167,7 @@ TEST(TestShape, Draw) {
 }
 ```
 
-악취가 보이실까요? 아직은 동작하는데 큰 이상이 없습니다만, Square의 구조를 모르는 다른 동료들이 하기와 같이 사용하다가 밤을 샐 수 있습니다.
+악취가 보이실까요? 아직은 동작하는데 큰 이상이 없습니다만, Square의 구조를 모르는 다른 동료들이 하기와 같이 테스트하다가 밤을 샐 수 있습니다.
 
 ```cpp
 TEST(TestShape, Draw) {
@@ -170,17 +176,16 @@ TEST(TestShape, Draw) {
     Ellipse shape2(0, 0, 10, 20);
     Square shape3(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
  
-    // 생성시 사용했던 width이 10으로 동일하므로, 서로 같은지를 테스트 합니다.
-    EXPECT_TRUE(shape1.GetWidth() == shape2.GetWidth()):
-    EXPECT_TRUE(shape1.GetWidth() == shape3.GetWidth()):
-    
-    // 생성시 사용했던 height가 20으로 동일하므로, 서로 같은지를 테스트 합니다.
-
-    EXPECT_TRUE(shape1.GetHeight() == shape2.GetHeight()):
-
-    // shape3은 square 입니다. height 는 width 값으로 설정됩니다.
-    EXPECT_TRUE(shape1.GetHeight() == shape3.GetHeight()):
-}
+    std::vector<Shape*> shapes;
+    shapes.push_back(&rect);
+    shapes.push_back(&ellipse);
+    shapes.push_back(&square);
+  
+ for(std::vector<Shape*>::iterator itr = shapes.begin(); itr != shapes.end(); ++itr) {
+        EXPECT_TRUE(*itr)->GetWidth() ==10);
+        EXPECT_TRUE(*itr)->GetHeight() ==20); // Fail
+        
+    }
 
 ```
 
