@@ -389,7 +389,9 @@ public:
 
 ```cpp
 // 자식 클래스 입니다. ResizeableImpl을 포함하여 width와 height를 제공합니다.
-class Rectangle : public Shape, public ResizeableImpl {
+class Rectangle : 
+    public Shape, 
+    public ResizeableImpl {
 public:    
     Rectangle(int l, int t, int w, int h) : 
         Shape(l, t), 
@@ -403,7 +405,9 @@ public:
 };
 
 // 자식 클래스 입니다. ResizeableImpl을 포함하여 width와 height를 제공합니다.
-class Ellipse : public Shape, public ResizeableImpl {
+class Ellipse : 
+    public Shape, 
+    public ResizeableImpl {
 public:
     Ellipse(int l, int t, int w, int h) : 
         Shape(l, t), 
