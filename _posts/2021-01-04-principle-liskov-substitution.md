@@ -294,7 +294,7 @@ class Square : public Shape {
 public:
     int length;
 public:
-    // h 는 무시하고 w만 사용합니다.
+    // width, height없이 length 하나만 사용합니다.
     Square(int l, int t, int len) : 
         Shape(l, t),
         length(len) { 
