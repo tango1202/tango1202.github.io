@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [개발설정] googleTest로 C++ 단위 테스트 만들기"
+title: "#9. [개발설정] GoogleTest로 C++ 단위 테스트 만들기"
 categories: "dev-setting"
 tag: ["개발설정", "visual studio code", "C++", "GoogleTest", "단위 테스트", "TDD"]
 author_profile: false
