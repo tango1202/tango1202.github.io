@@ -155,12 +155,22 @@ protected:
 하기와 같이 `TEST_F`를 사용하여 Fixture를 사용할 수 있습니다.(`TEST`를 사용하면 Fixture를 인식하지 못합니다.) 
 
 ```cpp
+#include "gtest/gtest.h"
+
+TEST_F(TestFixtureName, TestName) {
+    ...statements...   
+}
+```
+
+```cpp
+// MyFixture 는 사용하는 Fixture의 클래스 이름입니다.
 TEST_F(MyFixture, Test1) {
     EXPECT_TRUE(myData.GetAt(0) == 1);
     EXPECT_TRUE(myData.GetCount() == 2);
     myData.Add(3); 
     EXPECT_TRUE(myData.GetCount() == 3);
 }
+// MyFixture 는 사용하는 Fixture의 클래스 이름입니다.
 TEST_F(MyFixture, Test2) {
     EXPECT_TRUE(myData.GetAt(1) == 2);
     EXPECT_TRUE(myData.GetCount() == 2); // Test1에서 1개 더 넣었지만, Fixture는 새롭게 생성된 것입니다. 그러므로 2

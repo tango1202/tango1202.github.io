@@ -86,7 +86,7 @@ public:
 하기는 테스트 입니다. `Rectangle`과 `Ellipse`를 생성하고, Draw를 호출하여 자기 자신을 그립니다.
 
 ```cpp
-TEST(TestShape, Draw) {
+TEST(TestLiskov, Test) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
 
@@ -150,7 +150,7 @@ public:
 하기는 테스트 코드입니다. `Square`를 생성하고 `Draw()`합니다.
 
 ```cpp
-TEST(TestShape, Draw) {
+TEST(TestLiskov, Test) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
     Square square(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
@@ -175,7 +175,7 @@ TEST(TestShape, Draw) {
 악취가 나실까요? 아직은 동작하는데 큰 이상이 없습니다만, `Square`의 구조를 모르는 다른 동료들이 하기와 같이 테스트하다가 낭패를 경험할 수 있습니다.
 
 ```cpp
-TEST(TestShape, Draw) {
+TEST(TestLiskov, Test) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
     Square square(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
@@ -317,7 +317,7 @@ public:
 하기와 같이 테스트 해야 합니다.
 
 ```cpp
-TEST(TestShape, Draw) {
+TEST(TestLiskov, Test) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
     Square square(0, 0, 10); // length를 10으로 설정합니다.
