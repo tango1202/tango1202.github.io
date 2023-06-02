@@ -388,7 +388,7 @@ public:
 마지막으로 `Rectangle`과 `Ellipse`의 `width`, `height`관련 코드를 지우고, `ResizeableImpl`을 상속받아 has-a관계를 만들어 줍니다. 그러면 `width`, `height` 코드 중복을 제거할 수 있습니다.
 
 ```cpp
-// 자식 클래스 입니다. width와 height를 제공합니다.
+// 자식 클래스 입니다. ResizeableImpl을 포함하여 width와 height를 제공합니다.
 class Rectangle : public Shape, public ResizeableImpl {
 public:    
     Rectangle(int l, int t, int w, int h) : 
@@ -402,7 +402,7 @@ public:
     }
 };
 
-// 자식 클래스 입니다. width와 height를 제공합니다.
+// 자식 클래스 입니다. ResizeableImpl을 포함하여 width와 height를 제공합니다.
 class Ellipse : public Shape, public ResizeableImpl {
 public:
     Ellipse(int l, int t, int w, int h) : 
