@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [개체지향 원칙] 리스코프 치환 원칙(Liskov Substitution Principle)(작성중)"
+title: "#4. [개체지향 원칙] 리스코프 치환 원칙(Liskov Substitution Principle)"
 categories: "principle"
 tag: ["개체지향 원칙"]
 author_profile: false
