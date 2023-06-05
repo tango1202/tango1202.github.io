@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [개체지향 원칙] 인터페이스 분리 원칙(Interface Segregation Principle)(작성중)"
+title: "#5. [개체지향 원칙] 인터페이스 분리 원칙(Interface Segregation Principle)"
 categories: "principle"
 tag: ["개체지향 원칙"]
 author_profile: false
