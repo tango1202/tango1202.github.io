@@ -48,7 +48,7 @@ public:
 
 `IAnimal`에 동물들의 다양한 특성들을 넣어 뚱뚱한 인터페이스를 만들지 말고, 각 특성별로 하기 그림처럼 날씬하게 만들어 구성하는게 좋습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/df262a35-462c-4fae-aae8-afdebda36187)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c06053c3-2740-4579-9111-07aad6c91a2e)
 
 먼저 `IAnimal`인터페이스에서 단위 기능 특성들을 분리합니다.
 
@@ -82,9 +82,9 @@ protected:
 public:
     virtual void Walk() = 0;
 };
-class ISwimable {
+class ISwimmable {
 protected:
-    ~ISwimable() {}  // 상속받지만, 다형적으로 사용하지 않아 none virtual 입니다.
+    ~ISwimmable() {}  // 상속받지만, 다형적으로 사용하지 않아 none virtual 입니다.
 
 public:
     virtual void Swim() = 0;
@@ -106,7 +106,7 @@ class Dog :
     public IAnimal,
     public IEatable,
     public IWalkable,
-    public ISwimable {
+    public ISwimmable {
 public:        
     virtual void Born() { /*구현해야 함*/ }
     virtual void Dead() { /*구현해야 함*/ }
@@ -115,4 +115,13 @@ public:
     virtual void Swim() { /*구현해야 함*/ }
 };
 ```
+
+이 원칙을 준수하면,
+
+1. 유연성이 확보되어 기능 수정 및 추가가 용이합니다.
+2. 단위 기능에 집중하므로 유지보수시 복잡성이 낮아집니다.
+3. 계약에 의한 코드 구현이 간소화되어 자식 개체 구현에 자유도가 높아져 구현 편의성이 향상됩니다.
+4. 계약에 의한 코드 구현으로 시스템 안정성이 향상됩니다.
+
+
 
