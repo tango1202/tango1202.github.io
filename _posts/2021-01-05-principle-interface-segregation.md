@@ -53,7 +53,7 @@ public:
 먼저 `IAnimal`인터페이스에서 단위 기능 특성들을 분리합니다.
 
 ```cpp
-// 단위 특성들을 분리하려 날씬해졌습니다.
+// 단위 특성들을 분리하여 날씬해졌습니다.
 class IAnimal {
 public:
     virtual ~IAnimal() {} // 다형적 소멸
