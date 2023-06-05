@@ -105,5 +105,5 @@ public:
     virtual void Walk() { /*구현해야 함*/ }
     virtual void Swim() { /*구현해야 함*/ }
 };
-...
+```
 
