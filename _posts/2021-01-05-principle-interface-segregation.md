@@ -50,9 +50,10 @@ public:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/df262a35-462c-4fae-aae8-afdebda36187)
 
-`Dog`은 살고, 죽고, 먹을 수 있고, 걸을 수 있고, 수영할 수 있으므로 하기와 같이 구현할 수 있습니다.
+먼저 `IAnimal`인터페이스에서 단위 기능 특성들을 분리합니다.
 
 ```cpp
+// 단위 특성들을 분리하려 날씬해졌습니다.
 class IAnimal {
 public:
     virtual ~IAnimal() {} // 다형적 소멸
@@ -61,7 +62,11 @@ public:
     virtual void Born() = 0;
     virtual void Dead() = 0;
 };
+```
 
+단위 특성들을 인터페이스로 구현합니다.
+
+```cpp
 // 인터페이스들이 분리되어 간소화 되었습니다.
 class IEatable {
 protected:
@@ -91,7 +96,11 @@ protected:
 public:
     virtual void Fly() = 0;
 };
+```
 
+`Dog`은 살고, 죽고, 먹을 수 있고, 걸을 수 있고, 수영할 수 있으므로 하기와 같이 구현할 수 있습니다.
+
+```cpp
 // 분리된 인터페이스들중 필요한 것만으로 구성합니다.
 class Dog :
     public IAnimal,
