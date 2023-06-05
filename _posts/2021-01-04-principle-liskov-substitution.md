@@ -39,7 +39,7 @@ public:
         width(w),
         height(h) {
     }
-    virtual ~Shape() {}; // 순가상. 상속해야만 사용 가능
+    virtual ~Shape() {}; // 다형적 소멸
 public:
     // Get/Set 함수
     int GetLeft() const { return left; }
@@ -61,7 +61,8 @@ public:
 
 ```cpp
 // 자식 클래스 입니다.
-class Rectangle : public Shape {
+class Rectangle : 
+    public Shape {
 public:    
     Rectangle(int l, int t, int w, int h) : Shape(l, t, w, h) {}
     virtual ~Rectangle() override {}
@@ -72,7 +73,8 @@ public:
 };
 
 // 자식 클래스 입니다.
-class Ellipse : public Shape {
+class Ellipse : 
+    public Shape {
 public:
     Ellipse(int l, int t, int w, int h) : Shape(l, t, w, h) {}
     virtual ~Ellipse() override {}
@@ -86,7 +88,7 @@ public:
 하기는 테스트 입니다. `Rectangle`과 `Ellipse`를 생성하고, Draw를 호출하여 자기 자신을 그립니다.
 
 ```cpp
-TEST(TestLiskov, Test) {
+TEST(Test_Principle_Liskov, Test) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
 
@@ -125,7 +127,8 @@ class Shape {
 
 ```cpp
 // 자식 클래스입니다. 생성자를 손보고, SetWidth와 SetHeight를 손봤습니다.
-class Square : public Shape {
+class Square : 
+    public Shape {
 public:
     // h 는 무시하고 w만 사용합니다.
     Square(int l, int t, int w, int /*h*/) : Shape(l, t, w, w) {}
@@ -150,7 +153,7 @@ public:
 하기는 테스트 코드입니다. `Square`를 생성하고 `Draw()`합니다.
 
 ```cpp
-TEST(TestLiskov, Test) {
+TEST(Test_Principle_Liskov, Test) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
     Square square(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
@@ -175,7 +178,7 @@ TEST(TestLiskov, Test) {
 악취가 나실까요? 아직은 동작하는데 큰 이상이 없습니다만, `Square`의 구조를 모르는 다른 동료들이 하기와 같이 테스트하다가 낭패를 경험할 수 있습니다.
 
 ```cpp
-TEST(TestLiskov, Test) {
+TEST(Test_Principle_Liskov, Test) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
     Square square(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
@@ -201,7 +204,7 @@ TEST(TestLiskov, Test) {
 사실 정사각형은 길이 하나만 가지고 있는 편이 좋고, 원은 지름을 가지고 있는 편이 좋습니다. 직선은 시작점과 끝점을 가지고 있는 편이 좋고, 호는 반지름과 각도를 가지고 있는 편이 좋고요. 이 정보로부터 나중에 `width`와 `height`를 계산해 낼 수 있죠.
 즉, 부모가 쓸데없이 `width`와 `height`를 가진 거라 보면 됩니다. 자식들이 헷갈리게요.
 
-**해결 방법 : 부모 클래스 간소화**
+**준수 방법 : 부모 클래스 간소화**
 
 하기와 같이 부모를 수정하여 자식들이 억지로 불필요한 구현을 안하게 해야 합니다. 
 
@@ -218,7 +221,7 @@ public:
         left(l),
         top(t) {
     }
-    virtual ~Shape() {}; // 순가상. 상속해야만 사용 가능
+    virtual ~Shape() {}; // 다형적 소멸
 public:
     // Get/Set 함수
     int GetLeft() const { return left; }
@@ -236,7 +239,8 @@ public:
 
 ```cpp
 // 자식 클래스 입니다. width와 height를 제공합니다.
-class Rectangle : public Shape {
+class Rectangle : 
+    public Shape {
 private:
     int width;
     int height;
@@ -261,7 +265,8 @@ public:
 };
 
 // 자식 클래스 입니다. width와 height를 제공합니다.
-class Ellipse : public Shape {
+class Ellipse : 
+    public Shape {
 private:
     int width;
     int height;
@@ -290,7 +295,8 @@ public:
 
 ```cpp
 // 자식 클래스입니다. length를 제공합니다.
-class Square : public Shape {
+class Square : 
+    public Shape {
 public:
     int length;
 public:
@@ -317,7 +323,7 @@ public:
 하기와 같이 테스트 해야 합니다.
 
 ```cpp
-TEST(TestLiskov, Test) {
+TEST(Test_Principle_Liskov, Test) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
     Square square(0, 0, 10); // length를 10으로 설정합니다.
@@ -365,7 +371,8 @@ public:
 
 ```cpp
 // IResizeable 구현한 클래스입니다. 다른 클래스에서 상속받아 기능을 포함합니다.
-class ResizeableImpl : public IResizeable {
+class ResizeableImpl : 
+    public IResizeable {
 private:
     int width;
     int height;    
@@ -422,6 +429,7 @@ public:
 ```
 이 원칙을 준수하면,
 
-1. 자식 개체 구현에 자유도가 높아집니다.
-2. 계약에 의한 코드 구현으로 시스템이 안정적입니다.
+1. 코드 분석시 불필요하게 하위 개체의 구현을 신경 쓰지 않아도 되므로 코드 분석 용이성이 향상됩니다.
+1. 계약에 의한 코드 구현이 간소화되어 자식 개체 구현에 자유도가 높아져 구현 편의성이 향상됩니다.
+2. 계약에 의한 코드 구현으로 시스템 안정성이 향상됩니다.
 

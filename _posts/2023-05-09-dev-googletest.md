@@ -135,7 +135,8 @@ public:
 };
 
 // MyVector를 사용하는 Fixture 입니다.
-class MyFixture : public ::testing::Test {
+class MyFixture : 
+    public ::testing::Test {
 protected:
     // protected여서 이를 상속받은 테스트에서 접근 가능합니다.
     MyVector myData;

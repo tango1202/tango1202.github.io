@@ -24,42 +24,86 @@ sidebar:
 
 동물에 관련된 lAnimal 인터페이스를 하기와 같이 구현했다고 합시다.
 
-IAnimal
-
-Born
-Dead
-Eat
-Walk
-Swim
-Fly
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4d787743-47b6-4166-8ba1-4aef7e740bc9)
 
 이제 IAnimal을 상속받은 강아지, 고양이, 물고기, 새를 구현하고자 합니다. 그런데 각 동물들의 특성에 맞게 할 수 있은 것과 없는 것이 있습니다.
 
 예를 들어 날 수 있는 강아지는 없으니, 억지로 하기와 같이 `Dog`을 구현할 수 밖에 없습니다.
-```
-dog
+
+``` cpp
+class Dog :
+    public IAnimal {
+public:        
+    virtual void Born() { /*구현해야 함*/ }
+    virtual void Dead() { /*구현해야 함*/ }
+    virtual void Eat() { /*구현해야 함*/ }
+    virtual void Walk() { /*구현해야 함*/ }
+    virtual void Swim() { /*구현해야 함*/ }
+    virtual void Fly() { } // 뭘하지? 특별히 하는게 없더라도 구현해 두어야 함
+};
 ```
 자식에서 쓸데없이 함수 구현을 하므로, 인터페이스 분리 원칙 위반입니다. 
 
-**해결 방법**
+**준수 방법**
 
 `IAnimal`에 동물들의 다양한 특성들을 넣어 뚱뚱한 인터페이스를 만들지 말고, 각 특성별로 하기 그림처럼 날씬하게 만들어 구성하는게 좋습니다.
 
-IAnimal
-born, dead
-
-IEatable
-IWalkable
-ISwimmable
-IFlyable
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/df262a35-462c-4fae-aae8-afdebda36187)
 
 `Dog`은 살고, 죽고, 먹을 수 있고, 걸을 수 있고, 수영할 수 있으므로 하기와 같이 구현할 수 있습니다.
 
 ```cpp
+class IAnimal {
+public:
+    virtual ~IAnimal() {} // 다형적 소멸
 
+public:
+    virtual void Born() = 0;
+    virtual void Dead() = 0;
+};
+
+// 인터페이스들이 분리되어 간소화 되었습니다.
+class IEatable {
+protected:
+    ~IEatable() {}  // 상속받지만, 다형적으로 사용하지 않아 none virtual 입니다.
+
+public:
+    virtual void Eat() = 0;
+};
+class IWalkable {
+protected:
+    ~IWalkable() {}  // 상속받지만, 다형적으로 사용하지 않아 none virtual 입니다.
+
+public:
+    virtual void Walk() = 0;
+};
+class ISwimable {
+protected:
+    ~ISwimable() {}  // 상속받지만, 다형적으로 사용하지 않아 none virtual 입니다.
+
+public:
+    virtual void Swim() = 0;
+};
+class IFlyable {
+protected:
+    ~IFlyable() {}  // 상속받지만, 다형적으로 사용하지 않아 none virtual 입니다.
+
+public:
+    virtual void Fly() = 0;
+};
+
+// 분리된 인터페이스들중 필요한 것만으로 구성합니다.
 class Dog :
-   public IAnimal,
-   public IEatable,
-    
+    public IAnimal,
+    public IEatable,
+    public IWalkable,
+    public ISwimable {
+public:        
+    virtual void Born() { /*구현해야 함*/ }
+    virtual void Dead() { /*구현해야 함*/ }
+    virtual void Eat() { /*구현해야 함*/ }
+    virtual void Walk() { /*구현해야 함*/ }
+    virtual void Swim() { /*구현해야 함*/ }
+};
 ...
 
