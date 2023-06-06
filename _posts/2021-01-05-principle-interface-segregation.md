@@ -34,12 +34,12 @@ sidebar:
 class Dog :
     public IAnimal {
 public:        
-    virtual void Born() { /*구현해야 함*/ }
-    virtual void Dead() { /*구현해야 함*/ }
-    virtual void Eat() { /*구현해야 함*/ }
-    virtual void Walk() { /*구현해야 함*/ }
-    virtual void Swim() { /*구현해야 함*/ }
-    virtual void Fly() { } // 뭘하지? 특별히 하는게 없더라도 구현해 두어야 함
+    virtual void Born() override { /*구현해야 함*/ }
+    virtual void Dead() override { /*구현해야 함*/ }
+    virtual void Eat() override { /*구현해야 함*/ }
+    virtual void Walk() override { /*구현해야 함*/ }
+    virtual void Swim() override { /*구현해야 함*/ }
+    virtual void Fly() override { } // 뭘하지? 특별히 하는게 없더라도 구현해 두어야 함
 };
 ```
 자식에서 쓸데없이 함수 구현을 억지로 해야 하므로, 인터페이스 분리 원칙 위반입니다. 
@@ -108,11 +108,11 @@ class Dog :
     public IWalkable,
     public ISwimmable {
 public:        
-    virtual void Born() { /*구현해야 함*/ }
-    virtual void Dead() { /*구현해야 함*/ }
-    virtual void Eat() { /*구현해야 함*/ }
-    virtual void Walk() { /*구현해야 함*/ }
-    virtual void Swim() { /*구현해야 함*/ }
+    virtual void Born() overide { /*구현해야 함*/ }
+    virtual void Dead() override { /*구현해야 함*/ }
+    virtual void Eat() override { /*구현해야 함*/ }
+    virtual void Walk() override { /*구현해야 함*/ }
+    virtual void Swim() override { /*구현해야 함*/ }
 };
 ```
 
@@ -122,7 +122,7 @@ public:
 
 1. 유연성이 확보되어 기능 수정 및 추가가 용이합니다.
 2. 단위 기능에 집중하므로 유지보수시 복잡성이 낮아집니다.
-3. 계약에 의한 코드 구현이 간소화되어 자식 개체 구현에 자유도가 높아져 구현 편의성이 향상됩니다.
+3. 계약에 의한 코드 구현이 간소화되어 구현 편의성이 향상됩니다.
 4. 계약에 의한 코드 구현으로 시스템 안정성이 향상됩니다.
 
 
