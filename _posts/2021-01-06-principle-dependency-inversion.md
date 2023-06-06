@@ -128,10 +128,13 @@ TEST(TEST_Principle_Dependency_Inversion, Test) {
      shape.SetWriter(&jasonWriter);
     shape.Save(); // json 으로 저장
 }
-
-
-
 ```
+
+**역전의 의미**
+
+하위 수준 모듈 관점에서 의존의 방향이 기존과 달리 인터페이스 방향으로 역전되어, 의존성 역전이라고 불립니다.
+
+그림. 기존 - 현재
 
 이 원칙을 준수하면,
 
