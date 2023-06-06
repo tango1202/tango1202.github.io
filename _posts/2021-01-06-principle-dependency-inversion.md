@@ -114,7 +114,7 @@ public:
 };
 ```
 
-이제 하기와 같이 사용하여 다양한 포맷을 지원할 수 있습니다.
+이제 하기와 같이 사용하여 다양한 포맷으로 저장할 수 있습니다.
 
 ```cpp
 TEST(TEST_Principle_Dependency_Inversion, Test) {
