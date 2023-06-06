@@ -108,7 +108,7 @@ class Dog :
     public IWalkable,
     public ISwimmable {
 public:        
-    virtual void Born() overide { /*구현해야 함*/ }
+    virtual void Born() override { /*구현해야 함*/ }
     virtual void Dead() override { /*구현해야 함*/ }
     virtual void Eat() override { /*구현해야 함*/ }
     virtual void Walk() override { /*구현해야 함*/ }
