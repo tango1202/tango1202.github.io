@@ -110,7 +110,7 @@ shape.Rotate(delta);
 
 **준수 방법**
 
-상기 예제는 Degree 형식을 처리하는 과정이 함수 호출전과 함수내에 흩어져 있기 때문에 발생한 문제입니다. `Rotate()`함수 바깥에선 `delta`값을 보정해야 하고, 안에서는 `angle`과 `delta`를 더한 뒤 회전시키니까요. 서로 주거니 받거니 하는 값이 잘 맞아 떨어져야만 합니다.([단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)도 위반했네요.)
+상기 예제는 Degree 형식을 처리하는 과정이 함수 외부와 내부에 흩어져 있기 때문에 발생한 문제입니다. `Rotate()`함수 외부에선 `delta`값을 보정해야 하고, 내부에서는 `angle`과 `delta`를 더한 뒤 회전시키니까요. 서로 주거니 받거니 하는 값이 잘 맞아 떨어져야만 합니다.([단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)도 위반했네요.)
 
 이렇게 흩어진 처리방식을 해결하기 위해, Degree 형식을 처리하는 `Degree` 타입을 만들고, 데이터 보정 처리를 응집해 줍니다. 그러면 Degree 형식 처리방법이 캡슐화 되고, 응집력은 높아지고, 결합도는 낮아집니다. 또한 함수 호출이 제대로 사용하기 쉽게 변경됩니다.
 
@@ -216,7 +216,7 @@ inline Degree operator -(const Degree& left, float right) {
 }
 ```
 
-`Degree` 클래스 내에서 0~360 로 값을 보정하므로, `Shape` 클래스는 다음과 같이 구현할 수 있습니다. `Rotate()`함수의 불필요한 주석과 `assert`가 사라졌습니다.
+`Degree` 클래스 내에서 0~360 로 값을 보정하므로(여러 연산자를 오버로딩하여 믿고 쓸 수 있습니다), `Shape` 클래스는 다음과 같이 구현할 수 있습니다. `Rotate()`함수의 불필요한 주석과 `assert`가 사라졌습니다.
 
 ```cpp
 class Shape {
