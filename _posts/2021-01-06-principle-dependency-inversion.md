@@ -25,7 +25,7 @@ sidebar:
 ```cpp
 class XmlWriter {
 public:
-    void SaveIntVal(std::wstring attrName, int val) const { /* xml로 저장합니다 */ }
+    void WriteIntVal(std::wstring attrName, int val) const { /* xml로 저장합니다 */ }
 };
 
 class Shape {
@@ -36,15 +36,15 @@ private:
     
 public:
     void Save() const {
-        writer.SaveIntVal(L"x", x);
-        writer.SaveIntVal(L"y", y);
+        writer.WriteIntVal(L"x", x);
+        writer.WriteIntVal(L"y", y);
     }
 };
 ```
 
 상기는 다음과 같이 `Shape`과 `XmlWriter` 간의 의존관계가 성립됩니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/abc29f45-8257-49be-903a-dba549a86124)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e0285451-994d-47be-adb0-901f4c219b0d)
 
 하위 수준을 직접 참조하였으므로 의존성 역전 원칙 위반입니다.
 
@@ -52,7 +52,7 @@ public:
 
 상위 수준과 하위 수준 모두 인터페이스를 의존하도록 하기와 같이 변경합니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1adacbcb-d504-4c8b-a0f1-6d597374f72e)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b3d54b2f-2fa1-421b-a250-94489ebbf18e)
 
 구현하면 하기와 같습니다.
 
@@ -61,13 +61,13 @@ class IWriter {
 protected:
     ~IWriter() {} // 상속받지만, 다형적으로 사용하지 않아 none virtual 입니다.
 public:
-    virtual void SaveIntVal(std::wstring attrName, int val) const = 0;
+    virtual void WriteIntVal(std::wstring attrName, int val) const = 0;
 };
 
 class XmlWriter : 
     public IWriter {
 public:
-    virtual void SaveIntVal(std::wstring attrName, int val) const override { /* xml로 저장합니다 */ }
+    virtual void WriteIntVal(std::wstring attrName, int val) const override { /* xml로 저장합니다 */ }
 };
 
 class Shape {
@@ -83,8 +83,8 @@ public:
 public:
     void Save() const {
         assert(writer != nullptr);
-        writer->SaveIntVal(L"x", x);
-        writer->SaveIntVal(L"y", y);
+        writer->WriteIntVal(L"x", x);
+        writer->WriteIntVal(L"y", y);
     }
 };
 ```
@@ -95,7 +95,7 @@ public:
 
 `Shape` 이 `Json`등 다른 포맷을 지원하려고 할 경우, 의존성 주입을 통해 손쉽게 확장할 수 있습니다. `IWriter` 인터페이스를 지원하는 `JsonWriter`만 개발하고 `Shape`에 전달해주면 됩니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/25fb6fc8-f26a-4894-9285-b7ecab598c01)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/01396ddc-6d9d-487e-9137-b55620b7eeb8)
 
 하기와 같이 `SetWriter()`함수를 만들어 주면, 런타임에 다양한 `Writer`를 사용할 수 있습니다.
 
@@ -134,7 +134,7 @@ TEST(TestPrinciple, DependencyInversion) {
 
 하위 수준 모듈 관점에서 의존의 방향이 기존과 달리 인터페이스 방향으로 역전되어, 의존성 역전이라고 불립니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0c4eef17-144d-43ce-b2c2-b9d89804325c)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4e38f7de-0921-464f-ba4a-50cc59de96b2)
 
 이 원칙을 준수하면,
 
