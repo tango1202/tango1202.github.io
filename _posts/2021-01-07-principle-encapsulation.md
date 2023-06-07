@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-캡슐화는 **개체의 내부 상태의 구현 원리를 개체 사용자는 알 필요 없게 하라** 는 원칙입니다.
+캡슐화는 **개체 사용자가 개체의 내부 상태의 구현 원리를 알 필요 없게 하라** 는 원칙입니다.
 
 조금 풀어 쓰면,
 
@@ -23,11 +23,39 @@ sidebar:
 ```cpp
 // 0~360 사이의 degree 값을 전달해야 합니다.
 void Shape::Rotate(float delta) {
-   assert(0 <= delta && delta < ;
+   float angle = angle + delta:
+   assert(0 <= angle && angle < 360);
    // 회전시킵니다.
-}
 ```
 
-`Rotate()`를 호출하기 전에는 하기와 같이 값을 검사하고, 유효한 값을 전달해야 합니다.
+상기의 `Rotate()`를 호출하기 전에는 하기와 같이 값을 검사하고, 유효한 값을 전달해야 합니다.
 
+```cpp
+// shape의 현재 각도
+float angle = shape.GetAngle();
 
+// delta만큼 회전한 후의 각도
+float finalAngle = angle + delta;
+
+// filnalAngle이 0~360이 되도록 delta를 조정한다.
+if (finalAngle < 0) {
+    delta = 360 + finalAngle - angle;
+}
+else if (360 <= finalAngle) {
+    delta = finalAngle - 360 - angle;
+}
+
+shape.Rotate(delta);
+```
+
+좀 지저분하지만 참을만 합니다. 하지만, `Rotate()` 함수 호출할 때마다 저런 보정 문을 쓰는건 견디기 힘든 중복입니다. 
+
+하기와 같이 `Util::CalcShapeRotateDelta()`를 만들어 중복은 어찌 회피할 수 있습니다.
+
+```cpp
+
+```
+
+하지만, `Rotate()` 호출전에 `delta`값을 보정하기 위해 `Util::CalcShapeRotateDelta()` 을 항상 호출해야 하는 것도, 어찌보면 코드 중복이고, 클래스 간의 결합도도 하기 그림과 같이 복잡해 집니다.
+
+여전히 단위 기능의 응집도도 낮고, 결합도는 높으며, `Util::CalcShapeRotateDelta()` 호출을 빼먹어서 잘못 사용하기에 쉽습니다.
