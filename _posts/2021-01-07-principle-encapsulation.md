@@ -102,7 +102,7 @@ delta = Util::CalcShapeRotateDelta(shape.GetAngle(), delta);
 shape.Rotate(delta);
 ```
 
-하지만, `Rotate()` 호출전에 `delta`값을 보정하기 위해 `CalcShapeRotateDelta()` 을 항상 호출해야 하는 것도, 어찌보면 코드 중복이라 볼 수 있고, 호출자가 `Shape`과 `Util`을 모두 파악하고 있어야 하기에 복잡해 집니다.
+하지만, `Rotate()` 호출전에 `delta`값을 보정하기 위해 `CalcShapeRotateDelta()` 을 항상 호출해야 하는 것도, 어찌보면 코드 중복이라 볼 수 있고, 호출자가 `Shape`과 `Util`을 모두 파악해야 하기에 복잡해 집니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f97cfb45-cd6e-460c-84fa-937c79416f11)
 
