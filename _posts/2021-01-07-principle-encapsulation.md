@@ -18,9 +18,16 @@ sidebar:
 
 라는 뜻입니다. 
 
-각도를 Degree 형태로 입력받는 `Rotate()` 함수를 구현한다 가정해 봅시다.
+각도를 Degree 형태로 입력받는 `Rotate()` 함수를 구현한다 가정해 봅시다. 아마도 하기와 같이 가볍게 예외상황을 검사하고 `assert`를 작성할 수 있습니다.
 
+```cpp
+// 0~360 사이의 degree 값을 전달해야 합니다.
+void Shape::Rotate(float delta) {
+   assert(0 <= delta && delta < ;
+   // 회전시킵니다.
+}
+```
 
-
+`Rotate()`를 호출하기 전에는 하기와 같이 값을 검사하고, 유효한 값을 전달해야 합니다.
 
 
