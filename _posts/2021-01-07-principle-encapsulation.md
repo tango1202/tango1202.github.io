@@ -106,7 +106,7 @@ shape.Rotate(delta);
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f97cfb45-cd6e-460c-84fa-937c79416f11)
 
-여전히 단위 기능의 응집도도 낮고, 결합도는 높으며, `CalcShapeRotateDelta()` 호출을 빼먹어서 잘못 사용하기에 쉽습니다. 캡술화 위반입니다.
+여전히 단위 기능의 응집도도 낮고, 결합도는 높으며, `Rotate()`함수가 `delta`를 처리하는 방식을 파악한뒤, `CalcShapeRotateDelta()`를 꼭 호출해야 하기 때문에 사용하기 어렵습니다. 호출을 빼먹어서 잘못 사용하기 쉽고요. 캡슐화 위반입니다.
 
 **준수 방법**
 
