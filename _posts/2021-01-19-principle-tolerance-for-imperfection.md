@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [개체지향 원칙] 한번 단 한번만(Once and Only Once)(작성중)"
+title: "#19. [개체지향 원칙] 불안정성에 대한 관용(Tolerance for Imperfection)(작성중)"
 categories: "principle"
 tag: ["개체지향 원칙"]
 author_profile: false

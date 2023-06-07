@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [개체지향 원칙] 아키텍처 민첩성 원칙(Architectural Agility Principle)"
+title: "#12. [개체지향 원칙] 아키텍처 민첩성 원칙(Architectural Agility Principle)"
 categories: "principle"
 tag: ["개체지향 원칙"]
 author_profile: false
@@ -20,3 +20,4 @@ sidebar:
 
 라는 뜻입니다. 
 
+개체지향 설계 원칙이라기 보다는 철학에 가깝습니다. 아키텍처 변경이 오랜 기간이 걸린다며 !!!핑계!!! 대지 말고, 변화를 수용하셔서 점진적으로 아키텍처를 개선하세요.

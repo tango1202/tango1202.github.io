@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [개체지향 원칙] 보이 스카우트 규칙(Boy Scout Rule)(작성중)"
+title: "#15. [개체지향 원칙] 필요할때 구현하라(You Aren't Gonna Need It)(작성중)"
 categories: "principle"
 tag: ["개체지향 원칙"]
 author_profile: false
