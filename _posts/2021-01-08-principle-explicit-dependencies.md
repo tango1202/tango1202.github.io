@@ -46,7 +46,32 @@ rect.SetWidth(10);
 rect.SetHeight(10);
 ```
 
-이렇게 필요한 요소를 생성 후 일일이 세팅하는건 번거로운건 둘째치고, 사용이 어렵고, 클래스 내부 구조를 완전히 파악해야만 하는 부담이 있습니다.
+이렇게 필요한 요소를 생성 후 일일이 세팅하는건 번거로운건 둘째치고, 사용이 어렵고, 클래스 내부 구조를 완전히 파악해야만 하는 부담이 있습니다.(내부 구조 파악을 필요로 하니 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)도 위반이군요.)
+
+하기와 같이 완전한 생성자를 만들어 해결할 수 있습니다.
+
+```cpp
+class Rectangle {
+private:
+  int left;
+  int top;
+  int width;
+  int height;
+public:
+  Rectangle(int l, int t, int h, int h) : 
+      left(l), top(t), width(w), height(h) {}
+  
+  ...
+};
+```
+
+이제 `Rectangle`은 필요한 모드 요소를 제공해야만 생성할 수 있습니다.
+
+```cpp
+Rectangle rect(0, 0, 10, 20);
+```
+
+**준수 방법 : 완전한 인자**
 
 완전한 생성자 : 나중에 Setter를 실행해야만 하는.
 
