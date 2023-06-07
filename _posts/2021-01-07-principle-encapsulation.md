@@ -234,7 +234,11 @@ public:
 };
 ```
 
-이제 다음과 같이 테스트를 작성할 수 있습니다. `Rotate()`함수 내부구조를 파악할 필요도 없고, `delta`값을 보정할 필요도 없으므로, 사용이 한결 쉬워졌습니다.
+이제 호출자는 `Rotate()`함수 내부구조를 파악할 필요도 없고, `delta`값을 보정할 필요도 없으므로, `Rotate()` 사용이 한결 쉬워졌습니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7964b099-8d31-41a7-b183-69c3cd942c72)
+
+다음과 같이 테스트를 작성할 수 있습니다.
 
 ```cpp
 TEST(TestPrinciple, Encapsulation) {
@@ -262,6 +266,5 @@ TEST(TestPrinciple, Encapsulation) {
     EXPECT_FLOAT_EQ(shape.GetAngle().GetValue(), 350.F); // 10 - 20 = -10도, 즉 350도
 }
 ```
-
 
 
