@@ -38,7 +38,7 @@ public:
 };
 ```
 
-상기 `Rectangle`응 하기와 같이 생성후 값을 세팅해 주어야만 사용할 수 있습니다.
+상기 `Rectangle`은 하기와 같이 생성후 값을 세팅해 주어야만 사용할 수 있습니다.
 
 ```cpp
 Rectangle rect;
