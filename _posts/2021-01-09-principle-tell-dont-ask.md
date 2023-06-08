@@ -26,4 +26,23 @@ sidebar:
 예를 들어 `Rectangle`의 중심을 구한다고 생각해 봅시다.
 
 ```cpp
+class Rectangle {
+private:
+    int left;
+    int top;
+    int width;
+    int height;
 
+public:
+    int GetLeft(int val) const { return left; }
+    int GetTop(int val) const { return top; }
+    int GetWidth(int val) const { return width; }
+    int GetHeight(int val) const { return height; }
+};
+```
+
+하기와 같이 중심점을 구할 수 있습니다.
+
+```cpp
+Ractangle rect(0, 0, 
+```
