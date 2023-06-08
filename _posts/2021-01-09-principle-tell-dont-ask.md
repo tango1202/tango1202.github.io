@@ -32,7 +32,10 @@ private:
     int top;
     int width;
     int height;
-
+public:
+    Rectangle(int l, int t, int w, int h) : 
+        left(l), top(t), width(w), height(h) {
+    }
 public:
     int GetLeft(int val) const { return left; }
     int GetTop(int val) const { return top; }
@@ -44,5 +47,39 @@ public:
 하기와 같이 중심점을 구할 수 있습니다.
 
 ```cpp
-Ractangle rect(0, 0, 
+Ractangle rect(0, 0, 10, 20);
+int left = rect.GetLeft();
+int top = rect.GetTop();
+int width = rect.GetWidth();
+int height = rect.GetHeight();
+
+int centerX = left + width / 2;
+int centerY = top + height / 2;
 ```
+
+만약 묻지 말고 말하라 원칙을 적용하여, `Rectangle`에 `GetCenter()`함수를 구현한다면 하기와 같이 사용할 수 있습니다.
+
+```cpp
+Ractangle rect(0, 0, 10, 20);
+std::pair<int, int> center = rect.GetCenter();
+```
+
+이제 내부정보를 노출하는 Getter를 사용하지 않으므로 `Rectangle` 의 내부 정보를 하기와 같이 취향껏 작성할 수 있습니다. 하기는 왼쪽/상단이 아닌 중심점을 멤버변수로 사용합니다. 은닉성에 주는 이점입니다. 
+
+```cpp
+class Rectangle {
+private:
+    int centerX;
+    int centerY;
+    int width;
+    int height;
+public:
+    Rectangle(int l, int t, int w, int h) : 
+        centerX(l + w / 2), centerY(t + h / 2), width(w), height(h) {
+    }
+public:
+    std::pair<int, int> GetCenter() const { 
+        return std::make_pair(centerX, centerY):
+    }
+};
+``` 
