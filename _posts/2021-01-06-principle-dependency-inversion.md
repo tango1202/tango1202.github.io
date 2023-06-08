@@ -93,7 +93,7 @@ public:
 
 **의존성 주입**
 
-`Shape` 이 `Json`등 다른 포맷을 지원하려고 할 경우, 의존성 주입을 통해 손쉽게 확장할 수 있습니다. `IWriter` 인터페이스를 지원하는 `JsonWriter`만 개발하고 `Shape`에 전달해주면 됩니다.
+`Shape` 이 `Json`등 다른 포맷을 지원하려고 할 경우, **의존성 주입** 을 통해 손쉽게 확장할 수 있습니다. `IWriter` 인터페이스를 지원하는 `JsonWriter`만 개발하고 `Shape`에 전달해주면 됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/01396ddc-6d9d-487e-9137-b55620b7eeb8)
 
