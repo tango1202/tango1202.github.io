@@ -48,7 +48,7 @@ rect.SetWidth(10);
 rect.SetHeight(10);
 ```
 
-이렇게 필요한 요소를 생성 후 일일이 세팅하는건 번거로운건 둘째치고, 사용이 어렵고, 클래스 내부 구조를 완전히 파악해야만 하는 부담이 있습니다.(내부 구조 파악을 필요로 하니 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)도 위반이군요.)
+이렇게 필요한 요소를 생성 후 일일이 세팅하는건 번거로움은 둘째치고, 사용이 어렵고, 클래스 내부 구조를 완전히 파악해야만 하는 부담이 있습니다.(내부 구조 파악을 필요로 하니 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)도 위반이군요.)
 
 하기와 같이 완전한 생성자를 만들어 해결할 수 있습니다.
 
