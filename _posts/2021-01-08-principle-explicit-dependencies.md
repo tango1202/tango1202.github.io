@@ -73,6 +73,25 @@ Rectangle rect(0, 0, 10, 20);
 
 **준수 방법 : 완전한 인자**
 
-완전한 생성자 : 나중에 Setter를 실행해야만 하는.
+화면에 표시되는 view의 중심에 `Rectangle`을 회전 시켜 봅시다. 하기와 같이 함수를 만들면 어떨까요?
 
-완전한 인자 : 전역요소, 인프라요소
+```cpp
+void RotateAtViewCenter(const Degree& delta) {
+  // view 중심점을 찾습니다.
+    const View* view = GetOwnerView();
+  float x = view->GetCenterX();
+  float y = view->GetCenterY();
+  
+  // view 중심점에 맞춰 회전시킵니다.
+  RotateAt(delta, x, y);
+}
+```
+복잡하게 view를 다루는 코드가 함수내에 있으니, 좋은것 같아 보이지만, 하기 그림처럼 의존성이 상호 참조 될 수 있습니다.(결합도가 증가하니 이또한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위반이군요.)
+
+하기와 같이 함수에서 필요로 한 정보를 인자로 요청하셔서 의존성 관계를 끊어주시는게 좋습니다. 
+
+```cpp
+void RotateAt(const Degree& delta, float x, float y);
+```
+
+
