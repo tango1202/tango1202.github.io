@@ -75,7 +75,7 @@ Rectangle rect(0, 0, 10, 20);
 
 **준수 방법 : 완전한 인자**
 
-화면에 표시되는 view의 중심에 `Rectangle`을 회전 시켜 봅시다. 하기와 같이 함수를 만들면 어떨까요?
+화면에 표시되는 view의 중심에서 `Rectangle`을 회전 시켜 봅시다. 하기와 같이 함수를 만들면 어떨까요?
 
 ```cpp
 void RotateAtViewCenter(const Degree& delta) {
@@ -92,7 +92,7 @@ void RotateAtViewCenter(const Degree& delta) {
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c7fd60c-42c6-4c1f-8f09-bd8b47c24a9e)
 
-위의 예에 슬쩍 써보긴 했습니다만, 하기와 같이 함수에서 필요한 정보를 명시적으로 인자를 작성하셔서 의존성 관계를 끊어주시는게 좋습니다. 
+위의 예에 슬쩍 써보긴 했습니다만, 하기와 같이 함수에서 필요한 정보를 명시적으로 인자로 작성하셔서 의존성 관계를 끊어주시는게 좋습니다. 
 
 ```cpp
 void RotateAt(const Degree& delta, float x, float y);
