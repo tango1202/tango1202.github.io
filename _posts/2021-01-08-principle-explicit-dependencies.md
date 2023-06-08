@@ -88,7 +88,7 @@ void RotateAtViewCenter(const Degree& delta) {
     RotateAt(delta, x, y);
 } 
 ```
-복잡하게 view를 다루는 코드가 함수내에 은닉되어 있으니, 좋은것 같아 보이지만, 하기 그림처럼 의존성이 상호 참조 될 수 있습니다.(결합도가 증가하니 이또한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위반이군요.)
+복잡하게 view를 다루는 코드가 함수내에 은닉되어 있으니, 좋은것 같아 보이지만, 하기 그림처럼 의존성이 상호 참조되어 **의존성 부패** 가 발생할 수 있습니다.(결합도가 증가하니 이또한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위반이군요.)
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c7fd60c-42c6-4c1f-8f09-bd8b47c24a9e)
 
