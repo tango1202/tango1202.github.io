@@ -64,12 +64,12 @@ Ractangle rect(0, 0, 10, 20);
 std::pair<int, int> center = rect.GetCenter();
 ```
 
-이제 내부정보를 노출하는 Getter를 사용하지 않으므로 `Rectangle` 의 내부 정보를 하기와 같이 취향껏 작성할 수 있습니다. 하기는 왼쪽/상단이 아닌 중심점을 멤버변수로 사용합니다. 은닉성에 주는 이점입니다. 
+이제 내부정보를 노출하는 Getter를 사용하지 않으므로, 별다른 영향도 없이 `Rectangle` 의 내부 정보를 하기와 같이 취향껏 변경할 수 있습니다. 하기는 왼쪽/상단이 아닌 중심점을 멤버변수로 사용합니다. 은닉성이 주는 이점입니다. 
 
 ```cpp
 class Rectangle {
 private:
-    int centerX;
+    int centerX; // 중심점을 멤버로 사용합니다.
     int centerY;
     int width;
     int height;
