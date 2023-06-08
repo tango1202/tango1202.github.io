@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [개체지향 원칙] 명시적 의존성 원칙(Explicit Dependencies Principle)(작성중)"
+title: "#8. [개체지향 원칙] 명시적 의존성 원칙(Explicit Dependencies Principle)"
 categories: "principle"
 tag: ["개체지향 원칙"]
 author_profile: false
@@ -26,15 +26,15 @@ sidebar:
 ```cpp
 class Rectangle {
 private:
-  int left;
-  int top;
-  int width;
-  int height;
+    int left;
+    int top;
+    int width;
+    int height;
 public:
-  void SetLeft(int val) { left = val;}
-  void SetTop(int val) { top = val;}
-  void SetWidth(int val) { width = val;}
-  void SetHeight(int val) {height = val;}
+    void SetLeft(int val) { left = val; }
+    void SetTop(int val) { top = val; }
+    void SetWidth(int val) { width = val; }
+    void SetHeight(int val) { height = val; }
 };
 ```
 
@@ -55,19 +55,19 @@ rect.SetHeight(10);
 ```cpp
 class Rectangle {
 private:
-  int left;
-  int top;
-  int width;
-  int height;
+    int left;
+    int top;
+    int width;
+    int height;
 public:
-  Rectangle(int l, int t, int h, int h) : 
-      left(l), top(t), width(w), height(h) {}
-  
+    Rectangle(int l, int t, int w, int h) : 
+        left(l), top(t), width(w), height(h) {
+    }
   ...
 };
 ```
 
-이제 `Rectangle`은 필요한 모드 요소를 제공해야만 생성할 수 있습니다.
+이제 `Rectangle`은 하기와 같이 필요한 모든 요소를 제공해야만 생성할 수 있습니다.
 
 ```cpp
 Rectangle rect(0, 0, 10, 20);
@@ -79,18 +79,18 @@ Rectangle rect(0, 0, 10, 20);
 
 ```cpp
 void RotateAtViewCenter(const Degree& delta) {
-  // view 중심점을 찾습니다.
+    // view 중심점을 찾습니다.
     const View* view = GetOwnerView();
-  float x = view->GetCenterX();
-  float y = view->GetCenterY();
-  
-  // view 중심점에 맞춰 회전시킵니다.
-  RotateAt(delta, x, y);
-}
+    float x = view->GetCenterX();
+    float y = view->GetCenterY();
+    
+    // view 중심점에 맞춰 회전시킵니다.
+    RotateAt(delta, x, y);
+} 
 ```
 복잡하게 view를 다루는 코드가 함수내에 있으니, 좋은것 같아 보이지만, 하기 그림처럼 의존성이 상호 참조 될 수 있습니다.(결합도가 증가하니 이또한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위반이군요.)
 
-그림 view -> doc -> retangle -> view
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c7fd60c-42c6-4c1f-8f09-bd8b47c24a9e)
 
 위의 예에 슬쩍 써보긴 했습니다만, 하기와 같이 함수에서 필요로 한 정보를 인자로 요청하셔서 의존성 관계를 끊어주시는게 좋습니다. 
 
