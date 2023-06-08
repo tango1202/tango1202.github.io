@@ -18,7 +18,7 @@ sidebar:
 
  
 ```cpp
-void Shape::SetAngle(FLOAT angle);
+void Shape::SetAngle(float angle);
 ```
 
 대충 뭐하는 함수인지 느낌이 옵니다. `Shape`형인 개체의 각도를 바꾸는 함수군요. 그런데, 저는 이 함수를 사용하기 전에, 다음이 궁금해서 실제 구현 코드를 봐야 사용할 수 있을 것 같습니다.
@@ -71,12 +71,12 @@ void Shape::SetAngle(FLOAT angle);
 
     ```c++
     // degree : 0~360의 범위를 가지며 그 이외의 값은 스스로 보정한다.
-    void Shape::SetAngle(FLOAT degree);
+    void Shape::SetAngle(float degree);
     ```
 
     더이상 `angle`이 `Degree` 인지 `Radian`인지 확인하기 위해 구현 코드를 분석할 필요가 없어지죠.
 
-    다만 단점은 있습니다. 누군가가 `SetAngle` 함수의 구현해서 `degree` 인자를 `Radian`으로 처리하게 바꿔놓고, 주석이나 인수명을 수정하지 않고 그대로 `degree` 로 남겨 뒀다면, 사람들은 0~360의 값을 전달하고 오류를 경험하게 될 것입니다. 
+    다만 단점은 있습니다. 누군가가 `SetAngle` 함수의 구현해서 `degree` 인자를 Radian으로 처리하게 바꿔놓고, 주석이나 인자명을 수정하지 않고 그대로 `degree` 로 남겨 뒀다면, 사람들은 0~360의 값을 전달하고 오류를 경험하게 될 것입니다. 
     
     이럴때는 고친 사람을 어떻게든 찾아서, 다음부터는 소스코드를 변경하면, 주석도 같이 리팩토링 해달라고 해보세요. 잘못된 주석은 잘못된 코드보다 더 !!!위험!!!할 수 있습니다.
 
