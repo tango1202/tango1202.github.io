@@ -12,7 +12,7 @@ sidebar:
 
 조금 풀어 쓰면,
 
-1. 상속받은 자식은 부모와 is-a 관계여야 하고,
+1. 상속받은 자식은 부모와 **is-a 관계** 여야 하고,
 
 2. 자식은 부모와 다른 행동을 하지 말고, 같은 행동을 하게 하라.
 
@@ -22,7 +22,7 @@ sidebar:
 
 우리는 개체지향의 다형성을 이용하여 부모 클래스를 상속하고 기능 확장이나 변형을 하게 됩니다.
 
-왼쪽/상단 좌표와 크기를 입력받아 자신의 모양을 출력하는 Shape 개체를 생각해 봅시다. 하기와 같이 부모 클래스인 `Shape`에서 `left`, `top`, `width`, `height` 값을 입력받고, `Draw()` 함수를 `virtual`로 작성하여 자식 클래스에서 재구현 하여 그릴 수 있게 했습니다.
+왼쪽/상단 좌표와 크기를 입력받아 자신의 모양을 출력하는 `Shape` 개체를 생각해 봅시다. 하기와 같이 부모 클래스인 `Shape`에서 `left`, `top`, `width`, `height` 값을 입력받고, `Draw()` 함수를 `virtual`로 작성하여 자식 클래스에서 재구현 하여 그릴 수 있게 했습니다.
 
 ```cpp
 // 부모 클래스 입니다.
@@ -328,18 +328,7 @@ TEST(TestPrinciple, LiskovSubstitution) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
     Square square(0, 0, 10); // length를 10으로 설정합니다.
- 
-    // 부모인 Shape에 GetWidth, GetHeight가 없으니 사용 할 수 없습니다.
-    // 생성자에 입력한 값이 잘 전달됐는지 확인합니다.
-    // std::vector<Shape*> shapes;
-    // shapes.push_back(&rect);
-    // shapes.push_back(&ellipse);
-    // shapes.push_back(&square);
-    // for(std::vector<Shape*>::iterator itr = shapes.begin(); itr != shapes.end(); ++itr) {
-    //     EXPECT_TRUE((*itr)->GetWidth() == 10);
-    //     EXPECT_TRUE((*itr)->GetHeight() == 20); // Fail. Square의 height는 width인 10입니다.
-    // }
-   
+
     // 생성자에 입력한 값이 잘 전달됐는지 확인합니다.
     EXPECT_TRUE(rect.GetWidth() == 10 && rect.GetHeight() == 20);
     EXPECT_TRUE(ellipse.GetWidth() == 10 && ellipse.GetHeight() == 20);
@@ -349,7 +338,7 @@ TEST(TestPrinciple, LiskovSubstitution) {
 
 한가지 아쉬운 점은 `Rectangle`과 `Ellipse`구현시 `width`, `height` 구현에 코드 중복이 있다는 것입니다. [한번 단 한번만 원칙](https://tango1202.github.io/principle/principle-once-and-only-once/)을 위배했습니다.
 
-이는 다음처럼 인터페이스를 분리([인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/))한 구현 상속(has-a 관계)을 통해 개선할 수 있습니다.
+이는 다음처럼 인터페이스를 분리([인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/))한 구현 상속(**has-a 관계** )을 통해 개선할 수 있습니다.
 
 먼저 `width`와 `height`를 제공하는 `IResizeable`인터페이스를 만듭니다.
 
@@ -393,7 +382,7 @@ public:
 };
 ```
 
-마지막으로 `Rectangle`과 `Ellipse`의 `width`, `height`관련 코드를 지우고, `ResizeableImpl`을 상속받아 has-a관계를 만들어 줍니다. 그러면 `width`, `height` 코드 중복을 제거할 수 있습니다.
+마지막으로 `Rectangle`과 `Ellipse`의 `width`, `height`관련 코드를 지우고, `ResizeableImpl`을 상속받아 **has-a 관계** 를 만들어 줍니다. 그러면 `width`, `height` 코드 중복을 제거할 수 있습니다.
 
 ```cpp
 // 자식 클래스 입니다. ResizeableImpl을 포함하여 width와 height를 제공합니다.
