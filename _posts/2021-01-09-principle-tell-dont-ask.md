@@ -78,6 +78,7 @@ public:
 public:
     std::pair<int, int> GetCenter() const { 
         return std::make_pair(left + width / 2, top + height / 2);
+    }
 };
 ```
 
