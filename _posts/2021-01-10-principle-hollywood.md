@@ -12,17 +12,28 @@ sidebar:
 
 조금 풀어 쓰면,
 
-1. 배우(호출자) 가 연락처(Listener)를 남기면, 영화사(프레임워크) 가 연락을 주듯이,
+1. 배우(호출자)가 연락처(Listener)를 남기면, 영화사(프레임워크)가 연락을 주듯이,
 2. 호출자(상위 수준 모듈)와 프레임워크(하위 수준 모듈)간에 느슨한 연결을 구현하라.
 
 라는 뜻입니다.
 
-데이터를 저장하는 기능을 가진 프레임워크를 개발하고 있다고 가정합시다. 하기와 같은 Save() 기능이 필요합니다.
+데이터를 저장하는 기능을 가진 프레임워크를 개발하고 있다고 가정합시다. 여러 어플리케이션에서 상속 받아 쓸 수 있게요.
+
+
+그림 MyApp, YourApp -> App
+
+하기와 같이 `App` 의 `Save()` 기능을 구현할 수 있습니다. 상황에 따라 `SaveAs()`함수로 분기하고, `dirty`플래그를 설정합니다.
 
 ```cpp
 class App {
+private;
+    bool dirty;
+    std::wstring pathName;
 public:
-    void Save() const {
+    bool IsDirty() const { return dirty(); }
+    void SetDirty(bool val) { dirty = val; }
+    const wstring& GetPathName() const { return GetPathName(); }
+    void Save() {
        // 파일명이 없으면 다른 이름으로 저장 실행
        if (GetPathName().empty() {
            SaveAs();
@@ -36,8 +47,30 @@ public:
        // 저장되었다고 플래그 설정
        SetDirty(false);
     }
+    // 다른 이름으로 저장합니다.
+    void SaveAs() {
+    }
+    // 문서 내용을 저장합니다.
+    void SaveDoc() {
+    }
 };
 ```
+
+여기서 `SaveDoc()` 은 어떻게 자식 개체인 `MyApp` 의 문서를 저장할 수 있을까요? `MyApp`을 전달받아야 할까요?
+
+```cpp
+void SaveDoc(const MyApp& app) {
+    app.SaveDoc();
+}
+``` 
+자식 개체에서 부모 개체를 참조해서 상호 참조가 되버렸습니다.
+
+그림.
+
+운좋게 빌드될 수도 있지만, 개발중인 프레임워크는 `MyApp`만 사용할 수 있고, `YourApp`은 사용할 수 없습니다.
+
+**준수 방법 : 템플릿 메서드**
+
 
 템플릿 메서드 패턴을 이용하여 하위 수준 모듈에서 상위 수준 모듈에 접근함.
 부모 클래스에서 자식 클래스 함수 호출.
