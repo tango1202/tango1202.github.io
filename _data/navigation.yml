@@ -33,6 +33,8 @@ docs:
   children:
   - title: "개발설정"
     url: /categories/#dev-setting/
+  - title: "개발설정"
+    url: /categories/#pattern/
   - title: "개체지향 원칙"
     url: /categories/#principle/
   - title: "코딩론"

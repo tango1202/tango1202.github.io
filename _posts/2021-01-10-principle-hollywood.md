@@ -61,6 +61,7 @@ public:
     // 다른 이름으로 저장합니다.
     void SaveAs() {}
 
+private:
     // 문서 내용을 저장합니다.
     void SaveDoc() { /* 구현해야 합니다. */ }
 };
@@ -98,24 +99,56 @@ void App::SaveDoc() {
 **준수 방법 : 템플릿 메서드 패턴**
 하기 그림과 같이 [템플릿 메서드 패턴](https://tango1202.github.io/pattern_template_method) 을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 가상함수인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
 
-7ㄱ림
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b10d5dfd-a2ec-4223-b0eb-d94a772de70e)
 
 코드로 구현하면 하기와 같습니다.
 
 ```cpp
 class App {
-    // 문서 내용을 저장합니다.
+    ...
+protected:
+    // 자식 개체에서 문서 내용을 저장합니다. 
     virtual void SaveDoc() = 0;
 };
 
-void SaveDoc()
-:SaveDoc"<<endl:
+// App 을 상속받아 만들었습니다.
+class MyApp : 
+    public App {
+public:
+    explicit MyApp(bool dirty, const std::wstring& pathName) :
+        App(dirty, pathName) {
+    } 
+protected:
+    // MyApp의 문서 내용을 저장합니다.
+    virtual void SaveDoc() override {
+        std::cout <<"MyApp::SaveDoc()"<<std::endl;
+    }
+};
+
+// App 을 상속받아 만들었습니다.
+class YourApp : 
+    public App {
+public:
+    explicit YourApp(bool dirty, const std::wstring& pathName) :
+        App(dirty, pathName) {
+    } 
+protected:
+    // YourApp의 문서 내용을 저장합니다.
+    virtual void SaveDoc() override {
+        std::cout <<"YourApp::SaveDoc()"<<std::endl;
     }
 };
 ```
 
-템플릿 메서드 패턴을 이용하여 하위 수준 모듈에서 상위 수준 모듈에 접근함.
-부모 클래스에서 자식 클래스 함수 호출.
+하기와 같이 테스트 할 수 있습니다.
+
+```cpp
+MyApp myApp(true, L"test.txt");
+myApp.Save(); // MyApp::SaveDoc() 출력        
+
+YourApp yourApp(true, L"test.txt");
+yourApp.Save(); // YourApp::SaveDoc() 출력  
+```
 
 **준수 방법 : Listener**
 
