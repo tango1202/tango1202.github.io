@@ -79,7 +79,7 @@ Rectangle rect(0, 0, 10, 20);
 
 ```cpp
 void RotateAtViewCenter(const Degree& delta) {
-    // view 중심점을 찾습니다.
+    // view 중심점을 구합니다.
     const View* view = GetOwnerView();
     float x = view->GetCenterX();
     float y = view->GetCenterY();
@@ -101,4 +101,14 @@ class Rectangle {
 };
 ```
 
+이젠 외부에서 `view` 중심점을 구해 `RotateAt()`에 전달하면 됩니다.
 
+```cpp
+// view 중심점을 구합니다.
+float x = view->GetCenterX();
+float y = view->GetCenterY();
+    
+// view 중심점에 맞춰 회전시킵니다.
+rect.RotateAt(delta, x, y);
+} 
+```
