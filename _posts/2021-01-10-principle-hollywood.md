@@ -13,7 +13,7 @@ sidebar:
 조금 풀어 쓰면,
 
 1. 배우(호출자)가 연락처(Listener)를 남기면, 영화사(프레임워크)가 연락을 주듯이,
-2. 호출자(상위 수준 모듈)와 프레임워크(하위 수준 모듈)간에 느슨한 연결을 구현하라.
+2. 프레임워크(하위 수준 모듈)가 호출자(상위 수준 모듈)에 연락할 필요가 있다면, 인터페이스(혹은 [템플릿 메서드 패턴](https://tango1202.github.io/pattern/pattern-template-method/))를 이용하라.
 
 라는 뜻입니다.
 
@@ -31,7 +31,7 @@ private:
     bool dirty;
     std::wstring pathName;
 public:
-    explicit App(bool dirty, const std::wstring& pathName) {
+    App(bool dirty, const std::wstring& pathName) {
         this->dirty = dirty;
         this->pathName = pathName;
     } 
@@ -74,7 +74,7 @@ private:
 class MyApp : 
     public App {
 public:
-    explicit MyApp(bool dirty, const std::wstring& pathName) :
+    MyApp(bool dirty, const std::wstring& pathName) :
         App(dirty, pathName) {
     } 
 public:
@@ -92,14 +92,15 @@ void App::SaveDoc() {
 ``` 
 강제로 캐스팅하는 `reinterpret_cast`도 견딜 수 없지만, 자식 개체에서 부모 개체를 참조해서 상호 참조하여 **의존성 부패** 가 되버렸습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b49e34dc-fc63-41b5-8937-e55a6036680a)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/22b487db-234f-4e91-a0d7-00a5becebce7)
 
 **의존성 부패** 도 문제지만, 이제 프레임워크는 `MyApp`만 사용할 수 있고, `YourApp`은 사용할 수 없습니다.
 
 **준수 방법 : 템플릿 메서드 패턴**
-하기 그림과 같이 [템플릿 메서드 패턴](https://tango1202.github.io/pattern_template_method) 을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 가상함수인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b10d5dfd-a2ec-4223-b0eb-d94a772de70e)
+하기 그림과 같이 [템플릿 메서드 패턴](https://tango1202.github.io/pattern/pattern-template-method/) 을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 가상 함수인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/3fd28810-395f-4ce8-a4a3-149a0eb7ba39)
 
 코드로 구현하면 하기와 같습니다.
 
@@ -115,7 +116,7 @@ protected:
 class MyApp : 
     public App {
 public:
-    explicit MyApp(bool dirty, const std::wstring& pathName) :
+    MyApp(bool dirty, const std::wstring& pathName) :
         App(dirty, pathName) {
     } 
 protected:
@@ -129,7 +130,7 @@ protected:
 class YourApp : 
     public App {
 public:
-    explicit YourApp(bool dirty, const std::wstring& pathName) :
+    YourApp(bool dirty, const std::wstring& pathName) :
         App(dirty, pathName) {
     } 
 protected:
@@ -152,6 +153,85 @@ yourApp.Save(); // YourApp::SaveDoc() 출력
 
 **준수 방법 : Listener**
 
-Listener 를 이용하여 하위 수준 모듈에서 상위 수준 모듈에 접근함.
+상속 관계 외에 [옵저버 패턴](https://tango1202.github.io/pattern/pattern-observer/) 의 `Listener`를 
+이용하여 하위 수준 모듈에서 상위 수준 모듈에 접근하게 할 수도 있습니다.
+구조는 다음과 같습니다. `App`은 `ISaveListener`를 전달받아 `SaveDoc()`을 호출하고, `MyApp`에서는 `ISaveListener`를 상속받아 `App`에 전달합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/79ee2d14-a21b-47a2-a06a-dbb3f43867fb)
+
+코드는 다음과 같습니다.
+```cpp
+// App 에서 문서 저장시 호출합니다.
+class ISaveListener {
+protected:
+    ~ISaveListener() {}  // 상속받지만, 다형적으로 사용하지 않아 none virtual 입니다.
+
+public:
+    virtual void SaveDoc() = 0;
+};
+
+// Save시 Listener를 사용합니다.
+class App {
+private:
+    bool dirty;
+    std::wstring pathName;
+    ISaveListener* saveListener;
+public:
+    App(bool dirty, const std::wstring& pathName, ISaveListener* saveListener) {
+        this->dirty = dirty;
+        this->pathName = pathName;
+        this->saveListener = saveListener;
+    } 
+public:
+    bool IsDirty() const { return dirty; }
+    void SetDirty(bool val) { dirty = val; }
+    const std::wstring& GetPathName() const { return pathName; }
+
+    void Save() {
+
+        // 파일명이 없다면 다른 이름으로 저장
+        if (GetPathName().empty()) {
+            SaveAs();
+            return;;
+        }
+
+        // 저장할 필요가 있는지 확인
+        if (!IsDirty()) { return; }
+
+        // 문서 내용 저장
+        if (saveListener != nullptr) {
+            saveListener->SaveDoc();
+        }
+
+        // 저장되었다고 플래그 설정
+        SetDirty(false);
+    }
+
+    // 다른 이름으로 저장합니다.
+    void SaveAs() {}
+};
+
+// App 을 상속받아 만들었고, ISaveListener를 App에 전달합니다.
+class MyApp : 
+    public App,
+    public ISaveListener {
+public:
+    MyApp(bool dirty, const std::wstring& pathName) :
+        App(dirty, pathName, this) { // 부모인 App에 this를 전달하여 ISaveListener를 전달합니다.
+    } 
+public:
+    // MyApp의 문서 내용을 저장합니다.
+    virtual void SaveDoc() override {
+        std::cout <<"MyApp::SaveDoc()"<<std::endl;  
+    }
+};
+```
+
+하기와 같이 테스트 할 수 있습니다.
+
+```cpp
+MyApp myApp(true, L"test.txt");
+myApp.Save(); // MyApp::SaveDoc() 출력        
+```
 
 
