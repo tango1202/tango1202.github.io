@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [개체지향 원칙] 헐리우드 원칙(Hollywood Principle)(작성중)"
+title: "#10. [개체지향 원칙] 헐리우드 원칙(Hollywood Principle)"
 categories: "principle"
 tag: ["개체지향 원칙"]
 author_profile: false
