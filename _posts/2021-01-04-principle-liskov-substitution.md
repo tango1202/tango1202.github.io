@@ -64,7 +64,8 @@ public:
 class Rectangle : 
     public Shape {
 public:    
-    Rectangle(int l, int t, int w, int h) : Shape(l, t, w, h) {}
+    Rectangle(int l, int t, int w, int h) : 
+        Shape(l, t, w, h) {}
     virtual ~Rectangle() override {}
 
     virtual void Draw() const override {
@@ -76,7 +77,8 @@ public:
 class Ellipse : 
     public Shape {
 public:
-    Ellipse(int l, int t, int w, int h) : Shape(l, t, w, h) {}
+    Ellipse(int l, int t, int w, int h) : 
+        Shape(l, t, w, h) {}
     virtual ~Ellipse() override {}
 
     virtual void Draw() const override {
