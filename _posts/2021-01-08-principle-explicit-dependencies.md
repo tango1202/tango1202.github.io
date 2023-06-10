@@ -92,10 +92,13 @@ void RotateAtViewCenter(const Degree& delta) {
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c7fd60c-42c6-4c1f-8f09-bd8b47c24a9e)
 
-위의 예에 슬쩍 써보긴 했습니다만, 하기와 같이 함수에서 필요한 정보를 명시적으로 인자로 작성하셔서 의존성 관계를 끊어주시는게 좋습니다. 
+위의 예에 슬쩍 써보긴 했습니다만, 하기와 같이 `RotateAt()` 함수 하나만 구현하고, 외부에서 필요한 정보를 명시적으로 인수로 전달할 수 있게 강제하여, 의존성 관계를 끊어주시는게 좋습니다. 
 
 ```cpp
-void RotateAt(const Degree& delta, float x, float y);
+class Rectangle {
+    ...
+    void RotateAt(const Degree& delta, float x, float y);
+};
 ```
 
 
