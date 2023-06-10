@@ -22,37 +22,37 @@ sidebar:
 
 우리는 개체지향의 다형성을 이용하여 부모 클래스를 상속하고 기능 확장이나 변형을 하게 됩니다.
 
-왼쪽/상단 좌표와 크기를 입력받아 자신의 모양을 출력하는 `Shape` 개체를 생각해 봅시다. 하기와 같이 부모 클래스인 `Shape`에서 `left`, `top`, `width`, `height` 값을 입력받고, `Draw()` 함수를 `virtual`로 작성하여 자식 클래스에서 재구현 하여 그릴 수 있게 했습니다.
+왼쪽/상단 좌표와 크기를 입력받아 자신의 모양을 출력하는 `Shape` 개체를 생각해 봅시다. 하기와 같이 부모 클래스인 `Shape`에서 `m_Left`, `m_Top`, `m_Width`, `m_Height` 값을 입력받고, `Draw()` 함수를 `virtual`로 작성하여 자식 클래스에서 재구현 하여 그릴 수 있게 했습니다.
 
 ```cpp
 // 부모 클래스 입니다.
 class Shape {
 private:
-    int left;
-    int top;
-    int width;
-    int height;
+    int m_Left;
+    int m_Top;
+    int m_Width;
+    int m_Height;
 public:
     Shape(int l, int t, int w, int h) :
-        left(l),
-        top(t),
-        width(w),
-        height(h) {
+        m_Left(l),
+        m_Top(t),
+        m_Width(w),
+        m_Height(h) {
     }
     virtual ~Shape() {}; // 다형적 소멸
 public:
     // Get/Set 함수
-    int GetLeft() const { return left; }
-    int GetTop() const { return top; }
-    int GetWidth() const { return width; }
-    int GetHeight() const { return height; }
+    int GetLeft() const { return m_Left; }
+    int GetTop() const { return m_Top; }
+    int GetWidth() const { return m_Width; }
+    int GetHeight() const { return m_Height; }
 
-    void SetLeft(int val)  { left = val; }
-    void SetTop(int val) { top = val; }
-    void SetWidth(int val) { width = val; }
-    void SetHeight(int val) { height = val; }
+    void SetLeft(int val)  { m_Left = val; }
+    void SetTop(int val) { m_Top = val; }
+    void SetWidth(int val) { m_Width = val; }
+    void SetHeight(int val) { m_Height = val; }
 
-    // left, top, width, height를 이용하여 자식 클래스들이 알아서 그려야 함
+    // m_Left, m_Top, m_Width, m_Height를 이용하여 자식 클래스들이 알아서 그려야 함
     virtual void Draw() const = 0; 
 };
 ```
@@ -108,7 +108,7 @@ TEST(TestPrinciple, LiskovSubstitution) {
 
 아직은 좋습니다. `Draw()`를 잘 구현했다면, 사각형과 타원을 잘 그릴 것입니다. 이제 정사각형을 추가해 봅시다. 
 
-정사각형은 `width`와 `height`가 동일해야 합니다. 그래서 부모 클래스인 `Shape`의 `SetWidth()`와 `SetHeight()`를 재구현하여 동기화할 필요가 있습니다. 
+정사각형은 `m_Width`와 `m_Height`가 동일해야 합니다. 그래서 부모 클래스인 `Shape`의 `SetWidth()`와 `SetHeight()`를 재구현하여 동기화할 필요가 있습니다. 
 
 먼저 부모 클래스의 `SetWidth()`와 `SetHeight()`를 `virtual`로 만들어 재구현 할 수 있게 합니다.
 
@@ -117,13 +117,13 @@ TEST(TestPrinciple, LiskovSubstitution) {
 class Shape {
     ...
     // 자식이 재구현할 수 있도록 virtual로 변경합니다.
-    virtual void SetWidth(int val) { width = val; }
-    virtual void SetHeight(int val) { height = val; }
+    virtual void SetWidth(int val) { m_Width = val; }
+    virtual void SetHeight(int val) { m_Height = val; }
     ...
 };
 ```
 
-다음으로 정사각형을 그리는 `Square` 클래스를 구현합니다. 생성자에서 `height` 값은 무시하고 `width` 값을 사용하도록 조정하고, `SetWidth()` 와 `SeitHeight()` 에서 `width` 값으로 `height` 값을 세팅하도록 재구현했습니다.
+다음으로 정사각형을 그리는 `Square` 클래스를 구현합니다. 생성자에서 `h` 값은 무시하고 `w` 값을 사용하도록 조정하고, `SetWidth()` 와 `SeitHeight()` 에서도 `m_Width` 값을 사용하도록 재구현했습니다.
 
 ```cpp
 // 자식 클래스입니다. 생성자를 손보고, SetWidth와 SetHeight를 손봤습니다.
@@ -134,12 +134,12 @@ public:
     Square(int l, int t, int w, int /*h*/) : Shape(l, t, w, w) {}
     virtual ~Square() override {}
 
-    //width를 바꾸면 height도 바꿉니다.
+    // m_Width를 바꾸면 m_Height도 바꿉니다.
     virtual void SetWidth(int val) override {
         Shape::SetWidth(val);
         Shape::SetHeight(val);
     }
-    // height를 바꾸면 width를 바꿉니다. 어차피 SetWidth()랑 똑같이 동작하니 SetWidth를 불러줍니다.
+    // m_Height를 바꾸면 m_Width를 바꿉니다. 어차피 SetWidth()랑 똑같이 동작하니 SetWidth를 불러줍니다.
     virtual void SetHeight(int val) override {
         SetWidth(val);
     }
@@ -156,12 +156,12 @@ public:
 TEST(TestPrinciple, LiskovSubstitution) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
-    Square square(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
+    Square square(0, 0, 10, 20); // m_Height는 내부적으로 10으로 설정됩니다.
  
     // 생성자에 입력한 값이 잘 전달됐는지 확인합니다.
     EXPECT_TRUE(rect.GetLeft() == 0 && rect.GetTop() == 0 && rect.GetWidth() == 10 && rect.GetHeight() == 20);   
     EXPECT_TRUE(ellipse.GetLeft() == 0 && ellipse.GetTop() == 0 && ellipse.GetWidth() == 10 && ellipse.GetHeight() == 20);  
-    // 정사각형은 width와 height가 같아야 합니다.
+    // 정사각형은 m_Width와 m_Height가 같아야 합니다.
     EXPECT_TRUE(square.GetWidth() == square.GetHeight());  
 
     // 부모 클래스 포인터로 받아서 Draw를 호출해 봅니다.
@@ -181,7 +181,7 @@ TEST(TestPrinciple, LiskovSubstitution) {
 TEST(TestPrinciple, LiskovSubstitution) {
     Rectangle rect(0, 0, 10, 20);
     Ellipse ellipse(0, 0, 10, 20);
-    Square square(0, 0, 10, 20); // height는 내부적으로 10으로 설정됩니다.
+    Square square(0, 0, 10, 20); // m_Height는 내부적으로 10으로 설정됩니다.
  
     // 생성자에 입력한 값이 잘 전달됐는지 확인합니다.
     std::vector<Shape*> shapes;
@@ -190,131 +190,131 @@ TEST(TestPrinciple, LiskovSubstitution) {
     shapes.push_back(&square);
     for(std::vector<Shape*>::iterator itr = shapes.begin(); itr != shapes.end(); ++itr) {
         EXPECT_TRUE((*itr)->GetWidth() == 10);
-        EXPECT_TRUE((*itr)->GetHeight() == 20); // Fail. Square의 height는 width인 10입니다.
+        EXPECT_TRUE((*itr)->GetHeight() == 20); // Fail. Square의 m_Height는 m_Width인 10입니다.
     }
 }
 
 ```
 
-그렇죠. `Square`는 `width` 값을 `height`에 세팅하니 당연히 테스트를 실패하겠죠. 이제 `Square`의 특성을 알았으니 주의해서 사용하면 될까요? 이런 자식 개체가 또 뭐가 있을까요? 단순하게 Circle이 있겠고요, 또 더 있을 수 있을까요? 겁이 나서 모든 자식들의 소스코드와 테스트케이스들을 확인해 봐야 할까요? 이크!!! 라이브러리라 소스코드를 못보내요? 
+그렇죠. `Square`는 `m_Width` 값을 `m_Height`에 세팅하니 당연히 테스트를 실패하겠죠. 이제 `Square`의 특성을 알았으니 주의해서 사용하면 될까요? 이런 자식 개체가 또 뭐가 있을까요? 단순하게 Circle이 있겠고요, 또 더 있을 수 있을까요? 겁이 나서 모든 자식들의 소스코드와 테스트케이스들을 확인해 봐야 할까요? 이크!!! 라이브러리라 소스코드를 못보내요? 
 
 이런 경우가 리스코프 치환 원칙에 위배된 것입니다. 자식이 부모와 다른 동작을 하게 되면 부모 개체를 안심하고 사용할 수 없게 됩니다. 자식 코드를 다 파악하고 있어야지만, 안심하고 사용할 수 있게 되죠.
 
-이 경우엔 부모가 잘못한 것이라 생각합니다. 모든 `Shape`이 `width`와 `height`를 가진다는 잘못된 가정을 한겁니다. 그래서 자식은 어쩔수 없이 `SetWidth()`와 `SetHeight()`를 재구현할 수 밖에 없었고요.
+이 경우엔 부모가 잘못한 것이라 생각합니다. 모든 `Shape`이 `m_Width`와 `m_Height`를 가진다는 잘못된 가정을 한겁니다. 그래서 자식은 어쩔수 없이 `SetWidth()`와 `SetHeight()`를 재구현할 수 밖에 없었고요.
 
-사실 정사각형은 길이 하나만 가지고 있는 편이 좋고, 원은 지름을 가지고 있는 편이 좋습니다. 직선은 시작점과 끝점을 가지고 있는 편이 좋고, 호는 반지름과 각도를 가지고 있는 편이 좋고요. 이 정보로부터 나중에 `width`와 `height`를 계산해 낼 수 있죠.
-즉, 부모가 쓸데없이 `width`와 `height`를 가진 거라 보면 됩니다. 자식들이 헷갈리게요.
+사실 정사각형은 길이 하나만 가지고 있는 편이 좋고, 원은 지름을 가지고 있는 편이 좋습니다. 직선은 시작점과 끝점을 가지고 있는 편이 좋고, 호는 반지름과 각도를 가지고 있는 편이 좋고요. 이 정보로부터 나중에 너비와 높이를 계산해 낼 수 있죠.
+즉, 부모가 쓸데없이 `m_Width`와 `m_Height`를 가진 거라 보면 됩니다. 자식들이 헷갈리게요.
 
 **준수 방법 : 부모 클래스 간소화**
 
 하기와 같이 부모를 수정하여 자식들이 억지로 불필요한 구현을 안하게 해야 합니다. 
 
-먼저 `Shape`에서 `width`와 `height`를 뺍니다.
+먼저 `Shape`에서 `m_Width`와 `m_Height`를 뺍니다.
 
 ```cpp
-// 부모 클래스 입니다. width와 height를 뺐습니다.
+// 부모 클래스 입니다. m_Width와 m_Height를 뺐습니다.
 class Shape {
 private:
-    int left;
-    int top;
+    int m_Left;
+    int m_Top;
 public:
     Shape(int l, int t) :
-        left(l),
-        top(t) {
+        m_Left(l),
+        m_Top(t) {
     }
     virtual ~Shape() {}; // 다형적 소멸
 public:
     // Get/Set 함수
-    int GetLeft() const { return left; }
-    int GetTop() const { return top; }
+    int GetLeft() const { return m_Left; }
+    int GetTop() const { return m_Top; }
 
-    void SetLeft(int val) { left = val; }
-    void SetTop(int val) { top = val; }
+    void SetLeft(int val) { m_Left = val; }
+    void SetTop(int val) { m_Top = val; }
 
-    // left, top을 이용하여 자식 클래스들이 알아서 그려야 함
+    // m_Left, m_Top을 이용하여 자식 클래스들이 알아서 그려야 함
     virtual void Draw() const = 0; 
 };
 ```
 
-다음으로 자식인 `Rectangle`과 `Ellipse`에 `width`와 `height`를 구현합니다.
+다음으로 자식인 `Rectangle`과 `Ellipse`에 `m_Width`와 `m_Height`를 구현합니다.
 
 ```cpp
-// 자식 클래스 입니다. width와 height를 제공합니다.
+// 자식 클래스 입니다. m_Width와 m_Height를 제공합니다.
 class Rectangle : 
     public Shape {
 private:
-    int width;
-    int height;
+    int m_Width;
+    int m_Height;
 public:    
     Rectangle(int l, int t, int w, int h) : 
         Shape(l, t),
-        width(w),
-        height(h) {
+        m_Width(w),
+        m_Weight(h) {
     }
     virtual ~Rectangle() override {}   
     
     // Get/Set 함수
-    int GetWidth() const { return width; }
-    int GetHeight() const { return height; }
+    int GetWidth() const { return m_Width; }
+    int GetHeight() const { return m_Height; }
 
-    void SetWidth(int val) { width = val; }
-    void SetHeight(int val) { height = val; }
+    void SetWidth(int val) { m_Width = val; }
+    void SetHeight(int val) { m_Height = val; }
 
     virtual void Draw() const override {
-        // left, top, width, height를 이용하여 사각형을 그립니다.
+        // m_Left, m_Top, m_Width, m_Height를 이용하여 사각형을 그립니다.
     }
 };
 
-// 자식 클래스 입니다. width와 height를 제공합니다.
+// 자식 클래스 입니다. m_Width와 m_Height를 제공합니다.
 class Ellipse : 
     public Shape {
 private:
-    int width;
-    int height;
+    int m_Width;
+    int m_Height;
 public:
     Ellipse(int l, int t, int w, int h) : 
         Shape(l, t),
-        width(w),
-        height(h) {
+        m_Width(w),
+        m_Height(h) {
     }
     virtual ~Ellipse() override {}
 
     // Get/Set 함수
-    int GetWidth() const { return width; }
-    int GetHeight() const { return height; }
+    int GetWidth() const { return m_Width; }
+    int GetHeight() const { return m_Height; }
 
-    void SetWidth(int val) { width = val; }
-    void SetHeight(int val) { height = val; }
+    void SetWidth(int val) { m_Width = val; }
+    void SetHeight(int val) { m_Height = val; }
 
     virtual void Draw() const override {
-        // left, top, width, height를 이용하여 타원을 그립니다.
+        // m_Left, m_Top, m_Width, m_Height를 이용하여 타원을 그립니다.
     }
 };
 ```
 
-다음으로 `Square`를 구현합니다. 이제 억지로 `width`, `height`를 사용하지 않고, `length`로 구현했습니다.
+다음으로 `Square`를 구현합니다. 이제 억지로 `m_Width`, `m_Height`를 사용하지 않고, `m_Length`로 구현했습니다.
 
 ```cpp
-// 자식 클래스입니다. length를 제공합니다.
+// 자식 클래스입니다. m_Length를 제공합니다.
 class Square : 
     public Shape {
 public:
-    int length;
+    int m_Length;
 public:
     // width, height없이 length 하나만 사용합니다.
-    Square(int l, int t, int len) : 
+    Square(int l, int t, int length) : 
         Shape(l, t),
-        length(len) { 
+        m_Length(length) { 
     }
     virtual ~Square() override {}
 
     // Get/Set 함수
-    int GetLength() const { return length; }
+    int GetLength() const { return m_Length; }
 
-    void SeLength(int val) { length = val; }
+    void SeLength(int val) { m_Length = val; }
 
     virtual void Draw() const override {
-        // left, top, length를 이용하여 정사각형을 그립니다.
+        // m_Left, m_Top, m_Length를 이용하여 정사각형을 그립니다.
     }
 };
 ```
@@ -336,11 +336,11 @@ TEST(TestPrinciple, LiskovSubstitution) {
 }
 ```
 
-한가지 아쉬운 점은 `Rectangle`과 `Ellipse`구현시 `width`, `height` 구현에 코드 중복이 있다는 것입니다. [한번 단 한번만 원칙](https://tango1202.github.io/principle/principle-once-and-only-once/)을 위배했습니다.
+한가지 아쉬운 점은 `Rectangle`과 `Ellipse`구현시 `m_Width`, `m_Height` 구현에 코드 중복이 있다는 것입니다. [한번 단 한번만 원칙](https://tango1202.github.io/principle/principle-once-and-only-once/)을 위배했습니다.
 
 이는 다음처럼 인터페이스를 분리([인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/))한 구현 상속(**has-a 관계** )을 통해 개선할 수 있습니다.
 
-먼저 `width`와 `height`를 제공하는 `IResizeable`인터페이스를 만듭니다.
+먼저 `m_Width`와 `m_Height`를 제공하는 `IResizeable`인터페이스를 만듭니다.
 
 ```cpp
 // 크기 변경이 가능한 개체입니다.
@@ -364,28 +364,28 @@ public:
 class ResizeableImpl : 
     public IResizeable {
 private:
-    int width;
-    int height;    
+    int m_Width;
+    int m_Height;    
 protected:
     ResizeableImpl(int w, int h) :
-        width(w), 
-        height(h) {
+        m_Width(w), 
+        m_Height(h) {
     }
     ~ResizeableImpl() {} // has-a 관계로 사용되기 때문에, 단독으로 생성되지 않도록 protected입니다.
 public:    
     // Get/Set 함수
-    virtual int GetWidth() const override { return width; }
-    virtual int GetHeight() const override { return height; }
+    virtual int GetWidth() const override { return m_Width; }
+    virtual int GetHeight() const override { return m_Height; }
 
-    virtual void SetWidth(int val) override { width = val; }
-    virtual void SetHeight(int val) override { height = val; }
+    virtual void SetWidth(int val) override { m_Width = val; }
+    virtual void SetHeight(int val) override { m_Height = val; }
 };
 ```
 
-마지막으로 `Rectangle`과 `Ellipse`의 `width`, `height`관련 코드를 지우고, `ResizeableImpl`을 상속받아 **has-a 관계** 를 만들어 줍니다. 그러면 `width`, `height` 코드 중복을 제거할 수 있습니다.
+마지막으로 `Rectangle`과 `Ellipse`의 `m_Width`, `m_Height`관련 코드를 지우고, `ResizeableImpl`을 상속받아 **has-a 관계** 를 만들어 줍니다. 그러면 `m_Width`, `m_Height` 코드 중복을 제거할 수 있습니다.
 
 ```cpp
-// 자식 클래스 입니다. ResizeableImpl을 포함하여 width와 height를 제공합니다.
+// 자식 클래스 입니다. ResizeableImpl을 포함하여 m_Width와 m_Height를 제공합니다.
 class Rectangle : 
     public Shape, 
     public ResizeableImpl {
@@ -397,11 +397,11 @@ public:
     virtual ~Rectangle() override {}   
   
     virtual void Draw() const override {
-        // left, top,IResizeable::GetWidth(), IResizeable::GetHeight()를 이용하여 사각형을 그립니다.
+        // m_Left, m_Top, IResizeable::GetWidth(), IResizeable::GetHeight()를 이용하여 사각형을 그립니다.
     }
 };
 
-// 자식 클래스 입니다. ResizeableImpl을 포함하여 width와 height를 제공합니다.
+// 자식 클래스 입니다. ResizeableImpl을 포함하여 m_Width와 m_Height를 제공합니다.
 class Ellipse : 
     public Shape, 
     public ResizeableImpl {
@@ -413,7 +413,7 @@ public:
     virtual ~Ellipse() override {}
  
     virtual void Draw() const override {
-        // left, top, IResizeable::GetWidth(), IResizeable::GetHeight()를 이용하여 타원을 그립니다.
+        // m_Left, m_Top, IResizeable::GetWidth(), IResizeable::GetHeight()를 이용하여 타원을 그립니다.
     }
 };
 ```

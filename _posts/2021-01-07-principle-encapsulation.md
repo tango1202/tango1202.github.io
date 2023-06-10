@@ -25,23 +25,23 @@ sidebar:
 ```cpp
 class Shape {
 private:
-    float angle; 
+    float m_Angle; 
 public:  
-    float GetAngle() const { return angle; }
+    float GetAngle() const { return m_Angle; }
 
     // delta 만큼 더 회전시킵니다.
     // delta : delta를 angle과 더했을때, 0~360 사이의 값이 되도록 전달해야 합니다.
     void Rotate(float delta) {
-        float finalAngle = angle + delta;
+        float finalAngle = m_Angle + delta;
         assert(0 <= finalAngle && finalAngle < 360);
         
         // 회전시킵니다.
-        angle = finalAngle;
+        m_Angle = finalAngle;
     }
 };
 ```
 
-`delta`값 전달하기가 상당히 귀찮습니다. 기존 `angle` 과 더했을때 0~360범위에 있어야 하니까요. 그래서, `Rotate()`를 호출하기 전에는 하기와 같이 `delta` 값을 검사하고, 보정한 뒤, 유효한 값을 전달해야 합니다.
+`delta`값 전달하기가 상당히 귀찮습니다. 기존 `m_Angle` 과 더했을때 0~360범위에 있어야 하니까요. 그래서, `Rotate()`를 호출하기 전에는 하기와 같이 `delta` 값을 검사하고, 보정한 뒤, 유효한 값을 전달해야 합니다.
 
 ```cpp
 Shape shape;
@@ -104,39 +104,39 @@ shape.Rotate(delta);
 
 하지만, `Rotate()` 호출전에 `delta`값을 보정하기 위해 `CalcShapeRotateDelta()` 을 항상 호출해야 하는 것도, 어찌보면 코드 중복이라 볼 수 있고, 호출자가 `Shape`과 `Util`을 모두 파악해야 하기에 복잡해 집니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f97cfb45-cd6e-460c-84fa-937c79416f11)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1d1da5d1-4aad-4522-9245-1cd6006bafd6)
 
 여전히 단위 기능의 응집도도 낮고, 결합도는 높으며, `Rotate()`함수가 `delta`를 처리하는 방식을 파악한뒤, `CalcShapeRotateDelta()`를 꼭 호출해야 하기 때문에 사용하기 어렵습니다. 호출을 빼먹어서 잘못 사용하기 쉽고요. 캡슐화 위반입니다.
 
 **준수 방법**
 
-상기 예제는 Degree 형식을 처리하는 과정이 함수 외부와 내부에 흩어져 있기 때문에 발생한 문제입니다. `Rotate()`함수 외부에선 `delta`값을 보정해야 하고, 내부에서는 `angle`과 `delta`를 더한 뒤 회전시키니까요. 서로 주거니 받거니 하는 값이 잘 맞아 떨어져야만 합니다.([단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)도 위반했네요.)
+상기 예제는 Degree 형식을 처리하는 과정이 함수 외부와 내부에 흩어져 있기 때문에 발생한 문제입니다. `Rotate()`함수 외부에선 `delta`값을 보정해야 하고, 내부에서는 `m_Angle`과 `delta`를 더한 뒤 회전시키니까요. 서로 주거니 받거니 하는 값이 잘 맞아 떨어져야만 합니다.([단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)도 위반했네요.)
 
-이렇게 흩어진 처리방식을 해결하기 위해, Degree 형식을 처리하는 `Degree` 타입을 만들고, 데이터 보정 처리를 응집해 줍니다. 그러면 Degree 형식 처리방법이 캡슐화 되고, 응집력은 높아지고, 결합도는 낮아집니다. 또한 함수 호출이 바르게 사용하기 쉽게 변경됩니다.
+이렇게 흩어진 처리방식을 해결하기 위해, 각도값을 처리하는 `Degree` 타입을 만들고, 데이터 보정 처리를 응집해 줍니다. 그러면 각도값 처리방법이 캡슐화 되고, 응집력은 높아지고, 결합도는 낮아집니다. 또한 함수 호출이 바르게 사용하기 쉽게 변경됩니다.
 
 하기는 `Degree`의 구현 코드 입니다. 어떠한 수를 더하던, 빼던 0~360사이의 값을 유지합니다.
 
 ```cpp
-// 0~360 의 값으로 강제하여 Degree를 처리하는 개체. 예를들어 370도는 10도이고, -10도는 350도임
+// 0~360 의 값으로 강제하여 각도값을 처리하는 개체. 예를들어 370도는 10도이고, -10도는 350도임
 class Degree {
 private:
-    float value;
+    float m_Value;
 public:
-    explicit Degree(float val) :
-        value(Constrain(val)) {
+    explicit Degree(float val = 0) :
+        m_Value(Constrain(val)) {
     }
 public:
     const Degree& operator =(float val) {
-        value = Constrain(val); 
+        m_Value = Constrain(val); 
         return *this; 
     }
-    void operator +=(const Degree& other) { value = Constrain(value + other.GetValue()); }
-    void operator +=(float val) { value = Constrain(value + val); }
-    void operator -=(const Degree& other) { value = Constrain(value - other.GetValue()); }
-    void operator -=(float val) { value = Constrain(value - val); }
-    const Degree operator -() const { return Degree(-value); }
+    void operator +=(const Degree& other) { m_Value = Constrain(m_Value + other.GetValue()); }
+    void operator +=(float val) { m_Value = Constrain(m_Value + val); }
+    void operator -=(const Degree& other) { m_Value = Constrain(m_Value - other.GetValue()); }
+    void operator -=(float val) { m_Value = Constrain(m_Value - val); }
+    const Degree operator -() const { return Degree(-m_Value); }
 
-    float GetValue() const { return value; }
+    float GetValue() const { return m_Value; }
 private:
     // 0~360 값으로 강제함
     static float Constrain(float val) {
@@ -221,15 +221,15 @@ inline Degree operator -(const Degree& left, float right) {
 ```cpp
 class Shape {
 private:
-    Degree angle; 
+    Degree m_Angle; // 디폴트로 0도
 public:  
-    const Degree& GetAngle() const { return angle; }
+    const Degree& GetAngle() const { return m_Angle; }
 
     // delta 만큼 더 회전시킵니다.
     void Rotate(const Degree& delta) {
         // 회전시킵니다. Degree 클래스이니 알아서 보정합니다. 
         // assert 검사할 필요도 없습니다.
-        angle += delta;
+        m_Angle += delta;
     }
 };
 ```

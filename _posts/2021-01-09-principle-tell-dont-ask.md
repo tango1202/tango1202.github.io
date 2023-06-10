@@ -30,19 +30,19 @@ sidebar:
 ```cpp
 class Rectangle {
 private:
-    int left;
-    int top;
-    int width;
-    int height;
+    int m_Left;
+    int m_Top;
+    int m_Width;
+    int m_Height;
 public:
     Rectangle(int l, int t, int w, int h) : 
-        left(l), top(t), width(w), height(h) {
+        m_Left(l), m_Top(t), m_Width(w), m_Height(h) {
     }
 public:
-    int GetLeft() const { return left; }
-    int GetTop() const { return top; }
-    int GetWidth() const { return width; }
-    int GetHeight() const { return height; }
+    int GetLeft() const { return m_Left; }
+    int GetTop() const { return m_Top; }
+    int GetWidth() const { return m_Width; }
+    int GetHeight() const { return m_Height; }
 };
 ```
 
@@ -58,7 +58,7 @@ int height = rect.GetHeight();
 int centerX = left + width / 2;
 int centerY = top + height / 2;
 ```
-개체의 내부 정보인 `left`, `top`, `width`, `height`를 자꾸 물으므로 묻지 말고 말하라 원칙 위반입니다.
+개체의 내부 정보인 `m_Left`, `m_Top`, `m_Width`, `m_Height`를 자꾸 물으므로 묻지 말고 말하라 원칙 위반입니다.
 
 **준수 방법**
 
@@ -67,17 +67,17 @@ int centerY = top + height / 2;
 ```cpp
 class Rectangle {
 private:
-    int left;
-    int top;
-    int width;
-    int height;
+    int m_Left;
+    int m_Top;
+    int m_Width;
+    int m_Height;
 public:
     Rectangle(int l, int t, int w, int h) : 
-        left(l), top(t), width(w), height(h) {
+        m_Left(l), m_Top(t), m_Width(w), m_Height(h) {
     }
 public:
     std::pair<int, int> GetCenter() const { 
-        return std::make_pair(left + width / 2, top + height / 2);
+        return std::make_pair(m_Left + m_Width / 2, m_Top + m_Height / 2);
     }
 };
 ```
@@ -94,17 +94,17 @@ std::pair<int, int> center = rect.GetCenter();
 ```cpp
 class Rectangle {
 private:
-    int centerX; // 중심점을 멤버로 사용합니다.
-    int centerY;
-    int width;
-    int height;
+    int m_CenterX; // 중심점을 멤버로 사용합니다.
+    int m_CenterY;
+    int m_Width;
+    int m_Height;
 public:
     Rectangle(int l, int t, int w, int h) : 
-        centerX(l + w / 2), centerY(t + h / 2), width(w), height(h) {
+        m_CenterX(l + w / 2), m_CenterY(t + h / 2), m_Width(w), m_Height(h) {
     }
 public:
     std::pair<int, int> GetCenter() const { 
-        return std::make_pair(centerX, centerY);
+        return std::make_pair(m_CenterX, m_CenterY);
     }
 };
 ``` 

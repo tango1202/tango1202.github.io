@@ -26,15 +26,15 @@ sidebar:
 ```cpp
 class Rectangle {
 private:
-    int left;
-    int top;
-    int width;
-    int height;
+    int m_Left;
+    int m_Top;
+    int m_Width;
+    int m_Height;
 public:
-    void SetLeft(int val) { left = val; }
-    void SetTop(int val) { top = val; }
-    void SetWidth(int val) { width = val; }
-    void SetHeight(int val) { height = val; }
+    void SetLeft(int val) { m_Left = val; }
+    void SetTop(int val) { m_Top = val; }
+    void SetWidth(int val) { m_Width = val; }
+    void SetHeight(int val) { m_Height = val; }
 };
 ```
 
@@ -55,13 +55,13 @@ rect.SetHeight(10);
 ```cpp
 class Rectangle {
 private:
-    int left;
-    int top;
-    int width;
-    int height;
+    int m_Left;
+    int m_Top;
+    int m_Width;
+    int m_Height;
 public:
     Rectangle(int l, int t, int w, int h) : 
-        left(l), top(t), width(w), height(h) {
+        m_Left(l), m_Top(t), m_Width(w), m_Height(h) {
     }
   ...
 };
@@ -84,13 +84,13 @@ void RotateAtViewCenter(const Degree& delta) {
     float x = view->GetCenterX();
     float y = view->GetCenterY();
     
-    // view 중심점에 맞춰 회전시킵니다.
+    // x, y에 맞춰 회전시킵니다.
     RotateAt(delta, x, y);
 } 
 ```
 복잡하게 view를 다루는 코드가 함수내에 은닉되어 있으니, 좋은것 같아 보이지만, 하기 그림처럼 의존성이 상호 참조되어 **의존성 부패** 가 발생합니다.(결합도가 증가하니 이또한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위반이군요.)
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c7fd60c-42c6-4c1f-8f09-bd8b47c24a9e)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2f02246b-fd3f-4669-8f1c-0272fcdda58f)
 
 위의 예에 슬쩍 써보긴 했습니다만, 하기와 같이 `RotateAt()` 함수 하나만 구현하고, 외부에서 필요한 정보를 명시적으로 인수로 전달할 수 있게 강제하여, 의존성 관계를 끊어주시는게 좋습니다. 
 

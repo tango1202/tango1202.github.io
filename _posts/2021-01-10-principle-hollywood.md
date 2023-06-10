@@ -23,22 +23,21 @@ sidebar:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/9991a2f6-004f-457a-8871-bac0f728427b)
 
-하기와 같이 `App` 의 `Save()` 기능을 구현할 수 있습니다. 상황에 따라 `SaveAs()`함수로 분기하고, `dirty`플래그를 설정합니다.
+하기와 같이 `App` 의 `Save()` 기능을 구현할 수 있습니다. 상황에 따라 `SaveAs()`함수로 분기하고, `m_Dirty`플래그를 설정합니다.
 
 ```cpp
 class App {
 private:
-    bool dirty;
-    std::wstring pathName;
+    bool m_Dirty;
+    std::wstring m_PathName;
 public:
-    App(bool dirty, const std::wstring& pathName) {
-        this->dirty = dirty;
-        this->pathName = pathName;
-    } 
+    App(bool dirty, const std::wstring& pathName) :
+        m_Dirty(dirty),
+        m_PathName(pathName) {} 
 public:
-    bool IsDirty() const { return dirty; }
-    void SetDirty(bool val) { dirty = val; }
-    const std::wstring& GetPathName() const { return pathName; }
+    bool IsDirty() const { return m_Dirty; }
+    void SetDirty(bool val) { m_Dirty = val; }
+    const std::wstring& GetPathName() const { return m_PathName; }
 
     void Save() {
 
@@ -92,7 +91,7 @@ void App::SaveDoc() {
 ``` 
 강제로 캐스팅하는 `reinterpret_cast`도 견딜 수 없지만, 자식 개체에서 부모 개체를 참조해서 상호 참조하여 **의존성 부패** 가 되버렸습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/22b487db-234f-4e91-a0d7-00a5becebce7)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e19a4379-80ae-4a5b-a0c4-042b328b20cd)
 
 **의존성 부패** 도 문제지만, 이제 프레임워크는 `MyApp`만 사용할 수 있고, `YourApp`은 사용할 수 없습니다.
 
@@ -100,7 +99,7 @@ void App::SaveDoc() {
 
 하기 그림과 같이 [템플릿 메서드 패턴](https://tango1202.github.io/pattern/pattern-template-method/) 을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 가상 함수인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/3fd28810-395f-4ce8-a4a3-149a0eb7ba39)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/237506b6-090d-4a7a-8bc4-31438116b97c)
 
 코드로 구현하면 하기와 같습니다.
 
@@ -156,7 +155,7 @@ yourApp.Save(); // YourApp::SaveDoc() 출력
 상속 관계 외에 [옵저버 패턴](https://tango1202.github.io/pattern/pattern-observer/)의 개념을 이용하여 `Listener`로 하위 수준 모듈에서 상위 수준 모듈에 접근하게 할 수도 있습니다.
 구조는 다음과 같습니다. `App`은 `ISaveListener`를 전달받아 `SaveDoc()`을 호출하고, `MyApp`에서는 `ISaveListener`를 상속받아 `App`에 전달합니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/79ee2d14-a21b-47a2-a06a-dbb3f43867fb)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8d03a4a5-92d8-4cd4-94a2-1f0b1c7ba5bc)
 
 코드는 다음과 같습니다.
 ```cpp
@@ -172,19 +171,18 @@ public:
 // Save시 Listener를 사용합니다.
 class App {
 private:
-    bool dirty;
-    std::wstring pathName;
-    ISaveListener* saveListener;
+    bool m_Dirty;
+    std::wstring m_PathName;
+    ISaveListener* m_SaveListener;
 public:
-    App(bool dirty, const std::wstring& pathName, ISaveListener* saveListener) {
-        this->dirty = dirty;
-        this->pathName = pathName;
-        this->saveListener = saveListener;
-    } 
+    App(bool dirty, const std::wstring& pathName, ISaveListener* saveListener) : 
+        m_Dirty(dirty),
+        m_PathName(pathName),
+        m_SaveListener(saveListener) {}
 public:
-    bool IsDirty() const { return dirty; }
-    void SetDirty(bool val) { dirty = val; }
-    const std::wstring& GetPathName() const { return pathName; }
+    bool IsDirty() const { return m_Dirty; }
+    void SetDirty(bool val) { m_Dirty = val; }
+    const std::wstring& GetPathName() const { return m_PathName; }
 
     void Save() {
 
@@ -198,8 +196,8 @@ public:
         if (!IsDirty()) { return; }
 
         // 문서 내용 저장
-        if (saveListener != nullptr) {
-            saveListener->SaveDoc();
+        if (m_SaveListener != nullptr) {
+            m_SaveListener->SaveDoc();
         }
 
         // 저장되었다고 플래그 설정
