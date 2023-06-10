@@ -1,8 +1,8 @@
 ---
 layout: single
-title: "#13. [개체지향 원칙] 보이 스카우트 규칙(Boy Scout Rule)"
+title: "#14. [개발 원칙] 보이 스카우트 규칙(Boy Scout Rule)"
 categories: "principle"
-tag: ["개체지향 원칙"]
+tag: ["개발 원칙"]
 author_profile: false
 sidebar: 
     nav: "docs"
