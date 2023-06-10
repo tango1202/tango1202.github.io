@@ -21,58 +21,82 @@ sidebar:
 
 데이터를 저장하는 기능을 가진 프레임워크를 개발하고 있다고 가정합시다. 여러 어플리케이션에서 상속 받아 쓸 수 있게요.
 
-
-그림 MyApp, YourApp -> App
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/9991a2f6-004f-457a-8871-bac0f728427b)
 
 하기와 같이 `App` 의 `Save()` 기능을 구현할 수 있습니다. 상황에 따라 `SaveAs()`함수로 분기하고, `dirty`플래그를 설정합니다.
 
 ```cpp
 class App {
-private;
+private:
     bool dirty;
     std::wstring pathName;
 public:
-    bool IsDirty() const { return dirty(); }
+    explicit App(bool dirty, const std::wstring& pathName) {
+        this->dirty = dirty;
+        this->pathName = pathName;
+    } 
+public:
+    bool IsDirty() const { return dirty; }
     void SetDirty(bool val) { dirty = val; }
-    const wstring& GetPathName() const { return GetPathName(); }
+    const std::wstring& GetPathName() const { return pathName; }
+
     void Save() {
-       // 파일명이 없으면 다른 이름으로 저장 실행
-       if (GetPathName().empty() {
-           SaveAs();
-       }
-       // 저장할 필요가 있는지 확인
-       if (!IsDirty()) { return; }
-       
-       // 문서 내용 저장
-       SaveDoc();
-       
-       // 저장되었다고 플래그 설정
-       SetDirty(false);
+
+        // 파일명이 없다면 다른 이름으로 저장
+        if (GetPathName().empty()) {
+            SaveAs();
+            return;;
+        }
+
+        // 저장할 필요가 있는지 확인
+        if (!IsDirty()) { return; }
+
+        // 문서 내용 저장
+        SaveDoc();
+
+        // 저장되었다고 플래그 설정
+        SetDirty(false);
     }
+
     // 다른 이름으로 저장합니다.
-    void SaveAs() {
-    }
+    void SaveAs() {}
+
     // 문서 내용을 저장합니다.
-    void SaveDoc() {
-    }
+    void SaveDoc() { /* 구현해야 합니다. */ }
 };
 ```
 
-여기서 `SaveDoc()` 은 어떻게 자식 개체인 `MyApp` 의 문서를 저장할 수 있을까요? 하기처럼 `MyApp`을 전달받아야 할까요?
+여기서 `SaveDoc()` 은 어떻게 자식 개체인 `MyApp` 의 문서를 저장할 수 있을까요? 하기처럼 `MyApp`은 사실은 `App`을 상속받은 거니, 강제로 캐스팅 하면 될까요?
 
 ```cpp
-void SaveDoc(const MyApp& app) {
-    app.SaveDoc();
+// App 을 상속받아 만들었습니다.
+class MyApp : 
+    public App {
+public:
+    explicit MyApp(bool dirty, const std::wstring& pathName) :
+        App(dirty, pathName) {
+    } 
+public:
+    // MyApp의 문서 내용을 저장합니다.
+    void SaveMyDoc() {
+        std::cout <<"MyApp::SaveDoc()"<<std::endl;
+    }
+};
+
+// 문서 내용을 저장합니다.
+void App::SaveDoc() {
+    // 강제로 MyApp으로 변환합니다.
+    reinterpret_cast<MyApp*>(this)->SaveMyDoc();
 }
 ``` 
-자식 개체에서 부모 개체를 참조해서 상호 참조하여 **의존성 부패** 가 되버렸습니다.
+강제로 캐스팅하는 `reinterpret_cast`도 견딜 수 없지만, 자식 개체에서 부모 개체를 참조해서 상호 참조하여 **의존성 부패** 가 되버렸습니다.
 
-그림.
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b49e34dc-fc63-41b5-8937-e55a6036680a)
 
 **의존성 부패** 도 문제지만, 이제 프레임워크는 `MyApp`만 사용할 수 있고, `YourApp`은 사용할 수 없습니다.
 
 **준수 방법 : 템플릿 메서드 패턴**
-하기 그림과 같이 **템플릿 메서드 패턴** 을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 가상함수인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
+하기 그림과 같이 [템플릿 메서드 패턴](https://tango1202.github.io/pattern_template_method) 을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 가상함수인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
 
 7ㄱ림
 

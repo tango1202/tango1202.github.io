@@ -39,17 +39,17 @@ public:
         left(l), top(t), width(w), height(h) {
     }
 public:
-    int GetLeft(int val) const { return left; }
-    int GetTop(int val) const { return top; }
-    int GetWidth(int val) const { return width; }
-    int GetHeight(int val) const { return height; }
+    int GetLeft() const { return left; }
+    int GetTop() const { return top; }
+    int GetWidth() const { return width; }
+    int GetHeight() const { return height; }
 };
 ```
 
 하기와 같이 중심점을 구할 수 있습니다.
 
 ```cpp
-Ractangle rect(0, 0, 10, 20);
+Rectangle rect(0, 0, 10, 20);
 int left = rect.GetLeft();
 int top = rect.GetTop();
 int width = rect.GetWidth();
@@ -85,7 +85,7 @@ public:
 하기와 같이 사용할 수 있습니다.
 
 ```cpp
-Ractangle rect(0, 0, 10, 20);
+Rectangle rect(0, 0, 10, 20);
 std::pair<int, int> center = rect.GetCenter();
 ```
 

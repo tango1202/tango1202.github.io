@@ -61,13 +61,13 @@ class IWriter {
 protected:
     ~IWriter() {} // 상속받지만, 다형적으로 사용하지 않아 none virtual 입니다.
 public:
-    virtual void WriteIntVal(std::wstring attrName, int val) const = 0;
+    virtual void WriteIntVal(const std::wstring& attrName, int val) const = 0;
 };
 
 class XmlWriter : 
     public IWriter {
 public:
-    virtual void WriteIntVal(std::wstring attrName, int val) const override { /* xml로 저장합니다 */ }
+    virtual void WriteIntVal(const std::wstring& attrName, int val) const override { /* xml로 저장합니다 */ }
 };
 
 class Shape {
