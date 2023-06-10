@@ -8,14 +8,14 @@ sidebar:
     nav: "docs"
 ---
 
-최소 public
-완전한 생성자
-완전한 인자
-nothow swap
-pImpl
-virtual 소멸자
-protected none virtual 소멸자
-복사생성자, 대입연산자, clone
-create 생성 함수
-const 성 전파
+1. 최소 public
+2. 완전한 생성자
+3. 완전한 인자
+4. nothow swap
+5. pImpl
+6. virtual 소멸자
+7. protected none virtual 소멸자
+8. 복사생성자, 대입연산자, clone
+9. create 생성 함수
+10. const 성 전파
 
