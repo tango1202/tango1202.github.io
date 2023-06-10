@@ -43,6 +43,8 @@ docs:
     url: /categories/#comment/
   - title: "C++"
     url: /categories/#cpp/
+  - title: "C++ 코딩 패턴"
+    url: /categories/#cpp-coding-pattern/
   - title: "windows"
     url: /categories/#win/ 
   - title: "개발방법론"
