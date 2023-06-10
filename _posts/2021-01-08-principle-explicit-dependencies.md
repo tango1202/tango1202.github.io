@@ -109,6 +109,5 @@ float x = view->GetCenterX();
 float y = view->GetCenterY();
     
 // view 중심점에 맞춰 회전시킵니다.
-rect.RotateAt(delta, x, y);
-} 
+rect.RotateAt(delta, x, y); 
 ```
