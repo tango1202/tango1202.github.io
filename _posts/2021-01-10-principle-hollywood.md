@@ -13,7 +13,7 @@ sidebar:
 조금 풀어 쓰면,
 
 1. 배우(호출자)가 연락처(Listener)를 남기면, 영화사(프레임워크)가 연락을 주듯이,
-2. 프레임워크(하위 수준 모듈)가 호출자(상위 수준 모듈)에 연락할 필요가 있다면, 인터페이스(혹은 [템플릿 메서드 패턴](https://tango1202.github.io/pattern/pattern-template-method/))를 이용하라.
+2. 하위 수준 모듈(프레임워크)이 상위 수준 모듈(호출자)에 연락할 필요가 있다면, Listener 인터페이스(혹은 [템플릿 메서드 패턴](https://tango1202.github.io/pattern/pattern-template-method/))를 이용하라.
 
 라는 뜻입니다.
 
@@ -153,8 +153,7 @@ yourApp.Save(); // YourApp::SaveDoc() 출력
 
 **준수 방법 : Listener**
 
-상속 관계 외에 [옵저버 패턴](https://tango1202.github.io/pattern/pattern-observer/) 의 `Listener`를 
-이용하여 하위 수준 모듈에서 상위 수준 모듈에 접근하게 할 수도 있습니다.
+상속 관계 외에 [옵저버 패턴](https://tango1202.github.io/pattern/pattern-observer/)의 개념을 이용하여 `Listener`로 하위 수준 모듈에서 상위 수준 모듈에 접근하게 할 수도 있습니다.
 구조는 다음과 같습니다. `App`은 `ISaveListener`를 전달받아 `SaveDoc()`을 호출하고, `MyApp`에서는 `ISaveListener`를 상속받아 `App`에 전달합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/79ee2d14-a21b-47a2-a06a-dbb3f43867fb)
