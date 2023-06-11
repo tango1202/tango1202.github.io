@@ -184,7 +184,7 @@ circle.Accept(rotateVisitor);
 
 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하거나 **의존성 주입([의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고)** 을 활용하여, 원하는 알고리즘으로 손쉽게 변경할 수 있습니다.
 
-하기 그림처럼 구성하고, `Shape`에 어떤 Writer(`XmlWriter` 혹은 `JsonWriter`)를 전달하는지에 따라 다른 결과를 출력하게 됩니다. 
+하기 그림처럼 구성하고, `Shape`의 `SetWiter()`에 어떤 Writer(`XmlWriter` 혹은 `JsonWriter`)를 전달하는지에 따라 다른 결과를 출력하게 됩니다. 
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f84d4bda-f55f-4771-b241-e90eb02d38ae)
 
