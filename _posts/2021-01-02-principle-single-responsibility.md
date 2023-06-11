@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [개체지향 원칙] 단일 책임 원칙(Single Responsibility Principle)(작성중)"
+title: "#2. [개체지향 원칙] 단일 책임 원칙(Single Responsibility Principle)"
 categories: "principle"
 tag: ["개체지향 원칙"]
 author_profile: false

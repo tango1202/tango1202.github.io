@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [개체지향 원칙] 개방-폐쇄 원칙(Open-Closed Principle)(작성중)"
+title: "#3. [개체지향 원칙] 개방-폐쇄 원칙(Open-Closed Principle)"
 categories: "principle"
 tag: ["개체지향 원칙"]
 author_profile: false
