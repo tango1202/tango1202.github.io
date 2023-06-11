@@ -55,7 +55,7 @@ void SaveFile(const std::wstring& pathName) const {
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ff2a24ff-2c54-4c5e-93fe-172eeb3a6947)
 
-부모 클래스인 `Shape`에 가상 함수로 `Scale()`을 만들고 자식 클래스에서 이를 `override`하였습니다. 일반적인 방법입니다만, 부모 클래스가 뚱뚱해 질 수 있으므로, 상황에 따라 [비지터 패턴](https://tango1202.github.io/pattern/pattern-visitor/) 을 이용하여, 부모 클래스 인터페이스 수정없이 기능들을 추가할 수 있습니다.
+부모 클래스인 `Shape`에 가상 함수로 `Scale()`을 만들고 자식 클래스에서 이를 `override`하였습니다. 일반적인 방법입니다만, 부모 클래스가 뚱뚱해 질 수 있으므로, 상황에 따라 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/) 을 이용하여, 부모 클래스 인터페이스 수정없이 기능들을 추가할 수 있습니다.
 
 `IVisitor`를 이용한 클래스 구성은 다음과 같습니다.
 
