@@ -20,7 +20,7 @@ sidebar:
 
 **준수 방법 : 유연한 함수**
 
-SaveFile() 함수로 파일을 저장한다고 했을때, 하기와 같이 함수 내부에서 경로명을 지정했다고 생각해 보시죠.
+`SaveFile()` 함수로 파일을 저장한다고 했을때, 하기와 같이 함수 내부에서 경로명을 지정했다고 생각해 보시죠.
 
 ```cpp
 void SaveFile() const {
@@ -30,10 +30,10 @@ void SaveFile() const {
 }
 ```
 
-파일명이나 경로가 바뀐다면 "SaveFile"함수를 수정해야 합니다. 조금의 변화에도 일일이 코드를 뒤져 수정한다면, 유지보수가 어려워 집니다.
+파일명이나 경로가 바뀐다면 `SaveFile()`함수를 수정해야 합니다. 조금의 변화에도 일일이 코드를 뒤져 수정한다면, 유지보수가 어려워 집니다.
 
 다음과 같이 `pathName`을 인자로 요청한다면, 좀더 확장성 있는 함수가 됩니다.
-경로명 변경 확장에는 열려있고, SaveFile 함수 수정에는 닫혀 있게 됩니다.
+경로명 변경 확장에는 열려있고, `SaveFile ()`함수 수정에는 닫혀 있게 됩니다.
 
 ```cpp
 
@@ -45,7 +45,7 @@ void SaveFile(const std::wstring& pathName) const {
 
 다형성을 이용하여 부모 개체로부터 다양한 자식 개체를 추가할 수 있습니다.
 
-하기의 구조에서 새로운 도형 개체가 필요하다면, `Shape`을 상속하면 됩니다.
+하기의 구조에서 새로운 도형 개체가 필요하다면, `Shape`을 상속한 자식 개체를 추가하면 됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/55d845d9-bcfb-4e92-9683-8a7b108d5cb5)
 
@@ -61,7 +61,7 @@ void SaveFile(const std::wstring& pathName) const {
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/70aa06f2-a9aa-48c4-9943-7feadd2c1782)
 
-`IVisitor`는 `Shape`의 자식 개체를 방문하면서 개체 종류에 따라 `VisitRectangle()` 이나 `VisitCircle()`을 호출하라고 강요합니다. `ScaleVisitor`의 경우는 해당 함수 호출시 크기조정을 할 것이고, `RotateVisitor`는 회전을 시킬 것입니다. 이와 같이 새로운 기능을 추가하고 싶을때 새로운 Visitor를 만들어 추가하면 됩니다.
+`IVisitor`는 `Shape`의 자식 개체를 방문하면서 개체 종류에 따라 `VisitRectangle()` 이나 `VisitCircle()`을 호출하라고 강요합니다. `ScaleVisitor`의 경우는 해당 함수 호출시 크기조정을 할 것이고, `RotateVisitor`는 회전을 시킬 것입니다. 이와 같이 새로운 기능을 추가하고 싶을때 새로운 Visitor를 만들어 추가하면 됩니다.(아쉬운 점은 `IVsitor`와 `Shape`이 상호참조 되는 점인데, 기능 추가와 **의존성 부패** 간의 트레이드 오프가 필요합니다.)
 
 ```cpp
 class Shape;
