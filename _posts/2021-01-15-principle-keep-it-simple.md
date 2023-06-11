@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [개발 원칙] 간단하게 유지하라(Keep It Simple)"
+title: "#15. [개발 원칙] 단순하게 유지하라(Keep It Simple)"
 categories: "principle"
 tag: ["개발 원칙"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-간단하게 유지하라는 원칙은 흔히 **KISS(Keep It Simple, Stupid)** 라고도 불립니다.
+단순하게 유지하라는 원칙은 흔히 **KISS(Keep It Simple, Stupid)** 라고도 불립니다.
 
 시스템이나 코드가 단순하게 유지될 때,
 
