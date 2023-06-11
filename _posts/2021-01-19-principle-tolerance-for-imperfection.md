@@ -1,8 +1,8 @@
 ---
 layout: single
-title: "#19. [개체지향 원칙] 불완전성의 허용(Tolerance for Imperfection)"
+title: "#19. [개발 원칙] 불완전성의 허용(Tolerance for Imperfection)"
 categories: "principle"
-tag: ["개체지향 원칙"]
+tag: ["개발 원칙"]
 author_profile: false
 sidebar: 
     nav: "docs"
