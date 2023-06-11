@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [개발 원칙] 보이 스카우트 규칙(Boy Scout Rule)"
+title: "#15. [개발 원칙] 보이 스카우트 규칙(Boy Scout Rule)"
 categories: "principle"
 tag: ["개발 원칙"]
 author_profile: false

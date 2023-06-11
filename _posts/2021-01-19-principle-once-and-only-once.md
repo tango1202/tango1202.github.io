@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#17. [개발 원칙] 스스로 반복하지 마라(Don't Repeat Yourself)(작성중)"
+title: "#19. [개발 원칙] 한번 단 한번만(Once and Only Once)(작성중)"
 categories: "principle"
 tag: ["개발 원칙"]
 author_profile: false

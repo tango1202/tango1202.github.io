@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [개발 원칙] 단순하게 유지하라(Keep It Simple)"
+title: "#16. [개발 원칙] 단순하게 유지하라(Keep It Simple)"
 categories: "principle"
 tag: ["개발 원칙"]
 author_profile: false

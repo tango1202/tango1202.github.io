@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [개발 원칙] 아키텍처 민첩성 원칙(Architectural Agility Principle)"
+title: "#14. [개발 원칙] 아키텍처 민첩성 원칙(Architectural Agility Principle)"
 categories: "principle"
 tag: ["개발 원칙"]
 author_profile: false

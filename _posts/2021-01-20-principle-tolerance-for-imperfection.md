@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [개발 원칙] 불완전성의 허용(Tolerance for Imperfection)"
+title: "#20. [개발 원칙] 불완전성의 허용(Tolerance for Imperfection)"
 categories: "principle"
 tag: ["개발 원칙"]
 author_profile: false

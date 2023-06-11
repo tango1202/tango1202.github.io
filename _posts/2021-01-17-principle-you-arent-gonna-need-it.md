@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [개발 원칙] 필요할때 구현하라(You Aren't Gonna Need It)"
+title: "#17. [개발 원칙] 필요할때 구현하라(You Aren't Gonna Need It)"
 categories: "principle"
 tag: ["개발 원칙"]
 author_profile: false

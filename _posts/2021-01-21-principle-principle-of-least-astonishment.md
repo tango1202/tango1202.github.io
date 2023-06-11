@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [개발 원칙] 최소한의 놀라움 원칙(Principle of Least Astonishment)"
+title: "#21. [개발 원칙] 최소한의 놀라움 원칙(Principle of Least Astonishment)"
 categories: "principle"
 tag: ["개발 원칙"]
 author_profile: false
