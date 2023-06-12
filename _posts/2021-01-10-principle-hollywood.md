@@ -13,13 +13,13 @@ sidebar:
 조금 풀어 쓰면,
 
 1. 배우(호출자)가 연락처(Listener)를 남기면, 영화사(프레임워크)가 연락을 주듯이,
-2. 하위 수준 모듈(프레임워크)이 상위 수준 모듈(호출자)에 연락할 필요가 있다면, Listener 인터페이스(혹은 [템플릿 메서드 패턴](https://tango1202.github.io/pattern/pattern-template-method/))를 이용하라.
+2. 하위 수준 모듈(프레임워크)이 상위 수준 모듈(호출자)에게 연락할 방법(Listener 인터페이스 혹은 [Template Method 패턴](https://tango1202.github.io/pattern/pattern-template-method/))을 만들어라.
 
 라는 뜻입니다.
 
-**위반 사례**
+**필요 사례**
 
-데이터를 저장하는 기능을 가진 프레임워크를 개발하고 있다고 가정합시다. 여러 어플리케이션에서 상속 받아 쓸 수 있게요.
+데이터를 저장하는 기능을 가진 범용적인 프레임워크를 개발하고 있다고 가정합시다. 여러 어플리케이션에서 상속 받아 쓸 수 있게요.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/9991a2f6-004f-457a-8871-bac0f728427b)
 
@@ -74,12 +74,11 @@ class MyApp :
     public App {
 public:
     MyApp(bool dirty, const std::wstring& pathName) :
-        App(dirty, pathName) {
-    } 
+        App(dirty, pathName) {} 
 public:
     // MyApp의 문서 내용을 저장합니다.
     void SaveMyDoc() {
-        std::cout <<"MyApp::SaveDoc()"<<std::endl;
+        std::cout <<"MyApp::SaveMyDoc()"<<std::endl;
     }
 };
 
@@ -93,11 +92,11 @@ void App::SaveDoc() {
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e19a4379-80ae-4a5b-a0c4-042b328b20cd)
 
-**의존성 부패** 도 문제지만, 이제 프레임워크는 `MyApp`만 사용할 수 있고, `YourApp`은 사용할 수 없습니다.
+**의존성 부패** 도 문제지만, 이제 프레임워크는 `MyApp`에 의존되어 `MyApp`만 사용할 수 있기 때문에, 범용적인 프레임워크가 아닙니다. 범용적인 프레임워크가 되도록 의존성을 수정해야만 합니다.
 
-**준수 방법 : 템플릿 메서드 패턴**
+**준수 방법 : Template Method 패턴**
 
-하기 그림과 같이 [템플릿 메서드 패턴](https://tango1202.github.io/pattern/pattern-template-method/) 을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 가상 함수인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
+하기 그림과 같이 [Template Method 패턴](https://tango1202.github.io/pattern/pattern-template-method/) 을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 가상 함수인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/237506b6-090d-4a7a-8bc4-31438116b97c)
 
@@ -116,8 +115,7 @@ class MyApp :
     public App {
 public:
     MyApp(bool dirty, const std::wstring& pathName) :
-        App(dirty, pathName) {
-    } 
+        App(dirty, pathName) {} 
 protected:
     // MyApp의 문서 내용을 저장합니다.
     virtual void SaveDoc() override {
@@ -130,8 +128,7 @@ class YourApp :
     public App {
 public:
     YourApp(bool dirty, const std::wstring& pathName) :
-        App(dirty, pathName) {
-    } 
+        App(dirty, pathName) {} 
 protected:
     // YourApp의 문서 내용을 저장합니다.
     virtual void SaveDoc() override {
@@ -152,12 +149,13 @@ yourApp.Save(); // YourApp::SaveDoc() 출력
 
 **준수 방법 : Listener**
 
-상속 관계 외에 [옵저버 패턴](https://tango1202.github.io/pattern/pattern-observer/)의 개념을 이용하여 `Listener`로 하위 수준 모듈에서 상위 수준 모듈에 접근하게 할 수도 있습니다.
+상속 관계 외에 [Observer 패턴](https://tango1202.github.io/pattern/pattern-observer/)의 개념을 이용하여 `Listener`로 하위 수준 모듈에서 상위 수준 모듈에 접근하게 할 수도 있습니다.
 구조는 다음과 같습니다. `App`은 `ISaveListener`를 전달받아 `SaveDoc()`을 호출하고, `MyApp`에서는 `ISaveListener`를 상속받아 `App`에 전달합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8d03a4a5-92d8-4cd4-94a2-1f0b1c7ba5bc)
 
 코드는 다음과 같습니다.
+
 ```cpp
 // App 에서 문서 저장시 호출합니다.
 class ISaveListener {
@@ -214,8 +212,7 @@ class MyApp :
     public ISaveListener {
 public:
     MyApp(bool dirty, const std::wstring& pathName) :
-        App(dirty, pathName, this) { // 부모인 App에 this를 전달하여 ISaveListener를 전달합니다.
-    } 
+        App(dirty, pathName, this) {} // 부모인 App에 this를 전달하여 ISaveListener를 전달합니다.
 public:
     // MyApp의 문서 내용을 저장합니다.
     virtual void SaveDoc() override {

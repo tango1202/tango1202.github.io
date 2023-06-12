@@ -12,11 +12,15 @@ sidebar:
 
 조금 풀어 쓰면,
 
-1. 상속받은 자식은 부모와 **is-a 관계** 여야 하고,
-
+1. 다형적 동작을 위해 상속받은 자식은 부모와 **is-a 관계** 여야 하고,
 2. 자식은 부모와 다른 행동을 하지 말고, 같은 행동을 하게 하라.
 
 라는 뜻입니다. 더군다나 !!!완전하게!!!말이죠.
+
+이 원칙을 준수하면,
+
+1. 코드 분석시 불필요하게 하위 개체의 구현을 신경 쓰지 않아도 되므로 코드 분석 용이성이 향상됩니다.
+2. **코딩 계약** 에 의한 코드 구현시 신뢰성이 확보되고, 이에 따른 시스템 안정성도 확보됩니다.
 
 **위반 사례 : 부모와 다른 동작을 하는 자식**
 
@@ -37,9 +41,8 @@ public:
         m_Left(l),
         m_Top(t),
         m_Width(w),
-        m_Height(h) {
-    }
-    virtual ~Shape() {}; // 다형적 소멸
+        m_Height(h) {}
+    virtual ~Shape() {} // 다형적 소멸
 public:
     // Get/Set 함수
     int GetLeft() const { return m_Left; }
@@ -133,7 +136,8 @@ class Square :
     public Shape {
 public:
     // h 는 무시하고 w만 사용합니다.
-    Square(int l, int t, int w, int /*h*/) : Shape(l, t, w, w) {}
+    Square(int l, int t, int w, int /*h*/) : 
+        Shape(l, t, w, w) {}
     virtual ~Square() override {}
 
     // m_Width를 바꾸면 m_Height도 바꿉니다.
@@ -195,12 +199,11 @@ TEST(TestPrinciple, LiskovSubstitution) {
         EXPECT_TRUE((*itr)->GetHeight() == 20); // Fail. Square의 m_Height는 m_Width인 10입니다.
     }
 }
-
 ```
 
-그렇죠. `Square`는 `m_Width` 값을 `m_Height`에 세팅하니 당연히 테스트를 실패하겠죠. 이제 `Square`의 특성을 알았으니 주의해서 사용하면 될까요? 이런 자식 개체가 또 뭐가 있을까요? 단순하게 Circle이 있겠고요, 또 더 있을 수 있을까요? 겁이 나서 모든 자식들의 소스코드와 테스트케이스들을 확인해 봐야 할까요? 이크!!! 라이브러리라 소스코드를 못보내요? 
+그렇죠. `Square`는 `m_Width` 값을 `m_Height`에 세팅하니 당연히 테스트를 실패하겠죠. 이제 `Square`의 특성을 알았으니 주의해서 사용하면 될까요? 이런 자식 개체가 또 뭐가 있을까요? 단순하게 Circle이 있겠고요, 또 더 있을 수 있을까요? 겁이 나서 모든 자식들의 소스코드와 테스트케이스들을 확인해 봐야 할까요? 이크!!! 라이브러리라 소스코드를 못보네요? 
 
-이런 경우가 리스코프 치환 원칙에 위배된 것입니다. 자식이 부모와 다른 동작을 하게 되면 부모 개체를 안심하고 사용할 수 없게 됩니다. 자식 코드를 다 파악하고 있어야지만, 안심하고 사용할 수 있게 되죠.
+이런 경우가 리스코프 치환 원칙을 위반한 것입니다. 자식이 부모와 다른 동작을 하게 되면 부모 개체를 안심하고 사용할 수 없게 됩니다. 자식 코드를 다 파악하고 있어야지만, 안심하고 사용할 수 있게 되죠.
 
 이 경우엔 부모가 잘못한 것이라 생각합니다. 모든 `Shape`이 `m_Width`와 `m_Height`를 가진다는 잘못된 가정을 한겁니다. 그래서 자식은 어쩔수 없이 `SetWidth()`와 `SetHeight()`를 재구현할 수 밖에 없었고요.
 
@@ -222,9 +225,8 @@ private:
 public:
     Shape(int l, int t) :
         m_Left(l),
-        m_Top(t) {
-    }
-    virtual ~Shape() {}; // 다형적 소멸
+        m_Top(t) {}
+    virtual ~Shape() {} // 다형적 소멸
 public:
     // Get/Set 함수
     int GetLeft() const { return m_Left; }
@@ -251,8 +253,7 @@ public:
     Rectangle(int l, int t, int w, int h) : 
         Shape(l, t),
         m_Width(w),
-        m_Weight(h) {
-    }
+        m_Weight(h) {}
     virtual ~Rectangle() override {}   
     
     // Get/Set 함수
@@ -277,8 +278,7 @@ public:
     Ellipse(int l, int t, int w, int h) : 
         Shape(l, t),
         m_Width(w),
-        m_Height(h) {
-    }
+        m_Height(h) {}
     virtual ~Ellipse() override {}
 
     // Get/Set 함수
@@ -306,8 +306,7 @@ public:
     // width, height없이 length 하나만 사용합니다.
     Square(int l, int t, int length) : 
         Shape(l, t),
-        m_Length(length) { 
-    }
+        m_Length(length) {}
     virtual ~Square() override {}
 
     // Get/Set 함수
@@ -321,7 +320,7 @@ public:
 };
 ```
 
-이제 자식인 `Square`가 부모인 `Shape`과 다른 동작을 하지 않습니다. `GetWidth()`, `GetHeight()` 를 아예 제공하지 않으니까요.
+이제 자식인 `Square`가 부모인 `Shape`과 다른 동작을 하지 않습니다. `Shape` 과 `Square` 모두 `GetWidth()`, `GetHeight()` 를 아예 제공하지 않으니까요.
 
 하기와 같이 테스트 해야 합니다.
 
@@ -338,9 +337,9 @@ TEST(TestPrinciple, LiskovSubstitution) {
 }
 ```
 
-한가지 아쉬운 점은 `Rectangle`과 `Ellipse`구현시 `m_Width`, `m_Height` 구현에 코드 중복이 있다는 것입니다. [한번 단 한번만 원칙](https://tango1202.github.io/principle/principle-once-and-only-once/)을 위배했습니다.
+한가지 아쉬운 점은 `Rectangle`과 `Ellipse`구현시 `m_Width`, `m_Height` 구현에 코드 중복이 있다는 것입니다. [스스로 반복하지 마라](https://tango1202.github.io/principle/principle-dont-repeat-yourself/)를 위배했습니다.
 
-이는 다음처럼 인터페이스를 분리([인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/))한 구현 상속(**has-a 관계** )을 통해 개선할 수 있습니다.
+이는 다음처럼 인터페이스를 분리([인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/))한 뒤, 상속(**has-a 관계** )하여 개선할 수 있습니다.
 
 먼저 `m_Width`와 `m_Height`를 제공하는 `IResizeable`인터페이스를 만듭니다.
 
@@ -371,8 +370,7 @@ private:
 protected:
     ResizeableImpl(int w, int h) :
         m_Width(w), 
-        m_Height(h) {
-    }
+        m_Height(h) {}
     ~ResizeableImpl() {} // has-a 관계로 사용되기 때문에, 단독으로 생성되지 않도록 protected입니다.
 public:    
     // Get/Set 함수
@@ -394,8 +392,7 @@ class Rectangle :
 public:    
     Rectangle(int l, int t, int w, int h) : 
         Shape(l, t), 
-        ResizeableImpl(w, h) {
-    }
+        ResizeableImpl(w, h) {}
     virtual ~Rectangle() override {}   
   
     virtual void Draw() const override {
@@ -410,8 +407,7 @@ class Ellipse :
 public:
     Ellipse(int l, int t, int w, int h) : 
         Shape(l, t), 
-        ResizeableImpl(w, h) {
-    }
+        ResizeableImpl(w, h) {}
     virtual ~Ellipse() override {}
  
     virtual void Draw() const override {
@@ -419,9 +415,5 @@ public:
     }
 };
 ```
-이 원칙을 준수하면,
-
-1. 코드 분석시 불필요하게 하위 개체의 구현을 신경 쓰지 않아도 되므로 코드 분석 용이성이 향상됩니다.
-2. **코딩 계약** 에 의한 코드 구현시 신뢰성이 확보되고, 이에 따른 시스템 안정성도 확보됩니다.
 
 

@@ -20,7 +20,7 @@ sidebar:
 
 **위반 사례**
 
-각도를 Degree 형태로 입력받는 `Rotate()` 함수를 구현한다 가정해 봅시다. 아마도 하기와 같이 가볍게 예외상황을 검사하고 `assert`를 작성할 수 있습니다.
+각도를 Degree 형태로 입력받는 `Rotate()` 함수를 구현한다 가정해 봅시다. 아마도 하기와 같이 가볍게 예외 상황을 검사하고 `assert`를 작성할 수 있습니다.
 
 ```cpp
 class Shape {
@@ -106,11 +106,11 @@ shape.Rotate(delta);
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1d1da5d1-4aad-4522-9245-1cd6006bafd6)
 
-여전히 단위 기능의 응집도도 낮고, 결합도는 높으며, `Rotate()`함수가 `delta`를 처리하는 방식을 파악한뒤, `CalcShapeRotateDelta()`를 꼭 호출해야 하기 때문에 사용하기 어렵습니다. 호출을 빼먹어서 잘못 사용하기 쉽고요. 캡슐화 위반입니다.
+여전히 단위 기능의 응집도도 낮고, 결합도는 높으며, 호출자는 `Rotate()`함수가 `delta`를 처리하는 방식을 파악한 뒤, `CalcShapeRotateDelta()`를 꼭 호출해야 하기 때문에 사용하기 어렵습니다. 호출을 빼먹어서 잘못 사용하기 쉽고요. 캡슐화 위반입니다.
 
 **준수 방법**
 
-상기 예제는 Degree 형식을 처리하는 과정이 함수 외부와 내부에 흩어져 있기 때문에 발생한 문제입니다. `Rotate()`함수 외부에선 `delta`값을 보정해야 하고, 내부에서는 `m_Angle`과 `delta`를 더한 뒤 회전시키니까요. 서로 주거니 받거니 하는 값이 잘 맞아 떨어져야만 합니다.([단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)도 위반했네요.)
+상기 예제는 Degree 형식을 처리하는 과정이 함수 외부와 내부에 흩어져 있기 때문에 발생한 문제입니다. `Rotate()`함수 외부에선 `delta`값을 보정해야 하고, 내부에서는 `m_Angle`과 `delta`를 더한 뒤 회전시키니까요. 서로 주거니 받거니 하는 값이 잘 맞아 떨어져야만 합니다.(책임이 분산되어 있으니, [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)도 위반했네요.)
 
 이렇게 흩어진 처리방식을 해결하기 위해, 각도값을 처리하는 `Degree` 타입을 만들고, 데이터 보정 처리를 응집해 줍니다. 그러면 각도값 처리방법이 캡슐화 되고, 응집력은 높아지고, 결합도는 낮아집니다. 또한 함수 호출이 바르게 사용하기 쉽게 변경됩니다.
 
@@ -123,8 +123,7 @@ private:
     float m_Value;
 public:
     explicit Degree(float val = 0) :
-        m_Value(Constrain(val)) {
-    }
+        m_Value(Constrain(val)) {}
 public:
     const Degree& operator =(float val) {
         m_Value = Constrain(val); 
@@ -144,7 +143,7 @@ private:
         float max = 360.F;
 
         // 범위 바깥이라면 0~360 사이로 보정
-        if (val < min || max < val) {
+        if (val < min || max <= val) {
             // 몫
             int quatient = static_cast<int>(val) / static_cast<int>(max);
 
@@ -242,6 +241,9 @@ public:
 
 ```cpp
 TEST(TestPrinciple, Encapsulation) {
+    Degree _360(360.F);
+    EXPECT_FLOAT_EQ(_360.GetValue(), 0.F);
+        
     Degree _370(370.F);
     EXPECT_FLOAT_EQ(_370.GetValue(), 10.F);
 

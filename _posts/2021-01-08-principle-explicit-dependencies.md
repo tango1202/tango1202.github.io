@@ -13,7 +13,7 @@ sidebar:
 조금 풀어 쓰면,
 
 1. 클래스 생성시 필요한 요소를 명시적으로 요청하고,
-2. 함수 호출시 전역이나 인프라 요소를 몰래 사용하지 말고 인자로 요청하라.
+2. 함수 호출시 전역이나 인프라 요소를 몰래 사용하지 말고, 인자로 요청하라.
 
 라는 뜻입니다. 
 
@@ -48,7 +48,7 @@ rect.SetWidth(10);
 rect.SetHeight(10);
 ```
 
-이렇게 필요한 요소를 생성 후 일일이 세팅하는건 번거로움은 둘째치고, 사용이 어렵고, 클래스 내부 구조를 완전히 파악해야만 하는 부담이 있습니다.(내부 구조 파악을 필요로 하니 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)도 위반이군요.)
+이렇게 필요한 요소를 생성 후 일일이 세팅하는건 번거롭습니다. 또한 번거로움은 둘째치고, 사용이 어렵고, 클래스 내부 구조를 완전히 파악해야만 하는 부담이 있습니다.(내부 구조 파악을 필요로 하니 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)도 위반이군요.)
 
 하기와 같이 **완전한 생성자** 를 만들어 해결할 수 있습니다.
 
@@ -61,8 +61,7 @@ private:
     int m_Height;
 public:
     Rectangle(int l, int t, int w, int h) : 
-        m_Left(l), m_Top(t), m_Width(w), m_Height(h) {
-    }
+        m_Left(l), m_Top(t), m_Width(w), m_Height(h) {}
   ...
 };
 ```
@@ -101,7 +100,7 @@ class Rectangle {
 };
 ```
 
-이젠 외부에서 `view` 중심점을 구해 `RotateAt()`에 전달하면 됩니다.
+이젠 외부에서 `view` 중심점을 구해 `RotateAt()`에 전달하여야 합니다. 함수가 필요로 하는 요소를 인자로 제공했기 때문에, **코딩 계약** 이 좀더 투명해 졌습니다. 
 
 ```cpp
 // view 중심점을 구합니다.

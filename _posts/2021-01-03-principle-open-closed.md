@@ -12,11 +12,15 @@ sidebar:
 
 조금 풀어 쓰면,
 
-1. 코드의 수정없이 기능 추가나 변경이 가능하게 설계하고,
-
-3. 요구사항 추가에 따라 새 클래스를 작성하면, 기존 클래스들이 수정 없이 유연하게 사용 가능해야 하라.
+1. 기존 코드의 수정없이 기능 추가나 변경이 가능하게 설계하여,
+2. 요구사항 추가나 변경에 유연하게 대처하라.
 
 라는 뜻입니다. !!!유연하게!!! 말이죠.
+
+이 원칙을 준수하면,
+
+1. 기능 수정 및 추가가 용이하도록 작성되어 유연성이 향상됩니다.
+2. 모듈 사용에 실수가 적어져 **코딩 계약** 준수에 따른 사용성이 향상됩니다.
 
 **준수 방법 : 유연한 함수**
 
@@ -25,7 +29,6 @@ sidebar:
 ```cpp
 void SaveFile() const {
     std::wstring pathName = L"c:/data/my_data.txt";
-    
     ...
 }
 ```
@@ -36,12 +39,10 @@ void SaveFile() const {
 경로명 변경 확장에는 열려있고, `SaveFile ()`함수 수정에는 닫혀 있게 됩니다.
 
 ```cpp
-
-void SaveFile(const std::wstring& pathName) const {
-}
+void SaveFile(const std::wstring& pathName) const {}
 ```
 
-**준수 방법 : 유연한 개체**
+**준수 방법 : 다형성을 이용한 유연한 개체**
 
 다형성을 이용하여 부모 개체로부터 다양한 자식 개체를 추가할 수 있습니다.
 
@@ -49,22 +50,26 @@ void SaveFile(const std::wstring& pathName) const {
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/55d845d9-bcfb-4e92-9683-8a7b108d5cb5)
 
-**준수 방법 : 유연한 기능 추가**
+**준수 방법 : Visitor 패턴을 이용한 유연한 기능 추가**
 
-만약 개체에 새로운 기능을 추가하고 싶다면, 멤버 함수를 추가하면 됩니다. 하기는 개체를 확대하는 `Scale()` 을 추가한 예입니다.
+만약 개체에 새로운 기능을 추가하고 싶다면, 일반적으로는 멤버 함수를 추가하면 됩니다. 하기는 개체를 확대하는 `Scale()` 을 추가한 예입니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ff2a24ff-2c54-4c5e-93fe-172eeb3a6947)
 
-부모 클래스인 `Shape`에 가상 함수로 `Scale()`을 만들고 자식 클래스에서 이를 `override`하였습니다. 일반적인 방법입니다만, 부모 클래스가 뚱뚱해 질 수 있으므로, 상황에 따라 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/) 을 이용하여, 부모 클래스 인터페이스 수정없이 기능들을 추가할 수 있습니다.
+부모 클래스인 `Shape`에 가상 함수로 `Scale()`을 만들고 자식 클래스에서 이를 `override`하였습니다. 일반적인 방법입니다만, 부모 클래스가 뚱뚱해 질 수 있으므로(혹은, `Shape`이 외부 라이브러리라 인터페이스 수정을 못할 수 있으므로), 상황에 따라 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/) 을 이용하여, 부모 클래스 인터페이스 수정없이 기능들을 추가할 수 있습니다.
 
 `IVisitor`를 이용한 클래스 구성은 다음과 같습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/70aa06f2-a9aa-48c4-9943-7feadd2c1782)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6cc08759-629b-4be7-a617-02f373ad2b43)
 
-`IVisitor`는 `Shape`의 자식 개체를 방문하면서 개체 종류에 따라 `VisitRectangle()` 이나 `VisitCircle()`을 호출하라고 강요합니다. `ScaleVisitor`의 경우는 해당 함수 호출시 크기조정을 할 것이고, `RotateVisitor`는 회전을 시킬 것입니다. 이와 같이 새로운 기능을 추가하고 싶을때 새로운 Visitor를 만들어 추가하면 됩니다.(아쉬운 점은 `IVsitor`와 `Shape`이 상호참조 되는 점인데, 기능 추가와 **의존성 부패** 간의 트레이드 오프가 필요합니다.)
+`IVisitor`는 `Shape`의 자식 개체를 방문하면서 개체 종류에 따라 `VisitRectangle()` 이나 `VisitCircle()`을 호출할 수 있게 합니다.
+
+개체에서 이 함수들을 호출하면, `ScaleVisitor`의 경우는 크기조정을 수행하는 코드를 구현하고, `RotateVisitor`는 회전을 수행하는 코드를 구현하면 됩니다. 
+
+이와 같이 새로운 기능 추가시, 기존 코드의 수정 없이 새로운 Visitor만 만들면 되므로, 코드가 좀더 유연해 집니다.(아쉬운 점은 `IVsitor`와 `Shape`이 상호 참조 되는 점인데, 기능 추가와 **의존성 부패** 간의 트레이드 오프가 필요해 집니다.)
 
 ```cpp
-class Shape;
+class Shape; // 상호 참조가 되어 전방선언이 필요합니다.
 
 // 개체를 방문하여 개체별로 작업합니다.
 class IVisitor {
@@ -85,7 +90,6 @@ class ScaleVisitor :
 public:
     virtual void VisitRectangle(Shape* object) override {
         std::cout<<"Scale Rectangle"<<std::endl; 
-
     };
     virtual void VisitCircle(Shape* object) override {
         std::cout<<"Scale Circle"<<std::endl; 
@@ -98,7 +102,6 @@ class RotateVisitor :
 public:
     virtual void VisitRectangle(Shape* object) override {
         std::cout<<"Rotate Rectangle"<<std::endl; 
-
     };
     virtual void VisitCircle(Shape* object) override {
         std::cout<<"Rotate Circle"<<std::endl; 
@@ -118,7 +121,7 @@ public:
         m_Left(l),
         m_Top(t) {
     }
-    virtual ~Shape() {}; // 다형적 소멸
+    virtual ~Shape() {} // 다형적 소멸
 public:
     // m_Left, m_Top을 이용하여 자식 클래스들이 알아서 그려야 함
     virtual void Draw() const = 0; 
@@ -180,17 +183,13 @@ rect.Accept(rotateVisitor);
 circle.Accept(rotateVisitor);
 ```
 
-**준수 방법 : 유연한 알고리즘 변경**
+**준수 방법 : 의존성 주입을 이용한 유연한 알고리즘 변경**
 
 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하거나 **의존성 주입([의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고)** 을 활용하여, 원하는 알고리즘으로 손쉽게 변경할 수 있습니다.
 
-하기 그림처럼 구성하고, `Shape`의 `SetWiter()`에 어떤 Writer(`XmlWriter` 혹은 `JsonWriter`)를 전달하는지에 따라 다른 결과를 출력하게 됩니다. 
+하기 그림처럼 구성하고, `Shape`의 `SetWiter()`에 어떤 Writer(`XmlWriter` 혹은 `JsonWriter`)를 전달하는지에 따라 다른 알고리즘을 사용할 수 있습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f84d4bda-f55f-4771-b241-e90eb02d38ae)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fe211413-2247-44bf-99bf-603eb6cb7308)
 
-이 원칙을 준수하면,
-
-1. 기능 수정 및 추가가 용이하도록 작성하므로 유연성이 향상됩니다.
-2. 모듈 사용에 실수가 적어져 **코딩 계약** 준수에 따른 사용성이 향상됩니다.
 
 

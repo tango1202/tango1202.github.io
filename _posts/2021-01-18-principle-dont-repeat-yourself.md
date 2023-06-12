@@ -27,9 +27,9 @@ sidebar:
 **준수 방법**
 
 1. 코드를 복사-붙여넣기 하지 마세요.
-2. `if`의 반복, `switch`반복, 변수 정의, 연산처리 등 작은 코드 조각도 허용하지 마세요. 함수화 하세요.
+2. `if`의 반복, `switch`반복, 변수 정의, 연산처리 등 작은 코드 조각도 허용하지 마세요. 함수화 하세요. 모든 지식을 총 동원해서 중복을 제거하세요.
    * 비율 계산 연산인 `a * b / c` 가 반복된다면, `MulDiv(a, b, c)` 함수를 만드세요.
-3. [템플릿 메서드 패턴](https://tango1202.github.io/pattern/pattern-template-method/)으로 중복되지 않은 코드만 구현하세요. 
+3. [Template Method 패턴](https://tango1202.github.io/pattern/pattern-template-method/)으로 중복되지 않은 코드만 구현하세요. 
 4. [제어의 역전 원칙](https://tango1202.github.io/principle/principle-inversion-of-control/)으로 제어 코드를 공통화 하고, 개발자가 꼭 필요한 코드만 구현할 수 있게 하세요. 
 5. [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)으로 작은 단위 인터페이스를 사용하세요.
 6. 팀원간 의사소통 채널을 마련하세요.

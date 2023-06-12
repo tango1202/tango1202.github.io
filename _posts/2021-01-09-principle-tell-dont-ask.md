@@ -36,8 +36,10 @@ private:
     int m_Height;
 public:
     Rectangle(int l, int t, int w, int h) : 
-        m_Left(l), m_Top(t), m_Width(w), m_Height(h) {
-    }
+        m_Left(l), 
+        m_Top(t), 
+        m_Width(w), 
+        m_Height(h) {}
 public:
     int GetLeft() const { return m_Left; }
     int GetTop() const { return m_Top; }
@@ -73,8 +75,10 @@ private:
     int m_Height;
 public:
     Rectangle(int l, int t, int w, int h) : 
-        m_Left(l), m_Top(t), m_Width(w), m_Height(h) {
-    }
+        m_Left(l),
+        m_Top(t), 
+        m_Width(w),
+        m_Height(h) {}
 public:
     std::pair<int, int> GetCenter() const { 
         return std::make_pair(m_Left + m_Width / 2, m_Top + m_Height / 2);
@@ -100,8 +104,10 @@ private:
     int m_Height;
 public:
     Rectangle(int l, int t, int w, int h) : 
-        m_CenterX(l + w / 2), m_CenterY(t + h / 2), m_Width(w), m_Height(h) {
-    }
+        m_CenterX(l + w / 2), 
+        m_CenterY(t + h / 2),
+        m_Width(w), 
+        m_Height(h) {}
 public:
     std::pair<int, int> GetCenter() const { 
         return std::make_pair(m_CenterX, m_CenterY);
