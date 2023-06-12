@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [고전 C++ 가이드] 기본 자료형"
+title: "#3. [고전 C++ 가이드] 기본 자료형"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -23,12 +23,19 @@ C++에는 하기의 기본 자료형들이 있습니다.
 |`float`|부동 소수점 실수|3.4E +/- 38 (7 digits)|
 |`double`|부동 소수점 실수|1.7E +/- 308 (15 digits)|
 |`long double`|`double`과 동일|double 과 동일|
-|`*`|포인터형||
-|`&`|참조형||
-|`enum`|열거형 상수||
+|`*`|포인터형|32bit : 4byte, 64bit : 8byte|
+|`&`|참조자|참조하는 개체의 별칭. `sizeof()`시 참조하는 개체와 동일 크기|
+|`enum`|열거형 상수|모든 열거자 값을 나타낼 수 있는 정수 형식의 크기. (보통 4byte)|
 
 그외 `signed`, `unsigned` 와 결합하여 다양한 조합이 나올 수 있습니다.
 
 **자료형 재정의**
 
+typedef
+
+**자료형 크기**
+
+sizeof
+
+**자료형 최대/최소값**
 
