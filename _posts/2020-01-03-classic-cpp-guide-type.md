@@ -20,9 +20,9 @@ C++에는 하기의 기본 자료형들이 있습니다.
 |`int`|기본 연산 단위 크기의 정수|16bit : 2byte, 32bit : 4byte, 64bit : 4byte|
 |`unsigned`|부호 없는 `int`|`int` 와 동일|
 |`long`|`int`보다 크거나 같은 정수|16bit : 4byte, 32bit : 4byte, 64bit : 8byte|
-|`float`|부동 소수점 실수|3.4E +/- 38 (7 digits)|
-|`double`|부동 소수점 실수|1.7E +/- 308 (15 digits)|
-|`long double`|`double`과 동일|`double` 과 동일|
+|`float`|단정밀도 부동 소수점 실수|4byte|
+|`double`|배정밀도 부동 소수점 실수|8byte|
+|`long double`|확장정밀도 부동소수점 실수|`double` 과 동일|
 |`*`|포인터형|32bit : 4byte, 64bit : 8byte|
 |`&`|참조자|참조하는 개체의 별칭으로서 해당 용량은 스펙에 정의되지 않음. 다만, `sizeof()`시 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의됨.(`sizeof(T&) == sizeof(T)`)|
 |`enum`|열거형 상수|모든 열거자 값을 나타낼 수 있는 정수 형식의 크기. (보통 4byte)|
