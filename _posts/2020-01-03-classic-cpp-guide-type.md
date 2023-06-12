@@ -18,7 +18,7 @@ C++에는 하기의 기본 자료형들이 있습니다.
 |`char`|1byte 문자| 1byte|
 |`short`|2byte 정수| 2byte|
 |`int`|기본 연산 단위 크기의 정수|16bit : 2byte, 32bit : 4byte, 64bit : 4byte|
-|`unsigned`|부호 없는 int|int 와 동일|
+|`unsigned`|부호 없는 `int`|`int` 와 동일|
 |`long`|int보다 크거나 같은 정수|16bit : 4byte, 32bit : 4byte, 64bit : 8byte|
 |`float`|부동 소수점 실수|3.4E +/- 38 (7 digits)|
 |`double`|부동 소수점 실수|1.7E +/- 308 (15 digits)|
