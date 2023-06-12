@@ -16,7 +16,7 @@ C++에는 하기의 기본 자료형들이 있습니다.
 |--|--|--|
 |`bool`|`true`, `false`|`1 <= sizeof (bool) <= sizeof(long)`|
 |`char`|1byte 문자|1byte|
-|`wchar_t`|와이드 문자|2byte|
+|`wchar_t`|와이드 문자|2byte 또는 4byte. 단, Windows는 2byte |
 |`short`|2byte 정수| 2byte|
 |`int`|기본 연산 단위 크기의 정수|16bit : 2byte, 32bit : 4byte, 64bit : 4byte|
 |`unsigned`|부호 없는 `int`|`int` 와 동일|
