@@ -28,7 +28,7 @@ C++에는 하기의 기본 자료형들이 있습니다.
 |`&`|참조자|참조하는 개체의 별칭으로서 해당 용량은 스펙에 정의되지 않음. 다만, `sizeof()`시 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의됨.(`sizeof(T&) == sizeof(T)`)|
 |`enum`|열거형 상수|모든 열거자 값을 나타낼 수 있는 정수 형식의 크기. (보통 4byte)|
 
-그외 `signed`, `unsigned`, `long`, `short` 와 결합하여 다양한 조합이 나올 수 있습니다.([https://en.cppreference.com/w/cpp/language/types](https://en.cppreference.com/w/cpp/language/types) 참고)
+그외 `signed`, `unsigned`, `short`, `long` 와 결합하여 다양한 조합이 나올 수 있습니다.([https://en.cppreference.com/w/cpp/language/types](https://en.cppreference.com/w/cpp/language/types) 참고)
 
 **자료형 재정의**
 
