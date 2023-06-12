@@ -1,7 +1,7 @@
 ---
 layout: single
-title: "#1. [고전 C++ Core] 주요 구성 요소 미리보기"
-categories: "classic-cpp-core"
+title: "#1. [고전 C++ 가이드] 주요 구성 요소 미리보기"
+categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
 sidebar: 

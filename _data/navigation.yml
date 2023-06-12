@@ -41,8 +41,8 @@ docs:
     url: /categories/#cording/
   - title: "주석"
     url: /categories/#comment/
-  - title: "Classic C++ Core"
-    url: /categories/#classic-cpp-core/
+  - title: "고전 C++ 가이드"
+    url: /categories/#classic-cpp-guide/
   - title: "C++ 코딩 패턴"
     url: /categories/#cpp-coding-pattern/
   - title: "windows"
