@@ -42,9 +42,9 @@ win32 API에 `bool`이 없어서 만들어 졌습니다.(C99가 되어서야 뒷
 
 **bool로 고쳐야 하는 이유**
 
-`bool`은 참/거짓만을 다룹니다.
+`bool`은 참/거짓만을 다루는 신뢰할 수 있는 **코딩 계약** 을 만들어 줍니다.
 
-하기와 같이 단순하게 사용하면 `BOOL`과 `bool`을 혼용해도 큰 문제는 없어 보입니다.
+하기와 같이 단순하게 사용하면 `BOOL`과 `bool`을 혼용해도 큰 문제는 없어 보이죠.
 
 ```cpp
 BOOL b = TRUE;
@@ -61,7 +61,7 @@ BOOL result1 = f1();
 BOOL result2 = f2();
 ```
 
-상기와 같이 `result1`과 `result`가 모두 참인 경우 진입하는 `if`문이 필요하다고 합시다. 간단히 다음과 같이 할 수 있습니다.
+상기와 같이 `result1`과 `result2`가 모두 참인 경우 진입하는 `if`문이 필요하다고 합시다. 간단히 다음과 같이 할 수 있습니다.
 
 ```cpp
 // (OK) 결과가 둘다 FALSE가 아니라면 진입합니다. 믿을 수 있어요.
@@ -76,7 +76,7 @@ if (result1 && result2) {}
 if (result1 == result2) {}
 ```
 
-`BOOL`은 `int`형이라 `TRUE(1)`와 `FALSE(0)` 외에 다른 값을 가질 수 있다는 걸 상기해 보십시요. Windows API는 참인 경우 `TRUE`만을 리턴하지 않는 경우도 종종 있습니다.
+`BOOL`은 `int`형이라 `TRUE(1)`와 `FALSE(0)` 외에 다른 값을 가질 수 있다는 걸 상기해 보십시요. 실제로 Windows API는 `0`과 `1`외에 다른 정수값을 리턴하는 경우가 가끔 있습니다.
 
 [Windows API `GetMessage()`](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessage) 를 보시면 `0`과 `-1`을 리턴합니다.
 
