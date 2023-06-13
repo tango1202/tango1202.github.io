@@ -31,7 +31,7 @@ win32 API에 `bool`이 없어서 만들어 졌습니다.(C99가 되어서야 뒷
     아쉽지만 하기처럼이라도 `bool`을 써보세요. 적어도 우리가 작성하는 코드에서는 `BOOL`로 강제하지 않게요.
 
     ```cpp
-    bool result = f() true : false;
+    bool result = f() ? true : false;
     ```
 
 2. 이전 코드 리팩토링이 엄두가 안나요.(`bool`로 리팩토링 하세요. 오늘 시작해야 그나마 적습니다.)
