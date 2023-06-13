@@ -52,7 +52,7 @@ b = FALSE;
 EXPECT_TRUE(!b == TRUE); // !b == true이고 true를 int로 캐스팅하면 TRUE(1)
 ```
 
-`BOOL`은 사실은 `int`형이라 `TRUE(1)`과 `FALSE(0)` 외에 다른 값을 가질 수 있어서 걱정이 좀 되는 경우가 생깁니다.
+하지만 `BOOL`은 사실은 `int`형이라 `TRUE(1)`과 `FALSE(0)` 외에 다른 값을 가질 수 있어서 걱정이 되는 경우가 좀 생깁니다.
 
 ```cpp
 BOOL result1 = f1();
