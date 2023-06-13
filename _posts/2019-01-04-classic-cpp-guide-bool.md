@@ -8,6 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
+> `BOOL`보다는 `bool`을 사용하라.
+
 |항목|BOOL|bool|
 |--|--|--|
 |정의|Visual C++ `typedef int BOOL;`|C++ 표준 자료형|
