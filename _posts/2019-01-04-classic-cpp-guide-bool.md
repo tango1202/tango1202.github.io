@@ -18,7 +18,7 @@ Visual C++는 `bool`이 없던 시절부터 `BOOL`을 사용하여, 이전 `BOOL
 
 **BOOL이 만들어진 이유**
 
-1. win32 API에 bool이 없어서 만들어짐.(C99 에서 뒷북으로 bool이 들어갔데요)
+win32 API에 bool이 없어서 만들어 졌습니다.(C99 에서 뒷북으로 bool이 들어갔데요)
 
 **여전히 BOOL을 사용하는 변명**
 
