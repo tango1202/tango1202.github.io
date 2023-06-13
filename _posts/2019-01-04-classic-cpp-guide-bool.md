@@ -16,7 +16,7 @@ sidebar:
 |값|`#define TRUE 1`, `#define FALSE 0`| true, false|
 |용량|`sizeof(BOOL) == sizeof(int)`|`1 <= sizeof(bool) <= sizeof(long)`(Visual C++ 은 1byte)|
 
-Visual C++은 `bool`이 없던 시절부터 `BOOL`을 사용하여, 이전 `BOOL`의 잔재가 많이 남아 있습니다. 결론을 먼저 말씀드리자면, `BOOL` 쓰지 마시고, `bool` 쓰세요. 그게 **코딩 계약** 상 안전합니다.
+Visual C++은 `bool`이 없던 시절부터 `BOOL`을 사용하여, 이전 `BOOL`의 잔재가 많이 남아 있습니다. `BOOL` 쓰지 마시고, `bool` 쓰세요. 그게 **코딩 계약** 상 안전합니다.
 
 **BOOL이 만들어진 이유**
 
