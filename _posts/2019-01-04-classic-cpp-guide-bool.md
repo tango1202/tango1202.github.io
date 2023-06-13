@@ -87,7 +87,7 @@ if (result1 == result2) {}
 ```cpp
 // (OK) 결과가 둘다 FALSE 라면 진입합니다.
 // (OK) 결과 둘다 FALSE 가 아니라면 진입합니다.
-if (!!result == !!result) {}
+if (!!result1 == !!result2) {}
 ```
 
 그러니 
