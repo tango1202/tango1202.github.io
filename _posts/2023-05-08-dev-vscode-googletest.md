@@ -51,15 +51,15 @@ Visual Studio Code + CMake + C++ 환경의 단위 테스트 구축시에는 Goog
     **language_test/cpp/src/Plus.h**
 
     ```cpp
-    #ifndef __Plus_h
-    #define __Plus_h
+    #ifndef Plus_h
+    #define Plus_h
 
     class Plus {
     public:
         static int Run(int a, int b);
     };
 
-    #endif // __Plus_h
+    #endif // Plus_h
     ```
 
     **language_test/cpp/src/Plus.cpp**
@@ -75,15 +75,15 @@ Visual Studio Code + CMake + C++ 환경의 단위 테스트 구축시에는 Goog
     **language_test/cpp/src/Minus.h**
 
     ```cpp
-    #ifndef __Minus_h
-    #define __Minus_h
+    #ifndef Minus_h
+    #define Minus_h
 
     class Minus {
     public:
         static int Run(int a, int b);
     };
 
-    #endif // __Minus_h
+    #endif // Minus_h
     ``` 
 
     **language_test/cpp/src/Minus.cpp**

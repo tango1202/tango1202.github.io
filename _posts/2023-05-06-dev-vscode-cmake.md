@@ -65,14 +65,14 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
 8. `cpp/src/Test.h` 파일을 생성하고, 하기와 같이 작성합니다.
 
     ```cpp
-    #ifndef __Test_h
-    #define __Test_h
+    #ifndef Test_h
+    #define Test_h
 
     class Test {
     public:
         static void Run();
     };
-    #endif // __Test_h
+    #endif // Test_h
     ```
 
 9. `cpp/src/Test.cpp` 파일을 생성하고, 하기와 같이 작성합니다.
