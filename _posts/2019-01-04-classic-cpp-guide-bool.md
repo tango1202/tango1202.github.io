@@ -86,4 +86,9 @@ if (result1 == result2) {}
 if (!!result == !!result) {}
 ```
 
-그러니 가독성과 `true`/`false`만 저장할 수 있도록 `bool` 을 사용하세요.
+그러니 
+
+1. 가독성을 위해
+2. `true`/`false`만 저장하는 **코딩 계약** 을 위해
+
+`bool` 을 사용하세요.
