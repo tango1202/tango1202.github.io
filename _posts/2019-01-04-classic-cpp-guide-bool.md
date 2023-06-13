@@ -76,7 +76,11 @@ if (result1 && result2) {}
 if (result1 == result2) {}
 ```
 
-`BOOL`은 `int`형이라 `TRUE(1)`와 `FALSE(0)` 외에 다른 값을 가질 수 있다는 걸 상기해 보십시요. 신뢰가 가지 않는 코드 입니다.
+`BOOL`은 `int`형이라 `TRUE(1)`와 `FALSE(0)` 외에 다른 값을 가질 수 있다는 걸 상기해 보십시요. Windows API는 참인 경우 `TRUE`만을 리턴하지 않는 경우도 종종 있습니다.
+
+[Windows API `GetMessage()`](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessage) 를 보시면 `0`과 `-1`을 리턴합니다.
+
+`BOOL`을 신뢰하지 마십시요.
 
 억지로 하기와 같이 `!!`을 붙여 `bool`형으로 바꿔서 검사할 수는 있습니다만, 참 보기 싫죠. 
 
