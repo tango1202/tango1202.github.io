@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> `BOOL`보다는 `bool`을 사용하라.
+> * `BOOL`보다는 `bool`을 사용하라.
 
 **개요**
 
