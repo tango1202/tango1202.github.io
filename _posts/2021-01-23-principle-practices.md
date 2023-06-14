@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#22. [개발 원칙] 개발 관행(작성중)"
+title: "#23. [개발 원칙] 개발 관행(작성중)"
 categories: "principle"
 tag: ["개발 원칙", "개발 관행"]
 author_profile: false
