@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#23. [개발 원칙] 나쁜 관행(작성중)"
+title: "#24. [개발 원칙] 나쁜 관행(작성중)"
 categories: "principle"
 tag: ["개발 원칙", "나쁜 관행", "안티 패턴"]
 author_profile: false
