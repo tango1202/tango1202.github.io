@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [개발 원칙] 제로 오버해드 원칙(Zero Overhead Principle)"
+title: "#21. [개발 원칙] 제로 오버헤드 원칙(Zero Overhead Principle)"
 categories: "principle"
 tag: ["개발 원칙"]
 author_profile: false
