@@ -68,9 +68,9 @@ const int GetX2() const { return m_X; } // (X) 멤버 변수의 값을 쓸데없
 const int* GetX3() const { // (O) 멤버 변수의 값을 수정하지 않는 const 함수 
 	return &m_X;
 }               
-int* GetX4() const { // (X) 멤버 변수의 값을 수정하는 const 함수
+int* GetX4() const { // (X) 멤버 변수의 값을 수정하는 const 함수}
 	return const_cast<int*>(&m_X); 
-}
+
 int* GetX5() { // (O) 맴버 변수의 값을 수정하는 none-const 함수      
 	return &m_X; 
 } 	                        
