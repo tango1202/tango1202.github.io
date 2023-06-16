@@ -81,10 +81,10 @@ int* GetX5() { // (O) 맴버 변수의 값을 수정하는 none-const 함수
 인자에 `const`를 사용하여 전달된 인수(함수에 전달하는 개체. Argument)를 함수가 수정하는지, 수정하지 않는지 **코딩 계약**을 만들어 주는 게 좋습니다. 전달된 인수를 함수에서 수정하지 않는다면, 꼭 `const`로 만들어 주길 바랍니다.(단, 인수가 인자에 복사된다면, `const`는 무의미 하므로 사용할 필요가 없습니다.)
 
 ```cpp
-void f(int x); // (O) 인자 x에 복사해서 사용함.
-void f(const int x); // (X) 인자 x에 복사해서 쓰되 f에서 수정하지 않음. 호출하는 쪽에선 무의미
+void f(int x); // (O) 인수를 x에 복사해서 사용함.
+void f(const int x); // (X) 인수를 x에 복사해서 쓰되 f에서 수정하지 않음. 호출하는 쪽에선 무의미
 
-void f(int* x); void f(int& x); // (O) 인자 x를 f에서 수정함.
-void f(const int* x); void f(const int& x); // (O) 인자 x를 f에서 수정하지 않음.  
+void f(int* x); void f(int& x); // (O) 인수를 f에서 수정함.
+void f(const int* x); void f(const int& x); // (O) 인수를 f에서 수정하지 않음.  
 ```
 
