@@ -68,7 +68,6 @@ const int GetX2() const { return m_X; }
 멤버 변수의 포인터를 리턴하는 경우, `const` 함수인지 아닌지에 따라 포인터 상수성을 맞춰서 리턴해야 합니다. `GetX4()`처럼 맞지 않게 리턴하면, **상수성 계약** 위반입니다.(억지로 `const_cast`를 하지 마세요.)
 
 ```cpp
-
 // (O) 멤버 변수의 값을 수정하지 않는 const 함수
 const int* GetX3() const { return &m_X; }    
 
