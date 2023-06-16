@@ -56,7 +56,7 @@ const int* const p4 = &x; // (O) p, *p를 수정할 수 없음.
 
 리턴값에 무의미하게 `const`를 붙일 필요는 없습니다. 의미에 맞게 붙이거나 떼야 합니다.
 
-하기와 같이 리턴값이 기본 자료형이라면 어짜피 복제되어 리턴되므로, `const를 붙일 필요가 없습니다.(단 operator ++() 오버로딩시에 유의미할 수 있음. [연산자 오버로딩](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-operator-overloading/) 참고)
+하기와 같이 리턴값이 기본 자료형이라면 어짜피 복제되어 리턴되므로, `const`를 붙일 필요가 없습니다.(단 operator ++() 오버로딩시에 유의미할 수 있음. [연산자 오버로딩](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-operator-overloading/) 참고)
 
 ```cpp
 int GetX1() const { return m_X; } // (O) 멤버 변수의 값을 리턴하는 const 함수
