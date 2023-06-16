@@ -58,8 +58,11 @@ const int* const p4 = &x; // (O) p, *p를 수정할 수 없음.
 하기와 같이 리턴값이 기본 자료형이라면 어짜피 복제되어 리턴되므로, `const`를 붙일 필요가 없습니다.(단 operator ++() 오버로딩시에 유의미할 수 있음. [연산자 오버로딩](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-operator-overloading/) 참고)
 
 ```cpp
-int GetX1() const { return m_X; } // (O) 멤버 변수의 값을 리턴하는 const 함수
-const int GetX2() const { return m_X; } // (X) 멤버 변수의 값을 쓸데없이 const로 리턴하는 const 함수. int k = t.GetX2(); 로 실행하므로 const int 리턴은 무의미함. operator ++() 에서는 유효할 수도 있다. 연산자 오버로딩 참고
+// (O) 멤버 변수의 값을 리턴하는 const 함수
+int GetX1() const { return m_X; } 
+
+// (X) 멤버 변수의 값을 쓸데없이 const로 리턴하는 const 함수. int k = t.GetX2(); 로 실행하므로 const int 리턴은 무의미함. operator ++() 에서는 유효할 수도 있다. 연산자 오버로딩 참고
+const int GetX2() const { return m_X; } 
 ```
 
 멤버 변수의 포인터를 리턴하는 경우, `const` 함수인지 아닌지에 따라 포인터 상수성을 맞춰서 리턴해야 합니다. `GetX4()`처럼 맞지 않게 리턴하면, **상수성 계약** 위반입니다.(억지로 `const_cast`를 하지 마세요.)
@@ -68,8 +71,10 @@ const int GetX2() const { return m_X; } // (X) 멤버 변수의 값을 쓸데없
 
 // (O) 멤버 변수의 값을 수정하지 않는 const 함수
 const int* GetX3() const { return &m_X; }    
+
 // (X) 멤버 변수의 값을 수정하는 const 함수
 int* GetX4() const { return const_cast<int*>(&m_X); }
+
 // (O) 맴버 변수의 값을 수정하는 none-const 함수      
 int* GetX5() { return &m_X; } 	                        
 ```
