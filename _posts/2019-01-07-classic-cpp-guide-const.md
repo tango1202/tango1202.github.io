@@ -61,7 +61,9 @@ const int* const p4 = &x; // (O) p, *p를 수정할 수 없음.
 // (O) 멤버 변수의 값을 리턴하는 const 함수
 int GetX1() const { return m_X; } 
 
-// (X) 멤버 변수의 값을 쓸데없이 const로 리턴하는 const 함수. int k = t.GetX2(); 로 실행하므로 const int 리턴은 무의미함. operator ++() 에서는 유효할 수도 있다. 연산자 오버로딩 참고
+// (X) 멤버 변수의 값을 쓸데없이 const로 리턴하는 const 함수. 
+// int k = t.GetX2(); 로 실행하므로 const int 리턴은 무의미함. 
+// operator ++() 에서는 유효할 수도 있다. 연산자 오버로딩 참고
 const int GetX2() const { return m_X; } 
 ```
 
