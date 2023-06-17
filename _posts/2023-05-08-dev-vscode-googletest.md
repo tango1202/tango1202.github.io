@@ -115,7 +115,7 @@ Visual Studio Code + CMake + C++ 환경의 단위 테스트 구축시에는 Goog
 
 `EXPECT_TRUE()`를 이용하여 `Plus::Run()`과 `Minus::Run()`함수의 호출 결과를 테스트합니다.
 
-**language_test/test/PlusTest.cpp**
+**language_test/test/TestPlus.cpp**
 
 ```cpp
 #include "gtest/gtest.h"
@@ -130,7 +130,7 @@ TEST(TestPlus, Test2) {
 }
 ```
 
-**language_test/test/MinusTest.cpp**
+**language_test/test/TestMinus.cpp**
 
 ```cpp 
 #include "gtest/gtest.h"
@@ -202,6 +202,7 @@ GoogleTest 소스코드가 포함된 프로젝트의 빌드는 다음과 같이 
 
     ```bash
     cmake_minimum_required(VERSION 3.0.0) # 최소요구버전
+    project(test_cmake VERSION 0.1.0) # PROJECT_NAME 과 PROJECT_VERSION
     set(This UnitTester) # 빌드 타겟
     set(SrcLib SrcLib) # cpp/src 라이브러리
 

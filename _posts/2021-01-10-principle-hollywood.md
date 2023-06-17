@@ -105,7 +105,7 @@ void App::SaveDoc() {
 ```cpp
 class App {
     ...
-protected:
+protected: // 자식 개체만 접근하므로 protected
     // 자식 개체에서 문서 내용을 저장합니다. 
     virtual void SaveDoc() = 0;
 };

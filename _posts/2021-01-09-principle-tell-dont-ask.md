@@ -88,7 +88,7 @@ public:
 
 하기와 같이 사용할 수 있습니다.
 
-```cpp
+```cpp 
 Rectangle rect(0, 0, 10, 20);
 std::pair<int, int> center = rect.GetCenter();
 ```
