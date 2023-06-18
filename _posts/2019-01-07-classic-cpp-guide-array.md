@@ -40,7 +40,7 @@ sidebar:
 ```cpp
 // 자료형 재정의
 typedef int MyArray[5]; 
-MyArray arr = {}; // int arr[5]; 와 동일 
+MyArray arr; // int arr[5]; 와 동일 
 ```
 
 **배열 동적 생성과 삭제**
