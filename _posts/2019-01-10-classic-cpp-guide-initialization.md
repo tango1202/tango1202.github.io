@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [고전 C++ 가이드] 초기화"
+title: "#10. [고전 C++ 가이드] 초기화"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
