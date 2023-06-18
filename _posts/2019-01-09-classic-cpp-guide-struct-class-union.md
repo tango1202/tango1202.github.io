@@ -202,12 +202,13 @@ public:
 };
 
 U u;
-EXPECT_TRUE(sizeof(u) == sizeof(S2));
+EXPECT_TRUE(sizeof(u) == sizeof(S2)); // 공용체 멤버 변수중 용량이 가장 큰 개체
 
 u.s1.x = 10; // s1을 바꿨지만, c와 s2도 변경됩니다.
+EXPECT_TRUE(u.GetX() == 10);
 EXPECT_TRUE(u.c.GetVal1() == 10);
 EXPECT_TRUE(u.s2.x == 10);
-EXPECT_TRUE(u.GetX() == 10);   
+   
 
 u.c.SetVal1(20); // c를 바꿨지만, s1과 s2도 변경됩니다.
 EXPECT_TRUE(u.c.GetVal1() == 20);
