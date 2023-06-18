@@ -151,7 +151,7 @@ C c(10, 20); // 값 생성자를 재정의 해서 사용
         using Base::val; // Base val을 public으로 변경합니다.
     };
     Derived d;
-    d.val = 10;
+    d.val = 10; // 이제 public이라 접근 가능합니다.
     ```
 
 6. 함수 내부의 로컬 클래스
