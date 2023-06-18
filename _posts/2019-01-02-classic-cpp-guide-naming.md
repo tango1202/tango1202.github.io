@@ -39,7 +39,7 @@ C++ 은 C언어와 철학과 개념들이 많이 달라서, 이름 짓는 규칙
 
     ```cpp
     TextEditor textEditor;
-    textEditor.SetTextSelectionPos(0, 3);
+    textEditor.SetTextSelectionPos(0, 3); // 이름이 길어요.
     textEditor.RemoveTextSelection();
     ```
 
@@ -47,7 +47,7 @@ C++ 은 C언어와 철학과 개념들이 많이 달라서, 이름 짓는 규칙
 
     ```cpp
     TextEditor textEditor;
-    textEditor.Select(0, 3);
+    textEditor.Select(0, 3); // 이름이 짧고 간결합니다.
     textEditor.Remove();
     ```
 

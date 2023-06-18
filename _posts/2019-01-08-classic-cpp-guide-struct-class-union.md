@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [고전 C++ 가이드] 구조체(Struct)와 클래스(Class) 와 공용체(Union)"
+title: "#8. [고전 C++ 가이드] 구조체(Struct)와 클래스(Class) 와 공용체(Union)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -74,7 +74,7 @@ C c(10, 20); // 값 생성자를 재정의 해서 사용
             // 구체 정의를 사용하려면, 헤더 파일과 cpp 파일을 분리하고, cpp 부분에서 구체 정의를 사용하세요.
             YourClass* your; 
 
-            void f(); // 선언
+            void f(); // 선언만 하고, cpp에서 yourClass를 사용할 겁니다.
         };
         class YourClass {
             MyClass my; // MyClass는 상위에 정의되어 사용할 수 있습니다.

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [고전 C++ 가이드] 포인터(Pointer)와 참조자(Reference)"
+title: "#6. [고전 C++ 가이드] 포인터(Pointer)와 참조자(Reference)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -50,11 +50,11 @@ EXPECT_TRUE(r == 30 && x == 30);
 포인터는 초기화를 하지 않아 쓰레기 값을 가지고 있거나, 널값을 가질 수 있는데 반해, 참조자는 생성시 항상 초기화 되어야 하고, 널이 될 수 없으며, 값 변경도 안되기 때문에 안정적으로 사용할 수 있습니다.
 
 ```cpp
-int& r; // (X) 생성후 값을 세팅할 수 없습니다. 쓰레기값을 가질 일이 없습니다.
-r = x; 
+int& r; // (X) 생성만 할 수 없습니다. 초기값을 넣어주어야 합니다. 쓰레기값을 가질 일이 없습니다.
 
 int* p = nullptr;
-int& r = *p; // (X) nullptr 값을 가질일이 없습니다.
+int& r = *p; // (X) *p로 nullptr 의 개체를 구하는 건 오동작 할 수 있습니다. 
+r = 10; // (X) 예외가 발생합니다. 이렇게 사용하시면 안됩니다.
 
 int& r = x;
 r = y; // (X) 값변경이 될일이 없습니다.
@@ -118,8 +118,16 @@ p4 = p1; // (X)
 
 ```cpp
 // 배열 포인터
-int a[2];
-int *p5 = a; // p5 == &a[0]
+int a[2] = {1, 2};
+
+// 배열 자체를 가리키는 포인터
+int(* p5)[2] = &a; // int[2]를 배열 가리키는 포인터 
+EXPECT_TRUE((*p5)[0] == 1 && (*p5)[1] == 2); // (*p5) 로 배열 개체 접근
+
+// 배열의 첫번째 요소를 가리키는 포인터
+int* p6 = a; // 혹은 int* p6 = &a[0]; 
+EXPECT_TRUE(*(p6 + 0) == 1 && *(p6 + 1) == 2);
+EXPECT_TRUE(p6[0] == 1 && p6[1] == 2);    
 ```
 
 ```cpp
@@ -127,10 +135,11 @@ int *p5 = a; // p5 == &a[0]
 void TestFunc(int) {}
 
 void (*p6)(int) = &TestFunc;
-void (*p7)(int) = TestFunc; // &TestFunc 랑 동일
+void (*p7)(int) = &TestFunc;
+void (*p8)(int) = TestFunc; // &TestFunc 랑 동일
 
-p6(10); // (*p6)(10); 도 가능. TestFunc 함수 호출 
-p7(10); // (*p7)(10); 도 가능. TestFunc 함수 호출
+p7(10); // (*p6)(10); 도 가능. TestFunc 함수 호출 
+p8(10); // (*p7)(10); 도 가능. TestFunc 함수 호출        
 ```
 
 ```cpp
@@ -143,25 +152,24 @@ class Derived : public Base {
 public:
     virtual void f() { std::cout<<"Derived"<<std::endl; }    
 };
-
 // 다형성 포인터
 {
     Derived d;
-    Base* p8 = &d; // 부모 클래스 포인터로 자식 클래스 제어
-    p8->f(); // Derived 출력
+    Base* p9 = &d; // 부모 클래스 포인터로 자식 클래스 제어
+    p9->f(); // Derived 출력
 }
 // 멤버 변수 포인터 - 라이브러리 개발시 사용할 수도 있음
 {
-    int Base::* p9 = &Base::m_Value; // Base 클래스 멤버 변수 m을 가리킴
+    int Base::* p10 = &Base::m_Value; // Base 클래스 멤버 변수 m을 가리킴
     Base b;
-    b.*p9 = 10;
+    b.*p10 = 10;
     EXPECT_TRUE(b.m_Value == 10);
 }
 // 멤버 함수 포인터 - 라이브러리 개발시 사용할 수도 있음
 {
-    void (Base::* p10)() = &Base::f; // Base 클래스 멤버 함수 f를 가리킴
+    void (Base::* p11)() = &Base::f; // Base 클래스 멤버 함수 f를 가리킴
     Base b;
-    (b.*p10)(); // 멤버 함수 포인터는 괄호 필요. Base 출력
+    (b.*p11)(); // 멤버 함수 포인터는 괄호 필요. Base 출력
 }  
 ```
 
@@ -175,7 +183,7 @@ int obj = 10;
 int& r1 = obj; // r1 수정 가능
 r1 = 20; 
 
-const int& r2 = obj; // r2 수정 불가
+const int& r2 = obj; // const 형이어서 r2 수정 불가
 // r2 = 20; // (X)
 
 int& r3 = obj;

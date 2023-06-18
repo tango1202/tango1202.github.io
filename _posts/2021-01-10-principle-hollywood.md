@@ -28,7 +28,7 @@ sidebar:
 ```cpp
 class App {
 private:
-    bool m_Dirty;
+    bool m_Dirty; // 내용이 수정되면 true입니다.
     std::wstring m_PathName;
 public:
     App(bool dirty, const std::wstring& pathName) :
@@ -169,7 +169,7 @@ public:
 // Save시 Listener를 사용합니다.
 class App {
 private:
-    bool m_Dirty;
+    bool m_Dirty; // 내용이 수정되면 true입니다.
     std::wstring m_PathName;
     ISaveListener* m_SaveListener;
 public:

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [고전 C++ 가이드] 상수(Const)"
+title: "#10. [고전 C++ 가이드] 상수(Const)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

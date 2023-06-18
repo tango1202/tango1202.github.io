@@ -60,6 +60,7 @@ private:
     int m_Width;
     int m_Height;
 public:
+    // 생성시에 필요한 값을 모두 전달해야 합니다.
     Rectangle(int l, int t, int w, int h) : 
         m_Left(l), m_Top(t), m_Width(w), m_Height(h) {}
   ...
@@ -96,6 +97,7 @@ void RotateAtViewCenter(const Degree& delta) {
 ```cpp
 class Rectangle {
     ...
+    // 함수 호출시에 필요한 인수를 모두 전달해야 합니다.
     void RotateAt(const Degree& delta, float x, float y);
 };
 ```

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ 가이드] 유효 범위"
+title: "#4. [고전 C++ 가이드] 유효 범위"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

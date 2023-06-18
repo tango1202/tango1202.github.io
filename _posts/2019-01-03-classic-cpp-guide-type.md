@@ -37,7 +37,7 @@ C++에는 하기의 기본 자료형들이 있습니다.
 ```cpp
 // 단순하게
 typedef unsigned long ulong; 
-ulong myVal; 
+ulong myVal; // 자료형의 별칭으로 정의
 
 // 구조체
 typedef struct {int a; int b;} MyData, *pMyData;
@@ -68,7 +68,7 @@ MyClass myClass;
 MyClass& myClassRef = myClass;
 
 EXPECT_TRUE(sizeof(myClass) == 8);
-EXPECT_TRUE(sizeof(myClass) == sizeof(myClassRef));
+EXPECT_TRUE(sizeof(myClass) == sizeof(myClassRef)); // sizeof() 시 참조하는 개체와 참조자는 크기가 같습니다.
 
 ```
 
