@@ -22,6 +22,7 @@ sidebar:
 |복사 초기화|`T obj = other;` 또는 `T obj(other);`|
 |생성 후 대입(불필요한 부하)|`T obj; obj = other;`|
 |배열 초기화|`T arr[] = {};`|
+|구조체 초기화|`struct T { int x; int y; }; T t = {0, 10};`|
 
 생성 후 대입하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([완전한 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-exception-perfect-constructor/) 참고)
 
@@ -98,5 +99,17 @@ int arr4[3] = {0, 1, }; // 갯수가 적거나 같아야 함. 모자라면 0
 EXPECT_TRUE(arr2[2] == 2);
 EXPECT_TRUE(arr3[0] == 0 && arr3[1] == 0 && arr3[2] == 0);
 EXPECT_TRUE(arr4[2] == 0);
+```
+
+**구조체 초기화**
+
+구조체는 별도로 값 초기화를 위한 생성자를 구현하지 않더라도 중괄호를 이용하여 초기화 할 수 있습니다.
+
+```cpp
+// 값 초기화
+struct T { int x; int y; }; 
+T t = {10, 20}; // 중괄호로 초기화
+
+EXPECT_TRUE(t.x == 10 && t.y == 20);
 ```
 
