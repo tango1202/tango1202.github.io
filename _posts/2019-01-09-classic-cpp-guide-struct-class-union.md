@@ -28,7 +28,7 @@ sidebar:
 
 구조체와 클래스와 공용체는 타입(자료형)이 다른 여러 데이터를 집합으로 묶어 관리할 수 있게 해줍니다.
 
-구조체와 클래스는 초기화 방법과 기본 엑세스 지정자 외에는 모두 동일하고, [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 사용합니다.
+특히, 구조체와 클래스는 초기화 방법과 기본 엑세스 지정자 외에는 모두 동일하고, [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들을 제공합니다.
 
 ```cpp
 struct S {
@@ -79,6 +79,7 @@ C c(10, 20); // 값 생성자를 재정의 해서 사용
             void f() {}
         }; 
     ```
+    
     ```cpp
         // cpp 파일에서 YourClass의 구체 정의 사용
         void MyClass::f() {
@@ -133,6 +134,8 @@ C c(10, 20); // 값 생성자를 재정의 해서 사용
 
 5. Using 선언
 
+    `using`을 사용하면 부모 클래스에서 지정한 엑세스 지정자를 강제로 변경할 수 있습니다만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.([리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고)
+    
     ```cpp
     class Base {
     protected:
