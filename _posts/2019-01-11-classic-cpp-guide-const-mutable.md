@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [고전 C++ 가이드] 상수(Const)"
+title: "#11. [고전 C++ 가이드] 상수(Const), mutable"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -92,3 +92,24 @@ void f(int* x); void f(int& x); // (O) 인수를 f에서 수정함.
 void f(const int* x); void f(const int& x); // (O) 인수를 f에서 수정하지 않음.  
 ```
 
+**`mutable`**
+
+지연 생성이나 캐쉬등 [논리적 상수성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-mutable/)인 함수에서 멤버 변수를 수정해야 할 때 사용합니다.
+
+```cpp
+TEST(TestClassicCpp, Mutable) {
+    class T {
+    public:
+        mutable std::wstring m_Lazy; // const 함수에서 수정할 수 있습니다.
+        
+        // 개념적으로 내부 String을 리턴하므로 const 함수
+        // 하지만 내부에서 m_Lazy를 세팅하기 때문에 mutable을 사용합니다.
+        const std::wstring& GetString() const {
+            m_Lazy = L"Lazy String";
+            return m_Lazy;
+        }
+    };
+    T t;
+    EXPECT_TRUE(t.GetString() == L"Lazy String");
+}
+```
