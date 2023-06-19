@@ -57,7 +57,7 @@ C c(10, 20); // 값 생성자를 재정의 해서 사용
     
     ```cpp
     class MyClass {
-        YourClass your; // (X) YourClass가 뭔지 모릅니다.
+        YourClass your; // (X) 컴파일 오류. YourClass가 뭔지 모릅니다.
     };
     class YourClass {
         MyClass my; // MyClass는 상위에 정의되어 사용할 수 있습니다.
@@ -179,8 +179,8 @@ private:
     int val1;
     int val2;
 public:
-    // C(int v1, int v2) {} // (X) 공용체 멤버는 생성자를 가질 수 없음
-    // ~C() {} // (X) 공용체 멤버는 소멸자를 가질 수 없음
+    // C(int v1, int v2) {} // (X) 컴파일 오류. 공용체 멤버는 생성자를 가질 수 없음
+    // ~C() {} // (X) 컴파일 오류. 공용체 멤버는 소멸자를 가질 수 없음
     int GetVal1() const { return val1; } // 멤버 함수가 있어도 되나, virtual 이면 안됨
     void SetVal1(int val) { val1 = val; }
 };
