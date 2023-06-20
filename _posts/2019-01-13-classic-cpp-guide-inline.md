@@ -15,7 +15,8 @@ sidebar:
 |항목|내용|
 |--|--|
 |정의|`inline void f() {}`|
-|인라인화 판단|`inline`으로 정의된 함수나 클래스 선언부에 정의된 함수들 중 컴파일러가 판단함|
+|선언과 정의 분리|지원 안됨.|
+|인라인화 판단|`inline`으로 정의된 함수나 클래스 선언부에 정의된 함수들 중 컴파일러가 판단하여 인라인화 됨|
 
 함수 호출은 하기 단계를 거칩니다.
 
@@ -43,7 +44,7 @@ void f() {
 }
 ```
 
-**클래스 멤버 함수의 inline화**
+**클래스 멤버 함수의 인라인화**
 
 클래스(구조체) 선언부에 정의한 함수는 컴파일러 판단에 따라 `inline` 화 됩니다.([구조체(Struct)와 클래스(Class) 와 공용체(Union)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/) 참고)
 
@@ -51,7 +52,7 @@ void f() {
 // h에서
 class T {
     int f1() {} // 컴파일러 판단에 따라 inline화 됨
-    int f2();
+    int f2(); // 선언만 되었기에 inline화 안됨
 };
 
 // cpp에서
@@ -60,7 +61,7 @@ int T::f2() {} // inline화 안됨
 
 **여러 cpp에서 사용하는 인라인 함수 정의**
 
-헤더파일에서 `inline`정의하고 `cpp`에서 `include` 합니다.
+헤더파일에서 `inline`함수를 정의하고 `cpp`에서 `include` 합니다.
 
 ```cpp
 // MyInline.h 에서
@@ -69,8 +70,11 @@ int T::f2() {} // inline화 안됨
 
 namespace TestInline { // 이름 충돌을 피하기 위해 네임스페이스에서 정의
 
-    // 헤더파일에 함수를 정의하면, 헤더파일을 include한 여러 cpp에서 중복 정의되어 컴파일 오류가 납니다.
-    // inline은 여러 컴파일 단위에서 동일한 함수 정의를 사용할 수 있게 합니다.
+    // 헤더파일에 함수를 정의하면, 이를 include한 여러 cpp에서 중복 정의되므로 
+    // 컴파일 오류가 발생합니다. 
+    // 그래서 보통 헤더파일에서는 함수 선언만 합니다.
+    // inline을 이용해 헤더파일에 함수를 정의하면, 동일한 함수 정의를 사용하기 때문에
+    // 컴파일 오류가 발생하지 않습니다.
     inline int Plus(int a, int b) {
         return a + b;
     }
@@ -78,7 +82,7 @@ namespace TestInline { // 이름 충돌을 피하기 위해 네임스페이스�
 #endif // Test_Inline_h
 ```
 
-하기와 같이 `include`하여 사용할 수 있습니다.
+하기와 같이 `#include "Test_Inline.h"`하여 사용할 수 있습니다.
 
 ```cpp
 // cpp에서
@@ -106,7 +110,7 @@ TEST(TestClassicCpp, Inline) {
 
 1. 인라인 처리하기 너무 큰 경우
 2. 재귀 호출을 하는 경우
-3. 포인터를 통해 참조되는 함수
+3. 포인터를 통해 참조되는 함수인 경우
 
 
 
