@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [고전 C++ 가이드] inline"
+title: "#13. [고전 C++ 가이드] 인라인 함수(Inline)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
