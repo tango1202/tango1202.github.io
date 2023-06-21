@@ -136,7 +136,7 @@ sidebar:
     Derived& downCasting = static_cast<Derived&>(b);
     
     // (X) 컴파일 오류. b는 Other와 아무런 상속관계가 없음
-    // Other& other = static_cast<Other&>(b);
+    Other& other = static_cast<Other&>(b);
 }
 ```
 
@@ -209,7 +209,7 @@ EXPECT_TRUE(c == 1);
 
 하지만, 기본 암시적 형변환과 어우러 지면서 예기치 못한 경우에 멋대로 형변환 될 수 있습니다. 심지어 코드 분석도 힘들어 집니다. 
 
-하기와 같이 멤버함수를 작성해도 충분히 사용하기 좋고, 사용 위치를 검색하기 좋고, 분석하기 좋습니다.
+하기와 같이 멤버함수를 작성하는게 충분히 사용하기 좋고, 사용 위치를 검색하기 좋고, 분석하기 좋습니다.
 
 ```cpp
 class T {
