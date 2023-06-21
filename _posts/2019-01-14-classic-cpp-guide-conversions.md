@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [고전 C++ 가이드] 암시적 형변환, 명시적 형변환(const_cast, static_cast, dynamic_cast, reinterpret_cast), 형변환 정의"
+title: "#14. [고전 C++ 가이드] 암시적 형변환, 명시적 형변환(const_cast, static_cast, dynamic_cast, reinterpret_cast), 형변환 정의, explicit"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -251,3 +251,7 @@ if (0 < t) {
 }
 EXPECT_TRUE(status == true);
 ```
+
+**explicit**
+
+
