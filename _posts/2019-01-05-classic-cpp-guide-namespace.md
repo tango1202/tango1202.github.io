@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [고전 C++ 가이드] 전처리기"
+title: "#5. [고전 C++ 가이드] Namespace"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

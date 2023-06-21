@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [고전 C++ 가이드] 상수(Const), mutable"
+title: "#12. [고전 C++ 가이드] 상수(Const), mutable"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

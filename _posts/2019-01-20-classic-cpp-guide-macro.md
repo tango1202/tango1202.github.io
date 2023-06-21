@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [고전 C++ 가이드] 매크로(Macro)"
+title: "#20. [고전 C++ 가이드] 매크로(Macro)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

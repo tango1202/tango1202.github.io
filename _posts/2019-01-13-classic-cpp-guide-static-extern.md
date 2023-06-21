@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [고전 C++ 가이드] 정적 변수, 정적 함수(Static), extern"
+title: "#13. [고전 C++ 가이드] 정적 변수, 정적 함수(Static), extern"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

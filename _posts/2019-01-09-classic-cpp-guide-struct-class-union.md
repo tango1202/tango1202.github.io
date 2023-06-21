@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [고전 C++ 가이드] 구조체(Struct)와 클래스(Class) 와 공용체(Union)"
+title: "#9. [고전 C++ 가이드] 구조체(Struct)와 클래스(Class) 와 공용체(Union)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

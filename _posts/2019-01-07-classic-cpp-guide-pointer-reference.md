@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [고전 C++ 가이드] 포인터(Pointer)와 참조자(Reference)"
+title: "#7. [고전 C++ 가이드] 포인터(Pointer)와 참조자(Reference)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
