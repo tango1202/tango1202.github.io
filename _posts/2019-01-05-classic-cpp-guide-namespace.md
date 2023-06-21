@@ -91,6 +91,26 @@ namespace F {
     }
 }
 ```
+**전역 공간 `using`지시문 금지**
+
+`using`지시문 사용시 전역 공간에 사용하면, 하기처럼 이름 충돌의 여지가 있으니 사용하지 마세요.
+
+```cpp
+namespace MyModule1 {
+    void Test() {}
+}
+namespace MyModule2 {
+    void Test() {} 
+}
+using namespace MyModule1; // 전역 공간에 MyModule1의 항목들을 모두 가져옵니다.
+using namespace MyModule2; // 전역 공간에 MyModule2의 항목들을 모두 가져옵니다.
+
+namespace MyModule3 {
+    void f() {
+        Test(); // (X) 컴파일 오류. MyModule1::Test() 인지, MyModule2::Test() 인지 모릅니다.
+    } 
+}
+```
 
 **무기명 네임스페이스**
 
@@ -113,7 +133,7 @@ namespace MyTestLibrary {
 namespace MTL = MyTestLibrary; // 별칭 정의
 ```
 
-별칭인 네임스페이스에서는 새로운 정의나 선언을 추가할 수 없다.
+별칭인 네임스페이스에서는 새로운 정의나 선언을 추가할 수 없습니다.
 
 ```cpp
 namespace MTL { 
@@ -145,7 +165,8 @@ namespace MyModule {
 } 
 namespace { 
     void f(MyModule::Date d) {
-        // (X) 컴파일 오류. 인자중 MyModule 네임스페이스가 있어서 탐색 가능하다고 하는데 GCC 8.1에서 컴파일 오류가 발생합니다.
+        // (X) 컴파일 오류. 인자중 MyModule 네임스페이스가 있어서 탐색 가능하다고 하는데 
+        // GCC 8.1에서 컴파일 오류가 발생합니다.
         MyFunc(); 
     }
 }
