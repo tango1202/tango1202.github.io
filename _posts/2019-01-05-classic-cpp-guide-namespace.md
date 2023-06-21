@@ -17,83 +17,137 @@ sidebar:
 |--|--|
 |정의|`namespace Test {void f();}`|
 |사용|`Test::f();`|
+|`using`선언|네임스페이스의 임의 항목 사용. `using namespace::f;`|
 |`using`지시문|전체 네임스페이스 사용. `using namespace Test;`|
-|`using`선언|임의 항목 사용. `using namespace::f;`|
 
-구성 요소를 논리적으로 묶을 수 있습니다.
+네임스페이스는 하기와 같이 이름 충돌을 피하기 위해 사용합니다.
 
 ```cpp
-namespace Paser {
-   void Token();
-   void f();
+namespace A {
+    int f() {return 10;}
 }
-void g();
+namespace B {
+    int f() {return 20;}
+}
 
-void Parser::f() {
-  Token(); // 동일 namespace. 한정자 불필요
-}
-void g() {
-  Paser::Token(); // 다른 namespace. 한정자 필요
+EXPECT_TRUE(A::f() == 10); // namespace A의 f() 호출
+EXPECT_TRUE(B::f() == 20); // namespace B의 f() 호출
+```
+
+또한 하기와 같이 구성 요소를 논리적으로 묶을 때 사용할 수도 있습니다.
+
+```cpp
+// Parser 에 필요한 항목들을 논리적으로 묶음
+namespace Parser {
+   void Tokenizer() {}
+   void Load() {}
 }
 ```
 
-하기와 같이 사용할 수 있음
-```cpp
-혹은 using을 사용하여,
-using Parser::Token;
-Token();
+**네임스페이스 항목의 함수 정의**
 
-혹은 using namespace를 사용하여,
-using namepace Parser;
-Token();
+네임스페이스에서 선언한 함수를 정의하려면, 하기 `C::g()` 와 같이 함수 정의시 네임스페이스명을 명시하면 됩니다. 
+
+```cpp
+namespace C {
+    int f() {return 30;} // 정의
+    int g(); // 선언
+}
+
+int C::g() { // A::명시해서 정의할 수 있음
+    return f(); // 같은 namespace이면 C::f() 와 같이 명시하지 않아도 됨
+}
+EXPECT_TRUE(C::g() == 30); // namespace C의 f()를 호출
+```
+
+**서로 다른 네임스페이스 항목 사용**
+
+같은 네임스페이스내에 있는 항목은 네임스페이스 명을 생략해도 되지만,  다른 네임스페이스의 항목을 사용하려면, 명시적으로 네임스페이스명을 지정하거나, `using`선언이나, `using`지시문을 사용해야 합니다.
+
+```cpp
+namespace D {
+    void d() {}
+
+    void Func() {
+        d(); // 같은 네임스페이스 내의 항목은 네임스페이스 명 생략
+    }
+}
+namespace E {
+    void e() {
+        D::d(); // 다른 네임스페이스의 것은 명시적으로 네임스페이스명 지정 
+    }
+    void f() {
+        using D::d; // using 선언으로 d를 가져옴
+        d(); // d는 네임스페이스명 없이 사용
+        D::Func(); // Func은 네임스페이스명 지정
+    }
+}
+namespace F {
+    using namespace D; // D의 것은 다 가져옴
+
+    void f() {
+        d(); // D의 것은 그냥 사용
+        Func(); // D의 것은 그냥 사용
+    }
+}
 ```
 
 **무기명 네임스페이스**
 
-정의된 파일에서만 사용 가능
+이름 없이 네임스페이스를 정의하면, 해당 파일에서만 사용할 수 있습니다.
 
 ```cpp
 namespace {
-   void f(); // 정의된 파일에서만 사용가능하다.
+   void f(); // 정의된 파일에서만 사용가능 함
 }
 ```
 
 **별칭과 합성**
 
-별칭을 정의하면, 새로운 정의나 선언을 추가할 수 없다.
+기존 네임스페이스의 별칭을 정의할 수 있습니다.
 
 ```cpp
-namespace HncTestLibrary {...}
-namespace HTL = HncTestLibrary;
-namespace HTL { 
-    void f() {}   //(X) 별칭으로 정의한 namespace에 새로운 정의는 추가할 수 없다.
+namespace MyTestLibrary {
+    void f() {}
+}
+namespace MTL = MyTestLibrary; // 별칭 정의
+```
+
+별칭인 네임스페이스에서는 새로운 정의나 선언을 추가할 수 없다.
+
+```cpp
+namespace MTL { 
+    void g() {} // (X) 컴파일 오류. 별칭으로 정의한 namespace에 새로운 정의는 추가할 수 없다.
 }
 ```
 
-여러개의 네임스페이스를 합성할 수 있다.
+하기처럼 여러개의 네임스페이스를 합성할 수도 있습니다.
 
 ```cpp
-namespace My { // 여러개의 namespace를 합성할 수 있다.
-   using namespace Harry;
-   using namespace Sally;
+namespace MyModule { // 여러개의 namespace를 합성할 수 있음
+   using namespace A;
+   using namespace B;
 }
 ```
 
 **이름 탐색 규칙**
 
+이름 탐색은 다음의 순서를 따른다고는 하는데, GCC 8.1에서는 컴파일 오류가 나오네요. 아무튼 명시적으로 네임스페이스명을 쓰거나 `using`선언이나, `using`지시문을 사용하시기 바랍니다.
+
 1. 호출한 위치의 유효범위에서 탐색
-2. 주어진 인자들의 namepace 탐색(기본클래스 포함)
+2. 주어진 인자들의 네임스페이스 탐색(GCC 8.1에서 컴파일 오류)
 3. 오버로딩 모호성 해결
    
 ```cpp
-namespace test {
-   class Date;
-   void format();
-}
-void f(test::Date d ) {
-   format(); // 인자중 test 네임스페이스가 있어서 탐색 가능
+namespace MyModule {
+    class Date {};
+    void MyFunc() {}
+} 
+namespace { 
+    void f(MyModule::Date d) {
+        // (X) 컴파일 오류. 인자중 MyModule 네임스페이스가 있어서 탐색 가능하다고 하는데 GCC 8.1에서 컴파일 오류가 발생합니다.
+        MyFunc(); 
+    }
 }
 ```
-
-인자중 `test` 네임스페이스가 있어서....
 
