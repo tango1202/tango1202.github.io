@@ -21,7 +21,7 @@ sidebar:
 |값 초기화|`T obj();`|
 |복사 초기화|`T obj = other;` 또는 `T obj(other);`|
 |생성 후 대입(불필요한 부하)|`T obj; obj = other;`|
-|배열 초기화|`T arr[] = {};`|
+|배열 초기화|`T arr[] = {};`, `char str = "abc";`|
 |구조체 초기화|`struct T { int x; int y; }; T t = {0, 10};`|
 
 생성 후 대입하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([완전한 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-exception-perfect-constructor/) 참고)
@@ -100,6 +100,22 @@ int arr4[3] = {0, 1, }; // 갯수가 적거나 같아야 함. 모자라면 0
 EXPECT_TRUE(arr2[2] == 2);
 EXPECT_TRUE(arr3[0] == 0 && arr3[1] == 0 && arr3[2] == 0);
 EXPECT_TRUE(arr4[2] == 0);
+```
+
+문자 배열의 경우 특별히 문자열 상수를 이용하여 초기화 할 수 있습니다. 이때 배열의 마지막요소는 널문자(`\0`)입니다.
+
+```cpp
+char str1[] = "abc"; // {'a', `b`, 'c', '\0'};
+EXPECT_TRUE(str1[0] == 'a');
+EXPECT_TRUE(str1[1] == 'b');
+EXPECT_TRUE(str1[2] == 'c');
+EXPECT_TRUE(str1[3] == '\0');
+
+wchar_t str2[] = L"abc"; // {L'a', L`b`, L'c', L'\0'};
+EXPECT_TRUE(str2[0] == L'a');
+EXPECT_TRUE(str2[1] == L'b');
+EXPECT_TRUE(str2[2] == L'c');
+EXPECT_TRUE(str2[3] == L'\0');
 ```
 
 **구조체 초기화**
