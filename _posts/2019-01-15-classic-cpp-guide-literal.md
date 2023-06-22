@@ -40,12 +40,24 @@ wchar_t b = L`A`; // 와이드 문자 2byte 또는 4byte
 
 const char* str1 = "abc"; // 문자열 상수
 const wchar_t* str2 = L"abc" // 와이드 문자열 상수
-char str3[] = "abc"; // 
-
-
 ```
 
-L''
+문자열 상수를 이용하여 배열 초기화를 할 
+
+```cpp
+char str1[] = "abc"; // {'a', `b`, 'c', '\0'};
+EXPECT_TRUE(str1[0] == 'a');
+EXPECT_TRUE(str1[1] == 'b');
+EXPECT_TRUE(str1[2] == 'c');
+EXPECT_TRUE(str1[3] == '\0');
+
+wchar_t str2[] = L"abc"; // {L'a', L`b`, L'c', L'\0'};
+EXPECT_TRUE(str2[0] == L'a');
+EXPECT_TRUE(str2[1] == L'b');
+EXPECT_TRUE(str2[2] == L'c');
+EXPECT_TRUE(str2[3] == L'\0');
+```
+
 **이스케이프 시퀀스**
 
 \
