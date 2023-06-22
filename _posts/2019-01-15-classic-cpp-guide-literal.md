@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [고전 C++ 가이드] 리터럴"
+title: "#15. [고전 C++ 가이드] 리터럴(Literal)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -8,29 +8,43 @@ sidebar:
     nav: "docs"
 ---
 
-**bool**
+**`bool` 과 숫자 리터럴**
+```cpp
+// bool 형
+bool a = true; // 참
+bool b = false; // 거짓
 
-true
-false
+// 정수형
+int c = 10; // 10진수.
+int d = 010; // 8진수.
+int e = 0x1a; // 16진수. x 또는 X. a~f 또는 A~F
+unsigned int f = 10U; // unsigned. u 또는 U
+unsigned long g = 10U;
+long h = 10L; // long. l 또는 L
+unsigned long i = 10UL; // unsigned long. u 또는 U, l 또는 L
 
-**정수**
+// 실수형
+double j = 3.14; // 고정 소수점
+double k = 3.14e10; // 부동 소수점 e 또는 E
+float l = 3.14F; // f 또는 F
+float m = 3.14e10F; 
+long double n = 3.14L; // l 또는 L
+long double o = 3.14e10L;
+```
 
-10진수
-8진수 
-16진수
+**문자와 문자열 리터럴**
 
-접미사
-u/U
-l/L
-lu/LU/ul/UL
+```cpp
+char a = 'A';
+wchar_t b = L`A`; // 와이드 문자 2byte 또는 4byte
 
-**실수**
-e
-.
-f/F
-l/L
+const char* str1 = "abc"; // 문자열 상수
+const wchar_t* str2 = L"abc" // 와이드 문자열 상수
+char str3[] = "abc"; // 
 
-**문자**
+
+```
+
 L''
 **이스케이프 시퀀스**
 
