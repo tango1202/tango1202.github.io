@@ -22,7 +22,7 @@ sidebar:
 |명시적 형변환 - `const_cast`|상수성만 변환|
 |명시적 형변환 - `static_cast`|타입 유사성을 지키며 변환|
 |명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환. RTTI(Runtime Type Info)가 있는 개체(가상함수가 있는 개체)만 가능.|
-|명시적 형변환 - `reinterpret_cast`|상속관계를 무시하고 변환|
+|명시적 형변환 - `reinterpret_cast`|상속관계를 무시하고 변환. 포인터와 정수간 변환.|
 |형변환 정의|캡슐화를 위해 제공하나 암시적 형변환이 됨|
 |`explicit`|개체로 암시적 형변환 되지 않도록 지정|
 
@@ -190,7 +190,7 @@ Other* other = dynamic_cast<Other*>(b);
 EXPECT_TRUE(other == NULL);
 ```
 
-`reinterpret_cast`는 상속관계를 무시하고 그냥 변환해 버립니다.(하지만, 상수성은 지켜 주기는 합니다.) 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.
+`reinterpret_cast`는 상속관계를 무시하고 그냥 변환해 버릴 뿐만 아니라, 포인터를 정수로 변환하기까지 합니다.(하지만, 상수성은 지켜줍니다.) 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.
 
 ```cpp
 {
@@ -207,6 +207,10 @@ EXPECT_TRUE(other == NULL);
     const int* p1 = &i;
     // (X) 컴파일 오류. 상수성은 지켜 줍니다.
     int* p2 = reinterpret_cast<int*>(p1);
+
+    // (△) 비권장. 포인터와 정수간 변환을 합니다.
+    p2 = reinterpret_cast<int*>(i);
+    i = reinterpret_cast<int>(p2);
 }
 ```
 
