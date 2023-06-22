@@ -102,20 +102,20 @@ EXPECT_TRUE(arr3[0] == 0 && arr3[1] == 0 && arr3[2] == 0);
 EXPECT_TRUE(arr4[2] == 0);
 ```
 
-문자 배열의 경우 특별히 문자열 상수를 이용하여 초기화 할 수 있습니다. 이때 배열의 마지막요소는 널문자(`\0`)입니다.
+문자 배열의 경우 특별히 문자열 상수를 이용하여 초기화 할 수 있습니다. 이때 배열의 마지막 요소는 널문자(`\0`)입니다.
 
 ```cpp
 char str1[] = "abc"; // {'a', `b`, 'c', '\0'};
 EXPECT_TRUE(str1[0] == 'a');
 EXPECT_TRUE(str1[1] == 'b');
 EXPECT_TRUE(str1[2] == 'c');
-EXPECT_TRUE(str1[3] == '\0');
+EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
 
 wchar_t str2[] = L"abc"; // {L'a', L`b`, L'c', L'\0'};
 EXPECT_TRUE(str2[0] == L'a');
 EXPECT_TRUE(str2[1] == L'b');
 EXPECT_TRUE(str2[2] == L'c');
-EXPECT_TRUE(str2[3] == L'\0');
+EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 ```
 
 **구조체 초기화**
