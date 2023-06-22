@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ 가이드] 네임스페이스(Namespace)"
+title: "#5. [고전 C++ 가이드] 네임스페이스(namespace)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

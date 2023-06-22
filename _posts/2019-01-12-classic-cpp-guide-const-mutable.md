@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [고전 C++ 가이드] 상수(Const), mutable"
+title: "#12. [고전 C++ 가이드] 상수(const), 변경 가능 지정자(mutable)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -17,7 +17,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |`const` 개체|개체를 변경할 수 없습니다. 생성시 초기화 해야 합니다.|
-|`const` 멤버 함수|멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 개체의 멤버 변수를 변경할 수 없습니다. 단, `mutable`로 정의된 개체는 수정 가능합니다.([논리적 상수성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-mutable/) 참고)|
+|`const` 멤버 함수|멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 개체의 멤버 변수를 변경할 수 없습니다. 단, `mutable`로 정의된 개체는 수정 가능합니다.|
 
 `const`인 개체나 함수를 사용하면, 메모리의 수정이 없으므로 예외에 안정적입니다. 안정적인 프로그램을 위해, 할 수 있는 한 최대한 많이 `const`로 작성하는 것이 좋습니다.
 
@@ -61,7 +61,7 @@ const int* const p4 = &x; // (O) p, *p를 수정할 수 없음.
 // (O) 멤버 변수의 값을 리턴하는 const 함수
 int GetX1() const { return m_X; } 
 
-// (X) 비권장. 멤버 변수의 값을 쓸데없이 const로 리턴하는 const 함수. 
+// (△) 비권장. 멤버 변수의 값을 쓸데없이 const로 리턴하는 const 함수. 
 // int k = t.GetX2(); 로 실행하므로 const int 리턴은 무의미함. 
 // operator ++() 에서는 유효할 수도 있다. 연산자 오버로딩 참고
 const int GetX2() const { return m_X; } 
@@ -73,7 +73,7 @@ const int GetX2() const { return m_X; }
 // (O) 멤버 변수의 값을 수정하지 않는 const 함수
 const int* GetX3() const { return &m_X; }    
 
-// (X) 비권장. 멤버 변수의 값을 몰래 수정할 수 있는 const 함수
+// (△) 비권장. 멤버 변수의 값을 몰래 수정할 수 있는 const 함수
 int* GetX4() const { return const_cast<int*>(&m_X); }
 
 // (O) 맴버 변수의 값을 수정하는 none-const 함수      
@@ -86,15 +86,15 @@ int* GetX5() { return &m_X; }
 
 ```cpp
 void f(int x); // (O) 인수를 x에 복사해서 사용함.
-void f(const int x); // (X) 비권장. 인수를 x에 복사해서 쓰되 f에서 수정하지 않음. 호출하는 쪽에선 무의미
+void f(const int x); // (△) 비권장. 인수를 x에 복사해서 쓰되 f에서 수정하지 않음. 호출하는 쪽에선 무의미
 
 void f(int* x); void f(int& x); // (O) 인수를 f에서 수정함.
 void f(const int* x); void f(const int& x); // (O) 인수를 f에서 수정하지 않음.  
 ```
 
-**`mutable`**
+**변경 가능 지정자(`mutable`)**
 
-지연 생성이나 캐쉬등 [논리적 상수성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-mutable/)인 함수에서 멤버 변수를 수정해야 할 때 사용합니다.
+지연 생성이나 캐쉬등 [논리적 상수성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-mutable/)인 상수 함수에서 멤버 변수를 수정해야 할 때 사용합니다.
 
 ```cpp
 TEST(TestClassicCpp, Mutable) {
