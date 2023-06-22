@@ -28,13 +28,13 @@ sidebar:
 
 또한, 개체 생성시 초기화를 하지 않으면, 초기화되지 않은 개체를 사용하는 실수를 할 수 있습니다. 그러니 항상 생성과 동시에 초기화 하는 것이 좋습니다. 
 
-다음은 초기화 테스트용 클래스입니다. 기본 생성자, `int`를 전달받는 생성자(형변환이 되지 않게 `explicit`로 정의), 복사 생성자, 대입 연산자를 정의하였습니다.
+다음은 초기화 테스트용 클래스입니다. 기본 생성자, `int`를 전달받는 생성자(형변환이 되지 않게 `explicit`로 정의. [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 참고), 복사 생성자, 대입 연산자를 정의하였습니다.
 
 ```cpp
 class T {
 public:
     T() {} // 기본 생성자
-    explicit T(int t) {} // int를 전달받는 생성자. explicit를 주어 복사 초기화를 막음
+    explicit T(int t) {} // int를 전달받는 생성자. explicit를 주어 암시적 형변환을 막음
     T(const T& other) {} // 복사 생성자
 
     void operator =(const T& other) {} // 대입 연산자
@@ -65,7 +65,8 @@ T obj = T(2); // int를 전달받는 생성자 호출.(T(2) 로 개체 생성후
 ```
 **복사 초기화**
 
-복사 초기화는 복사 생성자나 인자가 1개인 생성자를 호출해 줍니다. 인자가 1개인 생성자는 뜻하지 않게 형변환이 될 수 있으므로 `explicit`로 정의하는게 좋은데, 그러면 복사 초기화가 되지 않습니다.([Explicit](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-explicit/) 참고)
+복사 초기화는 복사 생성자나 인자가 1개인 생성자를 호출해 줍니다. 인자가 1개인 생성자는 뜻하지 않게 형변환이 될 수 있으므로 `explicit`로 정의하는게 좋습니다.
+([형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 참고)
 
 ```cpp
 T other;

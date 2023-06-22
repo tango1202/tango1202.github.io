@@ -36,7 +36,7 @@ BOOL PumpMessage(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
 
 이는 MFC 에서의 `Modal` 대화상자는 사실 `CreateDialogIndirect()`를 호출하여 생성된 `Modeless` 대화상자이며, 메시지 루프에 의해서 `Modal` 대화상자처럼 구현되어 있기 때문이다.
 
-MFC 처럼 대화상자의 `Modal` 을 구현하기 위해서는 대화상자의 종료상태를 검색하는 과정이 필요하다.
+MFC처럼 대화상자의 `Modal` 을 구현하기 위해서는 대화상자의 종료상태를 검색하는 과정이 필요하다.
 
 다음은 대략적인 `DoModal`의 의사 구현 코드다.
 

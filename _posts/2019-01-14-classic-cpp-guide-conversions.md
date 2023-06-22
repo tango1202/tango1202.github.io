@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [고전 C++ 가이드] 암시적 형변환, 명시적 형변환(const_cast, static_cast, dynamic_cast, reinterpret_cast), 형변환 정의, 명시적 변환 생성 지정자(explicit)"
+title: "#14. [고전 C++ 가이드] 형변환(const_cast, static_cast, dynamic_cast, reinterpret_cast, explicit)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -10,14 +10,26 @@ sidebar:
 
 > * 암시적으로 형변환하기 보다는 명시적으로 형변환 하라.
 > * bool 형변환 정의는 하지 마라. 나아가 모든 타입의 형변환 정의를 하지 마라. 뜻하지 않게 몰래 암시적 형변환 한다.
+> * 인자가 1개인 생성자는 `explicit`를 사용하라.
 > * 할 수 있는한 최선을 다하여 형변환 하지 마라.
 
 **개요**
 
+|항목|내용|
+|--|--|
+|암시적 형변환|C언어 잔재. 유사한 자료형끼리 변환|
+|명시적 형변환 - 괄호|C언어 잔재. 그냥 강제로 변환|
+|명시적 형변환 - `const_cast`|상수성만 변환|
+|명시적 형변환 - `static_cast`|타입 유사성을 지키며 변환|
+|명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환, 런타임 타입 검사 수행함(가상 함수가 있는 개체만 가능)|
+|명시적 형변환 - `reinterpret_cast`|상속관계를 무시하고 변환|
+|형변환 정의|캡슐화를 위해 제공하나 암시적 형변환이 됨|
+|`explicit`|개체가 암시적 형변환 되지 않도록 지정|
+
 C++언어는  
 
 1. C언어의 특성을 물려받으면서 암시적 형변환을 지원하며,
-2. 이를 보완하고자 명시적 형변환을 제공하고,
+2. 이를 보완하고자 4종의 명시적 형변환(`const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`)을 제공하고,
 3. [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 정의를 제공합니다.
 
 이 형변환은 기본적으로 타입(자료형)에 기반한 **코딩 계약** 을 위반하기 때문에 사용하지 않는 것이 좋습니다.
@@ -243,7 +255,7 @@ EXPECT_TRUE(c == 1);
 
 **안전하지 않은 bool 형변환 정의**
 
-`bool`은 하기 처럼 암시적으로 `int`로 형변환되면서 뜻하지 않은 동작을 할 수 있습니다. 타입에 기반한 **코딩 계약** 을 위반하니, `bool` 형변환을 정의하지 마세요.
+`bool`은 하기처럼 암시적으로 `int`로 형변환되면서 뜻하지 않은 동작을 할 수 있습니다. 타입에 기반한 **코딩 계약** 을 위반하니, `bool` 형변환을 정의하지 마세요.
 
 ```cpp
 class T {
@@ -264,6 +276,47 @@ if (0 < t) {
 EXPECT_TRUE(status == true);
 ```
 
-**explicit**
+**명시적 변환 생성 지정자(`explicit`)**
 
+인자가 1개인 클래스는 암시적 형변환이 수행 될 수 있습니다.
 
+```cpp
+class T {
+public:
+    int m_Val;
+public:
+    // int 형 1개만 전달받는 생성자 입니다.
+    //(△) 비권장. 암시적 형변환을 허용합니다.
+    T(int val) : m_Val(val) {}
+    int GetVal() const { return m_Val; }
+};
+
+T obj1(1); // (O) int 를 전달하여 T(int) {}로 생성합니다.
+T obj2 = 1; // (△) 비권장. int 를 전달하여 T(int) {}로 생성합니다. 
+obj1 = 2; // (△) 비권장. T(int) {}로 임시 생성된 개체를 obj1 에 대입합니다.
+EXPECT_TRUE(obj1.GetVal() == 2);
+```
+
+상기 코드에서 `T obj2 = 1;` 은 `T(int) {}` 생성자를 잘 호출하긴 합니다만, 타입에 기반한 **코딩 계약** 위반입니다. 작성자가 의도한 것인지, `T obj2` 를 잘못 쓴 것인지, `= 1;` 을 잘못 쓴 것인지 확인 할 수 없습니다.
+
+`obj1 = 2;` 는 대놓고 암시적 형변환을 하려고 임시 개체를 생성하고선 대입합니다.
+
+이런 암시적 형변환 문제를 해결하려면, 하기처럼 인자가 1개인 생성자에 `explicit`를 사용하면 됩니다.
+
+```cpp
+class T {
+public:
+    int m_Val;
+public:
+    // int 형 1개만 전달받는 생성자 입니다.
+    //(O) 암시적 형변환을 금지합니다.
+    explicit T(int val) : m_Val(val) {}
+    int GetVal() const { return m_Val; }
+};
+
+T obj1(1); // (O) int 를 전달하여 T(int) {}로 생성합니다.
+T obj2 = 1; // (X) 컴파일 오류. 
+obj1 = 2; // (X) 컴파일 오류. 
+```
+
+컴파일 오류를 발생시켜 작성하지 못하게 해버렸으니, 아주 강력한 **코딩 계약** 이 되었습니다.
