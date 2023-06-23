@@ -99,8 +99,8 @@ EXPECT_TRUE(str3[0] == 'd');
 |`\v`|세로탭|0x0b|
 |`\nnn`|nnn : 3자리의 8진수||
 |`\xn...`|n... : 임의 자리 16진수 ||
-|`\unnnn`|nnnn : 4자리의 유니코드 |![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c104b290-3dbd-4951-941f-bca277553147)|
-|`\Unnnnnnnn`|nnnnnnnn : 8자리의 유니코드 |![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d102f9f4-3de6-4f4b-b9fd-9c0db3c1d0df)|
+|`\unnnn`|nnnn : 4자리의 유니코드 |![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ca05ccd7-8e34-4d7c-bb21-fb37441dfaca)|
+|`\Unnnnnnnn`|nnnnnnnn : 8자리의 유니코드 |![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e2a84daa-45ef-4464-a488-670f18365511)|
 
 
 
