@@ -18,7 +18,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |암시적 형변환|C언어 잔재. 유사한 자료형끼리 변환|
-|명시적 형변환 - 괄호|C언어 잔재. `const_cast`, `static_cast`, `reinterpret_cast` 의 순서로 형변환|
+|명시적 형변환 - 괄호(`(`와 `)`)|C언어 잔재. `const_cast`, `static_cast`, `reinterpret_cast` 의 순서로 형변환|
 |명시적 형변환 - `const_cast`|상수성만 변환|
 |명시적 형변환 - `static_cast`|타입 유사성을 지키며 변환|
 |명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환. RTTI(Runtime Type Info)가 있는 개체(가상함수가 있는 개체)만 가능.|
