@@ -45,7 +45,7 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 **문자열 상수**
 
-문자열 상수는 프로그램 수명 만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 쓸데없이 많이 만들지는 마세요. 특히 수정될 필요가 없다면, 배열이나 `std::string`,`std::wstring`로 관리하지 마세요. 복제되어 용량만 커집니다.
+문자열 상수는 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 쓸데없이 많이 만들지는 마세요. 특히 수정될 필요가 없다면, 배열이나 `std::string`,`std::wstring`로 관리하지 마세요. 복제되어 용량만 커집니다.
 
 ```cpp
 const char* str1 = "abc"; // 문자열 상수
@@ -101,8 +101,5 @@ EXPECT_TRUE(str3[0] == 'd');
 |`\xn...`|n... : 임의 자리 16진수 ||
 |`\unnnn`|nnnn : 4자리의 유니코드 |![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ca05ccd7-8e34-4d7c-bb21-fb37441dfaca)|
 |`\Unnnnnnnn`|nnnnnnnn : 8자리의 유니코드 |![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e2a84daa-45ef-4464-a488-670f18365511)|
-
-
-
 
 
