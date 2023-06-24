@@ -77,13 +77,6 @@ TEST(TestClassicCpp, Static) {
 class T {
 public:
     static int f() { return 10; } // 정적 함수
-
-    // 정적 함수 호출시 최초에 1회 초기화
-    static int GetVal() const {
-        static int val = 30;
-        ++val; // 호출시마다 증가합니다.
-        return val;
-    }
 };
 
 EXPECT_TRUE(T::f() == 10); // (O) T의 정적 함수 호출

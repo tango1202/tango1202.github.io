@@ -53,7 +53,6 @@ namespace C {
     int f() {return 30;} // 정의
     int g(); // 선언
 }
-
 int C::g() { // C::명시해서 정의할 수 있음
     return f(); // 같은 네임스페이스이면 C::f() 와 같이 명시하지 않아도 됨
 }

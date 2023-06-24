@@ -51,12 +51,12 @@ void f() {
 ```cpp
 // h에서
 class T {
-    int f1() {} // 컴파일러 판단에 따라 inline화 됨
+    int f1() { return 0; } // 컴파일러 판단에 따라 inline화 됨
     int f2(); // 선언만 되었기에 inline화 안됨
 };
 
 // cpp에서
-int T::f2() {} // inline화 안됨
+int T::f2() { return 0; } // inline화 안됨
 ```
 
 **여러 cpp에서 사용하는 인라인 함수 정의**
