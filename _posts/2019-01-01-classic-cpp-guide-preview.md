@@ -81,7 +81,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     std::vector<int> datas;
 
     for(std::vector<int>::iterator itr = datas.begin(); itr != datas.end(); ++itr) {
-        count<<(*itr)<<endl;
+        std::cout<<(*itr)<<std::endl;
     }
     ```
 
