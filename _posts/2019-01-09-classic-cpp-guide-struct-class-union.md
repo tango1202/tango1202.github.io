@@ -79,14 +79,14 @@ C c(10, 20); // 값 생성자를 사용
         class YourClass {
             MyClass my; // MyClass는 상위에 정의되어 사용할 수 있습니다.
 
-            void f() {}
+            void g() {}
         }; 
     ```
     
     ```cpp
         // cpp 파일에서 YourClass의 구체 정의 사용
         void MyClass::f() {
-            your->f(); 
+            your->g(); 
         }
     ```
 2. 멤버 사양
