@@ -52,7 +52,7 @@ const char* str1 = "abc"; // 문자열 상수
 const wchar_t* str2 = L"abc"; // 와이드 문자열 상수
 ```
 
-배열을 문자열 상수로 초기화 하면, 끝에 널문자(`\0`) 가 추가됩니다.([초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/) 참고)
+배열을 문자열 상수로 초기화 하면, 끝에 널문자(`\0`) 가 추가됩니다.([초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/) 언급)
 
 ```cpp
 char str3[] = "abc"; // {'a', `b`, 'c', '\0'};
