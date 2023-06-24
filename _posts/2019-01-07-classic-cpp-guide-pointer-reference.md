@@ -189,12 +189,14 @@ int obj = 10;
 int& r1 = obj; // r1으로 obj 수정 가능
 r1 = 20; 
 
-const int& r2 = obj; // const 형이어서 r2 수정 불가
+const int& r2 = obj; // const 형이어서 r2으로 obj 수정 불가
 // r2 = 20; // (X) 컴파일 오류
 
 int& r3 = obj;
-r3 = other; // (X) 컴파일 오류. 참조자는 값 변경 불가
-int& r4 = 20; // (X) 컴파일 오류. T& 상수 참조 불가
+int& other = obj;
+r3 = other; // (O) r3은 other를 참조하는 것이 아니라 값을 대입받음
+        
+int& r4 = 20; // (X) 컴파일 오류. T& 로 상수 참조 불가
 const int& r5 = 20; // (O) const T&로 상수 참조 가능
 ```
 
