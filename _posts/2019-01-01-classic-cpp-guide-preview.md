@@ -57,7 +57,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 
 7. STL : 문자열
 
-    표준 템플릿 라이브러리(Standard Template Library, STL)를 통해 문자열을 제공합니다.
+    표준 템플릿 라이브러리(Standard Template Library, STL)를 통해 문자열 자료형을 제공합니다.
 
     ```cpp
     #include <string>
