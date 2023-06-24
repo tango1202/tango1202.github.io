@@ -192,31 +192,27 @@ r1 = 20;
 const int& r2 = obj; // const 형이어서 r2으로 obj 수정 불가
 // r2 = 20; // (X) 컴파일 오류
 
-int& r3 = obj;
-int& other = obj;
-r3 = other; // (O) r3은 other를 참조하는 것이 아니라 값을 대입받음
-        
-int& r4 = 20; // (X) 컴파일 오류. T& 로 상수 참조 불가
-const int& r5 = 20; // (O) const T&로 상수 참조 가능
+int& r3 = 20; // (X) 컴파일 오류. T& 로 상수 참조 불가
+const int& r4 = 20; // (O) const T&로 상수 참조 가능
 ```
 
 ```cpp
 // 배열 참조자
 int a[2];
-int(& r6)[2] = a; // 괄호로 감쌈
-r6[0] = 10;
+int(& r5)[2] = a; // 괄호로 감쌈
+r5[0] = 10;
 EXPECT_TRUE(a[0] == 10);
 ```
 
 ```cpp
 // 함수 참조자 
-void (&r7)(int) = TestFunc;
+void (&r6)(int) = TestFunc;
 r7(10); // TestFunc 함수 호출 
 ```
 
 ```cpp
 // 다형성 참조자
 Derived d;
-Base& r8 = d; // 부모 클래스 참조자로 자식 클래스 제어
-r8.f(); // Derived 출력
+Base& r7 = d; // 부모 클래스 참조자로 자식 클래스 제어
+r7.f(); // Derived 출력
 ```
