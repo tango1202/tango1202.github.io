@@ -69,7 +69,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     데이터 자료구조를 관리할 수 있는 컨테이너를 제공합니다.(`vector`, `list`, `queue`, `stack`, `deque`, `priority_queue`, `set`, `multiset`, `map`, `multimap`)
 
     ```cpp
-    std::vector<int> data(100); // 0으로 초기화된 100개의 요소
+    std::vector<int> data(100); // 기본값으로 초기화된 100개의 요소
     data[0] = 10;
     ```
 
