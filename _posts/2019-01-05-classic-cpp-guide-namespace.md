@@ -30,8 +30,8 @@ namespace B {
     int f() {return 20;}
 }
 
-EXPECT_TRUE(A::f() == 10); // namespace A의 f() 호출
-EXPECT_TRUE(B::f() == 20); // namespace B의 f() 호출
+EXPECT_TRUE(A::f() == 10); // 네임스페이스 A의 f() 호출
+EXPECT_TRUE(B::f() == 20); // 네임스페이스 B의 f() 호출
 ```
 
 또한 하기와 같이 구성 요소를 논리적으로 묶을 때 사용할 수도 있습니다.
@@ -44,7 +44,7 @@ namespace Parser {
 }
 ```
 
-**네임스페이스 항목의 함수 정의**
+**네임스페이스 항목의 함수 선언과 정의 분리**
 
 네임스페이스에서 선언한 함수를 정의하려면, 하기 `C::g()` 와 같이 함수 정의시 네임스페이스명을 명시하면 됩니다. 
 
@@ -55,9 +55,9 @@ namespace C {
 }
 
 int C::g() { // C::명시해서 정의할 수 있음
-    return f(); // 같은 namespace이면 C::f() 와 같이 명시하지 않아도 됨
+    return f(); // 같은 네임스페이스이면 C::f() 와 같이 명시하지 않아도 됨
 }
-EXPECT_TRUE(C::g() == 30); // namespace C의 f()를 호출
+EXPECT_TRUE(C::g() == 30); // 네임스페이스 C의 f()를 호출
 ```
 
 **서로 다른 네임스페이스 항목 사용**
