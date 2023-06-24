@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [고전 C++ 가이드] 리터럴들(Literals)"
+title: "#15. [고전 C++ 가이드] 리터럴들(Literals), 이스케이프 문자"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -45,7 +45,7 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 **문자열 상수**
 
-문자열 상수는 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 쓸데없이 많이 만들지는 마세요. 특히 수정될 필요가 없다면, 배열이나 `std::string`,`std::wstring`로 관리하지 마세요. 복제되어 용량만 커집니다.
+문자열 상수는 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 쓸데없이 많이 만들지는 마세요. 특히 수정될 필요가 없다면, 배열이나 `std::string`, `std::wstring`로 관리하지 마세요. 복제되어 용량만 커집니다.
 
 ```cpp
 const char* str1 = "abc"; // 문자열 상수
