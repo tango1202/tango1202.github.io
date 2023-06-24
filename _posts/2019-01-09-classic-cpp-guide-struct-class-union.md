@@ -79,6 +79,7 @@ C c(10, 20); // 값 생성자를 사용
         class YourClass {
             MyClass my; // MyClass는 상위에 정의되어 사용할 수 있습니다.
 
+        public:
             void g() {}
         }; 
     ```
@@ -114,7 +115,7 @@ C c(10, 20); // 값 생성자를 사용
 
 3. inline 함수
 
-    클래스(구조체) 선언부에 정의한 함수는 컴파일러 판단에 따라 `inline` 화 됩니다.
+    클래스(구조체) 선언부에 정의한 함수는 컴파일러 판단에 따라 [인라인](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)화 됩니다.
 
     ```cpp
     // h에서
@@ -149,7 +150,7 @@ C c(10, 20); // 값 생성자를 사용
     
     class Derived : public Base {
     public:
-        using Base::val; // Base val을 public으로 변경합니다.
+        using Base::val; // (△) 비권장. Base val을 public으로 변경합니다.
     };
     Derived d;
     d.val = 10; // 이제 public이라 접근 가능합니다.

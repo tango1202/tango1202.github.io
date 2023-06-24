@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 클래스나 네임스페이스 내에 열거형을 정의하여 이름 유효 범위를 축소하라.
+> * 열거형은 클래스나 네임스페이스 내에 정의하여 이름 유효 범위를 축소하라.
 
 **개요**
 
@@ -45,7 +45,7 @@ public:
 
 **열거형 값지정**
 
-열거형의 각 항목은 이전 항목 + 1 의 값입니다.
+열거형의 각 항목은 이전 항목 + 1 의 값입니다. 디폴트는 0 부터 시작하며, 임의 정수값을 지정할 수 있습니다.
 
 ```cpp
 enum Week {
@@ -74,7 +74,7 @@ EXPECT_TRUE(
 열거형 상수는 `int`로 형변환 되고, `int`는 `static_cast`를 이용하여 열거형 상수로 형변환 됩니다만, 형변환 하는건 좋지 않습니다.
 
 ```cpp
-Week::Val val1 = Week::Saturday; // (O) 형변환 하지 마세요.
+Week::Val val1 = Week::Saturday; // (△) 비권장. 형변환 하지 마세요.
 int val2 = Week::Saturday; // (△) 비권장. 열거형 상수의 int 형변환 가능
 EXPECT_TRUE(val1 ==  Week::Saturday);
 EXPECT_TRUE(val2 == 13);

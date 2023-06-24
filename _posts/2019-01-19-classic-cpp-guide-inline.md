@@ -46,7 +46,7 @@ void f() {
 
 **클래스 멤버 함수의 인라인화**
 
-클래스(구조체) 선언부에 정의한 함수는 컴파일러 판단에 따라 `inline` 화 됩니다.([구조체(Struct)와 클래스(Class) 와 공용체(Union)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/) 참고)
+클래스(구조체) 선언부에 정의한 함수는 컴파일러 판단에 따라 `inline` 화 됩니다.([구조체(Struct)와 클래스(Class) 와 공용체(Union)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/) 언급)
 
 ```cpp
 // h에서

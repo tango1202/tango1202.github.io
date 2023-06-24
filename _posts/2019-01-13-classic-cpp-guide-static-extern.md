@@ -56,12 +56,12 @@ TEST(TestClassicCpp, Static) {
 class T {
 public:
     static int m_Val1; //  선언 외부에서 초기값이 세팅되어야 함
-    // static int m_Val1 = 10; // (X) 컴파일 오류.
-    static const int m_Val2 = 20; // const 인 경우 선언에서 초기화 지원
+    // static int m_Val1 = 10; // (X) 컴파일 오류. const만 클래스 선언에서 초기화 지원
+    static const int m_Val2 = 20; // const 인 경우 클래스 선언에서 초기화 지원
 };
 
 // 선언 외부에서
-int T::m_Val1 = 0; // 초기값 세팅
+int T::m_Val1 = 10; // 초기값 세팅
 
 TEST(TestClassicCpp, Static) {
     EXPECT_TRUE(T::m_Val1 == 10);
