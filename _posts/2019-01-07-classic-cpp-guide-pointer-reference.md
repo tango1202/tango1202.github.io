@@ -186,7 +186,7 @@ public:
 ```cpp
 // 개체 참조자
 int obj = 10;
-int& r1 = obj; // r1 수정 가능
+int& r1 = obj; // r1으로 obj 수정 가능
 r1 = 20; 
 
 const int& r2 = obj; // const 형이어서 r2 수정 불가
