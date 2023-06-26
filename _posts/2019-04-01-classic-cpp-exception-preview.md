@@ -14,3 +14,6 @@ sidebar:
 Swap에서 예외 발생 금지
 완전한 생성자 자원 획득과 초기화를 한번에
 
+스택풀기
+https://en.cppreference.com/w/cpp/language/throw 참고
+

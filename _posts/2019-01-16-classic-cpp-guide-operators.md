@@ -87,7 +87,7 @@ a++; // a를 증가시키기 전의 값을 임시 개체를 만들어 리턴함.
 a++; // a값을 증가시키고 참조자를 리턴함. 
 ```
 
-의도한 코드일 수는 있으나, 분석을 헷갈리게 할 수 있기 때문에, 후위 보다는 전위 증감 연산자를 사용하는게 좋습니다.
+또한, 의도한 코드일 수는 있으나, 분석을 헷갈리게 할 수 있기 때문에, 후위 보다는 전위 증감 연산자를 사용하는게 좋습니다.
 
 ```cpp
 int n = 10;
@@ -178,11 +178,11 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |타입 유사성을 지키며 변환. (RTTI(Runtime Type Info) 지원)|`dynamic_cast`|X|X|X|
 |상속관계를 무시하고 변환|`reinterpret_cast`|X|X|X|
 
-형변환의 자세한 내용은 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 을 참고하세요.
+형변환 연산자의 자세한 내용은 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 을 참고하세요.
 
 **접근 연산자**
 
-|항목|내용|오버로딩| 개체 멤버 정의| 개체 비멤버 정의|
+|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |배열 항목|`a[b]`|O|`R& T::operator [](S b);`|X|
 |포인터 실제값|`*a`|O|`R& T::operator *();`|`R& operator*(T a);`|
@@ -196,32 +196,169 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |개체의 static 멤버|`className::member`|X|X|X| 
 |개체 하위 정의 요소|`className::member`|X|X|X| 
 
+**함수 호출 연산자**
+
+|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|--|--|:--:|:--:|:--:|
+|함수 호출 연산자|`a(a1, a2)`|O|`R T::operator ()(Arg1 &a1, Arg2 &a2, ...);`|X|
+
+괄호 표현식으로 사용할 수 있는 특수한 표현식입니다. 표준 템플릿 라이브러리(Standard Template Library, STL)의 함수자 처럼 사용할 수 있습니다.([함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 참고)
+
+```cpp
+class T {
+public:
+    int operator ()(int a, int b) const { return a + b; }
+};
+
+T t;
+EXPECT_TRUE(t(10, 20) == 30); // operator() 호출
+EXPECT_TRUE(t.operator ()(10, 20) == 30); // operator()를 명시적으로 호출        
+```
+
+**콤마 연산자**
+
+|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|--|--|:--:|:--:|:--:|
+|콤마 연산자|`a, b`|O|`T2& T::operator ,(T2 &b);`|`T2& operator ,(const T &a, T2 &b);`|
+
+`a`표현식을 평가하고, `b`표현식을 평가합니다. (`a, b, c, d`와 같이 나열할 수 있습니다.)
+
+```cpp
+// 1를 증가시키고, v의 i 항목을 f 에 전달합니다.
+// (△) 비권장. 분석하기 복잡합니다.
+f((++i, v[i])); 
+```
+
+**조건 연산자**
+
+|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|--|--|:--:|:--:|:--:|
+|조건 연산자|`a ? b : c`|X|X|X|
+
+`a`가 참인 경우 `b`, 거짓인 경우 `c`를 평가합니다.
+
+```cpp
+int result = true ? 10 : 20;
+EXPECT_TRUE(result == 10);
+```
+
+**생성/소멸 연산자**
+
+개체 생성시 사용하는 `new`는 하기 단계를 수행합니다.
+
+1. 전역 `operator new`를 이용하여 메모리 공간 할당
+2. 구조체이거나 클래스이면 생성자 호출
+3. 메모리 주소를 해당 타입으로 캐스팅하여 리턴
+
+즉 `new`와 `operator new`의 역할은 다릅니다. `operator new`는 C언어의 `malloc`과 유사하다고 할 수 있습니다.
 
 
+|항목|내용|사용예|오버로딩|개체 멤버 정의|전역 정의|
+|--|--|--|:--:|:--:|:--:|
+|`operator new`|개체 생성|`T* p = new T;`|O|`void* operator new(std::size_t sz);`|`void* operator new(std::size_t sz);`|
+|`operator delete`|개체 소멸|`delete p;`|O|`void operator delete(void* ptr, std::size_t size)`|`void operator delete(void* ptr, std::size_t size)`|
+|`operator new[]`|배열 생성시 사용|`T* arr = new T[10];`|O|`void* operator new[](std::size_t sz);`|`void* operator new[](std::size_t sz);`|
+|`operator delete[]`|배열 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
+|`new()`|위치 지정 생성(특정 메모리 위치에 개체 생성자 호출)|`T* p = new(buf) T;`|X|X|X|
 
+`operator new`와 `operator delete`와 위치 지정 생성(Placement New)에 대해서는 [생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/) 참고하세요.
 
+**sizeof 연산자**
 
-함수 호출
-괄호
+|항목|내용|
+|--|--|
+|`sizeof(개체명)`|개체의 용량 리턴|
+|`sizeof(타입명)`|자료형이나 클래스명, 구조체명, 공용체명의 용량 리턴|
 
-생성/소멸 연산자
-new() type : 메모리 지정
+개체의 용량을 리턴합니다. 단 참조자의 경우 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의되어 있습니다.(`sizeof(T&) == sizeof(T)`, [기본 자료형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 언급)
 
-throw
+```cpp
+short i;
+int arr[10];
+class T {
+    int i;
+};
+struct S {
+    int x;
+    int y;
+};
+S s;
+S& ref = s; // ref는 s의 참조자
 
-sizeof 연산자
+EXPECT_TRUE(sizeof(i) == 2); // short는 2byte
+EXPECT_TRUE(sizeof(arr) == sizeof(int) * 10); // 배열은 요소의 전체 크기
+EXPECT_TRUE(sizeof(T) = sizeof(int) * 1); // 클래스와 요소는 멤버 변수의 합 
+EXPECT_TRUE(sizeof(S) = sizeof(int) * 2); 
+EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 개체의 크기와 동일
+```
 
-typeid 연산자
+**typeid 연산자**
 
-콤마 연산자
+개체의 타입 비교를 위해 사용합니다.(`<typeinfo>`를 `include`해야 합니다.)
 
-,(쉼표) : f((++i, v[i]))-> i를 증가시키고
-v의 i 항목을 f에 전달
+|항목|내용|
+|--|--|
+|`typeid(개체명)`|개체 타입 정보 리턴|
+|`typeid(타입명)`|자료형이나 클래스명, 구조체명, 공용체명의 타입 정보 리턴|
 
+하기 예에서 처럼 RTTI(Runtime Type Info)가 있는 개체(가상 함수가 있는 개체)는 참조하는 개체의 원래 타입 정보를 리턴합니다.
 
-연산자 우선순위
+```cpp
+#include <typeinfo> 
+// 가상 함수 없음
+class Base {};
+class Derived : public Base {};
 
-연산자 오버로딩
+// 가상 함수 있음
+class Base2 { 
+public:
+    virtual void f() {}
+};
+class Derived2 : public Base2 {};
+
+Base b;
+const std::type_info& b1 = typeid(Base);
+const std::type_info& b2 = typeid(b);
+EXPECT_TRUE(b1 == b2);
+EXPECT_TRUE(b1.hash_code() == b2.hash_code());
+
+Derived d;
+Base& bRef = d; // 가상 함수 없음
+
+// bRef = d로 bRef는 Base 타입이 됨
+EXPECT_TRUE(typeid(bRef).hash_code() == typeid(b).hash_code());
+
+Derived2 d2;
+Base2& b2Ref = d2; // 가상 함수 있음
+
+// b2Ref = d2로 b2Ref는 다형적 동작하며, 여전히 d2 타입임.(원래 개체의 타입 정보)
+EXPECT_TRUE(typeid(b2Ref).hash_code() == typeid(d2).hash_code());  
+```
+
+**연산자 우선순위**
+
+기본적으로 평가되는 연산자 우선 순위는 하기와 같으며, `()`로 감싸서 우선순위를 높일 수 있습니다.
+
+|순위|연산자|
+|--|--|
+|1|::|
+|2|`a++`, `a--`, `()`(함수 호출 연산자), `a[]`, `.`, `->`|
+|3|`++a`, `--a`, `+a`, `-a`, `!`, `~`, `(int)`(C언어 스타일 형변환), `a`, `&a`, `sizeof`, `new`, `new[]`, `delete`, `delete[]`|
+|4|`.*`, `->*`|
+|5|`a * b`, `a / b`, `a %b`|
+|6|`a + b`, `a - b`|
+|7|`<<`, `>>`|
+|8|`<`, `<==`, `>`, `>==`|
+|9|`==`, `!=`|
+|10|`a & b`|
+|11|`a ^ b`|
+|12|`a | b`|
+|13|`a && b`|
+|14|`a || b`|
+|15|`a ? b : c`, `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `<<=`, `>>=`, `&=`, `^=`, `|=`|
+|16|`,`|
+
+**연산자 오버로딩**
 
 오버로딩시 `T&`와 같이 자기자신의 참조를 리턴하는데요, 이는 `a = b = c;` 와 같이 사용할 때 필요합니다. `b = c;`의 결과 `b`의 참조자를 리턴하고, 이게 `a = b`를 통해 `a`에 대입됩니다.
 
