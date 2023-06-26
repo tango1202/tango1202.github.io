@@ -574,5 +574,4 @@ EXPECT_TRUE(t1 >= t2);
 T t1(10);
 T t2(10); 
 EXPECT_TRUE(t1 >= t2);   
-
 ```
