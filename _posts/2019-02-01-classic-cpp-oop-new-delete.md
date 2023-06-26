@@ -10,6 +10,7 @@ sidebar:
 
 `operator new`와 `operator delete`
 
+delete p; // p가 NULL이어도 안전
 
 위치 지정 생성((Placement New))
 T* p = new(buf) T; // 명시적 delete 호출
