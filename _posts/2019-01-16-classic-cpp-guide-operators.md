@@ -248,7 +248,7 @@ EXPECT_TRUE(result == 10);
 
 `operator new`와 `operator delete`와 위치 지정 생성(Placement New)에 대해서는 [생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
 
-**`sizeof 연산자`**
+**`sizeof` 연산자**
 
 |항목|내용|
 |--|--|
