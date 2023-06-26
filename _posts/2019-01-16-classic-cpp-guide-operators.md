@@ -10,7 +10,7 @@ sidebar:
 
 > * 임시 개체가 생성되지 않도록 이항 산술 연산자(`a = a + b`)보다는 할당 연산자(`a += b`)를 사용하라.
 > * 후위형 증감 연산자는 쓸데없는 임시 개체가 생성되고 헷갈리니 사용하지 마라. 
-> * 비교 연산은 `<`을 활용해서 구현하라.
+> * 비교 연산 오버로딩은 `<`을 활용해서 구현하라.
 
 
 **할당 연산자**
@@ -62,16 +62,16 @@ sidebar:
 |후위 증가|`a++`|O|`T T::operator ++(int);`|`T operator ++(T& a, int);`|
 |후위 감소|`a--`|O|`T T::operator --(int);`|`T operator --(T& a, int);`|
 
-전위 연산의 경우 값을 먼저 증감시킨뒤 증감한 값을 리턴합니다만, 후위 연산의 경우는 값을 증감 시키기 전의 값을 리턴해야 합니다. 이에 따라 내부적으로 증감시키기 전의 값을 복제한 임시 개체를 생성합니다. 따라서, 임시 개체가 생성되지 않도록 전위 증감 연산자를 사용하는게 좋습니다.
+전위형 연산의 경우 값을 먼저 증감시킨뒤 증감한 값을 리턴합니다만, 후위형 연산의 경우는 값을 증감 시키기 전의 값을 리턴해야 합니다. 이에 따라 내부적으로 증감시키기 전의 값을 복제한 임시 개체를 생성합니다. 따라서, 임시 개체가 생성되지 않도록 전위형 증감 연산자를 사용하는게 좋습니다.
 
 ```cpp
 T a;
 
 // (△) 비권장. 임시 개체가 생성됨
-a++; // a를 증가시키기 전의 값을 임시 개체를 만들어 리턴함. 하지만 받아서 쓰는 곳도 없음. 임시 개체 생성부하만 있음
+a++; // a를 증가시키기 전의 값을 임시 개체를 만들어 리턴함.
 
 // (O) 권장. 임시 개체가 생성되지 않음
-a++; // a값을 증가시키고 참조자를 리턴함. 
+++a; // a값을 증가시키고 참조자를 리턴함. 
 ```
 
 또한, 의도한 코드일 수는 있으나, 분석을 헷갈리게 할 수 있기 때문에, 후위 보다는 전위 증감 연산자를 사용하는게 좋습니다.
@@ -89,8 +89,7 @@ EXPECT_TRUE(n == 12);
 
 **논리 연산자**
 
-NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 계산합니다.
-
+NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 리턴합니다.
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
@@ -145,14 +144,13 @@ EXPECT_TRUE(!(y < x)); // x <= y
 x = 10;
 y = 10;
 EXPECT_TRUE(!(y < x)); // x <= y   
-
 x = 20;
 y = 10;
 EXPECT_TRUE(!(x < y)); // x >= y
 
 x = 10;
 y = 10;
-EXPECT_TRUE(!(x < y)); // x >= y   
+EXPECT_TRUE(!(x < y)); // x >= y 
 ```
 
 **형변환 연산자**
@@ -199,7 +197,7 @@ public:
 
 T t;
 EXPECT_TRUE(t(10, 20) == 30); // operator() 호출
-EXPECT_TRUE(t.operator ()(10, 20) == 30); // operator()를 명시적으로 호출        
+EXPECT_TRUE(t.operator ()(10, 20) == 30); // t(10, 20) 호출과 동일. operator()를 명시적으로 호출        
 ```
 
 **콤마 연산자**
@@ -208,7 +206,7 @@ EXPECT_TRUE(t.operator ()(10, 20) == 30); // operator()를 명시적으로 호�
 |--|--|:--:|:--:|:--:|
 |콤마 연산자|`a, b`|O|`T2& T::operator ,(T2 &b);`|`T2& operator ,(const T &a, T2 &b);`|
 
-`a`표현식을 평가하고, `b`표현식을 평가합니다. (`a, b, c, d`와 같이 나열할 수 있습니다.)
+`a`표현식을 평가하고, `b`표현식을 평가합니다. (`a, b, c, d`와 같이 나열할 수 있습니다.) 코드 분석이 어려워 권장하지 않습니다.
 
 ```cpp
 // 1를 증가시키고, v의 i 항목을 f 에 전달합니다.
@@ -248,9 +246,9 @@ EXPECT_TRUE(result == 10);
 |`operator delete[]`|배열 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
 |`new()`|위치 지정 생성(특정 메모리 위치에 개체 생성자 호출)|`T* p = new(buf) T;`|X|X|X|
 
-`operator new`와 `operator delete`와 위치 지정 생성(Placement New)에 대해서는 [생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/) 참고하세요.
+`operator new`와 `operator delete`와 위치 지정 생성(Placement New)에 대해서는 [생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
 
-**sizeof 연산자**
+**`sizeof 연산자`**
 
 |항목|내용|
 |--|--|
