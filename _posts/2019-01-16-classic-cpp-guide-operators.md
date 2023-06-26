@@ -272,7 +272,7 @@ S& ref = s; // ref는 s의 참조자
 
 EXPECT_TRUE(sizeof(i) == 2); // short는 2byte
 EXPECT_TRUE(sizeof(arr) == sizeof(int) * 10); // 배열은 요소의 전체 크기
-EXPECT_TRUE(sizeof(T) = sizeof(int) * 1); // 클래스와 요소는 멤버 변수의 합 
+EXPECT_TRUE(sizeof(T) = sizeof(int) * 1); // 클래스와 구조체는 멤버 변수들의 합 
 EXPECT_TRUE(sizeof(S) = sizeof(int) * 2); 
 EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 개체의 크기와 동일
 ```
