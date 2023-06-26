@@ -10,6 +10,7 @@ sidebar:
 
 > * 임시 개체가 생성되지 않도록 이항 산술 연산자(`a = a + b`)보다는 할당 연산자(`a += b`)를 사용하라.
 > * 쓸데없는 임시 개체가 생성되고 헷갈리니, 후위형 증감 연산자는 사용하지 마라. 
+> * 비교 연산은 `<`을 활용해서 구현하라.
 
 
 **할당 연산자**
@@ -52,20 +53,6 @@ sidebar:
 |비트 Left Shift|`a << b`|O|`T T::operator <<(const T2 &b) const;`|`T operator <<(const T &a, const T2 &b);`|
 |비트 Right Shift|`a >> b`|O|`T T::operator >>(const T2 &b) const;`|`T operator >>(const T &a, const T2 &b);`|
 
-이항 산술 연산의 경우 연산의 결과값을 리턴해야 하기 때문에 임시 개체를 생성합니다. 따라서, 값 복제가 없도록 할당 연산자를 사용하는게 좋습니다.
-
-```cpp
-T a;
-T b;
-
-// (△) 비권장. 임시 개체가 생성됨
-T c = a + b; // a + b 인 임시 개체를 생성. c의 복사 생성자 호출하여 임시 개체 대입
-
-// (O) 권장. 임시 개체가 생성되지 않음
-T d = a; // d의 복사 생성자를 호출하여 a값 대입
-d += b; // d에 b값 증가
-```
-
 **증감 연산자**
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
@@ -75,7 +62,7 @@ d += b; // d에 b값 증가
 |후위 증가|`a++`|O|`T T::operator ++(int);`|`T operator ++(T& a, int);`|
 |후위 감소|`a--`|O|`T T::operator --(int);`|`T operator --(T& a, int);`|
 
-전위 연산의 경우 값을 먼저 증감시킨뒤 리턴합니다만, 후위 연산의 경우는 현재 값을 리턴한 후 값을 증감 시켜야 합니다. 이에 따라 내부적으로 증감시키기 전의 값을 복제한 임시 개체를 생성합니다. 따라서, 임시 개체가 생성되지 않도록 전위 증감 연산자를 사용하는게 좋습니다.
+전위 연산의 경우 값을 먼저 증감시킨뒤 증감한 값을 리턴합니다만, 후위 연산의 경우는 값을 증감 시키기 전의 값을 리턴해야 합니다. 이에 따라 내부적으로 증감시키기 전의 값을 복제한 임시 개체를 생성합니다. 따라서, 임시 개체가 생성되지 않도록 전위 증감 연산자를 사용하는게 좋습니다.
 
 ```cpp
 T a;
@@ -360,14 +347,234 @@ EXPECT_TRUE(typeid(b2Ref).hash_code() == typeid(d2).hash_code());
 
 **연산자 오버로딩**
 
-오버로딩시 `T&`와 같이 자기자신의 참조를 리턴하는데요, 이는 `a = b = c;` 와 같이 사용할 때 필요합니다. `b = c;`의 결과 `b`의 참조자를 리턴하고, 이게 `a = b`를 통해 `a`에 대입됩니다.
+클래스나 구조체에서 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 연산자를 오버로딩할 수 있습니다.
 
+**연산자 오버로딩(대입 연산자)**
 
+하기는 `=` 연산자를 오버로딩한 예입니다. `T&` 와 같이 자기 자신의 참조를 리턴하는데요, 이는 `t1 = t2 = t2;`과 같이 연달아 대입하는 경우를 지원하고, 복사 부하를 줄이기 위함입니다.
 
-할당연산자는 레퍼런스, 산술연산자는 복제본. 할당 연산자가 메모리 절약
+```cpp
+class T {
+private:
+    int m_A;
+    int m_B;
+public:
+    T& operator =(const T& other) {
+        this->m_A = other.m_A;
+        this->m_B = other.m_B;
+        return *this; // 자기 자신을 리턴합니다.
+    }
+}; 
+T t1, t2, t3;
+t1 = t2 = t3; // t2 = t3의 결과 t2의 참조자를 리턴하고, t1에 대입합니다.
+```
 
-비멤버 버전 오버로딩
+**연산자 오버로딩(`+=` 연산자)**
 
-후위 증감의 더미 int, 복제본
+하기는 `+=` 연산자를 오버로딩한 예입니다. `int`형 지원을 하기 위해 `T& operator +=(int val)` 도 구현 하였습니다.
 
+```cpp
+class T {
+private:
+    int m_Val;
+public:
+    explicit T(int val) : m_Val(val) {}
+    int GetVal() const { return m_Val; }
 
+    // 같은 T타입인 경우
+    T& operator +=(const T& other) {
+        this->m_Val += other.m_Val;
+        return *this; // 자기 자신을 리턴합니다.
+    }
+
+    // int 형도 지원
+    T& operator +=(int val) {
+        this->m_Val += val;
+        return *this; // 자기 자신을 리턴합니다.        
+    }
+};
+
+T t1(10), t2(20);
+t1 += t2; // operator +=(const T& other) 호출
+EXPECT_TRUE(t1.GetVal() == 30); 
+
+t1 += 10;// operator +=(int val) 호출
+EXPECT_TRUE(t1.GetVal() == 40); 
+```
+
+**연산자 오버로딩(`+` 연산자)**
+
+하기는 이항 연산자인 `+`연산자를 오버로딩한 예입니다. 
+
+```cpp
+class T {
+private:
+    int m_Val;
+public:
+    explicit T(int val) : m_Val(val) {}
+    int GetVal() const { return m_Val; }
+
+    // 같은 T타입인 경우
+    T operator +(const T& other) {
+        return T(this->m_Val + other.m_Val); // 새로운 개체를 리턴합니다.
+    }
+
+    // int 형도 지원
+    T operator +(int val) {
+        return T(this->m_Val + val); // 새로운 개체를 리턴합니다.       
+    }
+};
+
+T t1(10), t2(20);
+T t3(0);
+t3 = t1 + t2; // operator +(const T& other) 호출
+EXPECT_TRUE(t1.GetVal() == 10); 
+EXPECT_TRUE(t3.GetVal() == 30); 
+
+t3 = t1 + 10;// operator +(int val) 호출
+EXPECT_TRUE(t1.GetVal() == 10); 
+EXPECT_TRUE(t3.GetVal() == 20); 
+```
+
+**`+` 보다는 `+=`이 좋은 이유**
+
+할당 연산자가 참조자 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`)을 리턴합니다. 이는 연산의 결과값을 리턴해야 하기 때문입니다.(내부적으로 임시 개체가 생성될 수밖에 없습니다.) 따라서, 임시 개체 생성 부하가 없도록 하기와 같이 할당 연산자를 사용하는 코딩 습관을 가지시는게 좋습니다.(임시 개체 생성 부하가 큰 경우에는 단단한 **코딩 계약**을 위해 `+=`만 구현하고, `+`를 구현하지 않아야 합니다.)
+
+```cpp
+T t1(10);
+T t2(20);
+
+// (△) 비권장. 임시 개체가 생성됨
+T t3 = t1 + t2; // t1 + t2 인 임시 개체를 생성. t3의 복사 생성자 호출하여 임시 개체 대입
+
+// (O) 권장. 임시 개체가 생성되지 않음
+T t3 = t1; // t3의 복사 생성자를 호출하여 t1값 대입
+t3 += t2; // t3에 t2값 증가
+```
+**연산자 오버로딩(`+` 연산자 비멤버 버전 정의)**
+
+하기와 같이 `+`연산시 `int`형을 먼저 작성하면 컴파일 되지 않습니다. 이는 `t3 = 10 + t1;` 은 사실은 `10.operator +(T other)` 호출하는 것과 같습니다. `int`형인 `10`에는 해당 함수가 없으므로 컴파일 오류가 납니다.
+
+```cpp
+T t1(10);
+T t2(0);
+T t3(0);
+
+t2 = t1 + 10;// t1.operator +(int val) 호출
+t2 = t1.operator +(10); // t2 = t1 + 10과 동일
+
+t3 = 10 + t1;// (X) 컴파일 오류. 10.operator +(T other) 호출합니다. int 형인 10에는 해당 operator 가 없습니다.
+EXPECT_TRUE(t2.GetVal() == 20 && t3.GetVal() == 20);
+```
+
+이를 허용하려면 하기와 같이 전역 함수를 만들면 됩니다.
+
+```cpp
+// T t = 10 + other; 지원
+inline T operator +(int left, const T& right) {
+    T result(left + right.GetVal());
+    return result;
+}
+```
+
+**증감 연산자 오버로딩**
+
+증감 연산자는 오버로딩시 전위형과 후위형을 구분하기 위해, 후위형의 경우 인자로 `int`를 dummy로 넣습니다. 또한 후위형은 증감 시키기 전의 값을 리턴하기 위해 현재값을 복제합니다.(이러한 특성 때문에 후위형 보다는 전위형을 쓰시는게 좋습니다.)
+
+```cpp
+class T {
+private:
+    int m_Val;
+public:
+    explicit T(int val) : m_Val(val) {}
+    int GetVal() const { return m_Val; }
+
+    // 전위형
+    T& operator ++() {
+        ++m_Val;
+        return *this; // 자기 자신을 리턴합니다.
+    }
+    // 후위형. 인자 int는 전위형과 구분하기 위한 dummy입니다.
+    T operator ++(int) {
+        T result = *this; // 복제합니다.
+        ++m_Val; // this의 값을 증가시킵니다.
+        return result; // 증가시키기 전에 복제한 값을 리턴합니다.
+    }
+};
+
+T t(10);
+T t1 = ++t;
+EXPECT_TRUE(t1.GetVal() == 11); // 증가시킨 후 값
+EXPECT_TRUE(t.GetVal() == 11);
+
+T t2 = t++;
+EXPECT_TRUE(t2.GetVal() == 11); // (△) 비권장. 의도한 것인지 조금 헷갈립니다. 증가시킨 전 값. 
+EXPECT_TRUE(t.GetVal() == 12);
+```
+
+**비교 연산자 오버로딩**
+
+비교 연산자는 `<` 만 오버로딩하고, `==`, `!=`, `<`, `>`, `<=`, `>=`는 `<`로 부터 구현하는게 좋습니다.
+
+```cpp
+class T {
+private:
+    int m_Val;
+public:
+    explicit T(int val) : m_Val(val) {}
+    int GetVal() const { return m_Val; }
+
+    bool operator <(const T& other) const {
+        return this->m_Val < other.m_Val;
+    } 
+
+    bool operator ==(const T& other) const {
+        return !(this->m_Val < other.m_Val || other.m_Val < this->m_Val);
+    }
+    bool operator !=(const T& other) const {
+        return !(*this == other);
+    }
+    bool operator >(const T& other) const {
+        return other < *this;
+    }
+    bool operator <=(const T& other) const {
+        return !(other < *this);
+    }
+    bool operator >=(const T& other) const {
+        return !(*this < other);
+    }
+};
+
+T t1(10);
+T t2(10);
+EXPECT_TRUE(t1 == t2);
+
+T t1(10);
+T t2(20);   
+EXPECT_TRUE(t1 != t2);
+
+T t1(10);
+T t2(20);  
+EXPECT_TRUE(t1 < t2); 
+
+T t1(20);
+T t2(10);  
+EXPECT_TRUE(t1 > t2);  
+
+T t1(10);
+T t2(20); 
+EXPECT_TRUE(t1 <= t2);
+
+T t1(10);
+T t2(10);
+EXPECT_TRUE(t1 <= t2);
+
+T t1(20);
+T t2(10); 
+EXPECT_TRUE(t1 >= t2);
+
+T t1(10);
+T t2(10); 
+EXPECT_TRUE(t1 >= t2);   
+
+```
