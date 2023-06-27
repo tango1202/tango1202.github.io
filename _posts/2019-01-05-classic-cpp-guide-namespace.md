@@ -15,10 +15,10 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|정의|`namespace Test {`<br>`void f();`<br>`}`|
+|정의|`namespace Test {`<br/>`void f();`<br/>`}`|
 |사용|`Test::f();`|
-|`using`선언|네임스페이스의 임의 항목 사용.<br>`using Test::f;`|
-|`using`지시문|전체 네임스페이스 사용.<br>`using namespace Test;`|
+|`using`선언|네임스페이스의 임의 항목 사용.<br/>`using Test::f;`|
+|`using`지시문|전체 네임스페이스 사용.<br/>`using namespace Test;`|
 
 네임스페이스는 하기와 같이 이름 충돌을 피하기 위해 사용합니다.
 

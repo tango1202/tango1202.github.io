@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [고전 C++ 가이드] 리터럴들(Literals), 이스케이프 문자"
+title: "#15. [고전 C++ 가이드] 리터럴들(Literals), 이스케이프 문자"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -45,7 +45,9 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 **문자열 상수**
 
-문자열 상수는 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 쓸데없이 많이 만들지는 마세요. 특히 수정될 필요가 없다면, 배열이나 `std::string`, `std::wstring`로 관리하지 마세요. 복제되어 용량만 커집니다.
+문자열 상수는 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 쓸데없이 비슷하게 많이 만들지는 마세요.(동일한 것을 여러번 사용하는 경우 컴파일러가 1개로 합쳐주긴 합니다만([메모리 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/) 참고), 코드 중복이니 1개만 정의해서 사용하세요.) 
+
+하기와 같이 `const`형 포인터로 문자열 상수를 사용 할 수 있습니다.
 
 ```cpp
 const char* str1 = "abc"; // 문자열 상수
@@ -68,17 +70,23 @@ EXPECT_TRUE(str4[2] == L'c');
 EXPECT_TRUE(str4[3] == L'\0'); // 널문자가 추가됨
 ```
 
-문자열 상수를 포인터로 받아 수정하면, 상수 영역 수정을 시도하다 예외가 발생합니다. 하지만, 배열로 저장하면 복제본이므로 수정할 수 있습니다.
+문자열 상수는 rodata 영역에 할당([메모리 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/) 참고)되기 때문에 수정할 수 없습니다. 따라서 포인터를 통해서 받은 문자열 상수를 수정하려 하면, 예외가 발생합니다. 하지만, 배열로 저장하면 복제본이므로 수정할 수 있습니다.
 
 ```cpp
+const char* str1 = "abc"; // 문자열 상수
 char* temp = const_cast<char*>(str1);
-// (X) 예외 발생. 문자열 상수을 가리키는 포인터를 이용하여 값을 변경할 수 없습니다.
+// (X) 예외 발생. 문자열 상수는 rodata에 있기 때문에 수정할 수 없습니다.
 *temp = 'd';
 
+char str2[] = "abc"; // {'a', `b`, 'c', '\0'};
 // (O) 배열은 문자열 상수의 복제본이어서 항목을 수정할 수 있습니다.
-str3[0] = 'd';
-EXPECT_TRUE(str3[0] == 'd');
+str2[0] = 'd';
+EXPECT_TRUE(str2[0] == 'd');
 ```
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f98f2cc-9dff-428f-a639-42d42d9f701b)
+
+문자열의 내용을 수정할 필요가 없다면, 배열이나 `std::string`, `std::wstring`에 저장하지 마세요. 불필요하게 복제되어 복제 부하만 생깁니다.
 
 **이스케이프 문자**
 

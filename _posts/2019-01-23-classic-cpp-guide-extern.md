@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#18. [고전 C++ 가이드] 함수"
+title: "#23. [고전 C++ 가이드] 언어 연계 extern"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

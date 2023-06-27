@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [고전 C++ 가이드] 연산자들(Operators)과 연산자 오버로딩"
+title: "#17. [고전 C++ 가이드] 연산자들(Operators)과 연산자 오버로딩"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
