@@ -176,10 +176,10 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |포인터 개체의 멤버|`a->b`|O|`R* T::operator ->();`|X|
 |개체 멤버에 대한 포인터|`a.*b`|X|X|X|
 |포인터인 개체 멤버에 대한 포인터|`a->*b`|O|`R& T::operator ->*(S b);`|`R& operator ->*(T a, S b);`|
-|네임스페이스 멤버|`namespaceName::member`|X|X|X|
-|전역 멤버|`::member`|X|X|X|
-|개체의 static 멤버|`className::member`|X|X|X| 
-|개체 하위 정의 요소|`className::member`|X|X|X| 
+|스코프 연산자(네임스페이스 멤버)|`namespaceName::member`|X|X|X|
+|스코프 연산자(전역 멤버)|`::member`|X|X|X|
+|스코프 연산자(개체의 static 멤버)|`className::member`|X|X|X| 
+|스코프 연산자(개체 멤버)|`className::member`|X|X|X| 
 
 **함수 호출 연산자**
 
@@ -326,7 +326,7 @@ EXPECT_TRUE(typeid(b2Ref).hash_code() == typeid(d2).hash_code());
 
 |순위|연산자|
 |--|--|
-|1|::|
+|1|`::`(스코프 연산자)|
 |2|`a++`, `a--`, `()`(함수 호출 연산자), `a[]`, `.`, `->`|
 |3|`++a`, `--a`, `+a`, `-a`, `!`, `~`, `(int)`(C언어 스타일 형변환), `a`, `&a`, `sizeof`, `new`, `new[]`, `delete`, `delete[]`|
 |4|`.*`, `->*`|
