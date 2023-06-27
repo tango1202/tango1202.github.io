@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [고전 C++ 가이드] 상수(const), 변경 가능 지정자(mutable)"
+title: "#11. [고전 C++ 가이드] 상수(const), 변경 가능 지정자(mutable)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -70,24 +70,24 @@ p4 = p1; // (X) 컴파일 오류
 
 ```cpp
 // (O) 멤버 변수의 값을 리턴하는 const 함수
-int GetX1() const { return m_X; } 
+int GetX1() const {return m_X;} 
 
 // (△) 비권장. 멤버 변수의 값을 쓸데없이 const로 리턴하는 const 함수. 
 // int k = t.GetX2(); 로 실행하므로 const int 리턴은 무의미함. 
-const int GetX2() const { return m_X; } 
+const int GetX2() const {return m_X;} 
 ```
 
 멤버 변수의 포인터를 리턴하는 경우, `const` 함수인지 아닌지에 따라 포인터 상수성을 맞춰서 리턴해야 합니다. `GetX4()`처럼 맞지 않게 리턴하면, **상수성 계약** 위반입니다.(억지로 `const_cast`를 하지 마세요.)
 
 ```cpp
 // (O) 멤버 변수의 값을 수정하지 않는 const 함수
-const int* GetX3() const { return &m_X; }    
+const int* GetX3() const {return &m_X;}    
 
 // (△) 비권장. 멤버 변수의 값을 몰래 수정할 수 있는 const 함수
-int* GetX4() const { return const_cast<int*>(&m_X); }
+int* GetX4() const {return const_cast<int*>(&m_X);}
 
 // (O) 맴버 변수의 값을 수정하는 none-const 함수      
-int* GetX5() { return &m_X; } 	                        
+int* GetX5() {return &m_X;} 	                        
 ```
 
 **인자(함수 선언에 작성된 Parameter)의 상수성**

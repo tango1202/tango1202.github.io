@@ -192,7 +192,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 ```cpp
 class T {
 public:
-    int operator ()(int a, int b) const { return a + b; }
+    int operator ()(int a, int b) const {return a + b;}
 };
 
 T t;
@@ -377,7 +377,7 @@ private:
     int m_Val;
 public:
     explicit T(int val) : m_Val(val) {}
-    int GetVal() const { return m_Val; }
+    int GetVal() const {return m_Val;}
 
     // 같은 T타입인 경우
     T& operator +=(const T& other) {
@@ -410,7 +410,7 @@ private:
     int m_Val;
 public:
     explicit T(int val) : m_Val(val) {}
-    int GetVal() const { return m_Val; }
+    int GetVal() const {return m_Val;}
 
     // 같은 T타입인 경우
     T operator +(const T& other) {
@@ -485,7 +485,7 @@ private:
     int m_Val;
 public:
     explicit T(int val) : m_Val(val) {}
-    int GetVal() const { return m_Val; }
+    int GetVal() const {return m_Val;}
 
     // 전위형
     T& operator ++() {
@@ -520,7 +520,7 @@ private:
     int m_Val;
 public:
     explicit T(int val) : m_Val(val) {}
-    int GetVal() const { return m_Val; }
+    int GetVal() const {return m_Val;}
 
     bool operator <(const T& other) const {
         return this->m_Val < other.m_Val;

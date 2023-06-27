@@ -41,10 +41,10 @@ public:
         m_Width(w), 
         m_Height(h) {}
 public:
-    int GetLeft() const { return m_Left; }
-    int GetTop() const { return m_Top; }
-    int GetWidth() const { return m_Width; }
-    int GetHeight() const { return m_Height; }
+    int GetLeft() const {return m_Left;}
+    int GetTop() const {return m_Top;}
+    int GetWidth() const {return m_Width;}
+    int GetHeight() const {return m_Height;}
 };
 ```
 

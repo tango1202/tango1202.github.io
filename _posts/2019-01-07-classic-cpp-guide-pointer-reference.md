@@ -152,11 +152,11 @@ p8(10); // (*p8)(10); 도 가능. TestFunc 함수 호출
 class Base {
 public:
     int m_Value;
-    virtual void f() { std::cout<<"Base"<<std::endl; }    
+    virtual void f() {std::cout<<"Base"<<std::endl;}    
 };
 class Derived : public Base {
 public:
-    virtual void f() { std::cout<<"Derived"<<std::endl; }    
+    virtual void f() {std::cout<<"Derived"<<std::endl;}    
 };
 // 다형성 포인터
 {

@@ -45,15 +45,15 @@ public:
     virtual ~Shape() {} // 다형적 소멸
 public:
     // Get/Set 함수
-    int GetLeft() const { return m_Left; }
-    int GetTop() const { return m_Top; }
-    int GetWidth() const { return m_Width; }
-    int GetHeight() const { return m_Height; }
+    int GetLeft() const {return m_Left;}
+    int GetTop() const {return m_Top;}
+    int GetWidth() const {return m_Width;}
+    int GetHeight() const {return m_Height;}
 
-    void SetLeft(int val)  { m_Left = val; }
-    void SetTop(int val) { m_Top = val; }
-    void SetWidth(int val) { m_Width = val; }
-    void SetHeight(int val) { m_Height = val; }
+    void SetLeft(int val) {m_Left = val;}
+    void SetTop(int val) {m_Top = val;}
+    void SetWidth(int val) { m_Width = val;}
+    void SetHeight(int val) { m_Height = val;}
 
     // m_Left, m_Top, m_Width, m_Height를 이용하여 자식 클래스들이 알아서 그려야 함
     virtual void Draw() const = 0; 
@@ -122,8 +122,8 @@ TEST(TestPrinciple, LiskovSubstitution) {
 class Shape {
     ...
     // 자식이 재구현할 수 있도록 virtual로 변경합니다.
-    virtual void SetWidth(int val) { m_Width = val; }
-    virtual void SetHeight(int val) { m_Height = val; }
+    virtual void SetWidth(int val) {m_Width = val;}
+    virtual void SetHeight(int val) {m_Height = val;}
     ...
 };
 ```
@@ -229,11 +229,11 @@ public:
     virtual ~Shape() {} // 다형적 소멸
 public:
     // Get/Set 함수
-    int GetLeft() const { return m_Left; }
-    int GetTop() const { return m_Top; }
+    int GetLeft() const {return m_Left;}
+    int GetTop() const {return m_Top;}
 
-    void SetLeft(int val) { m_Left = val; }
-    void SetTop(int val) { m_Top = val; }
+    void SetLeft(int val) {m_Left = val;}
+    void SetTop(int val) {m_Top = val;}
 
     // m_Left, m_Top을 이용하여 자식 클래스들이 알아서 그려야 함
     virtual void Draw() const = 0; 
@@ -257,11 +257,11 @@ public:
     virtual ~Rectangle() override {}   
     
     // Get/Set 함수
-    int GetWidth() const { return m_Width; }
-    int GetHeight() const { return m_Height; }
+    int GetWidth() const {return m_Width;}
+    int GetHeight() const {return m_Height;}
 
-    void SetWidth(int val) { m_Width = val; }
-    void SetHeight(int val) { m_Height = val; }
+    void SetWidth(int val) {m_Width = val;}
+    void SetHeight(int val) {m_Height = val;}
 
     virtual void Draw() const override {
         // m_Left, m_Top, m_Width, m_Height를 이용하여 사각형을 그립니다.
@@ -282,11 +282,11 @@ public:
     virtual ~Ellipse() override {}
 
     // Get/Set 함수
-    int GetWidth() const { return m_Width; }
-    int GetHeight() const { return m_Height; }
+    int GetWidth() const {return m_Width;}
+    int GetHeight() const {return m_Height;}
 
-    void SetWidth(int val) { m_Width = val; }
-    void SetHeight(int val) { m_Height = val; }
+    void SetWidth(int val) {m_Width = val;}
+    void SetHeight(int val) {m_Height = val;}
 
     virtual void Draw() const override {
         // m_Left, m_Top, m_Width, m_Height를 이용하여 타원을 그립니다.
@@ -310,9 +310,9 @@ public:
     virtual ~Square() override {}
 
     // Get/Set 함수
-    int GetLength() const { return m_Length; }
+    int GetLength() const {return m_Length;}
 
-    void SeLength(int val) { m_Length = val; }
+    void SeLength(int val) {m_Length = val;}
 
     virtual void Draw() const override {
         // m_Left, m_Top, m_Length를 이용하여 정사각형을 그립니다.
@@ -374,11 +374,11 @@ protected:
     ~ResizeableImpl() {} // has-a 관계로 사용되기 때문에, 단독으로 생성되지 않도록 protected입니다.
 public:    
     // Get/Set 함수
-    virtual int GetWidth() const override { return m_Width; }
-    virtual int GetHeight() const override { return m_Height; }
+    virtual int GetWidth() const override {return m_Width;}
+    virtual int GetHeight() const override {return m_Height;}
 
-    virtual void SetWidth(int val) override { m_Width = val; }
-    virtual void SetHeight(int val) override { m_Height = val; }
+    virtual void SetWidth(int val) override {m_Width = val;}
+    virtual void SetHeight(int val) override {m_Height = val;}
 };
 ```
 

@@ -182,8 +182,8 @@ private:
 public:
     // C(int v1, int v2) {} // (X) 컴파일 오류. 공용체 멤버는 생성자를 가질 수 없음
     // ~C() {} // (X) 컴파일 오류. 공용체 멤버는 소멸자를 가질 수 없음
-    int GetVal1() const { return val1; } // 멤버 함수가 있어도 되나, virtual 이면 안됨
-    void SetVal1(int val) { val1 = val; }
+    int GetVal1() const {return val1;} // 멤버 함수가 있어도 되나, virtual 이면 안됨
+    void SetVal1(int val) {val1 = val;}
 };
 
 struct S1 {
@@ -200,7 +200,7 @@ union U {
     S1 s1;
     S2 s2;
 public:
-    int GetX() const { return s1.x; } // 공용체도 함수를 가질 수 있음 
+    int GetX() const {return s1.x;} // 공용체도 함수를 가질 수 있음 
 };
 
 U u;

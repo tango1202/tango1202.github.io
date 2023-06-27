@@ -27,7 +27,7 @@ class Shape {
 private:
     float m_Angle; 
 public:  
-    float GetAngle() const { return m_Angle; }
+    float GetAngle() const {return m_Angle;}
 
     // delta 만큼 더 회전시킵니다.
     // delta : delta를 angle과 더했을때, 0~360 사이의 값이 되도록 전달해야 합니다.
@@ -129,13 +129,13 @@ public:
         m_Value = Constrain(val); 
         return *this; 
     }
-    void operator +=(const Degree& other) { m_Value = Constrain(m_Value + other.GetValue()); }
-    void operator +=(float val) { m_Value = Constrain(m_Value + val); }
-    void operator -=(const Degree& other) { m_Value = Constrain(m_Value - other.GetValue()); }
-    void operator -=(float val) { m_Value = Constrain(m_Value - val); }
-    const Degree operator -() const { return Degree(-m_Value); }
+    void operator +=(const Degree& other) {m_Value = Constrain(m_Value + other.GetValue());}
+    void operator +=(float val) {m_Value = Constrain(m_Value + val);}
+    void operator -=(const Degree& other) {m_Value = Constrain(m_Value - other.GetValue());}
+    void operator -=(float val) {m_Value = Constrain(m_Value - val);}
+    const Degree operator -() const {return Degree(-m_Value);}
 
-    float GetValue() const { return m_Value; }
+    float GetValue() const {return m_Value;}
 private:
     // 0~360 값으로 강제함
     static float Constrain(float val) {
@@ -222,7 +222,7 @@ class Shape {
 private:
     Degree m_Angle; // 디폴트로 0도
 public:  
-    const Degree& GetAngle() const { return m_Angle; }
+    const Degree& GetAngle() const {return m_Angle;}
 
     // delta 만큼 더 회전시킵니다.
     void Rotate(const Degree& delta) {

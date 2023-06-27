@@ -31,10 +31,10 @@ private:
     int m_Width;
     int m_Height;
 public:
-    void SetLeft(int val) { m_Left = val; }
-    void SetTop(int val) { m_Top = val; }
-    void SetWidth(int val) { m_Width = val; }
-    void SetHeight(int val) { m_Height = val; }
+    void SetLeft(int val) {m_Left = val;}
+    void SetTop(int val) {m_Top = val;}
+    void SetWidth(int val) {m_Width = val;}
+    void SetHeight(int val) {m_Height = val;}
 };
 ```
 

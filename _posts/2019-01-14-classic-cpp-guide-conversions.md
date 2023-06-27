@@ -224,10 +224,10 @@ EXPECT_TRUE(other == NULL);
 class T {
 public:
     // int로 형변환 되면 10을 리턴합니다.
-    operator int() const { return 10; }
+    operator int() const {return 10;}
     
     // char로 형변환 되면 1을 리턴합니다.
-    operator char() const { return 1; }
+    operator char() const {return 1;}
 };
 
 T t;
@@ -246,10 +246,10 @@ EXPECT_TRUE(c == 1);
 class T {
 public:
     // int로 변환합니다.
-    int ToInt() const { return 10; }
+    int ToInt() const {return 10;}
     
     // char로 변환합니다.
-    char ToChar() const { return 1; }
+    char ToChar() const {return 1;}
 };
 
 T t;
@@ -267,7 +267,7 @@ EXPECT_TRUE(c == 1);
 ```cpp
 class T {
 public:
-    operator bool() { return true; }
+    operator bool() {return true;}
 };
 
 T t;
@@ -295,7 +295,7 @@ public:
     // int 형 1개만 전달받는 생성자 입니다.
     //(△) 비권장. 암시적 형변환을 허용합니다.
     T(int val) : m_Val(val) {}
-    int GetVal() const { return m_Val; }
+    int GetVal() const {return m_Val;}
 };
 
 T obj1(1); // (O) int 를 전달하여 T(int) {}로 생성합니다.
@@ -318,7 +318,7 @@ public:
     // int 형 1개만 전달받는 생성자 입니다.
     //(O) 암시적 형변환을 금지합니다.
     explicit T(int val) : m_Val(val) {}
-    int GetVal() const { return m_Val; }
+    int GetVal() const {return m_Val;}
 };
 
 T obj1(1); // (O) int 를 전달하여 T(int) {}로 생성합니다.

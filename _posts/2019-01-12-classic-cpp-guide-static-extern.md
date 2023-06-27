@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [고전 C++ 가이드] 정적 변수와 정적 함수(static), 전역 선언(extern)"
+title: "#12. [고전 C++ 가이드] 정적 변수와 정적 함수(static), 전역 선언(extern)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -49,13 +49,13 @@ TEST(TestClassicCpp, Static) {
 
 **정적 멤버 변수**
 
-하기와 같이 특정 개체에 속하지 않는 정적 멤버 변수를 정의 할 수 있습니다.(단, 함수내에 정의된 중첩 클래스는 정적 멤버 변수를 가질 수 없습니다.) 이때 `static const` 형은 변수 선언에서 초기화를 할 수 있습니다.
+하기와 같이 특정 개체에 속하지 않는 정적 멤버 변수를 정의 할 수 있습니다. (단, 함수내에 정의된 중첩 클래스는 정적 멤버 변수를 가질 수 없습니다.) 선언과 정의의 분리가 필요하기 때문에, 외부에서 초기값을 세팅해야 합니다.(단, `static const` 형은 변수 선언에서 초기화를 할 수 있습니다.)
 
 ```cpp
 // 선언에서
 class T {
 public:
-    static int m_Val1; //  선언 외부에서 초기값이 세팅되어야 함
+    static int m_Val1; // 선언과 정의 분리 필요. 외부에서 초기값이 세팅되어야 함
     // static int m_Val1 = 10; // (X) 컴파일 오류. const만 클래스 선언에서 초기화 지원
     static const int m_Val2 = 20; // const 인 경우 클래스 선언에서 초기화 지원
 };
@@ -76,7 +76,7 @@ TEST(TestClassicCpp, Static) {
 ```cpp
 class T {
 public:
-    static int f() { return 10; } // 정적 함수
+    static int f() {return 10;} // 정적 함수
 };
 
 EXPECT_TRUE(T::f() == 10); // (O) T의 정적 함수 호출
