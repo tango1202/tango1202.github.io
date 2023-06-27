@@ -44,11 +44,11 @@ sidebar:
 |더하기|`a + b`|O|`T T::operator +(const T2 &b) const;`|`T operator +(const T &a, const T2 &b);`|
 |빼기|`a - b`|O|`T T::operator -(const T2 &b) const;`|`T operator -(const T &a, const T2 &b);`|
 |곱하기|`a * b`|O|`T T::operator *(const T2 &b) const;`|`T operator *(const T &a, const T2 &b);`|
-|나누기|`a / b`|`T T::operator /(const T2 &b) const;`|`T operator /(const T &a, const T2 &b);`|
-|나머지|`a % b`|`T T::operator %(const T2 &b) const;`|`T operator %(const T &a, const T2 &b);`|
+|나누기|`a / b`|O|`T T::operator /(const T2 &b) const;`|`T operator /(const T &a, const T2 &b);`|
+|나머지|`a % b`|O|`T T::operator %(const T2 &b) const;`|`T operator %(const T &a, const T2 &b);`|
 |비트 NOT|`~a`|O|`T T::operator ~() const;`|`T operator ~(const T &a);`|
 |비트 AND|`a & b`|O|`T T::operator &(const T2 &b) const;`|`T operator &(const T &a, const T2 &b);`|
-|비트 OR|`a | b`|O|`T T::operator |(const T2 &b) const;`|`T operator |(const T &a, const T2 &b);`|
+|비트 OR|`a | b`|O|`T T::operator |(const T2 &b) const;`|`T operator`|`(const T &a, const T2 &b);`|
 |비트 XOR|`a ^ b`|O|`T T::operator ^(const T2 &b) const;`|`T operator ^(const T &a, const T2 &b);`|
 |비트 Left Shift|`a << b`|O|`T T::operator <<(const T2 &b) const;`|`T operator <<(const T &a, const T2 &b);`|
 |비트 Right Shift|`a >> b`|O|`T T::operator >>(const T2 &b) const;`|`T operator >>(const T &a, const T2 &b);`|
@@ -106,7 +106,7 @@ NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 리턴합니다.
 |같다|`a == b`|O|`bool T::operator ==(const T2& b) const;`|`bool operator ==(const T& a, const T2& b);`|
 |같지 않다.|`a != b`|O|`bool T::operator !=(const T2& b) const;`|`bool operator !=(const T& a, const T2& b);`|
 |미만|`a < b`|O|`bool T::operator <(const T2& b) const;`|`bool operator <(const T& a, const T2& b);`|
-|큰`a > b`|O|`bool T::operator >(const T2& b) const;`|`bool operator >(const T& a, const T2& b);`|
+|큰|`a > b`|O|`bool T::operator >(const T2& b) const;`|`bool operator >(const T& a, const T2& b);`|
 |이하|`a <= b`|O|`bool T::operator <=(const T2& b) const;`|`bool operator <=(const T& a, const T2& b);`|
 |이상|`a >= b`|O|`bool T::operator >=(const T2& b) const;`|`bool operator >=(const T& a, const T2& b);`|
 

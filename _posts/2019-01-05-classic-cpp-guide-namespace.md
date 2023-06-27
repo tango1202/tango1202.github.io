@@ -17,8 +17,8 @@ sidebar:
 |--|--|
 |정의|`namespace Test {void f();}`|
 |사용|`Test::f();`|
-|`using`선언|네임스페이스의 임의 항목 사용. `using namespace::f;`|
-|`using`지시문|전체 네임스페이스 사용. `using namespace Test;`|
+|`using`선언|네임스페이스의 임의 항목 사용.<br>`using namespace::f;`|
+|`using`지시문|전체 네임스페이스 사용.<br>`using namespace Test;`|
 
 네임스페이스는 하기와 같이 이름 충돌을 피하기 위해 사용합니다.
 
