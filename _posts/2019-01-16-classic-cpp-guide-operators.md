@@ -48,7 +48,7 @@ sidebar:
 |나머지|`a % b`|O|`T T::operator %(const T2 &b) const;`|`T operator %(const T &a, const T2 &b);`|
 |비트 NOT|`~a`|O|`T T::operator ~() const;`|`T operator ~(const T &a);`|
 |비트 AND|`a & b`|O|`T T::operator &(const T2 &b) const;`|`T operator &(const T &a, const T2 &b);`|
-|비트 OR|`a | b`|O|`T T::operator |(const T2 &b) const;`|`T operator`|`(const T &a, const T2 &b);`|
+|비트 OR|`a | b`|O|`T T::operator |(const T2 &b) const;`|`T operator |(const T &a, const T2 &b);`|
 |비트 XOR|`a ^ b`|O|`T T::operator ^(const T2 &b) const;`|`T operator ^(const T &a, const T2 &b);`|
 |비트 Left Shift|`a << b`|O|`T T::operator <<(const T2 &b) const;`|`T operator <<(const T &a, const T2 &b);`|
 |비트 Right Shift|`a >> b`|O|`T T::operator >>(const T2 &b) const;`|`T operator >>(const T &a, const T2 &b);`|
