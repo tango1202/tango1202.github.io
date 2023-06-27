@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [고전 C++ 가이드] 리터럴들(Literals), 이스케이프 문자"
+title: "#14. [고전 C++ 가이드] 리터럴들(Literals), 이스케이프 문자"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
