@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [고전 C++ 가이드] 정적 변수와 정적 함수(static), 전역 선언(extern)"
+title: "#12. [고전 C++ 가이드] 정적 변수와 정적 함수(static), 전역 선언(extern), 메모리 세그먼트(Memory Segment)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -104,3 +104,13 @@ EXPECT_TRUE(T::GetVal() == 31); // 1회 호출
 EXPECT_TRUE(T::GetVal() == 32); // 2회 호출
 EXPECT_TRUE(T::GetVal() == 33); // 3회 호출
 ```
+
+**메모리 세그먼트**
+
+코드
+데이터
+  BSS 초기화 안된, 0로 초기화된 전역, 정적
+  rodata 문자열 상수
+  data 0 이외 값으로 초기화된 전역, 정적
+힙
+스텍
