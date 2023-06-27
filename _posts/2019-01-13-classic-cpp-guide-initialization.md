@@ -148,9 +148,9 @@ static int s_Val; // 정적 전역 변수. 명시적 초기화 가능
 
 class T {
 public:
-    static int s_m_Val; // 정적 멤버 변수. 선언과 정의 분리. 단 const 형은 선언에서 초기화 가능
+    static int s_m_Val; // 정적 멤버 변수. 명시적 초기화 불가능. 선언과 정의 분리. 단 const 형은 선언에서 초기화 가능
     static const int s_c_m_Val = 0; // 상수형 정적 멤버 변수. 선언과 정의를 같이 해야 하며, 명시적으로 초기화 해야 함
-    int m_Val; // 멤버 변수
+    int m_Val; // 멤버 변수. 명시적 초기화 불가능.
 
     int f1() const {
         static int s_l_Val; // 정적 지역 변수. 명시적 초기화 가능
