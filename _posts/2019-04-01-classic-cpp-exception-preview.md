@@ -17,3 +17,5 @@ Swap에서 예외 발생 금지
 스택풀기
 https://en.cppreference.com/w/cpp/language/throw 참고
 
+예외 안정 함수의 제어구조
+사전에 정상적인 조건인지 확인후 실행할것

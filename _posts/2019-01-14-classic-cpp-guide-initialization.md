@@ -23,7 +23,7 @@ sidebar:
 |복사 초기화|`T obj = other;` 또는<br/>`T obj(other);`|
 |생성 후 대입(불필요한 부하)|`T obj;`<br/>`obj = other;`|
 |배열 초기화|`T arr[] = {};`,<br/> `char str[] = "abc";`|
-|구조체 초기화|`struct T {`<br/>`int x;`<br/>`int y;`<br/>`};`<br/>`T t = {0, 10};`|
+|구조체 초기화|`struct T {`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`int x;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`int y;`<br/>`};`<br/>`T t = {0, 10};`|
 
 생성 후 대입하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([완전한 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-exception-perfect-constructor/) 참고)
 
