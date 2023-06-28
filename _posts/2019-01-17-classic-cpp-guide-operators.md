@@ -62,29 +62,25 @@ sidebar:
 |후위 증가|`a++`|O|`T T::operator ++(int);`|`T operator ++(T& a, int);`|
 |후위 감소|`a--`|O|`T T::operator --(int);`|`T operator --(T& a, int);`|
 
-전위형 연산의 경우 값을 먼저 증감시킨뒤 증감한 값을 리턴합니다만, 후위형 연산의 경우는 값을 증감 시키기 전의 값을 리턴해야 합니다. 이에 따라 내부적으로 증감시키기 전의 값을 복제한 임시 개체를 생성합니다. 따라서, 임시 개체가 생성되지 않도록 전위형 증감 연산자를 사용하는게 좋습니다.
+전위형 연산의 경우 값을 먼저 증감시킨뒤 증감한 값을 리턴합니다만, 후위형 연산의 경우는 값을 증감 시키기 전의 값을 리턴합니다.
+
+후위형의 이러한 특징은 분석을 헷갈리게 할 수 있기 때문에(의도인지, 실수인지), 후위형 보다는 전위형 증감 연산자를 사용하는게 좋습니다.
 
 ```cpp
-T a;
-
-// (△) 비권장. 임시 개체가 생성됨
-a++; // a를 증가시키기 전의 값을 임시 개체를 만들어 리턴함.
-
-// (O) 권장. 임시 개체가 생성되지 않음
-++a; // a값을 증가시키고 참조자를 리턴함. 
-```
-
-또한, 의도한 코드일 수는 있으나, 분석을 헷갈리게 할 수 있기 때문에, 후위 보다는 전위 증감 연산자를 사용하는게 좋습니다.
-
-```cpp
-int n = 10;
-int a = ++n;
-EXPECT_TRUE(a == 11); // 증가시킨 후 값
-EXPECT_TRUE(n == 11);
-
-int b = n++;
-EXPECT_TRUE(b == 11); // (△) 비권장. 의도한 것인지 조금 헷갈립니다. 증가시킨 전 값. 
-EXPECT_TRUE(n == 12);
+// 전위형 - 증감시킨 값을 리턴
+{
+    int n = 10;
+    int val = ++n;
+    EXPECT_TRUE(val == 11); // 증가시킨 후 값
+    EXPECT_TRUE(n == 11);
+}
+// 후위형 - 증감시키기 전의 값을 리턴
+{
+    int n = 10;
+    int val = n++;
+    EXPECT_TRUE(val == 10); // (△) 비권장. 의도한 것인지 조금 헷갈립니다. 증가시킨 전 값. 
+    EXPECT_TRUE(n == 11);
+}
 ```
 
 **논리 연산자**
@@ -286,13 +282,18 @@ EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 �
 |`typeid(개체명)`|개체 타입 정보 리턴|
 |`typeid(타입명)`|자료형이나 클래스명, 구조체명, 공용체명의 타입 정보 리턴|
 
-하기 예에서 처럼 RTTI(Runtime Type Info)가 있는 개체(가상 함수가 있는 개체)는 참조하는 개체의 원래 타입 정보를 리턴합니다.
+하기 예는 상속관계에서 가상 함수가 없는 경우와 있는 경우에 따라 `typeid` 동작을 보여 줍니다.( RTTI(Runtime Type Info)가 있는 개체(가상 함수가 있는 개체)에 따라 동작이 다릅니다.)
+
+1. 가상 함수가 없는 경우
+    정의한 개체 타입을 리턴합니다.
+
+2. 가상 함수가 있는 경우
+    참조하는 개체 타입을 리턴합니다.
 
 ```cpp
-#include <typeinfo> 
 // 가상 함수 없음
-class Base {};
-class Derived : public Base {};
+class Base1 {};
+class Derived1 : public Base1 {};
 
 // 가상 함수 있음
 class Base2 { 
@@ -301,23 +302,30 @@ public:
 };
 class Derived2 : public Base2 {};
 
-Base b;
-const std::type_info& b1 = typeid(Base);
-const std::type_info& b2 = typeid(b);
-EXPECT_TRUE(b1 == b2);
-EXPECT_TRUE(b1.hash_code() == b2.hash_code());
+// 타입인 Base1과 개체 b1은 hash_code가 동일합니다.
+{
+    Base1 b1;
+    const std::type_info& ti1 = typeid(Base1);
+    const std::type_info& ti2 = typeid(b1);
+    EXPECT_TRUE(ti1 == ti2);
+    EXPECT_TRUE(ti1.hash_code() == ti2.hash_code());
+}
+// 가상함수가 없는 경우의 참조 - 참조 대상이 Derived1이지만, 정의한 Base1 타입으로 변경됨
+{
+    Derived1 d1;
+    Base1& b1Ref = d1; // 가상 함수 없음
 
-Derived d;
-Base& bRef = d; // 가상 함수 없음
+    // b1Ref = d1으로 bRef는 Base1 타입이 됨
+    EXPECT_TRUE(typeid(b1Ref).hash_code() == typeid(Base1).hash_code());
+}
+// 가상함수가 있는 경우의 참조 - 참조 대상인 Derived2 타입으로 유지됨
+{
+    Derived2 d2;
+    Base2& b2Ref = d2; // 가상 함수 있음
 
-// bRef = d로 bRef는 Base 타입이 됨
-EXPECT_TRUE(typeid(bRef).hash_code() == typeid(b).hash_code());
-
-Derived2 d2;
-Base2& b2Ref = d2; // 가상 함수 있음
-
-// b2Ref = d2로 b2Ref는 다형적 동작하며, 여전히 d2 타입임.(원래 개체의 타입 정보)
-EXPECT_TRUE(typeid(b2Ref).hash_code() == typeid(d2).hash_code());  
+    // b2Ref = d2로 b2Ref는 다형적 동작하며, 여전히 Derived2 타입임.(원래 개체의 타입 정보)
+    EXPECT_TRUE(typeid(b2Ref).hash_code() == typeid(Derived2).hash_code());   
+}
 ```
 
 **연산자 우선순위**
@@ -477,7 +485,7 @@ inline T operator +(int left, const T& right) {
 
 **증감 연산자 오버로딩**
 
-증감 연산자는 오버로딩시 전위형과 후위형을 구분하기 위해, 후위형의 경우 인자로 `int`를 dummy로 넣습니다. 또한 후위형은 증감 시키기 전의 값을 리턴하기 위해 현재값을 복제합니다.(이러한 특성 때문에 후위형 보다는 전위형을 쓰시는게 좋습니다.)
+증감 연산자는 오버로딩시 전위형과 후위형을 구분하기 위해, 후위형의 경우 인자로 `int`를 dummy로 넣습니다. 또한 후위형은 증감 시키기 전의 값을 리턴하기 위해 현재값을 복제합니다.(후위형은 분석을 헷갈리게 할 뿐 아니라, 복제 부하 까지 있습니다. 이러한 특성 때문에 후위형 보다는 전위형을 쓰시는게 좋습니다.)
 
 ```cpp
 class T {
