@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 코드 분석을 위해 제어의 중첩을 최소화 하고 조건 상태표를 작성하라.
+> * 코드 분석을 위해 제어의 중첩을 최소화 하라(조건 상태표를 활용하라.)
 > * 예외에 안정적일 수 있도록 사전 조건 검사를 수행하라.
 > * `goto`는 코드 분석을 방해하니 사용하지 마라.
  
@@ -105,7 +105,7 @@ switch (state) {
 }
 ```
 
-이 낫습니다.
+가 낫습니다.
 
 **`if`와 `else`**
 
@@ -120,9 +120,11 @@ if (condition) {} // (△) 비권장. else문이 고려되었는지 판단하기
 ```cpp
 if (condition) {}
 else {
-    // assert(false); // "해당 case 절대 없음"
+    assert(false); // "해당 case 절대 없음"
 }
 ```
+
+가 낫습니다.
 
 **사전 조건 검사**
 
@@ -161,7 +163,7 @@ ErrorCode f(param1, param2) {
 }
 ```
 
-이 낫습니다.
+가 낫습니다.
 
 **일관된 조건 검사**
 
@@ -170,7 +172,7 @@ ErrorCode f(param1, param2) {
 ```cpp
 if (!condition1) {return;}
 if (!condition2) {return;}
-if (condition3) {return;} // (△) 비권장. 혼자만 true이면 return됩니다.
+if (condition3) {return;} // (△) 비권장. 코딩 실수처럼 보입니다.
 if (!condition4) {return;}
 ```
 
@@ -203,7 +205,7 @@ if (a < b) {
 }
 if (d < c) { 
 }
-
+```
 가 낫습니다.
 
 
