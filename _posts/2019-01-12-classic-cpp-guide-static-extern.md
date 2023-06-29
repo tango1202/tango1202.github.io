@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [고전 C++ 가이드] 정적 변수와 정적 함수(static), 전역선언(extern)"
+title: "#12. [고전 C++ 가이드] 정적 변수와 정적 함수(static), 전역 선언(extern)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
