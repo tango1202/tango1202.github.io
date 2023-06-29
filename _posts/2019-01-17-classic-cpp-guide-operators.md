@@ -167,7 +167,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |--|--|:--:|:--:|:--:|
 |배열 항목|`a[b]`|O|`R& T::operator [](S b);`<br/>`<const R& T::operator [](S b) const;`|X|
 |포인터 실제값|`*a`|O|`R& T::operator *();`<br/>`const R& T::operator *() const;`|`R& operator*(T a);`|
-|개체 주소|`&a`|O|`R* T::operator &();`<br/>`const R* T::operator &(); const`|`R* operator&(T a);`|
+|개체 주소|`&a`|O|`R* T::operator &();`<br/>`const R* T::operator &() const;`|`R* operator&(T a);`|
 |개체의 멤버|`a.b`|X|X|X|
 |포인터 개체의 멤버|`a->b`|O|`R* T::operator ->();`|X|
 |개체 멤버에 대한 포인터|`a.*b`|X|X|X|
