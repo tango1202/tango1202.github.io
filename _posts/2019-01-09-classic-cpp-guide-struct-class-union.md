@@ -106,7 +106,7 @@ C c(10, 20); // 값 생성자를 사용
     
         enum {Left, Top, Right, Bottom}; // 열거형 상수
     
-        class NestedClass { // 중첩 클래스
+        class NestedClass { // 중첩 클래스(구조체)
             int m_D3;
         };
         typedef NestedClass Inner; // 형식 재정의
