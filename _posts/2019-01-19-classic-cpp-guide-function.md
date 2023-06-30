@@ -30,20 +30,22 @@ return-type function-name(parameter-list) [const] [throw(exception-list)] {}
 |`[const]`|멤버 함수인 경우 개체를 수정하지 않음([상수(const), 변경 가능 지정자(mutable), 최적화 제한 지정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable/) 참고)
 |`[throw(exception-list)]`|함수가 발생하는 예외 명세.|
 
+**ㅇㅖ외 명세 실체**
+사실 throw 한다
 
+**인자(매개변수, Parameter) 작성법**
 
-인자(매개변수, Parameter) 작성법
+**명명된 인자 선언**
 
-1. 명명된 인자 선언
+**기본값을 사용한 인자**
 
-2. 기본값을 사용한 인자
-   디폴트 인자가 주어지면, 그 뒤로는 다 디폴트 값이 있어야 함.
+1. 디폴트 인자가 주어지면, 그 뒤로는 다 디폴트 값이 있어야 함.
 
     // 단 줄임표는 가능
    int g(int n = 0, ...); // OK
 
 
-함수 결과를 기본값으로 사용하면, 런타임  호출 시점의 값을 반영함
+2. 함수 결과를 기본값으로 사용하면, 런타임  호출 시점의 값을 반영함
 ```cpp
    int a = 1;
  
@@ -62,9 +64,12 @@ void h()
 }
 ```
 
-선언과 정의시 기본값 재정의 또는 변경
+3. 선언과 정의시 기본값 재정의 안됨.또는 변경
 
-상속관계에서 기본값 재정의
+ 컴파일 오류 확인 필요
+
+4. 상속관계에서 기본값 재정의
+
     b.f(); // OK: calls Derived::f(7) 
     d.f(); // Error: no default 
     void f(int v1, int v2 = 10); // 기본값
@@ -73,14 +78,19 @@ class Base { virtual void f(int v1 = 20); };class Driven : public Base { virtual
 
 
 
-지역변수 사용 안됨.
+5. 지역변수로 기본값 사용 안됨.
 
-void f(A* p = this) {} // error: this is not allowed
 
-3. 이름이 없는 인자
-4. 인자 없음
-5. int f(void, int); and int f(const void); 은 오류
-6. 가변 인자(...)
+6. this 안됨
+   void f(A* p = this) {} // error: this is not allowed
+
+**이름이 없는 인자**
+
+**인자 없음**
+
+int f(void, int); and int f(const void); 은 오류
+
+**가변 인자(...)**
 
 Defined in header <cstdarg>
 va_start 가변 인자 액세스 시작 매크로 함수
@@ -120,10 +130,38 @@ int main()
     std::cout << add_nums(4, 25, 25, 50, 50) << '\n';
 }
 ```
-함수 포인터
+**함수 포인터**
 
 void error(int code); void (*p)(int); // 함수 포인터
 p = &error; p(10); // 함수 포인터를 이용하여 error 호출
+
+*
+
+**멤버함수 포인터**
+
+클래스 멤버함수 호출
+class Date { public: void Print(); };void f(Date* d) { d->Print(); } 
+
+**멤버함수 포인터 사용하기**
+
+class Date { public: void Print(); };
+typedef void (Data::*Func)(); void f(Date* d) { Func* func = &Date::Print(); (d->*func)(); // 멤버함수 포인터를 통한 호출. 미친짓 같지만 라이브러리 구성하다보면 쓸때도 있다. }
+
+
+**인자의 모호성은 피할것**
+
+void f(double); void f(long);
+f(1); // f(double(1)) 일까 f(long(1)) 일까?
+
+**유효범위 우선**
+
+void f(int); 
+void g()
+{ 
+   void f(double); 
+   f(1); // 유효범위 우선에 의해 // f(double) 이 호출됨
+}
+**오버로딩 매칭 규칙**
 
 하기는 동일함수선언임.
 T의 배열은 T의 포인터로 변경됨.
@@ -135,30 +173,6 @@ int f(char[]);
 int f(char* s);
 int f(char* const);
 int f(char* volatile s);
-
-**멤버함수 포인터**
-
-클래스 멤버함수 호출
-class Date { public: void Print(); };void f(Date* d) { d->Print(); } 
-
-멤버함수 포인터 사용하기
-
-class Date { public: void Print(); };
-typedef void (Data::*Func)(); void f(Date* d) { Func* func = &Date::Print(); (d->*func)(); // 멤버함수 포인터를 통한 호출. 미친짓 같지만 라이브러리 구성하다보면 쓸때도 있다. }
-
-
-인자의 모호성은 피할것
-void f(double); void f(long);
-f(1); // f(double(1)) 일까 f(long(1)) 일까?
-
-유효범위 우선
-
-void f(int); 
-void g()
-{ 
-   void f(double); 
-   f(1); // 유효범위 우선에 의해 // f(double) 이 호출됨
-}
 
 ** 인수 종속성**
 ADL 또는 Koenig 조회 [1] 라고도 하는 인수 종속 조회
@@ -182,6 +196,7 @@ C로부터 상속된 잔재. Type 정확도를 해친다. 의도하지 않는 �
    1. 완전일치
    2. 정수 변환, 부동 소수점 변환, 부동 정수 변환, 포인터 변환, 포인터-멤버 변환, 부울 변환, 파생 클래스를 기본 클래스로 사용자 정의 변환
 
+**스트림 오버로딩**
 Stream extraction and insertion
 std::ostream& operator<<(std::ostream& os, const T& obj)
 {
