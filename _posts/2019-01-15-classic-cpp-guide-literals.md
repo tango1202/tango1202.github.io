@@ -45,7 +45,7 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 # 문자열 상수
 
-문자열 상수는 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 쓸데없이 비슷하게 많이 만들지는 마세요.(동일한 것을 여러번 사용하는 경우 컴파일러가 1개로 합쳐주긴 합니다만([메모리 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/) 참고), 코드 중복이니 1개만 정의해서 사용하세요.) 
+문자열 상수는 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 쓸데없이 비슷하게 많이 만들지는 마세요.(동일한 것을 여러번 사용하는 경우 컴파일러가 1개로 합쳐주긴 합니다만([데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고), 코드 중복이니 1개만 정의해서 사용하세요.) 
 
 하기와 같이 `const`형 포인터로 문자열 상수를 사용 할 수 있습니다.
 
@@ -70,7 +70,7 @@ EXPECT_TRUE(str4[2] == L'c');
 EXPECT_TRUE(str4[3] == L'\0'); // 널문자가 추가됨
 ```
 
-문자열 상수는 rodata 영역에 할당([메모리 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/) 참고)되기 때문에 수정할 수 없습니다. 따라서 포인터를 통해서 받은 문자열 상수를 수정하려 하면, 예외가 발생합니다. 하지만, 배열로 저장하면 복제본이므로 수정할 수 있습니다.
+문자열 상수는 rodata 영역에 할당([데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고)되기 때문에 수정할 수 없습니다. 따라서 포인터를 통해서 받은 문자열 상수를 수정하려 하면, 예외가 발생합니다. 하지만, 배열로 저장하면 복제본이므로 수정할 수 있습니다.
 
 ```cpp
 const char* str1 = "abc"; // 문자열 상수

@@ -29,7 +29,7 @@ sidebar:
 
 또한, 개체 생성시 초기화를 하지 않으면, 초기화되지 않은 개체를 사용하는 실수를 할 수 있습니다. 그러니 항상 생성과 동시에 초기화 하는 것이 좋습니다. 
 
-다음은 초기화 테스트용 클래스입니다. 기본 생성자, `int`를 전달받는 생성자(형변환이 되지 않게 `explicit`로 정의. [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 참고), 복사 생성자, 대입 연산자를 정의하였습니다.
+다음은 초기화 테스트용 클래스입니다. 기본 생성자, `int`를 전달받는 생성자(형변환이 되지 않게 `explicit`로 정의. [명시적 변환 생성 지정자(explicit)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고), 복사 생성자, 대입 연산자를 정의하였습니다.
 
 ```cpp
 class T {
