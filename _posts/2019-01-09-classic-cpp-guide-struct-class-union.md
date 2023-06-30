@@ -145,15 +145,15 @@ C c(10, 20); // 값 생성자를 사용
     ```cpp
     class Base {
     protected:
-        int val;
+        int m_Val;
     };
     
     class Derived : public Base {
     public:
-        using Base::val; // (△) 비권장. Base val을 public으로 변경합니다.
+        using Base::m_Val; // (△) 비권장. Base m_Val을 public으로 변경합니다.
     };
     Derived d;
-    d.val = 10; // 이제 public이라 접근 가능합니다.
+    d.m_Val = 10; // 이제 public이라 접근 가능합니다.
     ```
 
 6. 함수 내부의 로컬 클래스
@@ -163,10 +163,10 @@ C c(10, 20); // 값 생성자를 사용
     void f() {
         class T {
         public:
-            int x;
+            int m_X;
         };
         T t; // 함수내에서만 사용 가능
-        t.x = 10; 
+        t.m_X = 10; 
     }
     ```
 
