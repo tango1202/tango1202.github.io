@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-**자료형 종류**
+# 자료형 종류
 
 C++에는 하기의 기본 자료형들이 있습니다. 
 
@@ -30,7 +30,7 @@ C++에는 하기의 기본 자료형들이 있습니다.
 
 그외 `signed`, `unsigned`, `short`, `long` 와 결합하여 다양한 조합이 나올 수 있습니다.([https://en.cppreference.com/w/cpp/language/types](https://en.cppreference.com/w/cpp/language/types) 참고)
 
-**자료형 재정의(별칭)**
+# 자료형 재정의(별칭)
 
 `typedef` 를 사용하여 자료형의 별칭을 만들 수 있습니다.(절대 `define`쓰지 마세요!!!)
 
@@ -54,7 +54,7 @@ struct ClassT {
 ClassT<int>::ConstType constVal = 20;
 ```
 
-**자료형 크기**
+# 자료형 크기
 
 `sizeof()`를 이용하면 개체 용량을 바이트 단위로 구할 수 있습니다. 단, 참조자의 경우 참조하는 개체와 동일 크기가 리턴됩니다.
 
@@ -72,7 +72,7 @@ EXPECT_TRUE(sizeof(myClass) == sizeof(myClassRef)); // sizeof() 시 참조하는
 
 ```
 
-**자료형 최대/최소값**
+# 자료형 최대/최소값
 
 `numeric_limits`를 이용하여 자료형의 최대, 최소값을 알 수 있습니다.
 

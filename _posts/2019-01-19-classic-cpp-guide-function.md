@@ -7,16 +7,18 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
-동일한 함수명인 경우 인자 타입에 따라 함수 호출. Type 정확도가 중요. 
-• 형변환 규칙은 일반화 프로그래밍의 해법이 될 수도 있다
-다형적인 가상함수에서 기본값을 다르게 하면 안된다
-예외명세를 사용하지 마라.
+> * 동일한 함수명인 경우 인자 타입에 따라 함수 호출. Type 정확도가 중요. 
+> * 형변환 규칙은 일반화 프로그래밍의 해법이 될 수도 있다.
+> * 다형적인 가상함수에서 기본값을 다르게 하면 안된다.
+> * 동적 예외 사양을 사용하지 마라.
+
+# 개요
 
 함수는 다음 목적을 위해 만듭니다.
 
 1. 함수 코드 재활용(코드 중복 제거) 
 2. 함수 인자와의 **코딩 계약**
-3. 디버깅 용이
+3. 디버깅 편의성
 
 함수 정의의 일반적인 형태는 하기와 같습니다.(`[]`인 부분은 옵션입니다.)
 
@@ -28,14 +30,80 @@ return-type function-name(parameter-list) [const] [throw(exception-list)] {}
 |--|--|
 |`return-type`|자료형과 타입. 단, 배열은 안됨|
 |`[const]`|멤버 함수인 경우 개체를 수정하지 않음([상수(const), 변경 가능 지정자(mutable), 최적화 제한 지정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable/) 참고)
-|`[throw(exception-list)]`|함수가 발생하는 예외 명세.|
+|`[throw(exception-list)]`|함수가 발생하는 예외 사양.<br/>나열된 예외 이외에는 `unexpected`로 강제 변환됨. 사용하지 말 것.([동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-dynamic-exception-specification) 참고)|
 
-**ㅇㅖ외 명세 실체**
-사실 throw 한다
+**함수 포인터**
 
-**인자(매개변수, Parameter) 작성법**
+```cpp
+void error(int code);
+void (*p)(int); // 함수 포인터
+p = &error; p(10); // 함수 포인터를 이용하여 error 호출
+```
+*
+
+**멤버함수 포인터**
+
+클래스 멤버함수 호출
+class Date { public: void Print(); };void f(Date* d) { d->Print(); } 
+
+**멤버함수 포인터 사용하기**
+
+class Date { public: void Print(); };
+typedef void (Data::*Func)(); void f(Date* d) { Func* func = &Date::Print(); (d->*func)(); // 멤버함수 포인터를 통한 호출. 미친짓 같지만 라이브러리 구성하다보면 쓸때도 있다. }
+
+
+# 인자(매개변수, Parameter) 작성법
 
 **명명된 인자 선언**
+
+**이름이 없는 인자**
+
+**인자 없음**
+
+int f(void, int); and int f(const void); 은 오류
+
+**가변 인자(...)**
+
+Defined in header <cstdarg>
+va_start 가변 인자 액세스 시작 매크로 함수
+ 
+enables access to variadic function arguments
+(function macro)
+va_arg 가변인자 추출 매크로 함수
+ 
+accesses the next variadic function argument
+(function macro)
+
+va_end 가변 인자 사용 종료 매크로 함수
+ 
+ends traversal of the variadic function arguments
+(function macro)
+va_list 가변 인자에 대한 typedef
+ 
+holds the information needed by va_start, va_arg, va_end, and va_copy
+(typedef)
+```cpp
+#include <cstdarg>
+ 
+int add_nums(int count, ...) 
+{
+    int result = 0;
+    std::va_list args;
+    va_start(args, count);
+    for (int i = 0; i < count; ++i) {
+        result += va_arg(args, int);
+    }
+    va_end(args);
+    return result;
+}
+ 
+int main() 
+{
+    std::cout << add_nums(4, 25, 25, 50, 50) << '\n';
+}
+```
+
+
 
 **기본값을 사용한 인자**
 
@@ -84,68 +152,6 @@ class Base { virtual void f(int v1 = 20); };class Driven : public Base { virtual
 6. this 안됨
    void f(A* p = this) {} // error: this is not allowed
 
-**이름이 없는 인자**
-
-**인자 없음**
-
-int f(void, int); and int f(const void); 은 오류
-
-**가변 인자(...)**
-
-Defined in header <cstdarg>
-va_start 가변 인자 액세스 시작 매크로 함수
- 
-enables access to variadic function arguments
-(function macro)
-va_arg 가변인자 추출 매크로 함수
- 
-accesses the next variadic function argument
-(function macro)
-
-va_end 가변 인자 사용 종료 매크로 함수
- 
-ends traversal of the variadic function arguments
-(function macro)
-va_list 가변 인자에 대한 typedef
- 
-holds the information needed by va_start, va_arg, va_end, and va_copy
-(typedef)
-```cpp
-#include <cstdarg>
- 
-int add_nums(int count, ...) 
-{
-    int result = 0;
-    std::va_list args;
-    va_start(args, count);
-    for (int i = 0; i < count; ++i) {
-        result += va_arg(args, int);
-    }
-    va_end(args);
-    return result;
-}
- 
-int main() 
-{
-    std::cout << add_nums(4, 25, 25, 50, 50) << '\n';
-}
-```
-**함수 포인터**
-
-void error(int code); void (*p)(int); // 함수 포인터
-p = &error; p(10); // 함수 포인터를 이용하여 error 호출
-
-*
-
-**멤버함수 포인터**
-
-클래스 멤버함수 호출
-class Date { public: void Print(); };void f(Date* d) { d->Print(); } 
-
-**멤버함수 포인터 사용하기**
-
-class Date { public: void Print(); };
-typedef void (Data::*Func)(); void f(Date* d) { Func* func = &Date::Print(); (d->*func)(); // 멤버함수 포인터를 통한 호출. 미친짓 같지만 라이브러리 구성하다보면 쓸때도 있다. }
 
 
 **인자의 모호성은 피할것**
