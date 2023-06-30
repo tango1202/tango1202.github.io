@@ -82,7 +82,7 @@ namespace E {
     }
 }
 namespace F {
-    using namespace D; // D의 것은 다 가져옴
+    using namespace D; // using 지시문으로 D의 것은 다 가져옴
 
     void f() {
         d(); // D의 것은 그냥 사용
