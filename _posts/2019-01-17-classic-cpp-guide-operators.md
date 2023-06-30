@@ -257,7 +257,7 @@ EXPECT_TRUE(result == 10);
 short i;
 int arr[10];
 class T {
-    int i;
+    int m_Val;
 };
 struct S {
     int x;
@@ -362,12 +362,12 @@ class Derived2 : public Base2 {};
 ```cpp
 class T {
 private:
-    int m_A;
-    int m_B;
+    int m_X;
+    int m_Y;
 public:
     T& operator =(const T& other) {
-        this->m_A = other.m_A;
-        this->m_B = other.m_B;
+        this->m_X = other.m_X;
+        this->m_Y = other.m_Y;
         return *this; // 자기 자신을 리턴합니다.
     }
 }; 

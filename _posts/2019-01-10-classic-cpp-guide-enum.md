@@ -38,9 +38,10 @@ public:
         Sunday, Monday, Tuesday, Wednesday, 
         Thursday, Friday, Saturday
     };
-    Week::Val val = Week::Sunday; // 클래스명 사용
-    EXPECT_TRUE(val == Week::Sunday);
 };
+
+Week::Val val = Week::Sunday; // 클래스명 사용
+EXPECT_TRUE(val == Week::Sunday);
 ```
 
 **열거형 값지정**
@@ -48,14 +49,18 @@ public:
 열거형의 각 항목은 이전 항목 + 1 의 값입니다. 디폴트는 0 부터 시작하며, 임의 정수값을 지정할 수 있습니다.
 
 ```cpp
-enum Week {
-    sunday, // 기본적으로 0부터 시작하여 1씩 증가
-    monday, 
-    tuesday, 
-    wednesday = 10, // 값 지정한 이후로 1씩 증가
-    thursday, 
-    friday, 
-    saturday
+class Week {
+public:
+    // 클래스내에 정의. 사용시 클래스명을 기재해야 함
+    enum Val {
+        Sunday, // 기본적으로 0부터 시작하여 1씩 증가
+        Monday, 
+        Tuesday,
+        Wednesday = 10, // 값 지정한 이후로 1씩 증가
+        Thursday, 
+        Friday, 
+        Saturday
+    };
 };
 
 EXPECT_TRUE(

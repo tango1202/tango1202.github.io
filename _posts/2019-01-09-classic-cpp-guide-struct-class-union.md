@@ -39,8 +39,8 @@ struct S {
 S s = {10, 20}; // 중괄호 초기화 지원
 
 class C {
-    int x; // 기본적으로 private
-    int y;
+    int m_X; // 기본적으로 private
+    int m_Y;
 public:
     C(int x, int y) {} // 값 생성자 정의
 };
@@ -57,10 +57,10 @@ C c(10, 20); // 값 생성자를 사용
     
     ```cpp
     class MyClass {
-        YourClass your; // (X) 컴파일 오류. YourClass가 뭔지 모릅니다.
+        YourClass m_Your; // (X) 컴파일 오류. YourClass가 뭔지 모릅니다.
     };
     class YourClass {
-        MyClass my; // MyClass는 상위에 정의되어 사용할 수 있습니다.
+        MyClass m_My; // MyClass는 상위에 정의되어 사용할 수 있습니다.
     }; 
     ```
     
@@ -72,12 +72,12 @@ C c(10, 20); // 값 생성자를 사용
             // (O) 전방 선언을 통해 YourClass가 대충 클래스라는 걸 압니다. 
             // 반드시 포인터나 참조자와 같은 참조 형식이어야 합니다.
             // 구체 정의를 사용하려면, 헤더 파일과 cpp 파일을 분리하고, cpp 부분에서 구체 정의를 사용하세요.
-            YourClass* your; 
+            YourClass* m_Your; 
 
             void f(); // 선언만 하고, cpp에서 yourClass를 사용할 겁니다.
         };
         class YourClass {
-            MyClass my; // MyClass는 상위에 정의되어 사용할 수 있습니다.
+            MyClass m_My; // MyClass는 상위에 정의되어 사용할 수 있습니다.
 
         public:
             void g() {}
@@ -87,7 +87,7 @@ C c(10, 20); // 값 생성자를 사용
     ```cpp
         // cpp 파일에서 YourClass의 구체 정의 사용
         void MyClass::f() {
-            your->g(); 
+            m_Your->g(); 
         }
     ```
 2. 멤버 사양
@@ -177,13 +177,13 @@ C c(10, 20); // 값 생성자를 사용
 ```cpp
 class C {
 private:
-    int val1;
-    int val2;
+    int m_Val1;
+    int m_Val2;
 public:
     // C(int v1, int v2) {} // (X) 컴파일 오류. 공용체 멤버는 생성자를 가질 수 없음
     // ~C() {} // (X) 컴파일 오류. 공용체 멤버는 소멸자를 가질 수 없음
-    int GetVal1() const {return val1;} // 멤버 함수가 있어도 되나, virtual 이면 안됨
-    void SetVal1(int val) {val1 = val;}
+    int GetVal1() const {return m_Val1;} // 멤버 함수가 있어도 되나, virtual 이면 안됨
+    void SetVal1(int val) {m_Val1 = val;}
 };
 
 struct S1 {
