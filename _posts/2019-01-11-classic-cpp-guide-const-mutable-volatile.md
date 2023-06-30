@@ -101,6 +101,20 @@ void f(const int x); // (△) 비권장. 인수를 x에 복사해서 쓰되 f에
 void f(int* x); void f(int& x); // (O) 인수를 f에서 수정함.
 void f(const int* x); void f(const int& x); // (O) 인수를 f에서 수정하지 않음.  
 ```
+**상수 멤버 함수**
+
+멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 멤버 변수를 수정할 수 없습니다.
+
+```cpp
+class T {
+private:
+    int m_Val;
+public:
+    void f() const { // 상수 멤버 함수입니다.
+        m_Val = 10; // (X) 컴파일 오류. 상수 멤버 함수에서 멤버 변수를 수정할 수 없습니다.
+    }
+};
+```
 
 **변경 가능 지정자(`mutable`)**
 
