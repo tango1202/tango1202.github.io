@@ -207,12 +207,12 @@ EXPECT_TRUE(a[0] == 10);
 ```cpp
 // 함수 참조자 
 void (&r6)(int) = TestFunc;
-r7(10); // TestFunc 함수 호출 
+r6(10); // TestFunc 함수 호출 
 ```
 
 ```cpp
 // 다형성 참조자
 Derived d;
-Base& r8 = d; // 부모 클래스 참조자로 자식 클래스 제어
-r8.f(); // Derived 출력
+Base& r7 = d; // 부모 클래스 참조자로 자식 클래스 제어
+r7.f(); // Derived 출력
 ```
