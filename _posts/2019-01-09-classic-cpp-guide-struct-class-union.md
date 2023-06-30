@@ -96,15 +96,15 @@ C c(10, 20); // 값 생성자를 사용
 
     ```cpp
     class T {
-        int d1; // 비정적 데이터 멤버
-        static const int d2 = 1; // 정적 데이터 멤버. 단 nested 클래스에서는 사용 못함
+        int m_D1; // 멤버 변수
+        static const int s_D2 = 1; // 정적 멤버 변수. 단 nested 클래스에서는 사용 못함
     
         virtual void f1(int) = 0; // 순가상 함수
         virtual void f2(int) {} // 가상 함수    
-        void f3(int) {} // 함수
-        static void f4(int) {} // 정적 함수
+        void f3(int) {} // 멤버 함수
+        static void f4(int) {} // 정적 멤버 함수
     
-        enum {left, top, right, bottom}; // 열거형 상수
+        enum {Left, Top, Right, Bottom}; // 열거형 상수
     
         class NestedClass { // 중첩 클래스 혹은 구조체
             int myData;
