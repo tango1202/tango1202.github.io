@@ -142,7 +142,7 @@ EXPECT_TRUE(p6[0] == 1 && p6[1] == 2);
 void TestFunc(int) {}
 
 void (*p7)(int) = &TestFunc;
-void (*p8)(int) = TestFunc; // &TestFunc 랑 동일
+void (*p8)(int) = TestFunc; // &TestFunc 와 동일
 
 p7(10); // (*p7)(10); 도 가능. TestFunc 함수 호출 
 p8(10); // (*p8)(10); 도 가능. TestFunc 함수 호출        
