@@ -88,6 +88,16 @@ EXPECT_TRUE(str2[0] == 'd');
 
 문자열의 내용을 수정할 필요가 없다면, 배열이나 `std::string`, `std::wstring`에 저장하지 마세요. 불필요하게 복제되어 복제 부하만 생깁니다.
 
+문자열 상수가 너무 긴 경우에, 서로 연달아 배치하면 자동으로 이어 붙이기가 됩니다. 하기 예에서 `str1`, `str2`, `str3`은 모두 `Hello World` 문자열 리터럴을 가리키며, 동일한 메모리 주소를 사용합니다.(동일한 문자열을 여러번 사용하는 경우 컴파일러가 1개로 합쳐줌. [데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고)
+
+```cpp
+const char* str1 = "Hello World"; 
+const char* str2 = "Hello " "World"; // (O) 두 문자열 상수 이어 붙이기
+const char* str3 = "Hello " // (O) 개행된 문자열 상수 붙이기
+                   "World";   
+EXPECT_TRUE(str1 == str2 && str2 == str3); // (O) 동일한 문자열 상수는 컴파일러가 1개만 생성해 줍니다.   
+```
+
 # 이스케이프 문자
 
 `\`를 이용하여 특수문자를 표시할 수 있습니다.
