@@ -496,6 +496,8 @@ namespace D {
         // MyFunc(const Date&, int) 과 MyFunc(const C::Date&, double) 중 타입이 일치하는 MyFunc(const Date&, int)이 채택됨
         // 명시적으로 C::MyFunc 을 호출하는게 분석에 좋을 수도 있음
         return MyFunc(d, 1); 
-    }
+    }  
 }
+
+EXPECT_TRUE(D::g() == 1); // C::MyFunc 이 채택됨
 ```
