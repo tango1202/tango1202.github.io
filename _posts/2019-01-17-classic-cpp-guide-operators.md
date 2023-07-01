@@ -327,6 +327,12 @@ class Derived2 : public Base2 {};
     EXPECT_TRUE(typeid(b2Ref).hash_code() == typeid(Derived2).hash_code());   
 }
 ```
+# 스트림 연산자
+
+|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|--|--|:--:|:--:|:--:|
+|출력|`std::cout<<a;`|O|X|`std::ostream& operator <<(std::ostream& os, const T& a)`|
+|입력|`std::cin>>a;`|O|X|`std::istream& operator >>(std::istream& is, T& a)`|
 
 # 연산자 우선순위
 

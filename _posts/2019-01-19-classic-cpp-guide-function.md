@@ -11,6 +11,7 @@ sidebar:
 > * 동적 예외 사양을 사용하지 마라.
 > * 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하라.
 > * 다형적인 가상 함수에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
+> * 함수 인자의 유효 공간에서도 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)하는 원리를 이해하라.
 
 # 개요
 
@@ -434,7 +435,7 @@ EXPECT_TRUE(t.f(const_cast<const int*>(&a)) == 7); // (O) const int* 는 const i
 EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따라 상수 함수 선택됨
 ```
 
-**오버로딩 함수 이름 탐색 규칙**
+# 오버로딩 함수 탐색 규칙
 
 오버로딩 함수의 후보군은 하기 단계에 따라 수집되고 선정됩니다.
  
@@ -442,15 +443,17 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
    
 2. 함수 인자의 유효 공간에서 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)
 
-3. 암시적 형변환을 포함하여 실행가능 함수 결정
+3. 암시적 형변환을 포함하여 실행 가능 함수 결정
+   
    1. 타입 완전 일치
    2. 경미한 암시적 형변환
    3. 승격 일치(`bool`을 `int`로, `char`를 `int`로) 
    4. 표준 변환(자식 개체 포인터를 부모 개체 포인터로, `T*`를 `void*`로, `int`를 `double`로, `double`을 `int`로) 
-   5. 사용자 정의 형변환(형변환 연산자 오버로딩)
+   5. 사용자 정의 형변환([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)
 
 
 하기의 경우를 보면 `g()` 에서 `MyFunc()`을 호출하면, 같은 네임스페이스에서 `MyFunc(double)`을 찾고, 인자 `1`을 `double`로 암시적으로 변환해서 사용하게 됩니다.
+
 ```cpp
 namespace A {
     class Date {};
@@ -477,7 +480,7 @@ EXPECT_TRUE(B::g() == 2); // B::MyFunc 이 채택됨
 
 이 찾아지게 되고, 타입이 완전 일치하는 네임스페이스 `C`의 `int MyFunc(const Date&, int)`이 사용됩니다.
 
-의도한 동작일 수도 있고, 아닐 수도 있고, 분석이 어려워질 수도 있으니, 주의해서 사용하시기 바랍니다.
+좀더 넓은 범위에서 타입이 일치하는 함수를 찾도록 도와주는 역할입니다만, 의도한 동작일 수도 있고, 아닐 수도 있고, 분석이 어려워질 수도 있으니, 원리를 이해하고 사용하시기 바랍니다.
 
 ```cpp
 namespace C {
@@ -496,25 +499,3 @@ namespace D {
     }
 }
 ```
-
-
-
-
-
-
-
-**스트림 오버로딩**
-Stream extraction and insertion
-std::ostream& operator<<(std::ostream& os, const T& obj)
-{
-    // write obj to stream
-    return os;
-}
- 
-std::istream& operator>>(std::istream& is, T& obj)
-{
-    // read obj from stream
-    if (/* T could not be constructed */)
-        is.setstate(std::ios::failbit);
-    return is;
-}
