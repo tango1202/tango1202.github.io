@@ -32,7 +32,16 @@ return-type function-name(parameter-list) [const] [throw(exception-list)] {}
 |`[const]`|멤버 함수인 경우 개체를 수정하지 않음([상수(const), 변경 가능 지정자(mutable), 최적화 제한 지정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable/) 참고)
 |`[throw(exception-list)]`|함수가 발생하는 예외 사양.<br/>나열된 예외 이외에는 `unexpected`로 강제 변환됨. 사용하지 말 것.([동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-dynamic-exception-specification) 참고)|
 
-**함수 포인터**
+# 함수 포인터
+
+함수 자체를 다른 함수의 인수로 전달하려면 함수 포인터를 사용해야 합니다.
+
+예를 들어, 계산기를 구현한다고 합시다.
+
+
+
+
+
 
 ```cpp
 void error(int code);
@@ -41,15 +50,24 @@ p = &error; p(10); // 함수 포인터를 이용하여 error 호출
 ```
 *
 
-**멤버함수 포인터**
+**멤버 함수 포인터**
 
 클래스 멤버함수 호출
 class Date { public: void Print(); };void f(Date* d) { d->Print(); } 
 
 **멤버함수 포인터 사용하기**
 
-class Date { public: void Print(); };
-typedef void (Data::*Func)(); void f(Date* d) { Func* func = &Date::Print(); (d->*func)(); // 멤버함수 포인터를 통한 호출. 미친짓 같지만 라이브러리 구성하다보면 쓸때도 있다. }
+```cpp
+class Date { 
+public: 
+    void Print(); 
+};
+typedef void (Data::*Func)(); 
+void f(Date* d) { 
+    Func* func = &Date::Print(); 
+    (d->*func)(); // 멤버함수 포인터를 통한 호출. 미친짓 같지만 라이브러리 구성하다보면 쓸때도 있다. 
+}
+```
 
 
 # 인자(매개변수, Parameter) 작성법

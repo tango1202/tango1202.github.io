@@ -45,6 +45,12 @@ MyData myData1;
 MyData* myData2;
 pMyData MyData3; // MyData* 와 같음
 
+// 함수 포인터
+typedef int (*Func)(int, int); // 함수 포인터 typedef
+
+int f(int a, int b) {return a + b;} // 함수 정의
+Func func = f; // 함수 포인터 저장
+
 // template의 타입 재정의
 template<class T> 
 struct ClassT { 
