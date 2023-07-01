@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 암시적으로 형변환하기 보다는 명시적으로 형변환 하라.
-> * bool 형변환 정의는 하지 마라. 나아가 모든 타입의 형변환 정의를 하지 마라. 뜻하지 않게 몰래 암시적 형변환 한다.
+> * bool 형변환 연산자 정의는 하지 마라. 나아가 모든 타입의 형변환 연산자 정의를 하지 마라. 뜻하지 않게 몰래 암시적 형변환 한다.
 > * 인자가 1개인 생성자는 `explicit`를 사용하여 암시적 형변환을 차단하라.
 > * 할 수 있는한 최선을 다하여 형변환 하지 마라.
 
@@ -23,14 +23,14 @@ sidebar:
 |명시적 형변환 - `static_cast`|타입 유사성을 지키며 변환|
 |명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>RTTI(Runtime Type Info)가 있는 개체(가상함수가 있는 개체)만 가능.|
 |명시적 형변환 - `reinterpret_cast`|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
-|형변환 정의|캡슐화를 위해 제공하나 암시적 형변환이 됨|
+|형변환 연산자 정의|캡슐화를 위해 제공하나 암시적 형변환이 됨|
 |`explicit`|개체로 암시적 형변환 되지 않도록 지정|
 
 C++언어는  
 
 1. C언어의 특성을 물려받으면서 암시적 형변환을 지원하며,
 2. 이를 보완하고자 4종의 명시적 형변환(`const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`)을 제공하고,
-3. [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 정의를 제공합니다.
+3. [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 연산자 정의를 제공합니다.
 
 이 형변환은 기본적으로 타입(자료형)에 기반한 **코딩 계약** 을 위반하기 때문에 사용하지 않는 것이 좋습니다.(작성자의 의도 인지, 실수인지 판단하기 어려워 집니다.)
 
@@ -226,9 +226,9 @@ EXPECT_TRUE(other == NULL);
 }
 ```
 
-# 형변환 정의
+# 형변환 연산자 정의
 
-하기와 같이 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환을 정의할 수 있습니다. 
+하기와 같이 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 연산자를 정의할 수 있습니다. 
 
 ```cpp
 class T {
@@ -270,7 +270,7 @@ EXPECT_TRUE(i == 10);
 EXPECT_TRUE(c == 1);
 ```
 
-# 안전하지 않은 bool 형변환 정의
+# 안전하지 않은 bool 형변환 연산자 정의
 
 `bool`은 하기처럼 암시적으로 `int`로 형변환되면서 뜻하지 않은 동작을 할 수 있습니다. 타입에 기반한 **코딩 계약** 을 위반하니, `bool` 형변환을 정의하지 마세요.
 

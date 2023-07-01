@@ -141,7 +141,7 @@ EXPECT_TRUE(p6[0] == 1 && p6[1] == 2);
 
 **함수 포인터**
 
-함수 자체를 다른 함수의 인수로 전달하려면 함수 포인터를 사용할 수 있습니다.
+함수 포인터를 이용하여 함수 자체를 변수처럼 사용할 수 있습니다.([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
 
 ```cpp
 void TestFunc(int) {}

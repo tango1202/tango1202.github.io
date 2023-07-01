@@ -149,26 +149,3 @@ namespace MyModule { // 여러개의 namespace를 합성할 수 있음
    using namespace B;
 }
 ```
-
-# 이름 탐색 규칙
-
-이름 탐색은 다음의 순서를 따른다고는 하는데, GCC 8.1에서는 컴파일 오류가 나오네요. 아무튼 명시적으로 네임스페이스명을 쓰거나 `using`선언이나, `using`지시문을 사용하시기 바랍니다.
-
-1. 호출한 위치의 유효범위에서 탐색
-2. 주어진 인자들의 네임스페이스 탐색(GCC 8.1에서 컴파일 오류)
-3. 오버로딩 모호성 해결
-   
-```cpp
-namespace MyModule {
-    class Date {};
-    void MyFunc() {}
-} 
-namespace { 
-    void f(MyModule::Date d) {
-        // (X) 컴파일 오류. 인자중 MyModule 네임스페이스가 있어서 탐색 가능하다고 하는데 
-        // GCC 8.1에서 컴파일 오류가 발생합니다.
-        MyFunc(); 
-    }
-}
-```
-
