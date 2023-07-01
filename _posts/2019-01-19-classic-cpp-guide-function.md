@@ -11,7 +11,7 @@ sidebar:
 > * 동적 예외 사양을 사용하지 마라.
 > * 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하라.
 > * 다형적인 가상 함수에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
-> * 함수 인자의 유효 공간에서도 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)하는 원리를 이해하라.
+> * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)하는 원리를 이해하라.
 
 # 개요
 
@@ -128,7 +128,7 @@ void f(int a, int b); // (O)
 void f(int, int); // (O)
 ```
 
-사용하지 않는 인자를 억지로 작성해야 한다는건 악취가 날 소지가 많습니다. 인자를 생략하기 보다는 하기 방법을 고려해 보세요.
+사용하지 않는 인자를 억지로 작성해야 한다는건 악취가 난다는 뜻입니다. 설계 변경을 추천합니다. 그럼에도 불구하고 꼭 인자 생략을 해야 한다면, 하기 작성 방법을 고려해 보세요.
 
 ```cpp
 void f(int, int) {
@@ -164,7 +164,7 @@ void f(); // (O)
 void f(void); // (O)
 ```
 
-하기와 같이 `voi1`를 다른 인자와 섞어 쓰거나(`void*`는 포인터형이기에 괜찮습니다.), `const`와 함께 쓰는건 컴파일 오류가 납니다.
+하기와 같이 `void`를 다른 인자와 섞어 쓰거나(`void*`는 포인터형이기에 괜찮습니다.), `const`와 함께 쓰는건 컴파일 오류가 납니다.
 
 ```cpp
 int f(void, int); // (X) 컴파일 오류
@@ -268,7 +268,7 @@ g_Val = 20;
 EXPECT_TRUE(f5() == 20);
 ```
 
-상속 관계에서 인자의 기본값을 재정의 하면 혼란을 야기할 수 있습니다.
+상속 관계에서 인자의 기본값을 재정의하면, 혼란을 야기할 수 있습니다.
 
 ```cpp
 class Base {
