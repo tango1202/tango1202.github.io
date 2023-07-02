@@ -23,7 +23,7 @@ sidebar:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/9991a2f6-004f-457a-8871-bac0f728427b)
 
-하기와 같이 `App` 의 `Save()` 기능을 구현할 수 있습니다. 상황에 따라 `SaveAs()`함수로 분기하고, `m_Dirty`플래그를 설정합니다.
+`App` 의 `Save()` 기능을 구현한다고 가정합시다. 상황에 따라 `SaveAs()`함수로 분기하고, `m_Dirty`플래그를 설정하여 내용이 수정된 경우에만 저장하도록 구현합니다.
 
 ```cpp
 class App {
@@ -66,7 +66,7 @@ private:
 };
 ```
 
-여기서 `SaveDoc()` 은 어떻게 자식 개체인 `MyApp` 의 문서를 저장할 수 있을까요? 하기처럼 `MyApp`은 사실은 `App`을 상속받은 거니, 강제로 캐스팅 하면 될까요?
+여기서 `SaveDoc()` 은 어떻게 자식 개체인 `MyApp` 의 문서를 저장할 수 있을까요? `MyApp`은 사실은 `App`을 상속받은 거니, 강제로 캐스팅 하면 될까요?
 
 ```cpp
 // App 을 상속받아 만들었습니다.
@@ -137,7 +137,7 @@ protected:
 };
 ```
 
-하기와 같이 테스트 할 수 있습니다.
+다음과 같이 테스트 할 수 있습니다.
 
 ```cpp
 MyApp myApp(true, L"test.txt");
@@ -221,7 +221,7 @@ public:
 };
 ```
 
-하기와 같이 테스트 할 수 있습니다.
+다음과 같이 테스트 할 수 있습니다.
 
 ```cpp
 MyApp myApp(true, L"test.txt");

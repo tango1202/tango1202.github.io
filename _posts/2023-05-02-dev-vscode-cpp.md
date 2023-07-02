@@ -24,7 +24,7 @@ Visual Studio Code 는 에디터이기 때문에, C++ 을 이용한 개발을 �
 
 # Visual Studio Code 사용자 인터페이스
 
-Visual Studio Code는 하기와 같은 인터페이스를 제공합니다.
+Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/73f52133-ffa0-46cf-b4c7-072ae90c0533)
 
@@ -76,7 +76,7 @@ Visual Studio Code는 하기와 같은 인터페이스를 제공합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19a9a392-405e-4d93-b305-831f9d3269fc)
 
-3. `C/C++ Extension Pack` 을 설치하면 하기와 같이 에디터에 C++ 용 IntelliSence 가 표시됩니다.
+3. `C/C++ Extension Pack` 을 설치하면 다음과 같이 에디터에 C++ 용 IntelliSence 가 표시됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/3e55881f-69c0-4ed3-9fd6-0e699d6fbd56)
 

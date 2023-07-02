@@ -25,7 +25,7 @@ sidebar:
 
 **위반 사례**
 
-저장 기능이 필요한 `Shape` 개체가 있다고 합시다. `Save()`함수를 구현하고, 저장시에는 Xml을 이용한다고 봅시다. 다음과 같이 구현할 수 있습니다.
+저장 기능이 필요한 `Shape` 개체가 있다고 합시다. `Save()`함수를 구현하고, 저장시에는 Xml을 이용한다고 봅시다. 멤버 변수로 `m_Writer`를 갖고, `Save()`함수 호출시 `m_Writer`를 이용하여 저장합니다.
 
 ```cpp
 class XmlWriter {
@@ -41,13 +41,13 @@ private:
     
 public:
     void Save() const {
-        writer.WriteIntVal(L"x", m_X);
-        writer.WriteIntVal(L"y", m_Y);
+        m_Writer.WriteIntVal(L"x", m_X);
+        m_Writer.WriteIntVal(L"y", m_Y);
     }
 };
 ```
 
-상기는 다음과 같이 `Shape`과 `XmlWriter` 간의 의존관계가 성립됩니다.
+상기 코드는 `Shape`과 `XmlWriter` 간의 의존관계가 성립됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c539828b-23c3-418e-85a5-1cb0a73b2eca)
 
@@ -55,7 +55,7 @@ public:
 
 **준수 방법**
 
-상위 수준과 하위 수준 모두 인터페이스를 의존하도록 하기와 같이 변경합니다.
+상위 수준과 하위 수준 모두 인터페이스를 의존하도록 `IWriter`에 의존합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/59be2919-7af3-43e8-bf49-53da663d6495)
 
@@ -102,7 +102,7 @@ public:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/44a48e9b-044a-46fd-9b86-10528b9488c1)
 
-하기와 같이 `SetWriter()`함수를 만들어 주면, 런타임에 다양한 `Writer`를 사용할 수 있습니다.
+다음과 같이 `SetWriter()`함수를 만들어 주면, 런타임에 다양한 `Writer`를 사용할 수 있습니다.
 
 ```cpp
 // Shape에 SetWriter() 함수를 만듭니다.
@@ -120,7 +120,7 @@ public:
 };
 ```
 
-이제 하기와 같이 사용하여 다양한 포맷으로 저장할 수 있습니다.
+이제 `SetWriter()`를 사용하여 다양한 포맷으로 저장할 수 있습니다.
 
 ```cpp
 TEST(TestPrinciple, DependencyInversion) {

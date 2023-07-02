@@ -38,7 +38,7 @@ public:
 };
 ```
 
-상기 `Rectangle`은 하기와 같이 생성후 값을 세팅해 주어야만 사용할 수 있습니다.
+상기 `Rectangle`은 생성후 값을 세팅해 주어야만 사용할 수 있습니다.
 
 ```cpp
 Rectangle rect;
@@ -50,7 +50,7 @@ rect.SetHeight(10);
 
 이렇게 필요한 요소를 생성 후 일일이 세팅하는건 번거롭습니다. 또한 번거로움은 둘째치고, 사용이 어렵고, 클래스 내부 구조를 완전히 파악해야만 하는 부담이 있습니다.(내부 구조 파악을 필요로 하니 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)도 위반이군요.)
 
-하기와 같이 **완전한 생성자** 를 만들어 해결할 수 있습니다.
+다음과 같이 **완전한 생성자** 를 만들어 해결할 수 있습니다.
 
 ```cpp
 class Rectangle {
@@ -67,7 +67,7 @@ public:
 };
 ```
 
-이제 `Rectangle`은 하기와 같이 필요한 모든 요소를 제공해야만 생성할 수 있습니다.
+이제 `Rectangle`은 필요한 모든 요소를 제공해야만 생성할 수 있습니다.
 
 ```cpp
 Rectangle rect(0, 0, 10, 20);
@@ -75,7 +75,7 @@ Rectangle rect(0, 0, 10, 20);
 
 **준수 방법 : 완전한 인자**
 
-화면에 표시되는 view의 중심에서 `Rectangle`을 회전 시켜 봅시다. 하기와 같이 함수를 만들면 어떨까요?
+화면에 표시되는 view의 중심에서 `Rectangle`을 회전 시켜 봅시다. 다음과 같이 `RotateAtViewCenter()` 함수를 만들면 어떨까요?
 
 ```cpp
 void RotateAtViewCenter(const Degree& delta) {
@@ -92,7 +92,7 @@ void RotateAtViewCenter(const Degree& delta) {
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2f02246b-fd3f-4669-8f1c-0272fcdda58f)
 
-위의 예에 슬쩍 써보긴 했습니다만, 하기와 같이 `RotateAt()` 함수 하나만 구현하고, 외부에서 필요한 정보를 명시적으로 인수로 전달할 수 있게 강제하여, 의존성 관계를 끊어주시는게 좋습니다. 
+위의 예에 슬쩍 써보긴 했습니다만, `RotateAt()` 함수 하나만 구현하고, 외부에서 필요한 정보를 명시적으로 인수로 전달할 수 있게 강제하여, 의존성 관계를 끊어주시는게 좋습니다. 
 
 ```cpp
 class Rectangle {

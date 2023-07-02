@@ -27,6 +27,6 @@ Git Bash는 PowerShell 보다 색상 지원이 좋습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bf72889a-d129-492e-bd04-507fb438fc82)
 
-4. `View/Command Palette`(Ctrl+Shift+P) 에서 `Developer:Reload Window` 를 하여 윈도우를 다시 표시합니다. 그러면 하기와 같이 Git Bash 가 반영됩니다.
+4. `View/Command Palette`(Ctrl+Shift+P) 에서 `Developer:Reload Window` 를 하여 윈도우를 다시 표시합니다. 그러면 다음과 같이 Git Bash 가 반영됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fcaa92b4-716f-4608-b9e1-4aa31f8c0001)

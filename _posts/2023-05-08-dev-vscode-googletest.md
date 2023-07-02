@@ -198,7 +198,7 @@ GoogleTest 소스코드가 포함된 프로젝트의 빌드는 다음과 같이 
 
 또한, 자체적으로 `main()` 을 제공하기 때문에 별도의 `main()` 정의가 필요하지 않습니다. 
 
-1. `language_test` 폴더에 `CMakelists.txt` 파일을 하기와 같이 작성하고 저장합니다. (실행 파일은 `UnitTester.exe` 이고, `src`를 라이브러리로 빌드하고, 실행파일에 `GoogleTest`와 `src`라이브러리를 정적 링크합니다.)
+1. `language_test` 폴더에 `CMakelists.txt` 파일을 다음과 같이 작성하고 저장합니다. (실행 파일은 `UnitTester.exe` 이고, `src`를 라이브러리로 빌드하고, 실행파일에 `GoogleTest`와 `src`라이브러리를 정적 링크합니다.)
 
     ```bash
     cmake_minimum_required(VERSION 3.0.0) # 최소요구버전
@@ -243,7 +243,7 @@ GoogleTest 소스코드가 포함된 프로젝트의 빌드는 다음과 같이 
 
 1. `CMake:Build`(F7)를 하여 빌드합니다.
 
-2. `CMake:Run without Debugging`(Shift+F5)를 하면, 하기와 같이 `Panel(TERMINAL)`에 단위 테스트 결과가 표시됩니다. 4개의 테스트가 성공한 것을 확인할 수 있습니다.
+2. `CMake:Run without Debugging`(Shift+F5)를 하면, 다음과 같이 `Panel(TERMINAL)`에 단위 테스트 결과가 표시됩니다. 4개의 테스트가 성공한 것을 확인할 수 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/84f78c64-c128-46c1-8f67-8be1f8735902)
 
@@ -310,7 +310,7 @@ GoogleTest 소스코드가 포함된 프로젝트의 빌드는 다음과 같이 
     gtest_discover_tests(${This}) 
     ```
 
-4. 이제 `Refesh Tests` 를 클릭하면, 하기와 같이 GoogleTest의 테스트케이스들이 각각 표시됩니다.
+4. 이제 `Refesh Tests` 를 클릭하면, 다음과 같이 GoogleTest의 테스트케이스들이 각각 표시됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/83c93526-39a6-4836-ae5d-a73f6b481197)
     
@@ -328,7 +328,7 @@ Visual Studio Code 익스텐션중 C++ TestMate를 이용하면, 테스트케이
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c32e297-6834-42ba-bb12-12534a6b3cc6)
 
-2. `Activity Bar`의 `Testing` 을 클릭하면, 하기와 같이 `TestMate C++` 하위에 테스트케이스가 조직화되어 표시됩니다.(만약 보이지 않는다면 `Refresh Tests`를 실행합니다.)
+2. `Activity Bar`의 `Testing` 을 클릭하면, 다음과 같이 `TestMate C++` 하위에 테스트케이스가 조직화되어 표시됩니다.(만약 보이지 않는다면 `Refresh Tests`를 실행합니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0c7067ef-793d-4e4a-a483-117d56fc411e)
 
@@ -340,7 +340,7 @@ Visual Studio Code 익스텐션중 C++ TestMate를 이용하면, 테스트케이
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e144ef2d-a577-4472-bb71-6051da468f8c)
 
-5. 테스트케이스에서 사용한 `Plus::Run()`을 수정하기 위해, `cpp/src/Plus.cpp`로 이동하여 하기와 같이 정상 동작하도록 수정합니다.
+5. 테스트케이스에서 사용한 `Plus::Run()`을 수정하기 위해, `cpp/src/Plus.cpp`로 이동하여 다음과 같이 정상 동작하도록 수정합니다.
 
     ```cpp
     int Plus::Run(int a, int b) {

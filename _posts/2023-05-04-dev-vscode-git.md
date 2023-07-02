@@ -32,7 +32,7 @@ Git 을 설치했다면 Visual Studio Code에서 `Panel(TERMINAL)`과 UI를 통�
 
 # Git 초기화
 
-1. Git을 commit 하기 위해선 `user.email`과 `user.name`설정이 필요합니다. 설정되지 않았다면, `Panel(TERMINAL)`에 하기와 같이 입력합니다.(`xxx@xxx.com`, `myname` 대신 본인 정보를 입력하셔야 합니다.)
+1. Git을 commit 하기 위해선 `user.email`과 `user.name`설정이 필요합니다. 설정되지 않았다면, `Panel(TERMINAL)`에 다음과 같이 입력합니다.(`xxx@xxx.com`, `myname` 대신 본인 정보를 입력하셔야 합니다.)
 
     ```ini
     git config --global user.email "xxx@xxx.com"
@@ -84,13 +84,13 @@ Git 을 설치했다면 Visual Studio Code에서 `Panel(TERMINAL)`과 UI를 통�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/3dead880-0176-4534-99d4-1b6ed0bcaf74)
 
-4. `main.cpp` 도 `+`버튼을 클릭하여 `Staged Changes` 로 전환하고, `Commit`하고 나면, 하기와 같이 `Source Control`의 관리 대상 파일들이 모두 사라집니다.
+4. `main.cpp` 도 `+`버튼을 클릭하여 `Staged Changes` 로 전환하고, `Commit`하고 나면, 다음과 같이 `Source Control`의 관리 대상 파일들이 모두 사라집니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/716c0a14-a9d0-47dc-ab52-b507b3416067)
 
 # 수정 파일 비교
 
-1. `main.cpp` 파일을 하기와 같이 수정하고 저장합니다. 이때 파일정보에 `M`이 표시됩니다.(Modified 되었다는 표시입니다.) 또한 `Side Bar(SOURCE CONTROL)`에서 `main.cpp` 파일을 선택하면, 수정된 코드를 비교하여 확인할 수 있습니다.(왼쪽은 commit된 파일, 오른쪽은 현재 Working Tree에서 수정된 파일입니다.)
+1. `main.cpp` 파일을 다음과 같이 수정하고 저장합니다. 이때 파일정보에 `M`이 표시됩니다.(Modified 되었다는 표시입니다.) 또한 `Side Bar(SOURCE CONTROL)`에서 `main.cpp` 파일을 선택하면, 수정된 코드를 비교하여 확인할 수 있습니다.(왼쪽은 commit된 파일, 오른쪽은 현재 Working Tree에서 수정된 파일입니다.)
 
     ```cpp
     #include <iostream>
@@ -120,7 +120,7 @@ Git 을 설치했다면 Visual Studio Code에서 `Panel(TERMINAL)`과 UI를 통�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c75a61e2-26d4-4ad1-8e36-238c43838895)
 
-2. 그러면 `Side Bar(SOURCE CONTROL)` 에 하기와 같이 다양한 메뉴가 표시됩니다. `COMMITS`에서 `Show Commit Graph`를 실행하여, commit 상황을 확인 할 수 있습니다.
+2. 그러면 `Side Bar(SOURCE CONTROL)` 에 다음과 같이 다양한 메뉴가 표시됩니다. `COMMITS`에서 `Show Commit Graph`를 실행하여, commit 상황을 확인 할 수 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/201aade6-1faf-40d4-98ea-fa9df780038e)
 
@@ -131,7 +131,7 @@ Git 을 설치했다면 Visual Studio Code에서 `Panel(TERMINAL)`과 UI를 통�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f63420c-e52e-4fd2-9bcd-59c48543a589)
 
-2. `View/Command Palette`(Ctrl+Shift+P) 를 실행하고, `Git View History(git log)`를 실행합니다. 그러면, 하기와 같이 commit 목록이 표시됩니다. 목록에서 특정 commit을 선택하면, commit된 파일 목록이 나타납니다.
+2. `View/Command Palette`(Ctrl+Shift+P) 를 실행하고, `Git View History(git log)`를 실행합니다. 그러면, 다음과 같이 commit 목록이 표시됩니다. 목록에서 특정 commit을 선택하면, commit된 파일 목록이 나타납니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/55f7eca5-9c7e-4647-9b91-10d3a8782d16)
 

@@ -18,7 +18,7 @@ sidebar:
 |개체 정의| `Week obj = Sunday;`|
 |용량|모든 열거자 값을 나타낼 수 있는 정수 형식의 크기. (보통 4byte)|
 
-열거형은 하기와 같이 사용할 수 있습니다.
+열거형은 다음과 같이 사용할 수 있습니다.
 
 ```cpp
 enum Week {
@@ -28,7 +28,7 @@ enum Week {
 Week week = Sunday;
 ```
 
-다만 상기와 같이 사용하면, 이름의 범위가 충돌되기 싶기 때문에 하기와 같이 클래스(혹은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)) 내에 정의하여 이름 범위 충돌을 최소화 하는 것이 좋습니다.(`enum Week {eSunday, eMonday...}`와 같이 열거형 전용으로 접두어를 쓰는 방법도 있습니다만, 헝가리안 같아서 권장하지는 않습니다.)
+다만 상기와 같이 사용하면, 이름의 범위가 충돌되기 싶기 때문에 클래스(혹은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)) 내에 정의하여 이름 범위 충돌을 최소화 하는 것이 좋습니다.(`enum Week {eSunday, eMonday...}`와 같이 열거형 전용으로 접두어를 쓰는 방법도 있습니다만, 헝가리안 같아서 권장하지는 않습니다.)
 
 ```cpp
 class Week {

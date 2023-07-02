@@ -87,7 +87,7 @@ Github는 Git을 사용하여 소스코드를 관리하는 원격 저장소 서�
     git pull origin master --allow-unrelated-histories
     ```
 
-2. 상기 `pull` 명령을 실행하면 하기와 같이 Github 로그인을 요청합니다.
+2. 상기 `pull` 명령을 실행하면 다음과 같이 Github 로그인을 요청합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d998f293-3982-4920-a209-02735052ae07)
 
@@ -95,7 +95,7 @@ Github는 Git을 사용하여 소스코드를 관리하는 원격 저장소 서�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bdf1a08e-837e-4f44-8090-65c3804f459b)
 
-4. `pull`이 완료되면 하기와 같이 메시지가 나타납니다. 가장 하단에 보면 Github에서 작성한 `README.md`가 생성되었다는 메시지가 있습니다.
+4. `pull`이 완료되면 다음과 같이 메시지가 나타납니다. 가장 하단에 보면 Github에서 작성한 `README.md`가 생성되었다는 메시지가 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d984b81d-7283-40c8-a699-bb18f4806942)
 

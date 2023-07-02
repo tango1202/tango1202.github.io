@@ -21,7 +21,7 @@ sidebar:
 |명시적 형변환 - 괄호(`(`와 `)`)|C언어 잔재.<br/>`const_cast`,<br/>`static_cast`,<br/>`reinterpret_cast`<br/>의 순서로 형변환|
 |명시적 형변환 - `const_cast`|상수성만 변환|
 |명시적 형변환 - `static_cast`|타입 유사성을 지키며 변환|
-|명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>RTTI(Runtime Type Info)가 있는 개체(가상함수가 있는 개체)만 가능.|
+|명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>RTTI(Runtime Type Info)가 있는 개체(가상 함수가 있는 개체)만 가능.|
 |명시적 형변환 - `reinterpret_cast`|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
 |형변환 연산자 정의|캡슐화를 위해 제공하나 암시적 형변환이 됨|
 |`explicit`|개체로 암시적 형변환 되지 않도록 지정|
@@ -100,7 +100,7 @@ C++언어는
 
 **C언어 스타일 형변환**
 
-암시적으로 형변환 되지 않는다면, 하기와 같이 괄호(`(`와 `)`)를 이용하여 C언어 스타일로 명시적으로 형변환(`const_cast`, `static_cast`, `reinterpret_cast` 의 순서) 할 수 있습니다.(잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다.)
+암시적으로 형변환 되지 않는다면, 괄호(`(`와 `)`)를 이용하여 C언어 스타일로 명시적으로 형변환(`const_cast`, `static_cast`, `reinterpret_cast` 의 순서) 할 수 있습니다.(잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다.)
 
 ```cpp
 {
@@ -173,12 +173,12 @@ C++언어는
 
 **`dynamic_cast`**
 
-`dynamic_cast`는 상속 관계가 있는 개체간의 변환을 합니다.(RTTI(Runtime Type Info)가 있는 개체(가상함수가 있는 개체)만 가능.) 변환에 실패하면, 포인터 유형인 경우 널(`NULL`)을 리턴하고, 참조 유형인 경우 `bad_cast` 예외를 발생시킵니다. 
+`dynamic_cast`는 상속 관계가 있는 개체간의 변환을 합니다.(RTTI(Runtime Type Info)가 있는 개체(가상 함수가 있는 개체)만 가능.) 변환에 실패하면, 포인터 유형인 경우 널(`NULL`)을 리턴하고, 참조 유형인 경우 `bad_cast` 예외를 발생시킵니다. 
 
 ```cpp
 class Base {
 public:
-    // dynamic_cast를 사용하려면 가상함수가 있어야 합니다.
+    // dynamic_cast를 사용하려면 가상 함수가 있어야 합니다.
     // RTTI(Runtime Type Info) 가 필요하기 때문입니다.
     virtual ~Base() {} 
 };
@@ -188,7 +188,7 @@ class Other {};
 Derived d;
 Base* b = &d;
 // dynamic_cast는 상속관계가 있어야 함(런타임 검사를 수행함)
-// dynamic_cast를 사용하려면 가상함수가 있어야 합니다.(가상함수가 없으면 컴파일 오류)
+// dynamic_cast를 사용하려면 가상 함수가 있어야 합니다.(가상 함수가 없으면 컴파일 오류)
 // (△) 비권장. 자식 개체에 의존성을 두지 마세요. 부모 개체의 인터페이스가 충분한지 확인하세요.
 Derived* downCasting = dynamic_cast<Derived*>(b);      
 EXPECT_TRUE(downCasting != NULL);
@@ -228,7 +228,7 @@ EXPECT_TRUE(other == NULL);
 
 # 형변환 연산자 정의
 
-하기와 같이 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 연산자를 정의할 수 있습니다. 
+[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 연산자를 정의할 수 있습니다. 
 
 ```cpp
 class T {
@@ -250,7 +250,7 @@ EXPECT_TRUE(c == 1);
 
 하지만, 기본 암시적 형변환과 어우러 지면서 예기치 못한 경우에 멋대로 형변환 될 수 있습니다. 심지어 코드 분석도 힘들게 만듭니다. 
 
-하기와 같이 멤버함수를 작성하는게 충분히 사용하기 좋고, 사용 위치를 검색하기 좋고, 분석하기 좋습니다.
+형변환 연산자를 정의하지 않고, 형을 변환시키는 멤버 함수를 작성하는게 충분히 사용하기 좋고, 사용 위치를 검색하기 좋고, 분석하기 좋습니다.
 
 ```cpp
 class T {
@@ -272,7 +272,7 @@ EXPECT_TRUE(c == 1);
 
 # 안전하지 않은 bool 형변환 연산자 정의
 
-`bool`은 하기처럼 암시적으로 `int`로 형변환되면서 뜻하지 않은 동작을 할 수 있습니다. 타입에 기반한 **코딩 계약** 을 위반하니, `bool` 형변환을 정의하지 마세요.
+`bool`은 암시적으로 `int`로 형변환되면서 뜻하지 않은 동작을 할 수 있습니다. 타입에 기반한 **코딩 계약** 을 위반하니, `bool` 형변환을 정의하지 마세요.
 
 ```cpp
 class T {
@@ -318,7 +318,7 @@ EXPECT_TRUE(obj1.GetVal() == 2);
 
 `obj1 = 2;` 는 대놓고 암시적 형변환을 하려고 임시 개체를 생성하고선 대입합니다.
 
-이런 암시적 형변환 문제를 해결하려면, 하기처럼 인자가 1개인 생성자에 `explicit`를 사용하면 됩니다.
+이런 암시적 형변환 문제를 해결하려면, 인자가 1개인 생성자에 `explicit`를 사용하면 됩니다.
 
 ```cpp
 class T {

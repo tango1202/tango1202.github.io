@@ -26,7 +26,7 @@ sidebar:
 
 우리는 개체지향의 다형성을 이용하여 부모 클래스를 상속하고 기능 확장이나 변형을 하게 됩니다.
 
-왼쪽/상단 좌표와 크기를 입력받아 자신의 모양을 출력하는 `Shape` 개체를 생각해 봅시다. 하기와 같이 부모 클래스인 `Shape`에서 `m_Left`, `m_Top`, `m_Width`, `m_Height` 값을 입력받고, `Draw()` 함수를 `virtual`로 작성하여 자식 클래스에서 재구현 하여 그릴 수 있게 했습니다.
+왼쪽/상단 좌표와 크기를 입력받아 자신의 모양을 출력하는 `Shape` 개체를 생각해 봅시다. 부모 클래스인 `Shape`에서 `m_Left`, `m_Top`, `m_Width`, `m_Height` 값을 입력받고, `Draw()` 함수를 `virtual`로 작성하여 자식 클래스에서 재구현 하여 그릴 수 있게 했습니다.
 
 ```cpp
 // 부모 클래스 입니다.
@@ -181,7 +181,7 @@ TEST(TestPrinciple, LiskovSubstitution) {
 }
 ```
 
-악취가 나실까요? 아직은 동작하는데 큰 이상이 없습니다만, `Square`의 구조를 모르는 다른 동료들이 하기와 같이 테스트하다가 낭패를 경험할 수 있습니다.
+악취가 나실까요? 아직은 동작하는데 큰 이상이 없습니다만, `Square`의 구조를 모르는 다른 동료들이 테스트하다가 낭패를 경험할 수 있습니다.
 
 ```cpp
 TEST(TestPrinciple, LiskovSubstitution) {
@@ -212,7 +212,7 @@ TEST(TestPrinciple, LiskovSubstitution) {
 
 **준수 방법 : 부모 클래스 간소화**
 
-하기와 같이 부모를 수정하여 자식들이 억지로 불필요한 구현을 안하게 해야 합니다. 
+부모 클래스가 불필요한 인터페이스를 강제하므로, 부모를 수정하여 자식들이 억지로 불필요한 구현을 안하게 해야 합니다. 
 
 먼저 `Shape`에서 `m_Width`와 `m_Height`를 뺍니다.
 
@@ -322,7 +322,7 @@ public:
 
 이제 자식인 `Square`가 부모인 `Shape`과 다른 동작을 하지 않습니다. `Shape` 과 `Square` 모두 `GetWidth()`, `GetHeight()` 를 아예 제공하지 않으니까요.
 
-하기와 같이 테스트 해야 합니다.
+다음과 같이 테스트 해야 합니다.
 
 ```cpp
 TEST(TestPrinciple, LiskovSubstitution) {
@@ -339,7 +339,7 @@ TEST(TestPrinciple, LiskovSubstitution) {
 
 한가지 아쉬운 점은 `Rectangle`과 `Ellipse`구현시 `m_Width`, `m_Height` 구현에 코드 중복이 있다는 것입니다. [스스로 반복하지 마라](https://tango1202.github.io/principle/principle-dont-repeat-yourself/)를 위배했습니다.
 
-이는 다음처럼 인터페이스를 분리([인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/))한 뒤, 상속(**has-a 관계** )하여 개선할 수 있습니다.
+이는 인터페이스를 분리([인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/))한 뒤, 상속(**has-a 관계** )하여 개선할 수 있습니다.
 
 먼저 `m_Width`와 `m_Height`를 제공하는 `IResizeable`인터페이스를 만듭니다.
 
