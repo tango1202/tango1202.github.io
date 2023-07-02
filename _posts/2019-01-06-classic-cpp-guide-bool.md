@@ -14,7 +14,7 @@ sidebar:
 
 |항목|BOOL|bool|
 |--|--|--|
-|정의|Visual C++ `typedef int BOOL;`|C++ 표준 자료형|
+|정의|Visual C++ `typedef int BOOL;`|C++ 표준 타입|
 |값|`#define TRUE 1`,<br/>`#define FALSE 0`| true,<br/>false|
 |용량|`sizeof(BOOL) == sizeof(int)`|`1 <= sizeof(bool) <= sizeof(long)`(Visual C++ 은 1byte)|
 
