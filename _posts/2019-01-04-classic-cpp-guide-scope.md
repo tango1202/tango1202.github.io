@@ -40,7 +40,7 @@ TEST(TestClassicCpp, Scope) {
 
 프로젝트 규모가 커지면, 서로 다른 영역에서 동일한 이름을 사용하게 될 확률이 높습니다. 특히 직관적이고 좋은 이름일수록요. 이름이 서로 충돌나거나 가리지 않도록 이름의 유효 범위를 짧게 유지하는게 좋습니다.
 
-특히 이름 충돌시 매크로가 관여되면 대환장 파티가 열릴 수 있습니다.([전처리기(매크로 상수, 매크로 함수, 조건부 포함, include, Pragma) 참고](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 참고)
+특히 이름 충돌시 매크로가 관여되면 대환장 파티가 열릴 수 있습니다.([전처리기(매크로 상수, 매크로 함수, 조건부 포함, include, Pragma)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 참고)
 
 # 블록을 활용한 유효 범위 통제
 
