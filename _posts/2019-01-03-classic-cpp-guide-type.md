@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 타입 크기에 의존적으로 코딩하지 마라. OS에 따라, 컴파일러에 따라, 시스템 비트수에 따라 달라질 수 있다.
-> * 실수는 `==`로 비교하지 마라.
+> * 대소 비교가 필요한 경우에는 정수 타입을 사용하라. 실수 타입은 오차가 있다.
 
 # 개요
 
@@ -89,5 +89,22 @@ EXPECT_TRUE(sizeof(myClass) == sizeof(myClassRef)); // sizeof() 시 참조하는
 EXPECT_TRUE(std::numeric_limits<int>::max() == 2147483647);
 EXPECT_TRUE(std::numeric_limits<int>::min() == -2147483648);
 ```
+# 실수 비교
 
+실수는 부동 소수점 형태로 데이터를 저장합니다. 소수점 이하의 정밀도가 상황에 따라 다르며, `1.0`을 저장했는데, `1.0000001`이 저장되었을 수 있습니다. 그래서 `==` 나 대소비교가 부정확합니다. 하기와 같이 오차 범위를 고려하여 비교할 수는 있지만, 권장하지는 않습니다.
+
+```cpp
+bool Equals(double a, double b) {
+    double diff = std::fabs(a - b); // 두수의 차
+
+    // (△) 비권장. 두수의 차가 오차 범위보다 작으면 같은 수
+    return (diff < std::numeric_limits<double>::epsilon()) ? true : false;
+}
+
+double a = 10.0;
+double b = a;
+b += 1.0;
+b -= 1.0;
+EXPECT_TRUE(Equals(a, b)); 
+```
 
