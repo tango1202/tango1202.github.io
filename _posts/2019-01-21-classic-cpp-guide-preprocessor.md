@@ -18,7 +18,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |`#define` 상수|식별자를 대체 목록으로 치환함|
-|`#define()` 함수|인자들을 대체 목록으로 치환함|
+|`#define()` 함수|인자들을 대체 목록에 반영하여 치환함|
 |`#undef`|`define` 정의를 취소함|
 |`defined()`|주어진 식별자가 `define` 되었는지 검사함|
 |`#if`|`if` 제어문과 유사.<br/>조건이 참이면 해당 코드 블럭 포함|
@@ -35,7 +35,7 @@ sidebar:
 |`#warning`|메시지를 표시하고 컴파일 진행|
 |`#pragma`|비표준 컴파일러 동작|
 
-전처리기는 컴파일되기 전에 소스 코드의 대체항목들을 치환하고, 특정조건에 맞게 코드 블록을 포함하거나 제거하는 역할을 합니다. 멀티플랫폼 환경을 지원할때는 유용할 수도 있지만, 코드 분석을 어렵게 하므로 최소화해야 합니다.
+전처리기는 컴파일되기 전에 소스 코드에서 식별자 부분을 대체 목록으로 치환하거나, 특정 조건에 맞게 코드 블록을 포함하거나 제거하는 역할을 합니다. 멀티플랫폼 환경을 지원할때는 유용할 수도 있지만, 코드 분석을 어렵게 하므로 최소화해야 합니다.
 
 # `define` 상수
 
@@ -52,13 +52,13 @@ sidebar:
 #define WELCOM "Hello World" // (△) 비권장. const char* g_Welcome = "Hello World";가 낫다.
 #define LOGICAL int // (△) 비권장. typedef int Logical; 이 낫다.
 
-        EXPECT_TRUE(SUNDAY == 0);
-        EXPECT_TRUE(MONDAY == 1);   
-        EXPECT_TRUE(TUESDAY == 2);    
+EXPECT_TRUE(SUNDAY == 0);
+EXPECT_TRUE(MONDAY == 1);   
+EXPECT_TRUE(TUESDAY == 2);    
 
-        EXPECT_TRUE(PI == 3.14);   
-        EXPECT_TRUE(WELCOM == "Hello World"); 
-        EXPECT_TRUE(typeid(LOGICAL) == typeid(int)); 
+EXPECT_TRUE(PI == 3.14);   
+EXPECT_TRUE(WELCOM == "Hello World"); 
+EXPECT_TRUE(typeid(LOGICAL) == typeid(int)); 
 ```
 
 보다는
@@ -96,7 +96,7 @@ EXPECT_TRUE(typeid(Logical) == typeid(int));
 #define GetForm // 이것도 정말 WindowAPI 에 있음
 ```
 
-`define`은 한줄로 작성하여야 하나 너무 긴 경우 `\`로 개행하여 작성할 수 있습니다.(이때 `\`뒤에 어떤 공백도 없어야 합니다.)
+`define`은 한줄로 작성하여야 하나, 너무 긴 경우 `\`로 개행하여 작성할 수 있습니다.(이때 `\`뒤에 어떤 공백도 없어야 합니다.)
 
 ```cpp
 // 개행을 사용하여 f 함수 매크로문 정의
@@ -113,14 +113,14 @@ EXPECT_TRUE(val == 6);
 
 # `define` 함수
 
- 매크로 함수는 인자들을 대체 목록으로 치환해 줍니다. 함수라고 하기는 하지만 단순 치환입니다.
+ 매크로 함수는 인자들을 대체 목록에 반영하여 치환합니다. 함수라고 하기는 하지만 단순 치환입니다.
 
  ```cpp
 #define SQUARE(x) x * x // (△) 비권장. 인자와 코딩 계약이 안됩니다.
 
 EXPECT_TRUE(SQUARE(2) == 4); // 2 * 2
 ```
-문제 없어 보일 수도 있겠으나, 하기는 낭패입니다.
+문제 없어 보일 수도 있겠으나, 단순 치환하다 보니 하기처럼 수식을 입력하면 연산 우선 순위가 꼬여 엉뚱한 결과가 나올 수 있습니다.
 
 ```cpp
 EXPECT_TRUE(SQUARE(1 + 1) == 3); // 1 + 1 * 1 + 1
