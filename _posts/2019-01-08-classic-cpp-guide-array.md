@@ -35,7 +35,7 @@ sidebar:
 
 # `typedef`로 타입 재정의
 
-`typedef`를 사용하여 하기와 같이 배열 타입을 재정의하여 사용할 수 있습니다.
+`typedef`를 사용하여 배열 타입을 재정의할 수 있습니다.
 
 ```cpp
 typedef int MyArray[5]; 
