@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [고전 C++ 가이드] 기본 자료형"
+title: "#3. [고전 C++ 가이드] 기본 타입"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -8,9 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
-# 자료형 종류
+# 개요
 
-C++에는 하기의 기본 자료형들이 있습니다. 
+C++에는 하기의 기본 타입들이 있습니다. 
 
 |항목|내용|용량|
 |--|--|--|
@@ -30,14 +30,14 @@ C++에는 하기의 기본 자료형들이 있습니다.
 
 그외 `signed`, `unsigned`, `short`, `long` 와 결합하여 다양한 조합이 나올 수 있습니다.([https://en.cppreference.com/w/cpp/language/types](https://en.cppreference.com/w/cpp/language/types) 참고)
 
-# 자료형 재정의(별칭)
+# 타입 재정의(별칭)
 
-`typedef` 를 사용하여 자료형의 별칭을 만들 수 있습니다.(절대 `define`쓰지 마세요!!!)
+`typedef` 를 사용하여 타입의 별칭을 만들 수 있습니다.(절대 `define`쓰지 마세요!!!)
 
 ```cpp
 // 단순하게
 typedef unsigned long ulong; 
-ulong myVal; // 자료형의 별칭으로 정의
+ulong myVal; // 타입의 별칭으로 정의
 
 // 구조체
 typedef struct {int a; int b;} MyData, *pMyData;
@@ -60,7 +60,7 @@ struct ClassT {
 ClassT<int>::ConstType constVal = 20;
 ```
 
-# 자료형 크기
+# 타입 크기
 
 `sizeof()`를 이용하면 개체 용량을 바이트 단위로 구할 수 있습니다. 단, 참조자의 경우 참조하는 개체와 동일 크기가 리턴됩니다.
 
@@ -78,9 +78,9 @@ EXPECT_TRUE(sizeof(myClass) == sizeof(myClassRef)); // sizeof() 시 참조하는
 
 ```
 
-# 자료형 최대/최소값
+# 타입 최대/최소값
 
-`numeric_limits`를 이용하여 자료형의 최대, 최소값을 알 수 있습니다.
+`numeric_limits`를 이용하여 타입의 최대, 최소값을 알 수 있습니다.
 
 ```cpp
 EXPECT_TRUE(std::numeric_limits<int>::max() == 2147483647);

@@ -249,9 +249,9 @@ EXPECT_TRUE(result == 10);
 |항목|내용|
 |--|--|
 |`sizeof(개체명)`|개체의 용량 리턴|
-|`sizeof(타입명)`|자료형이나 클래스명, 구조체명, 공용체명의 용량 리턴|
+|`sizeof(타입명)`|타입이나 클래스명, 구조체명, 공용체명의 용량 리턴|
 
-개체의 용량을 리턴합니다. 단 참조자의 경우 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의되어 있습니다.(`sizeof(T&) == sizeof(T)`, [기본 자료형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 언급)
+개체의 용량을 리턴합니다. 단 참조자의 경우 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의되어 있습니다.(`sizeof(T&) == sizeof(T)`, [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 언급)
 
 ```cpp
 short i;
@@ -280,7 +280,7 @@ EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 �
 |항목|내용|
 |--|--|
 |`typeid(개체명)`|개체 타입 정보 리턴|
-|`typeid(타입명)`|자료형이나 클래스명, 구조체명, 공용체명의 타입 정보 리턴|
+|`typeid(타입명)`|타입이나 클래스명, 구조체명, 공용체명의 타입 정보 리턴|
 
 하기 예는 상속관계에서 가상 함수가 없는 경우와 있는 경우에 따라 `typeid` 동작을 보여 줍니다.( RTTI(Runtime Type Info)가 있는 개체(가상 함수가 있는 개체)에 따라 동작이 다릅니다.)
 
