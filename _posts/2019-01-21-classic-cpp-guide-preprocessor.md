@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [고전 C++ 가이드] 전처리기(매크로 상수, 매크로 함수, 조건부 포함, include, Pragma)"
+title: "#21. [고전 C++ 가이드] 전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, Pragma)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -29,7 +29,7 @@ sidebar:
 |`#endif`|`#if`, `#elif`, `#ifdef`, `#ifndef`, `#else`의 끝|
 |`#include`|파일 포함|
 |`#line`|`__LINE__`과 `__FILE__` 강제 지정|
-|`__LINE__`|현재 파일의 라인번호,<br/>혹은 `#line`으로 지정한 줄번호
+|`__LINE__`|현재 파일의 라인번호,<br/>혹은 `#line`으로 지정한 줄번호|
 |`__FILE__`|현재 파일의 이름, <br/>혹은 `#line`으로 지정한 파일명|
 |`#error`|메시지를 표시하고 컴파일 종료|
 |`#warning`|메시지를 표시하고 컴파일 진행|
@@ -37,7 +37,7 @@ sidebar:
 
 전처리기는 컴파일되기 전에 소스 코드에서 식별자 부분을 대체 목록으로 치환하거나, 특정 조건에 맞게 코드 블록을 포함하거나 제거하는 역할을 합니다. 멀티플랫폼 환경을 지원할 때는 유용할 수도 있지만, 코드 분석을 어렵게 하므로 최소화해야 합니다.
 
-# `define` 상수
+# `#define` 상수
 
 주어진 식별자를 대체 목록으로 치환합니다. 흔히 정수형 상수, 실수형 상수, 문자열 상수에 이름을 붙이거나 타입의 별칭을 작성하기 위해 사용합니다. 
 
@@ -96,7 +96,7 @@ EXPECT_TRUE(typeid(Logical) == typeid(int));
 #define GetForm // 이것도 정말 WindowAPI 에 있음
 ```
 
-`define`은 한줄로 작성하여야 하나, 너무 긴 경우 `\`로 개행하여 작성할 수 있습니다.(이때 `\`뒤에 어떤 공백도 없어야 합니다.)
+`#define`은 한줄로 작성하여야 하나, 너무 긴 경우 `\`로 개행하여 작성할 수 있습니다.(이때 `\`뒤에 어떤 공백도 없어야 합니다.)
 
 ```cpp
 // 개행을 사용하여 f 함수 매크로문 정의
@@ -111,7 +111,7 @@ int val = f(3);
 EXPECT_TRUE(val == 6);
 ```
 
-# `define` 함수
+# `#define` 함수
 
  매크로 함수는 인자들을 대체 목록에 반영하여 치환합니다. 함수라고는 하지만 단순 치환입니다.
 
@@ -156,9 +156,9 @@ MAKE_FUNCTION(g_, Func, 10); // g_Func 이름의 함수를 정의함
 EXPECT_TRUE(g_Func() == 10); // g_Func 호출
 ```
 
-# `undef`
+# `#undef`
 
-기존에 정의된 `define`을 제거합니다.
+기존에 정의된 `#define`을 제거합니다.
 
 ```cpp
 #define PI 3.14
@@ -184,21 +184,79 @@ int status = 0;
 EXPECT_TRUE(status == 1); // MY_DEBUG가 정의되어 1
 ```
 
-# `include`
+# `#include`
 
-헤더 파일을 포함합니다.
+헤더 파일을 포함합니다. 마치 `#include`위치에 대상 파일이 코딩된 것처럼 만들어 줍니다.
 
+|항목|내용|
+|--|--|
+|`#include <>`|컴파일러에 지정된 포함 경로에서 찾음.<br/>주로 C++언어 헤더파일 포함시 사용|
+|`#include ""`|컴파일 중인 경로에서 찾고, 없으면 `<>` 경로에서 찾음.<br/>주로 사용자 헤더파일 포함시 사용|
 
+# `__LINE__`, `__FILE__`, `#line`
 
-#include <> 시스템 헤더파일. 컴파일러에 지정된 include 경로
+`__LINE__`과 `__FILE__` 은 라인수와 파일명을 나타내는 미리 지정된 매크로 입니다. 디버깅시 현재 라인수와 파일명을 표시할 수 있습니다.
 
-#include "" 사용자 헤더파일. 컴파일 중인 경로. 없으면 <> 경로
+```cpp
+// Line Number:118 Filename:C:\XXX\XXX.cpp
+std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl; 
+```
 
-#pragma : 비표준
+`#line`은 해당 줄번호와 파일명을 강제로 변경해 줍니다.
 
-#pragma once
+```cpp
+#line 1234 "test.cpp" 
+    std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl;  // Line Number:1234 Filename:test.cpp      
+```
+# `#error`, `#warning`
 
-#pragma pack(arg) 메모리 정렬 제어
+`#error`와 `#warning`은 조건부 컴파일시 OS 환경이나 컴파일러 환경이나 라이브러리 환경을 검사하고, 컴파일을 중단(`#error`)시키거나 계속 진행(`#warning`)시킵니다.
 
-#include 가드
+```cpp
+#define OS_WIN
+#ifndef OS_WIN
+    #error "Only Windows."
+#endif
+```
 
+# `#pragma`
+
+비표준 컴파일러 확장 기능입니다. 컴파일러마다 지원 여부는 다를 수 있으니 컴파일러 매뉴얼을 참고해야 합니다.
+
+**`#pragma once`**
+
+헤더 파일을 1회만 포함시킵니다.([인클루드 가드](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-include-guard/) 참고)
+
+```cpp
+// 헤더 파일에서
+#pragma once // 1회만 포함시킴
+...
+```
+
+**`#pragma pack`**
+
+클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 4byte단위로 멤버변수를 할당합니다.(이를 패딩(padding)이라 합니다.) 
+
+```cpp
+class T {
+    char m_Char; // 1byte, 메모리 접근 편의를 위해 32bit(4byte) 단위로 할당(패딩). 3byte 빈공간이 생김 
+    int m_Int; // 4byte
+};
+
+EXPECT_TRUE(sizeof(T) == 8); // char가 패딩됨
+```
+
+상기 코드를 보면 `T`는 `char`와 `int`로 구성되어 5byte가 되어야 할 것 같지만, 4byte 단위로 멤버 변수가 할당되어 8byte가 되는 것을 알 수 있습니다.
+
+`#pragma pack`을 이용하면, 데이터 버스 크기를 주어진 바이트 크기로 조정할 수 있어 메모리 낭비를 줄일 수 있습니다.(다만 메모리 접근 속도는 저하됩니다.)
+
+```cpp
+#pragma pack(push, 1) // 데이터 버스 크기를 1 바이트 단위로 설정      
+    class T {
+        char m_Char; // 1byte 
+        int m_Int; // 4byte
+    };
+
+    EXPECT_TRUE(sizeof(T) == 5); // 1 + 4 = 5byte
+#pragma pack(pop) // 데이터 버스 크기 설정 원복 
+```

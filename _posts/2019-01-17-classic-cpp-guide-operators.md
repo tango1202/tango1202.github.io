@@ -8,29 +8,29 @@ sidebar:
     nav: "docs"
 ---
 
-> * 임시 개체가 생성되지 않도록 이항 산술 연산자(`a = a + b`)보다는 할당 연산자(`a += b`)를 사용하라.
-> * 후위형 증감 연산자는 쓸데없는 임시 개체가 생성되고 헷갈리니 사용하지 마라. 
+> * 임시 개체가 생성되지 않도록 이항 산술 연산자(`a = a + b`)보다는 산술형 대입 연산자(`a += b`)를 사용하라.
+> * 후위형 증감 연산자는 헷갈리고, 쓸데없는 임시 개체가 생성되니 사용하지 마라. 
 > * 비교 연산 오버로딩은 `<`을 활용해서 구현하라.
 
 
-# 할당 연산자
+# 대입 연산자
 
-할당 연산자는 `=` 와 같은 기본 할당 연산자와 산술 연산이나 비트 연산의 결과값을 할당하는 연산자가 있습니다.(`a += b` 는 `a = a + b` 와 결과가 같습니다.) 
+대입 연산자는 `=` 와 같은 기본 대입 연산자와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(`a += b` 는 `a = a + b` 와 결과가 같습니다.) 
 
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
-|할당|`a = b`|O|`T& T::operator =(const T2& b);`|X|
-|추가 할당|`a += b`|O|`T& T::operator +=(const T2& b);`|`T& operator +=(T& a, const T2& b);`|
-|빼기 할당|`a -= b`|O|`T& T::operator -=(const T2& b);`|`T& operator -=(T& a, const T2& b);`|
-|곱셈 할당|`a *= b`|O|`T& T::operator *=(const T2& b);`|`T& operator *=(T& a, const T2& b);`|
-|나누기 할당|`a /= b`|O|`T& T::operator /=(const T2& b);`|`T& operator /=(T& a, const T2& b);`|
-|나머지 할당|`a %= b`|O|`T& T::operator %=(const T2& b);`|`T& operator %=(T& a, const T2& b);`|
-|비트 AND 할당|`a &= b`|O|`T& T::operator &=(const T2& b);`|`T& operator &=(T& a, const T2& b);`|
-|비트 OR 할당|`a |= b`|O|`T& T::operator |=(const T2& b);`|`T& operator |=(T& a, const T2& b);`|
-|비트 XOR 할당|`a ^= b`|O|`T& T::operator ^=(const T2& b);`|`T& operator ^=(T& a, const T2& b);`|
-|비트 Left Shift 할당|`a <<= b`|O|`T& T::operator <<=(const T2& b);`|`T& operator <<=(T& a, const T2& b);`|
-|비트 Right Shift 할당|`a >>= b`|O|`T& T::operator >>=(const T2& b);`|`T& operator >>=(T& a, const T2& b);`|
+|대입|`a = b`|O|`T& T::operator =(const T2& b);`|X|
+|추가 대입|`a += b`|O|`T& T::operator +=(const T2& b);`|`T& operator +=(T& a, const T2& b);`|
+|빼기 대입|`a -= b`|O|`T& T::operator -=(const T2& b);`|`T& operator -=(T& a, const T2& b);`|
+|곱셈 대입|`a *= b`|O|`T& T::operator *=(const T2& b);`|`T& operator *=(T& a, const T2& b);`|
+|나누기 대입|`a /= b`|O|`T& T::operator /=(const T2& b);`|`T& operator /=(T& a, const T2& b);`|
+|나머지 대입|`a %= b`|O|`T& T::operator %=(const T2& b);`|`T& operator %=(T& a, const T2& b);`|
+|비트 AND 대입|`a &= b`|O|`T& T::operator &=(const T2& b);`|`T& operator &=(T& a, const T2& b);`|
+|비트 OR 대입|`a |= b`|O|`T& T::operator |=(const T2& b);`|`T& operator |=(T& a, const T2& b);`|
+|비트 XOR 대입|`a ^= b`|O|`T& T::operator ^=(const T2& b);`|`T& operator ^=(T& a, const T2& b);`|
+|비트 Left Shift 대입|`a <<= b`|O|`T& T::operator <<=(const T2& b);`|`T& operator <<=(T& a, const T2& b);`|
+|비트 Right Shift 대입|`a >>= b`|O|`T& T::operator >>=(const T2& b);`|`T& operator >>=(T& a, const T2& b);`|
 
 
 # 산술 연산자
@@ -106,15 +106,17 @@ NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 리턴합니다.
 |이하|`a <= b`|O|`bool T::operator <=(const T2& b) const;`|`bool operator <=(const T& a, const T2& b);`|
 |이상|`a >= b`|O|`bool T::operator >=(const T2& b) const;`|`bool operator >=(const T& a, const T2& b);`|
 
+실수 비교 연산의 경우는 오차 범위를 고려해야 합니다.([실수 비교](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%EC%8B%A4%EC%88%98-%EB%B9%84%EA%B5%90) 참고) 
+
 대소 비교는 하기 논리 조건을 만족해야 합니다.
 
 1. `x < x` 는 거짓
 2. `x < y` 이고 `y < z` 이면, `x < z` 
-3. `!(x < y)` 은 `(y <= x)` 의 의미
-4. `x < y` 도 아니고 `y < x` 도 아니면 `x` 는 `y` 와 동등함(equivalence) (동등관계) 
-5. `x equivalence y` 이고, `y equivalence z` 이면 `x equivalence z`
+3. `!(x < y)` 이면, `(y <= x)` 
+4. `x < y` 도 아니고 `y < x` 도 아니면, `x` 는 `y` 와 동등함(equivalence) (동등관계) 
+5. `x equivalence y` 이고 `y equivalence z` 이면, `x equivalence z`
 
-상기 논리 조건이 모두 만족한다면, 비교 연산들은 모두 `<` 로 표현할 수 있습니다.
+상기 논리 조건이 모두 만족한다면(만족해야만 합니다.), 비교 연산들은 모두 `<` 로 표현할 수 있습니다.
 
 ```cpp
 int x = 10;
@@ -205,9 +207,17 @@ EXPECT_TRUE(t.operator ()(10, 20) == 30); // t(10, 20) 호출과 동일. operato
 `a`표현식을 평가하고, `b`표현식을 평가합니다. (`a, b, c, d`와 같이 나열할 수 있습니다.) 코드 분석이 어려워 권장하지 않습니다.
 
 ```cpp
+class T {
+public:
+    static int f(int val) {return val;}
+};
+
+int arr[] = {1, 2, 3};
+int i = 0;
+
 // 1를 증가시키고, v의 i 항목을 f 에 전달합니다.
 // (△) 비권장. 분석하기 복잡합니다.
-f((++i, v[i])); 
+EXPECT_TRUE(T::f((++i, arr[i])) == 2);  
 ```
 
 # 조건 연산자
@@ -302,7 +312,7 @@ public:
 };
 class Derived2 : public Base2 {};
 
-// 타입인 Base1과 개체 b1은 hash_code가 동일합니다.
+// Base1과 개체 b1은 hash_code가 동일합니다.
 {
     Base1 b1;
     const std::type_info& ti1 = typeid(Base1);
@@ -383,7 +393,7 @@ t1 = t2 = t3; // t2 = t3의 결과 t2의 참조자를 리턴하고, t1에 대입
 
 **`+=` 연산자**
 
-하기는 `+=` 연산자를 오버로딩한 예입니다. `int`형 지원을 하기 위해 `T& operator +=(int val)` 도 구현 하였습니다.
+하기는 `+=` 연산자를 오버로딩한 예입니다. `int`형도 지원하기 위해 `T& operator +=(int val)` 도 구현 하였습니다.
 
 ```cpp
 class T {
@@ -450,9 +460,9 @@ EXPECT_TRUE(t3.GetVal() == 20);
 
 **`+` 보다는 `+=`이 좋은 이유**
 
-할당 연산자가 참조자 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`)을 리턴합니다. 이는 연산의 결과값을 리턴해야 하기 때문입니다.(내부적으로 임시 개체가 생성될 수밖에 없습니다.) 
+대입 연산자가 참조자 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`)을 리턴합니다. 이는 연산의 결과값을 리턴해야 하기 때문입니다.(내부적으로 임시 개체가 생성될 수밖에 없습니다.) 
 
-따라서, 임시 개체 생성 부하가 없도록 할당 연산자를 사용하는 코딩 습관을 가지시는게 좋습니다.(임시 개체 생성 부하가 큰 경우에는 단단한 **코딩 계약**을 위해 `+=`만 구현하고, `+`를 구현하지 않아야 합니다.)
+따라서, 임시 개체 생성 부하가 없도록 산술형 대입 연산자를 사용하는 코딩 습관을 가지시는게 좋습니다.(임시 개체 생성 부하가 큰 경우에는 단단한 **코딩 계약**을 위해 `+=`만 구현하고, `+`를 구현하지 않아야 합니다.)
 
 ```cpp
 T t1(10);

@@ -18,18 +18,19 @@ sidebar:
 함수는 다음 목적을 위해 만듭니다.
 
 1. 함수 코드 재활용(코드 중복 제거) 
-2. 함수 인자와의 **코딩 계약**
+2. 함수 인자와의 타입에 기반한 **코딩 계약**
 3. 디버깅 편의성
 
 함수 정의의 일반적인 형태는 하기와 같습니다.(`[]`인 부분은 옵션입니다.)
 
 ```cpp
-return-type function-name(parameter-list) [const] [throw(exception-list)] {}
+return_type function_name(parameter_list) [const] [throw(exception_list)] {}
 ```
 
 |항목|내용|
 |--|--|
-|`return-type`|함수 결과의 타입. 단, 배열은 안됨|
+|`return_type`|함수 결과의 타입. 배열은 안됨|
+|`parameter_list`|인자 목록|
 |`[const]`|멤버 함수인 경우 개체를 수정하지 않음([상수(const), 변경 가능 지정자(mutable), 최적화 제한 지정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable/) 참고)
 |`[throw(exception-list)]`|함수가 발생하는 예외 사양.<br/>나열된 예외 이외에는 `unexpected`로 강제 변환됨. 사용하지 말 것.([동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-dynamic-exception-specification) 참고)|
 
@@ -51,8 +52,8 @@ p(10); // f 함수 실행. (*p)(10); 과 동일
 typedef void (*Func)(int); // void 를 리턴하고 int형을 인수로 전달받는 함수의 함수 포인터 타입 정의
 
 Func p; // 함수 포인터 p 정의
-p = f; // 함수 포인터에 f 함수 대입.
-p(10); // f 함수 실행
+p = f; // 함수 포인터에 f 함수 대입. p = &f; 와 동일
+p(10); // f 함수 실행. (*p)(10); 과 동일
 ```
 
 함수 포인터는 **의존성 주입([의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고)** 을 활용하여, 원하는 알고리즘으로 손쉽게 변경하거나, [제어의 역전 원칙](https://tango1202.github.io/principle/principle-inversion-of-control/) 에 따라 프레임워크에서 제어를 통제하고자 할때 사용할 수 있습니다.
@@ -82,7 +83,7 @@ int minus(int a, int b) {
 
 // 버튼 생성시 어떤 연산을 수행할지 함수를 전달해 둡니다.
 Button plusButton(plus); // 클릭시 더하기
-Button minusButton(minus); //클릭시 빼기
+Button minusButton(minus); // 클릭시 빼기
 
 EXPECT_TRUE(plusButton.Click(10, 20) == 30); 
 EXPECT_TRUE(minusButton.Click(10, 20) == -10); 
@@ -107,7 +108,34 @@ Func func = &Data::Print;  // 멤버 함수 포인터 전달
 
 Data data;
 EXPECT_TRUE((data.*func)() == 1); // data 개체로 부터 멤버 함수 포인터 실행
+```
 
+예를 들어 인쇄 버튼이 상황에 따라 프린터에 출력하거나 화면 미리보기를 수행한다고 해봅시다. 동적으로 호출되는 멤버 함수가 달라지는데요, 멤버 함수 포인터를 전달해서 구현할 수 있습니다.
+
+```cpp
+class Data { 
+public: 
+    int Print() const {return 1;}
+    int Preview() const {return 2;}
+};
+typedef int (Data::*Func)() const; // Data 클래스 멤버 함수 typedef
+
+class Button {
+private: 
+    const Data& m_Data; // 버튼이 관리하는 Data
+public:
+    explicit Button(const Data& data) :
+        m_Data(data) {}
+    int Click(Func func) { 
+        return (m_Data.*func)(); // 전달된 멤버 함수 포인터 실행
+    }
+};
+
+Data data;
+Button button(data);
+
+EXPECT_TRUE(button.Click(&Data::Print) == 1); // data 개체로 부터 Print 함수 실행
+EXPECT_TRUE(button.Click(&Data::Preview) == 2); // data 개체로 부터 Preview 함수 실행
 ```
 
 # 인자(매개변수, Parameter) 작성법
@@ -187,18 +215,20 @@ int f(const void); // (X) 컴파일 오류
 ```cpp
 #include <cstdarg>
  
-int sum(int count, ...) {
-    int result = 0;
-    std::va_list argList; // 가변 인자
-    va_start(argList, count); // 가변 인자 처리 시작
-    for (int i = 0; i < count; ++i) {
-        result += va_arg(argList, int); // 가변 인자 추출
+class T {
+public:
+    static int Sum(int count, ...) {
+        int result = 0;
+        std::va_list paramList; // 가변 인자
+        va_start(paramList, count); // 가변 인자 처리 시작
+        for (int i = 0; i < count; ++i) {
+            result += va_arg(paramList, int); // 가변 인자 추출
+        }
+        va_end(paramList); // 가변인자 처리 끝
+        return result;       
     }
-    va_end(argList); // 가변인자 처리 끝
-    return result;       
-}
- 
-EXPECT_TRUE(sum(3, 1, 2, 3) == 1 + 2 + 3);
+};
+EXPECT_TRUE(T::Sum(3, 1, 2, 3) == 1 + 2 + 3);
 ```
 
 # 기본값 인자
@@ -393,7 +423,7 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
 
     ```cpp
     int f(int) {return 1;}
-    double f(int) {return 1.};
+    double f(int) {return 9.};
     ```
 
     는 인자가 같으니, 오버로딩 후보 목록에서 1개만 사용됩니다.
@@ -423,7 +453,7 @@ public:
     int f(int) const {return 8;} 
 
     // (X) 컴파일 오류. 리턴 타입은 오버로딩 함수를 취급하는데 사용하지 않습니다.
-    // double f(int) {return 1.};
+    // double f(int) {return 9.};
 };
 
 T t;

@@ -16,8 +16,8 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|상수 개체|개체 정의시 `const`를 붙여 상수개체를 만들 수 있습니다. 상수 개체는 값을 변경할 수 없습니다. 생성시 초기화 해야 합니다.|
-|상수 멤버 함수|멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 개체의 멤버 변수를 변경할 수 없습니다.<br/>단, `mutable`로 정의된 개체는 수정 가능합니다.|
+|상수 개체|개체 정의시 `const`를 붙여 상수 개체를 만들 수 있습니다. 상수 개체는 값을 변경할 수 없습니다.<br/>생성시 초기화 해야 합니다.|
+|상수 멤버 함수|멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다.<br/>상수 멤버 함수는 개체의 멤버 변수를 변경할 수 없습니다.<br/>단, `mutable`로 정의된 개체는 수정 가능합니다.|
 
 `const`인 개체나 함수를 사용하면, 메모리의 수정이 없으므로 예외에 안정적입니다. 안정적인 프로그램을 위해, 할 수 있는 한 최대한 많이 `const`로 작성하는 것이 좋습니다.
 
@@ -72,8 +72,7 @@ p4 = p1; // (X) 컴파일 오류
 // (O) 멤버 변수의 값을 리턴하는 const 함수
 int GetX1() const {return m_X;} 
 
-// (△) 비권장. 멤버 변수의 값을 쓸데없이 const로 리턴하는 const 함수. 
-// int k = t.GetX2(); 로 실행하므로 const int 리턴은 무의미함. 
+// (△) 비권장. 리턴값을 쓸데없이 const로 리턴하는 const 함수. 
 const int GetX2() const {return m_X;} 
 ```
 
@@ -92,14 +91,19 @@ int* GetX5() {return &m_X;}
 
 # 인자(함수 선언에 작성된 Parameter)의 상수성
 
-인자에 `const`를 사용하여 전달된 인수(함수에 전달하는 개체. Argument)를 함수가 수정하는지, 수정하지 않는지 **코딩 계약**을 만들어 주는 게 좋습니다. 전달된 인수를 함수에서 수정하지 않는다면, 꼭 `const`로 만들어 주길 바랍니다.(단, 인수가 인자에 복사된다면, `const`는 무의미 하므로 사용할 필요가 없습니다. 또한 [오버로딩된 함수 결정 규칙](https://github.com/tango1202/tango1202.github.io/blob/main/_posts/2019-01-19-classic-cpp-guide-function.md#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)을 참고하면, 오버로딩 결정시 `f(const int x)` 는 `f(int x)`로 취급되는걸 알 수 있습니다.)
+인자에 `const`를 사용하여 전달된 인수(함수에 전달하는 개체. Argument)를 함수가 수정하는지, 수정하지 않는지 **코딩 계약**을 만들어 주는 게 좋습니다. 
+
+전달된 인수를 함수에서 수정하지 않는다면, 꼭 `const`로 만들어 주길 바랍니다.(단, 인수가 인자에 복사된다면, `const`는 무의미 하므로 사용할 필요가 없습니다. 또한 [오버로딩된 함수 결정 규칙](https://github.com/tango1202/tango1202.github.io/blob/main/_posts/2019-01-19-classic-cpp-guide-function.md#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)을 참고하면, 오버로딩 결정시 `f(const int x)` 는 `f(int x)`로 취급되는걸 알 수 있습니다.)
 
 ```cpp
 void f(int x); // (O) 인수를 x에 복사해서 사용함.
 void f(const int x); // (△) 비권장. 인수를 x에 복사해서 쓰되 f에서 수정하지 않음. 호출하는 쪽에선 무의미
 
-void f(int* x); void f(int& x); // (O) 인수를 f에서 수정함.
-void f(const int* x); void f(const int& x); // (O) 인수를 f에서 수정하지 않음.  
+void f(int* x); // (O) 인수를 f에서 수정함.
+void f(int& x); 
+
+void f(const int* x); // (O) 인수를 f에서 수정하지 않음.
+void f(const int& x);   
 ```
 # 상수 멤버 함수
 
