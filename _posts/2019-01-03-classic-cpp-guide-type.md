@@ -42,11 +42,19 @@ C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은
 typedef unsigned long ulong; 
 ulong myVal; // 타입의 별칭으로 정의
 
+// 배열
+typedef int MyArray[5]; 
+MyArray arr; // int arr[5]; 와 동일 
+arr[0] = 10; // 첫번째 요소에 값 대입
+EXPECT_TRUE(arr[0] == 10);
+
 // 구조체
 typedef struct {int a; int b;} MyData, *pMyData;
 MyData myData1;
 MyData* myData2;
-pMyData MyData3; // MyData* 와 같음
+pMyData myData3; // MyData* 와 같음
+myData1.a = 10; // a에 값 대입
+EXPECT_TRUE(myData1.a == 10);
 
 // 함수 포인터
 typedef int (*Func)(int, int); // 함수 포인터 typedef
@@ -93,7 +101,10 @@ EXPECT_TRUE(std::numeric_limits<int>::min() == -2147483648);
 
 실수는 부동 소수점 형태로 데이터를 저장합니다. 소수점 이하의 정밀도가 상황에 따라 다르며, `1.0`을 저장했는데, `1.0000001`이 저장되었을 수 있습니다. 
 
-그래서 `==` 나 대소 비교가 부정확합니다. 오차 범위를 고려하여 비교할 수는 있지만, 권장하지는 않습니다.
+그래서 `==` 나 대소 비교가 부정확합니다. 손실되면 안되는 민감 정보나, 정확한 계산을 필요로 하는 경우에는 정수형을 사용하셔야 합니다.([로지컬 단위](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical/) 참고) 
+
+
+다음처럼 오차 범위를 고려하여 비교할 수는 있지만, 권장하지는 않습니다.
 
 ```cpp
 bool Equals(double a, double b) {

@@ -28,7 +28,7 @@ enum Week {
 Week week = Sunday;
 ```
 
-다만 상기와 같이 사용하면, 이름의 범위가 충돌되기 싶기 때문에 클래스(혹은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)) 내에 정의하여 이름 범위 충돌을 최소화 하는 것이 좋습니다.(`enum Week {eSunday, eMonday...}`와 같이 열거형 전용으로 접두어를 쓰는 방법도 있습니다만, 헝가리안 같아서 권장하지는 않습니다.)
+다만 상기와 같이 사용하면, 이름의 범위가 충돌되기 쉽기 때문에 클래스(혹은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)) 내에 정의하여 이름 범위 충돌을 최소화 하는 것이 좋습니다.(`enum Week {eSunday, eMonday...}`와 같이 열거형 전용으로 접두어를 쓰는 방법도 있습니다만, 헝가리안 같아서 권장하지는 않습니다.)
 
 ```cpp
 class Week {
@@ -51,7 +51,6 @@ EXPECT_TRUE(val == Week::Sunday);
 ```cpp
 class Week {
 public:
-    // 클래스내에 정의. 사용시 클래스명을 기재해야 함
     enum Val {
         Sunday, // 기본적으로 0부터 시작하여 1씩 증가
         Monday, 
@@ -76,15 +75,15 @@ EXPECT_TRUE(
 
 # 열거형 상수 형변환
 
-열거형 상수는 `int`로 형변환 되고, `int`는 `static_cast`를 이용하여 열거형 상수로 형변환 됩니다만, 형변환 하는건 좋지 않습니다.
+열거형 상수는 `int`로 형변환 되고, `int`는 `static_cast`를 이용하여 열거형 상수로 형변환 됩니다만, 타입에 기반한 **코딩 계약** 을 위반하기 때문에 형변환 하는건 좋지 않습니다.
 
 ```cpp
 Week::Val val1 = Week::Saturday; // (△) 비권장. 형변환 하지 마세요.
-int val2 = Week::Saturday; // (△) 비권장. 열거형 상수의 int 형변환 가능
+int val2 = Week::Saturday; // (△) 비권장. 열거형 상수는 int 형변환 가능합니다만, 하지 마세요.
 EXPECT_TRUE(val1 ==  Week::Saturday);
 EXPECT_TRUE(val2 == 13);
 
-val1 = static_cast<Week::Val>(val2 - 1); // (△) 비권장. int는 static_cast로 열겨형으로 형변환 합니다.
+val1 = static_cast<Week::Val>(val2 - 1); // (△) 비권장. int는 static_cast로 열거형으로 형변환 가능합니다만, 하지 마세요.
 EXPECT_TRUE(val1 ==  Week::Friday);
 ```
 

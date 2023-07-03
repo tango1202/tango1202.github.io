@@ -18,7 +18,7 @@ sidebar:
 |값|`#define TRUE 1`,<br/>`#define FALSE 0`| true,<br/>false|
 |용량|`sizeof(BOOL) == sizeof(int)`|`1 <= sizeof(bool) <= sizeof(long)`(Visual C++ 은 1byte)|
 
-Visual C++은 `bool`이 없던 시절부터 `BOOL`을 사용하여, 이전 `BOOL`의 잔재가 많이 남아 있습니다. `BOOL` 쓰지 마시고, `bool` 쓰세요. 그게 **코딩 계약** 상 안전합니다.
+Visual C++은 `bool`이 없던 시절부터 `BOOL`을 사용하여, 이전 `BOOL`의 잔재가 많이 남아 있습니다. `BOOL` 이 많이 쓰인다며 따라 쓰지 마시고, `bool`을 쓰세요. 그게 **코딩 계약** 상 안전합니다.
 
 # BOOL이 만들어진 이유
 
@@ -34,7 +34,7 @@ win32 API에 `bool`이 없어서 만들어 졌습니다.(C99가 되어서야 뒷
     BOOL result = f();
     ```
 
-    `bool`로 변환해서 써보세요. 적어도 우리가 작성하는 코드에서는 `BOOL`로 강제하지 않게요.
+    조건 연산자를 이용하여 `bool`로 변환해서 써보세요. 적어도 우리가 작성하는 코드에서는 `BOOL`로 강제하지 않게요.
 
     ```cpp
     bool result = f() ? true : false;
@@ -50,7 +50,7 @@ win32 API에 `bool`이 없어서 만들어 졌습니다.(C99가 되어서야 뒷
 
 하지만 `BOOL`은 정수를 담을 수 있는 `int`입니다.
 
-`BOOL`형 변수를 단순하게 참인지 거짓인지 비교하는데만 사용한다면 큰 문제는 없습니다.
+`BOOL`형 변수를 단순하게 참인지 거짓인지 비교하는데만 사용한다면 큰 문제는 없어 보입니다.
 
 ```cpp
 BOOL b = TRUE;
@@ -72,7 +72,7 @@ BOOL result2 = f2();
 if (result1 && result2) {}
 ```
 
-이번에는 둘다 참이거나, 둘다 거짓일때 진입하는 `if`문이 필요하다고 합시다. `result1 == result2` 로 검사하면 될까요?
+이번에는 둘다 참이거나, 둘다 거짓일때 진입하는 `if`문이 필요하다고 합시다. 여전히 `result1 == result2` 로 검사하면 될까요?
 
 ```cpp
 // (O) 결과가 둘다 FALSE 라면 진입합니다.
@@ -84,7 +84,7 @@ if (result1 == result2) {}
 
 [Windows API `GetMessage()`](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessage) 를 보시면 `0`과 `-1`을 리턴합니다.
 
-`BOOL`을 신뢰하지 마십시요.
+`BOOL`이 `TRUE(1)`와 `FALSE(0)`만 리턴한다고 신뢰하지 마십시요.
 
 억지로 `!!`(`!BOOL`을 하면 `bool`로 변경되고, 원래의 참/거짓 값을 표현하기 위해 `!`을 한번 더함)을 붙여 `bool`형으로 바꿔서 검사할 수는 있습니다만, 참 보기 싫죠. 
 

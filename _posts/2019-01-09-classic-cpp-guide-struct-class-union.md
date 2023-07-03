@@ -28,7 +28,7 @@ sidebar:
 
 구조체와 클래스와 공용체는 타입이 다른 여러 데이터를 집합으로 묶어 관리할 수 있게 해줍니다.
 
-특히, 구조체와 클래스는 초기화 방법과 기본 엑세스 지정자 외에는 모두 동일하고, [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들을 제공합니다.
+특히, 구조체와 클래스는 초기화 방법과 기본 엑세스 지정자 외에는 모두 동일합니다.
 
 ```cpp
 struct S {
@@ -36,7 +36,7 @@ struct S {
     int y;
 };
 
-S s = {10, 20}; // 중괄호 초기화 지원
+S s = {10, 20}; // 구조체는 중괄호 초기화 지원
 
 class C {
     int m_X; // 기본적으로 private
@@ -44,14 +44,14 @@ class C {
 public:
     C(int x, int y) {} // 값 생성자 정의
 };
-C c(10, 20); // 값 생성자를 사용
+C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 초기화 미지원
 ```
 
-공용체는 멤버 변수들끼리 메모리 영역을 공유합니다. 이에 따라 참조자나 캡슐화를 위한 다양한 기능들이 제약됩니다. 메모리 절약이 필요할 경우에만 한정적으로 사용하시기 바랍니다.
+공용체는 멤버 변수들끼리 메모리 영역을 공유합니다. 이에 따라 참조자나 캡슐화를 위한 다양한 기능들이 제약됩니다. 메모리 절약이 필요한 경우에만 한정적으로 사용하시기 바랍니다.
 
 # 구조체와 클래스
 
-구조체와 클래스는 초기화 방법과 기본 엑세스 지정자 외에는 모두 동일합니다.
+구조체와 클래스는 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들을 제공합니다.
 
 **전방 선언**
 
@@ -68,41 +68,45 @@ class YourClass {
 
 이런 경우, 전방 선언으로 `YourClass`가 무언지 컴파일러에게 알려줘야 합니다. 
 
-이때 클래스 선언에서는 `YourClass`를 구체 정의가 아닌 포인터나 참조자 형식으로 사용하여야 하고, 실제 정의(클래스 멤버 접근등)를 위해 선언(헤더파일)과 정의(cpp파일)를 분리해야 합니다.
+이때 전방 선언만 참조하는 곳(`MyClass`)은 구체 정의가 아닌 포인터나 참조자로 사용하여야 하고, 전방 선언한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 이에 따라 클래스 선언과 정의를 분리하고 순서대로 작성해야 합니다.
 
 ```cpp
-    class YourClass; // 전방 선언
-    class MyClass {
-        // (O) 전방 선언을 통해 YourClass가 대충 클래스라는 걸 압니다. 
-        // 반드시 포인터나 참조자와 같은 참조 형식이어야 합니다.
-        // 구체 정의를 사용하려면, 헤더 파일과 cpp 파일을 분리하고, cpp 부분에서 구체 정의를 사용하세요.
-        YourClass* m_Your; 
+// 1. YourClass 전방 선언
+class YourClass; 
 
-        void f(); // 선언만 하고, cpp에서 yourClass를 사용할 겁니다.
-    };
-    class YourClass {
-        MyClass m_My; // MyClass는 상위에 정의되어 사용할 수 있습니다.
+// 2. MyClass 선언
+class MyClass {
+    // (O) 전방 선언을 통해 YourClass가 대충 클래스라는 걸 압니다. 
+    // 반드시 포인터나 참조자와 같은 참조 형식이어야 합니다.
+    YourClass* m_Your; 
 
-    public:
-        void g() {}
-    }; 
-```
+    // YourClass의 구체 정의가 필요하여 선언만 합니다.
+    void f(); 
+};
 
-```cpp
-    // cpp 파일에서 YourClass의 구체 정의 사용
-    void MyClass::f() {
-        m_Your->g(); 
-    }
+// 3. YourClass 선언
+class YourClass {
+    // MyClass는 상위에 정의되어 사용할 수 있습니다.
+    MyClass m_My; 
+
+public:
+    void g() {}
+}; 
+
+// 4. MyClass 정의 - YourClass의 정의를 사용하고 있습니다.
+void MyClass::f() {
+    m_Your->g(); 
+}
 ```
 
 **멤버 사양**
    
-클래스(구조체)의 멤버는 멤버 변수와 멤버 함수 뿐만아니라, 열거형 상수, 중첩 클래스(구조체), 타입 재정의(typdef)를 포함할 수 있습니다.
+클래스(구조체)의 멤버는 멤버 변수와 멤버 함수 뿐만아니라, 열거형 상수, 중첩 클래스(구조체), 타입 재정의(`typdef`)를 포함할 수 있습니다.
 
 ```cpp
 class T {
     int m_D1; // 멤버 변수
-    static const int s_D2 = 1; // 정적 멤버 변수. 단 nested 클래스에서는 사용 못함
+    static const int s_D2 = 1; // 정적 멤버 변수. 단 중첩 클래스, 함수 내부 로컬 클래스에서는 사용 못함
 
     virtual void f1(int) = 0; // 순가상 함수
     virtual void f2(int) {} // 가상 함수    
@@ -216,7 +220,6 @@ EXPECT_TRUE(u.GetX() == 10);
 EXPECT_TRUE(u.c.GetVal1() == 10);
 EXPECT_TRUE(u.s2.x == 10);
    
-
 u.c.SetVal1(20); // c를 바꿨지만, s1과 s2도 변경됩니다.
 EXPECT_TRUE(u.c.GetVal1() == 20);
 EXPECT_TRUE(u.s1.x == 20);

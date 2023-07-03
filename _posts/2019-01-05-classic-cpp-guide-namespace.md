@@ -46,17 +46,24 @@ namespace Parser {
 
 # 네임스페이스 항목의 함수 선언과 정의 분리
 
-네임스페이스에서 선언한 함수를 정의하려면, 하기 `C::g()` 와 같이 함수 정의시 네임스페이스명을 명시하면 됩니다. 
+네임스페이스에서 선언한 함수를 정의하려면, 같은 네임스페이스에서 정의하거나, `C::h()` 와 같이 함수 정의시 네임스페이스명을 명시하면 됩니다. 
 
 ```cpp
 namespace C {
     int f() {return 30;} // 정의
     int g(); // 선언
+    int h(); // 선언
 }
-int C::g() { // C::명시해서 정의할 수 있음
-    return f(); // 같은 네임스페이스이면 C::f() 와 같이 명시하지 않아도 됨
+namespace C {
+    int g() { // 네임스페이스에서 정의
+        return f(); // 같은 네임스페이스이면 C::f() 와 같이 명시하지 않아도 됨
+    }
 }
-EXPECT_TRUE(C::g() == 30); // 네임스페이스 C의 f()를 호출
+int C::h() { // C::로 명시해서 정의할 수 있음
+    return f(); 
+}
+EXPECT_TRUE(C::g() == 30); 
+EXPECT_TRUE(C::h() == 30);
 ```
 
 # 서로 다른 네임스페이스 항목 사용
@@ -126,28 +133,34 @@ namespace {
 
 # 별칭과 합성
 
-기존 네임스페이스의 별칭을 정의할 수 있습니다.
+기존 네임스페이스의 별칭을 정의할 수 있습니다. 이때, 별칭인 네임스페이스에서는 새로운 정의나 선언을 추가할 수 없습니다.
 
 ```cpp
 namespace MyTestLibrary {
-    void f() {}
+    int f() {return 40;}
 }
 namespace MTL = MyTestLibrary; // 별칭 정의
-```
 
-별칭인 네임스페이스에서는 새로운 정의나 선언을 추가할 수 없습니다.
-
-```cpp
 namespace MTL { 
     void g() {} // (X) 컴파일 오류. 별칭으로 정의한 namespace에 새로운 정의는 추가할 수 없다.
 }
+
+EXPECT_TRUE(MTL::f() == 40);
 ```
 
 여러개의 네임스페이스를 합성할 수도 있습니다.
 
 ```cpp
-namespace MyModule { // 여러개의 namespace를 합성할 수 있음
-   using namespace A;
-   using namespace B;
+namespace G {
+    int f() {return 50;}
 }
+namespace H {
+    int g() {return 60;}
+}
+namespace MyModule { // 여러개의 네임스페이스를 합성할 수 있음
+   using namespace G;
+   using namespace H;
+}
+EXPECT_TRUE(MyModule::f() == 50);
+EXPECT_TRUE(MyModule::g() == 60);
 ```

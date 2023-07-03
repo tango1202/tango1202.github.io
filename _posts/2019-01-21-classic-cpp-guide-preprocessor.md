@@ -11,7 +11,7 @@ sidebar:
 > * 매크로 상수를 쓰지 말고 열거형 상수를 사용하라.
 > * 매크로로 타입의 별칭을 만들지 말고 `typedef`를 사용하라.
 > * 매크로 함수를 쓰지 말고 인라인 함수를 사용하라.
-> * typedef
+
 
 # 개요
 
@@ -133,7 +133,7 @@ EXPECT_TRUE(SQUARE(1 + 1) == 3); // 1 + 1 * 1 + 1
 EXPECT_TRUE(SQUARE(1 + 1) == 4); // (1 + 1) * (1 + 1)
 ```
 
-하지만, 매크로 함수 보다는, 인자 타입에 따른 코딩 계약과 디버깅 편의를 위해 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하는게 좋습니다.
+하지만, 매크로 함수 보다는, 인자 타입에 따른 **코딩 계약**과 디버깅 편의를 위해 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하는게 좋습니다.
 
  ```cpp
  inline int Square(int x) { return x * x;} // (O) 인자 타입에 따른 코딩 계약, 디버깅 용이
@@ -144,44 +144,51 @@ EXPECT_TRUE(SQUARE(1 + 1) == 4); // (1 + 1) * (1 + 1)
 |항목|내용|
 |--|--|
 |`#`|인자를 문자열 리터럴로 변경|
-|`##`|인자를 연결해줌|
+|`##`|인자를 연결|
 
 ```cpp
 
-    #define MAKE_STRING_LITERAL(x) #x
-    EXPECT_TRUE(MAKE_STRING_LITERAL(Hello World) == "Hello World"); // 매크로 함수 결과 문자열로 변경됨
+#define MAKE_STRING_LITERAL(x) #x
+EXPECT_TRUE(MAKE_STRING_LITERAL(Hello World) == "Hello World"); // 문자열로 변경됨
 
-    #define MAKE_FUNCTION(prefix, functionName, a) int prefix##functionName() {return a;}
-    MAKE_FUNCTION(g_, Func, 10); // g_Func 이름의 함수를 정의함
-    EXPECT_TRUE(g_Func() == 10); // 매크로 함수 결과 g_Func 이라는 이름으로 합성됨
+#define MAKE_FUNCTION(prefix, functionName, a) int prefix##functionName() {return a;}
+MAKE_FUNCTION(g_, Func, 10); // g_Func 이름의 함수를 정의함
+EXPECT_TRUE(g_Func() == 10); // g_Func 호출
 ```
 
+# `undef`
 
-
+기존에 정의된 `define`을 제거합니다.
 
 ```cpp
- #ifdef MACRO_NAME
-expr;
-#else
-expr;
+#define PI 3.14
+EXPECT_TRUE(PI == 3.14); // (O)
+
+#undef PI // 제거됩니다.
+EXPECT_TRUE(PI == 3.14); // (X) 컴파일 오류
+
+# 조건부 컴파일
+
+조건부 컴파일 기능을 이용하면, `define`으로 정의한 식별자의 존재 유무에 따라, 특정 조건에 맞게 코드 블록을 포함하거나 제거하는 역할을 합니다. 멀티플랫폼 환경을 지원할 때는 유용할 수도 있지만, 코드 분석을 어렵게 하므로 최소화해야 합니다.
+
+```cpp
+#define MY_DEBUG // MY_DEBUG 정의 유무만 알면 되므로 꼭 대체 목록을 작성할 필요 없음
+
+int status = 0;
+#if defined(MY_DEBUG)
+    status = 1;
+#else 
+    status = 2;
 #endif
+
+EXPECT_TRUE(status == 1); // MY_DEBUG가 정의되어 1
 ```
-전처리 컴파일 매크로. 매크로 정의 상태에 따라 선택적 컴파일. C++ 문법적으로 극복할 수는 있으나, 아직은 참을 수 없는 유혹
+
+# `include`
+
+헤더 파일을 포함합니다.
 
 
-
-
-
-
-
-undef
-
-#if
-#ifdef
-#ifndef
-#3elif
-#else
-#endif
 
 #include <> 시스템 헤더파일. 컴파일러에 지정된 include 경로
 
