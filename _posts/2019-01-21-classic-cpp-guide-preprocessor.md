@@ -166,6 +166,7 @@ EXPECT_TRUE(PI == 3.14); // (O)
 
 #undef PI // 제거됩니다.
 EXPECT_TRUE(PI == 3.14); // (X) 컴파일 오류
+```
 
 # 조건부 컴파일
 
