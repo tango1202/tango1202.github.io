@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [고전 C++ 가이드] 전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, Pragma)"
+title: "#21. [고전 C++ 가이드] 전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, pragma)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -11,7 +11,6 @@ sidebar:
 > * 매크로 상수를 쓰지 말고 열거형 상수를 사용하라.
 > * 매크로로 타입의 별칭을 만들지 말고 `typedef`를 사용하라.
 > * 매크로 함수를 쓰지 말고 인라인 함수를 사용하라.
-
 
 # 개요
 
@@ -25,12 +24,12 @@ sidebar:
 |`#elif`|`else if` 제어문과 유사.<br/>조건이 참이면 해당 코드 블럭 포함|
 |`#ifdef`|주어진 식별자가 `define` 되었으면 해당 코드 블록 포함|
 |`#ifndef`|주어진 식별자가 `define`되지 않았으면 해당 코드 블록 포함|
-|`#else`|`#if`, `#elif`, `#ifdef`, `#ifndef`가 아닌 경우 해당 코드블록 포함|
+|`#else`|`#if`, `#elif`, `#ifdef`, `#ifndef`가 아닌 경우 해당 코드 블록 포함|
 |`#endif`|`#if`, `#elif`, `#ifdef`, `#ifndef`, `#else`의 끝|
 |`#include`|파일 포함|
 |`#line`|`__LINE__`과 `__FILE__` 강제 지정|
-|`__LINE__`|현재 파일의 라인번호,<br/>혹은 `#line`으로 지정한 줄번호|
-|`__FILE__`|현재 파일의 이름, <br/>혹은 `#line`으로 지정한 파일명|
+|`__LINE__`|현재 파일의 줄번호,<br/>혹은 `#line`으로 지정한 줄번호|
+|`__FILE__`|현재 파일명,<br/>혹은 `#line`으로 지정한 파일명|
 |`#error`|메시지를 표시하고 컴파일 종료|
 |`#warning`|메시지를 표시하고 컴파일 진행|
 |`#pragma`|비표준 컴파일러 동작|
@@ -66,7 +65,7 @@ EXPECT_TRUE(typeid(LOGICAL) == typeid(int));
 ```cpp
 class Week {
 public:
-        enum Val { // (O) 매크로로 치환된 정수가 아닌 Week::Val 타입으로 코딩계약을 할 수 있습니다.
+    enum Val { // (O) 매크로로 치환된 정수가 아닌 Week::Val 타입으로 코딩계약을 할 수 있습니다.
         Sunday, 
         Monday, 
         Tuesday,
@@ -85,7 +84,7 @@ EXPECT_TRUE(typeid(Logical) == typeid(int));
 
 이 낫습니다.
 
-이러한 치환은 묻지도 따지지도 않고 수행되기 때문에, 헤더파일에 다음과 같은 `define`을 사용하게 되면 동료들이 미칠 수 있습니다.
+이러한 치환은 묻지도 따지지도 않고 수행되기 때문에, 헤더 파일에 다음과 같은 `#define`을 사용하게 되면 동료들이 미칠 수 있습니다.
 
 ```cpp
 #define public private 
@@ -120,6 +119,7 @@ EXPECT_TRUE(val == 6);
 
 EXPECT_TRUE(SQUARE(2) == 4); // 2 * 2
 ```
+
 문제 없어 보일 수도 있겠으나, 수식을 인자로 입력하면 단순 치환에 따라 연산 우선 순위가 꼬여 엉뚱한 결과가 나올 수 있습니다.
 
 ```cpp
@@ -169,7 +169,7 @@ EXPECT_TRUE(PI == 3.14); // (X) 컴파일 오류
 
 # 조건부 컴파일
 
-조건부 컴파일 기능을 이용하면, `define`으로 정의한 식별자의 존재 유무에 따라, 특정 조건에 맞게 코드 블록을 포함하거나 제거하는 역할을 합니다. 멀티플랫폼 환경을 지원할 때는 유용할 수도 있지만, 코드 분석을 어렵게 하므로 최소화해야 합니다.
+조건부 컴파일 기능을 이용하면, `#define`으로 정의한 식별자의 존재 유무에 따라, 특정 조건에 맞게 코드 블록을 포함하거나 제거하는 역할을 합니다. 멀티플랫폼 환경을 지원할 때는 유용할 수도 있지만, 코드 분석을 어렵게 하므로 최소화해야 합니다.
 
 ```cpp
 #define MY_DEBUG // MY_DEBUG 정의 유무만 알면 되므로 꼭 대체 목록을 작성할 필요 없음
@@ -195,7 +195,7 @@ EXPECT_TRUE(status == 1); // MY_DEBUG가 정의되어 1
 
 # `__LINE__`, `__FILE__`, `#line`
 
-`__LINE__`과 `__FILE__` 은 라인수와 파일명을 나타내는 미리 지정된 매크로 입니다. 디버깅시 현재 라인수와 파일명을 표시할 수 있습니다.
+`__LINE__`과 `__FILE__` 은 줄번호와 파일명을 나타내는 미리 지정된 매크로 입니다. 디버깅시 현재 라인수와 파일명을 표시할 수 있습니다.
 
 ```cpp
 // Line Number:118 Filename:C:\XXX\XXX.cpp
@@ -221,7 +221,7 @@ std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl;
 
 # `#pragma`
 
-비표준 컴파일러 확장 기능입니다. 컴파일러마다 지원 여부는 다를 수 있으니 컴파일러 매뉴얼을 참고해야 합니다.
+비표준 컴파일러 확장 기능입니다. 컴파일러마다 지원 여부는 다를 수 있으니 컴파일러 설명서를 참고해야 합니다.
 
 **`#pragma once`**
 
@@ -235,7 +235,7 @@ std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl;
 
 **`#pragma pack`**
 
-클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 4byte단위로 멤버변수를 할당합니다.(이를 패딩(padding)이라 합니다.) 
+클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 4byte단위로 멤버 변수를 할당합니다.(이를 패딩(padding)이라 합니다.) 
 
 ```cpp
 class T {
