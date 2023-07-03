@@ -24,6 +24,7 @@ sidebar:
 |`for (초기문; 조건문; 표현식2;) {표현식1;}`|`초기문;`<br/>`while (조건문) {`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식1;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식2;`<br/>`}`<br/> 의 순서로 반복
 |`continue;`|반복문의 범위 끝으로 이동하여 다음 조건 검사|
 |`break;`|반복문 탈출|
+|`return;`|함수 종료|
 |`goto LABEL;`|지정한 `LABEL`로 강제 이동(`LABEL:`와 같이 콜론으로 표기함)<br/>코드 분석을 방해하기 때문에 비권장|
 
 # 중첩된 제어문
