@@ -84,7 +84,7 @@ EXPECT_TRUE(typeid(Logical) == typeid(int));
 
 이 낫습니다.
 
-이러한 치환은 묻지도 따지지도 않고 수행되기 때문에, 헤더 파일에 다음과 같은 `#define`을 사용하게 되면 동료들이 미칠 수 있습니다.
+`#define` 치환은 묻지도 따지지도 않고 수행되기 때문에, 헤더 파일에 다음과 같은 `#define`을 사용하게 되면 동료들이 미칠 수 있습니다.
 
 ```cpp
 #define public private 
