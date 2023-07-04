@@ -252,7 +252,7 @@ EXPECT_TRUE(result == 10);
 |`operator delete[]`|배열 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
 |`new()`|위치 지정 생성(특정 메모리 위치에 개체 생성자 호출)|`T* p = new(buf) T;`|X|X|X|
 
-`operator new`와 `operator delete`와 위치 지정 생성(Placement New)에 대해서는 [생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
+`operator new`와 `operator delete`와 위치 지정 생성(Placement New)에 대해서는 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
 
 # `sizeof` 연산자
 

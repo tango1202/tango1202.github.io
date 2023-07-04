@@ -1,9 +1,13 @@
 ---
 layout: single
-title: "#6. [고전 C++ 가이드] 연산자 오버로딩"
+title: "#1. [고전 C++ 개체 지향] 생성자"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
+
+기본 생성자
+값 생성자
+복사 생성자
