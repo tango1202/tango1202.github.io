@@ -84,7 +84,7 @@ EXPECT_TRUE(typeid(Logical) == typeid(int));
 
 이 낫습니다.
 
-`#define` 치환은 묻지도 따지지도 않고 수행되기 때문에, 헤더 파일에 다음과 같은 `#define`을 사용하게 되면 동료들이 미칠 수 있습니다.
+`#define` 치환은 묻지도 따지지도 않고 수행되기 때문에, 헤더 파일에 다음과 같이 `#define`을 사용하면 동료들이 미칠 수 있습니다. 그러니 결코 중복되지 않을 만한 식별자로 작성하세요.(대문자 처럼요. [매크로 대문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-naming/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EB%8C%80%EB%AC%B8%EC%9E%90) 참고)
 
 ```cpp
 #define public private 
