@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [고전 C++ 가이드] 구조체(struct)와 클래스(class) 와 공용체(union)"
+title: "#9. [고전 C++ 가이드] 구조체(struct)와 클래스(class) 와 공용체(union)와 비트 필드(작성중)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 구조체와 클래스의 차이는 초기화 방법과 기본 엑세스 지정자(구조체는 `public`, 클래스는 `private`) 뿐이다.
+> * 구조체와 클래스의 차이는 초기화 방법과 기본 접근 지정자(구조체는 `public`, 클래스는 `private`) 뿐이다.
 > * 공용체는 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있으니 꼭 필요한 경우 한정적으로 사용하라.
 
 # 개요
@@ -17,7 +17,7 @@ sidebar:
 |--|--|--|--|
 |용량|멤버 변수들의 총합|멤버 변수들의 총합|멤버 변수들중 가장 큰값|
 |초기화|`T t = {10, 20};` 지원|값 생성자|X|
-|기본 엑세스 지정자|`public`|`private`|`public`|
+|기본 접근 지정자|`public`|`private`|`public`|
 |멤버 변수|O|O|O|
 |멤버 함수|O|O|O|
 |참조자 멤버 변수|O|O|X|
@@ -28,7 +28,7 @@ sidebar:
 
 구조체와 클래스와 공용체는 타입이 다른 여러 데이터를 집합으로 묶어 관리할 수 있게 해줍니다.
 
-특히, 구조체와 클래스는 초기화 방법과 기본 엑세스 지정자 외에는 모두 동일합니다.
+특히, 구조체와 클래스는 초기화 방법과 기본 접근 지정자 외에는 모두 동일합니다.
 
 ```cpp
 struct S {
@@ -137,9 +137,9 @@ class T {
 int T::f2() {} // inline화 안됨
 ```
 
-**엑세스 지정자**
+**접근 지정자**
  
-엑세스 지정자를 이용하여 외부 접근을 통제할 수 있습니다.
+접근 지정자를 이용하여 외부 접근을 통제할 수 있습니다.
 
 |항목|내용|
 |--|--|
@@ -149,7 +149,7 @@ int T::f2() {} // inline화 안됨
 
 **`using` 선언**
 
-`using`을 사용하면 부모 클래스에서 지정한 엑세스 지정자를 강제로 변경할 수 있습니다만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.([리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고)
+`using`을 사용하면 부모 클래스에서 지정한 접근 지정자를 강제로 변경할 수 있습니다만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.([리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고)
 
 ```cpp
 class Base {
@@ -225,3 +225,16 @@ EXPECT_TRUE(u.c.GetVal1() == 20);
 EXPECT_TRUE(u.s1.x == 20);
 EXPECT_TRUE(u.s2.x == 20);
 ```
+
+
+https://en.cppreference.com/w/cpp/language/bit_field
+비트 필드
+
+https://en.cppreference.com/w/cpp/language/this
+this 포인터
+
+https://en.cppreference.com/w/cpp/language/nested_types
+중첩 클래스
+
+https://en.cppreference.com/w/cpp/language/friend
+friends

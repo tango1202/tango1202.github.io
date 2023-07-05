@@ -11,3 +11,6 @@ sidebar:
 일반 소멸자
 protected None Virtual 소멸자
 public Virtual 소멸자
+
+https://en.cppreference.com/w/cpp/language/destructor
+소멸자

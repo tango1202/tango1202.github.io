@@ -9,7 +9,8 @@ sidebar:
 ---
 
 
-
+https://en.cppreference.com/w/cpp/language/data_members
+멤버 초기화
 
 `operator new`와 `operator delete`
 

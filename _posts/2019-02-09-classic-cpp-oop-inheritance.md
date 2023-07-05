@@ -7,6 +7,12 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
+https://en.cppreference.com/w/cpp/language/derived_class
+Derived 참고
+
+
+https://en.cppreference.com/w/cpp/language/ebo
+빈 부모 초기화
 
 class Base 기본 클래스, 슈퍼 클래스
 {
@@ -16,6 +22,8 @@ class Base 기본 클래스, 슈퍼 클래스
 {
 };
 
+https://en.cppreference.com/w/cpp/language/access
+접근 지정자 참고
 
 # 기본 클래스에서의 범위 한정자
 

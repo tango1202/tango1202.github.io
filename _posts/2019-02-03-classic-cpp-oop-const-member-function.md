@@ -1,12 +1,16 @@
 ---
 layout: single
-title: "#3. [고전 C++ 개체 지향] 상수 멤버 함수, 논리적 상수성"
+title: "#3. [고전 C++ 개체 지향] 멤버 함수, 상수 멤버 함수, 논리적 상수성"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
+
+https://en.cppreference.com/w/cpp/language/member_functions
+멤버 함수
+
 
 class Date {
 int d, m, y; public:

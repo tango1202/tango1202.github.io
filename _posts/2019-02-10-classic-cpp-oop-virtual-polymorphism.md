@@ -1,12 +1,14 @@
 ---
 layout: single
-title: "#9. [고전 C++ 가이드] 상속"
+title: "#9. [고전 C++ 가이드] 가상 함수, 다형성"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
+https://en.cppreference.com/w/cpp/language/virtual
+가상함수
 
 # 가상함수. 오버라이딩. 다형성(Polymorphism)
 
