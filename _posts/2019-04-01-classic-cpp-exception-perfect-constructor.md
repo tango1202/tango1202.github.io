@@ -1,7 +1,7 @@
 ---
 layout: single
-title: "#1. [고전 C++ 가이드] 완전한 생성자"
-categories: "classic-cpp-oop"
+title: "#1. [고전 C++ 예외 안정] 완전한 생성자"
+categories: "classic-cpp-exception"
 tag: ["cpp"]
 author_profile: false
 sidebar: 

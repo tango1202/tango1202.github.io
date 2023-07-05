@@ -1,7 +1,7 @@
 ---
 layout: single
-title: "#1. [고전 C++ 가이드] 예외안정 메커니즘"
-categories: "classic-cpp-oop"
+title: "#1. [고전 C++ 가이드] 예외 안정 메커니즘"
+categories: "classic-cpp-exception"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
@@ -13,7 +13,7 @@ https://en.cppreference.com/w/cpp/language/throw 참고
 
 **`throw`**
 
-예외를 전파시킵니다. 자세한 내용은 [예외안정 메커니즘](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/) 을 참고 바랍니다.
+예외를 전파시킵니다. 자세한 내용은 [예외 안정 메커니즘](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/) 을 참고 바랍니다.
 
 ```cpp
 try {
