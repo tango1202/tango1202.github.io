@@ -147,7 +147,6 @@ EXPECT_TRUE(SQUARE(1 + 1) == 4); // (1 + 1) * (1 + 1)
 |`##`|인자를 연결|
 
 ```cpp
-
 #define MAKE_STRING_LITERAL(x) #x
 EXPECT_TRUE(MAKE_STRING_LITERAL(Hello World) == "Hello World"); // 문자열로 변경됨
 
