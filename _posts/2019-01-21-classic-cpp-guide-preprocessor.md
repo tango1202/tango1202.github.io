@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [고전 C++ 가이드] 전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, pragma)"
+title: "#21. [고전 C++ 가이드] 전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, pragma)(작성중)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -261,3 +261,8 @@ EXPECT_TRUE(sizeof(T) == 8); // char가 패딩됨
     EXPECT_TRUE(sizeof(T) == 5); // 1 + 4 = 5byte
 #pragma pack(pop) // 데이터 버스 크기 설정 원복 
 ```
+
+**pragma comment**
+
+**pragma warning**
+
