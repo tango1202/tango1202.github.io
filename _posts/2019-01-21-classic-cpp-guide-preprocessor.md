@@ -275,7 +275,11 @@ EXPECT_TRUE(sizeof(T) == 8); // char가 패딩됨
 ```cpp
 #pragma warning(push)
 #pragma warning(disable : 4507; once : 4385; error : 164)
-코드들
+#pragma warning(disable : 4508)
+#pragma warning(disable : 4509)
+
+코드들...
+
 #pragma warning(pop) // #pragma warning(push) 때의 상태로 전환
 ```
 
