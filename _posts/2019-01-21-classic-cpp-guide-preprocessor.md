@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [고전 C++ 가이드] 전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, pragma)(작성중)"
+title: "#21. [고전 C++ 가이드] 전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, pragma)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -169,7 +169,7 @@ EXPECT_TRUE(PI == 3.14); // (X) 컴파일 오류
 
 # 조건부 컴파일
 
-조건부 컴파일 기능을 이용하면, `#define`으로 정의한 식별자의 존재 유무나 조건에 따라 코드 블록을 포함시킬 수 있습니다. 멀티플랫폼 환경을 지원할 때는 유용할 수도 있지만, 코드 분석을 어렵게 하므로 최소화해야 합니다.
+조건부 컴파일을 이용하면, `#define`으로 정의한 식별자의 존재 유무나 조건에 따라 코드 블록을 포함시킬 수 있습니다. 멀티플랫폼 환경을 지원할 때는 유용할 수도 있지만, 코드 분석을 어렵게 하므로 최소화해야 합니다.
 
 ```cpp
 #define MY_DEBUG // MY_DEBUG 정의 유무만 알면 되므로 꼭 대체 목록을 작성할 필요 없음
@@ -251,7 +251,7 @@ EXPECT_TRUE(sizeof(T) == 8); // char가 패딩됨
 `#pragma pack`을 이용하면, 데이터 버스 크기를 주어진 바이트 크기로 조정할 수 있어 메모리 낭비를 줄일 수 있습니다.(다만 메모리 접근 속도는 저하됩니다.)
 
 ```cpp
-#pragma pack(push, 1) // 데이터 버스 크기를 1 바이트 단위로 설정      
+#pragma pack(push, 1) // 데이터 버스 크기를 1바이트 단위로 설정      
     class T {
         char m_Char; // 1byte 
         int m_Int; // 4byte
@@ -261,7 +261,30 @@ EXPECT_TRUE(sizeof(T) == 8); // char가 패딩됨
 #pragma pack(pop) // 데이터 버스 크기 설정 원복 
 ```
 
-**pragma comment**
+**`#pragma warning`**
 
-**pragma warning**
+지정한 컴파일러 경고의 처리 방법을 설정합니다.
+
+|항목|내용|
+|--|--|
+|`defalut`|기본값으로 재설정|
+|`disable`|지정한 경고 무시|
+|`error`|지정한 경고를 오류로 처리|
+|`once`|지정한 경고의 메시지를 한번만 표시|
+
+```cpp
+#pragma warning(push)
+#pragma warning(disable : 4507; once : 4385; error : 164)
+코드들
+#pragma warning(pop) // #pragma warning(push) 때의 상태로 전환
+```
+
+**`#pragma comment(lib, "libname")`**
+
+링커가 검색해야할 라이브러리 이름을 지정합니다.
+
+```cpp
+#pragma comment(lib, "kernel32")
+#pragma comment(lib, "user32")
+```
 
