@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [고전 C++ 가이드] 생성과 소멸"
+title: "#9. [고전 C++ 가이드] 상속"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -8,9 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-`operator new`와 `operator delete`
 
-delete p; // p가 NULL이어도 안전
+# 추상 클래스, 인터페이스
 
-위치 지정 생성((Placement New))
-T* p = new(buf) T; // 명시적 delete 호출
+# 좋은 상속, 나쁜 상속
+
+
+
+

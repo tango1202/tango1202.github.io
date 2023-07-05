@@ -369,7 +369,7 @@ class Derived2 : public Base2 {};
 
 # 연산자 오버로딩
 
-클래스나 구조체에서 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 연산자를 오버로딩할 수 있습니다.
+클래스나 구조체에서 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 연산자를 오버로딩할 수 있습니다. 
 
 **대입 연산자**
 
@@ -491,7 +491,7 @@ t3 = 10 + t1;// (X) 컴파일 오류. 10.operator +(T other) 호출합니다. in
 EXPECT_TRUE(t2.GetVal() == 20 && t3.GetVal() == 20);
 ```
 
-이를 허용하려면 전역 함수를 만들면 됩니다.
+이를 허용하려면 비멤버 버전을 만들면 됩니다.
 
 ```cpp
 // T t = 10 + other; 지원
@@ -600,4 +600,29 @@ EXPECT_TRUE(t1 >= t2);
 T t1(10);
 T t2(10); 
 EXPECT_TRUE(t1 >= t2);   
+```
+
+**열거형 연산자 오버로딩**
+
+열거형도 연산자 오버로딩을 할 수 있습니다.
+
+```cpp
+
+class Week {
+public:
+    // 클래스내에 정의. 사용시 클래스명을 기재해야 함
+    enum Val {
+        Sunday, Monday, Tuesday, Wednesday, 
+        Thursday, Friday, Saturday
+    };
+};
+// 전위 증가. 
+Week::Val& operator ++(Week::Val& d) { 
+    return d = (Week::Saturday == d) ? Week::Sunday : static_cast<Week::Val>(d + 1);
+}  
+
+Week::Val val = Week::Saturday;
+
+EXPECT_TRUE(++val == Week::Sunday); // 토요일 에서 1 증가하면, 제일 처음 값인 일요일로 순회됨
+EXPECT_TRUE(++val == Week::Monday); // 일요일 에서 1 증가하여 월요일
 ```
