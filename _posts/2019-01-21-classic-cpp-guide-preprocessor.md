@@ -235,7 +235,7 @@ std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl;
 
 **`#pragma pack`**
 
-클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 4byte단위로 멤버 변수를 할당합니다.(이를 패딩(padding)이라 합니다.) 
+컴파일러는 클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 4byte단위로 멤버 변수를 할당합니다.(이를 패딩(padding)이라 합니다.) 
 
 ```cpp
 class T {
