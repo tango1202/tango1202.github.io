@@ -66,7 +66,7 @@ public:
 
 class T5 {
 public:
-    T5(int, int) {} // 임의 유형의 기본 생성자가 있어 암시적 기본 생성자가 정의되지 않음
+    T5(int, int) {} // 값 생성자가 있어 암시적 기본 생성자가 정의되지 않음
 };
 
 class T6 {
@@ -84,13 +84,13 @@ T6 t6; // (X) 컴파일 오류. 기본 생성자 정의 안됨
 
 **명시적인 기본 생성자**
 
-인자 없이 사용하는 기본 생성자가 필요하다면, 자동 제로 초기화를 하는 암시적인 기본 생성자를 활용하기 보다는 명시적으로 정의해서 사용하는 편이 유지보수 측면에서 좋습니다. 
+기본 생성자가 필요하다면, 자동 제로 초기화를 하는 암시적인 기본 생성자를 활용하기 보다는 명시적으로 정의해서 사용하는 편이 유지보수 측면에서 좋습니다. 
 
 ```cpp
 class T {
     int m_Val;
 }
-T t; // (O) 암시적 기본 생성자 있음
+T t; // (△) 비권장. 암시적 기본 생성자 사용
 ```
 
 와 같이 사용하다가, `class T`가 개선되어 값 생성자가 추가되면, 컴파일 오류를 맞이하게 됩니다.
@@ -102,10 +102,10 @@ public:
     explicit T(int val) : // 값 생성자가 추가됨
         m_Val(val) {}
 };
-T t; // (X) 암시적 기본 생성자 없음     
+T t; // (X) 컴파일 오류. 암시적 기본 생성자 없음     
 ```
 
-물론 뒤늦게 기본 생성자를 추가해도 됩니다만, C++가 은근슬쩍 만들어 버리는 것들은 오사용의 소지도 있으니 사전에 철저히 차단하고, 필요한 것만 명시적으로 코딩하시는게 좋습니다.
+물론 뒤늦게 기본 생성자를 추가해도 됩니다만, C++가 은근슬쩍 만들어 버리는 것들은 오사용의 소지도 있으니, 사전에 철저히 차단하고 필요한 것만 명시적으로 코딩하시는게 좋습니다.
 
 ```cpp
 class T {
@@ -146,7 +146,6 @@ class T {
 public:
     T() {} // 기본 생성자
     explicit T(int val) {} // 값 생성자
-    T& operator =(const T& other) {return *this;} // 대입 연산자
 };
 
 class U {
@@ -181,7 +180,7 @@ public:
 
 **필요한 인자를 모두 나열하고 초기화**
 
-값 생성자의 인자 작성시에는 [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 모든 요소를 나열하고 초기화 하는게 **코딩 계약**상 좋습니다. 다음처럼 일부 멤버 변수만 초기화 하고, 나중에 별도 함수를 호출하여 초기화를 마무리하면, 사용자가 실수로 빼먹을 수도 있고, **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([완전한 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-perfect-constructor/) 참고)
+값 생성자의 인자 작성시에는 [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 모든 요소를 나열하고 초기화 하는게 **코딩 계약**상 좋습니다. 다음처럼 일부 멤버 변수만 초기화 하고, 나중에 별도 함수를 호출하여 초기화를 마무리하면, 사용자가 실수로 빼먹을 수도 있고, **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([예외 안정 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-constructor/) 참고)
 
 ```cpp
 class T {
@@ -193,8 +192,13 @@ public:
     void SetX(int x) {m_X = x;}
     void SetY(int y) {m_Y = y;}
 };
-T t(10); // (△) 비권장. 멤버 변수 중 m_Y는 초기화하지 않았습니다.
-t.SetY(20); // (△) 비권장. m_Y를 함수를 별도로 호출해야 합니다.
+
+// (△) 비권장. 멤버 변수 중 m_Y는 초기화하지 않았습니다. 
+// 초기화를 위해 추가로 필요한 요소가 뭔지 T 클래스를 파악해 봐야 합니다.
+T t(10); 
+
+// (△) 비권장. m_Y를 함수를 별도로 호출해야 합니다.
+t.SetY(20); 
 ```
 
 보다는 
@@ -208,7 +212,10 @@ public:
         m_X(x), // (O) 생성자에서 모든 멤버 변수를 초기화 합니다.
         m_Y(y) {} 
 };
-T t(10, 20); // (O) 권장. 생성자에서 모든 멤버 변수를 초기화 합니다.
+
+// (O) 생성자에서 모든 멤버 변수를 초기화 합니다.
+// 필요한 요소가 뭔지 생성자만 봐도 알 수 있습니다. 
+T t(10, 20);  
 ```
 
 가 낫습니다.
@@ -226,7 +233,7 @@ public:
     T(int a, int b, int c) :
         m_C(c + m_B), // 3
         m_B(b + m_A), // 2
-        m_A(a) {} // 1
+        m_A(a) {} // 1 
     int GetA() const {return m_A;}
     int GetB() const {return m_B;}
     int GetC() const {return m_C;}
@@ -237,7 +244,7 @@ EXPECT_TRUE(t.GetA() == 10 && t.GetB() == 30 && t.GetC() == 60);
 
 **형변환 생성자**
 
-특별히 생성자에 인자가 1개만 있으면, 암시적인 형변환을 하므로 형변환 생성자라고 합니다. 암시적 형변환이 없도록 꼭 `explicit`를 사용해야 합니다.([명시적 변환 생성 지정자(explicit)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고)
+특별히 생성자에 인자가 1개만 있으면, 암시적인 형변환을 하므로 형변환 생성자라고도 합니다. 암시적 형변환이 없도록 꼭 `explicit`를 사용해야 합니다.([명시적 변환 생성 지정자(explicit)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고)
 
 # 복사 생성자
 
@@ -252,10 +259,9 @@ public:
         m_X(x), 
         m_Y(y) {} 
     // 암시적 복사 생성자의 기본 동작은 멤버별 복사입니다.    
-    // T(const T& other) {
-    //     m_X = other.m_X;
-    //     m_Y = other.m_Y;
-    // }
+    // T(const T& other) :
+    //     m_X(other.m_X),
+    //     m_Y(other.m_Y) {}
     int GetX() const {return m_X;}
     int GetY() const {return m_Y;}
 };
@@ -271,7 +277,9 @@ EXPECT_TRUE(t3.GetX() == 10 && t3.GetY() == 20);
 
 암시적 복사 생성자는 단순히 멤버별 복사를 하므로, 포인터의 경우 소유권 분쟁이 생깁니다. 
 
-`new` 로 생성한 것은 `delete`로 소멸([힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고) 시켜야 하기 때문에, 다음 코드는 생성자에서 `new`로 생성한 힙 개체를 전달받고, 소멸자에서 `delete`합니다. 
+`new` 로 생성한 것은 `delete`로 소멸([힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다. 
+
+다음 코드는 생성자에서 `new`로 생성한 힙 개체를 전달받고, 소멸자에서 `delete`합니다. 
 
 그런데, 암시적 복사 생성자를 이용하여 복사하면, 동일한 힙 개체를 `t1`, `t2`가 참조하게 되어, `t1` 소멸시에도 `delete`하고, `t2` 소멸시에도 `delete`하게 됩니다. 결국 2번 `delete` 하게 되어 예외가 발생하게 되죠.
 
@@ -284,9 +292,8 @@ public:
         m_Val(val) {}
 
     // 암시적 복사 생성자의 기본 동작은 멤버별 복사입니다.    
-    // T(const T& other) {
-    //     m_Val = other.m_Val; // !!동일한 힙 개체를 참조합니다.
-    // }  
+    // T(const T& other) : 
+    //     m_Val(other.m_Val) {} // !!동일한 힙 개체를 참조합니다.
 
     // 힙 개체를 메모리에서 제거 합니다.
     ~T() {delete m_Val;} 
@@ -297,6 +304,8 @@ public:
     T t2(t1); // 복사 생성의 결과 t1과 t2가 동일한 힙 개체를 참조합니다.
 } 
 ```
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/16376f0c-e8b0-4eb5-b5a0-f28fc5a9cc43)
 
 따라서, 암시적 복사 생성자를 사용하지 말고, 다음처럼 복사 생성자를 명시적으로 구현하여, 힙 개체의 복제본을 만들어야 합니다.
 
@@ -328,11 +337,14 @@ public:
 } 
 ```
 
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/204850fc-ed5b-4eb0-a7b6-e939d722c918)
+
 더 좋은 방법은 [스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-smart-pointer/)같은 멤버 개체 핸들러를 만들어 사용하는 것입니다.
 
-앞서, 복사 생성자가 단순히 대입을 하기 때문에, 포인터 소유권 분쟁이 있었습니다. 그런데, 단순히 대입하더라도 복제본이 되도록 관리하는 핸들러가 있다면, 좀더 관리가 수월해 집니다.
+복사 생성자를 케이스에 따라 일일이 명시적으로 개발하기 보다는, 암시적 복사 생성자를 그대로 사용하고, 암시적 복사 생성자가 대입을 할때 포인터를 복제하는 핸들러를 사용한다면 좀더 코드가 간결해 집니다.
 
 ```cpp
+// 복사 생성이나 대입시 m_Ptr을 복제하고, 소멸시 delete 합니다.
 class Handler {
 private:
     int* m_Ptr; // new로 생성된 개체입니다.
@@ -369,24 +381,26 @@ public:
 };
 
 class T {
+    // (O) Handler를 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 Handler에서 delete 합니다.
+    // 암시적 복사 생성자, 암시적 대입 연산자에서 정상 동작하므로, 명시적으로 구현할 필요가 없습니다.
     Handler m_Val;
 public:
     // val : new 로 생성된 것을 전달하세요.
     explicit T(int* val) :
         m_Val(val) {}
 };
-// (O) 힙 개체를 복제하여 소유권 분쟁이 없이 각자의 힙 개체를 delete 합니다.
+// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
 {
     T t1(new int(10));
     T t2(t1); // 새로운 int형 개체를 만들고 10을 복제합니다.
 } 
 ```
 
-복사 생성자를 클래스의 케이스에 따라 별도로 개발하기 보다는 멤버 개체 핸들러를 사용하여, 암시적 복사 생성자가 정상 동작하도록 만드는게 일관성이 있어서 코드분석에 좋습니다.
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ef2ea0ca-4eea-4f8e-bd9f-e945407cd455)
 
 **복사 생성자 사용 제한**
 
-만약 복사 생성자가 필요없다면, 암시적 복사 생성자도 사용할 수 없도록 `private` 로 만드는게 좋습니다. 어짜피 사용하지 않을거라 내버려 뒀는데, 유지보수 하면서 누군가가 복사 생성자를 무심결에 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
+만약 복사 생성자가 필요없다면, 암시적 복사 생성자도 사용할 수 없도록 `private` 로 만드는게 좋습니다. 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 복사 생성자를 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
 
 ```cpp
 class T {
@@ -413,10 +427,9 @@ public:
         m_X(x), 
         m_Y(y) {} 
     // 암시적 복사 생성자의 기본 동작은 멤버별 복사입니다.    
-    // T(const T& other) {
-    //     m_X = other.m_X;
-    //     m_Y = other.m_Y;
-    // }
+    // T(const T& other) :
+    //     m_X(other.m_X),
+    //     m_Y(other.m_Y) {}
     // 암시적 대입 연산자의 기본 동작은 멤버별 대입입니다.    
     // T& operator =(const T& other) {
     //     m_X = other.m_X;
@@ -437,6 +450,8 @@ EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 
 # 생성자에서 가상 함수 호출 금지
 
+부모 클래스의 생성자에서 가상 함수를 호출하면, 아직 자식 클래스들이 완전히 생성되지 않은 상태이기에 부모 클래스의 가상 함수가 호출됩니다. 의도치 않은 동작이므로, 생성자에서는 가상 함수를 호출하지 마세요.
+
 ```cpp
 class Base {
 protected:    
@@ -444,7 +459,10 @@ protected:
 public:
     Base() : 
         m_Val(0) {
-        SetVal(); // 가상 함수를 생성자에서 호출합니다. Derived::SetVal() 이 호출될까요?
+        // (△) 비권장. 가상 함수를 생성자에서 호출합니다.
+        //  Derived::SetVal() 이 호출되길 기대하지만, 
+        // Base::SetVal()이 호출됩니다.    
+        SetVal(); 
     }
     virtual void SetVal() {
         m_Val = 1; // Base 에서는 1
@@ -452,47 +470,42 @@ public:
     int GetVal() const {return m_Val;}
 };
 
-class Derived : Base {
+class Derived : public Base {
 public:
-    Drived() :
-        Base() {} // Base의 기본 생성자를 호출합니다.
+    Derived() :
+        Base() {} // Base의 기본 생성자를 호출하면서 가상 함수 SetVal()이 호출됩니다.
     virtual void SetVal() {
         m_Val = 2; // Derived 에서는 2
     }
 };
 
 Derived d;
-EXPECT_TRUE(d.GetVal() == 2); // (X) 오동작. Base 생성자에서 가상함수인 SeVal() 을 불러서 Derived::SetVal() 이길 기대하나 Base::SetVal()이 호출됨
+
+// (X) 오동작. Base 생성자에서 가상함수인 SeVal() 을 호출하면, 
+// Derived::SetVal() 이 호출되길 기대하나,
+// 아직 Derived가 완전히 생성되지 않은 상태이기에,
+// Base::SetVal() 이 호출됨
+EXPECT_TRUE(d.GetVal() == 1); 
 ```
 
 
-# 상속 전용 기반 클래스 - `proteced` 생성자
+# 상속 전용 기반 클래스 - `protected` 생성자
 
-상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만듭니다.
+상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만듭니다. 그러면 개체 정의에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.
 
 ```cpp
-    // ----
-    // 상속 전용 기반 클래스
-    // ----
-    {
-        class Base {
-        protected:
-            Base() {} // 개체 정의를 할 수 없고, 상속해서만 쓸 수 있습니다.
-        public:
-            virtual void Draw() {
-                // 기본 내용을 그립니다.
-            }
-        };
-        class Derived : Base {
-            void Draw() {
-                Base::Draw(); // 부모 클래스 함수 호출 - 기본 내용을 그립니다.
-                // 추가 내용을 그립니다.
-            }
-        };
+class Base {
+protected: // 개체 정의에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.
+    Base() {} 
+public:
+    virtual void f() {}
+};
+class Derived : Base {
+    virtual void f() {}
+};
 
-        Base b; // (X) 컴파일 오류
-        Derived d;
-    }
+Base b; // (X) 컴파일 오류
+Derived d;
 ```
 
 

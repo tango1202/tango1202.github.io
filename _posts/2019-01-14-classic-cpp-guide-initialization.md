@@ -25,7 +25,7 @@ sidebar:
 |배열 초기화|`T arr[] = {};`,<br/> `char str[] = "abc";`|
 |구조체 초기화|`struct T {`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`int x;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`int y;`<br/>`};`<br/>`T t = {0, 10};`|
 
-생성 후 대입하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([완전한 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-perfect-constructor/) 참고)
+생성 후 대입하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([예외 안정 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-constructor/) 참고)
 
 또한, 개체 생성시 초기화를 하지 않으면, 초기화되지 않은 개체를 사용하는 실수를 할 수 있습니다. 그러니 항상 생성과 동시에 초기화 하는 것이 좋습니다. 
 
