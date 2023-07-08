@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * `has-a`관계에서는 `protected` Non-Virtual 소멸자를 사용하라.
-> * `is-a`관계에서는 `public` Virtual 소멸자를 사용하라.
+> * `is-a`관계에서는 `public` Virtual 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
 > * 생성자처럼 소멸자에서도 가상 함수를 호출하지 마라.
 > * 소멸자에서 예외를 발생하지 마라.(필요하다면 `Release()`함수를 구현하라.)
 
