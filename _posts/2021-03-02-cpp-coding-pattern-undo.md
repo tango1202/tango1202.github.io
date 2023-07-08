@@ -1,11 +1,12 @@
 ---
 layout: single
-title: "#12. [C++ 코딩 패턴] 속성 가방"
+title: "#1. [C++ 코딩 패턴] 되돌리기"
 categories: "cpp-coding-pattern"
-tag: ["cpp"]
+tag: ["C++ 코딩 패턴"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
 
-속성 가
+
+
