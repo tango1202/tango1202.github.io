@@ -338,7 +338,7 @@ public:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/204850fc-ed5b-4eb0-a7b6-e939d722c918)
 
-더 좋은 방법은 [스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-smart-pointer/)같은 멤버 개체 핸들러를 만들어 사용하는 것입니다.
+더 좋은 방법은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)같은 멤버 개체 핸들러를 만들어 사용하는 것입니다.
 
 복사 생성자를 케이스에 따라 일일이 명시적으로 개발하기 보다는, 암시적 복사 생성자를 그대로 사용할 수 있도록 핸들러를 만드는게 좋습니다.
 

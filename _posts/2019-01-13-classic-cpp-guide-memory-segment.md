@@ -52,7 +52,7 @@ delete p; // new로 생성한 것은 반드시 delete
   
 # 스택
 
-스택은 함수내의 지역 변수, 인자, 리턴값이 호출될때마다 차곡 차곡 쌓이는 공간입니다.(함수내에서 `new`로 동적 메모리를 할당했다면, 해당 메모리는 힙에 할당됩니다.) 함수 호출이 종료되거나 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 종료되었다면 자동으로 소멸됩니다. 이러한 자동 소멸은 향후 [스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-smart-pointer/) 개념으로 많이 활용되니 잘 알아 두시기 바랍니다.
+스택은 함수내의 지역 변수, 인자, 리턴값이 호출될때마다 차곡 차곡 쌓이는 공간입니다.(함수내에서 `new`로 동적 메모리를 할당했다면, 해당 메모리는 힙에 할당됩니다.) 함수 호출이 종료되거나 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 종료되었다면 자동으로 소멸됩니다. 이러한 자동 소멸은 향후 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 개념으로 많이 활용되니 잘 알아 두시기 바랍니다.
   
 하기 호출 과정을 개념적으로 메모리에 도식화하면 다음과 같습니다.
 
