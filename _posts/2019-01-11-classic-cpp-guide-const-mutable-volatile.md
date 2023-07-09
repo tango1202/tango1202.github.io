@@ -115,7 +115,7 @@ class T {
 private:
     int m_Val;
 public:
-    void f() const { // 상수 멤버 함수입니다.
+    void Func() const { // 상수 멤버 함수입니다.
         m_Val = 10; // (X) 컴파일 오류. 상수 멤버 함수에서 멤버 변수를 수정할 수 없습니다.
     }
 };
