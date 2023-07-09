@@ -32,7 +32,6 @@ sidebar:
 |비트 Left Shift 대입|`a <<= b`|O|`T& T::operator <<=(const T2& b);`|`T& operator <<=(T& a, const T2& b);`|
 |비트 Right Shift 대입|`a >>= b`|O|`T& T::operator >>=(const T2& b);`|`T& operator >>=(T& a, const T2& b);`|
 
-
 # 산술 연산자
 
 산술 연산의 결과를 리턴합니다. 
@@ -373,7 +372,7 @@ class Derived2 : public Base2 {};
 
 **대입 연산자**
 
-하기는 `=` 연산자를 오버로딩한 예입니다. `T&` 와 같이 자기 자신의 참조를 리턴하는데요, 이는 `t1 = t2 = t2;`과 같이 연달아 대입하는 경우를 지원하고, 복사 부하를 줄이기 위함입니다.
+하기는 `=` 연산자를 오버로딩한 예입니다. `T&` 와 같이 자기 자신의 참조를 리턴하는데요, 이는 `t1 = t2 = t2;`과 같이 연달아 대입하는 경우를 지원하고, 복사 부하를 줄이기 위함입니다.(예외에 안정적으로 대입 연산자를 오버로딩 하는 방법은 [대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)를 참고하세요.)
 
 ```cpp
 class T {

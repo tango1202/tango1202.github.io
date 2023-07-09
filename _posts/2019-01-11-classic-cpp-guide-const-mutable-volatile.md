@@ -108,7 +108,7 @@ void f(const int& x);
 ```
 # 상수 멤버 함수
 
-멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 개체의 멤버 변수를 변경할 수 없습니다.([멤버 함수, 상수 멤버 함수, 논리적 상수성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/) 참고)
+멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 개체의 멤버 변수를 변경할 수 없습니다.([멤버 함수, 상수 멤버 함수, 논리적 상수성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/) 언급)
 
 ```cpp
 class T {
