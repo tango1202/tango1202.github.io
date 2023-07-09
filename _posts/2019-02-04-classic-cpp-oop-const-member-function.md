@@ -17,8 +17,7 @@ sidebar:
 |`T() {}`|생성자<br/>([생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 참고)|
 |`~T() {}`|소멸자<br/>([소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 참고)|
 |`T& operator =(const T& other) {}`|대입 연산자</br>([대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/) 참고)|
-|`operator U() const {}`|형변환 연산자<br/>([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)
-|
+|`operator U() const {}`|형변환 연산자<br/>([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)|
 |`U f() {}`|멤버 함수|
 |`U f() const {}`|상수 멤버 함수|
 |`virtual U f() {}`|가상 함수|
@@ -27,7 +26,7 @@ sidebar:
 
 # 멤버 함수
 
-클래스는 데이터(멤버 변수)와 이를 처리하는 함수(멤버 함수)를 응집하여, [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)가 가능하게 합니다.
+클래스는 데이터(멤버 변수)와 이를 처리하는 함수(멤버 함수)를 응집하여, [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 가능하게 합니다.
 
 ```cpp
 class Date {
@@ -61,7 +60,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
 
 # 상수 멤버 함수
 
-멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD) 에 따라
+멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD) 에 따라 다음을 준수합니다.
 
 1. 멤버 변수를 수정하지 않습니다.
     
@@ -69,7 +68,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
     class T {
         int m_Val;
     public:
-        int GetVal() const {m_Val = 10;} // (X) 컴파일 오류. 멤버 변수 수정
+        void Func() const {m_Val = 10;} // (X) 컴파일 오류. 멤버 변수 수정
     };
     ```
 
@@ -79,7 +78,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
     class T {
         int m_Val;
     public:
-        int* GetVal() const {return &m_Val;} // (X) 컴파일 오류. int* 리턴. const int*를 리턴해야 함.
+        int* Func() const {return &m_Val;} // (X) 컴파일 오류. int* 리턴. const int*를 리턴해야 함.
     };
     ```
 
@@ -88,20 +87,19 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
     class T {
         int m_Val;
     public:
-        void GetVal() const { Func();} // (X) 컴파일 오류. 비 상수 멤버 함수 호출.
-        void Func() {}
+        void Func() const { NonConstFunc();} // (X) 컴파일 오류. 비 상수 멤버 함수 호출.
+        void NonConstFunc() {}
     };
     ```   
 
 4. 메모리를 수정하지 않기 때문에 예외를 발생하지 않습니다.
 
-따라서 상수성을 잘 지키면, 예외에 안정적이며, 상수성 계약에 의
-해 안정적으로 코딩할 수 있습니다. 자신의 행위가 객체를 변경시키는지
+따라서 상수성을 잘 지키면, 예외에 안정적이며, 상수성 계약에 의해 안정적으로 코딩할 수 있습니다. 함수가 객체를 변경시키는지
 아닌지 항상 분명하게 인지하고, 최대한 상수 멤버 함수로 작성하세요.
 
-# 상수 멤버 함수 상수성 계약
+# 비 상수 멤버 함수의 비 상수성 전파
 
-상수 멤버 함수가 될 수 있음에도 비 상수 멤버 함수로 작성한다면, 이를 사용하는 모든 함수나 개체들이 비상수로 만들어져야 합니다. 비 상수성은 전파되니 상수 멤버 함수가 될 수 있다면 꼭 상수 멤버 함수로 만드세요.
+상수 멤버 함수가 될 수 있음에도 비 상수 멤버 함수로 작성한다면, 이를 사용하는 모든 함수나 개체들이 비 상수로 만들어져야 합니다. 비 상수성은 전파되니 상수 멤버 함수가 될 수 있다면 꼭 상수 멤버 함수로 만드세요.
 
 ```cpp
 
@@ -114,11 +112,11 @@ public:
 class U {
     T m_T;
 public:
-    int GetInnerVal() const {m_T.GetVal()}; // (X) 컴파일 오류. m_T.GetVal()은 비 상수 멤버 함수여서 상수 멤버 함수인 GetInnerVal() 이 호출할 수 없습니다.
+    int GetInnerVal() const {m_T.GetVal();}; // (X) 컴파일 오류. m_T.GetVal()은 비 상수 멤버 함수여서 상수 멤버 함수인 GetInnerVal() 이 호출할 수 없습니다.
 };
 ```
 
-
+# 논리적 상수성
 
 
 상수 멤버 함수는 내부 구현에서 상수 멤버 함수만을 호출합니다.(컴파일 오류)
