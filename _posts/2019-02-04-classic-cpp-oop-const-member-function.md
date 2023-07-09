@@ -117,46 +117,6 @@ public:
 
 # 논리적 상수성
 
-
-
-# 가상 함수
-
-`virtual`을 붙이면 가상 함수가 되며, 부모 개체로 자식 개체에서 구현한 함수를 호출할 수 있습니다.
-
-다음 코드를 보면 일반 함수인 `f()`와 가상 함수인 `v()`를 `Derived`에서 재구현 했을때, 어떻게 동작되는지 알 수 있습니다. 
-
-```cpp
-class Base {
-public:
-    int f() {return 10;}
-    virtual int v() {return 10;} // 가상 함수
-};
-
-class Derived : public Base {
-public:
-    int f() {return 20;} // (△) 비권장. Base의 동일명의 함수를 가림
-    virtual int v() {return 20;} // (O) Base의 가상 함수 재구현
-};
-
-Derived d;
-Base* b = &d;
-
-EXPECT_TRUE(b->f() == 10); // (△) 비권장. Base 개체를 이용하면 Base::f()가 호출됨 
-EXPECT_TRUE(d.f() == 20); // (△) 비권장. Derived 개체를 이용하면 Derived::f()가 호출됨        
-EXPECT_TRUE(static_cast<Base&>(d).f() == 10); // (△) 비권장. 가려진 Base::f() 함수를 호출
-
-EXPECT_TRUE(b->v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
-EXPECT_TRUE(d.v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
-```
-
-
-# 순가상 함수
-# Getter 함수
-
-# Setter 함수
-
-특성으로
-
 getter, setter
 
 class Date {
@@ -166,12 +126,6 @@ int month() const {return m;}
 int year() const {return y;} void day(int val) {d = val;} void day(int val) const {d = val;} // 컴파일 오류
 };
 Date date1, date2; date1.day(10); date2.day(20); const Date& r = date1; r.day(); // (O) r.day(20); // (X) 컴파일 오류 const 정확도를 지켜라
-
-
-
-
-
-
 
 Date를 문자열로 리턴하는 함수를 만들고 싶다. 문자열 변환에 비용이 많이 들어 이 값을 멤버 변수에 저장(cache)해 두어야 할 것 같다. 물론, Date의 값이 바뀌면 멤버변수는 초기화 되야 할 것이다
 
@@ -188,3 +142,144 @@ text = toString(d, m, y); // 멤버변수를 바꾼다. }return text; } private:
 논리적으론 get 해오므로 상수
 
 물리적 상수성을 해치므로 컴파일 오류(지연 생성에서 흔히 발생) mutable string text; 로 정의하여 해결
+
+
+# 가상 함수
+
+`virtual`을 붙이면 가상 함수가 되며, 부모 개체를 이용하여 자식 개체에서 재구현한 함수에 접근할 수 있습니다.
+
+다음 코드에서 일반 함수인 `f()`와 가상 함수인 `v()`를 `Derived`에서 재구현 했을때, 어떻게 동작하는지 나타내었습니다.
+
+부모 개체인 `Base`에서 일반 함수인 `f()`를 호출하면, `Base::f()`가 호출되고, 자식 개체에서는 `Derived::f()` 가 호출됩니다. 일관성이 없으므로 사용하지 말아야 하고, 자식 개체에서 부모 개체의 비 가상 함수를 가려서는 안됩니다.
+
+부모 개체인 `Base`에서 가상 함수인 `v()`를 호출하면, `Derived::v()`가 정상적으로 호출됩니다.
+
+```cpp
+class Base {
+public:
+    int f() {return 10;}
+    virtual int v() {return 10;} // 가상 함수
+};
+
+class Derived : public Base {
+public:
+    int f() {return 20;} // (△) 비권장. Base의 동일한 이름의 비 가상 함수를 가림
+    virtual int v() {return 20;} // (O) Base의 가상 함수 재구현
+};
+
+Derived d;
+Base* b = &d;
+
+EXPECT_TRUE(b->f() == 10); // (△) 비권장. Base 개체를 이용하면 Base::f()가 호출됨 
+EXPECT_TRUE(d.f() == 20); // (△) 비권장. Derived 개체를 이용하면 Derived::f()가 호출됨        
+EXPECT_TRUE(static_cast<Base&>(d).f() == 10); // (△) 비권장. 가려진 Base::f() 함수를 호출
+
+EXPECT_TRUE(b->v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
+EXPECT_TRUE(d.v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
+```
+
+# 순가상 함수
+
+순가상 함수는 실제 구현없이 함수 규약만 정의할때 사용합니다. 순가상 함수가 있는 클래스는 인스턴스화 할 수 없으며, 반드시 상속해서 자식 개체에서 구현해야 합니다.
+
+```cpp
+class IEatable {
+public:
+    virtual void Eat() = 0; // 순가상 함수
+};
+
+class Dog :
+    public IEatable {
+public:        
+    virtual void Eat() {} // 순가상 함수는 자식 개체에서 실제 구현을 해야 합니다.
+};
+IEatable eatable; // (X) 컴파일 오류. 순가상 함수
+Dog dog; // (O)
+```
+
+# Getter 함수
+
+개체의 멤버 변수를 리턴하는 함수를 특별히 Getter 함수라고 합니다.
+
+1. `int` 등 기본 자료형의 경우는 복사 부하가 참조 부하보다 적기 때문에 값을 리턴하는게 좋습니다. 
+2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 참조자를 리턴하는게 좋습니다.
+3. 멤버 변수는 널이 되는 경우가 없기 때문에 포인터보다는 참조자로 리턴하는게 좋습니다.
+4. 멤버 변수를 수정하지 않는다면 상수 멤버 함수로 작성합니다.
+5. 값 타입을 리턴하는 경우는 어짜피 리턴값이 복제되므로, 리턴값에 `const`를 굳이 붙일 필요가 없습니다. 
+
+```cpp
+class T {};
+class U {
+    int m_Val1;
+    T m_Val2;
+public:
+    int GetVal1() const {return m_Val1;} // (O) 멤버 변수의 값을 리턴
+    int& GetVal1() {return m_Val1;} // (O) 멤버 변수의 값을 수정하는 참조자를 리턴    
+
+    const T& GetVal2() const {return m_Val2;} // (O) 멤버 변수의 참조자 리턴
+    T& GetVal2() {return m_Val2;} // (O) 멤버 변수의 값을 수정하는 참조자를 리턴  
+
+    // const int GetVal1() const {return m_Val1;} // (△) 비권장. 리턴값이 기본 타입이라면 어짜피 리턴값이 복제되므로, `const` 부적절
+    // int GetVal1() {return m_Val1;} // (△) 비권장. 멤버 변수를 수정하지 않으므로 상수 함수가 적절
+    // const int GetVal1() {return m_Val1;} // (△) 비권장. 멤버 변수를 수정하지 않으므로 상수 함수가 적절
+
+    // (△) 비권장. 포인터 보다는 참조자가 적절
+    // const int* GetVal1() const {return &m_Val1;} // (△) 비권장. 포인터 보다는 참조자가 적절
+    // int* GetVal1() {return &m_Val1;} // (△) 비권장. 포인터 보다는 참조자가 적절
+    // int* GetVal1() const {return &m_Val1;} // (X) 컴파일 오류. 상수성 계약 위반
+    // const int* GetVal1() {return &m_Val1;} // (△) 비권장. 상수 함수가 적절 
+
+    // const int& GetVal1() const {return m_Val1;} // (△) 비권장. int는 기본 자료형이어서 참조 보다는 값 전달이 적절
+    // int& GetVal1() const {return m_Val1;} // (X) 컴파일 오류. 상수성 계약 위반
+    // const int& GetVal1() {return m_Val1;} // (△) 비권장. 상수 함수가 적절
+
+    // (△) 비권장. 복사 부하가 참조 부하보다 큰 개체여서 값 복사 보다는 참조가 적절
+    // const T GetVal2() const {return m_Val2;} // (△) 비권장. 값 복사 보다는 참조가 적절. 어짜피 리턴값이 복제되므로, `const` 부적절
+    // T GetVal2() const {return m_Val2;} // (△) 비권장. 값 복사 보다는 참조가 적절
+    // T GetVal2() {return m_Val2;} // (△) 비권장. 값 복사 보다는 참조가 적절. 멤버 변수를 수정하지 않으므로 상수 함수가 적절
+    // const T GetVal2() {return m_Val2;} // (△) 비권장. 값 복사 보다는 참조가 적절. 어짜피 리턴값이 복제되므로, `const` 부적절, 멤버 변수를 수정하지 않으므로 상수 함수가 적절
+
+    // (△) 비권장. 포인터 보다는 참조자가 적절
+    // const T* GetVal2() const {return &m_Val2;} // (△) 비권장. 포인터 보다는 참조자가 적절
+    // T* GetVal2() {return &m_Val2;} // (△) 비권장. 포인터 보다는 참조자가 적절
+    // T* GetVal2() const {return &m_Val2;} // (X) 컴파일 오류. 상수성 계약 위반
+    // const T* GetVal2() {return &m_Val2;} // (△) 비권장. 상수 함수가 적절
+
+    // T& GetVal2() const {return m_Val2;} // (X) 컴파일 오류. 상수성 계약 위반
+    // const T& GetVal2() {return m_Val2;} // (△) 비권장. 상수 함수가 적절
+};
+```
+
+# Setter 함수
+
+개체의 멤버 변수를 설정하는 함수를 특별히 Setter 함수라고 합니다.
+
+1. int 등 기본 자료형의 경우는 복사 부하가 참조 부하보다 적기 때문에 값을 전달하는게 좋습니다. 
+2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 참조자를 전달하는게 좋습니다.
+3. 멤버 변수를 수정하는 것이지 인자를 수정하지 않습니다. 인자는 상수여야 합니다.
+4. 널검사가 최소화 될 수 있도록 널이 되지 않는 경우라면, 포인터보다는 참조자를 전달하는게 좋습니다.
+5. 값 타입을 전달하는 경우는 어짜피 인자에 복제되므로, 인자에 `const`를 굳이 붙일 필요가 없습니다. 
+
+```cpp
+class T {};
+class U {
+    int m_Val1;
+    T m_Val2;
+public:
+    void SetVal1(int val) {m_Val1 = val;} // (O) 멤버 변수에 값 대입
+    void SetVal2(const T& val) {m_Val2 = val;} // (O) 참조자를 통해 전달받은 인자를 현 멤버 변수에 복사
+
+    // void SetVal1(const int val) {m_Val1 = val1;} // (△) 비권장. 인자에 복사되므로 int와 const int는 동일 취급됨
+    // void SetVal1(int* val) {m_Val = *val;} // (△) 비권장. 인자는 상수 타입이어야 함
+    // void SetVal1(const int* val) {m_Val = *val;} // (△) 비권장. 포인터보다는 참조자가 좋음
+    // void SetVal1(int& val) {m_Val = *val;} // (△) 비권장. 인자는 상수 타입이어야 함
+    // void SetVal1(const int& val) {m_Val = *val;} // (△) 비권장. 기본 자료형의 경우 값 복사가 좋음
+
+    // void SetVal2(T val) {m_Val2 = val;} // (△) 비권장. 값 복사 보다는 참조가 적절
+    //     void SetVal2(const T val) {m_Val2 = val;} // (△) 비권장. 인자에 복사되므로 T와 const T는 동일 취급됨
+
+    // void SetVal2(T* val) {m_Val2 = *val;} // (△) 비권장. 인자는 상수 타입이어야 함
+    // void SetVal2(const T* val) {m_Val2 = *val;} // (△) 비권장. 포인터보다는 참조자가 좋음
+    // void SetVal2(T& val) {m_Val2 = val;} // (△) 비권장. 인자는 상수 타입이어야 함
+};
+```
