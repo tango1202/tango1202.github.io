@@ -102,7 +102,6 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
 상수 멤버 함수가 될 수 있음에도 비 상수 멤버 함수로 작성한다면, 이를 사용하는 모든 함수나 개체들이 비 상수로 만들어져야 합니다. 비 상수성은 전파되니 상수 멤버 함수가 될 수 있다면 꼭 상수 멤버 함수로 만드세요.
 
 ```cpp
-
 class T {
     int m_Val;
 public:
@@ -119,32 +118,35 @@ public:
 # 논리적 상수성
 
 
-상수 멤버 함수는 내부 구현에서 상수 멤버 함수만을 호출합니다.(컴파일 오류)
-상수 멤버 함수는 예외를 발생하지 않습니다.(노력해서 구현해야 함)
-mutable로 논리적 상수성을 구현한 경우 예외를 발생하지 않아야 합니다.(노력해서 구현해야 함)
 
 # 가상 함수
 
 `virtual`을 붙이면 가상 함수가 되며, 부모 개체로 자식 개체에서 구현한 함수를 호출할 수 있습니다.
 
+다음 코드를 보면 일반 함수인 `f()`와 가상 함수인 `v()`를 `Derived`에서 재구현 했을때, 어떻게 동작되는지 알 수 있습니다. 
+
 ```cpp
 class Base {
 public:
     int f() {return 10;}
-    virtual v() {return 10;}
+    virtual int v() {return 10;} // 가상 함수
 };
 
 class Derived : public Base {
 public:
-    int f() {return 20;}
-    virtual v() {return 20;} // 가상 함수 재구현
+    int f() {return 20;} // (△) 비권장. Base의 동일명의 함수를 가림
+    virtual int v() {return 20;} // (O) Base의 가상 함수 재구현
 };
 
 Derived d;
 Base* b = &d;
 
-EXPECT_TRUE(b->f() == 10 && b->v() == 20);
-EXPECT_TRUE(d.f() == 20 && d.v() == 20);
+EXPECT_TRUE(b->f() == 10); // (△) 비권장. Base 개체를 이용하면 Base::f()가 호출됨 
+EXPECT_TRUE(d.f() == 20); // (△) 비권장. Derived 개체를 이용하면 Derived::f()가 호출됨        
+EXPECT_TRUE(static_cast<Base&>(d).f() == 10); // (△) 비권장. 가려진 Base::f() 함수를 호출
+
+EXPECT_TRUE(b->v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
+EXPECT_TRUE(d.v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 ```
 
 
