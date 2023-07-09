@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ 개체 지향] C++가 은근슬쩍 만들어 버리는 것들"
+title: "#6. [고전 C++ 개체 지향] C++가 은근슬쩍 만들어 버리는 것들"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false

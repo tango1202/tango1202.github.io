@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [고전 C++ 가이드] 개체 생성과 소멸"
+title: "#10. [고전 C++ 가이드] 개체 생성과 소멸"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false

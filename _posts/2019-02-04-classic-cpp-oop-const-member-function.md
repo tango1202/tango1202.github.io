@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [고전 C++ 개체 지향] 멤버 함수, 상수 멤버 함수, 논리적 상수성"
+title: "#4. [고전 C++ 개체 지향] 멤버 함수, 상수 멤버 함수, 논리적 상수성, Getter, Setter"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -8,9 +8,25 @@ sidebar:
     nav: "docs"
 ---
 
-https://en.cppreference.com/w/cpp/language/member_functions
-멤버 함수
+**개요**
 
+|항목|내용|
+|--|--|
+|`T() {}`|생성자<br/>([생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 참고)|
+|`~T() {}`|소멸자<br/>([소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)참고)|
+|`T& operator =(const T& other) {}`|대입 연산자|
+|`operator U() const {}`|형변환 연산자|
+|`U f() {}`|비 정적 멤버 함수|
+|`U f() const {}`|비 정적 상수 멤버 함수|
+|`virtual U f() {}`|가상 함수|
+|`virtual U f() = 0;`|순가상 함수|
+|`static U f() {}`|정적 멤버 함수|
+
+
+
+특성으로
+
+getter, setter
 
 class Date {
 int d, m, y; public:

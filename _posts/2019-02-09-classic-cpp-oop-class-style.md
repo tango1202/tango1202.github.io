@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [고전 C++ 개체 지향] 클래스 스타일"
+title: "#9. [고전 C++ 개체 지향] 클래스 스타일"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false

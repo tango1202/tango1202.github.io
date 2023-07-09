@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [고전 C++ 가이드] 가상 함수, 다형성"
+title: "#12. [고전 C++ 가이드] 가상 함수, 다형성"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false

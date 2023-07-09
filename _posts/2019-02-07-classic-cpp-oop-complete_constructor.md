@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [C++ 코딩 패턴] 완전한 생성자"
+title: "#7. [C++ 코딩 패턴] 완전한 생성자"
 categories: "classic-cpp-oop"
 tag: ["C++ 코딩 패턴"]
 author_profile: false

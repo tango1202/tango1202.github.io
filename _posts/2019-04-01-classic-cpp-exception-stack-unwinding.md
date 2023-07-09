@@ -8,4 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
+예외가 발생하기 전의 상태로 복귀해야 한다.
+
+
 https://en.cppreference.com/w/cpp/language/throw
