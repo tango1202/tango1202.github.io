@@ -52,7 +52,7 @@ EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 
 **포인터 멤버 변수의 소유권 분쟁과 개체 핸들러**
 
-복사 생성자에서와 마찬가지로, 멤버 변수에 포인터가 있다면 소유권 분쟁을 합니다. 동일한 힙 개체를 2변 `delete` 하게 되니까요.([복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
+복사 생성자에서와 마찬가지로, 멤버 변수에 포인터가 있다면 소유권 분쟁을 합니다. 동일한 힙 개체를 2번 `delete` 하게 되니까요.([복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
 따라서, 암시적 대입 연산자를 사용하지 말고, 다음처럼 대입 연산자를 명시적으로 구현하여, 힙 개체의 복제본을 만들어야 합니다.
 
