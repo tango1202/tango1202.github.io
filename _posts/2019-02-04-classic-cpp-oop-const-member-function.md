@@ -125,8 +125,30 @@ mutable로 논리적 상수성을 구현한 경우 예외를 발생하지 않아
 
 # 가상 함수
 
-# 순가상 함수
+`virtual`을 붙이면 가상 함수가 되며, 부모 개체로 자식 개체에서 구현한 함수를 호출할 수 있습니다.
 
+```cpp
+class Base {
+public:
+    int f() {return 10;}
+    virtual v() {return 10;}
+};
+
+class Derived : public Base {
+public:
+    int f() {return 20;}
+    virtual v() {return 20;} // 가상 함수 재구현
+};
+
+Derived d;
+Base* b = &d;
+
+EXPECT_TRUE(b->f() == 10 && b->v() == 20);
+EXPECT_TRUE(d.f() == 20 && d.v() == 20);
+```
+
+
+# 순가상 함수
 # Getter 함수
 
 # Setter 함수
