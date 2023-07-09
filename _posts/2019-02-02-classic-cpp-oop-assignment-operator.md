@@ -190,7 +190,7 @@ Handler& operator =(const Handler& other) {
 
 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)에 언급된 것처럼 예외가 발생하기 전의 상태로 되돌아가야 합니다. 
 
-다음처럼 임시 개체를 만들고, `swap`을 이용해 `this`와 임시개체를 바꿔치기하면, 예외에 안정적인 대입 연산자를 구현할 수 있습니다.
+다음처럼 임시 개체를 만들고, `swap`을 이용해 `this`와 임시 개체를 바꿔치기하면, 예외에 안정적인 대입 연산자를 구현할 수 있습니다.
 
 ```cpp
 Handler& operator =(const Handler& other) {
