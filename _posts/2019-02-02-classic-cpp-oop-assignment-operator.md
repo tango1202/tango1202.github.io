@@ -49,9 +49,9 @@ t2 = t1; // (O) 암시적 대입 연산자 호출
 EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 ```
 
-# 포인터 멤버 변수의 소유권 분쟁과 개체 핸들러
+# 포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`
 
-복사 생성자에서와 마찬가지로, 멤버 변수에 포인터가 있다면 대입 연산 후 소유권 분쟁을 합니다. 동일한 힙 개체를 2번 `delete` 하게 되니까요.([복사 생성자의 포인터 멤버 변수의 소유권 분쟁과 개체 핸들러](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-%ED%95%B8%EB%93%A4%EB%9F%AC) 참고)
+복사 생성자에서와 마찬가지로, 멤버 변수에 포인터가 있다면 대입 연산 후 소유권 분쟁을 합니다. 동일한 힙 개체를 2번 `delete` 하게 되니까요.([복사 생성자의 포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-%ED%95%B8%EB%93%A4%EB%9F%AC) 참고)
 
 이를 해결하기 위해, 암시적 대입 연산자를 사용하지 않고, 다음처럼 대입 연산자를 명시적으로 구현하여, 힙 개체의 복제본을 만들 수 있습니다.
 
@@ -75,8 +75,9 @@ public:
 
     // (O) NULL 포인터가 아니라면 복제합니다.
     T& operator =(const T& other) {
-
-         // (△) 비권장. 기존에 관리하는 포인터는 삭제합니다. 사실 미리 삭제하는 건 예외 안정에 좋지 않습니다. `swap`을 이용한 대입 연산자 구현 참고
+        // (△) 비권장. 기존에 관리하는 포인터는 삭제합니다. 
+        // 사실 미리 삭제하는 건 예외 안정에 좋지 않습니다. 
+        // swap을 이용한 예외 안정 대입 연산자 구현 참고
         delete m_Val; 
 
         if (other.m_Val != NULL) { 
@@ -101,9 +102,9 @@ public:
 } 
 ```
 
-복사 생성자의 경우와 마찬가지로 핸들러를 활용할 수도 있습니다.
+복사 생성자의 경우와 마찬가지로 `Handler`를 활용할 수도 있습니다.
 
-암시적 대입 연산자가 내부적으로 대입을 할때 핸들러의 대입 연산자가 호출되고, 핸들러가 포인터를 복제합니다.
+암시적 대입 연산자가 내부적으로 대입을 할때 `Handler`의 대입 연산자가 호출되는데, 이때 `Handler`의 대입 연산자에서 포인터를 복제하도록 재구현 합니다. 
 
 ```cpp
 // 복사 생성이나 대입시 m_Ptr을 복제하고, 소멸시 delete 합니다.
@@ -126,7 +127,9 @@ public:
 
     // (O) NULL 포인터가 아니라면 복제합니다.     
     Handler& operator =(const Handler& other) {
-        // (△) 비권장. 기존에 관리하는 포인터는 삭제합니다. 사실 미리 삭제하는 건 예외 안정에 좋지 않습니다. `swap`을 이용한 대입 연산자 구현 참고
+        // (△) 비권장. 기존에 관리하는 포인터는 삭제합니다. 
+        // 사실 미리 삭제하는 건 예외 안정에 좋지 않습니다. 
+        // swap을 이용한 예외 안정 대입 연산자 구현 참고
         delete m_Ptr;  
 
         if (other.m_Ptr != NULL) {
@@ -143,8 +146,10 @@ public:
 };
 
 class T {
-    // (O) Handler를 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 Handler에서 delete 합니다.
-    // 암시적 복사 생성자와 암시적 대입 연산자에서 정상 동작하므로, 명시적으로 복사 생성자와 대입 연산자를 구현할 필요가 없습니다.
+    // (O) Handler를 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 
+    // 소멸시 Handler에서 delete 합니다.
+    // 암시적 복사 생성자와 암시적 대입 연산자에서 정상 동작하므로, 
+    // 명시적으로 복사 생성자와 대입 연산자를 구현할 필요가 없습니다.
     Handler m_Val;
 public:
     // val : new 로 생성된 것을 전달하세요.
@@ -166,9 +171,9 @@ public:
 
 # `swap`을 이용한 예외 안정 대입 연산자 구현
 
-핸들러의 대입 연산자 구현을 보면, 기존에 참조되던 포인터를 `delete`하고, 새로운 힙 개체를 할당합니다. 
+예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)에 언급된 것처럼 예외가 발생하기 전의 상태로 되돌아가야 합니다.
 
-할당시 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)에 언급된 것처럼 예외가 발생하기 전의 상태로 되돌아가야 하는데요, 이미 `delete`한 힙 개체를 복원할 수 없어 예외 처리가 어려워 집니다.
+하지만, `Handler`의 대입 연산자 구현을 보면, 기존에 참조되던 포인터를 `delete`하고, 새로운 힙 개체를 할당합니다. 따라서 이미 `delete`한 힙 개체를 복원할 수 없어 예외 처리가 어려워 집니다.
 
 ```cpp
 Handler& operator =(const Handler& other) {
@@ -216,7 +221,7 @@ void Swap(Handler& other) {
 }
 ```
 
-핸들러 자체는 예외에 안정적이지만, 이를 사용하는 `T` 개체는 아직 불안정합니다.
+`Handler` 자체는 예외에 안정적이지만, 이를 사용하는 `T` 개체는 아직 불안정합니다.
 
 `T`가 포인터형 변수 2개를 관리한다고 생각해 봅시다.
 
@@ -241,45 +246,11 @@ T& operator =(const T& other) {
 }
 ```
 
-`m_Val1` 대입은 성공하고, `m_Val2` 대입은 실패했다면, `this`의 `m_Val`만 변경되 버립니다. 예외가 발생하기 전의 상태로 가야하는데 이미 `m_Val1`이 수정되었으니 예외에 안정적이지 못합니다. 즉, 핸들러를 사용한 `T`라 할지라도 `swap`으로 대입 연산자를 구현해야 예외에 안정적입니다.
+만약 `m_Val1` 대입은 성공하고, `m_Val2` 대입은 실패했다면, `this`의 `m_Val1`만 변경된 상태가 됩니다. 예외가 발생하기 전의 상태로 가야하는데 이미 `m_Val1`이 수정되었으니 예외에 안정적이지 못합니다. 따라서, `Handler`를 사용한 `T`라 할지라도 `swap`으로 대입 연산자를 구현해야 예외에 안정적입니다.
 
-따라서 예외에 안정적으로 만드려면, 복사 생성자와 호환되는 핸들러를 사용하고, swap을 이용하여 대입 연산자를 구현해야 합니다.
+즉, `T`를 예외에 안정적으로 만드려면, 복사 생성자와 호환되는 `Handler`를 사용하고, `swap`을 이용하여 대입 연산자를 구현해야 합니다.
 
-
-
-
-
-다음처럼 `T` 클래스에 `Handler`를 멤버 변수로 사용한다면, 암시적 복사 생성자나 암시적 대입 연산자에서 정상 동작합니다.
-
-```cpp
-class T {
-    // (O) Handler를 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 Handler에서 delete 합니다.
-    // 암시적 복사 생성자와 암시적 대입 연산자에서 정상 동작하므로, 명시적으로 복사 생성자와 대입 연산자를 구현할 필요가 없습니다.
-    Handler m_Val;
-public:
-    // val : new 로 생성된 것을 전달하세요.
-    explicit T(int* val) :
-        m_Val(val) {} 
-};
-// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
-{
-    T t1(new int(10));
-    T t2(t1); // 새로운 int형 개체를 만들고 10을 복제합니다.
-} 
-// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
-{
-    T t1(new int(10));
-    T t2(new int(20)); 
-    t2 = t1; // t1의 힙 개체를 복제후 대입하고, t2의 이전 힙 개체를 delete 합니다.
-} 
-```
-
-핸들러 덕에 `T`의 복사 생성자를 구현하지 않아도 정상 동작 하는데요, 예외에도 안정적일까요? 
-
-
-
-
-핸들러와 `T`의 전체 코드는 다음과 같습니다.
+`Handler`와 `T` 개체의 전체 코드는 다음과 같습니다.
 
 ```cpp
 // 복사 생성이나 대입시 m_Ptr을 복제하고, 소멸시 delete 합니다.
@@ -302,7 +273,6 @@ public:
 
     // (O) 예외에 안정적이도록 swap을 이용하여 대입합니다.   
     Handler& operator =(const Handler& other) {
-
         // other의 힙 개체를 복제한 임시 개체를 만듭니다.
         Handler temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
 
@@ -315,26 +285,53 @@ public:
         // 소멸되면서 this가 이전에 가졌던 힙 개체를 소멸합니다.
     }
 
-    // 힙 개체를 메모리에서 제거 합니다.
-    ~Handler() {delete m_Ptr;}
-
     // 멤버 변수들의 값을 바꿔치기 합니다.
-    void Swap(const Handler& other) {
+    void Swap(Handler& other) {
         std::swap(this->m_Ptr, other.m_Ptr); // (O) 포인터 끼리의 값 변경이므로 예외가 발생하지 않습니다.   
     }
+
+    // 힙 개체를 메모리에서 제거 합니다.
+    ~Handler() {delete m_Ptr;}
 };
 
+class T {
+    // (O) Handler를 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 
+    // 소멸시 Handler에서 delete 합니다.
+    // 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
+    Handler m_Val1;
+    Handler m_Val2;
+public:
+    // val1, val2 : new 로 생성된 것을 전달하세요.
+    T(int* val1, int* val2) :
+        m_Val1(val1),
+        m_Val2(val2) {} 
 
+    // (O) 예외에 안정적이도록 swap으로 대입 연산자를 구현합니다. 
+    T& operator =(const T& other) {
+        T temp(other); // 임시 개체 생성
+        Swap(temp); // 바꿔치기
+        return *this; 
+    } // 임시 개체가 소멸되면서, this가 이전에 가졌던 힙 개체 소멸
 
+    // (O) 멤버 변수들의 값을 바꿔치기 합니다.
+    void Swap(T& other) {
+        m_Val1.Swap(other.m_Val1); 
+        m_Val2.Swap(other.m_Val2);                  
+    }                
+};
+
+// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+{
+    T t1(new int(10), new int(10));
+    T t2(t1); // 새로운 int형 개체를 만들고 10을 복제합니다.
+} 
+// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+{
+    T t1(new int(10), new int(10));
+    T t2(new int(20), new int(20)); 
+    t2 = t1; // t1의 힙 개체를 복제후 대입하고, t2의 이전 힙 개체를 delete 합니다.
+} 
 ```
-
-.
-
-swap 사용한 예외 안정 T 코드
-
-
-
-
 
 # 대입 연산자 사용 제한
 
