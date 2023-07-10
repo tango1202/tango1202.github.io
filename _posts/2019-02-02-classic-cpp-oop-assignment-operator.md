@@ -274,7 +274,7 @@ public:
         return *this;
     }
     void Swap(const T& other) {
-       m_Val.Swap(this->other.m_Val);  
+       m_Val.Swap(other.m_Val);  
     }
 };
 // (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
