@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [고전 C++ 개체 지향] 멤버 함수, 상수 멤버 함수, 논리적 상수성, Getter, Setter"
+title: "#4. [고전 C++ 개체 지향] 멤버 함수, 상수 멤버 함수, Getter, Setter"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -22,7 +22,7 @@ sidebar:
 |`U f() const {}`|상수 멤버 함수|
 |`virtual U f() {}`|가상 함수|
 |`virtual U f() = 0;`|순가상 함수|
-|`static U f() {}`|정적 멤버 함수|
+|`static U f() {}`|정적 멤버 함수<br/>([정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
 
 # 멤버 함수
 
@@ -115,35 +115,6 @@ public:
 };
 ```
 
-# 논리적 상수성
-
-getter, setter
-
-class Date {
-int d, m, y; public:
-int day() const {return d;}
-int month() const {return m;}
-int year() const {return y;} void day(int val) {d = val;} void day(int val) const {d = val;} // 컴파일 오류
-};
-Date date1, date2; date1.day(10); date2.day(20); const Date& r = date1; r.day(); // (O) r.day(20); // (X) 컴파일 오류 const 정확도를 지켜라
-
-Date를 문자열로 리턴하는 함수를 만들고 싶다. 문자열 변환에 비용이 많이 들어 이 값을 멤버 변수에 저장(cache)해 두어야 할 것 같다. 물론, Date의 값이 바뀌면 멤버변수는 초기화 되야 할 것이다
-
-
-class Date {
-int d, m, y; string text; // text에 저장해 둘 것이다. public: Date(int dd, int mm, int yy) : d(dd), m(mm), y(yy) {
-}void day(int dd) {
-text.clear(); d = dd; }string getString() const {
-if(text.empty()) {
-text = toString(d, m, y); // 멤버변수를 바꾼다. }return text; } private: static string toString(d, m, y); };
-
-이전에 저장된 정보를 초기화
-
-논리적으론 get 해오므로 상수
-
-물리적 상수성을 해치므로 컴파일 오류(지연 생성에서 흔히 발생) mutable string text; 로 정의하여 해결
-
-
 # 가상 함수
 
 `virtual`을 붙이면 가상 함수가 되며, 부모 개체를 이용하여 자식 개체에서 재구현한 함수에 접근할 수 있습니다.
@@ -199,7 +170,7 @@ Dog dog; // (O)
 
 # Getter 함수
 
-개체의 멤버 변수를 리턴하는 함수를 특별히 Getter 함수라고 합니다.
+개체의 멤버 변수를 리턴하는 함수를 특별히 Getter 함수라고 합니다. 다음 규칙에 맞춰 리턴문을 작성하는게 좋습니다.
 
 1. `int` 등 기본 자료형의 경우는 복사 부하가 참조 부하보다 적기 때문에 값을 리턴하는게 좋습니다. 
 2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 참조자를 리턴하는게 좋습니다.
@@ -252,13 +223,13 @@ public:
 
 # Setter 함수
 
-개체의 멤버 변수를 설정하는 함수를 특별히 Setter 함수라고 합니다.
+개체의 멤버 변수를 설정하는 함수를 특별히 Setter 함수라고 합니다. 다음 규칙에 맞춰 인자를 작성하는게 좋습니다.
 
 1. int 등 기본 자료형의 경우는 복사 부하가 참조 부하보다 적기 때문에 값을 전달하는게 좋습니다. 
 2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 참조자를 전달하는게 좋습니다.
-3. 멤버 변수를 수정하는 것이지 인자를 수정하지 않습니다. 인자는 상수여야 합니다.
-4. 널검사가 최소화 될 수 있도록 널이 되지 않는 경우라면, 포인터보다는 참조자를 전달하는게 좋습니다.
-5. 값 타입을 전달하는 경우는 어짜피 인자에 복제되므로, 인자에 `const`를 굳이 붙일 필요가 없습니다. 
+3. 멤버 변수를 수정하는 것이지 인자를 수정하는게 아니기 때문에 인자는 상수여야 합니다.
+4. 널검사가 최소화 될 수 있도록, 널이 되지 않는 경우라면 포인터보다는 참조자를 전달하는게 좋습니다.
+5. 값 타입을 전달하는 경우는 어짜피 인자에 복제되므로, 굳이 인자에 `const`를 붙일 필요가 없습니다. 
 
 ```cpp
 class T {};
@@ -276,7 +247,7 @@ public:
     // void SetVal1(const int& val) {m_Val = *val;} // (△) 비권장. 기본 자료형의 경우 값 복사가 좋음
 
     // void SetVal2(T val) {m_Val2 = val;} // (△) 비권장. 값 복사 보다는 참조가 적절
-    //     void SetVal2(const T val) {m_Val2 = val;} // (△) 비권장. 인자에 복사되므로 T와 const T는 동일 취급됨
+    // void SetVal2(const T val) {m_Val2 = val;} // (△) 비권장. 인자에 복사되므로 T와 const T는 동일 취급됨
 
     // void SetVal2(T* val) {m_Val2 = *val;} // (△) 비권장. 인자는 상수 타입이어야 함
     // void SetVal2(const T* val) {m_Val2 = *val;} // (△) 비권장. 포인터보다는 참조자가 좋음

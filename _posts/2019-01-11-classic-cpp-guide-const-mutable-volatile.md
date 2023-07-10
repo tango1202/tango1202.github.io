@@ -31,7 +31,7 @@ sidebar:
 4. 상수 멤버 함수는 멤버 변수를 몰래 수정할 수 있는 포인터나 참조자를 리턴하지 않습니다.(컴파일 오류. 단, `const_cast`로 억지로 구현 가능하나 하지 마세요.)
 5. 상수 멤버 함수는 내부 구현에서 상수 멤버 함수만을 호출합니다.(컴파일 오류)
 6. 상수 멤버 함수는 예외를 발생하지 않습니다.(노력해서 구현해야 함)
-7. `mutable`로 [논리적 상수성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/)을 구현한 경우 예외를 발생하지 않아야 합니다.(노력해서 구현해야 함)
+7. `mutable`로 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)을 구현한 경우 예외를 발생하지 않아야 합니다.(노력해서 구현해야 함)
 
 
 # 상수 변수
@@ -108,7 +108,7 @@ void f(const int& x);
 ```
 # 상수 멤버 함수
 
-멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 개체의 멤버 변수를 변경할 수 없습니다.([멤버 함수, 상수 멤버 함수, 논리적 상수성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/) 언급)
+멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 개체의 멤버 변수를 변경할 수 없습니다.([멤버 함수, 상수 멤버 함수, Getter, Setter](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/) 언급)
 
 ```cpp
 class T {
@@ -123,7 +123,7 @@ public:
 
 # 변경 가능 지정자(`mutable`)
 
-지연 생성이나 캐쉬등 [논리적 상수성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/)인 상수 함수에서 멤버 변수를 수정해야 할 때 사용합니다.
+지연 생성이나 캐쉬등 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)인 상수 함수에서 멤버 변수를 수정해야 할 때 사용합니다.
 
 ```cpp
 TEST(TestClassicCpp, Mutable) {
