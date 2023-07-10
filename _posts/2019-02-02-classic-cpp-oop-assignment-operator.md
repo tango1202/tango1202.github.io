@@ -250,6 +250,20 @@ T& operator =(const T& other) {
 
 즉, `T`를 예외에 안정적으로 만드려면, 복사 생성자와 호환되는 `Handler`를 사용하고, `swap`을 이용하여 대입 연산자를 구현해야 합니다.
 
+```cpp
+// (O) 예외에 안정적이도록 swap으로 대입 연산자를 구현합니다. 
+T& operator =(const T& other) {
+    T temp(other); // 임시 개체 생성
+    Swap(temp); // 바꿔치기
+    return *this; 
+} // 임시 개체가 소멸되면서, this가 이전에 가졌던 힙 개체 소멸
+
+// (O) 멤버 변수들의 값을 바꿔치기 합니다.
+void Swap(T& other) {
+    m_Val1.Swap(other.m_Val1); 
+    m_Val2.Swap(other.m_Val2);    }                
+```
+
 `Handler`와 `T` 개체의 전체 코드는 다음과 같습니다.
 
 ```cpp
