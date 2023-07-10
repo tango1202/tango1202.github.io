@@ -86,6 +86,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
     ```
 
 3. 내부 구현시 상수 멤버 함수만을 호출합니다.
+ 
     ```cpp
     class T {
         int m_Val;
