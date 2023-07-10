@@ -258,24 +258,12 @@ public:
 
 class T {
     // (O) Handler를 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 Handler에서 delete 합니다.
-    // 암시적 복사 생성자와 암시적 대입 연산자에서 정상 동작하므로, 명시적으로 복사 생성자와 대입 연산자를 구현할 필요가 없습니다만, 예외 안정적인 대입 연산자를 위해 대입 연산자를 swap으로 구현합니다.
+    // 암시적 복사 생성자와 암시적 대입 연산자에서 정상 동작하므로, 명시적으로 복사 생성자와 대입 연산자를 구현할 필요가 없습니다.
     Handler m_Val;
 public:
     // val : new 로 생성된 것을 전달하세요.
     explicit T(int* val) :
-        m_Val(val) {}
-    T& operator =(const T& other) {
-        // other를 복제한 임시 개체를 만듭니다.
-        T temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
-
-        // this의 내용과 임시 개체의 내용을 바꿔치기 합니다.
-        Swap(temp); 
-
-        return *this;
-    }
-    void Swap(const T& other) {
-       m_Val.Swap(other.m_Val);  
-    }
+        m_Val(val) {} 
 };
 // (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
 {
@@ -289,6 +277,37 @@ public:
     t2 = t1; // t1의 힙 개체를 복제후 대입하고, t2의 이전 힙 개체를 delete 합니다.
 } 
 ```
+
+핸들러 덕에 `T`의 복사 생성자를 구현하지 않아도 정상 동작 하는데요, 예외에도 안정적일까요? 포인터형 변수 2개를 관리한다고 생각해 봅시다.
+
+```cpp
+class T {
+    Handler m_Val1;
+    Handler m_Val2;
+public:
+    // val1, val2 : new 로 생성된 것을 전달하세요.
+    T(int* val1, int* val2) :
+        m_Val1(val1),
+        m_Val2(val2) {} 
+};
+```
+
+`T`의 암시적 대입 연산자는 다음 코드를 수행합니다. 
+
+```cpp
+T& operator =(const T& other) {
+    m_Val1 = other.m_Val1; // 상황에 따라 이건 성공하고
+    m_Val2 = other.m_Val2; // 이게 예외를 발생할 수 있습니다.
+}
+```
+
+`m_Val1` 대입은 성공하고, `m_Val2` 대입은 실패했다면, `this`의 `m_Val`만 변경되 버립니다. 예외가 발생하기 전의 상태로 가야하는데 이미 `m_Val1`이 수정되었으니 예외에 안정적이지 못합니다. 즉, 핸들러를 사용한 `T`라 할지라도 `swap`으로 대입 연산자를 구현해야 예외에 안정적입니다.
+
+swap 사용한 예외 안정 T 코드
+
+
+
+
 
 # 대입 연산자 사용 제한
 
