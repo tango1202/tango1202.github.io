@@ -115,7 +115,7 @@ public:
 class U {
     T m_T;
 public:
-    int GetInnerVal() const {m_T.GetVal();}; // (X) 컴파일 오류. m_T.GetVal()은 비 상수 멤버 함수여서 상수 멤버 함수인 GetInnerVal() 이 호출할 수 없습니다.
+    int GetInnerVal() const {m_T.GetVal();} // (X) 컴파일 오류. m_T.GetVal()은 비 상수 멤버 함수여서 상수 멤버 함수인 GetInnerVal() 이 호출할 수 없습니다.
 };
 ```
 
