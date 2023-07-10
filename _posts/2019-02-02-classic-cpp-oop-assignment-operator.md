@@ -261,7 +261,8 @@ T& operator =(const T& other) {
 // (O) 멤버 변수들의 값을 바꿔치기 합니다.
 void Swap(T& other) {
     m_Val1.Swap(other.m_Val1); 
-    m_Val2.Swap(other.m_Val2);    }                
+    m_Val2.Swap(other.m_Val2);
+}                
 ```
 
 `Handler`와 `T` 개체의 전체 코드는 다음과 같습니다.
