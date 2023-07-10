@@ -9,8 +9,12 @@ sidebar:
 ---
 
 
-https://en.cppreference.com/w/cpp/language/data_members
-멤버 초기화
+
+Align에 효과적인 정의 방법 char를 몰아라. 증명할것
+
+초기화 목록 - 순서, this 못씀. 멤버명이랑 같으면 사용 가능
+
+정적 멤버 변수 초기화 방법
 
 `operator new`와 `operator delete`
 
