@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [고전 C++ 개체 지향] 멤버 함수, 상수 멤버 함수, Getter, Setter"
+title: "#5. [고전 C++ 개체 지향] 멤버 함수, 상수 멤버 함수, Getter, Setter"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
