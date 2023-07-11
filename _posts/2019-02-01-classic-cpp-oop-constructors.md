@@ -449,7 +449,7 @@ EXPECT_TRUE(d.GetVal() == 1);
 
 # 상속 전용 기반 클래스 - `protected` 생성자
 
-상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만듭니다. 그러면 개체 정의(인스턴스화)에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.
+상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만들 수 있습니다. 그러면 개체 정의(인스턴스화)에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.(생성자는 여러개 만들 수 있어서 모두가 `protected` 인지 신경 쓰기 번거로울 수 있기 때문에, [`protected` Non-Vitual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하는게 더 좋습니다.)
 
 ```cpp
 class Base {
