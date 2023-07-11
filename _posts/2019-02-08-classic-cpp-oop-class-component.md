@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [고전 C++ 개체 지향] 클래스 구성 요소"
+title: "#8. [고전 C++ 개체 지향] 클래스 구성 요소"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false

@@ -46,7 +46,6 @@ T t(); // (X) T를 리턴하는 함수 f() 선언
 
 암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 멤버 변수의 메모리 영역이 제로(`0`)로 초기화 됩니다. 단, 참조자 형식이나, 상수형 개체는 초기화 할 수 없습니다.
 
-
 ```cpp
 class T1 {
     int m_Val; // 암시적으로 기본 생성자가 정의됨. 자동 제로 초기화됨
@@ -224,28 +223,6 @@ T t(10, 20);
 ```
 
 가 낫습니다.
-
-**초기화 리스트의 초기화 순서**
-
-초기화 리스트에 기재된 순서가 아닌, 멤버 변수 정의 순서로 초기화 됩니다. 따라서 헷갈리지 않도록 멤버 변수 정의 순서에 따라 초기화 리스트를 작성하세요.
-
-```cpp
-class T {
-    int m_A;
-    int m_B;
-    int m_C;
-public:
-    T(int a, int b, int c) :
-        m_C(c + m_B), // (△) 비권장. 3
-        m_B(b + m_A), // (△) 비권장. 2
-        m_A(a) {} // (△) 비권장. 1
-    int GetA() const {return m_A;}
-    int GetB() const {return m_B;}
-    int GetC() const {return m_C;}
-};
-T t(10, 20, 30);
-EXPECT_TRUE(t.GetA() == 10 && t.GetB() == 30 && t.GetC() == 60);
-```
 
 # 암시적 복사 생성자
 
