@@ -25,7 +25,7 @@ sidebar:
 |`U f() const {}`|상수 멤버 함수|
 |`virtual U f() {}`|가상 함수|
 |`virtual U f() = 0;`|순가상 함수|
-|`static U f() {}`|정적 멤버 함수<br/>([정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
+|`static U f() {}`|정적 멤버 함수<br/>([정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-life-time/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
 
 # 멤버 함수
 

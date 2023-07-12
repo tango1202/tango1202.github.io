@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [고전 C++ 가이드] 정적 변수와 정적 함수(static), 전역 선언(extern), 개체 수명(작성중)"
+title: "#12. [고전 C++ 가이드] 정적 변수와 정적 함수(static), 전역 선언(extern), 개체 수명"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -10,6 +10,7 @@ sidebar:
 
 > * 전역 변수나 정적 전역 변수 보다는 함수내 정적 지역 변수를 사용하라.
 > * 정적 멤버 함수는 `obj.f()` 가 아닌 `T::f()` 와 같이 호출하라.
+> * 컴파일러 최적화가 쉽도록, RVO가 쉽도록, 임시 개체를 사용하라.
 
 # 개요
 
@@ -139,14 +140,14 @@ EXPECT_TRUE(T::GetVal() == 33); // 3회 호출
 
 # 임시 개체
 
-표현식 내에서 임시적으로 생성되는 개체 입니다.
+표현식 내에서 임시적으로 생성되는 개체 입니다. 표현식이 종료되면 함께 소멸됩니다.
 
 다음 코드는 코드를 간결히 작성하기 위해 표현식으로 사용했지만 내부적으로 임시 개체를 생성합니다.
 
 ```cpp
 class T {
 public:
-    static int f(int x) const {
+    static int f(int x) {
         return x * x; // 리턴시 임시 개체 생성
     }
 };
@@ -154,12 +155,12 @@ public:
 int result = T::f(1 + 1); // 인수를 인자에 전달시 임시 개체 생성
 ```
 
-는 다음과 같습니다.
+는 사실 다음과 같습니다.
 
 ```cpp
 class T {
 public:
-    static int f(int x) const {
+    static int f(int x) {
         int temp = x * x; // 임시 개체 생성하여 리턴합니다.
         return temp; 
     }
@@ -169,26 +170,68 @@ int temp = 1 + 1; // 임시 개체를 생성하여 함수에 전달합니다.
 int result = T::f(temp); 
 ```
 
+이러한 임시 개체는 컴파일러 최적화에 따라, 생성되지 않을 수도 있고 생성될 수도 있습니다.
 
-dll 의 비지역 객체는 dll이 링크될
-때 까지 생성되지 않는다. 복잡하므로 지역 정적 개체를 사용
-하라.
+따라서, 명시적으로 변수를 만들기 보다는 표현식을 그대로 사용하는게 추후 컴파일러가 최적화하는데 도움이 됩니다.
 
-임시 객체 : 명시적으로 작성되지 않은 객체. 이름없는 객체. 표현식이 종료되면 소멸
+```cpp
+int temp = 1 + 1; // (△) 비권장. 컴파일러가 최적화를 못할 수도 있습니다.
+int result = T::f(temp); 
 
-# 임시 개체 활용한 최적화, RVO
+int result = T::f(1 + 1); // (O) 컴파일러가 최적화 시키기 편합니다.
+```
 
-인자 전달시 임시객체가 생성되지 않도록 하는 것이 좋다. 암시적인 형변환이 되지는 않는지 검토할것. 명시적인 것 보다는 임시 객체를 사용하는 편이 좋다. 언젠간 컴파일러가 최적화 해줄수도 있다.
-int i = f(); // 명시적으로 객체 i에 저장
-g(i); 보다는
-g(f()); // 언젠간 컴파일러가 최적화 할꺼다.
+또한 암시적으로 형변환된다면 불필요하게 임시 개체가 생성될 수도 있으니, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 잘 차단해야 합니다.
 
-RVO(Return Value Optimization, MEC++ 20항목, 1996년 ISO 제정)
+# Return Value Optimization(RVO)
 
-T f() { T t; return t;} void g() {T t = f();} 에서 T 객체는 f()에서 1회, 리턴하면서 임시객
-체 1회 g() 함수에서 1회, 3회 생성되고 대입이
-1회 이루어진다.
+일반적으로 리턴되는 값은 다른 변수에 대입됩니다.
 
-T f() {return T();} // 임시객체로 생성
-void g() {T t = f();} 에서 f() 에서 생성한 T 객체를 g() 함수에서
-생성한 T객체에 만들어줌
+```cpp
+class T {
+    int m_X;
+    int m_Y;
+public:
+    T(int x, int y) :
+        m_X(x),
+        m_Y(y) {
+        std::cout<<"RVO -> T::T()"<<std::endl;
+    }
+    T(const T& other) {
+        std::cout<<"RVO -> T(const T& other)"<<std::endl;    
+    }
+    T& operator =(const T& other) {
+        std::cout<<"RVO -> operator =(const T& other)"<<std::endl;   
+        return *this; 
+    }
+    T f() {
+        T result(0, 0);
+        return result;
+    }
+};
+T t1(0, 0);
+T t2 = t1.f();
+```
+
+에서 `T` 객체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 임시객
+체 3회, `t2`를 생성하면서 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
+
+GCC에서는 하기 2개만 실행됩니다.(컴파일러마다 다를 수 있습니다.)
+
+```
+RVO -> T::T()
+RVO -> T::T()
+```
+
+이는 리턴값인 `result`가 `t2`에 대입되므로, 괜히 생성하고 대입하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 Return Value Optimization(RVO) 라고 합니다. 
+
+컴파일러마다 다를 수 있기 때문에, 컴파일러가 최적화를 쉽게 할 수 있도록 임시 개체를 사용하는게 좋습니다.
+
+```cpp
+T result(0, 0);
+return result; // (△) 비권장. 컴파일러가 최적화를 못할 수도 있습니다.
+
+return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최적화 시키기 편합니다.
+```
+
+
