@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [고전 C++ 가이드] 함수"
+title: "#19. [고전 C++ 가이드] 함수(작성중 - 리턴)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -137,6 +137,11 @@ Button button(data);
 EXPECT_TRUE(button.Click(&Data::Print) == 1); // data 개체로 부터 Print 함수 실행
 EXPECT_TRUE(button.Click(&Data::Preview) == 2); // data 개체로 부터 Preview 함수 실행
 ```
+
+# 리턴 작성법
+
+RVO 
+참조자 리턴
 
 # 인자(매개변수, Parameter) 작성법
 
