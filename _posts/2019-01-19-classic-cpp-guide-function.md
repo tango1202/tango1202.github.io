@@ -12,6 +12,7 @@ sidebar:
 > * 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하라.
 > * 컴파일러 최적화가 쉽도록, RVO가 쉽도록, 임시 개체를 사용하라.
 > * 다형적인 가상 함수에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
+> * 리턴 타입과 인자 타입은 값을 사용할 것인지, 참조자를 사용할 것인지, 상수를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
 > * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)하는 원리를 이해하라.
 
 # 개요
@@ -153,7 +154,7 @@ class T {
 };
 ```
 
-리턴문은 특정 조건에서 강제 종료시 사용할 수 있습니다.
+또한 리턴문은 특정 조건에서 강제 종료시 사용할 수 있습니다.
 
 ```cpp
 class T {
@@ -165,7 +166,7 @@ class T {
 };
 ```
 
-함수의 지역 변수를 참조자로 리턴하면 안됩니다.([Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고)
+특별히 함수의 지역 변수를 참조자로 리턴하면 오류가 발생하니 주의하시기 바랍니다.([Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고)
 
 **Return Value Optimization(RVO)**
 
@@ -197,7 +198,7 @@ T t1(0, 0);
 T t2(t1.f()); // T t2 = t1.f(); 와 동일
 ```
 
-에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 임시 개체 3회, `t2`를 생성하면서 임시 개체를 전달받는 복사 생성자를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
+상기에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 임시 개체 3회, `t2`를 생성하면서 임시 개체를 전달받는 복사 생성자를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
 
 GCC에서는 하기 2개만 실행됩니다.(컴파일러마다 다를 수 있습니다.)
 
@@ -216,6 +217,15 @@ return result; // (△) 비권장. 컴파일러가 최적화를 못할 수도 �
 
 return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최적화하기 편합니다.
 ```
+
+**리턴 타입**
+
+리턴 타입은 
+
+1. 값을 리턴할 것인지, 참조자를 리턴할 것인지
+2. 상수를 리턴할 것인지, 비 상수를 리턴할 것인지
+
+신중하게 결정해야 복사 부하를 줄이고, 타입에 기반한 **코딩 계약** 을 수립할 수 있습니다. 해당 방법에 대해서는 [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#getter-%ED%95%A8%EC%88%98)를 참고하기 바랍니다.
 
 # 인자(매개변수, Parameter) 작성법
 
@@ -410,6 +420,15 @@ Derived d;
 Base* p = &d;
 EXPECT_TRUE(p->f6() == 10); // vtable을 참조하여 Base 의 기본값인 10을 사용합니다.   
 ```
+
+**인자 타입**
+
+인자 타입은 
+
+1. 값을 전달받을 것인지, 참조자를 전달받을 것인지
+2. 상수를 전달받을 것인지, 비 상수를 전달받을 것인지
+
+신중하게 결정해야 복사 부하를 줄이고, 타입에 기반한 **코딩 계약** 을 수립할 수 있습니다. 해당 방법에 대해서는 [Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#setter-%ED%95%A8%EC%88%98)를 참고하기 바랍니다.
 
 # 오버로딩된 함수 결정 규칙
 
