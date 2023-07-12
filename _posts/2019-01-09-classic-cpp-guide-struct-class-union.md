@@ -101,7 +101,7 @@ void MyClass::f() {
 
 **멤버 사양**
    
-클래스(구조체)의 멤버는 멤버 변수와 멤버 함수 뿐만아니라, 열거형 상수, 중첩 클래스(구조체), 타입 재정의(`typdef`)를 포함할 수 있습니다.
+클래스(구조체)의 멤버는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/) 뿐만아니라, [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [중첩 클래스(구조체)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4), [타입 재정의(`typdef`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 포함할 수 있습니다.
 
 ```cpp
 class T {
@@ -149,7 +149,7 @@ int T::f2() {} // inline화 안됨
 
 **`using` 선언**
 
-`using`을 사용하면 부모 클래스에서 지정한 접근 지정자를 강제로 변경할 수 있습니다만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.([리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고)
+`using`을 사용하면 부모 클래스에서 지정한 접근 지정자를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.([리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고)
 
 ```cpp
 class Base {
@@ -165,7 +165,7 @@ Derived d;
 d.m_Val = 10; // 이제 public이라 접근 가능합니다.
 ```
 
-**함수 내부의 로컬 클래스**
+# 함수 내부의 로컬 클래스
 
 함수 내부에 클래스(구조체)를 정의하여, 함수 내부에서만 한정해서 사용할 수 있습니다.
 ```cpp
