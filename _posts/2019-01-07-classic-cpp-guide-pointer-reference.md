@@ -23,7 +23,7 @@ sidebar:
 
 포인터와 참조자는 대상 개체를 가리키기 위한 타입입니다. 주로 하기 경우에 사용됩니다.
 
-1. 대상 개체가 너무 커서 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95)나 리턴시 복사 부하가 너무 큰 경우
+1. 대상 개체가 너무 커서 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95)나 [리턴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4-%EC%9E%91%EC%84%B1%EB%B2%95)시 복사 부하가 너무 큰 경우
 2. 원본 데이터를 값을 확인 또는 수정하고 싶은 경우
 3. 함수 자체를 전달하고 싶은 경우([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
 4. 부모 개체를 통해 자식 개체를 사용하고 싶은 경우([가상 함수, 다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-virtual-polymorphism/) 참고)
@@ -79,7 +79,7 @@ EXPECT_TRUE(x == 20 && r == 20 && y == 30); // r은 x를 참조하기 때문에 
 // 포인터를 인자로 사용하면, 널검사가 필요합니다.
 void f(int* p) {
     if (p == NULL) {
-        // p가 NULL이면 뭘 해야 할까요?
+        // (△) 비권장. p가 NULL이면 뭘 해야 할까요?
     }
     *p = 20;
 }
@@ -95,15 +95,21 @@ void f(int& r) {
 
 지역 변수의 참조를 리턴할 경우에는 함수 종료후 소멸된 지역 변수를 참조하게 되므로 비정상 동작합니다. 
 
-이러한 참조자를 Dangling 참조자 라고 합니다.(`const T&`와 같이 상수형 참조를 하면 지역 변수 참조를 리턴해도 괜찮다고 하는 분들이 있던데, 저는 안되더라구요. 혹시나 되시더라도, 멤버 변수 참조를 리턴하는 느낌을 주기 때문에, 안쓰시는게 좋습니다.) 
+이러한 참조자를 Dangling 참조자 라고 합니다.(`const T&`와 같이 상수형 참조를 하면 지역 변수 참조를 리턴해도 사용할 수는 있습니다. 사용할 수는 있어도, 지역 변수 참조했다는 컴파일 경고도 나오고, 함수 선언도 멤버 변수 참조를 리턴하는 느낌을 주기 때문에, 안쓰시는게 좋습니다.) 
 
 ```cpp
 int& GetX() { 
-    int x = 10; // (△) 컴파일 경고. 고맙게도 컴파일 경고는 나와줍니다.
+    // (△) 컴파일 경고. 고맙게도 컴파일 경고는 나와줍니다.
+    int x = 10; 
     return x; 
 } 
 
-int result = GetX(); // (X) 예외 발생. 이미 소멸된 지역 변수를 참조함
+// (X) 예외 발생. 이미 소멸된 지역 변수를 참조함
+int& result = GetX(); 
+
+// (△) 비권장. 사용할 수는 있으나 GetX()에서 지역 변수 참조 리턴 warning 발생
+const int& result = GetX(); 
+
 ```
 
 또는 널을 저장한 포인터를 억지로 참조하게 해도 예외가 발생합니다.
@@ -140,9 +146,9 @@ const int* const p4 = &obj; // *p4 수정 불가. p4 수정 불가
 p4 = p1; // (X) 컴파일 오류
 ```
 
-**배열 포인터**
+**[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 포인터**
 
-배열을 가리킬때는 배열 자체에 대한 포인터와 배열의 첫번째 요소를 가리킬 수 있습니다. 주로 배열의 첫번째 요소를 가리키는 형태로 사용합니다.
+[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 가리킬때는 배열 자체에 대한 포인터와 배열의 첫번째 요소를 가리킬 수 있습니다. 주로 배열의 첫번째 요소를 가리키는 형태로 사용합니다.
 
 ```cpp
 int a[2] = {1, 2};
@@ -173,7 +179,7 @@ p8(10); // (*p8)(10); 도 가능. TestFunc 함수 호출
 
 **다형성 포인터**
 
-부모 개체를 이용하여 자식 개체를 다형적으로 사용할때 포인터를 사용합니다.
+부모 개체를 이용하여 자식 개체를 다형적으로 사용할때 포인터를 사용합니다.([가상 함수, 다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-virtual-polymorphism/) 참고)
 
 ```cpp
 class Base {
@@ -200,7 +206,7 @@ public:
 ```cpp
 // 멤버 변수 포인터 - 라이브러리 개발시 사용할 수도 있음
 {
-    int Base::* p10 = &Base::m_Value; // Base 클래스 멤버 변수 m을 가리킴
+    int Base::* p10 = &Base::m_Value; // Base 클래스 멤버 변수 m_Value를 가리킴
     Base b;
     b.*p10 = 10;
     EXPECT_TRUE(b.m_Value == 10);
@@ -225,7 +231,7 @@ int& r1 = obj; // r1으로 obj 수정 가능
 r1 = 20; 
 
 const int& r2 = obj; // const 형이어서 r2으로 obj 수정 불가
-// r2 = 20; // (X) 컴파일 오류
+r2 = 20; // (X) 컴파일 오류
 
 int& r3 = 20; // (X) 컴파일 오류. T& 로 상수 참조 불가
 const int& r4 = 20; // (O) const T&로 상수 참조 가능
@@ -250,7 +256,19 @@ r6(10); // TestFunc 함수 호출
 **다형성 참조자**
 
 ```cpp
-Derived d;
-Base& r7 = d; // 부모 클래스 참조자로 자식 클래스 제어
-r7.f(); // Derived 출력
+class Base {
+public:
+    int m_Value;
+    virtual void f() {std::cout<<"Base"<<std::endl;}    
+};
+class Derived : public Base {
+public:
+    virtual void f() {std::cout<<"Derived"<<std::endl;}    
+};
+// 다형성 참조자
+{
+    Derived d;
+    Base& r7 = d; // 부모 클래스 참조자로 자식 클래스 제어
+    r7.f(); // Derived 출력
+}
 ```

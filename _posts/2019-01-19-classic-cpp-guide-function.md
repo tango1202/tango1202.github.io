@@ -140,8 +140,15 @@ EXPECT_TRUE(button.Click(&Data::Preview) == 2); // data 개체로 부터 Preview
 
 # 리턴 작성법
 
+함수 종료
 RVO 
-참조자 리턴
+참조자 리턴시 dangling
+
+void f() {}
+
+void g() {
+    return f(); // void 리턴
+}
 
 # 인자(매개변수, Parameter) 작성법
 

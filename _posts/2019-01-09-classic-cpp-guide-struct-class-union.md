@@ -28,7 +28,7 @@ sidebar:
 
 구조체와 클래스와 공용체는 타입이 다른 여러 데이터를 집합으로 묶어 관리할 수 있게 해줍니다.
 
-특히, 구조체와 클래스는 초기화 방법과 기본 접근 지정자 외에는 모두 동일합니다.
+특히, 구조체와 클래스는 [초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/) 방법과 기본 접근 지정자 외에는 모두 동일합니다.
 
 ```cpp
 struct S {
@@ -68,7 +68,7 @@ class YourClass {
 
 이런 경우, 전방 선언으로 `YourClass`가 무언지 컴파일러에게 알려줘야 합니다. 
 
-이때 전방 선언만 참조하는 곳(`MyClass`)은 구체 정의가 아닌 포인터나 참조자로 사용하여야 하고, 전방 선언한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 이에 따라 클래스 선언과 정의를 분리하고 순서대로 작성해야 합니다.
+이때 전방 선언만 참조하는 곳(`MyClass`)은 구체 정의가 아닌 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 사용하여야 하고, 전방 선언한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 이에 따라 클래스 선언과 정의를 분리하고 다음 순서대로 작성해야 합니다.
 
 ```cpp
 // 1. YourClass 전방 선언
@@ -93,7 +93,7 @@ public:
     void g() {}
 }; 
 
-// 4. MyClass 정의 - YourClass의 정의를 사용하고 있습니다.
+// 4. MyClass 정의 - YourClass를 사용하고 있어 YourClass 선언 후 작성합니다.
 void MyClass::f() {
     m_Your->g(); 
 }
@@ -226,15 +226,21 @@ EXPECT_TRUE(u.s1.x == 20);
 EXPECT_TRUE(u.s2.x == 20);
 ```
 
+# 비트 필드
 
 https://en.cppreference.com/w/cpp/language/bit_field
 비트 필드
 
+# `this` 포인터
+
 https://en.cppreference.com/w/cpp/language/this
 this 포인터
+
+# 중첩 클래스
 
 https://en.cppreference.com/w/cpp/language/nested_types
 중첩 클래스
 
+# `friend`
 https://en.cppreference.com/w/cpp/language/friend
 friends

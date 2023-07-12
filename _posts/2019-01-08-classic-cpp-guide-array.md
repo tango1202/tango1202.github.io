@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 배열보다는 vector를 사용하라. 동적 요소 할당을 지원하며, 여전히 엑세스는 빠르다.
+> * 배열보다는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 사용하라. 동적 요소 할당을 지원하며, 여전히 엑세스는 빠르다.
 
 # 개요
 
@@ -17,10 +17,10 @@ sidebar:
 |정의| `int arr[5];`|
 |동적 생성|`int* p = new int[5];`|
 |동적 소멸|`delete[] p;`|
-|초기화|`int arr[3] = {1, 2, 3};`,<br/>`char str[] = "abc";`|
-|초기화를 이용한 크기 유추|`int arr[] = {1, 2, 3};`|
+|초기화|`int arr[3] = {1, 2, 3};`,<br/>`char str[] = "abc";`<br/>([배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)|
+|초기화를 이용한 크기 유추|`int arr[] = {1, 2, 3};`<br/>([배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)|
 
-배열은 타입이 같은 여러 데이터를 집합으로 묶어 연속적인 메모리에 관리할 수 있게 해줍니다. 단, `void` 형과 참조자와 함수 포인터를 데이터로 가질 순 없습니다. 
+배열은 타입이 같은 여러 데이터를 집합으로 묶어 연속적인 메모리에 관리할 수 있게 해줍니다. 단, `void` 형과 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 데이터로 가질 순 없습니다. 
 
 타입이 같은 여러 데이터 집합은 배열 보다는 표준 템플릿 라이브러리의 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 사용하는 편이 좋습니다. 동적 요소 할당을 지원하며, 여전히 엑세스는 빠릅니다.
 

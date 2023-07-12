@@ -138,7 +138,9 @@ EXPECT_TRUE(t.x == 10 && t.y == 20);
 
 1. 전역 변수, 정적 전역 변수, 정적 멤버 변수, 정적 지역 변수(상수형 정적 멤버 변수는 초기화를 해야 컴파일되기 때문에, 자동 제로 초기화된다고 할 수 없습니다.)
 
-2. 클래스, 구조체, 공용체의 멤버 변수([Zero-initialization(https://en.cppreference.com/w/cpp/language/zero_initialization)](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고)
+2. 배열의 각 요소  
+
+3. 클래스, 구조체, 공용체의 멤버 변수([Zero-initialization(https://en.cppreference.com/w/cpp/language/zero_initialization)](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고)
  
     하지만 저는 신뢰하지 않습니다. gcc version 8.1.0 디버그 모드에서는 `0`이 아니더라구요.
 
