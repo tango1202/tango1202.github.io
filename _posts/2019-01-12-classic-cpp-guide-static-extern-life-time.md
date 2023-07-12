@@ -200,17 +200,14 @@ public:
     T(const T& other) {
         std::cout<<"RVO -> T(const T& other)"<<std::endl;    
     }
-    T& operator =(const T& other) {
-        std::cout<<"RVO -> operator =(const T& other)"<<std::endl;   
-        return *this; 
-    }
+    
     T f() {
         T result(0, 0);
         return result;
     }
 };
 T t1(0, 0);
-T t2 = t1.f();
+T t2(t1.f()); // T t2 = t1.f(); 와 동일
 ```
 
 에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 임시 개체 3회, `t2`를 생성하면서 임시 개체을 전달받는 복사 생성자를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
@@ -222,7 +219,7 @@ RVO -> T::T()
 RVO -> T::T()
 ```
 
-이는 리턴값인 `result`가 `t2`에 대입되므로, 괜히 생성하고 대입하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 Return Value Optimization(RVO) 라고 합니다. 
+이는 리턴값인 `result`가 `t2`에 전달되므로, 괜히 생성하고 전달하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 Return Value Optimization(RVO) 라고 합니다. 
 
 컴파일러마다 다를 수 있기 때문에, 컴파일러가 최적화를 쉽게 할 수 있도록 임시 개체를 사용하는게 좋습니다.
 
