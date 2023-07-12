@@ -103,24 +103,67 @@ void MyClass::f() {
    
 클래스(구조체)의 멤버는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/) 뿐만아니라, [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [중첩 클래스(구조체)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4), [타입 재정의(`typdef`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 포함할 수 있습니다.
 
+특히, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), [대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 정의하지 않으면, 컴파일러가 암시적으로 정의해 줍니다.([클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고)
+
 ```cpp
 class T {
-    int m_D1; // 멤버 변수
-    static const int s_D2 = 1; // 정적 멤버 변수. 단 중첩 클래스, 함수 내부 로컬 클래스에서는 사용 못함
+    // 멤버 변수
+    int m_D1; 
 
-    virtual void f1(int) = 0; // 순가상 함수
-    virtual void f2(int) {} // 가상 함수    
-    void f3(int) {} // 멤버 함수
-    static void f4(int) {} // 정적 멤버 함수
+    // 정적 멤버 변수. 단 중첩 클래스, 함수 내부 로컬 클래스에서는 사용 못함
+    static const int s_D2 = 1; 
 
-    enum {Left, Top, Right, Bottom}; // 열거형 상수
+    // ----
+    // 멤버 함수
+    // ----
+    T() {} // 기본 생성자
+    T(const T& other) {} // 복사 생성자
+    ~T() {} // 소멸자
+    T& operator =(const T& other) {return *this;} // 대입 연산자
+    
+    operator int() const {return 0;} // 형변환 연산자
 
-    class NestedClass { // 중첩 클래스(구조체)
+    void f1(int) {} // 멤버 함수
+    void f2(int) {} // 상수 멤버 함수
+
+    virtual void f3(int) {} // 가상 함수    
+    virtual void f4(int) = 0; // 순가상 함수
+
+    static void f5(int) {} // 정적 멤버 함수
+    // ----
+
+    // 열거형 상수
+    enum {Left, Top, Right, Bottom}; 
+
+    // 중첩 클래스(구조체)
+    class NestedClass { 
         int m_D3;
     };
-    typedef NestedClass Inner; // 형식 재정의
+    
+    // 타입 재정의
+    typedef NestedClass Inner; 
 };
 ```
+
+각 항목은 다음을 참고하기 바랍니다.
+
+|항목|내용|
+|--|--|
+|기본 생성자|인수없이 개체를 생성합니다.<br/>([기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)|
+|복사 생성자|같은 타입의 개체를 복사 생성합니다.<br/>([복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)|
+|소멸자|개체 소멸시 호출됩니다.<br/>([소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 참고)|
+|대입 연산자와 연산자 오버로딩|개체 대입 연산자 와 그외 연산자를 오버로딩할 수 있습니다.<br/>([대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/) 와 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고)|
+|형변환 연산자|여러 타입으로 형변환 할 수 있도록 연산자 오버로딩을 할 수 있습니다.<br/>([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)|
+|멤버 함수|데이터를 처리하는 함수입니다.<br/>([멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
+|상수 멤버 함수|멤버 함수중 상수인 함수입니다.<br/>([상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
+|가상 함수|자식 개체에서 재구현하는 함수입니다.<br/>([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)|
+|순가상 함수| 실제 구현없이 함수 규약만 정의할때 사용하는 함수입니다.<br/>([순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)|
+|정적 멤버 함수|특정 개체에 속하지 않는 함수입니다.<br/>([정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-life-time/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
+|열거형 상수|정수형 상수 집합을 정의합니다.<br/>([열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/) 참고)|
+|중첩 클래스(구조체)|클래스내의 또다른 클래스를 정의합니다.<br/>([중첩 클래스(구조체)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고)|
+|타입 재정의(`typdef`)|타입의 별칭을 정의합니다.<br/>([타입 재정의(`typdef`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD) 참고)|
+
+
 
 **인라인 함수**
 
@@ -181,7 +224,9 @@ void f() {
 
 # 공용체
 
-공용체는 멤버 변수들끼리 메모리 영역을 공유하다 보니 하나의 멤버 변수를 수정하면, 다른 멤버 변수도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 메모리 정렬이 바뀌면(플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
+공용체는 멤버 변수들끼리 메모리 영역을 공유하다 보니 하나의 멤버 변수를 수정하면, 다른 멤버 변수도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 [메모리 할당 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98-%EC%A0%95%EC%9D%98-%EB%B0%A9%EB%B2%95)이 바뀌면(플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
+
+또한, 구조체와 클래스와 달리 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)와 [`virtual` 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 가질 수 없습니다.
 
 ```cpp
 class C {
@@ -226,21 +271,25 @@ EXPECT_TRUE(u.s1.x == 20);
 EXPECT_TRUE(u.s2.x == 20);
 ```
 
-# 비트 필드
 
-https://en.cppreference.com/w/cpp/language/bit_field
-비트 필드
 
-# `this` 포인터
+**`this` 포인터**
 
 https://en.cppreference.com/w/cpp/language/this
 this 포인터
+
+**`friend`**
+
+https://en.cppreference.com/w/cpp/language/friend
+friends
 
 # 중첩 클래스
 
 https://en.cppreference.com/w/cpp/language/nested_types
 중첩 클래스
 
-# `friend`
-https://en.cppreference.com/w/cpp/language/friend
-friends
+# 비트 필드
+
+https://en.cppreference.com/w/cpp/language/bit_field
+비트 필드
+
