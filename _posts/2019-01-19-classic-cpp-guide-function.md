@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [고전 C++ 가이드] 함수(작성중 - 리턴)"
+title: "#19. [고전 C++ 가이드] 함수"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -10,6 +10,7 @@ sidebar:
 
 > * 동적 예외 사양을 사용하지 마라.
 > * 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하라.
+> * 컴파일러 최적화가 쉽도록, RVO가 쉽도록, 임시 개체를 사용하라.
 > * 다형적인 가상 함수에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
 > * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)하는 원리를 이해하라.
 
@@ -140,15 +141,81 @@ EXPECT_TRUE(button.Click(&Data::Preview) == 2); // data 개체로 부터 Preview
 
 # 리턴 작성법
 
-함수 종료
-RVO 
-참조자 리턴시 dangling
+함수는 리턴문을 통해 결과값을 전달합니다.
 
-void f() {}
+```cpp
+class T {
+    int m_Val;
 
-void g() {
-    return f(); // void 리턴
-}
+    void f() {} // 아무것도 리턴 안함
+    int g() {return 0;} // 정수값을 리턴함
+    const int& h() const {return m_Val;} // 멤버 변수의 참조자를 리턴함
+};
+```
+
+리턴문은 특정 조건에서 강제 종료시 사용할 수 있습니다.
+
+```cpp
+class T {
+    void f() {
+        if () {
+            return;
+        }
+    }
+};
+```
+
+함수의 지역 변수를 참조자로 리턴하면 안됩니다.([Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고)
+
+**Return Value Optimization(RVO)**
+
+일반적으로 리턴되는 값은 다른 변수에 대입됩니다.
+
+```cpp
+class T {
+    int m_X;
+    int m_Y;
+public:
+    // 값 생성자
+    T(int x, int y) :
+        m_X(x),
+        m_Y(y) {
+        std::cout<<"RVO -> T::T()"<<std::endl;
+    }
+
+    // 복사 생성자
+    T(const T& other) {
+        std::cout<<"RVO -> T(const T& other)"<<std::endl;    
+    }
+    
+    T f() {
+        T result(0, 0);
+        return result;
+    }
+};
+T t1(0, 0);
+T t2(t1.f()); // T t2 = t1.f(); 와 동일
+```
+
+에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 임시 개체 3회, `t2`를 생성하면서 임시 개체를 전달받는 복사 생성자를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
+
+GCC에서는 하기 2개만 실행됩니다.(컴파일러마다 다를 수 있습니다.)
+
+```
+RVO -> T::T()
+RVO -> T::T()
+```
+
+이는 리턴값인 `result`가 `t2`에 전달되므로, 괜히 생성하고 전달하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 Return Value Optimization(RVO) 라고 합니다. 
+
+컴파일러마다 다를 수 있기 때문에, 컴파일러가 최적화를 쉽게 할 수 있도록 임시 개체를 사용하는게 좋습니다.
+
+```cpp
+T result(0, 0);
+return result; // (△) 비권장. 컴파일러가 최적화를 못할 수도 있습니다.
+
+return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최적화하기 편합니다.
+```
 
 # 인자(매개변수, Parameter) 작성법
 

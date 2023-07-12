@@ -158,7 +158,7 @@ class T {
 |상수 멤버 함수|멤버 함수중 상수인 함수입니다.<br/>([상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
 |가상 함수|자식 개체에서 재구현하는 함수입니다.<br/>([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)|
 |순가상 함수| 실제 구현없이 함수 규약만 정의할때 사용하는 함수입니다.<br/>([순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)|
-|정적 멤버 함수|특정 개체에 속하지 않는 함수입니다.<br/>([정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-life-time/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
+|정적 멤버 함수|특정 개체에 속하지 않는 함수입니다.<br/>([정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
 |열거형 상수|정수형 상수 집합을 정의합니다.<br/>([열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/) 참고)|
 |중첩 클래스(구조체)|클래스내의 또다른 클래스를 정의합니다.<br/>([중첩 클래스(구조체)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고)|
 |타입 재정의(`typdef`)|타입의 별칭을 정의합니다.<br/>([타입 재정의(`typdef`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD) 참고)|

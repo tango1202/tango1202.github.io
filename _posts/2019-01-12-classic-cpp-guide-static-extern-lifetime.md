@@ -10,7 +10,7 @@ sidebar:
 
 > * 전역 변수나 정적 전역 변수 보다는 함수내 정적 지역 변수를 사용하라.
 > * 정적 멤버 함수는 `obj.f()` 가 아닌 `T::f()` 와 같이 호출하라.
-> * 컴파일러 최적화가 쉽도록, RVO가 쉽도록, 임시 개체를 사용하라.
+> * 컴파일러 최적화가 쉽도록, 임시 개체를 사용하라.
 
 # 개요
 
@@ -183,55 +183,5 @@ int result = T::f(1 + 1); // (O) 컴파일러가 최적화하기 편합니다.
 
 또한 암시적으로 형변환된다면 불필요하게 임시 개체가 생성될 수도 있으니, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 잘 차단해야 합니다.
 
-# Return Value Optimization(RVO)
-
-일반적으로 리턴되는 값은 다른 변수에 대입됩니다.
-
-```cpp
-class T {
-    int m_X;
-    int m_Y;
-public:
-    // 값 생성자
-    T(int x, int y) :
-        m_X(x),
-        m_Y(y) {
-        std::cout<<"RVO -> T::T()"<<std::endl;
-    }
-
-
-    // 복사 생성자
-    T(const T& other) {
-        std::cout<<"RVO -> T(const T& other)"<<std::endl;    
-    }
-    
-    T f() {
-        T result(0, 0);
-        return result;
-    }
-};
-T t1(0, 0);
-T t2(t1.f()); // T t2 = t1.f(); 와 동일
-```
-
-에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 임시 개체 3회, `t2`를 생성하면서 임시 개체를 전달받는 복사 생성자를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
-
-GCC에서는 하기 2개만 실행됩니다.(컴파일러마다 다를 수 있습니다.)
-
-```
-RVO -> T::T()
-RVO -> T::T()
-```
-
-이는 리턴값인 `result`가 `t2`에 전달되므로, 괜히 생성하고 전달하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 Return Value Optimization(RVO) 라고 합니다. 
-
-컴파일러마다 다를 수 있기 때문에, 컴파일러가 최적화를 쉽게 할 수 있도록 임시 개체를 사용하는게 좋습니다.
-
-```cpp
-T result(0, 0);
-return result; // (△) 비권장. 컴파일러가 최적화를 못할 수도 있습니다.
-
-return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최적화하기 편합니다.
-```
 
 
