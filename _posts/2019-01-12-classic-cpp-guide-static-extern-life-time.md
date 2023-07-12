@@ -192,11 +192,15 @@ class T {
     int m_X;
     int m_Y;
 public:
+    // 값 생성자
     T(int x, int y) :
         m_X(x),
         m_Y(y) {
         std::cout<<"RVO -> T::T()"<<std::endl;
     }
+
+
+    // 복사 생성자
     T(const T& other) {
         std::cout<<"RVO -> T(const T& other)"<<std::endl;    
     }
