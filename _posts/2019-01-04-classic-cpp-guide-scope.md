@@ -13,7 +13,7 @@ sidebar:
 
 # 개요
 
-전역 개체의 경우에는 전체 범위에 영향을 주며, 그렇치 않은 경우는 블록 범위 내에서만 영향을 줍니다.(클래스, 함수, 네임스페이스, 열거형, `try-catch()` 등)
+전역 개체의 경우에는 전체 범위에 영향을 주며, 그렇치 않은 경우는 블록 범위 내에서만 영향을 줍니다.([클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/), [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/), [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/), [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), `try-catch()` 등)
 
 다음은 전역 변수, 함수의 지역 변수, 블록내에 정의된 변수가 이름이 동일할 경우 어떻게 사용되는지 보여주는 예입니다. 가까운 쪽이 사용됩니다.
 
@@ -40,15 +40,15 @@ TEST(TestClassicCpp, Scope) {
 
 프로젝트 규모가 커지면, 서로 다른 영역에서 동일한 이름을 사용하게 될 확률이 높습니다. 특히 직관적이고 좋은 이름일수록요. 이름이 서로 충돌나거나 가리지 않도록 이름의 유효 범위를 짧게 유지하는게 좋습니다.
 
-특히 이름 충돌시 매크로가 관여되면 대환장 파티가 열릴 수 있습니다.([전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, Pragma)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 참고)
+특히 이름 충돌시 매크로가 관여되면 대환장 파티가 열릴 수 있습니다.([전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, pragma)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 참고)
 
 # 블록을 활용한 유효 범위 통제
 
 정의한 곳과 사용한 곳이 서로 가까운 것이 여러모로 좋습니다.
 
-과거의 C언어처럼 함수 앞 부분에 변수 정의를 몰아서 해두고, 한참 뒤에 사용하는 건 좋지 않습니다. 사용하지도 않는데 미리 비용을 지불하지 마세요.([제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/) 참고) 
+과거의 C언어처럼 함수 앞 부분에 변수 정의(인스턴스화)를 몰아서 해두고, 한참 뒤에 사용하는 건 좋지 않습니다. 사용하지도 않는데 미리 비용을 지불하지 마세요.([제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/) 참고) 
 
-쓸데없는 비용 지불은 둘째치고, 나중에 위아래 스크롤 하기 바빠질 수도 있습니다.(변수명이 뭐였지? 타입이 뭐였지? 그냥 헝가리언 표기를 할까? 언제 초기화 됐지? 언제 값이 바뀌지?) 
+쓸데없는 비용 지불은 둘째치고, 나중에 위아래 스크롤 하기 바빠질 수도 있습니다.(변수명이 뭐였지? 타입이 뭐였지? 그냥 [헝가리안 표기](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-naming/#%ED%83%80%EC%9E%85-%EB%AA%85%EC%8B%9C-%EA%B8%88%EC%A7%80)를 할까? 언제 초기화 됐지? 언제 값이 바뀌지?) 
  
 많은 변수를 사용하는 함수라면,
 

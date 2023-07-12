@@ -25,7 +25,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     std::cin>>val;
     ```
 
-3. 네임스페이스
+3. [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)
 
     이름 충돌을 피하기 위한 유효 범위를 제공합니다.
 
@@ -33,7 +33,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     using namespace std;
     ```
 
-4. 참조자
+4. [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)
    
    포인터 외에 참조자를 제공합니다. 포인터는 널(`NULL`)이 될 수 있지만, 참조자는 널이 될 수 없습니다.
 
@@ -42,7 +42,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
    int& j = i;
    ```
 
-5. 캐스팅
+5. [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)
    
    용도에 따라 구분될 수 있게 `static_cast`, `const_cast`, `dynamic_cast`, `reinterpret_cast` 의 캐스팅 방법을 제공합니다.
 

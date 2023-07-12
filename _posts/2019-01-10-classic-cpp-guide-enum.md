@@ -28,7 +28,7 @@ enum Week {
 Week week = Sunday;
 ```
 
-다만 상기와 같이 사용하면, 이름의 범위가 충돌되기 쉽기 때문에 클래스(혹은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)) 내에 정의하여 이름 범위 충돌을 최소화 하는 것이 좋습니다.(`enum Week {eSunday, eMonday...}`와 같이 열거형 전용으로 접두어를 쓰는 방법도 있습니다만, 헝가리안 같아서 권장하지는 않습니다.)
+다만 상기와 같이 사용하면, 이름의 범위가 충돌되기 쉽기 때문에 클래스(혹은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)) 내에 정의하여 이름 범위 충돌을 최소화 하는 것이 좋습니다.(`enum Week {eSunday, eMonday...}`와 같이 열거형 전용으로 접두어를 쓰는 방법도 있습니다만, [헝가리안 표기](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-naming/#%ED%83%80%EC%9E%85-%EB%AA%85%EC%8B%9C-%EA%B8%88%EC%A7%80)같아서 권장하지는 않습니다.)
 
 ```cpp
 class Week {
