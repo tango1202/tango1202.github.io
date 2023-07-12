@@ -178,7 +178,7 @@ int result = T::f(temp);
 int temp = 1 + 1; // (△) 비권장. 컴파일러가 최적화를 못할 수도 있습니다.
 int result = T::f(temp); 
 
-int result = T::f(1 + 1); // (O) 컴파일러가 최적화 시키기 편합니다.
+int result = T::f(1 + 1); // (O) 컴파일러가 최적화하기 편합니다.
 ```
 
 또한 암시적으로 형변환된다면 불필요하게 임시 개체가 생성될 수도 있으니, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 잘 차단해야 합니다.
@@ -231,7 +231,7 @@ RVO -> T::T()
 T result(0, 0);
 return result; // (△) 비권장. 컴파일러가 최적화를 못할 수도 있습니다.
 
-return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최적화 시키기 편합니다.
+return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최적화하기 편합니다.
 ```
 
 
