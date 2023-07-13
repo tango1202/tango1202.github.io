@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [고전 C++ 가이드] 구조체(struct)와 클래스(class) 와 공용체(union)(작성중)"
+title: "#9. [고전 C++ 가이드] 구조체(struct)와 클래스(class) 와 공용체(union)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -52,52 +52,6 @@ C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 초기화 미지
 # 구조체와 클래스
 
 구조체와 클래스는 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들을 제공합니다.
-
-**전방 선언**
-
-서로 다른 클래스(구조체)가 상호 참조할 경우, 컴파일이 안될 수도 있습니다.
-
-```cpp
-class MyClass {
-    YourClass m_Your; // (X) 컴파일 오류. YourClass가 뭔지 모릅니다.
-};
-class YourClass {
-    MyClass m_My; // MyClass는 상위에 정의되어 사용할 수 있습니다.
-}; 
-```
-
-이런 경우, 전방 선언으로 `YourClass`가 무언지 컴파일러에게 알려줘야 합니다. 
-
-이때 전방 선언만 참조하는 곳(`MyClass`)은 구체 정의가 아닌 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 사용하여야 하고, 전방 선언한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 이에 따라 클래스 선언과 정의를 분리하고 다음 순서대로 작성해야 합니다.
-
-```cpp
-// 1. YourClass 전방 선언
-class YourClass; 
-
-// 2. MyClass 선언
-class MyClass {
-    // (O) 전방 선언을 통해 YourClass가 대충 클래스라는 걸 압니다. 
-    // 반드시 포인터나 참조자와 같은 참조 형식이어야 합니다.
-    YourClass* m_Your; 
-
-    // YourClass의 구체 정의가 필요하여 선언만 합니다.
-    void f(); 
-};
-
-// 3. YourClass 선언
-class YourClass {
-    // MyClass는 상위에 정의되어 사용할 수 있습니다.
-    MyClass m_My; 
-
-public:
-    void g() {}
-}; 
-
-// 4. MyClass 정의 - YourClass를 사용하고 있어 YourClass 선언 후 작성합니다.
-void MyClass::f() {
-    m_Your->g(); 
-}
-```
 
 **멤버 사양**
    
@@ -163,7 +117,51 @@ class T {
 |중첩 클래스(구조체)|클래스내의 또다른 클래스를 정의합니다.<br/>([중첩 클래스(구조체)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고)|
 |타입 재정의(`typdef`)|타입의 별칭을 정의합니다.<br/>([타입 재정의(`typdef`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD) 참고)|
 
+**전방 선언**
 
+서로 다른 클래스(구조체)가 상호 참조할 경우, 컴파일이 안될 수도 있습니다.
+
+```cpp
+class MyClass {
+    YourClass m_Your; // (X) 컴파일 오류. YourClass가 뭔지 모릅니다.
+};
+class YourClass {
+    MyClass m_My; // MyClass는 상위에 정의되어 사용할 수 있습니다.
+}; 
+```
+
+이런 경우, 전방 선언으로 `YourClass`가 무언지 컴파일러에게 알려줘야 합니다. 
+
+이때 전방 선언만 참조하는 곳(`MyClass`)은 구체 정의가 아닌 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 사용하여야 하고, 전방 선언한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 이에 따라 클래스 선언과 정의를 분리하고 다음 순서대로 작성해야 합니다.
+
+```cpp
+// 1. YourClass 전방 선언
+class YourClass; 
+
+// 2. MyClass 선언
+class MyClass {
+    // (O) 전방 선언을 통해 YourClass가 대충 클래스라는 걸 압니다. 
+    // 반드시 포인터나 참조자와 같은 참조 형식이어야 합니다.
+    YourClass* m_Your; 
+
+    // YourClass의 구체 정의가 필요하여 선언만 합니다.
+    void f(); 
+};
+
+// 3. YourClass 선언
+class YourClass {
+    // MyClass는 상위에 정의되어 사용할 수 있습니다.
+    MyClass m_My; 
+
+public:
+    void g() {}
+}; 
+
+// 4. MyClass 정의 - YourClass를 사용하고 있어 YourClass 선언 후 작성합니다.
+void MyClass::f() {
+    m_Your->g(); 
+}
+```
 
 **인라인 함수**
 
@@ -208,18 +206,59 @@ Derived d;
 d.m_Val = 10; // 이제 public이라 접근 가능합니다.
 ```
 
-# 함수 내부의 로컬 클래스
+**`friend`**
 
-함수 내부에 클래스(구조체)를 정의하여, 함수 내부에서만 한정해서 사용할 수 있습니다.
+일반적으로 `public`만 외부에서 접근할 수 있으나 특별히 `friend`로 허용한 [클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)와 [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)는 `protected`와 `private`에 접근할 수 있습니다. 이때 `friend`인 클래스와 상속 관계거나, `friend`인 클래스와 `friend`관계인 클래스는 접근 할 수 없습니다.  
+
+`friend`는 은닉을 통한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 해칠 수 있기 때문에 사용하지 않는게 좋습니다.
+
 ```cpp
-void f() {
-    class T {
-    public:
-        int m_X;
-    };
-    T t; // 함수내에서만 사용 가능
-    t.m_X = 10; 
+class FriendT {
+    friend class U; // U 의 전방 선언이 없어도 됨
+    friend void Func(); // Func의 전방 선언이 없어도 됨
+private:
+    int m_Val1;
+    void f() {}
+protected:
+    int m_Val2;
+    void g() {}
+
+};
+void Func() {
+    FriendT t;
+    t.m_Val1; // (△) 비권장. private 접근
+    t.f();
+    t.m_Val2; // (△) 비권장. protected 접근
+    t.g();
 }
+class U {
+    friend class W;
+    void f() {
+        FriendT t;
+        t.m_Val1; // (△) 비권장. private 접근
+        t.f();
+        t.m_Val2; // (△) 비권장. protected 접근
+        t.g();            
+    }
+};
+class V : public U {
+    void f() {
+        FriendT t;
+        t.m_Val1; // (X) 컴파일 오류. 상속받은 클래스에서는 접근 불가
+        t.f();
+        t.m_Val2; // (X) 컴파일 오류. 상속받은 클래스에서는 접근 불가
+        t.g();            
+    }
+};
+class W { // T의 friend인 U 의 friend
+    void f() {
+        FriendT t;
+        t.m_Val1; // (X) 컴파일 오류. friend의 friend는 접근 불가
+        t.f();
+        t.m_Val2; // (X) 컴파일 오류. friend의 friend는 접근 불가
+        t.g();            
+    }
+};    
 ```
 
 # 공용체
@@ -271,21 +310,131 @@ EXPECT_TRUE(u.s1.x == 20);
 EXPECT_TRUE(u.s2.x == 20);
 ```
 
+# 함수 내부의 로컬 클래스
 
+함수 내부에 클래스를 정의하여, 함수 내부에서만 한정해서 사용할 수 있습니다.
+```cpp
+void OuterFunc() {
+    class InnerClass {
+    public:
+        int m_X;
+    };
+    struct InnerStruct {}; // 구조체 가능
+    union InnerUnion {}; // 공용체 가능
 
-**`this` 포인터**
-
-https://en.cppreference.com/w/cpp/language/this
-this 포인터
-
-**`friend`**
-
-https://en.cppreference.com/w/cpp/language/friend
-friends
+    InnerClass t; // 함수내에서만 사용 가능
+    t.m_X = 10; 
+    EXPECT_TRUE(t.m_X == 10);
+}
+```
 
 # 중첩 클래스
 
-https://en.cppreference.com/w/cpp/language/nested_types
-중첩 클래스
+다른 개체 내부에 정의된 클래스입니다.
 
+```cpp
+// 클래스에서 가능
+class Class {
+    class NestedClass {}; // 클래스 가능
+    struct NestedStruct {}; // 구조체 가능
+    union NestedUnion {}; // 공용체 가능
+};
+// 구조체에서 가능
+struct Struct {
+    class NestedClass {};
+    struct NestedStruct {};
+    union NestedUnion {};
+};
+// 공용체에서 가능
+union Union {
+    class NestedClass {}; 
+    struct NestedStruct {}; 
+    union NestedUnion {}; 
+};
+```
 
+다음과 같이 중첩 클래스는 바깥 클래스의 `private`에 접근 가능합니다. 외부에서 접근할 경우에는 범위 확인 연산자(`::`)를 사용합니다.
+
+```cpp
+class Outer {
+private:
+    int m_Val;
+    static int s_Val;
+public:
+    class Nested {
+    public:
+        void f(Outer *outer) {
+            s_Val; // (O) Outer의 private 정적 멤버 변수 접근 가능
+            outer->m_Val; // (O) outer 개체 참조로 private 접근 가능
+        }
+    };
+    void g() {
+        Nested nested;
+        nested.f(this); // (O) 개체를 인스턴스화 하여 접근 가능
+    }
+};
+Outer::Nested nested; // (O) 외부에서 접근할 경우 :: 사용
+```
+
+# `this` 포인터
+
+`this` 포인터는 개체의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에서 자기 자신을 가리키는 포인터 입니다. 
+
+```cpp
+class Outer {
+    int m_OuterVal;
+    void f() {
+        class Inner {
+            int m_InnerVal;
+            void f() {
+                this->m_InnerVal; // Inner 클래스의 this
+            }
+        };
+        this->m_OuterVal; // Outer 클래스의 this
+    }
+    class Nested {
+        int m_NestedVal;
+        void f() {
+            this->m_NestedVal; // Nested 클래스의 this
+        }
+    };
+    static void Func() {
+        this->m_OuterVal; // (X) 컴파일 오류. 정적 멤버 함수에서는 접근 불가
+    }
+};
+```
+
+[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)에서는 사용할 수 없습니다.
+
+```cpp
+class T {
+    int m_X;
+    int m_Y;
+public:
+    T(int x, int y) :
+        // this->m_X(x), // (X) 컴파일 오류. 초기화 리스트에서 사용 불가능
+        m_Y(this->m_X) { // (O) 초기화 리스트에서 대입값으로는 사용 가능 
+        this->m_X; // (O) 생성자 본문에서 사용 가능
+    }
+};  
+```
+
+`delete this;` 로 자기 자신을 소멸시킬 수 있습니다. 단, [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 생성된 변수를 `delete`하면 예외가 발생합니다.
+
+```cpp
+class T {
+public:
+    ~T() {
+        std::cout<<"T::~T();"<<std::endl;
+    }
+    void Release() {
+        delete this; // (O) 자기 자신을 소멸 시킴(소멸자가 호출됨)
+    }
+};
+
+T t1; // 스택에 생성된 변수
+t1.Release(); // (X) 예외 발생. 스택에 생성된 개체인데 delete 함
+
+T* t2 = new T; // 힙에 생성된 변수
+t2->Release(); // (O)  
+```

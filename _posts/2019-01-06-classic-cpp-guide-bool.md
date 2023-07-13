@@ -54,10 +54,10 @@ win32 API을 개발하던 시절에는  `bool`이 없어서 `BOOL`을 만들어 
 
 ```cpp
 BOOL b = TRUE;
-EXPECT_TRUE(!b == FALSE); // !b == false이고 false를 int로 캐스팅하면 FALSE(0)
+EXPECT_TRUE(!b == FALSE); // !b == false이고 false를 int로 형변환하면 FALSE(0)
 
 b = FALSE;
-EXPECT_TRUE(!b == TRUE); // !b == true이고 true를 int로 캐스팅하면 TRUE(1)
+EXPECT_TRUE(!b == TRUE); // !b == true이고 true를 int로 형변환하면 TRUE(1)
 ```
 
 하지만 조금만 복잡하게 논리 연산을 추가하면, 걱정이 되는 경우가 좀 생깁니다.

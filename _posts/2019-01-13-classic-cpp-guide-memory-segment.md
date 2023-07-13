@@ -17,12 +17,12 @@ sidebar:
 
 |항목|읽기/쓰기|내용|
 |--|--|--|
-|코드(텍스트) 세그먼트|읽기|프로그램 코드, 제어문, 상수, 함수등|
+|코드(텍스트) 세그먼트|읽기|프로그램 코드, [제어문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/), [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/), [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)등|
 |데이터 세그먼트(BSS, Block Started by Single)|읽기/쓰기|초기화 안된(혹은 0으로 초기화된) 전역 변수 또는 정적 변수|
-|데이터 세그먼트(rodata, read only data)|읽기|문자열 상수|
+|데이터 세그먼트(rodata, read only data)|읽기|[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)|
 |데이터 세그먼트(data)|읽기/쓰기|0 이외의 값으로 초기화된 전역 변수 또는 정적 변수|
 |힙(Heap) 세그먼트|읽기/쓰기|`new` 등으로 생성한 동적 메모리. 명시적으로 소멸시켜야 함|
-|스택(Stack) 세그먼트|읽기/쓰기|함수의 지역 변수, 인자, 리턴값등. 자동 소멸됨| 
+|스택(Stack) 세그먼트|읽기/쓰기|함수의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4)등. 자동 소멸됨| 
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5905dc13-603e-4ee3-9d19-e51b60e03cef)
 
@@ -52,7 +52,7 @@ delete p; // new로 생성한 것은 반드시 delete
   
 # 스택
 
-스택은 함수내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95), [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4-%EC%9E%91%EC%84%B1%EB%B2%95)이 호출될때마다 차곡 차곡 쌓이는 공간입니다.(함수내에서 `new`로 동적 메모리를 할당했다면, 해당 메모리는 힙에 할당됩니다.) 함수 호출이 종료되거나 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 종료되었다면 자동으로 소멸됩니다. 이러한 자동 소멸은 향후 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 개념으로 많이 활용되니 잘 알아 두시기 바랍니다.
+스택은 [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95), [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4-%EC%9E%91%EC%84%B1%EB%B2%95)이 호출될때마다 차곡 차곡 쌓이는 공간입니다.(함수내에서 `new`로 동적 메모리를 할당했다면, 해당 메모리는 힙에 할당됩니다.) [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/) 호출이 종료되거나 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 종료되었다면 자동으로 소멸됩니다. 이러한 자동 소멸은 향후 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 개념으로 많이 활용되니 잘 알아 두시기 바랍니다.
   
 하기 호출 과정에서의 스택의 상황을 개념적으로 도식화하면 다음과 같습니다.
 

@@ -133,7 +133,7 @@ EXPECT_TRUE(SQUARE(1 + 1) == 3); // (X) 오동작. 연산자 우선 순위가 �
 EXPECT_TRUE(SQUARE(1 + 1) == 4); // (1 + 1) * (1 + 1)
 ```
 
-연산 우선순위를 해결했다고 하더라도, 여전히 인자 타입에 따른 **코딩 계약**은 할 수 없습니다. 그러니, **코딩 계약**과 디버깅 편의를 위해 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하는게 좋습니다.
+연산 우선 순위를 해결했다고 하더라도, 여전히 인자 타입에 따른 **코딩 계약**은 할 수 없습니다. 그러니, **코딩 계약**과 디버깅 편의를 위해 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하는게 좋습니다.
 
  ```cpp
  inline int Square(int x) { return x * x;} // (O) 인자 타입에 따른 코딩 계약, 디버깅 용이

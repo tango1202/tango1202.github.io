@@ -66,7 +66,7 @@ private:
 };
 ```
 
-여기서 `SaveDoc()` 은 어떻게 자식 개체인 `MyApp` 의 문서를 저장할 수 있을까요? `MyApp`은 사실은 `App`을 상속받은 거니, 강제로 캐스팅 하면 될까요?
+여기서 `SaveDoc()` 은 어떻게 자식 개체인 `MyApp` 의 문서를 저장할 수 있을까요? `MyApp`은 사실은 `App`을 상속받은 거니, 강제로 형변환하면 될까요?
 
 ```cpp
 // App 을 상속받아 만들었습니다.
@@ -88,7 +88,7 @@ void App::SaveDoc() {
     reinterpret_cast<MyApp*>(this)->SaveMyDoc();
 }
 ``` 
-강제로 캐스팅하는 `reinterpret_cast`도 견딜 수 없지만, 자식 개체에서 부모 개체를 참조해서 상호 참조하여 **의존성 부패** 가 되버렸습니다.
+강제로 형변환하는 `reinterpret_cast`도 견딜 수 없지만, 자식 개체에서 부모 개체를 참조해서 상호 참조하여 **의존성 부패** 가 되버렸습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e19a4379-80ae-4a5b-a0c4-042b328b20cd)
 

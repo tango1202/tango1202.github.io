@@ -21,9 +21,9 @@ sidebar:
 |명시적 형변환 - 괄호(`(`와 `)`)|C언어 잔재.<br/>`const_cast`,<br/>`static_cast`,<br/>`reinterpret_cast`<br/>의 순서로 형변환|
 |명시적 형변환 - `const_cast`|상수성만 변환|
 |명시적 형변환 - `static_cast`|타입 유사성을 지키며 변환|
-|명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>RTTI(Runtime Type Info)가 있는 개체(가상 함수가 있는 개체)만 가능.|
+|명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>RTTI(Runtime Type Info)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.|
 |명시적 형변환 - `reinterpret_cast`|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
-|형변환 연산자 정의|캡슐화를 위해 제공하나 암시적 형변환이 됨|
+|형변환 연산자 정의|[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 제공하나 암시적 형변환이 됨|
 |`explicit`|암시적 형변환 되지 않도록 개체 생성자에 지정|
 
 C++언어는  
@@ -117,7 +117,7 @@ C++언어는
 
 **`const_cast`**
 
-`const_cast`를 이용하여 포인터나 참조자의 상수성을 뗄 수 있습니다.(그러나 **상수성 계약** 위반이니 하지 마세요.)
+`const_cast`를 이용하여 포인터나 참조자의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 뗄 수 있습니다.(그러나 **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 위반이니 하지 마세요.)
 
 ```cpp
 {
@@ -173,7 +173,7 @@ C++언어는
 
 **`dynamic_cast`**
 
-`dynamic_cast`는 상속 관계가 있는 개체간의 변환을 합니다.(RTTI(Runtime Type Info)가 있는 개체(가상 함수가 있는 개체)만 가능.) 변환에 실패하면, 포인터 유형인 경우 널(`NULL`)을 리턴하고, 참조 유형인 경우 `bad_cast` 예외를 발생시킵니다. 
+`dynamic_cast`는 상속 관계가 있는 개체간의 변환을 합니다.(RTTI(Runtime Type Info)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.) 변환에 실패하면, 포인터 유형인 경우 널(`NULL`)을 리턴하고, 참조 유형인 경우 `bad_cast` 예외를 발생시킵니다. 
 
 ```cpp
 class Base {
@@ -193,14 +193,14 @@ Base* b = &d;
 Derived* downCasting = dynamic_cast<Derived*>(b);      
 EXPECT_TRUE(downCasting != NULL);
 
-// (O) 상속관계가 아니어서 캐스팅이 안되면 포인터의 경우 NULL을 리턴하고, 참조유형은 bad_cast 예외를 발생시킵니다.
+// (O) 상속관계가 아니어서 형변환이 안되면 포인터의 경우 NULL을 리턴하고, 참조유형은 bad_cast 예외를 발생시킵니다.
 Other* other = dynamic_cast<Other*>(b);
 EXPECT_TRUE(other == NULL);
 ```
 
 **`reinterpret_cast`**
 
-`reinterpret_cast`는 상속관계를 무시하고 그냥 변환해 버릴 뿐만 아니라, 정수를 포인터로 변환하기까지 합니다.(하지만, 상수성은 지켜줍니다. 아무튼 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.)
+`reinterpret_cast`는 상속관계를 무시하고 그냥 변환해 버릴 뿐만 아니라, 정수를 포인터로 변환하기까지 합니다.(하지만, [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)은 지켜줍니다. 아무튼 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.)
 
 ```cpp
 {
@@ -333,7 +333,7 @@ EXPECT_TRUE(status == true);
 
 # 명시적 변환 생성 지정자(`explicit`)
 
-인자가 1개인 클래스를 구현하면, 인자 타입에서 개체 타입으로 암시적 형변환과 명시적 형변환이 가능합니다.
+특별히 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)에 인자가 1개만 있으면, 암시적인 형변환을 하므로 형변환 생성자라고도 합니다. 인자 타입에서 개체 타입으로 암시적 형변환과 명시적 형변환이 가능합니다.
 
 ```cpp
 class T {};

@@ -8,14 +8,14 @@ sidebar:
     nav: "docs"
 ---
 
-> * 임시 개체가 생성되지 않도록 이항 산술 연산자(`a = a + b`)보다는 산술형 대입 연산자(`a += b`)를 사용하라.
-> * 후위형 증감 연산자는 헷갈리고, 쓸데없는 임시 개체가 생성되니 사용하지 마라. 
+> * [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되지 않도록 이항 산술 연산자(`a = a + b`)보다는 산술형 대입 연산자(`a += b`)를 사용하라.
+> * 후위형 증감 연산자는 헷갈리고, 쓸데없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되니 사용하지 마라. 
 > * 비교 연산 오버로딩은 `<`을 활용해서 구현하라.
 
 
-# 대입 연산자
+# [대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)
 
-대입 연산자는 `=` 와 같은 기본 대입 연산자와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(`a += b` 는 `a = a + b` 와 결과가 같습니다.) 
+[대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)는 `=` 와 같은 기본 대입 연산자와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(`a += b` 는 `a = a + b` 와 결과가 같습니다.) 
 
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
@@ -34,7 +34,7 @@ sidebar:
 
 # 산술 연산자
 
-산술 연산의 결과를 리턴합니다. 
+산술 연산의 결과를 계산합니다. 
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
@@ -84,7 +84,7 @@ sidebar:
 
 # 논리 연산자
 
-NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 리턴합니다.
+NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 평가합니다.
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
@@ -106,6 +106,8 @@ NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 리턴합니다.
 |이상|`a >= b`|O|`bool T::operator >=(const T2& b) const;`|`bool operator >=(const T& a, const T2& b);`|
 
 실수 비교 연산의 경우는 오차 범위를 고려해야 합니다.([실수 비교](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%EC%8B%A4%EC%88%98-%EB%B9%84%EA%B5%90) 참고) 
+
+# 대소 비교의 논리 조건
 
 대소 비교는 하기 논리 조건을 만족해야 합니다.
 
@@ -237,8 +239,8 @@ EXPECT_TRUE(result == 10);
 개체 생성시 사용하는 `new`는 하기 단계를 수행합니다.
 
 1. 전역 `operator new`를 이용하여 메모리 공간 할당
-2. 구조체이거나 클래스이면 생성자 호출
-3. 메모리 주소를 해당 타입으로 캐스팅하여 리턴
+2. 구조체이거나 클래스이면 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
+3. 메모리 주소를 해당 타입으로 형변환하여 리턴
 
 즉 `new`와 `operator new`의 역할은 다릅니다. `operator new`는 C언어의 `malloc`과 유사하다고 할 수 있습니다.
 
@@ -291,12 +293,12 @@ EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 �
 |`typeid(개체명)`|개체 타입 정보 리턴|
 |`typeid(타입명)`|타입이나 클래스명, 구조체명, 공용체명의 타입 정보 리턴|
 
-하기 예는 상속관계에서 가상 함수가 없는 경우와 있는 경우에 따라 `typeid` 동작을 보여 줍니다.( RTTI(Runtime Type Info)가 있는 개체(가상 함수가 있는 개체)에 따라 동작이 다릅니다.)
+하기 예는 상속관계에서 가상 함수가 없는 경우와 있는 경우에 따라 `typeid` 동작을 보여 줍니다.( RTTI(Runtime Type Info)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)에 따라 동작이 다릅니다.)
 
-1. 가상 함수가 없는 경우
+1. [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 경우
     정의한 개체 타입을 리턴합니다.
 
-2. 가상 함수가 있는 경우
+2. [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 경우
     참조하는 개체 타입을 리턴합니다.
 
 ```cpp
@@ -343,9 +345,9 @@ class Derived2 : public Base2 {};
 |출력|`std::cout<<a;`|O|X|`std::ostream& operator <<(std::ostream& os, const T& a)`|
 |입력|`std::cin>>a;`|O|X|`std::istream& operator >>(std::istream& is, T& a)`|
 
-# 연산자 우선순위
+# 연산자 우선 순위
 
-기본적으로 평가되는 연산자 우선 순위는 하기와 같으며, `()`로 감싸서 우선순위를 높일 수 있습니다.
+기본적으로 평가되는 연산자 우선 순위는 하기와 같으며, `()`로 감싸서 우선 순위를 높일 수 있습니다.
 
 |순위|연산자|
 |--|--|
@@ -459,9 +461,9 @@ EXPECT_TRUE(t3.GetVal() == 20);
 
 **`+` 보다는 `+=`이 좋은 이유**
 
-대입 연산자가 참조자 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`, 값 타입)을 리턴합니다. 이는 연산의 결과값을 리턴해야 하기 때문입니다.(내부적으로 임시 개체가 생성될 수밖에 없습니다.) 
+대입 연산자가 참조자 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`, 값 타입)을 리턴합니다. 이는 연산의 결과값을 리턴해야 하기 때문입니다.(내부적으로 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성될 수밖에 없습니다.) 
 
-따라서, 임시 개체 생성 부하가 없도록 산술형 대입 연산자를 사용하는 코딩 습관을 가지시는게 좋습니다.(임시 개체 생성 부하가 큰 경우에는 단단한 **코딩 계약**을 위해 `+=`만 구현하고, `+`를 구현하지 않아야 합니다.)
+따라서, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 생성 부하가 없도록 산술형 대입 연산자를 사용하는 코딩 습관을 가지시는게 좋습니다.([임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 생성 부하가 큰 경우에는 단단한 **코딩 계약**을 위해 `+=`만 구현하고, `+`를 구현하지 않아야 합니다.)
 
 ```cpp
 T t1(10);
@@ -537,7 +539,7 @@ EXPECT_TRUE(t.GetVal() == 12);
 
 **비교 연산자**
 
-비교 연산자는 `<` 만 오버로딩하고, `==`, `!=`, `<`, `>`, `<=`, `>=`는 `<`로 부터 구현하는게 좋습니다.
+비교 연산자는 `<` 만 오버로딩하고, `==`, `!=`, `<`, `>`, `<=`, `>=`는 `<`로 부터 구현하는게 좋습니다.(대소 비교의 논리 조건 참고)
 
 ```cpp
 class T {

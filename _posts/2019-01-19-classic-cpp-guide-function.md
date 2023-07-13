@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [고전 C++ 가이드] 함수, 함수 포인터, 리턴, 인자(매개변수, Parameter)"
+title: "#19. [고전 C++ 가이드] 함수, 함수 포인터, 리턴, 인자(매개변수, Parameter)ㅎ"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -10,9 +10,9 @@ sidebar:
 
 > * 동적 예외 사양을 사용하지 마라.
 > * 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하라.
-> * 컴파일러 최적화가 쉽도록, RVO가 쉽도록, 임시 개체를 사용하라.
-> * 다형적인 가상 함수에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
-> * 리턴 타입과 인자 타입은 값을 사용할 것인지, 참조자를 사용할 것인지, 상수를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
+> * 컴파일러 최적화가 쉽도록, RVO가 쉽도록, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하라.
+> * 다형적인 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
+> * 리턴 타입과 인자 타입은 값을 사용할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 사용할 것인지, [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
 > * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)하는 원리를 이해하라.
 
 # 개요
@@ -140,7 +140,7 @@ EXPECT_TRUE(button.Click(&Data::Print) == 1); // data 개체로 부터 Print 함
 EXPECT_TRUE(button.Click(&Data::Preview) == 2); // data 개체로 부터 Preview 함수 실행
 ```
 
-# 리턴
+# 리턴값
 
 함수는 리턴문을 통해 결과값을 전달합니다.
 
@@ -198,7 +198,7 @@ T t1(0, 0);
 T t2(t1.f()); // T t2 = t1.f(); 와 동일
 ```
 
-상기에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 임시 개체 3회, `t2`를 생성하면서 임시 개체를 전달받는 복사 생성자를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
+상기에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 3회, `t2`를 생성하면서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 전달받는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
 
 GCC에서는 하기 2개만 실행됩니다.(컴파일러마다 다를 수 있습니다.)
 
@@ -209,7 +209,7 @@ RVO -> T::T()
 
 이는 리턴값인 `result`가 `t2`에 전달되므로, 괜히 생성하고 전달하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 Return Value Optimization(RVO) 라고 합니다. 
 
-컴파일러마다 다를 수 있기 때문에, 컴파일러가 최적화를 쉽게 할 수 있도록 임시 개체를 사용하는게 좋습니다.
+컴파일러마다 다를 수 있기 때문에, 컴파일러가 최적화를 쉽게 할 수 있도록 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하는게 좋습니다.
 
 ```cpp
 T result(0, 0);
@@ -222,8 +222,8 @@ return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최
 
 리턴 타입은 
 
-1. 값을 리턴할 것인지, 참조자를 리턴할 것인지
-2. 상수를 리턴할 것인지, 비 상수를 리턴할 것인지
+1. 값을 리턴할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 리턴할 것인지
+2. [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 리턴할 것인지, 비 상수를 리턴할 것인지
 
 신중하게 결정해야 복사 부하를 줄이고, 타입에 기반한 **코딩 계약** 을 수립할 수 있습니다. 해당 방법에 대해서는 [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#getter-%ED%95%A8%EC%88%98)를 참고하기 바랍니다.
 
@@ -325,7 +325,7 @@ EXPECT_TRUE(T::Sum(3, 1, 2, 3) == 1 + 2 + 3);
 함수 선언시 인자에 기본값을 줄 수 있습니다.
 
 ```cpp
-int f1(int a = 10) { 
+int f1(int a = 10) {  // 인수를 전달하지 않으면 기본값 10
     return a;
 }
 
@@ -425,8 +425,8 @@ EXPECT_TRUE(p->f6() == 10); // vtable을 참조하여 Base 의 기본값인 10�
 
 인자 타입은 
 
-1. 값을 전달받을 것인지, 참조자를 전달받을 것인지
-2. 상수를 전달받을 것인지, 비 상수를 전달받을 것인지
+1. 값을 전달받을 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 전달받을 것인지
+2. [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 전달받을 것인지, 비 상수를 전달받을 것인지
 
 신중하게 결정해야 복사 부하를 줄이고, 타입에 기반한 **코딩 계약** 을 수립할 수 있습니다. 해당 방법에 대해서는 [Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#setter-%ED%95%A8%EC%88%98)를 참고하기 바랍니다.
 
@@ -486,7 +486,7 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
     
     는 동일합니다. `int`로 받던, `const int`로 받던 최상위 데이터가 함수쪽으로 복제되는건 똑같으니까요.
 
-    포인터나 참조자 관점에서 보면,
+    [포인터나 참조자]((https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)) 관점에서 보면,
 
     ```cpp
     int f(int* a);
@@ -504,7 +504,7 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
 
     는 다릅니다. `int* a` 는 `a`의 실제값을 수정할 수 있고, `const int* a`는 수정할 수 없으니까요.
 
-3. 함수의 상수성은 다른 타입으로 취급합니다.
+3. 함수의 [상수성]((https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/))은 다른 타입으로 취급합니다.
 
     즉,
 
@@ -570,9 +570,9 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
 
 오버로딩 함수의 후보군은 하기 단계에 따라 수집되고 선정됩니다.
  
-1. 자신의 유효 공간에서 탐색
+1. 자신의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색
    
-2. 함수 인자의 유효 공간에서 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)
+2. 함수 인자의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)
 
 3. 암시적 형변환을 포함하여 실행 가능 함수 결정
    
@@ -583,7 +583,7 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
    5. 사용자 정의 형변환([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)
 
 
-하기의 경우를 보면 `g()` 에서 `MyFunc()`을 호출하면, 같은 네임스페이스에서 `MyFunc(double)`을 찾고, 인자 `1`을 `double`로 암시적으로 변환해서 사용하게 됩니다.
+다음 경우를 보면 `g()` 에서 `MyFunc()`을 호출하면, 같은 네임스페이스에서 `MyFunc(double)`을 찾고, 인자 `1`을 `double`로 암시적으로 변환해서 사용하게 됩니다.
 
 ```cpp
 namespace A {
@@ -622,10 +622,9 @@ namespace D {
     int MyFunc(const C::Date&, double) {return 2;}
     int g() {
         C::Date d;
-        // (△) 비권장. Koenig 검색이 활용됨. 
+        // Koenig 검색이 활용됨. 
         // 인자로 전달한 d 가 네임스페이스 C에 있기 때문에, C의 함수들중 MyFunc(const Date&, int)를 찾아냄
         // MyFunc(const Date&, int) 과 MyFunc(const C::Date&, double) 중 타입이 일치하는 MyFunc(const Date&, int)이 채택됨
-        // 명시적으로 C::MyFunc 을 호출하는게 분석에 좋을 수도 있음
         return MyFunc(d, 1); 
     }  
 }
