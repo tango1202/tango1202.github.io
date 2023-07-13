@@ -177,7 +177,7 @@ EXPECT_TRUE(t.f1() == 0); // 정적 지역 변수는 0으로 자동 초기화
 // EXPECT_TRUE(t.f2() != 0); // 지역 변수는 쓰레기값이 될 수도 있음
 
 int arr[3] = {1, }; 
-EXPECT_TRUE(arr[0] == 1 && arr[0] == 0 && arr[0] == 0); // 배열 갯수 보다 초기화 갯수가 적을때 나머지 요소는 0으로 자동 초기화
+EXPECT_TRUE(arr[0] == 1 && arr[1] == 0 && arr[2] == 0); // 배열 갯수 보다 초기화 갯수가 적을때 나머지 요소는 0으로 자동 초기화
 ```
 
 복잡하죠? 복잡하니, 모든 변수를 초기화 한다는 대원칙을 가지고 작성하세요. 개발 초기에서 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)가 없어서 자동 제로 초기화를 활용해서 개발했다가, 누군가 나중에 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 넣어버리면 낭패를 보게 되니까요.
