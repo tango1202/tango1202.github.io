@@ -32,13 +32,13 @@ sidebar:
 
 # 데이터 세그먼트 
 
-데이터 세그먼트 부분은 3개(BSS, rodata, data)로 나뉘어 있고, 전역 변수나 정적 변수는 BSS 영역과 data 영역에 저장됩니다.
+데이터 세그먼트 부분은 3개(BSS, rodata, data)로 나뉘어 있고, [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)나 [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)나 [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)나 [함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)는 BSS 영역과 data 영역에 저장됩니다.
 
 * BSS 영역은 0으로 초기화해야 할 것들이 모여 있습니다. 이렇게 한곳에 모여 있기에 일괄로 0으로 초기화 하여 시스템 성능을 향상 시킬 수 있습니다.
    
 * data 영역은 개별적으로 초기화할 항목이 모여 있습니다.
 
-* rodata 영역은 문자열 상수만 특별히 모아둔 영역입니다. 일반적으로 상수(`const int a = 10;`의 표현에서 `10`)는 코드 세그먼트 영역에 있지만, 문자열은 크기 때문에 별도로 rodata 영역에 두고 이를 포인터 등으로 참조하여 사용합니다. 또한, 중복된 문자열을 코드 여기저기에서 사용하더라도, 컴파일러가 알아서 1개로 취합해 줍니다. 
+* rodata 영역은 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)만 특별히 모아둔 영역입니다. 일반적으로 상수(`const int a = 10;`의 표현에서 `10`)는 코드 세그먼트 영역에 있지만, 문자열은 크기 때문에 별도로 rodata 영역에 두고 이를 [포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 등으로 참조하여 사용합니다. 또한, 중복된 문자열을 코드 여기저기에서 사용하더라도, 컴파일러가 알아서 1개로 취합해 줍니다. 
 
 # 힙
 
@@ -52,9 +52,9 @@ delete p; // new로 생성한 것은 반드시 delete
   
 # 스택
 
-스택은 함수내의 지역 변수, 인자, 리턴값이 호출될때마다 차곡 차곡 쌓이는 공간입니다.(함수내에서 `new`로 동적 메모리를 할당했다면, 해당 메모리는 힙에 할당됩니다.) 함수 호출이 종료되거나 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 종료되었다면 자동으로 소멸됩니다. 이러한 자동 소멸은 향후 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 개념으로 많이 활용되니 잘 알아 두시기 바랍니다.
+스택은 함수내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95), [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4-%EC%9E%91%EC%84%B1%EB%B2%95)이 호출될때마다 차곡 차곡 쌓이는 공간입니다.(함수내에서 `new`로 동적 메모리를 할당했다면, 해당 메모리는 힙에 할당됩니다.) 함수 호출이 종료되거나 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 종료되었다면 자동으로 소멸됩니다. 이러한 자동 소멸은 향후 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 개념으로 많이 활용되니 잘 알아 두시기 바랍니다.
   
-하기 호출 과정을 개념적으로 메모리에 도식화하면 다음과 같습니다.
+하기 호출 과정에서의 스택의 상황을 개념적으로 도식화하면 다음과 같습니다.
 
 ```cpp
 int f1(int a) {

@@ -8,6 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
+> * 변수의 수명([유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/))은 짧을 수록 좋다. 최대한 지역 변수로 사용하라.
 > * 전역 변수나 정적 전역 변수 보다는 함수내 정적 지역 변수를 사용하라.
 > * 정적 멤버 함수는 `obj.f()` 가 아닌 `T::f()` 와 같이 호출하라.
 > * 컴파일러 최적화가 쉽도록, 임시 개체를 사용하라.
@@ -25,9 +26,11 @@ sidebar:
 |함수내 정적 지역 변수| 함수가 호출되는 시점에 1회만 생성됨|최초 함수 호출 시점 ~ 소멸 시점은 정의되지 않음|
 |임시 개체|명시적으로 작성되지 않은 개체|표현식이 종료되면 소멸|
 
+일반적으로 메모리 공간을 오랫동안 차지하는 전역 변수나 정적 변수보다는 사용하고 빨리 반납하는 지역 변수가 좋습니다. 프로그램 시작과 끝을 관장하면서 필요한 변수가 아니라면 지역 변수로 작성하시기 바랍니다.
+
 # 지역 변수
 
-함수의 인자, 함수내 정의된 변수등 블록 유효 범위에서 사용할 수 있는 변수입니다. 블록의 범위를 벗어나면 자동으로 소멸됩니다.(구조체, 클래스의 경우 자동으로 소멸자를 호출하므로 자동 변수라고도 합니다.)
+함수의 인자, 함수내 정의된 변수등 블록 유효 범위에서 사용할 수 있는 변수입니다. 블록의 범위를 벗어나면 자동으로 소멸됩니다.([구조체, 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)의 경우 자동으로 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출하므로 **자동 변수**라고도 합니다.)
 
 ```cpp
 void f() {
@@ -62,7 +65,7 @@ TEST(TestClassicCpp, Static) {
 ```
 # 멤버 변수
 
-구조체, 클래스 등에서 사용하는 변수 입니다. 개체의 테이터를 관리하며, 생성자 본문 실행전 초기화 리스트에서 생성되고, 소멸자 본문 실행 후 소멸됩니다.
+[구조체, 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/) 등에서 사용하는 변수 입니다. 개체의 테이터를 관리하며, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 본문 실행전 초기화 리스트에서 생성되고, [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 본문 실행 후 소멸됩니다.
 
 ```cpp
 class Date {
@@ -80,7 +83,7 @@ public:
 
 # 정적 멤버 변수
 
-멤버 변수에 `static` 을 사용하여 특정 개체에 속하지 않는 정적 멤버 변수를 정의 할 수 있습니다. (단, 중첩 클래스와 함수내에 정의된 내부 클래스는 정적 멤버 변수를 가질 수 없습니다.) 
+멤버 변수에 `static` 을 사용하여 특정 개체에 속하지 않는 정적 멤버 변수를 정의 할 수 있습니다. (단, [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)와 [함수 내부의 로컬 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%ED%95%A8%EC%88%98-%EB%82%B4%EB%B6%80%EC%9D%98-%EB%A1%9C%EC%BB%AC-%ED%81%B4%EB%9E%98%EC%8A%A4)는 정적 멤버 변수를 가질 수 없습니다.) 
 
 선언과 정의의 분리가 필요하기 때문에, 선언 외부에서 초기값을 세팅해야 합니다.(단, `static const` 형은 변수 선언에서 초기화를 할 수 있습니다.)
 

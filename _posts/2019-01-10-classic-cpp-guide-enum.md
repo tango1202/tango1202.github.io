@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 열거형은 클래스나 네임스페이스 내에 정의하여 이름 유효 범위를 축소하라.
+> * 열거형은 [클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)나 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) 내에 정의하여 이름 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 축소하라.
 
 # 개요
 

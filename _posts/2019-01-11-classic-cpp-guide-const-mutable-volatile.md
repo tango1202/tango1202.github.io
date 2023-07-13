@@ -21,14 +21,14 @@ sidebar:
 
 `const`인 개체나 함수를 사용하면, 메모리의 수정이 없으므로 예외에 안정적입니다. 안정적인 프로그램을 위해, 할 수 있는 한 최대한 많이 `const`로 작성하는 것이 좋습니다.
 
-다만, 하기 **상수성 계약** 을 준수하세요. 예외 발생 부분만 빼고는 대부분 컴파일 오류가 발생하니, 계약을 지키기 까다롭지도 않습니다.
+다만, 다음 **상수성 계약** 을 준수하세요. 예외 발생 부분만 빼고는 대부분 컴파일 오류가 발생하니, 계약을 지키기 까다롭지도 않습니다.
 
 # 상수성 계약
 
-1. 상수 개체는 생성과 함께 초기화 되어야 합니다.(컴파일 오류)
+1. 상수 개체는 생성과 함께 [초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/) 되어야 합니다.(컴파일 오류)
 2. 상수 개체는 변경할 수 없습니다.(컴파일 오류)
 3. 상수 멤버 함수는 멤버 변수를 수정하지 않습니다.(컴파일 오류, 단 `mutable`로 수정 가능)
-4. 상수 멤버 함수는 멤버 변수를 몰래 수정할 수 있는 포인터나 참조자를 리턴하지 않습니다.(컴파일 오류. 단, `const_cast`로 억지로 구현 가능하나 하지 마세요.)
+4. 상수 멤버 함수는 멤버 변수를 몰래 수정할 수 있는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 리턴하지 않습니다.(컴파일 오류. 단, `const_cast`로 억지로 구현 가능하나 하지 마세요.)
 5. 상수 멤버 함수는 내부 구현에서 상수 멤버 함수만을 호출합니다.(컴파일 오류)
 6. 상수 멤버 함수는 예외를 발생하지 않습니다.(노력해서 구현해야 함)
 7. `mutable`로 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)을 구현한 경우 예외를 발생하지 않아야 합니다.(노력해서 구현해야 함)
@@ -63,9 +63,9 @@ const int* const p4 = &obj; // *p4 수정 불가. p4 수정 불가
 p4 = p1; // (X) 컴파일 오류
 ```
 
-# 리턴값의 상수성
+# [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4-%EC%9E%91%EC%84%B1%EB%B2%95)의 상수성
 
-리턴값에 무의미하게 `const`를 붙일 필요는 없습니다. 의미에 맞게 붙이거나 떼야 합니다.
+[리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4-%EC%9E%91%EC%84%B1%EB%B2%95)에 무의미하게 `const`를 붙일 필요는 없습니다. 의미에 맞게 붙이거나 떼야 합니다.
 
 리턴값이 기본 타입이라면 어짜피 리턴값이 복제되므로, `const`를 붙일 필요가 없습니다.
 
@@ -90,9 +90,9 @@ int* GetX4() const {return const_cast<int*>(&m_X);}
 int* GetX5() {return &m_X;} 	                        
 ```
 
-# 인자(함수 선언에 작성된 Parameter)의 상수성
+# [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95)(함수 선언에 작성된 Parameter)의 상수성
 
-인자에 `const`를 사용하여 전달된 인수(함수에 전달하는 개체. Argument)를 함수가 수정하는지, 수정하지 않는지 **코딩 계약**을 만들어 주는 게 좋습니다. 
+[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95)에 `const`를 사용하여 전달된 인수(함수에 전달하는 개체. Argument)를 함수가 수정하는지, 수정하지 않는지 **코딩 계약**을 만들어 주는 게 좋습니다. 
 
 전달된 인수를 함수에서 수정하지 않는다면, 꼭 `const`로 만들어 주길 바랍니다.(단, 인수가 인자에 복사된다면, `const`는 무의미 하므로 사용할 필요가 없습니다. 또한 [오버로딩된 함수 결정 규칙](https://github.com/tango1202/tango1202.github.io/blob/main/_posts/2019-01-19-classic-cpp-guide-function.md#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)을 참고하면, 오버로딩 결정시 `f(const int x)` 는 `f(int x)`로 취급되는걸 알 수 있습니다.)
 

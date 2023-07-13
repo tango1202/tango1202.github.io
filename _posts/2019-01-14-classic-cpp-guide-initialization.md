@@ -25,11 +25,11 @@ sidebar:
 |배열 초기화|`T arr[] = {};`,<br/> `char str[] = "abc";`|
 |구조체 초기화|`struct T {`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`int x;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`int y;`<br/>`};`<br/>`T t = {0, 10};`|
 
-생성 후 대입하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([예외 안정 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-constructor/) 참고)
+생성 후 대입하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([`swap`을 이용한 예외 안정 대입 연산자 구현](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%95-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90-%EA%B5%AC%ED%98%84) 참고)
 
 또한, 개체 생성시 초기화를 하지 않으면, 초기화되지 않은 개체를 사용하는 실수를 할 수 있습니다. 그러니 항상 생성과 동시에 초기화 하는 것이 좋습니다. 
 
-다음은 초기화 테스트용 클래스입니다. 기본 생성자, `int`를 전달받는 생성자(형변환이 되지 않게 `explicit`로 정의. [명시적 변환 생성 지정자(explicit)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고), 복사 생성자, 대입 연산자를 정의하였습니다.
+다음은 초기화 테스트용 클래스입니다. [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90), `int`를 전달받는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)(형변환이 되지 않게 `explicit`로 정의. [명시적 변환 생성 지정자(explicit)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고), [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)를 정의하였습니다.
 
 ```cpp
 class T {
@@ -44,7 +44,7 @@ public:
 
 # 기본 초기화
 
-`T obj;` 와 같이 생성하면, 기본 생성자가 호출되어 기본 초기화를 수행합니다
+`T obj;` 와 같이 생성하면, [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)가 호출되어 기본 초기화를 수행합니다.
 
 ```cpp
 T obj; // (O) 기본 생성자가 있어야 함
@@ -52,14 +52,14 @@ T obj; // (O) 기본 생성자가 있어야 함
 
 # 값 초기화
 
-값 초기화는 값 생성자를 이용하여 특정한 값으로 생성할 때 사용합니다. 다만 전달할 인자가 없어 `T obj1();`와 같이 작성할 경우(혹은 기본 생성자로 초기화하려는 목적으로), 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식됩니다. 전달할 인자가 없는 경우에는 `T obj1;`와 같이 작성해야 합니다.
+값 초기화는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 특정한 값으로 생성할 때 사용합니다. 다만 전달할 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95)가 없어 `T obj1();`와 같이 작성할 경우(혹은 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 초기화하려는 목적으로), 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식됩니다. 전달할 인자가 없는 경우에는 `T obj1;`와 같이 작성해야 합니다.
 
 ```cpp
 T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 선언임
 T obj2(1); // (O) int를 전달받는 생성자 호출
 ```
 
-하기는 `T(2);`로 개체 생성 후 `obj`에 대입하는 것 같은 모양입니다만, 사실 `obj`의 값 생성자를 호출합니다. 모양이 오해를 불러 일으키니 사용 안하시는게 좋습니다.(그냥 `T obj(2);`로 사용하세요.)
+하기는 `T(2);`로 개체 생성 후 `obj`에 대입하는 것 같은 모양입니다만, 사실 `obj`의 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다. 모양이 오해를 불러 일으키니 사용 안하시는게 좋습니다.(그냥 `T obj(2);`로 사용하세요.)
 
 ```cpp
 // int를 전달받는 생성자 호출.
@@ -68,7 +68,7 @@ T obj3 = T(2);
 ```
 # 복사 초기화
 
-복사 초기화는 복사 생성자나 인자가 1개인 값 생성자를 호출해 줍니다. 인자가 1개인 생성자는 뜻하지 않게 형변환이 될 수 있으므로 `explicit`로 정의하는게 좋습니다.
+복사 초기화는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 인자가 1개인 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출해 줍니다. 인자가 1개인 생성자는 뜻하지 않게 형변환이 될 수 있으므로 `explicit`로 정의하는게 좋습니다.
 ([형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 참고)
 
 ```cpp
@@ -105,7 +105,7 @@ EXPECT_TRUE(arr3[0] == 0 && arr3[1] == 0 && arr3[2] == 0);
 EXPECT_TRUE(arr4[2] == 0);
 ```
 
-문자 배열의 경우 특별히 문자열 상수를 이용하여 초기화 할 수 있습니다. 이때 배열의 마지막 요소에 널문자(`\0`)가 추가됩니다.
+문자 배열의 경우 특별히 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 이용하여 초기화 할 수 있습니다. 이때 배열의 마지막 요소에 널문자(`\0`)가 추가됩니다.
 
 ```cpp
 char str1[] = "abc"; // (O) {'a', `b`, 'c', '\0'};
@@ -123,7 +123,7 @@ EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 
 # 구조체 초기화
 
-구조체는 별도로 값 초기화를 위한 생성자를 구현하지 않더라도 중괄호를 이용하여 초기화를 할 수 있습니다.
+구조체는 별도로 값 초기화를 위한 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현하지 않더라도 중괄호를 이용하여 초기화를 할 수 있습니다.
 
 ```cpp
 struct T {int x; int y;}; 
@@ -136,9 +136,9 @@ EXPECT_TRUE(t.x == 10 && t.y == 20);
 
 대부분의 변수들은 생성시 초기화하지 않으면 기존 메모리에 있는 쓰레기 값을 갖게 되지만, 하기의 경우는 메모리 영역을 제로(`0`)로 만들어 초기화 합니다.
 
-1. 전역 변수, 정적 전역 변수, 정적 멤버 변수, 정적 지역 변수(상수형 정적 멤버 변수는 초기화를 해야 컴파일되기 때문에, 자동 제로 초기화된다고 할 수 없습니다.)
+1. [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98), [정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)(상수형 정적 멤버 변수는 초기화를 해야 컴파일되기 때문에, 자동 제로 초기화된다고 할 수 없습니다.)
 
-2. 배열의 각 요소  
+2. 배열의 갯수보다 초기화 값을 적게 제공한 경우 나머지 요소
 
 3. 클래스, 구조체, 공용체의 멤버 변수([Zero-initialization(https://en.cppreference.com/w/cpp/language/zero_initialization)](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고)
  
@@ -175,9 +175,12 @@ EXPECT_TRUE(T::s_c_m_Val == 0); // 상수형 정적 멤버 변수는 명시적 �
 EXPECT_TRUE(t.m_Val == 0); // (X) 오동작. 생성자가 없는 개체의 멤버 변수는 0으로 자동 초기화 된다고 하는데 GCC 디버그 모드는 0이 아닙니다.
 EXPECT_TRUE(t.f1() == 0); // 정적 지역 변수는 0으로 자동 초기화
 // EXPECT_TRUE(t.f2() != 0); // 지역 변수는 쓰레기값이 될 수도 있음
+
+int arr[3] = {1, }; 
+EXPECT_TRUE(arr[0] == 1 && arr[0] == 0 && arr[0] == 0); // 배열 갯수 보다 초기화 갯수가 적을때 나머지 요소는 0으로 자동 초기화
 ```
 
-복잡하죠? 복잡하니, 모든 변수를 초기화 한다는 대원칙을 가지고 작성하세요. 개발 초기에서 생성자가 없어서 자동 제로 초기화를 활용해서 개발했다가, 누군가 나중에 생성자를 넣어버리면 낭패를 보게 되니까요.
+복잡하죠? 복잡하니, 모든 변수를 초기화 한다는 대원칙을 가지고 작성하세요. 개발 초기에서 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)가 없어서 자동 제로 초기화를 활용해서 개발했다가, 누군가 나중에 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 넣어버리면 낭패를 보게 되니까요.
 
 |항목|자동 제로 초기화 지원|선언에서 명시적 초기화 지원|권장 초기화 방법|
 |--|:--:|:--:|--|
