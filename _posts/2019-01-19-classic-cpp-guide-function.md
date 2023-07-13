@@ -97,7 +97,7 @@ EXPECT_TRUE(minusButton.Click(10, 20) == -10);
 
 **멤버 함수 포인터**
 
-개체의 멤버 함수도 함수 포인터로 접근 할 수 있습니다.
+개체의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)도 함수 포인터로 접근 할 수 있습니다.
 
 ```cpp
 class Data { 

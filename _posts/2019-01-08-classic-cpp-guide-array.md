@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [고전 C++ 가이드] 배열(Array)"
+title: "#8. [고전 C++ 가이드] 배열(Array) 와 비트 필드(작성중)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -53,3 +53,7 @@ int* p = new int[5]; // int[5] 배열 생성
 delete[] p; // 삭제. delete가 아님에 유의. delete p;를 하면 int[0] 만 소멸됨
 ```
 
+# 비트 필드
+
+https://en.cppreference.com/w/cpp/language/bit_field
+비트 필드

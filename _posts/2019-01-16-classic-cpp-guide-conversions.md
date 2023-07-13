@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [고전 C++ 가이드] 형변환(const_cast, static_cast, dynamic_cast, reinterpret_cast, explicit)"
+title: "#16. [고전 C++ 가이드] 형변환(const_cast, static_cast, dynamic_cast, reinterpret_cast, explicit) 과 형변환 연산자 정의"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

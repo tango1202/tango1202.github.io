@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [고전 C++ 가이드] 구조체(struct)와 클래스(class) 와 공용체(union)와 비트 필드(작성중)"
+title: "#9. [고전 C++ 가이드] 구조체(struct)와 클래스(class) 와 공용체(union)(작성중)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -19,7 +19,7 @@ sidebar:
 |초기화|`T t = {10, 20};` 지원|값 생성자|X|
 |기본 접근 지정자|`public`|`private`|`public`|
 |멤버 변수|O|O|O|
-|멤버 함수|O|O|O|
+|[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|O|O|O|
 |참조자 멤버 변수|O|O|X|
 |재정의 생성자|O|O|X|
 |재정의 소멸자|O|O|X|
@@ -288,8 +288,4 @@ friends
 https://en.cppreference.com/w/cpp/language/nested_types
 중첩 클래스
 
-# 비트 필드
-
-https://en.cppreference.com/w/cpp/language/bit_field
-비트 필드
 
