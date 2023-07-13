@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [고전 C++ 가이드] 함수"
+title: "#19. [고전 C++ 가이드] 함수, 함수 포인터, 리턴, 인자(매개변수, Parameter)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -140,7 +140,7 @@ EXPECT_TRUE(button.Click(&Data::Print) == 1); // data 개체로 부터 Print 함
 EXPECT_TRUE(button.Click(&Data::Preview) == 2); // data 개체로 부터 Preview 함수 실행
 ```
 
-# 리턴 작성법
+# 리턴
 
 함수는 리턴문을 통해 결과값을 전달합니다.
 
@@ -227,7 +227,7 @@ return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최
 
 신중하게 결정해야 복사 부하를 줄이고, 타입에 기반한 **코딩 계약** 을 수립할 수 있습니다. 해당 방법에 대해서는 [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#getter-%ED%95%A8%EC%88%98)를 참고하기 바랍니다.
 
-# 인자(매개변수, Parameter) 작성법
+# 인자(매개변수, Parameter)
 
 **명명된 인자 선언**
 

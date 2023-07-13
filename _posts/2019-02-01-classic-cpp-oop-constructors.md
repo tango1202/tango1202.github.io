@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [고전 C++ 개체 지향] 생성자"
+title: "#1. [고전 C++ 개체 지향] 생성자, 초기화 리스트"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -141,7 +141,7 @@ T t(10, 20); // (O) 개체 정의(인스턴스화)
 
 특별히 생성자에 인자가 1개만 있으면, 암시적인 형변환을 하므로 형변환 생성자라고도 합니다. 암시적 형변환이 없도록 꼭 `explicit`를 사용해야 합니다.([명시적 변환 생성 지정자(`explicit`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고)
 
-**초기화 리스트 사용**
+# 초기화 리스트
 
 멤버 변수 초기화시 생성 후 대입하면, 불필요한 생성자가 여러번 호출되고 대입의 오버헤드가 생깁니다.
 
@@ -223,6 +223,55 @@ T t(10, 20);
 ```
 
 가 낫습니다.
+
+**멤버 변수 정의 순서와 초기화 리스트 순서**
+
+초기화 리스트에 기재된 순서가 아닌, 멤버 변수 정의 순서로 초기화 됩니다. 따라서 헷갈리지 않도록 멤버 변수 정의 순서에 따라 초기화 리스트를 작성하세요.
+
+```cpp
+class T {
+    int m_A;
+    int m_B;
+    int m_C;
+public:
+    T(int a, int b, int c) :
+        m_C(c + m_B), // (△) 비권장. 3
+        m_B(b + m_A), // (△) 비권장. 2
+        m_A(a) {} // (△) 비권장. 1
+    int GetA() const {return m_A;}
+    int GetB() const {return m_B;}
+    int GetC() const {return m_C;}
+};
+T t(10, 20, 30);
+EXPECT_TRUE(t.GetA() == 10 && t.GetB() == 30 && t.GetC() == 60);
+```
+
+**멤버 변수명과 인자명이 같은 경우**
+
+멤버 변수명과 인자명이 같더라도 함께 사용할 수 있습니다.
+
+1. 생성자의 초기화 리스트에서는 멤버 변수와 인자를 함께 사용할 수 있습니다. `a(a)`로 사용한 경우, 멤버 변수 `a`의 복사 생성자에 인자 `a`를 전달합니다.
+
+2. 함수 본문에서는 인자가 멤버 변수를 가리므로 `this->멤버 변수명`으로 사용해야 합니다.
+   
+```cpp
+class T {
+public:
+    int a;
+    int b;
+    int c;
+    T(int a, int b, int c) : // 멤버 변수명과 인자명이 같더라도 초기화 리스트에서 사용 가능합니다.
+        a(a), 
+        b(b),
+        c(c) {
+        // 함수 본문에서 멤버 변수명과 인자명이 같으면, 멤버 변수는 this를 써서 접근합니다.
+        this->a += 1; // 멤버 변수 a를 수정함
+        a += 2; // 인자 a를 수정함       
+    }
+};
+T t(10, 20, 30); 
+EXPECT_TRUE(t.a == 11 && t.b == 20 && t.c == 30);
+```
 
 # 암시적 복사 생성자
 
