@@ -136,8 +136,8 @@ EXPECT_TRUE(t.x == 10 && t.y == 20);
 
 대부분의 변수들은 생성시 초기화하지 않으면 기존 메모리에 있는 쓰레기 값을 갖게 되지만, 하기의 경우는 메모리 영역을 제로(`0`)로 만들어 초기화 합니다.
 
-1. [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98), [정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)(상수형 정적 멤버 변수는 초기화를 해야 컴파일되기 때문에, 자동 제로 초기화된다고 할 수 없습니다.)
-
+1. [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98), [정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)
+   
 2. 배열의 갯수보다 초기화 값을 적게 제공한 경우 나머지 요소
 
 3. 클래스, 구조체, 공용체의 멤버 변수([Zero-initialization(https://en.cppreference.com/w/cpp/language/zero_initialization)](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고)
@@ -151,7 +151,7 @@ static int s_Val; // 정적 전역 변수. 명시적 초기화 가능
 class T {
 public:
     static int s_m_Val; // 정적 멤버 변수. 명시적 초기화 불가능. 선언과 정의 분리. 단 const 형은 선언에서 초기화 가능
-    static const int s_c_m_Val = 0; // 상수형 정적 멤버 변수. 선언과 정의를 같이 해야 하며, 명시적으로 초기화 해야 함
+    static const int s_c_m_Val = 0; // 정적 상수 멤버 변수. 명시적 초기화 가능
     int m_Val; // 멤버 변수. 명시적 초기화 불가능.
 
     int f1() const {
@@ -165,13 +165,14 @@ public:
     }
 };
 int T::s_m_Val; // 선언과 정의 분리
+const int T::s_c_m_Val = 0; // 선언과 정의 분리 
 
 T t;
 
 EXPECT_TRUE(g_Val == 0); // 전역 변수는 0으로 자동 초기화
 EXPECT_TRUE(s_Val == 0); // 정적 전역 변수는 0으로 자동 초기화
 EXPECT_TRUE(T::s_m_Val == 0); // 정적 멤버 변수는 0으로 자동 초기화
-EXPECT_TRUE(T::s_c_m_Val == 0); // 상수형 정적 멤버 변수는 명시적 초기화
+EXPECT_TRUE(T::s_c_m_Val == 0); // 정적 상수 멤버 변수는 명시적 초기화
 EXPECT_TRUE(t.m_Val == 0); // (X) 오동작. 생성자가 없는 개체의 멤버 변수는 0으로 자동 초기화 된다고 하는데 GCC 디버그 모드는 0이 아닙니다.
 EXPECT_TRUE(t.f1() == 0); // 정적 지역 변수는 0으로 자동 초기화
 // EXPECT_TRUE(t.f2() != 0); // 지역 변수는 쓰레기값이 될 수도 있음
@@ -187,7 +188,7 @@ EXPECT_TRUE(arr[0] == 1 && arr[1] == 0 && arr[2] == 0); // 배열 갯수 보다 
 |전역 변수|O|O|선언시 초기화|
 |정적 전역 변수|O|O|선언시 초기화|
 |정적 멤버 변수|O|X|사용 비권장. 정적 지역 변수 사용|
-|상수형 정적 멤버 변수|X|O|선언시 초기화|
+|정적 상수 멤버 변수|X|O|선언시 초기화|
 |개체의 멤버 변수|△|X|[생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/). (GCC 디버그 모드에서는 `0`이 아니어서 △로 표기했습니다. 신뢰할 수 없으니 명시적으로 초기화 하세요.)|
 |정적 지역 변수|O|O|선언시 초기화|
 |지역 변수|X|O|선언시 초기화|

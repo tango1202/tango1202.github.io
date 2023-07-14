@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 포인터 보다는 참조자를 사용하라.(널검사가 필요없다.)
-> * 지역 변수의 참조자를 리턴하지 마라.(이미 소멸된 개체다.)
+> * [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 참조자를 리턴하지 마라.(이미 소멸된 개체다.)
 
 # 개요
 
@@ -52,7 +52,7 @@ EXPECT_TRUE(r == 30 && x == 30);
 
 이에 반해 참조자는 
 
-1. 생성시 항상 초기화 되어야 하고,
+1. 생성시 항상 [초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/) 되어야 하고,
 2. 널이 될 수 없으며,
 3. 다른 참조로 변경도 안되기 때문에
 
@@ -93,9 +93,9 @@ void f(int& r) {
 
 # Dangling 참조자
 
-지역 변수의 참조를 리턴할 경우에는 함수 종료후 소멸된 지역 변수를 참조하게 되므로 비정상 동작합니다. 
+[지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 참조를 리턴할 경우에는 함수 종료후 소멸된 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 참조하게 되므로 비정상 동작합니다. 
 
-이러한 참조자를 Dangling 참조자 라고 합니다.(`const T&`와 같이 상수형 참조를 하면 지역 변수 참조를 리턴해도 사용할 수는 있습니다. 사용할 수는 있어도, 지역 변수 참조했다는 컴파일 경고도 나오고, 함수 선언도 멤버 변수 참조를 리턴하는 느낌을 주기 때문에, 안쓰시는게 좋습니다.) 
+이러한 참조자를 Dangling 참조자 라고 합니다.(`const T&`와 같이 상수형 참조를 하면 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 참조를 리턴해도 사용할 수는 있습니다. 사용할 수는 있어도, [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 참조했다는 컴파일 경고도 나오고, 함수 선언도 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 참조를 리턴([Getter](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#getter-%ED%95%A8%EC%88%98) 참고)하는 느낌을 주기 때문에, 안쓰시는게 좋습니다.) 
 
 ```cpp
 int& GetX() { 
@@ -109,7 +109,6 @@ int& result = GetX();
 
 // (△) 비권장. 사용할 수는 있으나 GetX()에서 지역 변수 참조 리턴 warning 발생
 const int& result = GetX(); 
-
 ```
 
 또는 널을 저장한 포인터를 억지로 참조하게 해도 예외가 발생합니다.
@@ -122,7 +121,7 @@ r = 10; // (X) 예외 발생. p가 NULL이라 10을 NULL(0)주소 위치에 넣�
 
 # 포인터 사용법
 
-포인터는 개체 포인터, 배열 포인터, 함수 포인터, 다형성 포인터, 멤버 변수 포인터, 멤버 함수 포인터의 형태로, 개체 정의, 함수 인자 정의, 함수 리턴 정의시 사용합니다. 
+포인터는 개체 포인터, 배열 포인터, 함수 포인터, 다형성 포인터, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 포인터, [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 포인터의 형태로, 개체 정의, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정의, [함수 리턴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 정의시 사용합니다. 
 
 **개체 포인터**
 
@@ -201,7 +200,7 @@ public:
 
 **멤버 변수 포인터, 멤버 함수 포인터**
 
-라이브러리 구성시 멤버 변수 포인터나 멤버 함수 포인터를 사용할 수 있습니다.([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
+라이브러리 구성시 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 포인터나 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 포인터를 사용할 수 있습니다.([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
 
 ```cpp
 // 멤버 변수 포인터 - 라이브러리 개발시 사용할 수도 있음
@@ -221,7 +220,7 @@ public:
 
 # 참조자 사용법
 
-참조자는 개체 참조자, 배열 참조자, 함수 참조자, 다형성 참조자, 멤버 변수 참조자, 멤버 함수 참조자의 형태로, 개체 정의, 함수 인자 정의, 함수 리턴 정의시 사용합니다. 포인터와는 달리 널을 사용할 수 없습니다. 
+참조자는 개체 참조자, 배열 참조자, 함수 참조자, 다형성 참조자, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 참조자, [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참조자의 형태로, 개체 정의, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정의, [함수 리턴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 정의시 사용합니다. 포인터와는 달리 널을 사용할 수 없습니다. 
 
 **개체 참조자**
 

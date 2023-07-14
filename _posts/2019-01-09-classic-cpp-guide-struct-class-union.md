@@ -15,15 +15,15 @@ sidebar:
 
 |항목|구조체|클래스|공용체|
 |--|--|--|--|
-|용량|멤버 변수들의 총합|멤버 변수들의 총합|멤버 변수들중 가장 큰값|
+|용량|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 총합|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 총합|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들중 가장 큰값|
 |초기화|`T t = {10, 20};` 지원|값 생성자|X|
 |기본 접근 지정자|`public`|`private`|`public`|
-|멤버 변수|O|O|O|
+|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|O|O|O|
 |[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|O|O|O|
-|참조자 멤버 변수|O|O|X|
-|재정의 생성자|O|O|X|
-|재정의 소멸자|O|O|X|
-|virtual 함수|O|O|X|
+|참조자 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|O|O|X|
+|재정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)|O|O|X|
+|재정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)|O|O|X|
+|[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)|O|O|X|
 |상속|O|O|X|
 
 구조체와 클래스와 공용체는 타입이 다른 여러 데이터를 집합으로 묶어 관리할 수 있게 해줍니다.
@@ -47,7 +47,7 @@ public:
 C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 초기화 미지원
 ```
 
-공용체는 멤버 변수들끼리 메모리 영역을 공유합니다. 이에 따라 참조자나 캡슐화를 위한 다양한 기능들이 제약됩니다. 메모리 절약이 필요한 경우에만 한정적으로 사용하시기 바랍니다.
+공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유합니다. 이에 따라 참조자나 캡슐화를 위한 다양한 기능들이 제약됩니다. 메모리 절약이 필요한 경우에만 한정적으로 사용하시기 바랍니다.
 
 # 구조체와 클래스
 
@@ -263,7 +263,7 @@ class W { // T의 friend인 U 의 friend
 
 # 공용체
 
-공용체는 멤버 변수들끼리 메모리 영역을 공유하다 보니 하나의 멤버 변수를 수정하면, 다른 멤버 변수도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 [메모리 할당 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98-%EC%A0%95%EC%9D%98-%EB%B0%A9%EB%B2%95)이 바뀌면(플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
+공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유하다 보니 하나의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하면, 다른 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 [메모리 할당 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98-%EC%A0%95%EC%9D%98-%EB%B0%A9%EB%B2%95)이 바뀌면(플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
 
 또한, 구조체와 클래스와 달리 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)와 [`virtual` 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 가질 수 없습니다.
 
