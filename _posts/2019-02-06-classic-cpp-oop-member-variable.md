@@ -8,6 +8,15 @@ sidebar:
     nav: "docs"
 ---
 
+멤버 변수
+상수 멤버 변수
+정적 멤버 변수
+
+복사 생성자 호환성
+대입 연산자 호환성
+소멸
+
+
 # 메모리 할당에 따른 멤버 변수 정의 방법
 
 컴파일러는 클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 4byte단위로 멤버 변수를 할당합니다.(이를 패딩(padding)이라 합니다. [`#pragma`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma) 언급) 
