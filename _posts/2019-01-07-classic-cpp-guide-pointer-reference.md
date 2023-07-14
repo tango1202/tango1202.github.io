@@ -23,7 +23,7 @@ sidebar:
 
 포인터와 참조자는 대상 개체를 가리키기 위한 타입입니다. 주로 하기 경우에 사용됩니다.
 
-1. 대상 개체가 너무 커서 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95)나 [리턴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4-%EC%9E%91%EC%84%B1%EB%B2%95)시 복사 부하가 너무 큰 경우
+1. 대상 개체가 너무 커서 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)나 [리턴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)시 복사 부하가 너무 큰 경우
 2. 원본 데이터를 값을 확인 또는 수정하고 싶은 경우
 3. 함수 자체를 전달하고 싶은 경우([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
 4. 부모 개체를 통해 자식 개체를 사용하고 싶은 경우([다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-virtual-polymorphism/) 참고)

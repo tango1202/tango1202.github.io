@@ -24,7 +24,7 @@ sidebar:
 2. 함수를 호출합니다.
 3. 함수내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 스택에 쌓습니다.
 4. 함수의 코드를 실행합니다.
-5. 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4)을 리턴합니다.
+5. 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 리턴합니다.
 6. 스택에 쌓인 정보를 제거합니다.
 
 인라인 함수는 상기의 함수 호출 부하(미세하겠지만)를 줄이기 위해 함수가 호출된 자리에 직접 코드를 삽입(코드 치환)하는 함수입니다.
@@ -95,7 +95,7 @@ TEST(TestClassicCpp, Inline) {
 
 **인라인 함수 특징**
 
-인라인 함수도 함수이다 보니 함수 고유의 장점(함수 코드 재활용, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95)와의 타입에 기반한 **코딩 계약**, 디버깅 용이)은 유지합니다. 또한, 함수 호출부에 직접 코드를 삽입하기 때문에 다음과 같은 특징이 있습니다.
+인라인 함수도 함수이다 보니 함수 고유의 장점(함수 코드 재활용, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와의 타입에 기반한 **코딩 계약**, 디버깅 용이)은 유지합니다. 또한, 함수 호출부에 직접 코드를 삽입하기 때문에 다음과 같은 특징이 있습니다.
 
 1. 함수 호출 부하가 줄어듭니다.
 2. 실행 파일 용량이 커집니다.

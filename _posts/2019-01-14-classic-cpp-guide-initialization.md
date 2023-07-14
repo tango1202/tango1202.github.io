@@ -52,7 +52,7 @@ T obj; // (O) 기본 생성자가 있어야 함
 
 # 값 초기화
 
-값 초기화는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 특정한 값으로 생성할 때 사용합니다. 다만 전달할 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter-%EC%9E%91%EC%84%B1%EB%B2%95)가 없어 `T obj1();`와 같이 작성할 경우(혹은 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 초기화하려는 목적으로), 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식됩니다. 전달할 인자가 없는 경우에는 `T obj1;`와 같이 작성해야 합니다.
+값 초기화는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 특정한 값으로 생성할 때 사용합니다. 다만 전달할 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 없어 `T obj1();`와 같이 작성할 경우(혹은 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 초기화하려는 목적으로), 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식됩니다. 전달할 인자가 없는 경우에는 `T obj1;`와 같이 작성해야 합니다.
 
 ```cpp
 T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 선언임
