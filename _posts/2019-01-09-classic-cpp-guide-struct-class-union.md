@@ -404,7 +404,7 @@ class Outer {
 };
 ```
 
-[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)에서는 사용할 수 없습니다.
+[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)에서는 사용할 수 없습니다.
 
 ```cpp
 class T {

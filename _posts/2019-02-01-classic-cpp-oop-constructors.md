@@ -9,8 +9,7 @@ sidebar:
 ---
 
 > * 기본 생성자가 필요하다면 명시적으로 구현하라.
-> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 초기화시, 생성후 대입하지 말고 초기화 리스트를 사용하라.(초기화 리스트의 순서는 멤버 변수 정의 순서에 맞춰라.)
-> * 생성자에서 필요한 인자를 모두 나열하고 초기화하라.
+> * 값 생성자에서 필요한 인자를 모두 나열하고 초기화하라. 
 > * 인자가 1개인 생성자는 `explicit`를 사용하여 암시적 형변환을 차단하라.
 > * 복사 생성자가 필요하다면, 암시적 복사 생성자가 정상 동작하도록 멤버 개체 `Handler`를 구현하고, 필요없다면 못쓰게 만들어라.
 > * 생성자에서 가상 함수를 호출하지 마라.
@@ -124,14 +123,16 @@ T t; // (O) 명시적 기본 생성자 호출
 
 값 생성자는 값들을 바탕으로 개체를 생성시킵니다.
 
+값 생성자는 불필요한 대입의 오버헤드를 줄이기 위해 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)를 이용하여 모든 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들을 초기화 하는게 좋습니다. 또한 필요한 모든 인자를 나열하고 초기화하는게 **코딩 계약**상 좋습니다.([초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고)
+
 ```cpp
 class T {
 private:
     int m_X;
     int m_Y;
 public:
-    T(int x, int y) :
-        m_X(x),
+    T(int x, int y) : // 필요한 모든 인자를 나열
+        m_X(x), // 초기화 리스트를 이용하여 초기화
         m_Y(y) {}
 };
 T t(10, 20); // (O) 개체 정의(인스턴스화)
@@ -141,7 +142,7 @@ T t(10, 20); // (O) 개체 정의(인스턴스화)
 
 특별히 값 생성자에 인자가 1개만 있으면, 암시적인 형변환을 하므로 형변환 생성자라고도 합니다. 암시적 형변환이 없도록 꼭 `explicit`를 사용해야 합니다.([명시적 변환 생성 지정자(`explicit`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고)
 
-값 생성자는 초기화 리스트를 이용하여 멤버 변수를 초기화 하는게 좋습니다.
+
 
 # 암시적 복사 생성자
 
@@ -244,6 +245,7 @@ public:
 2. 암시적 복사 생성자가 내부적으로 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 복사 생성자를 호출합니다.
 3. `Handler`의 복사 생성자가 호출됩니다.
 4. `Handler`의 복사 생성자에서 포인터 복제를 합니다.
+5. `Handler`의 소멸자에서 포인터를 `delete`합니다.
 
 ```cpp
 // 복사 생성이나 대입시 m_Ptr을 복제하고, 소멸시 delete 합니다.

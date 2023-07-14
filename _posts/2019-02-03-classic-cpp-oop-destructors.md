@@ -24,6 +24,19 @@ sidebar:
 
 소멸자는 개체의 수명이 다해 소멸될때 호출되는 특수 함수입니다. 개체가 활동하면서 생성했던 메모리나 리소스를 해제하는 역할을 합니다.
 
+특히 `new` 로 생성한 것은 `delete`로 소멸([힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다.
+
+다음 코드는 생성자에서 `new`로 포인터 개체를 생성하고, 소멸자에서 `delete`합니다.
+
+```cpp
+class T {
+    int* m_Ptr;
+public:
+    T() : m_Ptr(new int) {}
+    ~T() {delete m_Ptr;}
+};
+```
+
 # 소멸자 호출 시점
 
 1. [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), 정적 변수([정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98), [함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98))인 경우 프로그램 종료시
