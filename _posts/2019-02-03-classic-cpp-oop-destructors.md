@@ -34,14 +34,14 @@ sidebar:
 
 # 소멸자 호출 순서
 
-소멸자가 호출되면, 소멸자 본문이 실행되고, 본문내의 지역 변수를 삭제하고, 멤버 변수를 삭제합니다. 그뒤 부모 클래스의 소멸자를 호출합니다.
+소멸자가 호출되면, 소멸자 본문이 실행되고, 본문내의 지역 변수를 삭제하고, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 삭제합니다. 그뒤 부모 클래스의 소멸자를 호출합니다.
 
 1. 소멸자 본문 실행 
 2. 본문 내의 지역 변수 삭제(선언의 역순)
-3. 멤버 변수 삭제(선언의 역순)
+3. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 삭제(선언의 역순)
 4. 부모 클래스 소멸자 본문 호출
 5. 부모 클래스 소멸자 본문내의 지역 변수 삭제(선언의 역순)
-6. 부모 클래스 멤버 변수 삭제(선언의 역순)
+6. 부모 클래스 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 삭제(선언의 역순)
 
 ```cpp
 class BaseMemberObj {

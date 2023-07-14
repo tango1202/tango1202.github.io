@@ -8,9 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
-> * 매크로 상수를 쓰지 말고 열거형 상수를 사용하라.
-> * 매크로로 타입의 별칭을 만들지 말고 `typedef`를 사용하라.
-> * 매크로 함수를 쓰지 말고 인라인 함수를 사용하라.
+> * 매크로 상수를 쓰지 말고 [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)를 사용하라.
+> * 매크로로 타입의 별칭을 만들지 말고 [`typedef`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 사용하라.
+> * 매크로 함수를 쓰지 말고 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하라.
 
 # 개요
 
@@ -38,7 +38,7 @@ sidebar:
 
 # `#define` 상수
 
-주어진 식별자를 대체 목록으로 치환합니다. 흔히 정수형 상수, 실수형 상수, 문자열 상수에 이름을 붙이거나 타입의 별칭을 작성하기 위해 사용합니다. 
+주어진 식별자를 대체 목록으로 치환합니다. 흔히 정수형 상수, 실수형 상수, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)에 이름을 붙이거나 [타입의 별칭](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)을 작성하기 위해 사용합니다. 
 
 하지만, 단순 치환이기 때문에 뜻하지 않게 타입 안정성을 해칠 수 있고, 이름 충돌로 인한 오류 발생도 높기 때문에 사용하지 않는게 좋습니다.
 
@@ -95,6 +95,8 @@ EXPECT_TRUE(typeid(Logical) == typeid(int));
 #define GetForm // 이것도 정말 WindowAPI 에 있음
 ```
 
+**define 개행**
+
 `#define`은 한줄로 작성하여야 하나, 너무 긴 경우 `\`로 개행하여 작성할 수 있습니다.(이때 `\`뒤에 어떤 공백도 없어야 합니다.)
 
 ```cpp
@@ -139,6 +141,8 @@ EXPECT_TRUE(SQUARE(1 + 1) == 4); // (1 + 1) * (1 + 1)
  inline int Square(int x) { return x * x;} // (O) 인자 타입에 따른 코딩 계약, 디버깅 용이
  ```
  
+**매크로 함수 특수 기능**
+
 매크로 함수에서는 하기의 특수 기능이 있습니다.
 
 |항목|내용|

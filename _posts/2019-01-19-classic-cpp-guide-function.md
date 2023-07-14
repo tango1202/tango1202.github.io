@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [고전 C++ 가이드] 함수, 함수 포인터, 리턴, 인자(매개변수, Parameter)ㅎ"
+title: "#19. [고전 C++ 가이드] 함수, 함수 포인터, 리턴, 인자(매개변수, Parameter)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false

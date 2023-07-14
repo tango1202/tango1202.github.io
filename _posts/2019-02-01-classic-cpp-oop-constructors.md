@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 기본 생성자가 필요하다면 명시적으로 구현하라.
-> * 멤버 변수 초기화시, 생성후 대입하지 말고 초기화 리스트를 사용하라.(초기화 리스트의 순서는 멤버 변수 정의 순서에 맞춰라.)
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 초기화시, 생성후 대입하지 말고 초기화 리스트를 사용하라.(초기화 리스트의 순서는 멤버 변수 정의 순서에 맞춰라.)
 > * 생성자에서 필요한 인자를 모두 나열하고 초기화하라.
 > * 인자가 1개인 생성자는 `explicit`를 사용하여 암시적 형변환을 차단하라.
 > * 복사 생성자가 필요하다면, 암시적 복사 생성자가 정상 동작하도록 멤버 개체 `Handler`를 구현하고, 필요없다면 못쓰게 만들어라.
@@ -44,7 +44,7 @@ T t(); // (X) T를 리턴하는 함수 f() 선언
 
 컴파일러는 다른 생성자가 정의되지 않으면, 암시적으로 기본 생성자를 정의합니다.
 
-암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 멤버 변수의 메모리 영역이 제로(`0`)로 초기화 된다고는 하나, GCC 디버그 모드에서는 `0`이 아닙니다. 신뢰할 수 없으니 명시적으로 초기화 하세요. 또한 참조자 형식이나, 상수형 개체는 암시적 기본 생성자로 초기화 할 수 없습니다.
+암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 된다고는 하나, GCC 디버그 모드에서는 `0`이 아닙니다. 신뢰할 수 없으니 명시적으로 초기화 하세요. 또한 참조자 형식이나, 상수형 개체는 암시적 기본 생성자로 초기화 할 수 없습니다.
 
 ```cpp
 class T1 {
@@ -143,7 +143,7 @@ T t(10, 20); // (O) 개체 정의(인스턴스화)
 
 # 초기화 리스트
 
-멤버 변수 초기화시 생성 후 대입하면, 불필요한 생성자가 여러번 호출되고 대입의 오버헤드가 생깁니다.
+[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 초기화시 생성 후 대입하면, 불필요한 생성자가 여러번 호출되고 대입의 오버헤드가 생깁니다.
 
 ```cpp
 class T {
@@ -163,7 +163,7 @@ public:
 };
 ```
 
-따라서, 멤버 변수 초기화시, 생성후 대입하지 말고 초기화 리스트를 사용하는게 불필요한 생성이나 대입이 없어 좋습니다.
+따라서, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 초기화시, 생성후 대입하지 말고 초기화 리스트를 사용하는게 불필요한 생성이나 대입이 없어 좋습니다.
 
 ```cpp
 class T {
@@ -184,7 +184,7 @@ public:
 
 **필요한 인자를 모두 나열하고 초기화**
 
-값 생성자의 인자 작성시에는 [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 모든 요소를 나열하고 초기화 하는게 **코딩 계약**상 좋습니다. 다음처럼 일부 멤버 변수만 초기화 하고, 나중에 별도 함수를 호출하여 초기화를 마무리하면, 사용자가 실수로 빼먹을 수도 있고, **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([예외 안정 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-constructor/) 참고)
+값 생성자의 인자 작성시에는 [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 모든 요소를 나열하고 초기화 하는게 **코딩 계약**상 좋습니다. 다음처럼 일부 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)만 초기화 하고, 나중에 별도 함수를 호출하여 초기화를 마무리하면, 사용자가 실수로 빼먹을 수도 있고, **예외 안정** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([예외 안정 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-constructor/) 참고)
 
 ```cpp
 class T {
@@ -226,7 +226,7 @@ T t(10, 20);
 
 **멤버 변수 정의 순서와 초기화 리스트 순서**
 
-초기화 리스트에 기재된 순서가 아닌, 멤버 변수 정의 순서로 초기화 됩니다. 따라서 헷갈리지 않도록 멤버 변수 정의 순서에 따라 초기화 리스트를 작성하세요.
+초기화 리스트에 기재된 순서가 아닌, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의 순서로 초기화 됩니다. 따라서 헷갈리지 않도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의 순서에 따라 초기화 리스트를 작성하세요.
 
 ```cpp
 class T {
@@ -248,11 +248,11 @@ EXPECT_TRUE(t.GetA() == 10 && t.GetB() == 30 && t.GetC() == 60);
 
 **멤버 변수명과 인자명이 같은 경우**
 
-멤버 변수명과 인자명이 같더라도 함께 사용할 수 있습니다.
+[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)명과 인자명이 같더라도 함께 사용할 수 있습니다.
 
-1. 생성자의 초기화 리스트에서는 멤버 변수와 인자를 함께 사용할 수 있습니다. `a(a)`로 사용한 경우, 멤버 변수 `a`의 복사 생성자에 인자 `a`를 전달합니다.
+1. 생성자의 초기화 리스트에서는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 인자를 함께 사용할 수 있습니다. `a(a)`로 사용한 경우, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) `a`의 복사 생성자에 인자 `a`를 전달합니다.
 
-2. 함수 본문에서는 인자가 멤버 변수를 가리므로 `this->멤버 변수명`으로 사용해야 합니다.
+2. 함수 본문에서는 인자가 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 가리므로 `this->멤버 변수명`으로 사용해야 합니다.
    
 ```cpp
 class T {
@@ -306,7 +306,7 @@ EXPECT_TRUE(t3.GetX() == 10 && t3.GetY() == 20);
 
 다음 코드는 생성자에서 `new`로 생성한 힙 개체를 전달받고, 소멸자에서 `delete`합니다. 
 
-그런데, 암시적 복사 생성자는 단순히 멤버별 복사를 하므로, 포인터를 멤버 변수로 사용할 경우 소유권 분쟁이 생깁니다. 
+그런데, 암시적 복사 생성자는 단순히 멤버별 복사를 하므로, 포인터를 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 사용할 경우 소유권 분쟁이 생깁니다. 
 
 암시적 복사 생성자를 이용하여 복사하면, 동일한 힙 개체를 `t1`, `t2`가 참조하게 되어, `t1` 소멸시에도 `delete`하고, `t2` 소멸시에도 `delete`하게 됩니다. 결국 2번 `delete` 하게 되어 예외가 발생하게 되죠.
 
@@ -370,8 +370,8 @@ public:
 
 `Handler`는 다음 단계를 통해 포인터 복제를 대행하도록 구현합니다.
 
-1. `Handler`를 클래스 멤버 변수로 정의해 둡니다.
-2. 암시적 복사 생성자가 내부적으로 맴버 변수들의 복사 생성자를 호출합니다.
+1. `Handler`를 클래스 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 정의해 둡니다.
+2. 암시적 복사 생성자가 내부적으로 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 복사 생성자를 호출합니다.
 3. `Handler`의 복사 생성자가 호출됩니다.
 4. `Handler`의 복사 생성자에서 포인터 복제를 합니다.
 

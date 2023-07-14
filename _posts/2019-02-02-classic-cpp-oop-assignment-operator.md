@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * 멤버 변수가 1개라면, 암시적 대입 연산자가 정상 동작하도록 멤버 개체 Handler를 구현하고, 필요없다면 못쓰게 만들어라.
-> * 멤버 변수가 2개 이상이라면, 대입 연산자를 예외에 안정적이도록 `swap`을 이용하여 구현하고, 필요없다면 못쓰게 만들어라.
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, 암시적 대입 연산자가 정상 동작하도록 멤버 개체 Handler를 구현하고, 필요없다면 못쓰게 만들어라.
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 대입 연산자를 예외에 안정적이도록 `swap`을 이용하여 구현하고, 필요없다면 못쓰게 만들어라.
 
  # 개요
 
@@ -19,7 +19,7 @@ sidebar:
 
 # 암시적 대입 연산자
 
-복사 생성자와 마찬가지로 대입 연산자도 사용자가 특별히 정의하지 않으면 암시적으로 정의됩니다. 기본 동작은 복사 생성자와 유사하게 멤버별 대입입니다.
+[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 마찬가지로 대입 연산자도 사용자가 특별히 정의하지 않으면 암시적으로 정의됩니다. 기본 동작은 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 유사하게 멤버별 대입입니다.
 
 ```cpp
 class T {
@@ -52,7 +52,7 @@ EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 
 # 포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`
 
-복사 생성자에서와 마찬가지로, 멤버 변수에 포인터가 있다면 대입 연산 후 소유권 분쟁을 합니다. 동일한 힙 개체를 2번 `delete` 하게 되니까요.([복사 생성자의 포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-%ED%95%B8%EB%93%A4%EB%9F%AC) 참고)
+[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)에서와 마찬가지로, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에 포인터가 있다면 대입 연산 후 소유권 분쟁을 합니다. 동일한 힙 개체를 2번 `delete` 하게 되니까요.([복사 생성자의 포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-%ED%95%B8%EB%93%A4%EB%9F%AC) 참고)
 
 이를 해결하기 위해, 암시적 대입 연산자를 사용하지 않고, 다음처럼 대입 연산자를 명시적으로 구현하여, 힙 개체의 복제본을 만들 수 있습니다.
 
@@ -103,7 +103,7 @@ public:
 } 
 ```
 
-복사 생성자의 경우와 마찬가지로 `Handler`를 활용할 수도 있습니다.
+[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)의 경우와 마찬가지로 `Handler`를 활용할 수도 있습니다.
 
 암시적 대입 연산자가 내부적으로 대입을 할때 `Handler`의 대입 연산자가 호출되는데, 이때 `Handler`의 대입 연산자에서 포인터를 복제하도록 재구현 합니다. 
 
@@ -249,7 +249,7 @@ T& operator =(const T& other) {
 
 만약 `m_Val1` 대입은 성공하고, `m_Val2` 대입은 실패했다면, `this`의 `m_Val1`만 변경된 상태가 됩니다. 예외가 발생하기 전의 상태로 가야하는데 이미 `m_Val1`이 수정되었으니 예외에 안정적이지 못합니다. 따라서, `Handler`를 사용한 `T`라 할지라도 `swap`으로 대입 연산자를 구현할 필요가 있습니다.
 
-즉, `T`의 멤버 변수가 1개라면, `Handler`만 사용해도 충분히 예외에 안정적이지만, 2개 이상이라면, 예외에 안정적으로 만들기 위해, 복사 생성자와 호환되는 멤버 변수를 정의하고(필요하다면 `Handler`를 사용하고), `swap`을 이용하여 대입 연산자를 구현해야 합니다.
+즉, `T`의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, `Handler`만 사용해도 충분히 예외에 안정적이지만, 2개 이상이라면, 예외에 안정적으로 만들기 위해, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 호환되는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 정의하고(필요하다면 `Handler`를 사용하고), `swap`을 이용하여 대입 연산자를 구현해야 합니다.
 
 ```cpp
 // (O) 예외에 안정적이도록 swap으로 대입 연산자를 구현합니다. 
@@ -351,5 +351,5 @@ public:
 
 # 대입 연산자 사용 제한
 
-복사 생성자의 경우와 마찬가지로, 만약 대입 연산자가 필요없다면, 암시적 대입 연산자도 사용할 수 없도록 `private` 로 만드는게 좋습니다. 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 대입 연산자를 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
+[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)의 경우와 마찬가지로, 만약 대입 연산자가 필요없다면, 암시적 대입 연산자도 사용할 수 없도록 `private` 로 만드는게 좋습니다. 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 대입 연산자를 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
 
