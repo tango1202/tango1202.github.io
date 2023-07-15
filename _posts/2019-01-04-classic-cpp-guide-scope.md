@@ -15,7 +15,7 @@ sidebar:
 
 전역 개체의 경우에는 전체 범위에 영향을 주며, 그렇치 않은 경우는 블록 범위 내에서만 영향을 줍니다.([클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/), [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/), [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/), [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), `try-catch()` 등)
 
-다음은 전역 변수, 함수의 지역 변수, 블록내에 정의된 변수가 이름이 동일할 경우 어떻게 사용되는지 보여주는 예입니다. 가까운 쪽이 사용됩니다.
+다음은 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), 함수의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), 블록내에 정의된 변수가 이름이 동일할 경우 어떻게 사용되는지 보여주는 예입니다. 가까운 쪽이 사용됩니다.
 
 ```cpp
 namespace {
@@ -40,7 +40,7 @@ TEST(TestClassicCpp, Scope) {
 
 프로젝트 규모가 커지면, 서로 다른 영역에서 동일한 이름을 사용하게 될 확률이 높습니다. 특히 직관적이고 좋은 이름일수록요. 이름이 서로 충돌나거나 가리지 않도록 이름의 유효 범위를 짧게 유지하는게 좋습니다.
 
-특히 이름 충돌시 매크로가 관여되면 대환장 파티가 열릴 수 있습니다.([전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, pragma)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 참고)
+특히 이름 충돌시 매크로가 관여되면 대환장 파티가 열릴 수 있습니다.([`#define` 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 참고)
 
 # 블록을 활용한 유효 범위 통제
 
