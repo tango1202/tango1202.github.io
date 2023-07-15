@@ -67,7 +67,7 @@ EXPECT_TRUE(arr[0] == 10);
 
 ```cpp
 int* p = new int[5]; // int[5] 배열 생성
-delete[] p; // 삭제. delete가 아님에 유의. delete p;를 하면 int[0] 만 소멸됨
+delete[] p; // 삭제. delete가 아님에 유의. delete p;를 하면 배열 요소 갯수만큼 소멸자를 호출하지 않고 한번만 호출합니다.
 ```
 
 # 비트 필드

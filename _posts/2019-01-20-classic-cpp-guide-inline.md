@@ -20,14 +20,14 @@ sidebar:
 
 함수 호출은 하기 단계를 거칩니다.
 
-1. 인수를 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 쌓습니다.
-2. 함수를 호출합니다.
-3. 함수내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 스택에 쌓습니다.
+1. 인수를 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 쌓습니다.(함수 호출 부하)
+2. 함수를 호출합니다.(함수 호출 부하)
+3. 함수내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 쌓습니다.(함수 호출 부하)
 4. 함수의 코드를 실행합니다.
-5. 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 리턴합니다.
-6. 스택에 쌓인 정보를 제거합니다.
+5. 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 리턴합니다.(함수 호출 부하)
+6. [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 쌓인 정보를 제거합니다.(함수 호출 부하)
 
-인라인 함수는 상기의 함수 호출 부하(미세하겠지만)를 줄이기 위해 함수가 호출된 자리에 직접 코드를 삽입(코드 치환)하는 함수입니다.
+인라인 함수는 상기의 함수 호출 부하(미세하겠지만)를 줄이기 위해 함수가 호출된 자리에 직접 코드를 삽입(코드 치환)하는 함수입니다.(비슷한 일을 `define` 함수가 합니다만, 어지간하면 쓰지 마세요!!! [`#define` 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%ED%95%A8%EC%88%98) 참고)
 
 ```cpp
 inline int Plus(int a, int b) {
@@ -61,7 +61,7 @@ int T::f2() {return 0;} // inline화 안됨
 
 **여러 cpp에서 사용하는 인라인 함수 정의**
 
-헤더파일에서 `inline`함수를 정의하고 `cpp`에서 `include` 합니다.
+헤더 파일에서 `inline`함수를 정의하고 `cpp`에서 `include` 합니다.
 
 ```cpp
 // MyInline.h 에서
@@ -70,10 +70,10 @@ int T::f2() {return 0;} // inline화 안됨
 
 namespace TestInline { // 이름 충돌을 피하기 위해 네임스페이스에서 정의
 
-    // 헤더파일에 함수를 정의하면, 이를 include한 여러 cpp에서 중복 정의되므로 
+    // 헤더 파일에 함수를 정의하면, 이를 include한 여러 cpp에서 중복 정의되므로 
     // 컴파일 오류가 발생합니다. 
-    // 그래서 보통 헤더파일에서는 함수 선언만 합니다.
-    // inline을 이용해 헤더파일에 함수를 정의하면, 동일한 함수 정의를 사용하기 때문에
+    // 그래서 보통 헤더 파일에서는 함수 선언만 합니다.
+    // inline을 이용해 헤더 파일에 함수를 정의하면, 동일한 함수 정의를 사용하기 때문에
     // 컴파일 오류가 발생하지 않습니다.
     inline int Plus(int a, int b) {
         return a + b;
