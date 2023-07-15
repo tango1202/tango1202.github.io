@@ -75,10 +75,10 @@ C++언어는
     double a = (float)1.0F;
 }
 {
-    // none-const는 const로 변환. 반대는 컴파일 오류
+    // non-const는 const로 변환. 반대는 컴파일 오류
     int a = 10;
     const int* b = &a;
-    // int* c = b; // (X) 컴파일 오류. const는 none-const로 변환 안됨
+    // int* c = b; // (X) 컴파일 오류. const는 non-const로 변환 안됨
 }
 {
     // 모든 포인터는 void*로 변환. NULL은 모든 포인터로 변환
@@ -100,7 +100,7 @@ C++언어는
 
 **C언어 스타일 형변환-`()`**
 
-암시적으로 형변환 되지 않는다면, 괄호(`(`와 `)`)를 이용하여 C언어 스타일로 명시적으로 형변환(`const_cast`, `static_cast`, `reinterpret_cast` 의 순서) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. C++언어 형변환 스타일인 `const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`을 사용하세요.
+암시적으로 형변환 되지 않는다면, 괄호(`(`와 `)`)를 이용하여 C언어 스타일로 명시적으로 형변환(`const_cast`, `static_cast`, `reinterpret_cast` 의 순서) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 `const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
 
 ```cpp
 {
@@ -134,7 +134,7 @@ C++언어는
 
 **`static_cast`**
 
-`static_cast`를 이용하여 암시적으로 형변환되지 않는 것들을 명시적으로 할 수 있습니다.(하지만 **코딩 계약** 위반이니 사용하지 마세요.)
+`static_cast`를 이용하여 암시적으로 형변환되지 않는 것들을 명시적으로 할 수 있습니다.(하지만 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.)
 
 ```cpp
 {
@@ -227,7 +227,7 @@ EXPECT_TRUE(other == NULL);
 ```
 **아무 연관 관계도 없는 타입끼리의 형변환**
 
-아무 연관 관계도 없는 타입끼리 형변환되지는 않습니다. 다만 `reinterpret_cast`를 이용하면 포인터나 참조자 타입은 변환됩니다.
+아무 연관 관계도 없는 타입끼리 형변환되지는 않습니다. 다만 `reinterpret_cast`를 이용하면 연관관계가 없는 포인터나 참조자 타입끼리 변환이 가능합니다.
 
 ```cpp
 class T {};
@@ -333,7 +333,7 @@ EXPECT_TRUE(status == true);
 
 # 명시적 변환 생성 지정자(`explicit`)
 
-특별히 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)에 인자가 1개만 있으면, 암시적인 형변환을 하므로 형변환 생성자라고도 합니다. 인자 타입에서 개체 타입으로 암시적 형변환과 명시적 형변환이 가능합니다.
+특별히 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)에 인자가 1개만 있으면, 인자 타입에서 개체 타입으로 암시적 형변환과 명시적 형변환이 가능해 집니다.(암시적인 형변환을 하므로 형변환 생성자라고도 합니다.)
 
 ```cpp
 class T {};

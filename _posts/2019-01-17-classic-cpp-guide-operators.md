@@ -162,7 +162,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |타입 유사성을 지키며 변환. (RTTI(Runtime Type Info) 지원)|`dynamic_cast`|X|X|X|
 |상속관계를 무시하고 변환|`reinterpret_cast`|X|X|X|
 
-형변환 연산자의 자세한 내용은 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 을 참고하세요.
+형변환은 최대한 안하는 것이 좋습니다. 형변환의 자세한 내용은 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 을 참고하세요.
 
 # 접근 연산자
 
@@ -184,7 +184,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
-|함수 호출 연산자|`a(a1, a2)`|O|`R T::operator ()(Arg1 &a1, Arg2 &a2, ...);`|X|
+|함수 호출 연산자|`a(a1, a2)`|O|`R T::operator ()(Param1 &a1, Param2 &a2, ...);`|X|
 
 괄호 표현식으로 사용할 수 있는 특수한 표현식입니다. 표준 템플릿 라이브러리(Standard Template Library, STL)의 함수자 처럼 사용할 수 있습니다.([함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 참고)
 

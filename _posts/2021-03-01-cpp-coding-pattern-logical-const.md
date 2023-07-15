@@ -139,15 +139,12 @@ public:
     // 데이터를 yyyy-mm-dd 형식으로 만듬
     const std::string& MakeText() { 
 
-        // 캐쉬된게 있다면 그대로 사용
-        if (m_Cached.empty() == false) {
-            return m_Cached;
+        // 캐쉬된게 없다면 생성
+        if (m_Cached.empty()) {
+            char buffer[] = "yyyy-mm-dd";
+            snprintf(buffer, 11, "%04d-%02d-%02d", m_Year, m_Month, m_Day); // 널문자 포함 11
+            m_Cached = buffer; // 캐쉬에 저장
         }
-
-        // 문자열을 만들어 캐쉬에 저장
-        char buffer[] = "yyyy-mm-dd";
-        snprintf(buffer, 11, "%04d-%02d-%02d", m_Year, m_Month, m_Day); // 널문자 포함 11
-        m_Cached = buffer;
 
         return m_Cached;
     }
@@ -204,16 +201,12 @@ public:
     // 데이터를 yyyy-mm-dd 형식으로 만듬
     const std::string& GetText() const { 
 
-        // 캐쉬된게 있다면 그대로 사용
-        if (m_Cached.empty() == false) {
-            return m_Cached;
+        // 캐쉬된게 없다면 생성
+        if (m_Cached.empty()) {
+            char buffer[] = "yyyy-mm-dd";
+            snprintf(buffer, 11, "%04d-%02d-%02d", m_Year, m_Month, m_Day); // 널문자 포함 11
+            m_Cached = buffer; // 캐쉬에 저장
         }
-
-        // 문자열을 만들어 캐쉬에 저장
-        char buffer[] = "yyyy-mm-dd";
-        snprintf(buffer, 11, "%04d-%02d-%02d", m_Year, m_Month, m_Day); // 널문자 포함 11
-        m_Cached = buffer;
-
         return m_Cached;
     }
 };

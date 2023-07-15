@@ -17,7 +17,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |`if (조건) {표현식;}`| 조건이 참일 경우 표현식을 실행|
-|`if (조건) {표현식1;}`<br/> `else {표현식2;}`| 조건이 참일 경우 표현식1을 실행하고, 거짓일 경우 표현식2를 실행|
+|`if (조건1) {표현식1;}`<br/>`else if (조건2) {표현식2;}`<br/>`else {표현식3;}`| 조건1이 참일 경우 표현식1을 실행하고, 거짓일 경우 조건2가 참일 경우 표현식 2를 실행하고, 거짓일 경우 표현식3을 실행|
 |`switch(조건) {`<br/>`case 상수1:`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`break;`<br>`case 상수2:`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`break;`<br/>`default:`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`break;`<br/>`}`|조건과 매칭되는 `case` 문 으로 분기.<br/>* 조건 : 정수 또는 열거형 상수<br/>* `break` : 해당 `case` 표현식을 실행하고 `switch`문 탈출<br/>* `default` : 매칭되는 `case`문이 없는 경우 실행|
 |`while (조건) {표현식;}`|조건이 참이면 표현식 반복 실행|
 |`do {표현식;} while(조건);`|표현식 실행후 조건 검사 하여, 조건이 참이면 표현식 반복 실행|

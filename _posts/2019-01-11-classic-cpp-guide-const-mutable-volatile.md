@@ -30,8 +30,8 @@ sidebar:
 3. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하지 않습니다.(컴파일 오류, 단 `mutable`로 수정 가능)
 4. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 몰래 수정할 수 있는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 리턴하지 않습니다.(컴파일 오류. 단, `const_cast`로 억지로 구현 가능하나 하지 마세요.)
 5. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 내부 구현에서 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)만을 호출합니다.(컴파일 오류)
-6. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 예외를 발생하지 않습니다.(노력해서 구현해야 함)
-7. `mutable`로 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)을 구현한 경우 예외를 발생하지 않아야 합니다.(노력해서 구현해야 함)
+6. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 예외를 발생하지 않습니다.(일반적으로 발생하지 않습니다만, 복잡한 연산들이 있다면, 노력해서 예외가 발생하지 않도록 구현해야 합니다.)
+7. `mutable`로 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)을 구현한 경우 예외가 발생할 수 있습니다.(하지만, 노력해서 예외가 발생하지 않도록 구현해야 합니다.)
 
 
 # 상수 변수
@@ -86,7 +86,7 @@ const int* GetX3() const {return &m_X;}
 // (△) 비권장. 멤버 변수의 값을 몰래 수정할 수 있는 const 함수
 int* GetX4() const {return const_cast<int*>(&m_X);}
 
-// (O) 맴버 변수의 값을 수정하는 none-const 함수      
+// (O) 맴버 변수의 값을 수정하는 non-const 함수      
 int* GetX5() {return &m_X;} 	                        
 ```
 
@@ -135,7 +135,9 @@ TEST(TestClassicCpp, Mutable) {
         // 개념적으로 내부 String을 리턴하므로 const 함수
         // 하지만 내부에서 m_Lazy를 세팅하기 때문에 mutable을 사용합니다.
         const std::wstring& GetString() const {
-            m_Lazy = L"Lazy String";
+            if (m_Lazy.empty()) {
+                m_Lazy = L"Lazy String";
+            }
             return m_Lazy;
         }
     };

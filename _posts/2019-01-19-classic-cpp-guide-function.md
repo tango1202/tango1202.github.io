@@ -209,12 +209,16 @@ RVO -> T::T()
 
 이는 리턴값인 `result`가 `t2`에 전달되므로, 괜히 생성하고 전달하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 Return Value Optimization(RVO) 라고 합니다. 
 
-컴파일러마다 다를 수 있기 때문에, 컴파일러가 최적화를 쉽게 할 수 있도록 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하는게 좋습니다.
+컴파일러마다 최적화하는 방법이 다를 수 있기 때문에, 컴파일러가 최적화를 쉽게 할 수 있도록 리턴값을 명시적으로 변수로 만들기 보다는,
 
 ```cpp
 T result(0, 0);
 return result; // (△) 비권장. 컴파일러가 최적화를 못할 수도 있습니다.
+```
 
+다음처럼 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하는게 좋습니다.
+
+```cpp
 return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최적화하기 편합니다.
 ```
 
@@ -245,7 +249,7 @@ void f(int a, int b); // (O)
 void f(int, int); // (O)
 ```
 
-사용하지 않는 인자를 억지로 작성해야 한다는건 악취가 난다는 뜻입니다. 설계 변경을 추천합니다. 그럼에도 불구하고 꼭 인자 생략을 해야 한다면, 하기 작성 방법을 고려해 보세요.
+이외에, 사용하지 않는 인자를 억지로 작성해야 한다는건 악취가 난다는 뜻입니다. 설계 변경을 추천합니다. 그럼에도 불구하고 꼭 인자 생략을 해야 한다면, 하기 작성 방법을 고려해 보세요.
 
 ```cpp
 void f(int, int) {
@@ -602,7 +606,13 @@ namespace B {
 EXPECT_TRUE(B::g() == 2); // B::MyFunc 이 채택됨
 ```
 
-하지만 `MyFunc()`함수의 인자가 네임스페이스 `C`의 것을 참조한다면, ADL(Argument-dependent lookup) 또는 Keonig 검색에 의해 네임스페이스 `C`의 함수들에서도 검색하게 됩니다.
+하지만 `MyFunc()`함수의 인자가 네임스페이스 `C`의 것을 참조한다면, 
+
+```cpp
+int MyFunc(const C::Date&, double) {return 2;}
+```
+
+ADL(Argument-dependent lookup) 또는 Keonig 검색에 의해 네임스페이스 `C`의 함수들에서도 검색하게 됩니다.
 
 그래서 함수 후보군은
 

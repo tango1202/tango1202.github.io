@@ -28,7 +28,7 @@ sidebar:
 
 # 기본 생성자
 
-인수없는 생성자를 기본 생성자라고 합니다. `T t;`과 같이 개체를 정의(인스턴스화)합니다.(`T t();` 와 같이 하면 `T`를 리턴하는 함수 `f()`선언입니다. [값 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94) 언급)
+인수없는 생성자를 기본 생성자라고 합니다. `T t;`과 같이 개체를 정의(인스턴스화)합니다.(`T t();` 와 같이 하면 `T`를 리턴하는 함수 `f()`선언입니다. [기본 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B8%B0%EB%B3%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 언급)
 
 ```cpp
 class T {

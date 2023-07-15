@@ -38,7 +38,7 @@ sidebar:
    
 * data 영역은 개별적으로 초기화할 항목이 모여 있습니다.
 
-* rodata 영역은 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)만 특별히 모아둔 영역입니다. 일반적으로 상수(`const int a = 10;`의 표현에서 `10`)는 코드 세그먼트 영역에 있지만, 문자열은 크기 때문에 별도로 rodata 영역에 두고 이를 [포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 등으로 참조하여 사용합니다. 또한, 중복된 문자열을 코드 여기저기에서 사용하더라도, 컴파일러가 알아서 1개로 취합해 줍니다. 
+* rodata 영역은 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)만 특별히 모아둔 영역입니다. 일반적으로 상수(`const int a = 10;`의 표현에서 `10`)는 코드 세그먼트 영역에 있지만, 문자열은 크기 때문에 별도로 rodata 영역에 두고 이를 [포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 등으로 참조하여 사용합니다. 또한, 중복된 문자열을 코드 여기저기에서 정의하더라도, 컴파일러가 알아서 1개로 취합해 줍니다. 
 
 # 힙
 

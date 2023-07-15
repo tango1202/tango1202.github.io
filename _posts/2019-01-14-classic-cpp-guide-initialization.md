@@ -47,24 +47,28 @@ public:
 `T obj;` 와 같이 생성하면, [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)가 호출되어 기본 초기화를 수행합니다.
 
 ```cpp
-T obj; // (O) 기본 생성자가 있어야 함
+T obj; // (O) 기본 생성자 호출
 ```
 
-# 값 초기화
-
-값 초기화는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 특정한 값으로 생성할 때 사용합니다. 다만 전달할 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 없어 `T obj1();`와 같이 작성할 경우(혹은 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 초기화하려는 목적으로), 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식됩니다. 전달할 인자가 없는 경우에는 `T obj1;`와 같이 작성해야 합니다.
+`T obj1();`와 같이 괄호를 사용하여 정의하면, 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식됩니다. 
 
 ```cpp
 T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 선언임
+```
+# 값 초기화
+
+값 초기화는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 특정한 값으로 생성할 때 사용합니다. 
+
+```cpp
 T obj2(1); // (O) int를 전달받는 생성자 호출
 ```
 
-하기는 `T(2);`로 개체 생성 후 `obj`에 대입하는 것 같은 모양입니다만, 사실 `obj`의 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다. 모양이 오해를 불러 일으키니 사용 안하시는게 좋습니다.(그냥 `T obj(2);`로 사용하세요.)
+하기는 `T(2);`로 개체 생성 후 `obj`에 대입하는 것 같은 모양입니다만, 사실 `obj`의 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다. 모양이 오해를 불러 일으키니 사용 안하시는게 좋습니다.(그냥 `T obj3(2);`로 사용하세요.)
 
 ```cpp
 // int를 전달받는 생성자 호출.
-// (△) 비권장. T(2) 로 개체 생성후 obj의 복사 생성자 호출하는 느낌을 줌. T obj(2); 로 호출하는게 더 좋음.
-T obj3 = T(2);
+// (△) 비권장. T(2) 로 개체 생성후 obj의 복사 생성자 호출하는 느낌을 줌. T obj3(2); 로 호출하는게 더 좋음.
+T obj3 = T(2); // T obj3(2); 와 동일
 ```
 # 복사 초기화
 
@@ -87,12 +91,12 @@ T obj2(other); // (O) 명시적으로 복사 생성자 호출됨
 T other;
 
 T obj; // 기본 생성자
-obj = other; // (△) 비권장. 생성하고 대입하지 말고, 완전하게 생성하세요.
+obj = other; // (△) 비권장. 생성하고 대입하지 말고, 완전하게 생성하세요. T obj(other); 가 낫습니다.
 ```
 
 # 배열 초기화
 
-배열 초기화시 배열의 크기가 유추될 수 있어야 합니다. 배열 갯수를 명시적으로 지정하거나, 초기화 항목을 1개 이상 지정해 주면 됩니다.(갯수보다 초기화 값을 적게 제공하면, 나머지는 자동으로 기본값(`int`의 경우 `0`)으로 초기화 됩니다.)
+배열 초기화시 배열의 크기가 유추될 수 있어야 합니다. 배열 갯수를 명시적으로 지정하거나, 초기화 항목을 1개 이상 지정해 주면 됩니다.(갯수보다 초기화 값을 적게 제공하면, 나머지는 자동 제로 초기화 됩니다.)
 
 ```cpp
 int arr1[3]; // (△) 비권장. int 형 3개 정의. 초기화 되지 않아 비권장 
@@ -174,7 +178,7 @@ EXPECT_TRUE(g_Val == 0); // 전역 변수는 0으로 자동 초기화
 EXPECT_TRUE(s_Val == 0); // 정적 전역 변수는 0으로 자동 초기화
 EXPECT_TRUE(T::s_m_Val == 0); // 정적 멤버 변수는 0으로 자동 초기화
 EXPECT_TRUE(T::s_c_m_Val == 0); // 정적 상수 멤버 변수는 명시적 초기화
-EXPECT_TRUE(t.m_Val == 0); // (X) 오동작. 생성자가 없는 개체의 멤버 변수는 0으로 자동 초기화 된다고 하는데 GCC 디버그 모드는 0이 아닙니다.
+EXPECT_TRUE(t.m_Val == 0); // (X) 오동작. 개체의 멤버 변수는 0으로 자동 초기화 된다고 하는데 GCC 디버그 모드는 0이 아닙니다.
 EXPECT_TRUE(t.f1() == 0); // 정적 지역 변수는 0으로 자동 초기화
 // EXPECT_TRUE(t.f2() != 0); // 지역 변수는 쓰레기값이 될 수도 있음
 
@@ -182,7 +186,7 @@ int arr[3] = {1, };
 EXPECT_TRUE(arr[0] == 1 && arr[1] == 0 && arr[2] == 0); // 배열 갯수 보다 초기화 갯수가 적을때 나머지 요소는 0으로 자동 초기화
 ```
 
-복잡하죠? 복잡하니, 모든 변수를 초기화 한다는 대원칙을 가지고 작성하세요. 개발 초기에서 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)가 없어서 자동 제로 초기화를 활용해서 개발했다가, 누군가 나중에 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 넣어버리면 낭패를 보게 되니까요.
+복잡하죠? 복잡하니, 모든 변수를 초기화 한다는 대원칙을 가지고 작성하세요. 개발 초기에서 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)가 없어서 자동 제로 초기화를 활용해서 개발했다가, 누군가 나중에 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 넣어버리면 낭패이고, 디버그 모드와 릴리즈 모드가 결과가 달라도 낭패이니까요.
 
 |항목|자동 제로 초기화 지원|선언에서 명시적 초기화 지원|권장 초기화 방법|
 |--|:--:|:--:|--|
