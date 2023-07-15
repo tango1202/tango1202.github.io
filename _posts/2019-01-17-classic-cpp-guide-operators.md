@@ -177,7 +177,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |포인터인 개체 멤버에 대한 포인터|`a->*b`|O|`R& T::operator ->*(S b);`<br/>`const R& T::operator ->*(S b) const;`|`R& operator ->*(T a, S b);`|
 |범위 확인 연산자(네임스페이스 멤버)|`namespaceName::member`|X|X|X|
 |범위 확인 연산자(전역 멤버)|`::member`|X|X|X|
-|범위 확인 연산자(개체의 static 멤버)|`className::member`|X|X|X| 
+|범위 확인 연산자(개체의 정적 멤버, 열거형)|`className::member`|X|X|X| 
 |범위 확인 연산자(개체 멤버)|`className::member`|X|X|X| 
 
 # 함수 호출 연산자
@@ -351,7 +351,7 @@ class Derived2 : public Base2 {};
 
 |순위|연산자|
 |--|--|
-|1|`::`(스코프 연산자)|
+|1|`::`(범위 확인 연산자)|
 |2|`a++`, `a--`, `()`(함수 호출 연산자), `a[]`, `.`, `->`|
 |3|`++a`, `--a`, `+a`, `-a`, `!`, `~`, `(int)`(C언어 스타일 형변환), `a`, `&a`, `sizeof`, `new`, `new[]`, `delete`, `delete[]`|
 |4|`.*`, `->*`|
