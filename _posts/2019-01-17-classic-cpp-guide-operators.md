@@ -238,8 +238,8 @@ EXPECT_TRUE(result == 10);
 
 개체 생성시 사용하는 `new`는 하기 단계를 수행합니다.
 
-1. 전역 `operator new`를 이용하여 메모리 공간 할당
-2. 구조체이거나 클래스이면 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
+1. 전역 `operator new(std::size_t)`를 이용하여 메모리 공간 할당
+2. 구조체이거나 클래스이면 `new(void*)`를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
 3. 메모리 주소를 해당 타입으로 형변환하여 리턴
 
 즉 `new`와 `operator new`의 역할은 다릅니다. `operator new`는 C언어의 `malloc`과 유사하다고 할 수 있습니다.
@@ -247,11 +247,11 @@ EXPECT_TRUE(result == 10);
 
 |항목|내용|사용예|오버로딩|개체 멤버 정의|전역 정의|
 |--|--|--|:--:|:--:|:--:|
-|`operator new`|개체 생성|`T* p = new T;`|O|`void* operator new(std::size_t sz);`|`void* operator new(std::size_t sz);`|
-|`operator delete`|개체 소멸|`delete p;`|O|`void operator delete(void* ptr, std::size_t size)`|`void operator delete(void* ptr, std::size_t size)`|
-|`operator new[]`|배열 생성시 사용|`T* arr = new T[10];`|O|`void* operator new[](std::size_t sz);`|`void* operator new[](std::size_t sz);`|
-|`operator delete[]`|배열 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
-|`new()`|위치 지정 생성(특정 메모리 위치에 개체 생성자 호출)|`T* p = new(buf) T;`|X|X|X|
+|`operator new(std::size_t)`|개체 생성|`T* p = new T;`|O|`void* operator new(std::size_t sz);`|`void* operator new(std::size_t sz);`|
+|`operator delete(void*)`|개체 소멸|`delete p;`|O|`void operator delete(void* ptr, std::size_t size)`|`void operator delete(void* ptr, std::size_t size)`|
+|`operator new[](std::size_t)`|배열 생성시 사용|`T* arr = new T[10];`|O|`void* operator new[](std::size_t sz);`|`void* operator new[](std::size_t sz);`|
+|`operator delete[](void*)`|배열 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
+|`new(void*)`|위치 지정 생성(특정 메모리 위치에 개체 생성자 호출)|`T* p = new(buf) T;`|X|X|X|
 
 `operator new`와 `operator delete`와 위치 지정 생성(Placement New)에 대해서는 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
 

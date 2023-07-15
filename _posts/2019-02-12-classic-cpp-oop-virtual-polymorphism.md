@@ -40,10 +40,10 @@ Base 포인터로부터 실행되었지만 Driven 함수가 호출된다. virtua
 
 class Base
 {public: ~Base(); };class Driven : public Base
-{public: ~Driven(); };Base* b1 = new Base; Base* b2 = new Driven; delete b1; // (O). Base 구성요소 삭제
-delete b2; // (X). Base 구성요소만 삭제
+{public: ~Driven(); };Base* b1 = new Base; Base* b2 = new Driven; delete b1; // (O). Base 구성요소 소멸
+delete b2; // (X). Base 구성요소만 소멸
 
-Driven 구성요소가 삭제되게 하려면 소멸자를
+Driven 구성요소가 소멸되게 하려면 소멸자를
 virtual로 만들어야 한다. TPL 564 page
 class Base
 {public: virtual ~Base(); };

@@ -300,7 +300,7 @@ private:
 
 **암시적 소멸자 호환성**
 
-멤버 변수의 개체는 소멸자가 호출된 후 자동으로 삭제됩니다.([소멸자 호출 순서](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%88%9C%EC%84%9C) 참고)
+멤버 변수의 개체는 소멸자가 호출된 후 자동으로 소멸됩니다.([소멸자 호출 순서](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%88%9C%EC%84%9C) 참고)
 
 하지만, 멤버 변수에 `new`로 생성된 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체가 있다면, 소멸자에서 명시적으로 `delete` 해주어야 합니다.
 
