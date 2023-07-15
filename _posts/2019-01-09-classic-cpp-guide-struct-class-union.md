@@ -47,7 +47,7 @@ public:
 C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 초기화 미지원
 ```
 
-공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유합니다. 이에 따라 참조자나 캡슐화를 위한 다양한 기능들이 제약됩니다. 메모리 절약이 필요한 경우에만 한정적으로 사용하시기 바랍니다.
+공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유합니다. 이에 따라 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)나 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들이 제약됩니다. 꼭 필요한 경우에만 한정적으로 사용하시기 바랍니다.
 
 # 구조체와 클래스
 
@@ -55,7 +55,7 @@ C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 초기화 미지
 
 **멤버 사양**
    
-클래스(구조체)의 멤버는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/) 뿐만아니라, [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [중첩 클래스(구조체)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4), [타입 재정의(`typdef`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 포함할 수 있습니다.
+클래스(구조체)의 멤버는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/) 뿐만아니라, [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), 중첩 클래스(구조체), [타입 재정의(`typdef`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 포함할 수 있습니다.
 
 특히, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), [대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 정의하지 않으면, 컴파일러가 암시적으로 정의해 줍니다.([클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고)
 
@@ -103,6 +103,7 @@ class T {
 
 |항목|내용|
 |--|--|
+|멤버 변수|개체의 데이터를 저장 및 관리합니다.<br/>([멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 참고)|
 |기본 생성자|인수없이 개체를 생성합니다.<br/>([기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)|
 |복사 생성자|같은 타입의 개체를 복사 생성합니다.<br/>([복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)|
 |소멸자|개체 소멸시 호출됩니다.<br/>([소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 참고)|
@@ -114,7 +115,7 @@ class T {
 |순가상 함수| 실제 구현없이 함수 규약만 정의할때 사용하는 함수입니다.<br/>([순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)|
 |정적 멤버 함수|특정 개체에 속하지 않는 함수입니다.<br/>([정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
 |열거형 상수|정수형 상수 집합을 정의합니다.<br/>([열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/) 참고)|
-|중첩 클래스(구조체)|클래스내의 또다른 클래스를 정의합니다.<br/>([중첩 클래스(구조체)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고)|
+|중첩 클래스(구조체)|클래스내의 또다른 클래스를 정의합니다.
 |타입 재정의(`typdef`)|타입의 별칭을 정의합니다.<br/>([타입 재정의(`typdef`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD) 참고)|
 
 **전방 선언**
@@ -132,7 +133,12 @@ class YourClass {
 
 이런 경우, 전방 선언으로 `YourClass`가 무언지 컴파일러에게 알려줘야 합니다. 
 
-이때 전방 선언만 참조하는 곳(`MyClass`)은 구체 정의가 아닌 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 사용하여야 하고, 전방 선언한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 이에 따라 클래스 선언과 정의를 분리하고 다음 순서대로 작성해야 합니다.
+이때 전방 선언만 참조하는 곳(`MyClass`)은 
+
+1. 구체 정의가 아닌 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 사용하여야 하고, 
+2. 2방 선언한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 
+ 
+이에 따라 클래스 선언과 정의를 분리하고 다음 순서대로 작성해야 합니다.
 
 ```cpp
 // 1. YourClass 전방 선언
@@ -208,7 +214,12 @@ d.m_Val = 10; // 이제 public이라 접근 가능합니다.
 
 **`friend`**
 
-일반적으로 `public`만 외부에서 접근할 수 있으나 특별히 `friend`로 허용한 [클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)와 [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)는 `protected`와 `private`에 접근할 수 있습니다. 이때 `friend`인 클래스와 상속 관계거나, `friend`인 클래스와 `friend`관계인 클래스는 접근 할 수 없습니다.  
+일반적으로 `public`만 외부에서 접근할 수 있으나 특별히 `friend`로 허용한 [클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)와 [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)는 `protected`와 `private`에 접근할 수 있습니다. 
+
+이때
+
+1. `friend`인 클래스와 상속 관계거나, 
+2. `friend`인 클래스와 `friend`관계인 클래스는 접근 할 수 없습니다.  
 
 `friend`는 은닉을 통한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 해칠 수 있기 때문에 사용하지 않는게 좋습니다.
 
@@ -315,7 +326,7 @@ EXPECT_TRUE(u.s2.x == 20);
 함수 내부에 클래스(구조체, 공용체)를 정의하여, 함수 내부에서만 한정해서 사용할 수 있습니다.
 ```cpp
 void OuterFunc() {
-    class InnerClass {
+    class InnerClass { // 클래스 가능
     public:
         int m_X;
     };

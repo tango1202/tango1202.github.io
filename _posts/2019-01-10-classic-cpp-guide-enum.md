@@ -14,11 +14,11 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|열거형 정의| `enum Week {Sunday, Monday,};`|
+|열거형 정의| `enum Week {Sunday, Monday};`|
 |개체 정의| `Week obj = Sunday;`|
 |용량|모든 열거자 값을 나타낼 수 있는 정수 형식의 크기. (보통 4byte)|
 
-열거형은 정수형 상수 집합에 이름을 정의하며, 다음과 같이 사용할 수 있습니다.
+열거형은 정수형 상수 집합에 이름을 정의하며, 다음과 같이 사용할 수 있습니다.(절대 `define`쓰지 마세요!!! [`#define` 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 참고)
 
 ```cpp
 enum Week {
