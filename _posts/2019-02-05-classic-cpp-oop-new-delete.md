@@ -4,7 +4,7 @@ title: "#5. [고전 C++ 가이드] 개체 생성과 소멸"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
-sidebar: 
+sidebar:
     nav: "docs"
 ---
 
@@ -19,7 +19,7 @@ sidebar:
 |`delete`|개체의 소멸자를 호출하고, 메모리를 해제합니다.|
 |`new[]`|배열의 메모리를 할당하고, 각 요소의 생성자들을 호출합니다.|
 |`delete[]`|배열 요소의 소멸자들을 호출하고, 메모리를 해제합니다.|
-|`new (std::nothrow)`|메모리 할당 실패시 NULL 을 리턴합니다. 단, 생성자에서 예외를 발생하면 해당 예외를 전파합니다.|
+|`new(std::nothrow)`|메모리 할당 실패시 NULL 을 리턴합니다. 단, 생성자에서 예외를 발생하면 해당 예외를 전파합니다.|
 |`operator new(std::size_t)`|개체의 메모리를 할당합니다.|
 |`operator delete(void*)`|개체의 메모리를 해제 합니다.|
 |`operator new[](std::size_t)`|배열의 메모리를 할당합니다.|
@@ -40,6 +40,12 @@ sidebar:
 1. 개체의 소멸자 호출
 2. 개체의 멤버 변수 소멸자 호출
 3. 전역 `operator delete(void*)`를 이용하여 메모리 할당 해제
+
+즉 `new`는 메모리 할당, 생성자 호출, 메모리 주소 를 형변환해서 리턴하지만,
+`operator new`는 `void*` 형 메모리를 할당하기만 합니다.
+
+또한 `delete`는 소멸자 호출, 메모리 해제를 수행하지만,
+`operator delete`는 메모리 해제만 수행합니다.
 
 # 개체 생성/소멸과 배열 생성/소멸
 
@@ -67,6 +73,18 @@ New-Delete Test : T::T()
 New-Delete Test : T::~T()
 ```
 
+`delete`를 두번 실행하면 예외가 발생합니다. 생성한 개체는 1회만 `delete`해야 합니다.
+
+```cpp
+class T {};
+T* p = NULL;
+delete p; // (O) p가 NULL이어도 안전합니다.
+p = new T; 
+delete p; // (O) new로 생성한 것은 반드시 delete 해야 합니다.
+delete p; // (X) 예외 발생. 두번 죽일 순 없습니다.  
+```
+
+
 배열 생성/소멸 시에는 `new[]` - `delete[]`를 이용합니다.
 
 ```cpp
@@ -74,7 +92,7 @@ T* arr = new T[3]; // (O) 메모리 할당(sizeof(T) * 3 + 오버헤드). 생성
 delete[] arr; // (O) 소멸자 3회 호출. 메모리 해제(sizeof(T) * 3 + 오버헤드)
 ```
 
-로 하면 실행 결과는 다음과 같이 배열 요소이 갯수 만큼 생성자와 소멸자가 호출됩니다.
+로 하면 실행 결과는 다음과 같이 배열 요소의 갯수 만큼 생성자와 소멸자가 호출됩니다.
 
 ```cpp
 New-Delete Test : T::T()
@@ -87,7 +105,7 @@ New-Delete Test : T::~T()
 
 **`delete`와 `delete[]` 의 차이**
 
-`delete`는 개체의 소멸자를 1회 호출하고, 주어진 메모리를 해제하는 역할을 하고, `delete[]`는 배열 요소 갯수만큼 소멸자를 호출하고, 주어진 메모리를 해제하는 역할을 합니다. 
+`delete`는 개체의 소멸자를 1회 호출하고, 주어진 메모리를 해제하는 역할을 하고, `delete[]`는 배열 요소 갯수만큼 소멸자를 호출하고, 주어진 메모리를 해제하는 역할을 합니다.
 
 그러다 보니 `new[]`로 배열을 생성할때 배열 요소의 갯수가 내부적으로 저장되고, 이를 `delete[]`시에 사용합니다.
 
@@ -96,138 +114,379 @@ New-Delete Test : T::~T()
 
 `new[]`나 `delete[]`는 오버헤드 공간의 배열 요소 갯수 정보를 참조하여 각 요소의 생성자와 소멸자를 각각 호출합니다.
 
-그러다 보니 배열을 혹여나 실수로 `delete`로 소멸시키면, 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있습니다. 따라서, `new[]`로 생성한 배열은 꼭 `delete[]`로 소멸시켜야 합니다.
+따라서, 혹여나 실수로 배열을 `delete`로 소멸시키면, 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있습니다. 따라서, `new[]`로 생성한 배열은 꼭 `delete[]`로 소멸시켜야 합니다.
 
 ```cpp
 T* arr = new T[3]; // (O) 메모리 할당(sizeof(T) * 3 + 오버헤드). 생성자 3회 호출
 delete arr; // (X) 예외 발생. 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있음
 ```
 
-# `operator new`와 `operator delete`
+# `operator new`와 `operator delete` 재정의
 
-1. 잘못된 힙 사용을 탐지하기 위해 : 데이터 오버런(overrun) 및 언더런(underrun) 을 탐지하기 위해 탐지용 바이트를 추가로 할당할 수 있다.
-2. 효율을 향상시키기 위해 : 힙 단편화 등 실행환경에 맞게 커스터마이징
-3. 동적 할당 메모리의 실제 사용에 관한 통계 정보를 수집하기 위해 : 로그 수집 등
+개체의 메모리를 할당하고 해제하는 `operator new`와 `operator delete`는 사용자가 재정의 할 수 있습니다.
+
+주로 다음을 위해 사용합니다.
+
+1. 데이터 오버런(overrun) 및 언더런(underrun) 등 잘못된 힙 사용을 탐지하기 위해 탐지용 바이트를 추가로 할당하는 경우([진단](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-diagnostics/) 참고)
+2. 할당 및 해제의 효율을 향상시키기 위해 **동적 메모리 오버헤드**를 줄이고 메모리 관리를 직접 수행하는 경우([메모리 풀](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-memory-pool/) 참고)
+3. 동적 할당 메모리의 실제 사용에 관한 통계 정보를 수집하는 경우([개체 수명 로그](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-object-life-log/) 참고)
+
+**동적 메모리 오버헤드**
+
+우리가 동적 메모리를 할당하면, 나중에 `delete` 할때 얼마만큼의 메모리를 해제해야 할지 알아야 하기 때문에, 요청한 크기의 메모리보다 더 많은 오버헤드 공간을 사용합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/9f03346e-1457-4b92-90db-52d18e467086)
+
+컴파일러 마다 그 크기가 다를 수 있으며, 보통 4 ~ 8byte 사이의 추가 오버헤드 공간을 사용합니다.
+
+따라서, 크기가 작은 개체를 아주 많이 동적 생성을 해야 한다면, 메모리 공간을 효율적으로 사용하기 위해 `operator new`를 재정하여 사용하는게 좋습니다.
 
 
-1. 할당 및 해제 속력을 높이기 위해
-기본 메모리 관리자의 공간 오버헤드를 줄이기 위해
-2. 적당히 타협한 기본 할당자의 바이트 정렬 동작을 보장하기 위해 : double 시에는 8바이트 정렬을 보장해야 프로그램 성능이 좋다
-3. 임의의 관계를 맺고 있는 객체들을 한 군데에 나란히 모아 놓기 위해
-4. 그때그때 원하는 동작을 수행하기 위해
+**기본 재정의 방법**
 
-# operator new 구현시 관례
-
-1. 관례적으로, operator new 함수는 메모리 할당을 반복해서 시도하는 무한 루프를 가져야 하고, 메모리 할당 요구를 만족시킬 수 없을 때 new 처리자를 호출해야 하며, 0바이트에 대한 대책도 있어야 한다. 클래스 전용 버전은 자신이 할당하기로 예정된 크기보다 더 큰(틀린) 메모리 블록에 대한 요구도 처리해야 한다.
-2. operator delete 함수는 널 포인터가 들어왔을 때 아무 일도 하지 않아야 한다. 클래스 전용 버전의 경우에는 예정 크기보다 더 큰 블록을 처리해야 한다.
-
-```cpp
-// 커스텀 operator new 함수는 다른 매개변수를 추가로 가질 수 있다
-void* operator new(std::size_t size) throw(std::bad_alloc)
-{
-	using namespace std;
-
-	// 0 바이트 요청이 들어오면 1 바이트 요구로 간주하고 처리
-	if (size == 0)
-	{
-		size = 1;
-	}
-    
-    // 메모리 할당 실패 시 루프를 통해 다시 시도
-	while (true)
-	{
-		size 바이트를 할당해 본다;
-		if (할당에 성공)
-		{
-			return (할당된 메모리에 대한 포인터);
-		}
-
-		// 할당에 실패했을 경우, 현재의 new 처리자 함수가
-		// 어느 것으로 설정되어 있는지 찾아낸다
-		new_handler globalHandler = set_new_handler(0);
-		set_new_handler(globalHandler);
-
-		if (globalHandler) (*globalHandler)();
-		else throw std::bad_alloc();
-	}
-}
-```
-항목 49에서, new 처리자 함수는 가용 메모리를 늘려 주던가, 다른 new 처리자를 설치하든가, new 처리자의 설치를 제거하든가, bad_alloc 혹은 bad_alloc 에서 파생된 타입의 예외를 던지든가, 아예 함수 복귀를 포기하고 중단을 시켜야 한다고 이야기했다. 이렇듯 new 처리자 함수가 4가지 중 하나를 택해야 하는 이유는, 위의 operator new 함수의 구현처럼 내부 루프를 끝낼 수 있도록 구현되어야 하기 때문이다.
-
-# operator new 상속된 경우 사이즈가 다를 수 있다.
-
-상속받은 것은 base가 불림 (크기가 다르면 전역 operator new?)
+`malloc` - `free`를 이용하거나 전역 `operator new` - 전역 `operator delete`를 이용할 수 있습니다.
 
 ```cpp
-class Base
-{
+class T {
+    int m_X;
+    int m_Y;
 public:
-		static void* operator new(std::size_t size) throw(std::bad_alloc)
-	{
-		// 0 바이트도 점검된다. 왜냐하면 Base 크기는 무조건 0 이상으로 잡히기 때문
-		if (size != sizeof(Base))
-			return ::operator new(size);
+    T() :
+        m_X(10),
+        m_Y(20) {}
+    T(int x, int y) :
+        m_X(x),
+        m_Y(y) {}
+    int GetX() const {return m_X;}
+    int GetY() const {return m_Y;}
 
-		...
-	}
+    static void* operator new(std::size_t sz) {
+        return malloc(sz);
+        // return ::operator new(sz); // 전역 operator new
+    }
+    static void operator delete(void* ptr) {
+        free(ptr); // ptr == NULL 일 경우 아무 작업 안함
+        // ::operator delete(ptr); // 전역 operator delete. ptr == NULL 일 경우 아무 작업 안함
+    }
 };
-class Derived: public Base {};
+T* t = new T; // T::operator new(std::size_t sz), 기본 생성자 호출
+EXPECT_TRUE(t->GetX() == 10 && t->GetY() == 20);
+delete t; // T::operator delete(void* ptr)
 
-int main()
-{
-	// Base::operator new 가 호출!
-	Derived *p = new Derived;	
-}
-
-
-
+t = new T(1, 2); // T::operator new(std::size_t sz), T::T(int, int) 생성자 호출
+EXPECT_TRUE(t->GetX() == 1 && t->GetY() == 2);
+delete t; // T::operator delete(void* ptr)
 ```
-operator new[ ] 의 경우, 객체의 갯수를 (요구된 바이트 수 / sizeof(Base)) 로 계산할 수 없고(파생 클래스에서 사용할 수 있으므로) 인자로 넘어가는 size_t 타입의 인자는 객체들을 담기에 딱 맞는 메모리 양보다 더 많게 설정되어 있을 수도 있다. 이런 어려움 때문에, operator new[ ] 구현은 조금 더 까다롭다.
 
+**operator new 오버로딩**
 
-참고로, 가상 소멸자가 없는 기본 클래스로부터 파생된 클래스의 객체를 소멸시키려고 하면 operator delete 로 C++ 가 넘기는 size_t 값이 엉터리일 수 있다!
- 
-
-# new는 최소 1byte는 무조건 할당해야 함.
-
-
-# delete 두번 금지
-delete p; // p가 NULL이어도 안전
-T* p = new T; delete p; // (O) delete p; // (X) 두번 죽일 순 없다.
-
-
-
-# 위치 지정 생성((Placement New))
-
-T* p = new(buf) T; // 명시적 delete 호출
-
-위치 지정 new, 명시적 소멸자 호출(재정의 방법은 EC++ 8장 참고)
-
-void * operator new(size_t, void* p) {return p}; void* buf = malloc(sizeof(X)); // X 클래스만큼 할당
-X* p = new(buf)X; // buf에 X 객체를 만든다. p->~X(); // 명시적 소멸자 호출
-free(buf); // 할당된 
-
-1. operator new 함수의 위치지정(placement) 버전을 만들 때는, 이 함수와 짝을 이루는 위치지정 버전의 operator delete 함수도 꼭 만들자. 이 일을 빼먹으면, 찾아내기도 힘들고 생겼다가 안 생겼다 하는 메모리 누출 현상을 경험하게 된다.
-2. new 및 delete 의 위치지정 버전을 선언할 때는, 의도한 바도 아닌데 이들의 표준 버전이 가려지는 일이 생기지 않도록 주의하자.
+`operator new`의 경우 다양한 사용자 정의를 할 수 있습니다.
 
 ```cpp
-// 기본형 operator new
-void* operator new(std::size_t size) throw(std::bad_alloc);
-
-// 전역 유효범위에서의 기본형 시그니처
-void operator delete(void* rawMemory) throw();
-// 클래스 유효범위에서의 기본형 시그니처
-void operator delete(void* rawMemory, std::size_t size) throw();
+static void* operator new(std::size_t sz, Param1 param1, Param2 param2 ...);
 ```
 
+다음과 같이 `int val` 등 인자가 추가된 버전을 만들 수 있고,
 
-# nothrow new
+```cpp
+static void* operator new(std::size_t sz, int val) { // int val을 인자로 전달받습니다.
+    return malloc(sz);
+}
+```
+
+해당 인자만 전달하여 `new(1)`과 같이 호출할 수 있습니다.
+
+```cpp
+T* t = new(1) T; // T::operator new(std::size_t sz, int val), 기본 생성자 호출
+EXPECT_TRUE(t->GetX() == 10 && t->GetY() == 20);
+delete t;
+
+t = new(1) T(1, 2); // T::operator new(std::size_t sz, int val), T::T(int, int) 생성자 호출
+EXPECT_TRUE(t->GetX() == 1 && t->GetY() == 2);
+delete t;
+```
+
+**operator delete 오버로딩**
+
+`operator delete`는 두가지 유형이 있습니다. 두개를 모두 정의하더라도, 둘중에 하나만 사용됩니다. 
+
+다음의 경우
+
+1. `operator delete(void* ptr)` 가 사용되며, 
+2. `operator delete(void* ptr, std::size_t sz)`를 사용하려면, `operator delete(void* ptr, std::size_t sz)` 만 정의
+
+해야 합니다.
+
+```cpp
+class T {
+public:
+    static void* operator new(std::size_t sz) {
+        return malloc(sz);
+    }    
+    static void operator delete(void* ptr) {
+        std::cout<<"T::delete(void* ptr)"<<std::endl;
+        free(ptr); 
+    }
+    // sz : 해제할 바이트 수                     
+    static void operator delete(void* ptr, std::size_t sz) {
+        std::cout<<"delete(void* ptr, std::size_t sz)"<<std::endl;
+        free(ptr); 
+    }            
+}; 
+
+T* t = new T; 
+delete t; // T::delete(void* ptr) 호출
+```
+
+**부모 클래스의 `operator new`, `operator delete`**
+
+자식 클래스에서 별다르게 `operator new`와 `operator delete`를 정의하지 않으면, 부모 클래스에 정의된 것이 사용됩니다.
+
+```cpp
+// sizeof(Base) == sizeof(int) * 2 + 가상 함수 테이블 크기
+class Base { 
+    int m_X;
+    int m_Y;
+public:
+    virtual ~Base() {}
+
+    // sz : sizeof(Base) 또는 sizeof(Derived) 크기
+    static void* operator new(std::size_t sz) {
+        return malloc(sz);
+    }
+    // sz : sizeof(Base) 또는 sizeof(Derived) 크기
+    static void operator delete(void* ptr, std::size_t sz) {
+        free(ptr); 
+    } 
+};
+
+// sizeof(Derived) == sizeof(Base) + sizeof(int) * 2
+class Derived : public Base {
+    int m_A;
+    int m_B;
+public:
+    virtual ~Derived() {}         
+};
+
+Base* base = new Derived; // Base::operator new(std::size_t sz) 호출
+delete base; // Base::delete(void* ptr, std::size_t sz) 호출
+```
+
+이에 일일이 모든 자식 클래스에서 `operator new`, `operator delete`를 구현하지 말고, 부모 클래스(`Base`)에서 자식 클래스(`Derived`)를 고려해서 생성하는게 좋습니다.
+
+고려라고 해봐야 전달된 `sz`만큼 메모리를 할당하고, `sz`만큼 해제하는 것이니 특별히 할 건 없습니다.
+
+**`public` Virtual 소멸자인 부모 클래스의 `operator delete`**
+
+[`public` Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 에서 다형 소멸을 지원하려면, 꼭 `virtual` 소멸자를 지원해야 한다고 언급한바 있습니다.
+
+`operator delete`에서도 마찬가지 입니다. 자식 클래스에서 할당된 메모리를 모두 해제하려면 꼭 `public` Virtual 소멸자를 사용하셔야 합니다.
+
+다음 코드는 상기 코드에서 소멸자의 `virtual`만 뺀 코드입니다. 실행시켜 확인해 보면, 
+
+1. `operator new` 시에는 `Derived`의 크기인 16byte가 전달되나, 
+2. `operator delete`시에는 `Base`의 크기인 8byte가 전달되어, 
+   
+메모리의 일부만 해제되어 메모리 릭이 발생합니다. 그러니, 다형 소멸을 하려면 꼭 [`public` Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하세요.
+
+```cpp
+// sizeof(Base) == sizeof(int) * 2 = 8byte
+class Base { 
+    int m_X;
+    int m_Y;
+public:
+    ~Base() {}
+
+    // (X) 오동작. sizeof(Derived) 크기 : 16byte
+    static void* operator new(std::size_t sz) {
+        return malloc(sz);
+    }
+    // (X) 오동작. 소멸시에는 Base의 크기 : 8byte. 메모리 릭 발생
+    static void operator delete(void* ptr, std::size_t sz) {
+        free(ptr); 
+    } 
+};
+
+// sizeof(Derived) == sizeof(Base) + sizeof(int) * 2 = 16byte
+class Derived : public Base {
+    int m_A;
+    int m_B;
+public:
+    ~Derived() {}         
+};
+
+Base* base = new Derived; // Base::operator new(std::size_t sz) 호출
+delete base; // (X) 오동작. Base의 소멸자가 호출되고 Base의 크기가 전달됨. Base::delete(void* ptr, std::size_t sz) 호출    
+```
+
+**`operator new`는 최소 1byte 할당**
+
+0byte인 자료형은 없으므로 최소 1byte는 할당해야 합니다. 사실 클래스 선언시 빈 클래스라면 알아서 크기를 1로 설정은 해줍니다만, 혹시 모르니 다음과 같이 `++sz;` 추가해 두는 것이 좋습니다. 
+
+```cpp
+class T {
+public:
+    static void* operator new(std::size_t sz) { // 1byte 전달됨
+        if (sz == 0) { // 혹시 모르니 검사
+            ++sz;
+        }
+        return malloc(sz);
+    }
+    static void operator delete(void* ptr) {
+        free(ptr);  
+    }            
+};
+
+EXPECT_TRUE(sizeof(T) == 1); // 빈 클래스도 1byte 할당됨
+T* t = new T;
+delete t;
+```
+
+# `operator new[]`와 `operator delete[]` 재정의
+
+배열은 `operator new[]`와 `operator delete[]`를 사용합니다. 일반 자료형의 경우에는 `sz`에 `sizeof(T) * 배열 요수 갯수`가 전달되지만, 클래스와 같이 생성자와 소멸자가 있는 개체는 배열 요소 개수만큼 생성자와 소멸자를 호출해야 하므로, 내부적으로 배열 요소 갯수를 관리하는 오버헤드가 추가 되어 전달됩니다.
+
+```cpp
+class T {
+public:
+    // sz : sizeof(T) * 배열 요수 갯수 + 오버헤드
+    void* operator new[](std::size_t sz) { 
+        return malloc(sz);
+    }
+    // sz : sizeof(T) * 배열 요수 갯수 + 오버헤드
+    void operator delete[](void* ptr, std::size_t sz) { 
+        free(ptr);
+    } 
+};
+T* arr = new T[10]; // operator new[](std::size_t sz), sizeof(T) * 10 + 오버헤드
+delete[] arr; // operator delete[](void* ptr, std::size_t sz) 호출
+```
+
+# `new(ptr)` : 위치 지정 생성(Placement New)
+
+`void* operator new(size_t sz, void* ptr)`와 같이 `void*` 를 인자로 전달받는 `operator new`를 특별히 위치 지정 생성이라 합니다. 위치 지정 생성은 주어진 `operator new` 등으로 할당한 메모리 위치에 생성자를 실행합니다. 즉, 해당 메모리 위치에 개체를 생성한다고 보셔도 됩니다. 
+
+다음과 같은 클래스 `T`가 있는 경우,
+
+```cpp
+class T {
+    int m_X;
+    int m_Y;
+public:
+    T() : 
+        m_X(10), 
+        m_Y(20) {}
+    T(int x, int y) :
+        m_X(x), 
+        m_Y(y) {}
+    int GetX() const {return m_X;}
+    int GetY() const {return m_Y;}
+};
+```
+
+다음과 같이 할당된 `buffer`에 `new(buffer) T;`로 생성자를 호출하여 개체를 생성시킬 수 있습니다. 이때 명시적으로 `t->~T()`와 같이 소멸자를 호출해야 합니다.
+
+```cpp
+void* buffer = malloc(sizeof(T)); // T 클래스 크기만큼 메모리를 할당합니다.
+
+T* t = new(buffer) T; // T 의 기본 생성자를 호출합니다.
+EXPECT_TRUE(t->GetX() == 10 && t->GetY() == 20);
+
+t->~T(); // 위치 지정 생성을 사용하면 명시적으로 소멸자를 호출해야 합니다.
+free(buffer); // malloc 으로 할당한 메모리를 해제합니다.
+```
+
+기존 `buffer`의 메모리 영역을 재활용하여 다른 개체를 배치시킬 수도 있고, `buffer`를 직접 수정하여 멤버 변수의 값을 변경할 수도 있으며(비권장), 소멸자 호출 후에도 값 접근을 할 수 있습니다.(비권장) 
+
+```cpp
+void* buffer = malloc(sizeof(T));
+T* t = new(buffer) T; // T 의 기본 생성자를 호출합니다.
+EXPECT_TRUE(t->GetX() == 10 && t->GetY() == 20);
+t->~T();
+
+// (O) 기존 t 위치에 other를 사용합니다.
+T* other = new(buffer) T(1, 2); // T의 값 생성자를 호출합니다. 
+EXPECT_TRUE(t->GetX() == 1 && t->GetY() == 2);
+
+// (△) 비권장. buffer를 직접 수정해도 동작하는지 확인합니다.
+// 테스트를 위한 것이니 실제 코드에서 이런거 하시면 캡슐화가 무너집니다.
+int* p = static_cast<int*>(buffer);
+*p = 100;
+*(p + 1) = 200;
+EXPECT_TRUE(other->GetX() == 100 && other->GetY() == 200);
+
+other->~T(); 
+// (△) 비권장. 소멸자를 호출하기는 했습니다만, 아직 buffer는 유효하여 other 접근이 되기는 합니다.
+EXPECT_TRUE(other->GetX() == 100 && other->GetY() == 200); 
+free(buffer);    
+```
+
+`operator new`를 재구현 했다면 전역 `void* operator new(size_t sz, void* ptr)` 를 가려서 재정의해야 합니다.
+
+```cpp
+class T {
+    int m_X;
+    int m_Y;
+public:
+    T() : 
+        m_X(10), 
+        m_Y(20) {}
+    T(int x, int y) :
+        m_X(x), 
+        m_Y(y) {}
+    int GetX() const {return m_X;}
+    int GetY() const {return m_Y;}
+
+    static void* operator new(std::size_t sz) {
+        if (sz == 0) {
+            ++sz;
+        }
+        return malloc(sz);
+    }
+    static void operator delete(void* ptr) {
+        free(ptr);  
+    }
+
+    // 위치 지정 생성 재정의
+    static void* operator new(size_t sz, void* ptr) { 
+        return ptr;
+    }
+}; 
+```
+
+다음처럼 `operator new`, `operator delete`, 위치 지정 생성을 테스트할 수 있습니다. 
+
+```cpp
+void* buffer = T::operator new(sizeof(T)); // static 함수 호출하듯이 사용합니다.
+T* t = new(buffer) T; // T 의 기본 생성자를 호출합니다.
+EXPECT_TRUE(t->GetX() == 10 && t->GetY() == 20);
+
+// (△) 비권장. buffer를 직접 수정해도 동작하는지 확인합니다.
+// 테스트를 위한 것이니 실제 코드에서 이런거 하시면 캡슐화가 무너집니다.
+int* p = static_cast<int*>(buffer);
+*p = 100;
+*(p + 1) = 200;
+EXPECT_TRUE(t->GetX() == 100 && t->GetY() == 200);
+
+t->~T(); // 위치 지정 생성을 사용하면 명시적으로 소멸자를 호출해야 합니다.
+T::operator delete(buffer); // static 함수 호출하듯이 사용합니다.
+```
+
+기본 `new` - `delete` 사용시에는 위치 지정 생성이 사용되지 않습니다.
+
+```cpp
+T* t = new T; // operator new(size_t sz, void* ptr) 가 호출되지는 않습니다.
+EXPECT_TRUE(t->GetX() == 10 && t->GetY() == 20);
+delete t;
+```
+
+# `new(std::nothrow)` 와 무의미한 널검사
 
 예외불가(nothrow) new 는 영향력이 제한되어 있다. 메모리 할당 자체에만 적용되기 때문이다. 이후에 호출되는 생성자에서는 얼마든지 예외를 던질 수 있다.
 
 new 는 bad_alloc 예외를 던짐
 T* p = new T;
-if (!p) {} // 예외를 던진다는데 왜 널검사를 하니? 널검사 하고 싶으면 다음처럼... T* p = new (std::nothrow) T; // 실패하면 0 리턴
+if (!p) {} // 예외를 던진다는데 왜 널검사를 하니? 널검사 하고 싶으면 다음처럼... T* p = new(std::nothrow) T; // 실패하면 0 리턴
 
 
 C++ 표준 라이브러리의 함수는 new C++98 이후 C++ 표준에 지정된 동작을 지원합니다. 할당 요청에 operator new 대한 메모리가 부족한 경우 는 예외를 std::bad_alloc throw합니다.
@@ -253,6 +512,50 @@ int main() {
 ```
 
 # set_new_handler
+
+**`new_handler`와의 호환성 유지**
+
+
+
+
+1. 관례적으로, operator new 함수는 메모리 할당을 반복해서 시도하는 무한 루프를 가져야 하고, 메모리 할당 요구를 만족시킬 수 없을 때 new 처리자를 호출해야 하며, 0바이트에 대한 대책도 있어야 한다. 클래스 전용 버전은 자신이 할당하기로 예정된 크기보다 더 큰(틀린) 메모리 블록에 대한 요구도 처리해야 한다.
+2. operator delete 함수는 널 포인터가 들어왔을 때 아무 일도 하지 않아야 한다. 클래스 전용 버전의 경우에는 예정 크기보다 더 큰 블록을 처리해야 한다.
+
+```cpp
+// 커스텀 operator new 함수는 다른 매개변수를 추가로 가질 수 있다
+static void* operator new(std::size_t sz) throw(std::bad_alloc)
+{
+	using namespace std;
+
+	// 0 바이트 요청이 들어오면 1 바이트 요구로 간주하고 처리
+	if (sz == 0)
+	{
+		sz = 1;
+	}
+
+    // 메모리 할당 실패 시 루프를 통해 다시 시도
+	while (true)
+	{
+		size 바이트를 할당해 본다;
+		if (할당에 성공)
+		{
+			return (할당된 메모리에 대한 포인터);
+		}
+
+		// 할당에 실패했을 경우, 현재의 new 처리자 함수가
+		// 어느 것으로 설정되어 있는지 찾아낸다
+		new_handler globalHandler = set_new_handler(0);
+		set_new_handler(globalHandler);
+
+		if (globalHandler) (*globalHandler)();
+		else throw std::bad_alloc();
+	}
+}
+```
+항목 49에서, new 처리자 함수는 가용 메모리를 늘려 주던가, 다른 new 처리자를 설치하든가, new 처리자의 설치를 제거하든가, bad_alloc 혹은 bad_alloc 에서 파생된 타입의 예외를 던지든가, 아예 함수 복귀를 포기하고 중단을 시켜야 한다고 이야기했다. 이렇듯 new 처리자 함수가 4가지 중 하나를 택해야 하는 이유는, 위의 operator new 함수의 구현처럼 내부 루프를 끝낼 수 있도록 구현되어야 하기 때문이다.
+
+
+
 
 set_new_handler 함수를 쓰면 메모리 할당 요청이 만족되지 못했을 때 호출되는 함수를 지정할 수 있다.
 
@@ -336,14 +639,14 @@ public:
       currentHandler = p;
       return oldHandler;
   }
-  static void* operator new(std::size_t size) throw(std::bad_alloc) {
+  static void* operator new(std::size_t sz) throw(std::bad_alloc) {
     // Widget 의 new 처리자 설치
-    // NewHandlerHolder 는 currentHandler 로 핸들러가 
+    // NewHandlerHolder 는 currentHandler 로 핸들러가
     // 바뀌기 전의 oldHandler 를 쥐고 있음!
     NewHandlerHolder h(std::set_new_handler(currentHandler));
 
     // 할당 실패 시 예외를 던짐
-    return ::operator new(size);
+    return ::operator new(sz);
 
     // 이전의 전역 new 처리자가 자동으로 복원됨
   }
