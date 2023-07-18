@@ -11,7 +11,7 @@ sidebar:
 > * 기본 생성자가 필요하다면 명시적으로 구현하라.
 > * 값 생성자에서 필요한 인자를 모두 나열하고 초기화하라. 
 > * 인자가 1개인 생성자는 `explicit`를 사용하여 암시적 형변환을 차단하라.
-> * 복사 생성자가 필요하다면, 암시적 복사 생성자가 정상 동작하도록 멤버 개체 `Handler`를 구현하고, 필요없다면 못쓰게 만들어라.
+> * 암시적 복사 생성자가 정상 동작하도록 멤버 변수 정의시 개체 `Handler`를 사용하고, 필요없다면 못쓰게 만들어라.
 > * 생성자에서 가상 함수를 호출하지 마라.
 > * 상속 전용 기반 클래스는 `protected` 로 만들어라.
  
@@ -21,7 +21,7 @@ sidebar:
 |--|--|
 |`T() {}`|기본 생성자|
 |`T(int, int) {}`|값 생성자|
-|`T(int) {}`|인자가 1개인 값 생성자<br/>값 생성자(형변환 생성자)|
+|`T(int) {}`|인자가 1개인 값 생성자<br/>(형변환 생성자)|
 |`T(const T& other) {}`|복사 생성자|
 
 생성자는 개체를 생성할 때 제일 먼저 호출되는 특수 함수입니다. 개체가 메모리에 할당된 뒤 초기값으로 설정하는 역할을 합니다.
@@ -43,7 +43,7 @@ T t(); // (X) T를 리턴하는 함수 f() 선언
 
 컴파일러는 다른 생성자가 정의되지 않으면, 암시적으로 기본 생성자를 정의합니다.
 
-암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 된다고는 하나, GCC 디버그 모드에서는 `0`이 아닙니다. 신뢰할 수 없으니 명시적으로 초기화 하세요. 또한 참조자 형식이나, 상수형 개체는 암시적 기본 생성자로 초기화 할 수 없습니다.
+암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 된다고는 합니다.([cppreference.com](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고) 하지만, 실제 해보니 GCC 디버그 모드에서는 `0`이 아닙니다. 신뢰할 수 없으니 명시적으로 초기화 하세요. 또한 참조자 형식이나 상수형 개체는 생성시 초기값에 전달되야 하기 때문에, 암시적 기본 생성자로 초기화 할 수 없습니다.
 
 ```cpp
 class T1 {
