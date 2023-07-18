@@ -9,7 +9,11 @@ sidebar:
 ---
 
 > * 개체는 `new` - `delete` 쌍으로 생성/소멸 하라.
-> * 배열은 `new[]` - `delete[]` 쌍으로 생성/소멸하라.
+> * 배열은 `new[]` - `delete[]` 쌍으로 생성/소멸하라. `new[]`한 것을 `delete` 만 하면, 메모리 릭이 발생한다. 꼭 `delete[]`하라.
+> * `new`는 `std::bad_alloc`을 방출한다. 괜히 널검사하지 마라.
+> * `delete`는 널이면 아무 작업 안한다. 괜히 널검사하지 마라.
+> * `operator new`를 `private`로 만들어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에만 생성되는 개체를 만들 수 있다.
+> * [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 `private`로 만들어 외부에서는 생성할 수 없는 개체를 만들 수 있다.
 
 # 개요
 
@@ -17,14 +21,14 @@ sidebar:
 |--|--|
 |`new`|개체의 메모리를 할당하고, 생성자를 호출합니다.|
 |`delete`|개체의 소멸자를 호출하고, 메모리를 해제합니다.|
-|`new[]`|배열의 메모리를 할당하고, 각 요소의 생성자들을 호출합니다.|
-|`delete[]`|배열 요소의 소멸자들을 호출하고, 메모리를 해제합니다.|
+|`new[]`|배열의 메모리를 할당하고, 각 배열 요소의 생성자들을 호출합니다.|
+|`delete[]`|각 배열 요소의 소멸자들을 호출하고, 메모리를 해제합니다.|
 |`new(std::nothrow)`|메모리 할당 실패시 NULL 을 리턴합니다. 단, 생성자에서 예외를 발생하면 해당 예외를 전파합니다.|
 |`operator new(std::size_t)`|개체의 메모리를 할당합니다.|
 |`operator delete(void*)`|개체의 메모리를 해제 합니다.|
 |`operator new[](std::size_t)`|배열의 메모리를 할당합니다.|
 |`operator delete[](void*)`|배열의 메모리를 해제합니다.|
-|`new(void*)`|주어진 메모리 위치에 개체를 배치하여 생성자를 호출합니다.(위치 지정 생성)|
+|`new(void*)`|주어진 메모리 위치에 개체를 배치하여 생성자를 호출합니다.(Placement New, 위치 지정 생성)|
 |`set_new_handler()`|`new`에서 예외 발생시 호출되는 함수입니다.|
 
 개체를 동적으로 생성/소멸할때 `new`와 `delete`를 사용합니다.
@@ -41,7 +45,7 @@ sidebar:
 2. 개체의 멤버 변수 소멸자 호출
 3. 전역 `operator delete(void*)`를 이용하여 메모리 할당 해제
 
-즉 `new`는 메모리 할당, 생성자 호출, 메모리 주소 를 형변환해서 리턴하지만,
+즉 `new`는 메모리 할당, 생성자 호출, 메모리 주소를 형변환해서 리턴하지만,
 `operator new`는 `void*` 형 메모리를 할당하기만 합니다.
 
 또한 `delete`는 소멸자 호출, 메모리 해제를 수행하지만,
@@ -73,18 +77,6 @@ New-Delete Test : T::T()
 New-Delete Test : T::~T()
 ```
 
-`delete`를 두번 실행하면 예외가 발생합니다. 생성한 개체는 1회만 `delete`해야 합니다.
-
-```cpp
-class T {};
-T* p = NULL;
-delete p; // (O) p가 NULL이어도 안전합니다.
-p = new T; 
-delete p; // (O) new로 생성한 것은 반드시 delete 해야 합니다.
-delete p; // (X) 예외 발생. 두번 죽일 순 없습니다.  
-```
-
-
 배열 생성/소멸 시에는 `new[]` - `delete[]`를 이용합니다.
 
 ```cpp
@@ -103,6 +95,31 @@ New-Delete Test : T::~T()
 New-Delete Test : T::~T()
 ```
 
+**`delete` 두번 호출 금지**
+
+`delete`를 두번 실행하면 예외가 발생합니다. 생성한 개체는 1회만 `delete`해야 합니다.
+
+```cpp
+class T {};
+T* p = NULL;
+delete p; // (O) p가 NULL이어도 안전합니다.
+p = new T; 
+delete p; // (O) new로 생성한 것은 반드시 delete 해야 합니다.
+delete p; // (X) 예외 발생. 두번 죽일 순 없습니다.  
+```
+
+**`delete` NULL**
+
+널을 `delete`하면 아무 동작 안합니다. 따라서 다음과 같이 `if`검사를 할 필요가 없습니다. 그냥 delete 하시면 됩니다.
+
+```cpp
+if (p != NULL) { // (△) 비권장. 괜히 널검사합니다.
+    delete p;
+}
+
+delete p; // (O) 널검사 없이 바로 delete 합니다.
+```
+
 **`delete`와 `delete[]` 의 차이**
 
 `delete`는 개체의 소멸자를 1회 호출하고, 주어진 메모리를 해제하는 역할을 하고, `delete[]`는 배열 요소 갯수만큼 소멸자를 호출하고, 주어진 메모리를 해제하는 역할을 합니다.
@@ -112,13 +129,48 @@ New-Delete Test : T::~T()
 1. `int`등 기본 자료형일 경우, 생성자/소멸자를 호출할 필요가 없으므로, 메모리가 `sizeof(int)` * 배열 요소 갯수로 할당됩니다.
 2. 클래스인 경우 배열 요소 갯수 만큼 생성자/소멸자가 호출되어야 하므로, 내부적으로 배열 요소 갯수를 저장하는 오버헤드 공간이 추가되어 할당됩니다.(`sizeof(T)` * 배열 요소 갯수 + 오버헤드(4byte 이거나 8byte))
 
-`new[]`나 `delete[]`는 오버헤드 공간의 배열 요소 갯수 정보를 참조하여 각 요소의 생성자와 소멸자를 각각 호출합니다.
+`new[]`나 `delete[]`는 오버헤드 공간의 배열 요소 갯수 정보를 참조하여 배열 요소의 생성자와 소멸자를 각각 호출합니다.
 
-따라서, 혹여나 실수로 배열을 `delete`로 소멸시키면, 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있습니다. 따라서, `new[]`로 생성한 배열은 꼭 `delete[]`로 소멸시켜야 합니다.
+혹여나 실수로 배열을 `delete`로 소멸시키면, 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있습니다. 따라서, `new[]`로 생성한 배열은 꼭 `delete[]`로 소멸시켜야 합니다.
 
 ```cpp
 T* arr = new T[3]; // (O) 메모리 할당(sizeof(T) * 3 + 오버헤드). 생성자 3회 호출
 delete arr; // (X) 예외 발생. 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있음
+```
+
+# `new(std::nothrow)` 와 무의미한 널검사
+
+`new`는 메모리가 부족하여 할당이 실패하면, `std::bad_alloc()` 예외를 방출합니다.(C++98이후부터)
+
+그이전에는 널을 방출해서 하기와 같은 코드 잔재가 있습니다.
+
+```cpp
+T* t = new T;
+if (t == NULL) {
+    ...
+}
+```
+
+하지만 C++98이후부터는 `std::bad_alloc()` 예외를 방출하므로 하기와 같이 검사해야 합니다.
+
+```cpp
+try {
+    T* t = new T;
+}
+catch (std::bad_alloc&) {
+    // 할당에 실패했을때의 코드
+}
+```
+
+이전 스타일로 널검사를 하고 싶다면 `new(std::nothrow)` 을 사용할 수 있습니다. 하지만, 메모리 할당에 실패하면 널을 리턴하지만, 생성자에서 예외를 발생하면 전파됩니다. 그래서 그냥 `new`를 사용하고 `try-catch`를 사용하는게 좋습니다.
+
+```cpp
+class T{};
+T* t = new(std::nothrow) T; // (△) 비권장. 메모리 할당에 실패하면 널을 리턴하지만, 생성자에서 예외를 발생하면 전파됩니다.
+
+if (t == NULL) {
+    // 할당 실패시 처리할 코드
+}
 ```
 
 # `operator new`와 `operator delete` 재정의
@@ -144,7 +196,12 @@ delete arr; // (X) 예외 발생. 소멸자가 1회만 호출되고, 프로그�
 
 **기본 재정의 방법**
 
-`malloc` - `free`를 이용하거나 전역 `operator new` - 전역 `operator delete`를 이용할 수 있습니다.
+`malloc` - `free`를 이용하거나 전역 `operator new` - 전역 `operator delete`를 이용할 수 있습니다. 
+
+할당 실패시에는 `std::bad_alloc()`을 방출해야 합니다.
+
+* `malloc`은 할당 실패시 널을 리턴하므로, 강제로 `std::bad_alloc()`을 방출해야 합니다. 또한 `new_handler`(`set_new_handler` 참고)를 호출하지 않습니다.
+* 전역 `operator new`는 할당 실패시 `std::bad_alloc()`을 방출하고, `new_handler`를 호출합니다.
 
 ```cpp
 class T {
@@ -161,7 +218,11 @@ public:
     int GetY() const {return m_Y;}
 
     static void* operator new(std::size_t sz) {
-        return malloc(sz);
+        void* ptr = malloc(sz);
+        if (ptr == NULL) {
+            throw std::bad_alloc(); // 할당 실패시 std::bad_alloc 방출
+        }
+        return ptr;
         // return ::operator new(sz); // 전역 operator new
     }
     static void operator delete(void* ptr) {
@@ -190,11 +251,11 @@ static void* operator new(std::size_t sz, Param1 param1, Param2 param2 ...);
 
 ```cpp
 static void* operator new(std::size_t sz, int val) { // int val을 인자로 전달받습니다.
-    return malloc(sz);
+    return ::operator new(sz);
 }
 ```
 
-해당 인자만 전달하여 `new(1)`과 같이 호출할 수 있습니다.
+해당 인자에 인수(예제에서는 그냥 `1`)를 전달하여 `new(1)`과 같이 호출할 수 있습니다.
 
 ```cpp
 T* t = new(1) T; // T::operator new(std::size_t sz, int val), 기본 생성자 호출
@@ -221,16 +282,16 @@ delete t;
 class T {
 public:
     static void* operator new(std::size_t sz) {
-        return malloc(sz);
+        return ::operator new(sz);
     }    
     static void operator delete(void* ptr) {
         std::cout<<"T::delete(void* ptr)"<<std::endl;
-        free(ptr); 
+        ::operator delete(ptr); 
     }
     // sz : 해제할 바이트 수                     
     static void operator delete(void* ptr, std::size_t sz) {
         std::cout<<"delete(void* ptr, std::size_t sz)"<<std::endl;
-        free(ptr); 
+        ::operator delete(ptr); 
     }            
 }; 
 
@@ -240,7 +301,7 @@ delete t; // T::delete(void* ptr) 호출
 
 **부모 클래스의 `operator new`, `operator delete`**
 
-자식 클래스에서 별다르게 `operator new`와 `operator delete`를 정의하지 않으면, 부모 클래스에 정의된 것이 사용됩니다.
+자식 클래스에서 별다르게 `operator new`와 `operator delete`를 정의하지 않으면, 부모 클래스 것을 사용합니다.
 
 ```cpp
 // sizeof(Base) == sizeof(int) * 2 + 가상 함수 테이블 크기
@@ -252,11 +313,11 @@ public:
 
     // sz : sizeof(Base) 또는 sizeof(Derived) 크기
     static void* operator new(std::size_t sz) {
-        return malloc(sz);
+        return ::operator new(sz);
     }
     // sz : sizeof(Base) 또는 sizeof(Derived) 크기
     static void operator delete(void* ptr, std::size_t sz) {
-        free(ptr); 
+        ::operator delete(ptr); 
     } 
 };
 
@@ -299,11 +360,11 @@ public:
 
     // (X) 오동작. sizeof(Derived) 크기 : 16byte
     static void* operator new(std::size_t sz) {
-        return malloc(sz);
+        return ::operator new(sz);
     }
     // (X) 오동작. 소멸시에는 Base의 크기 : 8byte. 메모리 릭 발생
     static void operator delete(void* ptr, std::size_t sz) {
-        free(ptr); 
+        ::operator delete(ptr); 
     } 
 };
 
@@ -327,10 +388,14 @@ delete base; // (X) 오동작. Base의 소멸자가 호출되고 Base의 크기�
 class T {
 public:
     static void* operator new(std::size_t sz) { // 1byte 전달됨
-        if (sz == 0) { // 혹시 모르니 검사
+        if (sz == 0) { // 혹시 모르니 검사하여 최소 1byt로 만듬
             ++sz;
         }
-        return malloc(sz);
+        void* ptr = malloc(sz);
+        if (ptr == NULL) {
+            throw std::bad_alloc(); // 할당 실패시 std::bad_alloc 방출
+        }
+        return ptr;
     }
     static void operator delete(void* ptr) {
         free(ptr);  
@@ -344,27 +409,27 @@ delete t;
 
 # `operator new[]`와 `operator delete[]` 재정의
 
-배열은 `operator new[]`와 `operator delete[]`를 사용합니다. 일반 자료형의 경우에는 `sz`에 `sizeof(T) * 배열 요수 갯수`가 전달되지만, 클래스와 같이 생성자와 소멸자가 있는 개체는 배열 요소 개수만큼 생성자와 소멸자를 호출해야 하므로, 내부적으로 배열 요소 갯수를 관리하는 오버헤드가 추가 되어 전달됩니다.
+배열은 `operator new[]`와 `operator delete[]`를 사용합니다. 일반 자료형의 경우에는 `sz`에 `sizeof(T) * 배열 요수 갯수`가 전달되지만, 클래스와 같이 생성자/소멸자가 있는 개체는 배열 요소 개수만큼 생성자/소멸자를 호출해야 하므로, 내부적으로 배열 요소 갯수를 관리하는 오버헤드가 추가 되어 전달됩니다.
 
 ```cpp
 class T {
 public:
     // sz : sizeof(T) * 배열 요수 갯수 + 오버헤드
     void* operator new[](std::size_t sz) { 
-        return malloc(sz);
+        return ::operator new[](sz);
     }
     // sz : sizeof(T) * 배열 요수 갯수 + 오버헤드
     void operator delete[](void* ptr, std::size_t sz) { 
-        free(ptr);
+        ::operator delete[](ptr);
     } 
 };
 T* arr = new T[10]; // operator new[](std::size_t sz), sizeof(T) * 10 + 오버헤드
 delete[] arr; // operator delete[](void* ptr, std::size_t sz) 호출
 ```
 
-# `new(ptr)` : 위치 지정 생성(Placement New)
+# `new(ptr)` : Placement New(위치 지정 생성)
 
-`void* operator new(size_t sz, void* ptr)`와 같이 `void*` 를 인자로 전달받는 `operator new`를 특별히 위치 지정 생성이라 합니다. 위치 지정 생성은 주어진 `operator new` 등으로 할당한 메모리 위치에 생성자를 실행합니다. 즉, 해당 메모리 위치에 개체를 생성한다고 보셔도 됩니다. 
+`void* operator new(size_t sz, void* ptr)`와 같이 `void*` 를 인자로 전달받는 `operator new`를 특별히 Placement New(위치 지정 생성)이라 합니다. Placement New(위치 지정 생성)는 주어진 `operator new` 등으로 할당한 메모리 위치에 생성자를 실행합니다. 즉, 해당 메모리 위치에 개체를 생성한다고 보셔도 됩니다. 
 
 다음과 같은 클래스 `T`가 있는 경우,
 
@@ -392,7 +457,7 @@ void* buffer = malloc(sizeof(T)); // T 클래스 크기만큼 메모리를 할�
 T* t = new(buffer) T; // T 의 기본 생성자를 호출합니다.
 EXPECT_TRUE(t->GetX() == 10 && t->GetY() == 20);
 
-t->~T(); // 위치 지정 생성을 사용하면 명시적으로 소멸자를 호출해야 합니다.
+t->~T(); // Placement New를 사용하면 명시적으로 소멸자를 호출해야 합니다.
 free(buffer); // malloc 으로 할당한 메모리를 해제합니다.
 ```
 
@@ -421,7 +486,7 @@ EXPECT_TRUE(other->GetX() == 100 && other->GetY() == 200);
 free(buffer);    
 ```
 
-`operator new`를 재구현 했다면 전역 `void* operator new(size_t sz, void* ptr)` 를 가려서 재정의해야 합니다.
+`operator new`를 재구현 하면, 전역 Placement New(위치 지정 생성)를 가리기 때문에, 재정의해야 합니다.
 
 ```cpp
 class T {
@@ -438,25 +503,17 @@ public:
     int GetY() const {return m_Y;}
 
     static void* operator new(std::size_t sz) {
-        if (sz == 0) {
-            ++sz;
-        }
-        return malloc(sz);
+        return ::operator new(sz);
     }
     static void operator delete(void* ptr) {
-        free(ptr);  
+        ::operator delete(ptr);    
     }
-
-    // 위치 지정 생성 재정의
+    // Placement New 재정의
     static void* operator new(size_t sz, void* ptr) { 
         return ptr;
     }
 }; 
-```
 
-다음처럼 `operator new`, `operator delete`, 위치 지정 생성을 테스트할 수 있습니다. 
-
-```cpp
 void* buffer = T::operator new(sizeof(T)); // static 함수 호출하듯이 사용합니다.
 T* t = new(buffer) T; // T 의 기본 생성자를 호출합니다.
 EXPECT_TRUE(t->GetX() == 10 && t->GetY() == 20);
@@ -468,11 +525,11 @@ int* p = static_cast<int*>(buffer);
 *(p + 1) = 200;
 EXPECT_TRUE(t->GetX() == 100 && t->GetY() == 200);
 
-t->~T(); // 위치 지정 생성을 사용하면 명시적으로 소멸자를 호출해야 합니다.
+t->~T(); // Placement New를 사용하면 명시적으로 소멸자를 호출해야 합니다.
 T::operator delete(buffer); // static 함수 호출하듯이 사용합니다.
 ```
 
-기본 `new` - `delete` 사용시에는 위치 지정 생성이 사용되지 않습니다.
+기본 `new` - `delete` 사용시에는 Placement New(위치 지정 생성)를 재정의했다고 해서 사용되지는 않습니다.
 
 ```cpp
 T* t = new T; // operator new(size_t sz, void* ptr) 가 호출되지는 않습니다.
@@ -482,42 +539,237 @@ delete t;
 
 # 스택에만 생성되는 개체
 
-private
-
-# `new(std::nothrow)` 와 무의미한 널검사
-
-예외불가(nothrow) new 는 영향력이 제한되어 있다. 메모리 할당 자체에만 적용되기 때문이다. 이후에 호출되는 생성자에서는 얼마든지 예외를 던질 수 있다.
-
-new 는 bad_alloc 예외를 던짐
-T* p = new T;
-if (!p) {} // 예외를 던진다는데 왜 널검사를 하니? 널검사 하고 싶으면 다음처럼... T* p = new(std::nothrow) T; // 실패하면 0 리턴
-
-
-C++ 표준 라이브러리의 함수는 new C++98 이후 C++ 표준에 지정된 동작을 지원합니다. 할당 요청에 operator new 대한 메모리가 부족한 경우 는 예외를 std::bad_alloc throw합니다.
-
-이전 C++ 코드는 실패한 할당에 대해 null 포인터를 반환했습니다. throw하지 않는 버전 new이 필요한 코드가 있는 경우 프로그램을 와 nothrownew.obj연결합니다. 이 파일은 nothrownew.obj 할당이 실패할 경우 를 반환 nullptr 하는 버전으로 전역 operator new 을 대체합니다. operator new 더 이상 을 throw하지 않습니다 std::bad_alloc. 및 기타 링커 옵션 파일에 대한 nothrownew.obj 자세한 내용은 링크 옵션을 참조하세요.
-
-동일한 애플리케이션에서 null 포인터를 확인하는 코드와 전역 operator new 예외를 확인하는 코드를 혼합할 수 없습니다. 그러나 다르게 동작하는 클래스 로컬 operator new 을 만들 수 있습니다. 이 가능성은 컴파일러가 기본적으로 방어적으로 작동하고 호출에 new null 포인터 반환에 대한 검사를 포함해야 한다는 것을 의미합니다. 이러한 컴파일러 검사를 최적화하는 방법에 대한 자세한 내용은 를 참조하세요 /Zc:throwingnew.
-
-#  할당실패 테스트
+`new`는 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 개체를 생성하는데요, 외부에서 `new`를 못하게 하고, [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에만 생성되게 하고 싶다면, `operator new`를 `private`로 만들면 됩니다.
 
 ```cpp
-#include <iostream>
-#include <new>
-using namespace std;
-#define BIG_NUMBER 10000000000LL
-int main() {
-   int *pI = new(nothrow) int[BIG_NUMBER];
-   if ( pI == nullptr ) {
-      cout << "Insufficient memory" << endl;
-      return -1;
-   }
-}
+class T {
+private:
+    static void* operator new(std::size_t sz) {
+        return ::operator new(sz);
+    }    
+};
+
+T t; // (O)
+T* p = new T; // (X) 컴파일 오류
+delete p;
+```
+
+# 외부에서 생성할 수 없는 개체
+
+외부에서 접근을 못하게 막으려면 생성자를 `private`로 만들고, 생성을 위한 `Create()`함수를 만들면 됩니다.
+```cpp
+class T {
+private:
+    T() {} // 외부에서는 접근 불가
+public:
+    static T Create() {return T();}
+};
+
+T t; // (X) 컴파일 오류
+T* p = new T; // (X) 컴파일 오류
+delete p;
+
+T t(T::Create()); // (O) T를 복사 생성    
 ```
 
 # set_new_handler
 
 **`new_handler`와의 호환성 유지**
+
+
+```cpp
+// 생성시 new_handler를 설정하고, 소멸시 이전 new_handler로 복원합니다.
+class NewHandlerRestorer {
+    std::new_handler m_OldHandler;
+public:
+    explicit NewHandlerRestorer(std::new_handler handler) : 
+        m_OldHandler(std::set_new_handler(handler)) {
+        std::cout<<"----## NewHandlerRestorer : Start"<<std::endl;    
+    }
+    ~NewHandlerRestorer() {
+        std::set_new_handler(m_OldHandler);
+        std::cout<<"----## NewHandlerRestorer : End"<<std::endl;
+    }
+private:
+    // 복사 생성자, 대입 연산자 를 사용 못하게 막음
+    NewHandlerRestorer(const NewHandlerRestorer& other);
+    NewHandlerRestorer& operator =(const NewHandlerRestorer& other);
+};
+// 엄청 큰 데이터를 관리하는 클래스 입니다.
+class T {
+    int m_Big[1024 * 1024 * 1000]; // 1000 M * sizeof(int)
+public:
+    // 모드설정에 따라 new_handler가 변경됩니다.
+    enum NewHandlerMode {UsingReserved, Another, Remove, BadAlloc, Abort};
+private:
+    static NewHandlerMode& GetNewHandlerModeRef() {
+        static NewHandlerMode s_Mode = T::BadAlloc; // 기본적으론 BadAlloc
+
+        return s_Mode;
+    }
+    // s_Mode 에 맞게 NewHandler 리턴합니다.
+    static std::new_handler GetNewHandler() {
+        std::new_handler result = &T::BadAllocHandler;
+        T::NewHandlerMode mode = T::GetNewHandlerModeRef();
+        switch(mode) {
+        case T::UsingReserved: result = &T::UsingReservedHandler; break;
+        case T::Another: result = &T::AnotherHandler; break;
+        case T::Remove: result = &T::RemoveHandler; break;
+        case T::BadAlloc: result = &T::BadAllocHandler; break;
+        case T::Abort: result = &T::AbortHandler; break;
+        }
+        return result;
+    }
+    // 미리 예약된 메모리 공간입니다. 
+    // new 실패시 UsingReservedHandler 에서 해제하여 메모리 공간을 확보해 줍니다.
+    class Reserved {
+        T* m_Ptr;
+    public:
+        explicit Reserved() : 
+            m_Ptr(new T[2]) { // T 2개를 new 할 수 있는 공간을 미리 예약합니다.
+            std::cout<<"------## Reserved : Start"<<std::endl;          
+        }
+        ~Reserved() {
+            Release(); // 메모리를 해제합니다.
+        } 
+    private:
+        // 복사 생성자, 대입 연산자 를 사용 못하게 막음
+        Reserved(const Reserved& other);
+        Reserved& operator =(const Reserved& other);     
+    public:    
+        // 예약된 공간을 해제하고, NULL로 초기화 합니다. 
+        void Release() {
+            delete[] m_Ptr; 
+            if (m_Ptr != NULL) {
+                std::cout<<"------## Reserved : End"<<std::endl;
+            }
+            m_Ptr = NULL; 
+        }
+        // 예약된 공간이 있는지 없는지 리턴합니다.
+        bool IsValid() const {return m_Ptr != NULL ? true : false;} 
+    };
+    static Reserved& GetReservedRef() {
+        // new 실패시 해제하고 사용할 2개의 공간을 미리 할당해 둡니다.
+        // 정적 지역 변수여서 함수 호출시 최초 1회 생성됩니다.
+        static Reserved s_Reserved; 
+
+        return s_Reserved;
+    }        
+    static void CreateReserved() {
+        GetReservedRef(); // 최초 호출하여 메모리 공간을 예약합니다. 
+    }
+
+    // new 할당에 실패하면, 예약된 공간을 해제하여 메모리를 늘려줍니다.
+    static void UsingReservedHandler() {
+        std::cout<<"------## UsingReservedHandler"<<std::endl;
+        // 예약된 공간이 있다면, 해제하고 재시도 하고,
+        if (GetReservedRef().IsValid()) {
+            GetReservedRef().Release();
+        }
+        // 예약된 공간이 없다면 다른 new_handler를 설치합니다.
+        else {
+            std::set_new_handler(&T::AnotherHandler);
+        }
+    }
+    // 다른 new_handler를 설치합니다.
+    static void AnotherHandler() {
+        std::cout<<"------## AnotherHandler"<<std::endl;
+        std::set_new_handler(&T::BadAllocHandler);
+    }
+    // new 처리자의 설치 제거합니다. 아마도 std::bad_alloc이 방출됩니다.
+    static void RemoveHandler() {
+        std::set_new_handler(NULL);
+    }
+    // bad_alloc으로 포기합니다.
+    static void BadAllocHandler() {
+        std::cout<<"------## BadAllocHandler"<<std::endl;
+        throw std::bad_alloc();
+    }
+    // std::abort()로 프로그램 종료합니다.
+    static void AbortHandler() {
+        std::abort();
+    }
+public:
+    // new_handler 모드를 설정합니다.
+    // mode : UsingReserved, Another, Remove, BadAlloc, Abort
+    static void SetNewHandlerMode(NewHandlerMode mode) {
+        GetNewHandlerModeRef() = mode;
+    }
+
+    static void* operator new(std::size_t sz) { 
+
+        // 최초 new 요청시 메모리 영역을 예약합니다.
+        T::CreateReserved();
+
+        // 예외가 발생하거나 유효 범위가 벗어나면 NewHandlerRestorer 소멸자에서 이전 handler로 복원해 줍니다.
+        NewHandlerRestorer restorer(T::GetNewHandler());
+
+        // 내부적으로는 메모리를 할당하고, 실패하면 handler를 실행하는 과정을 무한히 반복합니다.
+        // handler가 std::bad_alloc이나 std::abort()를 할때 까지요.
+        std::cout<<"----## ::operator new : Start"<<std::endl;  
+        void* ptr = ::operator new(sz); 
+        std::cout<<"----## ::operator new : End"<<std::endl; 
+        return ptr;
+    } 
+};
+class Tester {
+public:    
+    // new가 실패할때까지 반복해서 재귀 할당 합니다.
+    // Holder에 생성된 개체를 담습니다.
+    static void Recursive() {
+
+        // 포인터를 담고 있다가 유효 범위가 끝나면 소멸시킵니다.
+        // new 가 성공하면 Holder 생성자에서 해당 포인터를 저장하고, 
+        // 정상 종료나 예외발생에 따른 스택 풀기에서 소멸자가 호출됩니다.
+        class Holder {
+            T* m_Ptr;
+        public:
+            Holder(T* ptr) :
+                m_Ptr(ptr) {
+                std::cout<<"--## Holder : Start. operator new OK"<<std::endl;    
+            }
+            ~Holder() {
+                delete m_Ptr;
+                std::cout<<"--## Holder : End"<<std::endl;
+            }
+        private:
+            // 복사 생성자, 대입 연산자 를 사용 못하게 막음
+            Holder(const Holder& other);
+            Holder& operator =(const Holder& other);
+        };
+        std::cout<<"## Recursive"<<std::endl;
+        Holder t(new T);
+        Recursive();
+    }
+};
+
+{
+    try {
+        // new 실패시 UsingReserved -> Another -> BadAlloc 순으로 Handler를 변경합니다.
+        T::SetNewHandlerMode(T::UsingReserved); 
+        Tester::Recursive();
+    }
+    catch(std::bad_alloc& e) {
+        std::cout<<"## [UsingReserved] catch(std::bad_alloc& e)"<<std::endl;    
+    }
+}
+{
+    // Handler 를 제거합니다. std::bad_alloc을 방출합니다.
+    try {
+        T::SetNewHandlerMode(T::Remove); 
+        Tester::Recursive();
+    }
+    catch(std::bad_alloc& e) {
+        std::cout<<"## [Remove] catch(std::bad_alloc& e)"<<std::endl;    
+    }
+}
+{
+    // 프로그램을 종료합니다.
+    T::SetNewHandlerMode(T::Abort);  
+    Tester::Recursive();
+}
+```
+
 
 
 

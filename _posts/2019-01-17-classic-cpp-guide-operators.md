@@ -168,7 +168,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
-|배열 항목|`a[b]`|O|`R& T::operator [](S b);`<br/>`const R& T::operator [](S b) const;`|X|
+|배열 요소|`a[b]`|O|`R& T::operator [](S b);`<br/>`const R& T::operator [](S b) const;`|X|
 |포인터 실제값|`*a`|O|`R& T::operator *();`<br/>`const R& T::operator *() const;`|`R& operator *(T a);`|
 |개체 주소|`&a`|O|`R* T::operator &();`<br/>`const R* T::operator &() const;`|`R* operator &(T a);`|
 |개체의 멤버|`a.b`|X|X|X|
@@ -251,9 +251,9 @@ EXPECT_TRUE(result == 10);
 |`operator delete(void*)`|개체 소멸|`delete p;`|O|`void operator delete(void* ptr, std::size_t sz)`|`void operator delete(void* ptr, std::size_t sz)`|
 |`operator new[](std::size_t)`|배열 생성시 사용|`T* arr = new T[10];`|O|`void* operator new[](std::size_t sz);`|`void* operator new[](std::size_t sz);`|
 |`operator delete[](void*)`|배열 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
-|`new(void*)`|위치 지정 생성(특정 메모리 위치에 개체 생성자 호출)|`T* p = new(buf) T;`|X|X|X|
+|`new(void*)`|Placement New(위치 지정 생성, 특정 메모리 위치에 개체 생성자 호출)|`T* p = new(buf) T;`|X|X|X|
 
-`operator new`와 `operator delete`와 위치 지정 생성(Placement New)에 대해서는 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
+`operator new`와 `operator delete`와 Placement New(위치 지정 생성)에 대해서는 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
 
 # `sizeof` 연산자
 

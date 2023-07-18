@@ -31,7 +31,7 @@ int arr2[] = {0, 1, 2}; // (O) 갯수만큼 초기화
 int arr3[3] = {}; // (O) 3개 모두 0으로 초기화
 int arr4[3] = {1, }; // (O) 갯수가 적거나 같아야 함. 모자라면 0
 
-EXPECT_TRUE(sizeof(arr1) == sizeof(int) * 3); // 배열 항목의 갯수와 같음
+EXPECT_TRUE(sizeof(arr1) == sizeof(int) * 3); // 배열 요소의 갯수와 같음
 EXPECT_TRUE(arr2[2] == 2);
 EXPECT_TRUE(arr3[0] == 0 && arr3[1] == 0 && arr3[2] == 0);
 EXPECT_TRUE(arr4[0] == 1 && arr4[1] == 0 && arr4[2] == 0);
