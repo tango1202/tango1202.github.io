@@ -24,11 +24,11 @@ sidebar:
 |`T(int) {}`|인자가 1개인 값 생성자<br/>(형변환 생성자)|
 |`T(const T& other) {}`|복사 생성자|
 
-생성자는 개체가 생성될 때 제일 먼저 호출되는 특수 멤버 함수입니다. 개체를 메모리에 할당한 뒤 초기값을 설정하는 역할을 합니다.
+생성자는 개체가 생성될 때 제일 먼저 호출되는 특수 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)입니다. 개체가 메모리에 할당된 뒤에 호출되고, 초기값을 설정하는 역할을 합니다.
 
 # 기본 생성자
 
-인수없는 생성자를 기본 생성자라고 합니다. `T t;`과 같이 개체를 정의(인스턴스화)합니다.(`T t();` 와 같이 하면 `T`를 리턴하는 함수 `f()`선언입니다. [기본 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B8%B0%EB%B3%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 언급)
+인수없는 생성자를 기본 생성자라고 합니다. `T t;`과 같이 사용하여 개체를 정의(인스턴스화)합니다.(`T t();` 와 같이 하면 `T`를 리턴하는 함수 `f()`선언입니다. [기본 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B8%B0%EB%B3%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 언급)
 
 ```cpp
 class T {
@@ -43,7 +43,7 @@ T t(); // (X) T를 리턴하는 함수 f() 선언
 
 컴파일러는 다른 생성자가 정의되지 않으면, 암시적으로 기본 생성자를 정의합니다.
 
-암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 된다고는 합니다.([cppreference.com](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고) 하지만, 실제 해보니 GCC 디버그 모드에서는 `0`이 아닙니다. 신뢰할 수 없으니 명시적으로 초기화 하세요. 또한 참조자 형식이나 상수형 개체는 생성시 초기값에 전달되야 하기 때문에, 암시적 기본 생성자로 초기화 할 수 없습니다.
+암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 된다고는 합니다.([cppreference.com](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고) 하지만, 실제 해보니 GCC 디버그 모드에서는 `0`이 아닙니다. 신뢰할 수 없으니 명시적으로 초기화 하세요. 또한 참조자 형식이나 상수형 개체는 생성시 초기값에 전달되야 하기 때문에, 암시적 기본 생성자로 초기화 할 수 없습니다.(값 초기화를 이용해야 합니다.)
 
 ```cpp
 class T1 {
@@ -93,19 +93,9 @@ class T {
 T t; // (△) 비권장. 암시적 기본 생성자 사용
 ```
 
+보다는
+
 상기와 같이 사용하다가, `class T`가 개선되어 값 생성자가 추가되면, 컴파일 오류를 맞이하게 됩니다.
-
-```cpp
-class T {
-    int m_Val;
-public:
-    explicit T(int val) : // 값 생성자가 추가됨
-        m_Val(val) {}
-};
-T t; // (X) 컴파일 오류. 암시적 기본 생성자 없음     
-```
-
-물론 뒤늦게 기본 생성자를 추가해도 됩니다만, C++가 은근슬쩍 만들어 버리는 것들은 오사용의 소지도 있으니, 사전에 철저히 차단하고 필요한 것만 명시적으로 코딩하시는게 좋습니다.
 
 ```cpp
 class T {
@@ -113,11 +103,27 @@ class T {
 public:
     T() : 
         m_Val(0) {} // (O) 명시적으로 기본 생성자를 만듭니다.
-    explicit T(int val) : // 값 생성자가 추가됨
+    explicit T(int val) : // 값 생성자
         m_Val(val) {}
 };
-T t; // (O) 명시적 기본 생성자 호출     
+T t; // (O) 명시적 기본 생성자 호출    
 ```
+
+보다는
+
+```cpp
+class T {
+    int m_Val;
+public:
+    T() :
+    explicit T(int val = 0) : // 값 생성자 의 기본값을 이용해 디폴트 생성자를 없앴습니다.
+        m_Val(val) {}
+};
+T t1; // (O) 기본값으로 값 생성자 호출
+T t2(0); // (O) 기본값과 동일한 값으로 값 생성자 호출
+T t3(10) // (O) 임의 값으로 값 생성자 호출
+```
+가 낫습니다.
 
 # 값 생성자
 
