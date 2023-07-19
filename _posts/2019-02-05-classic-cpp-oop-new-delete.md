@@ -165,7 +165,7 @@ catch (std::bad_alloc&) {
 이전 스타일로 널검사를 하고 싶다면 `new(std::nothrow)` 을 사용할 수 있습니다. 하지만, 메모리 할당에 실패하면 널을 리턴하지만, 생성자에서 예외를 발생하면 전파됩니다. 그래서 그냥 `new`를 사용하고 `try-catch`를 사용하는게 좋습니다.
 
 ```cpp
-class T{};
+class T {};
 T* t = new(std::nothrow) T; // (△) 비권장. 메모리 할당에 실패하면 널을 리턴하지만, 생성자에서 예외를 발생하면 전파됩니다.
 
 if (t == NULL) {
@@ -553,25 +553,6 @@ T t; // (O)
 T* p = new T; // (X) 컴파일 오류
 delete p;
 ```
-
-# 외부에서 생성할 수 없는 개체
-
-외부에서 접근을 못하게 막으려면 생성자를 `private`로 만들고, 생성을 위한 `Create()`함수를 만들면 됩니다.
-```cpp
-class T {
-private:
-    T() {} // 외부에서는 접근 불가
-public:
-    static T Create() {return T();}
-};
-
-T t; // (X) 컴파일 오류
-T* p = new T; // (X) 컴파일 오류
-delete p;
-
-T t(T::Create()); // (O) T를 복사 생성    
-```
-
 # set_new_handler
 
 **`new_handler`와의 호환성 유지**
@@ -742,7 +723,6 @@ public:
         Recursive();
     }
 };
-
 {
     try {
         // new 실패시 UsingReserved -> Another -> BadAlloc 순으로 Handler를 변경합니다.
@@ -765,172 +745,7 @@ public:
 }
 {
     // 프로그램을 종료합니다.
-    T::SetNewHandlerMode(T::Abort);  
-    Tester::Recursive();
-}
-```
-
-
-
-
-
-1. 관례적으로, operator new 함수는 메모리 할당을 반복해서 시도하는 무한 루프를 가져야 하고, 메모리 할당 요구를 만족시킬 수 없을 때 new 처리자를 호출해야 하며, 0바이트에 대한 대책도 있어야 한다. 클래스 전용 버전은 자신이 할당하기로 예정된 크기보다 더 큰(틀린) 메모리 블록에 대한 요구도 처리해야 한다.
-2. operator delete 함수는 널 포인터가 들어왔을 때 아무 일도 하지 않아야 한다. 클래스 전용 버전의 경우에는 예정 크기보다 더 큰 블록을 처리해야 한다.
-
-```cpp
-// 커스텀 operator new 함수는 다른 매개변수를 추가로 가질 수 있다
-static void* operator new(std::size_t sz) throw(std::bad_alloc)
-{
-	using namespace std;
-
-	// 0 바이트 요청이 들어오면 1 바이트 요구로 간주하고 처리
-	if (sz == 0)
-	{
-		sz = 1;
-	}
-
-    // 메모리 할당 실패 시 루프를 통해 다시 시도
-	while (true)
-	{
-		size 바이트를 할당해 본다;
-		if (할당에 성공)
-		{
-			return (할당된 메모리에 대한 포인터);
-		}
-
-		// 할당에 실패했을 경우, 현재의 new 처리자 함수가
-		// 어느 것으로 설정되어 있는지 찾아낸다
-		new_handler globalHandler = set_new_handler(0);
-		set_new_handler(globalHandler);
-
-		if (globalHandler) (*globalHandler)();
-		else throw std::bad_alloc();
-	}
-}
-```
-항목 49에서, new 처리자 함수는 가용 메모리를 늘려 주던가, 다른 new 처리자를 설치하든가, new 처리자의 설치를 제거하든가, bad_alloc 혹은 bad_alloc 에서 파생된 타입의 예외를 던지든가, 아예 함수 복귀를 포기하고 중단을 시켜야 한다고 이야기했다. 이렇듯 new 처리자 함수가 4가지 중 하나를 택해야 하는 이유는, 위의 operator new 함수의 구현처럼 내부 루프를 끝낼 수 있도록 구현되어야 하기 때문이다.
-
-
-
-
-set_new_handler 함수를 쓰면 메모리 할당 요청이 만족되지 못했을 때 호출되는 함수를 지정할 수 있다.
-
-
-
-```cpp
-namespace std
-{
-  typedef void (*new_handler)();
-
-  // throw() 는 예외지정으로, 예외를 던지지 않는다
-  new_handler set_new_handler(new_handler p) throw();
-}
-
-void outOfMem()
-{
-  std::cerr << "Unable to satisfy request for memory\n";
-  std::abort();
-}
-
-int main()
-{
-  std::set_new_handler(outOfMem);
-
-  // Unable to satisfy request for memory 출력!
-  int *pBigDataArray = new int[100000000000000l];
-}
-```
-
-operator new 와의 고려사항
-
-1. 사용할 수 있는 메모리를 더 많이 확보한다
-2. 다른 new 처리자를 설치한다 : 현재의 new 처리자 안에서 set_new_handler 를 설치하고 호출한다
-3. new 처리자의 설치를 제거한다 : set_new_handler 에 널 포인터를 넘긴다
-4. 예외를 던진다
-5. 복귀하지 않는다 : 대개 abort 혹은 exit 을 호출한다
-
-  1) 사용할 수 있는 메모리를 더 많이 확보한다.
-
-    - 프로그램이 시작할때, 메모리 블록을 크게 할당해 놓았다가 new처리자 첫 호출(메모리할당 첫실패시) 될 때 그 메모리를 쓸수있도록한다.
-
-  2) 다른 new 처리자를 설치한다.
-
-    - 호출된 현재의 new처리자가 감당하지 못할때, 다른 new처리자를 설치한다.(현재의 new 처리자에서 set_new_handler(다른 new_handler)를 호출)
-
-  3) new 처리자의 설치를 제거한다.
-
-    - set_new_handler에 널 포인터를 넘긴다. new처리자 미설치시, operator new는 처음얘기한것처럼 사용자에러처리함수 없을시, 예외를 던진다.
-
-  4) 예외를 던진다.
-
-    - bad_alloc 혹은 bad _alloc에서 파생된 타입의 예외를 던진다. operator_new는 이 쪽종류의 에러 대응 능력이 없기에, 이 예외는 메모리 할당을 호출한쪽으로 예외 전이(propagate)된다.
-
-  5) 복귀하지 않는다.
-
-    - abort, exit 호출하여 종료시킨다.
-
-```cpp
-class NewHandlerHolder
-{
-public:
-  explicit NewHandlerHolder(std::new_handler nh)
-  : handler(nh) {}
-
-  ~NewHandlerHolder()
-  { std::set_new_handler(handler); }
-
-private:
-  // 핸들러를 기억해 둔다
-  std::new_handler handler;
-
-  // 복사를 막기 위한 부분 (항목 14 참고)
-  NewHandlerHolder(const NewHandlerHolder&);
-  NewHandlerHolder& operator=(const NewHandlerHolder&);
-};
-class Widget
-{
-public:
-  static std::new_handler set_new_handler(std::new_handler p) throw(){
-      std::new_handler oldHandler = currentHandler;
-      currentHandler = p;
-      return oldHandler;
-  }
-  static void* operator new(std::size_t sz) throw(std::bad_alloc) {
-    // Widget 의 new 처리자 설치
-    // NewHandlerHolder 는 currentHandler 로 핸들러가
-    // 바뀌기 전의 oldHandler 를 쥐고 있음!
-    NewHandlerHolder h(std::set_new_handler(currentHandler));
-
-    // 할당 실패 시 예외를 던짐
-    return ::operator new(sz);
-
-    // 이전의 전역 new 처리자가 자동으로 복원됨
-  }
-private:
-  static std::new_handler currentHandler;
-};
-
-// 널로 초기화
-std::new_handler Widget::currentHandler = 0;
-
-int main()
-{
-  // Widget 객체에 대한 메모리 할당이 실패했을 때 호출할 함수
-  void outOfMem();
-
-  // Widget 의 new 처리자 함수로 outOfMem 설치
-  Widget::set_new_handler(outOfMem);
-
-  // 메모리 할당 실패 시 outOfMem 호출
-  Widget *pw1 = new Widget;
-
-  // 메모리 할당 실패 시 전역 new 처리자 함수 호출(있으면)
-  std::string *ps = new std::string;
-
-  // Widget 클래스의 new 처리자 함수를 null 로 설정
-  Widget::set_new_handler(0);
-
-  // 메모리 할당이 실패하면 이제 바로 예외를 던짐
-  Widget *pw2 = new Widget;
+    // T::SetNewHandlerMode(T::Abort);  
+    // Tester::Recursive();
 }
 ```
