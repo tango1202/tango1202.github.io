@@ -693,6 +693,9 @@ public:
         return ptr;
     } 
 };
+```
+
+```cpp
 class Tester {
 public:    
     // new가 실패할때까지 반복해서 재귀 할당 합니다.
