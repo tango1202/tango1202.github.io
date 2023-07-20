@@ -198,9 +198,8 @@ if (t == NULL) {
 `operator new`를 재정의하려면 다음을 준수하여야 합니다.
 
 1. 최소 1byte를 할당해야 합니다.
-2. 할당 실패시에는 `std::bad_alloc()`을 발생시켜야 합니다.
-3. 할당 실패시 `new_handler`를 호출해야 합니다.
-4. 할당에 성공하거나, `new_handler`에서 예외를 발생시키거나 프로그램을 종료할 때까지 반복해야 합니다. 
+2. 할당 실패시 `new_handler`를 호출해야 합니다. `new_handler`가 없다면 `std::bad_alloc()`을 발생시켜야 합니다.
+3. `new_handler`에서 예외를 발생시키거나 프로그램을 종료할 때까지 반복해야 합니다. 
 
 전역 `operator new`를 이용하면 상기 내용을 준수하므로 다음과 같이 전역 버전을 호출하면 됩니다.
 
@@ -243,7 +242,7 @@ public:
             ++sz;
         }
 
-        // hanlder가 예외를 발생시키거나 프로그램을 종료할 때까지 반복
+        // 핸들러가 예외를 발생시키거나 프로그램을 종료할 때까지 반복
         while (true) {
             void* ptr = malloc(sz);
             if (ptr != NULL) {
@@ -567,13 +566,18 @@ T t; // (O)
 T* p = new T; // (X) 컴파일 오류
 delete p;
 ```
-# set_new_handler
+# `set_new_handler()` 함수를 이용한 오류 처리
 
-`operator new`는 오류 발생시 `set_new_handler()` 로 전역적으로 설정된 `new_handler`를 호출하고, `new_handler`에서 오류를 해결할 기회를 줍니다. 이 과정은 예외를 발생시키거나 프로그램이 종료할때까지 무한 반복됩니다.
+`operator new`는 오류 발생시 
+
+1. `set_new_handler()` 로 전역적으로 설정된 `new_handler`를 호출하고, 
+2. `new_handler`에서 오류를 해결할 기회를 줍니다. 
+ 
+이 과정은 예외를 발생시키거나 프로그램이 종료할때까지 무한 반복됩니다.
 
 따라서, `new_handler`는 다음 작업중 하나를 해주어야 합니다.
 
-1. 미리 예약된 공간을 해제하여 메모리를 추가 확보해 주거나
+1. 미리 예약된 메모리 공간을 해제하여 메모리를 추가 확보해 주거나
 2. 다른 `new_handler`를 설치하여 처리를 위임하거나
 3. `new_handler`를 제거하거나(제거되면 `bad_alloc()` 발생)
 4. `std::bad_alloc()`을 발생시켜 처리를 포기하거나
@@ -582,7 +586,7 @@ delete p;
 다음 테스트 코드는 
 
 1. `T`는 `1000 M * sizeof(int)` 의 큰 공간을 할당하는 클래스입니다. 시스템에 따라 다르겠습니다만, 대략 5 ~ 6개 할당되면 `new`가 실패하게 됩니다.
-2. `MyExceptionHandler()` 는 다른 처리 없이 `std::bad_alloc()`을 발생시킵니다.
+2. `MyExceptionHandler()` 는 다른 처리 없이 `std::bad_alloc`을 상속한 `MyException`을 발생시킵니다.
 3. 테스트 코드에서 `set_new_handler()`함수를 이용하여 `MyExceptionHandler()`로 교체합니다. 사용이 끝나면 원래 `new_handler`로 복원합니다.
 4. `T`를 계속 `new`하고, 예외가 발생하면, 기존에 생성했던 `T`를 `delete`합니다.
 
@@ -626,4 +630,4 @@ for (int i = 0; i < 100; ++i) { // 대략 예외를 발생시킬때까지 반복
 std::set_new_handler(oldHandler); // 이전 핸들러로 복원합니다.
 ```
 
-미리 예약된 메모리 공간을 활용하는 방법은 [NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/)를 참고하기 바랍니다.
+미리 예약된 메모리 공간을 활용하는 `new_handler` 구현 방법은 [NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/)를 참고하기 바랍니다.
