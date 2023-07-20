@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [C++ 코딩 패턴] 스택에만 생성할 수 있는 개체"
+title: "#12. [C++ 코딩 패턴] OnlyStackAssignable - 스택에만 생성할 수 있는 개체"
 categories: "cpp-coding-pattern"
 tag: ["cpp"]
 author_profile: false

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [C++ 코딩 패턴] RAII와 Holder 와 Restorer"
+title: "#12. [C++ 코딩 패턴] RAII와 Holder 와 Restorer - 자원 획득과 안전한 소멸(복원)"
 categories: "cpp-coding-pattern"
 tag: ["cpp"]
 author_profile: false

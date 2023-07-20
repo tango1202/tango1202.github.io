@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [C++ 코딩 패턴] 복사 방지 클래스"
+title: "#1. [C++ 코딩 패턴] Uncopyable - 복사 방지 클래스"
 categories: "cpp-coding-pattern"
 tag: ["C++ 코딩 패턴"]
 author_profile: false

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ 가이드] 개체 생성과 소멸"
+title: "#5. [고전 C++ 가이드] 개체 생성(new)과 소멸(delete)"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -11,7 +11,7 @@ sidebar:
 > * 개체는 `new` - `delete` 쌍으로 생성/소멸 하라.
 > * 배열은 `new[]` - `delete[]` 쌍으로 생성/소멸하라. `new[]`한 것을 `delete` 만 하면, 메모리 릭이 발생한다. 꼭 `delete[]`하라.
 > * `delete`는 널이면 아무 작업 안한다. 괜히 널검사하지 마라.
-> * `new`는 `std::bad_alloc`을 방출한다. 괜히 널검사하지 마라.
+> * `new`는 `std::bad_alloc()`을 방출한다. 괜히 널검사하지 마라.
 > * `operator new`를 `private`로 만들어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에만 생성되는 개체를 만들 수 있다.
 
 # 개요
@@ -195,12 +195,35 @@ if (t == NULL) {
 
 **기본 재정의 방법**
 
-`malloc` - `free`를 이용하거나 전역 `operator new` - 전역 `operator delete`를 이용할 수 있습니다. 
+`malloc()` - `free()`를 이용하거나 전역 `operator new` - 전역 `operator delete`를 이용할 수 있습니다. 
 
-할당 실패시에는 `std::bad_alloc()`을 방출해야 합니다.
+`operator new`를 재정의하려면 다음을 준수하여야 합니다.
 
-* `malloc`은 할당 실패시 널을 리턴하므로, 강제로 `std::bad_alloc()`을 방출해야 합니다. 또한 `new_handler`(`set_new_handler` 참고)를 호출하지 않습니다.
-* 전역 `operator new`는 할당 실패시 `std::bad_alloc()`을 방출하고, `new_handler`를 호출합니다.
+1. 최소 1byte를 할당해야 합니다.
+2. 할당 실패시에는 `std::bad_alloc()`을 방출해야 합니다.
+3. 할당 실패시 `new_handler`를 호출해야 합니다.
+4. 할당에 성공하거나 `new_handler`에서 예외를 방출하거나 프로그램을 종료할 때까지 반복해야 합니다. 
+
+전역 `operator new`를 이용하면 상기 내용을 준수 하므로 다음과 같이 작성하면 됩니다.
+
+```cpp
+class T {
+public:
+    static void* operator new(std::size_t sz) {
+        return ::operator new(sz); // 전역 operator new
+    }
+    static void operator delete(void* ptr) {
+        ::operator delete(ptr); // 전역 operator delete
+    }
+};
+```
+
+`malloc()` - `free()`를 이용한다면, 
+
+1. 최소 크기 1byte를 설정해 주어야 하고,
+2. `malloc()`에서는 오류 발생시 `NULL`을 리턴하므로, `new_handler` 와 `std::bad_alloc()` 처리를 해주어야 합니다.
+
+`set_new_handler()` 함수에 대응하는 `get_new_handler()` 함수는 없습니다. 따라서 `handler = std::set_new_handler(NULL);` 과 같이 호출하여, `new_handler`를 구하고, 이를 다시 복원해야 합니다.
 
 ```cpp
 class T {
@@ -217,16 +240,40 @@ public:
     int GetY() const {return m_Y;}
 
     static void* operator new(std::size_t sz) {
-        void* ptr = malloc(sz);
-        if (ptr == NULL) {
-            throw std::bad_alloc(); // 할당 실패시 std::bad_alloc 방출
+        // 혹시 모르니 검사하여 최소 1byt로 만듬    
+        if (sz == 0) { 
+            ++sz;
         }
-        return ptr;
-        // return ::operator new(sz); // 전역 operator new
+
+        // hanlder가 예외를 방출하거나 프로그램을 종료할 때까지 반복
+        while (true) {
+            void* ptr = malloc(sz);
+            if (ptr != NULL) {
+                return ptr;
+            }
+
+            std::new_handler handler = std::set_new_handler(NULL); // 대충 NULL을 세팅하고 핸들러를 구합니다.
+            // 핸들러가 있다면, 실행하고, 이전 핸들러 복원
+            if (handler != NULL) {
+                try {
+                    handler();
+                    std::set_new_handler(handler); // NULL로 바꿨으므로 복원합니다.
+                } 
+                // 이전 핸들러를 복원하고, 핸들러가 방출한 예외 전파
+                catch (...) {
+                    std::set_new_handler(handler); // NULL로 바꿨으므로 복원합니다.
+                    throw; // 예외를 다시 전파
+                }
+            }
+            // 핸들러가 없다면 std::bad_alloc
+            else {
+                throw std::bad_alloc();
+            }
+        }
+        return NULL;
     }
     static void operator delete(void* ptr) {
         free(ptr); // ptr == NULL 일 경우 아무 작업 안함
-        // ::operator delete(ptr); // 전역 operator delete. ptr == NULL 일 경우 아무 작업 안함
     }
 };
 T* t = new T; // T::operator new(std::size_t sz), 기본 생성자 호출
@@ -377,33 +424,6 @@ public:
 
 Base* base = new Derived; // Base::operator new(std::size_t sz) 호출
 delete base; // (X) 오동작. Base의 소멸자가 호출되고 Base의 크기가 전달됨. Base::delete(void* ptr, std::size_t sz) 호출    
-```
-
-**`operator new`는 최소 1byte 할당**
-
-0byte인 자료형은 없으므로 최소 1byte는 할당해야 합니다. 사실 클래스 선언시 빈 클래스라면 알아서 크기를 1로 설정은 해줍니다만, 혹시 모르니 다음과 같이 `++sz;` 추가해 두는 것이 좋습니다. 
-
-```cpp
-class T {
-public:
-    static void* operator new(std::size_t sz) { // 1byte 전달됨
-        if (sz == 0) { // 혹시 모르니 검사하여 최소 1byt로 만듬
-            ++sz;
-        }
-        void* ptr = malloc(sz);
-        if (ptr == NULL) {
-            throw std::bad_alloc(); // 할당 실패시 std::bad_alloc 방출
-        }
-        return ptr;
-    }
-    static void operator delete(void* ptr) {
-        free(ptr);  
-    }            
-};
-
-EXPECT_TRUE(sizeof(T) == 1); // 빈 클래스도 1byte 할당됨
-T* t = new T;
-delete t;
 ```
 
 # `operator new[]`와 `operator delete[]` 재정의
@@ -560,7 +580,7 @@ delete p;
 
 1. 미리 예약된 공간을 해제하여 메모리를 추가 확보해 주거나
 2. 다른 `new_handler`를 설치하여 처리를 위임하거나
-3. `new_handler`를 제거하거나(제거되면 `bad_alloc` 방출)
+3. `new_handler`를 제거하거나(제거되면 `bad_alloc()` 방출)
 4. `std::bad_alloc()`을 방출하여 처리를 포기하거나
 5. `std::abort()`을 하여 프로그램을 종료합니다.
 

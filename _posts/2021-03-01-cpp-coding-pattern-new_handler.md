@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [C++ 코딩 패턴] NewHandler"
+title: "#12. [C++ 코딩 패턴] NewHandler - `new`의 예외 처리"
 categories: "cpp-coding-pattern"
 tag: ["cpp"]
 author_profile: false
@@ -14,7 +14,7 @@ sidebar:
 
 1. 미리 예약된 공간을 해제하여 메모리를 추가 확보해 주거나
 2. 다른 `new_handler`를 설치하여 처리를 위임하거나
-3. `new_handler`를 제거하거나(제거되면 `bad_alloc` 방출)
+3. `new_handler`를 제거하거나(제거되면 `std::bad_alloc()` 방출)
 4. `std::bad_alloc()`을 방출하여 처리를 포기하거나
 5. `std::abort()`을 하여 프로그램을 종료합니다.
 
