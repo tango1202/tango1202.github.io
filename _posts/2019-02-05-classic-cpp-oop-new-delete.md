@@ -555,200 +555,59 @@ delete p;
 ```
 # set_new_handler
 
-**`new_handler`와의 호환성 유지**
+`operator new`는 오류 발생시 `set_new_handler()` 로 전역적으로 설정된 `new_handler`를 호출하고, `new_handler`에서 오류를 해결할 기회를 줍니다. 이 과정은 예외를 방출하거나 프로그램이 종료할때까지 무한 반복됩니다.
 
+따라서, `new_handler`는 다음 작업중 하나를 해주어야 합니다.
+
+1. 미리 예약된 공간을 해제하여 메모리를 추가 확보해 주거나
+2. 다른 `new_handler`를 설치하여 처리를 위임하거나
+3. `new_handler`를 제거하거나(제거되면 `bad_alloc` 방출)
+4. `std::bad_alloc()`을 방출하여 처리를 포기하거나
+5. `std::abort()`을 하여 프로그램을 종료합니다.
+
+다음 테스트 코드는 
+
+1. `T`는 `1000 M * sizeof(int)` 의 큰 공간을 할당하는 클래스입니다. 시스템에 따라 다르겠습니다만, 대략 5 ~ 6개 할당되면 `new`가 실패하게 됩니다.
+2. `MyExceptionHandler()` 는 다른 처리 없이 `std::bad_alloc()`을 방출합니다.
+3. 테스트 코드에서 `set_new_handler()`함수를 이용하여 `MyExceptionHandler()`로 교체합니다. 사용이 끝나면 원래 `new_handler`로 복원합니다.
+4. `T`를 계속 `new`하고, 예외가 발생하면, 기존에 생성했던 `T`를 `delete`합니다.
+
+실행시켜보면 `MyExceptionHandler()` 가 호출되고, `MyException` 예외를 방출한 것을 알 수 있습니다.
 
 ```cpp
-// 생성시 new_handler를 설정하고, 소멸시 이전 new_handler로 복원합니다.
-class NewHandlerRestorer {
-    std::new_handler m_OldHandler;
-public:
-    explicit NewHandlerRestorer(std::new_handler handler) : 
-        m_OldHandler(std::set_new_handler(handler)) {
-        std::cout<<"----## NewHandlerRestorer : Start"<<std::endl;    
-    }
-    ~NewHandlerRestorer() {
-        std::set_new_handler(m_OldHandler);
-        std::cout<<"----## NewHandlerRestorer : End"<<std::endl;
-    }
-private:
-    // 복사 생성자, 대입 연산자 를 사용 못하게 막음
-    NewHandlerRestorer(const NewHandlerRestorer& other);
-    NewHandlerRestorer& operator =(const NewHandlerRestorer& other);
-};
+class MyException : public std::bad_alloc {};
+
 // 엄청 큰 데이터를 관리하는 클래스 입니다.
 class T {
     int m_Big[1024 * 1024 * 1000]; // 1000 M * sizeof(int)
 public:
-    // 모드설정에 따라 new_handler가 변경됩니다.
-    enum NewHandlerMode {UsingReserved, Another, Remove, BadAlloc, Abort};
-private:
-    static NewHandlerMode& GetNewHandlerModeRef() {
-        static NewHandlerMode s_Mode = T::BadAlloc; // 기본적으론 BadAlloc
-
-        return s_Mode;
-    }
-    // s_Mode 에 맞게 NewHandler 리턴합니다.
-    static std::new_handler GetNewHandler() {
-        std::new_handler result = &T::BadAllocHandler;
-        T::NewHandlerMode mode = T::GetNewHandlerModeRef();
-        switch(mode) {
-        case T::UsingReserved: result = &T::UsingReservedHandler; break;
-        case T::Another: result = &T::AnotherHandler; break;
-        case T::Remove: result = &T::RemoveHandler; break;
-        case T::BadAlloc: result = &T::BadAllocHandler; break;
-        case T::Abort: result = &T::AbortHandler; break;
-        }
-        return result;
-    }
-    // 미리 예약된 메모리 공간입니다. 
-    // new 실패시 UsingReservedHandler 에서 해제하여 메모리 공간을 확보해 줍니다.
-    class Reserved {
-        T* m_Ptr;
-    public:
-        explicit Reserved() : 
-            m_Ptr(new T[2]) { // T 2개를 new 할 수 있는 공간을 미리 예약합니다.
-            std::cout<<"------## Reserved : Start"<<std::endl;          
-        }
-        ~Reserved() {
-            Release(); // 메모리를 해제합니다.
-        } 
-    private:
-        // 복사 생성자, 대입 연산자 를 사용 못하게 막음
-        Reserved(const Reserved& other);
-        Reserved& operator =(const Reserved& other);     
-    public:    
-        // 예약된 공간을 해제하고, NULL로 초기화 합니다. 
-        void Release() {
-            delete[] m_Ptr; 
-            if (m_Ptr != NULL) {
-                std::cout<<"------## Reserved : End"<<std::endl;
-            }
-            m_Ptr = NULL; 
-        }
-        // 예약된 공간이 있는지 없는지 리턴합니다.
-        bool IsValid() const {return m_Ptr != NULL ? true : false;} 
-    };
-    static Reserved& GetReservedRef() {
-        // new 실패시 해제하고 사용할 2개의 공간을 미리 할당해 둡니다.
-        // 정적 지역 변수여서 함수 호출시 최초 1회 생성됩니다.
-        static Reserved s_Reserved; 
-
-        return s_Reserved;
-    }        
-    static void CreateReserved() {
-        GetReservedRef(); // 최초 호출하여 메모리 공간을 예약합니다. 
-    }
-
-    // new 할당에 실패하면, 예약된 공간을 해제하여 메모리를 늘려줍니다.
-    static void UsingReservedHandler() {
-        std::cout<<"------## UsingReservedHandler"<<std::endl;
-        // 예약된 공간이 있다면, 해제하고 재시도 하고,
-        if (GetReservedRef().IsValid()) {
-            GetReservedRef().Release();
-        }
-        // 예약된 공간이 없다면 다른 new_handler를 설치합니다.
-        else {
-            std::set_new_handler(&T::AnotherHandler);
-        }
-    }
-    // 다른 new_handler를 설치합니다.
-    static void AnotherHandler() {
-        std::cout<<"------## AnotherHandler"<<std::endl;
-        std::set_new_handler(&T::BadAllocHandler);
-    }
-    // new 처리자의 설치 제거합니다. 아마도 std::bad_alloc이 방출됩니다.
-    static void RemoveHandler() {
-        std::set_new_handler(NULL);
-    }
     // bad_alloc으로 포기합니다.
-    static void BadAllocHandler() {
-        std::cout<<"------## BadAllocHandler"<<std::endl;
-        throw std::bad_alloc();
+    static void MyExceptionHandler() {
+        throw MyException();
     }
-    // std::abort()로 프로그램 종료합니다.
-    static void AbortHandler() {
-        std::abort();
-    }
-public:
-    // new_handler 모드를 설정합니다.
-    // mode : UsingReserved, Another, Remove, BadAlloc, Abort
-    static void SetNewHandlerMode(NewHandlerMode mode) {
-        GetNewHandlerModeRef() = mode;
-    }
-
     static void* operator new(std::size_t sz) { 
 
-        // 최초 new 요청시 메모리 영역을 예약합니다.
-        T::CreateReserved();
-
-        // 예외가 발생하거나 유효 범위가 벗어나면 NewHandlerRestorer 소멸자에서 이전 handler로 복원해 줍니다.
-        NewHandlerRestorer restorer(T::GetNewHandler());
-
-        // 내부적으로는 메모리를 할당하고, 실패하면 handler를 실행하는 과정을 무한히 반복합니다.
-        // handler가 std::bad_alloc이나 std::abort()를 할때 까지요.
-        std::cout<<"----## ::operator new : Start"<<std::endl;  
-        void* ptr = ::operator new(sz); 
-        std::cout<<"----## ::operator new : End"<<std::endl; 
-        return ptr;
+        // 내부적으로는 메모리를 할당하고, 실패하면 new_handler를 실행하는 과정을 무한히 반복합니다.
+        // new_handler가 NULL 이거나 std::bad_alloc이나 std::abort()를 할때 까지요.
+        return ::operator new(sz);
     } 
 };
-```
 
-```cpp
-class Tester {
-public:    
-    // new가 실패할때까지 반복해서 재귀 할당 합니다.
-    // Holder에 생성된 개체를 담습니다.
-    static void Recursive() {
+std::new_handler oldHandler = std::set_new_handler(&T::MyExceptionHandler); // 핸들러를 설치합니다.
 
-        // 포인터를 담고 있다가 유효 범위가 끝나면 소멸시킵니다.
-        // new 가 성공하면 Holder 생성자에서 해당 포인터를 저장하고, 
-        // 정상 종료나 예외발생에 따른 스택 풀기에서 소멸자가 호출됩니다.
-        class Holder {
-            T* m_Ptr;
-        public:
-            Holder(T* ptr) :
-                m_Ptr(ptr) {
-                std::cout<<"--## Holder : Start. operator new OK"<<std::endl;    
-            }
-            ~Holder() {
-                delete m_Ptr;
-                std::cout<<"--## Holder : End"<<std::endl;
-            }
-        private:
-            // 복사 생성자, 대입 연산자 를 사용 못하게 막음
-            Holder(const Holder& other);
-            Holder& operator =(const Holder& other);
-        };
-        std::cout<<"## Recursive"<<std::endl;
-        Holder t(new T);
-        Recursive();
-    }
-};
-{
+T* arr[100] = {}; // 모두 NULL(0)로 초기화
+for (int i = 0; i < 100; ++i) { // 대략 예외를 발생시킬때까지 반복합니다.
     try {
-        // new 실패시 UsingReserved -> Another -> BadAlloc 순으로 Handler를 변경합니다.
-        T::SetNewHandlerMode(T::UsingReserved); 
-        Tester::Recursive();
+        arr[i] = new T;
     }
-    catch(std::bad_alloc& e) {
-        std::cout<<"## [UsingReserved] catch(std::bad_alloc& e)"<<std::endl;    
-    }
-}
-{
-    // Handler 를 제거합니다. std::bad_alloc을 방출합니다.
-    try {
-        T::SetNewHandlerMode(T::Remove); 
-        Tester::Recursive();
-    }
-    catch(std::bad_alloc& e) {
-        std::cout<<"## [Remove] catch(std::bad_alloc& e)"<<std::endl;    
+    catch (MyException& e) {
+        // i 이전까지 모두 삭제합니다.
+        for (int j = 0; j < i; ++j) {
+            delete arr[j];
+        }
+        break; // T 할당을 그만두기 위해 for문을 탈출합니다.
     }
 }
-{
-    // 프로그램을 종료합니다.
-    // T::SetNewHandlerMode(T::Abort);  
-    // Tester::Recursive();
-}
+
+std::set_new_handler(oldHandler); // 이전 핸들러로 복원합니다.
 ```

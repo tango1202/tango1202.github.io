@@ -9,6 +9,7 @@ sidebar:
 ---
 
 ```cpp
+// 스택만 할당할 수 있는 개체
 class OnlyStackAssignable {
 protected: 
     OnlyStackAssignable() {} // 상속해서만 사용 가능

@@ -69,35 +69,19 @@ delete ptr;
 
 고맙게도 유효 범위를 벗어나거나 예외 발생시에는 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)에 따라 스택의 개체들이 하나씩 소멸됩니다. 이를 이용하여 포인터를 관리하는 스택 개체를 만들면 스택에서 소멸되면서 포인터를 `delete`할 수 있습니다. 이렇게 포인터를 관리하는 개체를 `Holder` 라고 합니다.
 
+# 활용 코딩 패턴
+
+1. 복사 생성과 대입연산을 막기 위해 [`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-Uncopyable/)을 사용하고, 
+2. 지역 변수(자동 변수)로만 생성되도록 [`OnlyStackAssignable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)을 사용합니다.
+
 # Holder의 구현
 
 1. `new`한 개체를 생성자에서 전달받고, 소멸자에서 `delete`합니다.
 2. 보통 `Holder`는 기본 생성자, 복사 생성자, 대입 연산자가 필요 없습니다.
 3. 보통 `Holder`는 `new` 로 생성되지 않고 스택에 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)(자동 변수)로만 생성됩니다.
 
-복사 생성과 대입연산을 막기 위해 [`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-Uncopyable/)을 사용하고, 지역 변수(자동 변수)로만 생성되도록 [`OnlyStackAssignable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)을 사용합니다.
-
 ```cpp
-// 복사 생성과 대입 연산을 할 수 없는 개체
-class Uncopyable {   
-protected:
-    Uncopyable() {} // 상속해서만 사용 가능
-    ~Uncopyable() {}
-private:
-    Uncopyable(const Uncopyable& other) {} // 누군가가 접근하면 private여서 컴파일 오류
-    Uncopyable& operator =(const Uncopyable& other) {return *this;}
-};
-
-// 스택만 할당할 수 있는 개체
-class OnlyStackAssignable {
-protected: 
-    OnlyStackAssignable() {} // 상속해서만 사용 가능
-    ~OnlyStackAssignable() {}
-private:
-    static void* operator new(std::size_t sz) {return NULL;} // 누군가가 접근하면 private여서 컴파일 오류
-};
-
-// 유효 범위가 지나면, T 타입의 포인터를 소멸시킴
+// 유효 범위가 지나면, T 타입의 포인터를 소멸시키는 개체
 template<typename T>
 class Holder : 
     private Uncopyable,
@@ -158,16 +142,71 @@ TEST(TestCppPattern, Holder) {
 2. 소멸시 기존 값으로 설정값을 변경합니다.
 
 
-
 다음과 같이 구현합니다.
 
 ```cpp
-
-
+// 유효 범위가 지나면, 설정한 속성을 복원시키는 개체
+template< typename GetterT, typename SetterT, typename ValueT>
+class Restorer : 
+    private Uncopyable,
+    private OnlyStackAssignable {
+    SetterT m_Setter;
+    ValueT m_OldValue;
+public:
+    Restorer(GetterT getter, SetterT setter, ValueT value) :
+        m_Setter(setter), 
+        m_OldValue(getter()) { // 이전값 기억
+            m_Setter(value); // value로 설정
+    }
+    ~Restorer() {
+        m_Setter(m_OldValue); // 이전값 복원
+    }
+};   
 ```
 
 다음과 같이 테스트 합니다.
 
 ```cpp
+TEST(TestCppPattern, Restorer) {
+    // 테스트용 속성 관리자
+    class Manager {
+        int m_Val;
+    public:
+        int GetVal() const {return m_Val;}
+        void SetVal(int val) {m_Val = val;} 
+    };
 
+    // 속성값을 리턴하는 함수자
+    class ManagerGetter { 
+        const Manager& m_Manager; 
+    public:
+        explicit ManagerGetter(const Manager& manager) : 
+            m_Manager(manager) {} 
+        int operator ()() const {return m_Manager.GetVal();}
+    };
+
+    // 속성값을 세팅하는 함수자
+    class ManagerSetter { 
+        Manager& m_Manager; 
+    public:
+        explicit ManagerSetter(Manager& manager) : 
+            m_Manager(manager) {} 
+        void operator ()(int val) {m_Manager.SetVal(val);}
+    }; 
+
+    Manager manager;
+    manager.SetVal(10); 
+
+    {
+        ManagerGetter getter(manager);
+        ManagerSetter setter(manager);
+        Restorer<ManagerGetter, ManagerSetter, int> managerRestorer(
+            getter,
+            setter,
+            20
+        );
+        EXPECT_TRUE(manager.GetVal() == 20); // 20 으로 설정함
+    } // Restore가 소멸되면서 원래값 복원  
+    EXPECT_TRUE(manager.GetVal() == 10); // 원래값인 10으로 복원함
+}
 ```
