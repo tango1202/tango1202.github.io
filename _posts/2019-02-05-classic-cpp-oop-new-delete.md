@@ -35,13 +35,13 @@ sidebar:
 `new`는 다음의 순서로 개체의 메모리 할당과 생성자 호출을 실행합니다.([생성/소멸 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8-%EC%97%B0%EC%82%B0%EC%9E%90) 언급)
 
 1. 전역 `operator new(std::size_t)`를 이용하여 메모리 공간 할당(오류 발생시 `set_new_handler()`에 설정한 `new_handler` 실행)
-2. 구조체이거나 클래스이면 `operator new(void*)`를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
+2. 구조체이거나 클래스이면 `operator new(void*)`(위치 지정 생성)를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
 3. 메모리 주소를 해당 타입으로 형변환하여 리턴
 
 `delete`는 다음의 순서로 개체의 소멸자 호출과 메모리 해제를 실행합니다.([소멸자 호출 순서](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%88%9C%EC%84%9C) 참고)
 
 1. 개체의 소멸자 호출
-2. 개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 소멸자 호출
+2. 개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 소멸
 3. 전역 `operator delete(void*)`를 이용하여 메모리 할당 해제
 
 즉 `new`는 메모리 할당, 생성자 호출, 메모리 주소를 형변환해서 리턴하지만,
@@ -139,7 +139,7 @@ delete p; // (O) 널검사 없이 바로 delete 합니다.
 
 `new`는 메모리가 부족하여 할당이 실패하면, `std::bad_alloc()` 예외를 발생시킵니다.(C++98이후부터)
 
-그 이전에는 널을 리턴해서 하기와 같은 검사 코드가 많이 있는데요,
+C++98 이전에는 `new`가 널을 리턴해서 다음과 같이 검사 했는데요,
 
 ```cpp
 T* t = new T;
@@ -148,7 +148,7 @@ if (t == NULL) {
 }
 ```
 
-C++98이후부터는 `std::bad_alloc()` 예외를 발생시키므로 하기와 같이 검사해야 합니다.
+C++98 이후부터는 `std::bad_alloc()` 예외를 발생시키므로 하기와 같이 검사해야 합니다.
 
 ```cpp
 try {
@@ -186,9 +186,9 @@ if (t == NULL) {
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/9f03346e-1457-4b92-90db-52d18e467086)
 
-컴파일러 마다 그 크기가 다를 수 있으며, 보통 4 ~ 8byte 사이의 추가 오버헤드 공간을 사용합니다.
+컴파일러 마다 그 크기가 다를 수 있으며, 보통 4, 8byte 의 추가 오버헤드 공간을 사용합니다.
 
-따라서, 크기가 작은 개체를 아주 많이 동적 생성을 해야 한다면, 메모리 공간을 효율적으로 사용하기 위해 `operator new`를 재정의하여 사용하는게 좋습니다.
+따라서, 크기가 작은 개체를 아주 많이 동적 생성을 해야 한다면, 메모리 공간을 효율적으로 사용하기 위해 `operator new`의 재정의가 필요할 수 있습니다.
 
 
 **기본 재정의 방법**
