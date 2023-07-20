@@ -14,8 +14,8 @@ sidebar:
 
 1. 미리 예약된 공간을 해제하여 메모리를 추가 확보해 주거나
 2. 다른 `new_handler`를 설치하여 처리를 위임하거나
-3. `new_handler`를 제거하거나(제거되면 `std::bad_alloc()` 방출)
-4. `std::bad_alloc()`을 방출하여 처리를 포기하거나
+3. `new_handler`를 제거하거나(제거되면 `std::bad_alloc()` 발생)
+4. `std::bad_alloc()`을 발생시켜 처리를 포기하거나
 5. `std::abort()`을 하여 프로그램을 종료합니다.
 
 # NewHandler의 필요성
@@ -39,7 +39,7 @@ sidebar:
 4. `UsingReservedHandler()` 는 예약된 메모리 공간을 해제하고 `new`를 재시도 할 수 있게 해줍니다.
 5. `AnotherHandler()` 에서 다른 처리 방법을 사용자 정의하여 구현 할 수 있습니다.
 6. `RemoveHandler()` 는 기존 핸들러를 제거합니다.
-7. `BadAllocHandler()`은 별다른 처리없이 `std::bad_alloc()`을 방출합니다.(`RemoveHandler()` 와 동일합니다.)
+7. `BadAllocHandler()`은 별다른 처리없이 `std::bad_alloc()`을 발생시킵니다.(`RemoveHandler()` 와 동일합니다.)
 8. `AbortHandler()`는 프로그램을 종료합니다.
 
 다음과 같이 구현합니다.
@@ -151,7 +151,7 @@ private:
         // [Todo] 다른 처리 방법이 있다면 시도합니다.
         std::set_new_handler(&BadAllocHandler);
     }
-    // new 처리자의 설치 제거합니다. 아마도 std::bad_alloc이 방출됩니다.
+    // new 처리자의 설치 제거합니다. 아마도 std::bad_alloc이 발생됩니다.
     static void RemoveHandler() {
         std::set_new_handler(NULL);
     }
@@ -210,7 +210,7 @@ NewHandler::GetInstanceRef().ResetReserved(sizeof(T) * 2);
     }
 }
 {
-    // Handler 를 제거합니다. std::bad_alloc을 방출합니다.
+    // Handler 를 제거합니다. std::bad_alloc을 발생시킵니다.
     try {
         NewHandler::GetInstanceRef().SetMode(NewHandler::Remove); 
         Tester::Recursive();

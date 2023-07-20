@@ -50,11 +50,11 @@ t2 = t1; // (O) 암시적 대입 연산자 호출
 EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 ```
 
-# 포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`
+# 포인터 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 소유권 분쟁과 개체 `Handler`
 
-[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)에서와 마찬가지로, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에 포인터가 있다면 대입 연산 후 소유권 분쟁을 합니다. 동일한 힙 개체를 2번 `delete` 하게 되니까요.([복사 생성자의 포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-%ED%95%B8%EB%93%A4%EB%9F%AC) 참고)
+[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)에서와 마찬가지로, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에 포인터가 있다면 대입 연산 후 소유권 분쟁을 합니다. 동일한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 2번 `delete` 하게 되니까요.([복사 생성자의 포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-%ED%95%B8%EB%93%A4%EB%9F%AC) 참고)
 
-이를 해결하기 위해, 암시적 대입 연산자를 사용하지 않고, 다음처럼 대입 연산자를 명시적으로 구현하여, 힙 개체의 복제본을 만들 수 있습니다.
+이를 해결하기 위해, 암시적 대입 연산자를 사용하지 않고, 다음처럼 명시적으로 대입 연산자를 구현하여, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들 수 있습니다.
 
 ```cpp
 class T {
@@ -157,12 +157,12 @@ public:
     explicit T(int* val) :
         m_Val(val) {}
 };
-// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+// (O) 복사 생성시 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
 {
     T t1(new int(10));
     T t2(t1); // 새로운 int형 개체를 만들고 10을 복제합니다.
 } 
-// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+// (O) 대입 연산시 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
 {
     T t1(new int(10));
     T t2(new int(20)); 
@@ -174,7 +174,7 @@ public:
 
 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)에 언급된 것처럼 예외가 발생하기 전의 상태로 되돌아가야 합니다.
 
-하지만, `Handler`의 대입 연산자 구현을 보면, 기존에 참조되던 포인터를 `delete`하고, 새로운 힙 개체를 할당합니다. 따라서 이미 `delete`한 힙 개체를 복원할 수 없어 예외 처리가 어려워 집니다.
+하지만, `Handler`의 대입 연산자 구현을 보면, 기존에 참조되던 포인터를 `delete`하고, 새로운 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 할당합니다. 따라서 이미 `delete`한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 복원할 수 없어 예외 처리가 어려워 집니다.
 
 ```cpp
 Handler& operator =(const Handler& other) {
@@ -324,7 +324,7 @@ public:
 
     // (O) 예외에 안정적이도록 swap으로 대입 연산자를 구현합니다. 
     T& operator =(const T& other) {
-        T temp(other); // 임시 개체 생성
+        T temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
         Swap(temp); // 바꿔치기
         return *this; 
     } // 임시 개체가 소멸되면서, this가 이전에 가졌던 힙 개체 소멸
@@ -336,20 +336,16 @@ public:
     }                
 };
 
-// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
-{
-    T t1(new int(10), new int(10));
-    T t2(t1); // 새로운 int형 개체를 만들고 10을 복제합니다.
-} 
-// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
-{
-    T t1(new int(10), new int(10));
-    T t2(new int(20), new int(20)); 
-    t2 = t1; // t1의 힙 개체를 복제후 대입하고, t2의 이전 힙 개체를 delete 합니다.
-} 
+// (O) 대입 연산시 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+// 대입 연산시 임시 개체를 만든뒤 Swap 하므로 예외가 발생하더라도 안정적입니다.
+T t1(new int(10), new int(10));
+T t2(new int(20), new int(20)); 
+t2 = t1; 
+ 
 ```
+대입 연산자를 위한 `Handler`의 자세한 구현은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 참고하세요.
 
 # 대입 연산자 사용 제한
 
-[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)의 경우와 마찬가지로, 만약 대입 연산자가 필요없다면, 암시적 대입 연산자도 사용할 수 없도록 `private` 로 만드는게 좋습니다. 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 대입 연산자를 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.([`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/) 참고)
+[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)의 경우와 마찬가지로, 만약 대입 연산자가 필요없다면, 암시적 대입 연산자도 사용할 수 없도록 `private` 로 만드는게 좋습니다.([`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/) 참고) 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 대입 연산자를 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
 

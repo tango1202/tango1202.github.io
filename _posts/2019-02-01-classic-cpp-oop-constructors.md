@@ -11,8 +11,8 @@ sidebar:
 > * 기본 생성자가 필요하다면 명시적으로 구현하고, 필요없다면 못쓰게 만들어라.
 > * 값 생성자에서는 필요한 인자를 모두 나열하고 초기화하라. 
 > * 인자가 1개인 값 생성자는 `explicit`를 사용하여 암시적 형변환을 차단하라.
-> * 암시적 복사 생성자가 정상 동작하도록 멤버 변수 정의시 개체 `Handler`를 사용하고, 필요없다면 못쓰게 만들어라.
-> * 생성자에서 가상 함수를 호출하지 마라.
+> * 암시적 복사 생성자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 개체 `Handler`를 사용하고, 필요없다면 못쓰게 만들어라.
+> * 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
 > * 상속 전용 기반 클래스는 `protected` 생성자 보다는 [`protected` Non-Vitual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들어라.
  
 # 개요
@@ -115,7 +115,10 @@ T t3(10); // (O) 임의 값으로 값 생성자 호출
 
 값 생성자는 값들을 바탕으로 개체를 생성시킵니다.
 
-값 생성자는 불필요한 대입의 오버헤드를 줄이기 위해 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)를 이용하여 모든 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들을 초기화 하는게 좋습니다. 또한 필요한 모든 인자를 나열하고 초기화하는게 **코딩 계약**상 좋습니다.([초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고)
+값 생성자 구현은 
+
+1. [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 모든 요소를 나열하고 초기화하는게 **코딩 계약**상 좋고,([초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고)
+2. 불필요한 대입의 오버헤드를 줄이기 위해 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)를 이용하여 모든 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들을 초기화하는게 좋습니다.
 
 ```cpp
 class T {
@@ -124,7 +127,7 @@ private:
     int m_Y;
 public:
     T(int x, int y) : // 필요한 모든 인자를 나열
-        m_X(x), // 초기화 리스트를 이용하여 초기화
+        m_X(x), // 초기화 리스트를 이용하여 모든 멤버 변수 초기화
         m_Y(y) {}
 };
 T t(10, 20); // (O) 개체 정의(인스턴스화)
@@ -161,15 +164,13 @@ EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 EXPECT_TRUE(t3.GetX() == 10 && t3.GetY() == 20);
 ```
 
-# 포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`
+# 포인터 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 소유권 분쟁과 개체 `Handler`
 
 `new` 로 생성한 것은 `delete`로 소멸([힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다. 
 
-다음 코드는 생성자에서 `new`로 생성한 힙 개체를 전달받고, 소멸자에서 `delete`합니다. 
+다음 코드는 생성자에서 `new`로 생성한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 전달받고, 소멸자에서 `delete`합니다. 
 
-그런데, 암시적 복사 생성자는 단순히 멤버별 복사를 하므로, 포인터를 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 사용할 경우 소유권 분쟁이 생깁니다. 
-
-암시적 복사 생성자를 이용하여 복사하면, 동일한 힙 개체를 `t1`, `t2`가 참조하게 되어, `t1` 소멸시에도 `delete`하고, `t2` 소멸시에도 `delete`하게 됩니다. 결국 2번 `delete` 하게 되어 예외가 발생하게 되죠.
+그런데, 암시적 복사 생성자를 이용하여 포인터 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 복사하면, 소멸자에서 `delete`시 소유권 분쟁이 생깁니다. 동일한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 `t1`, `t2`가 참조하게 되어, `t1` 소멸시에도 `delete`하고, `t2` 소멸시에도 `delete`하게 되어, 결국 2번 `delete`하다가 예외가 발생하게 되죠.
 
 ```cpp
 class T {
@@ -195,7 +196,7 @@ public:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/16376f0c-e8b0-4eb5-b5a0-f28fc5a9cc43)
 
-따라서, 암시적 복사 생성자를 사용하지 말고, 다음처럼 복사 생성자를 명시적으로 구현하여, 힙 개체의 복제본을 만들어야 합니다.
+따라서, 암시적 복사 생성자를 사용하지 말고, 다음처럼 복사 생성자를 명시적으로 구현하여, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들어야 합니다.
 
 ```cpp
 class T {
@@ -278,9 +279,11 @@ public:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ef2ea0ca-4eea-4f8e-bd9f-e945407cd455)
 
-# 생성자에서 가상 함수 호출 금지
+복사 생성자를 위한 `Handler`의 자세한 구현은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 참고하세요.
 
-부모 클래스의 생성자에서 가상 함수를 호출하면, 아직 자식 클래스들이 완전히 생성되지 않은 상태이기에 부모 클래스의 가상 함수가 호출됩니다. 의도치 않은 동작이므로, 생성자에서는 가상 함수를 호출하지 마세요.
+# 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출 금지
+
+부모 클래스의 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하면, 아직 자식 클래스들이 완전히 생성되지 않은 상태이기에 부모 클래스의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 호출됩니다. 의도치 않은 동작이므로, 생성자에서는 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마세요.
 
 ```cpp
 class Base {
@@ -289,7 +292,7 @@ protected:
 public:
     Base() : 
         m_Val(0) {
-        // (△) 비권장. 가상 함수를 생성자에서 호출합니다.
+        // (X) 오동작. 가상 함수를 생성자에서 호출합니다.
         //  Derived::SetVal() 이 호출되길 기대하지만, 
         // Base::SetVal()이 호출됩니다.    
         SetVal(); 
@@ -323,7 +326,7 @@ EXPECT_TRUE(d.GetVal() == 1);
 만약 기본 생성자나 복사 생성자가 필요없다면, 생성자를 사용할 수 없게 만드는게 좋습니다. 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
 
 * 기본 생성자 : 다른 생성자(값 생성자던, 복사 생성자던)가 정의되면, 암시적 기본 생성자가 정의되지 않으므로 사용이 제한됩니다. 그렇지 않은 경우 명시적으로 기본 생성자를 구현하고, `private` 또는 `protected`를 이용하여 사용을 제한합니다.
-* 복사 생성자 : `private`로 정의하면 다른 곳에서는 사용하지 못하고, `protected`로 정의하면 상속받은 자식 개체에서만 사용할 수 있습니다.([`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/) 참고)
+* 복사 생성자 : `private`로 정의하면 다른 곳에서는 사용하지 못하고,([`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/) 참고) `protected`로 정의하면 상속받은 자식 개체에서만 사용할 수 있습니다.
 
 
 ```cpp
@@ -360,20 +363,22 @@ Derived d;
 
 # 생성자 접근 차단 - `private` 생성자
 
-외부에서 접근을 못하게 막으려면 생성자를 `private`로 만들고, 생성을 위한 `Create()`함수를 만들면 됩니다.
+외부에서 생성자 접근을 못하게 생성자를 `private`로 만들고, 생성을 위한 `Create()`계열 함수를 별도로 만들 수 있습니다. 다양한 생성 방식을 개체에서 통제하고 싶을때 사용합니다.
 ```cpp
 class T {
 private:
-    T() {} // 외부에서는 접근 불가
+    T(int a, int b, int c) {} // 외부에서는 접근 불가
 public:
-    static T Create() {return T();}
+    static T CreateFromA(int a) {return T(a, 0, 0);}
+    static T CreateFromB(int b) {return T(0, b, 0);}
+    static T CreateFromC(int c) {return T(0, 0, c);}
 };
 
-T t; // (X) 컴파일 오류
-T* p = new T; // (X) 컴파일 오류
+T t(10, 0, 0); // (X) 컴파일 오류
+T* p = new T(10, 0, 0); // (X) 컴파일 오류
 delete p;
 
-T t(T::Create()); // (O) T를 복사 생성    
+T t(T::CreateFromA(10)); // (O) T를 복사 생성    
 ```
 
 
