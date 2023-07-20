@@ -13,7 +13,7 @@ sidebar:
 > * 인자가 1개인 값 생성자는 `explicit`를 사용하여 암시적 형변환을 차단하라.
 > * 암시적 복사 생성자가 정상 동작하도록 멤버 변수 정의시 개체 `Handler`를 사용하고, 필요없다면 못쓰게 만들어라.
 > * 생성자에서 가상 함수를 호출하지 마라.
-> * 상속 전용 기반 클래스는 `protected` 로 만들어라.
+> * 상속 전용 기반 클래스는 `protected` 생성자 보다는 [`protected` Non-Vitual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들어라.
  
 # 개요
 
@@ -41,9 +41,12 @@ T t(); // (X) T를 리턴하는 함수 f() 선언
 
 # 암시적 기본 생성자
 
-컴파일러는 다른 생성자가 정의되지 않으면, 암시적으로 기본 생성자를 정의합니다.
+컴파일러는 다른 생성자(값 생성자던, 복사 생성자던)가 정의되지 않으면, 암시적으로 기본 생성자를 정의합니다.
 
-암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 된다고는 합니다.([cppreference.com](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고) 하지만, 실제 해보니 GCC 디버그 모드에서는 `0`이 아닙니다. 신뢰할 수 없으니 명시적으로 초기화 하세요. 또한 참조자 형식이나 상수형 개체는 생성시 초기값에 전달되야 하기 때문에, 암시적 기본 생성자로 초기화 할 수 없습니다.(값 초기화를 이용해야 합니다.)
+암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 된다고는 합니다.([cppreference.com](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고) 
+
+1. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 실제 테스트 해보니 GCC 디버그 모드에서는 `0`이 아닙니다. 신뢰할 수 없으니 명시적으로 초기화 하세요.(값 초기화를 이용하는게 좋습니다.) 
+2. 참조자 형식이나 상수형 개체는 생성시 초기값에 전달되야 하기 때문에, 암시적 기본 생성자로 초기화 할 수 없습니다.(값 초기화를 이용해야 합니다.)
 
 ```cpp
 class T1 {
@@ -93,35 +96,18 @@ class T {
 T t; // (△) 비권장. 암시적 기본 생성자 사용
 ```
 
-보다는
-
-상기와 같이 사용하다가, `class T`가 개선되어 값 생성자가 추가되면, 컴파일 오류를 맞이하게 됩니다.
+보다는, [기본값 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)를 이용하여,
 
 ```cpp
 class T {
     int m_Val;
 public:
-    T() : 
-        m_Val(0) {} // (O) 명시적으로 기본 생성자를 만듭니다.
-    explicit T(int val) : // 값 생성자
-        m_Val(val) {}
-};
-T t; // (O) 명시적 기본 생성자 호출    
-```
-
-보다는
-
-```cpp
-class T {
-    int m_Val;
-public:
-    T() :
     explicit T(int val = 0) : // 값 생성자 의 기본값을 이용해 디폴트 생성자를 없앴습니다.
         m_Val(val) {}
 };
 T t1; // (O) 기본값으로 값 생성자 호출
 T t2(0); // (O) 기본값과 동일한 값으로 값 생성자 호출
-T t3(10) // (O) 임의 값으로 값 생성자 호출
+T t3(10); // (O) 임의 값으로 값 생성자 호출
 ```
 가 낫습니다.
 
@@ -292,22 +278,6 @@ public:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ef2ea0ca-4eea-4f8e-bd9f-e945407cd455)
 
-# 복사 생성자 사용 제한
-
-만약 복사 생성자가 필요없다면, 암시적 복사 생성자도 사용할 수 없도록 `private` 로 만드는게 좋습니다. 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 복사 생성자를 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
-
-```cpp
-class T {
-public:
-    T() {}
-private:
-    T(const T& other) {}
-};
-
-T t1;
-T t2(t1); // (X) 컴파일 오류. 복사 생성자를 사용할 수 없게 private로 하여 단단히 코딩 계약을 했습니다.
-```
-
 # 생성자에서 가상 함수 호출 금지
 
 부모 클래스의 생성자에서 가상 함수를 호출하면, 아직 자식 클래스들이 완전히 생성되지 않은 상태이기에 부모 클래스의 가상 함수가 호출됩니다. 의도치 않은 동작이므로, 생성자에서는 가상 함수를 호출하지 마세요.
@@ -348,6 +318,27 @@ Derived d;
 EXPECT_TRUE(d.GetVal() == 1); 
 ```
 
+# 기본 생성자, 복사 생성자 사용 제한
+
+만약 기본 생성자나 복사 생성자가 필요없다면, 생성자를 사용할 수 없게 만드는게 좋습니다. 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
+
+* 기본 생성자 : 다른 생성자(값 생성자던, 복사 생성자던)가 정의되면, 암시적 기본 생성자가 정의되지 않으므로 사용이 제한됩니다. 그렇지 않은 경우 명시적으로 기본 생성자를 구현하고, `private` 또는 `protected`를 이용하여 사용을 제한합니다.
+* 복사 생성자 : `private`로 정의하면 다른 곳에서는 사용하지 못하고, `protected`로 정의하면 상속받은 자식 개체에서만 사용할 수 있습니다.([`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/) 참고)
+
+
+```cpp
+class T {
+public:
+    T(int, int) {} // (O) 값 생성자를 정의하면 암시적 기본 생성자를 사용할 수 없습니다.
+private:
+    T(const T& other) {} // (O) private여서 외부에서 복사 생성자 사용할 수 없습니다.
+};
+
+T t1; // (X) 컴파일 오류. 
+T t2(0, 0); // (O)
+T t3(t1); // (X) 컴파일 오류. 복사 생성자를 사용할 수 없게 private로 하여 단단히 코딩 계약을 했습니다.
+```
+
 # 상속 전용 기반 클래스 - `protected` 생성자
 
 상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만들 수 있습니다. 그러면 개체 정의(인스턴스화)에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.(생성자는 여러개 만들 수 있어서 모두가 `protected` 인지 신경 쓰기 번거로울 수 있기 때문에, [`protected` Non-Vitual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하는게 더 좋습니다.)
@@ -367,7 +358,7 @@ Base b; // (X) 컴파일 오류
 Derived d;
 ```
 
-# 생성자 접근 차단
+# 생성자 접근 차단 - `private` 생성자
 
 외부에서 접근을 못하게 막으려면 생성자를 `private`로 만들고, 생성을 위한 `Create()`함수를 만들면 됩니다.
 ```cpp

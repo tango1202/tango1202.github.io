@@ -24,7 +24,7 @@ sidebar:
 
 # 활용 코딩 패턴
 
-1. 복사 생성과 대입연산을 막기 위해 [`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-Uncopyable/)을 사용하고, 
+1. 복사 생성과 대입연산을 막기 위해 [`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/)을 사용하고, 
 2. 지역 변수(자동 변수)로만 생성되도록 [`OnlyStackAssignable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)을 사용합니다.
 3. 테스트를 위해 생성된 포인터를 삭제하기 위해 [`Holder`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)를 사용합니다.
 4. `set_new_handler()`로 설정한 값을 복원하기 위해 [`Restorer`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/#restorer---holder%EC%9D%98-%EC%9D%91%EC%9A%A9)를 응용합니다.

@@ -96,10 +96,11 @@ obj = other; // (△) 비권장. 생성하고 대입하지 말고, 완전하게 
 
 # 배열 초기화
 
-배열 초기화시 배열의 크기가 유추될 수 있어야 합니다. 배열 갯수를 명시적으로 지정하거나, 초기화 항목을 1개 이상 지정해 주면 됩니다.(갯수보다 초기화 값을 적게 제공하면, 나머지는 자동 제로 초기화 됩니다.)
+배열 정의시 배열의 크기가 유추될 수 있어야 하며, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 이용하여 초기화 할 수 있습니다.([배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고) 
 
 ```cpp
 int arr1[3]; // (△) 비권장. int 형 3개 정의. 초기화 되지 않아 비권장 
+// int arr1[]; // (X) 컴파일 오류. 갯수가 지정되지 않음. 오류
 // int arr1[] = {}; // (X) 컴파일 오류. 갯수가 지정되지 않음. 오류
 int arr2[] = {0, 1, 2}; // (O) 갯수만큼 초기화
 int arr3[3] = {}; // (O) 3개 모두 0으로 초기화
@@ -108,11 +109,7 @@ int arr4[3] = {0, 1, }; // (O) 갯수가 적거나 같아야 함. 모자라면 0
 EXPECT_TRUE(arr2[2] == 2);
 EXPECT_TRUE(arr3[0] == 0 && arr3[1] == 0 && arr3[2] == 0);
 EXPECT_TRUE(arr4[2] == 0);
-```
 
-문자 배열의 경우 특별히 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 이용하여 초기화 할 수 있습니다. 이때 배열의 마지막 요소에 널문자(`\0`)가 추가됩니다.
-
-```cpp
 char str1[] = "abc"; // (O) {'a', `b`, 'c', '\0'};
 EXPECT_TRUE(str1[0] == 'a');
 EXPECT_TRUE(str1[1] == 'b');

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [고전 C++ 개체 지향] 멤버 변수"
+title: "#6. [고전 C++ 개체 지향] 멤버 변수, 초기화 리스트"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
