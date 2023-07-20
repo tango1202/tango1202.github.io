@@ -13,7 +13,6 @@ sidebar:
 > * `new`는 `std::bad_alloc`을 방출한다. 괜히 널검사하지 마라.
 > * `delete`는 널이면 아무 작업 안한다. 괜히 널검사하지 마라.
 > * `operator new`를 `private`로 만들어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에만 생성되는 개체를 만들 수 있다.
-> * [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 `private`로 만들어 외부에서는 생성할 수 없는 개체를 만들 수 있다.
 
 # 개요
 
