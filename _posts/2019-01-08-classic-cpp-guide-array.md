@@ -22,20 +22,37 @@ sidebar:
 
 배열은 타입이 같은 여러 데이터를 집합으로 묶어 연속적인 메모리에 관리할 수 있게 해줍니다. 단, `void` 형과 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 데이터로 가질 순 없습니다. 
 
-배열은 배열의 크기를 지정하거나, 초기화 갯수로 부터 크기가 유추될 수 있게 정의합니다.([배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)
+# 배열 초기화
+
+배열 초기화시 배열의 크기가 유추될 수 있어야 합니다. 배열 갯수를 명시적으로 지정하거나, 초기화 항목을 1개 이상 지정해 주면 됩니다.(갯수보다 초기화 값을 적게 제공하면, 나머지는 자동 제로 초기화 됩니다.)
 
 ```cpp
-// int arr1[]; // (X) 컴파일 오류. 갯수가 지정되지 않음. 오류
 int arr1[3]; // (△) 비권장. int 형 3개 정의. 초기화 되지 않아 비권장 
+// int arr1[]; // (X) 컴파일 오류. 갯수가 지정되지 않음. 오류
+// int arr1[] = {}; // (X) 컴파일 오류. 갯수가 지정되지 않음. 오류
 int arr2[] = {0, 1, 2}; // (O) 갯수만큼 초기화
 int arr3[3] = {}; // (O) 3개 모두 0으로 초기화
-int arr4[3] = {1, }; // (O) 갯수가 적거나 같아야 함. 모자라면 0
+int arr4[3] = {0, 1, }; // (O) 갯수가 적거나 같아야 함. 모자라면 0
 
-EXPECT_TRUE(sizeof(arr1) == sizeof(int) * 3); // 배열 요소의 갯수와 같음
 EXPECT_TRUE(arr2[2] == 2);
 EXPECT_TRUE(arr3[0] == 0 && arr3[1] == 0 && arr3[2] == 0);
-EXPECT_TRUE(arr4[0] == 1 && arr4[1] == 0 && arr4[2] == 0);
+EXPECT_TRUE(arr4[2] == 0);
 ```
+
+문자 배열의 경우 특별히 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 이용하여 초기화 할 수 있습니다. 이때 배열의 마지막 요소에 널문자(`\0`)가 추가됩니다.
+
+```cpp
+char str1[] = "abc"; // (O) {'a', `b`, 'c', '\0'};
+EXPECT_TRUE(str1[0] == 'a');
+EXPECT_TRUE(str1[1] == 'b');
+EXPECT_TRUE(str1[2] == 'c');
+EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
+
+wchar_t str2[] = L"abc"; // (O) {L'a', L`b`, L'c', L'\0'};
+EXPECT_TRUE(str2[0] == L'a');
+EXPECT_TRUE(str2[1] == L'b');
+EXPECT_TRUE(str2[2] == L'c');
+EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 
 # 배열과 `vector`
 
