@@ -422,7 +422,7 @@ EXPECT_TRUE(d.f6() == 20);
 ```cpp
 Derived d;
 Base* p = &d;
-EXPECT_TRUE(p->f6() == 10); // vtable을 참조하여 Base 의 기본값인 10을 사용합니다.   
+EXPECT_TRUE(p->f6() == 10); // 가상 함수 테이블을 참조하여 Base 의 기본값인 10을 사용합니다.   
 ```
 
 **인자 타입**

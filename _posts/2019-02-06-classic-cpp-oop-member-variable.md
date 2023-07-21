@@ -215,22 +215,100 @@ public:
 T t(10, 20, 30); 
 EXPECT_TRUE(t.a == 11 && t.b == 20 && t.c == 30);
 ```
-# 개체 크가와 메모리 정렬
+# 개체 크기와 메모리 정렬
 
+일반적으로 개체의 크기는 멤버 변수의 합입니다.
 
+```cpp
+class T1 {
+    int m_X;
+    int m_Y;
+};
+EXPECT_TRUE(sizeof(T1) == sizeof(int) * 2); // 8
+```
 
+하지만 다음의 경우를 보면, `char`(1byte) + `int`(4byte) 여서 5byte 일것 같지만, 사실은 8byte 입니다.
+
+```cpp
+class T2 { // 멤버 변수중 가장 큰 int 에 맞춰 정렬
+    char m_X; // 1byte. 3 byte 패딩
+    int m_Y;
+};
+EXPECT_TRUE(sizeof(T2) == sizeof(int) * 2); // 8
+```
+
+이는 메모리에서 멤버 변수의 데이터를 좀 더 빠른 속도로 읽기 위해, 멤버 변수 중 가장 크기가 큰 값으로 메모리를 정렬(Memory Alignment)하기 때문입니다. 메모리 정렬은 1byte이거나 2의 배수 byte(2, 4, 6, 8...) 일 수 있습니다. 
+
+CPU는 메모리(RAM)에 접근하여 처리할 데이터를 읽어오는데, 이 접근 횟수가 많을 수록 속도가 느려집니다.
+
+CPU나 운영체제마다 다르지만 한번에 데이터를 가져올 수 있는 크기가 4byte나 8byte로 정해져 있는데요, 4byte로 가져온다고 가정하고, 메모리를 정렬하지 않고 1byte 단위로 배치된 멤버 변수를 읽는다면, 상기 `T2`의 경우 `int`값(`m_Y`)을 읽으려면 2번 접근해야 합니다. 
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2b1a0f82-c0bc-44a3-9f7f-58df07c52508)
+
+하지만, 메모리를 4byte 단위로 정렬해 두었다면 1번 접근하면 됩니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5edca222-41d1-4edd-8f7b-2c741a1b9f2b)
+
+이러한 이점 때문에 메모리 정렬을 수행하며, 메모리 정렬을 위해 추가된 byte를 패딩(Padding) 이라 합니다.
+
+```cpp
+class T3 { // 멤버 변수중 가장 큰 double에 맞춰 정렬
+    char m_X; // 1byte. 7byte 패딩
+    double m_Y;
+};
+EXPECT_TRUE(sizeof(T3) == sizeof(double) * 2); // 16
+
+struct T4 { // 멤버 변수중 가장 큰 double에 맞춰 정렬.
+    char m_X; // 1byte. 3byte 패딩
+    int m_Y; // 4byte. 
+    double m_Z;
+};
+EXPECT_TRUE(sizeof(T3) == sizeof(double) * 2); // 16
+```
+
+강제로 메모리 정렬 `byte` 수를 변경하는 방법은 [`#pragma pack`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma) 을 이용하면 됩니다. [`#pragma pack`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)을 이용하면, 메모리 정렬 `byte` 수를 줄여 메모리 낭비는 줄일 수 있으나, 메모리 접근 속도는 저하됩니다.
+
+**빈 클래스와 자식 개체의 크기**
+
+멤버 변수가 없는 빈 클래스라도 자료형이므로 최소 1byte의 크기를 가집니다. 이를 상속한 개체에서 멤버 변수가 구현되었다면, 강제로 추가된 1byte는 빼고 크기가 계산됩니다.
+
+```cpp
+class Empty {}; // 빈 클래스는 강제로 1byte
+EXPECT_TRUE(sizeof(Empty) == 1);
+
+class EmptyDerived : public Empty { // 빈 클래스를 상속받으면, 강제 1byte는 빼고 크기가 설정됨
+    int m_X;
+};
+EXPECT_TRUE(sizeof(EmptyDerived) == sizeof(int));
+```
+
+빈 클래스라도 가상 함수가 있다면 가상 함수 테이블이 생성됩니다. 컴파일러에 따라 다를 수도 있으나 대부분 8byte 입니다.
+
+```cpp
+class Base { // 멤버 변수는 없지만 virtual 이 있어 가상 함수 테이블이 생성됨
+public:
+    virtual ~Base() {}
+};
+EXPECT_TRUE(sizeof(Base) == 8);
+
+class Derived : public Base { // 가상 함수 테이블 크기로 정렬됨
+    char m_X;
+};
+EXPECT_TRUE(sizeof(Derived) == 8 * 2); 
+std::cout<<sizeof(Derived)<<std::endl;    
+```
 
 # 메모리 할당에 따른 멤버 변수 정의 순서
 
-컴파일러는 클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 4byte단위로 멤버 변수를 할당합니다.(이를 패딩(padding)이라 합니다. [`#pragma`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma) 언급) 
+멤버 변수의 메모리 정렬을 고려하여 멤버 변수를 정의하는게 좋습니다. 특히, `char`와 같이 4byte 이하인 멤버 변수들은 몰아서 정의하는게 좋습니다.
 
 다음 코드는 패딩 작업에 의해 빈공간이 생겨 16byte 크기이지만,
 
 ```cpp
 class T {
-    char m_Char1; // 1byte, 메모리 접근 편의를 위해 32bit(4byte) 단위로 할당(패딩). 3byte 빈공간이 생김 
+    char m_Char1; // 1byte, 3byte 패딩 
     int m_Int1; // 4byte
-    char m_Char2; // 1byte, 메모리 접근 편의를 위해 32bit(4byte) 단위로 할당(패딩). 3byte 빈공간이 생김 
+    char m_Char2; // 1byte, 3byte 패딩
     int m_Int2; // 4byte
 };
 EXPECT_TRUE(sizeof(T) == 16);
@@ -241,14 +319,12 @@ EXPECT_TRUE(sizeof(T) == 16);
 ```cpp
 class T {
     char m_Char1; // 1byte
-    char m_Char2; // 1byte, 패딩을 위해 2byte 빈공간이 생김
+    char m_Char2; // 1byte, 2byte 패딩
     int m_Int1; // 4byte
     int m_Int2; // 4byte
 };
-EXPECT_TRUE(sizeof(T) == 12);      
+EXPECT_TRUE(sizeof(T) == 12);   
 ```
-
-멤버 변수가 4byte 단위로 할당되므로, `char`와 같이 4byte 이하인 멤버 변수들은 몰아서 정의하는게 좋습니다.(`pragma pack`을 이용하면, 데이터 버스 크기를 줄여 메모리 낭비는 줄일 수 있으나, 메모리 접근 속도는 저하됩니다. [`#pragma`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma) 참고) 
 
 # 포인터 멤버 변수
 

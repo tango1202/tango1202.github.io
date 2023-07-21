@@ -176,7 +176,7 @@ if (t == NULL) {
 
 주로 다음을 위해 사용합니다.
 
-1. 데이터 오버런(overrun) 및 언더런(underrun) 등 잘못된  [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 사용을 탐지하기 위해 탐지용 바이트를 추가로 할당하는 경우([진단](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-diagnostics/) 참고)
+1. 데이터 오버런(overrun) 및 언더런(underrun) 등 잘못된  [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 사용을 탐지하기 위해 탐지용 byte를 추가로 할당하는 경우([진단](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-diagnostics/) 참고)
 2. 할당 및 해제의 효율을 향상시키기 위해 **동적 메모리 오버헤드**를 줄이고 메모리 관리를 직접 수행하는 경우([메모리 풀](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-memory-pool/) 참고)
 3. 동적 할당 메모리의 실제 사용에 관한 통계 정보를 수집하는 경우([개체 수명 로그](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-object-life-log/) 참고)
 
@@ -324,7 +324,7 @@ public:
         std::cout<<"T::delete(void* ptr)"<<std::endl;
         ::operator delete(ptr); 
     }
-    // sz : 해제할 바이트 수                     
+    // sz : 해제할 byte 수                     
     static void operator delete(void* ptr, std::size_t sz) {
         std::cout<<"delete(void* ptr, std::size_t sz)"<<std::endl;
         ::operator delete(ptr); 
@@ -473,7 +473,7 @@ free(buffer); // malloc 으로 할당한 메모리를 해제합니다.
 기존 `buffer`의 메모리 영역을 재활용하여 
 
 1. 다른 개체를 배치시킬 수도 있고,
-2.  `buffer`를 직접 수정하여 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 포인터나 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)의 값을 변경할 수도 있으며(비권장), 
+2.  `buffer`를 직접 수정하여 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 의 값을 변경할 수도 있으며(비권장), 
 3.  소멸자 호출 후에도 값 접근을 할 수 있습니다.(비권장) 
 
 ```cpp
@@ -570,7 +570,7 @@ delete p;
 
 `operator new`는 오류 발생시 
 
-1. `set_new_handler()` 로 전역적으로 설정된 `new_handler`를 호출하고, 
+1. `set_new_handler()` 로 전역적으로 설정된 `new_handler`를 호출하고(없다면, `std::bad_alloc()`을 발생시키고), 
 2. `new_handler`에서 오류를 해결할 기회를 줍니다. 
  
 이 과정은 예외를 발생시키거나 프로그램이 종료할때까지 무한 반복됩니다.
@@ -619,7 +619,7 @@ for (int i = 0; i < 100; ++i) { // 대략 예외를 발생시킬때까지 반복
         arr[i] = new T;
     }
     catch (MyException& e) {
-        // i 이전까지 모두 삭제합니다.
+        // i 이전까지 생성된 T 개체를 모두 삭제합니다.
         for (int j = 0; j < i; ++j) {
             delete arr[j];
         }

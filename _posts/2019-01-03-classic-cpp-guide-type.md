@@ -73,7 +73,7 @@ ClassT<int>::ConstType constVal = 20;
 
 # 타입 크기
 
-`sizeof()`를 이용하면 개체 용량을 바이트 단위로 구할 수 있습니다. 단, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)의 경우 참조하는 개체와 동일 크기가 리턴됩니다.
+`sizeof()`를 이용하면 개체 용량을 byte 단위로 구할 수 있습니다. 단, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)의 경우 참조하는 개체와 동일 크기가 리턴됩니다.
 
 ```cpp
 class MyClass {
