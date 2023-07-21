@@ -49,7 +49,7 @@ const int m_Val4 = 0; // (O) 선언부 초기화 지원
 static const int s_c_m_Val6 = 0; // (O) 선언부 초기화 지원
 ```
 
-[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 선언과 정의를 분리해서 작성해야 합니다.([정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 보다는 [함수내 정적 지역 변수](https://github.com/tango1202/tango1202.github.io/blob/main/_posts/2019-01-12-classic-cpp-guide-static-extern-lifetime.md#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)가 낫습니다.)
+[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 선언과 정의를 분리해서 작성해야 합니다.([정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 보다는 [함수내 정적 지역 변수](https://github.com/tango1202/tango1202.github.io/blob/main/_posts/2019-01-12-classic-cpp-guide-static-extern-lifetime.md#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 사용을 권장합니다.)
 
 ```cpp
 class T {
