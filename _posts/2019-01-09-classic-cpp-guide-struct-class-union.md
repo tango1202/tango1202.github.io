@@ -391,7 +391,7 @@ Outer::Nested nested; // (O) 외부에서 접근할 경우 :: 사용
 
 # `this` 포인터
 
-`this` 포인터는 개체의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에서 자기 자신을 가리키는 포인터 입니다. 
+`this` 포인터는 개체 자신을 가리키는 포인터 입니다. 
 
 ```cpp
 class Outer {
