@@ -105,6 +105,8 @@ TEST(TestClassicCpp, Static) {
 }
 ```
 
+정적 멤버 변수 보다는 선언과 정의를 동시에 하고, 함수 호출시에 1회 생성되는 함수내 정적 지역 변수를 사용하는게 더 좋습니다.
+
 # 정적 멤버 함수
 
 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에 `static` 을 사용하여 특정 개체에 속하지 않는 정적 멤버 함수를 정의 할 수 있습니다.
