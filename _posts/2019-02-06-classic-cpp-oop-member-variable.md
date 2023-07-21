@@ -282,7 +282,7 @@ class EmptyDerived : public Empty { // 빈 클래스를 상속받으면, 강제 
 EXPECT_TRUE(sizeof(EmptyDerived) == sizeof(int));
 ```
 
-빈 클래스라도 가상 함수가 있다면 가상 함수 테이블이 생성됩니다. 컴파일러에 따라 다를 수도 있으나 대부분 8byte 입니다.
+빈 클래스라도 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있다면 가상 함수 테이블이 생성됩니다. 컴파일러에 따라 다를 수도 있으나 대부분 8byte 입니다.
 
 ```cpp
 class Base { // 멤버 변수는 없지만 virtual 이 있어 가상 함수 테이블이 생성됨
