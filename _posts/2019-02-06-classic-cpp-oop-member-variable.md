@@ -11,7 +11,7 @@ sidebar:
 > * 멤버 변수 초기화시, 생성후 대입하지 말고 초기화 리스트를 사용하라.(초기화 리스트의 순서는 멤버 변수 정의 순서에 맞춰라.)
 > * 생성자에서 필요한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 모두 나열하고 초기화하라.
 > * 메모리 패딩을 고려하여 멤버 변수 정의 순서를 정하라.
-> * [암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [암시적 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90)가 정상 동작하도록 멤버 개체 `Handler`를 멤버 변수로 사용하라.
+> * [암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [암시적 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90)가 정상 동작하도록 멤버 변수로 [`Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler) 나 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하라.
 
  
 # 개요 
@@ -237,11 +237,11 @@ class T2 { // 멤버 변수중 가장 큰 int 에 맞춰 정렬
 EXPECT_TRUE(sizeof(T2) == sizeof(int) * 2); // 8
 ```
 
-이는 메모리에서 멤버 변수의 데이터를 좀 더 빠른 속도로 읽기 위해, 멤버 변수 중 가장 크기가 큰 값으로 메모리를 정렬(Memory Alignment)하기 때문입니다. 메모리 정렬은 1byte이거나 2의 배수 byte(2, 4, 6, 8...) 일 수 있습니다. 
+이는 메모리에서 멤버 변수의 데이터를 좀 더 빠른 속도로 읽기 위해, 멤버 변수 중 가장 크기가 큰 값으로 **메모리 정렬(Memory Alignment)** 을 하기 때문입니다. 메모리 정렬은 1byte이거나 2의 배수 byte(2, 4, 6, 8...) 일 수 있습니다. 
 
 CPU는 메모리(RAM)에 접근하여 처리할 데이터를 읽어오는데, 이 접근 횟수가 많을 수록 속도가 느려집니다.
 
-CPU나 운영체제마다 다르지만 한번에 데이터를 가져올 수 있는 크기가 4byte나 8byte로 정해져 있는데요, 4byte로 가져온다고 가정하고, 메모리를 정렬하지 않고 1byte 단위로 배치된 멤버 변수를 읽는다면, 상기 `T2`의 경우 `int`값(`m_Y`)을 읽으려면 2번 접근해야 합니다. 
+CPU가 한번에 데이터를 가져올 수 있는 크기가 4byte나 8byte로 정해져 있는데요, 4byte로 가져온다고 가정하고, 메모리를 정렬하지 않고 1byte 단위로 배치된 멤버 변수를 읽는다면, 상기 `T2`의 경우 `int`값(`m_Y`)을 읽으려면 2번 접근해야 합니다. 
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2b1a0f82-c0bc-44a3-9f7f-58df07c52508)
 
@@ -266,7 +266,7 @@ struct T4 { // 멤버 변수중 가장 큰 double에 맞춰 정렬.
 EXPECT_TRUE(sizeof(T3) == sizeof(double) * 2); // 16
 ```
 
-강제로 메모리 정렬 `byte` 수를 변경하는 방법은 [`#pragma pack`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma) 을 이용하면 됩니다. [`#pragma pack`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)을 이용하면, 메모리 정렬 `byte` 수를 줄여 메모리 낭비는 줄일 수 있으나, 메모리 접근 속도는 저하됩니다.
+강제로 메모리 정렬 `byte` 크기를 변경하는 방법은 [`#pragma pack`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma) 을 이용하면 됩니다. [`#pragma pack`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)을 이용하면, 메모리 정렬 `byte` 크기를 줄여 메모리 낭비는 줄일 수 있으나, 메모리 접근 속도는 저하됩니다.
 
 **빈 클래스와 자식 개체의 크기**
 
@@ -328,7 +328,9 @@ EXPECT_TRUE(sizeof(T) == 12);
 
 # 포인터 멤버 변수
 
-포인터 멤버 변수는 복사 생성이나 대입 연산시 소유권 분쟁을 하게 되며, `delete` 해야 할지 말아야 할지 상당히 고민되는 순간들이 많습니다.
+포인터 멤버 변수는 복사 생성이나 대입 연산시 복사 되면서 소유권 분쟁을 하게 되며, `delete` 해야 할지 말아야 할지 상당히 고민되는 순간들을 많이 만들어 냅니다.
+
+다음 코드에서 `T`는 `new`로 생성한 포인터도 전달 받고, 지역 변수 `val`의 주소도 전달받습니다. `T`가 알아서 이를 판단하기 어려워 호출하는 쪽에서 `delete`해주어야 합니다.
 
 ```cpp
 class T {
@@ -343,47 +345,30 @@ int val = 10;
 T t1(ptr); // (△) 비권장. ptr는 new 한 것이기 때문에 m_Ptr은 delete 되어야 합니다.
 delete ptr; // (△) 비권장. 그냥 밖에서 지워버렸습니다.
 
+T t2(&val); // 요것은 delete하면 안됩니다.
+```
+
+이렇게 외부에서 `delete`를 사용하게 되면, 다음 처럼 이미 포인터를 `delete` 한 `t1`을 `t2`에 대입하는 실수도 빈번히 일어 납니다. 
+
+```cpp
+T t1(ptr);
+delete ptr; // delete 했습니다.
+
 T t2(&val); // (△) 비권장. val은 스택에 생성된 자동 변수 이므로 delete하면 안됩니다.
 
 t2 = t1; // (△) 비권장. 이미 지워버린 ptr을 가진 t1을 t2에 복사했습니다. 이런 실수 많이 하게 됩니다.
 ```
 
-이런 고민이 없도록 개체 `Handler`([스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))를 사용하는게 좋습니다.
+이런 고민을 하면서 코딩하다 보면 논리 자체에 대한 고민보다 포인터 처리에 대한 고민만 많아집니다.
 
-기본적인 `Handler`구현은 [포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler)를 참고하세요.
+포인터에 대한 고민이 없도록 개체 `Handler`([스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))를 사용하는게 좋습니다.
 
-**암시적 복사 생성자 호환성**
+기본적인 `Handler`구현은 [포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler)를 참고하시고, 다양한 스마트 포인터 사용 방법은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 참고 하시기 바랍니다.
 
-암시적 복사 생성자는 각 멤버 변수의 복사 생성자를 호출하여 멤버별 복사를 합니다.
+포인터 멤버 변수는 다음 조건을 충족하도록 만들어 져야 합니다.
 
-따라서, 멤버 변수에 포인터 등이 있다면, 암시적 복사 생성자를 그대로 사용할 수 있도록 개체 `Handler`([스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))를 사용하는게 좋습니다.([포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler) 참고)
-
-**암시적 대입 연산자 호환성**
-
-암시적 대입 연산자는 각 멤버 변수의 대입 연산자를 호출하여 멤버별 대입을 합니다.
-
-따라서, 멤버 변수에 포인터 등이 있다면, 암시적 대입 연산자를 그대로 사용할 수 있도록 개체 `Handler`([스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))를 사용하는게 좋습니다.([포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler) 참고)
-
-단, 멤버 변수가 1개 이상이라면, 대입 연산중 예외가 발생할 수 있으므로, `swap`을 이용하는게 좋습니다.([`swap`을 이용한 예외 안정 대입 연산자 구현](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%95-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90-%EA%B5%AC%ED%98%84) 참고)
-
-혹은 [PImpl 이디엄](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-plmpl/)을 이용하여 다음처럼 멤버 변수를 1개로 유지하고 `Handler`를 이용하는 방법도 있습니다.([PImpl 이디엄](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-plmpl/) 참고)
-
-```cpp
-class T {
-private:    
-    class Impl { // 실제 멤버 변수들의 집합
-    public:
-        int m_X;
-        int m_Y;
-    };
-    Impl* m_Impl; // 멤버 변수는 1개임
-};
-```
-
-**암시적 소멸자 호환성**
-
-멤버 변수의 개체는 소멸자가 호출된 후 자동으로 소멸됩니다.([소멸자 호출 순서](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%88%9C%EC%84%9C) 참고)
-
-하지만, 멤버 변수에 `new`로 생성된 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체가 있다면, 소멸자에서 명시적으로 `delete` 해주어야 합니다.
-
-따라서, 멤버 변수에 포인터 등이 있다면, 암시적 소멸자를 그대로 사용할 수 있도록, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 `delete`해주는 개체 `Handler`([스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))를 사용하는게 좋습니다.([포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler) 참고)
+|항목|내용|
+|--|--|
+|암시적 복사 생성자와 호환|개체간 복사 생성시 포인터 멤버 변수의 소유권 분쟁이 없도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)로 작성합니다.([`Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler) 와 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)|
+|암시적 대입 연산자와 호환|개체간 대입시 포인터 멤버 변수의 소유권 분쟁이 없도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)로 작성합니다.([`Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler) 와 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)|
+|암시적 소멸자와 호환|소멸자에서 별다른 `delete` 를 작성하지 않더라도 유효 범위를 벗어나면 자동 소멸되도록 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체로 만듭니다.([Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 참고)|

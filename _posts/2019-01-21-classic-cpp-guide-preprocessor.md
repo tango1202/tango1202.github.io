@@ -239,30 +239,30 @@ std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl;
 
 **`#pragma pack`**
 
-컴파일러는 클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 **메모리 정렬(Memory Alignment)** 을 합니다. 
+컴파일러는 클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 **메모리 정렬(Memory Alignment)** 을 합니다.([개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고) 
+
+다음 코드는 메모리 정렬을 수행하여, `char`(1byte) + 패딩(3byte) + `int`(4byte) = 8byte가 됩니다.
 
 ```cpp
 class T {
-    char m_Char; // 1byte, 메모리 접근 편의를 위해 32bit(4byte) 단위로 할당(패딩). 3byte 빈공간이 생김 
+    char m_Char; // 1byte. 3byte 패딩
     int m_Int; // 4byte
 };
 
-EXPECT_TRUE(sizeof(T) == 8); // char가 패딩됨
+EXPECT_TRUE(sizeof(T) == 8); 
 ```
 
-상기 코드를 보면 `T`는 `char`와 `int`로 구성되어 5byte가 되어야 할 것 같지만, 4byte 단위로 멤버 변수가 할당되어 8byte가 되는 것을 알 수 있습니다.
-
-`#pragma pack`을 이용하면, 데이터 버스 크기를 주어진 byte 크기로 조정할 수 있어 메모리 낭비를 줄일 수 있습니다.(다만 메모리 접근 속도는 저하됩니다.)
+`#pragma pack`을 이용하면, 메모리 정렬 byte 크기를 조정할 수 있어 메모리 낭비를 줄일 수 있습니다.(다만 메모리 접근 속도는 저하됩니다.)
 
 ```cpp
-#pragma pack(push, 1) // 데이터 버스 크기를 1byte 단위로 설정      
+#pragma pack(push, 1) // 메모리 정렬을 1byte 단위로 설정      
     class T {
         char m_Char; // 1byte 
         int m_Int; // 4byte
     };
 
     EXPECT_TRUE(sizeof(T) == 5); // 1 + 4 = 5byte
-#pragma pack(pop) // 데이터 버스 크기 설정 원복 
+#pragma pack(pop) // 메모리 정렬 설정 원복 
 ```
 
 **`#pragma warning`**
