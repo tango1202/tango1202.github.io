@@ -348,20 +348,26 @@ delete ptr; // (△) 비권장. 그냥 밖에서 지워버렸습니다.
 T t2(&val); // 요것은 delete하면 안됩니다.
 ```
 
-이렇게 외부에서 `delete`를 사용하게 되면, 다음 처럼 이미 포인터를 `delete` 한 `t1`을 `t2`에 대입하는 실수도 빈번히 일어 납니다. 
+이렇게 외부에서 일일이 포인터를 `delete`하면, 다음처럼 이미 `delete` 한 `t1`을 `t2`에 대입하는 실수도 빈번히 하게 됩니다. 아무리 꼼꼼히 검토하더라도요.
 
 ```cpp
 T t1(ptr);
 delete ptr; // delete 했습니다.
 
-T t2(&val); // (△) 비권장. val은 스택에 생성된 자동 변수 이므로 delete하면 안됩니다.
+T t2(&val); 
 
 t2 = t1; // (△) 비권장. 이미 지워버린 ptr을 가진 t1을 t2에 복사했습니다. 이런 실수 많이 하게 됩니다.
 ```
 
-이런 고민을 하면서 코딩하다 보면 논리 자체에 대한 고민보다 포인터 처리에 대한 고민만 많아집니다.
+이런 고민을 하면서 코딩하다 보면 논리 자체에 대한 고민보다 포인터 처리에 대한 고민만 많아지므로 다음과 같은 포인터 관리자를 이용하는게 좋습니다.
 
-포인터에 대한 고민이 없도록 개체 `Handler`([스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))를 사용하는게 좋습니다.
+|항목|내용|
+|--|--|
+|[`Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9)||
+|[스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))||
+|[Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)||
+
+의 일종인 를 이용하면 포인터의 소유권 분쟁과 소멸에 대한 고민으로부터 자유로워질 수 있습니다.
 
 기본적인 `Handler`구현은 [포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler)를 참고하시고, 다양한 스마트 포인터 사용 방법은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 참고 하시기 바랍니다.
 
