@@ -164,13 +164,11 @@ EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 EXPECT_TRUE(t3.GetX() == 10 && t3.GetY() == 20);
 ```
 
-# 포인터 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 소유권 분쟁과 개체 `Handler`
+# 포인터 멤버 변수의 소유권 분쟁
 
-`new` 로 생성한 것은 `delete`로 소멸([힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다. 
+`new` 로 생성한 것은 `delete`로 소멸([힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다. 그렇다고 여러 차례 `delete` 한다면 예외가 발생합니다.([개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고) 생성한 것은 1회 `delete` 해야 합니다.
 
-다음 코드는 생성자에서 `new`로 생성한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 전달받고, 소멸자에서 `delete`합니다. 
-
-그런데, 암시적 복사 생성자를 이용하여 포인터 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 복사하면, 소멸자에서 `delete`시 소유권 분쟁이 생깁니다. 동일한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 `t1`, `t2`가 참조하게 되어, `t1` 소멸시에도 `delete`하고, `t2` 소멸시에도 `delete`하게 되어, 결국 2번 `delete`하다가 예외가 발생하게 되죠.
+생성자에서 `new`로 생성한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 전달받는 `T`개체를 정의한다고 합시다. 안전한 소멸을 보장하기 위해 소멸자에서 `delete`로 소멸시킵니다.
 
 ```cpp
 class T {
@@ -179,22 +177,31 @@ public:
     // val : new 로 생성된 것을 전달하세요.
     explicit T(int* val) :
         m_Val(val) {}
-
     // 암시적 복사 생성자의 기본 동작은 멤버별 복사 생성자 호출입니다.    
     // T(const T& other) : 
-    //     m_Val(other.m_Val) {} // !!동일한 힙 개체를 참조합니다.
-
+    //     m_Val(other.m_Val) {} // !!동일한 힙 개체를 참조합니다.        
     // 힙 개체를 메모리에서 제거 합니다.
     ~T() {delete m_Val;} 
-};
+};        
+```
+
+그런데, 암시적 복사 생성자를 이용하여 포인터 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 복사하면,
+
+```cpp
 // (X) 예외 발생. t1이 delete 한 것을 t2도 delete 합니다.
 {
     T t1(new int(10));
     T t2(t1); // 복사 생성의 결과 t1과 t2가 동일한 힙 개체를 참조합니다.
-} 
+}
 ```
 
+`t1`, `t2` 가 동일한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 참조하게 됩니다.
+
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/16376f0c-e8b0-4eb5-b5a0-f28fc5a9cc43)
+
+`t1`과 `t2` 의 유효 범위가 끝나서 각자 소멸자를 호출하면, 동일한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)개체를 각자 `delete` 하여 2회 `delete`되고 예외가 발생하게 됩니다.
+
+이렇게 포인터 멤버 변수의 소유권을 서로 갖고, 서로 소멸시키는 현상을 **소유권 분쟁**이라 합니다. 
 
 따라서, 암시적 복사 생성자를 사용하지 말고, 다음처럼 복사 생성자를 명시적으로 구현하여, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들어야 합니다.
 
@@ -228,28 +235,30 @@ public:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/204850fc-ed5b-4eb0-a7b6-e939d722c918)
 
-더 좋은 방법은, 복사 생성자를 케이스에 따라 이렇게 일일이 명시적으로 개발하지 않고, 암시적 복사 생성자를 그대로 사용할 수 있도록 개체 `Handler`([스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))를 만들어 사용하는 것입니다.
+# 복사 생성자만 지원하는 스마트 포인터
 
-`Handler`는 다음 단계를 통해 포인터 복제를 대행하도록 구현합니다.
+복사 생성자를 케이스에 따라 일일이 명시적으로 개발하는 것 보다는, 암시적 복사 생성자를 그대로 사용할 수 있도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 만들어 사용하는게 코드도 간결하고 분석하기 좋습니다. 여기서는 `int`형을 지원하는 것만 구현해 보도록 하겠습니다.(모든 타입을 지원하는 스마트 포인터는 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)
 
-1. `Handler`를 클래스 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 정의해 둡니다.
-2. 암시적 복사 생성자가 내부적으로 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 복사 생성자를 호출합니다.
-3. `Handler`의 복사 생성자가 호출됩니다.
-4. `Handler`의 복사 생성자에서 포인터 복제를 합니다.
-5. `Handler`의 소멸자에서 포인터를 `delete`합니다.
+스마트 포인터는 다음 단계를 통해 포인터 복제를 대행하도록 구현합니다. 
+
+1. 스마트 포인터를 클래스 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 정의해 둡니다.
+2. 암시적 복사 생성자가 호출되면, 내부적으로 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 복사 생성자를 호출합니다.
+3. 스마트 포인터의 복사 생성자가 호출됩니다.
+4. 스마트 포인터의 복사 생성자에서 포인터 복제를 합니다.
+5. 스마트 포인터의 소멸자에서 포인터를 `delete`합니다.
 
 ```cpp
-// 복사 생성이나 대입시 m_Ptr을 복제하고, 소멸시 delete 합니다.
-class Handler {
+// 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.
+class IntPtr {
 private:
     int* m_Ptr; // new로 생성된 개체입니다.
 public: 
-    Handler(int* ptr) :
+    explicit IntPtr(int* ptr) :
         m_Ptr(ptr) {}
 
     // (O) NULL 포인터가 아니라면 복제합니다.    
-    Handler(const Handler& other) {
-        if (other.m_Ptr != NULL) { 
+    IntPtr(const IntPtr& other) {
+        if (other.IsValid()) { 
             m_Ptr = new int(*other.m_Ptr); 
         }
         else {
@@ -258,28 +267,39 @@ public:
     }
 
     // 힙 개체를 메모리에서 제거 합니다.
-    ~Handler() {delete m_Ptr;}
+    ~IntPtr() {delete m_Ptr;}
+
+    // 포인터 연산자 호출시 m_Ptr에 접근할 수 있게 합니다.
+    const int* operator ->() const {return m_Ptr;}
+    int* operator ->() {return m_Ptr;}
+
+    const int& operator *() const {return *m_Ptr;}
+    int& operator *() {return *m_Ptr;}
+
+    // 유효한지 검사합니다.
+    bool IsValid() const {return m_Ptr != NULL ? true : false;}    
 };
 
 class T {
-    // (O) Handler를 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 Handler에서 delete 합니다.
+    // (O) IntPtr을 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
     // 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
-    Handler m_Val;
+    IntPtr m_Val;
 public:
     // val : new 로 생성된 것을 전달하세요.
     explicit T(int* val) :
         m_Val(val) {}
+    int GetVal() const {return *m_Val;}
 };
 // (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
 {
     T t1(new int(10));
     T t2(t1); // 새로운 int형 개체를 만들고 10을 복제합니다.
+
+    EXPECT_TRUE(t2.GetVal() == 10);
 } 
 ```
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ef2ea0ca-4eea-4f8e-bd9f-e945407cd455)
-
-복사 생성자를 위한 `Handler`의 자세한 구현은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 참고하세요.
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7d770781-1752-4f42-ac00-261838b22a6a)
 
 # 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출 금지
 

@@ -359,17 +359,13 @@ T t2(&val);
 t2 = t1; // (△) 비권장. 이미 지워버린 ptr을 가진 t1을 t2에 복사했습니다. 이런 실수 많이 하게 됩니다.
 ```
 
-이런 고민을 하면서 코딩하다 보면 논리 자체에 대한 고민보다 포인터 처리에 대한 고민만 많아지므로 다음과 같은 포인터 관리자를 이용하는게 좋습니다.
+이런 고민을 하면서 코딩하다 보면 논리 자체에 대한 고민보다 포인터 처리에 대한 고민만 많아지므로, 포인터를 관리하는 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체를 이용하는게 좋습니다.
 
 |항목|내용|
 |--|--|
-|[`Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9)||
-|[스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))||
-|[Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)||
-
-의 일종인 를 이용하면 포인터의 소유권 분쟁과 소멸에 대한 고민으로부터 자유로워질 수 있습니다.
-
-기본적인 `Handler`구현은 [포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler)를 참고하시고, 다양한 스마트 포인터 사용 방법은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 참고 하시기 바랍니다.
+|[`Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9)|포인터등 획득된 자원을 해제하는 관리자를 통칭하는 개체입니다.|
+|[스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)|`Handler`중에서 특별히 소유권 분쟁을 처리하는 개체입니다. 소유권 분쟁시 깊은 복제를 할 것인지, 자원을 공유할 것인지, 유일한 자원을 사용할 것인지에 따라 용도에 맞는 스마트 포인터를 사용합니다.|
+|[Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)|소유권 분쟁이 없도록 복사 생성이나 대입 연산을 원천 차단하고, 획득된 자원을 해제하는 역할을 합니다.|
 
 포인터 멤버 변수는 다음 조건을 충족하도록 만들어 져야 합니다.
 
@@ -378,3 +374,7 @@ t2 = t1; // (△) 비권장. 이미 지워버린 ptr을 가진 t1을 t2에 복�
 |암시적 복사 생성자와 호환|개체간 복사 생성시 포인터 멤버 변수의 소유권 분쟁이 없도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)로 작성합니다.([`Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler) 와 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)|
 |암시적 대입 연산자와 호환|개체간 대입시 포인터 멤버 변수의 소유권 분쟁이 없도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)로 작성합니다.([`Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler) 와 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)|
 |암시적 소멸자와 호환|소멸자에서 별다른 `delete` 를 작성하지 않더라도 유효 범위를 벗어나면 자동 소멸되도록 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체로 만듭니다.([`Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler) 와 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 와 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 참고)|
+
+```cpp
+
+```
