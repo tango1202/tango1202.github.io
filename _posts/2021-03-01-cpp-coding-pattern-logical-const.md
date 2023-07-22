@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-논리적으로는 데이터를 얻어오는 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이나, 실질적으로는 멤버 변수를 수정하는 함수가 있습니다. 주로 지연 생성이나 캐쉬를 구현하는 경우에 필요합니다.
+논리적으로는 데이터를 얻어오는 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이나, 실질적으로는 멤버 변수를 수정하는 함수가 있습니다. 주로 지연 생성이나 캐쉬를 구현하는 경우에 필요합니다.
 
 `Date`를 문자열로 리턴하는 함수를 만든다고 해봅시다. 다음 가정을 해봅시다.
 
@@ -161,7 +161,7 @@ EXPECT_TRUE(date.MakeText().compare("0021-02-10") == 0); // 문자열 생성
 
 # `mutable`로 상수 멤버 함수로 만드는 방법
 
-이럴때 `m_Cached`를 `mutable`로 정의하면, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이더라도 멤버 변수를 수정할 수 있습니다. Getter의 의미처럼 보이도록 함수명도 `MakeText()`에서 `GetText()` 로 변경하였습니다.
+이럴때 `m_Cached`를 `mutable`로 정의하면, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이더라도 멤버 변수를 수정할 수 있습니다. Getter의 의미처럼 보이도록 함수명도 `MakeText()`에서 `GetText()` 로 변경하였습니다.
 
 ```cpp
 const std::string& GetText() const  

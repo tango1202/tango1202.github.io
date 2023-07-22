@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [고전 C++ 개체 지향] 멤버 변수, 초기화 리스트"
+title: "#6. [고전 C++ 개체 지향] 멤버 변수, 초기화 리스트, PImpl 이디엄"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -11,7 +11,7 @@ sidebar:
 > * 멤버 변수 초기화시, 생성후 대입하지 말고 초기화 리스트를 사용하라.(초기화 리스트의 순서는 멤버 변수 정의 순서에 맞춰라.)
 > * 생성자에서 필요한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 모두 나열하고 초기화하라.
 > * 메모리 패딩을 고려하여 멤버 변수 정의 순서를 정하라.
-> * [암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [암시적 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90)가 정상 동작하도록 멤버 변수로 [`Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-handler) 나 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하라.
+> * [암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [암시적 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90)가 정상 동작하도록 멤버 변수로 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하라.
 
  
 # 개요 
@@ -25,7 +25,7 @@ sidebar:
 |[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)|특정 개체에 속하지 않는 변수.<br/>클래스에 응집되어 있는 전역 변수.|선택|별도 정의|`main` 호출 ~ `main` 종료|
 |정적 상수 멤버 변수|정적 멤버 변수와 동일<br/>수정 불가|필수|선언부 초기화<br/>별도 정의|멤버 변수와 동일|
 
-멤버 변수는 개체의 데이터를 저장 및 관리합니다. 주로 `private`로 은닉하고, [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#getter-%ED%95%A8%EC%88%98)와 [Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#setter-%ED%95%A8%EC%88%98)를 통해 외부에 노출합니다.
+멤버 변수는 개체의 데이터를 저장 및 관리합니다. 주로 `private`로 은닉하고, [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)와 [Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#setter-%ED%95%A8%EC%88%98)를 통해 외부에 노출합니다.
 
 참조자 멤버 변수와 상수 멤버 변수는 초기화가 필수입니다. 반드시 값 생성자를 만들어 초기화 리스트를 이용해서 초기화해야 합니다.
 
@@ -282,7 +282,7 @@ class EmptyDerived : public Empty { // 빈 클래스를 상속받으면, 강제 
 EXPECT_TRUE(sizeof(EmptyDerived) == sizeof(int));
 ```
 
-빈 클래스라도 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있다면 가상 함수 테이블이 생성됩니다. 컴파일러에 따라 다를 수도 있으나 대부분 8byte 입니다.
+빈 클래스라도 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있다면 가상 함수 테이블이 생성됩니다. 컴파일러에 따라 다를 수도 있으나 대부분 8byte 입니다.
 
 ```cpp
 class Base { // 멤버 변수는 없지만 virtual 이 있어 가상 함수 테이블이 생성됨
@@ -328,7 +328,7 @@ EXPECT_TRUE(sizeof(T) == 12);
 
 # 포인터 멤버 변수
 
-포인터 멤버 변수는 복사 생성이나 대입 연산시 복사 되면서 소유권 분쟁을 하게 되며, `delete` 해야 할지 말아야 할지 상당히 고민되는 순간들을 많이 만들어 냅니다.
+포인터 멤버 변수는 복사 생성이나 대입 연산시 복사 되면서  [소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)을 하게 되며, `delete` 해야 할지 말아야 할지 상당히 고민되는 순간들을 많이 만들어 냅니다.
 
 다음 코드에서 `T`는 `new`로 생성한 포인터도 전달 받고, 지역 변수 `val`의 주소도 전달받습니다. `T`가 알아서 이를 판단하기 어려워 호출하는 쪽에서 `delete`해주어야 합니다.
 
@@ -364,16 +364,28 @@ t2 = t1; // (△) 비권장. 이미 지워버린 ptr을 가진 t1을 t2에 복�
 |항목|내용|
 |--|--|
 |[스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)|소유권 분쟁시 깊은 복제를 할 것인지, 자원을 공유할 것인지, 유일한 자원을 사용할 것인지에 따라 용도에 맞는 스마트 포인터를 사용합니다.([대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고, [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)|
-|[Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)|소유권 분쟁이 없도록 복사 생성이나 대입 연산을 원천 차단하고, 획득된 자원을 해제하는 역할을 합니다.|
+|[Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)|소유권 분쟁이 없도록 복사 생성이나 대입 연산을 원천 차단하고, 획득된 자원을 해제하는 역할을 합니다.([Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 참고)|
 
-포인터 멤버 변수는 다음 조건을 충족하도록 만들어 져야 합니다.
+[스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)나 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)는 멤버 변수로 사용시 다음 조건을 충족해야 합니다.
 
 |항목|내용|
 |--|--|
-|암시적 복사 생성자와 호환|개체간 복사 생성시 포인터 멤버 변수의 소유권 분쟁이 없도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)로 작성합니다.([대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고, [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)|
-|암시적 대입 연산자와 호환|개체간 대입시 포인터 멤버 변수의 소유권 분쟁이 없도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)로 작성합니다.([대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고, [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)<br/>단, 멤버 변수가 2개 이상이면 예외에 안정적이지 않으니 명시적으로 `swap`을 이용한 대입 연산자를 구현하거나 [PImpl 이디엄](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-plmpl/)을 이용하여 클래스를 구성합니다.([멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EA%B0%80-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EC%99%80-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80%EC%9D%98-%ED%98%B8%ED%99%98%EC%84%B1) 참고)|
-|암시적 소멸자와 호환|소멸자에서 별다른 `delete` 를 작성하지 않더라도 유효 범위를 벗어나면 자동 소멸되도록 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체로 만듭니다.([Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 참고)|
+|암시적 복사 생성자와 호환|개체간 복사 생성시 포인터 멤버 변수의  [소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)이 없어야 합니다.([대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고, [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)|
+|암시적 대입 연산자와 호환|개체간 대입시 포인터 멤버 변수의  [소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)이 없어야 합니다.([대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고, [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)<br/>예외 발생시 예외 안정적으로 이전 상태를 유지해야 합니다. 멤버 변수가 1개면 스마트 포인터로 가능하지만, 멤버 변수가 2개 이상이면 명시적으로 `swap`을 이용한 대입 연산자를 구현하거나 [PImpl 이디엄](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-plmpl/)을 이용하여 클래스를 구성합니다.([멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EA%B0%80-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EC%99%80-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80%EC%9D%98-%ED%98%B8%ED%99%98%EC%84%B1) 참고)|
+|암시적 소멸자와 호환|소멸자에서 별다른 `delete` 를 작성하지 않더라도 유효 범위를 벗어나면 자동 소멸되도록  만듭니다.([Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 참고)|
+
+
+상기 조건이 충족된 클래스 예제는 [멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EA%B0%80-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EC%99%80-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80%EC%9D%98-%ED%98%B8%ED%99%98%EC%84%B1)을 참고하기 바랍니다.
+
+
+# PImpl 이디엄
+
+허브 셔터가 알려준 궁극의 모듈화.(pimpl 이디엄이라 한다.)
+완벽하게 데이터를 은닉하기 위해 다음처럼 한다. 
+h 에서 
 
 ```cpp
-
+struct Impl; // 선언
+cpp에서 struct Impl {...}; // 정의
 ```
+

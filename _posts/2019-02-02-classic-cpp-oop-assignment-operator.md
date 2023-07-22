@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * 멤버 변수가 1개라면, 암시적 대입 연산자가 정상 동작하도록 멤버 변수 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하고, 필요없다면 못쓰게 만들어라.
-> * 멤버 변수가 2개 이상이라면, 대입 연산자를 예외에 안정적이도록 `swap`을 이용하여 구현하고, 필요없다면 못쓰게 만들어라.
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, 암시적 대입 연산자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하고, 필요없다면 못쓰게 만들어라.
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 대입 연산자를 예외에 안정적이도록 `swap`을 이용하여 구현하고, 필요없다면 못쓰게 만들어라.
 
  # 개요
 
@@ -140,7 +140,7 @@ std::swap(t1, t2); // 복사 생성 1회 대입 2회
 
 상기 코드를 테스트 해보면,
 
-1. 멤버 변수별 대입 방식을 사용하면, 대입 연산이 1회 일어나지만, 
+1. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)별 대입 방식을 사용하면, 대입 연산이 1회 일어나지만, 
 2. `swap`을 이용하면, 복사 생성 1회와 대입 연산 2회가 발생하는 걸 알 수 있습니다. 
 
 보통 `swap`은 다음과 같이 임시 개체를 만들고, 각각 값을 대입하기 때문에 복사 부하가 있을 수 밖에 없습니다. 또한 대입 과정에서 또다른 예외가 더 발생할 수도 있기 때문에 좋지 않습니다. 
@@ -155,16 +155,16 @@ swap(const T& left, const T& right) {
 
 **포인터 멤버 변수를 이용한 `swap` 최적화**
 
-따라서, `swap`을 이용하여 대입 연산자를 구현하려면 비교적 복사 부하가 적고, 예외 발생 소지도 적은 포인터 멤버 변수로 작성해야 합니다.
+따라서, `swap`을 이용하여 대입 연산자를 구현하려면 비교적 복사 부하가 적고(포인터 복사는 8byte입니다.), 예외 발생 소지도 적은 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 작성해야 합니다.
 
 다음 예제에서
 
 1. `Big`은 임의의 큰 데이터를 처리하는 클래스로 가정합니다.
 2. `Big`의 복사 생성자와 대입 연산자에 메시지를 출력해서 복사 부하를 확인합니다.
-3. `T`는 `Big`을 포인터 멤버 변수로 관리합니다.
+3. `T`는 `Big`을 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 관리합니다.
 4. [포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81) 이 없도록 `T`의 복사 생성자에서 `Big`을 복제하고 소멸자에서 `delete` 합니다.
 5. 대입 연산자는 임시 개체를 만들고 `swap`으로 구현합니다.
-6. `swap`은 포인터 멤버 변수들끼리 교체하여 복사 부하를 줄입니다.
+6. `swap`은 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)들끼리 교체하여 복사 부하를 줄입니다.
 
 ```cpp
 class Big {
@@ -249,12 +249,12 @@ Big::Big(const Big& other)
 Big::Big(const Big& other)
 ```
 
- 임시 개체(`temp`)에서 `new`된 `Big`개체들은 `this`에 포인터 복사되고, `this`가 관리하던 `Big`개체들은 임시 개체에 전달된 후 버려집니다. 따라서 `swap`으로 인한 복사는 포인터 복사 뿐이므로, 복사 부하는 거의 없다고 보셔도 무방합니다.
+ 임시 개체(`temp`)에서 `new`된 `Big`개체들은 `this`에 포인터 복사되고, `this`가 관리하던 `Big`개체들은 임시 개체에 전달된 후 버려집니다. 따라서 `swap`으로 인한 복사는 포인터 복사(8byte 복사) 뿐이므로, 복사 부하는 거의 없다고 보셔도 무방합니다.
 
-즉, 포인터 멤버 변수로 정의한 개체의 대입 연산자를 `swap`으로 구현하면,
+즉, [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 정의한 개체의 대입 연산자를 `swap`으로 구현하면,
 
 1. 예외 안정적이고,
-2. 복사 부하는 멤버 변수별 대입과 동일합니다.
+2. 복사 부하는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)별 대입과 거의 동등합니다.
 
 
 # 대입 연산자까지 지원하는 스마트 포인터
@@ -273,14 +273,8 @@ public:
         m_Ptr(ptr) {}
 
     // (O) NULL 포인터가 아니라면 복제합니다.    
-    IntPtr(const IntPtr& other) {
-        if (other.IsValid()) { 
-            m_Ptr = new int(*other.m_Ptr); 
-        }
-        else {
-            m_Ptr = NULL;
-        }
-    }
+    IntPtr(const IntPtr& other) :
+        m_Ptr(other.IsValid() ? new int(*other.m_Ptr) : NULL) {}
 
     // 힙 개체를 메모리에서 제거 합니다.
     ~IntPtr() {delete m_Ptr;}
@@ -316,7 +310,7 @@ public:
 
 class T {
     // (O) IntPtr을 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
-    // 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
+    // (O) 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
     IntPtr m_Val;
 public:
     // val : new 로 생성된 것을 전달하세요.
@@ -335,19 +329,20 @@ public:
 {
     T t1(new int(10));
     T t2(new int(20));
-    t2 = t1; 
+    t2 = t1; // (O) swap 버전 대입 연산자 호출
     EXPECT_TRUE(t2.GetVal() == 10);
 }
 ```
 
 # 멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성
 
-대입 연산자를 지원하는 스마트 포인터를 사용하더라도, 만약 멤버 변수가 2개 이상이라면, 암시적 대입 연산자와 기본적인 호환은 되나, 예외 안정은 지원하지 않습니다.
+대입 연산자를 지원하는 스마트 포인터를 사용하더라도, 만약 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 암시적 대입 연산자와 기본적인 호환은 되나, 예외 안정은 지원하지 않습니다.
 
 ```cpp
 class T {
     IntPtr m_Val1;
     IntPtr m_Val2;
+public:
     // 암시적 대입 연산자의 기본 동작은 멤버별 대입입니다.    
     T& operator =(const T& other) {
         m_X = other.m_X;
@@ -356,28 +351,49 @@ class T {
 };
 ```
 
-따라서, 스마트 포인터를 사용했더라도, 멤버 변수가 2개 이상이라면, `swap`을 이용하여 대입 연산자를 구현해야 합니다.
+따라서, 스마트 포인터를 사용했더라도, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, `swap`을 이용하여 대입 연산자를 구현해야 합니다.
 
 ```cpp
 class T {
+    // (O) IntPtr을 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
+    // (O) 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
+    // (O) 포인터 멤버 변수가 2개 있어, 예외에 안정적이지 않으므로 swap으로 대입 연산자를 구현합니다.
     IntPtr m_Val1;
     IntPtr m_Val2;
-   
+public:
+    explicit T(int* val1, int* val2) :
+        m_Val1(val1),
+        m_Val2(val2) {}
     T& operator =(const T& other) {
         T temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
-
         Swap(temp); // (O) 포인터 끼리의 값 변경이므로 복사 부하가 없고, 예외가 발생하지 않습니다.
-
         return *this;
     } 
     void Swap(T& other) {
         m_Val1.Swap(other.m_Val1); // 포인터 끼리의 값 변경이므로 복사 부하도 없고, 예외가 발생하지 않습니다. 
         m_Val2.Swap(other.m_Val2);
     }
+
+    int GetVal1() const {return *m_Val1;}
+    int GetVal2() const {return *m_Val2;}
 };
+// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+{
+    T t1(new int(10), new int(20));
+    T t2(t1); // 새로운 int형 개체를 만들고 10, 20을 복제합니다.
+
+    EXPECT_TRUE(t2.GetVal1() == 10 && t2.GetVal2() == 20);
+} 
+// (O) 대입 연산 시에도 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+{
+    T t1(new int(10), new int(20));
+    T t2(new int(1), new int (2));
+    t2 = t1; // (O) swap 버전 대입 연산자 호출
+    EXPECT_TRUE(t2.GetVal1() == 10 && t2.GetVal2() == 20);
+}
 ```
 
-혹은 멤버 변수를 무조건 1개로 유지하는 방법도 있습니다.([PImpl 이디엄](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-plmpl/) 참고)
+혹은 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 무조건 1개로 유지하는 방법도 있습니다.([PImpl 이디엄](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-plmpl/) 참고)
 
 # 대입 연산자 사용 제한
 

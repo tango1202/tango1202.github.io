@@ -109,7 +109,7 @@ TEST(TestClassicCpp, Static) {
 
 # 정적 멤버 함수
 
-[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에 `static` 을 사용하여 특정 개체에 속하지 않는 정적 멤버 함수를 정의 할 수 있습니다.
+[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에 `static` 을 사용하여 특정 개체에 속하지 않는 정적 멤버 함수를 정의 할 수 있습니다.
 
 ```cpp
 class T {

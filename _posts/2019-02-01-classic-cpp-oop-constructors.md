@@ -12,7 +12,7 @@ sidebar:
 > * 값 생성자에서는 필요한 인자를 모두 나열하고 초기화하라. 
 > * 인자가 1개인 값 생성자는 `explicit`를 사용하여 암시적 형변환을 차단하라.
 > * 암시적 복사 생성자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하고, 필요없다면 못쓰게 만들어라.
-> * 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
+> * 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
 > * 상속 전용 기반 클래스는 `protected` 생성자 보다는 [`protected` Non-Vitual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들어라.
  
 # 개요
@@ -24,7 +24,7 @@ sidebar:
 |`T(int) {}`|인자가 1개인 값 생성자<br/>(형변환 생성자)|
 |`T(const T& other) {}`|복사 생성자|
 
-생성자는 개체가 생성될 때 제일 먼저 호출되는 특수 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)입니다. 개체가 메모리에 할당된 뒤에 호출되고, 초기값을 설정하는 역할을 합니다.
+생성자는 개체가 생성될 때 제일 먼저 호출되는 특수 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)입니다. 개체가 메모리에 할당된 뒤에 호출되고, 초기값을 설정하는 역할을 합니다.
 
 # 기본 생성자
 
@@ -46,7 +46,7 @@ T t(); // (X) T를 리턴하는 함수 f() 선언
 암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 된다고는 합니다.([cppreference.com](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고) 
 
 1. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 실제 테스트 해보니 GCC 디버그 모드에서는 `0`이 아닙니다. 신뢰할 수 없으니 명시적으로 초기화 하세요.(값 초기화를 이용하는게 좋습니다.) 
-2. 참조자 형식이나 상수형 개체는 생성시 초기값에 전달되야 하기 때문에, 암시적 기본 생성자로 초기화 할 수 없습니다.(값 초기화를 이용해야 합니다.)
+2. 참조자 형식이나 상수형 개체는 생성시 초기값이 전달되야 하기 때문에, 암시적 기본 생성자로 초기화 할 수 없습니다.(값 초기화를 이용해야 합니다.)
 
 ```cpp
 class T1 {
@@ -102,7 +102,7 @@ T t; // (△) 비권장. 암시적 기본 생성자 사용
 class T {
     int m_Val;
 public:
-    explicit T(int val = 0) : // 값 생성자 의 기본값을 이용해 디폴트 생성자를 없앴습니다.
+    explicit T(int val = 0) : // 값 생성자의 기본값을 이용해 암시적 기본 생성자를 없앴습니다.
         m_Val(val) {}
 };
 T t1; // (O) 기본값으로 값 생성자 호출
@@ -185,7 +185,7 @@ public:
 };        
 ```
 
-그런데, 암시적 복사 생성자를 이용하여 포인터 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 복사하면,
+그런데, 암시적 복사 생성자를 이용하여 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 복사하면,
 
 ```cpp
 // (X) 예외 발생. t1이 delete 한 것을 t2도 delete 합니다.
@@ -201,7 +201,7 @@ public:
 
 `t1`과 `t2` 의 유효 범위가 끝나서 각자 소멸자를 호출하면, 동일한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)개체를 각자 `delete` 하여 2회 `delete`되고 예외가 발생하게 됩니다.
 
-이렇게 포인터 멤버 변수의 소유권을 서로 갖고, 서로 소멸시키는 현상을 **소유권 분쟁**이라 합니다. 
+이렇게 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)의 소유권을 서로 가지고 있고, 서로 소멸시키는 현상을 **소유권 분쟁**이라 합니다. 
 
 따라서, 암시적 복사 생성자를 사용하지 말고, 다음처럼 복사 생성자를 명시적으로 구현하여, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들어야 합니다.
 
@@ -237,15 +237,14 @@ public:
 
 # 복사 생성자만 지원하는 스마트 포인터
 
-복사 생성자를 케이스에 따라 일일이 명시적으로 개발하는 것 보다는, 암시적 복사 생성자를 그대로 사용할 수 있도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 만들어 사용하는게 코드도 간결하고 분석하기 좋습니다. 여기서는 `int`형을 지원하는 것만 구현해 보도록 하겠습니다.(모든 타입을 지원하는 스마트 포인터는 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)
+[힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들기 위해 복사 생성자를 케이스에 따라 일일이 명시적으로 개발하는 것 보다는, 암시적 복사 생성자를 그대로 사용할 수 있도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 만들어 사용하는게 코드도 간결하고 분석하기 좋습니다. 여기서는 `int`형을 지원하는 것만 구현해 보도록 하겠습니다.(모든 타입을 지원하는 스마트 포인터는 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)
 
-스마트 포인터는 다음 단계를 통해 포인터 복제를 대행하도록 구현합니다. 
+스마트 포인터는 다음 단계를 통해 포인터 복제를 대행합니다. 
 
 1. 스마트 포인터를 클래스 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 정의해 둡니다.
-2. 암시적 복사 생성자가 호출되면, 내부적으로 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 복사 생성자를 호출합니다.
-3. 스마트 포인터의 복사 생성자가 호출됩니다.
-4. 스마트 포인터의 복사 생성자에서 포인터 복제를 합니다.
-5. 스마트 포인터의 소멸자에서 포인터를 `delete`합니다.
+2. 암시적 복사 생성자가 호출되면, 내부적으로 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 복사 생성자를 호출합니다. 이때 스마트 포인터의 복사 생성자가 호출됩니다.
+3. 스마트 포인터의 복사 생성자에서 포인터 복제를 합니다.
+4. 스마트 포인터의 소멸자에서 포인터를 `delete`합니다.
 
 ```cpp
 // 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.(대입 연산은 지원하지 않습니다.)
@@ -257,14 +256,8 @@ public:
         m_Ptr(ptr) {}
 
     // (O) NULL 포인터가 아니라면 복제합니다.    
-    IntPtr(const IntPtr& other) {
-        if (other.IsValid()) { 
-            m_Ptr = new int(*other.m_Ptr); 
-        }
-        else {
-            m_Ptr = NULL;
-        }
-    }
+    IntPtr(const IntPtr& other) :
+        m_Ptr(other.IsValid() ? new int(*other.m_Ptr) : NULL) {}
 
     // 힙 개체를 메모리에서 제거 합니다.
     ~IntPtr() {delete m_Ptr;}
@@ -281,7 +274,7 @@ public:
 };
 
 class T {
-    // (O) IntPtr을 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
+    // (O) IntPtr을 이용하여 복사 생성시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
     // 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
     IntPtr m_Val;
 public:
@@ -305,11 +298,11 @@ public:
 }
 ```
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7d770781-1752-4f42-ac00-261838b22a6a)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f9fbb86f-7553-4227-b699-46d35e2793ca)
 
-# 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출 금지
+# 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출 금지
 
-부모 클래스의 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하면, 아직 자식 클래스들이 완전히 생성되지 않은 상태이기에 부모 클래스의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 호출됩니다. 의도치 않은 동작이므로, 생성자에서는 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마세요.
+부모 클래스의 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하면, 아직 자식 클래스들이 완전히 생성되지 않은 상태이기에 부모 클래스의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 호출됩니다. 의도치 않은 동작이므로, 생성자에서는 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마세요.
 
 ```cpp
 class Base {

@@ -1,12 +1,24 @@
 ---
 layout: single
-title: "#11. [고전 C++ 가이드] 상속"
+title: "#9. [고전 C++ 가이드] 상속"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
+
+# 개요
+
+```cpp
+class Base // 기본 클래스, 슈퍼 클래스
+{
+};class Driven : public Base //  파생 클래스, 서브 클래스 기본 클래스로 부터 속성을 물려받는다. 다중 상속을 받을 수도 있다.
+{
+}; 
+```
+
+
 https://en.cppreference.com/w/cpp/language/derived_class
 Derived 참고
 
@@ -14,13 +26,6 @@ Derived 참고
 https://en.cppreference.com/w/cpp/language/ebo
 빈 부모 초기화
 
-class Base 기본 클래스, 슈퍼 클래스
-{
-};class Driven : public Base 파생 클래스, 서브 클래스 기본 클래스로 부터 속성을 물려받
-는다. 다중 상속을 받을 수도 있다.
-
-{
-};
 
 https://en.cppreference.com/w/cpp/language/access
 접근 지정자 참고
@@ -84,3 +89,41 @@ class Base { virtual Base* Clone() const = 0; };class Driven : public Base { vir
 };Driven d; Base* b = d.Clone(); // (O) b는 d의 복제본을 가리키는 포인터
 Base* b2 = b->Clone();// (O) b2는 d의 복제본을 가리키는 포인터
 
+**부모 개체의 멤버 함수 호출**
+
+`::`(범위 확인 연산자)를 이용하여 부모 개체의 가상 함수를 호출할 수 있습니다.
+
+```cpp
+class Base {
+public:
+    int f() {return 10;} 
+};
+
+class Derived : public Base {
+public:
+    int f() {return 20;} 
+};
+
+Derived d;
+Base* b = &d;
+
+EXPECT_TRUE(b->f() == 10); 
+EXPECT_TRUE(d.f() == 20);
+
+EXPECT_TRUE(b->Base::f() == 10); // 부모 개체의 함수를 호출할 수 있습니다.
+EXPECT_TRUE(d.Base::f() == 10); // 부모 개체의 함수를 호출할 수 있습니다.
+```
+
+# 부모 개체의 멤버 함수 오버로딩
+
+함수 이름이 같으면 가림
+
+struct B
+{
+    void f();
+};
+ 
+struct D : B
+{
+    void f(int); // D::f hides B::f (wrong parameter list)
+};

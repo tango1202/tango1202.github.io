@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [고전 C++ 개체 지향] 멤버 함수, 상수 멤버 함수, Getter, Setter"
+title: "#7. [고전 C++ 개체 지향] 멤버 함수, 상수 멤버 함수, 가상 함수, Getter, Setter(작성중)"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -10,6 +10,7 @@ sidebar:
 
 > * 멤버 변수를 수정하지 않으면, 상수 멤버 함수로 작성하라.
 > * 자식 개체에서 부모 개체의 비 가상 함수를 재정의 하지 마라.
+> * 가상 함수를 정의하면 가상 함수 테이블을 위한 추가 공간이 필요하니 꼭 필요한 경우만 사용하라.
 > * Getter 함수의 리턴값은 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성하라.
 > * Setter 함수의 인자는 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성하라.
 
@@ -125,9 +126,9 @@ public:
 
 다음 코드에서 일반 함수인 `f()`와 가상 함수인 `v()`를 `Derived`에서 재구현 했을때, 어떻게 동작하는지 나타내었습니다.
 
-부모 개체인 `Base`에서 일반 함수인 `f()`를 호출하면, `Base::f()`가 호출되고, 자식 개체에서는 `Derived::f()` 가 호출됩니다. 일관성이 없으므로 사용하지 말아야 하고, 자식 개체에서 부모 개체의 비 가상 함수를 가려서는 안됩니다.
+동일한 개체를 `Base` 포인터로 일반 함수인 `f()`를 호출하면, `Base::f()`가 호출되고, 자식 개체 포인터에서는 `Derived::f()` 가 호출됩니다. 일관성이 없으므로 사용하지 말아야 합니다.
 
-부모 개체인 `Base`에서 가상 함수인 `v()`를 호출하면, `Derived::v()`가 정상적으로 호출됩니다.
+가상 함수인 경우는 `Base` 포인터 이던 `Derived` 포인터 이던, `Derived::v()`가 정상적으로 호출됩니다.
 
 ```cpp
 class Base {
@@ -152,6 +153,63 @@ EXPECT_TRUE(static_cast<Base&>(d).f() == 10); // (△) 비권장. 가려진 Base
 EXPECT_TRUE(b->v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 EXPECT_TRUE(d.v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 ```
+
+**리턴값 변경**
+ 
+자식 개체에서 가상 함수 재구현시 리턴 타입은 바뀔 수도 있습니다. 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다.
+
+```cpp
+class Base {
+public:
+    virtual Base* v() {return this;} // 가상 함수
+};
+
+class Derived : public Base {
+public:
+    virtual Derived* v() {return this;} // (O) Derived 는 Base와 상속관계여서 가능
+    // virtual int* v() {return NULL;} // (X) 컴파일 오류. 밑도 끝도 없는 타입은 안됨
+};
+```
+
+# 가상 함수 테이블(Virtual Function Table, vTable)
+
+부모 클래스에 가상 함수가 있다면, 내부적으로 해당 개체의 시작 주소에 가상 함수 테이블(가상 함수 포인터에 대한 배열)을 생성합니다. 컴파일러에 따라 다를 수도 있으나 대부분 8byte 입니다. 가상 함수 호출시에는 가상 함수 테이블을 참조하여 호출하게 됩니다.
+
+```cpp
+class Base {
+public: 
+    virtual void v1() {}
+    virtual void v2() {}
+    virtual void v3() {}
+    void f();
+};
+class Derived : public Base {
+    virtual void v2() {} // 오버라이딩
+    virtual void v3() {} // 오버라이딩
+};
+```
+
+상기와 같이 `v2()`, `v3()`를 오버라이딩 했다면, 가상 함수 테이블은 다음과 같이 구성됩니다.
+
+1. `f()`는 가상 함수가 아니므로 가상 함수 테이블에 포함되지 않습니다.
+2. `v1()`은 오버라이딩 하지 않았으므로, `Derived`의 가상 함수 테이블에 `Base::v1()`의 주소가 저장됩니다.
+3. `v2()`, `v3()`은 오버라이딩 되었으므로, `Derived`의 가상 함수 테이블에 `Derived::v2()`, `Derived::v3()`의 주소가 저장됩니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/80878e38-22ff-4799-b3ad-ddc5e33829d8)
+
+따라서, 
+
+```cpp
+Derived d;
+Base* b = &d;
+b->v3();
+```
+
+와 같이 `Base` 포인터로 가상 함수인 `v3()`을 호출하면, 다음 경로에 따라 `Derived::v3()` 이 호출됩니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fea6dfbb-b668-41a7-9572-7b318f1d0e97)
+
+가상 함수가 정의된 개체는 가상 함수 테이블의 추가 공간을 필요로 하므로, 불필요하게 가상 함수를 정의하지 마세요. 인터페이스를 정의가 필요하거나, 다형적 동작이 필요한 경우만 사용하시기 바랍니다.
 
 # 순가상 함수
 
