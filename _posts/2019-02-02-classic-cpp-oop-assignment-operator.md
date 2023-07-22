@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 멤버 변수가 1개라면, 암시적 대입 연산자가 정상 동작하도록 멤버 변수 정의시 스마트 포인터를 사용하고, 필요없다면 못쓰게 만들어라.
+> * 멤버 변수가 1개라면, 암시적 대입 연산자가 정상 동작하도록 멤버 변수 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하고, 필요없다면 못쓰게 만들어라.
 > * 멤버 변수가 2개 이상이라면, 대입 연산자를 예외에 안정적이도록 `swap`을 이용하여 구현하고, 필요없다면 못쓰게 만들어라.
 
  # 개요
@@ -372,7 +372,7 @@ class T {
     } 
     void Swap(T& other) {
         m_Val1.Swap(other.m_Val1); // 포인터 끼리의 값 변경이므로 복사 부하도 없고, 예외가 발생하지 않습니다. 
-        m_Val1.Swap(other.m_Val1);
+        m_Val2.Swap(other.m_Val2);
     }
 };
 ```
