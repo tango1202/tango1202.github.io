@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, 암시적 대입 연산자가 정상 동작하도록 멤버 개체 Handler를 구현하고, 필요없다면 못쓰게 만들어라.
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, 암시적 대입 연산자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하고, 필요없다면 못쓰게 만들어라.
 > * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 대입 연산자를 예외에 안정적이도록 `swap`을 이용하여 구현하고, 필요없다면 못쓰게 만들어라.
 
  # 개요
@@ -50,145 +50,16 @@ t2 = t1; // (O) 암시적 대입 연산자 호출
 EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 ```
 
-# 포인터 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 소유권 분쟁과 개체 `Handler`
-
-[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)에서와 마찬가지로, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에 포인터가 있다면 대입 연산 후 소유권 분쟁을 합니다. 동일한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 2번 `delete` 하게 되니까요.([복사 생성자의 포인터 멤버 변수의 소유권 분쟁과 개체 `Handler`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81%EA%B3%BC-%EA%B0%9C%EC%B2%B4-%ED%95%B8%EB%93%A4%EB%9F%AC) 참고)
-
-이를 해결하기 위해, 암시적 대입 연산자를 사용하지 않고, 다음처럼 명시적으로 대입 연산자를 구현하여, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들 수 있습니다.
-
-```cpp
-class T {
-    int* m_Val;
-public:
-    // val : new 로 생성된 것을 전달하세요.
-    explicit T(int* val) :
-        m_Val(val) {}
-
-    // (O) NULL 포인터가 아니라면 복제합니다.
-    T(const T& other) {
-        if (other.m_Val != NULL) { 
-            m_Val = new int(*other.m_Val);
-        }
-        else {
-            m_Val = NULL;
-        }
-    }
-
-    // (O) NULL 포인터가 아니라면 복제합니다.
-    T& operator =(const T& other) {
-        // (△) 비권장. 기존에 관리하는 포인터는 소멸시킵니다. 
-        // 사실 미리 소멸시키는 건 예외 안정에 좋지 않습니다. 
-        // swap을 이용한 예외 안정 대입 연산자 구현 참고
-        delete m_Val; 
-
-        if (other.m_Val != NULL) { 
-            m_Val = new int(*other.m_Val);
-        }
-        else {
-            m_Val = NULL;
-        }
-
-        return *this;
-    }
-
-    // 힙 개체를 메모리에서 제거 합니다.
-    ~T() {delete m_Val;} 
-};
-// (O) 힙 개체를 복제하여 소유권 분쟁이 없습니다.
-{
-    T t1(new int(10));
-    T t2(t1); // 새로운 int형 개체를 만들고 10을 복제합니다.
-    T t3(new int(20)); 
-    t3 = t2; // (O) t3의 힙 개체는 delete 하고, t2의 힙 개체를 복제합니다.
-} 
-```
-
-[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)의 경우와 마찬가지로 `Handler`를 활용할 수도 있습니다.
-
-암시적 대입 연산자가 내부적으로 대입을 할때 `Handler`의 대입 연산자가 호출되는데, 이때 `Handler`의 대입 연산자에서 포인터를 복제하도록 재구현 합니다. 
-
-```cpp
-// 복사 생성이나 대입시 m_Ptr을 복제하고, 소멸시 delete 합니다.
-class Handler {
-private:
-    int* m_Ptr; // new로 생성된 개체입니다.
-public: 
-    Handler(int* ptr) :
-        m_Ptr(ptr) {}
-
-    // (O) NULL 포인터가 아니라면 복제합니다.    
-    Handler(const Handler& other) {
-        if (other.m_Ptr != NULL) { 
-            m_Ptr = new int(*other.m_Ptr); 
-        }
-        else {
-            m_Ptr = NULL;
-        }
-    }
-
-    // (O) NULL 포인터가 아니라면 복제합니다.     
-    Handler& operator =(const Handler& other) {
-        // (△) 비권장. 기존에 관리하는 포인터는 소멸시킵니다. 
-        // 사실 미리 소멸시키는 건 예외 안정에 좋지 않습니다. 
-        // swap을 이용한 예외 안정 대입 연산자 구현 참고
-        delete m_Ptr;  
-
-        if (other.m_Ptr != NULL) {
-            m_Ptr = new int(*other.m_Ptr);
-        }
-        else {
-            m_Ptr = NULL;
-        }
-        return *this;
-    }
-
-    // 힙 개체를 메모리에서 제거 합니다.
-    ~Handler() {delete m_Ptr;}
-};
-
-class T {
-    // (O) Handler를 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 
-    // 소멸시 Handler에서 delete 합니다.
-    // 암시적 복사 생성자와 암시적 대입 연산자에서 정상 동작하므로, 
-    // 명시적으로 복사 생성자와 대입 연산자를 구현할 필요가 없습니다.
-    Handler m_Val;
-public:
-    // val : new 로 생성된 것을 전달하세요.
-    explicit T(int* val) :
-        m_Val(val) {}
-};
-// (O) 복사 생성시 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
-{
-    T t1(new int(10));
-    T t2(t1); // 새로운 int형 개체를 만들고 10을 복제합니다.
-} 
-// (O) 대입 연산시 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
-{
-    T t1(new int(10));
-    T t2(new int(20)); 
-    t2 = t1;// t2의 힙 개체를 delete 하고, t1의 힙 개체를 복제합니다.
-} 
-```
-
-# `swap`을 이용한 예외 안정 대입 연산자 구현
+# `swap`을 이용한 예외 안정 대입 연산자
 
 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)에 언급된 것처럼 예외가 발생하기 전의 상태로 되돌아가야 합니다.
 
-하지만, `Handler`의 대입 연산자 구현을 보면, 기존에 참조되던 포인터를 `delete`하고, 새로운 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 할당합니다. 따라서 이미 `delete`한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 복원할 수 없어 예외 처리가 어려워 집니다.
+하지만, 암시적 대입 연산자의 구현을 보면, 각 멤버 변수별로 대입을 하다보니 중간에 예외가 발생했을 경우 이전에 이미 수정한 개체를 복원할 수 없어 예외 처리가 어려워 집니다.
 
 ```cpp
-Handler& operator =(const Handler& other) {
-    // (△) 비권장. 기존 힙 개체를 소멸시킵니다.
-    delete m_Ptr;  
-
-    // (△) 비권장. new 하다가 예외가 발생하면, 소멸시킨 힙 개체를 돌이킬 방법이 없습니다.
-    if (other.m_Ptr != NULL) {
-        m_Ptr = new int(*other.m_Ptr);
-    }
-    else {
-        m_Ptr = NULL;
-    }
-    return *this;
+T& operator =(const T& other) {
+    m_X = other.m_X;
+    m_Y = other.m_Y; // 여기서 예외가 발생했다면 m_X를 되돌려야 합니다.
 }
 ```
 
@@ -199,87 +70,211 @@ Handler& operator =(const Handler& other) {
 
 예외에 안정적인 대입 연산자를 구현할 수 있습니다.
 
-임시 개체를 만들고 버립니다만, 대입을 위해 `new`한 것을 `swap`으로 가져 오고, `delete`할 것은 임시 개체에 주기 때문에 불필요한 자원 낭비는 없습니다.
-
 ```cpp
-Handler& operator =(const Handler& other) {
+class T {
+    int m_X;
+    int m_Y;
+public:
+    T(int x, int y) : 
+        m_X(x), 
+        m_Y(y) {} 
+    // 암시적 복사 생성자의 기본 동작은 멤버별 복사 생성자 호출입니다.    
+    // T(const T& other) :
+    //     m_X(other.m_X),
+    //     m_Y(other.m_Y) {}
+    
+    T& operator =(const T& other) {
 
-    // other의 힙 개체를 복제한 임시 개체를 만듭니다.
-    Handler temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
+        // other를 복제한 임시 개체를 만듭니다.
+        T temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
 
-    // this의 내용과 임시 개체의 내용을 바꿔치기 합니다.
-    // this는 이제 other의 힙 개체를 복제한 값을 가집니다.
-    Swap(temp); // (O) 포인터 끼리의 값 변경이므로 예외가 발생하지 않습니다.
+        // this의 내용과 임시 개체의 내용을 바꿔치기 합니다.
+        // this는 이제 other를 복제한 값을 가집니다.
+        Swap(temp); 
 
-    return *this;
-    // temp는 지역 변수여서 자동으로 소멸됩니다.
-    // 소멸되면서 this가 이전에 가졌던 힙 개체를 소멸합니다.
-}
+        return *this;
+        
+    } // temp는 지역 변수여서 자동으로 소멸됩니다.
 
-// 멤버 변수들의 값을 바꿔치기 합니다.
-void Swap(Handler& other) {
-     std::swap(this->m_Ptr, other.m_Ptr); // (O) 포인터 끼리의 값 변경이므로 예외가 발생하지 않습니다.   
-}
+    // 멤버 변수들의 값을 바꿔치기 합니다.
+    void Swap(T& other) {
+        // (△) 비권장. int 형이라 복사 부하가 크지는 않습니다만, 
+        // 조금 큰 개체라면 복사 부하가 있고 예외를 발생할 수 있습니다.
+        std::swap(this->m_X, other.m_X); 
+        std::swap(this->m_Y, other.m_Y);
+    }
+
+    int GetX() const {return m_X;}
+    int GetY() const {return m_Y;}
+};
+T t1(10, 20);
+T t2(1, 2); 
+t2 = t1; // (O) swap 버전 대입 연산자 호출
+
+EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 ```
 
-`Handler` 자체는 예외에 안정적이지만, 이를 사용하는 `T` 개체는 아직 예외에 불안정합니다.
+**`swap`의 복사 부하**
 
-`T`가 포인터형 변수 2개를 관리한다고 생각해 봅시다.
+임시 개체를 만들고 버리는 것은, 어짜피 대입을 위해 생성한 것은 `swap`으로 가져 오고, 버릴 것은 임시 개체에 주기 때문에 자원 낭비는 그리 많지 않습니다.
+하지만, `swap`의 과정에서 복사 대입이 일어나므로 대용량의 자료 구조라면 심각한 복사 부하가 있을 수 있습니다.(`int`같은 기본 자료형은 복사 부하가 거의 없다고 보셔도 됩니다.)
 
 ```cpp
 class T {
-    Handler m_Val1;
-    Handler m_Val2;
 public:
-    // val1, val2 : new 로 생성된 것을 전달하세요.
-    T(int* val1, int* val2) :
-        m_Val1(val1),
-        m_Val2(val2) {} 
+    T() {}
+    T(const T& other) {
+        std::cout<<"T::T(const T& other)"<<std::endl;   
+    }
+    T& operator =(const T& other) {
+        std::cout<<"T::operator =()"<<std::endl;
+        return *this; 
+    } 
 };
+T t1;
+T t2;
+
+t1 = t2; // 대입 1회
+std::swap(t1, t2); // 복사 생성 1회 대입 2회
 ```
 
-`T`의 암시적 대입 연산자는 다음 코드를 수행합니다. 
+상기 코드를 테스트 해보면,
+
+1. 멤버 변수별 대입 방식을 사용하면, 대입 연산이 1회 일어나지만, 
+2. `swap`을 이용하면, 복사 생성 1회와 대입 연산 2회가 발생하는 걸 알 수 있습니다. 
+
+보통 `swap`은 다음과 같이 임시 개체를 만들고, 각각 값을 대입하기 때문에 복사 부하가 있을 수 밖에 없습니다. 또한 복사 생성과 대입 과정에서 또다른 예외가 더 발생할 수도 있기 때문에 좋지 않습니다. 
 
 ```cpp
-T& operator =(const T& other) {
-    m_Val1 = other.m_Val1; // 상황에 따라 이건 성공하고
-    m_Val2 = other.m_Val2; // 이게 예외를 발생할 수 있습니다.
+swap(const T& left, const T& right) {
+    T temp(right); // 복사 생성 1회
+    right = left;  // 대입 연산 1회
+    left = temp; // 대입 연산 1회
 }
 ```
 
-만약 `m_Val1` 대입은 성공하고, `m_Val2` 대입은 실패했다면, `this`의 `m_Val1`만 변경된 상태가 됩니다. 예외가 발생하기 전의 상태로 가야하는데 이미 `m_Val1`이 수정되었으니 예외에 안정적이지 못합니다. 따라서, `Handler`를 사용한 `T`라 할지라도 `swap`으로 대입 연산자를 구현할 필요가 있습니다.
+**포인터 멤버 변수를 이용한 `swap` 최적화**
 
-즉, `T`의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, `Handler`만 사용해도 충분히 예외에 안정적이지만, 2개 이상이라면, 예외에 안정적으로 만들기 위해, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 호환되는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 정의하고(필요하다면 `Handler`를 사용하고), `swap`을 이용하여 대입 연산자를 구현해야 합니다.
+따라서, `swap`을 이용하여 대입 연산자를 구현하려면 비교적 복사 부하가 적고, 예외 발생 소지도 적은 포인터 멤버 변수로 작성해야 합니다.
+
+다음 예제에서
+
+1. `Big`은 임의의 큰 데이터를 처리하는 클래스로 가정합니다.
+2. `Big`의 복사 생성자와 대입 연산자에 메시지를 출력해서 복사 부하를 확인합니다.
+3. `T`는 `Big`을 포인터 멤버 변수로 관리합니다.
+4. [포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81) 이 없도록 `T`의 복사 생성자에서 `Big`을 복제하고 소멸자에서 `delete` 합니다.
+5. 대입 연산자는 임시 개체를 만들고 `swap`으로 구현합니다.
+6. `swap`은 포인터 멤버 변수들끼리 교체하여 복사 부하를 줄입니다.
 
 ```cpp
-// (O) 예외에 안정적이도록 swap으로 대입 연산자를 구현합니다. 
-T& operator =(const T& other) {
-    T temp(other); // 임시 개체 생성
-    Swap(temp); // 바꿔치기
-    return *this; 
-} // 임시 개체가 소멸되면서, this가 이전에 가졌던 힙 개체 소멸
+class Big {
+    int m_Val; // 실제로는 복사 부하가 큰 데이터라고 생각해 주세요.
+public:
+    explicit Big(int val) : 
+        m_Val(val) {}
+    Big(const Big& other) : 
+        m_Val(other.m_Val) {
+        std::cout<<"Big::Big(const Big& other)"<<std::endl;  
+    }
+    Big& operator =(const Big& other) {
+        m_Val = other.m_Val;
+        std::cout<<"Big::operator =(const Big& other)"<<std::endl;  
+        return *this;
+    }    
+    int GetVal() const {return m_Val;}
+    void SetVal(int val) {m_Val = val;}
+};
+class T {
+    Big* m_X; // 복사 부하가 큰 데이터는 포인터로 관리합니다.
+    Big* m_Y;
+public:
+    T(Big* x, Big* y) : 
+        m_X(x), 
+        m_Y(y) {} 
+    // NULL 포인터가 아니라면 복제합니다.
+    T(const T& other) {
+        if (other.m_X != NULL) { 
+            m_X = new Big(*other.m_X);
+        }
+        else {
+            m_X = NULL;
+        }
+        if (other.m_Y != NULL) { 
+            m_Y = new Big(*other.m_Y);
+        }
+        else {
+            m_Y = NULL;
+        }
+    }
+    // 힙 개체를 메모리에서 제거 합니다.
+    ~T() {
+        delete m_X;
+        delete m_Y;
+    }
+    
+    T& operator =(const T& other) {
 
-// (O) 멤버 변수들의 값을 바꿔치기 합니다.
-void Swap(T& other) {
-    m_Val1.Swap(other.m_Val1); 
-    m_Val2.Swap(other.m_Val2);
-}                
+        // other를 복제한 임시 개체를 만듭니다.
+        T temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
+
+        // this의 내용과 임시 개체의 내용을 바꿔치기 합니다.
+        // this는 이제 other를 복제한 값을 가집니다.
+        Swap(temp); 
+
+        return *this;
+        
+    } // temp는 지역 변수여서 자동으로 소멸됩니다.
+
+    // 멤버 변수들의 값을 바꿔치기 합니다.
+    void Swap(T& other) {
+        // (O) 포인터 변수끼리의 복사/대입이라 복사 부하가 크지 않습니다.
+        // 예외가 발생할 확률도 낮습니다.
+        std::swap(this->m_X, other.m_X); 
+        std::swap(this->m_Y, other.m_Y);
+    }
+
+    const Big* GetX() const {return m_X;}
+    const Big* GetY() const {return m_Y;}
+};
+T t1(new Big(10), new Big(20));
+T t2(new Big(1), new Big(2)); 
+t2 = t1; // (O) swap 버전 대입 연산자 호출
+
+EXPECT_TRUE(t2.GetX()->GetVal() == 10 && t2.GetY()->GetVal() == 20);
+```
+하기는 실행 결과 입니다. 대입 연산시 임시 개체(`temp`)를 생성하느라 복사 생성자(`T(const T& other)`) 에서 `Big` 개체 2개를 복사 생성한 것(멤버별 대입에서와 동등한 부하입니다.) 외에는 다른 복사 부하가 없습니다.
+
+```cpp
+Big::Big(const Big& other)
+Big::Big(const Big& other)
 ```
 
-`Handler`와 `T` 개체의 전체 코드는 다음과 같습니다.
+ 임시 개체(`temp`)에서 `new`된 `Big`개체들은 `this`에 포인터 복사되고, `this`가 관리하던 `Big`개체들은 임시 개체에 전달된 후 버려집니다. 따라서 `swap`으로 인한 복사 부하는 없다고 보셔도 무방합니다.
+
+즉, 포인터 멤버 변수로 정의한 개체의 대입 연산자를 `swap`으로 구현하면,
+
+1. 예외 안정적이고,
+2. 복사 부하는 멤버 변수별 대입과 동일합니다.
+
+
+# 대입 연산자까지 지원하는 스마트 포인터
+
+대입 연산자 지원을 위해 [복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 `swap`을 이용한 대입 연산자 지원 기능을 추가합니다.
+
 
 ```cpp
-// 복사 생성이나 대입시 m_Ptr을 복제하고, 소멸시 delete 합니다.
-class Handler {
+// 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.
+// 대입 연산은 임시 개체 생성 후 swap 합니다.
+class IntPtr {
 private:
     int* m_Ptr; // new로 생성된 개체입니다.
 public: 
-    Handler(int* ptr) :
+    explicit IntPtr(int* ptr) :
         m_Ptr(ptr) {}
 
     // (O) NULL 포인터가 아니라면 복제합니다.    
-    Handler(const Handler& other) {
-        if (other.m_Ptr != NULL) { 
+    IntPtr(const IntPtr& other) {
+        if (other.IsValid()) { 
             m_Ptr = new int(*other.m_Ptr); 
         }
         else {
@@ -287,63 +282,63 @@ public:
         }
     }
 
-    // (O) 예외에 안정적이도록 swap을 이용하여 대입합니다.   
-    Handler& operator =(const Handler& other) {
+    // 힙 개체를 메모리에서 제거 합니다.
+    ~IntPtr() {delete m_Ptr;}
+
+    IntPtr& operator =(const IntPtr& other) {
+
         // other의 힙 개체를 복제한 임시 개체를 만듭니다.
-        Handler temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
+        IntPtr temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
 
         // this의 내용과 임시 개체의 내용을 바꿔치기 합니다.
         // this는 이제 other의 힙 개체를 복제한 값을 가집니다.
-        Swap(temp); // (O) 포인터 끼리의 값 변경이므로 예외가 발생하지 않습니다.
+        Swap(temp); // (O) 포인터 끼리의 값 변경이므로 복사 부하가 없고, 예외가 발생하지 않습니다.
 
         return *this;
         // temp는 지역 변수여서 자동으로 소멸됩니다.
         // 소멸되면서 this가 이전에 가졌던 힙 개체를 소멸합니다.
     }
-
     // 멤버 변수들의 값을 바꿔치기 합니다.
-    void Swap(Handler& other) {
-        std::swap(this->m_Ptr, other.m_Ptr); // (O) 포인터 끼리의 값 변경이므로 예외가 발생하지 않습니다.   
+    void Swap(IntPtr& other) {
+        std::swap(this->m_Ptr, other.m_Ptr); // (O) 포인터 끼리의 값 변경이므로 복사 부하도 없고, 예외가 발생하지 않습니다.   
     }
 
-    // 힙 개체를 메모리에서 제거 합니다.
-    ~Handler() {delete m_Ptr;}
+    // 포인터 연산자 호출시 m_Ptr에 접근할 수 있게 합니다.
+    const int* operator ->() const {return m_Ptr;}
+    int* operator ->() {return m_Ptr;}
+
+    const int& operator *() const {return *m_Ptr;}
+    int& operator *() {return *m_Ptr;}
+
+    // 유효한지 검사합니다.
+    bool IsValid() const {return m_Ptr != NULL ? true : false;}    
 };
 
 class T {
-    // (O) Handler를 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 
-    // 소멸시 Handler에서 delete 합니다.
+    // (O) IntPtr을 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
     // 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
-    Handler m_Val1;
-    Handler m_Val2;
+    IntPtr m_Val;
 public:
-    // val1, val2 : new 로 생성된 것을 전달하세요.
-    T(int* val1, int* val2) :
-        m_Val1(val1),
-        m_Val2(val2) {} 
-
-    // (O) 예외에 안정적이도록 swap으로 대입 연산자를 구현합니다. 
-    T& operator =(const T& other) {
-        T temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
-        Swap(temp); // 바꿔치기
-        return *this; 
-    } // 임시 개체가 소멸되면서, this가 이전에 가졌던 힙 개체 소멸
-
-    // (O) 멤버 변수들의 값을 바꿔치기 합니다.
-    void Swap(T& other) {
-        m_Val1.Swap(other.m_Val1); 
-        m_Val2.Swap(other.m_Val2);                  
-    }                
+    // val : new 로 생성된 것을 전달하세요.
+    explicit T(int* val) :
+        m_Val(val) {}
+    int GetVal() const {return *m_Val;}
 };
+// (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+{
+    T t1(new int(10));
+    T t2(t1); // 새로운 int형 개체를 만들고 10을 복제합니다.
 
-// (O) 대입 연산시 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
-// 대입 연산시 임시 개체를 만든뒤 Swap 하므로 예외가 발생하더라도 안정적입니다.
-T t1(new int(10), new int(10));
-T t2(new int(20), new int(20)); 
-t2 = t1; 
- 
+    EXPECT_TRUE(t2.GetVal() == 10);
+} 
+// (O) 대입 연산 시에도 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+{
+    T t1(new int(10));
+    T t2(new int(20));
+    t2 = t1; 
+    EXPECT_TRUE(t2.GetVal() == 10);
+}
 ```
-대입 연산자를 위한 `Handler`의 자세한 구현은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 참고하세요.
 
 # 대입 연산자 사용 제한
 

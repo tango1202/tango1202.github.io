@@ -11,7 +11,7 @@ sidebar:
 > * 기본 생성자가 필요하다면 명시적으로 구현하고, 필요없다면 못쓰게 만들어라.
 > * 값 생성자에서는 필요한 인자를 모두 나열하고 초기화하라. 
 > * 인자가 1개인 값 생성자는 `explicit`를 사용하여 암시적 형변환을 차단하라.
-> * 암시적 복사 생성자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 개체 `Handler`를 사용하고, 필요없다면 못쓰게 만들어라.
+> * 암시적 복사 생성자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하고, 필요없다면 못쓰게 만들어라.
 > * 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-const-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
 > * 상속 전용 기반 클래스는 `protected` 생성자 보다는 [`protected` Non-Vitual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들어라.
  
@@ -248,7 +248,7 @@ public:
 5. 스마트 포인터의 소멸자에서 포인터를 `delete`합니다.
 
 ```cpp
-// 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.
+// 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.(대입 연산은 지원하지 않습니다.)
 class IntPtr {
 private:
     int* m_Ptr; // new로 생성된 개체입니다.
@@ -297,6 +297,12 @@ public:
 
     EXPECT_TRUE(t2.GetVal() == 10);
 } 
+// (X) 예외 발생. 2번 delete 합니다. 아직 대입 연산은 지원하지 않습니다.
+{
+    T t1(new int(10));
+    T t2(new int(20));
+    t2 = t1; // 아직 대입 연산은 지원하지 않습니다.
+}
 ```
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7d770781-1752-4f42-ac00-261838b22a6a)
