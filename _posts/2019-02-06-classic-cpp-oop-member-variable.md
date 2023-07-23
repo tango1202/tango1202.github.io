@@ -49,7 +49,7 @@ const int m_Val4 = 0; // (O) 선언부 초기화 지원
 static const int s_c_m_Val6 = 0; // (O) 선언부 초기화 지원
 ```
 
-[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 선언과 정의를 분리해서 작성해야 합니다.([정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 보다는 [함수내 정적 지역 변수](https://github.com/tango1202/tango1202.github.io/blob/main/_posts/2019-01-12-classic-cpp-guide-static-extern-lifetime.md#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 사용을 권장합니다.)
+[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 선언과 정의를 분리해서 작성해야 합니다.([정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 보다는 [함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 사용을 권장합니다.)
 
 ```cpp
 class T {
@@ -371,7 +371,7 @@ t2 = t1; // (△) 비권장. 이미 지워버린 ptr을 가진 t1을 t2에 복�
 |항목|내용|
 |--|--|
 |암시적 복사 생성자와 호환|개체간 복사 생성시 포인터 멤버 변수의  [소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)이 없어야 합니다.([대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고, [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)|
-|암시적 대입 연산자와 호환|개체간 대입시 포인터 멤버 변수의  [소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)이 없어야 합니다.([대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고, [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)<br/>예외 발생시 예외 안정적으로 이전 상태를 유지해야 합니다. 멤버 변수가 1개면 스마트 포인터로 가능하지만, 멤버 변수가 2개 이상이면 명시적으로 `swap`을 이용한 대입 연산자를 구현하거나 [PImpl 이디엄](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-plmpl/)을 이용하여 클래스를 구성합니다.([멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EA%B0%80-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EC%99%80-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80%EC%9D%98-%ED%98%B8%ED%99%98%EC%84%B1) 참고)|
+|암시적 대입 연산자와 호환|개체간 대입시 포인터 멤버 변수의  [소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)이 없어야 합니다.([대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고, [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)<br/>예외 발생시 예외 안정적으로 이전 상태를 유지해야 합니다. 멤버 변수가 1개면 스마트 포인터로 가능하지만, 멤버 변수가 2개 이상이면 명시적으로 `swap`을 이용한 대입 연산자를 구현하거나 [PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#pimpl-%EC%9D%B4%EB%94%94%EC%97%84/)을 이용하여 클래스를 구성합니다.([멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EA%B0%80-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EC%99%80-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80%EC%9D%98-%ED%98%B8%ED%99%98%EC%84%B1) 참고)|
 |암시적 소멸자와 호환|소멸자에서 별다른 `delete` 를 작성하지 않더라도 유효 범위를 벗어나면 자동 소멸되도록  만듭니다.([Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 참고)|
 
 
@@ -380,16 +380,39 @@ t2 = t1; // (△) 비권장. 이미 지워버린 ptr을 가진 t1을 t2에 복�
 
 # PImpl 이디엄
 
-PImpl(pointer to implementation, 구현에 대한 포인터)은 구현의 상세 정보를 은닉하는 프로그래밍 기법입니다.
+PImpl(pointer to implementation, 구현에 대한 포인터)은 구현의 상세 정보를 은닉하는 프로그래밍 기법으로서, 코드간 종속성이나, 컴파일 종속성을 최소화 해줍니다.
 
 1. 개체 내부의 [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)에 멤버 변수들을 정의하고,
-2. 개체 선언부에서는 중첩 클래스를 포인터 멤버 변수로 선언만 하고, 개체 정의부에서 사용합니다.
+2. 개체 선언부에서는 중첩 클래스를 포인터 멤버 변수로 선언만 하고, 개체 정의부에서 실제 선언 및 정의를 합니다.
 
-그러면, 선언부에서는 중첩 클래스의 실제 사용이 없기 때문에 전방 선언만 해도 되므로, 컴파일 종속성이 현저히 줄어듭니다.
+그러면, 선언부에서는 중첩 클래스의 실제 사용이 없기 때문에 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 해도 되므로, 컴파일 종속성이 현저히 줄어듭니다.
 
+```cpp
+// 선언에서, 아마도 헤더 파일
+class T {
+    class Impl; // 전방 선언
+    Impl* m_Impl; // (O) 포인터 멤버 변수로 선언. 전방 선언만 해주면, 클래스의 포인터이므로 8byte크기라고 생각하고, 컴파일을 계속합니다.
+};
 
+// 정의에서, 아마도 cpp 파일
+class T::Impl { // 실제 선언 및 정의를 합니다.
+public:   
+    IntPtr m_Val1; 
+    IntPtr m_Val2; 
+}; 
+```
+헤더 파일에는 `Impl`의 전방 선언만 있으므로, 내부 구현이 어떻게 되는지 알 수 없습니다. 구현은 cpp 파일에 은닉되어 있습니다.
 
-3. `IntPtr`은 [대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)
+다음 예제는  [멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EA%B0%80-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EC%99%80-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80%EC%9D%98-%ED%98%B8%ED%99%98%EC%84%B1) 의 클래스 `T`를 PImpl 방식으로 리팩토링 한 예입니다.
+
+1. `m_Val1`, `m_Val2`를 `T::Impl`로 이전하였습니다.
+2. `T`에서 `class Impl;` 전방 선언을 하고, `Impl* m_Impl;`을 포인터 멤버 변수로 선언하였습니다.
+3. `m_Impl` 복사 생성을 위해 `T`의 복사 생성자를 추가했습니다.
+4. `m_Impl` 소멸을 위해 `T`의 소멸자를 추가했습니다.
+5. `m_Impl` 대입 연산을 위해 `swap`을 이용한 대입 연산자를 추가했습니다.
+6. `T::Impl` 정의에서, 복사 생성자는 두고, 대입 연산자는 사용하지 않기에 `private`로 막았습니다.
+
+(`IntPtr`은 [대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)의 내용을 참고하기 바랍니다.)
 
 ```cpp
 // ----
@@ -401,6 +424,7 @@ class T {
 public:
     // val1, val2 : new 로 생성된 것을 전달하세요.
     T(int* val1, int* val2);
+    // (△) 비권장 . m_Impl이 포인터 멤버 변수여서, 복사 생성자에서 복제, 소멸자에서 delete, swap을 이용한 대입 연산자를 구현해야 합니다.
     T(const T& other);
     ~T();
     T& operator =(const T& other);
@@ -454,68 +478,222 @@ int T::GetVal1() const {return *(m_Impl->m_Val1);}
 int T::GetVal2() const {return *(m_Impl->m_Val2);}
 ```
 
-멤버 변수가 2개 이상인 경우 대입 연산자 구현 편의성을 위해, 혹은 내부 멤버 변수 구조를 은닉하기 위해 중첩 클래스를 이용하여 멤버 변수를 정의할 수 있습니다. 
+또한, 멤버 변수가 `m_Impl` 1개 이므로, 스마트 포인터로 만들면, 복사 생성자, 소멸자, 대입 연산자를 별도로 작성하지 않아도 됩니다.([대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
+
+다만, 
 
 ```cpp
 class T {
-    struct Impl {
-        IntPtr m_Val1;
-        IntPtr m_Val2;
-        m_Impl(int* val1, int* val2) : 
-            m_Val1(val1),
-            m_Val2(val2) {}
-    private:
-        Impl& operator =(const Impl& other) {return *this;}
+    class Impl;
+    Impl* m_Impl;
+...
+};    
+```
 
-    };
-    class ImplPtr {
-    private:
-        Impl* m_Ptr; // new로 생성된 개체입니다.
-    public: 
-        explicit ImplPtr(Impl* ptr) :
-            m_Ptr(ptr) {}
+을 스마트 포인터로 변경하면,
 
-        // (O) NULL 포인터가 아니라면 복제합니다.    
-        ImplPtr(const ImplPtr& other) :
-            m_Ptr(other.IsValid() ? new int(*other.m_Ptr) : NULL) {}
+```cpp
+class T {
+    class Impl;
+    ImplPtr m_Impl; // (X) 컴파일 오류. ImplPtr의 제대로된 선언이 필요합니다.
+...
+};  
+```
+와 같이 해야 하는데, `ImplPtr`의 실제 크기등을 알아아 하므로, 제대로된 선언이 필요합니다.
 
-        // 힙 개체를 메모리에서 제거 합니다.
-        ~ImplPtr() {delete m_Ptr;}
+그래서, 다음처럼 `ImplPtr`을 선언하면, 이번에는 `T::Impl`의 전방 선언이 필요합니다.
 
-        ImplPtr& operator =(const ImplPtr& other) {
-            ImplPtr temp(other);
-            Swap(temp);
-            return *this;
-        }
-        // 멤버 변수들의 값을 바꿔치기 합니다.
-        void Swap(ImplPtr& other) {
-            std::swap(this->m_Ptr, other.m_Ptr); 
-        }
-
-        // 포인터 연산자 호출시 m_Ptr에 접근할 수 있게 합니다.
-        const int* operator ->() const {return m_Ptr;}
-        int* operator ->() {return m_Ptr;}
-
-        const int& operator *() const {return *m_Ptr;}
-        int& operator *() {return *m_Ptr;}
-
-        // 유효한지 검사합니다.
-        bool IsValid() const {return m_Ptr != NULL ? true : false;}    
-    }; 
-
-    ImplPtr m_Impl;
-    T(int* val1, int* val2) :
-        m_Impl(new Impl(val1, val2)) {}
-
+```cpp
+class ImplPtr {
+    T::Impl* m_Ptr; // (X) 컴파일 오류. T::Impl 의 전방 선언이 필요합니다.
+};
+class T {
+    class Impl;
+    ImplPtr m_Impl; 
 };
 ```
 
-허브 셔터가 알려준 궁극의 모듈화.(pimpl 이디엄이라 한다.)
-완벽하게 데이터를 은닉하기 위해 다음처럼 한다. 
-h 에서 
+그래서, 다음처럼 `T::Impl`의 전방 선언을 해보시면, 중첩 클래스여서 전방 선언이 안됩니다.([전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8) 참고)
 
 ```cpp
-struct Impl; // 선언
-cpp에서 struct Impl {...}; // 정의
+class T::Impl; // (X) 컴파일 오류. 중첩 클래스는 전방 선언을 할 수 없습니다.
+class ImplPtr {
+    T::Impl* m_Ptr; 
+};
+class T {
+    class Impl;
+    ImplPtr m_Impl; 
+};
 ```
+
+그래서, 스마트 포인터로 PImpl을 구현하려면, 다음과 같이 중첩 클래스가 아닌 일반 클래스로 정의해야 됩니다.
+
+다음은 전체 코드입니다.
+
+1. 중첩 클래스인 `T::Impl`을 밖으로 빼서 `TImpl`로 선언하였습니다.
+2. 스마트 포인터인 `TImplPtr`을 정의했습니다.
+3. 스마트 포인터를 사용하므로 `T`의 복사 생성자, 소멸자, 대입 연산자, Swap을 제거했습니다.
+
+```cpp
+// --------
+// 선언에서
+// --------
+
+// ----
+// T클래스의 Impl 전방 선언
+// ----
+class TImpl; // 중첩 클래스는 전방 선언이 안되어 별도 클래스로 선언하고, 전방 선언합니다.
+
+// ----    
+// TImplPtr 선언
+// ----
+class TImplPtr {
+private:
+    TImpl* m_Ptr; 
+public: 
+    explicit TImplPtr(TImpl* ptr);
+    TImplPtr(const TImplPtr& other);
+    ~TImplPtr();
+
+    TImplPtr& operator =(const TImplPtr& other);
+    void Swap(TImplPtr& other);
+
+    const TImpl* operator ->() const;
+    TImpl* operator ->();
+
+    const TImpl& operator *() const;
+    TImpl& operator *();
+
+    bool IsValid() const;  
+};
+
+// ----    
+// (O) T 선언 : 복사 생성자, 소멸자, swap을 이용한 대입 연산자, Swap 불필요
+// ----
+class T {
+    // 중첩 클래스는 전방 선언이 안되어 별도 클래스로 선언하고, 전방 선언합니다.
+    // (O) 스마트 포인터를 사용하여, 복사 생성자, 소멸자를 구현할 필요가 없고, 
+    // (O) 멤버 변수도 1개여서 Swap을 이용하여 대입 연산자를 구현할 필요가 없습니다.
+    TImplPtr m_Impl; 
+public:
+    // val1, val2 : new 로 생성된 것을 전달하세요.
+    T(int* val1, int* val2);
+
+    int GetVal1() const;
+    int GetVal2() const;
+};
+
+// --------
+// 정의에서
+// --------
+
+// 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.
+// 대입 연산은 임시 개체 생성 후 swap 합니다.
+class IntPtr {
+private:
+    int* m_Ptr; 
+public: 
+    explicit IntPtr(int* ptr) :
+        m_Ptr(ptr) {}
+    IntPtr(const IntPtr& other) :
+        m_Ptr(other.IsValid() ? new int(*other.m_Ptr) : NULL) {} 
+    ~IntPtr() {delete m_Ptr;}
+
+    IntPtr& operator =(const IntPtr& other) {
+        IntPtr temp(other); 
+            Swap(temp); 
+        return *this;
+    }
+    void Swap(IntPtr& other) {
+        std::swap(this->m_Ptr, other.m_Ptr);  
+    }
+
+    const int* operator ->() const {return m_Ptr;}
+    int* operator ->() {return m_Ptr;}
+
+    const int& operator *() const {return *m_Ptr;}
+    int& operator *() {return *m_Ptr;}
+
+    bool IsValid() const {return m_Ptr != NULL ? true : false;}    
+};
+
+// ----
+// TImpl 정의
+// ----
+class TImpl {
+public: // T 에서 멤버 변수를 자유롭게 쓰도록 public 입니다.
+    // 스마트 포인터를 사용합니다. 암시적 복사 생성자에서 복제본을 만들고, 소멸자에서 잘 소멸합니다.
+    IntPtr m_Val1;
+    IntPtr m_Val2;
+    TImpl(int* val1, int* val2) : 
+        m_Val1(val1),
+        m_Val2(val2) {}
+private:        
+    // 대입 연산자는 사용하지 않으므로 private로 못쓰게 만듭니다.
+    TImpl& operator =(const TImpl& other) {return *this;}  
+};
+
+// ----
+// TImplPtr 정의
+// ----
+TImplPtr::TImplPtr(TImpl* ptr) :
+    m_Ptr(ptr) {}
+TImplPtr::TImplPtr(const TImplPtr& other) :
+    m_Ptr(other.IsValid() ? new TImpl(*other.m_Ptr) : NULL) {} // TImpl의 복사 생성자를 호출합니다.
+TImplPtr::~TImplPtr() {delete m_Ptr;} // TImpl을 소멸시킵니다.
+
+TImplPtr& TImplPtr::operator =(const TImplPtr& other) {
+    TImplPtr temp(other); 
+    Swap(temp); 
+    return *this;
+}
+void TImplPtr::Swap(TImplPtr& other) {
+    std::swap(this->m_Ptr, other.m_Ptr);  
+}
+
+const TImpl* TImplPtr::operator ->() const {return m_Ptr;}
+TImpl* TImplPtr::operator ->() {return m_Ptr;}
+
+const TImpl& TImplPtr::operator *() const {return *m_Ptr;}
+TImpl& TImplPtr::operator *() {return *m_Ptr;}
+
+bool TImplPtr::IsValid() const {return m_Ptr != NULL ? true : false;}    
+
+// ----
+// T 정의
+// ----
+T::T(int* val1, int* val2) :
+    m_Impl(new TImpl(val1, val2)) {}
+
+// TImpl의 멤버 변수를 이용합니다.
+int T::GetVal1() const {return *(m_Impl->m_Val1);}
+int T::GetVal2() const {return *(m_Impl->m_Val2);}    
+
+TEST(TestClassicCpp, PImpl) {
+    {
+        // (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+        {
+            T t1(new int(10), new int(20));
+            T t2(t1); // 새로운 int형 개체를 만들고 10, 20을 복제합니다.
+
+            EXPECT_TRUE(t2.GetVal1() == 10 && t2.GetVal2() == 20);
+        } 
+        // (O) 대입 연산 시에도 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
+        {
+            T t1(new int(10), new int(20));
+            T t2(new int(1), new int (2));
+            t2 = t1; // (O) swap 버전 대입 연산자 호출
+            EXPECT_TRUE(t2.GetVal1() == 10 && t2.GetVal2() == 20);
+        }
+    }
+}
+```
+
+**PImpl 이디엄 오버헤드**
+
+PImpl 이디엄으로 구현 코드를 은닉하여 코드간 종속성이나, 컴파일 종속성을 최소화 하는 장점과 `swap`을 이용한 대입 연산자 구현 편의성을 제공합니다만, 다음 오버 헤드가 있습니다.
+
+1. 멤버 변수 접근 오버 헤드 : `m_Impl`을 통해 간접적으로 접근합니다.
+2. 메모리 공간 오버 헤드 : `m_Impl` 포인터의 추가 오버 헤드가 필요합니다.
+3. 힙 공간 오버 헤드 : `m_Impl`과 멤버 변수 들이 모두 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 공간에만 배치됩니다.
 

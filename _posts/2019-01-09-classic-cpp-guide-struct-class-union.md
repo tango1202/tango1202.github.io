@@ -169,6 +169,8 @@ void MyClass::f() {
 }
 ```
 
+중첩 클래스는 전방 선언을 할 수 없습니다.
+
 # 인라인 함수
 
 클래스(구조체) 선언부에 정의한 함수는 컴파일러 판단에 따라 [인라인](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)화 됩니다.

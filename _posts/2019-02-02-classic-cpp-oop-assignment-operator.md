@@ -259,8 +259,25 @@ Big::Big(const Big& other)
 
 # 대입 연산자까지 지원하는 스마트 포인터
 
-대입 연산자 지원을 위해 [복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 `swap`을 이용한 대입 연산자 지원 기능을 추가하면, 다음과 같습니다.
+대입 연산자 지원을 위해 [복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 `swap`을 이용한 대입 연산자 지원 기능을 추가하면, 
 
+1. 복사 생성시 스마트 포인터에서 복제를 해주고,
+2. 소멸시 스마트 포인터에서 `delete` 해주고,
+3. 대입 연산시 스마트 포인터에서 `swap`해 주므로,
+
+암시적 복사 생성자, [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90), 암시적 대입 연산자와 호환되어 별도로 구현할 필요가 없어집니다. 다음처럼 복사 생성자, 소멸자, 대입 연산자 정의 없이 간소하게 작성할 수 있습니다.
+
+```cpp
+class T {
+    IntPtr m_Val;
+public:
+    explicit T(int* val) :
+        m_Val(val) {}
+    int GetVal() const {return *m_Val;}
+};
+```
+
+다음은 전체 코드입니다.
 
 ```cpp
 // 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.
@@ -311,6 +328,7 @@ public:
 class T {
     // (O) IntPtr을 이용하여 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
     // (O) 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
+    // (O) 포인터 멤버 변수가 1개 있고, 내부적으로 대입 연산시 swap하므로 대입 연산자를 구현할 필요가 없습니다.
     IntPtr m_Val;
 public:
     // val : new 로 생성된 것을 전달하세요.
@@ -394,7 +412,7 @@ public:
 }
 ```
 
-혹은 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 무조건 1개로 유지하는 방법도 있습니다.([PImpl 이디엄](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-plmpl/) 참고)
+혹은 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 무조건 1개로 유지하는 방법도 있습니다.([PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#pimpl-%EC%9D%B4%EB%94%94%EC%97%84/) 참고)
 
 # 대입 연산자 사용 제한
 

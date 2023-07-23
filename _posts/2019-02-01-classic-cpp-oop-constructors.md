@@ -244,7 +244,7 @@ public:
 1. 스마트 포인터를 클래스 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 정의해 둡니다.
 2. 암시적 복사 생성자가 호출되면, 내부적으로 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 복사 생성자를 호출합니다. 이때 스마트 포인터의 복사 생성자가 호출됩니다.
 3. 스마트 포인터의 복사 생성자에서 포인터 복제를 합니다.
-4. 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출뒤 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들이 소멸됩니다.([개체 소멸 순서](https://github.com/tango1202/tango1202.github.io/blob/main/_posts/2019-02-03-classic-cpp-oop-destructors.md#%EA%B0%9C%EC%B2%B4-%EC%86%8C%EB%A9%B8-%EC%88%9C%EC%84%9C) 참고)
+4. 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출뒤 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들이 소멸됩니다.([개체 소멸 순서](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EA%B0%9C%EC%B2%B4-%EC%86%8C%EB%A9%B8-%EC%88%9C%EC%84%9C) 참고)
 5. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 소멸시 스마트 포인터의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 포인터를 `delete`합니다.
 
 ```cpp
