@@ -118,7 +118,7 @@ class T {
 |중첩 클래스(구조체)|클래스내의 또다른 클래스를 정의합니다.
 |타입 재정의(`typdef`)|타입의 별칭을 정의합니다.<br/>([타입 재정의(`typdef`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD) 참고)|
 
-**전방 선언**
+# 전방 선언
 
 서로 다른 클래스(구조체)가 상호 참조할 경우, 컴파일이 안될 수도 있습니다.
 
@@ -136,7 +136,7 @@ class YourClass {
 이때 전방 선언만 참조하는 곳(`MyClass`)은 
 
 1. 구체 정의가 아닌 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 사용하여야 하고, 
-2. 2방 선언한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 
+2. 전방 선언한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 
  
 이에 따라 클래스 선언과 정의를 분리하고 다음 순서대로 작성해야 합니다.
 
@@ -169,7 +169,7 @@ void MyClass::f() {
 }
 ```
 
-**인라인 함수**
+# 인라인 함수
 
 클래스(구조체) 선언부에 정의한 함수는 컴파일러 판단에 따라 [인라인](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)화 됩니다.
 
@@ -184,7 +184,7 @@ class T {
 int T::f2() {} // inline화 안됨
 ```
 
-**접근 지정자**
+# 접근 지정자
  
 접근 지정자를 이용하여 외부 접근을 통제할 수 있습니다.
 
@@ -212,7 +212,7 @@ Derived d;
 d.m_Val = 10; // 이제 public이라 접근 가능합니다.
 ```
 
-**`friend`**
+# `friend`
 
 일반적으로 `public`만 외부에서 접근할 수 있으나 특별히 `friend`로 허용한 [클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)와 [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)는 `protected`와 `private`에 접근할 수 있습니다. 
 

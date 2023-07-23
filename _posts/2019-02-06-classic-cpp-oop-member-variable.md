@@ -380,52 +380,76 @@ t2 = t1; // (△) 비권장. 이미 지워버린 ptr을 가진 t1을 t2에 복�
 
 # PImpl 이디엄
 
-PImpl(pointer to implementation, 구현에 대한 포인터)은 구현의 상세 정보를 은닉하는 프로그래밍 기술입니다.
+PImpl(pointer to implementation, 구현에 대한 포인터)은 구현의 상세 정보를 은닉하는 프로그래밍 기법입니다.
+
+1. 개체 내부의 [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)에 멤버 변수들을 정의하고,
+2. 개체 선언부에서는 중첩 클래스를 포인터 멤버 변수로 선언만 하고, 개체 정의부에서 사용합니다.
+
+그러면, 선언부에서는 중첩 클래스의 실제 사용이 없기 때문에 전방 선언만 해도 되므로, 컴파일 종속성이 현저히 줄어듭니다.
+
+
+
+3. `IntPtr`은 [대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)
 
 ```cpp
-
+// ----
 // 선언에서
+// ----
 class T {
     class Impl;
-    Impl* m_Impl;
-    public:
-        // val1, val2 : new 로 생성된 것을 전달하세요.
-        T(int* val1, int* val2);
-        T::T(const T& other);
-        T::~T();
-        T& operator =(const T& other);
-        void Swap(T& other);
+    Impl* m_Impl; // T::Impl 타입의 클래스 포인터를 멤버 변수로 사용합니다. 선언 시점에 구체 구현은 은닉되어 있습니다. 
+public:
+    // val1, val2 : new 로 생성된 것을 전달하세요.
+    T(int* val1, int* val2);
+    T(const T& other);
+    ~T();
+    T& operator =(const T& other);
+    void Swap(T& other);
 
-        int GetVal1() const;
-        int GetVal2() const;
+    int GetVal1() const;
+    int GetVal2() const;
 };
 
+// ----
 // 정의에서
+// ----
+
+// 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.
+// 대입 연산은 임시 개체 생성 후 swap 합니다.
+class IntPtr {
+    // 대입 연산자까지 지원하는 스마트 포인터 참고
+};
+
 class T::Impl {
-public:
+public: // T 에서 멤버 변수를 자유롭게 쓰도록 public 입니다.
+    // 스마트 포인터를 사용합니다. 암시적 복사 생성자에서 복제본을 만들고, 소멸자에서 잘 소멸합니다.
     IntPtr m_Val1;
     IntPtr m_Val2;
-    m_Impl(int* val1, int* val2) : 
+    Impl(int* val1, int* val2) : 
         m_Val1(val1),
         m_Val2(val2) {}
 private:        
-    Impl& operator =(const Impl& other) {return *this;}    
+    // 대입 연산자는 사용하지 않으므로 private로 못쓰게 만듭니다.
+    Impl& operator =(const Impl& other) {return *this;}  
 };
 
 T::T(int* val1, int* val2) :
     m_Impl(new T::Impl(val1, val2)) {}
 T::T(const T& other) :
-    m_Impl(new T::Impl(*other.m_Impl)) {}
-T::~T() {delete m_Impl;}
+    m_Impl(new T::Impl(*other.m_Impl)) {} // T::Impl의 복사 생성자를 호출합니다.
+T::~T() {delete m_Impl;} // T::Impl을 소멸시킵니다.
+
+// Swap을 이용하여 대입 연산자를 구현합니다.
 T& T::operator =(const T& other) {
-    T temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
-    Swap(temp); // (O) 포인터 끼리의 값 변경이므로 복사 부하가 없고, 예외가 발생하지 않습니다.
+    T temp(other); 
+    Swap(temp); 
     return *this;
 } 
 void T::Swap(T& other) {
     std::swap(this->m_Impl, other.m_Impl);
 }
 
+// T::Impl의 멤버 변수를 이용합니다.
 int T::GetVal1() const {return *(m_Impl->m_Val1);}
 int T::GetVal2() const {return *(m_Impl->m_Val2);}
 ```
