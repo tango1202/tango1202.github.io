@@ -207,7 +207,7 @@ b->v3();
 
 와 같이 `Base` 포인터로 가상 함수인 `v3()`을 호출하면, 다음 경로에 따라 `Derived::v3()` 이 호출됩니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fea6dfbb-b668-41a7-9572-7b318f1d0e97)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bab05099-af07-4661-bf93-6d348353367f)
 
 가상 함수가 정의된 개체는 가상 함수 테이블의 추가 공간을 필요로 하므로, 불필요하게 가상 함수를 정의하지 마세요. 인터페이스를 정의가 필요하거나, 다형적 동작이 필요한 경우만 사용하시기 바랍니다.
 

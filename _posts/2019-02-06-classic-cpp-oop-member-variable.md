@@ -380,6 +380,112 @@ t2 = t1; // (△) 비권장. 이미 지워버린 ptr을 가진 t1을 t2에 복�
 
 # PImpl 이디엄
 
+PImpl(pointer to implementation, 구현에 대한 포인터)은 구현의 상세 정보를 은닉하는 프로그래밍 기술입니다.
+
+```cpp
+
+// 선언에서
+class T {
+    class Impl;
+    Impl* m_Impl;
+    public:
+        // val1, val2 : new 로 생성된 것을 전달하세요.
+        T(int* val1, int* val2);
+        T::T(const T& other);
+        T::~T();
+        T& operator =(const T& other);
+        void Swap(T& other);
+
+        int GetVal1() const;
+        int GetVal2() const;
+};
+
+// 정의에서
+class T::Impl {
+public:
+    IntPtr m_Val1;
+    IntPtr m_Val2;
+    m_Impl(int* val1, int* val2) : 
+        m_Val1(val1),
+        m_Val2(val2) {}
+private:        
+    Impl& operator =(const Impl& other) {return *this;}    
+};
+
+T::T(int* val1, int* val2) :
+    m_Impl(new T::Impl(val1, val2)) {}
+T::T(const T& other) :
+    m_Impl(new T::Impl(*other.m_Impl)) {}
+T::~T() {delete m_Impl;}
+T& T::operator =(const T& other) {
+    T temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다.
+    Swap(temp); // (O) 포인터 끼리의 값 변경이므로 복사 부하가 없고, 예외가 발생하지 않습니다.
+    return *this;
+} 
+void T::Swap(T& other) {
+    std::swap(this->m_Impl, other.m_Impl);
+}
+
+int T::GetVal1() const {return *(m_Impl->m_Val1);}
+int T::GetVal2() const {return *(m_Impl->m_Val2);}
+```
+
+멤버 변수가 2개 이상인 경우 대입 연산자 구현 편의성을 위해, 혹은 내부 멤버 변수 구조를 은닉하기 위해 중첩 클래스를 이용하여 멤버 변수를 정의할 수 있습니다. 
+
+```cpp
+class T {
+    struct Impl {
+        IntPtr m_Val1;
+        IntPtr m_Val2;
+        m_Impl(int* val1, int* val2) : 
+            m_Val1(val1),
+            m_Val2(val2) {}
+    private:
+        Impl& operator =(const Impl& other) {return *this;}
+
+    };
+    class ImplPtr {
+    private:
+        Impl* m_Ptr; // new로 생성된 개체입니다.
+    public: 
+        explicit ImplPtr(Impl* ptr) :
+            m_Ptr(ptr) {}
+
+        // (O) NULL 포인터가 아니라면 복제합니다.    
+        ImplPtr(const ImplPtr& other) :
+            m_Ptr(other.IsValid() ? new int(*other.m_Ptr) : NULL) {}
+
+        // 힙 개체를 메모리에서 제거 합니다.
+        ~ImplPtr() {delete m_Ptr;}
+
+        ImplPtr& operator =(const ImplPtr& other) {
+            ImplPtr temp(other);
+            Swap(temp);
+            return *this;
+        }
+        // 멤버 변수들의 값을 바꿔치기 합니다.
+        void Swap(ImplPtr& other) {
+            std::swap(this->m_Ptr, other.m_Ptr); 
+        }
+
+        // 포인터 연산자 호출시 m_Ptr에 접근할 수 있게 합니다.
+        const int* operator ->() const {return m_Ptr;}
+        int* operator ->() {return m_Ptr;}
+
+        const int& operator *() const {return *m_Ptr;}
+        int& operator *() {return *m_Ptr;}
+
+        // 유효한지 검사합니다.
+        bool IsValid() const {return m_Ptr != NULL ? true : false;}    
+    }; 
+
+    ImplPtr m_Impl;
+    T(int* val1, int* val2) :
+        m_Impl(new Impl(val1, val2)) {}
+
+};
+```
+
 허브 셔터가 알려준 궁극의 모듈화.(pimpl 이디엄이라 한다.)
 완벽하게 데이터를 은닉하기 위해 다음처럼 한다. 
 h 에서 

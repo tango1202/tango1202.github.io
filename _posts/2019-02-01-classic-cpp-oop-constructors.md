@@ -168,7 +168,7 @@ EXPECT_TRUE(t3.GetX() == 10 && t3.GetY() == 20);
 
 `new` 로 생성한 것은 `delete`로 소멸([힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다. 그렇다고 여러 차례 `delete` 한다면 예외가 발생합니다.([개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고) 생성한 것은 1회 `delete` 해야 합니다.
 
-생성자에서 `new`로 생성한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 전달받는 `T`개체를 정의한다고 합시다. 안전한 소멸을 보장하기 위해 소멸자에서 `delete`로 소멸시킵니다.
+생성자에서 `new`로 생성한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 전달받는 `T`개체를 정의한다고 합시다. 안전한 소멸을 보장하기 위해 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 `delete`로 소멸시킵니다.
 
 ```cpp
 class T {
@@ -199,7 +199,7 @@ public:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/16376f0c-e8b0-4eb5-b5a0-f28fc5a9cc43)
 
-`t1`과 `t2` 의 유효 범위가 끝나서 각자 소멸자를 호출하면, 동일한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)개체를 각자 `delete` 하여 2회 `delete`되고 예외가 발생하게 됩니다.
+`t1`과 `t2` 의 유효 범위가 끝나서 각자의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 호출되어 실행되면, 동일한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)개체를 `delete` 하여 2회 `delete`되고 예외가 발생하게 됩니다.
 
 이렇게 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)의 소유권을 서로 가지고 있고, 서로 소멸시키는 현상을 **소유권 분쟁**이라 합니다. 
 
@@ -239,12 +239,13 @@ public:
 
 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들기 위해 복사 생성자를 케이스에 따라 일일이 명시적으로 개발하는 것 보다는, 암시적 복사 생성자를 그대로 사용할 수 있도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 만들어 사용하는게 코드도 간결하고 분석하기 좋습니다. 여기서는 `int`형을 지원하는 것만 구현해 보도록 하겠습니다.(모든 타입을 지원하는 스마트 포인터는 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)
 
-스마트 포인터는 다음 단계를 통해 포인터 복제를 대행합니다. 
+스마트 포인터는 다음 단계를 통해 포인터 복제를 대행하고, [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 벗어나 자동 소멸될 때 포인터를 `delete`합니다. 
 
 1. 스마트 포인터를 클래스 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 정의해 둡니다.
 2. 암시적 복사 생성자가 호출되면, 내부적으로 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 복사 생성자를 호출합니다. 이때 스마트 포인터의 복사 생성자가 호출됩니다.
 3. 스마트 포인터의 복사 생성자에서 포인터 복제를 합니다.
-4. 스마트 포인터의 소멸자에서 포인터를 `delete`합니다.
+4. 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출뒤 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들이 소멸됩니다.([개체 소멸 순서](??) 참고)
+5. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 소멸시 스마트 포인터의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 포인터를 `delete`합니다.
 
 ```cpp
 // 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.(대입 연산은 지원하지 않습니다.)
@@ -298,7 +299,7 @@ public:
 }
 ```
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f9fbb86f-7553-4227-b699-46d35e2793ca)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c6a7c9a9-54b1-4a11-be9d-24a8c6ce3b91)
 
 # 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출 금지
 

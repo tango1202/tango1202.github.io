@@ -361,7 +361,8 @@ class T {
     IntPtr m_Val1;
     IntPtr m_Val2;
 public:
-    explicit T(int* val1, int* val2) :
+    // val1, val2 : new 로 생성된 것을 전달하세요.
+    T(int* val1, int* val2) :
         m_Val1(val1),
         m_Val2(val2) {}
     T& operator =(const T& other) {
