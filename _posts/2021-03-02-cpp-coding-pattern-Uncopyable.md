@@ -20,3 +20,5 @@ private:
     Uncopyable& operator =(const Uncopyable& other) {return *this;}
 };
 ```
+
+복사 생성자는 쓰고, 대입연산자는 못쓰게 하는 개체. PImpl 구현시 사용

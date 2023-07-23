@@ -203,7 +203,17 @@ public:
 
 이렇게 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)의 소유권을 서로 가지고 있고, 서로 소멸시키는 현상을 **소유권 분쟁**이라 합니다. 
 
-**소유권 분쟁** 을 해결하기 위해서는 암시적 복사 생성자 대신, 다음처럼 복사 생성자를 명시적으로 구현하여, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들어야 합니다.
+**소유권 분쟁** 을 해결하는 방법은 
+
+1. 소유권 이전을 하거나,
+2. 깊은 복제를 하거나, 
+3. 자원을 공유하거나, 
+4. 유일한 자원으로 대체해서 사용하는
+
+방법이 있습니다. 여기서는 깊은 복제를 하도록 하겠습니다.(그외 다른 방법은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)
+
+
+깊은 복제를 하기 위해서는 암시적 복사 생성자 대신, 다음처럼 복사 생성자를 명시적으로 구현하여, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들면 됩니다.
 
 ```cpp
 class T {
@@ -214,14 +224,8 @@ public:
         m_Val(val) {}
 
     // (O) NULL 포인터가 아니라면 복제합니다.
-    T(const T& other) {
-        if (other.m_Val != NULL) { 
-            m_Val = new int(*other.m_Val);
-        }
-        else {
-            m_Val = NULL;
-        }
-    }
+    T(const T& other) :
+        m_Val(other.m_Val != NULL ? new int(*other.m_Val) : NULL) {}
 
     // 힙 개체를 메모리에서 제거 합니다.
     ~T() {delete m_Val;} 
@@ -276,7 +280,7 @@ public:
 
 class T {
     // (O) IntPtr을 이용하여 복사 생성시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
-    // 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
+    // (O) 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
     IntPtr m_Val;
 public:
     // val : new 로 생성된 것을 전달하세요.
@@ -389,9 +393,9 @@ class T {
 private:
     T(int a, int b, int c) {} // 외부에서는 접근 불가
 public:
-    static T CreateFromA(int a) {return T(a, 0, 0);}
-    static T CreateFromB(int b) {return T(0, b, 0);}
-    static T CreateFromC(int c) {return T(0, 0, c);}
+    static T CreateFromA(int a) {return T(a, 0, 0);} // a값만 가지고 생성
+    static T CreateFromB(int b) {return T(0, b, 0);} // b값만 가지고 생성
+    static T CreateFromC(int c) {return T(0, 0, c);} // c값만 가지고 생성
 };
 
 T t(10, 0, 0); // (X) 컴파일 오류

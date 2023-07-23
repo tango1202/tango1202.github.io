@@ -159,11 +159,11 @@ catch (std::bad_alloc&) {
 }
 ```
 
-이전 스타일로 널검사를 하고 싶다면 `new(std::nothrow)` 을 사용할 수 있습니다. 하지만, 메모리 할당에 실패하면 널을 리턴하지만, 생성자에서 예외를 발생하면 전파됩니다. 그래서 그냥 `new`를 사용하고 `try-catch`를 사용하는게 좋습니다.
+이전 스타일로 널검사를 하고 싶다면 `new(std::nothrow)` 을 사용할 수 있습니다. 하지만, 메모리 할당에 실패하면 널을 리턴하지만, 생성자에서 예외를 발생시키면 전파됩니다. 그래서 그냥 `new`를 사용하고 `try-catch`를 사용하는게 좋습니다.
 
 ```cpp
 class T {};
-T* t = new(std::nothrow) T; // (△) 비권장. 메모리 할당에 실패하면 널을 리턴하지만, 생성자에서 예외를 발생하면 전파됩니다.
+T* t = new(std::nothrow) T; // (△) 비권장. 메모리 할당에 실패하면 널을 리턴하지만, 생성자에서 예외를 발생시키면 전파됩니다.
 
 if (t == NULL) {
     // 할당 실패시 처리할 코드
@@ -186,7 +186,7 @@ if (t == NULL) {
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/9f03346e-1457-4b92-90db-52d18e467086)
 
-컴파일러마다 그 크기가 다를 수 있으며, 보통 추가 오버헤드 공간(4byte 이거나 8byte)을 사용합니다.
+컴파일러나 시스템마다 그 크기가 다를 수 있으며, 보통 4byte 이거나 8byte의 추가 오버헤드 공간을 사용합니다.
 
 따라서, 크기가 작은 개체를 아주 많이 동적 생성을 해야 한다면, 메모리 공간을 효율적으로 사용하기 위해 `operator new`의 재정의가 필요할 수 있습니다.
 
@@ -199,7 +199,7 @@ if (t == NULL) {
 
 1. 최소 1byte를 할당해야 합니다.
 2. 할당 실패시 `new_handler`를 호출해야 합니다. `new_handler`가 없다면 `std::bad_alloc()`을 발생시켜야 합니다.
-3. `new_handler`에서 예외를 발생시키거나 프로그램을 종료할 때까지 반복해야 합니다. 
+3. `new_handler`에서 `std::bad_alloc()` 또는 이로부터 파생된 예외를 발생시키거나, 프로그램을 종료할 때까지 반복해야 합니다. 
 
 전역 `operator new`를 이용하면 상기 내용을 준수하므로 다음과 같이 전역 버전을 호출하면 됩니다.
 
@@ -375,9 +375,9 @@ delete base; // Base::delete(void* ptr, std::size_t sz) 호출
 
 **부모 클래스가 `public` Virtual 소멸자인 경우 `operator delete`**
 
-[`public` Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 에서 다형 소멸을 지원하려면, 꼭 `virtual` 소멸자를 지원해야 한다고 언급한바 있습니다.
+[`public` Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 에서 다형 소멸을 지원하려면, 꼭 `virtual` 소멸자를 사용해야 한다고 언급한바 있습니다. 그렇지 않으면 `Base` 소멸자만 불려서 `Derived`의 소멸자가 불리지 않아, 메모릭 릭이 발생할 수 있다고요.
 
-`operator delete`에서도 마찬가지 입니다. 자식 클래스에서 할당된 메모리를 모두 해제하려면 꼭 `public` Virtual 소멸자를 사용하셔야 합니다.
+`operator delete`에서도 마찬가지 입니다. 자식 클래스에서 할당된 메모리를 모두 해제하려면 꼭 [`public` Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하셔야 합니다.
 
 다음 코드는 상기 코드에서 소멸자의 `virtual`만 뺀 코드입니다. 실행시켜 확인해 보면, 
 
@@ -580,7 +580,7 @@ delete p;
 1. 미리 예약된 메모리 공간을 해제하여 메모리를 추가 확보해 주거나
 2. 다른 `new_handler`를 설치하여 처리를 위임하거나
 3. `new_handler`를 제거하거나(제거되면 `bad_alloc()` 발생)
-4. `std::bad_alloc()`을 발생시켜 처리를 포기하거나
+4. `std::bad_alloc()` 또는 이로부터 파생된 예외를 발생시켜 처리를 포기하거나
 5. `std::abort()`을 하여 프로그램을 종료합니다.
 
 다음 테스트 코드는 

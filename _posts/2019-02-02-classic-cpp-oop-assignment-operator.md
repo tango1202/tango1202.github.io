@@ -19,7 +19,7 @@ sidebar:
 
 # 암시적 대입 연산자
 
-[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 마찬가지로 대입 연산자도 사용자가 특별히 정의하지 않으면 암시적으로 정의됩니다. 기본 동작은 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 유사하게 멤버별 대입입니다.
+[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 마찬가지로, 대입 연산자를 정의하지 않으면, 컴파일러는 암시적으로 대입 연산자를 정의합니다. 기본 동작은 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 유사하게 멤버별 대입입니다.
 
 ```cpp
 class T {
@@ -146,7 +146,7 @@ std::swap(t1, t2); // 복사 생성 1회 대입 2회
 보통 `swap`은 다음과 같이 임시 개체를 만들고, 각각 값을 대입하기 때문에 복사 부하가 있을 수 밖에 없습니다. 또한 대입 과정에서 또다른 예외가 더 발생할 수도 있기 때문에 좋지 않습니다. 
 
 ```cpp
-swap(const T& left, const T& right) {
+swap(T& left, T& right) {
     T temp(right); // 복사 생성 1회, 멤버별 대입 연산과 거의 동등한 부하
     right = left;  // 대입 연산 1회 - swap에 따른 추가 복사 부하
     left = temp; // 대입 연산 1회 - swap에 따른 추가 복사 부하
@@ -155,7 +155,7 @@ swap(const T& left, const T& right) {
 
 **포인터 멤버 변수를 이용한 `swap` 최적화**
 
-따라서, `swap`을 이용하여 대입 연산자를 구현하려면 비교적 복사 부하가 적고(포인터 복사는 8byte입니다.), 예외 발생 소지도 적은 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 작성해야 합니다.
+따라서, `swap`을 이용하여 대입 연산자를 구현하려면 비교적 복사 부하가 적고, 예외 발생 소지도 적은 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 작성해야 합니다.(포인터 복사는 8byte끼리의 복사이므로 복사 부하가 적고, 예외 발생 소지도 적습니다.)
 
 다음 예제에서
 
@@ -192,19 +192,9 @@ public:
         m_X(x), 
         m_Y(y) {} 
     // NULL 포인터가 아니라면 복제합니다.
-    T(const T& other) {
-        if (other.m_X != NULL) { 
-            m_X = new Big(*other.m_X);
-        }
-        else {
-            m_X = NULL;
-        }
-        if (other.m_Y != NULL) { 
-            m_Y = new Big(*other.m_Y);
-        }
-        else {
-            m_Y = NULL;
-        }
+    T(const T& other) :
+        m_X(other.m_X != NULL ? new Big(*other.m_X) : NULL),
+        m_Y(other.m_Y != NULL ? new Big(*other.m_Y) : NULL) {
     }
     // 힙 개체를 메모리에서 제거 합니다.
     ~T() {
@@ -265,7 +255,7 @@ Big::Big(const Big& other)
 2. 소멸시 스마트 포인터에서 `delete` 해주고,
 3. 대입 연산시 스마트 포인터에서 `swap`해 주므로,
 
-암시적 복사 생성자, [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90), 암시적 대입 연산자와 호환되어 별도로 구현할 필요가 없어집니다. 다음처럼 복사 생성자, 소멸자, 대입 연산자 정의 없이 간소하게 작성할 수 있습니다.
+암시적 복사 생성자, [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90), 암시적 대입 연산자와 호환되어 별도로 구현할 필요가 없어집니다. 따라서 다음처럼 복사 생성자, 소멸자, 대입 연산자 정의 없이 간소하게 클래스를 작성할 수 있습니다.
 
 ```cpp
 class T {
@@ -412,7 +402,7 @@ public:
 }
 ```
 
-혹은 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 무조건 1개로 유지하는 방법도 있습니다.([PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#pimpl-%EC%9D%B4%EB%94%94%EC%97%84/) 참고)
+혹은 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 무조건 1개로 유지하는 방법도 있습니다.([PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/) 참고)
 
 # 대입 연산자 사용 제한
 

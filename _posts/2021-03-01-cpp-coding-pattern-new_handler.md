@@ -15,7 +15,7 @@ sidebar:
 1. 미리 예약된 공간을 해제하여 메모리를 추가 확보해 주거나
 2. 다른 `new_handler`를 설치하여 처리를 위임하거나
 3. `new_handler`를 제거하거나(제거되면 `std::bad_alloc()` 발생)
-4. `std::bad_alloc()`을 발생시켜 처리를 포기하거나
+4. `std::bad_alloc()` 또는 이로부터 파생된 예외를 발생시켜 처리를 포기하거나
 5. `std::abort()`을 하여 프로그램을 종료합니다.
 
 # NewHandler의 필요성
