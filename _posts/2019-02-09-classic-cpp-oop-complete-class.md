@@ -9,6 +9,30 @@ sidebar:
 ---
 
 
+완전한 생성자
+
+|항목|내용|
+|--|--|
+|[기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)|필요없다면 못쓰게 만들어라.|
+|[값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)|필요한 모든 인자를 나열하고 초기화 하라.|
+|[형변환 생성자]
+
+
+복사 생성자
+
+대입 연산자
+
+소멸자
+
+형변환 연산자
+
+대소 비교
+
+Swap
+
+완전한 인자
+
+
 # 완전한 생성자
 
 완전하게 생성시켜라
