@@ -382,10 +382,11 @@ t2 = t1; // (△) 비권장. 이미 지워버린 ptr을 가진 t1을 t2에 복�
 
 PImpl(pointer to implementation, 구현에 대한 포인터)은 구현의 상세 정보를 은닉하는 프로그래밍 기법으로서, 코드간 종속성이나, 컴파일 종속성을 최소화 해줍니다.
 
-1. 개체 내부의 [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)에 멤버 변수들을 정의하고,
-2. 개체 선언부에서는 중첩 클래스를 포인터 멤버 변수로 선언만 하고, 개체 정의부에서 실제 선언 및 정의를 합니다.
+1. 개체 내부의 [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)에 멤버 변수들을 정의합니다.
+2. 개체 선언부에 중첩 클래스를 포인터 멤버 변수로 정의합니다.
+3. 개체 정의부에서 중첩 클래스의 실제 선언 및 정의를 합니다.
 
-그러면, 선언부에서는 중첩 클래스의 실제 사용이 없기 때문에 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 해도 되므로, 컴파일 종속성이 현저히 줄어듭니다.
+그러면, 선언부에서는 중첩 클래스의 포인터형 변수의 크기만 알면 되기 때문에 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 하면 됩니다.
 
 ```cpp
 // 선언에서, 아마도 헤더 파일
@@ -401,7 +402,8 @@ public:
     IntPtr m_Val2; 
 }; 
 ```
-헤더 파일에는 `Impl`의 전방 선언만 있으므로, 내부 구현이 어떻게 되는지 알 수 없습니다. 구현은 cpp 파일에 은닉되어 있습니다.
+
+헤더 파일에는 `Impl`의 전방 선언만 있으므로, 이 헤더파일을 `#include` 해봤자, 내부 구현이 어떻게 되는지 알 수 없습니다. 즉 , `Impl`의 내부 구현에서 사용한 `IntPtr`이 은닉되어 컴파일 종속성이 최소화됩니다. 이제 `Impl`의 내부 구현을 이리저리 바꾸더라도, 최소한만 컴파일 되기 때문에 대규모 프로젝트에서의 빌드 시간을 단축할 수 있습니다.
 
 다음 예제는  [멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EA%B0%80-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EC%99%80-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80%EC%9D%98-%ED%98%B8%ED%99%98%EC%84%B1) 의 클래스 `T`를 PImpl 방식으로 리팩토링 한 예입니다.
 
@@ -691,9 +693,14 @@ TEST(TestClassicCpp, PImpl) {
 
 **PImpl 이디엄 오버헤드**
 
-PImpl 이디엄으로 구현 코드를 은닉하여 코드간 종속성이나, 컴파일 종속성을 최소화 하는 장점과 `swap`을 이용한 대입 연산자 구현 편의성을 제공합니다만, 다음 오버 헤드가 있습니다.
+PImpl 이디엄은 
 
-1. 멤버 변수 접근 오버 헤드 : `m_Impl`을 통해 간접적으로 접근합니다.
-2. 메모리 공간 오버 헤드 : `m_Impl` 포인터의 추가 오버 헤드가 필요합니다.
-3. 힙 공간 오버 헤드 : `m_Impl`과 멤버 변수 들이 모두 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 공간에만 배치됩니다.
+1. 구현 코드를 은닉하여 코드간 종속성이나, 컴파일 종속성을 최소화 하고,
+2. `swap`을 이용한 대입 연산자 구현 편의성을 제공합니다만,
+
+다음 오버헤드가 있으니, 상황에 맞게 도입하셔야 합니다.
+
+1. 멤버 변수 접근 오버헤드 : `m_Impl`을 통해 간접적으로 접근합니다.
+2. 메모리 공간 오버헤드 : `m_Impl` 포인터의 추가 오버헤드가 필요합니다.
+3. 힙 공간 오버헤드 : `m_Impl`과 멤버 변수 들이 모두 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 공간에만 배치됩니다.
 
