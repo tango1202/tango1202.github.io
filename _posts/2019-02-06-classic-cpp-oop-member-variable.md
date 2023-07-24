@@ -197,7 +197,8 @@ EXPECT_TRUE(t.GetA() == 10 && t.GetB() == 30 && t.GetC() == 60);
 
 2. 함수 본문에서는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 멤버 변수를 가리므로 `this->멤버 변수명`으로 사용해야 합니다.
 
-저는 헷갈려서 `m_XXXX`와 같이 `m_` 접두어를 선호합니다만, `XXXX_`와 같이 뒤에 `_`를 사용하는 방법도 있습니다.(다만 앞에 `_`를 사용하진 마세요. [_ 선택적 금지](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-naming/#_-%EC%84%A0%ED%83%9D%EC%A0%81-%EA%B8%88%EC%A7%80) 참고)
+저는 헷갈려서 `m_XXXX`와 같이 `m_` 접두어를 선호합니다만, `XXXX_`와 같이 뒤에 `_`를 사용하는 방법도 있습니다.(다만 앞에 `_`를 사용하진 마세요. [`_` 선택적 금지](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-naming/#_-%EC%84%A0%ED%83%9D%EC%A0%81-%EA%B8%88%EC%A7%80) 참고)
+
    
 ```cpp
 class T {
