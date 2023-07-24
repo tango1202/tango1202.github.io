@@ -298,7 +298,7 @@ EXPECT_TRUE(obj.Dancer::m_Age == 30);
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0a2fb9e6-aa46-4e8a-84ed-f95ce473ef31)
 
-`Idol`는 의 `m_Age`가 2벌이나 되는군요. 이러한 문제를 해결하기 위해 `virtual` 상속을 하면, 상속 트리에서 이름이 같은 개체를 1개로 통합시켜 줍니다.
+`Idol`의 부모인 `Singer`와 `Dancer`가 모두 `Person`을 상속받아, `m_Age`가 2벌이나 되는군요. 이러한 문제를 해결하기 위해 `virtual` 상속을 하면, 상속 트리에서 이름이 같은 조상 개체를 1개로 통합시켜 줍니다.
 
 ```cpp
 class Person {
