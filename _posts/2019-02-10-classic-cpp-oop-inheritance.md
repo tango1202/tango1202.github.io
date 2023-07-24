@@ -282,8 +282,8 @@ public:
 class Singer : public Person {};
 class Dancer : public Person {};
 class Idol : 
-    public Singer, // (△) 비권장. Mother::Person::m_Age 존재
-    public Dancer { // (△) 비권장. Father::Person::m_Age 존재
+    public Singer, // (△) 비권장. Singer::Person::m_Age 존재
+    public Dancer { // (△) 비권장. Dancer::Person::m_Age 존재
 };
 
 Idol obj;
