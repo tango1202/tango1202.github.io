@@ -405,4 +405,23 @@ delete p;
 T t(T::CreateFromA(10)); // (O) T를 복사 생성    
 ```
 
+혹은 시스템 종속성이 높아 생성자에서 모든 처리를 하기 힘든 개체를 생성할때도 유용합니다.
+
+```cpp
+class T {
+private:
+    T() {} // 외부에서 접근 불가
+public:
+    static T* Create() {
+        T* result = new T; // 기본 생성자를 만들고,
+        GlobalSetter.f(); // 생성후 사전에 해야할 전역 설정을 하고,
+        T->Func(GlobalGetter.f()); // 전역 설정을 참조하여 Func()을 실행하고
+        ... // 뭔가를 열심히 더하고...
+
+        // 이제 T 개체 생성에 따른 주변 환경도 다 설정했으므로 리턴
+        return result; 
+    }
+};
+```
+
 

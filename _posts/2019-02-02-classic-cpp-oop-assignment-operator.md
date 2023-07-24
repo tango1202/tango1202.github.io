@@ -153,7 +153,7 @@ swap(T& left, T& right) {
 }
 ```
 
-**포인터 멤버 변수를 이용한 `swap` 최적화**
+# nothrow swap - 포인터 멤버 변수를 이용한 `swap` 최적화
 
 따라서, `swap`을 이용하여 대입 연산자를 구현하려면 비교적 복사 부하가 적고, 예외 발생 소지도 적은 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 작성해야 합니다.(포인터 복사는 8byte끼리의 복사이므로 복사 부하가 적고, 예외 발생 소지도 적습니다.)
 
