@@ -270,7 +270,7 @@ EXPECT_TRUE(obj.Singer::m_Age == 20);
 EXPECT_TRUE(obj.Dancer::m_Age == 30);       
 ```
 
-# 다이아몬드 상속
+# 다이아몬드 상속과 virtual 상속
 
 다중 상속은 다이아몬드 상속이 만들어질 우려가 있습니다.
 
