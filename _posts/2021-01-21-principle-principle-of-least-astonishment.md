@@ -40,7 +40,7 @@ API 작성시에도 에서도 동료들이 놀라지 않게 하세요.
 2. 오류가 발생하면, 예외를 발생시키던지, 오류코드를 리턴하세요.
 3. 일관된 방식으로 코드를 구성하세요. 어떤 함수는 예외를 발생하고, 어떤 함수는 에러코드를 리턴하고 그러면 헷갈립니다.
 4. [리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/)에 따라 자식 개체가 엉뚱한 짓을 하면 안됩니다.
-5. [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 **[완전한 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete_constructor/)** 와 **완전한 인자** 를 제공하세요.
+5. [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 **[완전한 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%EC%83%9D%EC%84%B1%EC%9E%90)** 와 **완전한 인자** 를 제공하세요.
 6. [묻지말고 말하라 원칙](https://tango1202.github.io/principle/principle-tell-dont-ask/)에 따라 한번만 물으면 알아서 척척 동작하도록 제공해 주세요.
 
 

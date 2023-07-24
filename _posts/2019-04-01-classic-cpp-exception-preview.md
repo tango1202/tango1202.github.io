@@ -12,7 +12,7 @@ sidebar:
 복사 생성자/대입 연산자의 컴파일 버전
 소멸자에서 예외 발생 금지
 Swap에서 예외 발생 금지
-완전한 생성자 자원 획득과 초기화를 한번에
+[완전한 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%EC%83%9D%EC%84%B1%EC%9E%90) 자원 획득과 초기화를 한번에
 
 스택풀기
 https://en.cppreference.com/w/cpp/language/throw 참고
