@@ -10,8 +10,8 @@ sidebar:
 
 > * 획득된 자원은 꼭 소멸시켜라.
 > * 암시적 소멸자가 정상 작동하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하라.
-> * `has-a`관계에서는 `protected` Non-Virtual 소멸자를 사용하라.
 > * `is-a`관계에서는 `public` Virtual 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
+> * `has-a`관계에서는 `protected` Non-Virtual 소멸자를 사용하라.
 > * 생성자처럼 소멸자에서도 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
 > * 소멸자에서 예외를 발생하지 마라.(필요하다면 `Release()`함수를 구현하라.)
 
@@ -144,98 +144,11 @@ U u;
 
 다만, 상속해서 사용하는 부모 클래스라면, `has-a`나 `is-a` 의 명확한 의미 부여를 위해 `protected` Non-Virtual 이나 `public` Virtual 소멸자를 쓰는게 낫습니다.
 
-
-# protected Non-Virtual 소멸자
-
-`has-a` 관계를 맺으려는 부모 클래스는 `protected` Non-Virtual 소멸자로 만듭니다. 
-
-`protected` 이기 때문에 개체를 인스턴스화 할 수 없고, 오로지 상속해서만 사용할 수 있습니다.
-
-`has-a` 관계에서는 부모 클래스의 포인터나 참조자를 이용하여 다형 소멸을 지원하지 않으므로, `virtual`로 만들 필요도 없습니다. 
-
-**인터페이스**
-
-다형 소멸을 지원하지 않는 단위 전략 인터페이스용 클래스를 만들때 사용합니다.
-
-```cpp
-class IEatable {
-protected:
-    ~IEatable() {} // 상속받지만, 다형적으로 사용하지 않아 non-virtual 입니다.
-
-public:
-    virtual void Eat() = 0;
-};
-class IWalkable {
-protected:
-    ~IWalkable() {} // 상속받지만, 다형적으로 사용하지 않아 non-virtual 입니다.
-
-public:
-    virtual void Walk() = 0;
-};
-
-class Dog :
-    public IEatable,
-    public IWalkable {
-public:        
-    virtual void Eat() {}
-    virtual void Walk() {}
-};
-IEatable eatable; // (X) 컴파일 오류. 소멸자가 protected
-IWalkable walkable; // (X) 컴파일 오류. 소멸자가 protected
-Dog dog; // (O)
-
-IEatable* p = &dog:
-delete* p; // (△) 비권장. 단위 전략 인터페이스를 이용하여 다형 소멸 하지 마세요. 메모리 릭이 발생합니다. 다형 소멸 참고.
-
-```
-
-**공통 구현**
-
-여러 클래스의 공통 구현을 부모 클래스로 만들어 `has-a` 관계를 맺을때 사용할 수 있습니다.
-
-```cpp
-class ResizeableImpl {
-private:
-    int m_Width;
-    int m_Height;    
-protected:
-    ResizeableImpl(int w, int h) :
-        m_Width(w), 
-        m_Height(h) {}
-    ~ResizeableImpl() {} // has-a 관계로 사용되기 때문에, 단독으로 생성되지 않도록 protected입니다.
-public:    
-    // Get/Set 함수
-    int GetWidth() const {return m_Width;}
-    int GetHeight() const {return m_Height;}
-
-    void SetWidth(int val) {m_Width = val;}
-    void SetHeight(int val) {m_Height = val;}
-};
-class Rectangle : public ResizeableImpl {
-    int m_Left;
-    int m_Top;
-public:
-    Rectangle(int l, int t, int w, int h) :
-        ResizeableImpl(w, h),
-        m_Left(l),
-        m_Top(t) {}
-};
-class Ellipse : public ResizeableImpl {
-    int m_CenterX;
-    int m_CenterY;
-public:
-    Ellipse(int centerX, int centerY, int w, int h) :
-        ResizeableImpl(w, h),
-        m_CenterX(centerX),
-        m_CenterY(centerY) {}
-};
-Rectangle r(0, 0, 10, 20);
-Ellipse e(5, 10, 10, 20);
-```
-
 # public Virtual 소멸자
 
-`is-a` 관계에서는 부모 개체를 이용하여 자식 개체를 제어하고, `delete` 합니다. 즉, 부모 개체의 포인터로 자식 개체를 소멸시켜야 합니다. 이러한 다형 소멸을 지원하려면 꼭 `virtual` 소멸자를 작성해야 합니다.
+`is-a` 관계에서는 부모 개체를 이용하여 자식 개체를 제어하고, `delete` 합니다. ([is-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#is-a-%EA%B4%80%EA%B3%84) 참고)
+ 
+즉, 부모 개체의 포인터로 자식 개체를 소멸시켜야 합니다. 이러한 다형 소멸을 지원하려면 꼭 `virtual` 소멸자를 작성해야 합니다.
 
 **다형 소멸**
 
@@ -268,7 +181,7 @@ delete b; // (X) 오동작. 2만 호출됨. Derived 소멸자가 호출되지 �
 
 `Base` 소멸자만 호출됩니다. 따라서, `Derived` 소멸자에서 사용한 리소스 정리 작업이 호출되지 않아 메모리 릭이 발생할 수 있습니다. 
 
-이렇게 부모 클래스 포인터로부터 다형 소멸을 해야 하는 경우에는 꼭 `virtual` 소멸자를 작성하시기 바랍니다.
+이렇게 부모 개체 포인터로부터 다형 소멸을 해야 하는 경우에는 꼭 `virtual` 소멸자를 작성하시기 바랍니다.
 
 ```cpp
 class Base {
@@ -284,6 +197,33 @@ public:
 Derived* d = new Derived;
 Base* b = d;
 delete b; // (O) 1, 2 호출됨. 다형 소멸 지원.
+```
+
+# protected Non-Virtual 소멸자
+
+`has-a` 는 다형 소멸을 하지 않는 관계입니다. 논리적으로는 부모 개체의 멤버 변수나 멤버 함수를 포함하는 관계라고 할 수 있습니다.([has-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#has-a-%EA%B4%80%EA%B3%84) 참고)
+
+`has-a` 부모 개체는 `protected` Non-Virtual 소멸자로 만들면 됩니다.
+
+다형 소멸을 지원하지 않아도 되기 때문에 굳이 `virtual` 소멸자로 만들 필요가 없고, 
+`protected` 이기 때문에 개체를 인스턴스화 할 수 없고, 오로지 상속해서만 사용할 수 있습니다. 또한 실수로 부모 개체 포인터로 `delete`하려고 하면, `protected`여서 컴파일 오류가 발생합니다. 단단한 **코딩 계약**입니다.
+
+```cpp
+class Base {
+protected:
+    ~Base() {} // 상속받지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+public:
+    virtual void Func() = 0;
+};
+class Derived :
+    public Base {
+public:        
+    virtual void Func() {}
+};
+Base base; // (X) 컴파일 오류. 소멸자가 protected
+Derived derived; // (O)
+Base* p = &derived;
+delete p; // (X) 컴파일 오류. Base의 소멸자가 protected
 ```
 
 **[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 경우의 다형성**
