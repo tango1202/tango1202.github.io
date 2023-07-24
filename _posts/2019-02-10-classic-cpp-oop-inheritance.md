@@ -266,7 +266,7 @@ class Idol :
 
 Idol obj;
 obj.m_Age = 10; // (X) 컴파일 오류. Singer::m_Age와 Dancer::m_Age가 모호합니다.
-obj.Singer::m_Age = 20; // △) 비권장. 이름이 동일한 멤버는 ::(범위 확인 연산자)를 이용해 접근 가능합니다.
+obj.Singer::m_Age = 20; // (△) 비권장. 이름이 동일한 멤버는 ::(범위 확인 연산자)를 이용해 접근 가능합니다.
 obj.Dancer::m_Age = 30;
 
 EXPECT_TRUE(obj.Singer::m_Age == 20);
