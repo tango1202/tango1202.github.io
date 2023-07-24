@@ -15,7 +15,7 @@ sidebar:
 
 # 개요
 
-클래스를 작성하기 위해선 컴파일러가 은근슬쩍 암시적으로 정의한 것들을 차단하고, 단단한 **코딩 계약**에 의해 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현해야 합니다.([캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고)
+클래스는 단단한 **코딩 계약**에 의해 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현해야 합니다.([캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고)
 
 # 암시적 정의 차단
 
