@@ -155,7 +155,11 @@ swap(T& left, T& right) {
 
 # nothrow swap - 포인터 멤버 변수를 이용한 `swap` 최적화
 
-따라서, `swap`을 이용하여 대입 연산자를 구현하려면 비교적 복사 부하가 적고, 예외 발생 소지도 적은 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 작성해야 합니다.(포인터 복사는 8byte끼리의 복사이므로 복사 부하가 적고, 예외 발생 소지도 적습니다.)
+개체가 `int`형과 같은 기본 자료형 멤버 변수를 1~2개 사용하고 있다면, 대입 연산 부하고 적고, 예외 발생 소지도 적습니다. 그냥 `nothrow swap`으로 취급해도 무방합니다. 
+
+그러나, 아주 많은 기본 자료형을 사용하거나 동적으로 할당하는 자료를 가지고 있다면, 복사 부하도 크고, 예외 발생 소지도 높습니다.
+
+이럴 경우 `swap`을 이용하여 대입 연산자를 구현하려면 비교적 복사 부하가 적고, 예외 발생 소지도 적은 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 작성해야 합니다.(포인터 복사는 8byte끼리의 복사이므로 복사 부하가 적고, 예외 발생 소지도 적습니다.)
 
 다음 예제에서
 
@@ -246,6 +250,7 @@ Big::Big(const Big& other)
 1. 예외 안정적이고,
 2. 복사 부하는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)별 대입과 거의 동등합니다.
 
+개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들을 1개의 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 바꾸는 방법은 [PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/) 을 참고하기 바랍니다.
 
 # 대입 연산자까지 지원하는 스마트 포인터
 

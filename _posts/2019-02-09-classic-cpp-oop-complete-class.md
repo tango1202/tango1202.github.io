@@ -8,7 +8,10 @@ sidebar:
     nav: "docs"
 ---
 
->* 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현하라.
+> * 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현하라.
+> * 함수 호출시 복사 부하가 없도록 설계하라.
+> * 함수 작성시 상수성을 준수하도록 하라.
+> * 예외 안정적으로 구현하라.(예외 발생시 이전 상태로 전환하라.)
 
 # 개요
 
@@ -46,13 +49,22 @@ sidebar:
 |[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)|초기화 리스트로 멤버 변수 초기화|
 |시스템 종속성이 높은 개체|생성자를 `private`로 만들고 별도의 `Create()`함수 제공([생성자 접근 차단 - private 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A0%91%EA%B7%BC-%EC%B0%A8%EB%8B%A8---private-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
-# 완전한 인자
+# 완전한 인자와 리턴값과 상수성
 
-함수를 호출할때 필요한 인자도 모두 전달하여야 합니다. **코딩 계약** 을 투명하게 하여 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현해야 합니다.([캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고)
+함수를 호출할때는 다음 사항을 준수하여야 합니다.
+
+1. 생성자와 마찬가지로 필요한 인자를 모두 전달하여야 합니다. **코딩 계약** 을 투명하게 하여 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현해야 합니다.([캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고)
+2. 인자 전달이나 함수 리턴값 전달시 복사 부하나 [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)에 위배되지 않도록 작성해야 합니다.
+
+|항목|내용|
+|--|--|
 
 |항목|내용|
 |--|--|
 |[인자 나열](https://tango1202.github.io/principle/principle-explicit-dependencies/)|함수에 필요한 모든 인자를 나열|
+|인자 복사 부하|기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성([Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98) 참고)|
+|리턴값 복사 부하|RVO가 쉽도록 임시 개체로 생성([리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 참고)<br/>기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성([Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#setter-%ED%95%A8%EC%88%98) 참고)
+|상수성|멤버 변수를 수정하지 않는다면, 상수 멤버 함수로 작성하고, 상수 참조를 리턴([Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98) 참고)<br/>[논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)인 것은 최대한 예외가 발생하지 않도록 구현|
 
 # 소유권 분쟁 차단
 
@@ -74,11 +86,11 @@ sidebar:
 
 # 자원 획득은 초기화
 
-획득된 자원은 반드시 소멸되어야 합니다.([RAII(Resource Acquisition Is Initialization)](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 참고) 소멸자에서 명시적으로 `delete` 하거나 스마트 포인터를 이용할 수 있습니다.
+획득된 자원은 반드시 소멸되어야 합니다.([RAII(Resource Acquisition Is Initialization)](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 참고) 소멸자에서 명시적으로 `delete` 하거나 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 이용할 수 있습니다.
 
 |항목|내용|
 |--|--|
-|[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)|명시적으로 `delete` 호출|
+|[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)|멤버 변수에 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하여, 암시적 소멸자와 호환되어 자동 소멸 시키거나, 명시적으로 `delete` 호출|
 |[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|[스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)나 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)를 사용하여 암시적 소멸자에서 자동 소멸시키도록 함([포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 참고)|
 
 # 예외 안정
@@ -87,29 +99,29 @@ sidebar:
 
 따라서,
 
-1. **완전한 생성자**로 생성하여 생성중 오류가 발생하면 예외를 발생시켜 그동안 만들어 둔건 버리고,
+1. **완전한 생성자**로 생성하여 생성중 오류가 발생하면 예외를 발생시켜 그동안 만들어 둔건 소멸시켜 버리고,
 2. 대입 연산중 예외가 발생하지 않도록 `swap`을 이용해서 대입 연산을 구현하고, 
-3. nothrow swap 을 구현하고,
+3. [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 을 구현하고,
 4. 함수 실행중 예외가 발생하면, [**스택 풀기**](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding) 메카니즘에 맞게 이전 상태로 되돌리고,
-5. **스택 풀기**가 꼬이지 않도록 소멸자에서는 예외를 발생을 차단하는
+5. **스택 풀기**가 꼬이지 않도록 소멸자에서는 예외를 발생하지 않도록
 
 작업을 해야 합니다.
 
 |항목|내용|
 |--|--|
-|생성자|완전한 생성자 구현|
+|생성자|완전한 생성자로 구현하고, 생성중 오류가 발생하면 예외를 발생시킴.|
+|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|[스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)나 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)와 같은 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체를 사용하여, 생성자등에서 예외가 발생했을때 자동 소멸되도록 함|
 |[대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)|멤버 변수가 1개인 경우 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하고, 2개 이상이면 [swap을 이용한 예외 안정 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%95-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 사용|
-|nothrow swap|
-
-
-
--nothow Swap
--소멸자 예외
-
-# 인자와 리턴값 최적화
-
-# 상수성 준수
+|[nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)|`swap` 구현시 복사 부하나 예외 발생이 없도록, 포인터 멤버 변수를 이용하여 구현([nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94). [PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/) 참고) 
+|함수|[스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체를 사용하여 획득된 자원은 유효 범위가 벗어났을때 소멸 또는 복원함([RAII와 Holder 와 Restorer - 자원 획득과 안전한 소멸(복원)](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/))|
+|[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)|기본적으로 소멸자에서 정리하되, 예외 발생의 소지가 있으면 `Release()`와 같은 별도의 정리 함수 제공([소멸자에서 예외 발생 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D-%EA%B8%88%EC%A7%80) 참고)|
 
 # 형변환 차단
 
+암시적인 형변환은 제공하지 않습니다. 필요하다면 명시적으로 형변환 함수를 제공합니다.
 
+|항목|내용|
+|--|--|
+|[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)|정의하지 않음|
+|[형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)|[`explicit`로 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)|
+|명시적 형변환 함수|형변환이 꼭 필요하다면, 명시적으로 구현([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)|
