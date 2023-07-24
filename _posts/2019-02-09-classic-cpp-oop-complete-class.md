@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [고전 C++ 개체 지향] 완전한 클래스"
+title: "#9. [고전 C++ 개체 지향] 완전한 클래스(작성중)"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -30,6 +30,10 @@ sidebar:
 |[암시적 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)|접근 지정자 `private`또는 `protected` 사용|
 |[암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90)|암시적 소멸자와 호환되도록 멤버 변수 정의([스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)나 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)를 사용)|
 |[형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)|[`explicit`로 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)|
+
+# 최소 public
+
+가시성 최소화
 
 # 완전한 생성자
 
