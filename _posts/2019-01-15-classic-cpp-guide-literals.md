@@ -11,7 +11,7 @@ sidebar:
 > * 문자열 상수를 많이 만들면, 프로그램 용량이 커진다. 비슷한 문장을 쓸데없이 여러개 작성하지 마라.
 > * 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하라.(배열이나 `std::string`, `std::wstring` 을 쓰면 복제된다.)
 
-# `bool` 과 숫자
+# bool 과 숫자
 
 ```cpp
 // bool 형

@@ -214,7 +214,7 @@ Derived d;
 d.m_Val = 10; // 이제 public이라 접근 가능합니다.
 ```
 
-# `friend`
+# friend
 
 일반적으로 `public`만 외부에서 접근할 수 있으나 특별히 `friend`로 허용한 [클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)와 [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)는 `protected`와 `private`에 접근할 수 있습니다. 
 
@@ -391,7 +391,7 @@ public:
 Outer::Nested nested; // (O) 외부에서 접근할 경우 :: 사용
 ```
 
-# `this` 포인터
+# this 포인터
 
 `this` 포인터는 개체 자신을 가리키는 포인터 입니다. 
 

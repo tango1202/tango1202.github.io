@@ -135,7 +135,7 @@ if (p != NULL) { // (△) 비권장. 괜히 널검사합니다.
 delete p; // (O) 널검사 없이 바로 delete 합니다.
 ```
 
-# `new(std::nothrow)` 와 무의미한 널검사
+# new(std::nothrow) 와 무의미한 널검사
 
 `new`는 메모리가 부족하여 할당이 실패하면, `std::bad_alloc()` 예외를 발생시킵니다.(C++98이후부터)
 
@@ -170,7 +170,7 @@ if (t == NULL) {
 }
 ```
 
-# `operator new`와 `operator delete` 재정의
+# operator new와 operator delete 재정의
 
 개체의 메모리를 할당하고 해제하는 `operator new`와 `operator delete`는 사용자가 재정의 할 수 있습니다.
 
@@ -416,7 +416,7 @@ Base* base = new Derived; // Base::operator new(std::size_t sz) 호출
 delete base; // (X) 오동작. Base의 소멸자가 호출되고 Base의 크기가 전달됨. Base::delete(void* ptr, std::size_t sz) 호출    
 ```
 
-# `operator new[]`와 `operator delete[]` 재정의
+# operator new[]와 operator delete[] 재정의
 
 배열은 `operator new[]`와 `operator delete[]`를 사용합니다. 일반 자료형의 경우에는 `sz`에 `sizeof(T) * 배열 요수 갯수`가 전달되지만, 클래스와 같이 생성자/소멸자가 있는 개체는 배열 요소 개수만큼 생성자/소멸자를 호출해야 하므로, 내부적으로 배열 요소 갯수를 관리하는 오버헤드(4byte 이거나 8byte)가 추가 되어 전달됩니다.
 
@@ -436,7 +436,7 @@ T* arr = new T[10]; // operator new[](std::size_t sz), sizeof(T) * 10 + 오버�
 delete[] arr; // operator delete[](void* ptr, std::size_t sz) 호출
 ```
 
-# `operator new(ptr)` : Placement New(위치 지정 생성)
+# operator new(ptr) : Placement New(위치 지정 생성)
 
 `void* operator new(size_t sz, void* ptr)`와 같이 `void*` 를 인자로 전달받는 `operator new`를 특별히 Placement New(위치 지정 생성)이라 합니다. Placement New(위치 지정 생성)는 주어진 `operator new` 등으로 할당한 메모리 위치에 생성자를 실행합니다. 즉, 해당 메모리 위치에 개체를 생성한다고 보셔도 됩니다. 
 
@@ -550,7 +550,7 @@ EXPECT_TRUE(t->GetX() == 10 && t->GetY() == 20);
 delete t;
 ```
 
-# [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에만 생성되는 개체
+# 스택에만 생성되는 개체
 
 `new`는 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 개체를 생성하는데요, 외부에서 `new`를 못하게 하고, [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에만 생성되게 하고 싶다면, `operator new`를 `private`로 만들면 됩니다.([OnlyStackAssignable](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/) 참고)
 
@@ -566,7 +566,7 @@ T t; // (O)
 T* p = new T; // (X) 컴파일 오류
 delete p;
 ```
-# `set_new_handler()` 함수를 이용한 오류 처리
+# set_new_handler() 함수를 이용한 오류 처리
 
 `operator new`는 오류 발생시 
 

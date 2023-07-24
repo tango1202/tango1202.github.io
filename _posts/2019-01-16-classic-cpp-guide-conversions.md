@@ -331,7 +331,7 @@ if (0 < t) {
 EXPECT_TRUE(status == true);
 ```
 
-# 명시적 변환 생성 지정자(`explicit`)
+# 명시적 변환 생성 지정자(explicit)
 
 특별히 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)에 인자가 1개만 있으면, 인자 타입에서 개체 타입으로 암시적 형변환과 명시적 형변환이 가능해 집니다.(암시적인 형변환을 하므로 형변환 생성자라고도 합니다.)
 

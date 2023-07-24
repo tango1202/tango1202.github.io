@@ -73,7 +73,7 @@ public:
 Rectangle rect(0, 0, 10, 20);
 ```
 
-**준수 방법 : 완전한 인자**
+**준수 방법 : 완전한 함수**
 
 화면에 표시되는 view의 중심에서 `Rectangle`을 회전 시켜 봅시다. 다음과 같이 `RotateAtViewCenter()` 함수를 만들면 어떨까요?
 
@@ -102,7 +102,7 @@ class Rectangle {
 };
 ```
 
-이젠 외부에서 `view` 중심점을 구해 `RotateAt()`에 전달하여야 합니다. 함수가 필요로 하는 요소를 인자로 제공했기 때문에, **코딩 계약** 이 좀더 투명해 졌습니다. 
+이젠 외부에서 `view` 중심점을 구해 `RotateAt()`에 전달하여야 합니다. 함수가 필요로 하는 모든 요소를 인자로 제공했기 때문에([완전한 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%ED%95%A8%EC%88%98) 참고), **코딩 계약** 이 좀더 투명해 졌습니다. 
 
 ```cpp
 // view 중심점을 구합니다.

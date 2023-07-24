@@ -36,7 +36,7 @@ sidebar:
 
 전처리기는 컴파일되기 전에 소스 코드에서 식별자 부분을 대체 목록으로 치환시켜 주거나, 특정 조건에 맞게 코드 블록을 포함시켜 줍니다.
 
-# `#define` 상수
+# #define 상수
 
 주어진 식별자를 대체 목록으로 치환합니다. 흔히 정수형 상수, 실수형 상수, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)에 이름을 붙이거나 [타입의 별칭](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)을 작성하기 위해 사용합니다. 
 
@@ -112,7 +112,7 @@ int val = f(3);
 EXPECT_TRUE(val == 6);
 ```
 
-# `#define` 함수
+# #define 함수
 
  매크로 함수는 인자들을 대체 목록에 반영하여 치환합니다. 함수라고는 하지만 단순 치환입니다.
 
@@ -159,7 +159,7 @@ MAKE_FUNCTION(g_, Func, 10); // g_Func 이름의 함수를 정의함
 EXPECT_TRUE(g_Func() == 10); // g_Func 호출
 ```
 
-# `#undef`
+# #undef
 
 기존에 정의된 `#define`을 제거합니다.
 
@@ -188,7 +188,7 @@ int status = 0;
 EXPECT_TRUE(status == 1); // MY_DEBUG가 정의되어 1
 ```
 
-# `#include`
+# #include
 
 헤더 파일을 포함합니다. 마치 `#include`위치에 대상 파일이 코딩된 것처럼 만들어 줍니다.
 
@@ -197,7 +197,7 @@ EXPECT_TRUE(status == 1); // MY_DEBUG가 정의되어 1
 |`#include <>`|컴파일러에 지정된 포함 경로에서 찾음.<br/>주로 C++언어 헤더 파일 포함시 사용|
 |`#include ""`|컴파일 중인 경로에서 찾고, 없으면 `<>` 경로에서 찾음.<br/>주로 사용자 헤더 파일 포함시 사용|
 
-# `__LINE__`, `__FILE__`, `#line`
+# __LINE__, __FILE__, #line
 
 `__LINE__`과 `__FILE__` 은 줄번호와 파일명을 나타내는 미리 지정된 매크로 입니다. 디버깅시 현재 라인수와 파일명을 표시할 수 있습니다.
 
@@ -212,7 +212,7 @@ std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl;
 #line 1234 "test.cpp" 
     std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl;  // Line Number:1234 Filename:test.cpp      
 ```
-# `#error`, `#warning`
+# #error, #warning
 
 `#error`와 `#warning`은 조건부 컴파일시 OS 환경이나 컴파일러 환경이나 라이브러리 환경을 검사하고, 컴파일을 중단(`#error`)시키거나 계속 진행(`#warning`)시킵니다.
 
@@ -223,7 +223,7 @@ std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl;
 #endif
 ```
 
-# `#pragma`
+# #pragma
 
 비표준 컴파일러 확장 기능입니다. 컴파일러마다 지원 여부는 다를 수 있으니 컴파일러 설명서를 참고해야 합니다.
 

@@ -50,7 +50,7 @@ t2 = t1; // (O) 암시적 대입 연산자 호출
 EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 ```
 
-# `swap`을 이용한 예외 안정 대입 연산자
+# swap을 이용한 예외 안정 대입 연산자
 
 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)에 언급된 것처럼 예외가 발생하기 전의 상태로 되돌아가야 합니다.
 
@@ -153,7 +153,7 @@ swap(T& left, T& right) {
 }
 ```
 
-# nothrow swap - 포인터 멤버 변수를 이용한 `swap` 최적화
+# nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화
 
 개체가 `int`형과 같은 기본 자료형 멤버 변수를 1~2개 사용하고 있다면, 대입 연산 부하고 적고, 예외 발생 소지도 적습니다. 그냥 `nothrow swap`으로 취급해도 무방합니다. 
 

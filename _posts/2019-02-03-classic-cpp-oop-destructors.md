@@ -125,7 +125,7 @@ Derived d;
 
 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 이용해서 암시적 소멸자와 호환하는 방법은 [복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 와 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고하시기 바랍니다.
 
-# `public` Non-Virtual 소멸자
+# public Non-Virtual 소멸자
 
 일반적인 개체의 소멸자는 `public` Non-Virtual로 정의합니다.
 
@@ -145,7 +145,7 @@ U u;
 다만, 상속해서 사용하는 부모 클래스라면, `has-a`나 `is-a` 의 명확한 의미 부여를 위해 `protected` Non-Virtual 이나 `public` Virtual 소멸자를 쓰는게 낫습니다.
 
 
-# `protected` Non-Virtual 소멸자
+# protected Non-Virtual 소멸자
 
 `has-a` 관계를 맺으려는 부모 클래스는 `protected` Non-Virtual 소멸자로 만듭니다. 
 
@@ -233,7 +233,7 @@ Rectangle r(0, 0, 10, 20);
 Ellipse e(5, 10, 10, 20);
 ```
 
-# `public` Virtual 소멸자
+# public Virtual 소멸자
 
 `is-a` 관계에서는 부모 개체를 이용하여 자식 개체를 제어하고, `delete` 합니다. 즉, 부모 개체의 포인터로 자식 개체를 소멸시켜야 합니다. 이러한 다형 소멸을 지원하려면 꼭 `virtual` 소멸자를 작성해야 합니다.
 
@@ -356,7 +356,7 @@ T::~T() {} // 실제 구현 정의가 있어야 함
 
     이 경우에서도 `protected` Non-Virtual 소멸자를 사용하는게 좋습니다. 순가상 소멸자는 정의를 따로 만들어야 하기 때문에 번거롭습니다.
 
-# 소멸자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출 금지
+# 소멸자에서 가상 함수 호출 금지
 
 부모 개체의 소멸자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하면, 자식 개체의 소멸자가 이미 호출되었기 때문에, 자식 개체의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 호출되는게 아니라 부모 클래스의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 호출됩니다. 
 

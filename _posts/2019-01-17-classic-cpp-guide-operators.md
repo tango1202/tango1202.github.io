@@ -13,7 +13,7 @@ sidebar:
 > * 비교 연산 오버로딩은 `<`을 활용해서 구현하라.
 
 
-# [대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)
+# 대입 연산자
 
 [대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)는 `=` 와 같은 기본 대입 연산자와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(`a += b` 는 `a = a + b` 와 결과가 같습니다.) 
 
@@ -255,7 +255,7 @@ EXPECT_TRUE(result == 10);
 
 `operator new`와 `operator delete`와 Placement New(위치 지정 생성)에 대해서는 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
 
-# `sizeof` 연산자
+# sizeof 연산자
 
 |항목|내용|
 |--|--|

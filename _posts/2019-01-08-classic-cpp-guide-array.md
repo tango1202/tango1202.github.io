@@ -53,10 +53,11 @@ EXPECT_TRUE(str2[0] == L'a');
 EXPECT_TRUE(str2[1] == L'b');
 EXPECT_TRUE(str2[2] == L'c');
 EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
+```
 
-# 배열과 `vector`
+# 배열과 vector
 
-타입이 같은 여러 데이터 집합은 배열 보다는 표준 템플릿 라이브러리의 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 사용하는 편이 좋습니다. 동적 요소 할당을 지원하며, 여전히 엑세스는 빠릅니다.
+타입이 같은 여러 데이터 집합은 배열 보다는 표준 템플릿 라이브러리의 [`vector`](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 사용하는 편이 좋습니다. 동적 요소 할당을 지원하며, 여전히 엑세스는 빠릅니다.
 
 `vector`와 배열간 코딩 호환성도 나쁘지 않습니다. 정의와 초기화만 다르고, 요소 접근하는 방법이나 요소 주소를 얻는 것은 동일합니다.
 
@@ -67,7 +68,7 @@ EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 |요소 접근|`a[0]`|`v[0]`|
 |요소 주소|`&a[0]`|`&v[0]`|
 
-# `typedef`로 타입 재정의
+# typedef로 타입 재정의
 
 `typedef`를 사용하여 배열 타입을 재정의할 수 있습니다.
 

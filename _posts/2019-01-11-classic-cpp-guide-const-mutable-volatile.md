@@ -63,7 +63,7 @@ const int* const p4 = &obj; // *p4 수정 불가. p4 수정 불가
 p4 = p1; // (X) 컴파일 오류
 ```
 
-# [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 상수성
+# 리턴값의 상수성
 
 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)에 무의미하게 `const`를 붙일 필요는 없습니다. 의미에 맞게 붙이거나 떼야 합니다.
 
@@ -90,7 +90,7 @@ int* GetX4() const {return const_cast<int*>(&m_X);}
 int* GetX5() {return &m_X;} 	                        
 ```
 
-# [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)(함수 선언에 작성된 Parameter)의 상수성
+# 인자(함수 선언에 작성된 Parameter)의 상수성
 
 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 `const`를 사용하여 전달된 인수(함수에 전달하는 개체. Argument)를 함수가 수정하는지, 수정하지 않는지 **코딩 계약**을 만들어 주는 게 좋습니다. 
 
@@ -121,7 +121,7 @@ public:
 };
 ```
 
-# 변경 가능 지정자(`mutable`)
+# 변경 가능 지정자(mutable)
 
 지연 생성이나 캐쉬등 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)인 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에서 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정해야 할 때 사용합니다.
 
@@ -146,7 +146,7 @@ TEST(TestClassicCpp, Mutable) {
 }
 ```
 
-# 최적화 제한 지정자(`volatile`)
+# 최적화 제한 지정자(volatile)
 
 컴파일러 최적화 옵션을 비활성 시킵니다.
 
