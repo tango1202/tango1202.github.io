@@ -169,7 +169,31 @@ void MyClass::f() {
 }
 ```
 
+**중첩 클래스의 전방 선언**
+
 중첩 클래스는 전방 선언을 할 수 없습니다.
+
+```cpp
+class T; // (O)
+class T::Nested; // (X) 컴파일 오류. 중첩 클래스는 전방 선언을 할 수 없습니다.
+class T {
+public:
+    class Nested {};
+};
+```
+
+클래스 내에서 중첩 클래스를 전방 선언할 수 있으나 접근 지정자가 동일해야 합니다.
+
+```cpp
+class T {
+private:
+    class Nested;
+private:
+    class Nested {}; // (O)
+public:
+    class Nested {}; // (X) 컴파일 오류. 전방 선언에선 private이고 실제 선언은 public 입니다.
+};
+```
 
 # 인라인 함수
 
@@ -192,9 +216,9 @@ int T::f2() {} // inline화 안됨
 
 |항목|내용|
 |--|--|
-|`public`|외부 접근 허용|
-|`protected`|상속받은 자식 개체에만 허용|    
-|`private`|자기 자신만 사용|
+|`private`(클래스 기본값)|자기 자신만 사용|
+|`protected`|상속받은 자식 개체에만 허용| 
+|`public`(구조체 기본값)|외부 접근 허용|
 
 **`using` 선언**
 
