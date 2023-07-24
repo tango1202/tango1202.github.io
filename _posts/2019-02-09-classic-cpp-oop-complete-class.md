@@ -67,9 +67,10 @@ sidebar:
 |--|--|
 |[인자 나열](https://tango1202.github.io/principle/principle-explicit-dependencies/)|함수에 필요한 모든 인자를 나열|
 |인자 복사 부하|기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성([Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98) 참고)|
-|리턴값 복사 부하|RVO가 쉽도록 임시 개체로 생성([리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 참고)<br/>기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성([Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#setter-%ED%95%A8%EC%88%98) 참고)
+|리턴값 복사 부하|RVO가 쉽도록 임시 개체로 생성([리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 참고)<br/>기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성([Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#setter-%ED%95%A8%EC%88%98) 참고)|
 |상수성|멤버 변수를 수정하지 않는다면, 상수 멤버 함수로 작성하고, 상수 참조를 리턴([Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98) 참고)<br/>[논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)인 것은 최대한 예외가 발생하지 않도록 구현|
 |함수내 지역 변수|[스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체를 사용하여 획득된 자원은 유효 범위가 벗어났을때 자동 소멸 되도록 함([RAII와 Holder 와 Restorer - 자원 획득과 안전한 소멸(복원)](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/))|
+
 # 소유권 분쟁 차단
 
 포인터 멤버 변수 사용시에는 [소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)이 발생합니다.
