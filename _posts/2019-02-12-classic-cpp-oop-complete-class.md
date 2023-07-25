@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [고전 C++ 개체 지향] 완전한 클래스(작성중)"
+title: "#13. [고전 C++ 개체 지향] 완전한 클래스"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -33,7 +33,13 @@ sidebar:
 
 # 최소 public
 
-가시성 최소화
+가시성 최소화되어 접근할 수 있는 항목이 적을 수록 사용하기 쉽습니다.
+
+|항목|내용|
+|--|--|
+|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|모두 `private`|
+|[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|외부에서 사용하는 것만 `public`|
+|[상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)|부모 개체의 `public`을 외부로 노출해야 하는 경우만 `public` 상속|
 
 # 완전한 생성자
 
@@ -133,3 +139,15 @@ sidebar:
 |[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)|정의하지 않음|
 |[형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)|[`explicit`로 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)|
 |명시적 형변환 함수|형변환이 꼭 필요하다면, 명시적으로 구현([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)|
+
+# 상속 구조에 맞춘 소멸자
+
+상속 구조에 맞게 적합한 소멸자를 사용합니다.
+
+|항목|내용|
+|--|--|
+|부모 개체로 사용하지 않는 개체|상속하지 않음<br/>[public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 사용|
+|[is-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#is-a-%EA%B4%80%EA%B3%84)|다형 소멸이 필요하면 부모 개체에 `virtual` 소멸자를 사용<br/>[public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 사용|
+|[has-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#has-a-%EA%B4%80%EA%B3%84)|[protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 사용|
+
+

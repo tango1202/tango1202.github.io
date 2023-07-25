@@ -191,7 +191,7 @@ delete b; // (O) 1, 2 호출됨. 다형 소멸 지원.
 부모 개체로 사용하지 않을 것이라면, 소멸자는 `public` Non-Virtual로 정의합니다.
 외부에서 생성/소멸해야 하니 `public`이어야 하겠고, 상속받지 않으니 다형 소멸이 필요없어 Non-Virtual로 정의합니다.
 
-다만, 아무런 제약이 없기 때문에 `U` 와 같이 상속한다면, 추후 다형 소멸이 안되는 우려가 있습니다. 개체가 `public` Non-Virtual 소멸자라면, 상속하지 말라는 뜻이니, 절대 상속하지 마세요. 혹시나 상속이 필요하다면, 다음에 설명할 `public` Virtual 소멸자나, `protected` Non-Virtual 소멸자로 리팩토링 하시기 바랍니다.
+다만, 아무런 제약이 없기 때문에 `U` 와 같이 상속한다면, 추후 다형 소멸이 안되는 우려가 있습니다. 개체가 `public` Non-Virtual 소멸자라면, 상속하지 말라는 뜻이니, 절대 상속하지 마세요. 혹시나 상속이 필요하다면, 다음에 설명할 `public` Virtual 소멸자나, `protected` Non-Virtual 소멸자로 리팩토링 하시기 바랍니다.(상속을 강제로 제한하는 방법은 [상속 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C) 참고)
 
 ```cpp
 class T {
