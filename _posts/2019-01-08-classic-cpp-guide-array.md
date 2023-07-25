@@ -39,7 +39,7 @@ EXPECT_TRUE(arr3[0] == 0 && arr3[1] == 0 && arr3[2] == 0);
 EXPECT_TRUE(arr4[2] == 0);
 ```
 
-문자 배열의 경우 특별히 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 이용하여 초기화 할 수 있습니다. 이때 배열의 마지막 요소에 널문자(`\0`)가 추가됩니다.
+문자 배열의 경우 특별히 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 할 수 있습니다. 이때 배열의 마지막 요소에 널문자(`\0`)가 추가됩니다.
 
 ```cpp
 char str1[] = "abc"; // (O) {'a', `b`, 'c', '\0'};
@@ -70,7 +70,7 @@ EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 
 # typedef로 타입 재정의
 
-`typedef`를 사용하여 배열 타입을 재정의할 수 있습니다.
+`typedef`로 배열 타입을 재정의할 수 있습니다.
 
 ```cpp
 typedef int MyArray[5]; 

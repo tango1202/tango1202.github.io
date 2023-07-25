@@ -40,7 +40,7 @@ public:
     };
 };
 
-Week::Val val = Week::Sunday; // 범위 확인 연사자를 이용하여 클래스명 사용
+Week::Val val = Week::Sunday; // 범위 확인 연산자와 클래스명 사용
 EXPECT_TRUE(val == Week::Sunday);
 ```
 
@@ -78,7 +78,7 @@ EXPECT_TRUE(
 열거형 상수는
 
 1. `int`로 형변환 되고, 
-2. `int`는 `static_cast`를 이용하여 열거형 상수로 형변환 됩니다만, 
+2. `int`는 `static_cast`로 열거형 상수로 형변환 됩니다만, 
 
 타입에 기반한 **코딩 계약** 을 위반하기 때문에 형변환 하는건 좋지 않습니다.
 

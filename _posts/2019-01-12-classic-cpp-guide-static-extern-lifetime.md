@@ -83,7 +83,7 @@ public:
 
 # 정적 멤버 변수
 
-[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에 `static` 을 사용하여 특정 개체에 속하지 않는 정적 멤버 변수를 정의 할 수 있습니다. (단, [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)와 [함수 내부의 로컬 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%ED%95%A8%EC%88%98-%EB%82%B4%EB%B6%80%EC%9D%98-%EB%A1%9C%EC%BB%AC-%ED%81%B4%EB%9E%98%EC%8A%A4)는 정적 멤버 변수를 가질 수 없습니다.) 
+[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에 `static`으로 특정 개체에 속하지 않는 정적 멤버 변수를 정의 할 수 있습니다. (단, [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)와 [함수 내부의 로컬 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%ED%95%A8%EC%88%98-%EB%82%B4%EB%B6%80%EC%9D%98-%EB%A1%9C%EC%BB%AC-%ED%81%B4%EB%9E%98%EC%8A%A4)는 정적 멤버 변수를 가질 수 없습니다.) 
 
 선언과 정의의 분리가 필요하기 때문에, 선언 외부에서 초기값을 세팅해야 합니다.(단, `static const` 형은 변수 선언에서 초기화를 할 수 있습니다.)
 
@@ -109,7 +109,7 @@ TEST(TestClassicCpp, Static) {
 
 # 정적 멤버 함수
 
-[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에 `static` 을 사용하여 특정 개체에 속하지 않는 정적 멤버 함수를 정의 할 수 있습니다.
+[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에 `static`으로 특정 개체에 속하지 않는 정적 멤버 함수를 정의 할 수 있습니다.
 
 ```cpp
 class T {

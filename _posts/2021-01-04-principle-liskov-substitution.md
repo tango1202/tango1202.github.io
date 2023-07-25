@@ -55,7 +55,7 @@ public:
     void SetWidth(int val) { m_Width = val;}
     void SetHeight(int val) { m_Height = val;}
 
-    // m_Left, m_Top, m_Width, m_Height를 이용하여 자식 클래스들이 알아서 그려야 함
+    // m_Left, m_Top, m_Width, m_Height로 자식 클래스들이 알아서 그려야 함
     virtual void Draw() const = 0; 
 };
 ```
@@ -235,7 +235,7 @@ public:
     void SetLeft(int val) {m_Left = val;}
     void SetTop(int val) {m_Top = val;}
 
-    // m_Left, m_Top을 이용하여 자식 클래스들이 알아서 그려야 함
+    // m_Left, m_Top으로 자식 클래스들이 알아서 그려야 함
     virtual void Draw() const = 0; 
 };
 ```
@@ -264,7 +264,7 @@ public:
     void SetHeight(int val) {m_Height = val;}
 
     virtual void Draw() const override {
-        // m_Left, m_Top, m_Width, m_Height를 이용하여 사각형을 그립니다.
+        // m_Left, m_Top, m_Width, m_Height로 사각형을 그립니다.
     }
 };
 
@@ -289,7 +289,7 @@ public:
     void SetHeight(int val) {m_Height = val;}
 
     virtual void Draw() const override {
-        // m_Left, m_Top, m_Width, m_Height를 이용하여 타원을 그립니다.
+        // m_Left, m_Top, m_Width, m_Height로 타원을 그립니다.
     }
 };
 ```
@@ -315,7 +315,7 @@ public:
     void SeLength(int val) {m_Length = val;}
 
     virtual void Draw() const override {
-        // m_Left, m_Top, m_Length를 이용하여 정사각형을 그립니다.
+        // m_Left, m_Top, m_Length로 정사각형을 그립니다.
     }
 };
 ```
@@ -396,7 +396,7 @@ public:
     virtual ~Rectangle() override {}   
   
     virtual void Draw() const override {
-        // m_Left, m_Top, IResizeable::GetWidth(), IResizeable::GetHeight()를 이용하여 사각형을 그립니다.
+        // m_Left, m_Top, IResizeable::GetWidth(), IResizeable::GetHeight()로 사각형을 그립니다.
     }
 };
 
@@ -411,7 +411,7 @@ public:
     virtual ~Ellipse() override {}
  
     virtual void Draw() const override {
-        // m_Left, m_Top, IResizeable::GetWidth(), IResizeable::GetHeight()를 이용하여 타원을 그립니다.
+        // m_Left, m_Top, IResizeable::GetWidth(), IResizeable::GetHeight()로 타원을 그립니다.
     }
 };
 ```

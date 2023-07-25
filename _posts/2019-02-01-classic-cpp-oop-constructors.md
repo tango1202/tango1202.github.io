@@ -10,7 +10,7 @@ sidebar:
 
 > * 기본 생성자가 필요하다면 명시적으로 구현하고, 필요없다면 못쓰게 만들어라.
 > * 값 생성자에서는 필요한 인자를 모두 나열하고 초기화하라. 
-> * 인자가 1개인 값 생성자는 `explicit`를 사용하여 암시적 형변환을 차단하라.
+> * 인자가 1개인 값 생성자는 `explicit`로 암시적 형변환을 차단하라.
 > * 암시적 복사 생성자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하고, 필요없다면 못쓰게 만들어라.
 > * 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
 > * 상속 전용 기반 클래스는 `protected` 생성자 보다는 [`protected` Non-Vitual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들어라.
@@ -28,7 +28,7 @@ sidebar:
 
 # 기본 생성자
 
-인수없는 생성자를 기본 생성자라고 합니다. `T t;`과 같이 사용하여 개체를 정의(인스턴스화)합니다.(`T t();` 와 같이 하면 `T`를 리턴하는 함수 `t()`선언입니다. [기본 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B8%B0%EB%B3%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 언급)
+인수없는 생성자를 기본 생성자라고 합니다. `T t;`로 개체를 정의(인스턴스화)합니다.(`T t();` 와 같이 하면 `T`를 리턴하는 함수 `t()`선언입니다. [기본 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B8%B0%EB%B3%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 언급)
 
 ```cpp
 class T {
@@ -95,7 +95,7 @@ class T {
 T t; // (△) 비권장. 암시적 기본 생성자 사용
 ```
 
-보다는, [기본값 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)를 이용하여,
+보다는, [기본값 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)를 사용하여,
 
 ```cpp
 class T {
@@ -126,7 +126,7 @@ private:
     int m_Y;
 public:
     T(int x, int y) : // 필요한 모든 인자를 나열
-        m_X(x), // 초기화 리스트를 이용하여 모든 멤버 변수 초기화
+        m_X(x), // 초기화 리스트로 모든 멤버 변수 초기화
         m_Y(y) {}
 };
 T t(10, 20); // (O) 개체 정의(인스턴스화)
@@ -184,7 +184,7 @@ public:
 };        
 ```
 
-그런데, 암시적 복사 생성자를 이용하여 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 복사하면,
+그런데, 암시적 복사 생성자로 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 복사하면,
 
 ```cpp
 // (X) 예외 발생. t1이 delete 한 것을 t2도 delete 합니다.
@@ -278,7 +278,7 @@ public:
 };
 
 class T {
-    // (O) IntPtr을 이용하여 복사 생성시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
+    // (O) IntPtr로 복사 생성시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
     // (O) 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
     IntPtr m_Val;
 public:
@@ -348,7 +348,7 @@ EXPECT_TRUE(d.GetVal() == 1);
 
 만약 기본 생성자나 복사 생성자가 필요없다면, 생성자를 사용할 수 없게 만드는게 좋습니다. 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
 
-* 기본 생성자 : 다른 생성자(값 생성자던, 복사 생성자던)가 정의되면, 암시적 기본 생성자가 정의되지 않으므로 사용이 제한됩니다. 그렇지 않은 경우 명시적으로 기본 생성자를 구현하고, `private` 또는 `protected`를 이용하여 사용을 제한합니다.
+* 기본 생성자 : 다른 생성자(값 생성자던, 복사 생성자던)가 정의되면, 암시적 기본 생성자가 정의되지 않으므로 사용이 제한됩니다. 그렇지 않은 경우 명시적으로 기본 생성자를 구현하고, `private` 또는 `protected`로 사용을 제한합니다.
 * 복사 생성자 : `private`로 정의하면 다른 곳에서는 사용하지 못하고,([`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/) 참고) `protected`로 정의하면 상속받은 자식 개체에서만 사용할 수 있습니다.
 
 

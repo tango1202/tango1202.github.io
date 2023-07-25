@@ -98,7 +98,7 @@ T::T(const T& other) :
     m_Impl(new T::Impl(*other.m_Impl)) {} // T::Impl의 복사 생성자를 호출합니다.
 T::~T() {delete m_Impl;} // T::Impl을 소멸시킵니다.
 
-// Swap을 이용하여 대입 연산자를 구현합니다.
+// Swap으로 대입 연산자를 구현합니다.
 T& T::operator =(const T& other) {
     T temp(other); 
     Swap(temp); 
@@ -223,7 +223,7 @@ public:
 class T {
     // 중첩 클래스는 전방 선언이 안되어 별도 클래스로 선언하고, 전방 선언합니다.
     // (O) 스마트 포인터를 사용하여, 복사 생성자, 소멸자를 구현할 필요가 없고, 
-    // (O) 멤버 변수도 1개여서 Swap을 이용하여 대입 연산자를 구현할 필요가 없습니다.
+    // (O) 멤버 변수도 1개여서 Swap으로 대입 연산자를 구현할 필요가 없습니다.
     TImplPtr m_Impl; 
 public:
     // val1, val2 : new 로 생성된 것을 전달하세요.

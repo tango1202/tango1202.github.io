@@ -50,7 +50,7 @@ public:
 T obj; // (O) 기본 생성자 호출
 ```
 
-`T obj1();`와 같이 괄호를 사용하여 정의하면, 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식됩니다. 
+`T obj1();`와 같이 괄호로 정의하면, 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식됩니다. 
 
 ```cpp
 T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 선언임
@@ -96,7 +96,7 @@ obj = other; // (△) 비권장. 생성하고 대입하지 말고, 완전하게 
 
 # 배열 초기화
 
-배열 정의시 배열의 크기가 유추될 수 있어야 하며, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 이용하여 초기화 할 수 있습니다.([배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고) 
+배열 정의시 배열의 크기가 유추될 수 있어야 하며, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 할 수 있습니다.([배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고) 
 
 ```cpp
 int arr1[3]; // (△) 비권장. int 형 3개 정의. 초기화 되지 않아 비권장 
@@ -125,7 +125,7 @@ EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 
 # 구조체 초기화
 
-구조체는 별도로 값 초기화를 위한 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현하지 않더라도 중괄호를 이용하여 초기화를 할 수 있습니다.
+구조체는 별도로 값 초기화를 위한 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현하지 않더라도 중괄호로 초기화를 할 수 있습니다.
 
 ```cpp
 struct T {int x; int y;}; 

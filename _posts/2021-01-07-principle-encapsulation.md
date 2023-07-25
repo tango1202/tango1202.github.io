@@ -92,7 +92,7 @@ public:
 };
 ```
 
-이제 `Util::CalcShapeRotateDelta()` 함수를 사용하여 기나긴 `if` 문을 피할 순 있습니다.
+이제 `Util::CalcShapeRotateDelta()` 함수로 기나긴 `if` 문을 피할 순 있습니다.
 
 ```cpp
 // delta값을 보정합니다.
@@ -215,7 +215,7 @@ inline Degree operator -(const Degree& left, float right) {
 }
 ```
 
-`Degree` 클래스 내에서 0~360 로 값을 보정하므로(여러 연산자를 오버로딩하여 믿고 쓸 수 있습니다), `Shape` 클래스는 `Degree`를 사용하여 좀더 간단하게 구현할 수 있습니다. `Rotate()`함수의 불필요한 주석과 `assert`가 사라졌습니다.
+`Degree` 클래스 내에서 0~360 로 값을 보정하므로(여러 연산자를 오버로딩하여 믿고 쓸 수 있습니다), `Shape` 클래스는 `Degree`로 좀더 간단하게 구현할 수 있습니다. `Rotate()`함수의 불필요한 주석과 `assert`가 사라졌습니다.
 
 ```cpp
 class Shape {

@@ -35,7 +35,7 @@ C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은
 
 # 타입 재정의(별칭)
 
-`typedef` 를 사용하여 타입의 별칭을 만들 수 있습니다.(절대 `define`쓰지 마세요!!! [`#define` 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 참고)
+`typedef`로 타입의 별칭을 만들 수 있습니다.(절대 `define`쓰지 마세요!!! [`#define` 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 참고)
 
 ```cpp
 // 단순하게
@@ -91,7 +91,7 @@ EXPECT_TRUE(sizeof(myClass) == sizeof(myClassRef)); // sizeof() 시 참조하는
 
 # 타입 최대/최소값
 
-`numeric_limits`를 이용하여 타입의 최대, 최소값을 알 수 있습니다.
+`numeric_limits`로 타입의 최대, 최소값을 알 수 있습니다.
 
 ```cpp
 EXPECT_TRUE(std::numeric_limits<int>::max() == 2147483647);

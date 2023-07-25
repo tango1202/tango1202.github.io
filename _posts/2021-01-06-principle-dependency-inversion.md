@@ -25,7 +25,7 @@ sidebar:
 
 **위반 사례**
 
-저장 기능이 필요한 `Shape` 개체가 있다고 합시다. `Save()`함수를 구현하고, 저장시에는 Xml을 이용한다고 봅시다. 멤버 변수로 `m_Writer`를 갖고, `Save()`함수 호출시 `m_Writer`를 이용하여 저장합니다.
+저장 기능이 필요한 `Shape` 개체가 있다고 합시다. `Save()`함수를 구현하고, 저장시에는 Xml을 이용한다고 봅시다. 멤버 변수로 `m_Writer`를 갖고, `Save()`함수 호출시 `m_Writer`로 저장합니다.
 
 ```cpp
 class XmlWriter {
@@ -120,7 +120,7 @@ public:
 };
 ```
 
-이제 `SetWriter()`를 사용하여 다양한 포맷으로 저장할 수 있습니다.
+이제 `SetWriter()`로 다양한 포맷으로 저장할 수 있습니다.
 
 ```cpp
 TEST(TestPrinciple, DependencyInversion) {

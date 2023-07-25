@@ -92,7 +92,7 @@ Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fc48b1a3-b3a8-431b-b7c0-f198af367c36)
 
-4. `New Folder`버튼을 이용하여 `cpp`폴더를 만들고, 그 하위에 `src`폴더를 만듭니다. 그리고, `New File` 버튼을 이용하여 `main.cpp`파일을 생성합니다. 그러면 `Editor Group`에 `main.cpp` 파일이 열립니다.
+4. `New Folder`버튼으로 `cpp`폴더를 만들고, 그 하위에 `src`폴더를 만듭니다. 그리고, `New File` 버튼으로 `main.cpp`파일을 생성합니다. 그러면 `Editor Group`에 `main.cpp` 파일이 열립니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a06cbe3f-9635-4465-ad84-f6245984957a)
 

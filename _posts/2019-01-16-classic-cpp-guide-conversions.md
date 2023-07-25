@@ -10,7 +10,7 @@ sidebar:
 
 > * 암시적 형변환은 실수하기 쉽게 만든다. 명시적으로 형변환하라.
 > * bool 형변환 연산자 정의는 하지 마라. 나아가 모든 타입의 형변환 연산자 정의를 하지 마라. 뜻하지 않게 몰래 암시적 형변환한다.
-> * 인자가 1개인 생성자는 `explicit`를 사용하여 암시적 형변환을 차단하라.
+> * 인자가 1개인 생성자는 `explicit`로 암시적 형변환을 차단하라.
 > * 할 수 있는한 최선을 다하여 형변환하지 마라.
 
 # 개요
@@ -100,7 +100,7 @@ C++언어는
 
 **C언어 스타일 형변환-`()`**
 
-암시적으로 형변환 되지 않는다면, 괄호(`(`와 `)`)를 이용하여 C언어 스타일로 명시적으로 형변환(`const_cast`, `static_cast`, `reinterpret_cast` 의 순서) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 `const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
+암시적으로 형변환 되지 않는다면, 괄호(`(`와 `)`)로 C언어 스타일로 명시적으로 형변환(`const_cast`, `static_cast`, `reinterpret_cast` 의 순서) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 `const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
 
 ```cpp
 {
@@ -117,7 +117,7 @@ C++언어는
 
 **`const_cast`**
 
-`const_cast`를 이용하여 포인터나 참조자의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 뗄 수 있습니다.(그러나 **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 위반이니 하지 마세요.)
+`const_cast`로 포인터나 참조자의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 뗄 수 있습니다.(그러나 **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 위반이니 하지 마세요.)
 
 ```cpp
 {
@@ -134,7 +134,7 @@ C++언어는
 
 **`static_cast`**
 
-`static_cast`를 이용하여 암시적으로 형변환되지 않는 것들을 명시적으로 할 수 있습니다.(하지만 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.)
+`static_cast`로 암시적으로 형변환되지 않는 것들을 명시적으로 할 수 있습니다.(하지만 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.)
 
 ```cpp
 {

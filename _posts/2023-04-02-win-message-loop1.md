@@ -30,7 +30,7 @@ while (GetMessage(&msg, NULL, 0, 0)) { // WM_QUIT 까지 루프 실행
 
 ----------------------------------------------------
 
-1. `TranslateAccelerator()` 를 이용하여, 메시지 루프에서 단축키를 선처리할 수 있다.
+1. `TranslateAccelerator()`로 메시지 루프에서 단축키를 선처리할 수 있다.
  
     ```cpp
     hAccelTable = LoadAccelerators(hInstance, (LPCTSTR)IDC_MY_ACCEL);
@@ -43,27 +43,27 @@ while (GetMessage(&msg, NULL, 0, 0)) { // WM_QUIT 까지 루프 실행
     }
     ```
  
-2. `PeekMessage()` 를 이용하여 메시지 큐의 내용을 검사할 수 있다.
+2. `PeekMessage()`로 메시지 큐의 내용을 검사할 수 있다.
 
-3. `GetMessageTime()` 을 이용하여 메시지가 발생한 시간을 알 수 있다.
+3. `GetMessageTime()`으로 메시지가 발생한 시간을 알 수 있다.
 
-4. `GetMessagePos()` 를 이용하여 메시지가 발생했을 때의 커서 위치를 알 수 있다.
+4. `GetMessagePos()`로 메시지가 발생했을 때의 커서 위치를 알 수 있다.
 
-5. `WaitMessage()`를 이용하여 메시지가 발생할 때까지 대기할 수 있다.
+5. `WaitMessage()`로 메시지가 발생할 때까지 대기할 수 있다.
 
-6. `PostMessage()`, `PostThreadMessge()` 를 이용하여 메시지 큐에 메시지를 추가 할 수 있다. 이때 메시지가 어떻게 처리되었는지의 응답을 기다리지 않는다.  이함수를 이용하여 메시지를 큐에 넣고, 메시지 루프에 해당 메시지를 처리하는 루틴을 작성한다면, 윈도우 없는 어플리케이션을 작성할 수도 있다.
+6. `PostMessage()`, `PostThreadMessge()`로 메시지 큐에 메시지를 추가 할 수 있다. 이때 메시지가 어떻게 처리되었는지의 응답을 기다리지 않는다.  이함수로 메시지를 큐에 넣고, 메시지 루프에 해당 메시지를 처리하는 루틴을 작성한다면, 윈도우 없는 어플리케이션을 작성할 수도 있다.
 
-7. `PostQuitMessage()`를 이용하여 `WM_QUIT`를 메시지 큐에 넣을 수 있다.
+7. `PostQuitMessage()`로 `WM_QUIT`를 메시지 큐에 넣을 수 있다.
 
-8. `SetMessageExtraInfo()`, `GetMessageExtraInfo()`를 이용하여 특정 메시지에 대한 부가 정보를 사용할 수도 있다.
+8. `SetMessageExtraInfo()`, `GetMessageExtraInfo()`로 특정 메시지에 대한 부가 정보를 사용할 수도 있다.
 
-9. `SendMessage()`를 이용하여, 윈도우 프로시저에 직접 메시지를 전송할 수 있다. 이때 메시지가 10떻게 처리되었는지 응답을 기다린다.
+9. `SendMessage()`로 윈도우 프로시저에 직접 메시지를 전송할 수 있다. 이때 메시지가 10떻게 처리되었는지 응답을 기다린다.
 
-10. `SendMessageTimeOut()` 을 이용하여 메시지의 응답을 주어진 시간만큼 기다리게 할 수 있다.
+10. `SendMessageTimeOut()`으로 메시지의 응답을 주어진 시간만큼 기다리게 할 수 있다.
 
-11. `SendNotifyMessage()` 를 이용하여 메시지의 응답을 기다리지 않게 할 수 있다.
+11. `SendNotifyMessage()`로 메시지의 응답을 기다리지 않게 할 수 있다.
 
-12. `InSendMessage()`, `ReplyMessage()`를 이용하여 메시지 처리에 대한 응답을 빨리 해줄 수 있다.
+12. `InSendMessage()`, `ReplyMessage()`로 메시지 처리에 대한 응답을 빨리 해줄 수 있다.
 
     ```cpp
     case WM_USER + 1:

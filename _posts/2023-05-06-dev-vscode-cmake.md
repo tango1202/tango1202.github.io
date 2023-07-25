@@ -238,7 +238,7 @@ include(CPack) # 기본적으로 build 경로에 실행파일을 생성함
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c02303c-dd0f-46bc-b325-186908cffd29)
 
-4. `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Debug`(Ctrl+F5) 를 하면, 중단점 위치까지 실행되며, 좌측 `Side Bar(RUN AND DEBUG)`에서 변수값을 확인하고, 상단 디버깅 툴바에서 `Continue`(F5), `Step Over`(F10), `Step Into`(F11), `Step Out`(Shift+F11) 등을 이용하여 다음 지점의 중단점이나 다음 단계로 진입할 수 있습니다.
+4. `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Debug`(Ctrl+F5) 를 하면, 중단점 위치까지 실행되며, 좌측 `Side Bar(RUN AND DEBUG)`에서 변수값을 확인하고, 상단 디버깅 툴바에서 `Continue`(F5), `Step Over`(F10), `Step Into`(F11), `Step Out`(Shift+F11) 등으로 다음 지점의 중단점이나 다음 단계로 진입할 수 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/170627ca-357e-49ca-a4b5-36239871fda4)
 

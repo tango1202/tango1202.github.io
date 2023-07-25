@@ -28,7 +28,7 @@ sidebar:
 3. 함수 자체를 전달하고 싶은 경우([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
 4. 부모 개체를 통해 자식 개체를 사용하고 싶은 경우([다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/) 참고)
 
-포인터는 `&`을 이용하여 주소값을 얻고, `*`을 이용하여 실제값에 접근합니다.
+포인터는 `&`로 주소값을 얻고, `*`로 실제값에 접근합니다.
 
 ```cpp
 int x = 20;
@@ -37,7 +37,7 @@ int* p = &x; // p는 x의 주소를 가집니다.
 EXPECT_TRUE(*p == 30 && x == 30); 
 ```
 
-참조자는 `&`을 이용하여 정의합니다.
+참조자는 `&`로 정의합니다.
 
 ```cpp
 int x = 20;
@@ -164,7 +164,7 @@ EXPECT_TRUE(p6[0] == 1 && p6[1] == 2);
 
 **함수 포인터**
 
-함수 포인터를 이용하여 함수 자체를 변수처럼 사용할 수 있습니다.([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
+함수 포인터로 함수 자체를 변수처럼 사용할 수 있습니다.([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
 
 ```cpp
 void TestFunc(int) {}
@@ -178,7 +178,7 @@ p8(10); // (*p8)(10); 도 가능. TestFunc 함수 호출
 
 **다형성 포인터**
 
-부모 개체를 이용하여 자식 개체를 다형적으로 사용할때 포인터를 사용합니다.([다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/) 참고)
+부모 개체로 자식 개체를 다형적으로 사용할때 포인터를 사용합니다.([다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/) 참고)
 
 ```cpp
 class Base {

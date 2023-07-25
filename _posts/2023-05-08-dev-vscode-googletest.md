@@ -113,7 +113,7 @@ Visual Studio Code + CMake + C++ 환경의 단위 테스트 구축시에는 Goog
 
 `test` 폴더에 `Plus::Run()`과 `Minus::Run()`의 동작을 확인할 수 있도록 테스트케이스를 구성합니다.(아직은 프로젝트 구성이 되지 않아 `#include "gtest/gtest.h"` 에서 오류가 나옵니다.)
 
-`EXPECT_TRUE()`를 이용하여 `Plus::Run()`과 `Minus::Run()`함수의 호출 결과를 테스트합니다.
+`EXPECT_TRUE()`로 `Plus::Run()`과 `Minus::Run()`함수의 호출 결과를 테스트합니다.
 
 **language_test/test/TestPlus.cpp**
 
@@ -155,7 +155,7 @@ GoogleTest는
 
 하는 방법이 있습니다.
 
-첫번째 방법을 이용하여 GoogleTest를 설치하도록 하겠습니다. 
+첫번째 방법인 소스코드를 복제하여 사용하는 방법으로 GoogleTest를 설치하도록 하겠습니다. 
 
 1. 다음 링크에서 GoogleTest의 소스코드(zip파일)를 다운로드 받습니다.(현재 v1.13.0 버전이 release 되었습니다.)
 

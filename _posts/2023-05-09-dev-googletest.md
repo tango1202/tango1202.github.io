@@ -153,7 +153,7 @@ protected:
 };
 ```
 
-다음과 같이 `TEST_F`를 사용하여 Fixture를 사용할 수 있습니다.(`TEST`를 사용하면 Fixture를 인식하지 못합니다.) 
+다음과 같이 `TEST_F`로 Fixture를 사용할 수 있습니다.(`TEST`를 사용하면 Fixture를 인식하지 못합니다.) 
 
 ```cpp
 #include "gtest/gtest.h"

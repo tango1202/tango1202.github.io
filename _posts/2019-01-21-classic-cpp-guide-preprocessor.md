@@ -100,7 +100,7 @@ EXPECT_TRUE(typeid(Logical) == typeid(int));
 `#define`은 한줄로 작성하여야 하나, 너무 긴 경우 `\`로 개행하여 작성할 수 있습니다.(이때 `\`뒤에 어떤 공백도 없어야 합니다.)
 
 ```cpp
-// 개행을 사용하여 f 함수 매크로문 정의
+// 개행으로 f 함수 매크로문 정의
 #define LONGFUNC int f(int x) { \
     return x + x;               \ 
 }

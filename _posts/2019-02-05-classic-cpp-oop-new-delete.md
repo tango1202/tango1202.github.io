@@ -34,7 +34,7 @@ sidebar:
 
 `new`는 다음의 순서로 개체의 메모리 할당과 생성자 호출을 실행합니다.([생성/소멸 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8-%EC%97%B0%EC%82%B0%EC%9E%90) 언급)
 
-1. 전역 `operator new(std::size_t)`를 이용하여 메모리 공간 할당(오류 발생시 `set_new_handler()`에 설정한 `new_handler` 실행)
+1. 전역 `operator new(std::size_t)`로 메모리 공간 할당(오류 발생시 `set_new_handler()`에 설정한 `new_handler` 실행)
 2. 구조체이거나 클래스이면 `operator new(void*)`(위치 지정 생성)를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
 3. 메모리 주소를 해당 타입으로 형변환하여 리턴
 
@@ -42,7 +42,7 @@ sidebar:
 
 1. 개체의 소멸자 호출
 2. 개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 소멸
-3. 전역 `operator delete(void*)`를 이용하여 메모리 할당 해제
+3. 전역 `operator delete(void*)`로 메모리 할당 해제
 
 즉 `new`는 메모리 할당, 생성자 호출, 메모리 주소를 형변환해서 리턴하지만,
 `operator new`는 `void*` 형 메모리를 할당하기만 합니다.

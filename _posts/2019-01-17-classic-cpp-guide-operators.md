@@ -238,7 +238,7 @@ EXPECT_TRUE(result == 10);
 
 개체 생성시 사용하는 `new`는 하기 단계를 수행합니다.
 
-1. 전역 `operator new(std::size_t)`를 이용하여 메모리 공간 할당
+1. 전역 `operator new(std::size_t)`로 메모리 공간 할당
 2. 구조체이거나 클래스이면 `operator new(void*)`를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
 3. 메모리 주소를 해당 타입으로 형변환하여 리턴
 
