@@ -328,7 +328,7 @@ EXPECT_TRUE(obj.Dancer::m_Age == 30);
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b5052bc8-51a8-4c40-90e0-80766f1c75dc)
 
-상기와 같이 상속 구조를 가졌다면 부모 개체인 `Shape` 의 포인터로 `Rectangle`, `Ellipse`, `Triangle`을 관리하고 소멸시킬 수 있습니다.
+상기와 같은 상속 구조를 가지고 부모 개체인 `Shape` 의 포인터로 `Rectangle`, `Ellipse`, `Triangle`을 관리하고 소멸시키는 관계 입니다.
 
 ```cpp
 class Shape {
@@ -368,12 +368,12 @@ for(int i = 0; i < 3; ++i) {
 부모 개체의 소멸자는 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만듭니다.
 
 1. 외부에서 부모 개체 포인터로 `delete` 시 소멸자에 접근해야 하기 때문에 `public` 소멸자로 정의하고,
-2. 다형 소멸을 해야 하므로 `virtual` 소멸자로 만듭니다. 만약 `virtual`로 하지 않으면, 자식 개체의 소멸자가 호출되지 않아 메모리 릭이 발생할 수 있습니다.([public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고)
+2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 해야 하므로 `virtual` 소멸자로 만듭니다. 만약 `virtual`로 하지 않으면, 자식 개체의 소멸자가 호출되지 않아 메모리 릭이 발생할 수 있습니다.([public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고)
 
 
 # has-a 관계
 
-`has-a` 관계는 다형 소멸을 지원하지 않는 상속 관계로서, 자식 개체가 부모 개체의 멤버 변수, 멤버 함수등을 물려받아 포함하고 있는 관계입니다. 주로 단위 전략 인터페이스나, 공통 코드 구현을 상속받을때 사용합니다.
+`has-a` 관계는 [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 지원하지 않는 상속 관계로서, 자식 개체가 부모 개체의 멤버 변수, 멤버 함수등을 물려받아 포함하고 있는 관계입니다. 주로 단위 전략 인터페이스나, 공통 코드 구현을 상속받을때 사용합니다.
 
 물려받은 기능을 
 
@@ -385,24 +385,24 @@ for(int i = 0; i < 3; ++i) {
 
 부모 개체의 소멸자는 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만듭니다.
 
-1. 부모 개체를 상속받아서만 사용하도록 함과 동시에 부모 개체 포인터로부터 다형 소멸을 시도하지 못하도록 `protected` 소멸자로 정의하고,
-2. 다형 소멸을 안하므로 Non-Virtual 소멸자로 만듭니다.
+1. 부모 개체를 상속받아서만 사용하도록 함과 동시에 부모 개체 포인터로부터 [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 시도하지 못하도록 `protected` 소멸자로 정의하고,
+2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 안하므로 Non-Virtual 소멸자로 만듭니다.
 
 **단위 전략 인터페이스**
 
-단위 전략 인터페이스는 개체의 기능 스펙이라 할 수 있습니다. 작은 단위의 기능 스펙을 순가상 함수로 제공하며, 다형 소멸을 지원하지 않습니다.
+단위 전략 인터페이스는 개체의 기능 스펙이라 할 수 있습니다. 작은 단위의 기능 스펙을 순가상 함수로 제공하며, [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 지원하지 않습니다.
 
 ```cpp
 class IEatable {
 protected:
-    ~IEatable() {} // 상속받지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~IEatable() {} //  상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
 
 public:
     virtual void Eat() = 0;
 };
 class IWalkable {
 protected:
-    ~IWalkable() {} // 상속받지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~IWalkable() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
 
 public:
     virtual void Walk() = 0;

@@ -373,18 +373,18 @@ delete base; // Base::delete(void* ptr, std::size_t sz) 호출
 
 고려라고 해봐야 인수 `sz`에 전달된 만큼 메모리를 할당/해제하는 것이니 특별히 할 건 없습니다.
 
-**부모 클래스가 `public` Virtual 소멸자인 경우 `operator delete`**
+# virtual 소멸자인 경우 `operator delete`
 
-[`public` Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 에서 다형 소멸을 지원하려면, 꼭 `virtual` 소멸자를 사용해야 한다고 언급한바 있습니다. 그렇지 않으면 `Base` 소멸자만 불려서 `Derived`의 소멸자가 불리지 않아, 메모릭 릭이 발생할 수 있다고요.
+[다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 지원하려면, 꼭 `virtual` 소멸자를 사용해야 한다고 언급한바 있습니다. 그렇지 않으면 `Base` 소멸자만 불려서 `Derived`의 소멸자가 불리지 않아, 메모릭 릭이 발생할 수 있다고요.
 
-`operator delete`에서도 마찬가지 입니다. 자식 클래스에서 할당된 메모리를 모두 해제하려면 꼭 [`public` Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하셔야 합니다.
+`operator delete`에서도 마찬가지 입니다. 자식 클래스에서 할당된 메모리를 모두 해제하려면 꼭 `virtual` 소멸자를 사용하셔야 합니다.
 
 다음 코드는 상기 코드에서 소멸자의 `virtual`만 뺀 코드입니다. 실행시켜 확인해 보면, 
 
 1. `operator new` 시에는 `Derived`의 크기인 16byte가 전달되나, 
 2. `operator delete`시에는 `Base`의 크기인 8byte가 전달되어, 
    
-메모리의 일부만 해제되어 메모리 릭이 발생합니다. 그러니, 다형 소멸을 하려면 꼭 [`public` Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하세요.
+메모리의 일부만 해제되어 메모리 릭이 발생합니다. 그러니, [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 하려면 꼭 `virtual` 소멸자를 사용하세요.
 
 ```cpp
 // sizeof(Base) == sizeof(int) * 2 = 8byte

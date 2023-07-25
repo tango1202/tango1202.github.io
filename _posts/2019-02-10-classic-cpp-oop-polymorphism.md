@@ -50,7 +50,7 @@ Base* b2 = b->Clone();// (O) b2는 d의 복제본을 가리키는 포인터
 
 # 다형 소멸, public Virtual 소멸자
 
-다형성을 가진 기본 클래스는 반드시 소멸자를 virtual 로 만들어라
+다형성을 가진 기본 클래스는 반드시 소멸자를 virtual 로 만들어라.
 
 ```cpp
 class Base

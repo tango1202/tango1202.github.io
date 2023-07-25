@@ -10,6 +10,8 @@ sidebar:
 
 > * 획득된 자원은 꼭 소멸시켜라.
 > * 암시적 소멸자가 정상 작동하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하라.
+> * 다형 소멸이 필요하면 부모 개체에 `virtual` 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
+> * `public` Non-Virtual 소멸자인 개체는 상속하지 마라.
 > * `is-a`관계에서는 `public` Virtual 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
 > * `has-a`관계에서는 `protected` Non-Virtual 소멸자를 사용하라.
 > * 생성자처럼 소멸자에서도 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
@@ -26,7 +28,7 @@ sidebar:
 
 소멸자는 개체의 수명이 다해 소멸될때 호출되는 특수 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)입니다. 개체가 활동하면서 생성했던 메모리나 리소스를 해제하는 역할을 합니다.
 
-특히 `new` 로 생성한 포인터형 개체를 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 사용한다면, 소멸자에서 `delete`로 소멸([힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다.
+`new` 로 생성한 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 사용후 `delete`로 소멸시키지 않으면, 메모리에 그대로 남아 있어(메모리 릭), 메모리 부족으로 프로그램이 중단됩니다. 획득된 자원은 꼭 소멸([RAII(Resource Acquisition Is Initialization)](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/))시켜야 합니다.
 
 ```cpp
 class T {
@@ -37,15 +39,13 @@ public:
 };
 ```
 
-이렇게 획득된 자원은 꼭 소멸시켜야 합니다.([RAII(Resource Acquisition Is Initialization)](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 참고)
-
 # 소멸자 호출 시점
 
 소멸자는 하기 상황에서 자동으로 호출됩니다.
 
 1. [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), 정적 변수([정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98), [함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98))인 경우 프로그램 종료시
-2. [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 생성된 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 경우 블록 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)의 끝
-3. `new`로 생성된 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체인 경우 `delete` 시
+2. [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 생성한 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 경우 블록 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)의 끝
+3. `new`로 생성한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체인 경우 `delete` 시
 4. [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 경우 표현식의 끝
 5. 예외 발생에 따른 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)시 
 
@@ -123,34 +123,26 @@ Derived d;
 
 소멸자를 명시적으로 구현해서 사용한 리소스를 직접 소멸시키기 보다는 암시적 소멸자를 그대로 사용할 수 있도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 이용하는게 실수를 줄일 수 있고 예외 안정에 더 좋습니다.([Holder의 필요성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/#holder%EC%9D%98-%ED%95%84%EC%9A%94%EC%84%B1) 참고)
 
-[스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 이용해서 암시적 소멸자와 호환하는 방법은 [복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 와 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고하시기 바랍니다.
-
-# public Non-Virtual 소멸자
-
-일반적인 개체의 소멸자는 `public` Non-Virtual로 정의합니다.
-
-```cpp
-class T {
-public:
-    ~T() {}
-};
-class U : public T { // (△) 비권장. has-a 관계가 명확하지 않음. is-a 관계에서는 사용 금지
-};
-T t;
-U u;
-```
-
-`public`이기 때문에 `T t;`와 같이 변수 정의(인스턴스화)에도 사용할 수 있고, 부모 클래스로 상속받아 사용할 수도 있습니다.
-
-다만, 상속해서 사용하는 부모 클래스라면, `has-a`나 `is-a` 의 명확한 의미 부여를 위해 `protected` Non-Virtual 이나 `public` Virtual 소멸자를 쓰는게 낫습니다.
-
-# public Virtual 소멸자
-
-`is-a` 관계에서는 부모 개체를 이용하여 자식 개체를 제어하고, `delete` 합니다. ([is-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#is-a-%EA%B4%80%EA%B3%84) 참고)
- 
-즉, 부모 개체의 포인터로 자식 개체를 소멸시켜야 합니다. 이러한 다형 소멸을 지원하려면 꼭 `virtual` 소멸자를 작성해야 합니다.
+[스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 이용해서 암시적 소멸자와 호환하는 방법은 [복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 에서 언급한 것처럼, 스마트 포인터 소멸자에서 `new`한 개체를 `delete`를 해주시면 됩니다.
 
 # 다형 소멸
+
+개체 지향 프로그래밍을 하다보면, 부모 개체 포인터로 자식 개체를 사용하고 `delete`하는 작업을 빈번히 하게 됩니다.
+
+```cpp
+class Base {};
+class Derived1 : public Base {};
+class Derived2 : public Base {};
+
+Base* ptr1 = new Derived1();
+Base* ptr2 = new Derived2();
+... // ptr1, ptr2를 사용하고,
+
+delete ptr1; // Derived1을 소멸시킵니다.
+delete ptr2; // Derived2를 소멸시킵니다.
+```
+
+다음 클래스의 `Derived`를 생성하고 소멸시키면, `Derived`와 `Base` 소멸자가 잘 호출되어 1, 2가 모두 호출됩니다.
 
 ```cpp
 class Base {
@@ -162,11 +154,6 @@ class Derived : public Base {
 public:
     ~Derived() {std::cout<<"1. Derived::~Derived()"<<std::endl;}
 };
-```
-
-상기 클래스의 `Derived`를 생성하고 소멸시키면, `Derived`와 `Base` 소멸자가 잘 호출되어 1, 2가 모두 호출됩니다.
-
-```cpp
 Derived* d = new Derived;
 delete d; // 1, 2 호출됨
 ```
@@ -181,7 +168,7 @@ delete b; // (X) 오동작. 2만 호출됨. Derived 소멸자가 호출되지 �
 
 `Base` 소멸자만 호출됩니다. 따라서, `Derived` 소멸자에서 사용한 리소스 정리 작업이 호출되지 않아 메모리 릭이 발생할 수 있습니다. 
 
-이렇게 부모 개체 포인터로부터 다형 소멸을 해야 하는 경우에는 꼭 `virtual` 소멸자를 작성하시기 바랍니다.
+이렇게 부모 개체 포인터로부터 다형 소멸을 해야 하는 경우에는 자식 개체의 소멸자가 호출되도록 꼭 `virtual` 소멸자로 작성하여야 합니다.
 
 ```cpp
 class Base {
@@ -199,19 +186,43 @@ Base* b = d;
 delete b; // (O) 1, 2 호출됨. 다형 소멸 지원.
 ```
 
+# public Non-Virtual 소멸자
+
+부모 개체로 사용하지 않을 것이라면, 소멸자는 `public` Non-Virtual로 정의합니다.
+외부에서 생성/소멸해야 하니 `public`이어야 하겠고, 상속받지 않으니 다형 소멸이 필요없어 Non-Virtual로 정의합니다.
+
+다만, 아무런 제약이 없기 때문에 `U` 와 같이 상속한다면, 추후 다형 소멸이 안되는 우려가 있습니다. 개체가 `public` Non-Virtual 소멸자라면, 상속하지 말라는 뜻이니, 절대 상속하지 마세요. 혹시나 상속이 필요하다면, 다음에 설명할 `public` Virtual 소멸자나, `protected` Non-Virtual 소멸자로 리팩토링 하시기 바랍니다.
+
+```cpp
+class T {
+public:
+    ~T() {}
+};
+// (△) 비권장. 다형 소멸이 되지 않아, 기능 개선을 하다 보면 나중에 메모리 릭이 발생할 수 있습니다.
+class U : public T { 
+};
+T t;
+U u;
+```
+
+# public Virtual 소멸자
+
+`is-a` 관계에서는 부모 개체를 이용하여 자식 개체를 제어하고, `delete` 합니다. ([is-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#is-a-%EA%B4%80%EA%B3%84) 참고)
+ 
+외부에서 생성/소멸해야 하니 `public`이어야 하겠고, 다형 소멸를 해야 하니 `virtual`로 정의합니다.
+
 # protected Non-Virtual 소멸자
 
-`has-a` 는 다형 소멸을 하지 않는 관계입니다. 논리적으로는 부모 개체의 멤버 변수나 멤버 함수를 포함하는 관계라고 할 수 있습니다.([has-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#has-a-%EA%B4%80%EA%B3%84) 참고)
+`has-a` 는 다형 소멸을 하지 않는 상속 관계입니다. 자식 개체가 부모 개체의 멤버 변수나 멤버 함수의 기능을 포함하고 제공하는 관계라고 할 수 있습니다.([has-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#has-a-%EA%B4%80%EA%B3%84) 참고)
 
-`has-a` 부모 개체는 `protected` Non-Virtual 소멸자로 만들면 됩니다.
+외부에서 부모 클래스로 직접 생성/소멸하지 않고, 자식 개체를 통해 생성/소멸하므로 `protected`이어야 하겠고, 다형 소멸를 하지 않으니 Non-Virtual로 정의합니다.
 
-다형 소멸을 지원하지 않아도 되기 때문에 굳이 `virtual` 소멸자로 만들 필요가 없고, 
-`protected` 이기 때문에 개체를 인스턴스화 할 수 없고, 오로지 상속해서만 사용할 수 있습니다. 또한 실수로 부모 개체 포인터로 `delete`하려고 하면, `protected`여서 컴파일 오류가 발생합니다. 단단한 **코딩 계약**입니다.
+`protected` 이기 때문에 부모 개체를 직접 인스턴스화 할 수 없고, 오로지 상속해서만 사용할 수 있습니다. 또한 실수로 부모 개체 포인터로 `delete`하려고 하면, `protected`여서 컴파일 오류가 발생합니다. 단단한 **코딩 계약**입니다.
 
 ```cpp
 class Base {
 protected:
-    ~Base() {} // 상속받지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~Base() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
 public:
     virtual void Func() = 0;
 };
@@ -226,7 +237,7 @@ Base* p = &derived;
 delete p; // (X) 컴파일 오류. Base의 소멸자가 protected
 ```
 
-**[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 경우의 다형성**
+# 가상 함수가 없는 경우의 다형성
     
 보통 다형적 동작을 하는 개체들은 부모 클래스에 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있습니다. 하지만, 단지 타입명만 다르게 하여 사용하고 싶을때도 있습니다. 이럴때 억지로 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 추가하고 싶으면 소멸자를 `virtual` 로 만들면 됩니다.
 
@@ -274,7 +285,7 @@ T::~T() {} // 실제 구현 정의가 있어야 함
 
 1. 상속 전용 기반 클래스
    
-    `protected` 생성자나 `protected` Non-Virtual 소멸자처럼 개체 인스턴스화를 못하게 하고, 상속받은 자식 개체에서만 사용할 수 있게 만듭니다.
+    `protected` 생성자나 `protected` Non-Virtual 소멸자처럼 개체 인스턴스화를 못하게 하고, 상속해서만 사용할 수 있게 만듭니다.
     
     이런 경우라면 `protected` Non-Virtual 소멸자를 사용하는게 좋습니다. 생성자는 여러개 만들 수 있어서 전부 다 `protected`인지 신경 쓰기 번거롭고, 순가상 소멸자는 정의를 따로 만들어야 하기 때문에 번거롭습니다.(특히 함수 내부의 로컬 클래스로 정의할때는 소멸자 정의를 할 방법이 없습니다.)
 

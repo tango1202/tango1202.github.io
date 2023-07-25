@@ -160,7 +160,7 @@ yourApp.Save(); // YourApp::SaveDoc() 출력
 // App 에서 문서 저장시 호출합니다.
 class ISaveListener {
 protected:
-    ~ISaveListener() {}  // 상속받지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~ISaveListener() {}  // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
 
 public:
     virtual void SaveDoc() = 0;
