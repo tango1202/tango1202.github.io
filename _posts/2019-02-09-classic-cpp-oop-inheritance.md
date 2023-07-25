@@ -19,6 +19,8 @@ sidebar:
 
 # 개요
 
+상속이란, 기존의 개체를 재활용하여, 새로운 클래스를 만드는 프로그래밍 기법입니다.
+
 상속을 이용하면, [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)에 따라 부모 개체에 정의된 멤버 변수, 멤버 함수등을 물려받아(상속받아) 자식 개체에서 사용할 수 있습니다. 
 
 |항목|내용|
@@ -178,7 +180,7 @@ EXPECT_TRUE(d.Base::f() == 10);
 
 # 부모 개체의 가상 함수 오버라이딩
 
-부모 개체의 가상 함수는 재구현하여 다형적으로 동작하게 할 수 있습니다. 단, 인자는 동일해야 하며, 리턴값은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다.([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)
+부모 개체의 가상 함수를 오버라이딩(함수명과 인자는 동일하며 자식 개체에서 재구현)하여 다형적으로 동작하게 할 수 있습니다. 단, 인자는 동일해야 하며, 리턴값은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다.([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)
 
 ```cpp
 class Base {
