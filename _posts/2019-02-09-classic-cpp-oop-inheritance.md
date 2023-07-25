@@ -10,7 +10,7 @@ sidebar:
 
 > * 부모 개체의 멤버 함수를 오버로딩 하지 마라. [오버로딩 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99)에서 제외된다.
 > * 자식 개체를 부모 개체에 대입하지 마라. 아무런 오류 없이 복사 손실 된다.
-> * [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)인 경우에만 다중 상속하라.
+> * 구현 코드가 없는 [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)인 경우에만 다중 상속하라.
 
 # 개요
 
@@ -322,6 +322,35 @@ EXPECT_TRUE(obj.Singer::m_Age == 30);
 EXPECT_TRUE(obj.Dancer::m_Age == 30);  
 ```
 
+# 상속 제한
+
+부모 개체로 사용하지 않을 것이라면, [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 정의합니다. 다만, 아무런 **코딩 계약**이 되어 있지 않아, 상속할 수도 있습니다.([public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고)
+
+강제로 상속을 제한하려면, 생성자를 `private`로 만들면 되는데요, 이 경우 해당 클래스를 생성하려면 `Create()` 함수를 별도로 만들어야 합니다.([생성자 접근 차단 - private 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A0%91%EA%B7%BC-%EC%B0%A8%EB%8B%A8---private-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
+
+```cpp
+class T {
+private:
+    T() {} // 상속 및 외부에서는 접근 불가
+public:
+    static T Create() {return T();} // 내부 static 함수로 생성
+    static T* CreatePtr() {return new T;}
+};
+class U : public T {};
+// U u; // (X) 컴파일 오류. 상속해서 생성할 수 없음
+// U* p = new u; // (X) 컴파일 오류  
+
+// T t; // (X) 컴파일 오류 
+T t(T::Create()); // (O) T를 복사 생성    
+T* p = T::CreatePtr(); // (O) T의 포인터 생성
+delete p;  
+```
+
+프로그램 내에서 대부분의 개체는 상속하지 않고 사용하므로, 조금은 심한 **코딩 계약**이 될 수도 있고, 나중에 상속할 수 있는 개체로 리팩토링 했을때 기존에 사용한 `Create()`함수들을 모두 수정해야 하기 때문에 리팩토링 부담이 있어 권장하지는 않습니다. 
+
+그냥 [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)라면, 상속하지 말라는 뜻이니, 절대 상속하지 마세요. 혹시나 상속이 필요하다면, 그때 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)나, [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 리팩토링 하시기 바랍니다.
+
+
 # is-a 관계
 
 `is-a` 관계는 자식 개체를 부모 개체처럼 사용하려고 할때의 상속 관계입니다. 
@@ -367,13 +396,14 @@ for(int i = 0; i < 3; ++i) {
 
 부모 개체의 소멸자는 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만듭니다.
 
-1. 외부에서 부모 개체 포인터로 `delete` 시 소멸자에 접근해야 하기 때문에 `public` 소멸자로 정의하고,
-2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 해야 하므로 `virtual` 소멸자로 만듭니다. 만약 `virtual`로 하지 않으면, 자식 개체의 소멸자가 호출되지 않아 메모리 릭이 발생할 수 있습니다.([public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고)
-
+1. 외부에서 부모 개체 포인터로 소멸시키기 때문에 `public` 소멸자로 정의하고,
+2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 해야 하므로 `virtual` 소멸자로 만듭니다. 만약 `virtual`로 하지 않으면, 자식 개체의 소멸자가 호출되지 않아 메모리 릭이 발생할 수 있습니다.
 
 # has-a 관계
 
-`has-a` 관계는 [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 지원하지 않는 상속 관계로서, 자식 개체가 부모 개체의 멤버 변수, 멤버 함수등을 물려받아 포함하고 있는 관계입니다. 주로 단위 전략 인터페이스나, 공통 코드 구현을 상속받을때 사용합니다.
+`has-a` 관계는 [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)은 하지 않고, 자식 개체가 부모 개체의 멤버 변수, 멤버 함수등을 물려받아 포함하고 있는 상속 관계입니다. 주로 코드 구현을 공통화 하여 상속받을때나 단위 전략 인터페이스를 상속받을때 사용합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7652b59f-0344-4183-9d31-4087fe9c3c1c)
 
 물려받은 기능을 
 
@@ -388,41 +418,6 @@ for(int i = 0; i < 3; ++i) {
 1. 부모 개체를 상속받아서만 사용하도록 함과 동시에 부모 개체 포인터로부터 [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 시도하지 못하도록 `protected` 소멸자로 정의하고,
 2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 안하므로 Non-Virtual 소멸자로 만듭니다.
 
-**단위 전략 인터페이스**
-
-단위 전략 인터페이스는 개체의 기능 스펙이라 할 수 있습니다. 작은 단위의 기능 스펙을 순가상 함수로 제공하며, [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 지원하지 않습니다.
-
-```cpp
-class IEatable {
-protected:
-    ~IEatable() {} //  상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
-
-public:
-    virtual void Eat() = 0;
-};
-class IWalkable {
-protected:
-    ~IWalkable() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
-
-public:
-    virtual void Walk() = 0;
-};
-
-class Dog :
-    public IEatable,
-    public IWalkable {
-public:        
-    virtual void Eat() {}
-    virtual void Walk() {}
-};
-IEatable eatable; // (X) 컴파일 오류. 소멸자가 protected
-IWalkable walkable; // (X) 컴파일 오류. 소멸자가 protected
-Dog dog; // (O)
-
-IEatable* p = &dog:
-delete* p; // (X) 컴파일 오류. IEatable의 소멸자가 protected
-```
-
 **공통 코드 구현**
 
 여러 개체의 공통 구현을 부모 개체로 만들어 `has-a` 관계를 맺을때 사용할 수 있습니다.
@@ -430,6 +425,7 @@ delete* p; // (X) 컴파일 오류. IEatable의 소멸자가 protected
 다음 코드는 `Rectangle`과 `Ellipse`에서 공통으로 사용하는 너비/높이 처리를 `ResizeableImpl`에 공통 구현하고, `Rectangle`과 `Ellipse`에서 `has-a`관계로 상속한 예입니다.
 
 ```cpp
+// 너비/높이에 대한 공통 구현
 class ResizeableImpl {
 private:
     int m_Width;
@@ -469,3 +465,37 @@ Rectangle r(0, 0, 10, 20);
 Ellipse e(5, 10, 10, 20);
 ```
 
+**단위 전략 인터페이스**
+
+단위 전략 인터페이스는 개체의 기능 스펙이라 할 수 있습니다. 작은 단위의 기능 스펙을 순가상 함수로 제공하며, [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 지원하지 않습니다.
+
+```cpp
+class IEatable {
+protected:
+    ~IEatable() {} //  상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+
+public:
+    virtual void Eat() = 0;
+};
+class IWalkable {
+protected:
+    ~IWalkable() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+
+public:
+    virtual void Walk() = 0;
+};
+
+class Dog :
+    public IEatable,
+    public IWalkable {
+public:        
+    virtual void Eat() {}
+    virtual void Walk() {}
+};
+IEatable eatable; // (X) 컴파일 오류. 소멸자가 protected
+IWalkable walkable; // (X) 컴파일 오류. 소멸자가 protected
+Dog dog; // (O)
+
+IEatable* p = &dog:
+delete* p; // (X) 컴파일 오류. IEatable의 소멸자가 protected
+```
