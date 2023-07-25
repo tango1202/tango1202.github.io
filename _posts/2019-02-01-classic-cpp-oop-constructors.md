@@ -117,7 +117,7 @@ T t3(10); // (O) 임의 값으로 값 생성자 호출
 값 생성자 구현은 
 
 1. [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 모든 요소를 나열하고 초기화하는게 **코딩 계약**상 좋고,([초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고)
-2. 불필요한 대입의 오버헤드를 줄이기 위해 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)를 이용하여 모든 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들을 초기화하는게 좋습니다.
+2. 불필요한 대입의 오버헤드를 줄이기 위해 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)를 이용하는게 좋습니다.
 
 ```cpp
 class T {
