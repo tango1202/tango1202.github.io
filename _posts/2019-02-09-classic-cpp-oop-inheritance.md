@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [고전 C++ 가이드] 상속"
+title: "9. [고전 C++ 가이드] 상속"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -138,7 +138,7 @@ public:
 Derived d;
 Base* b = &d;
 
-EXPECT_TRUE(b->f() == 10);  
+EXPECT_TRUE(b->f() == 10);  // (△) 비권장. Base 개체를 이용하면 Base::f()가 호출됨 
 EXPECT_TRUE(d.f() == 20);
 
 EXPECT_TRUE(b->Base::f() == 10); // 부모 개체에 명시적으로 접근합니다.
@@ -163,12 +163,12 @@ public:
 Derived d;
 Base* b = &d;
 
-EXPECT_TRUE(b->f() == 10);  
+EXPECT_TRUE(b->f() == 10);  // (△) 비권장. Base 개체를 이용하면 Base::f()가 호출됨  
 EXPECT_TRUE(d.f() == 10); // (X) 컴파일 오류. 오버로딩 함수 탐색 규칙에서 제외됨
 EXPECT_TRUE(d.f(1) == 20);
 
-EXPECT_TRUE(b->Base::f() == 10); // 부모 개체에 명시적으로 접근합니다.
-EXPECT_TRUE(d.Base::f() == 10); // 부모 개체에 명시적으로 접근합니다.  
+EXPECT_TRUE(b->Base::f() == 10);
+EXPECT_TRUE(d.Base::f() == 10); 
 ```
 
 # 부모 개체의 가상 함수 오버라이딩
@@ -188,7 +188,7 @@ public:
 Derived d;
 Base* b = &d;
 
-EXPECT_TRUE(b->f() == 20); 
+EXPECT_TRUE(b->f() == 20); // (O) 자식 개체의 함수가 호출됩니다.
 EXPECT_TRUE(b->Base::f() == 10); // (△) 비권장. 부모 개체에 명시적으로 접근하면, 부모 개체의 함수가 호출됩니다.
 EXPECT_TRUE(d.f() == 20);     
 ```

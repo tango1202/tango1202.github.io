@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [고전 C++ 개체 지향] 완전한 클래스(작성중)"
+title: "#13. [고전 C++ 개체 지향] 완전한 클래스(작성중)"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
