@@ -397,9 +397,8 @@ public:
     static T CreateFromC(int c) {return T(0, 0, c);} // c값만 가지고 생성
 };
 
-T t(10, 0, 0); // (X) 컴파일 오류
-T* p = new T(10, 0, 0); // (X) 컴파일 오류
-delete p;
+// T t(10, 0, 0); // (X) 컴파일 오류
+// T* p = new T(10, 0, 0); // (X) 컴파일 오류
 
 class U : public T {};
 // U u; // (X) 컴파일 오류. 상속해서 생성할 수 없음
