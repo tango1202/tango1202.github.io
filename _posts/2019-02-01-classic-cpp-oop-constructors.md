@@ -316,7 +316,7 @@ public:
     Base() : 
         m_Val(0) {
         // (X) 오동작. 가상 함수를 생성자에서 호출합니다.
-        //  Derived::SetVal() 이 호출되길 기대하지만, 
+        // Derived::SetVal() 이 호출되길 기대하지만, 
         // Base::SetVal()이 호출됩니다.    
         SetVal(); 
     }
