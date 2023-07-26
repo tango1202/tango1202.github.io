@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [고전 C++ 개체 지향] 대입 연산자"
+title: "#2. [고전 C++ 개체 지향] 대입 연산자와 nothrow Swap"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -155,7 +155,7 @@ swap(T& left, T& right) {
 
 # nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화
 
-개체가 `int`형과 같은 기본 자료형 멤버 변수를 1~2개 사용하고 있다면, 대입 연산 부하도 적고, 예외 발생 확률도 낮습니다. 그냥 `nothrow swap`으로 취급해도 무방합니다. 
+개체가 `int`형과 같은 기본 자료형 멤버 변수를 1~2개 사용하고 있다면, 대입 연산 부하도 적고, 예외 발생 확률도 낮습니다. 그냥 예외 발생이 없는 `nothrow swap`으로 취급해도 무방합니다. 
 
 그러나, 아주 많은 기본 자료형을 사용하거나 동적으로 할당하는 자료를 가지고 있다면, 복사 부하도 크고, 예외 발생 확률도 높습니다.
 
