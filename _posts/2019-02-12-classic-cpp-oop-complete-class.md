@@ -12,6 +12,7 @@ sidebar:
 > * 함수 호출시 복사 부하가 없도록 설계하라.
 > * 함수 작성시 상수성을 준수하도록 하라.
 > * 예외 안정적으로 구현하라.(예외 발생시 이전 상태로 전환하라.)
+> * 상속 특성에 맞게 기본 생성자, 복사 생성자, 대입 연산자, 소멸자의 가시성을 조정하라.
 
 # 개요
 
@@ -140,9 +141,19 @@ sidebar:
 |[형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)|[`explicit`로 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)|
 |명시적 형변환 함수|형변환이 꼭 필요하다면, 명시적으로 구현([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)|
 
-# 상속 구조에 맞춘 소멸자
+# 부모 개체의 생성자와 대입 연산자
 
-상속 구조에 맞게 적합한 소멸자를 사용합니다.
+상속 특성에 맞게 `protected`나 `private`으로 제공합니다.
+|항목|내용|
+|--|--|
+|기본 생성자|상속한 개체에서 사용할 수 있도록 `protected`를 사용합니다.|
+|복사 생성자|인터페이스라면 사용못하게 `private`로 막고, 추상 클래스라면 상황에 따라 `protected`나 `private`를 사용하고, 필요하면 `Clone()`가상 함수를 구현합니다.( [가상 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)|
+|대입 연산자|사용하지 못하게 `private`로 막습니다.( [부모 개체의 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)|
+
+
+# 부모 개체의 소멸자
+
+상속 특성에 맞게 적합한 소멸자를 사용합니다.
 
 |항목|내용|
 |--|--|

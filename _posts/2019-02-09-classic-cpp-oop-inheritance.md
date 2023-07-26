@@ -18,7 +18,7 @@ sidebar:
 > > * `has-a`관계에서는 `protected` Non-Virtual 소멸자를 사용하라.
 > * 부모 개체의 기본 구현을 자식 개체에서 재정의해야 한다면, 유틸리티로 제공하라.
 > * 상속 관계에서는 복사 생성자 대신 가상 복사 생성자를 사용하라.
-> * 부모 클래스의 대입 연산는 오동작할 소지가 있으니 막아라.
+> * 부모 클래스의 대입 연산자는 오동작할 소지가 있으니 막아라.
 
 # 개요
 
@@ -752,50 +752,82 @@ for(int i = 0; i < 2; ++i) {
 다음 코드를 보면,
 
 ```cpp
-class Base {
+class Shape {
+protected:
+    Shape() {} // (O) 상속해서 생성할 수 있게끔 protected 입니다.  
+    Shape(const Shape& other) {} // (O) 상속해서 생성할 수 있게끔 protected 입니다.  
 public:
-    virtual ~Base() {}
-    Base& operator =(const Base& other) { //  (△) 비권장. 자식 개체가 대입될 수 있습니다.
+    virtual ~Shape() {} // 다형 소멸 하도록 public virtual    
+    Shape& operator =(const Shape& other) { //  (△) 비권장. 자식 개체가 대입될 수 있습니다.
         if (typeid(*this) != typeid(other)) {
             const std::type_info& ti = typeid(other);
             std::cout<<ti.name()<<std::endl;  
         } 
         return *this; 
     }
+    virtual Shape* Clone() const = 0; 
 };
-class Derived : public Base {};
-class Other : public Base {};
 
-Derived d1;
-Derived d2;
-Other other;
-Base* base =&d1;
+class Rectangle : public Shape {
+public:
+    virtual Rectangle* Clone() const { 
+        return new Rectangle(*this); 
+    }
+};
+class Ellipse : public Shape {
+public:
+    virtual Ellipse* Clone() const { 
+        return new Ellipse(*this); 
+    }
+};
 
-d1 = d2; // (O) 메시지 표시 안됨
-*base = other; // (X) 오동작. 동일한 Base 타입이어서 실행됩니다. 
+Rectangle rect1;
+Rectangle rect2;
+Ellipse ellipse;
+Shape* shape = &rect1;
+
+rect1 = rect2; // (O) 메시지 표시 안됨
+*shape = ellipse; // (X) 오동작. 동일한 Shape 타입이어서 실행됩니다. Rectangle에 Ellipse를 대입합니다.
 ```
 
-`*base = other;`를 하면, 부모는 같지만 서로 다른 클래스인 `Derived`에 `Other` 개체를 대입할 수 있습니다. 예제에서처럼 `typeid(*this) != typeid(other)`로 런타임에 검사하여 대처할 수도 있지만, 기본적으로 부모 클래스의 대입 연산자는 사용하지 못하게 막는게 좋습니다.
+`*shape = other;`를 하면, 부모는 같지만 서로 다른 클래스인 `Ellipse`에 `Other` 개체를 대입할 수 있습니다. 예제에서처럼 `typeid(*this) != typeid(other)`로 런타임에 검사하여 대처할 수도 있지만, 기본적으로 부모 클래스의 대입 연산자는 사용하지 못하게 막는게 좋습니다.
 
 ```cpp
-class Base {
+class Shape {
+protected:    
+    Shape& operator =(const Shape& other) {return *this;} // (O) 부모 개체는 사용 못하게 막아 버립니다.
+protected:
+    Shape() {} // (O) 상속해서 생성할 수 있게끔 protected 입니다.  
+    Shape(const Shape& other) {} // (O) 상속해서 생성할 수 있게끔 protected 입니다.  
 public:
-    virtual ~Base() {}
-private:    
-    Base& operator =(const Base& other) {return *this;} // (O) 부모 개체는 사용 못하게 막아 버립니다.
+    virtual ~Shape() {} // 다형 소멸 하도록 public virtual    
+    virtual Shape* Clone() const = 0; 
 };
-class Derived : public Base {
+
+class Rectangle : public Shape {
 public:
-    Derived& operator =(const Derived& other) {return *this;} // (O) 자식 개체는 사용할 수 있게 합니다.   
+    Rectangle& operator =(const Rectangle& other) { // (O) 자식 개체는 사용할 수 있게 합니다.
+        return *this;
+    }   
+    virtual Rectangle* Clone() const { 
+        return new Rectangle(*this); 
+    }
 };
-class Other : public Base {};
+class Ellipse : public Shape {
+public:
+    Ellipse& operator =(const Ellipse& other) { // (O) 자식 개체는 사용할 수 있게 합니다.
+        return *this;
+    } 
+    virtual Ellipse* Clone() const { 
+        return new Ellipse(*this); 
+    }
+};
 
-Derived d1;
-Derived d2;
-Other other;
-Base* base =&d1;
+Rectangle rect1;
+Rectangle rect2;
+Ellipse ellipse;
+Shape* shape = &rect1;
 
-d1 = d2; // (O) 
-*base = other; // (X) 컴파일 오류. 대입 연산은 private임    
+rect1 = rect2; // (O) 메시지 표시 안됨
+*shape = rect2; // (X) 컴파일 오류. 대입 연산은 private임 
 ```
-
