@@ -222,7 +222,7 @@ U u;
 ```cpp
 class Base {
 protected:
-    ~Base() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~Base() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 public:
     virtual void Func() = 0;
 };
@@ -306,6 +306,10 @@ T::~T() {} // 실제 구현 정의가 있어야 함
     `protected` Non-Virtual 소멸자처럼 인터페이스 구현시 사용합니다. 
 
     이 경우에서도 `protected` Non-Virtual 소멸자를 사용하는게 좋습니다. 순가상 소멸자는 정의를 따로 만들어야 하기 때문에 번거롭습니다.
+
+3. 마땅한 순가상 함수가 없는 추상 클래스
+   
+   이경우에는 순가상 소멸자를 사용해야 합니다. [추상 클래스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)를 참고하세요. 
 
 # 소멸자에서 가상 함수 호출 금지
 

@@ -7,8 +7,9 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
-https://en.cppreference.com/w/cpp/language/abstract_class
-추상클래스 참고
+
+> * 기능 스펙을 정의하여 **코딩 계약**을 맺으려면 인터페이스로 정의하라.
+> * 기능 스펙과 어느 정도의 공통 기능을 제공하려면 추상 클래스로 정의하라.
 
 # 추상 클래스
 
@@ -52,46 +53,146 @@ Shape* shapes[2] = { // 도형들을 Shape* 로 관리합니다.
     new Ellipse()
 };
 
-for(int i = 0; i < 3; ++i) {
+for(int i = 0; i < 2; ++i) {
     shapes[i]->Draw(); // 다형적으로 그립니다.
 }
 for(int i = 0; i < 2; ++i) {
     delete shapes[i]; // 다형 소멸 합니다. Shape*로 Rectangle, Ellipse을 소멸합니다.
 } 
 ```
+**마땅한 순가상 함수가 없는 추상 클래스**
 
 순가상 함수로 정의할게 마땅히 없는데, 추상 클래스로 만들어야 한다면, 순가상 소멸자를 이용하면 됩니다.
 
 ```cpp
 class Abstract {
 public:
-    virtual ~Abstract() = 0 // 다형 소멸 하도록 public virtual, 마땅히 할게 없어 순가상
+    virtual ~Abstract() = 0; // 다형 소멸 하도록 public virtual, 마땅히 할게 없어 순가상
 };
 Abstract::~Abstract() {} // 실제 구현 정의가 있어야 함
 
 class Concrete : public Abstract {
-
 };
+
+Abstract abstract; // (X) 컴파일 오류. 추상 클래스는 순가상 함수가 있어 구체화 할 수 없습니다.
+
+Concrete concrete; // (O)
 ```
-
-
-
-
-
-
-마땅이 할게 없으면 다음과 같이 순가상 함
-수로 만들어라. virtual void Draw() = 0; 순수 가상 함수가 1개 이상있으면 추상클래
-스임. 추상 클래스는 인스턴스화 될 수 없음. Shape s; // (x) 컴파일 오류
 
 # 인터페이스
 
-추상 클래스는 다른 클래스의 기본 클래스
-혹은 인터페이스로 사용될 수 있다. 파생 클래스의 기능을 명세화하여 서로간
-의 계약에 의한 프로그래밍이 가능하다.
+추상 클래스중 구체 구현없이 모두 추상화된 기능 스펙으로 구성된 클래스를 특별히 인터페이스라고 합니다.
 
-# 좋은 상속, 나쁜 상속
+* 일반적으로 인터페이스는 기능 스펙만 제공하고, 다형 소멸을 제공하지 않습니다. 다형 소멸을 제공하는건 그냥 추상 클래스라고 보시는게 좋습니다.
+* 다형 소멸을 하지 않으므로 `protected` Non-Virtual 소멸자를 사용합니다.
+* 인터페이스는 모두 순가상 함수로 구성됩니다. 단, 소멸자를 순가상 함수로 만들면, 정의를 따로 해야하므로, 그냥 `protected` Non-Virtual 소멸자로 정의합니다.
 
-기본 클래스의 무의미한 구현
+다음은 `IDrawable` 인터페이스로 `Shape` 클래스를 구현한 예입니다. 
+
+1. `IDrawable` 은 인터페이스 여서 `protected` Non-Virtual 소멸자를 사용합니다.
+2. `IDrawable`에 `Draw()` 순가상 함수를 선언합니다.
+3. `Shape`은 `IDrawable`을 상속하고, 다형 소멸을 할 것이므로 `public` Virtual 소멸자를 사용합니다. (상속한 `IDrawable`의 `Draw()`함수가 구체화 되지 않았으므로 여전히 추상 클래스입니다.)
+
+```cpp
+// 인터페이스
+class IDrawable {
+protected:
+    ~IDrawable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다. 
+public:
+    virtual void Draw() const = 0; // 순가상 함수입니다. 자식 클래스에서 구체화 해야 합니다.
+};
+
+// 추상 클래스
+class Shape : 
+    public IDrawable { // Shape은 IDrawable 인터페이스를 제공합니다.
+    // 모든 도형은 왼쪽 상단 좌표와 크기를 가집니다.
+    int m_Left;
+    int m_Top;
+    int m_Width;
+    int m_Height;
+public:
+    virtual ~Shape() {} // 다형 소멸 하도록 public virtual
+};
+
+// Shape을 구체화한 클래스 입니다. Draw()에서 사각형을 그립니다.
+class Rectangle : public Shape {
+public:
+    virtual void Draw() const {
+        std::cout<<"Rectangle::Draw()"<<std::endl;
+    }
+};
+// Shape을 구체화한 클래스 입니다. Draw()에서 타원을 그립니다.
+class Ellipse : public Shape { 
+public:
+    virtual void Draw() const {
+        std::cout<<"Ellipse::Draw()"<<std::endl;
+    }
+};
+
+Shape shape; // (X) 컴파일 오류. 추상 클래스는 순가상 함수가 있어 구체화 할 수 없습니다.
+Shape* p = new Shape; // (X) 컴파일 오류. 추상 클래스는 순가상 함수가 있어 구체화 할 수 없습니다.
+
+IDrawable drawable; // (X) 컴파일 오류. 인터페이스는 순가상 함수가 있어 구체화 할 수 없습니다.
+IDrawable* p = new IDrawable; // (X) 컴파일 오류. 인터페이스는 순가상 함수가 있어 구체화 할 수 없습니다. 
+
+// (O) Shape으로 다형 소멸 합니다.
+Shape* shapes[2] = { // 도형들을 Shape* 로 관리합니다.
+    new Rectangle(), 
+    new Ellipse()
+};
+
+// (O) Shape이 IDrawable을 상속했으므로 Draw() 할 수 있습니다.
+for(int i = 0; i < 2; ++i) {
+    shapes[i]->Draw(); // 다형적으로 그립니다.
+}
+
+for(int i = 0; i < 2; ++i) {
+    delete shapes[i]; // 다형 소멸 합니다. Shape*로 Rectangle, Ellipse을 소멸합니다.
+} 
+```
+
+`Draw()` 함수는 `IDrawable`의 함수 이므로 다음과 같이 `IDrawble` 인터페이스로 실행할 수 있습니다.
+
+```cpp
+class DrawUtil {
+public:
+    static void Draw(const IDrawable& drawable) {
+        drawable.Draw();
+    }    
+};
+
+// (O) IDrawable 인터페이스로 Draw() 할 수 있습니다.
+Shape* shapes[2] = { // 도형들을 Shape* 로 관리합니다.
+    new Rectangle(), 
+    new Ellipse()
+};
+
+// (O) IDrawable 인터페이스로 다형적으로 그립니다. 
+for(int i = 0; i < 2; ++i) {
+    DrawUtil::Draw(*shapes[i]); 
+}
+for(int i = 0; i < 2; ++i) {
+    delete shapes[i]; // 다형 소멸 합니다. Shape*로 Rectangle, Ellipse을 소멸합니다.
+} 
+```
+
+인터페이스는 다형 소멸을 지원하지 않으므로, 다음과 같이 `IDrawable` 포인터로 `delete`할 수 없습니다.
+
+```cpp
+// (X) 컴파일 오류. protected 소멸자 이므로, IDrawable로 다형 소멸 되지 않습니다.
+IDrawable* drawables[2] = {
+    new Rectangle(), 
+    new Ellipse()
+};
+
+for(int i = 0; i < 3; ++i) {
+    drawables[i]->Draw(); // 다형적으로 그립니다.
+}
+
+for(int i = 0; i < 2; ++i) {
+    delete drawables[i]; // (X) 컴파일 오류. 인터페이스는 다형 소멸을 제공하지 않습니다.
+}     
+```
 
 
 

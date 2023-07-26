@@ -64,7 +64,7 @@ public:
 ```cpp
 class IWriter {
 protected:
-    ~IWriter() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~IWriter() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 public:
     virtual void WriteIntVal(const std::wstring& attrName, int val) const = 0;
 };

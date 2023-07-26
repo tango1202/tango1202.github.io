@@ -16,6 +16,7 @@ sidebar:
 > > * `public` Non-Virtual 소멸자인 개체는 상속하지 마라.
 > > * `is-a`관계에서는 `public` Virtual 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
 > > * `has-a`관계에서는 `protected` Non-Virtual 소멸자를 사용하라.
+> * 부모 개체의 기본 구현을 자식 개체에서 재정의해야 한다면, 유틸리티로 제공하라.
 
 # 개요
 
@@ -131,9 +132,11 @@ obj3.m_Protected; // (X) 컴파일 오류. protected 접근 불가
 obj3.m_Public; // (O) 
 ```
 
-# 부모 개체 멤버 접근
+# 부모 개체 항목 이름 충돌과 멤버 접근
 
-일반적으로 부모 개체의 멤버는 그냥 접근할 수 있으나, 이름이 동일한 경우 `::`(범위 확인 연산자)로 명시적으로 부모 개체의 멤버에 접근할 수 있습니다.
+일반적으로 부모 개체의 멤버는 그냥 접근할 수 있으나, 이름이 동일한 경우 자식 개체에서는 부모 개체의 이름을 가립니다. 가상 함수 오버라이딩 할게 아니라면 다른 이름으로 정의하셔야 합니다.
+
+특별히 `::`(범위 확인 연산자)로 명시적으로 부모 개체의 멤버에 접근할 수 있으나, 다형성을 해칠 수 있으니 사용하지 않는게 좋습니다.
 
 ```cpp
 class Base {
@@ -483,14 +486,14 @@ Ellipse e(5, 10, 10, 20);
 ```cpp
 class IEatable {
 protected:
-    ~IEatable() {} //  상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~IEatable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 
 public:
     virtual void Eat() = 0;
 };
 class IWalkable {
 protected:
-    ~IWalkable() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~IWalkable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 
 public:
     virtual void Walk() = 0;
@@ -509,4 +512,100 @@ Dog dog; // (O)
 
 IEatable* p = &dog:
 delete* p; // (X) 컴파일 오류. IEatable의 소멸자가 protected
+```
+
+# 나쁜 상속 - 부모 개체의 무의미한 구현
+
+부모 개체 정의시 마땅히 할게 없으면 순가상 함수로 정의하는게 낫습니다. 괜히 대충 기본 작업을 작성하지 마세요.
+
+```cpp
+class Base {
+public:
+    virtual void Func() {
+        // (△) 비권장. 대충 기본 작업을 합니다.
+    }
+};
+class Derived {
+public:
+    virtual void Func() {
+        // 자식 개체에서 제대로 구현합니다.
+    }
+};
+```
+
+의 경우에는, 순가상 함수를 사용하여
+
+```cpp
+class Base {
+public:
+    virtual void Func() = 0; // (O) 순가상 함수
+};
+class Derived {
+public:
+    virtual void Func() {
+        // 자식 개체에서 제대로 구현합니다.
+    }
+};
+```
+
+가 낫습니다.
+
+또한, 부모 개체의 기본 구현을 일부 자식 개체에서 재정의 해서 사용하는 것이라면, 부모 개체에 정의하지 말고 유틸리티로 제공하는게 좋습니다.
+
+다음처럼 부모 개체에 기본 구현을 하면,
+
+```cpp
+class Base {
+public:
+    virtual void Func() {
+        // 기본 구현을 해둡니다.
+        // (△) 비권장. 누가 상속해서 사용하는지 파악하기 어렵습니다.
+    }
+};
+class Derived1 {
+public:
+    // Base의 기본 구현을 사용합니다.
+};
+class Derived2 {
+public:
+    // Base의 기본 구현을 사용합니다.
+};
+class Derived3 {
+public:
+    // 기본 구현이 마음에 들지 않아 다시 구현합니다.
+    virtual void Func() {}
+};
+```
+
+기본 구현을 사용하는 자식 개체가 어떤 것인지 찾기 어렵습니다. 이런 경우에는 분석의 편의성을 위해 하기와 같이 기본 구현을 제공하는 유틸리티 함수를 제공하고, 이를 사용하는게 좋습니다.
+
+```cpp
+class Base {
+public:
+    virtual void Func() = 0; // 순가상 함수
+};
+// (O) Base의 기본 구현을 제공하는 유틸리티 함수를 제공합니다.
+class BaseUtil {
+public:
+    static void Func() {}
+};
+class Derived1 {
+public:
+    // (O) Base의 기본 구현을 사용합니다.
+    virtual void Func() {
+        BaseUtil::Func();
+    }
+};
+class Derived2 {
+public:
+    // (O) Base의 기본 구현을 사용합니다.
+    virtual void Func() {
+        BaseUtil::Func();
+    }
+};
+class Derived3 {
+public:
+    // 기본 구현이 마음에 들지 않아 다시 구현합니다.
+    virtual void Func() {}
+};
 ```

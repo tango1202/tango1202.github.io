@@ -74,7 +74,7 @@ class Shape; // 상호 참조가 되어 전방선언이 필요합니다.
 // 개체를 방문하여 개체별로 작업합니다.
 class IVisitor {
 protected:
-    ~IVisitor() {}  // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~IVisitor() {}  // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 
 public:
     // object는 Rectangle입니다. 필요하면 dynamic_cast를 합니다.

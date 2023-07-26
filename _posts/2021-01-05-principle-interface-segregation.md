@@ -74,28 +74,27 @@ public:
 // 인터페이스들이 분리되어 간소화 되었습니다.
 class IEatable {
 protected:
-    ~IEatable() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~IEatable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 
 public:
     virtual void Eat() = 0;
 };
 class IWalkable {
 protected:
-    ~IWalkable() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~IWalkable() {} // // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 
 public:
     virtual void Walk() = 0;
 };
 class ISwimmable {
 protected:
-    ~ISwimmable() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
-
+    ~ISwimmable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 public:
     virtual void Swim() = 0;
 };
 class IFlyable {
 protected:
-    ~IFlyable() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~IFlyable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 
 public:
     virtual void Fly() = 0;

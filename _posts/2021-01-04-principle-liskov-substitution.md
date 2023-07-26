@@ -347,7 +347,7 @@ TEST(TestPrinciple, LiskovSubstitution) {
 // 크기 변경이 가능한 개체입니다.
 class IResizeable {
 protected : 
-    ~IResizeable() {} // 상속할 수 있지만, 다형적으로 사용하지 않아 non-virtual 입니다.
+    ~IResizeable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 public:
     // Get/Set을 구현해야 합니다.
     virtual int GetWidth() const = 0;
