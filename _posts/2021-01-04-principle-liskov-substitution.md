@@ -42,7 +42,7 @@ public:
         m_Top(t),
         m_Width(w),
         m_Height(h) {}
-    virtual ~Shape() {} // 다형적 소멸
+    virtual ~Shape() {} // 다형 소멸 하도록 public virtual
 public:
     // Get/Set 함수
     int GetLeft() const {return m_Left;}
@@ -226,7 +226,7 @@ public:
     Shape(int l, int t) :
         m_Left(l),
         m_Top(t) {}
-    virtual ~Shape() {} // 다형적 소멸
+    virtual ~Shape() {} // 다형 소멸 하도록 public virtual
 public:
     // Get/Set 함수
     int GetLeft() const {return m_Left;}

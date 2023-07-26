@@ -207,7 +207,7 @@ U u;
 
 # public Virtual 소멸자
 
-`is-a` 관계에서는 부모 개체로 자식 개체를 제어하고, `delete` 합니다. ([is-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#is-a-%EA%B4%80%EA%B3%84) 참고)
+`is-a` 관계에서는 부모 개체 포인터로 자식 개체를 제어하고, `delete` 합니다. ([is-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#is-a-%EA%B4%80%EA%B3%84) 참고)
  
 외부에서 생성/소멸해야 하니 `public`이어야 하겠고, 다형 소멸을 해야 하니 `virtual`로 정의합니다.
 

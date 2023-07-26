@@ -60,7 +60,7 @@ public:
 // 단위 특성들을 분리하여 날씬해졌습니다.
 class IAnimal {
 public:
-    virtual ~IAnimal() {} // 다형적 소멸
+    virtual ~IAnimal() {} // 다형 소멸 하도록 public virtual
 
 public:
     virtual void Born() = 0;

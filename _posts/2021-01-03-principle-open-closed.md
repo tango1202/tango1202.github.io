@@ -121,7 +121,7 @@ public:
         m_Left(l),
         m_Top(t) {
     }
-    virtual ~Shape() {} // 다형적 소멸
+    virtual ~Shape() {} // 다형 소멸 하도록 public virtual
 public:
     // m_Left, m_Top으로 자식 클래스들이 알아서 그려야 함
     virtual void Draw() const = 0; 
