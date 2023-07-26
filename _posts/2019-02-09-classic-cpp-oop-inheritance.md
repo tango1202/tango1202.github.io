@@ -17,6 +17,8 @@ sidebar:
 > > * `is-a`관계에서는 `public` Virtual 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
 > > * `has-a`관계에서는 `protected` Non-Virtual 소멸자를 사용하라.
 > * 부모 개체의 기본 구현을 자식 개체에서 재정의해야 한다면, 유틸리티로 제공하라.
+> * 상속 관계에서는 복사 생성자 대신 가상 복사 생성자를 사용하라.
+> * 부모 클래스의 대입 연산는 오동작할 소지가 있으니 막아라.
 
 # 개요
 
@@ -514,7 +516,7 @@ IEatable* p = &dog:
 delete* p; // (X) 컴파일 오류. IEatable의 소멸자가 protected
 ```
 
-# 나쁜 상속 - 부모 개체의 무의미한 구현
+# 나쁜 상속 - 부모 개체의 기본 구현
 
 부모 개체 정의시 마땅히 할게 없으면 순가상 함수로 정의하는게 낫습니다. 괜히 대충 기본 작업을 작성하지 마세요.
 
@@ -550,9 +552,9 @@ public:
 
 가 낫습니다.
 
-또한, 부모 개체의 기본 구현을 일부 자식 개체에서 재정의 해서 사용하는 것이라면, 부모 개체에 정의하지 말고 유틸리티로 제공하는게 좋습니다.
+또한, 부모 개체의 기본 구현을 일부 자식 개체에서 재정의 해서 사용하게 된다면, 해당 기본 구현은 충분히 공통적인게 아니라 부분 공통적이라는 뜻입니다. 부분 공통적인 것은 부모 개체에 정의하지 말고 유틸리티로 제공하는게 좋습니다.
 
-다음처럼 부모 개체에 기본 구현을 하면,
+다음처럼 부분 공통적인 것을 부모 개체에 기본 구현하면,
 
 ```cpp
 class Base {
@@ -609,3 +611,191 @@ public:
     virtual void Func() {}
 };
 ```
+
+# Runtime Type Info(RTTI)와 형변환
+
+런타임에 개체의 타입 정보를 얻어내고, `dynamic_cast` 로 형변환 할 수 있습니다.
+
+다만, 가상 함수가 있어야 구체적인 자식 개체(구현 개체)를 알 수 있습니다.([명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 [typeid 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
+
+다음 코드는 `ISinger` 와 `IDancer`의 인터페이스를 상속한 `Idol` 클래스가 있는 경우, 
+
+1. Up casting : 부모 개체(기반 개체) 로 형변환
+2. Down casting : 자식 개체(구체 개체) 로 형변환
+3. Sibling casting : 상속 트리 계층에서 형제 개체로 형변환
+
+하는 사례를 보여줍니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/449cbacc-31d2-4072-ac04-0baab6d41cde)
+
+```cpp
+class ISinger {
+protected:
+    ~ISinger() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.     
+public:
+    virtual void Sing() const = 0; // 노래를 부릅니다.
+};
+class IDancer {
+protected:
+    ~IDancer() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.   
+public:
+    virtual void Dance() const = 0; // 춤을 춥니다.
+};
+class Idol : 
+    public ISinger,
+    public IDancer {
+public:
+    virtual void Sing() const {}
+    virtual void Dance() const {}
+};
+
+Idol obj;
+Idol* idol = &obj;
+ISinger *singer = &obj; // (O) Up casting. 자식 개체에서 부모 개체로는 잘 변환 됩니다.
+IDancer *dancer = &obj;
+
+idol = singer; // (X) 컴파일 오류. Down casting. 부모 개체에서 자식 개체로는 변환되지 않습니다.
+idol = dynamic_cast<Idol*>(singer); // (O) dynamic_cast로 Down casting. 자식 개체로 변환됩니다.
+dancer = dynamic_cast<IDancer*>(singer); // (O) dynamic_cast로 Sibling casting. 형제 개체로 변환됩니다.        
+
+EXPECT_TRUE(idol != NULL);
+EXPECT_TRUE(dancer != NULL);
+EXPECT_TRUE(typeid(obj) == typeid(Idol));
+EXPECT_TRUE(typeid(*idol) == typeid(Idol));
+EXPECT_TRUE(typeid(*singer) == typeid(Idol));
+EXPECT_TRUE(typeid(*dancer) == typeid(Idol));
+```
+
+# 가상 복사 생성자
+
+부모 개체의 복사 생성자는 오동작을 할 수 있습니다.
+
+다음 코드를 보면, `Shape`개체에 자식 개체인 `Rectangle`이 전달될 수 있습니다. `Shape`은 `Rectangle`을 알지 못해 복사할 수 없습니다.
+
+```cpp
+class Shape {
+protected:
+    Shape() {} // (O) 상속해서 생성할 수 있게끔 protected 입니다.    
+public:
+    Shape(const Shape& other) {
+        if (typeid(*this) != typeid(other)) {
+            const std::type_info& ti = typeid(other);
+            std::cout<<ti.name()<<std::endl;  
+        } 
+    }
+    
+    virtual ~Shape() {} // 다형 소멸 하도록 public virtual    
+};
+class Rectangle : public Shape {};
+class Ellipse : public Shape {};
+
+Rectangle rect;
+Ellipse ellipse;
+Shape shape(rect); // (X) 오동작. shape은 Rectangle을 알지 못해 복사 생성할 수 없습니다.
+```
+
+따라서,
+
+1. 복사 생성자를 사용하지 못하도록 `private`로 막던지, 
+2. 복사 생성자를 `protected`로 만들고, 자식 개체에서 자기 자신을 복제하는 가상 함수인 `Clone()` 함수를 구현하던지,
+
+해야 합니다.
+
+[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에 언급했듯, 가상 함수 오버라이딩시 리턴값은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다. 따라서, 다음처럼 자식 개체의 타입을 리턴하는 `Clone()`을 만들 수 있습니다.
+
+```cpp
+class Shape {
+protected:
+    Shape() {} // (O) 상속해서 생성할 수 있게끔 protected 입니다.  
+    Shape(const Shape& other) {} // (O) 상속해서 생성할 수 있게끔 protected 입니다.  
+public:
+    virtual ~Shape() {} // 다형 소멸 하도록 public virtual    
+    virtual Shape* Clone() const = 0; // (O) 부모 개체에서는 Shape* 으로 리턴합니다.
+};
+
+class Rectangle : public Shape {
+public:
+    virtual Rectangle* Clone() const { // (O) 자식 개체에서는 자식 타입으로 리턴합니다.
+        return new Rectangle(*this); // Rectangle의 복사 생성자를 이용하며 복제본을 리턴합니다.
+    }
+};
+class Ellipse : public Shape {
+public:
+    virtual Ellipse* Clone() const { // (O) 자식 개체에서는 자식 타입으로 리턴합니다.
+        return new Ellipse(*this); // Ellipse 복사 생성자를 이용하며 복제본을 리턴합니다.
+    }
+};
+Shape* shapes[2] = { 
+    new Rectangle(), 
+    new Ellipse()
+};
+Shape* clones[2];
+
+for(int i = 0; i < 2; ++i) {
+    clones[i] = shapes[i]->Clone(); // 복제본을 만듭니다.
+}
+
+// (O) 자식 개체의 타입으로 잘 복제 됩니다. 
+EXPECT_TRUE(typeid(*clones[0]) == typeid(Rectangle));
+EXPECT_TRUE(typeid(*clones[1]) == typeid(Ellipse));
+
+for(int i = 0; i < 2; ++i) {
+    delete shapes[i]; 
+    delete clones[i];
+}
+```
+
+# 부모 개체의 대입 연산자
+
+부모 개체의 대입 연산자도 오동작을 할 수 있습니다.
+
+다음 코드를 보면,
+
+```cpp
+class Base {
+public:
+    virtual ~Base() {}
+    Base& operator =(const Base& other) { //  (△) 비권장. 자식 개체가 대입될 수 있습니다.
+        if (typeid(*this) != typeid(other)) {
+            const std::type_info& ti = typeid(other);
+            std::cout<<ti.name()<<std::endl;  
+        } 
+        return *this; 
+    }
+};
+class Derived : public Base {};
+class Other : public Base {};
+
+Derived d1;
+Derived d2;
+Other other;
+Base* base =&d1;
+
+d1 = d2; // (O) 메시지 표시 안됨
+*base = other; // (X) 오동작. 동일한 Base 타입이어서 실행됩니다. 
+```
+
+`*base = other;`를 하면, 부모는 같지만 서로 다른 클래스인 `Derived`에 `Other` 개체를 대입할 수 있습니다. 예제에서처럼 `typeid(*this) != typeid(other)`로 런타임에 검사하여 대처할 수도 있지만, 기본적으로 부모 클래스의 대입 연산자는 사용하지 못하게 막는게 좋습니다.
+
+```cpp
+class Base {
+public:
+    virtual ~Base() {}
+private:    
+    Base& operator =(const Base& other) {return *this;} // (O) 부모 개체는 사용 못하게 막아 버립니다.
+};
+class Derived : public Base {
+public:
+    Derived& operator =(const Derived& other) {return *this;} // (O) 자식 개체는 사용할 수 있게 합니다.   
+};
+class Other : public Base {};
+
+Derived d1;
+Derived d2;
+Other other;
+Base* base =&d1;
+
+d1 = d2; // (O) 
+*base = other; // (X) 컴파일 오류. 대입 연산은 private임    
+```
+

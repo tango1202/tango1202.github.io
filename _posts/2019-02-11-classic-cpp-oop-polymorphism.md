@@ -8,115 +8,25 @@ sidebar:
     nav: "docs"
 ---
 
-추상화 : 공통성과 본질을 모아 추출
-상속 : 기존의 클래스를 재활용하여 새로운 클래스를 작성
-다형성 : 어떤 개체의 속성이나 기능이 상황에 따라 여러가지 형태로 가질 수 있는 성질
-캡슐화 : 서로 연관있는 데이터와 기능을 하나의 캡슐로 만들어 데이터를 외부로 부터 보호하는것 
+# 개요
 
+다형성은 개체의 속성이나 기능(함수)이 상황에 따라 여러가지 형태로 변할 수 있는 성질을 말합니다.
 
+함수 오버로딩을 통해 전달된 인자에 따라 다른 기능을 실행하고, 상속 관계를 통해 자식 개체들이 다른 동작을 수행하게 됩니다.
 
-# 다형성
+C++에서 다형성을 위해 제공하는 기능들은 다음과 같습니다.
 
-1. 함수 오버로딩(함수명이 동일하고 인자가 다름)
-2. 상속
-3. 가상함수 오버라이딩(함수명과 인자는 동일하며 자식 개체에서 재구현)
-4. 가상함수 테이블
-5. 다형 소멸, 가상 소멸
-6. 가상 생성자
-8. 순가상 함수
-9. 일반화
-10. dynamic_cast
-11. 런타임 타입 정보
-12. typeinfo
-
-# 다형성(Polymorphism)
-
-```cpp
-class Base
-{
-    public: virtual void Print() { // Base의 내용을 출력한다. 
-    }
-};
-class Driven : public Base
-{
-    public: virtual void Print() { Base::Print(); // Base 내용 출
-력
-// Driven의 내용을 출력한다. 
-
-}
-};
-Base b; 
-Driven d;
- Base* b1 = &b; 
- Base* b2 = &d; b1->Print(); // Base출력
-b2->Print(); // Driven출력
-b2->Base::Print(); // Base출력
-```
-
-virtual : 파생 클래스에서 재정의 할 수 있
-다.
-
-
-기본 클래스의 가상함수 오버라이딩. 파생클래스의 반환타입은 바뀔 수 있다.(단
-리턴되는 타입이 상속관계에 있어야 한다.)
-인자는 반드시 같아야 한다.
-
-Base 포인터로부터 실행되었지만 Driven 함수가 호출된다. virtual이 없었다면 Base::Print 가 실행되
-었을 것이다. b2->Base::Print(); 로 하여 강제로 Base 의 Print 함수를 부를 수도 있다.
-
-다형성
-사용하는 객체의 종류를 모른채 동작할 수
-있다.
-
-# 가상 생성자
-
-기본 클래스의 가상함수 오버라이딩. 파생클래스의 반환타입은 바뀔 수 있다.(단
-리턴되는 타입이 상속관계에 있어야 한다.)
-인자는 반드시 같아야 한다.
-
-```cpp
-class Base { 
-    virtual Base* Clone() const = 0; 
-};
-class Driven :
- public Base { 
-    virtual Driven* Clone() const { 
-        return new Driven(*this); // 복사 생성자 호출로 새로운 복제본 만듬
-}
-};
-Driven d; Base* b = d.Clone(); // (O) b는 d의 복제본을 가리키는 포인터
-Base* b2 = b->Clone();// (O) b2는 d의 복제본을 가리키는 포인터
-```
-# 다형 소멸, public Virtual 소멸자
-
-다형성을 가진 기본 클래스는 반드시 소멸자를 virtual 로 만들어라.
-
-```cpp
-class Base
-{
-    public: ~Base(); 
-};
-class Driven : public Base
-{
-    public: ~Driven(); 
-};
-Base* b1 = new Base; 
-Base* b2 = new Driven; 
-delete b1; // (O). Base 구성요소 소멸
-delete b2; // (X). Base 구성요소만 소멸
-```
-
-Driven 구성요소가 소멸되게 하려면 소멸자를
-virtual로 만들어야 한다. TPL 564 page
-```cpp
-class Base
-{public: virtual ~Base(); };
-```
-
-# 런타임 타입 정보
-
-# type_info
-
-
+|항목|내용|
+|--|--|
+|함수 오버로딩|전달된 인자에 따라 다른 함수가 호출됩니다.<br/>* [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고<br/>* [오버로딩 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고<br/>* [오버로딩 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99) 참고|
+|상속|부모 개체를 재활용하여, 새로운 자식 클래스를 만들어 확장합니다.<br/>* [is-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#is-a-%EA%B4%80%EA%B3%84) 참고<br/>* [has-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#has-a-%EA%B4%80%EA%B3%84) 참고<br/>* [상속 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C) 참고|
+|추상 클래스|자식 개체의 일반 개념을 제공합니다.<br/>* [추상 클래스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고<br/>* [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고|
+|인터페이스|기능 스펙을 제공합니다.<br/>* [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4) 참고<br/>* [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고|
+|소멸자|상속 관계에 따라 다르게 사용합니다.<br/>* [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8) 참고<br/>* [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고<br/>* [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고<br/>* [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고|
+|가상 함수 오버라이딩|부모 개체의 가상 함수를 재구현 합니다.<br/>* [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고<br/>* [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable) 참고<br/>* [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고<br/>* [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고|
+|가상 복제 생성자|개체 타입에 따라 자기 자신을 복제 생성하는 함수|
+|템플릿|개체 타입에 따라 다르게 동작하는 함수와 클래스|
+|dynamic_cast|상속 관계가 있는 개체간의 변환<br/>* [명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 참고|
+|Runtime Type Info(RTTI)|개체의 타입 정보를 제공합니다.|
 
 

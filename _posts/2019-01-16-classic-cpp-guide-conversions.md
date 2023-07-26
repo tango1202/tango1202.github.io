@@ -21,7 +21,7 @@ sidebar:
 |명시적 형변환 - 괄호(`(`와 `)`)|C언어 잔재.<br/>`const_cast`,<br/>`static_cast`,<br/>`reinterpret_cast`<br/>의 순서로 형변환|
 |명시적 형변환 - `const_cast`|상수성만 변환|
 |명시적 형변환 - `static_cast`|타입 유사성을 지키며 변환|
-|명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>RTTI(Runtime Type Info)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.|
+|명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>Runtime Type Info(RTTI)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.|
 |명시적 형변환 - `reinterpret_cast`|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
 |형변환 연산자 정의|[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 제공하나 암시적 형변환이 됨|
 |`explicit`|암시적 형변환 되지 않도록 개체 생성자에 지정|
@@ -173,7 +173,7 @@ C++언어는
 
 **`dynamic_cast`**
 
-`dynamic_cast`는 상속 관계가 있는 개체간의 변환을 합니다.(RTTI(Runtime Type Info)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.) 변환에 실패하면, 포인터 유형인 경우 널(`NULL`)을 리턴하고, 참조 유형인 경우 `bad_cast` 예외를 발생시킵니다. 
+`dynamic_cast`는 상속 관계가 있는 개체간의 변환을 합니다.(Runtime Type Info(RTTI)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.) 변환에 실패하면, 포인터 유형인 경우 널(`NULL`)을 리턴하고, 참조 유형인 경우 `bad_cast` 예외를 발생시킵니다. 
 
 ```cpp
 class Base {

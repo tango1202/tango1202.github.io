@@ -159,7 +159,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |C언어 스타일|`(T)a`|O|`operator T() const;`|X|
 |상수성만 변환|`const_cast`|X|X|X|
 |타입 유사성을 지키며 변환|`static_cast`|X|X|X|
-|타입 유사성을 지키며 변환. (RTTI(Runtime Type Info) 지원)|`dynamic_cast`|X|X|X|
+|타입 유사성을 지키며 변환. (Runtime Type Info(RTTI) 지원)|`dynamic_cast`|X|X|X|
 |상속관계를 무시하고 변환|`reinterpret_cast`|X|X|X|
 
 형변환은 최대한 안하는 것이 좋습니다. 형변환의 자세한 내용은 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 을 참고하세요.
@@ -293,7 +293,7 @@ EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 �
 |`typeid(개체명)`|개체 타입 정보 리턴|
 |`typeid(타입명)`|타입이나 클래스명, 구조체명, 공용체명의 타입 정보 리턴|
 
-하기 예는 상속관계에서 가상 함수가 없는 경우와 있는 경우에 따라 `typeid` 동작을 보여 줍니다.( RTTI(Runtime Type Info)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)에 따라 동작이 다릅니다.)
+하기 예는 상속관계에서 가상 함수가 없는 경우와 있는 경우에 따라 `typeid` 동작을 보여 줍니다.(Runtime Type Info(RTTI)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)에 따라 동작이 다릅니다.)
 
 1. [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 경우
     정의한 개체 타입을 리턴합니다.
