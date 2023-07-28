@@ -341,6 +341,8 @@ EXPECT_TRUE(obj.Dancer::m_Age == 30);
 ```
 # 상속 강제
 
+부모 개체로만 사용할 것이라면, 직접 인스턴스화 하지 못하고, 상속해서만 사용할 수 있도록 강제해야 합니다.
+
 1. 생성자를 `protected` 로 만들면 됩니다.([상속 전용 기반 클래스 - protected 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%81%EC%86%8D-%EC%A0%84%EC%9A%A9-%EA%B8%B0%EB%B0%98-%ED%81%B4%EB%9E%98%EC%8A%A4---protected-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
 2. `has-a` 관계이면 `protected` Non-Virtual 소멸자로 만들면 됩니다. 다만, `is-a`다형 소멸의 경우는 `public` Virtual 소멸자를 써야 하는데, 순가상 함수가 없으면 다음처럼 인스턴스를 생성할 수 있으므로, `protected` 생성자를 사용하는게 좋습니다.
