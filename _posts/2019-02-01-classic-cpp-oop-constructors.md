@@ -13,6 +13,7 @@ sidebar:
 > * 인자가 1개인 값 생성자는 `explicit`로 암시적 형변환을 차단하라.
 > * 암시적 복사 생성자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하고, 필요없다면 못쓰게 만들어라.
 > * 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
+> * 상속 전용 기반 클래스는 `protected` 생성자로 만들어라.
  
 # 개요
 
@@ -366,7 +367,7 @@ T t3(t1); // (X) 컴파일 오류. 복사 생성자를 사용할 수 없게 priv
 
 # 상속 전용 기반 클래스 - `protected` 생성자
 
-상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만들 수 있습니다. 그러면 개체 정의(인스턴스화)에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.(생성자는 여러개 만들 수 있어서 모두가 `protected` 인지 신경 쓰기 번거로울 수 있기 때문에, [`protected` Non-Vitual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하는게 더 좋습니다.)
+상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만들 수 있습니다. 그러면 개체 정의(인스턴스화)에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.
 
 ```cpp
 class Base {
