@@ -147,6 +147,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
+|상속 강제|상속해서만 사용할 수 있도록 [`protected` 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%81%EC%86%8D-%EC%A0%84%EC%9A%A9-%EA%B8%B0%EB%B0%98-%ED%81%B4%EB%9E%98%EC%8A%A4---protected-%EC%83%9D%EC%84%B1%EC%9E%90) 사용합니다.|
 |기본 생성자|상속한 개체에서 사용할 수 있도록 `protected`를 사용합니다.|
 |복사 생성자|인터페이스라면 사용못하게 `private`로 막고, 추상 클래스라면 상황에 따라 `protected`나 `private`를 사용하고, 필요하면 `Clone()`가상 함수를 구현합니다.([가상 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)|
 |대입 연산자|사용하지 못하게 `private`로 막습니다.([부모 개체의 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)|
