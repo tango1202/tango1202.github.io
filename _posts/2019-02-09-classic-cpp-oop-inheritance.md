@@ -11,6 +11,7 @@ sidebar:
 > * 부모 개체의 멤버 함수를 오버로딩 하지 마라. [오버로딩 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99)에서 제외된다.
 > * 자식 개체를 부모 개체에 대입하지 마라. 아무런 오류 없이 복사 손실 된다.
 > * 구현 코드가 없는 [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)인 경우에만 다중 상속하라.
+> * 상속을 강제하고 싶은 경우 `protected` 생성자를 사용하라.
 > * 소멸자에서 가이드한 것과 같이,
 > > * 다형 소멸이 필요하면 부모 개체에 `virtual` 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
 > > * `public` Non-Virtual 소멸자인 개체는 상속하지 마라.
@@ -338,6 +339,33 @@ EXPECT_TRUE(obj.Singer::m_Age == 30);
 EXPECT_TRUE(obj.Dancer::m_Age == 30);  
 ```
 # 상속 강제
+
+1. 생성자를 `protected` 로 만들면 됩니다.([상속 전용 기반 클래스 - protected 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%81%EC%86%8D-%EC%A0%84%EC%9A%A9-%EA%B8%B0%EB%B0%98-%ED%81%B4%EB%9E%98%EC%8A%A4---protected-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
+
+2. `has-a` 관계이면 `protected` Non-Virtual 소멸자로 만들면 됩니다. 다만, `is-a`다형 소멸의 경우는 `public` Virtual 소멸자를 써야 하는데, 순가상 함수가 없으면 다음처럼 인스턴스를 생성할 수 있으므로, `protected` 생성자를 사용하는게 좋습니다.
+ 
+    ```cpp
+    class T {
+    public:
+        virtual ~T() {}
+    };
+
+    T t; // (△) 비권장. 순가상 함수가 없으면 인스턴스화 할 수 있습니다.
+    ```
+
+3. 순가상 소멸자를 사용하면 됩니다. 하지만 별도의 구현 정의를 따로 만들어야 하기 때문에 번거롭습니다.(특히 함수 내부의 로컬 클래스로 정의할때는 소멸자 정의를 할 방법이 없습니다.)
+
+    ```cpp
+    class T {
+    public:
+        virtual ~T() = 0;
+    };
+    T::~T() {} // (△) 비권장. 실제 구현 정의가 있어야 함
+    class U : public T {};
+
+    T t; // (X) 컴파일 오류. 순가상 소멸자가 있어 개체 정의(인스턴스화) 안됨
+    U u; // 상속하면 개체 정의(인스턴스화) 가능
+    ```
 
 # 상속 제한
 

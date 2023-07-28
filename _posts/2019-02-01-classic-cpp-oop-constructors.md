@@ -367,7 +367,8 @@ T t3(t1); // (X) 컴파일 오류. 복사 생성자를 사용할 수 없게 priv
 
 # 상속 전용 기반 클래스 - `protected` 생성자
 
-상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만들 수 있습니다. 그러면 개체 정의(인스턴스화)에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.
+상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만들 수 있습니다. 그러면 개체 정의(인스턴스화)에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.([상속 강제](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EA%B0%95%EC%A0%9C) 참고)
+
 
 ```cpp
 class Base {
@@ -381,7 +382,7 @@ class Derived : Base {
 };
 
 Base b; // (X) 컴파일 오류
-Derived d;
+Derived d; // (O) 상속하면 인스턴스화 가능
 ```
 
 # 생성자 접근 차단 - private 생성자
