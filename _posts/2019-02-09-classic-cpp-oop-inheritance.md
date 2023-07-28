@@ -11,7 +11,8 @@ sidebar:
 > * 부모 개체의 멤버 함수를 오버로딩 하지 마라. [오버로딩 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99)에서 제외된다.
 > * 자식 개체를 부모 개체에 대입하지 마라. 아무런 오류 없이 복사 손실 된다.
 > * 구현 코드가 없는 [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)인 경우에만 다중 상속하라.
-> * 상속을 강제하고 싶은 경우 `protected` 생성자를 사용하라.
+> * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하라.
+> * 상속을 제한하고 싶은 경우, `public` Non-Virtual 소멸자 사용으로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
 > * 소멸자에서 가이드한 것과 같이,
 > > * 다형 소멸이 필요하면 부모 개체에 `virtual` 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
 > > * `public` Non-Virtual 소멸자인 개체는 상속하지 마라.
@@ -339,6 +340,8 @@ EXPECT_TRUE(obj.Singer::m_Age == 30);
 EXPECT_TRUE(obj.Dancer::m_Age == 30);  
 ```
 # 상속 강제
+
+부모 개체로만 사용할 것이라면, 직접 인스턴스화 하지 못하고, 상속해서만 사용할 수 있도록 강제해야 합니다.
 
 1. 생성자를 `protected` 로 만들면 됩니다.([상속 전용 기반 클래스 - protected 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%81%EC%86%8D-%EC%A0%84%EC%9A%A9-%EA%B8%B0%EB%B0%98-%ED%81%B4%EB%9E%98%EC%8A%A4---protected-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
