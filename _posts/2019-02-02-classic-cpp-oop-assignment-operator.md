@@ -189,21 +189,17 @@ public:
     void SetVal(int val) {m_Val = val;}
 };
 class T {
-    Big* m_X; // 복사 부하가 큰 데이터는 포인터로 관리합니다.
-    Big* m_Y;
+    Big* m_Big; // 복사 부하가 큰 데이터는 포인터로 관리합니다.
 public:
-    T(Big* x, Big* y) : 
-        m_X(x), 
-        m_Y(y) {} 
+    explicit T(Big* big) : 
+        m_Big(big) {} 
     // NULL 포인터가 아니라면 복제합니다.
     T(const T& other) :
-        m_X(other.m_X != NULL ? new Big(*other.m_X) : NULL),
-        m_Y(other.m_Y != NULL ? new Big(*other.m_Y) : NULL) {
+        m_Big(other.m_Big != NULL ? new Big(*other.m_Big) : NULL) {
     }
     // 힙 개체를 메모리에서 제거 합니다.
     ~T() {
-        delete m_X;
-        delete m_Y;
+        delete m_Big;
     }
     
     T& operator =(const T& other) {
@@ -223,23 +219,20 @@ public:
     void Swap(T& other) {
         // (O) 포인터 변수끼리의 복사/대입이라 복사 부하가 크지 않습니다.
         // 예외가 발생할 확률도 낮습니다.
-        std::swap(this->m_X, other.m_X); 
-        std::swap(this->m_Y, other.m_Y);
+        std::swap(this->m_Big, other.m_Big); 
     }
 
-    const Big* GetX() const {return m_X;}
-    const Big* GetY() const {return m_Y;}
+    const Big* GetBig() const {return m_Big;}
 };
-T t1(new Big(10), new Big(20));
-T t2(new Big(1), new Big(2)); 
+T t1(new Big(10));
+T t2(new Big(1)); 
 t2 = t1; // (O) swap 버전 대입 연산자 호출
 
-EXPECT_TRUE(t2.GetX()->GetVal() == 10 && t2.GetY()->GetVal() == 20);
+EXPECT_TRUE(t2.GetBig()->GetVal() == 10);
 ```
-하기는 실행 결과 입니다. 대입 연산시 임시 개체(`temp`)를 생성하느라 복사 생성자(`T(const T& other)`) 에서 `Big` 개체 2개를 복사 생성한 것(멤버별 대입에서와 거의 동등한 부하입니다.) 외에는 다른 복사 부하가 없습니다.
+하기는 실행 결과 입니다. 대입 연산시 임시 개체(`temp`)를 생성하느라 복사 생성자(`T(const T& other)`) 에서 `Big` 개체 1개를 복사 생성한 것(멤버별 대입에서와 거의 동등한 부하입니다.) 외에는 다른 복사 부하가 없습니다.
 
 ```cpp
-Big::Big(const Big& other)
 Big::Big(const Big& other)
 ```
 
