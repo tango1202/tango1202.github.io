@@ -337,6 +337,7 @@ EXPECT_TRUE(obj.m_Age == 30);
 EXPECT_TRUE(obj.Singer::m_Age == 30);
 EXPECT_TRUE(obj.Dancer::m_Age == 30);  
 ```
+# 상속 강제
 
 # 상속 제한
 
