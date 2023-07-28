@@ -12,7 +12,7 @@ sidebar:
 > * 자식 개체를 부모 개체에 대입하지 마라. 아무런 오류 없이 복사 손실 된다.
 > * 구현 코드가 없는 [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)인 경우에만 다중 상속하라.
 > * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하라.
-> * 상속을 제한하고 싶은 경우, `public` Non-Vitual 로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
+> * 상속을 제한하고 싶은 경우, `public` Non-Virtual 로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
 > * 소멸자에서 가이드한 것과 같이,
 > > * 다형 소멸이 필요하면 부모 개체에 `virtual` 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
 > > * `public` Non-Virtual 소멸자인 개체는 상속하지 마라.
