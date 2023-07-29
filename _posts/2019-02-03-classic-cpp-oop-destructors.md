@@ -192,7 +192,9 @@ delete b; // (O) 1, 2 호출됨. 다형 소멸 지원.
 # public Non-Virtual 소멸자
 
 부모 개체로 사용하지 않을 것이라면, 소멸자는 `public` Non-Virtual로 정의합니다.
-외부에서 생성/소멸해야 하니 `public`이어야 하겠고, 상속받지 않으니 다형 소멸이 필요없어 Non-Virtual로 정의합니다.
+
+1. 외부에서 생성/소멸해야 하니 `public`이어야 하겠고,
+2. 상속받지 않으니 다형 소멸이 필요없어 Non-Virtual로 정의합니다.
 
 다만, 아무런 제약이 없기 때문에 `U` 와 같이 상속한다면, 다형 소멸이 안되는 우려가 있습니다. 개체가 `public` Non-Virtual 소멸자라면, 상속하지 말라는 뜻이니, 절대 상속하지 마세요. 혹시나 상속이 필요하다면, 다음에 설명할 `public` Virtual 소멸자나, `protected` Non-Virtual 소멸자로 리팩토링 하시기 바랍니다.(상속을 강제로 제한하는 방법은 [상속 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C) 참고)
 
@@ -212,13 +214,15 @@ U u;
 
 `is-a` 관계에서는 부모 개체 포인터로 자식 개체를 제어하고, `delete` 합니다. ([is-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#is-a-%EA%B4%80%EA%B3%84) 참고)
  
-외부에서 생성/소멸해야 하니 `public`이어야 하겠고, 다형 소멸을 해야 하니 `virtual`로 정의합니다.
+1. 외부에서 생성/소멸해야 하니 `public`이어야 하겠고,
+2. 다형 소멸을 해야 하니 `virtual`로 정의합니다.
 
 # protected Non-Virtual 소멸자
 
 `has-a` 는 다형 소멸을 하지 않는 상속 관계입니다. 자식 개체가 부모 개체의 멤버 변수나 멤버 함수의 기능을 포함하고 제공하는 관계라고 할 수 있습니다.([has-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#has-a-%EA%B4%80%EA%B3%84) 참고)
 
-외부에서 부모 클래스로 직접 생성/소멸하지 않고, 자식 개체를 통해 생성/소멸하므로 `protected`이어야 하겠고, 다형 소멸을 하지 않으니 Non-Virtual로 정의합니다.
+1. 외부에서 부모 클래스로 직접 생성/소멸하지 않고, 자식 개체를 통해 생성/소멸하므로 `protected`이어야 하겠고,
+2. 다형 소멸을 하지 않으니 Non-Virtual로 정의합니다.
 
 `protected` 이기 때문에 부모 개체를 직접 인스턴스화 할 수 없고, 오로지 상속해서만 사용할 수 있습니다. 또한 실수로 부모 개체 포인터로 `delete`하려고 하면, `protected`여서 컴파일 오류가 발생합니다. 단단한 **코딩 계약**입니다.
 
