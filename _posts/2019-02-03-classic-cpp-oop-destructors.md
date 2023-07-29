@@ -34,8 +34,8 @@ sidebar:
 class T {
     int* m_Ptr;
 public:
-    T() : m_Ptr(new int(10)) {}
-    ~T() {delete m_Ptr;}
+    T() : m_Ptr(new int(10)) {} // new로 생성한 것은
+    ~T() {delete m_Ptr;} // (O) delete로 소멸
 };
 ```
 
