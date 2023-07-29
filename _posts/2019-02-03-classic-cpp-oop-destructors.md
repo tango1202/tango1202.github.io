@@ -246,7 +246,9 @@ delete p; // (X) 컴파일 오류. Base의 소멸자가 protected
 
 # 가상 함수가 없는 경우의 다형성
     
-보통 다형적 동작을 하는 개체들은 부모 클래스에 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있습니다. 하지만, 단지 타입명만 다르게 하여 사용하고 싶을때도 있습니다. 이럴때 억지로 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 추가하고 싶으면 소멸자를 `virtual` 로 만들면 됩니다.
+보통 다형적 동작을 하는 개체들은 부모 클래스에 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있습니다. 하지만, 가상 함수가 없을 때도 있습니다. 이럴때 억지로 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 추가하고 싶으면 소멸자를 `virtual` 로 만들면 됩니다.
+
+다음은 부모 개체를 상속받아 자식 개체에서 타입명만 다르게 한 예입니다. 
 
 ```cpp
 class Error {
