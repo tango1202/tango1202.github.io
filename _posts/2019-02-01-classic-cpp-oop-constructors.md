@@ -184,7 +184,7 @@ public:
 };        
 ```
 
-그런데, 암시적 복사 생성자로 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 복사하면,
+암시적 복사 생성자에 의해 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)가 복사되면,
 
 ```cpp
 // (X) 예외 발생. t1이 delete 한 것을 t2도 delete 합니다.
