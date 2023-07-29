@@ -355,7 +355,7 @@ Derived d; // (X) 오동작. 소멸자에서 가상 함수 호출
 # 소멸자에서 예외 발생 금지
 
 예외 발생에 따른 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)시에도 개체가 소멸되면서 소멸자가 호출됩니다. 이러한 상황에서 또다시 예외가 발생하면, 정상적인 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)를 방해하므로 소멸자에서는 예외가 발생하지 않도록 해야 합니다. 
-소멸자에서 예외가 발생할 것 같으면 `Release()`와 같은 별도의 정리 함수를 만드는게 좋습니다.
+소멸자에서 예외가 발생할 것 같으면 `Release()`와 같은 별도의 정리 함수를 만들어 소멸자 호출전에 명시적으로 호출하는게 좋습니다.
 
 ```cpp
 class T {
@@ -364,7 +364,7 @@ public:
 };     
 
 T t;
-t.Release(); // 예외 발생할 수 있는 경우, 메모리나 리소스 해제
+t.Release(); // 소멸자 호출전에 명시적으로 메모리나 리소스 해제
 ```
 
 
