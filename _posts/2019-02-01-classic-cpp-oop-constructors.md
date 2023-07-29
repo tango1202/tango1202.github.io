@@ -209,7 +209,7 @@ public:
 3. 자원을 공유하거나, 
 4. 유일한 자원으로 대체해서 사용하는
 
-방법이 있습니다. 여기서는 깊은 복제를 하도록 하겠습니다.(그외 다른 방법은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)
+방법이 있습니다. 여기서는 깊은 복제 방법으로 구현해 보도록 하겠습니다.(그외 다른 방법은 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/) 참고)
 
 
 깊은 복제를 하기 위해서는 암시적 복사 생성자 대신, 다음처럼 복사 생성자를 명시적으로 구현하여, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들면 됩니다.
