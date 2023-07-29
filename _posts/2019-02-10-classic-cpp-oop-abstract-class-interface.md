@@ -70,7 +70,43 @@ for(int i = 0; i < 2; ++i) {
 ```
 **마땅한 순가상 함수가 없는 추상 클래스**
 
-순가상 함수로 정의할게 마땅히 없는데, 추상 클래스로 만들어야 한다면, 순가상 소멸자를 이용하면 됩니다.
+드문 경우지만, 순가상 함수로 정의할게 마땅히 없는데 추상 클래스로 만들어야 한다면, 순가상 소멸자를 이용하면 됩니다.
+
+추상 클래스는
+
+다형적으로 사용될 수도 있기 때문에 `public` Virtual 소멸자로 작성될 필요도 있습니다.
+
+하지만 다음처럼, 순가상 함수로 정의할게 마땅히 없을때에는 추상 클레스가 인스턴스화 될 수 있습니다.
+
+```cpp
+class Abstract {
+public:
+    virtual ~Abstract() {} // 다형 소멸 하도록 public virtual
+};
+
+class Concrete : public Abstract {
+};
+
+Abstract abstract; // (X) 오동작. 순가상함수가 없어 인스턴스화 됩니다. 추상 클래스여서 인스턴스화 되면 안됩니다.
+```
+
+이런 경우 `protected` 생성자를 이용하여 상속을 강제할 수 있습니다만,
+
+```cpp
+class Abstract {
+protected:
+    Abstract() {} // 상속을 강제합니다.
+public:
+    virtual ~Abstract() {} // 다형 소멸 하도록 public virtual
+};
+
+class Concrete : public Abstract {
+};
+
+Abstract abstract; // (X) 정상 코딩 계약. 추상 클래스를 인스턴스화 하지 못합니다.
+```
+
+이방법 보다는 순가상 함수가 있는 추상 클래스라는 의미가 강하도록, 소멸자를 순가상 함수로 만드는게 좋습니다.
 
 ```cpp
 class Abstract {
@@ -82,7 +118,7 @@ Abstract::~Abstract() {} // 실제 구현 정의가 있어야 함
 class Concrete : public Abstract {
 };
 
-Abstract abstract; // (X) 컴파일 오류. 추상 클래스는 순가상 함수가 있어 구체화 할 수 없습니다.
+Abstract abstract; // (X) 정상 코딩 계약. 추상 클래스는 순가상 함수가 있어 구체화 할 수 없습니다.
 
 Concrete concrete; // (O)
 ```
