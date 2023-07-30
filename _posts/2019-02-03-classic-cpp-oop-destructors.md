@@ -128,7 +128,7 @@ Derived d;
 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 이용해서 암시적 소멸자와 호환하는 방법은 [복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 에서 언급한 것처럼, 
 
 1. 스마트 포인터를 멤버 변수로 정의하고,
-2. 스마트 포인터 소멸자에서 `new`한 개체를 `delete`를 해주시면 됩니다.
+2. `new`한 개체를 스마트 포인터 소멸자에서 `delete`를 해주시면 됩니다.
 
 # 다형 소멸
 
@@ -250,14 +250,14 @@ delete p; // (X) 컴파일 오류. Base의 소멸자가 protected
     
 보통 다형적 동작을 하는 개체들은 부모 클래스에 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있습니다. 하지만, 가상 함수가 아예 없는 경우도 있을 수 있는데요, 이럴때 억지로 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 추가하고 싶으면 소멸자를 `virtual` 로 만들면 됩니다.
 
-다음은 부모 개체를 상속받아 자식 개체에서 타입명만 다르게 하여 사용한 한 예입니다. 
+다음은 부모 개체를 상속받아 자식 개체에서 타입명만 다르게 하여 사용한 한 예입니다. `Error`에서는 자식 개체에서 필요로하는 모든 함수를 제공하고 있어 별도의 가상 함수 정의가 필요없고, 다형 소멸을 위해 `public` Virtual 소멸자만 제공하고 있습니다.
 
 ```cpp
 class Error {
 private:
     std::string m_Message;
 public:
-    virtual ~Error() {} // (O) 가상 함수가 없어 억지로 만듬
+    virtual ~Error() {} // (O) 다형 소멸. 소멸자 외에는 별다른 가상 함수가 없습니다.
     // 모든 자식 개체들에서 사용합니다. 가상 함수는 없습니다.
     void SetMessage(const char* msg) {m_Message = msg;}
     const std::string& GetMessage() const {return m_Message;}
