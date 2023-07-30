@@ -26,9 +26,11 @@ sidebar:
 |`virtual ~T() {}`|가상 소멸자|
 |`virtual ~T() = 0;`|순가상 소멸자|
 
-소멸자는 개체의 수명이 다해 소멸될때 호출되는 특수 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)입니다. 개체가 활동하면서 생성했던 메모리나 리소스를 해제하는 역할을 합니다.
+소멸자는 개체의 수명이 다해 소멸될때 호출되는 특수 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)입니다. 
 
 `new` 로 생성한 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 사용후 `delete`로 소멸시키지 않으면, 메모리에 그대로 남아 있어(메모리 릭), 메모리 부족으로 프로그램이 중단됩니다. 획득된 자원은 꼭 소멸([RAII(Resource Acquisition Is Initialization)](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/))시켜야 합니다.
+
+소멸자는 개체가 활동하면서 생성했던 메모리나 리소스를 해제하는 역할을 합니다.
 
 ```cpp
 class T {
