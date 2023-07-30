@@ -347,7 +347,9 @@ EXPECT_TRUE(obj.Dancer::m_Age == 30);
 
 2. 순가상 함수가 있으면 됩니다.
    
-3. `has-a` 관계이면 `protected` Non-Virtual 소멸자로 만들면 됩니다. `is-a` 관계는 다형 소멸이 필요하여 `public` Virtual 소멸자를 써야 하는데, 순가상 함수가 없으면 다음처럼 인스턴스를 생성할 수 있으므로, 
+3. `has-a` 관계이면 `protected` Non-Virtual 소멸자로 만들면 됩니다.
+   
+5. `is-a` 관계는 다형 소멸이 필요하여 `public` Virtual 소멸자를 써야 하는데, 순가상 함수가 없으면 다음처럼 인스턴스를 생성할 수 있으므로, 
  
     ```cpp
     class T {
@@ -360,7 +362,7 @@ EXPECT_TRUE(obj.Dancer::m_Age == 30);
 
     [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 이용해야 합니다.
 
-4. [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하면 됩니다. 하지만 별도의 구현 정의를 따로 만들어야 하기 때문에 번거롭습니다.(특히 함수 내부의 로컬 클래스로 정의할때는 소멸자 정의를 할 방법이 없습니다.) `is-a` 관계인데 순가상 함수가 없는 경우만 순가상 소멸자를 이용하시기 바랍니다.([추상 클래스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고)
+하지만 별도의 구현 정의를 따로 만들어야 하기 때문에 번거롭습니다.(특히 함수 내부의 로컬 클래스로 정의할때는 소멸자 정의를 할 방법이 없습니다.) `is-a` 관계인데 순가상 함수가 없는 경우만 순가상 소멸자를 이용하시기 바랍니다.([추상 클래스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고)
 
     ```cpp
     class T {
