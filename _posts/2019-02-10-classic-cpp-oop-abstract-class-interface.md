@@ -107,8 +107,8 @@ Abstract::~Abstract() {} // 실제 구현 정의가 있어야 함
 
 class Concrete : public Abstract {};
 
-Abstract abstract; // (X) 정상 코딩 계약. 추상 클래스는 순가상 함수가 있어 인그턴스화 할 수 없습니다.
-Concrete concrete; // (O)
+Abstract abstract; // (X) 정상 코딩 계약. 추상 클래스는 순가상 함수가 있어 인스턴스화 할 수 없습니다.
+Concrete concrete; // (O) 상속하면 인스턴스화 가능
 ```
 
 # 인터페이스
