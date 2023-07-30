@@ -11,7 +11,7 @@ sidebar:
 > * 부모 개체의 멤버 함수를 오버로딩 하지 마라. [오버로딩 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99)에서 제외된다.
 > * 자식 개체를 부모 개체에 대입하지 마라. 아무런 오류 없이 복사 손실 된다.
 > * 구현 코드가 없는 [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)인 경우에만 다중 상속하라.
-> * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하라.
+> * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하거나 순가상 함수를 포함하라.(`is-a` 관계에서 순가상 함수가 없는 경우, 순가상 소멸자를 사용한다.)
 > * 상속을 제한하고 싶은 경우, `public` Non-Virtual 소멸자 사용으로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
 > * 소멸자에서 가이드한 것과 같이,
 > > * 다형 소멸이 필요하면 부모 개체에 `virtual` 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
@@ -349,7 +349,7 @@ EXPECT_TRUE(obj.Dancer::m_Age == 30);
    
 3. `has-a` 관계이면 `protected` Non-Virtual 소멸자로 만들면 됩니다.
    
-5. `is-a` 관계는 다형 소멸이 필요하여 `public` Virtual 소멸자를 써야 하는데, 순가상 함수가 없으면 다음처럼 인스턴스를 생성할 수 있으므로, 
+4. 1, 2, 3으로 할 수 없는 경우는 `is-a` 관계에서 다형 소멸이 필요하여 `public` Virtual 소멸자를 써야 하는데, 순가상 함수가 없는 경우입니다. `protected` 생성자로 할 수 없고, 순가상 함수가 없으므로 다음처럼 인스턴스화 할 수 있습니다.
  
     ```cpp
     class T {
@@ -360,9 +360,7 @@ EXPECT_TRUE(obj.Dancer::m_Age == 30);
     T t; // (△) 비권장. 순가상 함수가 없으면 개체 정의(인스턴스화) 할 수 있습니다.
     ```
 
-    [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 이용해야 합니다.
-
-    하지만 별도의 구현 정의를 따로 만들어야 하기 때문에 번거롭습니다.(특히 함수 내부의 로컬 클래스로 정의할때는 소멸자 정의를 할 방법이 없습니다.) `is-a` 관계인데 순가상 함수가 없는 경우만 순가상 소멸자를 이용하시기 바랍니다.([추상 클래스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고)
+    이럴 경우 [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용합니다.([추상 클래스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고)
 
     ```cpp
     class T {
