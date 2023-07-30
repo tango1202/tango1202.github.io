@@ -30,7 +30,7 @@ sidebar:
 
 `new` 로 생성한 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 사용후 `delete`로 소멸시키지 않으면, 메모리에 그대로 남아 있어(메모리 릭), 메모리 부족으로 프로그램이 중단됩니다. 
 
-따라서 획득된 자원은 꼭 소멸([RAII(Resource Acquisition Is Initialization)](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/))시켜야 하는데요, 소멸자는 개체가 소멸될때 호출되므로, 사용했던 자원을 소멸시키기는 시점으로 딱 좋습니다.
+따라서 획득된 자원은 꼭 소멸([RAII(Resource Acquisition Is Initialization)](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/))시켜야 하는데요, 소멸자는 개체가 소멸될때 호출되므로, 사용했던 자원을 소멸시키는 시점으로 딱 좋습니다.
 
 ```cpp
 class T {
