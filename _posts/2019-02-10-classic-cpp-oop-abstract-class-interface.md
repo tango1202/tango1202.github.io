@@ -80,7 +80,7 @@ public:
     virtual ~Abstract() {} // 다형 소멸 하도록 public virtual
 };
 
-Abstract abstract; // (X) 오동작. 순가상함수가 없어 인스턴스화 됩니다. 추상 클래스여서 인스턴스화 되면 안됩니다.
+Abstract abstract; // (X) 오동작. 순가상 함수가 없어 인스턴스화 됩니다. 추상 클래스여서 인스턴스화 되면 안됩니다.
 ```
 
 이런 경우 `protected` 생성자를 이용하여 [상속 강제](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EA%B0%95%EC%A0%9C)할 수 있습니다만,
@@ -107,7 +107,7 @@ Abstract::~Abstract() {} // 실제 구현 정의가 있어야 함
 
 class Concrete : public Abstract {};
 
-Abstract abstract; // (X) 정상 코딩 계약. 추상 클래스는 순가상 함수가 있어 구체화 할 수 없습니다.
+Abstract abstract; // (X) 정상 코딩 계약. 추상 클래스는 순가상 함수가 있어 인그턴스화 할 수 없습니다.
 Concrete concrete; // (O)
 ```
 
