@@ -127,7 +127,7 @@ Derived d;
 
 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 이용해서 암시적 소멸자와 호환하는 방법은 [복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 에서 언급한 것처럼, 
 
-1.스마트 포인터를 멤버 변수로 정의하고,
+1. 스마트 포인터를 멤버 변수로 정의하고,
 2. 스마트 포인터 소멸자에서 `new`한 개체를 `delete`를 해주시면 됩니다.
 
 # 다형 소멸
