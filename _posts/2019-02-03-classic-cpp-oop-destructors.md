@@ -147,7 +147,7 @@ delete ptr1; // Derived1을 소멸시킵니다.
 delete ptr2; // Derived2를 소멸시킵니다.
 ```
 
-다음 클래스의 `Derived`를 생성하고 소멸시키면, `Derived`와 `Base` 소멸자가 잘 호출되어 1, 2가 모두 호출됩니다.
+다음 예제의 `Derived`를 생성하고 소멸시키면, `Derived`와 `Base` 소멸자가 잘 호출되어 1, 2가 모두 호출됩니다.
 
 ```cpp
 class Base {
