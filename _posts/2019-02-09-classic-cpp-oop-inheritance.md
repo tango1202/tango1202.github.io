@@ -11,14 +11,14 @@ sidebar:
 > * 부모 개체의 멤버 함수를 오버로딩 하지 마라. [오버로딩 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99)에서 제외된다.
 > * 자식 개체를 부모 개체에 대입하지 마라. 아무런 오류 없이 복사 손실 된다.
 > * 구현 코드가 없는 [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)인 경우에만 다중 상속하라.
-> * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하거나 순가상 함수를 포함하라.(`is-a` 관계에서 순가상 함수가 없는 경우, 순가상 소멸자를 사용한다.)
-> * 상속을 제한하고 싶은 경우, `public` Non-Virtual 소멸자 사용으로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
 > * 소멸자에서 가이드한 것과 같이,
 > > * 다형 소멸이 필요하면 부모 개체에 `virtual` 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
 > > * `public` Non-Virtual 소멸자인 개체는 상속하지 마라.
 > > * `is-a`관계에서는 `public` Virtual 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
 > > * `has-a`관계에서는 `protected` Non-Virtual 소멸자를 사용하라.
 > * 부모 개체의 기본 구현을 자식 개체에서 재정의해야 한다면, 유틸리티로 제공하라.
+> * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하거나 순가상 함수를 포함하라.(`is-a` 관계에서 순가상 함수가 없는 경우, 순가상 소멸자를 사용한다.)
+> * 상속을 제한하고 싶은 경우, `public` Non-Virtual 소멸자 사용으로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
 > * 상속 관계에서는 복사 생성자 대신 가상 복사 생성자를 사용하라.
 > * 부모 클래스의 대입 연산자는 오동작할 소지가 있으니 막아라.
 
@@ -339,69 +339,6 @@ EXPECT_TRUE(obj.m_Age == 30);
 EXPECT_TRUE(obj.Singer::m_Age == 30);
 EXPECT_TRUE(obj.Dancer::m_Age == 30);  
 ```
-# 상속 강제
-
-부모 개체로만 사용할 것이라면, 직접 인스턴스화 하지 못하고, 상속해서만 사용할 수 있도록 강제해야 합니다.
-
-1. 생성자를 `protected` 로 만들면 됩니다.([상속 전용 기반 클래스 - protected 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%81%EC%86%8D-%EC%A0%84%EC%9A%A9-%EA%B8%B0%EB%B0%98-%ED%81%B4%EB%9E%98%EC%8A%A4---protected-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
-
-2. 순가상 함수가 있으면 됩니다.
-   
-3. `has-a` 관계이면 `protected` Non-Virtual 소멸자로 만들면 됩니다.
-   
-4. 1, 2, 3으로 할 수 없는 경우는 `is-a` 관계에서 다형 소멸이 필요하여 `public` Virtual 소멸자를 써야 하는데, 순가상 함수가 없는 경우입니다. `protected` 생성자로 할 수 없고, 순가상 함수가 없으므로 다음처럼 인스턴스화 할 수 있습니다.
- 
-    ```cpp
-    class T {
-    public:
-        virtual ~T() {}
-    };
-
-    T t; // (△) 비권장. 순가상 함수가 없으면 개체 정의(인스턴스화) 할 수 있습니다.
-    ```
-
-    이럴 경우 [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용합니다.([추상 클래스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고)
-
-    ```cpp
-    class T {
-    public:
-        virtual ~T() = 0; // 다형 소멸 하도록 public virtual, 마땅히 할게 없어 순가상
-    };
-    T::~T() {} // 실제 구현 정의가 있어야 함
-    class U : public T {};
-
-    T t; // (X) 정상 코딩 계약. 순가상 소멸자가 있어 개체 정의(인스턴스화) 안됨
-    U u; // (O) 상속하면 개체 정의(인스턴스화) 가능
-    ```
-
-# 상속 제한
-
-부모 개체로 사용하지 않을 것이라면, [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 정의합니다. 다만, 아무런 **코딩 계약**이 되어 있지 않아, 상속할 수도 있습니다.([public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고)
-
-강제로 상속을 제한하려면, 생성자를 `private`로 만들면 되는데요, 이 경우 해당 클래스를 생성하려면 `Create()` 함수를 별도로 만들어야 합니다.([생성자 접근 차단 - private 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A0%91%EA%B7%BC-%EC%B0%A8%EB%8B%A8---private-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
-
-```cpp
-class T {
-private:
-    T() {} // 상속 및 외부에서는 접근 불가
-public:
-    static T Create() {return T();} // 내부 static 함수로 생성
-    static T* CreatePtr() {return new T;}
-};
-class U : public T {};
-// U u; // (X) 컴파일 오류. 상속해서 생성할 수 없음
-// U* p = new u; // (X) 컴파일 오류  
-
-// T t; // (X) 컴파일 오류 
-T t(T::Create()); // (O) T를 복사 생성    
-T* p = T::CreatePtr(); // (O) T의 포인터 생성
-delete p;  
-```
-
-프로그램 내에서 대부분의 개체는 상속하지 않고 사용하므로, 조금은 심한 **코딩 계약**이 될 수도 있고, 나중에 상속할 수 있는 개체로 리팩토링 했을때 기존에 사용한 `Create()`함수들을 모두 수정해야 하기 때문에 리팩토링 부담이 있어 권장하지는 않습니다. 
-
-그냥 [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)라면, 상속하지 말라는 뜻이니, 절대 상속하지 마세요. 혹시나 상속이 필요하다면, 그때 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)나, [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 리팩토링 하시기 바랍니다.
-
 
 # is-a 관계
 
@@ -647,6 +584,69 @@ public:
     virtual void Func() {}
 };
 ```
+
+# 상속 강제
+
+부모 개체로만 사용할 것이라면, 직접 인스턴스화 하지 못하고, 상속해서만 사용할 수 있도록 강제해야 합니다.
+
+1. 생성자를 `protected` 로 만들면 됩니다.([상속 전용 기반 클래스 - protected 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%81%EC%86%8D-%EC%A0%84%EC%9A%A9-%EA%B8%B0%EB%B0%98-%ED%81%B4%EB%9E%98%EC%8A%A4---protected-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
+
+2. 순가상 함수가 있으면 됩니다.
+   
+3. `has-a` 관계이면 `protected` Non-Virtual 소멸자로 만들면 됩니다.
+   
+4. 1, 2, 3으로 할 수 없는 경우는 `is-a` 관계에서 다형 소멸이 필요하여 `public` Virtual 소멸자를 써야 하는데, 순가상 함수가 없는 경우입니다. `protected` 생성자로 할 수 없고, 순가상 함수가 없으므로 다음처럼 인스턴스화 할 수 있습니다.
+ 
+    ```cpp
+    class T {
+    public:
+        virtual ~T() {}
+    };
+
+    T t; // (△) 비권장. 순가상 함수가 없으면 개체 정의(인스턴스화) 할 수 있습니다.
+    ```
+
+    이럴 경우 [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용합니다.([추상 클래스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4) 참고)
+
+    ```cpp
+    class T {
+    public:
+        virtual ~T() = 0; // 다형 소멸 하도록 public virtual, 마땅히 할게 없어 순가상
+    };
+    T::~T() {} // 실제 구현 정의가 있어야 함
+    class U : public T {};
+
+    T t; // (X) 정상 코딩 계약. 순가상 소멸자가 있어 개체 정의(인스턴스화) 안됨
+    U u; // (O) 상속하면 개체 정의(인스턴스화) 가능
+    ```
+
+# 상속 제한
+
+부모 개체로 사용하지 않을 것이라면, [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 정의합니다. 다만, 아무런 **코딩 계약**이 되어 있지 않아, 상속할 수도 있습니다.([public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고)
+
+강제로 상속을 제한하려면, 생성자를 `private`로 만들면 되는데요, 이 경우 해당 클래스를 생성하려면 `Create()` 함수를 별도로 만들어야 합니다.([생성자 접근 차단 - private 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A0%91%EA%B7%BC-%EC%B0%A8%EB%8B%A8---private-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
+
+```cpp
+class T {
+private:
+    T() {} // 상속 및 외부에서는 접근 불가
+public:
+    static T Create() {return T();} // 내부 static 함수로 생성
+    static T* CreatePtr() {return new T;}
+};
+class U : public T {};
+// U u; // (X) 컴파일 오류. 상속해서 생성할 수 없음
+// U* p = new u; // (X) 컴파일 오류  
+
+// T t; // (X) 컴파일 오류 
+T t(T::Create()); // (O) T를 복사 생성    
+T* p = T::CreatePtr(); // (O) T의 포인터 생성
+delete p;  
+```
+
+프로그램 내에서 대부분의 개체는 상속하지 않고 사용하므로, 조금은 심한 **코딩 계약**이 될 수도 있고, 나중에 상속할 수 있는 개체로 리팩토링 했을때 기존에 사용한 `Create()`함수들을 모두 수정해야 하기 때문에 리팩토링 부담이 있어 권장하지는 않습니다. 
+
+그냥 [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)라면, 상속하지 말라는 뜻이니, 절대 상속하지 마세요. 혹시나 상속이 필요하다면, 그때 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)나, [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 리팩토링 하시기 바랍니다.
 
 # Runtime Type Info(RTTI)와 형변환
 
