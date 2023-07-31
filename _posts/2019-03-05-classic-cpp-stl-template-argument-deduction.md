@@ -55,6 +55,17 @@ class Map
 
 함수 템플릿의 경우 인수는 명시적으로 제공되거나, 컨텍스트에서 추론되거나, 기본값으로 설정됩니다.
 
+```cpp
+template<typename T>
+void f(T s)
+{
+    std::cout << s << '\n';
+}
+ 
+template void f<double>(double); // instantiates f<double>(double)
+template void f<>(char);         // instantiates f<char>(char), template argument deduced
+template void f(int);            // instantiates f<int>(int), template argument deduced
+```
 # 인수가 type-id와 표현식 둘 다로 해석될 수 있는 경우, 해당 템플리트 매개변수가 type이 아닌 경우에도 항상 type-id로 해석됩니다.
 
 ```cpp
@@ -71,7 +82,7 @@ void g()
 }
 ```
 
-# 템플릿 인수
+# 템플릿 인수 명시적 인스턴스화 
 
 불완전한 형식 지정
 
@@ -89,6 +100,31 @@ int main()
     X<B> x3;  // OK: 'B' names a type
 }
 ```
+
+# 암시적 인스턴스화
+
+
+```cpp
+#include <iostream>
+ 
+template<typename T>
+void f(T s)
+{
+    std::cout << s << '\n';
+}
+ 
+int main()
+{
+    f<double>(1); // instantiates and calls f<double>(double)
+    f<>('a');     // instantiates and calls f<char>(char)
+    f(7);         // instantiates and calls f<int>(int)
+    void (*pf)(std::string) = f; // instantiates f<string>(string)
+    pf("∇");                     // calls f<string>(string)
+}
+```
+
+
+
 
 # 템플릿 템플릿 인수
 
