@@ -9,6 +9,156 @@ sidebar:
 ---
 
 
+# 템플릿 인자
+
+* 클래스(구조체), 정수 계열 타입, 포인터 타입, 
+* 기본값이 있는 클래스(구조체) 타입
+  
+
+
+**배열 및 함수 형식**
+
+개체 포인터와 함수 포인터로 대체됨
+
+# 인자 이름은 선택사항임
+
+```cpp
+// Declarations of the templates shown above:
+template<class>
+class My_vector;
+template<class = void>
+struct My_op_functor;
+template<typename...>
+class My_tuple;
+```
+
+# 템플릿 템플릿 인자
+
+```cpp
+template<typename T>
+class my_array {};
+ 
+// two type template parameters and one template template parameter:
+template<typename K, typename V, template<typename> typename C = my_array>
+class Map
+{
+    C<K> key;
+    C<V> value;
+};
+```
+
+# 템플릿 인수 추론
+
+템플릿을 인스턴스화하려면 모든 템플릿 매개 변수(형식, 비형식 또는 템플릿)를 해당 템플릿 인수로 바꿔야 합니다. 
+
+클래스 템플릿의 경우 인수는 명시적으로 제공되거나, 이니셜라이저에서 추론 되거나(C++17부터) 기본값으로 제공됩니다. 
+
+함수 템플릿의 경우 인수는 명시적으로 제공되거나, 컨텍스트에서 추론되거나, 기본값으로 설정됩니다.
+
+# 인수가 type-id와 표현식 둘 다로 해석될 수 있는 경우, 해당 템플리트 매개변수가 type이 아닌 경우에도 항상 type-id로 해석됩니다.
+
+```cpp
+template<class T>
+void f(); // #1
+ 
+template<int I>
+void f(); // #2
+ 
+void g()
+{
+    f<int()>(); // "int()" is both a type and an expression,
+                // calls #1 because it is interpreted as a type
+}
+```
+
+# 템플릿 인수
+
+불완전한 형식 지정
+
+```cpp
+template<typename T>
+class X {}; // class template
+ 
+struct A;            // incomplete type
+typedef struct {} B; // type alias to an unnamed type
+ 
+int main()
+{
+    X<A> x1;  // OK: 'A' names a type
+    X<A*> x2; // OK: 'A*' names a type
+    X<B> x3;  // OK: 'B' names a type
+}
+```
+
+# 템플릿 템플릿 인수
+
+```cpp
+template<typename T> // primary template
+class A { int x; };
+ 
+template<typename T> // partial specialization
+class A<T*> { long x; };
+ 
+// class template with a template template parameter V
+template<template<typename> class V>
+class C
+{
+    V<int> y;  // uses the primary template
+    V<int*> z; // uses the partial specialization
+};
+ 
+C<A> c; // c.y.x has type int, c.z.x has type long
+```
+
+# 기본 템플릿 인수
+
+template<typename T1, typename T2 = int> class A;
+template<typename T1 = int, typename T2> class A;
+ 
+// the above is the same as the following:
+template<typename T1 = int, typename T2 = int> class A;
+
+# > 
+
+형식이 아닌 템플릿 매개 변수에 대한 기본 템플릿 인수를 구문 분석할 때 첫 번째 중첩되지 않은 인수는 보다 큼 연산자가 아닌 템플릿 매개 변수 목록의 끝으로 사용됩니다. >
+
+```cpp
+template<int i = 3 > 4>   // syntax error
+class X { /* ... */ };
+ 
+template<int i = (3 > 4)> // OK
+class Y { /* ... */ };
+```
+
+# 멤버 엑세스 지정은 컴파일 타임에 확인됨
+
+```cpp
+class B {};
+ 
+template<typename T>
+class C
+{
+protected:
+    typedef T TT;
+};
+ 
+template<typename U, typename V = typename U::TT>
+class D: public U {};
+ 
+D<C<B>>* d; // error: C::TT is protected
+```
+
+#템플릿 동등성
+
+정수 계열 또는 열거형 형식이며 해당 값은 동일합니다
+
+또는 포인터 유형이며 동일한 포인터 값을 갖습니다.
+
+또는 포인터-멤버 형식이고 동일한 클래스 멤버를 참조하거나 둘 다 null 멤버 포인터 값입니다
+
+또는 lvalue 참조 유형이며 동일한 객체 또는 함수를 참조합니다
+
+
 # 함수 template 오버로딩
 
 ```cpp
