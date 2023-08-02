@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [고전 C++ STL] 템플릿 인자(Parameter)와 인수(Argument)"
+title: "#4. [고전 C++ STL] 템플릿 인자(Parameter)와 인수(Argument)"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -8,6 +8,53 @@ sidebar:
     nav: "docs"
 ---
 
+# 템플릿 클래스 인자
+
+템플릿 클래스의 인자는 
+
+1. 타입
+2. 템플릿/비 템플릿 타입 개체
+3. 비 템플릿 타입 개체
+
+#template 인자 - 타입
+
+```cpp
+template <typename T, typename G>
+class String {};
+
+String<char, int> s;
+```
+
+# template 인자 - 인수
+
+```cpp
+template <typename T, T val>
+class String {};
+String<char, 'a'> s;
+```
+
+# 비 template 인자
+
+```cpp
+template <typename T, int val>
+class String {};
+
+String<char, 100> s;
+
+String<char, 100> s1; String<char, 101> s2; s2 = s1; // (X) 타입이 다르다.
+```
+
+**템플릿 인자 끝 `>` 과 대소비교 `>`**  
+
+`>`는 템플릿 인자 구문의 끝이나, 인자내에 대소 비교로 작성된다면, 다음처럼 괄호를 사용해야 합니다.
+
+```cpp
+template<bool b = 3 > 4> // (X) 컴파일 오류. 
+class A {};
+
+template<bool b = (3 > 4)> // (O)
+class B {};
+```
 
 # 템플릿 인자
 

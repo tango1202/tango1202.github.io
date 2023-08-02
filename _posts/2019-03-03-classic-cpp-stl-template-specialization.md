@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ STL] 템플릿 특수화, 부분 특수화"
+title: "#3. [고전 C++ STL] 템플릿 특수화, 부분 특수화"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false

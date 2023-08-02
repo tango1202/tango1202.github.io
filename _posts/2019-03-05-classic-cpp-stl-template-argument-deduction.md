@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [고전 C++ STL] 템플릿 오버로딩 결정과 인수 추론"
+title: "#5. [고전 C++ STL] 템플릿 오버로딩 결정과 인수 추론"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false

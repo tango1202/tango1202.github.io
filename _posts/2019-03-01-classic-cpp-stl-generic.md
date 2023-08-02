@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [고전 C++ STL] 일반화 프로그래밍과 템플릿(template)"
+title: "#1. [고전 C++ STL] 일반화 프로그래밍"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -143,98 +143,4 @@ EXPECT_TRUE(charContainer.GetAt(5) == 'c');
 |[추상화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)|일반화된 주 템플릿 사용<br/>문제 해결을 위한 알고리즘 일반화(공통의 상황/처리방식에 대한 일반화)|
 |[상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)|기존 개체의 재활용을 통한 확장|
 |[다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)|일반화된 주 템플릿 사용하고, 일반적이지 않은 타입은 [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/)를 통해 다형 동작|
-
-# 템플릿 클래스
-
-템플릿 클래스는 하기와 같이 정의되고 인스턴스화 됩니다.
-
-```cpp
-
-// 템플릿 클래스 정의부 - 코드가 생성되지 않은 상태
-template<typename T> 
-class MyClass {}; 
-
-// 템플릿 인스턴스부 - 이때 코드가 생성됨
-MyClass<int> myClass;  
-```
-
-1. `typename` : `class` 키워드를 사용해도 됩니다. 클래스로 한정하지 않고 타입의 이름이란 의미로 `typename`을 더 선호합니다.
-2. `T` : 템플릿 인자(Parameter)입니다. 향후 인스턴스화시 구체 타입으로 대체 됩니다.
-3. `int` : 템플릿 인자 `T`가 대체될 인수(Argument)입니다.  
-
-**템플릿 인자 끝 `>` 과 대소비교 `>`**  
-
-`>`는 템플릿 인자 구문의 끝이나, 인자내에 대소 비교로 작성된다면, 다음처럼 괄호를 사용해야 합니다.
-
-```cpp
-template<bool b = 3 > 4> // (X) 컴파일 오류. 
-class A {};
-
-template<bool b = (3 > 4)> // (O)
-class B {};
-```
-
-# 템플릿 정의부와 인스턴스부
-
-템플릿은 개체 타입만 변경하여 클래스나 함수를 생성할 수 있는 틀이고, 인스턴스화를 거쳐 클래스나 함수 코드를 생성합니다.
-
-템플릿은 템플릿 정의부와 템플릿 인스턴스화 부분으로 나뉩니다. 
-
-1. 템플릿 정의부 : 아직 타입이 구체화 되지 않은 상태(코드가 생성되지 않은 상태) 
-2. 템플릿 인스턴스부 : 지정한 타입과 바인딩되어 구체적인 클래스를 생성(코드가 생성된 상태)
-
-다음 코드는 클래스 `B`에서 클래스 `T`를 상속받고, `T::TType`으로 멤버 변수를 정의합니다. `TType`이 `private`이기 때문에 컴파일 오류가 나와야 하나 아직 인스턴스 부가 없어 컴파일 오류가 없습니다.
-
-```cpp
-// 멤버 엑세스 지정
-template<typename T> 
-class A {
-private:
-    typedef T TType;
-};  
-
-template<typename T> 
-class B : public T { // T로 A<int> 를 전달할 예정임. A<int>::TType은 int이나 private여서 접근 불가
-    typename T::TType m_Member; // typename은 종속 타입 참고
-};
-```
-
-다음처럼 인스턴스화 하면 그제야 코드를 생성하면서 컴파일 오류가 발생합니다.
-
-```cpp
-B<A<int>> b; // (X) 컴파일 오류. 템플릿 인스턴스화시 private 멤버 접근 오류 발생 
-```
-
-# 템플릿 클래스 별칭
-
-템플릿 클래스는 다음과 같이 별칭을 사용할 수 있습니다.
-
-```cpp
-template<typename T>
-class A {};
-
-template<typename T>
-using Alias = A<T>; // A의 별칭
-
-Alias<int> alias;
-```
-
-# 템플릿 함수
-
-다음처럼 템플릿 함수도 만들 수 있습니다.
-
-```cpp
-// 템플릿 함수 정의부 - 코드가 생성되지 않은 상태
-template<typename T>
-T MyFunc(T val) {return val + val;} 
-
-// 템플릿 함수 인스턴스부 - 이때 코드가 생성됨
-int val = MyFunc<int>(10);
-```
-
-
-
-
-
-
 
