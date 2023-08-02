@@ -139,3 +139,19 @@ f(p);
 
 # 더 특수화 된 버전 선택
 
+# 템플릿 인수 추론
+
+```cpp
+template <typename T, typename U>
+T cast(U u) {return u;} 
+
+void g(int i) { 
+    double j = cast(i); // (X) T를 추론못함
+}; 
+double j = cast<double>(i); // (O) U는 인자로 부터 추론할 수 있다. 
+char j = cast<char, double>(i); // (O) 아주 명시적이다. 
+char* j = cast<char*, int>(i); // (X) T는 char*, U 는 int 로 추론할 수 있지만
+// int를 char*로 캐스팅 할 수 없다.
+```
+
+# 템플릿 오버로딩 규칙

@@ -10,30 +10,32 @@ sidebar:
 
 # 개요
 
-템플릿 함수는  template 적용이 가능하다.(가상 함수 불가)
+템플릿 함수는 다음처럼 정의하고 인스턴스화 합니다.
 
 ```cpp
 template <typename T>
-T plus(T left, T right);
+T Plus(T left, T right) {
+    return left + right;
+}
 
-int a = plus<int>(10, 10);
+EXPECT_TRUE(Plus<int>(10, 10) == 20);
+EXPECT_TRUE(Plus<char>('a', 1) == 'b');
 ```
 
-인자의 타입에 따라 추론이 가능하다.
-int a = plus(10, 10);
-
-
-추론이 불가능하면 명시적으로 써라.
+명시적인 타입을 생략하고 인수의 타입에 따라 추론이 가능합니다.
 
 ```cpp
-template <typename T, typename U>
-T cast(U u) {return u;} 
-void g(int i) { double j = cast(i); // (X) T를 추론못함
-double j = cast<double>(i); // (O) U는 인자로 부터 추론할 수 있다. 
-char j = cast<char, double>(i); // (O) 아주 명시적이다. 
-char* j = cast<char*, int>(i); // (X) T는 char*, U 는 int 로 추론할 수 있지만
-// int를 char*로 캐스팅 할 수 없다.
+EXPECT_TRUE(Plus(10, 10) == 20); // (O) 인수로부터 int가 추론됨
+EXPECT_TRUE(Plus('a', 1) == 'b'); // (X) 인수가 int, char로 각각 다르므로 추론이 어려움 
+EXPECT_TRUE(Plus('a', static_cast<char>(1)) == 'b'); // (O) 인수로부터 char 가 추론됨
 ```
+
+
+
+
+
+
+
 
 
 
@@ -41,7 +43,9 @@ char* j = cast<char*, int>(i); // (X) T는 char*, U 는 int 로 추론할 수 �
 
 컴파일 시에 구체화(인스턴스화) 된다. 구체화되지 않은 템플릿 클래스는 컴파일되지 조차 않는다. 컴파일 오류는 구체화된 지점에서 발생한다.
 
-String<char> v1; String<unsigned char> v2; String<unsigned int> v3;
+String<char> v1; 
+String<unsigned char> v2; 
+String<unsigned int> v3;
 
 # 암시적 인스턴스화
 

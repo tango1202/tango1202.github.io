@@ -11,6 +11,8 @@ sidebar:
 
 멤버 함수, 중첩 클래스로 템플릿 사용 가능
 
+(가상 함수는 지원하지 않습니다.)
+
 ```cpp
 
 #include <algorithm>
