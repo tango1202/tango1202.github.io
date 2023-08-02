@@ -58,8 +58,8 @@ sidebar:
 |--|--|:--:|:--:|:--:|
 |전위 증가|`++a`|O|`T& T::operator ++();`|`T& operator ++(T& a);`|
 |전위 감소|`--a`|O|`T& T::operator --();`|`T& operator --(T& a);`|
-|후위 증가|`a++`|O|`T T::operator ++(int);`|`T operator ++(T& a, int);`|
-|후위 감소|`a--`|O|`T T::operator --(int);`|`T operator --(T& a, int);`|
+|후위 증가|`a++`|O|`const T T::operator ++(int);`|`const T operator ++(T& a, int);`|
+|후위 감소|`a--`|O|`const T T::operator --(int);`|`const T operator --(T& a, int);`|
 
 전위형 연산의 경우 값을 먼저 증감시킨뒤 증감한 값을 리턴합니다만, 후위형 연산의 경우는 값을 증감 시키기 전의 값을 리턴합니다.
 
@@ -76,7 +76,7 @@ sidebar:
 // 후위형 - 증감시키기 전의 값을 리턴
 {
     int n = 10;
-    int val = n++;
+    int val = n++; 
     EXPECT_TRUE(val == 10); // (△) 비권장. 의도한 것인지 조금 헷갈립니다. 증가시킨 전 값. 
     EXPECT_TRUE(n == 11);
 }
@@ -504,7 +504,12 @@ inline T operator +(int left, const T& right) {
 
 **증감 연산자**
 
-증감 연산자는 오버로딩시 전위형과 후위형을 구분하기 위해, 후위형의 경우 인자로 `int`를 dummy로 넣습니다. 또한 후위형은 증감 시키기 전의 값을 리턴하기 위해 현재값을 복제합니다.(후위형은 분석을 헷갈리게 할 뿐 아니라, 복제 부하 까지 있습니다. 이러한 특성 때문에 후위형 보다는 전위형을 쓰시는게 좋습니다.)
+증감 연산자는 오버로딩시 전위형과 후위형을 구분하기 위해, 후위형의 경우 인자로 `int`를 dummy로 넣습니다. 
+
+또한 후위형은 
+
+1. 증감 시키기 전의 값을 리턴하기 위해 현재값을 복제하며,(후위형은 분석을 헷갈리게 할 뿐 아니라, 복제 부하 까지 있습니다. 이러한 특성 때문에 후위형 보다는 전위형을 쓰시는게 좋습니다.)
+2. `t++++;`처럼 사용할 수 없도록 `const T`를 리턴합니다.
 
 ```cpp
 class T {
@@ -520,7 +525,7 @@ public:
         return *this; // 자기 자신을 리턴합니다.
     }
     // 후위형. 인자 int는 전위형과 구분하기 위한 dummy입니다.
-    T operator ++(int) {
+    const T operator ++(int) { // t++++가 안되도록 const T를 리턴합니다.
         T result = *this; // 복제합니다.
         ++m_Val; // this의 값을 증가시킵니다.
         return result; // 증가시키기 전에 복제한 값을 리턴합니다.
@@ -532,7 +537,7 @@ T t1 = ++t;
 EXPECT_TRUE(t1.GetVal() == 11); // 증가시킨 후 값
 EXPECT_TRUE(t.GetVal() == 11);
 
-T t2 = t++;
+T t2 = t++; 
 EXPECT_TRUE(t2.GetVal() == 11); // (△) 비권장. 의도한 것인지 조금 헷갈립니다. 증가시킨 전 값. 
 EXPECT_TRUE(t.GetVal() == 12);
 ```

@@ -566,6 +566,27 @@ T t; // (O)
 T* p = new T; // (X) 컴파일 오류
 delete p;
 ```
+# 힙에만 생성되는 개체
+
+소멸자를 `private`나 `protected` 로 만들면, 스택에 생성된 개체가 암시적으로 소멸될때,([소멸자 호출 시점](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%8B%9C%EC%A0%90) 참고) 소멸자에 접근하지 못해 컴파일 오류가 납니다. 이걸 활용하면 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에만 생성되는 개체를 만들 수 있습니다. 단 명시적으로 소멸할 수 있도록 `Destroy()` 함수를 별도로 제공해야 합니다.
+
+```cpp
+class T {
+protected: 
+    ~T() {} // 외부에서 암시적으로 소멸할 수 없습니다.
+public:
+    void Destroy() const {delete this;} // 자기 자신을 소멸시킵니다.
+};
+{
+    T t; // (X) 컴파일 오류. 스택으로 만들고 암시적으로 소멸될 때 컴파일 오류가 발생합니다.
+} 
+{
+    T* p = new T;
+    delete p; // (X) 컴파일 오류. delete는 외부에서 호출할 수 없습니다.
+    p->Destroy(); // (O)
+}
+```
+
 # set_new_handler() 함수를 이용한 오류 처리
 
 `operator new`는 오류 발생시 
