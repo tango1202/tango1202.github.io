@@ -138,7 +138,7 @@ public:
     explicit A(T val) {}
 
     // 일반 멤버 함수
-    void f() {};
+    void f() {}
 
     // 템플릿 멤버 함수
     template<typename U> 
