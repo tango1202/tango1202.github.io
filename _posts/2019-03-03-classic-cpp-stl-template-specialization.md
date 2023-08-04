@@ -8,37 +8,269 @@ sidebar:
     nav: "docs"
 ---
 
+> * 템플릿 함수는 특수화를 하지 마라. 템플릿 부분 특수화와 우선순위가 혼동된다.
 
+# 개요
 
-# tamplate 특수화
+C++ 템플릿은 특정 타입에 대한 버전을 재정의 하여 타입에 대한 다형성을 지원합니다. 인스턴스화 하여 호출시 좀 더 특수화된 버전을 선택해서 실행합니다.
 
-특정 타입에 대한 버전 재정의(클래스, 함수 모두 가능)
+**좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다. 
+ 
+# 탬플릿 특수화
 
-```cpp
-template<typename T>
-class MyClass
-{
-};
-template<>
-class MyClass<int> // int 형에 대해 특수
-화
-{
-};
-```
+템플릿 특수화를 위해서는 다음 코드처럼 `template<>`을 이용하여 원하는 타입에 대해 재정의하면 됩니다.
 
 ```cpp
 template<typename T>
-void MyFunc(T arg) {}
+class A {
+public:
+    int f() {return 1;} // #1    
+};
+
 template<>
-void MyFunc<int>(int arg) {}
-혹은, 추론 가능한 int를 아예 빼서
+class A<int> {
+public:
+    int f() {return 2;} // #2    
+};
+
+A<char> a;
+A<int> b;
+
+EXPECT_TRUE(a.f() == 1);
+EXPECT_TRUE(b.f() == 2); // int에 특수화된 버전 호출
+``````
+
+**템플릿 함수 특수화**
+
+템플릿 함수의 경우도 `template<>`을 이용하여 정의합니다.
+
+```cpp
+template<typename T>
+int Func(T val) {return 1;} // #1
+
 template<>
-void MyFunc(int arg) {}
+int Func<int>(int val) {return 2;} // #2
+
+// 혹은 추론되는 타입을 아예 빼서 정의할 수 있습니다.
+template<>
+int Func(int val) {return 2;} // #2
+
+
+EXPECT_TRUE(Func('a') == 1);
+EXPECT_TRUE(Func(10) == 2); // int에 특수화된 버전 호출
 ```
 
-# 템플릿 특수화
+**템플릿 멤버 함수 및 템플릿 중첩 클래스 특수화**
 
-비공식적으로 "A는 B보다 더 전문화되어 있습니다"는 "A가 B보다 적은 유형을 허용합니다"를 의미합니다.
+템플릿 멤버 함수의 경우도 `template<>`을 이용하여 정의합니다. 단, 템플릿 멤버 함수를 특수화 하면, 상위 템플릿도 특수화 하여야 합니다.
+
+```cpp
+template<typename T>
+class A {
+public:
+    template<typename U>
+    class B {
+    public:
+        template<typename V>
+        int f(V val) {return 1;} // #1
+    };
+};
+
+template<> // 바깥쪽 주 템플릿도 특수화
+template<> // 안쪽 중첩 클래스 특수화
+template<> // 템플릿 멤버 함수 특수화
+int A<int>::B<int>::f<int>(int val) {return 2;} // #2
+
+// (X) 컴파일 오류. 템플릿 멤버 함수를 특수화 하면, 상위 템플릿도 특수화 해야 합니다.
+// template<typename T> 
+// template<typename U> 
+// template<> 
+// int A<T>::B<U>::f<int>(int val) {return 2;} // #2
+
+A<char>::B<int> a;
+A<int>::B<int> b;
+
+EXPECT_TRUE(a.f('a') == 1);
+EXPECT_TRUE(a.f(10) == 1); 
+EXPECT_TRUE(b.f('a') == 1); 
+EXPECT_TRUE(b.f(10) == 2); // int에 특수화된 버전 호출
+```
+
+# 탬플릿 부분 특수화
+
+템플릿 부분 특수화는 기존 타입에서 일부분을 특수화한 경우입니다.
+
+다음은 주 템플릿에서 포인터형만을 특수화한 예제입니다. 
+
+```cpp
+template<typename T>
+class A { // 주 템플릿
+public:
+    int f() {return 1;} // #1. 
+};
+
+template<typename T>
+class A<T*> { // 템플릿 부분 특수화 
+public:
+    int f() {return 2;} // #2. 
+};
+
+A<int> a;
+A<int*> b;
+
+EXPECT_TRUE(a.f() == 1);
+EXPECT_TRUE(b.f() == 2); // 템플릿 부분 특수화 버전
+``` 
+
+# 템플릿 부분 특수화에서 선언과 정의 분리
+
+템플릿 부분 특수화가 되어 잇는 경우, 해당 멤버 함수의 정의부를 분리하면, 부분 특수화 정의 뿐 아니라 전체 특수화 정의도 할 수 있습니다. 
+
+```cpp
+// 주 탬플릿
+template<typename T, typename U> 
+class A {
+public:
+    int f(); 
+};
+ 
+// 부분 특수화
+template<typename T>
+class A<T, int> {
+public:
+    int f();
+};
+
+// 주 템플릿 정의
+template<typename T, typename U>
+int A<T, U>::f() {return 1;}  
+
+// 부분 특수화 정의
+template<typename T>
+int A<T, int>::f() {return 2;}
+ 
+// 전체 특수화 정의도 가능
+template<>
+int A<char, int>::f() {return 3;}
+
+A<int, char> a; // 주 템플릿
+A<int, int> b;// U == int 인 부분 특수화
+A<char, int> c; // 전체 특수화
+
+EXPECT_TRUE(a.f() == 1);
+EXPECT_TRUE(b.f() == 2);
+EXPECT_TRUE(c.f() == 3);
+```
+
+# 탬플릿 특수화 우선 순위
+
+템플릿 특수화와 템플릿 부분 특수화를 혼용할 경우 **좀 더 특수화된 버전** 을 사용합니다.
+
+```cpp
+template<typename T>
+class A { // 주 템플릿
+public:
+    int f() {return 1;} // #1. 
+};
+
+template<typename T>
+class A<T*> { // 템플릿 부분 특수화 
+public:
+    int f() {return 2;} // #2. 
+};
+
+template<>
+class A<int*> { // 템플릿 특수화 
+public:
+    int f() {return 3;} // #3. 
+};  
+        
+A<int> a;
+A<int*> b;
+A<char*> c;
+
+EXPECT_TRUE(a.f() == 1);
+EXPECT_TRUE(b.f() == 3); // 템플릿 특수화 버전
+EXPECT_TRUE(c.f() == 2); // 템플릿 부분 특수화 버전
+```
+
+# 탬플릿 함수에서 특수화와 부분 특수화 우선 순위 오류
+
+템플릿 클래스의 경우는 잘 동작하지만, 템플릿 함수에서는 템플릿 특수화와 템플릿 부분 특수화간에 어느것이 더 특수화 되었는지 명확히 모를 때가 있습니다.
+
+다음 코드는 기대하는 대로, #3이 호출됩니다.
+
+```cpp
+template<typename T> 
+int f(T) {return 1;} // #1
+
+template<typename T> 
+int f(T*) {return 2;} // #2. 템플릿 부분 특수화
+
+template<> 
+int f(int*) {return 3;} //#3. 템플릿 특수화 
+
+int a;
+EXPECT_TRUE(f(a) == 1);
+
+// (△) 비권장. T* 보다는 int*가 더 특수화 되었으니, 
+// 템플릿 특수화 버전이 실행됩니다.
+// 하지만 호출되는 이유는 다른데에 있습니다.
+EXPECT_TRUE(f(&a) == 3); 
+```
+
+하지만 #2와 #3의 순서를 변경하면 가장 마지막에 정의된 #2가 호출되고, 명시적으로 호출하면 #3이 호출됩니다.
+
+```cpp
+template<typename T> 
+int f(T) {return 1;} // #1
+
+template<> 
+int f(int*) {return 3;} //#3. 템플릿 특수화 
+
+template<typename T> 
+int f(T*) {return 2;} // #2. 템플릿 부분 특수화
+
+int a;
+EXPECT_TRUE(f(a) == 1);
+
+// (△) 비권장. 정의 순서를 바꿨더니 #2가 호출됩니다.
+EXPECT_TRUE(f(&a) == 2); 
+EXPECT_TRUE(f<>(&a) == 2);
+
+// (△) 비권장. 명시적으로 호출하면 #3이 호출됩니다.
+EXPECT_TRUE(f<int*>(&a) == 3);
+```
+
+GCC의 버그일까요? 정의 순서에 따라 결과가 다르다니요. 템플릿 함수 특수화는 사용하지 않고 다음처럼 일반 함수로 사용하여 오버로딩 하면, 언뜻 정상이 되는 듯 합니다.
+
+하지만, 이경우도 어이없는 결과가 나옵니다. `f<int*>(&a)`와 같이 명시적으로 템플릿 부분 특수화 버전을 호출하려고 하면, 아예 주 템플릿인 `f(T)`가 호출되어 버립니다. 향후 유지보수시 누군가가 템플릿 부분 특수화를 사용할 수 있으므로, 템플릿 함수는 부분 특수화만 허용하고, 템플릿 특수화를 아예 하지 않도록 규정하는게 좋지 않을까 싶습니다.
+
+```cpp
+template<typename T> 
+int f(T) {return 1;} // #1
+
+int f(int*) {return 3;} //#3. 일반 함수입니다.
+
+template<typename T> 
+int f(T*) {return 2;} // #2. 템플릿 부분 특수화
+
+int a;
+char ch;
+EXPECT_TRUE(f(a) == 1);
+
+// (O) 일반 함수를 호출합니다.
+EXPECT_TRUE(f(&a) == 3); 
+
+// (O) 템플릿 부분 특수화 버전을 호출합니다.
+EXPECT_TRUE(f(&ch) == 2); 
+
+// (△) 비권장. 억지로 템플릿 부분 특수화 버전을 호출을 시도 하면 주 템플릿 버전이 실행됩니다.
+EXPECT_TRUE(f<int*>(&a) == 1);
+```
+
+# 템플릿에서 연산자 오버로딩 멤버 버전 전역 버전의 우선 순위 오류
+
 
 공식적으로, 두 함수 템플릿 중 어느 것이 더 특수화되었는지 결정하기 위해 부분 순서 지정 프로세스는 먼저 다음과 같이 두 템플릿 중 하나를 변환합니다.
 
@@ -82,224 +314,3 @@ int main()
 }
 
 ```
-
-```cpp
-template<class T>
-void f(T);        // template #1
-template<class T>
-void f(T*);       // template #2
-template<class T>
-void f(const T*); // template #3
-``` 
-
-# 템플릿 멤버 함수 특수화
-
-```cpp
-struct A
-{
-    template<class T> struct B;        // primary member template
-    template<class T> struct B<T*> {}; // OK: partial specialization
-//  template<> struct B<int*> {};      // OK via CWG 727: full specialization
-};
-template<> struct A::B<int*> {};       // OK
-template<class T> struct A::B<T&> {};  // OK
-```
-
-# 중첩 클래스 특수화
-
-```cpp
-template<class T1>
-struct A
-{
-    template<class T2>
-    struct B
-    {
-        template<class T3>
-        void mf();
-    };
-};
- 
-template<>
-struct A<int>;
- 
-template<>
-template<>
-struct A<char>::B<double>;
- 
-template<>
-template<>
-template<>
-void A<char>::B<char>::mf<double>();
-```
-
-
-# 템플릿 특수화에서 선언과 정의 분리
-
-```cpp
-template<typename T>
-struct A
-{
-    struct B {};      // member class 
- 
-    template<class U> // member class template
-    struct C {};
-};
- 
-template<> // specialization
-struct A<int> 
-{
-    void f(int); // member function of a specialization
-};
-// template<> not used for a member of a specialization
-void A<int>::f(int) { /* ... */ }
- 
-template<> // specialization of a member class
-struct A<char>::B
-{
-    void f();
-};
-// template<> not used for a member of a specialized member class either
-void A<char>::B::f() { /* ... */ }
- 
-template<> // specialization of a member class template
-template<class U>
-struct A<char>::C
-{
-    void f();
-};
- 
-// template<> is used when defining a member of an explicitly
-// specialized member class template specialized as a class template
-template<>
-template<class U>
-void A<char>::C<U>::f() { /* ... */ }
-```
-
-# 부분 탬플릿 특수화
-
-```cpp
-template<typename T>
-class MyClass
-{
-};
-template<typename T>
-class MyClass<T*> // 모든 포인터에 대해 특수화
-{
-};
-```
-
-```cpp
-template<class T1, class T2, int I>
-class A {};             // primary template
- 
-template<class T, int I>
-class A<T, T*, I> {};   // #1: partial specialization where T2 is a pointer to T1
- 
-template<class T, class T2, int I>
-class A<T*, T2, I> {};  // #2: partial specialization where T1 is a pointer
- 
-template<class T>
-class A<int, T*, 5> {}; // #3: partial specialization where
-                        //     T1 is int, I is 5, and T2 is a pointer
- 
-template<class X, class T, int I>
-class A<X, T*, I> {};   // #4: partial specialization where T2 is a pointer
-```
-
-순서 : 더 특수화된 템플릿에 우선 순위가 있다. 
-1. template<> class MyClass<int>
-2. template<typename T> class MyClass<T*>
-3. template<typename T> class MyClass
-
-
-# 부분 템플릿 특수화의 이름 조회
-
-부분 템플릿 특수화는 이름 조회를 통해 찾을 수 없습니다. 이름 조회를 통해 기본 템플릿을 찾은 경우에만 부분 특수화가 고려됩니다. 특히 기본 템플릿을 표시하는 using 선언은 부분 특수화도 표시합니다.
-
-```cpp
-namespace N
-{
-    template<class T1, class T2> class Z {}; // primary template
-}
-using N::Z; // refers to the primary template
- 
-namespace N
-{
-    template<class T> class Z<T, T*> {};     // partial specialization
-}
-Z<int, int*> z; // name lookup finds N::Z (the primary template), the
-                // partial specialization with T = int is then used
-
-```
-
-# 부분 특수화 호출 순서
-
-```cpp
-template<class T1, class T2, int I>
-class A {};             // primary template
- 
-template<class T, int I>
-class A<T, T*, I> {};   // #1: partial specialization where T2 is a pointer to T1
- 
-template<class T, class T2, int I>
-class A<T*, T2, I> {};  // #2: partial specialization where T1 is a pointer
- 
-template<class T>
-class A<int, T*, 5> {}; // #3: partial specialization where
-                        //     T1 is int, I is 5, and T2 is a pointer
- 
-template<class X, class T, int I>
-class A<X, T*, I> {};   // #4: partial specialization where T2 is a pointer
-
-A<int, int, 1> a1;   // no specializations match, uses primary template
-A<int, int*, 1> a2;  // uses partial specialization #1 (T=int, I=1)
-A<int, char*, 5> a3; // uses partial specialization #3, (T=char)
-A<int, char*, 1> a4; // uses partial specialization #4, (X=int, T=char, I=1)
-A<int*, int*, 2> a5; // error: matches #2 (T=int, T2=int*, I=2)
-                     //        matches #4 (X=int*, T=int, I=2)
-                     // neither one is more specialized than the other
-```
-
-# 부분 템플릿 특수화에서 선언과 정의 분리
-
-```cpp
-template<class T, int I> // primary template
-struct A
-{
-    void f(); // member declaration
-};
- 
-template<class T, int I>
-void A<T, I>::f() {}      // primary template member definition
- 
-// partial specialization
-template<class T>
-struct A<T, 2>
-{
-    void f();
-    void g();
-    void h();
-};
- 
-// member of partial specialization
-template<class T>
-void A<T, 2>::g() {}
- 
-// explicit (full) specialization
-// of a member of partial specialization
-template<>
-void A<char, 2>::h() {}
- 
-int main()
-{
-    A<char, 0> a0;
-    A<char, 2> a2;
-    a0.f(); // OK, uses primary template’s member definition
-    a2.g(); // OK, uses partial specialization's member definition
-    a2.h(); // OK, uses fully-specialized definition of
-            // the member of a partial specialization
-    a2.f(); // error: no definition of f() in the partial
-            // specialization A<T,2> (the primary template is not used)
-}
-```
-
