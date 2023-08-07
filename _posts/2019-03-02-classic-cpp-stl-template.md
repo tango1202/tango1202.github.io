@@ -179,7 +179,7 @@ public:
 template<typename T> // 템플릿 클래스
 void A<T>::f() {} 
 
-// 템플릿 멤버 함수 정의 - 인자 집합 2개 필요
+// 템플릿 클래스의 템플릿 멤버 함수 정의 - 인자 집합 2개 필요
 template<typename T> // 바깥쪽 인자
 template<typename U> // 안쪽 인자
 U A<T>::g(U val) {return val + val;} 
