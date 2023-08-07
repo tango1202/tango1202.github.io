@@ -8,15 +8,56 @@ sidebar:
     nav: "docs"
 ---
 
-# 템플릿 클래스 인자
+# 템플릿 인자
 
-템플릿 클래스의 인자는 
+템플릿 클래스 정의시 `<>` 사이에 인자(Parameter) 집합을 정의하고,인스턴스화시 전달된 인수(Argument)를 바탕으로 확정되어 클래스가 생성됩니다.
+
+```cpp
+template<typename T, typename U> // T, U : 인자(Parameter) 집합
+class A {};
+
+A<int, char> a; // int, char : 인자에 대응되는 인수(Argument) 집합
+```
 
 1. 타입
-2. 템플릿/비 템플릿 타입 개체
+2. 템플릿 타입 개체
 3. 비 템플릿 타입 개체
 
-#template 인자 - 타입
+
+# 템플릿 인자
+
+템플릿 정의시에 작성한 인자(Parameter) 집합은 템플릿 인스턴스화 시 전달된 인수(Argument) 집합으로 대체되어 생성됩니다.
+
+```cpp
+// 템플릿 정의. T, U는 인자 집합입니다.
+template<typename T, typename U>
+class A {};
+
+// 템플릿 인스턴스화. int, char는 인수 집합입니다.
+A<int, char> a;
+```
+
+템플릿 인자는 다음으로 구성됩니다.
+
+1. 타입
+    ```cpp
+    template<typename T>
+    ```
+
+   
+3. 템플릿 개체
+4. 비 템플릿 개체
+
+
+
+
+템플릿을 인스턴스화하려면 모든 템플릿 인자(형식, 비형식 또는 템플릿)를 해당 템플릿 인수로 바꿔야 합니다. 
+
+클래스 템플릿의 경우 인수는 명시적으로 제공되거나, 이니셜라이저에서 추론 되거나(C++17부터) 기본값으로 제공됩니다. 
+
+
+
+# template 인자 - 타입
 
 ```cpp
 template <typename T, typename G>
@@ -25,7 +66,7 @@ class String {};
 String<char, int> s;
 ```
 
-# template 인자 - 인수
+# template 인자 - 템플릿 타입 개체
 
 ```cpp
 template <typename T, T val>
@@ -33,7 +74,7 @@ class String {};
 String<char, 'a'> s;
 ```
 
-# 비 template 인자
+# template 인자- 비 템플릿 타입 개체
 
 ```cpp
 template <typename T, int val>
@@ -43,6 +84,27 @@ String<char, 100> s;
 
 String<char, 100> s1; String<char, 101> s2; s2 = s1; // (X) 타입이 다르다.
 ```
+
+# 템플릿 템플릿 인자
+
+```cpp
+template<typename T> // primary template
+class A { int x; };
+ 
+template<typename T> // partial specialization
+class A<T*> { long x; };
+ 
+// class template with a template template parameter V
+template<template<typename> class V>
+class C
+{
+    V<int> y;  // uses the primary template
+    V<int*> z; // uses the partial specialization
+};
+ 
+C<A> c; // c.y.x has type int, c.z.x has type long
+```
+
 
 # 불완전한 형식의 인스턴스화 
 
@@ -72,41 +134,18 @@ template<bool b = (3 > 4)> // (O)
 class B {};
 ```
 
-# 템플릿 인자
-
-* 클래스(구조체), 정수 계열 타입, 포인터 타입, 
-* 기본값이 있는 클래스(구조체) 타입
 
 # 기본 템플릿 인수
 
+```cpp
 template<typename T1, typename T2 = int> class A;
 template<typename T1 = int, typename T2> class A;
  
 // the above is the same as the following:
 template<typename T1 = int, typename T2 = int> class A;
-
-  
-# 템플릿 템플릿 인수
-
-```cpp
-template<typename T> // primary template
-class A { int x; };
- 
-template<typename T> // partial specialization
-class A<T*> { long x; };
- 
-// class template with a template template parameter V
-template<template<typename> class V>
-class C
-{
-    V<int> y;  // uses the primary template
-    V<int*> z; // uses the partial specialization
-};
- 
-C<A> c; // c.y.x has type int, c.z.x has type long
 ```
 
-# 템플릿 템플릿 인자
+**템플릿 템플릿 인자**
 
 ```cpp
 template<typename T>
@@ -119,11 +158,7 @@ class Map
     C<K> key;
     C<V> value;
 };
-```
-
-# 배열 및 함수 형식
-
-개체 포인터와 함수 포인터로 대체됨
+``` 
 
 # 인자 이름은 선택사항임
 
@@ -254,3 +289,63 @@ void bar()
 
 
 
+# 템플릿 동등성
+
+정수 계열 또는 열거형 형식이며 해당 값은 동일합니다
+
+또는 포인터 유형이며 동일한 포인터 값을 갖습니다.
+
+또는 포인터-멤버 형식이고 동일한 클래스 멤버를 참조하거나 둘 다 null 멤버 포인터 값입니다
+
+또는 lvalue 참조 유형이며 동일한 객체 또는 함수를 참조합니다
+
+
+템플릿 인수 동등성
+템플릿 인수 동등성은 두 템플릿 ID가 동일한지 여부를 판별하는 데 사용됩니다.
+
+두 값은 동일한 유형이고
+
+정수 계열 또는 열거형 형식이며 해당 값은 동일합니다
+또는 포인터 유형이며 동일한 포인터 값을 갖습니다.
+또는 포인터-멤버 형식이고 동일한 클래스 멤버를 참조하거나 둘 다 null 멤버 포인터 값입니다
+또는 lvalue 참조 유형이며 동일한 객체 또는 함수를 참조합니다
+
+```cpp
+// equivalent
+template<int I>
+void f(A<I>, A<I+10>); // overload #1
+template<int I>
+void f(A<I>, A<I+10>); // redeclaration of overload #1
+ 
+// not equivalent
+template<int I>
+void f(A<I>, A<I+10>); // overload #1
+template<int I>
+void f(A<I>, A<I+11>); // overload #2
+ 
+// functionally-equivalent but not equivalent
+// This program is ill-formed, no diagnostic required
+template<int I>
+void f(A<I>, A<I+10>);      // overload #1
+template<int I>
+void f(A<I>, A<I+1+2+3+4>); // functionally equivalent
+
+```
+
+
+
+# 인수가 type-id와 표현식 둘 다로 해석될 수 있는 경우, 해당 템플리트 매개변수가 type이 아닌 경우에도 항상 type-id로 해석됩니다.
+
+```cpp
+template<class T>
+void f(); // #1
+ 
+template<int I>
+void f(); // #2
+ 
+void g()
+{
+    f<int()>(); // "int()" is both a type and an expression,
+                // calls #1 because it is interpreted as a type
+}
+```

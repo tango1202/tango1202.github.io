@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ STL] 템플릿 오버로딩 결정과 인수 추론"
+title: "#5. [고전 C++ STL] 템플릿 함수 인수 추론과 오버로딩 결정 규칙"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -8,150 +8,435 @@ sidebar:
     nav: "docs"
 ---
 
+> * 연산자 오버로딩 함수는 비멤버 템플릿 함수로 작성하라.
+
 # 개요
 
-템플릿을 인스턴스화하려면 모든 템플릿 매개 변수(형식, 비형식 또는 템플릿)를 해당 템플릿 인수로 바꿔야 합니다. 
+템플릿 함수의 인스턴스화는 다음 2가지 과정을 거칩니다.
 
-클래스 템플릿의 경우 인수는 명시적으로 제공되거나, 이니셜라이저에서 추론 되거나(C++17부터) 기본값으로 제공됩니다. 
+1. 템플릿 함수 인수 추론 : 전달된 타입을 어떤 타입으로 사용할지 추론
+2. 템플릿 함수 오버로딩 결정 : 인수 추론 후 일반 함수와 여러개의 템플릿 함수중 적합한 것을 결정
 
+# 템플릿 함수 인수 추론
 
-더 특수화된 버전을 사용함. 적은 타입을 허용함
-
-
-# 템플릿 동등성
-
-정수 계열 또는 열거형 형식이며 해당 값은 동일합니다
-
-또는 포인터 유형이며 동일한 포인터 값을 갖습니다.
-
-또는 포인터-멤버 형식이고 동일한 클래스 멤버를 참조하거나 둘 다 null 멤버 포인터 값입니다
-
-또는 lvalue 참조 유형이며 동일한 객체 또는 함수를 참조합니다
-
-# 최상위 const는 제거됨
+인수가 생략된 경우 누락된 인수를 추론합니다.
 
 ```cpp
-template<class T>
-void f(T t);
- 
-template<class X>
-void g(const X x);
- 
-template<class Z>
-void h(Z z, Z* zp);
- 
-// two different functions with the same type, but 
-// within the function, t has different cv qualifications
-f<int>(1);       // function type is void(int), t is int
-f<const int>(1); // function type is void(int), t is const int
- 
-// two different functions with the same type and the same x
-// (pointers to these two functions are not equal,
-//  and function-local statics would have different addresses)
-g<int>(1);       // function type is void(int), x is const int
-g<const int>(1); // function type is void(int), x is const int
- 
-// only top-level cv-qualifiers are dropped:
-h<const int>(1, NULL); // function type is void(int, const int*) 
-                       // z is const int, zp is const int*
+template<typename T, typename U>
+T f(T, U) {return 2;}
+
+f<int>(0, (double)0); // int f(int, double)
+f<double>(0, (int)0); // double f(double, int)
+f(0, 0); // int f(int, int)
 ```
 
-
-
-# 인수가 type-id와 표현식 둘 다로 해석될 수 있는 경우, 해당 템플리트 매개변수가 type이 아닌 경우에도 항상 type-id로 해석됩니다.
+배열 인수는 포인터로 추론합니다.
 
 ```cpp
-template<class T>
-void f(); // #1
- 
-template<int I>
-void f(); // #2
- 
-void g()
-{
-    f<int()>(); // "int()" is both a type and an expression,
-                // calls #1 because it is interpreted as a type
-}
+template<typename T>
+void f(T) {}
+
+int arr[3];
+// Argument : int[3] -> int*로 조정 
+// T : int* 
+// Parameter : int*
+f(arr);
 ```
 
-
-
-
-# 함수 template 오버로딩
+함수는 함수 포인터로 추론합니다.
 
 ```cpp
-template <typename T>
-T sqrt(T);
+template<typename T>
+void f(T) {}
 
-template <tylename T>
-complex<T> sqrt(complex<T>);
+void Func(int) {}
 
-double sqrt(double); 
-
-void g(complex<double> z) { 
-    sqrt(2); // sqrt<int>(2); 
-    sqrt(2.0); // sqrt(double); 
-    sqrt(z); // sqrt<double>(complex<T>); (?????)
-}
+// Argument : void (*)(int) 
+// T : void (*)(int) 
+// Parameter : void (*)(int)
+f(Func);
 ```
 
-**오버로딩 스탭**
-1. 먼저 다음의 2개의 특수화된 템플릿 함수 후보 생성
-    ```cpp   
-    sqrt<complex<double>>(complex<double>) 
-    sqrt<double>(complex<double>) 
+최상위 `const`는 무시됩니다.([오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고)
+
+```cpp
+using namespace Deduction_4;
+
+const int a = 0;
+// Argument : const int -> int로 조정 
+// T : int 
+// Parameter : int
+f(a);
+```
+
+참조자의 참조자는 참조자가 될 수 있도록 변환합니다.
+
+```cpp
+template<typename T>
+void f(const T&) {}
+
+int a = 0;
+int& b = a;
+
+// Argument : int 
+// T : int 
+// Parameter : const int&
+f(a);
+
+// Argument : int& 
+// T : int 
+// Parameter : const int&
+f(b);
+```
+
+포인터의 포인터가 중첩되어 만들어지지 않도록 변환합니다.
+
+```cpp
+template<typename T>
+void f(const T*) {}
+
+int a = 0;
+int* b = &a;
+
+// Argument : int* 
+// T : int 
+// Parameter : const int*
+f(&a);
+f(b);
+```
+
+자식 개체는 부모 개체로 조정될 수 있습니다.
+
+```cpp
+template<typename T>
+class Base {};
+
+template<typename T>
+class Derived : public Base<T> {};
+
+template<typename T>
+void f(Base<T>*) {}
+
+Derived<int> d;
+// Argument : Derived<int>* -> Base<int>* 로 조정 
+// T : int 
+// Parameter : Base<int>*
+f(&d);
+```
+
+다른 인수의 추론으로 부터 추론될 수 있습니다.
+
+```cpp
+template<typename T>
+class Other {};
+
+template<typename T>
+class Another {
+public:
+    typedef T Type;
+};
+
+template<typename T>
+void f(Other<T>, typename Another<T>::Type) {} // typename : 템플릿 정의 내에서 종속된 타입임
+
+Other<int> other;
+// Argument1 : Other<int> 
+// T : int 
+// Parameter1 : Other<int>
+// Argument2 : int -> Argument1에서 T가 int로 추론되어 Another<int>::Type 확인 
+// Parameter2 : int
+f(other, 10);
+```
+
+템플릿 템플릿 인자에서 템플릿 인자 타입이 일치하지 않으면 추론할 수 없습니다. 하기에서 `A<10>`에서 `10`은 `int` 타입이기 때문에 `short`를 사용하는 `f()` 함수로 전달할 수 없습니다. 다만, `f<10>(a)`와 같이 호출하여, `short` 타입 `10`을 전달하여 사용할 수 있습니다.  
+
+```cpp
+template<int i> 
+class A {};
+
+template<short s>
+void f(A<s> a) {}
+
+A<10> a;
+// Argument :A<10>에서 10은 int 타입임
+// Parameter : A<short>이어서 A<10>을 전달받을 수 없음.
+f(a); // (X) 컴파일 오류. A<int>와 A<short>는 서로 다른 타입이기에 암시적 변환할 수 없음
+
+// Argument :A<10> 
+// Parameter : A<10>
+f<10>(a); // s 로 10을 전달하여 Parameter에서 A<10> 이 됨. 같은 타입이어서 함수 호출됨   
+```
+
+# 템플릿 함수 오버로딩 결정 규칙
+
+서로 인자가 다른 함수들은 오버로딩 후보군에서 가장 적합한 것으로 결정됩니다.([오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고)
+
+
+하지만 템플릿 함수의 경우는 정의시에는 인자가 다르지만, 인스턴스화 과정에서 인자가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 오버로딩 버전을 선택하게 됩니다.
+
+
+예를 들면,
+
+```cpp
+template<typename T> 
+int f(T) {return 1;} // #1.
+
+template<typename T> 
+int f(T*) {return 2;} // #2. 템플릿 함수 오버로딩. 
+
+int a;
+// #1 T == int* 이면 int f(int*)
+// #2 T == int 이면 int f(int*)
+EXPECT_TRUE(f(&a) == 2); 
+```
+
+상기 코드는 다음 단계에 따라 특수화된 버전을 선택합니다.
+
+1. 템플릿 함수 후보 생성  
+   
+    ```cpp
+    int f(int*) // #1. 로부터 T == int* 인 경우
+    int f(int*) // #2. 로 부터 T == int 인 경우
     ```
-2. 더 특수화된 버전 선택
-    T sqrt(T) 보다 sqrt<complex<T>> sqrt(complex<T>) 가 더 특수화 되었다. 
-3. 보통 함수 sqrt와 함수 오버로딩 규칙 적용. 단, 특수화된 템플릿 함수는 승격/표준변환/사용
-사용자 정의 변환을 적용하지 않음
-4. 보통함수와 템플릿 특수화 버전만 남으면 보통함수 선택
+
+2. 더 특수화된 버전 선택 - **Partial Ordering**
+    ```cpp
+    template<typename T> 
+    int f(T) {return 1;} // #1.
+
+    template<typename T> 
+    int f(T*) {return 2;} // #2.
+    ```
+    
+    에서 포인터를 처리하는 #2 선택
+
+3. 템플릿이 아닌 일반 함수와 오버로딩 규칙 적용. 이때 일반 함수가 우선 순위가 높음
+
+# 오버로딩 성공 사례
+
+**템플릿 함수보다는 일반 함수**
+
+템플릿 함수 보다는 일반 함수를 선호합니다.
 
 ```cpp
-template <typename T> 
-T max(T, T);
- max(1, 2); // max<int>(1, 2) 
- max('a', 'b'); // max<char>('a', 'b')
-  max(2.7, 4.9); // max<double>(2.7, 4.9) 
-  
-  const int s = 0;
-   max(s, 10); // (X) max<int>((int)s, 10) 
-   max('a', 10); // (X) 모호성 에러
+int f(int) {return 1;} // #1.
+
+template<typename T>
+T f(T) {return 2;}  // #2.
+
+// #1 : f(int)
+// #2 : T == int 이면 f(int)
+// 일반 버전을 선택함
+EXPECT_TRUE(f(1) == 1); 
 ```
+**`T` 보다는 `T*` 보다는 `const T*`**
 
-**해법**
-
-명시적으로 쓰거나
-max<int>('a', 10); 오버로딩
-inline int max(int i, int j) { return max<int>(i, j); }
-
-# partial ordering of overloaded function templates를 통해 가장 일치하는 항목 선택
+`T` 보다는 `T*` 가 특수화된 버전이므로, 선택됩니다.
 
 ```cpp
-template<class X>
-void f(X a);
-template<class X>
-void f(X* a);
- 
+template<typename T>
+int f(T a) {return 1;} // #1.
+
+template<typename T>
+int f(T* a) {return 2;} // #2.
+
+
 int* p;
-f(p);
+// #1 : T == int* 이면 f(int*) 
+// #2 : T == int 이면 f(int*)
+// 특수화된 버전으로 선택함.
+EXPECT_TRUE(f(p) == 2);
 ```
 
-# 더 특수화 된 버전 선택
-
-# 템플릿 인수 추론
+`T*` 보다는 `const T*` 가 특수화된 버전이므로, 선택됩니다.
 
 ```cpp
-template <typename T, typename U>
-T cast(U u) {return u;} 
+template<typename T>
+int f(T a) {return 1;} // #1.
 
-void g(int i) { 
-    double j = cast(i); // (X) T를 추론못함
-}; 
-double j = cast<double>(i); // (O) U는 인자로 부터 추론할 수 있다. 
-char j = cast<char, double>(i); // (O) 아주 명시적이다. 
-char* j = cast<char*, int>(i); // (X) T는 char*, U 는 int 로 추론할 수 있지만
-// int를 char*로 캐스팅 할 수 없다.
+template<typename T>
+int f(T* a) {return 2;} // #2.
+
+template<typename T>
+int f(const T* a) {return 3;} // #3.
+
+const int* p;
+// #1 : T == const int* 이면 f(const int*) 
+// #2 : T == const int 이면 f(const int*) 
+// #3 : T == int 이면 f(const int*) 
+// 더 특수화된 버전으로 선택함.    
+EXPECT_TRUE(f(p) == 3);
 ```
 
-# 템플릿 오버로딩 규칙
+특수화된 버전 선택시 기본 인자는 무시하고 오버로딩 버전을 결정합니다.
+
+```cpp
+template<typename T>
+int f(T) {return 1;} // #1.
+
+template<typename T>
+int f(T*, int = 1) {return 2;} // #2.
+
+int* p;
+// #1 : T == int* 이면 f(int*) 인자 1개 - 인자가 1개라고 무조건 선택되지 않음. 인자 2개인 #2에서 기본값 인자를 뺀 버전과 경합
+// #2 : T == int 이면 f(int*, int = 1) 인자 2개
+// 더 특수화된 버전으로 선택함.
+EXPECT_TRUE(f(p) == 2);
+```
+
+**특수화된 인자**
+
+템플릿 템플릿 인자라면, 더 특수화된 버전을 선택합니다.
+
+```cpp
+template<typename T>
+class A {};
+
+template<typename T>
+int f(T&) {return 1;} // #1.
+
+template<typename T>
+int f(A<T>&) {return 2;} // #2.   
+
+A<int> a;
+// #1 : T == A<int> 이면 f(A<int>&) 
+// #2 : T == int 이면 f(A<int>&)
+// 더 특수화된 버전으로 선택함.
+EXPECT_TRUE(f(a) == 2);
+```
+다음 경우에는 `A<T, U>` 보다는 `A<T, T>` 가 더 특수화 되어, 선택됩니다.
+
+```cpp
+template<typename T, typename U>
+class A {};
+
+template<typename T, typename U>
+int f(T, A<T, U>* p = 0) {return 1;} // #1.
+
+template<typename T>
+int f(T, A<T, T>* p = 0) {return 2;} // #2. 
+
+// #1 : T == int, U == char 이면 f(int, A<int, char>*) 
+// #2 : T == int 이면 f(int, A<int, int>*)
+// 인자가 더 잘 맞는 버전으로 선택함.
+EXPECT_TRUE(f(0, (A<int, char>*)0) == 1); 
+
+// #1 : T == int, U == int 이면 f(int, A<int, int>*) 
+// #2 : T == int 이면 f(int, A<int, int>*) 
+// 더 특수화된 버전으로 선택함.
+EXPECT_TRUE(f(0, (A<int, int>*)0) == 2); 
+EXPECT_TRUE(f(0) == 2);      
+```     
+
+**연산자 오버로딩 템플릿 함수**
+
+일반적으로 연산자 오버로딩 시에는 멤버 버전과 비멤버 버전중 멤버 버전이 선택됩니다.
+
+```cpp
+template<typename T>
+class A {
+public:
+int operator +(int) const {return 1;} // #1.
+};
+
+template<typename T>
+int operator +(const T&, int) {return 2;} // #2.    
+
+using namespace Overloading_5;
+A<int> a;
+// #1 : T == A<int> 이면 A<int>&.operator +(int)
+// #2 : T == A<int> 이면 operator +(A<int>&, int) 
+// 멤버 함수 버전 호출
+EXPECT_TRUE( a + 10 == 1);
+```
+
+하지만 멤버 버전이 템플릿 멤버 함수라면, 비멤버 버전으로 임시 생성하고 오버로딩을 평가하기 때문에, 모호성 문제가 발생하며, 비멤버 버전을 호출합니다. 따라서 연산자 오버로딩을 템플릿으로 구현해야 한다면 비멤버 버전으로 작성하는게 좋습니다.
+
+```cpp
+template<typename T>
+class A {
+public:
+    template<typename U>
+    int operator +(U) const {return 1;} // #1.
+};
+
+template<typename T, typename U>
+int operator +(const T&, U) {return 2;} // #2.   
+
+A<int> a;
+
+// #1 : T == A<int>, U == int 이면 A<int>&.operator +(int)
+//      비멤버 버전 변환        operator +(A<int>&, int)             
+// #2 : T == A<int>, U == int 이면 operator +(A<int>&, int) 
+// (X) 컴파일 경고. #1 과 #2 가 모호하고, 대충 비멤버 버전 호출함
+EXPECT_TRUE( a + 10 == 2);
+```
+
+# 오버로딩 실패 사례
+
+**동등한 템플릿 함수**
+
+동등한 템플릿이면 모호하여 컴파일 오류가 발생합니다. 다음의 경우는 `T`와 `const T`로 다릅니다만, 최상위 `const`는 제거되어 결국 동등해집니다.
+
+```cpp
+template<typename T>
+int f(T a) {return 1;} // #1.
+
+template<typename T>
+int f(const T a) {return 2;} // #2. (X) 컴파일 오류. 재정의됨. 최상위 const는 제거되어 f(T a)와 동일
+
+// #1 : T == int 이면 f(int) 
+// #2 : T == int 이면 f(const int)인데, 오버로딩시 최상위 const는 제거되므로 f(int)
+// (X) 컴파일 오류. 최상위 const는 제거됨. 오버로딩 함수가 중복됨
+EXPECT_TRUE(f(a) == 1); 
+EXPECT_TRUE(f(b) == 2);
+```
+
+**참조자로 인한 모호**
+
+포인터의 경우 `T` 보다는 `T*` 가 특수화된 버전이므로, 선택됩니다만, 참조자는 붙이거나 뗄 수 있습니다. 다음 코드에서는 #1, #2 모두 `f(int&)` 버전을 제공할 수 있기 때문에 모호성 오류가 발생합니다.
+
+```cpp
+template<typename T>
+int f(T) {return 1;}  // #1.
+
+template<typename T>
+int f(T&) {return 2;} // #2.
+
+int a = 0;
+int& b = a;
+
+// #1 : T == int 이면 f(int), 
+//      T == int& 이면 f(int&) 
+// #2 : T == int 이면 f(int&)
+// (X) 컴파일 오류. 어느것을 호출할지 모호함.
+EXPECT_TRUE(f(a) == 1);
+EXPECT_TRUE(f(b) == 2);
+```
+
+**특수화 판단 모호**
+
+어느것이 더 특수화 되었는지 판단하기 어려울때 컴파일 오류가 발생합니다. 다음 코드에서는 #1, #2 모두 `f(int, int*)` 버전을 제공할 수 있기 때문에 모호성 오류가 발생합니다.
+
+```cpp
+template<typename T>
+int f(T, T*) {return 1;}   // #1.
+
+template<typename T>
+int f(T, int*) {return 2;} // #2.
+
+char ch;
+int i;
+int* p;
+
+// #1 : T == char 이면 f(char, char*)
+// #2 : T == char 이면 f(char, int*) 
+// 인자 타입이 일치하는 #2를 선택함.
+EXPECT_TRUE(f(ch, p) == 2);
+
+// #1 : T == int 이면 f(int, int*)
+// #2 : T == int 이면 f(int, int*) 
+// (X) 컴파일 오류. 어느것을 호출할지 모호함.
+EXPECT_TRUE(f(i, p) == 2);
+```
+
