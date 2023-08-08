@@ -166,23 +166,3 @@ a.f(); // 일반 함수 호출
 a.g<int>(10); // 템플릿 멤버 함수 호출
 ```
 
-# 함수 오버로딩
-
-일반 멤버 함수와 동일하게 템플릿 멤버 함수도 오버로딩 할 수 있습니다. 단, 인자 타입이 동일하면, 일반 멤버 함수가 호출됩니다.
-
-```cpp
-template<typename T>
-class A {
-public:    
-    int f(int) {return 1;} // #1. 멤버 함수
- 
-    template<typename U>
-    int f(U) {return 2;} // #2. 템플릿 멤버 함수
-};
-
-A<int> a;
-
-EXPECT_TRUE(a.f(10) == 1); // f(int) 호출
-EXPECT_TRUE(a.f<>(10) == 2); // f<int>(int) 호출
-EXPECT_TRUE(a.f('a') == 2); // f<char>(char) 호출
-```
