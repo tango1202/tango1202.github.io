@@ -28,7 +28,7 @@ MyClass<int> myClass;
 EXPECT_TRUE(myClass.Plus(10, 10) == 20); 
 ```
 
-1. `typename` : `class` 키워드를 사용해도 됩니다. 클래스로 한정하지 않고 타입의 이름이란 의미로 `typename`을 더 선호합니다.
+1. `typename` : 템플릿 인자 정의에 사용합니다.(`class` 키워드를 사용해도 됩니다. 클래스로 한정하지 않고 타입의 이름이란 의미로 `typename`을 더 선호합니다.)
 2. `T` : 템플릿 인자(Parameter)입니다. 향후 인스턴스화시 구체 타입으로 대체 됩니다.
 3. `int` : 템플릿 인자 `T`가 대체될 인수(Argument)입니다.  
 
