@@ -8,6 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
+> * 오버로딩 시에는 `T`보다는 `T*` 보다는 `const T*`가 선택된다.
 > * 연산자 오버로딩 함수는 비멤버 템플릿 함수로 작성하라.
 
 # 개요
@@ -172,7 +173,7 @@ f<10>(a); // s 로 10을 전달하여 Parameter에서 A<10> 이 됨. 같은 타�
 서로 인자가 다른 함수들은 오버로딩 후보군에서 가장 적합한 것으로 결정됩니다.([오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고)
 
 
-하지만 템플릿 함수의 경우는 정의시에는 인자가 다르지만, 인스턴스화 과정에서 인자가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 오버로딩 버전을 선택하게 됩니다.
+하지만 템플릿 함수의 경우는 정의시에는 인자가 다르지만, 인스턴스화 과정에서 인자가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 오버로딩 버전(좀 더 적은 타입을 허용하는 버전)을 선택하게 됩니다.
 
 
 예를 들면,
@@ -208,11 +209,11 @@ EXPECT_TRUE(f(&a) == 2);
     int f(T*) {return 2;} // #2.
     ```
     
-    에서 포인터를 처리하는 #2 선택
+    에서 포인터만 처리하는(좀 더 적은 타입을 허용하는) #2 선택
 
 3. 템플릿이 아닌 일반 함수와 오버로딩 규칙 적용. 이때 일반 함수가 우선 순위가 높음
 
-# 오버로딩 성공 사례
+# 오버로딩 사례
 
 **템플릿 함수보다는 일반 함수**
 
@@ -286,7 +287,7 @@ EXPECT_TRUE(f(p) == 2);
 
 **특수화된 인자**
 
-인자가 템플릿 타입을 이용하여 좀 더 적합하게 특수화 되었다면, 해당 특수화된 버전을 선택합니다.
+인자가 템플릿 타입을 이용하여 좀 더 적합하게 특수화(좀 더 적은 타입을 허용) 되었다면, 해당 특수화된 버전을 선택합니다.
 
 ```cpp
 template<typename T>
@@ -350,14 +351,14 @@ A<int> a;
 EXPECT_TRUE( a + 10 == 1);
 ```
 
-하지만 멤버 버전이 템플릿 멤버 함수라면, 비멤버 버전으로 임시 생성하고 오버로딩을 평가하기 때문에, 모호성 문제가 발생하며, 그냥 대충 비멤버 버전을 호출합니다.(경고가 나오긴 합니다.) 따라서 연산자 오버로딩을 템플릿으로 구현해야 한다면, 아예 비멤버 버전으로 작성하는게 좋습니다.
+하지만 멤버 버전이 템플릿 멤버 함수라면, 비멤버 버전으로 임시 생성하고 오버로딩을 평가하기 때문에, 모호성 문제가 발생하며, 그냥 대충 비멤버 버전을 호출합니다.(경고가 나오긴 합니다.) 
 
 ```cpp
 template<typename T>
 class A {
 public:
     template<typename U>
-    int operator +(U) const {return 1;} // #1.
+    int operator +(U) const {return 1;} // #1. 멤버 버전
 };
 
 template<typename T, typename U>
@@ -370,6 +371,27 @@ A<int> a;
 // #2 : T == A<int>, U == int 이면 operator +(A<int>&, int) 
 // (X) 컴파일 경고. #1 과 #2 가 모호하고, 대충 비멤버 버전 호출함
 EXPECT_TRUE( a + 10 == 2);
+```
+
+따라서 연산자 오버로딩을 템플릿으로 구현해야 한다면, 아예 비멤버 버전으로 작성하는게 좋습니다.
+
+```cpp
+template<typename T>
+class A {
+};
+
+template<typename T, typename U>
+int operator +(const A<T>&, U) {return 1;} // #1. 비멤버 버전
+
+template<typename T, typename U>
+int operator +(const T&, U) {return 2;} // #2.   
+
+A<int> a;
+
+// #1 : T == int, U == int 이면 operator +(A<int>&, int)
+// #2 : T == A<int>, U == int 이면 operator +(A<int>&, int) 
+// (O) 더 특수화된 버전으로 선택함.
+EXPECT_TRUE( a + 10 == 1);
 ```
 
 # 오버로딩 실패 사례

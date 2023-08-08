@@ -88,7 +88,7 @@ EXPECT_TRUE(Plus<char>('a', 1) == 'b');
 
 ```cpp
 EXPECT_TRUE(Plus(10, 10) == 20); // (O) 인수로부터 int가 추론됨
-EXPECT_TRUE(Plus<>(10, 10) == 20); // (O) <>를 기재하여 템플릿 함수를 명시하고, 인수로부터 추론
+EXPECT_TRUE(Plus<>(10, 10) == 20); // (O) <>를 기재하여 템플릿 함수임을 명시하고, 인수로부터 추론
 
 EXPECT_TRUE(Plus('a', 1) == 'b'); // (X) 인수가 int, char로 각각 다르므로 추론이 어려움 
 EXPECT_TRUE(Plus('a', static_cast<char>(1)) == 'b'); // (O) 인수로부터 char 가 추론됨

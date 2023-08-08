@@ -137,7 +137,6 @@ A<char> b; // U == int
 A<char, char> c;
 ```
 
-
 # 종속 타입
 
 템플릿의 종속된 타입명은 표기 방법이 `static`개체 접근과 동일하여 컴파일러가 타입으로 인식하지 못합니다. 이러한 경우 `typename` 을 사용하여 종속된 이름임을 명시해 줍니다.
@@ -178,11 +177,14 @@ void f(B<T>::Type val) {} // (X) 컴파일 오류. B<T>::Type이 static 변수�
 void f(typename B<T>::Type val) {} // (O)
 ```
 
-유사하게, 템플릿 정의시 아직 인스턴스화 되지 않는 멤버에 접근할때 `template` 을 명시해야 합니다.
+# 템플릿 명시
+
+템플릿 정의시 아직 인스턴스화 되지 않는 멤버에 접근할때 `template` 을 명시해야 합니다.
 
 ```cpp
 template<typename T>
 class A {
+public:
     template<typename U>
     void f() {}
 };
@@ -197,62 +199,12 @@ void g() {
 
 # 템플릿 동등성
 
-템플릿을 정의하면, 약간의 타입이 
-정수 계열 또는 열거형 형식이며 해당 값은 동일합니다
-
-또는 포인터 유형이며 동일한 포인터 값을 갖습니다.
-
-또는 포인터-멤버 형식이고 동일한 클래스 멤버를 참조하거나 둘 다 null 멤버 포인터 값입니다
-
-또는 lvalue 참조 유형이며 동일한 객체 또는 함수를 참조합니다
-
-
-템플릿 인수 동등성
-템플릿 인수 동등성은 두 템플릿 ID가 동일한지 여부를 판별하는 데 사용됩니다.
-
-두 값은 동일한 유형이고
-
-정수 계열 또는 열거형 형식이며 해당 값은 동일합니다
-또는 포인터 유형이며 동일한 포인터 값을 갖습니다.
-또는 포인터-멤버 형식이고 동일한 클래스 멤버를 참조하거나 둘 다 null 멤버 포인터 값입니다
-또는 lvalue 참조 유형이며 동일한 객체 또는 함수를 참조합니다
+템플릿 인자의 이름이 다르더라도 의미상으로 동일하면 동등한 템플릿입니다.
 
 ```cpp
-// equivalent
-template<int I>
-void f(A<I>, A<I+10>); // overload #1
-template<int I>
-void f(A<I>, A<I+10>); // redeclaration of overload #1
- 
-// not equivalent
-template<int I>
-void f(A<I>, A<I+10>); // overload #1
-template<int I>
-void f(A<I>, A<I+11>); // overload #2
- 
-// functionally-equivalent but not equivalent
-// This program is ill-formed, no diagnostic required
-template<int I>
-void f(A<I>, A<I+10>);      // overload #1
-template<int I>
-void f(A<I>, A<I+1+2+3+4>); // functionally equivalent
+template<typename T> // #1
+class A {};
 
-```
-
-
-
-# 인수가 type-id와 표현식 둘 다로 해석될 수 있는 경우, 해당 템플리트 매개변수가 type이 아닌 경우에도 항상 type-id로 해석됩니다.
-
-```cpp
-template<class T>
-void f(); // #1
- 
-template<int I>
-void f(); // #2
- 
-void g()
-{
-    f<int()>(); // "int()" is both a type and an expression,
-                // calls #1 because it is interpreted as a type
-}
+template<typename U> // #1과 동등
+class A {};
 ```
