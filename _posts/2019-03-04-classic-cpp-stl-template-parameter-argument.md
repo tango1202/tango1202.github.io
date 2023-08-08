@@ -140,8 +140,7 @@ A<char, char> c;
 
 # 종속 타입
 
-
-
+템플릿의 종속된 타입명은 표기 방법이 `static`개체 접근과 동일하여 컴파일러가 타입으로 인식하지 못합니다. 이러한 경우 `typename` 을 사용하여 종속된 이름임을 명시해 줍니다.
 
 ```cpp
 template<typename T>
@@ -150,127 +149,55 @@ class A {};
 template<typename T>
 class B {
 public:
-    typedef T Type;
+    typedef T Type; // 종속 타입
+    static int m_Static; // 정적 멤버 변수
 };
 
-    template<typename T>
-    void f(Other<T>, typename Another<T>::Type) {} // typename : 템플릿 정의 내에서 종속된 타입임을 컴파일러에게 Hint 전달 안그러면 static 변수 참조와 헷갈림.
+// 템플릿 클래스
+template<typename T>
+class C : B<T> {
+    B<T>::Type m_Val; // (X) 컴파일 오류. B<T>::Type이 static 변수인지, B<T>에 종속된 타입인지 모릅니다.
+    typename B<T>::Type m_Val; // (O)
+
+    void f() {
+        B<T>::m_Static; // 정적 멤버 변수 접근
+    } 
+};
+
+// 템플릿 템플릿 인자
+template<template<typename> typename T> 
+class D {
+    T<int>::Type m_Val; // (X) 컴파일 오류. B<T>::Type이 static 변수인지, B<T>에 종속된 타입인지 모릅니다.
+    typename T<int>::Type m_Val; // (O) 
+    
+};
+
+// 템플릿 함수
+template<typename T>
+void f(B<T>::Type val) {} // (X) 컴파일 오류. B<T>::Type이 static 변수인지, B<T>에 종속된 타입인지 모릅니다. 
+void f(typename B<T>::Type val) {} // (O)
 ```
+
+유사하게, 템플릿 정의시 아직 인스턴스화 되지 않는 멤버에 접근할때 `template` 을 명시해야 합니다.
 
 ```cpp
 template<typename T>
-struct X : B<T> // "B<T>" is dependent on T
-{
-    typename T::A* pa; // "T::A" is dependent on T
-                       // (see below for the meaning of this use of "typename")
- 
-    void f(B<T>* pb)
-    {
-        static int i = B<T>::i; // "B<T>::i" is dependent on T
-        pb->j++; // "pb->j" is dependent on T
-    }
-};
-```
-
-늦은 바인딩 수행.
-
-```cpp
-struct A // A has a nested variable X and a nested type struct X
-{
-    struct X {};
-    int X;
-};
- 
-struct B
-{
-    struct X {}; // B has a nested type struct X
-};
- 
-template<class T>
-void f(T t)
-{
-    typename T::X x;
-}
- 
-void foo()
-{
-    A a;
-    B b;
-    f(b); // OK: instantiates f<B>, T::X refers to B::X
-    f(a); // error: cannot instantiate f<A>:
-          // because qualified name lookup for A::X finds the data member
-}
-```
-
-```cpp
-#include <iostream>
-#include <vector>
- 
-int p = 1;
- 
-template<typename T>
-void foo(const std::vector<T> &v)
-{
-    // std::vector<T>::const_iterator is a dependent name,
-    typename std::vector<T>::const_iterator it = v.begin();
- 
-    // without 'typename', the following is parsed as multiplication
-    // of the type-dependent member variable 'const_iterator'
-    // and some variable 'p'. Since there is a global 'p' visible
-    // at this point, this template definition compiles.
-    std::vector<T>::const_iterator* p;
- 
-    typedef typename std::vector<T>::const_iterator iter_t;
-    iter_t * p2; // iter_t is a dependent name, but it's known to be a type name
-}
- 
-template<typename T>
-struct S
-{
-    typedef int value_t; // member of current instantiation
- 
-    void f()
-    {
-        S<T>::value_t n{}; // S<T> is dependent, but 'typename' not needed
-        std::cout << n << '\n';
-    }
-};
- 
-int main()
-{
-    std::vector<int> v;
-    foo(v); // template instantiation fails: there is no member variable
-            // called 'const_iterator' in the type std::vector<int>
-    S<int>().f();
-}
-
-```
-
-# 종속 이름의 템플릿 명확성
-
-마찬가지로, 템플릿 정의에서 현재 인스턴스화의 멤버가 아닌 종속 이름은 명확성 키워드가 아닌 한 템플릿 이름으로 간주되지 않습니다 템플렛 가 사용되거나 템플릿 이름으로 이미 설정되지 않은 경우:
-
-```cpp
-template<typename T>
-struct S
-{
+class A {
     template<typename U>
-    void foo() {}
+    void f() {}
 };
- 
+
 template<typename T>
-void bar()
-{
-    S<T> s;
-    s.foo<T>();          // error: < parsed as less than operator
-    s.template foo<T>(); // OK
+void g() {
+    A<T> a;
+    a.f<T>(); // (X) 아직 인스턴스화 되지 않아 함수 이름에 접근할 수 없습니다.
+    a.template f<T>(); // (O) 템플릿임을 명시합니다.
 }
 ```
-
-
 
 # 템플릿 동등성
 
+템플릿을 정의하면, 약간의 타입이 
 정수 계열 또는 열거형 형식이며 해당 값은 동일합니다
 
 또는 포인터 유형이며 동일한 포인터 값을 갖습니다.
