@@ -10,101 +10,91 @@ sidebar:
 
 # 템플릿 인자
 
-템플릿 클래스 정의시 `<>` 사이에 인자(Parameter) 집합을 정의하고,인스턴스화시 전달된 인수(Argument)를 바탕으로 확정되어 클래스가 생성됩니다.
+템플릿 클래스 정의시 `<>` 사이에 인자(Parameter) 집합을 정의하고, 템플릿 인스턴스화시 전달한 인수(Argument) 집합으로 대체되어 클래스가 생성됩니다.
 
 ```cpp
-template<typename T, typename U> // T, U : 인자(Parameter) 집합
+// T, U : 인자(Parameter) 집합
+template<typename T, typename U> 
 class A {};
 
-A<int, char> a; // int, char : 인자에 대응되는 인수(Argument) 집합
+// int, char : 인자에 대응되는 인수(Argument) 집합
+A<int, char> a; 
 ```
 
-1. 타입
-2. 템플릿 타입 개체
-3. 비 템플릿 타입 개체
-
-
-# 템플릿 인자
-
-템플릿 정의시에 작성한 인자(Parameter) 집합은 템플릿 인스턴스화 시 전달된 인수(Argument) 집합으로 대체되어 생성됩니다.
-
-```cpp
-// 템플릿 정의. T, U는 인자 집합입니다.
-template<typename T, typename U>
-class A {};
-
-// 템플릿 인스턴스화. int, char는 인수 집합입니다.
-A<int, char> a;
-```
-
-템플릿 인자는 다음으로 구성됩니다.
+템플릿 인자는 다음처럼 타입, 템플릿 개체, 비 템플릿 개체, 템플릿 템플릿 인자로 작성할 수 있습니다.
 
 1. 타입
+   
     ```cpp
-    template<typename T>
+    template<typename T, typename U>
+    class A {
+    public:
+        T f(U param) {return param;}
+    };
+
+    A<int, char> a;
+    EXPECT_TRUE(a.f('a') == static_cast<int>('a'));
     ```
 
-   
-3. 템플릿 개체
-4. 비 템플릿 개체
+2. 템플릿 개체
 
+    ```cpp
+    template<typename T, T val>
+    class A {
+    public:
+        T f() {return val;} // val을 사용할 수 있습니다.
+    };
 
+    A<int, 10> a;
+    EXPECT_TRUE(a.f() == 10);
+    ```
 
+3. 비 템플릿 개체
 
-템플릿을 인스턴스화하려면 모든 템플릿 인자(형식, 비형식 또는 템플릿)를 해당 템플릿 인수로 바꿔야 합니다. 
+    ```cpp
+    template<typename T, int val>
+    class A {
+    public:
+        T f() {return val;}
+    };
 
-클래스 템플릿의 경우 인수는 명시적으로 제공되거나, 이니셜라이저에서 추론 되거나(C++17부터) 기본값으로 제공됩니다. 
+    A<int, 10> a;
+    EXPECT_TRUE(a.f() == 10);
 
+    A<int, 11> b;
+    a = b; // (X) 컴파일 오류. A<int, 10> 은 A<int, 11> 과 타입이 다릅니다.
+    ```
 
+4. 템플릿 템플릿 인자
 
-# template 인자 - 타입
+    ```cpp
+    template<typename T> 
+    class A {
+    public:
+        int m_X;
+    };
 
-```cpp
-template <typename T, typename G>
-class String {};
+    template<typename T> 
+    class A<T*> { // A의 템플릿 특수화 버전
+    public: 
+        long m_Y;
+    };
 
-String<char, int> s;
-```
+    // U : 템플릿 템플릿 인자. 인스턴스화된 타입이 아닌 템플릿을 전달함
+    template<template<typename> typename U>
+    class B {
+    public:
+        U<int> m_U1; // 템플릿인 U로 부터 개체 생성
+        U<int*> m_U2;
+    };
 
-# template 인자 - 템플릿 타입 개체
+    B<A> b; 
+    b.m_U1.m_X = 10;
+    b.m_U2.m_Y = 20;
 
-```cpp
-template <typename T, T val>
-class String {};
-String<char, 'a'> s;
-```
-
-# template 인자- 비 템플릿 타입 개체
-
-```cpp
-template <typename T, int val>
-class String {};
-
-String<char, 100> s;
-
-String<char, 100> s1; String<char, 101> s2; s2 = s1; // (X) 타입이 다르다.
-```
-
-# 템플릿 템플릿 인자
-
-```cpp
-template<typename T> // primary template
-class A { int x; };
- 
-template<typename T> // partial specialization
-class A<T*> { long x; };
- 
-// class template with a template template parameter V
-template<template<typename> class V>
-class C
-{
-    V<int> y;  // uses the primary template
-    V<int*> z; // uses the partial specialization
-};
- 
-C<A> c; // c.y.x has type int, c.z.x has type long
-```
-
+    EXPECT_TRUE(b.m_U1.m_X == 10);
+    EXPECT_TRUE(b.m_U1.m_X == 20);
+    ```
 
 # 불완전한 형식의 인스턴스화 
 
@@ -134,48 +124,38 @@ template<bool b = (3 > 4)> // (O)
 class B {};
 ```
 
+# 기본 템플릿 인자
 
-# 기본 템플릿 인수
+함수의 [기본값 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)와 마찬가지로 인자에 기본값을 줄 수 있으며, 기본값 인자를 사용하면, 그 뒤로는 다 기본값을 사용해야 합니다.
 
 ```cpp
-template<typename T1, typename T2 = int> class A;
-template<typename T1 = int, typename T2> class A;
- 
-// the above is the same as the following:
-template<typename T1 = int, typename T2 = int> class A;
+template<typename T = char, typename U = int>
+class A {};
+
+A<> a; // T == char, U == int
+A<char> b; // U == int
+A<char, char> c;
 ```
 
-**템플릿 템플릿 인자**
+
+# 종속 타입
+
+
+
 
 ```cpp
 template<typename T>
-class my_array {};
- 
-// two type template parameters and one template template parameter:
-template<typename K, typename V, template<typename> typename C = my_array>
-class Map
-{
-    C<K> key;
-    C<V> value;
+class A {};
+
+template<typename T>
+class B {
+public:
+    typedef T Type;
 };
-``` 
 
-# 인자 이름은 선택사항임
-
-```cpp
-// Declarations of the templates shown above:
-template<class>
-class My_vector;
-template<class = void>
-struct My_op_functor;
-template<typename...>
-class My_tuple;
-```
-
-# 종속 타입
     template<typename T>
     void f(Other<T>, typename Another<T>::Type) {} // typename : 템플릿 정의 내에서 종속된 타입임을 컴파일러에게 Hint 전달 안그러면 static 변수 참조와 헷갈림.
-
+```
 
 ```cpp
 template<typename T>

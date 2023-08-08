@@ -41,19 +41,19 @@ EXPECT_TRUE(myClass.Plus(10, 10) == 20);
 1. 템플릿 정의부 : 아직 타입이 구체화 되지 않은 상태(코드가 생성되지 않은 상태) 
 2. 템플릿 인스턴스부 : 지정한 타입과 바인딩되어 구체적인 클래스를 생성(코드가 생성된 상태)
 
-다음 코드는 클래스 `B`에서 클래스 `T`를 상속받고, `T::TType`으로 멤버 변수를 정의합니다. `TType`이 `private`이기 때문에 컴파일 오류가 나와야 하나 아직 인스턴스 부가 없어 컴파일 오류가 없습니다.
+다음 코드는 클래스 `B`에서 클래스 `T`를 상속받고, `T::Type`으로 멤버 변수를 정의합니다. `Type`이 `private`이기 때문에 컴파일 오류가 나와야 하나 아직 인스턴스 부가 없어 컴파일 오류가 없습니다.
 
 ```cpp
 // 멤버 엑세스 지정
 template<typename T> 
 class A {
 private:
-    typedef T TType;
+    typedef T Type;
 };  
 
 template<typename T> 
-class B : public T { // T로 A<int> 를 전달할 예정임. A<int>::TType은 int이나 private여서 접근 불가
-    typename T::TType m_Member; // typename은 종속 타입 참고
+class B : public T { // T로 A<int> 를 전달할 예정임. A<int>::Type은 int이나 private여서 접근 불가
+    typename T::Type m_Member; // typename은 종속 타입 참고
 };
 ```
 
