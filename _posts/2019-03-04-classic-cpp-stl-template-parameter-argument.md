@@ -179,7 +179,7 @@ void f(typename B<T>::Type val) {} // (O)
 
 # 템플릿 명시
 
-템플릿 정의시 아직 인스턴스화 되지 않는 멤버에 접근할때 `template` 을 명시해야 합니다.
+템플릿 정의시 아직 인스턴스화 되지 않은 개체의 멤버에 접근할때 `template` 을 명시해야 합니다.
 
 ```cpp
 template<typename T>
@@ -191,7 +191,7 @@ public:
 
 template<typename T>
 void g() {
-    A<T> a;
+    A<T> a; // 아직 구체 타입으로 인스턴스화 안됐습니다.
     a.f<T>(); // (X) 컴파일 오류 아직 인스턴스화 되지 않아 함수 이름에 접근할 수 없습니다.
     a.template f<T>(); // (O) 템플릿임을 명시합니다.
 }
