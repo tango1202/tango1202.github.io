@@ -205,6 +205,6 @@ void g() {
 template<typename T> // #1
 class A {};
 
-template<typename U> // #1과 동등
+template<typename U> // (X) 컴파일 오류. #1과 동등
 class A {};
 ```
