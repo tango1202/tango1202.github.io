@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ 가이드] 네임스페이스(namespace)"
+title: "#5. [고전 C++ 가이드] 네임스페이스(namespace)(작성중)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -170,3 +170,7 @@ namespace MyModule { // 여러개의 네임스페이스를 합성할 수 있음
 EXPECT_TRUE(MyModule::f() == 50);
 EXPECT_TRUE(MyModule::g() == 60);
 ```
+
+# 네임스페이스 명시시 유지보수성
+
+암시적으로 작성하는 편이 낫다.

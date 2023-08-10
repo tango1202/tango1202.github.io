@@ -1,12 +1,15 @@
 ---
 layout: single
-title: "#3. [고전 C++ STL] traits(취급 특성)"
+title: "#6. [고전 C++ STL] traits(취급 특성)"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
+
+
+클래스 템플릿과 함수 템플릿이 받아들이는 타입을 조작하기 위해, 필요한 타입과 함수의 집합을 포함하는 클래스라고 규정했다.
 
 **사례**
 
@@ -33,4 +36,20 @@ void f() {
     compare<string, Korea<string> >(s1, s2); 
     compare<wstring, English<wstring>>(s1, s2); 
 }
+```
+
+# Traits 를 이용한 코딩 계약
+
+```cpp
+template <typename Arg, typename Res>
+struct unary_function {
+    typedef Arg argument_type; 
+    typedef Res result_type; 
+};
+template <typename Arg, typename Arg2, typename Res>
+struct binary_function {
+    typedef Arg first_argument_type; 
+    typedef Arg2 second_argument_type; 
+    typedef Res result_type; 
+};
 ```
