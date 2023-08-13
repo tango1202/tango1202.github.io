@@ -80,6 +80,33 @@ EXPECT_TRUE(v[1] == 10);
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5d7a3f38-3c6f-4321-a6d0-b5ddc75792db)
 
+# 역방향 이터레이터
+
+역방향 이터레이터는 `++`시 요소의 끝에서 처음으로 이동하는 이터레이터 입니다.
+
+```cpp
+std::vector<int> v(5); 
+
+// 순방향
+{
+    std::vector<int>::iterator itr = v.begin(); // 요소의 시작
+    std::vector<int>::iterator endItr = v.end(); // 요소의 끝
+    for (int i = 0; itr != endItr; ++itr, ++i) { 
+        *itr = i; 
+    }
+    EXPECT_TRUE(v[0] == 0 && v[1] == 1 && v[2] == 2 && v[3] == 3 && v[4] == 4);
+}
+// 역방향
+{
+    std::vector<int>::reverse_iterator itr = v.rbegin(); // 요소의 끝
+    std::vector<int>::reverse_iterator endItr = v.rend(); // 요소의 시작
+    for (int i = 0; itr != endItr; ++itr, ++i) { 
+        *itr = i; 
+    }
+    EXPECT_TRUE(v[0] == 4 && v[1] == 3 && v[2] == 2 && v[3] == 1 && v[4] == 0);
+}
+```
+
 # 삽입 이터레이터
 
 다음과 같이 `Fill()` 함수를 구현했다고 합시다. 
@@ -165,7 +192,6 @@ public:
 
 다음과 같이 테스트 합니다.
 
-
 ```cpp
 std::vector<int> v; 
 Fill(BackInsertIterator<std::vector<int>>(v), 5, 7); // 현 컨테이너 뒤 5 개에 7 삽입. BackInsertIterator에서 operator = 을 push_back() 으로 구현
@@ -180,32 +206,4 @@ std::vector<int> v;
 Fill(std::back_inserter(v), 5, 7); // 표준 유틸리티 함수 사용
 
 EXPECT_TRUE(v[0] == 7 && v[1] == 7 && v[2] == 7 && v[3] == 7 && v[4] == 7);
-```
-
-# 역방향 이터레이터
-
-역방향 이터레이터는 `++`시 요소의 끝에서 처음으로 이동하는 이터레이터 입니다.
-
-```cpp
-std::vector<int> v(5); 
-
-// 순방향
-{
-    std::vector<int>::iterator itr = v.begin(); // 요소의 시작
-    std::vector<int>::iterator endItr = v.end(); // 요소의 끝
-    for (int i = 0; itr != endItr; ++itr, ++i) { 
-        *itr = i; 
-    }
-    EXPECT_TRUE(v[0] == 0 && v[1] == 1 && v[2] == 2 && v[3] == 3 && v[4] == 4);
-}
-// 역방향
-{
-    std::vector<int>::reverse_iterator itr = v.rbegin(); // 요소의 끝
-    std::vector<int>::reverse_iterator endItr = v.rend(); // 요소의 시작
-    for (int i = 0; itr != endItr; ++itr, ++i) { 
-        *itr = i; 
-    }
-    EXPECT_TRUE(v[0] == 4 && v[1] == 3 && v[2] == 2 && v[3] == 1 && v[4] == 0);
-}
-
 ```
