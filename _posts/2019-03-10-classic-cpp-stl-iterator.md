@@ -37,6 +37,7 @@ container.begin() != container.end();
 이터레이터는 다음의 연산자를 통해 요소에 접근합니다.
 
 |항목|내용|
+|--|--|
 |`*`, `->`|이터레이터가 가리키는 요소|
 |`++`|다음 요소를 가리키는 이터레이터|
 
@@ -81,5 +82,130 @@ EXPECT_TRUE(v[1] == 10);
 
 # 삽입 이터레이터
 
+다음과 같이 `Fill()` 함수를 구현했다고 합시다. 
+
+전달된 `Iterator`의 
+
+1. `++`을 이용하여 다음 요소로 이동하고,
+2. `*`을 이용하여 실제 요소를 참조하며,
+3. `=`을 이용하여 실제 요소에 값을 대입합니다.
+
+```cpp
+// Iterator가 가르키는 곳부터 n개를 value로 채웁니다. 
+// Iterator는 ++, *, = 연산자를 구현해야 합니다.
+template<typename Iterator>
+void Fill(Iterator first, size_t n, const int& value) {
+    for (size_t i = n; 0 < n; --n, ++first) {
+        *first = value;
+    }
+}
+```
+
+다음과 같이 사용할 수 있습니다.
+
+```cpp
+std::vector<int> v(5); // 5개의 요소 생성(클래스면 생성자를 호출함) 
+Fill(v.begin(), 5, 7); // v[0] ~ v[4] 에 7 대입.
+```
+
+하지만 다음은 `vector`가 할당되지 않아 오류가 발생합니다.
+
+```cpp
+std::vector<int> v; // 빈 벡터
+Fill(v.begin(), 5, 7); // (X) 예외 발생. v가 5개 할당되지 않았다면 예외 발생 
+```
+
+`Fill()` 함수에서는 이터레이터를 반복하면서 `*first = value;` 로 실제 요소에 값을 대입하기 때문에, 벡터에 요소가 없어 예외를 발생하게 됩니다.
+
+이런 경우 값을 대입하지 않고, 컨테이너에 `push_back()` 하도록 연산자를 재정의한 것을 삽입 이터레이터라고 합니다.
+
+구현 방법은 다음과 같습니다.
+
+1. 값 생성자에서는 Container를 전달받습니다.
+2. 복사 생성자에서는 컨테이너 참조자를 복사합니다.
+3. 대입 연산자는 사용하지 않으므로 `private`로 정의합니다.
+4. 대입 연산자중 컨테이너 값 타입을 전달하면, `push_back()`을 하여 추가합니다.
+5. 무조건 끝에 추가하는 것이므로, `++`은 아무 동작 안하게 합니다.
+6. `*` 시 자기 자신을 리턴하여 `*first = value;`시 #4가 호출되게 합니다.
+
+```cpp
+template<typename ContainerT>
+class BackInsertIterator {
+    ContainerT& m_Container;
+public:
+    // 값 생성자에서는 Container를 전달받습니다.
+    explicit BackInsertIterator(ContainerT& container) : // #1
+        m_Container(container) {}
+
+    // 복사 생성자에서는 컨테이너 참조자를 복사합니다.
+    BackInsertIterator(const BackInsertIterator& other) : // #2
+        m_Container(other.m_Container) {}
+private:   
+    // 대입 연산자는 사용하지 않습니다.
+    BackInsertIterator& operator =(const BackInsertIterator& other) {return *this;} // #3
+
+public:
+    // = 에서 컨테이너 값 타입을 전달하면, push_back()을 하여 추가합니다.
+    BackInsertIterator& operator =(const typename ContainerT::value_type& value) { // #4
+        m_Container.push_back(value);
+        return *this;
+    }
+
+    // 무조건 끝에 추가하므로 ++는 별다른 동작하지 않습니다.
+    BackInsertIterator& operator ++() { // #5
+        return *this;
+    }
+
+    // * 시 자기 자신을 리턴하여 *first = value;시 #4가 호출되게 합니다.
+    BackInsertIterator& operator *() { //# 6
+        return *this;
+    }
+};
+```
+
+다음과 같이 테스트 합니다.
+
+
+```cpp
+std::vector<int> v; 
+Fill(BackInsertIterator<std::vector<int>>(v), 5, 7); // 현 컨테이너 뒤 5 개에 7 삽입. BackInsertIterator에서 operator = 을 push_back() 으로 구현
+
+EXPECT_TRUE(v[0] == 7 && v[1] == 7 && v[2] == 7 && v[3] == 7 && v[4] == 7);
+```
+
+표준에서는 `back_inserter()` 유틸리티 함수로 삽입 이터레이터를 생성해 줍니다.
+
+```cpp
+std::vector<int> v; 
+Fill(std::back_inserter(v), 5, 7); // 표준 유틸리티 함수 사용
+
+EXPECT_TRUE(v[0] == 7 && v[1] == 7 && v[2] == 7 && v[3] == 7 && v[4] == 7);
+```
+
 # 역방향 이터레이터
 
+역방향 이터레이터는 `++`시 요소의 끝에서 처음으로 이동하는 이터레이터 입니다.
+
+```cpp
+std::vector<int> v(5); 
+
+// 순방향
+{
+    std::vector<int>::iterator itr = v.begin(); // 요소의 시작
+    std::vector<int>::iterator endItr = v.end(); // 요소의 끝
+    for (int i = 0; itr != endItr; ++itr, ++i) { 
+        *itr = i; 
+    }
+    EXPECT_TRUE(v[0] == 0 && v[1] == 1 && v[2] == 2 && v[3] == 3 && v[4] == 4);
+}
+// 역방향
+{
+    std::vector<int>::reverse_iterator itr = v.rbegin(); // 요소의 끝
+    std::vector<int>::reverse_iterator endItr = v.rend(); // 요소의 시작
+    for (int i = 0; itr != endItr; ++itr, ++i) { 
+        *itr = i; 
+    }
+    EXPECT_TRUE(v[0] == 4 && v[1] == 3 && v[2] == 2 && v[3] == 1 && v[4] == 0);
+}
+
+```
