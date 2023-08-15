@@ -1,11 +1,9 @@
 ---
 layout: single
-title: "#17. [고전 C++ STL] 템플릿 메타 프로그래밍"
+title: "#14. [고전 C++ STL] 알고리즘"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
-
-

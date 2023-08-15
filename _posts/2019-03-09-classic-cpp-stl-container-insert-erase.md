@@ -65,7 +65,7 @@ l.push_back(1);
 
 // 지정한 위치 앞에 삽입
 std::list<int>::iterator result = l.insert(
-    ++l.begin(), // 1번째 요소 앞에 삽입, 임의 접근 불가하여 ++ 사용
+    ++l.begin(), // 1번째 요소 앞에 삽입, 랜덤 접근 불가하여 ++ 사용
     10
 );
 EXPECT_TRUE(*(l.begin()) == 0 && *(++l.begin()) == 10 && *(++(++l.begin())) == 1);

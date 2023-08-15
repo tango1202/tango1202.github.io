@@ -76,7 +76,7 @@ EXPECT_TRUE(v[1] == 10);
 |`output`|쓰기 전용<br/>`++`, `*`, `=`, 복사 생성자||
 |`forward`|단방향 탐색<br/>`input`과 연산자 동일||
 |`bidirectional`|양방향 탐색<br/>`forward` 에서 `--`추가|`list`<br/>`map`|
-|`random access`|임의 접근 탐색<br/> `bidirectional`에서 `+`, `-`, `+=`, `-=`, `<`, `>`, `<=`, `>=`, `[]` 추가|`vector`|
+|`random access`|랜덤 접근 탐색<br/> `bidirectional`에서 `+`, `-`, `+=`, `-=`, `<`, `>`, `<=`, `>=`, `[]` 추가|`vector`|
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5d7a3f38-3c6f-4321-a6d0-b5ddc75792db)
 
