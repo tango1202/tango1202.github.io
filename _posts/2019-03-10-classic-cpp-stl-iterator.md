@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * 이터레이터는 전위 증가 연산자를 사용하라.
+> * for를 이용하여 이터레이터를 순차 탐색 할때 `itr < endItr`보다는 `itr != endItr`을 사용하라.
 
 # 개요
 
@@ -42,6 +43,9 @@ container.begin() != container.end();
 |`++`|다음 요소를 가리키는 이터레이터|
 
 `++`를 이용하여 이터레이터를 사용하는 경우에는 꼭 전위형을 사용해야 합니다. 후위형을 사용하면, 증가 시키기 전의 값을 복제해서 리턴하기 때문에 불필요한 복사 부하가 생깁니다.([증감 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A6%9D%EA%B0%90-%EC%97%B0%EC%82%B0%EC%9E%90)와 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고)
+
+또한, `for` 문의 조건문에서 `itr < endItr`이 아니라 `itr != endItr`을 사용합니다. 이는 랜덤 접근이 가능한 이터레이터만 `<`이 가능하기 때문입니다. 향후 다른 컨테이너로 변경하더라도 수정을 최소화하기 위해 관습적으로 `<` 보다는 `!=` 사용하는게 좋습니다.
+
 
 ```cpp
 std::vector<int> v(5); // 5개의 요소 생성(클래스면 생성자를 호출함)
