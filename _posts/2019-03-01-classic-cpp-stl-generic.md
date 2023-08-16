@@ -106,7 +106,7 @@ EXPECT_TRUE(charContainer.GetAt(5) == 'c');
 
 C++언어에서는 개체 타입만 변경하여 클래스나 함수를 생성하는 틀로서 템플릿을 제공하며, 상기 코드는 다음과 같이 템플릿으로 대체될 수 있습니다. 
 
-클래스 정의 위에 `template<typename T>`가 기재되었고, 기존 `int`, `char`등 타입명이 `T`로 대체되어 코딩되었습니다.
+클래스 정의 위에 `template<typename T>`가 기재되었고, 기존 `int`, `char`등 타입명이 `T`로 대체되었습니다.
 
 ```cpp
 // 템플릿 정의. 기존 int, char의 타입명이 T로 대체되어 코딩되었습니다.
