@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [고전 C++ 가이드] 구조체(struct)와 클래스(class) 와 공용체(union)"
+title: "#9. [고전 C++ 가이드] 구조체(struct)와 클래스(class) 와 공용체(union)와 비트 필드"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -349,6 +349,44 @@ EXPECT_TRUE(u.s1.x == 20);
 EXPECT_TRUE(u.s2.x == 20);
 ```
 
+# 비트 필드
+
+구조체나 클래스 멤버 변수를 비트 단위로 쪼개어 사용할 수 있습니다. 
+
+다음 코드는 비트 필드의 구현 예입니다. 
+
+1. 멤버 변수 뒤에 `: 비트 수`를 지정하여 만들 수 있습니다.
+2. 저장하려는 값이 비트 범위를 벗어날 경우에는 상위 비트를 버립니다. 
+3. 포인터나 참조자를 제공하지 않습니다.
+
+```cpp
+class Flag {
+public:
+    unsigned char m_Val1 : 2; // 2bit 00(0), 01(1), 10(2), 11(3)
+    unsigned char m_Val2 : 3; // 3bit 000(0), 001(1), 010(2), 011(3), 100(4), 101(5), 110(6), 111(7)
+};
+
+Flag flag;
+EXPECT_TRUE(sizeof(flag) == sizeof(unsigned char));
+
+// 주어진 비트 범위내의 데이터는 잘 저장함
+flag.m_Val1 = 3; // 0~3 저장
+flag.m_Val2 = 7; // 0~7 저장
+
+EXPECT_TRUE(flag.m_Val1 == 3);
+EXPECT_TRUE(flag.m_Val2 == 7);
+
+// 저장 공간이 부족하면 상위 비트를 버림
+flag.m_Val1 = 5; // (△) 비권장. 101을 대입하면 앞의 1은 저장하지 못하고 01만 저장됨  
+flag.m_Val2 = 15; // (△) 비권장. 1111을 대입하면 앞의 1은 저장하지 못하고 111만 저장됨  
+
+EXPECT_TRUE(flag.m_Val1 == 1);
+EXPECT_TRUE(flag.m_Val2 == 7);
+
+unsigned char* ptr =  &flag.m_Val1; // (X) 컴파일 오류. 비트 필드는 포인터를 지원하지 않습니다.
+unsigned char& ref =  flag.m_Val1; // (X) 컴파일 오류. 비트 필드는 레퍼런스를 지원하지 않습니다.
+```
+
 # 함수 내부의 로컬 클래스
 
 함수 내부에 클래스(구조체, 공용체)를 정의하여, 함수 내부에서만 한정해서 사용할 수 있습니다.
@@ -477,3 +515,4 @@ t1.Release(); // (X) 예외 발생. 스택에 생성된 개체인데 delete 함
 T* t2 = new T; // 힙에 생성된 변수
 t2->Release(); // (O)  
 ```
+

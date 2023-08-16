@@ -44,7 +44,7 @@ public:
 2. `T`에서 `class Impl;` 전방 선언을 하고, `Impl* m_Impl;`을 포인터 멤버 변수로 선언하였습니다.
 3. `m_Impl` 복사 생성을 위해 `T`의 복사 생성자를 추가했습니다.
 4. `m_Impl` 소멸을 위해 `T`의 소멸자를 추가했습니다.
-5. `m_Impl` 대입 연산을 위해 `swap`을 이용한 대입 연산자를 추가했습니다.
+5. `m_Impl` 대입 연산을 위해 `swap`을 이용한 대입 연산자를 추가했습니다. `swap`은 포인터끼리의 바꿔치기이므로 복사 부하가 거의 없습니다.
 6. `T::Impl` 정의에서, 복사 생성자는 두고, 대입 연산자는 사용하지 않기에 `private`로 막았습니다.
 
 (`IntPtr`은 [대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)의 내용을 참고하기 바랍니다.)
@@ -105,6 +105,7 @@ T& T::operator =(const T& other) {
     return *this;
 } 
 void T::Swap(T& other) {
+    // PImpl 이디엄을 사용하면 포인터 끼리의 swap이므로 복사 부하가 거의 없습니다.
     std::swap(this->m_Impl, other.m_Impl);
 }
 

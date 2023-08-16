@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [고전 C++ 가이드] 배열(Array) 와 비트 필드(작성중)"
+title: "#8. [고전 C++ 가이드] 배열(Array)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -87,8 +87,3 @@ EXPECT_TRUE(arr[0] == 10);
 int* p = new int[5]; // int[5] 배열 생성
 delete[] p; // 소멸. delete가 아님에 유의. delete p;를 하면 배열 요소 갯수만큼 소멸자를 호출하지 않고 한번만 호출합니다.
 ```
-
-# 비트 필드
-
-https://en.cppreference.com/w/cpp/language/bit_field
-비트 필드
