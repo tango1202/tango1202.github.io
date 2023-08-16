@@ -196,7 +196,7 @@ v.swap(temp); // vector는 pImpl로 구현되어 swap시 복사 부하가 없습
 EXPECT_TRUE(v.capacity() == 0); // 크기가 0인 vector와 바꿔치기 했습니다.
 ```
 
-# vector<bool>
+# `vector<bool>`
 
 `vector`의 `bool` 특수화 버전은, `bool`타입을 저장하는 컨테이너가 아니라, 용량 최적화를 위해 `bool` 8개를 1byte에 저장하여 사용하는 특수 개체입니다. `[]`는 특정 항목에 접근하는 프록시로 구현되어 있고, `&v[0]`과 같은 포인터 연산이나 컨테이너를 위한 일부 알고리즘들과 호환되지 않습니다. 
 
