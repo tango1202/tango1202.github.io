@@ -157,8 +157,7 @@ class C : B<T> {
 template<template<typename> typename T> 
 class D {
     T<int>::Type m_Val; // (X) 컴파일 오류. B<T>::Type이 static 변수인지, B<T>에 종속된 타입인지 모릅니다.
-    typename T<int>::Type m_Val; // (O) 
-    
+    typename T<int>::Type m_Val; // (O)    
 };
 
 // 템플릿 함수
