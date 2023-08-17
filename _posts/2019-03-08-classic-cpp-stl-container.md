@@ -22,7 +22,7 @@ STL의 컨테이너는 다음 특징을 가지고 있습니다.
 
 같은 타입만 관리하며, 서로 다른 타입인 경우라도, 상속 관계를 가지고 있다면 부모 포인터로 관리할 수 있습니다. 
 
-**비관입형**
+**비 관입형**
 
 관입형은 컨테이너 요소가 컨테이너 구성을 위한 노드 정보를 자체적으로 가지고 있는 것을 말하며,
 
@@ -100,26 +100,98 @@ class Node {
 |비교적 컨테이너가 작은 경우 빈번한 검색|O|X|O|
 |비교적 컨테이너가 큰 경우 빈번한 검색|X|X|O|
 
-# 컨테이너 원소 규칙
+# 컨테이너 요소 규칙
 
-컨테이너는 원소 삽입/삭제/검색/비교등을 위해 다음 연산자들을 지원해야 합니다.
+컨테이너는 요소 삽입/삭제/검색/비교등을 위해 다음 항목들을 지원해야 합니다.
 
-**대입 연산자**
+**복사 생성자**
 
-시퀀스 컨테이너, 연관 컨테이너에서는 대입 연산자를 지원해야 합니다.
+시퀀스 컨테이너의 요소는 기본적으로 복사 생성자를 정의해야 합니다.
 
 ```cpp
-T& operator =(const T& other) {
-    T temp(other);
-    std::swap(*this, temp);
-    return this;
-}
+class A {
+public:
+    int m_Val;
+public:
+    explicit A(int val) : m_Val(val) {}
+    // 복사 생성자를 구현해야 합니다.
+    A(const A& other) : m_Val(other.m_Val) {}
+private:
+    // 대입 연산자를 사용하지 못하도록 private로 정의합니다.
+    A& operator =(const A& other) {
+        m_Val = other.m_Val;
+        return *this;
+    }
+};
+
+std::vector<A> v;
+v.push_back(A(0));
+v.push_back(A(1));
 ```
 
-**비교 연산자 `==`**
+**알고리즘과의 결합을 위한 연산자**
 
-시퀀스 컨테이너는 `==`을 지원해야 합니다.
+알고리즘과 결합하여 사용시에는 알고리즘에서 사용하는 연산자가 지원되어야 합니다.
 
-**비교 연산자 `<`**
+예를들어 `sort()`는 요소들의 정렬을 위해 대소 비교 후 대입하므로, `=` 와 `<` 연산자를 구현해야 합니다.(`<`연산자는 [대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)을 충족해야 합니다.)
 
-연관 컨테이너는 `<`을 지원해야 합니다. 이때 [대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)을 충족해야 합니다.
+```cpp
+class A {
+public:
+    int m_Val;
+public:
+    explicit A(int val) : m_Val(val) {}
+    // 복사 생성자
+    A(const A& other) : m_Val(other.m_Val) {}
+    // 대입 연산자
+    A& operator =(const A& other) {
+        m_Val = other.m_Val;
+        return *this;
+    }
+    // 비교 연산자
+    bool operator <(const A& other) const {
+        return m_Val < other.m_Val;
+    }
+};
+
+std::vector<A> v;
+v.push_back(A(1));
+v.push_back(A(0));
+
+// 정렬합니다. 
+// 내부적으로 요소의 대입 연산자와 대소 비교 연산자를 사용합니다.
+std::sort(v.begin(), v.end()); 
+EXPECT_TRUE(v[0].m_Val == 0 && v[1].m_Val == 1);
+```
+
+**연관 컨테이너의 Key**
+
+연관 컨테이너의 **Key**는 컨테이너에 삽입시 대소 비교하여 정렬하는데 사용되므로, 복사 생성자와 `<`을 지원해야 합니다.(`<`연산자는 [대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)을 충족해야 합니다.)
+
+```cpp
+class A {
+public:
+    int m_Val;
+public:
+    explicit A(int val) : m_Val(val) {}
+    // 복사 생성자
+    A(const A& other) : m_Val(other.m_Val) {}
+private:    
+    // 대입 연산자를 사용하지 못하도록 private로 정의합니다.
+    A& operator =(const A& other) {
+        m_Val = other.m_Val;
+        return *this;
+    }
+public:
+    // 비교 연산자
+    bool operator <(const A& other) const {
+        return m_Val < other.m_Val;
+    }
+};        
+
+std::map<A, std::string> m;
+
+// insert시 내부적으로 key를 비교 연산하여 정렬하여 삽입합니다. 
+m.insert(std::make_pair(A(0), "data0"));
+m.insert(std::make_pair(A(1), "data1"));
+```
