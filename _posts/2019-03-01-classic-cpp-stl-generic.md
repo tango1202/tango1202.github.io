@@ -134,8 +134,8 @@ EXPECT_TRUE(charContainer.GetAt(5) == 'c');
 
 |항목|내용|
 |--|--|
-|개체 지향 프로그래밍|캡슐화를 통해 데이터와 처리 방식을 응집하고, 추상화를 통해 공통의 인터페이스 규약을 만듭니다.|
-|일반화 프로그래밍|모든 타입에 적용 가능한 일반화된 코드를 개발합니다. 타입에 따라 동작이 다르거나, 성능의 문제가 있다면, [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/)를 통해 다형적으로 동작하게 만듭니다.|
+|개체 지향 프로그래밍|캡슐화를 통해 데이터와 처리 방식을 응집하고, 추상화를 통해 공통의 인터페이스 규약을 만든 뒤 이를 상속하여 다형적으로 만듭니다.|
+|일반화 프로그래밍|모든 타입에 적용 가능한 일반화된 코드를 개발하고, 타입에 따라 동작이 다르거나, 성능의 문제가 있다면, [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/)를 통해 다형적으로 동작하게 만듭니다.|
 
 개체 지향 특성들은 일반화 프로그래밍에서 다음처럼 구현됩니다. 
 
@@ -144,5 +144,5 @@ EXPECT_TRUE(charContainer.GetAt(5) == 'c');
 |[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)|타입과 이를 처리하는 일반화된 코드를 작성<br>알고리즘을 인자화하여 데이터와 처리방식 분리하고 의존성 주입([의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고)|
 |[추상화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)|일반화된 주 템플릿 사용<br/>문제 해결을 위한 알고리즘 일반화(공통의 상황/처리방식에 대한 일반화)|
 |[상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)|기존 개체의 재활용을 통한 확장|
-|[다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)|일반화된 주 템플릿 사용하고, 일반적이지 않은 타입은 [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/)를 통해 다형 동작|
+|[다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)|일반적인 타입은 주 템플릿을 사용하고, 일반적이지 않은 타입은 [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/)를 통해 다형 동작|
 
