@@ -22,8 +22,7 @@ sidebar:
 |`upper_bound()`|정렬된 시퀀스에서 주어진 값보다 큰 요소 위치를 찾습니다.|
 |`euqal_range()`|`lower_bound()`, `upper_bound()`를 쌍으로 묶어 리턴합니다. [같거나 큰 요소 ~ 큰 요소]이므로 반개방구조에서 같은 값들의 영역를 표현합니다.|
 |`binary_search()`|정렬된 시퀀스에서 이진 탐색하여 특정값이 있으면 `true`를 리턴합니다.|
-|lexicographical_compare|두 시퀀스중 사전식 순서로 먼저 오는 것을 골라 준다. |
-|next_permutation(prev_permutation)|사전식 순서의 다음/이전 순열을 내준다.|
+|`lexicographical_compare()`|첫번째 시퀀스가 두번째 시퀀스 보다 사전식 순서로 먼저 이면 `true`를 리턴합니다.|
 |min/max(min_element/max_ele ment) |두 값중 크거나 작은 값 선택|
 
 # 요소 변형
@@ -64,6 +63,7 @@ sidebar:
 |--|--|
 |reverse(reverse_copy)|요소들의 순서를 뒤집는다.|
 |rotate(rotate_copy) |요소들을 순환시킨다.|
+|`next_permutation()`<br/>`prev_permutation()`|정렬된 시퀀스에서 다음/이전 순열을 배치합니다. 이때 다음이나 이전 순열이 있다면 `true`를 리턴합니다.|
 |random_shuffle|요소들이 균일한 분포를 가지도록 요소들을 흩뜨려 놓는다|
 |merge(inplace_merge)|정렬된 두 시퀀스를 병합한다|
 |set_union|정렬된 합집합|
