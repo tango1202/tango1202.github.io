@@ -42,7 +42,7 @@ std::vector<int>::iterator result = v.insert(
     v.begin() + 1, // 1번째 요소 앞에 삽입
     10
 );
-EXPECT_TRUE(*(v.begin()) == 0 && *(++v.begin()) == 10 && *(++(++v.begin())) == 1);
+EXPECT_TRUE(*(v.begin()) == 0 && *(++v.begin()) == 10 && *(++(++v.begin())) == 1); // 이터레이터를 통한 접근
 EXPECT_TRUE(v[0] == 0 && v[1] == 10 && v[2] == 1); // [] 연산자를 이용하여 value 값 조회 지원
 EXPECT_TRUE(v.size() == 3); // 요소 갯수 3개
 EXPECT_TRUE(*result == 10); // 삽입한 요소를 리턴함
@@ -68,7 +68,7 @@ std::list<int>::iterator result = l.insert(
     ++l.begin(), // 1번째 요소 앞에 삽입, 랜덤 접근 불가하여 ++ 사용
     10
 );
-EXPECT_TRUE(*(l.begin()) == 0 && *(++l.begin()) == 10 && *(++(++l.begin())) == 1);
+EXPECT_TRUE(*(l.begin()) == 0 && *(++l.begin()) == 10 && *(++(++l.begin())) == 1); // 이터레이터를 통한 접근
 EXPECT_TRUE(l.size() == 3); // 요소 갯수 3개
 EXPECT_TRUE(*result == 10); // 삽입한 요소를 리턴함
 
@@ -100,7 +100,7 @@ std::pair<std::map<int, std::string>::iterator, bool> result = m.insert(std::mak
 result = m.insert(std::make_pair(0, "data0")); 
 
 EXPECT_TRUE((*(m.begin())).first == 0 && (*(m.begin())).second == "data0"); // key 값으로 정렬되어 있음
-EXPECT_TRUE((*(++m.begin())).first == 1 && (*(++m.begin())).second == "data1"); 
+EXPECT_TRUE((*(++m.begin())).first == 1 && (*(++m.begin())).second == "data1"); // 이터레이터를 통한 접근
 EXPECT_TRUE(m[0] == "data0" && m[1] == "data1"); // [] 연산자를 이용하여 value 값 조회 지원
 
 EXPECT_TRUE(m.size() == 2); // 요소 갯수 2개
