@@ -16,13 +16,12 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|find(find_if)|시퀀스에서 어떤 값이 처음으로 출현한 위치를 찾는다|
-|search|어떤 시퀀스가 부분시퀀스로서 처음으로 나타나는 위치를 찾는다.|
-|nth_element|n 번째 요소를 적절한 위치에 놓는다.|
-|lower_bound|어떤 값이 처음 출현한 위치를 찾는다|
-|upper_bound|주어진 값보다 큰 요소가 처음 출현한  위치를 찾는다|
-|euqal_range|주어진 값을 가진 부분시퀀스를 찾는다.|
-|binary_search|정렬된 시퀀스 안에서 어떤 값이 있으면 참을 낸다|
+|`find()`<br/>`find_if()`|시퀀스에서 특정값이 처음으로 나타나는 위치를 찾습니다.|
+|`search()`|시퀀스에서 특정 부분 시퀀스가 처음으로 나타나는 위치를 찾습니다.|
+|`lower_bound()`|정렬된 시퀀스에서 주어진 값보다 같거나 큰 첫 요소 위치를 찾습니다.|
+|`upper_bound()`|정렬된 시퀀스에서 주어진 값보다 큰 요소 위치를 찾습니다.|
+|`euqal_range()`|`lower_bound()`, `upper_bound()`를 쌍으로 묶어 리턴합니다. [같거나 큰 요소 ~ 큰 요소]이므로 반개방구조에서 같은 값들의 영역를 표현합니다.|
+|`binary_search()`|정렬된 시퀀스에서 이진 탐색하여 특정값이 있으면 `true`를 리턴합니다.|
 |lexicographical_compare|두 시퀀스중 사전식 순서로 먼저 오는 것을 골라 준다. |
 |next_permutation(prev_permutation)|사전식 순서의 다음/이전 순열을 내준다.|
 |min/max(min_element/max_ele ment) |두 값중 크거나 작은 값 선택|
@@ -42,6 +41,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |sort(stable_sort)|대체적으로 좋은 효율로 요소들을 정렬|
+|`nth_element()`|시퀀스를 정렬하였을때 n요소가 위치할 곳에 n요소를 배치합니다. 즉 모든 요소를 정렬하지 않고, n요소만 제 위치에 둔다고 볼 수 있습니다. n요소 앞의 요소들은 n요소 뒤의 요소들 보다 작거나 같습니다.|
 |partial_sort(partial_sort_copy)|시퀀스의 앞쪽 일부를 정렬|
 |partition(stable_partition)|조건에 맞는 요소들을 앞에 놓는다.|
 
