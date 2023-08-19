@@ -46,7 +46,7 @@ sidebar:
 |`capacity()`|`size_type capacity() const;`|메모리를 더 할당하지 않고 `vector`에 저장할 수 있는 요소 갯수를 리턴합니다.(`vector`는 메모리 할당이 빈번히 발생하지 않도록 실제 요소 갯수보다 큰 크기를 할당하기도 하고, 삽입/삭제에 따라 실제 요소 갯수보다 더 많은 메모리를 관리할 수 있습니다.)|
 |`reserve()`|`void reserve(size_type count);`|`vector`의 메모리 공간을 최소한 `count` 갯수 만큼 요소를 저장할 수 있도록 예약합니다.|
 |`max_size()`|`size_type max_size() const;`|`vector`가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
-|`swap()`|`void swap(vector<Type, Allocator>& other);`|두 `vector`의 요소를 바꿔치기 합니다.|
+|`swap()`|`void swap(vector<Type, Allocator>& other);`|두 `vector`의 내부 데이터를 바꿔치기 합니다.|
 
 **요소 검색**
 
