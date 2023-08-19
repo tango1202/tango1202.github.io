@@ -30,7 +30,7 @@ sidebar:
 |`explicit vector(size_type count);`|`count` 갯수 만큼 요소를 생성합니다.|
 |`vector(size_type count, const Type& value);`|`count` 갯수 만큼 요소를 생성하고, `value`로 초기화 합니다.|
 |`vector(const vector& other);`|복사 생성합니다.|
-|`template <class InputIterator>`<br/>`vector(InputIterator first, InputIterator last);`|`first`와 `last` 직전까지의 요소(반개방 구조)를 복사합니다.|
+|`template <class InputIterator>`<br/>`vector(InputIterator first, InputIterator last);`|`first`부터 `last` 직전까지의 요소(반개방 구조)를 복사합니다.|
 
 상기 외에 `allocator`를 사용하는 생성자가 있으며, 자세한 내용은 [할당자(Allocator)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 를 참고하기 바랍니다.
 
@@ -65,7 +65,6 @@ sidebar:
 |`data()`|`pointer data();`<br/>`const_pointer data() const;`|첫번째 요소의 포인터를 리턴합니다.|
 |`front()`|`reference front();`<br/>`const_reference front() const;`|첫번째 요소의 참조자를 리턴합니다. `vector`가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`back()`|`reference back();`<br/>`const_reference back() const;`|마지막 요소의 참조자를 리턴합니다. `vector`가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
-
 
 **요소 삽입/삭제**
 
