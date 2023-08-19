@@ -65,7 +65,7 @@ static const size_type npos = -1;
 
 # string 멤버 함수
 
-대부분 `vector`와 동일하며, `string`에 필요한 요소가 추가되었습니다.
+대부분 `vector`와 동일하며, `string`에 필요한 기능이 추가되었습니다.
 
 **생성자**
 
