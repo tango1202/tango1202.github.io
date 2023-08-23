@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [고전 C++ STL] 알고리즘"
+title: "#14. [고전 C++ STL] 알고리즘(작성중)"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -47,13 +47,17 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10);
 
 |항목|내용|
 |--|--|
-|`find()`<br/>`find_if()`|시퀀스에서 특정값이 처음으로 나타나는 위치를 찾습니다.|
-|`search()`|시퀀스에서 특정 부분 시퀀스가 처음으로 나타나는 위치를 찾습니다.|
+|`find()`<br/>`find_if()`|시퀀스에서 특정값의 위치를 찾습니다.|
+|`find_end()`|시퀀스에서 특정값의 마지막 위치를 찾습니다.|
+|`find_first_of()`|지정된 요소들중 일치하는 값이 있는 첫번째 위치를 찾습니다.|
+|`find_last_of()`|지정된 요소들중 일치하는 값이 있는 마지막 위치를 찾습니다.|
+|`adjacent_find()`|중복된 요소의 위치를 찾습니다.|
+|`search()`<br/>`search_n()`|시퀀스에서 특정 부분 시퀀스의 위치를 찾습니다.|
 |`lower_bound()`|정렬된 시퀀스에서 주어진 값보다 같거나 큰 첫 요소 위치를 찾습니다.|
 |`upper_bound()`|정렬된 시퀀스에서 주어진 값보다 큰 요소 위치를 찾습니다.|
 |`euqal_range()`|`lower_bound()`, `upper_bound()`를 쌍으로 묶어 리턴합니다. [같거나 큰 요소 ~ 큰 요소]이므로 반개방구조에서 같은 값들의 영역를 표현합니다.|
 |`binary_search()`|정렬된 시퀀스에서 이진 탐색하여 특정값이 있으면 `true`를 리턴합니다.|
-|`lexicographical_compare()`|첫번째 시퀀스가 두번째 시퀀스 보다 사전식 순서로 먼저 이면 `true`를 리턴합니다.|
+|`lexicographical_compare()`|첫번째 시퀀스가 두번째 시퀀스 보다 사전식 순서로 먼저면 `true`를 리턴합니다.|
 |`min()`<br/>/`max()`<br/>`min_element()`<br/>`max_element()`|두 값 중에 최소값이나 최대값을 리턴하거나, 시퀀스에서 최소값이나 최대값을 리턴합니다.|
 
 # 요소 변형
@@ -62,8 +66,8 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10);
 |--|--|
 |`for_each()`|시퀀스 안의 요소들에 대해 `f()`를 실행합니다.|
 |`transform()`|시퀀스 안의 각 요소들에 대해 `op()`를 실행후 `*result`에 대입합니다.|
-|`replace()`<br/>`replace_if()`<br/>`, replace_copy()`<br/>`replace_copy_if()`|주어진 값을 가진 요소를 다른 값으로 대체합니다.|
-|`fill()`<br/>`fill_n`|모든 요소에 `value`값을 대입합니다.|
+|`replace()`<br/>`replace_if()`<br/>`replace_copy()`<br/>`replace_copy_if()`|주어진 값을 가진 요소를 다른 값으로 대체합니다.|
+|`fill()`<br/>`fill_n()`|모든 요소에 `value`값을 대입합니다.|
 |`generate`<br/>`generate_n()`|모든 요소에 `gen()`값을 대입합니다.|
 
 # 정렬
@@ -101,7 +105,25 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10);
 |`set_intersection()`|정렬된 교집합을 만듭니다. 중복된 요소는 제거됩니다.|
 |`set_difference()`<br/>`set_symmetric_difference()`|정렬된 차집합을 만듭니다. 중복된 요소는 제거됩니다.|
 
+# 힙관리
 
+make_heap
+push_heap
+pop_heap
+sort_heap
+
+# 수학
+
+accumulate
+inner_product
+adjacent_difference
+partial_sum
+
+# 메모리 유틸리티
+
+uninitialized_copy
+uninitialized_fill
+uninitialized_fill_n
 
 
 
