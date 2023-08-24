@@ -139,7 +139,7 @@ public:
         m_Ptr(other.m_Ptr) { 
         other.m_Ptr = NULL; // 소유권이 this로 왔으므로 other는 NULL 
     }
-    my_auto_ptr operator =(my_auto_ptr& other) { 
+    my_auto_ptr& operator =(my_auto_ptr& other) { 
         delete m_Ptr; // 이전 관리하던 포인터는 삭제
         m_Ptr = other.m_Ptr; 
         other.m_Ptr = NULL; // 소유권이 this로 왔으므로 other는 NULL 
