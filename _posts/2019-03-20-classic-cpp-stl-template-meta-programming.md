@@ -317,6 +317,42 @@ public:
 };
 ```
 
+이제 `CloneTraits`에서 `IsDerivedFrom<>::Val`에 따라 복사 생성자나 `Clone()`함수를 호출해 주면 됩니다. 
+
+다음처럼 `if()`문을 이용할 수 있는데요, 코드내에 언급한 것처럼 `Shape`의 복사 생성자는 `protected` 여서 사용할 수 없으므로 컴파일 오류가 납니다.
+
+```cpp
+template<typename T>
+class CloneTraits
+{
+public:
+
+    // if 문을 사용했기 때문에 런타임에 복사 생성자를 사용할지 Clone()을 사용할 지 결정합니다.
+    static T* Clone(const T* ptr) {
+    	if (ptr == NULL) {
+    		return  NULL;
+    	}
+
+        // ICloneable을 상속하지 않았다면 복사 생성
+        // (X) 컴파일 오류. Shape의 복사 생성자는 protected 여서 사용할 수 없습니다.
+        if (!IsDerivedFrom<T, ICloneable>::Val) {
+            return new T(*ptr);
+        }
+        // ICloneable을 상속했다면 Clone() 호출
+        else {
+            return ptr->Clone();
+        }
+    } 
+};
+Shape* shape = CloneTraits<Shape>::Clone(new Rectangle);
+EXPECT_TRUE(typeid(*shape).hash_code() == typeid(Rectangle).hash_code());
+delete shape;
+```
+
+컴파일 오류를 해결하겠다고 `Shape`의 복사 생성자를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심성의껏 `protected`로 만든 것이니까요. 
+
+함수 오버로딩을 통해 분기할 수 있습니다. 복사 생성
+
 `CloneTraits` 템플릿은 다음과 같이 `ICloneable`을 상속했는지 검사하여, 복사 생성자를 호출하거나 `Clone()`함수를 호출합니다.
 
 1. `Clone()`함수를 오버로딩 하기 위해 `CloneTag<true>`와 `CloneTag<false>`타입을 만듭니다.
@@ -443,32 +479,3 @@ my_smart_ptr<Shape> sp2(sp1.Clone());
 EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
 ```
 
-한편, `CloneTraits`가 오버로딩을 위해 `CloneTag`를 사용하는게 쓸데없이 개체를 정의한다는 측면에서 마음에 들지 않아 다음처럼 `if()`문을 이용하여 복사 생성을 할지, `Clone()`을 호출할지 작성해 볼 수도 있는데요, 코드내에 언급한 것처럼 `Shape`의 복사 생성자는 `protected` 여서 사용할 수 없으므로 컴파일 오류가 납니다.
-
-```cpp
-template<typename T>
-class CloneTraits
-{
-public:
-
-    // if 문을 사용했기 때문에 런타임에 복사 생성자를 사용할지 Clone()을 사용할 지 결정합니다.
-    static T* Clone(const T* ptr) {
-    	if (ptr == NULL) {
-    		return  NULL;
-    	}
-
-        // ICloneable을 상속하지 않았다면 복사 생성
-        // (X) 컴파일 오류. Shape의 복사 생성자는 protected 여서 사용할 수 없습니다.
-        if (!IsDerivedFrom<T, ICloneable>::Val) {
-            return new T(*ptr);
-        }
-        // ICloneable을 상속했다면 Clone() 호출
-        else {
-            return ptr->Clone();
-        }
-    } 
-};
-Shape* shape = CloneTraits<Shape>::CloneForRunTime(new Rectangle);
-EXPECT_TRUE(typeid(*shape).hash_code() == typeid(Rectangle).hash_code());
-delete shape;
-```
