@@ -49,6 +49,8 @@ EXPECT_TRUE(val == 1 * 2 * 3 * 4 * 5);
 
 스마트 포인터인 경우 부모 개체의 포인터를 관리하는데요, 이를 복제하려면 자식 개체를 복제해야 하므로 `Clone()`함수를 이용합니다.([가상 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
+다음 코드에서는 스마트 포인터에서 관리하는 포인터를 복제하기 위해 추상 클래스인 `Shape` 개체의 `Clone()`함수를 호출하고 있습니다.
+
 ```cpp
 template<typename T>
 class my_smart_ptr { 
@@ -105,7 +107,7 @@ my_smart_ptr<Shape> sp2(sp1.Clone());
 EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
 ```
 
-상기 코드는 잘 작동합니다만, 상속 관계가 아니거나, `Clone()` 함수가 아니면 `my_smart_ptr` 사용할 수 없습니다.
+상기 코드는 잘 작동합니다만, `T`에서 `Clone()` 함수를 제공하지 않으면(예를 들어 `int`등), `my_smart_ptr` 사용할 수 없습니다.
 
 **1. 템플릿 특수화를 이용하는 방법**
 
@@ -197,7 +199,6 @@ EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
 **2. Traits를 이용하는 방법**
 
 타입 특성 클래스를 만들어 코드가 다른 부분만 템플릿 특수화를 할 수 있습니다. 템플릿 전체를 특수화할 필요가 없어 훨씬 낫습니다.
-
 
 ```cpp
 template<typename T>
@@ -349,11 +350,9 @@ EXPECT_TRUE(typeid(*shape).hash_code() == typeid(Rectangle).hash_code());
 delete shape;
 ```
 
-컴파일 오류를 해결하겠다고 `Shape`의 복사 생성자를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심성의껏 `protected`로 만든 것이니까요. 
+컴파일 오류를 해결하겠다고 `Shape`의 복사 생성자를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심 성의껏 `protected`로 만든 것이니까요. 
 
-함수 오버로딩을 통해 분기할 수 있습니다. 복사 생성
-
-`CloneTraits` 템플릿은 다음과 같이 `ICloneable`을 상속했는지 검사하여, 복사 생성자를 호출하거나 `Clone()`함수를 호출합니다.
+ 이 문제는 함수 오버로딩을 통해 해결할 수 있습니다. 하나의 함수에서 `if()`을 통해 복사 생성자나 `Clone()`함수를 호출하는게 아니라, 복사 생성자를 사용하는 함수와 `Clone()`을 사용하는 함수를 각각 구현하고, 개체에 따라 해당 함수를 호출하게 하면 됩니다.
 
 1. `Clone()`함수를 오버로딩 하기 위해 `CloneTag<true>`와 `CloneTag<false>`타입을 만듭니다.
 2. `IsDerivedFrom<>::Val`에 따라 오버로딩된 `Clone()`함수를 호출합니다.
@@ -420,9 +419,67 @@ virtual Shape* Clone() const {
     return NULL; 
 }
 ```
-다음은 `my_smart_ptr`과 테스트 코드 입니다.
+
+
+다음은 전체 테스트 코드 입니다.
 
 ```cpp
+// Clone() 을 제공하는 단위 인터페이스
+class ICloneable {
+private:
+    ICloneable(const ICloneable& other) {} // 인터페이스여서 외부에서 사용 못하게 복사 생성자 막음
+    ICloneable& operator =(const ICloneable& other) {return *this;} // 인터페이스여서 외부에서 사용 못하게 대입 연산자 막음    
+protected:
+    ICloneable() {} // 인터페이스여서 상속한 개체에서만 생성할 수 있게함 
+    ~ICloneable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다. 
+public:
+    virtual ICloneable* Clone() const = 0; // 순가상 함수입니다. 자식 클래스에서 구체화 해야 합니다.
+};
+
+// D가 B를 상속하였는지 검사하는 템플릿
+template<typename D, typename B> 
+class IsDerivedFrom {
+    class No {};
+    class Yes {No no[2];}; // No 클래스보다 크기가 큰 클래스
+
+    // B*로 변환되는 타입이라면 Yes를 리턴하고, 그렇지 않은 모든 것을은 No를 리턴합니다.
+    static Yes Test(B*); // 컴파일 타임에만 사용해서 선언만 하고 정의는 불필요합니다.
+    static No Test(...); // 컴파일 타임에만 사용해서 선언만 하고 정의는 불필요합니다.
+public:
+    // Test() 함수에 D*를 전달했을때 B*로 변환되었다면 상속받았기 때문에 true, 그렇지 않으면 false를 저장합니다.
+    enum {Val = sizeof(Test(static_cast<D*>(0))) == sizeof(Yes)};
+};
+
+// CloneTag<true>와 CloneTag<false> 타입을 만듭니다.
+template<bool val>
+class CloneTag {
+public:
+    enum {Val = val};
+};
+
+// IsDerivedFrom을 이용하여 ICloneable 상속 여부를 컴파일 타임에 판단하여, 컴파일 타임에 복사 생성할지, Clone을 호출할지 결정합니다.
+template<typename T>
+class CloneTraits
+{
+    static T* Clone(const T* ptr, CloneTag<false>) {
+        return new T(*ptr); 
+    }
+    static T* Clone(const T* ptr, CloneTag<true>) {
+        return ptr->Clone();
+    }
+public:
+    // 오버로딩을 통해 컴파일 타임에 복사 생성자를 사용할지 Clone()을 사용할 지 결정합니다.
+    static T* Clone(const T* ptr) {
+        if (ptr == NULL) {
+            return  NULL;
+        }
+
+        return Clone(
+            ptr, 
+            CloneTag<IsDerivedFrom<T, ICloneable>::Val>());
+    }    
+};
+
 template<typename T>
 class my_smart_ptr { 
     T* m_Ptr; 
