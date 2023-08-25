@@ -139,7 +139,7 @@ public:
         m_Ptr(other.m_Ptr) { 
         other.m_Ptr = NULL; // 소유권이 this로 왔으므로 other는 NULL 
     }
-    my_auto_ptr operator =(my_auto_ptr& other) { 
+    my_auto_ptr& operator =(my_auto_ptr& other) { 
         delete m_Ptr; // 이전 관리하던 포인터는 삭제
         m_Ptr = other.m_Ptr; 
         other.m_Ptr = NULL; // 소유권이 this로 왔으므로 other는 NULL 
@@ -209,4 +209,3 @@ void f(const auto_ptr<T>& p); // (△) 비권장. 쓸데없이 auto_ptr을 전�
 void f(auto_ptr<T>& p); // (△) 비권장. p를 수정하겠다는 건지, auto_ptr을 수정하겠다는 건지 불분명 합니다. f(const T& r)이나, f(T& r)을 사용하는게 낫습니다.
 void f(auto_ptr<T> p); // (O) new로 생성한 개체를 전달해야 합니다.
 ```
-
