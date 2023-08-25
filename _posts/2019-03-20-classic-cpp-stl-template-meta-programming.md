@@ -358,13 +358,6 @@ public:
 
 단 이때 `Clone()`이 `ICloneable` 이 아니라 `Shape`이 리턴되도록 조정해줘야 합니다. 
 
-```cpp
-// Shape::Clone()을 하면 ICloneable*이 아니라 Shape* 리턴되도록 조정합니다.
-virtual Shape* Clone() const { 
-    return NULL; 
-}
-```
-
 그렇지 않으면, 다음 코드는 
 
 ```cpp
@@ -381,7 +374,17 @@ static Shape* Clone(const Shape* ptr, CloneTag<true>) {
 }
 ```
 
-`ICloneable*`이 `Shape*` 으로 변환될 수 없으니 컴파일 오류가 발생합니다.
+`ICloneable*`이 `Shape*` 으로 변환될 수 없으니 컴파일 오류가 발생합니다. 
+
+따라서, `Shape`이 비록 추상 클래스이고, `Shape`개체 자체를 복제하여 인스턴스화 할 수 없다고 하더라도, 다음처럼 `Clone()`함수를 재구현 해야 합니다.
+
+```cpp
+// Shape::Clone()을 하면 ICloneable*이 아니라 Shape* 리턴되도록 조정합니다.
+virtual Shape* Clone() const { 
+    return NULL; 
+}
+```
+다음은 `my_smart_ptr`과 테스트 코드 입니다.
 
 ```cpp
 template<typename T>
@@ -440,7 +443,7 @@ my_smart_ptr<Shape> sp2(sp1.Clone());
 EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
 ```
 
-`CloneTraits`가 오버로딩을 위해 `CloneTag`를 사용하는게 쓸데없이 개체를 정의한다는 측면에서 마음에 들지 않아 다음처럼 `if()`문을 이용하여 복사 생성을 할지, `Clone()`을 호출할지 작성해 볼 수도 있는데요,
+한편, `CloneTraits`가 오버로딩을 위해 `CloneTag`를 사용하는게 쓸데없이 개체를 정의한다는 측면에서 마음에 들지 않아 다음처럼 `if()`문을 이용하여 복사 생성을 할지, `Clone()`을 호출할지 작성해 볼 수도 있는데요, 코드내에 언급한 것처럼 `Shape`의 복사 생성자는 `protected` 여서 사용할 수 없으므로 컴파일 오류가 납니다.
 
 ```cpp
 template<typename T>
