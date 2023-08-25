@@ -14,7 +14,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|조건 분기|템플릿과 템플릿 일반화로 구현|
+|조건 분기|템플릿과 템플릿 특수화나 함수 오버로딩으로 구현|
 |반복|재귀 호출로 구현|
 |변수|열거형 상수로 구현|
 
@@ -40,7 +40,432 @@ struct Factorial<0> {
         val = 1
     }; 
 };
-// 컴파일타임에 계산된 120이 val에 대입됩니다.
+// 컴파일 타임에 계산된 120이 val에 대입됩니다.
 unsigned int val = Factorial<5>::val; 
 EXPECT_TRUE(val == 1 * 2 * 3 * 4 * 5);
+```
+
+# 가상 복사 생성자
+
+스마트 포인터인 경우 부모 개체의 포인터를 관리하는데요, 이를 복제하려면 자식 개체를 복제해야 하므로 `Clone()`함수를 이용합니다.([가상 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
+
+```cpp
+template<typename T>
+class my_smart_ptr { 
+    T* m_Ptr; 
+public:
+    my_smart_ptr(T* ptr) : 
+        m_Ptr(ptr) {}
+    ~my_smart_ptr() {
+        delete m_Ptr;
+    }
+
+private:
+    // 테스트와 상관없어서 복사 생성자와 대입 연산자는 private로 막아 두었습니다.
+    my_smart_ptr(my_smart_ptr& other) {}
+    my_smart_ptr& operator =(my_smart_ptr& other) {return *this;}
+
+public:
+    T* GetPtr() {
+        return m_Ptr;
+    } 
+    // T 개체의 Clone()을 호출합니다.
+    T* Clone() const {
+        if (m_Ptr == NULL) {
+            return(NULL);
+        }
+        return m_Ptr->Clone();
+    }
+};
+
+// 추상 클래스 입니다.
+class Shape {
+protected:
+    Shape() {} 
+    Shape(const Shape& other) {}
+public:
+    virtual ~Shape() {}
+    // (O) 부모 개체에서는 Shape* 으로 리턴합니다.  
+    virtual Shape* Clone() const = 0; 
+};
+
+class Rectangle : public Shape {
+public:
+    // (O) 자식 개체에서는 자식 타입으로 리턴합니다.
+    // Rectangle의 복사 생성자를 이용하며 복제본을 리턴합니다.
+    virtual Rectangle* Clone() const { 
+        return new Rectangle(*this); 
+    }
+};  
+
+my_smart_ptr<Shape> sp1(new Rectangle);
+my_smart_ptr<Shape> sp2(sp1.Clone());     
+
+// sp2는 Rectangle 을 관리합니다.
+EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
+```
+
+상기 코드는 잘 작동합니다만, 상속 관계가 아니거나, `Clone()` 함수가 아니면 `my_smart_ptr` 사용할 수 없습니다.
+
+**1. 템플릿 특수화를 이용하는 방법**
+
+`my_smart_ptr`의 일반 버전은 복사 생성자를 사용하고, `Clone`을 제공하는 개체는 `Clone()`함수를 이용하여 특수화 할 수 있습니다. 하지만 이 방법은 템플릿 코드들이 중복되어 권장하지 않습니다.
+
+```cpp
+template<typename T>
+class my_smart_ptr { 
+    T* m_Ptr; 
+public:
+    my_smart_ptr(T* ptr) : 
+        m_Ptr(ptr) {}
+    ~my_smart_ptr() {
+        delete m_Ptr;
+    }
+
+private:
+    // 테스트와 상관없어서 복사 생성자와 대입 연산자는 private로 막아 두었습니다.
+    my_smart_ptr(my_smart_ptr& other) {}
+    my_smart_ptr& operator =(my_smart_ptr& other) {return *this;}
+
+public:
+    T* GetPtr() {
+        return m_Ptr;
+    } 
+    // T 개체의 복사 생성자를 호출합니다.
+    T* Clone() const {
+        if (m_Ptr == NULL) {
+            return(NULL);
+        }
+        return new T(*m_Ptr);
+    }
+};
+
+// 추상 클래스 입니다.
+class Shape {
+protected:
+    Shape() {} 
+    Shape(const Shape& other) {}
+public:
+    virtual ~Shape() {}
+    // (O) 부모 개체에서는 Shape* 으로 리턴합니다.  
+    virtual Shape* Clone() const = 0; 
+};
+
+class Rectangle : public Shape {
+public:
+    // (O) 자식 개체에서는 자식 타입으로 리턴합니다.
+    // Rectangle의 복사 생성자를 이용하며 복제본을 리턴합니다.
+    virtual Rectangle* Clone() const { 
+        return new Rectangle(*this); 
+    }
+};
+// Shape은 Clone()을 사용하므로 특수화 합니다.
+template<>
+class my_smart_ptr<Shape> { 
+    Shape* m_Ptr; 
+public:
+    my_smart_ptr(Shape* ptr) : 
+        m_Ptr(ptr) {}
+    ~my_smart_ptr() {
+        delete m_Ptr;
+    }
+
+private:
+    // 테스트와 상관없어서 복사 생성자와 대입 연산자는 private로 막아 두었습니다.
+    my_smart_ptr(my_smart_ptr& other) {}
+    my_smart_ptr& operator =(my_smart_ptr& other) {return *this;}
+
+public:
+    Shape* GetPtr() {
+        return m_Ptr;
+    } 
+    // Shape 개체의 Clone()을 호출합니다.
+    Shape* Clone() const {
+        if (m_Ptr == NULL) {
+            return(NULL);
+        }
+        return m_Ptr->Clone();
+    }
+};  
+my_smart_ptr<Shape> sp1(new Rectangle);
+my_smart_ptr<Shape> sp2(sp1.Clone());     
+
+// sp2는 Rectangle 을 관리합니다.
+EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
+```
+
+**2. Traits를 이용하는 방법**
+
+타입 특성 클래스를 만들어 코드가 다른 부분만 템플릿 특수화를 할 수 있습니다. 템플릿 전체를 특수화할 필요가 없어 훨씬 낫습니다.
+
+
+```cpp
+template<typename T>
+class CloneTraits {
+public:
+    // 일반적인 복제는 복사 생성자를 사용합니다.
+    static T* Clone(const T* ptr) {
+        if (ptr == NULL) {
+            return  NULL;
+        }
+
+        return new T(*ptr);
+    }
+};
+
+template<typename T>
+class my_smart_ptr { 
+    T* m_Ptr; 
+public:
+    my_smart_ptr(T* ptr) : 
+        m_Ptr(ptr) {}
+    ~my_smart_ptr() {
+        delete m_Ptr;
+    }
+
+private:
+    // 테스트와 상관없어서 복사 생성자와 대입 연산자는 private로 막아 두었습니다.
+    my_smart_ptr(my_smart_ptr& other) {}
+    my_smart_ptr& operator =(my_smart_ptr& other) {return *this;}
+
+public:
+    T* GetPtr() {
+        return m_Ptr;
+    } 
+    // CloneTraits를 이용하여 복제합니다.
+    T* Clone() const {
+        return CloneTraits<T>::Clone(m_Ptr);
+    }
+};
+
+// 추상 클래스 입니다.
+class Shape {
+protected:
+    Shape() {} 
+    Shape(const Shape& other) {}
+public:
+    virtual ~Shape() {}
+    // (O) 부모 개체에서는 Shape* 으로 리턴합니다.  
+    virtual Shape* Clone() const = 0; 
+};
+
+class Rectangle : public Shape {
+public:
+    // (O) 자식 개체에서는 자식 타입으로 리턴합니다.
+    // Rectangle의 복사 생성자를 이용하며 복제본을 리턴합니다.
+    virtual Rectangle* Clone() const { 
+        return new Rectangle(*this); 
+    }
+};
+// Shape을 복제할 땐 Clone 함수를 사용합니다.
+template<>
+class CloneTraits<Shape> {
+public:
+    static Shape* Clone(const Shape* ptr) 
+    {
+        if (ptr == NULL) {
+            return NULL;
+        }
+
+        return ptr->Clone();
+    }
+};
+my_smart_ptr<Shape> sp1(new Rectangle);
+my_smart_ptr<Shape> sp2(sp1.Clone());     
+
+// sp2는 Rectangle 을 관리합니다.
+EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
+```
+
+**3. 템플릿 메타 프로그래밍을 이용하는 방법**
+
+**2. Traits를 이용하는 방법** 도 나쁘지는 않으나, `Clone()`을 사용하는 개체가 있다면 잊지 않고, `CloneTraits` 특수화를 해야 한다는 점이 좀 부담스럽습니다. 하지만, 만약 다음과 같이 단위 인터페이스로 `ICloneable`을 사용한다면, `CloneTraits`가 `ICloneable` 을 상속한 개체를 스스로 판단하여 `Clone()`함수를 호출할 수 있습니다.
+
+```cpp
+// Clone() 을 제공하는 단위 인터페이스
+class ICloneable {
+private:
+    ICloneable(const ICloneable& other) {} // 인터페이스여서 외부에서 사용 못하게 복사 생성자 막음
+    ICloneable& operator =(const ICloneable& other) {return *this;} // 인터페이스여서 외부에서 사용 못하게 대입 연산자 막음    
+protected:
+    ICloneable() {} // 인터페이스여서 상속한 개체에서만 생성할 수 있게함 
+    ~ICloneable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다. 
+public:
+    virtual ICloneable* Clone() const = 0; // 순가상 함수입니다. 자식 클래스에서 구체화 해야 합니다.
+};
+```
+
+다음의 `IsDerivedFrom` 템플릿은 `D`가 `B`를 상속했는지 검사합니다.
+
+1. 상속했다면 열거값 `Val`에 `true`를 세팅하고, 그렇지 않으면 `false`를 세팅합니다.
+2. `Test()` 함수를 오버로딩해서 `D*` 가 `B*`로 변환되면 `Yes` 개체를 리턴하고, 그렇지 않으면 `No` 개체를 리턴합니다. 즉, `D`가 `B`를 상속했다면 `Yes`를 리턴합니다.
+3. `Yes`는 `No`보다 크기가 큽니다. 따라서 어떤 오버로딩 함수가 호출되었는지는 리턴값의 `sizeof()`로 확인할 수 있습니다.
+
+```cpp
+// D가 B를 상속하였는지 검사하는 템플릿
+template<typename D, typename B> 
+class IsDerivedFrom {
+    class No {};
+    class Yes {No no[2];}; // No 클래스보다 크기가 큰 클래스
+
+    // B*로 변환되는 타입이라면 Yes를 리턴하고, 그렇지 않은 모든 것을은 No를 리턴합니다.
+    static Yes Test(B*); // 컴파일 타임에만 사용해서 선언만 하고 정의는 불필요합니다.
+    static No Test(...); // 컴파일 타임에만 사용해서 선언만 하고 정의는 불필요합니다.
+public:
+    // Test() 함수에 D*를 전달했을때 B*로 변환되었다면 상속받았기 때문에 true, 그렇지 않으면 false를 저장합니다.
+    enum {Val = sizeof(Test(static_cast<D*>(0))) == sizeof(Yes)};
+};
+```
+
+`CloneTraits` 템플릿은 다음과 같이 `ICloneable`을 상속했는지 검사하여, 복사 생성자를 호출하거나 `Clone()`함수를 호출합니다.
+
+1. `Clone()`함수를 오버로딩 하기 위해 `CloneTag<true>`와 `CloneTag<false>`타입을 만듭니다.
+2. `IsDerivedFrom<>::Val`에 따라 오버로딩된 `Clone()`함수를 호출합니다.
+
+```cpp
+// CloneTag<true>와 CloneTag<false> 타입을 만듭니다.
+template<bool val>
+class CloneTag {
+public:
+    enum {Val = val};
+};
+
+// IsDerivedFrom을 이용하여 ICloneable 상속 여부를 컴파일 타임에 판단하여, 컴파일 타임에 복사 생성할지, Clone을 호출할지 결정합니다.
+template<typename T>
+class CloneTraits
+{
+    static T* Clone(const T* ptr, CloneTag<false>) {
+        return new T(*ptr); 
+    }
+    static T* Clone(const T* ptr, CloneTag<true>) {
+        return ptr->Clone();
+    }
+public:
+    // 오버로딩을 통해 컴파일 타임에 복사 생성자를 사용할지 Clone()을 사용할 지 결정합니다.
+    static T* Clone(const T* ptr) {
+        if (ptr == NULL) {
+            return  NULL;
+        }
+
+        return Clone(
+            ptr, 
+            CloneTag<IsDerivedFrom<T, ICloneable>::Val>());
+    }    
+};
+```
+
+이제 다음과 같이 **2. Traits를 이용하는 방법** 의 `my_smart_ptr`을 그대로 사용하고, `Shape`은 `ICloneable`을 상속해 주면 됩니다. 
+
+단 이때 `Clone()`이 `ICloneable` 이 아니라 `Shape`이 리턴되도록 조정해줘야 합니다. 
+
+```cpp
+// Shape::Clone()을 하면 ICloneable*이 아니라 Shape* 리턴되도록 조정합니다.
+virtual Shape* Clone() const { 
+    return NULL; 
+}
+```
+
+그렇지 않으면, 다음 코드는 
+
+```cpp
+static T* Clone(const T* ptr, CloneTag<true>) {
+    return ptr->Clone();
+}
+```
+
+다음처럼 인스턴스화 되는데요,
+
+```cpp
+static Shape* Clone(const Shape* ptr, CloneTag<true>) {
+    return ptr->Clone(); // (X) Shape::Clone() 이 ICloneable*을 리턴하면 ICloneable*이 Shape* 으로 변환될 수 없으므로 컴파일 오류가 발생합니다.
+}
+```
+
+`ICloneable*`이 `Shape*` 으로 변환될 수 없으니 컴파일 오류가 발생합니다.
+
+```cpp
+template<typename T>
+class my_smart_ptr { 
+    T* m_Ptr; 
+public:
+    my_smart_ptr(T* ptr) : 
+        m_Ptr(ptr) {}
+    ~my_smart_ptr() {
+        delete m_Ptr;
+    }
+
+private:
+    // 테스트와 상관없어서 복사 생성자와 대입 연산자는 private로 막아 두었습니다.
+    my_smart_ptr(my_smart_ptr& other) {}
+    my_smart_ptr& operator =(my_smart_ptr& other) {return *this;}
+
+public:
+    T* GetPtr() {
+        return m_Ptr;
+    } 
+    // CloneTraits를 이용하여 복제합니다.
+    T* Clone() const {
+        return CloneTraits<T>::Clone(m_Ptr);
+    }
+};  
+
+// 추상 클래스 입니다.
+// ICloneable을 상속합니다.
+class Shape : public ICloneable {
+protected:
+    Shape() {} 
+    Shape(const Shape& other) {}
+public:
+    virtual ~Shape() {}
+
+    // Shape::Clone()을 하면 ICloneable*이 아니라 Shape* 리턴되도록 조정합니다.
+    virtual Shape* Clone() const { 
+        return NULL; 
+    }
+};
+
+class Rectangle : public Shape {
+public:
+    // (O) 자식 개체에서는 자식 타입으로 리턴합니다.
+    // Rectangle의 복사 생성자를 이용하며 복제본을 리턴합니다.
+    virtual Rectangle* Clone() const { 
+        return new Rectangle(*this); 
+    }
+}; 
+
+my_smart_ptr<Shape> sp1(new Rectangle);
+my_smart_ptr<Shape> sp2(sp1.Clone());     
+
+// sp2는 Rectangle 을 관리합니다.
+EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
+```
+
+`CloneTraits`가 오버로딩을 위해 `CloneTag`를 사용하는게 쓸데없이 개체를 정의한다는 측면에서 마음에 들지 않아 다음처럼 `if()`문을 이용하여 복사 생성을 할지, `Clone()`을 호출할지 작성해 볼 수도 있는데요,
+
+```cpp
+template<typename T>
+class CloneTraits
+{
+public:
+
+    // if 문을 사용했기 때문에 런타임에 복사 생성자를 사용할지 Clone()을 사용할 지 결정합니다.
+    static T* Clone(const T* ptr) {
+    	if (ptr == NULL) {
+    		return  NULL;
+    	}
+
+        // ICloneable을 상속하지 않았다면 복사 생성
+        // (X) 컴파일 오류. Shape의 복사 생성자는 protected 여서 사용할 수 없습니다.
+        if (!IsDerivedFrom<T, ICloneable>::Val) {
+            return new T(*ptr);
+        }
+        // ICloneable을 상속했다면 Clone() 호출
+        else {
+            return ptr->Clone();
+        }
+    } 
+};
+Shape* shape = CloneTraits<Shape>::CloneForRunTime(new Rectangle);
+EXPECT_TRUE(typeid(*shape).hash_code() == typeid(Rectangle).hash_code());
+delete shape;
 ```
