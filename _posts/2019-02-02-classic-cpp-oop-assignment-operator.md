@@ -50,7 +50,7 @@ t2 = t1; // (O) 암시적 대입 연산자 호출
 EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 ```
 
-# swap을 이용한 예외 안정 대입 연산자
+# swap을 이용한 예외 안전 대입 연산자
 
 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)에 언급된 것처럼 예외가 발생하기 전의 상태로 되돌아가야 합니다.
 
@@ -240,7 +240,7 @@ Big::Big(const Big& other)
 
 즉, [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 정의한 개체의 대입 연산자를 `swap`으로 구현하면,
 
-1. 예외 안정적이고,
+1. 예외에 안전하고,
 2. 복사 부하는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)별 대입과 거의 동등합니다.
 
 # 대입 연산자까지 지원하는 스마트 포인터
@@ -340,7 +340,7 @@ public:
 
 # 멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성
 
-대입 연산자를 지원하는 스마트 포인터를 사용하더라도, 만약 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 암시적 대입 연산자와 기본적인 호환은 되나, 예외 안정은 지원하지 않습니다.
+대입 연산자를 지원하는 스마트 포인터를 사용하더라도, 만약 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 암시적 대입 연산자와 기본적인 호환은 되나, 예외 안전은 지원하지 않습니다.
 
 ```cpp
 class T {

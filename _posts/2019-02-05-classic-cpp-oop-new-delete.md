@@ -220,7 +220,7 @@ public:
 1. 최소 크기 1byte를 설정해 주어야 하고,
 2. `malloc()`에서는 오류 발생시 `NULL`을 리턴하므로, `new_handler` 와 `std::bad_alloc()` 처리를 해주어야 합니다.
 
-`set_new_handler()` 함수에 대응하는 `get_new_handler()` 함수는 없습니다. 그래서 `handler = std::set_new_handler(NULL);` 과 같이 호출하여, `new_handler`를 구하고, 이를 다시 복원해야 합니다.(개체 지향스러운, 예외 안정스러운 방법은 [NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/)를 참고하세요.)
+`set_new_handler()` 함수에 대응하는 `get_new_handler()` 함수는 없습니다. 그래서 `handler = std::set_new_handler(NULL);` 과 같이 호출하여, `new_handler`를 구하고, 이를 다시 복원해야 합니다.(개체 지향스러운, 예외 안전스러운 방법은 [NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/)를 참고하세요.)
 
 ```cpp
 class T {
