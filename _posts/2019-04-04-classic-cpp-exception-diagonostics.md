@@ -8,6 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
+assert 
+https://en.cppreference.com/w/cpp/error#System_error
+
 # 공격적 자가진단
 
 코드의 품질향상, 디버깅의 용이함을 위해 함수에 진단 코드를 삽입
