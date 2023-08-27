@@ -31,6 +31,9 @@ try - catch를 사용하라
 
 # 예외 안전에 좋은 함수
 
+
+예외 안전 함수의 제어 구조
+
 ```cpp
 // 함수군 을 Layering 하여 예외가 더이상 방출되지 않는 Layer를 만들고 Error 코드를 리턴하게 한다.
 // 이 Layer의 모든 함수군은 기본보증, 강한 보증을 수행해야 한다.
@@ -266,4 +269,4 @@ class T {
 
 모듈의 경계에서 예외가 방출되지 않게 하라.
 
-
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f363617-f112-4dab-a98f-f1b42f2a7a90)
