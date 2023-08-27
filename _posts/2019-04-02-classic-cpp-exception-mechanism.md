@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [고전 C++ 가이드] 예외 메카니즘(try-catch, throw와 스택 풀기)"
+title: "#2. [고전 C++ 가이드] 예외 메카니즘(try-catch, throw와 스택 풀기, terminate)"
 categories: "classic-cpp-exception"
 tag: ["cpp"]
 author_profile: false
@@ -10,7 +10,7 @@ sidebar:
 
 > * 해결할 수 없는 예외 상황은 오류 코드 리턴보다는 강제성이 있는 `throw()`로 보고하라.
 > * 예외를 해결할 수 있는 곳에서 탐지하라.
-> * `catch()`에서 예외 개체는 참조자로 받아라.
+> * `catch()`에서 예외 개체가 복사 생성되지 않도록 참조자로 받아라.
 > * 예외를 그대로 전파할 경우에는 `throw;`를 사용하라.
 > * 소멸자에서 예외를 발생하지 마라.(필요하다면 `Release()`함수를 구현하라.)
 > * 스택 풀기와 호환되도록 스마트 포인터를 사용하라.
@@ -31,9 +31,9 @@ void g() {
 }
 ```
 
- C++은 좀더 예외 처리의 강제성을 줄 수 있도록 다음의 메커니즘으로 예외를 발생, 복귀, 전파, 탐지 합니다. 예외 처리를 하지 않으면 프로그램이 종료되므로, 예외 처리를 할 수 밖에 없습니다.
+ C++은 좀더 예외 처리의 강제성을 줄 수 있도록 다음의 메커니즘으로 예외를 발생, 복귀, 전파, 탐지 합니다. 예외 처리를 하지 않으면 `terminate()`를 호출하여 프로그램이 종료되므로, 예외 처리를 할 수 밖에 없습니다.
 
-1. `throw()` 문으로 예외를 발생시킵니다. 이때 예외 정보를 담은 개체로 예외 정보를 제공합니다. `catch()`로 예외를 처리하지 않으면, 프로그램이 종료됩니다.
+1. `throw()` 문으로 예외를 발생시킵니다. 이때 예외 정보를 담은 개체로 예외 정보를 제공합니다. `catch()`로 예외를 처리하지 않으면, `terminate()`를 호출하여 프로그램이 종료됩니다.
 2. **스택 풀기**에 의해 예외 발생전의 상태로 복귀합니다.
 3. 아무런 작업을 안하거나 `throw`로 예외를 상위 개체로 전파합니다.
 4. `try-catch()`로 예외를 탐지합니다. 
@@ -50,7 +50,7 @@ unsigned char ToChar(int val) {
 }
 ```
 
-상기 코드는 `val`이 `0 <= val && val < 256` 일때만 정상 동작하므로, 유효범위를 벗어나는 인수가 전달되면, `throw`를 이용하여 예외를 발생시켜야 합니다.
+상기 코드는 `val`이 `0 <= val && val < 256` 일때만 정상 동작하므로, 유효 범위를 벗어나는 인수가 전달되면, `throw`를 이용하여 예외를 발생시켜야 합니다.
 
 ```cpp
 unsigned char ToChar(int val) {
@@ -99,7 +99,10 @@ catch (std::out_of_range& e) { // 참조자를 사용합니다.
 }
 ```
 
-`try-catch()`로 탐지하지 않으면, 예외는 상위 개체에 그대로 전파되고, 탐지하면, 더이상 예외는 상위 개체에 전파되지 않는데요, `throw;`를 이용하면, 상위 개체에 그대로 전파할 수 있습니다.
+`try-catch()`로 
+
+1. 탐지하지 않으면, 예외는 상위 개체에 그대로 전파되고, 
+2. 탐지하면, 더이상 예외는 상위 개체에 전파되지 않는데요, `throw;`를 이용하면, 상위 개체에 그대로 전파할 수 있습니다.
 
 ```cpp
 try {
@@ -200,7 +203,9 @@ void f() {
 
 즉, `error1`과 `error2` 만 발생시키기 위해서, 억지로 다른 예외인 `bad_exception`으로 강제 변환합니다. 이러다 보니 불필요하게 `try-catch()` 만 추가되어 실행 속도만 느려집니다. 사용하지 마세요.
 
-특히 동적 예외 사양에 `bad_exception`이 포함된 경우 `unexpected()` 핸들러에서 `throw;` 했을 때 예외가 그대로 전파되지 않고, `bad_exception`으로 변경됩니다.
+동적 예외 사양에 `bad_exception`이 포함된 경우 `unexpected()` 핸들러에서 `throw;` 했을 때 예외가 그대로 전파되지 않고, `bad_exception`으로 변경됩니다.
+
+다음 코드에서 `f()`에서 동적 예외 사양에 없는 예외가 발생했을때,
 
 1. #1 의 `MyUnexpected()` 핸들러가 호출되고,
 2. #2 인 `bad_exception()`으로 `catch()`됩니다.
@@ -225,6 +230,25 @@ void g() {
 }
 ```
 
+# terminate
 
+예외를 `catch()`하지 않으면 최종적으로 `terminate()` 함수를 호출하며, `terminate()` 함수에서는 `terminate()` 핸들러를 호출하고, 기본 `terminate()` 핸들러에서는 `abort()`를 호출하여 프로그램을 강제 종료합니다. 
+
+`terminate()` 핸들러는 `set_terminate()` 함수로 사용자 정의 할 수 있으며, `abort()`등의 프로그램 종료 코드가 포함되어야 합니다.
+
+```cpp
+#include <iostream>
+#include <exception>
+
+void MyTerminate () {
+    std::cout << "terminate handler 호출"<< std::endl;
+    std::abort(); // 프로그램 종료
+}
+int main() {
+    std::set_terminate(MyTerminate); // terminate 핸들러를 설정합니다.
+    throw 0; // 예외 발생. 내부적으로 매칭되는 catch() 가 없어 terminate()를 호출하고, MyTerminate()가 호출 됩니다. 
+    return 0;
+}
+```
 
 

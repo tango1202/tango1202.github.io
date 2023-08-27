@@ -21,13 +21,17 @@ https://en.cppreference.com/w/cpp/types/type_info
 
 https://en.cppreference.com/w/cpp/types
 
-# exception
+# 예외
 
-https://en.cppreference.com/w/cpp/error/exception
+예외 발생시 예외 정보를 담는 `std::exception`, `std::bad_alloc`등의 표준 예외 개체를 제공합니다.(
+[표준 예외 개체](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-object/) 참고)
 
-# 시스템 에러
+예외 
+# 시스템 오류
 
 https://en.cppreference.com/w/cpp/error#System_error
+
+
 
 # 날짜 / 시간 
 

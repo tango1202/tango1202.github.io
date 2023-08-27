@@ -20,7 +20,7 @@ while (::GetMessage(&msg, NULL, NULL, NULL)) {
  
 
 `GetMessage()`가 `FALSE`를 리턴하는 경우는 `WM_QUIT` 메시지를 발생하는 경우이므로 위 루프는 `WM_QUIT`를 발생할때까지 계속되며, 메시지 큐에 메시지가 추가되면 `TranslateMessage()`와 `DispatchMessage()` 함수를 실행한다. 메시지 큐에 메시지가 없다면, `GetMessage()`함수는 메시지가 추가될 때까지 CPU 점유없이 대기할 것이다.
-`GetMessage()` 에서 에러가 발생된다면 -1을 리턴하므로 다음과 같이 에러처리 코드를 추가해 주는 것이 좋다.
+`GetMessage()` 에서 오류가 발생된다면 -1을 리턴하므로 다음과 같이 오류 처리 코드를 추가해 주는 것이 좋다.
 
 ```cpp
 MSG msg;
