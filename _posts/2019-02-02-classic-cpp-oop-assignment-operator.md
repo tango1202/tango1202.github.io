@@ -52,7 +52,7 @@ EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 
 # swap을 이용한 예외 안전 대입 연산자
 
-예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding)에 언급된 것처럼 예외가 발생하기 전의 상태로 되돌아가야 합니다.
+예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 언급된 것처럼 예외가 발생하기 전의 상태로 되돌아가야 합니다.
 
 암시적 대입 연산자는 각 멤버 변수별로 대입을 하는데요, 그러다 보니 중간에 예외가 발생했을 경우, 이전에 이미 수정한 개체를 복원할 수 없어 예외 처리가 어렵습니다.
 
