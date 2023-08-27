@@ -14,7 +14,7 @@ sidebar:
 > * 예외를 그대로 전파할 경우에는 `throw;`를 사용하라.
 > * 소멸자에서 예외를 발생하지 마라.(필요하다면 `Release()`함수를 구현하라.)
 > * 스택 풀기와 호환되도록 스마트 포인터를 사용하라.
-> * 함수 정의시 예외 지정은 사용하지 마라.
+> * 함수 정의시 동적 예외 사양은 사용하지 마라.
 
 # 개요
 
@@ -174,13 +174,13 @@ void h() {
 
 # 동적 예외 사양
 
-함수 정의시 `throw()`를 사용하여 발생하는 예외를 명세화 할 수 있는데요, 사실은 명시한 예외 이외에는 `unexpected`로 변환하여 방출하므로 사용하지 않는게 낫습니다.
+함수 정의시 `throw()`를 사용하여 발생하는 예외를 명세화 할 수 있는데요, 사실은 명시한 예외 이외에는 `unexpected()` 핸들러로 분기하므로 사용하지 않는게 낫습니다.
 
 ```cpp
 void f() throw(error1, error2) 
 ```
 
-는 사실 다음처럼 만들어 집니다.
+는 사실 다음과 유사합니다.
 
 ```cpp
 void f() {
@@ -193,12 +193,38 @@ void f() {
        throw;
     }
     catch(...) {
-       throw std::unexpected();
+       throw std::bad_exception();
     }
 }
 ```
 
-즉, `error1`과 `error2` 만 발생시키기 위해서, 억지로 다른 예외를 `unexpected`로 강제 변환합니다. 이러다 보니 불필요하게 `try-catch()` 만 추가되어 실행 속도만 느려집니다. 사용하지 마세요.
+즉, `error1`과 `error2` 만 발생시키기 위해서, 억지로 다른 예외인 `bad_exception`으로 강제 변환합니다. 이러다 보니 불필요하게 `try-catch()` 만 추가되어 실행 속도만 느려집니다. 사용하지 마세요.
+
+특히 동적 예외 사양에 `bad_exception`이 포함된 경우 `unexpected()` 핸들러에서 `throw;` 했을 때 예외가 그대로 전파되지 않고, `bad_exception`으로 변경됩니다.
+
+1. #1 의 `MyUnexpected()` 핸들러가 호출되고,
+2. #2 인 `bad_exception()`으로 `catch()`됩니다.
+
+```cpp
+void MyUnexpected() {
+    throw; // #1. 예외를 전파합니다 
+}
+
+void f() throw(int, std::bad_exception) {
+    throw 'x'; // 그냥 char 형 오류를 발생합니다. 
+}
+
+void g() {
+    std::set_unexpected(MyUnexpected); // unexpected 핸들러를 설정합니다.
+    try {
+        f();
+    }
+    catch (int) {}
+    catch (std::bad_exception& e) {} // #2.
+    catch (...) {}
+}
+```
+
 
 
 
