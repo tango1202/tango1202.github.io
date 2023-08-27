@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ 가이드] 자가 진단과 진단 최소화"
+title: "#4. [고전 C++ 가이드] 자가 진단과 진단 최소화"
 categories: "classic-cpp-exception"
 tag: ["cpp"]
 author_profile: false

@@ -117,10 +117,8 @@ sidebar:
 
 1. **완전한 생성자**로 생성하여 생성중 오류가 발생하면 예외를 발생시켜 그동안 만들어 둔건 소멸시켜 버리고,
 2. 대입 연산중 예외가 발생하지 않도록 [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)을 이용해서 대입 연산을 구현하고, 
-3. 함수 실행중 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 메카니즘에 맞게 이전 상태로 되돌리고,
-4. [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-stack-unwinding/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)가 꼬이지 않게 소멸자에서는 예외를 발생하지 않도록
-
-구현해야 합니다.
+3. 함수 실행중 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 메카니즘에 맞게 이전 상태로 되돌리고,
+4. [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)가 꼬이지 않게 소멸자에서는 예외를 발생하지 않도록 구현해야 합니다.
 
 |항목|내용|
 |--|--|

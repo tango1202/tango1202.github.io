@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [고전 C++ 가이드] 예외 보증"
+title: "#5. [고전 C++ 가이드] 예외 보증"
 categories: "classic-cpp-exception"
 tag: ["cpp"]
 author_profile: false
