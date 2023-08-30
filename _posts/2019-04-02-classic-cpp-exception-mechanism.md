@@ -55,7 +55,7 @@ unsigned char ToChar(int val) {
 ```cpp
 unsigned char ToChar(int val) {
     if (!(0 <= val && val <= 255)) {
-            throw std::out_of_range("범위 오류"); // 예외를 발생시킵니다.
+            throw std::out_of_range("Fail : val range"); // 예외를 발생시킵니다.
     }
     return static_cast<char>(val);
 }
@@ -68,7 +68,7 @@ unsigned char ToChar(int val) {
     assert(0 <= val && val < 256); // 인자가 유효한지 검사합니다.
 
     if (!(0 <= val && val < 256)) {
-        throw std::out_of_range("범위 오류"); // 예외를 발생시킵니다.
+        throw std::out_of_range("Fail : val range"); // 예외를 발생시킵니다.
     }
     return static_cast<char>(val);
 }
@@ -123,11 +123,11 @@ C++ 은 예외 상황이 발생하면,  `catch()` 될때까지 거꾸로 스택�
 
 ```cpp
 int f(int val) {
-    throw std::out_of_range("f() 범위 오류"); // 예외를 발생시킵니다.
+    throw std::out_of_range("Fail : f()"); // 예외를 발생시킵니다.
     return 0;
 }
 int g(int val) {
-    throw std::out_of_range("g() 범위 오류"); // 예외를 발생시킵니다.
+    throw std::out_of_range("Fail : g()"); // 예외를 발생시킵니다.
     return 0;
 }
 void h() {
@@ -207,11 +207,11 @@ void f() {
 
 다음 코드에서 `f()`에서 동적 예외 사양에 없는 예외가 발생했을때,
 
-1. #1 의 `MyUnexpected()` 핸들러가 호출되고,
+1. #1 의 `UnexpectedHandler()` 핸들러가 호출되고,
 2. #2 인 `bad_exception()`으로 `catch()`됩니다.
 
 ```cpp
-void MyUnexpected() {
+void UnexpectedHandler() {
     throw; // #1. 예외를 전파합니다 
 }
 
@@ -220,7 +220,7 @@ void f() throw(int, std::bad_exception) {
 }
 
 void g() {
-    std::set_unexpected(MyUnexpected); // unexpected 핸들러를 설정합니다.
+    std::set_unexpected(UnexpectedHandler); // unexpected 핸들러를 설정합니다.
     try {
         f();
     }
@@ -240,13 +240,13 @@ void g() {
 #include <iostream>
 #include <exception>
 
-void MyTerminate () {
-    std::cout << "terminate handler 호출"<< std::endl;
+void TerminateHandler() {
+    std::cout << "TerminateHandler 호출"<< std::endl;
     std::abort(); // 프로그램 종료
 }
 int main() {
-    std::set_terminate(MyTerminate); // terminate 핸들러를 설정합니다.
-    throw 0; // 예외 발생. 내부적으로 매칭되는 catch() 가 없어 terminate()를 호출하고, MyTerminate()가 호출 됩니다. 
+    std::set_terminate(TerminateHandler); // terminate 핸들러를 설정합니다.
+    throw 0; // 예외 발생. 내부적으로 매칭되는 catch() 가 없어 terminate()를 호출하고, TerminateHandler()가 호출 됩니다. 
     return 0;
 }
 ```
