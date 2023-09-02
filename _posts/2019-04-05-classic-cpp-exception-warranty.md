@@ -8,230 +8,260 @@ sidebar:
     nav: "docs"
 ---
 
+> * 예외에 안전하도록 기본 보증과 강한 보증을 하라.
+> * 기본 보증이 되도록 스마트 포인터나 `Holder`를 사용하라.
+> * 강한 보증이 되도록 클래스를 설계하라.([예외 안전](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84) 참고)
+> * 모듈의 경계에서 예외가 방출되지 않도록 예외를 `catch()` 한뒤 오류 코드로 변환하라.
 
 # 예외 보증 종류
 
-기본 보증 : 적어도 리소스릭/메모리릭이 없다.
-강한 보증 : 예외가 발생해도 내부 자료값이 변하지 않는다.
-Nothrow : 절대 예외를 발생하지 않는다.
+예외에 안전(예외가 발생해도 안전하게 복원되고 계속 동작해도 무방하게 만드는 코드)하려면 다음의 보증이 이루어져야 합니다.
 
+|항목|내용|
+|--|--|
+|nothrow|절대 예외를 발생하지 않습니다.<br/>[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이거나, 함수내에서 `try-catch()`로 예외를 처리한 함수등에서 한정적으로 가능합니다.|
+|기본 보증|예외가 발생해도 적어도 메모리 릭이나 리소스 릭이 없습니다.<br/>스마트 포인터나 `Holder` 개체를 활용하여 스택 개체로 만들면 쉽게 구현할 수 있습니다.([포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 참고)|
+|강한 보증|예외가 발생해도 내부 자료값이 변하지 않고 이전 상태로 복원합니다.<br/>생성자와 소멸자에서 스마트 포인터나 `Holder` 개체를 활용하여 기본 보증을 하며([복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고), 소멸자에서는 예외를 발생시키지 않습니다. 또한, 대입 연산자는 [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)으로 구현합니다.|
 
-
-# 예외에 안전한 방법
-
-예측할 수 있는 예외상황에 대처하라.
-
-기본보증, 강한보증(할수 있다면)을 준수하라.
-
-처리할 수 있는 곳에서 예외를 처리하라.
-가정을 미리 검사하라
-try - catch를 사용하라
-오류 코드 변환후 대처하라
-
+클래스 구현의 구체적인 방법은 [예외 안전](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84)을 참고하기 바랍니다.
 
 # 예외 안전에 좋은 함수
 
-
-예외 안전 함수의 제어 구조
-
-```cpp
-// 함수군 을 Layering 하여 예외가 더이상 방출되지 않는 Layer를 만들고 Error 코드를 리턴하게 한다.
-// 이 Layer의 모든 함수군은 기본보증, 강한 보증을 수행해야 한다.
-Error f(const T& data) // 필요하다면 error 코드를 리턴, 
-                                    // 데이터 추상화된 인자 사용 
-{
-    
-   _ASSERTE(data.IsValid()); // 사전 가정
-  
-    // 유효하지 않은 인자인 경우 오류 리턴  
-    if (!data) {
-        // 명백한 코딩 실수라면 이 함수를 사용한 개발자에게 찾아간다. 굳이 if 로 검사하여 release 코드를 작성할 필요는 없다.
-       //  현 함수가 할 수 있다면 보정한다. data.Normalize();
-       // 혹은 예외를 날린다. throw invalid_argument("이상한 인자");
-          return Invalid;
-     }
-
-     // 함수 동작 처리
-     // 함수 동작 처리
-     // 함수 동작 처리
-
-     _ASSERTE(result.IsValid()); // 사후 가정
-
-     return Ok;
-}
-
-```
+1. 인자와 리턴값은 예외 발생시 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 의해 자동 소멸되도록 합니다.([Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 참고)
+2. 가정한 값 외에는 인수가 전달되지 않도록 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 합니다.
+3. 함수내에 사전 가정, 사후 가정을 작성합니다.([공격적 자가진단](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8) 참고)
 
 # 예외와 생성자
 
 다음처럼 일부 멤버 변수만 초기화 하고, 나중에 별도 함수를 호출하여 초기화를 마무리하면, 사용자가 실수로 빼먹을 수도 있고, **예외 안전** 프로그래밍에도 좋지 않습니다. 불완전하게 생성된 개체에 별도 Setter를 호출하여 완전하게 만드는 중에 예외가 발생하면, 이미 생성된 예외 안전 처리를 위해 소멸시켜야 하는데, 혹시나 이미 이 개체를 참조하는 곳이 있다면, 찾기도 힘들고, 찾았더라도 처리를 어찌해야 할지 난감해 지니까요.([예외와 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8%EC%99%80-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
 
-생성자에서 예외가 발생하면?
+생성자에서 예외 상황이 발생하면 생성한 멤버 변수를 소멸하고 예외를 발생시키면 됩니다.
 
-생성 후 대입과정에서 예외가 발생하면 난감해지는 상황 예시. 
-생성자에서 예외가 발생하더라도 안정적일 수 있도록 멤버를 `Handler`, 스마트 포인터로 작성
+하지만, 불완전하게 생성된 개체에 별도 Setter를 호출하여 완전하게 만들도록 개체를 설계했다면, 이미 생성된 개체를 예외 안전 처리를 위해 소멸시켜야 하는데, 혹시나 이미 이 개체를 참조하는 곳이 있다면, 찾기도 힘들고, 찾았더라도 처리를 어찌해야 할지 난감해 집니다.
 
 ```cpp
-void f()
-{
-    T* t = new T; // 예외발생하면 메모리 릭이 발생할까? (보통의 경우 메모리는 자동해제됨)
-    delete t;        // 예외발생하면 호출되지 않는다.
+class A {
+public:
+   A() {
+      throw "A"; // A 개체를 생성하던 중에 예외가 발생합니다.
+   }   
+};
+class B {
+public:
+   B() {
+      std::cout<<"Construct B"<<std::endl;
+   }   
+   ~B() {
+      std::cout<<"Destruct B"<<std::endl;           
+   } 
+};
+
+class T {
+   A* m_A;
+   B* m_B;
+public:
+   explicit T(B* b) : m_B(b) {}
+   ~T() {
+      delete m_A; // 개체를 소멸합니다.
+      delete m_B;
+   }
+   void SetA(A* a) {m_A = a;} // (△) 비권장. 별도 Setter로 값을 대입합니다.
+
+   const A* GetA() const {return m_A;}
+   const B* GetB() const {return m_B;}
+};
+
+T t(new B);
+const B* other = t.GetB();
+...
+t.SetA(new A); // A개체가 생성되면서 예외를 발생합니다.
+
+// (△) 비권장. t 개체를 소멸해야 합니다.
+// (△) 비권장. other 가 사용된 곳을 추적해서 뭔가 예외 처리 작업을 해야 합니다.
+```
+
+따라서, 생성할 때 완전하게 생성해야 합니다.([완전한 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
+생성 도중 예외가 발생하면, 생성하던 개체를 버리면 되니까요.
+
+하지만 이 방법도 인수가 1개 이상이라면, 1개 인수 생성이 예외가 발생했을때 다른 인수들의 소멸자가 불리지 않아, 기본 보증을 위반합니다.
+
+다음 코드에서
+
+1. `new B` 생성자 호출
+2. `new A` 에서 예외 방출
+3. 이미 생성된 `b` 개체의 소멸자는 호출되지 않습니다.
+
+```cpp
+class A {
+public:
+   A() {
+      throw "A"; // A 개체를 생성하던 중에 예외가 발생합니다.
+   }
+};
+class B {
+public:
+   B() {
+      std::cout<<"Construct B"<<std::endl;
+   }   
+   ~B() {
+      std::cout<<"Destruct B"<<std::endl;           
+   } 
+};
+
+class T {
+   A* m_A;
+   B* m_B;
+public:
+   T(A* a, B* b) : m_A(a), m_B(b) { 
+      std::cout<<"Construct T"<<std::endl;
+   } 
+   ~T() {
+      delete m_A; // 개체를 소멸합니다.
+      delete m_B;
+   }
+   const A* GetA() const {return m_A;}
+   const B* GetB() const {return m_B;}
+};
+
+try {
+   // A 생성에서 예외가 발생하면 T 개체 생성자 호출 자체가 안됩니다.
+   // (△) 비권장. B 개체가 이미 생성되었고, A 개체 생성중 예외가 발생했다면, B 개체는 소멸되지 않습니다.
+   // 기본 보증 위반입니다.
+   T t(new A, new B); 
+   const A* other = t.GetA();
+   ...
+}
+catch (...) {
 }
 ```
 
-이전에 생성한 개체는 예외발생시 소멸 시켜야 한다.
+따라서, 예외에 안전하게 하려면 스마트 포인터나 `Holder` 개체를 활용해야 합니다. 다음 코드는 스마트 포인터인 `auto_ptr`을 사용하며, `A`에서 예외 발생시 이미 생성된 `B` 개체도 잘 소멸됩니다.
 
 ```cpp
-void f()
-{
-    T* t = new T;
-    U* u = new U;
+class A {
+public:
+   A() {
+      throw "A"; // A 개체를 생성하던 중에 예외가 발생합니다.
+   }
+};
+class B {
+public:
+   B() {
+      std::cout<<"Construct B"<<std::endl;
+   }   
+   ~B() {
+      std::cout<<"Destruct B"<<std::endl;           
+   } 
+};
 
-    delete t;  
-    delete u;
+class T {
+   std::auto_ptr<A> m_A; // 스마트 포인터
+   std::auto_ptr<B> m_B;
+public:
+   T(std::auto_ptr<A> a, std::auto_ptr<B> b) : m_A(a), m_B(b) {  // 소유권 이전
+      std::cout<<"Construct T"<<std::endl;
+   } 
+   ~T() {
+   }
+   const A* GetA() const {return m_A.get();}
+   const B* GetB() const {return m_B.get();}
+};
+try {
+   // (O) 인자 전달을 위해 인수 생성시 예외가 발생해도 스마트 포인터여서 예외에 안전합니다.
+   T t(std::auto_ptr<A>(new A), std::auto_ptr<B>(new B)); 
+   const A* other = t.GetA();
+   ...
+}
+catch (...) {
 }
 ```
-
-```cpp
-void f()
-{
-    T* t = new T;
-    try {
-        U* u = new U;
-        delete u;
-    }
-    catch (...) {
-        delete t;
-    }
-}
-```
-
-스택풀기에 의해 new U 생성시 예외가 발생하면 t의 소멸자가 불린다.
-
-~auto_ptr() {
-   delete p; // 관리하는 포인터 삭제
-}
-
-```cpp
-void f()
-{
-    auto_ptr<T> t( new T); 
-    auto_ptr<U> u( new U);
- }
- ```
 
 # 예외와 소멸자
-소멸자에서 예외가 발생하면?
 
-절대 안된다.
+소멸자에서 예외가 발생하면 안됩니다. 예외가 발생하면 스택풀기가 이루어져서 소멸자가 불리는데, 이 소멸자에서 또 예외를 발생하면 정상적인 스택 풀기를 방해합니다.([소멸자에서 예외 발생 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D-%EA%B8%88%EC%A7%80) 참고)
 
-예외가 발생하면 스택풀기가 이루어져서 소멸자가 불리는데, 이 소멸자에서 또 예외를 발생하고... 
-
+예외 발생을 막기 위해 단순히 `try-catch()`로 예외를 무시하기 보다는
 
 ```cpp
-
 ~T()
 {
     try {
        // 예외를 발생시키는 함수
     }
     catch (...) { // 절대 예외 발생 금지
-       // 근데, 뭘해야 하지? 
+       // 근데, 뭘해야 할지 모릅니다.
    }
 }
 ```
-클래스 사용방식을 바꿀 수 밖에 없다.
+
+다음처럼 정리하는 `Release()` 함수를 별도로 만들어 두고, 만약 사용자가 정리하지 않은 경우 정리 시도를 하는게 좋습니다.
+
 ```cpp
+void T::Release() { // 소멸전 정리하는 함수
+   // 에외를 발생시킬수도 있는 정리 코드들
 
-
-void T::clean() // 소멸전 정리하는 함수
-{
-    // 에외를 발생시킬수도 있는 정리 코드들
-
-   m_IsClean = true;
+   m_IsReleased = true;
 }
 
 T::~T() {
-     if (m_IsClean) return;
-     try {clean();} // 혹시 안했다면 정리
-     catch (...) { 
-          // 여전히 뭘해야 할지 모르겠다. 
-          // 로그파일이나... -_-
-     }
+    if (m_IsReleased) return;
+    try {
+        Release(); // 혹시 안했다면 정리
+    } 
+    catch (...) { 
+        // 여전히 뭘해야 할지 모릅니다. 
+        // 로그파일이나...
+    }
 }
 ```
 
 # 예외 안전에 좋은 복사 생성자
 
-생성자 함수 블럭에 대입문을 작성하면,
-a, b는 기본생성자 호출후 대입문이 실행된다.
+[복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 언급한 것처럼, 스마트 포인터나 `Holder` 개체를 활용하여 복사 생성자를 구현하면, 스택 풀기에 의해 기본 보증과 강한 보증을 하게 됩니다.
+
+# 예외 안전에 좋은 대입 연산자
+
+[swap을 이용한 예외 안전 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)에 언급한 것처럼, `Swap()`을 이용하면 예외가 발생한 개체를 버림으로서 기본 보증과 강한 보증을 하게 됩니다. 단, 이때 `Swap()`은 예외를 발생시키지 말아야 합니다.
 
 ```cpp
 class T {
-   U a, b;
-   T(const T& other) {
-       a = other.a;
-       b = other.b;
-   }
-};
-```
-초기화 목록에서 초기화 하면 복사생성자가 호출된다.
+T& operator =(const T& other) {
 
-일반적으로 대입문보단 복사생성자가 예외발생 확률이 적다.
+   // other를 복제한 임시 개체를 만듭니다.
+   T temp(other); // (O) 생성시 예외가 발생하더라도 this는 그대로 입니다. 예외 발생시 temp를 버리면 됩니다.
 
-```cpp
-class T {
-   U a, b;
-   T(const T& other) :
-       a(other.a),
-       b(other.b) 
-   {}
-};
-```
-# 예외 안전에 좋은 대입 생성자
+   // this의 내용과 임시 개체의 내용을 바꿔치기 합니다.
+   // this는 이제 other를 복제한 값을 가집니다.
+   // 여기서 예외를 발생하면 this가 일부 바꿔치기 되어 강한 보증이 안됩니다.
+   Swap(temp);
 
-b 대입중 예외가 발생하면 이미 변경된 a는 어떻게?
+   return *this;
 
-```cpp
-class T {
-   U a, b;
-   T& operator =(const T& other) {
-      a = other.a;
-      b = other.b; // 대입중 예외가 발생하면 a는?
-      return *this;
-   }
-};
-```
-temp 생성시 예외가 발생하면 temp를 버리면 된다.
-
-```cpp
-class T {
-   U a, b;
-    T& operator =(const T& other) {
-      T temp(other);
-      Swap(temp); // 절대 예외발생 금지
-      return *this;
-   }
+   } // temp는 지역 변수여서 자동으로 소멸됩니다.
 };
 ```
 
 # 예외 안전에 좋은 nothrow swap
 
+예외 안전에 좋은 대입 연산자의 언급처럼 `Swap()`은 예외를 발생하지 말아야 합니다. 만약 예외를 발생했다면, 바꿔치기 하다가 일부만 변경되고 중단된 것이어서 어떻게 복원해야 할지 난감합니다. 강한 보증을 하려면 예외 발생시 완벽하게 이전 상태로 가야 하기 때문에 `Swap()`은 예외를 발생시켜서는 안됩니다. 이러한 nothrow swap 구현은 [nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 와 [스마트 포인터를 이용한 PImpl 이디엄 구현](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/#%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EC%9D%B4%EB%94%94%EC%97%84-%EA%B5%AC%ED%98%84) 을 참고하세요.
+
 ```cpp
 class T {
    U a, b;
    void Swap(T& other) {
-      U temp = a;    	// 예외발생
-      a = other.a;	// 예외발생
-      other.a = temp;	// 예외발생
+      U temp = a; // 예외발생
+      a = other.a; // 예외발생
+      other.a = temp; // 예외발생
 
-      temp = b;	// 예외발생
-      b = other.b;	// 예외발생
-      other.b = temp; 	// 예외발생
+      temp = b; // 예외발생
+      b = other.b; // 예외발생
+      other.b = temp; // 예외발생
    }
 };
 ```
+
+보다는
 
 ```cpp
 class T {
@@ -241,10 +271,10 @@ class T {
            a(other.a), b(other.b) {}
     };
 
-    Impl* impl; // 구현부 분리. 브릿지. pimpl 이디엄
+    Impl* m_Impl; // 구현부 분리. pimpl 이디엄
 
     T(const T& other) :
-       impl(new Impl(other.impl)) {}
+       m_Impl(new Impl(other.m_Impl)) {}
     ~T() {delete impl;}
 
     T& operator =(const T& other) {
@@ -254,19 +284,19 @@ class T {
    }
 
    void Swap(T& other) {
-       Impl* temp = impl; // 포인터끼리 대입. 예외발생 없음
-       impl = other.impl;
-       other.impl = temp;
+       Impl* temp = m_Impl; // 포인터끼리 대입. 예외발생 없음
+       m_Impl = other.m_Impl;
+       other.m_Impl = temp;
 
-       // std::swap(impl, other.impl);  로 한방에 할 수도
+       // std::swap(m_Impl, other.m_Impl); 로 한방에 할 수도 있음
    }   
 };
 ```
 
-
+와 같이 구현하셔야 합니다.
 
 # 예외 레이어링
 
-모듈의 경계에서 예외가 방출되지 않게 하라.
+예외를 `catch()`하지 않으면 전파되어 최종적으로 프로그램이 종료됩니다. 대형 프로그램을 개발하거나 라이브러리를 개발하는 경우에 하위단의 모든 예외 처리를 고민하지 않도록, 모듈의 경계에서 예외를 `catch()` 한뒤 오류 코드로 변환하여 예외를 방출하지 않도록 하는게 좋습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f363617-f112-4dab-a98f-f1b42f2a7a90)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/87f16851-08bb-4417-a3bf-2ddb107a234f)

@@ -9,14 +9,18 @@ sidebar:
 ---
 
 > * 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현하라.
-> * 함수 호출시 복사 부하가 없도록 설계하라.
-> * 함수 작성시 상수성을 준수하도록 하라.
-> * 예외 안전적으로 구현하라.(예외 발생시 이전 상태로 전환하라.)
-> * 상속 특성에 맞게 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)를 이용하여 기본 생성자, 복사 생성자, 대입 연산자, 소멸자의 가시성을 조정하고, `vitual` 소멸자 여부를 결정하라.
+> > * 단일 책임 원칙을 준수하여 사용하기 쉽게 만들어라.
+> > * 암시적 정의를 차단하여 의도한 동작만 하게 하라.
+> > * 최소 public으로 구현하여 사용하기 쉽게 하라.
+> > * 완전한 생성자로 작성하여 사용하기 쉽고, 에외에 안전하게 하라.
+> > * 완전한 함수로 코딩 계약과 상수성 계약을 만들어 사용자 실수를 최소화 하라.
+> * 소유권 분쟁과 복사 부하가 없도록 구현하라.
+> * 예외에 안전하게 구현하라.(예외 발생시 이전 상태로 전환하라.)
+> * 새로운 타입을 설계하듯 기본 생성자, 복사 생성자, 대입 연산자, 소멸자, 형변환 연산자, 연산자의 가시성을 조정하고, `vitual` 여부를 결정하라.
 
 # 개요
 
-클래스는 단단한 **코딩 계약**에 의해 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현해야 합니다.([캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고)
+클래스는 [단일 책임 원칙(Single Responsibility Principle)](https://tango1202.github.io/principle/principle-single-responsibility/)에 따라 단 하나의 책임만 갖도록 설계하고, 단단한 **코딩 계약**에 의해 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현해야 합니다.([캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고)
 
 # 암시적 정의 차단
 
@@ -34,13 +38,14 @@ sidebar:
 
 # 최소 public
 
-가시성 최소화되어 접근할 수 있는 항목이 적을 수록 사용하기 쉽습니다.
+가시성이 최소화되어 접근할 수 있는 항목이 적을 수록 사용하기 쉽습니다.
 
 |항목|내용|
 |--|--|
 |[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|모두 `private`|
 |[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|외부에서 사용하는 것만 `public`|
 |[상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)|부모 개체의 `public`을 외부로 노출해야 하는 경우만 `public` 상속|
+|[PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/)|구현의 상세 정보를 은닉|
 
 # 완전한 생성자
 
@@ -111,7 +116,7 @@ sidebar:
 
 # 예외 안전
 
-예외가 발생하면, 예외가 발생하기 전의 상태로 돌아가야 합니다. 개체의 일부 내용만 복원하는게 아니라, 완전히 예외 발생 전의 상태로 되돌아 가야 합니다. 
+예외가 발생하면, 예외가 발생하기 전의 상태로 돌아가야 합니다. 개체의 일부 내용만 복원하는게 아니라, 완전히 예외 발생 전의 상태로 되돌아 가야 합니다.([예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 참고) 
 
 따라서,
 

@@ -119,6 +119,52 @@ std::pair<int, int> CalcZoomDlgData(int percent) {
 
 향후 `Model`에서 `percent`의 타입이 `int`에서 `float`으로 변경되더라도, `ViewModel`만 수정하면 되므로 유지보수가 용이합니다. 
 
+**준수 방법 : 쪼개는 기준는 데이터 중심일 수도, 행위 중심일 수도 있다**
+
+비교적 기본 타입처럼 작은 개체인 경우에는 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)하여 데이터 중심으로 이를 처리하는 기능을 응집하고, 큰 개체는 행위 중심으로 데이터와 이를 처리하는 기능을 분리합니다.
+
+|데이터와 행위 통합|데이터와 행위 분리|
+|--|--|
+|* 데이터 처리가 개체에 집중되어 있어 사용하기 편리합니다.<br/>* 처리 함수가 추가될수록 개체가 복잡해 집니다.<br/>* 유지보수를 거치다 보면 개체가 엄청나게 커집니다.<br/>* 자식 개체에서 부모 개체의 함수를 무시하게 됩니다.|* 데이터가 행위에 노출되어 캡슐화가 어려워질 수 있습니다.<br/>* 데이터 처리가 분리되어 있어 확장이 편합니다.<br/>* 클래스의 수가 많아져 혼란스러울 수 있습니다.<br/>* 클래스가 작고 간결합니다.|
+
+예를 들어 개체를 저장하는 기능을 데이터와 행위를 통합하여 하면, 다음처럼 멤버 함수를 늘리게 되지만,
+
+```cpp
+class Object {
+public:
+    void SaveMem();
+    void SaveBinFile();
+    void SaveXml();
+};
+
+Object obj;
+obj.SaveMem();
+obj.SaveBinFile();
+obj.SaveXml();
+```
+
+행위를 분리하면, 행위를 처리하는 개체가 늘어나게 됩니다.
+
+```cpp
+class Saver {};
+class MemSaver : public Saver {};
+class BinFileSaver : public Saver  {};
+class XmlSaver : public Saver  {};
+
+class Object {
+public:
+    void Save(Saver& saver) {}
+};
+Object obj;
+MemSaver memSaver;
+BinFileSaver binFileSaver;
+XmlSaver xmlSaver;
+
+obj.Save(memSaver);
+obj.Save(binFileSaver);
+obj.Save(xmlSaver);
+```
+
 **준수 방법 : 잘못 쪼갰다면 산탄총 수술로 합쳐라**
 
 만약 코드를 수정할때 여러 개체들을 수정해야 하거나 코드 중복이 발견됐다면, 너무 세분화해서 쪼갰다는 뜻입니다. 응집력이 낮다는 신호 입니다. 리팩토링의 냄새가 나죠? 이럴때 **산탄총 수술** 이 필요합니다.
