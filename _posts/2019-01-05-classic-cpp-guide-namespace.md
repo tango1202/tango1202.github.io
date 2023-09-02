@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ 가이드] 네임스페이스(namespace)(작성중)"
+title: "#5. [고전 C++ 가이드] 네임스페이스(namespace)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -173,4 +173,59 @@ EXPECT_TRUE(MyModule::g() == 60);
 
 # 네임스페이스 명시시 유지보수성
 
-암시적으로 작성하는 편이 낫다.
+네임스페이스를 어떻게 사용하느냐에 따라 유지보수성에 차이가 있습니다.
+
+먼저 `swap()`을 명시적으로 사용했다가 성능 개선을 위해 리팩토링 하는 경우를 살펴봅시다.
+
+```cpp
+namespace My {
+    class T {};   
+    void f() {
+        T a, b;
+        std::swap(a, b); // std를 명시적으로 작성했습니다.
+    } 
+}
+```
+
+이제 `My`에 `swap()`함수를 만들고 리팩토링합니다. 같은 네임스페이스에 있는 함수라 그냥 `std::`만 삭제하면 되는데요, 혹시 1,000군데 사용했다면, 찾기/바꾸기로 하면 되기는 하죠. 그런데, `std::`버전이 성능이 더 좋아 되돌린다면, 또 찾기/바꾸기를 하면 되고요. 그렇지만 좀 미련한 느낌입니다.
+
+```cpp
+namespace My {
+    class T {};   
+    void swap(T& left, T& right);
+    void f() {
+        T a, b;
+        swap(a, b); // 같은 네임스페이스의 함수라 명시하지 않았습니다.
+    } 
+}
+```
+
+다음처럼 애초에 `using` 선언만 하여 암시적으로 사용한다면, 코드 본문은 수정할 필요없이 `using` 선언만 수정하면 되므로 뭔가 좀더 그럴싸 합니다.
+
+```cpp
+namespace My {
+    using std::swap;
+    class T {};   
+    void f() {
+        T a, b;
+        swap(a, b); // using 선언에 따라 std::swap을 사용합니다.
+    } 
+}
+```
+
+이제 리팩토링하면, `using std::swap;` 만 삭제하면 됩니다.
+
+```cpp
+namespace My {
+    // using std::swap; // 요것만 삭제하면 됩니다.
+    class T {};   
+    void swap(T& left, T& right);
+    void f() {
+        T a, b;
+        swap(a, b);
+    } 
+}
+```
+
+
+

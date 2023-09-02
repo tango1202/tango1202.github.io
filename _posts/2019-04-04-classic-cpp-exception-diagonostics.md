@@ -123,7 +123,7 @@ int f(int a, int b, int* c) {
     }   
     ```
 
-    보다는
+    보다는, 내부에서 처리할 수 있는 보정을 수행하여,
 
     ```cpp
     void f(int angle) {
@@ -131,7 +131,7 @@ int f(int a, int b, int* c) {
     }                                          
     ```
 
-    보다는
+    보다는, 인수가 유효한 값임을 보증할 수 있도록 캡슐화 하여,
 
     ```cpp
     void f(const Degree& angle) {
