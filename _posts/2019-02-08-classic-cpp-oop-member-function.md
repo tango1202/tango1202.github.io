@@ -221,8 +221,7 @@ public:
     virtual void Eat() = 0; // 순가상 함수
 };
 
-class Dog :
-    public IEatable {
+class Dog : public IEatable {
 public:        
     virtual void Eat() {} // 순가상 함수는 자식 개체에서 실제 구현을 해야 합니다.
 };

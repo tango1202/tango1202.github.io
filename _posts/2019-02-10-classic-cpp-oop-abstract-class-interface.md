@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [고전 C++ 가이드] 추상 클래스, 인터페이스"
+title: "#10. [고전 C++ 개체 지향] 추상 클래스, 인터페이스"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false

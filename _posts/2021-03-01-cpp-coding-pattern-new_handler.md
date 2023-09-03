@@ -65,8 +65,7 @@ public:
 private:
     // 미리 예약된 메모리 공간입니다. 
     // new 실패시 UsingReservedHandler 에서 해제하여 메모리 공간을 확보해 줍니다.
-    class Reserved : 
-        private Uncopyable {
+    class Reserved : private Uncopyable {
         char* m_Ptr;
     public:
         explicit Reserved(size_t size = 0) : 

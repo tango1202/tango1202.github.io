@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [고전 C++ 가이드] 상속"
+title: "#9. [고전 C++ 개체 지향] 상속"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false

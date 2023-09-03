@@ -91,8 +91,7 @@ public:
 };
 
 // 개체를 Scale합니다.
-class ScaleVisitor : 
-    public IVisitor {
+class ScaleVisitor : public IVisitor {
 public:
     virtual void VisitRectangle(Shape* object) override {
         std::cout<<"Scale Rectangle"<<std::endl; 
@@ -103,8 +102,7 @@ public:
 };
 
 // 개체를 Rotate합니다.
-class RotateVisitor : 
-    public IVisitor {
+class RotateVisitor : public IVisitor {
 public:
     virtual void VisitRectangle(Shape* object) override {
         std::cout<<"Rotate Rectangle"<<std::endl; 
@@ -136,8 +134,7 @@ public:
     virtual void Accept(IVisitor& visitor) = 0;
 };
 
-class Rectangle : 
-    public Shape {
+class Rectangle : public Shape {
 private:
     int m_Width;
     int m_Height;
@@ -155,8 +152,7 @@ public:
     }
 };
 
-class Circle : 
-    public Shape {
+class Circle : public Shape {
 private:
     int m_Diameter;
 public:    

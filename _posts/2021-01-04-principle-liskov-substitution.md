@@ -64,8 +64,7 @@ public:
 
 ```cpp
 // 자식 클래스 입니다.
-class Rectangle : 
-    public Shape {
+class Rectangle : public Shape {
 public:    
     Rectangle(int l, int t, int w, int h) : 
         Shape(l, t, w, h) {}
@@ -77,8 +76,7 @@ public:
 };
 
 // 자식 클래스 입니다.
-class Ellipse : 
-    public Shape {
+class Ellipse : public Shape {
 public:
     Ellipse(int l, int t, int w, int h) : 
         Shape(l, t, w, h) {}
@@ -132,8 +130,7 @@ class Shape {
 
 ```cpp
 // 자식 클래스입니다. 생성자를 손보고, SetWidth와 SetHeight를 손봤습니다.
-class Square : 
-    public Shape {
+class Square : public Shape {
 public:
     // h 는 무시하고 w만 사용합니다.
     Square(int l, int t, int w, int /*h*/) : 
@@ -244,8 +241,7 @@ public:
 
 ```cpp
 // 자식 클래스 입니다. m_Width와 m_Height를 제공합니다.
-class Rectangle : 
-    public Shape {
+class Rectangle : public Shape {
 private:
     int m_Width;
     int m_Height;
@@ -269,8 +265,7 @@ public:
 };
 
 // 자식 클래스 입니다. m_Width와 m_Height를 제공합니다.
-class Ellipse : 
-    public Shape {
+class Ellipse : public Shape {
 private:
     int m_Width;
     int m_Height;
@@ -298,8 +293,7 @@ public:
 
 ```cpp
 // 자식 클래스입니다. m_Length를 제공합니다.
-class Square : 
-    public Shape {
+class Square : public Shape {
 public:
     int m_Length;
 public:
@@ -362,8 +356,7 @@ public:
 
 ```cpp
 // IResizeable 구현한 클래스입니다. 다른 클래스에서 상속받아 기능을 포함합니다.
-class ResizeableImpl : 
-    public IResizeable {
+class ResizeableImpl : public IResizeable {
 private:
     int m_Width;
     int m_Height;    

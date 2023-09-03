@@ -234,8 +234,7 @@ protected:
 public:
     virtual void Func() = 0;
 };
-class Derived :
-    public Base {
+class Derived : public Base {
 public:        
     virtual void Func() {}
 };

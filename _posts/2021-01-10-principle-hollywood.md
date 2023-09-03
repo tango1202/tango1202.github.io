@@ -70,8 +70,7 @@ private:
 
 ```cpp
 // App 을 상속받아 만들었습니다.
-class MyApp : 
-    public App {
+class MyApp : public App {
 public:
     MyApp(bool dirty, const std::wstring& pathName) :
         App(dirty, pathName) {} 
@@ -111,8 +110,7 @@ protected: // 자식 개체만 접근하므로 protected
 };
 
 // App 을 상속받아 만들었습니다.
-class MyApp : 
-    public App {
+class MyApp : public App {
 public:
     MyApp(bool dirty, const std::wstring& pathName) :
         App(dirty, pathName) {} 
@@ -124,8 +122,7 @@ protected:
 };
 
 // App 을 상속받아 만들었습니다.
-class YourApp : 
-    public App {
+class YourApp : public App {
 public:
     YourApp(bool dirty, const std::wstring& pathName) :
         App(dirty, pathName) {} 

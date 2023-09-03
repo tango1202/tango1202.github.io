@@ -35,8 +35,7 @@ sidebar:
 예를 들어 강아지를 구현할 때,`Dog`의 `Fly()` 를 어떻게 구현해야 할지 난감합니다.
 
 ``` cpp
-class Dog :
-    public IAnimal {
+class Dog : public IAnimal {
 public:        
     virtual void Born() override { /*구현해야 함*/ }
     virtual void Dead() override { /*구현해야 함*/ }
