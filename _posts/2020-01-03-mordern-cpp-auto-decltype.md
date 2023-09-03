@@ -157,7 +157,7 @@ C++14부터 `auto`와 `decltype(auto)`을 이용한 리턴값 추론이 가능�
 `decltype(auto)`를 사용한 경우 후행 반환은 생략될 수 있으며, 컴파일러는 리턴문으로부터 리턴 타입을 추론합니다. 
 
 1. 만약 `auto` 만 사용했다면, [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따릅니다.
-2. `decltype(auto)` 사용시 `return result;` 시 `result` 타입 그대로를 사용하고, `return (result);`시 에는 `(result)` 왼값 표현식이어서 `T&`로 처리합니다.
+2. `decltype(auto)` 사용시 `return result;` 시 `result` 타입 그대로를 사용하고, `return (result);`시 에는 `(result)`가 왼값 표현식이어서 `T&`로 처리합니다.
 3. 리턴 타입이 다르면 리턴 타입을 추론할 수 없습니다.
 4. 가상 함수는 리턴 타입을 추론할 수 없습니다.
 
