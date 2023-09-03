@@ -70,3 +70,9 @@ C++에서는 표현식의 값들에 대해서 식별자가 있는지, `move()` �
 |`glvalue`(generalized lvalue)|`xvalue`와 `lvalue`를 통칭합니다.| 
 |`rvalue`(right value)|`xvalue`와 `prvalue`를 통칭합니다.|  
 
+# 우측값 참조
+
+# 참조 전달
+Forwarding references
+
+https://en.cppreference.com/w/cpp/language/reference
