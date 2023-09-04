@@ -11,6 +11,9 @@ sidebar:
 > * 타입 크기에 의존하여 코딩하지 마라. OS에 따라, 컴파일러에 따라, 시스템 비트수에 따라 크기가 달라질 수 있다.
 > * 대소 비교가 필요한 경우에는 정수 타입을 사용하라. 실수 타입은 오차가 있다.
 
+> **모던 C++**
+> * 값으로부터 타입을 추론하는 `auto` 타입과 `delcltype()`이 추가되었습니다.([auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype) 참고)
+
 # 개요
 
 C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은 `char`, `short`, `float`, `double` 밖에 없습니다. 대부분 OS에 따라, 컴파일러에 따라, 시스템 비트수에 따라 달라지므로 크기에 의존해서 코딩하면 안됩니다.(특히 `int`와 `wchar_t`요.)

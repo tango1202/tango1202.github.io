@@ -14,6 +14,10 @@ sidebar:
 > * Getter 함수의 리턴값은 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성하라.
 > * Setter 함수의 인자는 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성하라.
 
+> **모던 C++**
+> * 가상 함수 상속의 코딩 규약을 좀더 단단히 하기 위해 `override`가 추가되었습니다.([override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override) 참고)
+> * 가상 함수를 더이상 오버라이딩 못하도록 `final`이 추가되었습니다.([final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) 참고)
+ 
 **개요**
 
 |항목|내용|

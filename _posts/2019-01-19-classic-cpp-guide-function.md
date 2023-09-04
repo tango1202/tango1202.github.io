@@ -15,6 +15,9 @@ sidebar:
 > * 리턴 타입과 인자 타입은 값을 사용할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 사용할 것인지, [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
 > * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)하는 원리를 이해하라.
 
+> **모던 C++**
+> * 함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되었습니다.([후행 리턴](??)과 [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0) 참고) 
+
 # 개요
 
 함수는 다음 목적을 위해 만듭니다.

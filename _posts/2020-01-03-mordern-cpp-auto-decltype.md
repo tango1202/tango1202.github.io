@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [모던 C++] (C++11~) auto, decltype, 후행 반환, (C++14~) decltype(auto), 리턴 타입 추론"
+title: "#3. [모던 C++] (C++11~) auto, decltype, 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -111,7 +111,7 @@ decltype(auto) d = Func(10, 20); // C++14
     EXPECT_TRUE(result == 30);     
     ```
 
-# 후행 반환
+# 후행 리턴 타입
 
 C++11에서는 `auto`로 리턴 타입을 정의하면, 정의된 위치에서는 리턴 타입을 모르기 때문에 컴파일 오류가 납니다.
 
@@ -125,7 +125,7 @@ auto result = Func(10, 20);
 EXPECT_TRUE(result == 30);     
 ```
 
-하지만, 리턴 타입이 인자에 의존한다면, 다음처럼 후행 반환 형식인 `-> decltype()`을 사용하여 리턴 타입을 정의할 수 있습니다.
+하지만, 리턴 타입이 인자에 의존한다면, 다음처럼 후행 리턴 타입 표현인 `-> decltype()`을 사용하여 리턴 타입을 정의할 수 있습니다.
 
 ```cpp
 // C++11
@@ -154,7 +154,7 @@ decltype(auto) Add(T a, U b) {
 
 C++14부터 `auto`와 `decltype(auto)`을 이용한 리턴값 추론이 가능합니다.
 
-`decltype(auto)`를 사용한 경우 후행 반환은 생략될 수 있으며, 컴파일러는 리턴문으로부터 리턴 타입을 추론합니다. 
+`decltype(auto)`를 사용한 경우 후행 리턴 타입 표현식은 생략될 수 있으며, 컴파일러는 리턴문으로부터 리턴 타입을 추론합니다. 
 
 1. 만약 `auto` 만 사용했다면, [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따릅니다.
 2. `decltype(auto)` 사용시 `return result;` 시 `result` 타입 그대로를 사용하고, `return (result);`시 에는 `(result)`가 왼값 표현식이어서 `T&`로 처리합니다.
