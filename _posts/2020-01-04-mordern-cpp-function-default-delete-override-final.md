@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [모던 C++] 함수 default(C++ 11~), 함수 delete(C++ 11~), override(C++ 11~), final(C++11~)"
+title: "#4. [모던 C++] (C++11~) 함수 default, 함수 delete, override, final"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
