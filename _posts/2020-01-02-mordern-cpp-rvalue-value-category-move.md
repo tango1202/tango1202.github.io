@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [모던 C++] (C++11~) 우측값과 값 카테고리, 이동 문법, 이동 생성자, 이동 연산자, move, forward"
+title: "#2. [모던 C++] (C++11~) 우측값과 값 카테고리, 이동 연산, 이동 생성자, 이동 대입 연산자, move, forward"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -70,7 +70,7 @@ C++에서는 표현식의 값들에 대해서 식별자가 있는지, 이동이 
 |`glvalue`(generalized lvalue)|`xvalue`와 `lvalue`를 통칭합니다.| 
 |`rvalue`(right value)|`xvalue`와 `prvalue`를 통칭합니다.|  
 
-# 이동 문법(move semantics)
+# 이동 연산(move semantics)
 
 일반적으로 복사/대입보다는 이동이 성능이 좋을 수 있습니다.
 
