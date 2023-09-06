@@ -22,6 +22,9 @@ sidebar:
 > * 상속 관계에서는 복사 생성자 대신 가상 복사 생성자를 사용하라.
 > * 부모 클래스의 대입 연산자는 오동작할 소지가 있으니 막아라.
 
+> **모던 C++**
+> * `final`이 추가되어 상속 제한을 좀더 단단하게 할 수 있습니다.([final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) 참고)
+
 # 개요
 
 상속이란, 기존의 개체를 재활용하여, 새로운 클래스를 만드는 프로그래밍 기법입니다.

@@ -8,6 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
+> 암시적으로 생성된 멤버 함수의 기본 버전을 사용하기 위한 `default`와 사용하지 않게 하는 `delete`가 추가되어 기본 버전 사용 여부가 좀더 명시적으로 표현됩니다.
+> * `override`가 추가되어 가상 함수 상속의 코딩 규약을 좀더 단단해졌습니다.
+> * `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.
+> * `final`이 추가되어 상속 제한을 좀더 단단하게 할 수 있습니다.
+
 # default와 delete
 
 기존에는 암시적으로 정의되는 멤버 함수들은 `private`를 이용하여 억지로 가시성을 조정하여 사용 여부를 제어했으나([클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고), C++ 11 부터는 `default`나 `delete` 키워드를 사용하여 제어할 수 있습니다.
