@@ -80,7 +80,7 @@ decltype((t->m_Val)) b = 10; // 괄호를 추가하면 왼값 표현식으로 �
 |`decltype((lvalue))`|`T&`, 괄호가 추가되면 표현식으로 평가됨|
 |`decltype(prvalue)`|`T`, 이름 없는 임시 개체|
 
-# auto 와 decltype의 차이점
+# auto 와 decltype()의 차이점
 
 1. 추론 방식
    
