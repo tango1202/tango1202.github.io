@@ -361,7 +361,7 @@ EXPECT_TRUE(typeid(*shape).hash_code() == typeid(Rectangle).hash_code());
 delete shape;
 ```
 
-컴파일 오류를 해결하겠다고 `Shape`의 복사 생성자를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심 성의껏 `protected`로 만든 것이니까요. 
+컴파일 오류를 해결하겠다고 `Shape`의 복사 생성자를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심 성의껏 `protected`로 만든 것이니까요.(또한, CloneTraits<int>::Clone() 으로 기본 타입으로 사용한다면, `ptr->Clone()`이 없으므로 컴파일 오류가 납니다.) 
 
 이 문제는 함수 오버로딩을 통해 해결할 수 있습니다. 하나의 함수에서 `if()`를 통해 복사 생성자나 `Clone()`함수를 호출하는게 아니라, 복사 생성자를 사용하는 함수와 `Clone()`을 사용하는 함수를 각각 구현하고, 개체에 따라 해당 함수를 호출하게 하면 됩니다.
 
@@ -470,8 +470,7 @@ public:
 
 // IsDerivedFrom을 이용하여 ICloneable 상속 여부를 컴파일 타임에 판단하여, 컴파일 타임에 복사 생성할지, Clone을 호출할지 결정합니다.
 template<typename T>
-class CloneTraits
-{
+class CloneTraits {
     static T* Clone(const T* ptr, CloneTag<false>) {
         return new T(*ptr); 
     }
