@@ -8,6 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
+> * `constexpr`이 추가되어 컴파일 타임 상수 표현이 가능해 졌습니다.
+> * `constexpr` 함수를 이용하여 컴파일 타임 함수 작성이 가능해 졌습니다.
+> * `constexpr` 생성자를 이용하여 리터럴 타입 작성이 가능해 졌습니다.
+> * `if constexpr`을 이용하여 `if`블록을 조건에 따라 컴파일 할 수 있습니다.
+
 # 개요
 
 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 언급한 것처럼 컴파일 타임에 여러가지 프로그래밍이 가능합니다. 하지만, 템플릿으로 우회하며 작성하다보니 상당히 난해했는데요, C++11부터는 `constexpr` 이용해 **컴파일 타임 상수 표현식**을 지정할 수 있으며, 컴파일 타임 프로그래밍 환경이 좀더 쉬워졌습니다.
