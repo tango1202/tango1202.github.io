@@ -239,7 +239,7 @@ delete ptr;
 즉, 다음과 같이 작성하면,
 
 ```cpp
-static T* Clone(const T* ptr) {
+static T* Clone_14(const T* ptr) {
     if (ptr == NULL) {
         return  NULL;
     }
@@ -253,14 +253,14 @@ static T* Clone(const T* ptr) {
     }
 } 
 int val;
-int* ptr = CloneTraits<int>::Clone(&val); // (O)
+int* ptr = CloneTraits<int>::Clone_14(&val); // (O)
 delete ptr; 
 ```
 
 다음과 동등하기 때문에 컴파일되고 잘 작동합니다. [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 소개한 `CloneTag`를 이용한 오버로딩 기법 보다 훨씬 직관적입니다.
 
 ```cpp
-static T* Clone(const T* ptr) {
+static T* Clone_14(const T* ptr) {
     if (ptr == NULL) {
         return  NULL;
     }
@@ -268,7 +268,7 @@ static T* Clone(const T* ptr) {
     return new T(*ptr);
 } 
 int val;
-int* ptr = CloneTraits<int>::Clone(&val); // (O)
+int* ptr = CloneTraits<int>::Clone_14(&val); // (O)
 delete ptr; 
 ```
 

@@ -246,7 +246,7 @@ void f(int a, int b); // (O)
 
 **이름이 없는 인자**
 
-함수 정의부에서 사용하지 않는다면, 그리고 함수 포인터 선언 용도라면 인자명을 생략할 수 있습니다. 또한 템플릿 함수 구현시 오버로딩을 위해 생략ㄹ 수 있습니다.([타입 처리 방법 공통화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/#%ED%83%80%EC%9E%85-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95-%EA%B3%B5%ED%86%B5%ED%99%94) 참고)
+함수 정의부에서 사용하지 않는다면, 그리고 함수 포인터 선언 용도라면 인자명을 생략할 수 있습니다. 또한 템플릿 함수 구현시 오버로딩을 위해 생략할 수 있습니다.([타입 처리 방법 공통화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/#%ED%83%80%EC%9E%85-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95-%EA%B3%B5%ED%86%B5%ED%99%94) 참고)
 
 ```cpp
 void f(int, int); // (O)
