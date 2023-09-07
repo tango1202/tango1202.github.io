@@ -10,7 +10,7 @@ sidebar:
 
 # 개요
 
-[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 언급한 것처럼 컴파일 타임에 여러가지 프로그래밍이 가능합니다. C++11부터는 `constexpr` 이용해 **컴파일 타임 상수 표현식**을 지정할 수 있습니다.
+[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 언급한 것처럼 컴파일 타임에 여러가지 프로그래밍이 가능합니다. 하지만, 템플릿으로 우회하며 작성하다보니 상당히 난해했는데요, C++11부터는 `constexpr` 이용해 **컴파일 타임 상수 표현식**을 지정할 수 있으며, 컴파일 타임 프로그래밍 환경이 좀더 쉬워졌습니다.
 
 
 # constexpr
@@ -234,7 +234,7 @@ delete ptr;
 
 따라서, `CloneTraits`를 구현할때 컴파일 타임 프로그래밍을 위해 `if()`문을 사용하지 말고, `CloneTag`를 이용하여 오버로딩하라 소개했는데요,
 
-`if constexpr`을 이용하면 조건에 맞는 부부만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다. 
+`if constexpr`을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다. 
 
 즉, 다음과 같이 작성하면,
 
@@ -257,7 +257,7 @@ int* ptr = CloneTraits<int>::Clone(&val); // (O)
 delete ptr; 
 ```
 
-다음과 동등하기 때문에 컴파일됩니다.
+다음과 동등하기 때문에 컴파일되고 잘 작동합니다. [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 소개한 `CloneTag`를 이용한 오버로딩 기법 보다 훨씬 직관적입니다.
 
 ```cpp
 static T* Clone(const T* ptr) {
