@@ -302,7 +302,7 @@ class W { // T의 friend인 U 의 friend
 
 # 공용체
 
-공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유하다 보니 하나의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하면, 다른 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 [메모리 할당 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98-%EC%A0%95%EC%9D%98-%EB%B0%A9%EB%B2%95)이 바뀌면(플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
+공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유하다 보니 하나의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하면, 다른 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 [메모리 졍렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)이 바뀌면(플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
 
 또한, 구조체와 클래스와 달리 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)와 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 가질 수 없습니다.
 

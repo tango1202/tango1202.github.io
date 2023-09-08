@@ -17,6 +17,7 @@ sidebar:
 
 > **모던 C++**
 > * 이동 연산을 위해 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.([우측값 참조, 이동 생성자, 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
+> * 생성자 위임이 추가되어 생성자의 초기화 리스트 코드가 좀더 간결해 졌습니다.([생성자 위임](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9C%84%EC%9E%84) 참고)
  
 # 개요
 

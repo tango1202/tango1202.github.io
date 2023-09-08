@@ -17,7 +17,7 @@ sidebar:
 
 # 템플릿 인자 코딩 계약
 
-다음 코드에서 `Runner`는 외형적으로는 아무 타입이나 받아들일 수 있습니다. 하지만 내부에 `using`을 사용하여 `T`가 `Type`과 `PointerType` 을 제공하도록 강제하고 있습니다. 따라서 `Runner`를 사용하려면, `A` 클래스 처럼 `ObjTraits`를 상속하거나, `B`클래스 처럼 `Type`과 `PointerType`을 제공해야만 합니다.
+다음 코드에서 `Runner`는 외형적으로는 아무 타입이나 받아들일 수 있습니다. 하지만 내부에 `typedef`을 사용하여 `T`가 `Type`과 `PointerType` 을 제공하도록 강제하고 있습니다. 따라서 `Runner`를 사용하려면, `A` 클래스 처럼 `ObjTraits`를 상속하거나, `B`클래스 처럼 `Type`과 `PointerType`을 제공해야만 합니다.
 
 
 ```cpp
@@ -31,11 +31,11 @@ public:
 template<typename T> 
 class Runner {
     // T는 Type과 PointerType을 제공해야 합니다.
-    using Type = typename T::Type; 
-    using PointerType = typename T::PointerType;
+    typedef typename T::Type Type;
+    typedef typename T::PointerType PointerType;
 
-    Type m_Val1;
-    typename T::Type m_Val2; // using을 사용하지 않고 T::Type을 사용할 수 있습니다.
+    Type m_Val1; // Type == T::Type
+    typename T::Type m_Val2; // T::Type == Type
 };
 
 // Type과 PointerType을 제공하기 위해 ObjTraits를 사용합니다. 

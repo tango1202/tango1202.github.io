@@ -56,20 +56,6 @@ a.f(); // A<int>::g() 를 사용하지 않았기에 컴파일 됨
 a.g(); // (X) 컴파일 오류. 함수 정의부가 없음
 ```
 
-# 템플릿 클래스 별칭
-
-템플릿 클래스는 다음과 같이 별칭을 사용할 수 있습니다.
-
-```cpp
-template<typename T>
-class A {};
-
-template<typename T>
-using Alias = A<T>; // A의 별칭
-
-Alias<int> alias;
-```
-
 # 템플릿 함수
 
 템플릿 함수는 다음처럼 정의하고 인스턴스화 합니다.

@@ -24,6 +24,7 @@ sidebar:
 
 > **모던 C++**
 > * `final`이 추가되어 상속 제한을 좀더 단단하게 할 수 있습니다.([final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) 참고)
+> * 생성자 상속이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.([생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D) 참고)
 
 # 개요
 

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++14~) if constexpr"
+title: "#7. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++14~) if constexpr"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,10 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `constexpr`이 추가되어 컴파일 타임 상수 표현이 가능해 졌습니다.
-> * `constexpr` 함수를 이용하여 컴파일 타임 함수 작성이 가능해 졌습니다.
-> * `constexpr` 생성자를 이용하여 리터럴 타입 작성이 가능해 졌습니다.
-> * `if constexpr`을 이용하여 `if`블록을 조건에 따라 컴파일 할 수 있습니다.
+> * `constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
 
 # 개요
 
@@ -146,18 +143,6 @@ constexpr int Factorial_14(int val) {
 enum class MyEnum {Val = Factorial_14(5)};
 EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 1 * 2 * 3 * 4 * 5);       
 ```
-
-# 리터럴 타입
-
-`constexpr`함수는 **리터럴 타입**만 리턴할 수 있다고 했는데요, **리터럴 타입**은 컴파일 타임에 컴파일러가 그 크기나 형식을 알수 있는 타입입니다.
-
-* void
-* 스칼라 타입 : 기본 타입으로서 `bool`, `char`, `int`, `long`, `float` 등
-* 참조자
-* 리터럴 타입의 배열
-* 람다 함수
-* 집합 타입
-  * 사용자 정의 생성자, 소멸자가 없으며 모든 멤버 변수가 `public`인 구조체나 클래스
 
 # constexpr 생성자 
 

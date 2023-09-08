@@ -8,6 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
+> **모던 C++**
+> * `initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.([initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 참고)
+
 # 개요
 
 컨테이너에 요소 추가/삽입/삭제 방법은 컨테이너의 특성에 따라 다릅니다.
