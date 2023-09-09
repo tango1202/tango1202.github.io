@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [모던 C++] (C++11~) auto, decltype, 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론"
+title: "#4. [모던 C++] (C++11~) auto, decltype, 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 값으로부터 타입을 추론하는 `auto` 타입과 `decltype()`이 추가되어 타이핑 양을 줄일 수 있습니다.
-> * 함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되어 좀더 동적인 함수 설계가 가능해졌습니다.
+> * 함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.
 
 # auto
 

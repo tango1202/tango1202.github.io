@@ -13,6 +13,7 @@ sidebar:
 
 > **모던 C++**
 > * 값으로부터 타입을 추론하는 `auto` 타입과 `decltype()`이 추가되어 타이핑 양을 줄일 수 있습니다.([auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype) 참고)
+> * `using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.([using을 이용한 타입 별칭, 템플릿 클래스 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/) 참고)
 
 # 개요
 
