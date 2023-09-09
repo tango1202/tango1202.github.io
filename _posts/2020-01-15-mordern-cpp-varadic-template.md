@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [모던 C++] (C++11~) 가변 템플릿, 파라메터(인자) 팩"
+title: "#15. [모던 C++] (C++11~) 가변 템플릿, 파라메터(인자) 팩"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
