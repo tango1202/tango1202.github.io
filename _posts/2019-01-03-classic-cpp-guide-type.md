@@ -12,7 +12,7 @@ sidebar:
 > * 대소 비교가 필요한 경우에는 정수 타입을 사용하라. 실수 타입은 오차가 있다.
 
 > **모던 C++**
-> * 값으로부터 타입을 추론하는 `auto` 타입과 `delcltype()`이 추가되어 타이핑 양을 줄일 수 있습니다.([auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype) 참고)
+> * 값으로부터 타입을 추론하는 `auto` 타입과 `decltype()`이 추가되어 타이핑 양을 줄일 수 있습니다.([auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype) 참고)
 
 # 개요
 

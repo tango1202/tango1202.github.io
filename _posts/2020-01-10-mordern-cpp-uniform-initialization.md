@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++] (C++11~) 중괄호 초기화"
+title: "#10. [모던 C++] (C++11~) 중괄호 초기화"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

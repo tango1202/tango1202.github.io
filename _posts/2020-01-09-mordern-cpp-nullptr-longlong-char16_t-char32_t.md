@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [모던 C++] (C++11~) nullptr, nullptr_t, long long, char16_t, char32_t"
+title: "#9. [모던 C++] (C++11~) nullptr, nullptr_t, long long, char16_t, char32_t"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
