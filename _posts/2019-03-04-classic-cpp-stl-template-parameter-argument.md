@@ -10,6 +10,9 @@ sidebar:
 
 > 종속 타입인 경우 `typename`, 파싱 오류시 `template`을 작성하라.
 
+> **모던 C++**
+> * 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-varadic-template/) 참고)
+
 # 템플릿 인자
 
 템플릿 클래스 정의시 `<>` 사이에 인자(Parameter) 집합을 정의하고, 템플릿 인스턴스화시 전달한 인수(Argument) 집합으로 대체되어 클래스가 생성됩니다.

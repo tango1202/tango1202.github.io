@@ -11,6 +11,9 @@ sidebar:
 > * 문자열 상수를 많이 만들면, 프로그램 용량이 커진다. 비슷한 문장을 쓸데없이 여러개 작성하지 마라.
 > * 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하라.(배열이나 `std::string`, `std::wstring` 을 쓰면 복제된다.)
 
+> **모던 C++**
+> * 널 포인터를 위한 `nullptr` 리터럴이 추가되어 좀더 타입 안정적인 코딩 계약이 가능해 졌습니다.([nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 참고)
+
 # bool 과 숫자
 
 ```cpp
