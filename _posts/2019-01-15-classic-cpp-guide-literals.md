@@ -13,6 +13,8 @@ sidebar:
 
 > **모던 C++**
 > * 널 포인터를 위한 `nullptr` 리터럴이 추가되어 좀더 타입 안정적인 코딩 계약이 가능해 졌습니다.([nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 참고)
+> * 유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)
+> * `R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)
 
 # bool 과 숫자
 
@@ -96,7 +98,7 @@ EXPECT_TRUE(str2[0] == 'd');
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f98f2cc-9dff-428f-a639-42d42d9f701b)
 
-문자열의 내용을 수정할 필요가 없다면, 배열이나 `std::string`, `std::wstring`에 저장하지 마세요. 불필요하게 복제되어 복제 부하만 생깁니다.(혹은 지연 복제하는 문자열 개체를 만들어 사용할 수 있습니다. [지연 복제하는 문자열](https://tango1202.github.io/classic-cpp-coding-pattern/classic-cpp-coding-pattern-lazy-string/) 참고)
+문자열의 내용을 수정할 필요가 없다면, 배열이나 `std::string`, `std::wstring`에 저장하지 마세요. 불필요하게 복제되어 복제 부하만 생깁니다.
 
 **결합**
 
