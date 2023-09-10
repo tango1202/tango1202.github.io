@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++] (C++11~) 문자열(char16_t, char32_t, u8/u/U/R 리터럴, u16string, u32string) (C++20~) char8_t, u8string"
+title: "#13. [모던 C++] (C++11~) 문자열(char16_t, char32_t, u8/u/U/R 리터럴, u16string, u32string) (C++20~) char8_t, u8string"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -61,10 +61,10 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`string`|`basic_string<char>`|
-|`wstring`|`basic_string<wchar_t>`|
-|`u16string`|`basic_string<char16_t>`|
-|`u32string`|`basic_string<char32_t>`|
+|`std::string`|`std::basic_string<char>`|
+|`std::wstring`|`std::basic_string<wchar_t>`|
+|`std::u16string`|`std::basic_string<char16_t>`|
+|`std::u32string`|`std::basic_string<char32_t>`|
 
 ```cpp
 // C++11
@@ -87,7 +87,7 @@ EXPECT_TRUE(str2[1] == U'글');
 
 # (C++20~) char8_t, u8string
 
-C++20부터 UTF8 을 관리할 수 있도록 `char8_t`와 `u8string`이 추가되었습니다.
+C++20부터 UTF8 을 관리할 수 있도록 `char8_t`와 `std::u8string`이 추가되었습니다.
 
 # Raw String 리터럴
 
@@ -116,10 +116,10 @@ abc\r\n
 def
 ```
 
-`"()"` 자체를 출력할 때에는 파싱 오류가 날 수 있으므로, 임의 딜리미터를 지정하여 사용할 수 있습니다.
+`"()"` 자체를 출력할 때에는 파싱 오류가 날 수 있으므로, 임의 구분자를 지정하여 사용할 수 있습니다.
 
 ```cpp
-// 임의 딜리미터 aaa 사용
+// 임의 구분자 aaa 사용
 std::cout<<R"aaa(abc"()"
 def)aaa"
 <<std::endl;

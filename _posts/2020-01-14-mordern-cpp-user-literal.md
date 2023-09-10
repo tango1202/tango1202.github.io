@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [모던 C++] (C++11~) 사용자 정의 리터럴, (C++14~) 표준 사용자 정의 리터럴"
+title: "#14. [모던 C++] (C++11~) 사용자 정의 리터럴, (C++14~) 표준 사용자 정의 리터럴"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> *
+> * 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.
 
 # 개요
 
@@ -73,7 +73,9 @@ template<char...> ReturnType operator ""_t();
 
 # (C++14~) 표준 사용자 정의 리터럴
 
-C++14 부터 다음의 표준 사용자 정의 리터럴이 제공됩니다.
+C++버전에 따라 다음의 표준 사용자 정의 리터럴이 제공됩니다.
+
+**C++14**
 
 |항목|내용|
 |--|--|
@@ -87,6 +89,7 @@ C++14 부터 다음의 표준 사용자 정의 리터럴이 제공됩니다.
 |`operator""s`|`std::basic_string` 변환|
 
 **C++17**
+
 |항목|내용|
 |--|--|
 |`operator""sv`|`string_view` 변환|

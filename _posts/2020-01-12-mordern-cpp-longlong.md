@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [모던 C++] (C++11~) long long"
+title: "#12. [모던 C++] (C++11~) long long"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

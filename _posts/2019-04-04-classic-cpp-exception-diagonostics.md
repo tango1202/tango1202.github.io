@@ -11,6 +11,9 @@ sidebar:
 > * 사전 가정과 사후 가정을 진단하라.
 > * 진단 코드가 최소화 되도록, 포인터 보다는 참조자를 사용하고, 코딩 계약을 단단하게 만들어라.
 
+> **모던 C++**
+> * `static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.([static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-static_assert/) 참고)
+
 # 개요 
 
 설계한 기능이 올바르게 사용되는지 진단하기 위해 `assert()`를 사용할 수 있습니다. `assert()`는 디버그 모드가 아니면 아무런 작동을 하지 않으며, 디버그 모드에서만 작동됩니다.

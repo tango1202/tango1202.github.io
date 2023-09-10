@@ -8,6 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
+> **모던 C++**
+> * `static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.([static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-static_assert/) 참고)
+
 # pair
 https://en.cppreference.com/w/cpp/utility/pair
 

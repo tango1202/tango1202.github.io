@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++] (C++11~) 범위 있는 열거형"
+title: "#7. [모던 C++] (C++11~) 범위 있는 열거형"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

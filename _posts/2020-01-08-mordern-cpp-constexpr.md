@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++14~) if constexpr"
+title: "#8. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++14~) if constexpr"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -107,6 +107,8 @@ int val = 5;
 int result = Factorial(5);
 EXPECT_TRUE(result == 1 * 2 * 3 * 4 * 5);
 ```
+
+**C++11부터 스펙 변화**
 
 `constexpr`함수는 기본적으로 **리터럴 타입**만 리턴할 수 있고, 그외 스펙들은 조금씩 개선되고 있습니다. C++11에서는 지역 변수나 제어문도 사용할 수 없어서 상당히 제한적이었으나, 점점 개선되고 있습니다. 자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/language/constexpr)을 참고하시기 바랍니다.
 

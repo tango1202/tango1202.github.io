@@ -12,6 +12,9 @@ sidebar:
 > * 매크로로 타입의 별칭을 만들지 말고 [`typedef`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 사용하라.
 > * 매크로 함수를 쓰지 말고 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하라.
 
+> **모던 C++**
+> * `attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.([static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/) 참고)
+
 # 개요
 
 |항목|내용|

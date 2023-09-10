@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [모던 C++] (C++11~) 중괄호 초기화"
+title: "#5. [모던 C++] (C++11~) 중괄호 초기화"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -10,7 +10,7 @@ sidebar:
 
 > * `{}` 초기화가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.
 > * `{}` 초기화시 인자의 암시적 형변환을 차단하여, 코딩 계약을 더 단단하게 할 수 있습니다.
-> * `initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.
+> * `std::initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.
 
 # 중괄호 초기화
 
@@ -99,11 +99,11 @@ T Func() {
 }
 ```
 
-# initializer_list
+# std::initializer_list
 
 `std::initializer_list`개체를 이용하여 중괄호 초기화 식을 이용한 초기화가 가능합니다.
 
-`vector`의 경우에도 요소를 입력할때 `push_back()`을 사용하여 코드 작성이 번거로웠는데, `initializer_list` 생성자를 구현하여 좀 더 간편하게 요소 값을 초기화 할 수 있습니다.
+`vector`의 경우에도 요소를 입력할때 `push_back()`을 사용하여 코드 작성이 번거로웠는데, `std::initializer_list` 생성자를 구현하여 좀 더 간편하게 요소 값을 초기화 할 수 있습니다.
 
 ```cpp
 // 이전 방식
@@ -121,9 +121,9 @@ std::vector<int> v3 = {1, 2};
 EXPECT_TRUE(v1[0] == 1 && v1[1] == 2); 
 ```
 
-**기존 생성자와 initializer_list 생성자와의 충돌**
+**기존 생성자와 std::initializer_list 생성자와의 충돌**
 
-하지만 기존 생성자들과 충돌할 수도 있으며, 오버로딩 선택시 `initializer_list`를 사용한 버전을 최우선으로 선택합니다.
+하지만 기존 생성자들과 충돌할 수도 있으며, 오버로딩 선택시 `std::initializer_list`를 사용한 버전을 최우선으로 선택합니다.
 
 ```cpp
 // 요소가 2개인 vector를 생성합니다.
@@ -135,12 +135,12 @@ std::vector<int> v2{2};
 EXPECT_TRUE(v2.size() == 1 && v2[0] == 2);
 ```
 
-**auto와 initializer_list**
+**auto와 std::initializer_list**
 
-`auto`와 함께 중괄호 초기화를 사용하면 다음처럼 `initializer_list` 개체로 추론되는데요, `{}` 만 사용할때와 `= {}` 로 사용할 때가 다르므로 주의해서 사용해야 합니다.
+`auto`와 함께 중괄호 초기화를 사용하면 다음처럼 `std::initializer_list` 개체로 추론되는데요, `{}` 만 사용할때와 `= {}` 로 사용할 때가 다르므로 주의해서 사용해야 합니다.
 
 * `auto val{}` : 인자가 1개면 인자 타입으로 추론되고, 여러개면 컴파일 오류를 발생합니다.
-* `auto val = {}` : 인자들의 타입이 동일하면 `initializer_list`로 추론됩니다.
+* `auto val = {}` : 인자들의 타입이 동일하면 `std::initializer_list`로 추론됩니다.
 
 ```cpp
 int a{1}; // a는 int
