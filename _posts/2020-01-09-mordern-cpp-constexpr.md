@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++14~) if constexpr"
+title: "#9. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++14~) if constexpr"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -171,7 +171,7 @@ enum class MyEnum {Val = area.GetVal()}; // constexpr 함수 호출
 EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 2 * 5);      
 ```
 
-# if constexpr (C++14~)
+# (C++14~) if constexpr 
 
 조건식에 따라 컴파일하거나 컴파일하지 않습니다.
 

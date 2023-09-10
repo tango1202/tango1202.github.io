@@ -14,6 +14,7 @@ sidebar:
 
 > **모던 C++**
 > * `attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.([static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/) 참고)
+> * `alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.([alignas(), alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/) 참고)
 
 # 개요
 

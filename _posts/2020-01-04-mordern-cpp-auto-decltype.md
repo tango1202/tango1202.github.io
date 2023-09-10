@@ -124,7 +124,7 @@ auto Add(T a, U b) -> decltype(a + b) {
 } 
 ```
 
-# decltype(auto) (C++14~) 
+# (C++14~) decltype(auto) 
 
 C++14 부터 `decltype()`의 표현식이 복잡할 경우 `auto`를 이용하여 좀더 간결하게 작성할 수 있습니다.
 
@@ -138,7 +138,7 @@ decltype(Func(10, 20)) c = Func(10, 20); // C++11
 decltype(auto) d = Func(10, 20); // C++14
 ```
 
-# 리턴 타입 추론 (C++14~)
+# (C++14~) 리턴 타입 추론
 
 C++14부터 `auto`와 `decltype(auto)`을 이용한 리턴 타입 추론이 가능하며, 후행 리턴 타입 표현식은 생략될 수 있습니다.
 

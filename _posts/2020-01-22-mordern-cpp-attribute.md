@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++] (C++11~) attribute(작성중)"
+title: "#22. [모던 C++] (C++11~) attribute(작성중)"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
