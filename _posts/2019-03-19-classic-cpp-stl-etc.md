@@ -29,7 +29,7 @@ https://en.cppreference.com/w/cpp/types
 예외 발생시 예외 정보를 담는 `std::exception`, `std::bad_alloc`등의 표준 예외 개체를 제공합니다.(
 [표준 예외 개체](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-object/) 참고)
 
-예외가 `catch()`되지 않았을때 사용할 수 있는 `terminate()` 핸들러를 제공합니다.([terminate](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 참고)
+예외가 `catch()`되지 않았을때 사용할 수 있는 `std::terminate()` 핸들러를 제공합니다.([std::terminate](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 참고)
 
 # 자가 진단
 

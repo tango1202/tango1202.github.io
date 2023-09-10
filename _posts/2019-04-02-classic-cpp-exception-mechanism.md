@@ -16,6 +16,9 @@ sidebar:
 > * 스택 풀기와 호환되도록 스마트 포인터를 사용하라.
 > * 함수 정의시 동적 예외 사양은 사용하지 마라.
 
+> **모던 C++**
+> * `noexcept` 를 이용하여 예외 발생이 없는 함수를 지정할 수 있습니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
+
 # 개요
 
 예외 상황이 발생했을때 오류 코드를 리턴하면, 호출한 곳에서 리턴값을 확인하고 예외 처리를 해야 하는데, 강제성이 없어서 빼먹을 수 있습니다.
@@ -115,6 +118,20 @@ catch (const std::exception& e) {
 }
 ```
 
+`catch()`는 다음처럼 여러개의 예외를 탐지하거나, 모든 예외를 탐지할 수 있습니다. 단 예외가 상속 관계라면 자식 개체 타입을 먼저 사용해야 합니다. 특별히 `...`을 사용하면 모든 타입을 캐치할 수 있습니다.
+
+```cpp
+class Base : public std::exception {};
+class Derived : public Base {};
+try {
+    f();
+}
+catch (const Derived&) {} // 자식 개체 타입을 먼저 사용
+catch (const Base&) {}
+catch (const std::exception&) {}
+catch (...) {} // 그외 모든 예외 타입
+```
+
 # 스택 풀기(예외 복귀)
 
 C++ 은 예외 상황이 발생하면,  `catch()` 될때까지 거꾸로 스택을 하나하나 풀면서(해제하면서, 소멸시키면서) 생성한 개체의 소멸자를 호출하고, 메모리를 해제합니다. 이러한 과정을 거쳐 예외 발생 전의 상태로 복귀합니다.
@@ -195,7 +212,7 @@ void f() {
     catch (error2&) {
        throw;
     }
-    catch(...) {
+    catch (...) {
        throw std::bad_exception();
     }
 }
@@ -230,11 +247,11 @@ void g() {
 }
 ```
 
-# terminate
+# std::terminate
 
-예외를 `catch()`하지 않으면 최종적으로 `terminate()` 함수를 호출하며, `terminate()` 함수에서는 `terminate()` 핸들러를 호출하고, 기본 `terminate()` 핸들러에서는 `abort()`를 호출하여 프로그램을 강제 종료합니다. 
+예외를 `catch()`하지 않으면 최종적으로 `std::terminate()` 함수를 호출하며, `std::terminate()` 함수에서는 `std::terminate()` 핸들러를 호출하고, 기본 `std::terminate()` 핸들러에서는 `std::abort()`를 호출하여 프로그램을 강제 종료합니다. 
 
-`terminate()` 핸들러는 `set_terminate()` 함수로 사용자 정의 할 수 있으며, `abort()`등의 프로그램 종료 코드가 포함되어야 합니다.
+`std::terminate()` 핸들러는 `set_terminate()` 함수로 사용자 정의 할 수 있으며, `std::abort()`등의 프로그램 종료 코드가 포함되어야 합니다.
 
 ```cpp
 #include <iostream>
