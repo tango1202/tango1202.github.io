@@ -29,6 +29,12 @@ C 호환성
 Varadic Macro
 
 
+제거
+- export
+- 동적 예외 사양
+- auto_ptr
+- std::unary_fuction, std::binary_function, 어뎁터
+
 C++11은, 
 
 1. 이동 연산을 지원하여 런타임 성능을 향상시키고, 

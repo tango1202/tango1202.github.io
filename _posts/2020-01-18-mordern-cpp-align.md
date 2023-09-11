@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#17. [모던 C++] (C++11~) alignas(), alignof()"
+title: "#18. [모던 C++] (C++11~) alignas(), alignof()"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

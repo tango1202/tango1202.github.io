@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++] (C++11~) noexcept, noexcept 연산자"
+title: "#17. [모던 C++] (C++11~) noexcept, noexcept 연산자"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
