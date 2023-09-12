@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++] (C++11~) 사용자 정의 리터럴, (C++14~) 표준 사용자 정의 리터럴"
+title: "#18. [모던 C++] (C++11~) 사용자 정의 리터럴, (C++14~) 표준 사용자 정의 리터럴"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

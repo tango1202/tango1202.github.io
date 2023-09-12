@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++14~) if constexpr"
+title: "#11. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++14~) if constexpr"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -87,7 +87,7 @@ enum class MyEnum {Val = Factorial<5>::Val};
 EXPECT_TRUE(MyEnum::Val == 1 * 2 * 3 * 4 * 5);
 ```
 
-이제는 `constexpr`을 이용하여 다음처럼 컴파일 타임 함수를 만들 수 있습니다.
+이제는 `constexpr`을 이용하여 암시적으로 인라인 함수인 컴파일 타임 함수를 만들 수 있습니다.
 
 1. 컴파일 타임 상수를 전달하면 컴파일 타임 함수로 동작하고,
 2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작합니다.

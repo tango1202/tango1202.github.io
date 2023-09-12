@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [모던 C++] (C++11~) 멤버 선언부 초기화"
+title: "#7. [모던 C++] (C++11~) 멤버 선언부 초기화"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

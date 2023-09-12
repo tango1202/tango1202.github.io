@@ -11,7 +11,7 @@ sidebar:
 > 종속 타입인 경우 `typename`, 파싱 오류시 `template`을 작성하라.
 
 > **모던 C++**
-> * 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-varadic-template/) 참고)
+> * 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
 
 # 템플릿 인자
 

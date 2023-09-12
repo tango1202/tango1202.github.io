@@ -12,6 +12,8 @@ sidebar:
 > * 후위형 증감 연산자는 헷갈리고, 쓸데없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되니 사용하지 마라. 
 > * 비교 연산 오버로딩은 `<`을 활용해서 구현하라.
 
+> **모던 C++**
+> * 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.([사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/) 참고)
 
 # 대입 연산자
 

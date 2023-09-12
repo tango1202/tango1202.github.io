@@ -12,6 +12,7 @@ sidebar:
 > * 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하라.(배열이나 `std::string`, `std::wstring` 을 쓰면 복제된다.)
 
 > **모던 C++**
+> * `long long`용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` 리터럴이 추가되었습니다.([long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) 참고)
 > * 널 포인터를 위한 `nullptr` 리터럴이 추가되어 좀더 타입 안정적인 코딩 계약이 가능해 졌습니다.([nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 참고)
 > * 유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)
 > * `R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)

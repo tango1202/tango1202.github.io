@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++] (C++11~) 람다 표현식, 클로져"
+title: "#10. [모던 C++] (C++11~) 람다 표현식, 클로져"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -146,7 +146,8 @@ public:
         int local = 2;
 
         auto f = [=]() -> int {
-            m_Member = 10; // 멤버 변수의 값을 수정합니다.
+            // this->m_Member = 10; 
+            m_Member = 10; // this->m_Member = 10; 과 동일. 멤버 변수의 값을 수정합니다.
             return m_Member + local;
         };  
 

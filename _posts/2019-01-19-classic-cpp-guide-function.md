@@ -13,13 +13,15 @@ sidebar:
 > * 컴파일러 최적화가 쉽도록, RVO가 쉽도록, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하라.
 > * 다형적인 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
 > * 리턴 타입과 인자 타입은 값을 사용할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 사용할 것인지, [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
-> * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)하는 원리를 이해하라.
+> * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(ADL(Argument-dependent lookup) 또는 Koenig 검색)하는 원리를 이해하라.
 
 > **모던 C++**
 > * 함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.([후행 리턴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)과 [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0-c14) 참고) 
 > * `{}` 초기화시 인자의 암시적 형변환을 차단하여, 코딩 계약을 더 단단하게 할 수 있습니다.([중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)
+> * `{}` 초기화로 리턴문 작성을 간소화할 수 있습니다.([중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)
 > * `noexcept` 를 이용하여 예외 발생이 없는 함수를 지정할 수 있습니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
 > * 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.([람다 표현식, 클로져](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda) 참고) 
+> * 가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.([가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/) 참고)
 
 # 개요
 
@@ -582,7 +584,7 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
  
 1. 자신의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색
    
-2. 함수 인자의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색(ADL(Argument-dependent lookup) 또는 Keonig 검색)
+2. 함수 인자의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색(ADL(Argument-dependent lookup) 또는 Koenig 검색)
 
 3. 암시적 형변환을 포함하여 실행 가능 함수 결정
    
@@ -612,13 +614,13 @@ namespace B {
 EXPECT_TRUE(B::g() == 2); // B::MyFunc 이 채택됨
 ```
 
-하지만 `MyFunc()`함수의 인자가 네임스페이스 `C`의 것을 참조한다면, 
+하지만 `MyFunc()`함수의 인자가 다음처럼 특정 네임스페이스의 것을 참조한다면, 
 
 ```cpp
 int MyFunc(const C::Date&, double) {return 2;}
 ```
 
-ADL(Argument-dependent lookup) 또는 Keonig 검색에 의해 네임스페이스 `C`의 함수들에서도 검색하게 됩니다.
+ADL(Argument-dependent lookup) 또는 Koenig 검색에 의해 네임스페이스 `C`의 함수들에서도 검색하게 됩니다.
 
 그래서 함수 후보군은
 

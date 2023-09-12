@@ -17,6 +17,7 @@ sidebar:
 > **모던 C++**
 > * `override`가 추가되어 가상 함수 상속의 코딩 규약을 좀더 단단해졌습니다.([override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override) 참고)
 > * `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.([final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) 참고)
+> * 멤버 함수에 `&`, `&&` 참조 한정자가 추가되어 좌측값으로 호출될때와 우측값으로 호출될때를 오버로딩 할 수 있습니다.([멤버 함수 참조 한정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/) 참고)|
  
 **개요**
 

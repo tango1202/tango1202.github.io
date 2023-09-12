@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++] (C++11~) 생성자 위임, 생성자 상속"
+title: "#23. [모던 C++] (C++11~) 생성자 위임, 생성자 상속"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

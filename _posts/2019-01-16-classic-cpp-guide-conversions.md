@@ -13,6 +13,9 @@ sidebar:
 > * 인자가 1개인 생성자는 `explicit`로 암시적 형변환을 차단하라.
 > * 할 수 있는한 최선을 다하여 형변환하지 마라.
 
+> **모던 C++**
+> * `explicit` 형변환 연산자를 추가하여 명시적으로 형변환 할 수 있습니다.([명시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/) 참고)
+
 # 개요
 
 |항목|내용|
