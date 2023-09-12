@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [모던 C++] (C++11~) 람다 표현식, 클로져"
+title: "#9. [모던 C++] (C++11~) 람다 표현식, 클로져"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -68,7 +68,7 @@ int f(int a, int b) {
 |`[=]`|외부의 모든 변수를 `const`형 값으로 가져옵니다.|
 |`[&]`|외부의 모든 변수의 참조자를 가져옵니다.|
 |`[=, &x, &y]`|외부의 모든 변수를 값으로 가져오되 `x`, `y` 만 참조로 가져옵니다.|
-|`[&, x, y]`|외부의 모든 변수의 참조자를 가져오되 `x``, `y` 만 값으로 가져옵니다.|
+|`[&, x, y]`|외부의 모든 변수의 참조자를 가져오되 `x`, `y` 만 값으로 가져옵니다.|
 |`this`|람다 표현식을 사용한 개체의 `this` 포인터를 값으로 가져옵니다.|
 
 다음 코드에서는 람다 표현식 외부에 정의된 `sum`을 캡쳐하고, 람다 표현식 내에서 `v`의 각 요소의 값을 전달받아 `sum`에 누적합니다.
@@ -156,7 +156,7 @@ public:
 
 T t;
 EXPECT_TRUE(t.Func() == 12);
-EXPECT_TRUE(t.GetMember() == 10);
+EXPECT_TRUE(t.GetMember() == 10); // 멤버 변수가 수정되어 있습니다.
 ```
 
 **참조 캡쳐**
@@ -206,10 +206,10 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
     }
     int c = 30;
     f = [=](int a, int b) -> int {return a + b + c;}; // 캡쳐를 사용하는 람다 표현식도 사용할 수 있습니다.      
-    EXPECT_TRUE(g(f, 10, 20) == 60); // g 함수에 클로져 개체를 저장한 f를 전달합니다. 
+    EXPECT_TRUE(g(f, 10, 20) == 60); // g() 함수에 클로져 개체를 저장한 f를 전달합니다. 
     ```
 
-**클로져 개체 복사 부하**
+# 클로져 개체 복사 부하
 
 람다 표현식에서 값 캡쳐를 사용하면 
 1. 캡쳐시에 복제 부하가 있으며, 
@@ -257,7 +257,7 @@ public:
     T::Destructor    
     ```
 
-3. 값 캡쳐를 사용하더라도, `auto` 변수에 저장하고 호출하는 것은 별다른 복사 부하가 없습니다.
+3. 값 캡쳐를 사용하더라도, `auto` 변수에 저장하고 호출하는 것은 추가의 복사 부하가 없습니다.
 
     ```cpp
     T t;
@@ -266,13 +266,13 @@ public:
     ```
     ```cpp
     T::Default Constructor
-    T::Copy Constructor // 캡쳐시 복사 생성자를 호출하여 const 복제본을 만듭니다.
+    T::Copy Constructor // 추가 복사 부하가 없습니다.
     Run Lambda
     T::Destructor
     T::Destructor
     ```
 
-4. 값 캡쳐를 사용할때 `auto` 변수들 끼리 복제하면 복사 부하가 발생합니다.
+4. 값 캡쳐를 사용할때 `auto` 변수들 끼리 복제하면 추가의 복사 부하가 발생합니다.
 
     ```cpp
     T t;
@@ -285,7 +285,7 @@ public:
     ```cpp
     T::Default Constructor
     T::Copy Constructor // 캡쳐시 복사 생성자를 호출하여 const 복제본을 만듭니다.
-    T::Copy Constructor // f2 = f1시 복제본을 만듭니다.
+    T::Copy Constructor // f2 = f1시 복제본을 만듭니다. 추가 복사 부하가 있습니다.
     Run Lambda
     Run Lambda
     T::Destructor
@@ -293,7 +293,7 @@ public:
     T::Destructor
     ```
 
-5. 참조 캡쳐를 사용하면 복사하지 않습니다.
+5. 참조 캡쳐를 사용하면 복사 부하가 없습니다.
 
     ```cpp
     T t;
