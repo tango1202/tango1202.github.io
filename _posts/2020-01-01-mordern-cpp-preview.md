@@ -9,11 +9,6 @@ sidebar:
 ---
 * 오른쪽 꺽쇠규칙>> https://en.wikipedia.org/wiki/C%2B%2B11
 
-* 외부 템플릿 Extern template
-* https://en.wikipedia.org/wiki/C%2B%2B11
-* sizeof(SomeType::member) 허용
-
-
 표준라이브러리
 스마트포인터
 스레딩 기능
@@ -47,6 +42,7 @@ C++11은,
 |[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)|이동 연산을 위해 우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.|
 |[멤버 함수 참조 한정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)|멤버 함수에 `&`, `&&` 참조 한정자가 추가되어 좌측값으로 호출될때와 우측값으로 호출될때를 오버로딩 할 수 있습니다.|
 |[무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)|공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀려 메모리 절약을 위한 코딩 자유도가 높아졌습니다.|
+|[extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/)|`extern` 템플릿을 추가하여 템플릿 선언을 할 수 있으며, 불필요한 코드 크기를 최소화 할 수 있습니다.| 
 
 # 컴파일 타임 프로그래밍
 
@@ -84,8 +80,11 @@ C++11은,
 |[인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-namespace/)|`inline namespace` 가 추가되어 API 버전 구성이 편리해 졌습니다.|
 |[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)|`using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.|
 |[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)|유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `u8string`, `u16string`, `u32string` 이 추가되었습니다.<br/>유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.<br/>`R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.|
-|[사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/)|사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.|
+|[사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/)|`int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.|
 |[생성자 위임, 생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/)|생성자 위임이 추가되어 생성자의 초기화 리스트 코드가 좀더 간결해 졌습니다.<br/>생성자 상속이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.|
+|[멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/)|`sizeof()`가 개체를 인스턴스화 하지 않더라도 멤버의 크기를 구할 수 있도록 개선되었습니다.|
+|[템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-right-angle-bracket/)|파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.|
+
 
 # 타입
 
@@ -98,5 +97,5 @@ C++11은,
 
 |항목|내용|
 |--|--|
-|[가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)|가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.|
+|[가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)|가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.<br/>`sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메트 팩의 인자수를 구할 수 있습니다.|
 

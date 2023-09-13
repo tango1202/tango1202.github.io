@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#26. [모던 C++] (C++11~) 가변 매크로"
+title: "#27. [모던 C++] (C++11~) 가변 매크로"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

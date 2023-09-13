@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#25. [모던 C++] (C++11~) 가변 템플릿, 파라메터(인자) 팩"
+title: "#26. [모던 C++] (C++11~) 가변 템플릿, 파라메터(인자) 팩, sizeof...()"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.
+> * `sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메트 팩의 인자수를 구할 수 있습니다.
 
 # 개요
 

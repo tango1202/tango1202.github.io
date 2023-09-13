@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.
+> * `int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.
 
 # 개요
 
