@@ -12,7 +12,7 @@ sidebar:
 
 # nullptr
 
-기존에는 널 포인터를 표현하기 위해 `0`이나 `NULL`(`#define NULL 0`)을 사용했으나, C++11 부터는 `nullptr` 리터럴이 제공됩니다.
+기존에는 [널 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EB%84%90-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 표현하기 위해 `0`이나 `NULL`(`#define NULL 0`)을 사용했으나, C++11 부터는 `nullptr` 리터럴이 제공됩니다.
 
 ```cpp
 int* ptr1 = 0;

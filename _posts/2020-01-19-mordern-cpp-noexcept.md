@@ -60,7 +60,7 @@ g(); // noexcept 함수 내에서 사용하는 함수가 예외를 발생시키�
 ```
 # 소멸자 예외
 
-예외 안정을 위해 소멸자에서는 예외를 발생시키지 않아야 하는데요, C++11부터 소멸자는 `noexcept` 가 생략되었더라도 `noexcept`로 동작합니다.
+예외 안정을 위해 소멸자에서는 예외를 발생시키지 않아야 하는데요([스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 와 [소멸자에서 예외 발생 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D-%EA%B8%88%EC%A7%80) 참고), C++11부터 소멸자는 `noexcept` 가 생략되었더라도 `noexcept`로 동작합니다.
 
 # noexcept() 연산자
 

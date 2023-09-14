@@ -156,3 +156,22 @@ a.f(); // 일반 함수 호출
 a.g<int>(10); // 템플릿 멤버 함수 호출
 ```
 
+# 템플릿 인스턴스 중복 생성
+
+동일한 템플릿을 인스턴스화 할때 각각의 파일에서 템플릿 정의를 `include`하면 각 파일별로 템플릿 인스턴스가 생성됩니다. 이에 따라 프로그램 코드 용량이 커질 수 있습니다.
+
+```cpp
+// test.h 에서
+template<typename T>
+T Add(T a, T b) {
+    return a + b;
+}
+
+// test1.cpp 에서
+#include "test.h"
+Add(1, 2); // Add<int>()가 정의 되어 포함됩니다.
+
+// test2. cpp 에서
+#include "test.h"
+Add(10, 20); // Add<int>가 재정의 되어 포함됩니다.
+```

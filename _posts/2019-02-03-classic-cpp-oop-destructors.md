@@ -19,6 +19,7 @@ sidebar:
 
 > **모던 C++**
 > * 소멸자는 기본적으로 `noexcept`로 동작합니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
+
 # 개요
 
 |항목|내용|

@@ -12,7 +12,7 @@ sidebar:
  
 # 개요
 
-C++11에서는 함수 지향 프로그래밍을 위해 람다 표현식을 추가하였습니다. 람다 표현식은 `prvalue` 타입의 1회용 익명 함수를 만들며, 이를 **클로져(Closure)**라고 합니다. 
+C++11에서는 함수 지향 프로그래밍을 위해 람다 표현식을 추가하였습니다. 람다 표현식은 `prvalue` 타입의 1회용 익명 함수를 만들며, 이를 **클로져(Closure)** 라고 합니다. 
 
 람다 표현식은 STL의 [알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)과 잘 호환될 뿐만 아니라, 캡쳐 기능등의 활용도도 높아서 복잡한 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 만들기 보다는 람다 표현식을 사용하는게 훨씬 좋습니다.
 

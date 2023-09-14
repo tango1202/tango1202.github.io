@@ -19,7 +19,7 @@ sidebar:
 
 유니코드는 기본적으로 2byte를 사용하도록 했으나, 아시아권 문자를 포함하다 보니 3byte가 필요하게 되었고, 다양한 추가 문자들을 지원하다 보니 4byte가 필요(악보 기호, 이모지등 특수 기호 지원)하게 되었으며, 현대 한글의 모든 문자 11,172개는 U+AC00 ~ D7A3에 할당되어 있습니다.
 
-유니코드는 U+16진수로 표기합니다. 예를 들어 한글 "가"는 AC00(10진수의 44032)인데, U+AC00으로 표기합니다.
+유니코드는 `U+16진수`로 표기합니다. 예를 들어 한글 "가"는 `AC00`(10진수의 `44032`)인데, `U+AC00`으로 표기합니다.
 
 모든 문자를 4byte로 표현하면 메모리 낭비가 심하므로 인코딩을 통해 문자 변환을 합니다.
 
@@ -33,7 +33,7 @@ sidebar:
 
 # char16_t 와 char32_t
 
-기존 `wchar_t`는 시스템 비트수에 따라 가변적이어서 2byte와 4byte 크기로 다루기 위한 `char16_t`와 `char32_t`가 추가되었습니다.
+기존 `wchar_t`는 시스템 비트수에 따라 가변적이어서([기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고) 2byte와 4byte 크기로 다루기 위한 `char16_t`와 `char32_t`가 추가되었습니다.
 
 |항목|내용|용량|
 |--|--|--|
@@ -44,7 +44,7 @@ sidebar:
 
 # 유니코드 리터럴
 
-기존에는 1byte 문자열과 와이드 문자열만 지원했지만, C++11부터  UTF-8, UTF-16, UTF-32의 유니코드 문자열 지원을 합니다.
+기존에는 1byte 문자열과 와이드 문자열만 지원했지만([문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 참고), C++11부터  UTF-8, UTF-16, UTF-32의 유니코드 문자열 지원을 합니다.
 
 |항목|내용|
 |--|--|
@@ -57,7 +57,7 @@ sidebar:
 
 # 유니코드 문자열 개체
 
-기존에는 `char`, `wchar_t` 문자열 개체만 지원했지만, C++11부터 `char16_t`, `char32_t` 문자열을 지원합니다.
+기존에는 `char`, `wchar_t` 문자열 개체만 지원했지만([문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 참고), C++11부터 `char16_t`, `char32_t` 문자열을 지원합니다.
 
 |항목|내용|
 |--|--|
@@ -91,7 +91,7 @@ C++20부터 UTF8 을 관리할 수 있도록 `char8_t`와 `std::u8string`이 추
 
 # Raw String 리터럴
 
-기존 문자열은 개행을 하기 위해 다음처럼 이스케이프 문자(`\r\n`)를 추가해야 했습니다.
+기존 문자열은 개행을 하기 위해 다음처럼 이스케이프 문자(`\r\n`)를 추가해야 했습니다.([이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90) 참고)
 
 ```cpp
 std::cout<<"abc\r\ndef"<<std::endl;
