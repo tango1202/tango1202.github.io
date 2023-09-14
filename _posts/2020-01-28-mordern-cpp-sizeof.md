@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `sizeof()`가 개체를 인스턴스화 하지 않더라도 멤버의 크기를 구할 수 있도록 개선되었습니다.
+> * [sizeof() 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 개체를 인스턴스화 하지 않더라도 멤버의 크기를 구할 수 있도록 개선되었습니다.
 
 # 개요
 

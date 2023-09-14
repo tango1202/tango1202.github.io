@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-템플릿 인스턴스화시 템플릿 개체로 인스턴스화 하면 `>`이 중첩되는데요, C++03은 이게 비트 Right Shift 연산자 `>>` 로 파싱되어 컴파일 되지 않았습니다. 따라서, ``std::vector<A<int> >`와 같이 억지로 띄어쓰기를 했는데요, C++11에서는 파싱을 개선하여 `std::vector<A<int>>`와 같은 작성법도 지원합니다.
+템플릿 인스턴스화시 템플릿 개체로 인스턴스화 하면 `>`이 중첩되는데요([템플릿 파싱 오류](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98) 참고), C++03은 이게 비트 Right Shift 연산자 `>>` 로 파싱되어 컴파일 되지 않았습니다. 따라서, ``std::vector<A<int> >`와 같이 억지로 띄어쓰기를 했는데요, C++11에서는 파싱을 개선하여 `std::vector<A<int>>`와 같은 작성법도 지원합니다.
 
 ```cpp
 template <typename T>

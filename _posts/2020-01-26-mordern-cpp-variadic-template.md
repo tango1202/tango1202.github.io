@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.
-> * `sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메트 팩의 인자수를 구할 수 있습니다.
+> * `sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.
 
 # 개요
 
@@ -34,7 +34,7 @@ EXPECT_TRUE(val == 1 + 3 + 5);
 
 # sizeof...() 연산자
 
-`sizeof()`연산자는 개체의 크기를 리턴하는데요, `sizedof...()`은 파라메터 팩의 인자수를 리턴합니다.
+[sizeof() 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)는 개체의 크기를 리턴하는데요, `sizeof...()`은 파라메터 팩의 인자수를 리턴합니다.
 
 ```cpp
 template<typename... Types>

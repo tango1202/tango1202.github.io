@@ -42,7 +42,7 @@ C++11은,
 |[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)|이동 연산을 위해 우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.|
 |[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)|멤버 함수에 `&`, `&&` 참조 지정자가 추가되어 좌측값으로 호출될때와 우측값으로 호출될때를 오버로딩 할 수 있습니다.|
 |[무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)|공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀려 메모리 절약을 위한 코딩 자유도가 높아졌습니다.|
-|[extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/)|`extern` 템플릿을 추가하여 템플릿 선언을 할 수 있으며, 불필요한 코드 크기를 최소화 할 수 있습니다.| 
+|[extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/)|`extern` 템플릿을 추가하여 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.| 
 
 # 컴파일 타임 프로그래밍
 
