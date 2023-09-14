@@ -40,7 +40,7 @@ C++11은,
 |항목|내용|
 |--|--|
 |[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)|이동 연산을 위해 우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.|
-|[멤버 함수 참조 한정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)|멤버 함수에 `&`, `&&` 참조 한정자가 추가되어 좌측값으로 호출될때와 우측값으로 호출될때를 오버로딩 할 수 있습니다.|
+|[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)|멤버 함수에 `&`, `&&` 참조 지정자가 추가되어 좌측값으로 호출될때와 우측값으로 호출될때를 오버로딩 할 수 있습니다.|
 |[무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)|공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀려 메모리 절약을 위한 코딩 자유도가 높아졌습니다.|
 |[extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/)|`extern` 템플릿을 추가하여 템플릿 선언을 할 수 있으며, 불필요한 코드 크기를 최소화 할 수 있습니다.| 
 
@@ -63,7 +63,7 @@ C++11은,
 |[default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)| `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.|
 |[override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)|`override`가 추가되어 가상 함수 상속의 코딩 규약을 좀더 단단해졌습니다.|
 |[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)| `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있고, 상속 제한을 좀더 단단하게 할 수 있습니다.|
-|[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)|`noexcept` 를 이용하여 예외 발생이 없는 함수를 지정할 수 있습니다.|
+|[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)|`noexcept` 를 이용하여 예외 발생이 없는 함수를 지정할 수 있습니다.<br/>소멸자는 기본적으로 `noexcept`로 동작합니다.|
 |[alignas, alignof](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/)|`alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.|
 |[attribute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)|`attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.|
 

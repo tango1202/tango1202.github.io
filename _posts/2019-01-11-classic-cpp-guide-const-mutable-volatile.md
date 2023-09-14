@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [고전 C++ 가이드] 상수(const), 변경 가능 지정자(mutable), 최적화 제한 지정자(volatile)"
+title: "#11. [고전 C++ 가이드] 상수 한정자(const), 변경 가능 지정자(mutable), 최적화 제한 한정자(volatile)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -16,8 +16,8 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|상수 개체|개체 정의시 `const`를 붙여 상수 개체를 만들 수 있습니다. 상수 개체는 값을 변경할 수 없습니다.<br/>생성시 초기화 해야 합니다.|
-|상수 멤버 함수|[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)의 뒤에 `const`를 붙여 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 만들 수 있습니다.<br/>[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 변경할 수 없습니다.<br/>단, `mutable`로 정의된 개체는 수정 가능합니다.|
+|상수 개체|개체 정의시 `const` 한정자를 붙여 상수 개체를 만들 수 있습니다. 상수 개체는 값을 변경할 수 없습니다.<br/>생성시 초기화 해야 합니다.|
+|상수 멤버 함수|[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)의 뒤에 `const` 한정자를 붙여 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 만들 수 있습니다.<br/>[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 변경할 수 없습니다.<br/>단, `mutable`로 정의된 개체는 수정 가능합니다.|
 
 `const`인 개체나 함수를 사용하면, 메모리의 수정이 없으므로 예외에 안정적입니다. 안정적인 프로그램을 위해, 할 수 있는 한 최대한 많이 `const`로 작성하는 것이 좋습니다.
 
@@ -146,7 +146,7 @@ TEST(TestClassicCpp, Mutable) {
 }
 ```
 
-# 최적화 제한 지정자(volatile)
+# 최적화 제한 한정자(volatile)
 
 컴파일러 최적화 옵션을 비활성 시킵니다.
 
