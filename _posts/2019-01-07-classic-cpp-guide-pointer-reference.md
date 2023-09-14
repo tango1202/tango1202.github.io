@@ -12,6 +12,7 @@ sidebar:
 > * [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 참조자를 리턴하지 마라.(이미 소멸된 개체다.)
 
 > **모던 C++**
+> * 널 포인터를 위한 `nullptr` 리터럴이 추가되어 좀더 타입 안정적인 코딩 계약이 가능해 졌습니다.([nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 참고)
 > * 이동 연산을 위해 우측값 참조(`&&`)가 추가되어 임시 개체 대입시 속도가 향상되었습니다.([우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
 
 # 개요
@@ -47,6 +48,16 @@ int x = 20;
 int& r = x; // r은 x의 별칭입니다.
 r = 30; // r이 참조하는 곳(x)의 실제값이 30이 됩니다.
 EXPECT_TRUE(r == 30 && x == 30);
+```
+
+# 널 포인터
+
+포인터가 아무것도 가리키지 않을때 `0`을 저장하고, 이를 널 포인터라 부릅니다.
+
+널 포인터는 특별히 하기와 같이 정의되어 있습니다.
+
+```cpp
+#define NULL 0
 ```
 
 # 안정적인 참조자

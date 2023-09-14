@@ -16,7 +16,7 @@ sidebar:
 
 런타임 진단은 해당 코드가 실행되어야 진단이 가능하여 커버리지가 낮을 수 있지만, 컴파일 타임 진단은 컴파일 과정에서 이루어 지므로 100% 진단이 이루어집니다. 
 
-특히 컴파일 타임 프로그래밍이나 템플릿 메타 프로그래밍 시에 인자의 타입을 코딩 계약으로 표현하기 힘든 경우,  `type_traits`를 사용하여 진단할때 유용합니다.
+특히 컴파일 타임 프로그래밍이나  [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 시에 인자의 타입을 코딩 계약으로 표현하기 힘든 경우,  [type_traits](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-traits/)를 사용하여 진단할때 유용합니다.([type_traits](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-traits/) 참고)
 
 ```cpp
 

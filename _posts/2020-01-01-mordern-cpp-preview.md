@@ -7,9 +7,9 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
-* 오른쪽 꺽쇠규칙>> https://en.wikipedia.org/wiki/C%2B%2B11
 
-표준라이브러리
+**표준라이브러리**
+
 스마트포인터
 스레딩 기능
 튜플
@@ -20,7 +20,7 @@ sidebar:
 객체를 위한 다형성 레퍼
 메타프로그래밍 타입 특성
 
-제거
+**제거**
 - export
 - 동적 예외 사양
 - auto_ptr
@@ -50,6 +50,7 @@ C++11은,
 |--|--|
 |[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)|`constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.|
 |[static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|`static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.| 
+|[type_traits](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|`type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.|
 |[noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)| `noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.|
 |[가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)|가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.|
 
@@ -57,7 +58,7 @@ C++11은,
 
 |항목|내용|
 |--|--|
-|[타입 형식](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/)|타입 형식 체계를 수립하여 컴파일 타임 프로그래밍이나 템플릿 메타 프로그래밍시의 코딩 계약을 강화할 수 있습니다.|
+|[타입 형식](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/)|타입 형식 체계를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.|
 |[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)|`nullptr` 리터럴이 추가되어 좀더 타입 안정적인 코딩 계약이 가능해 졌습니다.|
 |[명시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)|`explicit` 형변환 연산자를 추가하여 명시적으로 형변환 할 수 있습니다.|
 |[default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)| `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.|
@@ -71,7 +72,7 @@ C++11은,
 
 |항목|내용|
 |--|--|
-|[auto<br/>decltype<br/>후행 리턴 타입<br/>리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/)|값으로부터 타입을 추론하는 `auto` 타입과 `decltype()`이 추가되어 타이핑 양을 줄일 수 있습니다.<br/>함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.|
+|[auto<br/>decltype<br/>후행 리턴 타입<br/>리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/)|값으로부터 타입을 추론하는 `auto` 타입과 `decltype()`이 추가되어 코딩이 간편해 졌습니다.<br/>함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.|
 |[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)|`{}` 초기화가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.<br/> `{}` 초기화시 인자의 암시적 형변환을 차단하여, 코딩 계약을 더 단단하게 할 수 있습니다.<br/>`{}` 초기화로 리턴문 작성을 간소화할 수 있습니다.<br/>`std::initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
 |[멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/)|멤버 선언부에서 초기화를 할 수 있어 초기화 작성이 쉬워졌습니다.|
 |[범위 기반 for](https://tango1202.github.io/mordern-cpp/mordern-cpp-range-for/)|범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.|
@@ -97,5 +98,5 @@ C++11은,
 
 |항목|내용|
 |--|--|
-|[가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)|가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.<br/>`sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메트 팩의 인자수를 구할 수 있습니다.|
+|[가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)|가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.<br/>`sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.|
 

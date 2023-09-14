@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-기존 `for()`는 컨테이너와 함께 사용할때 다음과 같이 이터레이터를 이용하여 컨테이너 요소를 탐색해야 합니다.
+기존 `for()`는 컨테이너와 함께 사용할때 다음과 같이 이터레이터를 이용하여 컨테이너 요소를 탐색해야 합니다.([제어문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/) 과 [이터레이터를 이용한 요소 접근](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9A%94%EC%86%8C-%EC%A0%91%EA%B7%BC) 참고)
 
 ```cpp
 std::vector<int> v{1, 2, 3};

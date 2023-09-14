@@ -12,7 +12,7 @@ sidebar:
 
 # using 타입 별칭
 
-기존에는 타입 별칭을 위해 `typedef`를 사용했었습니다만, `using`이 추가되었습니다.
+기존에는 타입 별칭을 위해 `typedef`를 사용했었습니다만([타입 별칭](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 참고), `using`이 추가되었습니다.
 
 `using`은 다음과 같이 `typedef`와 별칭의 순서가 다릅니다만, 좀 더 직관적입니다.
 

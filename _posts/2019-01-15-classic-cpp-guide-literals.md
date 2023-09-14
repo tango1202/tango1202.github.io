@@ -100,7 +100,7 @@ EXPECT_TRUE(str2[0] == 'd');
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f98f2cc-9dff-428f-a639-42d42d9f701b)
 
-문자열의 내용을 수정할 필요가 없다면, 배열이나 `std::string`, `std::wstring`에 저장하지 마세요. 불필요하게 복제되어 복제 부하만 생깁니다.
+문자열의 내용을 수정할 필요가 없다면, 배열이나 `std::string`, `std::wstring`에 저장하지 마세요. 불필요하게 복제되어 복사 부하만 생깁니다.
 
 **결합**
 

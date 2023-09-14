@@ -72,12 +72,13 @@ U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 |--|--|
 |`T t{};`|생성자를 이용하여 초기값을 전달합니다.|
 |`T t = {};`|`T t = T{};` 표현과 동일합니다. 즉, `T{}`로 개체를 생성하고, 복사 생성자를 이용하여 `t`에 대입하는 표현입니다. 하지만 컴파일러 최적화에 의해 `T t{};`와 동일하게 작동합니다.|
+|`T t;`<br/>`t = {};`|`T t;`<br/>`t = T{};`<br/>표현과 동일합니다. 즉, `T{}`로 개체를 생성하고, 대입 연산자를 이용하여 `t`에 대입하는 표현입니다.|
 
 **인자의 암시적 형변환 차단**
 
-생성자 인자의 암시적 형변환을 차단하기 때문에 코딩 계약이 더 단단합니다.
+생성자 인자의 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하기 때문에 코딩 계약이 더 단단합니다.
 
-`T obj1(3.14);`은 `double`형이 `int`로 암시적으로 형변환되어 호출됩니다만([오버로딩된 함수 결정 규칙](https://github.com/tango1202/tango1202.github.io/blob/main/_posts/2019-01-19-classic-cpp-guide-function.md#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고), `T obj2{3.14};` 은 컴파일 오류를 발생시킵니다.
+`T obj1(3.14);`은 `double`형이 `int`로 암시적으로 형변환되어 호출됩니다만([오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고), `T obj2{3.14};` 은 컴파일 오류를 발생시킵니다.
 
 ```cpp
 class T {
@@ -111,7 +112,7 @@ T Func() {
 
 `std::initializer_list`개체를 이용하여 중괄호 초기화 식을 이용한 초기화가 가능합니다.
 
-`vector`의 경우에도 요소를 입력할때 `push_back()`을 사용하여 코드 작성이 번거로웠는데, `std::initializer_list` 생성자를 구현하여 좀 더 간편하게 요소 값을 초기화 할 수 있습니다.
+`vector`의 경우에도 요소를 입력할때 `push_back()`을 사용하여 코드 작성이 번거로웠는데([vector 의 삽입과 삭제](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C) 참고), `std::initializer_list` 생성자를 구현하여 좀 더 간편하게 요소 값을 초기화 할 수 있습니다.
 
 ```cpp
 // 이전 방식
