@@ -12,7 +12,9 @@ sidebar:
 
 # 개요
 
-[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 언급한 것처럼 컴파일 타임에 여러가지 프로그래밍이 가능합니다. 하지만, 템플릿으로 우회하며 작성하다보니 상당히 난해했는데요, C++11부터는 `constexpr` 이용해 **컴파일 타임 상수 표현식**을 지정할 수 있으며, 컴파일 타임 프로그래밍 환경이 좀더 쉬워졌습니다.
+[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 언급한 것처럼 컴파일 타임에 여러가지 프로그래밍이 가능합니다. 하지만, 템플릿으로 우회하며 작성하다보니 상당히 난해했는데요, 
+
+C++11 부터는 `constexpr` 이용해 **컴파일 타임 상수 표현식**을 지정할 수 있으며, 컴파일 타임 프로그래밍 환경이 좀더 쉬워졌습니다.
 
 
 # constexpr
@@ -56,7 +58,7 @@ enum class MyEnum {Val = size}; // (O)
 T<size> t; // (O) 
 ```
 
-`constexpr`은 변수를 대입하면 컴파일 오류가 발생합니다.
+`constexpr`은  `const int`와 달리 변수를 대입하면 컴파일 오류가 발생합니다.
 
 ```cpp
 int a = 20;
@@ -65,7 +67,7 @@ constexpr int size = a; // (X) 컴파일 오류. 상수를 대입해야 합니�
 
 # constexpr 함수
 
-기존에는 컴파일 타임 함수가 없었습니다. 함수처럼 동작하도록 다음처럼 템플릿을 활용했는데요([템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 참고)
+기존에는 컴파일 타임 함수가 없었고, 함수처럼 동작하도록 다음처럼 템플릿을 활용했는데요([템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 참고),
 
 ```cpp
 // Factorial n -1 을 재귀 호출합니다.
@@ -87,7 +89,7 @@ enum class MyEnum {Val = Factorial<5>::Val};
 EXPECT_TRUE(MyEnum::Val == 1 * 2 * 3 * 4 * 5);
 ```
 
-이제는 `constexpr`을 이용하여 암시적으로 인라인 함수인 컴파일 타임 함수를 만들 수 있습니다.
+C++11 부터는 `constexpr`을 이용하여 암시적으로 인라인 함수인 컴파일 타임 함수를 만들 수 있습니다.
 
 1. 컴파일 타임 상수를 전달하면 컴파일 타임 함수로 동작하고,
 2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작합니다.
@@ -108,9 +110,11 @@ int result = Factorial(5);
 EXPECT_TRUE(result == 1 * 2 * 3 * 4 * 5);
 ```
 
-**C++11부터 스펙 변화**
+# constexpr 함수 스펙 변화
 
-`constexpr`함수는 기본적으로 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 리턴할 수 있고, 그외 스펙들은 조금씩 개선되고 있습니다. C++11에서는 지역 변수나 제어문도 사용할 수 없어서 상당히 제한적이었으나, 점점 개선되고 있습니다. 자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/language/constexpr)을 참고하시기 바랍니다.
+`constexpr`함수는 기본적으로 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 리턴할 수 있고, 그외 스펙들은 조금씩 개선되고 있습니다. 
+
+C++11 부터는 지역 변수나 제어문도 사용할 수 없어서 상당히 제한적이었으나, 점점 개선되고 있습니다. 자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/language/constexpr)을 참고하시기 바랍니다.
 
 |항목|C++11|C++14|C++17|C++20|
 |--|--|--|--|--|
@@ -124,7 +128,7 @@ EXPECT_TRUE(result == 1 * 2 * 3 * 4 * 5);
 |`try`|X|X|X|O|
 |가상 함수|X|X|X|O|
 
-다음은 C++14 기준에 맞춰서 좀더 일반적인 형태로 `Factorial_14()`를 구현한 예입니다.
+다음은 C++14 기준에 맞춰서 좀더 일반적인 형태로 `Factorial_14()`를 구현한 예입니다. 지역 변수, 2개 이상의 리턴문, `if()`, `for()`등을 사용할 수 있어서 코딩 자유도가 높아졌습니다.
 
 ```cpp
 constexpr int Factorial_14(int val) {
@@ -148,7 +152,9 @@ EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 1 * 2 * 3 * 4 * 5);
 
 # constexpr 생성자 
 
-구조체나 클래스는 사용자 정의 생성자, 소멸자가 없으며 모든 멤버 변수가 `public`인 집합 타입인 경우에만 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)으로서 컴파일 타임 상수로 사용할 수 있었는데요, `constexpr` 생성자를 이용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)인 구조체나 클래스를 직접 만들 수 있습니다.
+`constexpr`은 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 사용할 수 있는데요, 그러다 보니, 구조체나 클래스는 사용자 정의 생성자, 소멸자가 없으며 모든 멤버 변수가 `public`인 집합 타입인 경우에만 사용할 수 있습니다.
+
+하지만, `constexpr` 생성자를 이용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)인 구조체나 클래스를 직접 만들 수 있습니다.
 
 다음 `Area` 클래스는 `private` 멤버 변수와 생성자를 갖고 있지만, `constexpr`생성자를 사용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)으로 동작합니다.
 

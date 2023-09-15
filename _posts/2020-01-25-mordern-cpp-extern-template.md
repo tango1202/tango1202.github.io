@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-[템플릿 인스턴스 중복 생성](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%A4%91%EB%B3%B5-%EC%83%9D%EC%84%B1)에서 언급했듯, 템플릿을 헤더 파일에 정의해 두고, 여러 파일에서 인클루드 한다면, 템플릿 정의가 중복 정의되어 코드 크기가 커집니다.
+기존에는 템플릿을 헤더 파일에 정의해 두고, 여러 파일에서 인클루드 한다면, 템플릿 정의가 중복 정의되어 코드 크기가 커지는데요([템플릿 인스턴스 중복 생성](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%A4%91%EB%B3%B5-%EC%83%9D%EC%84%B1) 참고),
 
 ```cpp
 // Test_MordernCpp_ExternTemplate.h 에서
@@ -43,7 +43,7 @@ TEST(TestMordern, ExternTemplate2) {
 }
 ```
 
-C++11에서는 `extern` 템플릿을 추가하여 템플릿 선언만 할 수 있으며, 불필요한 코드 크기를 최소화 할 수 있습니다. 
+C++11 부터는 `extern` 템플릿을 추가하여 템플릿 선언만 할 수 있으며, 불필요한 코드 크기를 최소화 할 수 있습니다. 
 
 ```cpp
 // Test_MordernCpp_ExternTemplate.h 에서

@@ -13,7 +13,9 @@ sidebar:
 
 # 개요
 
-기존 `long`은 시스템 비트수에 따라 변하지만([기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고), `long long`은 최소 8byte를 보장합니다.
+기존 `long`은 시스템 비트수에 따라 변하는데요([기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고), 
+
+C++11 부터는 `long long`을 제공하며 최소 8byte를 보장합니다.
 
 |항목|내용|용량|
 |--|--|--|

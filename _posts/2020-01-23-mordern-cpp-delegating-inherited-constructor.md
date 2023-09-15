@@ -13,7 +13,7 @@ sidebar:
 
 # 생성자 위임
 
-기존에는 다양한 버전의 생성자를 만들고자 할때 각각의 생성자에서 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)를 사용하여 멤버 변수를 초기화 했습니다.
+기존에는 다양한 버전의 생성자를 만들고자 할때 각각의 생성자에서 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)를 사용하여 멤버 변수를 초기화 했는데요,
 ```cpp
 class T {
     int m_X;
@@ -27,7 +27,7 @@ public:
 };
 ```
 
-C++11부터는 다른 생성자에 위임할 수 있어 좀더 간결하게 생성자 코드를 만들 수 있습니다.
+C++11 부터는 다른 생성자에 위임할 수 있어 좀더 간결하게 생성자 코드를 만들 수 있습니다.
 
 ```cpp
 class T {
@@ -44,7 +44,7 @@ public:
 
 # 생성자 상속
 
-기존에는 자식 개체 생성자에서 부모 개체의 생성자를 명시적으로 호출해야 했습니다.([자식 개체의 생성자 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%9E%90%EC%8B%9D-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고)
+기존에는 자식 개체 생성자에서 부모 개체의 생성자를 명시적으로 호출해야 했는데요([자식 개체의 생성자 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%9E%90%EC%8B%9D-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고),
 
 ```cpp
 class Base {
@@ -63,7 +63,7 @@ public:
 Derived d(10, 20);
 ```
 
-C++11부터는 `using` 선언의 형태로 부모 개체의 생성자를 그대로 상속받아 사용할 수 있습니다.
+C++11 부터는 `using` 선언의 형태로 부모 개체의 생성자를 그대로 상속받아 사용할 수 있습니다.
 
 ```cpp
 class Base {

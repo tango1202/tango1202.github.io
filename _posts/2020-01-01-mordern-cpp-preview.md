@@ -8,17 +8,6 @@ sidebar:
     nav: "docs"
 ---
 
-**표준라이브러리**
-
-스마트포인터
-스레딩 기능
-튜플
-해시테이블
-정규식
-난수식
-레퍼 참조
-객체를 위한 다형성 레퍼
-메타프로그래밍 타입 특성
 
 **제거**
 - export
@@ -40,7 +29,7 @@ C++11은,
 |항목|내용|
 |--|--|
 |[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)|이동 연산을 위해 우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.|
-|[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)|멤버 함수에 `&`, `&&` 참조 지정자가 추가되어 좌측값으로 호출될때와 우측값으로 호출될때를 오버로딩 할 수 있습니다.|
+|[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)|멤버 함수에 `&`, `&&` 참조 지정자가 추가되어 좌측값에서 호출될때와 우측값에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.|
 |[무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)|공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀려 메모리 절약을 위한 코딩 자유도가 높아졌습니다.|
 |[extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/)|`extern` 템플릿을 추가하여 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.| 
 
@@ -50,7 +39,7 @@ C++11은,
 |--|--|
 |[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)|`constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.|
 |[static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|`static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.| 
-|[type_traits](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|`type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.|
+|[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|`type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.|
 |[noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)| `noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.|
 |[가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)|가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.|
 
@@ -99,4 +88,144 @@ C++11은,
 |항목|내용|
 |--|--|
 |[가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)|가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.<br/>`sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.|
+
+
+**표준라이브러리**
+
+스마트포인터
+스레딩 기능
+튜플
+해시테이블
+정규식
+난수식
+레퍼 참조
+객체를 위한 다형성 레퍼
+메타프로그래밍 타입 특성
+
+
+# 메타 프로그래밍
+타입 특성(type_traits)
+
+# 타입 지원
+std::type_index
+
+# 동적 메모리 관리
+
+unique_ptr
+shared_ptr
+weak_ptr
+
+**helper**
+owner_less
+enable_shared_from_this
+bad_weak_ptr
+default_delete
+std::hash 
+std::hash
+
+**아답터**
+out_ptr_t
+inout_ptr_t
+
+**기타**
+addressof
+align
+
+
+uninitialized_copy_n
+
+<scoped_allocator>
+ 
+
+# 유틸리티
+std::initializer_list
+std::tuple
+    tuple_element
+    std::tuple_size 
+    std::tuple_element
+
+forward
+move
+
+move_if_noexcept
+declval
+  
+
+
+
+# 컨테이너
+std::array
+std::forward_list
+std::undordered_map
+std::unordered_set
+
+# 이터레이터
+
+next
+prev
+std::move_iterator
+
+# 알고리즘
+std::all_of, std::any_of, std::none_of,
+std::find_if_not,
+std::copy_if, std::copy_n,
+std::move, std::move_backward,
+std::random_shuffle, std::shuffle,
+std::is_partitioned, std::partition_copy, std::partition_point,
+std::is_sorted, std::is_sorted_until,
+std::is_heap, std::is_heap_until,
+std::minmax, std::minmax_element,
+std::is_permutation,
+std::iota,
+std::uninitialized_copy_n
+
+# 함수자
+
+std::function
+mem_fn
+reference_wrapper
+bad_function_call
+is_bind_expression  
+is_placeholder
+bind
+ref
+cref
+
+std::hash
+
+# 문자열
+
+# 동시성
+<thread>
+<mutex>
+<condition_variable>
+<atomic>
+<future>
+
+난수
+<random>
+
+컴파일 타임 산술
+<ratio>
+
+에러 핸들링
+std::exception_ptr
+std::error_code
+std::error_condition
+<system_error>
+
+날짜 / 시간
+<chrono>
+
+정규 표현식
+<regex>
+
+로케일
+<codecvt>
+
+C 라이브러리 지원
+<cfenv>
+<cinttype>
+<cstdint>
+<cuchar>
 

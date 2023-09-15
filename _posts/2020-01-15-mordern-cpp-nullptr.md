@@ -12,16 +12,17 @@ sidebar:
 
 # nullptr
 
-기존에는 [널 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EB%84%90-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 표현하기 위해 `0`이나 `NULL`(`#define NULL 0`)을 사용했으나, C++11 부터는 `nullptr` 리터럴이 제공됩니다.
+기존에는 [널 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EB%84%90-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 표현하기 위해 `0`이나 `NULL`(`#define NULL 0`)을 사용했는데요, 
+
+C++11 부터는 `nullptr` 리터럴이 제공됩니다.
 
 ```cpp
 int* ptr1 = 0;
 int* ptr2 = NULL;
-int* ptr3 = nullptr;
+int* ptr3 = nullptr; // C++11
 ```
 
-`0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 만약 `auto`를 사용한다면 다음처럼 초기값에 따라 `int`나 `long long`으로 추론되는 문제가 있습니다. 그러니 앞으로는 `nullptr`
-을 사용하시기 바랍니다.
+`0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 만약 `auto`를 사용한다면 다음처럼 초기값에 따라 `int`나 `long long`으로 추론되는 문제가 있습니다. 그러니 앞으로는 `nullptr`을 사용하시기 바랍니다.
 
 
 ```cpp

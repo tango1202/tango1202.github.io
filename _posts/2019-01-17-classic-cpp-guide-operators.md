@@ -317,13 +317,13 @@ public:
 };
 class Derived2 : public Base2 {};
 
-// Base1과 개체 b1은 hash_code가 동일합니다.
+// Base1과 개체 b1은 이름이 동일합니다.
 {
     Base1 b1;
     const std::type_info& ti1 = typeid(Base1);
     const std::type_info& ti2 = typeid(b1);
     EXPECT_TRUE(ti1 == ti2);
-    EXPECT_TRUE(ti1.hash_code() == ti2.hash_code());
+    EXPECT_TRUE(ti1.name() == ti2.name());
 }
 // 가상 함수가 없는 경우의 참조 - 참조 대상이 Derived1이지만, 정의한 Base1 타입으로 변경됨
 {
@@ -331,7 +331,7 @@ class Derived2 : public Base2 {};
     Base1& b1Ref = d1; // 가상 함수 없음
 
     // b1Ref = d1으로 bRef는 Base1 타입이 됨
-    EXPECT_TRUE(typeid(b1Ref).hash_code() == typeid(Base1).hash_code());
+    EXPECT_TRUE(typeid(b1Ref).name() == typeid(Base1).name());
 }
 // 가상 함수가 있는 경우의 참조 - 참조 대상인 Derived2 타입으로 유지됨
 {
@@ -339,7 +339,7 @@ class Derived2 : public Base2 {};
     Base2& b2Ref = d2; // 가상 함수 있음
 
     // b2Ref = d2로 b2Ref는 다형적 동작하며, 여전히 Derived2 타입임.(원래 개체의 타입 정보)
-    EXPECT_TRUE(typeid(b2Ref).hash_code() == typeid(Derived2).hash_code());   
+    EXPECT_TRUE(typeid(b2Ref).name() == typeid(Derived2).name());   
 }
 ```
 # 스트림 연산자

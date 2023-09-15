@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-`inline namespace`로 정의하면, 바깥쪽 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에 암시적으로 `using namespace`가 추가됩니다. 즉, 바깥족 네임스페이스에서는 `inline namespace`를 자신의 것처럼 사용할 수 있습니다.  
+`inline namespace`로 정의하면, 바깥쪽 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에 암시적으로 `using namespace`가 추가됩니다. 즉, 바깥쪽 네임스페이스에서는 `inline namespace`를 자신의 것처럼 사용할 수 있습니다.  
 
 ```cpp
 namespace MyLib {

@@ -14,7 +14,9 @@ sidebar:
 # 개요
 
 [인자(매개변수, Parameter)](
-https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 에서 `...`을 이용한 가변 인자를 소개해 드렸는데요, C++11에서는 템플릿에서도 가변 인자를 사용할 수 있고, 이를 가변 템플릿 이라 합니다. 가변 템플릿은 `...`으로 표기되는 파라메터 팩을 가져야 합니다.
+https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 에서 `...`을 이용한 가변 인자를 소개해 드렸는데요, 
+
+C++11 부터는 템플릿에서도 가변 인자를 사용할 수 있고, 이를 가변 템플릿 이라 합니다. 가변 템플릿은 `...`으로 표기되는 파라메터 팩을 가져야 합니다.
 
 가변 템플릿을 이용해서 `Sum` 을 구현하면 다음처럼 할 수 있습니다.
 
@@ -33,6 +35,8 @@ EXPECT_TRUE(val == 1 + 3 + 5);
 ```
 
 # sizeof...() 연산자
+
+C++11 부터는 `sizeof...()` 연산자가 추가되었습니다.
 
 [sizeof() 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)는 개체의 크기를 리턴하는데요, `sizeof...()`은 파라메터 팩의 인자수를 리턴합니다.
 

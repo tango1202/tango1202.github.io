@@ -12,8 +12,10 @@ sidebar:
 
 **개요**
 
-[공용체](
-https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 에서의 언급처럼, 기존에는 공용체에서는 생성자/소멸자/가상 함수가 없는 trivial 타입만 공용체의 멤버가 될 수 있었는데요, C++11 부터는 이를 완화하였습니다.
+기존에는 공용체에서는 생성자/소멸자/가상 함수가 없는 trivial 타입만 공용체의 멤버가 될 수 있었는데요([공용체](
+https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 참고), 
+
+C++11 부터는 이를 완화하였습니다.
 대신 멤버들의 생성자와 소멸자가 호출되지 않으므로, 이를 수동으로 제어해야 합니다.
 
 다음에서 `MyUnion`은 non-trivial 타입인 `A`와 `B`, `Derived`를 멤버로 사용하고. 크기가 가장 큰 개체의 크기 만큼 메모리를 할당합니다.

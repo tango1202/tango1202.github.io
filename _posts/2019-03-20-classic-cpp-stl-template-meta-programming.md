@@ -112,7 +112,7 @@ my_smart_ptr<Shape> sp1(new Rectangle);
 my_smart_ptr<Shape> sp2(sp1.Clone());     
 
 // sp2는 Rectangle 을 관리합니다.
-EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
+EXPECT_TRUE(typeid(*sp2.GetPtr()).name() == typeid(Rectangle).name());
 ```
 
 상기 코드는 잘 작동합니다만, `T`에서 `Clone()` 함수를 제공하지 않으면(예를 들어 `int`등), `my_smart_ptr` 사용할 수 없습니다. 스마트 포인터를 좀더 범용적으로 사용하게 하려면, 수정이 필요합니다.
@@ -196,13 +196,13 @@ my_smart_ptr<Shape> sp1(new Rectangle);
 my_smart_ptr<Shape> sp2(sp1.Clone());     
 
 // sp2는 Rectangle 을 관리합니다.
-EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
+EXPECT_TRUE(typeid(*sp2.GetPtr()).name() == typeid(Rectangle).name());
 
 my_smart_ptr<int> sp3(new int);
 my_smart_ptr<int> sp4(sp3.Clone());
 
 // sp4는 int 를 관리합니다.
-EXPECT_TRUE(typeid(*sp4.GetPtr()).hash_code() == typeid(int).hash_code());
+EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name());
 ```
 
 **2. Traits를 이용하는 방법**
@@ -282,13 +282,13 @@ my_smart_ptr<Shape> sp1(new Rectangle);
 my_smart_ptr<Shape> sp2(sp1.Clone());     
 
 // sp2는 Rectangle 을 관리합니다.
-EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
+EXPECT_TRUE(typeid(*sp2.GetPtr()).name() == typeid(Rectangle).name());
 
 my_smart_ptr<int> sp3(new int);
 my_smart_ptr<int> sp4(sp3.Clone());
 
 // sp4는 int 를 관리합니다.
-EXPECT_TRUE(typeid(*sp4.GetPtr()).hash_code() == typeid(int).hash_code()); 
+EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name()); 
 ```
 
 **3. 템플릿 메타 프로그래밍을 이용하는 방법**
@@ -362,7 +362,7 @@ public:
     } 
 };
 Shape* shape = CloneTraits<Shape>::Clone(new Rectangle);
-EXPECT_TRUE(typeid(*shape).hash_code() == typeid(Rectangle).hash_code());
+EXPECT_TRUE(typeid(*shape).name() == typeid(Rectangle).name());
 delete shape;
 ```
 
@@ -548,12 +548,12 @@ my_smart_ptr<Shape> sp1(new Rectangle);
 my_smart_ptr<Shape> sp2(sp1.Clone());     
 
 // sp2는 Rectangle 을 관리합니다.
-EXPECT_TRUE(typeid(*sp2.GetPtr()).hash_code() == typeid(Rectangle).hash_code());
+EXPECT_TRUE(typeid(*sp2.GetPtr()).name() == typeid(Rectangle).name());
 
 my_smart_ptr<int> sp3(new int);
 my_smart_ptr<int> sp4(sp3.Clone());
 
 // sp4는 int 를 관리합니다.
-EXPECT_TRUE(typeid(*sp4.GetPtr()).hash_code() == typeid(int).hash_code());  
+EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name());  
 ```
 

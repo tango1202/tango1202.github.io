@@ -15,7 +15,12 @@ sidebar:
 
 `auto_ptr`는 포인터 관리를 좀더 편안하게 할 수 있도록 표준에서 제공하는 스마트 포인터 입니다.
 
-하지만 이제 deprecate되어 더이상 사용하시면 안되고, 다른 스마트 포인터를 사용해야 합니다.([스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))
+하지만 몇가지 문제점이 있습니다.
+
+1. 배열을 `delete[]`가 아닌 `delete`로 삭제합니다.(이러면 배열 요소들이 제대로 소멸되지 않습니다. [개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고)
+2. 대입 연산자에서 소유권을 이전합니다.(의도한 코드입니다만, 이게 암시적으로 동작하면서 런타임 오류가 많이 발생합니다.)
+
+C++11 부터는 deprecate되어 더이상 사용하시면 안되고, 다른 스마트 포인터를 사용해야 합니다.([스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/))
 
 포인터를 사용할 때 머리가 복잡해 지는 것은 
 
@@ -171,7 +176,7 @@ EXPECT_TRUE(*a == 20); // 이전 b 값을 저장
 EXPECT_TRUE(b.get() == NULL); // 더이상 포인터를 관리하지 않음
 ```
 
-**함수 인자, 리턴 타입**
+# auto_ptr을 활용한 함수 인자, 리턴 타입
 
 [함수, 함수 포인터, 리턴, 인자(매개변수, Parameter)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/) 에서 
 

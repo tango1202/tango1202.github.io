@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#31. [모던 C++] (C++11~) type_traits"
+title: "#31. [모던 C++] (C++11~) 타입 특성(type_traits)"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-C++11부터 STL 에서는 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)을 위해 다양한 타입 특성들을 제공합니다.
+C++11 부터는 STL 에서는 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)을 위해 다양한 타입 특성들을 제공합니다.
 
 예를 들면 다음과 같이 템플릿 인자로 전달된 `T`가 포인터 타입인지 아닌지에 따라 코딩할 수 있습니다. 또한 `std::is_pointer<T>::value`와 같이 열거형 조회를 하는 것은 `std::is_pointer_v<T>`로 인스턴스화 되어 있어 코딩을 조금더 간편하게 합니다.
 
@@ -217,3 +217,4 @@ ThreeType three;
 |--|--|
 |`std::is_implicit_lifetime`|(작성중)|
 |`std::is_scoped_enum`|(작성중)|
+

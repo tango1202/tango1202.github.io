@@ -11,8 +11,11 @@ sidebar:
 > * 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다. 
  
 # 개요
+기존에는 함수자를 이용하여 함수를 개체화 했는데요([함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 참고),
 
-C++11에서는 함수 지향 프로그래밍을 위해 람다 표현식을 추가하였습니다. 람다 표현식은 `prvalue` 타입의 1회용 익명 함수를 만들며, 이를 **클로져(Closure)** 라고 합니다. 
+C++11 부터는 람다 표현식을 추가하여 함수 지향 프로그래밍이 좀 더 간편해 졌습니다.
+
+람다 표현식은 `prvalue` 타입([값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 참고)의 1회용 익명 함수를 만들며, 이를 **클로져(Closure)** 라고 합니다. 
 
 람다 표현식은 STL의 [알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)과 잘 호환될 뿐만 아니라, 캡쳐 기능등의 활용도도 높아서 복잡한 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 만들기 보다는 람다 표현식을 사용하는게 훨씬 좋습니다.
 
@@ -34,7 +37,7 @@ int f(int a, int b) {
 }
 ```
 
-인자나 리턴값이 없다면 다음과 같이 생략 할 수 있습니다.
+인자나 리턴값이 없다면 다음과 같이 생략하여 `[] {}` 로 작성할 수 있습니다.
 
 ```cpp
 [] {std::cout<<"lambda"<<std::endl;}
@@ -44,7 +47,7 @@ int f(int a, int b) {
 
 일반 함수를 호출하려면 `f(10, 20)` 와 같이 호출하는데요, 람다 표현식으로 작성된 람다 함수를 호출하려면 다음과 같이 합니다.
 
-1. 람다 표현식으로부터 생성된 개체(이를 **클로져**라 합니다.)를 변수에 저장한뒤 호출할 수 있고,
+1. 람다 표현식으로부터 생성된 개체(클로져)를 변수에 저장한뒤 호출할 수 있고,
 
     ```cpp
     auto f = [](int a, int b) -> int {return a + b;};
@@ -100,7 +103,7 @@ EXPECT_TRUE(f() == 1); // 캡쳐할 때의 값을 사용하므로 1입니다.
 
 **값 캡쳐**
 
-값으로 개체를 캡쳐하면 `const`로 캡쳐하므로 그 값을 수정할 수 없습니다. 다만, 포인터 변수는 `int* const`여서 `ptr`은 수정할 수 없지만, `*ptr`은 수정할 수 있습니다.
+값으로 개체를 캡쳐하면 복제본을 만들어 `const`로 사용합니다. 따라서, 그 값을 수정할 수 없습니다. 다만, 포인터 변수는 `int* const`여서 `ptr`은 수정할 수 없지만, `*ptr`은 수정할 수 있습니다.
 
 ```cpp
 int a = 1;
@@ -179,9 +182,9 @@ int& ref = c;
 EXPECT_TRUE( a == 10 && b == 20 && c == 30);     
 ```
 
-# 클로져 개체 저장
+# 클로져 개체 대입
 
-클로져 개체를 `auto`를 이용해서 저장했는데요, `auto`외에 함수 포인터와 `std::function`을 이용하는 방법이 있습니다.
+클로져 개체는 `auto`와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 `std::function`을 이용하여 변수에 대입할 수 있습니다.
 
 1. `auto`(단, `auto`이기 때문에 함수의 인자로 사용할 수 없습니다.)
     
@@ -212,7 +215,8 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
 
 # 클로져 개체 복사 부하
 
-람다 표현식에서 값 캡쳐를 사용하면 
+람다 표현식에서 값 캡쳐를 사용하면, 
+
 1. 캡쳐시에 복사 부하가 있으며, 
 2. 클로져 개체간 복사시에도 복사 부하가 있으므로,
 
@@ -247,7 +251,10 @@ public:
 
     ```cpp
     T t;
-    [=]() {t; std::cout<<"Run Lambda"<<std::endl;}(); // t;로 사용합니다. 캡쳐시 복사 부하가 있습니다.       
+    [=]() {
+        t; // t;로 사용합니다. 캡쳐시 복사 부하가 있습니다.      
+        std::cout<<"Run Lambda"<<std::endl;
+    }();  
     ```
 
     ```cpp
@@ -262,7 +269,10 @@ public:
 
     ```cpp
     T t;
-    auto f = [=]() {t; std::cout<<"Run Lambda"<<std::endl;}; // auto 변수에 저장하고, 호출합니다.        
+    auto f = [=]() { // auto 변수에 저장하고, 호출합니다.   
+        t; 
+        std::cout<<"Run Lambda"<<std::endl;
+    };      
     f();
     ```
     ```cpp
@@ -277,7 +287,10 @@ public:
 
     ```cpp
     T t;
-    auto f1 = [=]() {t; std::cout<<"Run Lambda"<<std::endl;}; 
+    auto f1 = [=]() {
+        t; 
+        std::cout<<"Run Lambda"<<std::endl;
+    }; 
     auto f2 = f1; // 복사 부하가 발생합니다.
     f1();
     f2();
@@ -298,7 +311,10 @@ public:
 
     ```cpp
     T t;
-    auto f1 = [&]() {t; std::cout<<"Run Lambda"<<std::endl;}; // 캡쳐시 복사 부하가 없습니다.
+    auto f1 = [&]() { // 캡쳐시 복사 부하가 없습니다.
+        t; 
+        std::cout<<"Run Lambda"<<std::endl;
+    }; 
     auto f2 = f1; // 대입시 복사 부하가 없습니다.
     f1();
     f2();      

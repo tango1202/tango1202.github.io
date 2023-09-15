@@ -12,9 +12,9 @@ sidebar:
 
 # 개요
 
-기존에는 `#pragma pack`을 이용하여 비표준 방식으로 **메모리 정렬(Memory Alignment)** 을 했습니다.([개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고) 
+기존에는 `#pragma pack`을 이용하여 비표준 방식으로 **메모리 정렬(Memory Alignment)** 을 했는데요([개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고),
 
-C++11부터는 `alignas()` 와 `alignof()` 로 이를 표준화하였습니다.
+C++11 부터는 `alignas()` 와 `alignof()` 로 이를 표준화하였습니다.
 
 |항목|내용|
 |--|--|

@@ -12,7 +12,7 @@ sidebar:
 > * 타입 특성 클래스를 이용하여 타입 처리 방식을 응집하라.
 
 > **모던 C++**
-> * `type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.([type_traits](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/) 참고)
+> * `type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.([타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/) 참고)
 
 # 개요
 
