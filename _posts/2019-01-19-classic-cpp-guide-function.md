@@ -19,7 +19,7 @@ sidebar:
 > * 함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.([후행 리턴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)과 [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0-c14) 참고) 
 > * `{}` 초기화시 인자의 암시적 형변환을 차단하여, 코딩 계약을 더 단단하게 할 수 있습니다.([중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)
 > * `{}` 초기화로 리턴문 작성을 간소화할 수 있습니다.([중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)
-> * `noexcept` 를 이용하여 예외 발생이 없는 함수를 지정할 수 있습니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
+> * `noexcept` 를 이용하여 예외 발생이 없는 함수인 nothrow 보증을 할 수 있습니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
 > * 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.([람다 표현식, 클로져](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda) 참고) 
 > * 가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.([가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/) 참고)
 

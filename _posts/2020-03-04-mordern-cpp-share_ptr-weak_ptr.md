@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#34. [모던 C++] (C++11~) std::share_ptr, std::make_shared(), std::enable_shared_from_this, 형변환, std::weak_ptr"
+title: "#34. [모던 C++] (C++11~) std::share_ptr, std::make_shared(), std::enable_shared_from_this, std::owner_less, 형변환, std::weak_ptr, std::bad_weak_ptr"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * `std::shared_ptr`을 추가하여 소유권 공유용 스마트 포인터를 제공합니다.
+> * `std::shared_ptr`이 추가되어 소유권 공유용 스마트 포인터를 제공합니다.
+> * `std::weak_ptr`이 추가되어 `std::shared_ptr`의 상호 참조 문제를 해결합니다.
 
 # std::shared_ptr
 
@@ -327,6 +328,7 @@ public:
 `std::shared_ptr`은 관리하는 개체를 소멸시키는 `deleter`를 사용자 정의 할 수 있습니다. 
 
 다음 코드에서는 람다 표현식으로 `deleter`를 전달했는데요, 함수, 함수자 모두 가능합니다.
+
 ```cpp
 std::shared_ptr<int> a{
     new int{10}, 
@@ -462,6 +464,9 @@ EXPECT_TRUE(!(!(a < c) && !(c < a)));
 // a, c 의 소유권 개체는 동일하므로 동등함
 EXPECT_TRUE(!(a.owner_before(c)) && !(c.owner_before(a)));
 ```
+# std::owner_less 
+
+`owner_before()`를 이용하여 비교하는 함수자입니다.
 
 # std::shared_ptr 형변환 
 
@@ -645,4 +650,26 @@ std::shared_ptr<int> temp2{wp2.lock()};
 EXPECT_TRUE(*sp1 == 20 && *sp2 == 20 && *temp1 == 20 && *temp2 == 20);
 
 EXPECT_TRUE(sp1.use_count() == 4); // sp1, sp2, temp1, temp2 총 4개 입니다.
+```
+
+# std::bad_weak_ptr
+
+잘못된 `std::weak_ptr`을 사용할때 발생하는 예외입니다. 
+
+다음 코드는 `std::shared_ptr`이 소멸된 후에 `std::weak_ptr`을 사용하다가 `std::bad_weak_ptr` 예외가 발생한 예입니다.
+
+```cpp
+std::weak_ptr<int> wp;
+{
+    std::shared_ptr<int> sp{new int{10}};
+    wp = sp;
+} // sp가 소멸되었습니다.
+try {
+    // 소멸된 sp를 사용하는 wp로 shared_ptr을 만듭니다.
+    // bad_weak_ptr 예외가 발생합니다.
+    std::shared_ptr<int> error{wp};
+}
+catch(std::bad_weak_ptr&) {
+    std::cout<<"bad_weak_ptr"<<std::endl;
+}
 ```

@@ -17,7 +17,7 @@ sidebar:
 > * 함수 정의시 동적 예외 사양은 사용하지 마라.
 
 > **모던 C++**
-> * `noexcept` 를 이용하여 예외 발생이 없는 함수를 지정할 수 있습니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
+> * `noexcept` 를 이용하여 예외 발생이 없는 함수인 nothrow 보증을 할 수 있습니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
 > * 소멸자는 기본적으로 `noexcept`로 동작합니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
 
 # 개요

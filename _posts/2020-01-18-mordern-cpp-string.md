@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#17. [모던 C++] (C++11~) 문자열(char16_t, char32_t, u8/u/U/R 리터럴, std::u16string, std::u32string) (C++20~) char8_t, std::u8string"
+title: "#18. [모던 C++] (C++11~) 문자열(char16_t, char32_t, u8/u/U/R 리터럴, std::u16string, std::u32string) (C++20~) char8_t, std::u8string"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

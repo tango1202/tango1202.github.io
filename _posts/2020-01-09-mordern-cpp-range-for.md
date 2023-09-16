@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [모던 C++] (C++11~) 범위 기반 for"
+title: "#9. [모던 C++] (C++11~) 범위 기반 for"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

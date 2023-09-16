@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [모던 C++] (C++11~) 우측값, 이동 연산, 이동 생성자, 이동 대입 연산자, std::move(), std::forward(), 값 카테고리"
+title: "#4. [모던 C++] (C++11~) 우측값, 이동 연산, 이동 생성자, 이동 대입 연산자, std::move(), std::forward(), 값 카테고리"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -381,6 +381,63 @@ T& operator =(T&& other);
 T t;
 static_cast<T&&>(t); // (△) 비권장. 가독성이 떨어집니다.
 std::move(t); // (O) 이동 연산을 위해 rvalue로 변환합니다.
+```
+
+다음은 `Func()`을 `lvalue`와 `rvalue`를 오버로드 한 예입니다. `lvalue`인지 `rvalue`인지에 따라 다른 버전이 호출 됩니다.
+
+```cpp
+class A{};
+class T {
+public:
+    static int Func(A&) {return 1;} // #1. lvalue
+    static int Func(A&&) {return 2;} // #2. rvalue
+};
+
+A a;
+
+EXPECT_TRUE(T::Func(a) == 1); // 이름이 있는 lvalue
+EXPECT_TRUE(T::Func(static_cast<A&&>(a)) == 2); // 강제 형변환 해서 rvalue
+EXPECT_TRUE(T::Func(std::move(a)) == 2); // lvalue를 move 해서 rvalue
+
+A& b = a;
+EXPECT_TRUE(T::Func(b) == 1);  
+EXPECT_TRUE(T::Func(static_cast<A&&>(b)) == 2);
+EXPECT_TRUE(T::Func(std::move(b)) == 2);
+
+EXPECT_TRUE(T::Func(A()) == 2); // 임시 개체는 rvalue
+EXPECT_TRUE(T::Func(std::move(A())) == 2); // 임시 개체를 move 해도 rvalue
+```
+
+# std::move_if_noexcept()
+
+`std::move_if_noexcept()` 는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다. 
+
+다음 코드를 보면 `A`는 예외 보증이 안되어 있고, `B`는 `noexcept`가 지정되어 있는데요,
+
+1. `A`의 경우는 `noexcept`가 없어 복사 생성자가 호출되고,
+2. `B`의 경우는 `noexcept`가 있어 이동 생성자가 호출됩니다.
+
+```cpp
+class A {
+public:
+    A() {}
+    // noexcept가 없어서 예외가 발생할 수도 있습니다.
+    A(const A&) {std::cout<<"A : Copy Constructor"<<std::endl;}
+    A(A&&) {std::cout<<"A : Move Constructor"<<std::endl;;} 
+};
+class B {
+public:
+    B() {}
+    // nothrow 보증합니다.
+    B(const B&) noexcept {std::cout<<"B : Copy Constructor"<<std::endl;;}
+    B(B&&) noexcept {std::cout<<"B : Move Constructor"<<std::endl;;} 
+};
+
+A a1;
+A a2 = std::move_if_noexcept(a1); // A(A&&)가 nothrow 예외 보증이 되지 않아 그냥 A(const A&)를 호출합니다.
+
+B b1;
+B b2 = std::move_if_noexcept(b1); // B(B&&)가 nothrow 예외 보증이 되어 B(B&&)를 호출합니다.
 ```
 
 # std::forward()

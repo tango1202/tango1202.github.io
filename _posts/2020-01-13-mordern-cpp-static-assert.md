@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [모던 C++] (C++11~) static_assert"
+title: "#13. [모던 C++] (C++11~) static_assert"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

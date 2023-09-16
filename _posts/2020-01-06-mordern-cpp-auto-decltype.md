@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [모던 C++] (C++11~) auto, decltype, 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론"
+title: "#6. [모던 C++] (C++11~) auto, decltype, 후행 리턴 타입, std::declval(), (C++14~) decltype(auto), 리턴 타입 추론"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -75,7 +75,7 @@ decltype((t->m_Val)) b = 10; // 괄호를 추가하면 좌측값 표현식으로
 
 |항목|내용|
 |--|--|
-|`decltype(xvalue)`|`T&&`, `move()`등으로 변환된 임시 개체. `rvalue`|
+|`decltype(xvalue)`|`T&&`, `std::move()`등으로 변환된 임시 개체. `rvalue`|
 |`decltype(lvalue)`|`T&`, 이름이 부여된 개체|
 |`decltype((lvalue))`|`T&`, 괄호가 추가되면 표현식으로 평가됨|
 |`decltype(prvalue)`|`T`, 이름 없는 임시 개체|
@@ -123,6 +123,9 @@ auto Add(T a, U b) -> decltype(a + b) {
     return a + b;
 } 
 ```
+
+# std::declval() (작성중)
+
 
 # (C++14~) decltype(auto) 
 
@@ -192,4 +195,6 @@ auto result2 = Add2(10, 20); // const int를 리턴했지만 템플릿 함수 �
 auto result3 = Add3(10, 20); // const int 리턴. 리턴하는 result 타입과 동일
 auto result4 = Add4(10, 20); // const int& 리턴. 리턴하는 (result) 표현식과 동일
 ```
+
+
 

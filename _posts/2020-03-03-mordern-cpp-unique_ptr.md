@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#33. [모던 C++] (C++11~) std::unique_ptr"
+title: "#33. [모던 C++] (C++11~) std::unique_ptr, std::default_delete"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `std::unique_ptr`을 추가하여 소유권 이전용 스마트 포인터인 `std::auto_ptr`의 문제점을 보완하였습니다.
+> * `std::unique_ptr`이 추가되어 소유권 이전용 스마트 포인터인 `std::auto_ptr`의 문제점을 보완하였습니다.
 
 # 개요
 
@@ -127,6 +127,16 @@ v.push_back(std::move(b)); // (O)
 v.emplace_back(new int{30});
 
 EXPECT_TRUE(*v[0] == 10 && *v[1] == 20 && *v[2] == 30);
+```
+
+# std::default_delete 
+
+`std::unique_ptr`은 관리하는 개체를 소멸시키는 `deleter`를 사용자 정의 할 수 있습니다. 사용자 정의하는 방법은 [std::shared_ptr Deleter](https://tango1202.github.io/mordern-cpp/mordern-cpp-share_ptr-weak_ptr/#stdshared_ptr-deleter) 를 참고하세요.
+
+`std::default_deleter`는 기본적으로 일반 포인터는 `delete` 로 소멸하고, 배열은 `delete[]`로 소멸시킵니다.
+
+```cpp
+std::unique_ptr<int> a{new int{10}, std::default_delete<int>{}};
 ```
 
 # (C++14~) std::make_unique (작성중)

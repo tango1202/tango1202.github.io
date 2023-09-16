@@ -48,12 +48,12 @@ C++11은,
 |항목|내용|
 |--|--|
 |[타입 형식](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/)|타입 형식 체계를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.|
+|[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)|`noexcept` 를 이용하여 예외 발생이 없는 함수인 nothrow 보증을 할 수 있습니다.<br/>소멸자는 기본적으로 `noexcept`로 동작합니다.|
 |[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)|`nullptr` 리터럴이 추가되어 좀더 타입 안정적인 코딩 계약이 가능해 졌습니다.|
 |[명시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)|`explicit` 형변환 연산자를 추가하여 명시적으로 형변환 할 수 있습니다.|
 |[default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)| `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.|
-|[override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)|`override`가 추가되어 가상 함수 상속의 코딩 규약을 좀더 단단해졌습니다.|
+|[override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)|`override`가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.|
 |[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)| `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있고, 상속 제한을 좀더 단단하게 할 수 있습니다.|
-|[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)|`noexcept` 를 이용하여 예외 발생이 없는 함수를 지정할 수 있습니다.<br/>소멸자는 기본적으로 `noexcept`로 동작합니다.|
 |[alignas, alignof](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/)|`alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.|
 |[attribute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)|`attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.|
 
@@ -72,6 +72,7 @@ C++11은,
 |[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)|유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `std::u8string`, `std::u16string`, `std::u32string` 이 추가되었습니다.<br/>유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.<br/>`R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.|
 |[사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/)|`int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.|
 |[생성자 위임, 생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/)|생성자 위임이 추가되어 생성자의 초기화 리스트 코드가 좀더 간결해 졌습니다.<br/>생성자 상속이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.|
+|[sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)|`sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.|
 |[멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/)|`sizeof()`가 개체를 인스턴스화 하지 않더라도 멤버의 크기를 구할 수 있도록 개선되었습니다.|
 |[템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-right-angle-bracket/)|파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.|
 
@@ -87,7 +88,7 @@ C++11은,
 
 |항목|내용|
 |--|--|
-|[가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)|가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.<br/>`sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.|
+|[가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)|가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.|
 
 
 **표준라이브러리**
@@ -112,40 +113,42 @@ std::type_index
 # 동적 메모리 관리
 
 unique_ptr
+default_delete
+
 shared_ptr
 make_shared()
 enable_shared_from_this
+std::owner_less
 std::const_pointer_cast()
 std::static_pointer_cast()
 std::dynamic_pointer_cast()
 std::reinterpret_pointer_cast()
 weak_ptr
-
-
-
-**helper**
-owner_less
 bad_weak_ptr
-default_delete
 
-
-**기타**
 pointer_traits
 addressof
 align
 
 
 # 유틸리티
+
+move
+move_if_noexcept
+forward
+declval
+
 std::initializer_list
+
 std::tuple
+    piecewise_construct
     tuple_element
     std::tuple_size 
     std::tuple_element
 
-forward
-move
-move_if_noexcept
-declval
+hash
+  
+
   
 # 컨테이너
 std::array
@@ -185,7 +188,7 @@ bind
 ref
 cref
 
-std::hash
+
 
 # 문자열
 

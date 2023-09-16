@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [모던 C++] (C++11~) noexcept, noexcept 연산자"
+title: "#3. [모던 C++] (C++11~) noexcept, noexcept 연산자"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,18 +8,18 @@ sidebar:
     nav: "docs"
 ---
 
-> * `noexcept` 를 이용하여 예외 발생이 없는 함수를 지정할 수 있습니다.
+> * `noexcept` 를 이용하여 예외 발생이 없는 함수인 nothrow 보증을 할 수 있습니다.
 > * 소멸자는 기본적으로 `noexcept`로 동작합니다.
 > * `noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.
 
 # 개요 
 기존에는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 이용하여 함수가 발생하는 예외를 표시했는데요, 사실 명시한 예외 이외에는 `unexpected()` 핸들러로 분기하므로 사용하지 않는게 낫다고 말씀드렸습니다. 
 
-C++11 부터는 이를 보완하여 `noexcept`를 이용하여 예외 발생이 없는 함수를 지정할 수 있습니다. 
+C++11 부터는 이를 보완하여 `noexcept`를 이용하여 예외 발생이 없는 함수인 nothrow 보증을 할 수 있습니다. 
 
 |항목|내용|
 |--|--|
-|`noexcept`|예외를 발생하지 않습니다. 만약 발생시키면 `std::terminate()`를 호출합니다.|
+|`noexcept`|nothrow 보증을 합니다. 예외를 발생하지 않습니다. 만약 발생시키면 `std::terminate()`를 호출합니다.|
 |`noexcept(true)`|`noexcept`와 동일합니다.|
 |`noexcept(false)`|예외를 발생시킵니다.|
 
