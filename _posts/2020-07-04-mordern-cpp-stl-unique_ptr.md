@@ -1,34 +1,34 @@
 ---
 layout: single
-title: "#33. [모던 C++] (C++11~) std::unique_ptr, std::default_delete"
-categories: "mordern-cpp"
+title: "#4. [모던 C++ STL] (C++11~) unique_ptr, default_delete"
+categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
 
-> * `std::unique_ptr`이 추가되어 소유권 이전용 스마트 포인터인 `std::auto_ptr`의 문제점을 보완하였습니다.
+> * `unique_ptr`이 추가되어 소유권 이전용 스마트 포인터인 `auto_ptr`의 문제점을 보완하였습니다.
 
 # 개요
 
-기존 `std::auto_ptr`은 복사/대입시 개체의 소유권을 이전하고, 소멸시 개체를 `delete`하는 스마트 포인터입니다.([auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) 참고)
+기존 `auto_ptr`은 복사/대입시 개체의 소유권을 이전하고, 소멸시 개체를 `delete`하는 스마트 포인터입니다.([auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) 참고)
 
 하지만, 다음 문제로 인해 C++11에서 deprecate 되었습니다.
 
 1. 배열을 `delete[]`가 아닌 `delete`로 삭제합니다.(이러면 배열 요소들이 제대로 소멸되지 않습니다. [개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고)
 2. 대입 연산자에서 소유권을 이전합니다.(의도한 코드입니다만, 이게 암시적으로 동작하면서 런타임 오류가 많이 발생합니다.)
 
-C++11 부터는 상기 문제를 보완한 `std::unique_ptr`이 제공됩니다.
+C++11 부터는 상기 문제를 보완한 `unique_ptr`이 제공됩니다.
 
-`std::auto_ptr`과 동일하게 소유권을 이전하는 스마트 포인터이며, 다음이 개선되었습니다.
+`auto_ptr`과 동일하게 소유권을 이전하는 스마트 포인터이며, 다음이 개선되었습니다.
 
 1. 일반 포인터는 `delete`하고, 배열은 `delete[]`합니다.
 2. 복사 생성자와 `operator =(const T&)`는 제공하지 않고, 이동 생성자와 `operator =(const T&&)`만 제공합니다. 즉 이동 연산만 제공합니다.
 
 다음은 사용예 입니다.
 
-1. `std::unique_ptr<T[]>` 와 같이 배열도 관리할 수 있으며,
+1. `unique_ptr<T[]>` 와 같이 배열도 관리할 수 있으며,
 2. `c = d;` 대신 `c = std::move(d);`를 하여 소유권을 이동시킵니다.
    
 ```cpp
@@ -53,7 +53,7 @@ EXPECT_TRUE(*c == 1 && d == nullptr);
 
 |항목|내용|
 |--|--|
-|`constexpr unique_ptr() noexcept;`<br/><br/>`explicit unique_ptr(T* p) noexcept;`<br/>`unique_ptr(T* p, deleter) noexcept;`<br/><br>`constexpr unique_ptr(std::nullptr_t) noexcept;`<br/><br/>`unique_ptr(std::auto_ptr&&) noexcept;` (C++11~C++17)|`nullptr`이나 `p`를 관리합니다. 이때 사용자 정의 `deleter`를 사용할 수 있습니다.|
+|`constexpr unique_ptr() noexcept;`<br/><br/>`explicit unique_ptr(T* p) noexcept;`<br/>`unique_ptr(T* p, deleter) noexcept;`<br/><br>`constexpr unique_ptr(nullptr_t) noexcept;`<br/><br/>`unique_ptr(auto_ptr&&) noexcept;` (C++11~C++17)|`nullptr`이나 `p`를 관리합니다. 이때 사용자 정의 `deleter`를 사용할 수 있습니다.|
 |`unique_ptr(const unique_ptr&) = delete;`|복사 생성자는 사용할 수 없습니다.|
 |`unique_ptr(unique_ptr&& other) noexcept;`|이동 생성합니다.|
 |`~unique_ptr()`|관리하는 개체를 `delete` 또는 `delete[]`합니다.|
@@ -71,9 +71,9 @@ EXPECT_TRUE(*c == 1 && d == nullptr);
 |`==`<br/>`!=`<br/>`<`<br/>`<=`<br/>`>`<br/>`>=`|관리하는 개체의 주소로 비교합니다.|
 |`<<` (C++20~)|관리하는 개체의 내용을 스트림에 출력합니다.|
 
-# std::unique_ptr을 활용한 함수 인자, 리턴 타입
+# unique_ptr을 활용한 함수 인자, 리턴 타입
 
-`std::auto_ptr` 의 경우와 동일하게([auto_ptr을 활용한 함수 인자, 리턴 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/#auto_ptr%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%9E%90-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85) 참고) `std::unique_ptr`을 사용하면 좀더 단단한 코딩 계약이 가능합니다.
+`auto_ptr` 의 경우와 동일하게([auto_ptr을 활용한 함수 인자, 리턴 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/#auto_ptr%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%9E%90-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85) 참고) `unique_ptr`을 사용하면 좀더 단단한 코딩 계약이 가능합니다.
 
 ```cpp
 T GetData const; // (O, △) 부분적으로 비권장. 임시 객체를 리턴합니다. 하지만 혹시 멤버 변수를 리턴하는지 확인해 봐야 합니다.
@@ -93,9 +93,9 @@ void f(unique_ptr<T>& p); // (△) 비권장. p를 수정하겠다는 건지, un
 void f(unique_ptr<T> p); // (O) new로 생성한 개체를 전달해야 합니다.
 ```
 
-# std::unique_ptr을 컨테이너 요소로 사용하기
+# unique_ptr을 컨테이너 요소로 사용하기
 
-`std::unique_ptr`은 복사 생성자가 없기 때문에 그냥 `push_back()`에 전달하면 컴파일 오류가 발생합니다.
+`unique_ptr`은 복사 생성자가 없기 때문에 그냥 `push_back()`에 전달하면 컴파일 오류가 발생합니다.
 
 ```cpp
 std::vector<std::unique_ptr<int>> v;
@@ -108,7 +108,7 @@ v.push_back(b); // (X) 컴파일 오류. unique_ptr은 복사 생성자가 없�
 
 다음처럼 
 
-1. `std::move()`를 이용하여 이동 시키거나,
+1. `move()`를 이용하여 이동 시키거나,
 2. `emplace_back()`을 이용하여 내부에서 개체를 생성합니다.([](??) 참고)
 
 ```cpp
@@ -129,11 +129,11 @@ v.emplace_back(new int{30});
 EXPECT_TRUE(*v[0] == 10 && *v[1] == 20 && *v[2] == 30);
 ```
 
-# std::default_delete 
+# default_delete 
 
-`std::unique_ptr`은 관리하는 개체를 소멸시키는 `deleter`를 사용자 정의 할 수 있습니다. 사용자 정의하는 방법은 [std::shared_ptr Deleter](https://tango1202.github.io/mordern-cpp/mordern-cpp-share_ptr-weak_ptr/#stdshared_ptr-deleter) 를 참고하세요.
+`unique_ptr`은 관리하는 개체를 소멸시키는 `deleter`를 사용자 정의 할 수 있습니다. 사용자 정의하는 방법은 [shared_ptr Deleter](https://tango1202.github.io/mordern-cpp/mordern-cpp-share_ptr-weak_ptr/#shared_ptr-deleter) 를 참고하세요.
 
-`std::default_deleter`는 기본적으로 일반 포인터는 `delete` 로 소멸하고, 배열은 `delete[]`로 소멸시킵니다.
+`default_deleter`는 기본적으로 일반 포인터는 `delete` 로 소멸하고, 배열은 `delete[]`로 소멸시킵니다.
 
 ```cpp
 std::unique_ptr<int> a{new int{10}, std::default_delete<int>{}};

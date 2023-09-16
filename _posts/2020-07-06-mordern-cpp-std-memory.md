@@ -1,14 +1,14 @@
 ---
 layout: single
-title: "#35. [모던 C++] (C++11~) std::pointer_traits, std::addressof(), std::align()"
-categories: "mordern-cpp"
+title: "#6. [모던 C++ STL] (C++11~) pointer_traits, addressof(), align()"
+categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
 
-# std::pointer_traits
+# pointer_traits
 
 포인터와 유사한 유형의 특정 속성에 접근하는 표준화된 방법을 제공합니다.
 
@@ -20,7 +20,7 @@ sidebar:
 |`template<typename U> using rebind`|U에 바인딩되는 타입|
 |`pointer pointer_to(element_type& r);`|`element_type`을 `pointer` 타입으로 변환합니다.|
 
-# std::addressof()
+# addressof()
 
 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.
 
@@ -29,7 +29,7 @@ template<typename T>
 T* addressof(T& arg) noexcept;
 ```
 
-# std::align()
+# align()
 
 `space` 크기의 버퍼 공간에 `size`크기의 개체를 `alignment` 로 메모리 정렬했을때의 연속된 메모리 포인터인 `ptr`을 구합니다.
 
