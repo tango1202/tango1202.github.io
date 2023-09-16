@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [모던 C++] (C++11~) auto, decltype, 후행 리턴 타입, std::declval(), (C++14~) decltype(auto), 리턴 타입 추론"
+title: "#6. [모던 C++] (C++11~) auto, decltype, declval(), 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -88,7 +88,7 @@ decltype((t->m_Val)) b = 10; // 괄호를 추가하면 좌측값 표현식으로
 
 2. 함수 인자
    
-   `auto`는 함수 인자로 사용할 수 없지만, `decltype()`은 템플릿 인수의 연산 결과로 추론할 수도 있습니다.
+   `auto`는 함수 인자로 사용할 수 없지만, `decltype()`은 인수로 사용할 수 있습니다.
 
     ```cpp
     template<typename T, typename U>
@@ -99,6 +99,10 @@ decltype((t->m_Val)) b = 10; // 괄호를 추가하면 좌측값 표현식으로
     Func(10, 20, &result);
     EXPECT_TRUE(result == 30);     
     ```
+
+# declval() 
+
+`declval`
 
 # 후행 리턴 타입
 
@@ -123,9 +127,6 @@ auto Add(T a, U b) -> decltype(a + b) {
     return a + b;
 } 
 ```
-
-# std::declval() (작성중)
-
 
 # (C++14~) decltype(auto) 
 

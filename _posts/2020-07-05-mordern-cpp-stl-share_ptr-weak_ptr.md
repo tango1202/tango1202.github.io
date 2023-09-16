@@ -466,7 +466,7 @@ EXPECT_TRUE(!(a.owner_before(c)) && !(c.owner_before(a)));
 ```
 # owner_less 
 
-`owner_before()`를 이용하여 비교하는 함수자입니다.
+`owner_before()`를 이용하여 소유권 개체의 주소로 비교하는 함수자입니다.
 
 # shared_ptr 형변환 
 
