@@ -33,7 +33,7 @@ public:
     int operator ()() {return val;} 
 };
 
-const int size = 20; // 상수 입니다.
+const int size{20}; // 상수 입니다.
 
 enum class MyEnum {Val = size}; // (O) size는 컴파일 타임 상수 입니다.
 T<size> t; // (O) size는 컴파일 타임 상수 입니다.
@@ -42,8 +42,8 @@ T<size> t; // (O) size는 컴파일 타임 상수 입니다.
 하지만, 변수로부터 `const int`를 초기화 하면, 런타임 상수이지, 컴파일 타임 상수가 아니어서 컴파일 오류가 납니다.
 
 ```cpp
-int a = 20;
-const int size = a; // 변수로부터 const int를 초기화 해서 런타임 상수 입니다.
+int a{20};
+const int size{a}; // 변수로부터 const int를 초기화 해서 런타임 상수 입니다.
 
 enum class MyEnum {Val = size}; // (X) 컴파일 오류. size는 런타임 상수 입니다.
 T<size> t; // (X) 컴파일 오류. size는 런타임 상수 입니다.
@@ -52,7 +52,7 @@ T<size> t; // (X) 컴파일 오류. size는 런타임 상수 입니다.
 `constexpr`은 좀더 명시적으로 컴파일 타임 상수임을 알려 줍니다.
 
 ```cpp
-constexpr int size = 20; // 컴파일 타입 상수 입니다.
+constexpr int size{20}; // 컴파일 타입 상수 입니다.
 
 enum class MyEnum {Val = size}; // (O)
 T<size> t; // (O) 
@@ -61,8 +61,8 @@ T<size> t; // (O)
 `constexpr`은  `const int`와 달리 변수를 대입하면 컴파일 오류가 발생합니다.
 
 ```cpp
-int a = 20;
-constexpr int size = a; // (X) 컴파일 오류. 상수를 대입해야 합니다.
+int a{20};
+constexpr int size{a}; // (X) 컴파일 오류. 상수를 대입해야 합니다.
 ```
 
 # constexpr 함수
@@ -105,8 +105,8 @@ enum class MyEnum {Val = Factorial(5)};
 EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 1 * 2 * 3 * 4 * 5);
 
 // 변수를 전달하면, 일반 함수처럼 동작합니다.
-int val = 5;
-int result = Factorial(5);
+int val{5};
+int result{Factorial(5)};
 EXPECT_TRUE(result == 1 * 2 * 3 * 4 * 5);
 ```
 
@@ -132,13 +132,13 @@ C++11 부터는 지역 변수나 제어문도 사용할 수 없어서 상당히 
 
 ```cpp
 constexpr int Factorial_14(int val) {
-    int result = 1; // 초기화된 지역 변수 정의
+    int result{1}; // 초기화된 지역 변수 정의
 
     if (val < 1) {
         return 1; // 2개 이상의 리턴문
     }
 
-    for (int i = val; 0 < i; --i) { // 제어문
+    for (int i{val}; 0 < i; --i) { // 제어문
         result *= i;
     }
 
@@ -226,7 +226,7 @@ public:
 };
 
 int val;
-int* ptr = CloneTraits<int>::Clone(&val); // (X) 컴파일 오류. int에 Clone() 함수가 없습니다.
+int* ptr{CloneTraits<int>::Clone(&val)}; // (X) 컴파일 오류. int에 Clone() 함수가 없습니다.
 delete ptr;
 ```
 
@@ -251,7 +251,7 @@ static T* Clone_14(const T* ptr) {
     }
 } 
 int val;
-int* ptr = CloneTraits<int>::Clone_14(&val); // (O)
+int* ptr{CloneTraits<int>::Clone_14(&val)}; // (O)
 delete ptr; 
 ```
 
@@ -266,7 +266,7 @@ static T* Clone_14(const T* ptr) {
     return new T(*ptr);
 } 
 int val;
-int* ptr = CloneTraits<int>::Clone_14(&val); // (O)
+int* ptr{CloneTraits<int>::Clone_14(&val)}; // (O)
 delete ptr; 
 ```
 

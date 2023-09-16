@@ -17,10 +17,10 @@ sidebar:
 ```cpp
 std::vector<int> v{1, 2, 3};
 
-int sum = 0;
+int sum{0};
 // 컨테이너 요소를 탐색 합니다.
-auto itr = v.begin();
-auto endItr = v.end();
+auto itr{v.begin()};
+auto endItr{v.end()};
 for (;itr != endItr; ++itr) {
     sum += *itr;
 }
@@ -32,7 +32,7 @@ C++11 부터는 범위 기반 `for()`를 이용하여 좀더 간단하게 구현
 ```cpp
 std::vector<int> v{1, 2, 3};
 
-int sum = 0;
+int sum{0};
 
 // for (auto val : v) { // val == int
 // for (const int& val : v) {  // val == const int&

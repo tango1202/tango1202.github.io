@@ -20,7 +20,7 @@ enum Week {
     Sunday, Monday, Tuesday, Wednesday, 
     Thursday, Friday, Saturday
 };
-Week week = Sunday; // (△) 비권장. 이름 충돌이 쉬움
+Week week{Sunday}; // (△) 비권장. 이름 충돌이 쉬움
 
 // 혹은
 class Week {
@@ -32,7 +32,7 @@ public:
     };
 };
 
-Week::Val val = Week::Sunday; // 범위 확인 연산자와 클래스명 사용
+Week::Val val{Week::Sunday}; // 범위 확인 연산자와 클래스명 사용
 ```
 
 C++11 부터는 범위 있는 열거형을 지원하여 이름 충돌 회피가 훨씬 쉬워졌습니다.
@@ -43,5 +43,5 @@ enum class Week {
     Sunday, Monday, Tuesday, Wednesday, 
     Thursday, Friday, Saturday
 };
-Week week = Week::Sunday; // 범위명을 지정하여 이름 충돌 회피
+Week week{Week::Sunday}; // 범위명을 지정하여 이름 충돌 회피
 ```

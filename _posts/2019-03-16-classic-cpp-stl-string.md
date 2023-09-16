@@ -13,7 +13,7 @@ sidebar:
 > * `string`은 값 기반으로 복사/비교 하므로, 복사 생성자, `=`, `==`, `!=`, `+`, `+=`, 대소 비교, `assign()`, `append()` 등을 할때 메모리 부하와 속도 부하에 유의하라. 
 
 > **모던 C++**
-> * 유니코드를 지원하는 `u8string`, `u16string`, `u32string` 이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)
+> * 유니코드를 지원하는 `std::u8string`, `std::u16string`, `std::u32string` 이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)
 
 # 개요
 

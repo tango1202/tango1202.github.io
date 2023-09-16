@@ -30,7 +30,7 @@ Type Sum(Type param, Types... params) {
     return param + Sum(params...); // 재귀 호출시 params의 첫번째 인자는 param으로 전달되고, 나머지는 params에 전달됩니다.
 }
 
-int val = Sum(1, 3, 5);
+int val{Sum(1, 3, 5)};
 EXPECT_TRUE(val == 1 + 3 + 5); 
 ```
 

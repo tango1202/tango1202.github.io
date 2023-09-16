@@ -23,5 +23,5 @@ C++11 부터는 `long long`을 제공하며 최소 8byte를 보장합니다.
 |`long long`|`long`보다 크거나 같은 정수|최소 8byte|
 
 ```cpp
-unsigned long long val = 18446744073709550592ull; 
+unsigned long long val{18446744073709550592ull}; 
 ```

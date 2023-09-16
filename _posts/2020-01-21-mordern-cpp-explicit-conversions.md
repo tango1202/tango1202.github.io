@@ -30,9 +30,9 @@ public:
 };
 
 T1 t1;
-int val1 = t1; // (△) 비권장. bool() 을 이용하여 형변환 하고 암시적으로 int로 변환합니다.
+int val1{t1}; // (△) 비권장. bool() 을 이용하여 형변환 하고 암시적으로 int로 변환합니다.
 
 T2 t2;
-int val2 = t2; // (X) 컴파일 오류
-bool val3 = static_cast<bool>(t2); // 명시적으로 변환해야 사용할 수 있습니다.
+int val2{t2}; // (X) 컴파일 오류
+bool val3{static_cast<bool>(t2)}; // 명시적으로 변환해야 사용할 수 있습니다.
 ```

@@ -69,7 +69,7 @@ C++11은,
 |[람다 표현식, 클로져](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)|람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.| 
 |[인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-namespace/)|`inline namespace` 가 추가되어 API 버전 구성이 편리해 졌습니다.|
 |[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)|`using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.|
-|[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)|유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `u8string`, `u16string`, `u32string` 이 추가되었습니다.<br/>유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.<br/>`R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.|
+|[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)|유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `std::u8string`, `std::u16string`, `std::u32string` 이 추가되었습니다.<br/>유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.<br/>`R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.|
 |[사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/)|`int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.|
 |[생성자 위임, 생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/)|생성자 위임이 추가되어 생성자의 초기화 리스트 코드가 좀더 간결해 졌습니다.<br/>생성자 상속이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.|
 |[멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/)|`sizeof()`가 개체를 인스턴스화 하지 않더라도 멤버의 크기를 구할 수 있도록 개선되었습니다.|
@@ -113,29 +113,27 @@ std::type_index
 
 unique_ptr
 shared_ptr
+make_shared()
+enable_shared_from_this
+std::const_pointer_cast()
+std::static_pointer_cast()
+std::dynamic_pointer_cast()
+std::reinterpret_pointer_cast()
 weak_ptr
+
+
 
 **helper**
 owner_less
-enable_shared_from_this
 bad_weak_ptr
 default_delete
-std::hash 
-std::hash
 
-**아답터**
-out_ptr_t
-inout_ptr_t
 
 **기타**
+pointer_traits
 addressof
 align
 
-
-uninitialized_copy_n
-
-<scoped_allocator>
- 
 
 # 유틸리티
 std::initializer_list
@@ -146,13 +144,9 @@ std::tuple
 
 forward
 move
-
 move_if_noexcept
 declval
   
-
-
-
 # 컨테이너
 std::array
 std::forward_list
@@ -196,34 +190,35 @@ std::hash
 # 문자열
 
 # 동시성
+
 <thread>
 <mutex>
 <condition_variable>
 <atomic>
 <future>
 
-난수
+# 난수
 <random>
 
-컴파일 타임 산술
+# 컴파일 타임 산술
 <ratio>
 
-에러 핸들링
+# 에러 핸들링
 std::exception_ptr
 std::error_code
 std::error_condition
 <system_error>
 
-날짜 / 시간
+# 날짜 / 시간
 <chrono>
 
-정규 표현식
+# 정규 표현식
 <regex>
 
-로케일
+# 로케일
 <codecvt>
 
-C 라이브러리 지원
+# C 라이브러리 지원
 <cfenv>
 <cinttype>
 <cstdint>

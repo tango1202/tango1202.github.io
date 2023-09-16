@@ -36,8 +36,8 @@ EXPECT_TRUE(1.0_mm == 1_mm);
 // const char* 형의 문자열을 std::string으로 변환
 std::string operator ""_forced_string(const char* str, size_t) {return std::string(str);}
 
-auto str1 = "test"; // const char*
-auto str2 = "test"_forced_string; // std::string
+auto str1{"test"}; // const char*
+auto str2{"test"_forced_string}; // std::string
 EXPECT_TRUE(str2.size() == 4);
 EXPECT_TRUE("hello"_forced_string.size() == 5); // 임시 개체도 가능
 ```

@@ -27,7 +27,7 @@ void Func(T t) {
     static_assert(std::is_pointer<T>::value, "only pointer"); // is_pointer는 C++11에 추가된 type_traits
 }
 
-int a = 20;
+int a{20};
 Func(&a);
 Func(a); // (X) 컴파일 오류. error: static assertion failed: only pointer
 ```

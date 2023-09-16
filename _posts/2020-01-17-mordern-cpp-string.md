@@ -1,13 +1,13 @@
 ---
 layout: single
-title: "#17. [모던 C++] (C++11~) 문자열(char16_t, char32_t, u8/u/U/R 리터럴, u16string, u32string) (C++20~) char8_t, u8string"
+title: "#17. [모던 C++] (C++11~) 문자열(char16_t, char32_t, u8/u/U/R 리터럴, std::u16string, std::u32string) (C++20~) char8_t, std::u8string"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
-> * 유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `u8string`, `u16string`, `u32string` 이 추가되었습니다.
+> * 유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `std::u8string`, `std::u16string`, `std::u32string` 이 추가되었습니다.
 > * 유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다. 
 > * `R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.
 
@@ -60,12 +60,11 @@ C++11 부터는 2byte와 4byte 크기로 다루기 위한 `char16_t`와 `char32_
 |UTF-16 문자열|u"abc한글"|
 |UTF-32 문자열|U"abc한글"|
 
-
 # 유니코드 문자열 개체
 
 기존에는 `char`, `wchar_t` 문자열 개체만 지원했는데요([문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 참고),
 
-C++11 부터는 `char16_t`, `char32_t` 문자열을 지원합니다.
+C++11 부터는 `char16_t`, `char32_t` 문자열인 `std::u16string`과 `std::u32string`을 지원합니다.
 
 |항목|내용|
 |--|--|
@@ -76,11 +75,11 @@ C++11 부터는 `char16_t`, `char32_t` 문자열을 지원합니다.
 
 ```cpp
 // C++11
-std::u16string str1 = u"한글";
-std::u32string str2 = U"한글";
+std::u16string str1{u"한글"};
+std::u32string str2{U"한글"};
 
 // C++20
-// std::u8string str3 = U"한글";
+// std::u8string str3{U"한글"};
 
 EXPECT_TRUE(str1.size() == 2);
 EXPECT_TRUE(str1[1] == u'글'); 
@@ -93,7 +92,7 @@ EXPECT_TRUE(str2[1] == U'글');
 // EXPECT_TRUE(str3[1] == U'글');
 ```
 
-# (C++20~) char8_t, u8string
+# (C++20~) char8_t, std::u8string
 
 C++20 부터는 UTF8 을 관리할 수 있도록 `char8_t`와 `std::u8string`이 추가되었습니다.
 

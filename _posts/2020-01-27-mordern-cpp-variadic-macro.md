@@ -25,10 +25,10 @@ sidebar:
 class T {
 public:
     static int Sum(int count, ...) {
-        int result = 0;
+        int result{0};
         std::va_list paramList; // 가변 인자
         va_start(paramList, count); // 가변 인자 처리 시작
-        for (int i = 0; i < count; ++i) {
+        for (int i{0}; i < count; ++i) {
             result += va_arg(paramList, int); // 가변 인자 추출
         }
         va_end(paramList); // 가변인자 처리 끝
