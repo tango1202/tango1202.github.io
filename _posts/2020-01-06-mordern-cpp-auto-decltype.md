@@ -102,7 +102,45 @@ decltype((t->m_Val)) b = 10; // 괄호를 추가하면 좌측값 표현식으로
 
 # declval() 
 
-`declval`
+`decltype()`은 함수의 리턴값을 이용해서 타입을 추론할 수 있습니다.
+
+```cpp
+class T {
+public:
+    int Func(int) {return 1;}
+};
+
+T t;
+// T::Func(int) 함수의 리턴값 타입
+decltype(T().Func(10)) val = t.Func(10); 
+```
+`T().Func(10)`은 런타임에 동작하는 것은 아니며, 컴파일 타임에 리턴 타입을 추론하기 위해서 사용합니다.
+
+그런데 만약 `T`에 기본 생성자가 없다면, `T().Func(10)`은 잘못된 표현이므로 컴파일 오류가 발생합니다. 따라서, 아무 상수값이나 넣어줘야 합니다.
+
+```cpp
+class T {
+public:
+    explicit T(int) {} // 기본 생성자가 없습니다.
+    int Func(int) {return 1;}
+};
+
+T t(10);
+
+decltype(T().Func(10)) val = t.Func(10); // (X) 컴파일 오류. B에 기본 생성자가 없습니다.
+decltype(T(10).Func(10)) val = t.Func(10); // (O)
+``````
+
+하지만, 상기 방법도 생성자 인자가 많거나 복잡하면, 사용하기 어렵습니다. 
+
+`declval()`은 주어진 타입을 참조 타입으로 변환하여, 참조 타입으로 멤버 함수 호출식을 표현해 줍니다. 따라서 굳이 `T()`나 `T(10)`과 같이 생성자 표현식을 사용하지 않아도 됩니다. 
+
+상기 코드는 다음과 같이 `decltype()`을 이용하여 작성할 수 있습니다.
+
+```cpp
+// B::Func(int) 함수의 리턴값 타입
+decltype(std::declval<T>().Func(10)) val = t.Func(10); 
+```
 
 # 후행 리턴 타입
 

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [모던 C++] (C++11~) 우측값, 이동 연산, 이동 생성자, 이동 대입 연산자, std::move(), std::forward(), 값 카테고리"
+title: "#4. [모던 C++] (C++11~) 우측값, 이동 연산, 이동 생성자, 이동 대입 연산자, move(), forward(), 값 카테고리"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -366,7 +366,7 @@ T& operator =(T&& other);
 * `const` 타입의 멤버 변수가 있는 경우
 * 참조 타입의 멤버 변수가 있는 경우
 
-# std::move()
+# move()
 
 개체의 타입이 `T` 라고 할때
 
@@ -408,7 +408,7 @@ EXPECT_TRUE(T::Func(A()) == 2); // 임시 개체는 rvalue
 EXPECT_TRUE(T::Func(std::move(A())) == 2); // 임시 개체를 move 해도 rvalue
 ```
 
-# std::move_if_noexcept()
+# move_if_noexcept()
 
 `std::move_if_noexcept()` 는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다. 
 
@@ -440,7 +440,7 @@ B b1;
 B b2 = std::move_if_noexcept(b1); // B(B&&)가 nothrow 예외 보증이 되어 B(B&&)를 호출합니다.
 ```
 
-# std::forward()
+# forward()
 
 값 카테고리 유지하며 인자를 다른 함수에 전달합니다.
 

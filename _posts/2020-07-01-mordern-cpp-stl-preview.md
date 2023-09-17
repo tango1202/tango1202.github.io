@@ -50,10 +50,10 @@ C++11은,
 
 # 유틸리티
 
-move
-move_if_noexcept
-forward
-declval
+|항목|내용|
+|--|--|
+|[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 지원|[move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 이용하여 좌측값을 우측값으로 형변환합니다.<br/>[move_if_noexcept()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move_if_noexcept)를 이용하여 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다.<br/>[forword](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)값 카테고리를 유지하며 인자를 다른 함수에 전달합니다.|
+|[declval](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval)|주어진 타입을 참조 타입으로 변환하여, 참조 타입 표현식으로 변경해 줍니다.|
 
 std::initializer_list
 
