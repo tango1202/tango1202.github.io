@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `unique_ptr`이 추가되어 소유권 이전용 스마트 포인터인 `auto_ptr`의 문제점을 보완하였습니다.
+> * `unique_ptr`은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다.
 
 # 개요
 

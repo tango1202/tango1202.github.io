@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * `shared_ptr`이 추가되어 소유권 공유용 스마트 포인터를 제공합니다.
-> * `weak_ptr`이 추가되어 `shared_ptr`의 상호 참조 문제를 해결합니다.
+> * `shared_ptr`은 소유권 공유용 스마트 포인터입니다.
+> * `weak_ptr`은 `shared_ptr`의 상호 참조 문제를 해결합니다.
 
 # shared_ptr
 

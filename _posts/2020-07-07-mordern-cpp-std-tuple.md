@@ -8,10 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-# 개요
-기존에는 데이터를 주고받는 가벼운 클래스를 만들기 위해 `pair`를 사용했는데요, `pair`는 `first`와 `second`로 두개의 요소만 관리할 수 있다는 아쉬움이 있었습니다.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고)
+> `tuple`은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다. 
 
-C++11 부터는 `tuple`이 제공되어 다수의 개체를 다룰 수 있습니다. 
+# 개요
+
+기존에는 데이터를 주고받는 가벼운 개체를 만들기 위해 `pair`를 사용했는데요, `pair`는 `first`와 `second`로 두개의 요소만 관리할 수 있다는 아쉬움이 있었습니다.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고)
+
+C++11 부터는 `tuple`이 제공되어 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만들 수 있습니다.
 
 1. `tuple` 정의시 사용할 타입을 나열하고,
 2. `get()` 함수에 `0`, `1`, `2`등 인덱스를 이용하여 접근합니다.
@@ -115,10 +118,62 @@ EXPECT_TRUE(
 );
 ```
 
-
-
-
 # piecewise_construct
+
+`pair`의 `first`와 `second` 개체를 생성할때, 전달된 `tuple` 개체의 요소들로 초기화 해줍니다.
+
+보통 `A`와 `B` 개체를 관리하는 `pair`를 만든다면, 
+
+```cpp
+std::pair<A, B> data{
+    A{10, "Name", 'a'}, // A 개체 생성
+    B{1, 2, 3, 4} // B 개체 생성
+};
+```
+
+와 같이 만들텐데요, `piecewise_construct`를 사용하면, `A` 개체를 생성할때 사용할 인수들과 `B`개체를 생성할때 사용할 인수들을 `tuple`로 전달해서, `pair` 내부에서 `A`, `B`를 생성하도록 할 수 있습니다.(`piecewise_construct`는 `pair`의 생성자의 오버라이드 버전을 호출하기 위한 더미 개체일 뿐입니다.)
+
+```cpp
+class A {
+    int m_Val;
+    const char* m_Str;
+    char m_Ch;
+public:
+    A(int val, const char* str, char ch) : 
+        m_Val(val),
+        m_Str(str),
+        m_Ch(ch) {}
+    int GetVal() const {return m_Val;}
+    const char* GetStr() const {return m_Str;}
+    char GetCh() const {return m_Ch;}
+}; 
+
+class B {
+    int m_Val;
+public:
+    B(int a, int b, int c, int d) : m_Val(a + b + c + d) {}
+    int GetVal() const {return m_Val;}
+};
+
+std::pair<A, B> data{
+    std::piecewise_construct, // A, B 개체 생성시 tuple의 값을 인수로 전달함
+    std::forward_as_tuple(10, "Name", 'a'), // A 생성자에 전달할 인수들을 tuple로 전달
+    std::forward_as_tuple(1, 2, 3, 4) // B 생성자에 전달할 인수들을 tuple로 전달
+};
+
+EXPECT_TRUE(
+    data.first.GetVal() == 10 &&
+    data.first.GetStr() == "Name" &&
+    data.first.GetCh() == 'a' &&
+    data.second.GetVal() == 1 + 2 + 3 + 4
+);
+```
+
+상기 예에서는 인수들의 참조성이 변하지 않도록 `forward_as_tuple()`을 사용했는데요, `make_tuple()`을 사용해도 결과는 같습니다.
+
+하지만, 인자로 전달된 변수를 사용할 때에는 참조성이 변할 수도 있으므로, `piecewise_construct`를 사용할땐 `forward_as_tuple()`을 사용하는게 좋습니다.
+
+
 
 # (C++14~) 타입 기반 get()
 

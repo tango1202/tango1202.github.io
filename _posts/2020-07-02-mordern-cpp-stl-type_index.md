@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `type_index`가 추가되어 `type_info`를 컨테이너에서 관리할 수 있습니다.
+> * `type_index`는 `type_info`의 래퍼로서 컨테이너에서 관리할 수 있게 합니다.
 
 # 개요
 
