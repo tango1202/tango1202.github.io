@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [모던 C++] (C++11~) auto, decltype, declval(), 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론"
+title: "#6. [모던 C++] (C++11~) auto, decltype(), declval(), 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -13,9 +13,11 @@ sidebar:
 
 # auto
 
-선언되는 변수의 타입을 초기값으로부터 추론하여 결정합니다. 추론 규칙은 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따릅니다.
+선언되는 변수의 타입을 초기값으로부터 추론하여 결정합니다. 특히, 템플릿 사용에 따른 긴 타입명을 간소하게 표현할 수 있습니다.
 
-템플릿 사용에 따른 긴 타입명을 간소하게 표현할 수 있습니다.
+추론 규칙은 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따릅니다.
+
+
 
 ```cpp
 int a = 0;
@@ -56,7 +58,7 @@ decltype(b) d = a; // auto와는 다르게 b와 동일한 const int로 추론됨
 
 d = 10; // (X) 컴파일 오류. const int이므로 값대입 안됨
 ```
-`decltype()`은 괄호안의 개체 자체를 평가하지만, 괄호를 추가하면 좌측값 표현식으로 평가하여 특별히 `T&`로 처리합니다.
+`decltype()`은 괄호안의 개체 자체를 평가하지만, 괄호를 추가하면 좌측값 표현식으로 평가하여 특별히 `T&`로 추론합니다.
 
 ```cpp
 class T {
@@ -69,7 +71,7 @@ decltype(t->m_Val) a = 10; // 멤버 엑세스로 평가됩니다. double
 decltype((t->m_Val)) b = 10; // 괄호를 추가하면 좌측값 표현식으로 처리합니다. t가 const 이므로 const double&
 ```
 
-# decltype()에서 값 카테고리에 따른 평가
+# decltype()과 값 카테고리
 
 `xvalue`, `lvalue`, `prvalue` 인지에 따라 다음과 같이 타입이 결정됩니다.
 
@@ -88,7 +90,7 @@ decltype((t->m_Val)) b = 10; // 괄호를 추가하면 좌측값 표현식으로
 
 2. 함수 인자
    
-   `auto`는 함수 인자로 사용할 수 없지만, `decltype()`은 인수로 사용할 수 있습니다.
+   `auto`는 함수 인자로 사용할 수 없지만, `decltype()`은 인자로 사용할 수 있습니다.
 
     ```cpp
     template<typename T, typename U>
@@ -102,7 +104,7 @@ decltype((t->m_Val)) b = 10; // 괄호를 추가하면 좌측값 표현식으로
 
 # declval() 
 
-`decltype()`은 함수의 리턴값을 이용해서 타입을 추론할 수 있습니다.
+`decltype()`을 이용하면, 다음처럼 함수의 리턴 타입도 추론할 수 있습니다.
 
 ```cpp
 class T {
@@ -111,12 +113,12 @@ public:
 };
 
 T t;
-// T::Func(int) 함수의 리턴값 타입
+// T::Func(int) 함수의 리턴 타입
 decltype(T().Func(10)) val = t.Func(10); 
 ```
 `T().Func(10)`은 런타임에 동작하는 것은 아니며, 컴파일 타임에 리턴 타입을 추론하기 위해서 사용합니다.
 
-그런데 만약 `T`에 기본 생성자가 없다면, `T().Func(10)`은 잘못된 표현이므로 컴파일 오류가 발생합니다. 따라서, 아무 상수값이나 넣어줘야 합니다.
+그런데 만약 `T`에 기본 생성자가 없다면, `T().Func(10)`은 잘못된 표현이므로 컴파일 오류가 발생합니다. 따라서, 대충 아무 상수값이나 넣어줘야 합니다.
 
 ```cpp
 class T {
@@ -127,24 +129,24 @@ public:
 
 T t(10);
 
-decltype(T().Func(10)) val = t.Func(10); // (X) 컴파일 오류. B에 기본 생성자가 없습니다.
+decltype(T().Func(10)) val = t.Func(10); // (X) 컴파일 오류. T에 기본 생성자가 없습니다.
 decltype(T(10).Func(10)) val = t.Func(10); // (O)
 ``````
 
 하지만, 상기 방법도 생성자 인자가 많거나 복잡하면, 사용하기 어렵습니다. 
 
-`declval()`은 주어진 타입을 참조 타입으로 변환하여, 참조 타입으로 멤버 함수 호출식을 표현해 줍니다. 따라서 굳이 `T()`나 `T(10)`과 같이 생성자 표현식을 사용하지 않아도 됩니다. 
+`declval()`은 주어진 타입을 참조 타입으로 변환하여 멤버 함수 호출식을 표현해 줍니다. 따라서 굳이 `T()`나 `T(10)`과 같이 생성자 표현식을 사용하지 않아도 됩니다. 
 
-상기 코드는 다음과 같이 `decltype()`을 이용하여 작성할 수 있습니다.
+상기 코드를 `decltype()`으로 작성하면 다음과 같습니다.
 
 ```cpp
-// B::Func(int) 함수의 리턴값 타입
+// T::Func(int) 함수의 리턴 타입
 decltype(std::declval<T>().Func(10)) val = t.Func(10); 
 ```
 
 # 후행 리턴 타입
 
-C++11 부터는 `auto`로 리턴 타입을 정의하면, 정의된 위치에서는 리턴 타입을 모르기 때문에 컴파일 오류가 납니다.
+C++11 에서는 `auto`로 리턴 타입을 정의하면, 정의된 위치에서는 리턴 타입을 모르기 때문에 컴파일 오류가 납니다.(C++14에서 개선되었습니다.)
 
 ```cpp
 // (X) 컴파일 오류. auto가 기재된 위치에서 a + b를 모름
@@ -156,7 +158,7 @@ auto result = Func(10, 20);
 EXPECT_TRUE(result == 30);     
 ```
 
-하지만, 리턴 타입이 인자에 의존한다면, 다음처럼 후행 리턴 타입 표현인 `-> decltype()`을 사용하여 리턴 타입을 정의할 수 있습니다.
+대신, 다음처럼 후행 리턴 타입 표현인 `-> decltype()`을 사용하여 리턴 타입을 정의할 수 있습니다.
 
 ```cpp
 // C++11
