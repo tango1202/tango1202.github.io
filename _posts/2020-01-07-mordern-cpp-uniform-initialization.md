@@ -373,7 +373,7 @@ auto e = {1, 2}; // e는 initializer_list<int>
         T(std::initializer_list<int>, int, int) {}
     };
     T a{1, 2, 3, 4, 5}; // T(std::initializer_list<int>)
-    T b{{1, 2, 3}, 4, 5}; // T(std::initializer_list<int>, int, int)
+    T b{ {1, 2, 3}, 4, 5}; // T(std::initializer_list<int>, int, int)
     ```
 
 # 기존 생성자와 initializer_list 생성자와의 충돌
