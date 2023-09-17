@@ -70,7 +70,7 @@ std::tuple
     piecewise_construct
     tuple_element
     std::tuple_size 
-    std::tuple_element
+
 
 hash
 
@@ -116,6 +116,8 @@ std::uninitialized_copy_n
 
 
 # 문자열 라이브러리
+
+유니코드 문자열
 
 # 동시성 라이브러리
 
