@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [모던 C++ STL] (C++11~) 타입 특성(type_traits)"
+title: "#3. [모던 C++ STL] (C++11~) 타입 특성(type_traits)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [모던 C++] (C++11~) 타입 형식(스칼라 타입, Trivial 타입, 표준 레이아웃 타입, POD 타입, 리터럴 타입)"
+title: "#2. [모던 C++] (C++11~) 타입 형식(스칼라 타입, Trivial 타입, 표준 레이아웃 타입, POD 타입, 리터럴 타입, 집합 타입)"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

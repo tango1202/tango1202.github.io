@@ -62,7 +62,7 @@ C++11은,
 |항목|내용|
 |--|--|
 |[auto<br/>decltype<br/>후행 리턴 타입<br/>리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/)|값으로부터 타입을 추론하는 `auto` 타입과 `decltype()`이 추가되어 코딩이 간편해 졌습니다.<br/>함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.|
-|[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)|`{}` 초기화가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.<br/> `{}` 초기화시 인자의 암시적 형변환을 차단하여, 코딩 계약을 더 단단하게 할 수 있습니다.<br/>`{}` 초기화로 리턴문 작성을 간소화할 수 있습니다.<br/>`std::initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
+|[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)|`{}` 초기화가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.<br/>`{}` 복사 초기화로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.<br/>`{}` 초기화시 인자의 암시적 형변환을 일부 차단하여, 코딩 계약이 개선되었습니다.<br/>`initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
 |[멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/)|멤버 선언부에서 초기화를 할 수 있어 초기화 작성이 쉬워졌습니다.|
 |[범위 기반 for](https://tango1202.github.io/mordern-cpp/mordern-cpp-range-for/)|범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.|
 |[범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)|이름 범위를 한정하는 범위 있는 열거형이 추가되어 이름 충돌 회피가 쉬워졌습니다.|

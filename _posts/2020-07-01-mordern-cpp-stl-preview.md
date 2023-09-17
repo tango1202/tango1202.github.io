@@ -10,32 +10,41 @@ sidebar:
 
 C++11은,
 
-템플릿 메타 프로그래밍과 우측값 참조와 해시 처리를 위한 부분들이 보강되었으며,
+템플릿 메타 프로그래밍과 우측값 참조와 중괄호 초기화, 해시 처리를 위한 부분들이 보강되었으며,
 
-1. 스마트 포인터,
+1. 스마트 포인터
 2. initializer_list
-3. tuple, 
-4. 컨테이너,
-5. function,
-6. 동시성 지원
-7. 날짜 / 시간
-8. 정규 표현식 
+3. tuple 
+4. function
+5. 추가 컨테이너
+6. 추가 알고리즘
+7. 유니코드 문자열
+8. 동시성 지원
+9. random, ratio
+10. 진단 개선
+11. chrono
+12. 정규 표현식 
+13. codecvt
    
 이 추가 되었습니다.
 
-# 메타 프로그래밍
-
-|항목|내용|
-|--|--|
-|[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)|`type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.|
-
-# 타입 지원
+# 언어 지원 라이브러리
 
 |항목|내용|
 |--|--|
 |[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/)|`type_index`가 추가되어 `type_info`를 컨테이너에서 관리할 수 있습니다.|
 
-# 동적 메모리 관리
+# 컨셉 라이브러리
+
+# 메타 프로그래밍 라이브러리
+
+|항목|내용|
+|--|--|
+|[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)|`type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.|
+
+
+
+# 메모리 관리 라이브러리
 
 |항목|내용|
 |--|--|
@@ -48,14 +57,14 @@ C++11은,
 |[addressof](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-memory/#addressof)|`operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.|
 |[align](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-memory/#align)|메모리 정렬된 포인터를 구합니다.|
 
-# 유틸리티
+# 유틸리티 라이브러리
 
 |항목|내용|
 |--|--|
 |[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 지원|[move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 이용하여 좌측값을 우측값으로 형변환합니다.<br/>[move_if_noexcept()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move_if_noexcept)를 이용하여 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다.<br/>[forword](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)값 카테고리를 유지하며 인자를 다른 함수에 전달합니다.|
 |[declval](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval)|주어진 타입을 참조 타입으로 변환하여, 참조 타입 표현식으로 변경해 줍니다.|
+|[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)|`initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
 
-std::initializer_list
 
 std::tuple
     piecewise_construct
@@ -64,22 +73,34 @@ std::tuple
     std::tuple_element
 
 hash
+
+std::function
+mem_fn
+reference_wrapper
+bad_function_call
+is_bind_expression  
+is_placeholder
+bind
+ref
+cref
   
 
-  
-# 컨테이너
+# 컨테이너 라이브러리
 std::array
 std::forward_list
 std::undordered_map
 std::unordered_set
 
-# 이터레이터
+# 이터레이터 라이브러리
 
 next
 prev
 std::move_iterator
 
-# 알고리즘
+# 범위 라이브러리
+
+# 알고리즘 라이브러리
+
 std::all_of, std::any_of, std::none_of,
 std::find_if_not,
 std::copy_if, std::copy_n,
@@ -93,23 +114,11 @@ std::is_permutation,
 std::iota,
 std::uninitialized_copy_n
 
-# 함수자
 
-std::function
-mem_fn
-reference_wrapper
-bad_function_call
-is_bind_expression  
-is_placeholder
-bind
-ref
-cref
+# 문자열 라이브러리
 
+# 동시성 라이브러리
 
-
-# 문자열
-
-# 동시성
 
 <thread>
 <mutex>
@@ -117,28 +126,34 @@ cref
 <atomic>
 <future>
 
-# 난수
-<random>
+# 수치 라이브러리
 
-# 컴파일 타임 산술
+<random>
 <ratio>
 
-# 에러 핸들링
+# 진단 라이브러리
+
 std::exception_ptr
 std::error_code
 std::error_condition
 <system_error>
 
-# 날짜 / 시간
+# 날짜 / 시간 라이브러리
 <chrono>
 
-# 정규 표현식
+# 정규 표현식 라이브러리
 <regex>
 
-# 로케일
+# 현지화 라이브러리
+
 <codecvt>
 
+# 입출력 라이브러리
+
+# 파일 시스템 라이브러리
+
 # C 라이브러리 지원
+
 <cfenv>
 <cinttype>
 <cstdint>
