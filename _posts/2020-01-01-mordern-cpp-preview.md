@@ -39,7 +39,7 @@ C++11은,
 |--|--|
 |[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)|`constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.|
 |[static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|`static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.| 
-|[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|`type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.|
+|[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)|`type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.|
 |[noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)| `noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.|
 |[가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)|가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.|
 

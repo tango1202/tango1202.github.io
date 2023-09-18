@@ -11,6 +11,11 @@ sidebar:
 > * `auto_ptr`은 deprecate 되었으니 더이상 사용하지 마라.
 > * 복사 부하, 상수성, 스마트 포인터를 이용하여 좀더 단단한 코딩 계약을 만들어라.
 
+> **모던 C++**
+> * `unique_ptr`은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다.([unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/) 참고)
+> * `shared_ptr`은 소유권 공유용 스마트 포인터입니다.([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr) 참고)
+> * `weak_ptr`은 `shared_ptr`의 상호 참조 문제를 해결합니다.([weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) 참고)
+
 # 개요
 
 `auto_ptr`는 포인터 관리를 좀더 편안하게 할 수 있도록 표준에서 제공하는 스마트 포인터 입니다.

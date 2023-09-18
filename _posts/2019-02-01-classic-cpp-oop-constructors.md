@@ -11,7 +11,7 @@ sidebar:
 > * 기본 생성자가 필요하다면 명시적으로 구현하고, 필요없다면 못쓰게 만들어라.
 > * 값 생성자에서는 필요한 인자를 모두 나열하고 초기화하라. 
 > * 인자가 1개인 값 생성자는 `explicit`로 암시적 형변환을 차단하라.
-> * 암시적 복사 생성자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 사용하고, 필요없다면 못쓰게 만들어라.
+> * 암시적 복사 생성자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 스마트 포인터([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등)를 사용하고, 필요없다면 못쓰게 만들어라.
 > * 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
 > * 상속 전용 기반 클래스는 `protected` 생성자로 만들어라.
 
@@ -208,9 +208,9 @@ public:
 
 **소유권 분쟁** 을 해결하는 방법은 
 
-1. 소유권 이전을 하거나([auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)과 [std::unique_ptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-unique_ptr/) 참고),
+1. 소유권 이전을 하거나([auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/), [unique_ptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-unique_ptr/)),
 2. 깊은 복제를 하거나, 
-3. 자원을 공유하거나, 
+3. 자원을 공유하거나([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)), 
 4. 유일한 자원으로 대체해서 사용하는
 
 방법이 있습니다. 
@@ -245,7 +245,7 @@ public:
 
 # 복사 생성자만 지원하는 스마트 포인터
 
-[힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들기 위해 복사 생성자를 클래스마다 일일이 명시적으로 개발하는 것 보다는, 암시적 복사 생성자를 그대로 사용할 수 있도록 [스마트 포인터](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-smart-pointer/)를 만들어 사용하는게 코드도 간결하고 분석하기 좋습니다. 여기서는 `int`형을 지원하는 것만 구현해 보도록 하겠습니다.(모든 타입을 지원하는 일반화된 스마트 포인터의 구현 예는 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) 참고)
+[힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들기 위해 복사 생성자를 클래스마다 일일이 명시적으로 개발하는 것 보다는, 암시적 복사 생성자를 그대로 사용할 수 있도록 스마트 포인터([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등)를 만들어 사용하는게 코드도 간결하고 분석하기 좋습니다. 여기서는 `int`형을 지원하는 것만 구현해 보도록 하겠습니다.(모든 타입을 지원하는 일반화된 스마트 포인터의 구현 예는 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) 참고)
 
 스마트 포인터는 다음 단계를 통해 포인터 복제를 대행하고, [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 벗어나 자동 소멸될 때([소멸자 호출 시점](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%8B%9C%EC%A0%90) 참고) 포인터를 `delete`합니다. 
 
