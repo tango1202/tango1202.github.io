@@ -184,7 +184,7 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
 
 # 클로져 개체 대입
 
-클로져 개체는 `auto`와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 `std::function`을 이용하여 변수에 대입할 수 있습니다.
+클로져 개체는 `auto`와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 `function`을 이용하여 변수에 대입할 수 있습니다.([function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-function/) 참고)
 
 1. `auto`(단, `auto`이기 때문에 함수의 인자로 사용할 수 없습니다.)
     
@@ -201,7 +201,7 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
     EXPECT_TRUE(f(10, 20) == 30);
     ```
 
-3. `std::function`(캡쳐도 지원하고, 함수 인자로 사용할 수도 있습니다.)
+3. `function`(캡쳐도 지원하고, 함수 인자로 사용할 수도 있습니다.)
     
     ```cpp
     std::function<int(int, int)> f;

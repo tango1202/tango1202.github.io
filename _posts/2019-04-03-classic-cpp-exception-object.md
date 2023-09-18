@@ -8,6 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
+> **모던 C++**
+> * `shared_ptr`에서 포인터가 잘못된 경우 `bad_weak_ptr` 예외를 방출합니다.([bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) 참고)
+
 # 개요
 
 `throw()` 에서 예외를 발생할 때 예외 개체를 만들어 예외에 대한 정보를 담아 전달합니다.(`catch()`에서 예외 개체를 전달받을때, 예외 개체가 복사 생성되지 않도록 참조자로 받는게 좋습니다.)
