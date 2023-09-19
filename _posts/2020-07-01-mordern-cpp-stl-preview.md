@@ -71,17 +71,15 @@ C++11 STL은,
 |[mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#mem_fn)|`mem_fun()`은 인자가 있는 멤버 함수도 호출하는 있는 함수자를 만들어 줍니다.|
 |[참조자 래핑](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#reference_wrapper)|[reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#reference_wrapper) 는 복사나 대입이 안되는 참조자를 래핑합니다.<br/>[ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#ref-cref) 는 `reference_wrapper` 개체를 생성합니다.|
 |[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#bind)|`bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.<br/>[is_bind_expression](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#is_bind_expression)는  `bind()`로 생성한 함수인지 검사합니다.<br/>[is_placeholder](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#is_placeholder)는 자리 표시자를 사용했는지 검사합니다.|
-
-
-
-
-hash
-
-
-  
+|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-hash/)|`hash()`는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.|
 
 # 컨테이너 라이브러리
-std::array
+
+|항목|내용|
+|--|--|
+|[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-array/)|`array`는 기존 C스타일의 배열처럼 컴파일 타임에 크기가 결정되는 연속된 메모리를 사용하는 컨테이너 입니다. 요소 추가/삭제가 없는 경우 사용할 수 있으며, `vector` 보다 성능이 좋습니다.|
+
+
 std::forward_list
 std::undordered_map
 std::unordered_set

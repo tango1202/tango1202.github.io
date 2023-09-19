@@ -15,6 +15,7 @@ sidebar:
 > * [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#reference_wrapper), [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#ref-cref) 는 복사나 대입이 안되는 참조자를 래핑합니다.
 > * `bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.([bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#bind) 참고)
 > * 함수자 타입 특성 클래스(`unary_function`, `binery_function` 등), 바인더(`bind1st()`, `bind2nd()` 등), 어뎁터와 부정자(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 deprecate 되었습니다.([function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function) 참고)
+> * `hash()`는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.([hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-hash/) 참고)
 
 
 # 함수자와 조건자
