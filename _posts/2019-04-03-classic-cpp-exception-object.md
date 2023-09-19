@@ -10,6 +10,7 @@ sidebar:
 
 > **모던 C++**
 > * `shared_ptr`에서 포인터가 잘못된 경우 `bad_weak_ptr` 예외를 방출합니다.([bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) 참고)
+> * `function`에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.([bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#bad_function_call) 참고)
 > * [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 deprecate 되었습니다. 예외를 나열하는 것보다 [`noexcept`](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept)로 예외가 발생하느냐 안하느냐만 관심을 둡니다.
 
 # 개요
