@@ -83,11 +83,11 @@ C++11은,
 |--|--|
 |[가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)|가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.|
 
-# deprecate
+# deprecate/remove
 
 |항목|내용|
 |--|--|
 |[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)| 동적 예외 사양은 deprecate 되었습니다. 예외를 나열하는 것보다 `noexcept`로 예외가 발생하느냐 안하느냐만 관심을 둡니다.| 
+|[export template](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-template)|`export template` 은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견되 일하지 않아 remove 되었습니다.|
 
-- export
 

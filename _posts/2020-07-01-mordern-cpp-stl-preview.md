@@ -69,9 +69,6 @@ C++11 STL은,
 
 
 
-
-hash
-
 std::function
 mem_fn
 reference_wrapper
@@ -81,6 +78,10 @@ is_placeholder
 bind
 ref
 cref
+
+hash
+
+
   
 
 # 컨테이너 라이브러리
