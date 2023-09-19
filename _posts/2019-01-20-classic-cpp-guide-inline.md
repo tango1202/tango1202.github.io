@@ -61,7 +61,8 @@ int T::f2() {return 0;} // inline화 안됨
 
 **여러 cpp에서 사용하는 인라인 함수 정의**
 
-헤더 파일에서 `inline`함수를 정의하고 `cpp`에서 `include` 합니다.
+헤더 파일에서 `inline`함수를 정의하고 `cpp`에서 `include` 합니다.(만약 일반 함수라면 여러개의 `cpp`에서 `include`한 경우, 함수 정의가 중복되었다며 컴파일 오류가 발생합니다.)
+
 
 ```cpp
 // MyInline.h 에서

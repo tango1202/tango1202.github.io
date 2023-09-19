@@ -252,14 +252,14 @@ void MyClass::Func() {
 #include "MyClass.h" // MyClass 선언을 포함합니다.
 
 void f() {
-    MyClass obj; // MyClass 를 사용ㅎㅂ니다.
+    MyClass obj; // MyClass 를 사용합니다.
     obj.Func();
 }
 ```
 
 상기와 같이 코드를 구성하면,
 
-1. "MyClass.cpp" 가 1회만 컴파일되고, `MyClass`를 사용하는 곳은 컴파일 결과물을 링크만 하여, 빌드 속도가 향상됩니다.
+1. `MyClass.cpp` 가 1회만 컴파일되고, `MyClass`를 사용하는 곳은 컴파일 결과물을 링크만 하여, 빌드 속도가 향상됩니다.
 2. 외부에 모듈을 제공할때 `MyClass.h`와 컴파일된 파일만 제공하면 되므로 소스 코드를 은닉할 수 있습니다.
 
 # 접근 지정자

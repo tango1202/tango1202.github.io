@@ -158,7 +158,7 @@ a.g<int>(10); // 템플릿 멤버 함수 호출
 
 # 템플릿 인스턴스 중복 생성
 
-동일한 템플릿을 인스턴스화 할때 각각의 파일에서 템플릿 정의를 `include`하면 각 파일별로 템플릿 인스턴스가 생성됩니다. 이에 따라 프로그램 코드 용량이 커질 수 있습니다.
+동일한 템플릿을 인스턴스화 할때 각각의 파일에서 템플릿 정의를 `include`하면 각 파일별로 템플릿 인스턴스가 생성됩니다.(마치 템플릿을 [인라인화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/) 하는 것 처럼요.) 이에 따라 프로그램 코드 용량이 커질 수 있습니다.
 
 ```cpp
 // test.h 에서
@@ -175,3 +175,43 @@ Add(1, 2); // Add<int>()가 정의 되어 포함됩니다.
 #include "test.h"
 Add(10, 20); // Add<int>가 재정의 되어 포함됩니다.
 ```
+
+# export template
+
+템플릿 인스턴스화시 템플릿 정의가 필요하므로, 외부에 모듈을 제공할 때 템플릿 정의 코드를 함께 제공해야 하는 문제가 있었습니다. 
+
+이러한 문제를 해결하기 위해 템플릿 선언과 정의를 분리하는 `export`를 제공했는데요,
+
+헤더 파일에서,
+
+```cpp
+// test.h 에서
+export template<typename T> // 선언만 합니다.
+T MyAdd(T a, T b);
+```
+
+cpp 파일에서,
+
+```cpp
+// test.cpp 에서
+template<typename T>
+T MyAdd(T a, T b) {
+    return a + b; // 구현 코드 입니다.
+}
+```
+
+사용하는 곳에서,
+
+```cpp
+// test1.cpp 에서
+#include "test.h"
+MyAdd(1, 2); 
+
+// test2.cpp 에서
+#include "test.h"
+MyAdd(10, 20); 
+```
+
+하면 되도록요.
+
+하지만, 제대로 구현한 컴파일러는 드물었고, 세부사항에 대한 의견도 일치하지 않아 C++11부터 완전 없어졌습니다. 
