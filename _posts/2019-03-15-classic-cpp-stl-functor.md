@@ -122,7 +122,7 @@ std::for_each(v.begin(), v.end(), adder);
 EXPECT_TRUE(v[0] == 11 && v[1] == 12 && v[2] == 13);
 ```
 
-**STL 기본 함수자**
+# STL 기본 함수자
 
 |항목|내용|
 |--|--|

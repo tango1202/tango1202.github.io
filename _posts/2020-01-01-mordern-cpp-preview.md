@@ -8,13 +8,6 @@ sidebar:
     nav: "docs"
 ---
 
-
-**제거**
-- export
-- 동적 예외 사양
-- auto_ptr
-- std::unary_fuction, std::binary_function, 어뎁터
-
 C++11은, 
 
 1. 이동 연산을 지원하여 런타임 성능을 향상시키고, 
@@ -89,4 +82,12 @@ C++11은,
 |항목|내용|
 |--|--|
 |[가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)|가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.|
+
+# deprecate
+
+|항목|내용|
+|--|--|
+|[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)| 동적 예외 사양은 deprecate 되었습니다. 예외를 나열하는 것보다 `noexcept`로 예외가 발생하느냐 안하느냐만 관심을 둡니다.| 
+
+- export
 

@@ -213,6 +213,55 @@ class T {
 int T::f2() {} // inline화 안됨
 ```
 
+# 분할 컴파일을 위한 선언과 정의 분리
+
+C++에서는
+
+1. 컴파일 속도 향상과,
+2. 실제 구현 코드의 은닉을 위하여,
+
+클래스 선언과 정의를 분리하여 파일을 구성합니다. 
+
+헤더 파일에서(`#define MyClass_h`는 헤더 파일을 `include`시 1회만 포함하게 하는  인클루드 가드입니다.([인클루드 가드](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-include-guard/) 참고)),
+
+```cpp
+// MyClass.h 헤더 파일에서
+#ifndef MyClass_h
+#define MyClass_h // 인클루드 가드
+
+class MyClass {
+public:
+    void Func(); // Func() 멤버 함수 선언   
+};
+
+#endif // MyClass_h
+```
+
+cpp 파일에서,
+
+```cpp
+// MyClass.cpp 소스 파일 에서
+void MyClass::Func() {
+    // Func 함수 정의 
+}
+```
+
+`MyClass`를 사용하는 곳에서,
+
+```cpp
+#include "MyClass.h" // MyClass 선언을 포함합니다.
+
+void f() {
+    MyClass obj; // MyClass 를 사용ㅎㅂ니다.
+    obj.Func();
+}
+```
+
+상기와 같이 코드를 구성하면,
+
+1. "MyClass.cpp" 가 1회만 컴파일되고, `MyClass`를 사용하는 곳은 컴파일 결과물을 링크만 하여, 빌드 속도가 향상됩니다.
+2. 외부에 모듈을 제공할때 `MyClass.h`와 컴파일된 파일만 제공하면 되므로 소스 코드를 은닉할 수 있습니다.
+
 # 접근 지정자
  
 접근 지정자로 외부 접근을 통제할 수 있습니다.

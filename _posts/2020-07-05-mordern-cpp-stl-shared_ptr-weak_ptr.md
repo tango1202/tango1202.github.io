@@ -654,7 +654,7 @@ EXPECT_TRUE(sp1.use_count() == 4); // sp1, sp2, temp1, temp2 총 4개 입니다.
 
 # bad_weak_ptr
 
-잘못된 `weak_ptr`을 사용할때 발생하는 예외입니다. 
+`share_ptr`에서 잘못된 `weak_ptr`을 사용할때 발생하는 예외입니다. 
 
 다음 코드는 `shared_ptr`이 소멸된 후에 `weak_ptr`을 사용하다가 `bad_weak_ptr` 예외가 발생한 예입니다.
 
@@ -669,7 +669,7 @@ try {
     // bad_weak_ptr 예외가 발생합니다.
     std::shared_ptr<int> error{wp};
 }
-catch(std::bad_weak_ptr&) {
+catch (std::bad_weak_ptr&) {
     std::cout<<"bad_weak_ptr"<<std::endl;
 }
 ```
