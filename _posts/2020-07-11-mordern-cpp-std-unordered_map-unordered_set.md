@@ -8,7 +8,20 @@ sidebar:
     nav: "docs"
 ---
 
-> * `forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.
+> * `unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.
+
+# 개요
+
+기존의 `map`, `multimap`, `set`, `multiset`은 이진 트리 탐색을 하다보니 정렬등이 자동으로 이루어 졌는데요,
+
+`unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.
+
+|항목|내용|**Key** 조건|
+|--|--|--|
+|`unordered_map`|**Key** - **Value** 쌍으로 관리하며,  `pair`를 사용함.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고)<br/>**Key**의 해시값(Digest)으로 요소 탐색(O(1))<br/>삽입되는 **Key**는 유일함<br/>첨자 연산 지원|`hash()` 함수자 구현<br/>`==` 구현|
+|`unordered_multimap`|`map`과 동일하며 중복 **Key**허용<br/>첨자 연산 지원 안함|`hash()` 함수자 구현<br/>`==` 구현|
+|`unorderedset`|**Key**만 요소로 삽입됨<br/>**Key**의 해시값(Digest)으로 요소 탐색(O(1))<br/>삽입되는 **Key**는 유일함|`hash()` 함수자 구현<br/>`==` 구현|
+|`unordered_multiset`|`set`과 동일하며 중복 **Key**허용|`hash()` 함수자 구현<br/>`==` 구현|
 
 # 해시
 
@@ -44,7 +57,7 @@ sidebar:
 속도 성능을 보면,
 
 1. `vector`는 순차 탐색을 하기 때문에 O(N)의 시간이 걸리고,
-2. `set`이나 `map` 등은 이진 탐색을 하기 때문에 O(logN)이 걸리고,
+2. `set`이나 `map` 등은 이진 트리 탐색을 하기 때문에 O(logN)이 걸리고,
 3. 해시 컨테이너는 해시값(Digest)을 인덱스로 해서 찾으면 되므로 O(1)의 시간이 걸립니다. 
 
 다만, 해시값(Digest)을 그대로 컨테이너의 키값으로 사용하면, 해시 컨테이너의 버킷(Bucket)은 모든 해시값(Digest)을 저장할 수 있을 정도로 아주 아주 많아야 하기 때문에(C++에서는 `std::numeric_limits<std::size_t>::max()`), 
@@ -63,4 +76,146 @@ sidebar:
 
  이를 해시 충돌이라 하는데요,
 
-해시 충돌이 나면, 같은 버킷(Bucket)내에서 순차 탐색이던, 이진 탐색을 이용하여 검색해야 하므로, 해시 충돌이 최소화되고, 해시 키값이 골고루 분포될 수 있도록 구성해야 합니다.
+해시 충돌이 나면, 같은 버킷(Bucket)내에서 순차 탐색이던, 이진 탐색을 이용하여 검색해야 하므로, 해시 충돌이 최소화되는게 좋습니다.
+
+따라서, 해시 키값이 골고루 버킷(Bucket)에 분포될 수 있도록 해시 키값을 계산하고, 버킷(Bucket)의 갯수도 적당량을 만들어야 합니다.
+
+# unordered_map 멤버 함수
+
+다음 멤버 함수들은 `map`과 동일합니다.
+
+|항목|내용|
+|--|--|
+|`[]`|주어진 Key의 Value를 구합니다.|
+|`at()`|주어진 Key의 Value를 구합니다.|
+|`begin()`, `end()`, `cbegin()`, `cend()`|이터레이터<br/>`map`은 `rbegin()`, `rend()`, `crbegin()`, `crend()`를 추가로 제공합니다.|
+|`empty()`|컨테이너가 비었는지 확인합니다.|
+|`size()`|컨테이너의 요소 갯수를 리턴합니다.|
+|`max_size()`|컨테이너가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
+|`clear()`|모든 요소를 지웁니다.|
+|`erase()`|주어진 위치의 요소를 삭제합니다.|
+|`swap()`|두 컨테이너의 내부 데이터를 바꿔치기 합니다.|
+|`insert()`|주어진 위치 앞에 요소를 추가합니다.|
+|`emplace()`, `emplace_hint()`|요소 개체 생성을 위한 인수(`Key`, `Value`)를 전달하여 컨테이너 내에서 요소 개체(`pair<Key, Value>`)를 생성한 뒤 삽입합니다.|
+|`count()`|주어진 Key인 요소 갯수를 리턴합니다.|
+|`find()`|주어진 Key인 요소를 리턴합니다.| 
+|`equal_range()`|주어진 Key인 요소들을 리턴합니다.<br/>`map`은 `lower_bound()`, `upper_bound()`를 추가로 제공합니다.|
+
+해시 컨테이너는 다음 멤버 함수를 추가로 제공합니다.
+
+|항목|내용|
+|--|--|
+|`begin(size_type)`, `end(size_type)`<br/>`begin(size_type)`, `end(size_type)`|버킷(Bucket) 이터레이터|
+|`bucket_count()`|버킷 갯수|
+|`max_bucket_count()`|최대 버킷 갯수|
+|`bucket_size()`|주어진 버킷의 요소 갯수|
+|`bucket()`|주어진 Key의 버킷|
+|`load_factor()`|버킷당 평균 요소 수|
+|`max_load_factor()`|버킷당 최대 평균 요소 수|
+|`rehash()`|버킷 갯수를 조정하고, 기존 요소들을 재배치|
+|`reserve()`|요소 수에 맞게 버킷 갯수를 조정하고, 기존 요소들을 재배치|
+
+요소 수에 맞게 버킷 갯수는 내부적으로 조정됩니다.
+
+```cpp
+std::unordered_map<int, std::string> m;
+
+// 예약된 요소 수에 맞게 버킷은 자동 조정 됩니다.
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 1개
+m.reserve(2);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 2개
+m.reserve(3);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 3개
+m.reserve(4);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 5개
+m.reserve(5);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 5개
+m.reserve(6);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 7개
+m.reserve(7);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 7개
+m.reserve(8);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 11개
+m.reserve(9);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 11개
+m.reserve(100);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 103개
+m.reserve(1000);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 1031개
+m.reserve(10000);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 10273개        
+    m.reserve(100000);
+std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 107897개  
+```
+
+기존 `map`과 사용법은 동일합니다.
+
+```cpp
+std::unordered_map<int, std::string> m;
+
+// 기본적인 사용 방식은 map과 동일합니다.
+m.insert(std::make_pair(0, "data0"));
+m.insert(std::make_pair(1, "data1"));
+m[0] = "changed data";
+EXPECT_TRUE(m[0] == "changed data");
+```
+
+# unordered_map의 Key
+
+[컨테이너 요소 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%94%EC%86%8C-%EA%B7%9C%EC%B9%99) 에서 개체를 `set`이나 `map`의 Key로 사용하려면, 복사 생성자와 `bool operator <(const T& other);`을 구현해야 한다고 말씀드렸는데요,
+
+`unordered_map`과 `unordered_set`의 Key는 
+
+1. 복사 생성자를 구현해야 하고, 대입 연산자는 불필요하며,
+2. 대소 비교를 하지 않으므로, `bool operator <(const T& other);` 구현은 필요 없고,
+3. 버킷(Bucket) 내에서 탐색하기 위해 `bool operator ==(const T& other);` 구현이 필요하고,
+4. 해당 개체의 해시값(Digest)를 구하기 위해 `hash()`함수자를 구현하여 `unordered_map` 정의시 전달해야 합니다.
+
+```cpp
+class A {
+private:
+    int m_Val;
+    std::string m_Str;
+public:
+    A(int val, const char* str) : 
+        m_Val{val}, 
+        m_Str{str} {}
+    A(const A& other) = default; // 복사 생성자 필요
+    A& operator =(const A& other) = delete; // 대입 연산자 불필요
+public:
+    // == 비교 연산자 필요
+    bool operator ==(const A& other) const {
+        if (m_Val != other.m_Val) return false;
+
+        return m_Str == other.m_Str;
+    }
+
+    // < 비교 연산자 불필요
+    // bool operator <(const A& other) const {
+    //     if (m_Val < other.m_Val) return true;
+    //     if (other.m_Val < m_Val) return false;
+
+    //     return m_Str < other.m_Str;
+    // }
+
+    int GetVal() const {return m_Val;}
+    const std::string& GetStr() const {return m_Str;}
+}; 
+
+// 해시 함수. 반드시 const 함수이어야 합니다.
+struct AHash {
+    std::size_t operator ()(const A& obj) const {
+        size_t h1{std::hash<int>{}(obj.GetVal())};
+        size_t h2{std::hash<std::string>{}(obj.GetStr())};
+
+        return h1 ^ (h2 << 1);
+    }
+}; 
+
+// A 개체의 해시 함수를 전달합니다.
+std::unordered_map<A, std::string, AHash> m;
+
+// insert시 내부적으로 key를 비교 연산하여 정렬하여 삽입합니다. 
+m.insert(std::make_pair(A{0, "a"}, "data0")); 
+m.insert(std::make_pair(A{1, "b"}, "data1"));
+```   

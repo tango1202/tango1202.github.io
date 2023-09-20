@@ -44,12 +44,12 @@ sidebar:
 |`=`|`vector& operator =(const vector& other);`|`vector`의 기존 요소를 지우고 `other`요소들을 복사합니다.|
 |`assign()`|`void assign(size_type count, const Type& value)`<br/>`template <typename InputIterator>`<br/>`void assign(InputIterator first, InputIterator last)`|`vector`의 기존 요소를 지우고 `value`를 `count` 만큼 복사합니다.<br/>`vector`의 기존 요소를 지우고 `first`부터 `last`직전까지 복사합니다.|
 |`resize()`|`void resize(size_type new_size)`<br/>`void resize(size_type new_size, Type value)`|`vector`의 새 크기를 지정하며, 기존 요소 갯수보다 크다면 `value`로 채웁니다. `value`가 없는 경우 요소의 기본 생성자를 호출합니다.|
-|`size()`|`size_type size() const;`|`vector`의 요소 갯수를 리턴합니다.|
-|`empty()`|`bool empty() const;`|`vector`가 비었는지 확인합니다.|
+|`size()`|`size_type size() const;`|컨테이너의 요소 갯수를 리턴합니다.|
+|`empty()`|`bool empty() const;`|컨테이너가 비었는지 확인합니다.|
 |`capacity()`|`size_type capacity() const;`|메모리를 더 할당하지 않고 `vector`에 저장할 수 있는 요소 갯수를 리턴합니다.(`vector`는 메모리 할당이 빈번히 발생하지 않도록 실제 요소 갯수보다 큰 크기를 할당하기도 하고, 삽입/삭제에 따라 실제 요소 갯수보다 더 많은 메모리를 관리할 수 있습니다.)|
-|`reserve()`|`void reserve(size_type count);`|`vector`의 메모리 공간을 최소한 `count` 갯수 만큼 요소를 저장할 수 있도록 예약합니다.|
-|`max_size()`|`size_type max_size() const;`|`vector`가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
-|`swap()`|`void swap(vector<Type, Allocator>& other);`|두 `vector`의 내부 데이터를 바꿔치기 합니다.|
+|`reserve()`|`void reserve(size_type count);`|`vector`의 메모리 공간을 최소한 `count` 갯수 만큼의 요소를 저장할 수 있도록 예약합니다.|
+|`max_size()`|`size_type max_size() const;`|컨테이너가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
+|`swap()`|`void swap(vector<Type, Allocator>& other);`|두 컨테이너의 내부 데이터를 바꿔치기 합니다.|
 
 **요소 검색**
 
@@ -74,10 +74,10 @@ sidebar:
 |항목|정의|내용|
 |--|--|--|
 |`clear()`|`void clear();`|모든 요소를 지웁니다. 이때 메모리 영역은 그대로 입니다.|
-|`erase()`|`iterator erase(const_iterator position);`<br/>`iterator erase(const_iterator first, const_iterator last);`|`position`위치의 요소를 삭제하거나 `first`와 `last` 직전까지의 요소(반개방 구조)를 삭제합니다. 이터레이터가 유효하지 않다면, 아무 생각없이 실행되어 오동작 합니다. |
+|`erase()`|`iterator erase(const_iterator position);`<br/>`iterator erase(const_iterator first, const_iterator last);`|`position`위치의 요소를 삭제하거나 `first`와 `last` 직전까지의 요소(반개방 구조)를 삭제합니다. 이터레이터가 유효하지 않다면, 아무 생각없이 실행되어 오동작 합니다.|
 |`pop_back()`|`void pop_back();`|마지막 요소를 삭제합니다. `vector`가 비었다면 아무 동작 안합니다.|
 |`push_back()`|`void push_back(const T& value);`|`vector`끝에 요소를 추가합니다.|
-|`insert()`|`iterator insert(const_iterator position, const Type& value);`<br/>`iterator insert(const_iterator position, Type&& value);`<br/>`void insert(const_iterator position, size_type count, const Type& value);`<br/>`template <class InputIterator>`<br/>`void insert(const_iterator position,  InputIterator first, InputIterator last);`|`position`으로 지정한 위치 앞에 삽입합니다.|
+|`insert()`|`iterator insert(const_iterator position, const Type& value);`<br/>`iterator insert(const_iterator position, Type&& value);`<br/>`void insert(const_iterator position, size_type count, const Type& value);`<br/>`template <class InputIterator>`<br/>`void insert(const_iterator position,  InputIterator first, InputIterator last);`|`position`으로 지정한 위치 앞에 요소를 삽입합니다.|
 
 # 배열과 vector
 

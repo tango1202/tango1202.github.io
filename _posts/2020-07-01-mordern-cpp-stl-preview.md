@@ -75,14 +75,13 @@ C++11 STL은,
 
 # 컨테이너 라이브러리
 
+각 컨테이너에 `initializer_list`를 이용한 초기화가 추가되었으며, `emplace()` 계열 함수들(요소 개체를 생성해서 전달하는 것이 아니라, 요소 개체의 생성자 인수들을 전달하면 컨테이너 내에서 요소 개체를 직접 생성함)이 추가되었습니다.
+
 |항목|내용|
 |--|--|
 |[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-array/)|`array`는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.|
 |[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-forward_list/)|`forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.|
-
-
-std::undordered_map
-std::unordered_set
+|[unordered_map<br/>unordered_multimap<br/>unordered_set<br/>unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-unordered_map-unordered_set/)|`unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.|
 
 # 이터레이터 라이브러리
 

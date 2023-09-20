@@ -14,6 +14,7 @@ sidebar:
 
 > **모던 C++**
 > * `forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.([forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-forward_list/) 참고)
+> * `unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.([unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-unordered_map-unordered_set/) 참고)
 
 # 개요
 
@@ -74,14 +75,14 @@ class Node {
 
 # 연관 컨테이너
 
-요소의 대소 비교가 필요하며, **Key**로 정렬하여 관리합니다.  
+요소의 대소 비교가 필요하며, **Key**로 정렬하여 관리합니다. 따라서 **Key**로 사용되는 타입은 `bool operator <(const T& other);` 가 구현되어 있어야 합니다.
 
-|항목|내용|
-|--|--|
-|`map`|**Key** - **Value** 쌍으로 관리함.<br/>**Key**에 기반한 **Value**의 빠른 접근 지원<br/>요소 삽입시 `<`에 의해 정렬됨.<br/>삽입되는 **Key**는 유일함<br/>첨자 연산 지원|
-|`multimap`|`map`과 동일하며 중복 **Key**허용<br/>첨자 연산 지원 안함|
-|`set`|**Key**만 요소로 삽입됨|
-|`multiset`|`set`과 동일하며 중복 **Key**허용<br/>
+|항목|내용|**Key** 조건|
+|--|--|--|
+|`map`|**Key** - **Value** 쌍으로 관리하며,  `pair`를 사용함.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고)<br/>이진 트리 탐색으로 요소 탐색(O(logN))<br/>요소 삽입시 `<`에 의해 정렬됨<br/>삽입되는 **Key**는 유일함<br/>첨자 연산 지원|`<` 구현|
+|`multimap`|`map`과 동일하며 중복 **Key**허용<br/>첨자 연산 지원 안함|`<` 구현|
+|`set`|**Key**만 요소로 삽입됨<br/>이진 트리 탐색으로 요소 탐색(O(logN))<br/>요소 삽입시 `<`에 의해 정렬됨<br/>삽입되는 **Key**는 유일함|`<` 구현|
+|`multiset`|`set`과 동일하며 중복 **Key**허용|`<` 구현|
 
 # 컨테이너 선정
 
@@ -169,7 +170,7 @@ EXPECT_TRUE(v[0].m_Val == 0 && v[1].m_Val == 1); // 크기순으로 정렬됩니
 
 **연관 컨테이너의 Key**
 
-연관 컨테이너의 **Key**는 컨테이너에 삽입시 대소 비교하여 정렬하는데 사용되므로, 복사 생성자와 `<`을 지원해야 합니다.(`<`연산자는 [대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)을 충족해야 합니다.)
+연관 컨테이너의 **Key**는 컨테이너에 삽입시 대소 비교하여 정렬하는데 사용되므로, 복사 생성자와 `bool operator <(const T& other);`을 지원해야 합니다.(`<`연산자는 [대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)을 충족해야 합니다.)
 
 ```cpp
 class A {
