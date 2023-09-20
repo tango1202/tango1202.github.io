@@ -13,6 +13,7 @@ sidebar:
 
 > **모던 C++**
 > * 범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.([범위 기반 for](https://tango1202.github.io/mordern-cpp/mordern-cpp-range-for/) 참고)
+> *  `move_iterator` 아답터는 이터레이터가 가리키는 요소를 이동 연산 합니다.([이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-iterator/) 참고)
 
 # 개요
 
@@ -214,3 +215,33 @@ Fill(std::back_inserter(v), 5, 7); // 표준 유틸리티 함수 사용
 
 EXPECT_TRUE(v[0] == 7 && v[1] == 7 && v[2] == 7 && v[3] == 7 && v[4] == 7);
 ```
+
+# 이터레이터 아답터
+
+역방향 이터레이터나 삽입 이터레이터와 같이 이터레이터의 고유 기능인 `*`, `->`, `++`을 재구현하여 다르게 동작하는 이터레이터들입니다.
+
+|항목|내용|
+|--|--|
+|`reverse_iterator`|역방향으로 이터레이트 합니다.|
+|`back_insert_iterator`|컨테이너 끝에 삽입합니다.|
+|`back_inserter()`|`back_insert_iterator`를 생성합니다.|
+|`front_insert_iterator`|컨테이너 앞에 삽입합니다.|
+|`front_inserter()`|`front_insert_iterator`를 생성합니다.|
+|`insert_iterator`|컨테이너에 삽입합니다.|
+|`inserter()`|`insert_iterator`를 생성합니다.|
+
+# 스트림 이터레이터
+
+|항목|내용|
+|--|--|
+|`istream_iterator`|`basic_istream`에서 사용하는 입력용 이터레이터|
+|`ostream_iterator`|`basic_ostream`에서 사용하는 출력용 이터레이터|
+|`istreambuf_iterator`|`basic_streambuf`에서 사용하는 입력용 이터레이터|
+|`ostreambuf_iterator`|`basic_streambuf`에서 사용하는 출력용 이터레이터|
+
+# 이터레이터 유틸리티
+
+|항목|내용|
+|--|--|
+|`advance()`|이터레이터를 이동시킵니다.|
+|`distance()`|이터레이터간 거리를 구합니다.|
