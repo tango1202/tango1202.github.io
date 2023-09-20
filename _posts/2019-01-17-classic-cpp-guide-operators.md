@@ -16,7 +16,7 @@ sidebar:
 > * `int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.([사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/) 참고)
 > * `sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.([sizeof…() 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
 > * `sizeof()`가 개체를 인스턴스화 하지 않더라도 멤버의 크기를 구할 수 있도록 개선되었습니다.([멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/) 참고)
-> * `type_index`는 `type_info`의 래퍼로서 컨테이너에서 관리할 수 있게 합니다.([type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/) 참고)
+> * `type_index`는 `type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.([type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/) 참고)
 > * `addressof()`는 operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.([addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-memory/#addressof) 참고)
 
 # 대입 연산자

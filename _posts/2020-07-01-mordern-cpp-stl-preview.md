@@ -32,7 +32,7 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
-|[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/)|`type_index`는 `type_info`의 래퍼로서 컨테이너에서 관리할 수 있게 합니다.|
+|[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/)|`type_index`는 `type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.|
 
 # 컨셉 라이브러리
 
@@ -95,19 +95,9 @@ C++11 STL은,
 
 # 알고리즘 라이브러리
 
-std::all_of, std::any_of, std::none_of,
-std::find_if_not,
-std::copy_if, std::copy_n,
-std::move, std::move_backward,
-std::random_shuffle, std::shuffle,
-std::is_partitioned, std::partition_copy, std::partition_point,
-std::is_sorted, std::is_sorted_until,
-std::is_heap, std::is_heap_until,
-std::minmax, std::minmax_element,
-std::is_permutation,
-std::iota,
-std::uninitialized_copy_n
-
+|항목|내용|
+|--|--|
+|C++11|이동 연산 및 일부 알고리즘들이 보강되었습니다.([알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/) 참고)|
 
 # 문자열 라이브러리
 
