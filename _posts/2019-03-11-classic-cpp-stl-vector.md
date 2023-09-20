@@ -12,7 +12,7 @@ sidebar:
 > * `vector<bool>`은 사용하지 마라.
 
 > **모던 C++**
-> * `array`는 기존 C스타일의 배열처럼 컴파일 타임에 크기가 결정되는 연속된 메모리를 사용하는 컨테이너 입니다. 요소 추가/삭제가 없는 경우 사용할 수 있으며, `vector` 보다 성능이 좋습니다.([array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-array/) 참고)
+> * `array`는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.([array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-array/) 참고)
 
 # 개요
 

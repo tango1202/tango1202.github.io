@@ -72,7 +72,7 @@ EXPECT_TRUE(hashStr1 != hashStr3); // 다른값은 해시값도 다릅니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d09989e0-edf0-4373-afaa-17056b5c3d0c)
 
-# 헤시 컨테이너
+# 해시 컨테이너
 
 1. `vector`는 순차 탐색을 하기 때문에 O(N)의 시간이 걸리고,
 2. `set`이나 `map` 등은 이진 탐색을 하기 때문에 O(logN)이 걸리고,

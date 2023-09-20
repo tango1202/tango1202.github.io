@@ -77,10 +77,10 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
-|[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-array/)|`array`는 기존 C스타일의 배열처럼 컴파일 타임에 크기가 결정되는 연속된 메모리를 사용하는 컨테이너 입니다. 요소 추가/삭제가 없는 경우 사용할 수 있으며, `vector` 보다 성능이 좋습니다.|
+|[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-array/)|`array`는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.|
+|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-forward_list/)|`forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.|
 
 
-std::forward_list
 std::undordered_map
 std::unordered_set
 

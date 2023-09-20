@@ -30,10 +30,10 @@ d = 10;
 std::vector<int> v;
 
 // std::vector<int>::iterator itr = v.begin(); 
-// std::vector<int>::iterator itrEnd = v.end();
+// std::vector<int>::iterator endItr = v.end();
 
 auto itr = v.begin(); // 템플릿 사용에 따른 긴 타입명 간소화
-auto itrEnd = v.end();
+auto endItr = v.end();
 ```
 
 함수 인자 정의시에는 사용할 수 없습니다.(인자에 `auto`를 쓰면 오버로딩 결정이 좀 애매해 질 수 있거든요. [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고)
