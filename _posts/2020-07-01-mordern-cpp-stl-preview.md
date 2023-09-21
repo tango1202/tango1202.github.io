@@ -101,38 +101,41 @@ C++11 STL은,
 
 # 문자열 라이브러리
 
-유니코드 문자열
+|항목|내용|
+|--|--|
+|[std::u16string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4)|`std::basic_string<char16_t>` UTF-16 인코딩을 지원합니다.|
+|[std::u32string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4)|`std::basic_string<char32_t>` UTF-32 인코딩을 지원합니다.|
+|[std::u8string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t-stdu8string) (C++20~)|`std::basic_string<char8_t>` UTF-8 인코딩을 지원합니다.|
 
 # 동시성 라이브러리
 
-
-<thread>
-<mutex>
-<condition_variable>
-<atomic>
-<future>
+thread
+mutex
+condition_variable
+atomic
+future
 
 # 수치 라이브러리
 
-<random>
-<ratio>
+random
+ratio
 
 # 진단 라이브러리
 
 std::exception_ptr
 std::error_code
 std::error_condition
-<system_error>
+system_error
 
 # 날짜 / 시간 라이브러리
-<chrono>
+chrono
 
 # 정규 표현식 라이브러리
-<regex>
+regex
 
 # 현지화 라이브러리
 
-<codecvt>
+codecvt
 
 # 입출력 라이브러리
 
@@ -140,10 +143,10 @@ std::error_condition
 
 # C 라이브러리 지원
 
-<cfenv>
-<cinttype>
-<cstdint>
-<cuchar>
+cfenv
+cinttype
+cstdint
+cuchar
 
 # deprecate/remove
 
