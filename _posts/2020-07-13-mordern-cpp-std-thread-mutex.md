@@ -85,6 +85,7 @@ worker2.join(); // worker2가 종료될때까지 기다립니다.
 ```
 
 다음은 실행 결과입니다. 시스템 상황에 따라 다를 겁니다만, `Message1()` 함수의 출력과 `Message2()` 함수의 출력이 동시에 실행되다 보니 섞여서 나오는 걸 알 수 있습니다. 재밌게도, `Message1()` 함수가 `std::cout<<"Message1 : "<<i` 까지 출력하고, `<<std::endl;`를 출력하기 직전에, `Message2()의 ` `std::cout<<"Message2 : "<<i<<std::endl;`가 호출된 것을 알 수 있습니다. 
+
 ```cpp
 Message1 : 0
 Message1 : 1Message2 : 0 // Message1()의 <<std::endl; 직전에 Message2()가 실행됨
@@ -109,6 +110,7 @@ Message2 : 9
 3. `ThreadSum()` 함수를 2개의 쓰레드를 이용하여 `[시작 ~ 중간)` 과 `[중간 ~ 끝)`을 `Sum()`함수를 이용하여 각각 계산한 후 최종적으로 이 둘을 더해 리턴합니다.
 4. `CheckMicrosecond()`함수는 전달된 함수를 실행하고 실행 시간을 측정합니다. 실행시킬 함수에 인자를 전달하기 위해 가변 템플릿을 사용합니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
 5. 인자의 참조성 유지를 위해 `std::ref()`를 사용합니다.([ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#ref-cref) 참고)
+   
 ```cpp
 void Sum(std::vector<int>::iterator itr, std::vector<int>::iterator endItr, int& result) {
     result = 0;
