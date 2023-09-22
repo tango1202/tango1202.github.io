@@ -109,6 +109,14 @@ C++11 STL은,
 
 # 동시성 라이브러리
 
+|항목|내용|
+|--|--|
+|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#thread)|`thread`는 주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
+|[mutex<br/>timed_mutex<br/>recursive_mutex<br/>recursive_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#mutex)<br/>shared_timed_mutex (C++14~)<br/>shared_mutex (C++17~)|`mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
+|[lock_guard<br/>unique_lock<br/>lock()<>try_lock(br/)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#lock)<br/>shared_lock (C++14~)<br/>scope_lock (C++17~)|`lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.|
+|[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#call_once-once_flag)|`call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
+|[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-condition_variable)|`condition_variable`은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
+
 thread
 mutex
 condition_variable

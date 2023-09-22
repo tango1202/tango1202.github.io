@@ -58,7 +58,7 @@ sidebar:
 |--|--|
 |`joinable()`|`thread`가 동작중인지 확인합니다.|
 |`get_id()`|`thread`의 아이디를 구합니다.|
-|`native_handle()`|구현에 정의된 시스템에 따른 기본 쓰레드 핸들을 리턴합니다.|
+|`native_handle()`|시스템에 따른 구현에 정의된 기본 쓰레드 핸들을 리턴합니다.|
 |`hardware_concurrency()`|시스템이 지원하는 동시 쓰레드 수를 리턴합니다.|
 |`join()`|`thread`가 종료될때까지 기다립니다.|
 |`detach()`|`thread`가 실행되도록 내버려 둡니다.|
@@ -223,13 +223,39 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 
 # mutex
 
-`mutex`는 공유 자원 접근을 하나의 쓰레드에서만 처리할 수 있도록 해주는 동기화 개체입니다.
+`mutex`는 공유 자원 접근을 하나의 쓰레드에서만 처리할 수 있도록 해주는 동기화 개체입니다. 다음과 같은 개체들이 제공됩니다.
+
+|항목|내용|
+|--|--|
+|`mutex`|`mutex`는 공유 자원 접근을 하나의 쓰레드에서만 처리할 수 있도록 해주는 동기화 개체입니다.|
+|`timed_mutex`|`try_lock_for()`나 `try_lock_until()`등으로 주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 `mutex`입니다.|
+|`recursive_mutex`|동일한 쓰레드 내에서 재귀적으로 `lock()`을 할 수 있는 `mutex`입니다.|
+|`recursive_timed_mutex`|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 재귀적 `mutex`입니다.|
+|`shared_timed_mutex` (C++14~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 다른 쓰레드들과 공유할 수 있는 `mutex`입니다.|
+|`shared_mutex` (C++17~)|다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 `mutex`입니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.|
+
+`mutex`에는 다음과 같은 멤버 함수가 있습니다.
 
 |항목|내용|
 |--|--|
 |`lock()`|현 쓰레드만 접근 가능하고, 다른 쓰레드는 대기시킵니다.|
 |`try_lock()`|`lock()`을 시도하고, 만약 다른 쓰레드에 의해 대기된다면, `false`를 리턴합니다.|
 |`unlock()`|`lock()`을 해제하여 다른 쓰레드에서도 자원을 사용할 수 있게 합니다.|
+
+
+# lock
+
+`mutex`는 `lock()`과 `unlock()`을 통해 다른 쓰레드들의 접근을 차단/해제합니다. 다음과 같은 유틸리티 개체와 함수들이 있습니다.
+
+|항목|내용|
+|--|--|
+|`lock_guard`|개체 생성시 `lock()`을 하고, 개체 소멸시 `unlock()` 합니다.|
+|`unique_lock`|`lock_guard` 처럼 생성시 자동으로 잠글 수도 있고, 별도로 `lock()`을 호출해야 잠글 수도 있습니다.|
+|lock 옵션|`defer_lock` : `lock()` 호출시 잠금이 됩니다.<br/>`try_to_lock` : 잠금시 `try_lock()`을 사용합니다.<br/>`adopt_lock` : 해당 쓰레드가 이미 `lock()`을 했다고 가정하고, `unlock()`만 합니다.|
+|`lock()`|여러개의 `mutex`를 `lock()`합니다.|
+|`try_lock()`|여러개의 `mutex`를 `try_lock()`합니다.|
+|`shared_lock` (C++14~)|(작성중)|
+|`scope_lock` (C++17~)|(작성중)|
 
 # mutex - 경쟁 상태(Race Condition) 해결
 
@@ -434,29 +460,6 @@ std::thread worker2{std::mem_fn(&A::Reset), std::ref(a), std::ref(myMutex), std:
 worker1.join(); 
 worker2.join(); 
 ```
-
-# mutex 종류
-
-|항목|내용|
-|--|--|
-|`mutex`|`mutex`는 공유 자원 접근을 하나의 쓰레드에서만 처리할 수 있도록 해주는 동기화 개체입니다.|
-|`timed_mutex`|`try_lock_for()`나 `try_lock_until()`등으로 주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 `mutex`입니다.|
-|`recursive_mutex`|동일한 쓰레드 내에서 재귀적으로 `lock()`을 할 수 있는 `mutex`입니다.|
-|`recursive_timed_mutex`|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 재귀적 `mutex`입니다.|
-|`shared_mutex` (C++17~)|다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 `mutex`입니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.|
-|`shared_timed_mutex` (C++14~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 다른 쓰레드들과 공유할 수 있는 `mutex`입니다.|
-
-# lock 종류
-
-|항목|내용|
-|--|--|
-|`lock_guard`|개체 생성시 `lock()`을 하고, 개체 소멸시 `unlock()` 합니다.|
-|`unique_lock`|`lock_guard` 처럼 생성시 자동으로 잠글 수도 있고, 별도로 `lock()`을 호출해야 잠글 수도 있습니다.|
-|lock 옵션|`defer_lock` : `lock()` 호출시 잠금이 됩니다.<br/>`try_to_lock` : 잠금시 `try_lock()`을 사용합니다.<br/>`adopt_lock` : 해당 쓰레드가 이미 `lock()`을 했다고 가정하고, `unlock()`만 합니다.|
-|`lock()`|여러개의 `mutex`를 `lock()`합니다.|
-|`try_lock()`|여러개의 `mutex`를 `try_lock()`합니다.|
-|`shared_lock` (C++14~)||
-|`scope_lock` (C++17~)||
 
 # call_once(), once_flag
 
