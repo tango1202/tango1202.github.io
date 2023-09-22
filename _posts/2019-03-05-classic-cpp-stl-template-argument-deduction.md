@@ -10,6 +10,7 @@ sidebar:
 
 > * 오버로딩 시에는 `T`보다는 `T*` 보다는 `const T*`가 선택된다.
 > * 연산자 오버로딩 함수는 비멤버 템플릿 함수로 작성하라.
+> * 템플릿 함수 인수 추론시 `T&`는 `T`로 추론된다.
 
 # 개요
 
@@ -20,7 +21,7 @@ sidebar:
 
 # 템플릿 함수 인수 추론
 
-인수가 생략된 경우 누락된 인수를 추론합니다.
+`<>`내의 인수가 생략됐거나 `<>`가 아예없는 경우 경우 누락된 인수를 추론합니다.
 
 ```cpp
 template<typename T, typename U>
@@ -29,6 +30,21 @@ T f(T, U) {return 2;}
 f<int>(0, (double)0); // int f(int, double)
 f<double>(0, (int)0); // double f(double, int)
 f(0, 0); // int f(int, int)
+```
+
+값 타입과 포인터 타입은 타입 그대로, 참조자는 참조성을 제거하고 추론합니다. 단 명시적으로 참조자를 작성하면 참조자로 사용할 수 있습니다.
+
+```cpp
+template<typename T, typename U, typename V>
+void f(T, U, V) {}
+
+int val = 0;
+int* ptr = NULL;
+int& ref = val;
+
+f(val, ptr, ref); // f<int, int*, int>(int, int*, int). 참조자가 제거됩니다.
+
+f<int, int*, int&>(val, ptr, ref); // f<int, int*, int&>(int, int*, int&). 명시적으로 지정하면 참조자로 사용됨
 ```
 
 배열 인수는 포인터로 추론합니다.
@@ -41,7 +57,7 @@ int arr[3];
 // Argument : int[3] -> int*로 조정 
 // T : int* 
 // Parameter : int*
-f(arr);
+f(arr); // f<int*>(int*)
 ```
 
 함수는 함수 포인터로 추론합니다.
@@ -55,7 +71,7 @@ void Func(int) {}
 // Argument : void (*)(int) 
 // T : void (*)(int) 
 // Parameter : void (*)(int)
-f(Func);
+f(Func); // // f<void (*)(int)>(void (*)(int))
 ```
 
 최상위 `const`는 무시됩니다.([오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고)
@@ -67,7 +83,7 @@ const int a = 0;
 // Argument : const int -> int로 조정 
 // T : int 
 // Parameter : int
-f(a);
+f(a); // f<int>(int)
 ```
 
 참조자의 참조자는 참조자가 될 수 있도록 변환합니다.
@@ -82,12 +98,12 @@ int& b = a;
 // Argument : int 
 // T : int 
 // Parameter : const int&
-f(a);
+f(a); // f<int>(const int&)
 
 // Argument : int& 
 // T : int 
 // Parameter : const int&
-f(b);
+f(b); // f<int>(const int&)
 ```
 
 포인터의 포인터가 중첩되어 만들어지지 않도록 변환합니다.
@@ -102,8 +118,8 @@ int* b = &a;
 // Argument : int* 
 // T : int 
 // Parameter : const int*
-f(&a);
-f(b);
+f(&a); // f<int>(const int*)
+f(b); // f<int>(const int*)
 ```
 
 자식 개체는 부모 개체로 조정될 수 있습니다.
@@ -122,7 +138,7 @@ Derived<int> d;
 // Argument : Derived<int>* -> Base<int>* 로 조정 
 // T : int 
 // Parameter : Base<int>*
-f(&d);
+f(&d); // f<int>(Base<int>*)
 ```
 
 다른 인수의 추론으로 부터 추론될 수 있습니다.
@@ -146,7 +162,7 @@ Other<int> other;
 // Parameter1 : Other<int>
 // Argument2 : int -> Argument1에서 T가 int로 추론되어 Another<int>::Type 확인 
 // Parameter2 : int
-f(other, 10);
+f(other, 10); // f<int>(Other<int>, int)
 ```
 
 템플릿의 인자 타입이 정확히 일치하지 않으면 추론할 수 없습니다. 하기에서 `A<10>`에서 `10`은 `int` 타입이기 때문에 `short`를 사용하는 `f()` 함수로 전달할 수 없습니다. 

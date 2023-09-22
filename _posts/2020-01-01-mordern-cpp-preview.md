@@ -42,7 +42,7 @@ C++11은,
 |--|--|
 |[타입 형식](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/)|타입 형식 체계를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.|
 |[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)|`noexcept` 를 이용하여 예외 발생이 없는 함수인 nothrow 보증을 할 수 있습니다.<br/>소멸자는 기본적으로 `noexcept`로 동작합니다.|
-|[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)|`nullptr` 리터럴이 추가되어 좀더 타입 안정적인 코딩 계약이 가능해 졌습니다.|
+|[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)|`nullptr` 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.|
 |[명시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)|`explicit` 형변환 연산자를 추가하여 명시적으로 형변환 할 수 있습니다.|
 |[default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)| `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.|
 |[override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)|`override`가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.|

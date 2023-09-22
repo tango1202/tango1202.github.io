@@ -46,7 +46,7 @@ sidebar:
 
 주어진 식별자를 대체 목록으로 치환합니다. 흔히 정수형 상수, 실수형 상수, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)에 이름을 붙이거나 [타입의 별칭](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)을 작성하기 위해 사용합니다. 
 
-하지만, 단순 치환이기 때문에 뜻하지 않게 타입 안정성을 해칠 수 있고, 이름 충돌로 인한 오류 발생도 높기 때문에 사용하지 않는게 좋습니다.
+하지만, 단순 치환이기 때문에 뜻하지 않게 타입 안전성을 해칠 수 있고, 이름 충돌로 인한 오류 발생도 높기 때문에 사용하지 않는게 좋습니다.
 
 ```cpp
 #define SUNDAY 0 // (△) 비권장. enum Val {Sunday, Monday, Tuesday}; 가 낫다

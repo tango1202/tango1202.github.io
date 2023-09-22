@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, 암시적 대입 연산자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 스마트 포인터([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등)를 사용하고, 필요없다면 못쓰게 만들어라.
-> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 대입 연산자를 예외에 안정적이도록 `swap`으로 구현하고, 필요없다면 못쓰게 만들어라.
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 대입 연산자를 예외에 안전하도록 `swap`으로 구현하고, 필요없다면 못쓰게 만들어라.
 
 > **모던 C++**
 > * 이동 연산을 위해 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.([우측값 참조, 이동 생성자, 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
@@ -71,7 +71,7 @@ T& operator =(const T& other) {
 1. 임시 개체를 만든 뒤,
 2. `swap`을 이용해 `this`와 임시 개체를 바꿔치기하여,
 
-예외에 안정적인 대입 연산자를 구현할 수 있습니다.
+예외에 안전한 대입 연산자를 구현할 수 있습니다.
 
 ```cpp
 class T {
@@ -364,7 +364,7 @@ public:
 class T {
     // (O) IntPtr로 복사 생성과 대입시 포인터의 복제본을 만들고, 소멸시 IntPtr에서 delete 합니다.
     // (O) 암시적 복사 생성자에서 정상 동작하므로, 명시적으로 복사 생성자를 구현할 필요가 없습니다.
-    // (O) 포인터 멤버 변수가 2개 있어, 예외에 안정적이지 않으므로 swap으로 대입 연산자를 구현합니다.
+    // (O) 포인터 멤버 변수가 2개 있어, 예외에 안전하지 않으므로 swap으로 대입 연산자를 구현합니다.
     IntPtr m_Val1;
     IntPtr m_Val2;
 public:

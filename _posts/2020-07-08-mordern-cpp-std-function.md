@@ -106,7 +106,126 @@ EXPECT_TRUE(add(obj, 1, 2) == 3); // obj.Add(1, 2);를 호출합니다.
 
 # reference_wrapper
 
-`reference_warapper` 는 복사나 대입이 안되는 참조자를 래핑합니다. 이를 활용하면, 참조자를 컨테이너 요소로 사용할 수 있습니다.
+`reference_warapper` 는 복사나 대입이 안되는 참조자를 래핑하여 복사/대입이 가능하게 하고, 참조성을 유지시켜 줍니다. 
+
+`get()`으로 관리하는 참조자를 구할 수 있으며, 다른 참조자 생성시 `operator T&() const` 을 이용한 암시적 형변환을 통해 참조자를 대입합니다.(암시적 형변환이 필요하여 `{}`는 안됩니다.) 
+
+```cpp
+int a{0};
+std::reference_wrapper<int> rw(a);
+
+rw.get() = 10; // reference_wrapper가 관리하는 참조자에 값 대입
+EXPECT_TRUE(a == 10);
+
+int& b = rw; // 참조자 생성시 암시적 형변환을 통해 reference_wrapper가 관리하는 참조자 대입
+b = 20;
+EXPECT_TRUE(a == 20);
+```
+
+**템플릿 함수 인수 추론시의 참조성**
+
+템플릿 함수 인수 추론시에는 참조자의 참조성을 제거하고 추론합니다.([템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 참고)
+
+다음 `Assign()` 함수는 당연히 인수로 전달한 `a`의 값을 수정합니다. 인자가 `int&` 타입 이니까요.
+
+```cpp
+void Assign(int& obj, int val) {
+    obj = 10;
+}
+
+int a{0};
+Assign(a, 10); // 참조성이 유지되어 a값이 수정됩니다.
+EXPECT_TRUE(a, 10);
+```
+
+이걸 템플릿으로 바꿔보면, `T == int`여서 `Assign()`은 `a`의 복제본인 `obj`를 사용합니다. `a`가 `int` 타입이니 당연한 결과입니다.
+
+```cpp
+template<typename T>
+void Assign(T obj, int val) {
+    obj = 10;
+}
+
+int a{0};
+Assign(a, 10); // (X) 오동작. T == int 여서 a의 복제본이 사용됩니다. 참조성이 깨졌습니다.
+EXPECT_TRUE(a == 0);   
+```
+
+하지만, 강제로 참조자로 바꿔도, 인수 `int&`는 `int`로 추론되기 때문에 `T == int` 가 되어 `obj`는 `a`의 복제본입니다. 즉, 참조자를 인식하지 못합니다.
+
+```cpp
+int a{0};
+int& ref{a}; // 강제로 참조자로 만들었습니다.
+Assign(ref, 10); // (X) 오동작. 여전히 T == int 여서 ref의 복제본이 사용됩니다. 참조성이 깨졌습니다.
+EXPECT_TRUE(a == 0);  
+```
+
+그래서 다음처럼 `T&`로 작성했습니다.
+
+```cpp
+template<typename T>
+void Assign(T& obj, int val) { // 참조자입니다.
+    obj = 10;
+}
+
+int a{0};
+Assign(a, 10); // (O) 
+EXPECT_TRUE(a == 10);  
+```
+
+**인수의 참조성 유지**
+
+템플릿 인자에 `T&`를 사용해서 억지로 참조성을 유지할 수는 있지만, 일반적이지는 못합니다.
+
+다음처럼 호출하려는 함수와 함수의 인수들을 전달받아 함수를 호출하는 `Forwarding()` 함수를 만들었다고 합시다. 
+
+```cpp
+// func(params...) 를 호출합니다.
+template<typename Func, typename... Params>
+void Forwarding(Func func, Params... params) {
+    func(params...);
+}  
+```
+
+`void f(int, int*);` 와 같은 함수는 잘 호출됩니다만, 참조자를 사용하면 문제가 생깁니다. 
+
+인수가 `T`던, `T&` 던 `Forwarding()` 함수에서는 인자를 `T`로 취급해 복제본을 사용해 버리니까요. `func()`호출시 복제된 인자를 사용하기 때문에, 참조성은 깨져버립니다.
+
+이럴때 `reference_wrapper`를 사용하면, `Forwarding()` 함수가 `reference_wrapper`를 복제해 버리더라도, 내부적으로는 개체의 참조자를 관리하므로, 참조성을 유지할 수 있습니다. 
+
+```cpp
+void Assign(int& obj, int val) {
+    obj = 10;
+} 
+
+// func(params...) 를 호출합니다.
+template<typename Func, typename... Params>
+void Forwarding(Func func, Params... params) {
+    func(params...);
+} 
+
+int a{0};
+
+// (X) 오동작. 
+// int 타입을 전달했기 때문에 Forwarding()의 파라메터 팩에서 int 타입으로 간주하여 복제본을 만들어 Assign()에 전달합니다.
+Forwarding(Assign, a, 10); 
+EXPECT_TRUE(a == 0);  
+
+int& ref{a};
+// (X) 오동작. 
+// int& 타입을 전달했기 때문에 Forwarding()의 파라메터 팩에서 int 타입으로 간주하여 복제본을 만들어 Assign()에 전달합니다.
+Forwarding(Assign, ref, 10); 
+EXPECT_TRUE(a == 0);        
+
+// (O) 참조성이 유지됩니다.
+std::reference_wrapper<int> rw{a};
+Forwarding(Assign, rw, 10); 
+EXPECT_TRUE(a == 20);  
+```
+
+**컨테이너 요소 활용**
+
+또한, 참조자를 컨테이너 요소로 사용할 수 있습니다.
 
 ```cpp
 int a{1};
@@ -195,8 +314,9 @@ auto func3{
 };
 EXPECT_TRUE(func3(4, 5) == 1 + 4 + 5);
 ```
+# bind() 와 인수의 참조성 유지
 
-`bind()`는 인자를 복사하기 때문에, 만약 참조를 사용하는 함수를 사용한다면,  오동작하게 됩니다.
+`bind()`는 인수를 복사하기 때문에, 만약 참조자를 사용하는 함수라면 오동작하게 됩니다.
 
 ```cpp
 // 인자들의 값을 1씩 증가시킵니다.
@@ -211,14 +331,15 @@ int b{2};
 int c{3};
 
 std::function<void()> add{
-    std::bind(Add, a, b, c) // 복사 대입합니다.
+    std::bind(Add, a, b, c) // a, b, c를 복제합니다.
 };
 add();
-// (X) 런타임 오류. 복사 대입하기 때문에 값이 변하지 않았습니다.
+// (X) 오동작. bind()에서 인수를 복제했기 때문에 참조성이 깨졌습니다.
 EXPECT_TRUE(a == 1 && b == 2 && c == 3);
 ```
 
-이런 경우 참조자로 잘 전달되도록 `reference_wrapper`를 전달하여야 하며, `ref()`나 `cref()`를 이용합니다.
+이런 경우 복제되더라도 참조성을 잃지 않도록 `reference_wrapper`를 전달하여야 하며, `ref()`나 `cref()`를 이용합니다.
+
 ```cpp
 int a{1};
 int b{2};
