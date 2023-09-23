@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++ STL] (C++11~) forward_list"
+title: "#12. [모던 C++ STL] (C++11~) forward_list"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -16,7 +16,7 @@ sidebar:
 
 `forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다. 이에 따라 가장 마지막에 입력된 요소의 위치가 `begin()`이 됩니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/07c88686-3a16-4f69-91d8-3f9c8a6e6ecc)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c411bb39-a809-4321-80e5-7ad00250a337)
 
 1. 역방향 이터레이터가 없으며(`rbegin()`, `rend()`, `crbegin()`, `crend()`),
 2. `forward_list`에서 마지막에 입력된 요소 제어를 위해 `before_begin()`이 제공되며,
@@ -26,19 +26,19 @@ sidebar:
 |항목|공통|`forward_list`|`list`|
 |--|--|--|--|
 |첫번째 요소|`front()`|O|O|
-|마지막 요소|`forward_list`는 단방향이어서 제공 안함|X|`back()`|
-|순방향 이터레이터|`begin()`, `end()`<br/>`cbegin()`, `cend()`<br/>`forward_list`에서는 마지막에 입력된 요소가 `begin()`이고, `list`에서는 처음 입력된 요소가 `begin()`임|O|O|
-|역방향 이터레이터|`forward_list`는 단방향이어서 제공 안함|X|`rbegin()`, `rend()`<br/>`crbegin()`, `crend()`|
-|`begin()`의 앞 이터레이터|`forward_list`에서 마지막에 입력된 요소 제어를 위해 제공|`before_begin()`|X|
+|마지막 요소|`forward_list`는 단방향이어서 제공 안합니다.|X|`back()`|
+|순방향 이터레이터|`begin()`, `end()`<br/>`cbegin()`, `cend()`<br/>`forward_list`에서는 마지막에 입력된 요소가 `begin()`이고, `list`에서는 처음 입력된 요소가 `begin()`입니다.|O|O|
+|역방향 이터레이터|`forward_list`는 단방향이어서 제공 안합니다.|X|`rbegin()`, `rend()`<br/>`crbegin()`, `crend()`|
+|`begin()`의 앞 이터레이터|`forward_list`에서 마지막에 입력된 요소 제어를 위해 제공합니다.|`before_begin()`|X|
 |리스트가 비었는지 검사|`empty()`|O|O|
-|요소 갯수|`forward_list`에서는 제공하지 않음|X|`size()`|
+|요소 갯수|`forward_list`에서는 제공하지 않습니다.|X|`size()`|
 |리스트의 최대 요소 갯수|`max_size()`|O|O|
 |모든 요소 삭제|`clear()`|O|O|
 |이터레이터로 요소 삭제|`forward_list`는 주어진 위치 뒤의 요소를 삭제하고, `list`는 주어진 위치의 요소를 삭제함|`erase_after()`|`erase()`|
 |값으로 요소 삭제|`remove()`<br/>`removeif()`|O|O|
-|삽입|`forward_list`는 주어진 위치 뒤에 삽입하고, `list`는 앞에 삽입함.|`insert_after()`<br/>`emplace_after()`|`insert()`<br/>`emplace()`|
+|삽입|`forward_list`는 주어진 위치 뒤에 삽입하고, `list`는 앞에 삽입합니다.|`insert_after()`<br/>`emplace_after()`|`insert()`<br/>`emplace()`|
 |앞에 추가/삭제|`push_front()`<br/>`emplace_front()`<br/>`pop_front()`|O|O|
-|뒤에 추가/삭제|`forward_list`는 단방향이어서 제공 안함|X|`push_back()`<br/>`emplace_back()`<br/>`pop_back()`|
+|뒤에 추가/삭제|`forward_list`는 단방향이어서 제공 안합니다.|X|`push_back()`<br/>`emplace_back()`<br/>`pop_back()`|
 |요소 크기 재설정|`resize()`|O|O|
 |바꿔치기|`swap()`|O|O|
 |리스트 병합|`merge()`|O|O|
@@ -92,5 +92,36 @@ for(auto val : list) {
     v.push_back(val);
 }
 EXPECT_TRUE(v[0] == 2); // begin 다음부터 이동했으므로 2만 남았습니다.
-
 ```
+
+# forward_list 멤버 함수
+
+|항목|내용|
+|--|--|
+|`=`|(작성중)|
+|`assign()`|(작성중)|
+|`assign_range()` (C++23~)|(작성중)|
+|`get_allocator()`|(작성중)| 
+|`front()`|(작성중)|
+|`before_begin()`<br/>`cbefore_begin()`|(작성중)|
+|`begin()`<br/>`end()`|(작성중)|
+|`cbegin()`<br/>`cend()`|(작성중)|
+|`clear()`|(작성중)|
+|`insert_after()`|(작성중)|
+|`emplace_after()`|(작성중)|
+|`insert_range_after()` (C++23~)|(작성중)|
+|`erase_after()`|(작성중)|
+|`push_front()`|(작성중)|
+|`emplace_front()`|(작성중)|
+|`prepend_range()`(C++23~)|(작성중)|
+|`pop_front()`|(작성중)|
+|`resize()`|(작성중)|
+|`swap()`|(작성중)|
+|`merge()`|(작성중)|
+|`splice_after()`|(작성중)|
+|`remove()`<br/>`remove_if()`|(작성중)|
+|`reverse()`|(작성중)|
+|`unique()`|(작성중)|
+|`sort()`|(작성중)|
+|`==`<br/>`!=` (C++11~C++20)<br/>`<` (C++11~C++20)<br/>`<=` (C++11~C++20)<br/>`>` (C++11~C++20)<br/>`>=` (C++11~C++20)<br/>`<=>` (C++20~)|(작성중)|
+|`erase()` (C++20~)<br/>`erase_if()` (C++20~)|(작성중)|

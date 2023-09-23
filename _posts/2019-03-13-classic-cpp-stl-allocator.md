@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [고전 C++ STL] 할당자(Allocator)"
+title: "#13. [고전 C++ STL] 할당자(Allocator)"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false

@@ -34,6 +34,25 @@ int val{Sum(1, 3, 5)};
 EXPECT_TRUE(val == 1 + 3 + 5); 
 ```
 
+또한, 다음처럼 포워딩 함수를 손쉽게 만들 수 있습니다.
+
+```cpp
+
+// func(params...) 를 호출합니다.
+template<typename Func, typename... Params>
+int Forwarding(Func func, Params... params) {
+    return func(params...);
+}
+
+int MySum(int a, int b, int c) {
+    return a + b + c;
+}
+
+EXPECT_TRUE(Forwarding(MySum, 1, 2, 3) == 1 + 2 + 3);
+```
+
+다만 `Forwarding()` 함수에서 인자를 전달할때 참조자 타입은 참조성이 제거되어 전달되기 때문에 [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#reference_wrapper)를 이용해야 합니다.([reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#reference_wrapper) 참고)
+
 # sizeof...() 연산자
 
 C++11 부터는 `sizeof...()` 연산자가 추가되었습니다.

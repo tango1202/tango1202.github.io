@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [모던 C++ STL] (C++11~) function, bad_function_call, mem_fn(), 참조자 래핑, bind()"
+title: "#9. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), 참조자 래핑, bind())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -8,9 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
-> * `function`은 `()`로 호출 가능한 개체를 저장합니다.
+> * `function`은 `()`로 호출 가능한 함수자를 저장합니다.
 > * `function`에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.
-> * `mem_fun()`은 인자가 있는 멤버 함수도 호출하는 있는 함수자를 만들어 줍니다.
+> * `mem_fn()`은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.
 > * `reference_warapper` 는 복사나 대입이 안되는 참조자를 래핑합니다.
 > * `ref()`, `cref()`는 `reference_wrapper` 개체를 생성합니다.
 > * `bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
@@ -49,7 +49,7 @@ std::find_if(
 );
 ```
 
-이에 따라 C++11 부터는 기존의 까다로웠던 [함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)를 deprecate 하고,  `function` 개체를 추가하여 `()`로 호출 가능한 개체들을 다룰 수 있게 했습니다.
+이에 따라 C++11 부터는 기존의 까다로웠던 [함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)를 deprecate 하고,  `function` 개체를 추가하여 `()`로 호출 가능한 함수자들을 다룰 수 있게 했습니다.
 
 `function` 개체는 다음 개체들을 저장할 수 있습니다.
 
@@ -69,6 +69,29 @@ auto itr{std::find_if(
 };
 EXPECT_TRUE(*itr == 4); 
 ```
+# 함수자 유틸리티
+
+|항목|내용|
+|--|--|
+|`function`|`()`로 호출 가능한 함수자를 저장합니다.|
+|`bad_function_call`|`()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
+|`mem_fn()`|인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.|
+|`move_only_function` (C++23~)|(작성중)|
+|`copyable_function` (C++26~)|(작성중)|
+|`function_ref` (C++26~)|(작성중)|
+|`bind()`|`placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, … `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.|
+|`is_bind_expression`|`bind()`로 생성한 함수인지 검사합니다.|
+|`is_placeholder`|자리 표시자를 사용했는지 검사합니다.|
+|`_1, _2, _3, _4`|자리 표시자 입니다.|  
+|`bind_front()` (C++20~)|(작성중)|
+|`bind_back()` (C++23~)|(작성중)|
+|`not_fn()` (C++17~)|(작성중)|
+|`default_searcher` (C++17~)|(작성중)|
+|`boyer_moore_searche` (C++17~)|(작성중)| 
+|`boyer_moore_horspool_searcher` (C++17~)|(작성중)| 
+|`reference_wrapper`|복사나 대입이 안되는 참조자를 래핑합니다.| 
+|`ref()`<br/>`cref()`|`reference_wrapper` 개체를 생성합니다.| 
+|`unwrap_reference` (C++20~)<br/>`unwrap_ref_decay` (C++20~)|(작성중)| 
 
 # bad_function_call
 
@@ -88,7 +111,7 @@ catch (std::bad_function_call&) {
 
 기존의 [아답터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)인 `mem_fun()`이나 `mem_fun_ref()`는 `f(x)`의 호출을 `x->f()`나 `x.f()`로 호출해 줬는데요, 사실 함수의 인수를 전달할 방법이 없어 사용상의 제약이 있었습니다.
 
-`mem_fun()`은 인자가 있는 멤버 함수도 호출하는 있는 함수자를 만들어 줍니다.
+`mem_fn()`은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.
 
 ```cpp
 class T {

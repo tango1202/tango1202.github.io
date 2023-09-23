@@ -12,9 +12,11 @@ sidebar:
 
 # 개요
 
-C++11 부터 STL에서는 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)을 위해 다양한 타입 특성들을 제공합니다.
+C++11 부터 STL 에서는 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)을 위해 다양한 타입 특성들을 제공합니다.
 
-예를 들면 다음과 같이 템플릿 인자로 전달된 `T`가 포인터 타입인지 아닌지에 따라 코딩할 수 있습니다. 또한 `is_pointer<T>::value`와 같이 열거형 조회를 하는 것은 `is_pointer_v<T>`로 인스턴스화 되어 있어 코딩을 조금더 간편하게 합니다.
+예를 들면 다음과 같이 템플릿 인자로 전달된 `T`가 포인터 타입인지 아닌지에 따라 코딩할 수 있습니다. 
+
+또한 `is_pointer<T>::value`와 같이 열거형 조회를 하는 것은 `is_pointer_v<T>`로 인스턴스화 된 버전을 제공하여 코딩을 조금 더 간편하게 합니다.
 
 ```cpp
 template<typename T>
@@ -33,6 +35,7 @@ void Func(T t) {
 |항목|내용|
 |--|--|
 |`integral_constant`|정수형 타입을 생성합니다.|
+|`bool_constant` (C++17~)|(작성중)|
 
 ```cpp
 typedef std::integral_constant<int, 2> TwoType;
@@ -59,6 +62,7 @@ ThreeType three;
 |`is_rvalue_reference`|우측값 참조 타입인지 검사합니다.|
 |`is_member_object_pointer`|개체 멤버 변수의 포인터 타입인지 검사합니다.|
 |`is_member_function_pointer`|개체 멤버 함수의 포인터 타입인지 검사합니다.|
+|`is_null_pointer` (C++14~)|`nullptr_t` 타입인지 검사합니다.|
 
 # 복합 타입 카테고리
 
@@ -90,6 +94,13 @@ ThreeType three;
 |`is_abstract`|적어도 1개 이상의 순가상 함수가 있는 추상 클래스 타입인지 검사합니다.|
 |`is_signed`|양수/음수 처리를 지원하는 타입인지 검사합니다.|
 |`is_unsigned`|양수/음수 처리를 지원하는 않는 타입인지 검사합니다.|
+|`is_final` (C++14~)|`final`클래스 타입인지 검사합니다.|
+|`has_unique_object_representations` (C++17~)|(작성중)|
+|`is_aggregate` (C++17~)|(작성중)|
+|`is_bounded_array` (C++20~)|(작성중)|
+|`is_unbounded_array` (C++20~)|(작성중)|
+|`is_implicit_lifetime` (C++23~)|(작성중)|
+|`is_scoped_enum` (C++20~)|(작성중)|
 
 # 복사/이동/대입/소멸 속성 
 
@@ -104,12 +115,13 @@ ThreeType three;
 |`is_move_assignable`<br/>`is_trivially_move_assignable`<br/>` is_nothrow_move_assignable`|이동 대입될 수 있는지 검사합니다.|
 |`is_destructible`<br/>` is_trivially_destructible`<br/>` is_nothrow_destructible`|소멸 가능한 타입인지 검사합니다.|
 |`has_vitual_destuctor`|가상 소멸자인지 검사합니다.|
+|`is_swappable_with` (C++17~)<br/>`is_swappable` (C++17~)<br/>`is_nothrow_swappable_with` (C++17~)<br/>`is_nothrow_swappable` (C++17~)|(작성중)|
 
 # 속성 질의
 
 |항목|내용|
 |--|--|
-|`alignment_of`|메모리 정렬 크기를 구합니다.(`alignof()`와 동일)|
+|`alignment_of`|메모리 정렬에 필요한 크기를 구합니다.<br/>`alignof()` 와 동일하며, C++11 이전 컴파일러와 호환성을 유지합니다.|
 |`rank`|다차원 배열의 차원수를 구합니다.|
 |`extent`|배열 차원의 요소 수를 구합니다.|
 
@@ -118,8 +130,11 @@ ThreeType three;
 |항목|내용|
 |--|--|
 |`is_same`|두개의 타입이 동일한지 검사합니다. 이때 `const`와 `volatile`을 고려합니다. 즉 `int`와 `const int`는 다른 타입입니다.|
-|`is_base_of`|`Base`가 `Derived`의 부모인지 검사합니다.[CloneTraits 구현](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/#clonetraits-%EA%B5%AC%ED%98%84) 의 `IsDerivedFrom` 참고|
-|`is_convertible`|`From` 타입이 `To`로 변환 가능한지 검사합니다.|
+|`is_base_of`|`Base`가 `Derived`의 부모인지 검사합니다.([CloneTraits 구현](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/#clonetraits-%EA%B5%AC%ED%98%84) 의 `IsDerivedFrom` 참고)|
+|`is_convertible`<br/>`is_nothrow_convertible` (C++20~)|`From` 타입이 `To`로 변환 가능한지 검사합니다.|
+|`is_invocable` (C++17~)<br/>`is_invocable_r` (C++17~)<br/>`is_nothrow_invocable` (C++17~)<br/>`is_nothrow_invocable_r` (C++17~)|(작성중)|
+|`is_layout_compatible` (C++20~)|[표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 등 메모리 레이아웃이 호환되는지 검사합니다.|
+|`is_pointer_interconvertible_base_of` (C++20~)|(작성중)|
 
 # const-volatile
 
@@ -167,54 +182,25 @@ ThreeType three;
 |`conditional`|(작성중)|
 |`common_type`|(작성중)|
 |`underlying_type`|(작성중)|
-|`result_of`(C++11~C++20)|(작성중)|
+|`result_of`(C++11~C++20)<br/>`invoke_result` (C++17~)|(작성중)|
+|`void_t` (C++17~)|(작성중)|
+|`type_identity` (C++17~)|(작성중)|
+|`remove_cvref` (C++20~)|(작성중)|
+|`common_reference` (C++20~)<br/>`basic_common_reference` (C++20~)|(작성중)|
 
 # traits 에서의 연산
 
+|항목|내용|
+|--|--|
+|`conjunction` (C++17~)|(작성중)|
+|`disjunction` (C++17~)|(작성중)|
+|`negation` (C++17~)|(작성중)|
 
 # 함수
 
-# (C++14~)
-
 |항목|내용|
 |--|--|
-|`is_null_pointer`|`nullptr_t` 타입인지 검사합니다.|
-|`is_final`|`final`클래스 타입인지 검사합니다.|
-
-# (C++17~)
-
-|항목|내용|
-|--|--|
-|`has_unique_object_representations`|(작성중)|
-|`is_aggregate`|(작성중)|
-|`is_swappable_with`<br/>`is_swappable`<br/>`is_nothrow_swappable_with`<br/>`is_nothrow_swappable`|(작성중)|
-|`is_invocable`<br/>`is_invocable_r`<br/>`is_nothrow_invocable`<br/`is_nothrow_invocable_r`|(작성중)|
-|`invoke_result`|(작성중)|
-|`void_t`|(작성중)|
-|`type_identity`|(작성중)|
-|`conjunction`|(작성중)|
-|`disjunction`|(작성중)|
-|`negation`|(작성중)|
-
-# (C++20~)
-
-|항목|내용|
-|--|--|
-|`is_bounded_array`|(작성중)|
-|`is_unbounded_array`|(작성중)|
-|`is_nothrow_convertible`|`From` 타입이 `To`로 변환 가능한지 검사합니다.|
-|`is_layout_compatible`|[표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 등 메모리 레이아웃이 호환되는지 검사합니다.|
-|`is_pointer_interconvertible_base_of`|(작성중)|
-|`remove_cvref`|(작성중)|
-|`common_reference`|(작성중)|
-|`is_pointer_interconvertible_with_class`|(작성중)|
-|`is_corresponding_member`|(작성중)|
-|`is_constant_evaluated`|(작성중)|
-
-# (C++23~)
-
-|항목|내용|
-|--|--|
-|`is_implicit_lifetime`|(작성중)|
-|`is_scoped_enum`|(작성중)|
-
+|`is_pointer_interconvertible_with_class` (C++20~)|(작성중)|
+|`is_corresponding_member` (C++20~)|(작성중)|
+|`is_constant_evaluated` (C++20~)|(작성중)|
+|`is_within_lifetime` (C++20~)|(작성중)|

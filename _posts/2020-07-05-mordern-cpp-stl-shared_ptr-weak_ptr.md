@@ -11,6 +11,16 @@ sidebar:
 > * `shared_ptr`은 소유권 공유용 스마트 포인터입니다.
 > * `weak_ptr`은 `shared_ptr`의 상호 참조 문제를 해결합니다.
 
+# 개요
+
+C++11 부터는 소유권을 이전하는 스마트 포인터인 `auto_ptr`과 `unique_ptr` 외에, 개체의 소유권을 공유하는 스마트 포인터를 추가로 제공합니다.
+
+|항목|내용|
+|--|--|
+|`shared_ptr`|소유권 공유용 스마트 포인터입니다.|
+|`make_shared()`|`shared_ptr`을 효율적으로 생성합니다.|
+|`weak_ptr`|`shared_ptr`의 상호 참조 문제 해결용 스마트 포인터입니다.|
+
 # shared_ptr
 
 `unique_ptr`은 소유권을 이전합니다만, `shared_ptr`은 개체의 소유권을 공유하는 스마트 포인터입니다. 소유권이 공유될때마다 내부적으로는 참조 카운트를 증가시키고, 스마트 포인터가 소멸될때마다 참조 카운트를 감소시켜 `0`이 될때 `delete`합니다.
@@ -104,7 +114,7 @@ std::shared_ptr<T> b{a};
 |`lock() const noexcept;`|관리하는 개체 접근을 위해 임시 `shared_ptr`을 생성합니다.|
 |`owner_before() const noexcept;`|소유권 개체로 `<` 비교를 합니다.|
 |`get_deleter()`|관리하는 개체를 소멸시키는 `deleter`를 리턴합니다.|
-|`==`<br/>`!=` (C++11~C++20)<br/>`<` (C++11~C++20)<br/>`<=` (C++11~C++20)<br/>`>` (C++11~C++20)<br/>`>=` (C++11~C++20)|관리하는 개체의 주소로 비교합니다.|
+|`==`<br/>`!=` (C++11~C++20)<br/>`<` (C++11~C++20)<br/>`<=` (C++11~C++20)<br/>`>` (C++11~C++20)<br/>`>=` (C++11~C++20)<br/>`<=>` (C++20~)|관리하는 개체의 주소로 비교합니다.|
 |`<<`|관리하는 개체의 내용을 스트림에 출력합니다.|
 
 # make_shared()
@@ -177,9 +187,9 @@ std::shared_ptr<T> b{a};
 EXPECT_TRUE(a.use_count() == 2);
 ```
 
-그런데, 상기 방법은 항상 `shared_ptr` 형태로 알고 있어야 합니다. 
+그런데, 상기 방법은 개체를  `shared_ptr` 형태로 알고 있어야 가능합니다. 그래서 여러개의 함수에서 사용할때 `shared_ptr`을 인자로 전달하며 사용해야 합니다. 
 
-여러개의 함수에서 사용할때 항상 `shared_ptr`로 인수를 전달하는 건 부담이라, 개체 포인터나 개체 참조자로 전달했다가 `shared_ptr`을 만들어야 하는 경우가 오면 낭패입니다. 
+하지만 이렇게 항상 `shared_ptr`을 인수로 전달하는 건 부담이라, 개체 포인터나 개체 참조자로 전달했다가 `shared_ptr`을 만들어야 하는 경우가 오면 낭패입니다. 
 
 만약 관리하는 개체로부터 `shared_ptr`을 만들기 위해 다음과 같이 작성한다면, `b`가 `a`의 제어 블록을 공유하지 않고 새로운 제어 블록을 만들어 관리하기 때문에 추후 소유권 분쟁이 발생합니다.
 
@@ -191,7 +201,9 @@ std::shared_ptr<T> b{a.get()};
 EXPECT_TRUE(a.use_count() == 1 && b.use_count() == 1);
 ```
 
-이럴때 `enable_shared_from_this`를 이용하면,  `shared_ptr`이 관리하는 개체로부터 `shared_ptr`을 생성할 수 있습니다. 다만, `shared_ptr`이 미리 만들어져 있어야 합니다.
+다행스럽게도 이런 경우를 위하여 `enable_shared_from_this`를 제공하고 있습니다.
+
+`enable_shared_from_this`는 `shared_ptr`이 관리하는 개체로부터 `shared_ptr`을 생성할 수 있습니다. 다만, `shared_ptr`이 미리 만들어져 있어야 합니다.
 
 1. `enable_shared_from_this` 를 `public`상속합니다.(`protected`나 `private`상속은 동작하지 않습니다.)
 2. `shared_from_this()`를 호출합니다.
@@ -226,7 +238,7 @@ EXPECT_TRUE(a.use_count() == 2);
 다음 코드는,
 
 1. `shared_ptr`을 멤버 변수로 사용합니다.
-2. `new`로 생성된 `Data`를 받기 위해 생성자에서 `unique_ptr`을 인자로 사용합니다.
+2. `new`로 생성된 `Data`를 인자로 전달받기 위해 생성자에서 `unique_ptr`을 인자로 사용합니다.
 3. 복사 생성자에서 `other`개체의 각 멤버의 복사 생성자를 호출합니다.
 4. `shared_ptr` 에서 참조 카운트가 0이 되면 소멸시킬 것이므로 소멸자에서는 별다른 작업을 하지 않습니다.
 5. 대입 연산자에서는 각 멤버를 대입합니다. 
@@ -380,11 +392,11 @@ shared_ptr(const shared_ptr& other, element_type* p) noexcept;
 
 다음의 경우에 별칭 생성자를 사용할 수 있습니다.
 
-1. `MainData`개체가 `SubData`를 멤버 변수로 포함하고 있고, 
+1. `MainData` 개체가 `SubData`를 멤버 변수로 포함하고 있고, 
 2. `MainData` 개체가 `shared_ptr`로 관리될 때,
 3. 임의의 함수 `f()` 가 `shared_ptr<SubData>`를 인자로 사용하는 경우
 
-`MainData` 가 애초에 `shared_ptr<SubData>`를 멤버 변수로 가지면 되는 일입니다만, 상황에 따라 그러지 못할 수도 있으깐요.
+`MainData` 가 애초에 `shared_ptr<SubData>`를 멤버 변수로 가지면, 그냥 `shared_ptr<SubData>`를 전달해 버리면 되는 일입니다만, 상황에 따라 그러지 못할 수도 있으니깐요.
 
 다음 코드는 별칭 생성자의 사용 예입니다.
 
@@ -631,7 +643,7 @@ Node : Destructor
 
 # weak_ptr 사용
 
-`weak_ptr`는 `:shared_ptr`이나 `weak_ptr`로 부터 생성되며, 관리하는 개체에 접근하려면, `lock()`함수를 이용하여 `shared_ptr`을 임시로 생성한 뒤, 이를 사용해야 합니다.
+`weak_ptr`는 `shared_ptr`이나 `weak_ptr`로 부터 생성되며, 관리하는 개체에 접근하려면, `lock()`함수를 이용하여 `shared_ptr`을 임시로 생성한 뒤, 이를 사용해야 합니다.
 
 ```cpp
 std::shared_ptr<int> sp1{new int{10}};

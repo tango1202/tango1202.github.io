@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++ STL] (C++11~) thread, mutex"
+title: "#15. [모던 C++ STL] (C++11~) thread, mutex"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -12,6 +12,26 @@ sidebar:
 > * `mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.
 > * `lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.
 > * `call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다. 
+
+# 개요
+
+기존에는 멀티 쓰레드 관련 기능들이 표준화 되지 않아 운영체제에 따라 다르게 구현했습니다만, C++11 STL 부터는 이를 표준화 하여 제공합니다.
+
+|항목|내용|
+|--|--|
+|`thread`|주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
+|`jthread` (C++20~)|(작성중)|
+|`stop_token` (C++20~)|(작성중)|
+|`stop_source` (C++20~)|(작성중)|
+|`stop_callback` (C++20~)|(작성중)|
+|`hardware_destructive_interference_size` (C++17~)<br/>`hardware_constructive_interference_size` (C++17~)|(작성중)|
+|`mutex`<br/>`timed_mutex`<br/>`recursive_mutex`<br/>`recursive_timed_mutex`<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
+|`counting_semaphore` (C++ 20)|(작성중)|
+|`binary_semaphore` (C++ 20)|(작성중)|
+|`latch` (C++ 20)|(작성중)|
+|`barrier` (C++ 20)|(작성중)|
+|`lock_guard`<br/>`unique_lock`<br/>`lock()`<br/>`try_lock()`<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`mutex`의 잠금 상태를 관리합니다.|
+|`call_once()`|주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
 
 # 쓰레드
 
@@ -49,7 +69,6 @@ sidebar:
 
 만약 쓰레드A 가 Lock을 걸기만 하고 풀지 않으면 어떻게 될까요? 쓰레드 B는 무한 대기하게 됩니다.(이런 상태를 데드락(Dead Lock)이라 합니다.) 이렇게 대기하면, 원하는 작업이 끝나지 않아 프로그램은 마치 멈춘것처럼 아무 동작도 안하고, 계속 대기하게 됩니다. 프로그램을 강제 종료해야 되죠.
 
-
 # thread
 
 `thread` 는 쓰레드 생성후 주어진 함수(또는 함수자)를 실행시키며 `join()`을 통해 쓰레드가 종료할 때까지 대기하거나, `detach()`를 통해 계속 백그라운드에서 쓰레드가 실행되도록 내버려 둡니다. 만약 `join()`이나 `detach()`를 하지 않으면 예외가 발생합니다.
@@ -58,7 +77,7 @@ sidebar:
 |--|--|
 |`joinable()`|`thread`가 동작중인지 확인합니다.|
 |`get_id()`|`thread`의 아이디를 구합니다.|
-|`native_handle()`|시스템에 따른 구현에 정의된 기본 쓰레드 핸들을 리턴합니다.|
+|`native_handle()`|시스템에 따른 구현에 정의된 쓰레드 핸들을 리턴합니다.|
 |`hardware_concurrency()`|시스템이 지원하는 동시 쓰레드 수를 리턴합니다.|
 |`join()`|`thread`가 종료될때까지 기다립니다.|
 |`detach()`|`thread`가 실행되도록 내버려 둡니다.|
@@ -241,7 +260,7 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 |`lock()`|현 쓰레드만 접근 가능하고, 다른 쓰레드는 대기시킵니다.|
 |`try_lock()`|`lock()`을 시도하고, 만약 다른 쓰레드에 의해 대기된다면, `false`를 리턴합니다.|
 |`unlock()`|`lock()`을 해제하여 다른 쓰레드에서도 자원을 사용할 수 있게 합니다.|
-
+|`native_handle()`|시스템에 따른 구현에 정의된 핸들을 리턴합니다.|
 
 # lock
 

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++ STL] (C++11~) unordered_map, unordered_multimap, unordered_set, unordered_multiset"
+title: "#13. [모던 C++ STL] (C++11~) unordered_map, unordered_multimap, unordered_set, unordered_multiset"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -18,10 +18,10 @@ sidebar:
 
 |항목|내용|**Key** 조건|
 |--|--|--|
-|`unordered_map`|**Key** - **Value** 쌍으로 관리하며,  `pair`를 사용함.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고)<br/>**Key**의 해시값(Digest)으로 요소 탐색(O(1))<br/>삽입되는 **Key**는 유일함<br/>첨자 연산 지원|`hash()` 함수자 구현<br/>`==` 구현|
-|`unordered_multimap`|`map`과 동일하며 중복 **Key**허용<br/>첨자 연산 지원 안함|`hash()` 함수자 구현<br/>`==` 구현|
-|`unorderedset`|**Key**만 요소로 삽입됨<br/>**Key**의 해시값(Digest)으로 요소 탐색(O(1))<br/>삽입되는 **Key**는 유일함|`hash()` 함수자 구현<br/>`==` 구현|
-|`unordered_multiset`|`set`과 동일하며 중복 **Key**허용|`hash()` 함수자 구현<br/>`==` 구현|
+|`unordered_map`|**Key** - **Value** 쌍으로 관리하며,  `pair`를 사용합니다.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고)<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.<br/>첨자 연산을 지원합니다.|`hash()` 함수자 구현<br/>`==` 구현|
+|`unordered_multimap`|`map`과 동일하며 중복 **Key**를 허용합니다.<br/>첨자 연산을 지원 하지 않습니다.|`hash()` 함수자 구현<br/>`==` 구현|
+|`unorderedset`|**Key**만 요소로 삽입됩니다.<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.|`hash()` 함수자 구현<br/>`==` 구현|
+|`unordered_multiset`|`set`과 동일하며 중복 **Key**를 허용합니다.|`hash()` 함수자 구현<br/>`==` 구현|
 
 # 해시
 
@@ -72,11 +72,11 @@ sidebar:
 
 컨테이너의 버킷(Bucket)이 적다면 해시 키값이 동일해질 확률이 높아집니다. 극단적으로 버킷(Bucket)이 2개 밖에 없다면, 해시 키값은 0 ~ 1 사이의 값이 되고, 대부분의 데이터가 같은 버킷(Bucket)내에 위치하게 됩니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/eb5289a5-88f0-4cce-918f-5800ac8538db)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d6eda121-11d5-461a-946f-a936fd237175)
 
  이를 해시 충돌이라 하는데요,
 
-해시 충돌이 나면, 같은 버킷(Bucket)내에서 순차 탐색이던, 이진 탐색을 이용하여 검색해야 하므로, 해시 충돌이 최소화되는게 좋습니다.
+해시 충돌이 나면, 같은 버킷(Bucket)내에서 순차 탐색이나 이진 탐색을 이용하여 검색해야 하므로, 해시 충돌이 최소화되는게 좋습니다.
 
 따라서, 해시 키값이 골고루 버킷(Bucket)에 분포될 수 있도록 해시 키값을 계산하고, 버킷(Bucket)의 갯수도 적당량을 만들어야 합니다.
 
@@ -88,18 +88,26 @@ sidebar:
 |--|--|
 |`[]`|주어진 Key의 Value를 구합니다.|
 |`at()`|주어진 Key의 Value를 구합니다.|
+|`contains()` (C++20~)|(작성중)|
 |`begin()`, `end()`, `cbegin()`, `cend()`|이터레이터<br/>`map`은 `rbegin()`, `rend()`, `crbegin()`, `crend()`를 추가로 제공합니다.|
 |`empty()`|컨테이너가 비었는지 확인합니다.|
 |`size()`|컨테이너의 요소 갯수를 리턴합니다.|
 |`max_size()`|컨테이너가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
 |`clear()`|모든 요소를 지웁니다.|
 |`erase()`|주어진 위치의 요소를 삭제합니다.|
+|`erase_if()` (C++17~)|(작성중)|
 |`swap()`|두 컨테이너의 내부 데이터를 바꿔치기 합니다.|
 |`insert()`|주어진 위치 앞에 요소를 추가합니다.|
+|`insert_range()` (C++23~)|(작성중)|
+|`insert_or_assign()` (C++17~)|(작성중)|
 |`emplace()`, `emplace_hint()`|요소 개체 생성을 위한 인수(`Key`, `Value`)를 전달하여 컨테이너 내에서 요소 개체(`pair<Key, Value>`)를 생성한 뒤 삽입합니다.|
+|`extract()` (C++17~)|(작성중)|
+|`merge()` (C++17~)|(작성중)|
+|`try_emplace()` (C++17~)|(작성중)|
 |`count()`|주어진 Key인 요소 갯수를 리턴합니다.|
 |`find()`|주어진 Key인 요소를 리턴합니다.| 
 |`equal_range()`|주어진 Key인 요소들을 리턴합니다.<br/>`map`은 `lower_bound()`, `upper_bound()`를 추가로 제공합니다.|
+|`==`<br/>`!=` (~C++20)|(작성중)|
 
 해시 컨테이너는 다음 멤버 함수를 추가로 제공합니다.
 

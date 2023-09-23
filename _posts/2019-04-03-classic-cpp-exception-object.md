@@ -42,7 +42,7 @@ sidebar:
 |`range_error`|유효한 범위를 벗어남|
 |`overflow_error`|계산 결과가 허용 범위 초과임|
 |`underflow_error`|계산 결과가 허용 범위 미만임|
-|`bad_typeid`|널포인터를 역참조하여 typeid를 구할때 발생함<br/>T* p = NULL;<br/>typeid(*p).name();|
+|`bad_typeid`|널포인터를 역참조하여 typeid를 구할때 발생함<br/>`T* p = NULL;`<br/>`typeid(*p).name();`|
 |`bad_cast`|`dynamic_cast`의 실패시 발생함|
 |`bad_alloc`|메모리 할당 실패시 발생함|
 |`bad_exception`|동적 예외 사양에 `bad_exception`이 포함되면, `unexpected()` 핸들러가 호출되고, 여기서 `throw;`시 `bad_exception`으로 변환되어 전파됨([동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고)|

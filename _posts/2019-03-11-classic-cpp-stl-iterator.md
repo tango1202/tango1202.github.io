@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [고전 C++ STL] 이터레이터(반복자)"
+title: "#11. [고전 C++ STL] 이터레이터(반복자)"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false

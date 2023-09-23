@@ -1,0 +1,210 @@
+---
+layout: single
+title: "#7. [모던 C++ STL] (C++11~) chrono"
+categories: "mordern-cpp-stl"
+tag: ["cpp"]
+author_profile: false
+sidebar: 
+    nav: "docs"
+---
+
+> * `system_clock`, `time_point`, `duration`개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.
+
+# 개요
+
+기존에는 날짜/시간 처리를 위해 C스타일의 `time`과 `difftime`만 제공되었으나, 
+
+C++11 부터 STL 에서는 좀더 다양한 정확도로 시간을 추적할 수 있는 `chrono` 라이브러리가 추가되었습니다.
+
+다음 예는 주어진 함수의 실행 시간을 측정하는 예입니다.
+
+1. `CheckMicrosecond()`함수는 전달된 함수를 실행하고 실행 시간을 측정합니다. 실행시킬 함수에 인자를 전달하기 위해 가변 템플릿을 사용합니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
+2. `system_clock::now()`를 이용하여 기간을 구합니다.
+3. 구해진 기간을 `microsecond` 타입으로 저장합니다.
+
+```cpp
+template<typename Func, typename... Params>
+std::chrono::microseconds CheckMicrosecond(Func func, Params... params) {
+    std::chrono::system_clock::time_point start{std::chrono::system_clock::now()};    
+
+    func(params...);
+
+    std::chrono::system_clock::time_point end{std::chrono::system_clock::now()};
+    std::chrono::microseconds val{std::chrono::duration_cast<std::chrono::microseconds>(end - start)};
+
+    return val;
+}
+void MyFunc() {}
+std::chrono::microseconds duration{CheckMicrosecond(MyFunc)};
+
+std::cout<<"MyFunc() : "<<duration.count()<<std::endl;
+```
+
+# Clock
+
+|항목|내용|
+|--|--|
+|`system_clock`|시스템 시계입니다.|
+|`steady_clock`|조정되지 않는 시계입니다.|
+|`high_resolution_clock`|사용 가능한 가장 짧은 틱 주기를 갖는 시계입니다.|
+|`is_clock` (C++20~)<br/>`is_clock_v` (C++20~)|(작성중)|
+|`utc_clock` (C++20~)|(작성중)|
+|`tai_clock` (C++20~)|(작성중)|
+|`gps_clock` (C++20~)|(작성중)|
+|`file_clock` (C++20~)|(작성중)|
+|`local_t` (C++20~)|(작성중)|
+
+`system_clock`은 다음의 멤버 함수가 있습니다.
+
+|항목|내용|
+|--|--|
+|`now()`|현재 `time_point`를 리턴합니다.|
+|`to_time_t()`|`time_t`타입으로 변환합니다.|
+|`from_time_t()`|`time_t`타입에서 가져옵니다.|
+
+# Time Point
+
+시작 시간 이후 경과된 값입니다.
+
+|항목|내용|
+|--|--|
+|`time_point`|특정 시점을 나타냅니다.|
+|`clock_time_conversion`|(작성중)|
+|`clock_cast`|(작성중)|
+
+`time_point`는 다음의 멤버 함수가 있습니다.
+
+|항목|내용|
+|--|--|
+|`time_since_epoch()`|(작성중)|
+|`min()`|(작성중)|
+|`max()`|(작성중)|
+|`time_point_cast()`|(작성중)|
+|`floor()` (C++17~)|(작성중)|
+|`ceil()` (C++17~)|(작성중)|
+|`round()` (C++17~)|(작성중)|
+|`+`,`-`|(작성중)|
+|`++`, `--`<br/>|(작성중)|
+|`+=`,`-=`|(작성중)|
+|`++`, `--`<br/>|(작성중)|
+|`+=`,`-=`, `*=`, `/=`, `%=`|(작성중)|
+|`+`,`-`, `*`, `/`, `%`|(작성중)|
+|`==`<br/>`!=` (~C++20)<br/>`<`<br/>`<=`<br/>`>`<br/>`>=`<br/>`<=>` (C++20~)|(작성중)|
+
+# Duration
+
+|항목|내용|
+|--|--|
+|`duration`|기간입니다. 두 Time Point의 차입니다.|
+
+`duration` 은 다음의 멤버 함수가 있습니다.
+
+|항목|내용|
+|--|--|
+|`operator =`|(작성중)|
+|`count()`|(작성중)|
+|`zero()`|(작성중)|
+|`min()`|(작성중)|
+|`max()`|(작성중)|
+|`duration_cast()`|(작성중)|
+|`floor()` (C++17~)|(작성중)|
+|`ceil()` (C++17~)|(작성중)|
+|`round()` (C++17~)|(작성중)|
+|`abs()` (C++17~)|(작성중)|
+|`from_stream()` (C++20~)|(작성중)|
+|`+`,`-`|(작성중)|
+|`++`, `--`<br/>|(작성중)|
+|`+=`,`-=`, `*=`, `/=`, `%=`|(작성중)|
+|`+`,`-`, `*`, `/`, `%`|(작성중)|
+|`==`<br/>`!=` (~C++20)<br/>`<`<br/>`<=`<br/>`>`<br/>`>=`<br/>`<=>` (C++20~)|(작성중)|
+|`<<` (C++20~)|(작성중)|
+
+다음과 같이 타입이 재정의 되어 있습니다.(int뒤 XX는 최소 필요 비트수입니다.)
+
+|항목|내용|
+|--|--|
+|`nanoseconds`|`duration<int64, std::nano>`|
+|`microseconds`|`duration<int54, std::micro>`|
+|`milliseconds`|`duration<int44, std::milli>`|
+|`seconds`|`duration<int35>`|
+|`minutes`|`duration<int29, std::ratio<60>>`|
+|`hours`|`duration<int23, std::ratio<3600>>`|
+|`days` (C++20~)|`duration<int25, std::ratio<86400>>`|
+|`weeks` (C++20~)|`duration<int22, std::ratio<604800>>`|
+|`month` (C++20~)|`duration<int20, std::ratio<2629746>>`|
+|`years` (C++20~)|`duration<int17, std::ratio<31556952>>`|
+
+다음의 유틸리티가 제공됩니다.
+
+|항목|내용|
+|--|--|
+|`treat_as_floating_point`|(작성중)|
+|`treat_as_floating_point`|(작성중)|
+|`duration_values`|(작성중)|
+  
+
+# 시/분/초 서식
+
+|항목|내용|
+|--|--|
+|`hh_mm_ss` (C++20~)|(작성중)|
+|`is_am()` (C++20~)<br/>`is_pm()` (C++20~)<br/>`make12()` (C++20~)<br/>`make24()` (C++20~)|(작성중)|
+
+# Calendar
+
+|항목|내용|
+|--|--|
+|`last_spec` (C++20~)|(작성중)|
+|`day` (C++20~)|(작성중)|
+|`month` (C++20~)|(작성중)|
+|`year` (C++20~)|(작성중)|
+|`weekday` (C++20~)|(작성중)|
+|`weekday_indexed` (C++20~)|(작성중)|
+|`weekday_last` (C++20~)|(작성중)|
+|`month_day` (C++20~)|(작성중)|
+|`month_day_last` (C++20~)|(작성중)|
+|`month_weekday` (C++20~)|(작성중)|
+|`month_weekday_last` (C++20~)|(작성중)|
+|`year_month` (C++20~)|(작성중)|
+|`year_month_day` (C++20~)|(작성중)|
+|`year_month_day_last` (C++20~)|(작성중)|
+|`year_month_weekday` (C++20~)|(작성중)|
+|`year_month_weekday_last` (C++20~)|(작성중)|
+|`operator /` (C++20~)|(작성중)|
+
+# Time Zone
+
+|항목|내용|
+|--|--|
+|`tzdb` (C++20~)|(작성중)|
+|`tzdb_list` (C++20~)|(작성중)|
+|`get_tzdb` (C++20~)<br/>`get_tzdb_list` (C++20~)<br/>`reload_tzdb` (C++20~)<br/>`remote_version` (C++20~)|(작성중)|
+|`locate_zone` (C++20~)|(작성중)|
+|`current_zone` (C++20~)|(작성중)|
+|`time_zone` (C++20~)|(작성중)|
+|`sys_info` (C++20~)|(작성중)|
+|`locale_info` (C++20~)|(작성중)|
+|`choose` (C++20~)|(작성중)|
+|`zoned_traits` (C++20~)|(작성중)|
+|`zoned_time` (C++20~)|(작성중)|
+|`leap_second` (C++20~)|(작성중)|
+|`leap_second_info` (C++20~)|(작성중)|
+|`get_leap_second_info` (C++20~)|(작성중)|
+|`time_zone_link` (C++20~)|(작성중)|
+|`nonexistent_local_time` (C++20~)|(작성중)|
+|`ambiguous_local_time` (C++20~)|(작성중)|
+
+# 리터럴
+
+|항목|내용|
+|--|--|
+|`operator ""y` (C++20~)|(작성중)|
+|`operator ""d` (C++20~)|(작성중)|
+|`operator ""h` (C++14~)|(작성중)|
+|`operator ""min` (C++14~)|(작성중)|
+|`operator ""s` (C++14~)|(작성중)|
+|`operator ""ms` (C++14~)|(작성중)|
+|`operator ""us` (C++14~)|(작성중)|
+|`operator ""ns` (C++14~)|(작성중)|
+
+

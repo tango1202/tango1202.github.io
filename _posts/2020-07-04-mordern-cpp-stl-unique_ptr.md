@@ -24,11 +24,11 @@ C++11 부터는 상기 문제를 보완한 `unique_ptr`이 제공됩니다.
 `auto_ptr`과 동일하게 소유권을 이전하는 스마트 포인터이며, 다음이 개선되었습니다.
 
 1. 일반 포인터는 `delete`하고, 배열은 `delete[]`합니다.
-2. 복사 생성자와 `operator =(const T&)`는 제공하지 않고, 이동 생성자와 `operator =(const T&&)`만 제공합니다. 즉 이동 연산만 제공합니다.
+2. 복사 생성자와 `operator =(const T&)`는 제공하지 않고, 이동 생성자와 `operator =(const T&&)`만 제공합니다. 즉, 이동 연산만 제공합니다.
 
 다음은 사용예 입니다.
 
-1. `unique_ptr<T[]>` 와 같이 배열도 관리할 수 있으며,
+1. 배열도 관리(`unique_ptr<T[]>` 처럼 템플릿 인자에 배열 타입을 넣습니다.)할 수 있으며,
 2. `c = d;` 대신 `c = std::move(d);`를 하여 소유권을 이동시킵니다.
    
 ```cpp
@@ -49,7 +49,7 @@ c = std::move(d); // 소유권 이전시 이동 연산을 사용합니다.
 EXPECT_TRUE(*c == 1 && d == nullptr);
 ```
 
-# std::unique_ptr 멤버 함수
+# unique_ptr 멤버 함수
 
 |항목|내용|
 |--|--|
@@ -68,7 +68,7 @@ EXPECT_TRUE(*c == 1 && d == nullptr);
 |`reset(T* p) noexcept;`|기존에 관리하던 개체를 해제하고 `p`를 관리합니다.|
 |`release() noexcept;`|관리하는 개체를 해제합니다.|
 |`get_deleter() noexcept;`|관리하는 개체를 소멸시키는 `deleter`를 리턴합니다.|
-|`==`<br/>`!=`<br/>`<`<br/>`<=`<br/>`>`<br/>`>=`|관리하는 개체의 주소로 비교합니다.|
+|`==`<br/>`!=` (~C++20)<br/>`<`<br/>`<=`<br/>`>`<br/>`>=`<br/>`<=>` (C++20~)|관리하는 개체의 주소로 비교합니다.|
 |`<<` (C++20~)|관리하는 개체의 내용을 스트림에 출력합니다.|
 
 # unique_ptr을 활용한 함수 인자, 리턴 타입
@@ -109,7 +109,7 @@ v.push_back(b); // (X) 컴파일 오류. unique_ptr은 복사 생성자가 없�
 다음처럼 
 
 1. `move()`를 이용하여 이동 시키거나,
-2. `emplace_back()`을 이용하여 내부에서 개체를 생성합니다.(`emplace()`계열의 함수는 컨테이너 요소 개체 생성을 위한 인수를 전달하여 컨테이너 내에서 요소 개체를 생성한 뒤 삽입합니다.)
+2. `emplace_back()`을 이용하여 내부에서 개체를 생성합니다.(`emplace()`계열의 함수는 컨테이너 요소 개체 생성을 위한 인수를 전달받아, 컨테이너 내에서 요소 개체를 생성한 뒤 삽입합니다.)
 
 ```cpp
 std::vector<std::unique_ptr<int>> v;
@@ -139,4 +139,5 @@ EXPECT_TRUE(*v[0] == 10 && *v[1] == 20 && *v[2] == 30);
 std::unique_ptr<int> a{new int{10}, std::default_delete<int>{}};
 ```
 
-# (C++14~) std::make_unique (작성중)
+# make_unique, make_unique_for_override (작성중)
+(C++14~) 

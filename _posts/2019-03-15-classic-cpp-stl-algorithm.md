@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [고전 C++ STL] 알고리즘(작성중)"
+title: "#15. [고전 C++ STL] 알고리즘(작성중)"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -75,6 +75,7 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10);
 |`unique()`<br/>`unique_copy()`|같은 값을 가진 요소를 제거하여 유일한 값만 시퀀스에 남도록 만듭니다.|
 |`move()` (C++11~), `move_backward()` (C++11~)|시퀀스의 요소들을 다른 곳에 이동시킵니다.|
 |`sample()` (C++17~)|시퀀스에서 요소를 랜덤으로 추출합니다.|
+|`shift_left()` (C++20~)<br/>`shift_right()` (C++20~)|(작성중)|
 
 # 분할 작업
 
@@ -128,6 +129,7 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10);
 |--|--|
 |`equal()`|두 시퀀스의 각 요소가 서로 같으면 `true`를 리턴합니다.|
 |`lexicographical_compare()`|첫번째 시퀀스가 두번째 시퀀스 보다 사전식 순서로 먼저면 `true`를 리턴합니다.|
+|`lexicographical_compare_three_way()` (C++20~)|(작성중)|
 
 # 순열 작업
 
@@ -144,7 +146,7 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10);
 |`push_heap()`||
 |`pop_heap()`||
 |`sort_heap()`||
-|`is_heap_until()` (C++11~)||
+|`is_heap()` (C++11~)<br/>`is_heap_until()` (C++11~)||
 
 # 수학 작업
 
@@ -173,7 +175,7 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10);
 |`uninitialized_value_construct()` (C++17~)<br/>`uninitialized_value_construct_n()` (C++17~)|| 
 |`destroy()` (C++17~)<br/>`destroy_n()` (C++17~)|| 
 |`destroy_at()` (C++17~)|| 
-
+|`construct_at()` (C++17~)|| 
 
 
 

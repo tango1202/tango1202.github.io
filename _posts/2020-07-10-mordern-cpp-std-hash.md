@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++ STL] (C++11~) hash()"
+title: "#10. [모던 C++ STL] (C++11~) hash()"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -18,7 +18,7 @@ sidebar:
 2. 동일한 데이터는 동일한 해시값(Digest)이 나와야 합니다.
 3. 서로 다른 데이터라도 해시값(Digest)은 충돌될 수 있습니다. 확률적으로는 `1.0 / std::numeric_limits<std::size_t>::max()` 입니다.
 
-STL에서는 `bool`, `int`등의 기본 타입과 `string`등의 STL 타입에 대해 모두 정의되어 있어 이를 사용할 수 있습니다.
+STL 에서는 `bool`, `int`등의 기본 타입과 `string`등의 STL 타입에 대해 모두 정의되어 있어 이를 사용할 수 있습니다.
 
 
 ```cpp

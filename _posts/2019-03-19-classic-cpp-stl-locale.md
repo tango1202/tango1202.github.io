@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#18. [고전 C++ STL] 로케일(작성중)"
+title: "#19. [고전 C++ STL] 로케일(작성중)"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [모던 C++ STL] (C++11~) condition_variable"
+title: "#16. [모던 C++ STL] (C++11~) condition_variable"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -19,13 +19,14 @@ sidebar:
 1. 인터넷에서 파일을 다운로드 받는 쓰레드가 종료되었을때
 2. UI 쓰레드에서 다운로드 완료 버튼이 나와야 합니다.
 
-STL에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공됩니다.
+STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공됩니다.
 
 |항목|내용|
 |--|--|
 |`condition_variable`|쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
-|`condition_variable_an`|(작성중)|
+|`condition_variable_any`|(작성중)|
 |`notify_all_at_thread_exit()`|(작성중)|
+|`cv_status`|`no_timeout`, `timeout`이 정의된 열거형 상수 입니다.|
 
 # condition_variable
 
@@ -48,7 +49,7 @@ STL에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공�
 |`wait()`|Notify가 왔을때 주어진 조건자가 참이면 대기를 해제합니다.|
 |`wait_for()`|Notify가 왔을때 주어진 조건자가 참이거나 주어진 기간이 지나면 대기를 해제합니다.|
 |`wait_until()`|Notify가 왔을때 주어진 조건자가 참이거나 주어진 시간이 지나면 대기를 해제합니다.|
-|`native_handle()`|시스템에 따른 구현에 정의된 기본 핸들을 리턴합니다.|
+|`native_handle()`|시스템에 따른 구현에 정의된 핸들을 리턴합니다.|
 
 예를 들어 다음의 `wait()`는 누군가가 `m_IsRun1`을 `true`로 설정하고, `m_CV.notify_one()` 또는 `m_CV.notify_all()`을 호출할때 까지 대기합니다.
 
