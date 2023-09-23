@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] (C++11~) chrono"
+title: "#8. [모던 C++ STL] (C++11~) chrono"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -44,9 +44,9 @@ std::cout<<"MyFunc() : "<<duration.count()<<std::endl;
 
 |항목|내용|
 |--|--|
-|`system_clock`|시스템 시계입니다.|
-|`steady_clock`|조정되지 않는 시계입니다.|
-|`high_resolution_clock`|사용 가능한 가장 짧은 틱 주기를 갖는 시계입니다.|
+|`system_clock` (C++11~)|시스템 시계입니다.|
+|`steady_clock` (C++11~)|조정되지 않는 시계입니다.|
+|`high_resolution_clock` (C++11~)|사용 가능한 가장 짧은 틱 주기를 갖는 시계입니다.|
 |`is_clock` (C++20~)<br/>`is_clock_v` (C++20~)|(작성중)|
 |`utc_clock` (C++20~)|(작성중)|
 |`tai_clock` (C++20~)|(작성중)|
@@ -58,9 +58,9 @@ std::cout<<"MyFunc() : "<<duration.count()<<std::endl;
 
 |항목|내용|
 |--|--|
-|`now()`|현재 `time_point`를 리턴합니다.|
-|`to_time_t()`|`time_t`타입으로 변환합니다.|
-|`from_time_t()`|`time_t`타입에서 가져옵니다.|
+|`now()` (C++11~)|현재 `time_point`를 리턴합니다.|
+|`to_time_t()` (C++11~)|`time_t`타입으로 변환합니다.|
+|`from_time_t()` (C++11~)|`time_t`타입에서 가져옵니다.|
 
 # Time Point
 
@@ -68,67 +68,67 @@ std::cout<<"MyFunc() : "<<duration.count()<<std::endl;
 
 |항목|내용|
 |--|--|
-|`time_point`|특정 시점을 나타냅니다.|
-|`clock_time_conversion`|(작성중)|
-|`clock_cast`|(작성중)|
+|`time_point` (C++11~)|특정 시점을 나타냅니다.|
+|`clock_time_conversion` (C++11~)|(작성중)|
+|`clock_cast` (C++11~)|(작성중)|
 
 `time_point`는 다음의 멤버 함수가 있습니다.
 
 |항목|내용|
 |--|--|
-|`time_since_epoch()`|(작성중)|
-|`min()`|(작성중)|
-|`max()`|(작성중)|
+|`time_since_epoch()` (C++11~)|(작성중)|
+|`min()` (C++11~)|(작성중)|
+|`max()` (C++11~)|(작성중)|
 |`time_point_cast()`|(작성중)|
 |`floor()` (C++17~)|(작성중)|
 |`ceil()` (C++17~)|(작성중)|
 |`round()` (C++17~)|(작성중)|
-|`+`,`-`|(작성중)|
-|`++`, `--`<br/>|(작성중)|
-|`+=`,`-=`|(작성중)|
-|`++`, `--`<br/>|(작성중)|
-|`+=`,`-=`, `*=`, `/=`, `%=`|(작성중)|
-|`+`,`-`, `*`, `/`, `%`|(작성중)|
-|`==`<br/>`!=` (~C++20)<br/>`<`<br/>`<=`<br/>`>`<br/>`>=`<br/>`<=>` (C++20~)|(작성중)|
+|`+` (C++11~),`-` (C++11~)|(작성중)|
+|`++` (C++11~), `--` (C++11~)<br/>|(작성중)|
+|`+=` (C++11~),`-=` (C++11~)|(작성중)|
+|`++` (C++11~), `--` (C++11~)|(작성중)|
+|`+=` (C++11~),`-=` (C++11~), `*=` (C++11~), `/=` (C++11~), `%=` (C++11~)|(작성중)|
+|`+` (C++11~), `-` (C++11~), `*` (C++11~), `/` (C++11~), `%` (C++11~)|(작성중)|
+|`==` (C++11~)<br/>`!=` (~C++20)<br/>`<` (C++11~)<br/>`<=` (C++11~)<br/>`>` (C++11~)<br/>`>=` (C++11~)<br/>`<=>` (C++20~)|(작성중)|
 
 # Duration
 
 |항목|내용|
 |--|--|
-|`duration`|기간입니다. 두 Time Point의 차입니다.|
+|`duration` (C++11~)|기간입니다. 두 Time Point의 차입니다.|
 
 `duration` 은 다음의 멤버 함수가 있습니다.
 
 |항목|내용|
 |--|--|
-|`operator =`|(작성중)|
-|`count()`|(작성중)|
-|`zero()`|(작성중)|
-|`min()`|(작성중)|
-|`max()`|(작성중)|
-|`duration_cast()`|(작성중)|
+|`operator =` (C++11~)|(작성중)|
+|`count()` (C++11~)|(작성중)|
+|`zero()` (C++11~)|(작성중)|
+|`min()` (C++11~)|(작성중)|
+|`max()` (C++11~)|(작성중)|
+|`duration_cast()` (C++11~)|(작성중)|
 |`floor()` (C++17~)|(작성중)|
 |`ceil()` (C++17~)|(작성중)|
 |`round()` (C++17~)|(작성중)|
 |`abs()` (C++17~)|(작성중)|
 |`from_stream()` (C++20~)|(작성중)|
-|`+`,`-`|(작성중)|
-|`++`, `--`<br/>|(작성중)|
-|`+=`,`-=`, `*=`, `/=`, `%=`|(작성중)|
-|`+`,`-`, `*`, `/`, `%`|(작성중)|
-|`==`<br/>`!=` (~C++20)<br/>`<`<br/>`<=`<br/>`>`<br/>`>=`<br/>`<=>` (C++20~)|(작성중)|
+|`+` (C++11~),`-` (C++11~)|(작성중)|
+|`++` (C++11~), `--` (C++11~)<br/>|(작성중)|
+|`+=` (C++11~), `-=` (C++11~), `*=` (C++11~), `/=` (C++11~), `%=` (C++11~)|(작성중)|
+|`+` (C++11~), `-` (C++11~), `*` (C++11~), `/` (C++11~), `%` (C++11~)|(작성중)|
+|`==` (C++11~)<br/>`!=` (~C++20)<br/>`<` (C++11~)<br/>`<=` (C++11~)<br/>`>` (C++11~)<br/>`>=` (C++11~)<br/>`<=>` (C++20~)|(작성중)|
 |`<<` (C++20~)|(작성중)|
 
 다음과 같이 타입이 재정의 되어 있습니다.(int뒤 XX는 최소 필요 비트수입니다.)
 
 |항목|내용|
 |--|--|
-|`nanoseconds`|`duration<int64, std::nano>`|
-|`microseconds`|`duration<int54, std::micro>`|
-|`milliseconds`|`duration<int44, std::milli>`|
-|`seconds`|`duration<int35>`|
-|`minutes`|`duration<int29, std::ratio<60>>`|
-|`hours`|`duration<int23, std::ratio<3600>>`|
+|`nanoseconds` (C++11~)|`duration<int64, std::nano>`|
+|`microseconds` (C++11~)|`duration<int54, std::micro>`|
+|`milliseconds` (C++11~)|`duration<int44, std::milli>`|
+|`seconds` (C++11~)|`duration<int35>`|
+|`minutes` (C++11~)|`duration<int29, std::ratio<60>>`|
+|`hours` (C++11~)|`duration<int23, std::ratio<3600>>`|
 |`days` (C++20~)|`duration<int25, std::ratio<86400>>`|
 |`weeks` (C++20~)|`duration<int22, std::ratio<604800>>`|
 |`month` (C++20~)|`duration<int20, std::ratio<2629746>>`|
@@ -138,9 +138,9 @@ std::cout<<"MyFunc() : "<<duration.count()<<std::endl;
 
 |항목|내용|
 |--|--|
-|`treat_as_floating_point`|(작성중)|
-|`treat_as_floating_point`|(작성중)|
-|`duration_values`|(작성중)|
+|`treat_as_floating_point` (C++11~)|(작성중)|
+|`treat_as_floating_point` (C++11~)|(작성중)|
+|`duration_values` (C++11~)|(작성중)|
   
 
 # 시/분/초 서식

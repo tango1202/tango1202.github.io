@@ -86,7 +86,7 @@ struct Factorial<0> {
 };
 // 컴파일 타임에 계산된 120이 Val에 대입됩니다.
 enum class MyEnum {Val = Factorial<5>::Val};
-EXPECT_TRUE(MyEnum::Val == 1 * 2 * 3 * 4 * 5);
+EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 1 * 2 * 3 * 4 * 5);
 ```
 
 C++11 부터는 `constexpr`을 이용하여 암시적으로 인라인 함수인 컴파일 타임 함수를 만들 수 있습니다.

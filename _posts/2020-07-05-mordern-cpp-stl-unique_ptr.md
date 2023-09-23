@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [모던 C++ STL] (C++11~) unique_ptr, default_delete"
+title: "#5. [모던 C++ STL] (C++11~) unique_ptr, default_delete"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -53,22 +53,22 @@ EXPECT_TRUE(*c == 1 && d == nullptr);
 
 |항목|내용|
 |--|--|
-|`constexpr unique_ptr() noexcept;`<br/><br/>`explicit unique_ptr(T* p) noexcept;`<br/>`unique_ptr(T* p, deleter) noexcept;`<br/><br>`constexpr unique_ptr(nullptr_t) noexcept;`<br/><br/>`unique_ptr(auto_ptr&&) noexcept;` (C++11~C++17)|`nullptr`이나 `p`를 관리합니다. 이때 사용자 정의 `deleter`를 사용할 수 있습니다.|
-|`unique_ptr(const unique_ptr&) = delete;`|복사 생성자는 사용할 수 없습니다.|
-|`unique_ptr(unique_ptr&& other) noexcept;`|이동 생성합니다.|
-|`~unique_ptr()`|관리하는 개체를 `delete` 또는 `delete[]`합니다.|
-|`unique_ptr& operator =(const unique_ptr&) = delete;`|대입 연산자는 사용할 수 없습니다.|
-|`unique_ptr& operator =(unique_ptr&& other) noexcept;`|`other`가 관리하는 개체를 `this`로 이동시킵니다.|
-|`operator *() const noexcept;`|관리하는 개체의 참조자를 리턴합니다.|
-|`operator ->() const noexcept;`|관리하는 개체의 포인터를 리턴합니다.|
-|`operator [](size_t) const;`|배열을 관리하는 경우 각 요소 개체의 참조자를 리턴합니다.|
-|`explicit operator bool() const noexcept;`|`bool`로 형변환시 `nullptr` 이면 `false`를 리턴합니다.|
-|`get() const noexcept;`|관리하는 개체의 포인터를 리턴합니다.|
-|`swap(unique_ptr& other) noexcept;`|관리하는 개체를 `other`와 바꿔치기 합니다.|
-|`reset(T* p) noexcept;`|기존에 관리하던 개체를 해제하고 `p`를 관리합니다.|
-|`release() noexcept;`|관리하는 개체를 해제합니다.|
-|`get_deleter() noexcept;`|관리하는 개체를 소멸시키는 `deleter`를 리턴합니다.|
-|`==`<br/>`!=` (~C++20)<br/>`<`<br/>`<=`<br/>`>`<br/>`>=`<br/>`<=>` (C++20~)|관리하는 개체의 주소로 비교합니다.|
+|`constexpr unique_ptr() noexcept;` (C++11~)<br/><br/>`explicit unique_ptr(T* p) noexcept;` (C++11~)<br/>`unique_ptr(T* p, deleter) noexcept;` (C++11~)<br/><br>`constexpr unique_ptr(nullptr_t) noexcept;` (C++11~)<br/><br/>`unique_ptr(auto_ptr&&) noexcept;` (C++11~C++17)|`nullptr`이나 `p`를 관리합니다. 이때 사용자 정의 `deleter`를 사용할 수 있습니다.|
+|`unique_ptr(const unique_ptr&) = delete;` (C++11~)|복사 생성자는 사용할 수 없습니다.|
+|`unique_ptr(unique_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
+|`~unique_ptr()` (C++11~)|관리하는 개체를 `delete` 또는 `delete[]`합니다.|
+|`unique_ptr& operator =(const unique_ptr&) = delete;` (C++11~)|대입 연산자는 사용할 수 없습니다.|
+|`unique_ptr& operator =(unique_ptr&& other) noexcept;` (C++11~)|`other`가 관리하는 개체를 `this`로 이동시킵니다.|
+|`operator *() const noexcept;` (C++11~)|관리하는 개체의 참조자를 리턴합니다.|
+|`operator ->() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
+|`operator [](size_t) const;` (C++11~)|배열을 관리하는 경우 각 요소 개체의 참조자를 리턴합니다.|
+|`explicit operator bool() const noexcept;` (C++11~)|`bool`로 형변환시 `nullptr` 이면 `false`를 리턴합니다.|
+|`get() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
+|`swap(unique_ptr& other) noexcept;` (C++11~)|관리하는 개체를 `other`와 바꿔치기 합니다.|
+|`reset(T* p) noexcept;` (C++11~)|기존에 관리하던 개체를 해제하고 `p`를 관리합니다.|
+|`release() noexcept;` (C++11~)|관리하는 개체를 해제합니다.|
+|`get_deleter() noexcept;` (C++11~)|관리하는 개체를 소멸시키는 `deleter`를 리턴합니다.|
+|`==` (C++11~)<br/>`!=` (~C++20)<br/>`<` (C++11~)<br/>`<=` (C++11~)<br/>`>` (C++11~)<br/>`>=` (C++11~)<br/>`<=>` (C++20~)|관리하는 개체의 주소로 비교합니다.|
 |`<<` (C++20~)|관리하는 개체의 내용을 스트림에 출력합니다.|
 
 # unique_ptr을 활용한 함수 인자, 리턴 타입

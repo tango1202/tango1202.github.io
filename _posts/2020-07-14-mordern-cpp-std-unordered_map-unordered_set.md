@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++ STL] (C++11~) unordered_map, unordered_multimap, unordered_set, unordered_multiset"
+title: "#14. [모던 C++ STL] (C++11~) unordered_map, unordered_multimap, unordered_set, unordered_multiset"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -18,10 +18,10 @@ sidebar:
 
 |항목|내용|**Key** 조건|
 |--|--|--|
-|`unordered_map`|**Key** - **Value** 쌍으로 관리하며,  `pair`를 사용합니다.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고)<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.<br/>첨자 연산을 지원합니다.|`hash()` 함수자 구현<br/>`==` 구현|
-|`unordered_multimap`|`map`과 동일하며 중복 **Key**를 허용합니다.<br/>첨자 연산을 지원 하지 않습니다.|`hash()` 함수자 구현<br/>`==` 구현|
-|`unorderedset`|**Key**만 요소로 삽입됩니다.<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.|`hash()` 함수자 구현<br/>`==` 구현|
-|`unordered_multiset`|`set`과 동일하며 중복 **Key**를 허용합니다.|`hash()` 함수자 구현<br/>`==` 구현|
+|`unordered_map` (C++11~)|**Key** - **Value** 쌍으로 관리하며,  `pair`를 사용합니다.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고)<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.<br/>첨자 연산을 지원합니다.|`hash()` 함수자 구현<br/>`==` 구현|
+|`unordered_multimap` (C++11~)|`map`과 동일하며 중복 **Key**를 허용합니다.<br/>첨자 연산을 지원 하지 않습니다.|`hash()` 함수자 구현<br/>`==` 구현|
+|`unordered_set` (C++11~)|**Key**만 요소로 삽입됩니다.<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.|`hash()` 함수자 구현<br/>`==` 구현|
+|`unordered_multiset` (C++11~)|`set`과 동일하며 중복 **Key**를 허용합니다.|`hash()` 함수자 구현<br/>`==` 구현|
 
 # 해시
 
@@ -86,42 +86,42 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`[]`|주어진 Key의 Value를 구합니다.|
-|`at()`|주어진 Key의 Value를 구합니다.|
+|`[]` (C++11~)|주어진 Key의 Value를 구합니다.|
+|`at()` (C++11~)|주어진 Key의 Value를 구합니다.|
 |`contains()` (C++20~)|(작성중)|
-|`begin()`, `end()`, `cbegin()`, `cend()`|이터레이터<br/>`map`은 `rbegin()`, `rend()`, `crbegin()`, `crend()`를 추가로 제공합니다.|
-|`empty()`|컨테이너가 비었는지 확인합니다.|
-|`size()`|컨테이너의 요소 갯수를 리턴합니다.|
-|`max_size()`|컨테이너가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
-|`clear()`|모든 요소를 지웁니다.|
-|`erase()`|주어진 위치의 요소를 삭제합니다.|
+|`begin()` (C++11~), `end()` (C++11~), `cbegin()` (C++11~), `cend()` (C++11~)|이터레이터<br/>`map`은 `rbegin()`, `rend()`, `crbegin()`, `crend()`를 추가로 제공합니다.|
+|`empty()` (C++11~)|컨테이너가 비었는지 확인합니다.|
+|`size()` (C++11~)|컨테이너의 요소 갯수를 리턴합니다.|
+|`max_size()` (C++11~)|컨테이너가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
+|`clear()` (C++11~)|모든 요소를 지웁니다.|
+|`erase()` (C++11~)|주어진 위치의 요소를 삭제합니다.|
 |`erase_if()` (C++17~)|(작성중)|
-|`swap()`|두 컨테이너의 내부 데이터를 바꿔치기 합니다.|
-|`insert()`|주어진 위치 앞에 요소를 추가합니다.|
+|`swap()` (C++11~)|두 컨테이너의 내부 데이터를 바꿔치기 합니다.|
+|`insert()` (C++11~)|주어진 위치 앞에 요소를 추가합니다.|
 |`insert_range()` (C++23~)|(작성중)|
 |`insert_or_assign()` (C++17~)|(작성중)|
-|`emplace()`, `emplace_hint()`|요소 개체 생성을 위한 인수(`Key`, `Value`)를 전달하여 컨테이너 내에서 요소 개체(`pair<Key, Value>`)를 생성한 뒤 삽입합니다.|
+|`emplace()` (C++11~), `emplace_hint()` (C++11~)|요소 개체 생성을 위한 인수(`Key`, `Value`)를 전달하여 컨테이너 내에서 요소 개체(`pair<Key, Value>`)를 생성한 뒤 삽입합니다.|
 |`extract()` (C++17~)|(작성중)|
 |`merge()` (C++17~)|(작성중)|
 |`try_emplace()` (C++17~)|(작성중)|
-|`count()`|주어진 Key인 요소 갯수를 리턴합니다.|
-|`find()`|주어진 Key인 요소를 리턴합니다.| 
-|`equal_range()`|주어진 Key인 요소들을 리턴합니다.<br/>`map`은 `lower_bound()`, `upper_bound()`를 추가로 제공합니다.|
-|`==`<br/>`!=` (~C++20)|(작성중)|
+|`count()` (C++11~)|주어진 Key인 요소 갯수를 리턴합니다.|
+|`find()` (C++11~)|주어진 Key인 요소를 리턴합니다.| 
+|`equal_range()` (C++11~)|주어진 Key인 요소들을 리턴합니다.<br/>`map`은 `lower_bound()`, `upper_bound()`를 추가로 제공합니다.|
+|`==` (C++11~)<br/>`!=` (~C++20)|(작성중)|
 
 해시 컨테이너는 다음 멤버 함수를 추가로 제공합니다.
 
 |항목|내용|
 |--|--|
-|`begin(size_type)`, `end(size_type)`<br/>`begin(size_type)`, `end(size_type)`|버킷(Bucket) 이터레이터|
-|`bucket_count()`|버킷 갯수|
-|`max_bucket_count()`|최대 버킷 갯수|
-|`bucket_size()`|주어진 버킷의 요소 갯수|
-|`bucket()`|주어진 Key의 버킷|
-|`load_factor()`|버킷당 평균 요소 수|
-|`max_load_factor()`|버킷당 최대 평균 요소 수|
-|`rehash()`|버킷 갯수를 조정하고, 기존 요소들을 재배치|
-|`reserve()`|요소 수에 맞게 버킷 갯수를 조정하고, 기존 요소들을 재배치|
+|`begin(size_type)` (C++11~), `end(size_type)` (C++11~)<br/>`begin(size_type)` (C++11~), `end(size_type)` (C++11~)|버킷(Bucket) 이터레이터|
+|`bucket_count()` (C++11~)|버킷 갯수|
+|`max_bucket_count()` (C++11~)|최대 버킷 갯수|
+|`bucket_size()` (C++11~)|주어진 버킷의 요소 갯수|
+|`bucket()` (C++11~)|주어진 Key의 버킷|
+|`load_factor()` (C++11~)|버킷당 평균 요소 수|
+|`max_load_factor()` (C++11~)|버킷당 최대 평균 요소 수|
+|`rehash()` (C++11~)|버킷 갯수를 조정하고, 기존 요소들을 재배치|
+|`reserve()` (C++11~)|요소 수에 맞게 버킷 갯수를 조정하고, 기존 요소들을 재배치|
 
 요소 수에 맞게 버킷 갯수는 내부적으로 조정됩니다.
 

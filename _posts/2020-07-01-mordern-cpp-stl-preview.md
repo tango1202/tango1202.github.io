@@ -32,9 +32,9 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
-|[고정 너비 정수 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-type/#%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85)|고정 너비 정수 타입이 추가되었습니다.|
-|[고정 너비 실수 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-type/#%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%8B%A4%EC%88%98-%ED%83%80%EC%9E%85)|고정 너비 실수 타입이 추가되었습니다.|
-|[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/)|`type_index`는 `type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.|
+|[고정 너비 정수 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-type/#%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85) (C++11~)|고정 너비 정수 타입이 추가되었습니다.|
+|[고정 너비 실수 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-type/#%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%8B%A4%EC%88%98-%ED%83%80%EC%9E%85) (C++11~)|고정 너비 실수 타입이 추가되었습니다.|
+|[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/) (C++11~)|`type_index`는 `type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.|
 
 # 컨셉 라이브러리
 
@@ -42,7 +42,8 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
-|[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)|`type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.|
+|[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) (C++11~)|`type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.|
+|[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) (C++11~)|`ratio` 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.|
 
 
 
@@ -50,29 +51,28 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
-|[unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)|`unique_ptr`은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.<br/>[default_delete](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#default_delete)를 스마트 포인터의 `deleter`로 사용할 수 있습니다.|
-|[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)|`shared_ptr`은 소유권 공유용 스마트 포인터입니다.<br/>[enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this)를 이용하여 `shared_ptr`이 관리하는 개체로부터 `shared_ptr`을 만들 수 있습니다.<br/>[owner_less](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_less)를 이용하여 소유권 개체의 주소로 비교할 수 있습니다.|
-|[bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr)|`shared_ptr`에서 포인터가 잘못된 경우 `bad_weak_ptr` 예외를 방출합니다.|
-|[make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared)|`make_shared`를 이용하여 `shared_ptr`을 효율적으로 생성할 수 있습니다.|
-|[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)|`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`, `reinterpret_pointer_cast()` 로 `shared_ptr`의 관리 개체를 형변환 할 수 있습니다.|
-|[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)|`weak_ptr`은 `shared_ptr`의 상호 참조 문제를 해결합니다.|
-|[동적 메모리 관리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-memory/)|`pointer_traits`는 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.<br/>`addressof()`는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.<br/>`align()`은 메모리 정렬된 포인터를 구합니다.|
-
+|[unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/) (C++11~)|`unique_ptr`은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.<br/>[default_delete](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#default_delete)를 스마트 포인터의 `deleter`로 사용할 수 있습니다.|
+|[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr) (C++11~)|`shared_ptr`은 소유권 공유용 스마트 포인터입니다.<br/>[enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this)를 이용하여 `shared_ptr`이 관리하는 개체로부터 `shared_ptr`을 만들 수 있습니다.<br/>[owner_less](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_less)를 이용하여 소유권 개체의 주소로 비교할 수 있습니다.|
+|[bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) (C++11~)|`shared_ptr`에서 포인터가 잘못된 경우 `bad_weak_ptr` 예외를 방출합니다.|
+|[make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared) (C++11~)|`make_shared`를 이용하여 `shared_ptr`을 효율적으로 생성할 수 있습니다.|
+|[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98) (C++11~)|`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`, `reinterpret_pointer_cast()` 로 `shared_ptr`의 관리 개체를 형변환 할 수 있습니다.|
+|[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) (C++11~)|`weak_ptr`은 `shared_ptr`의 상호 참조 문제를 해결합니다.|
+|[동적 메모리 관리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-memory/) (C++11~)|`pointer_traits`는 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.<br/>`addressof()`는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.<br/>`align()`은 메모리 정렬된 포인터를 구합니다.|
 
 # 유틸리티 라이브러리
 
 |항목|내용|
 |--|--|
-|[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 지원|[move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)는 좌측값을 우측값으로 형변환합니다.<br/>[move_if_noexcept()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move_if_noexcept)는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다.<br/>[forword()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)는 값 카테고리를 유지하며 인자를 다른 함수에 전달합니다.|
-|[declval()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval)|`declval()`은 주어진 타입을 참조 타입으로 변환하여, 참조 타입 표현식으로 변경해 줍니다.|
-|[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)|`initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
-|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)|`tuple`은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.<br>`get()` 으로 요소에 접근합니다.<br/>[make_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#make_tuple), [tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#tie), [forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#forward_as_tuple) 을 이용하여 `tuple`을 쉽게 생성할 수 있습니다.<br/>[tuple_cat()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#tuple_cat) 으로 두개의 `tuple`을 합칩니다.<br/>[tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#tuple_size)로 컴파일 타임에 `tuple`요소 갯수를 구합니다.<br/>[tuple_element](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#tuple_element)을 이용하여 `tuple` 각 요소에 대한 타입을 구합니다.<br/>[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#piecewise_construct)를 이용하여 `pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.|
-|[function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/)|`function`은 `()`로 호출 가능한 함수자를 저장합니다.|
-|[bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#bad_function_call)|`function`에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
-|[mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#mem_fn)|`mem_fn()`은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.|
-|[참조자 래핑](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#reference_wrapper)|[reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#reference_wrapper) 는 복사나 대입이 안되는 참조자를 래핑합니다.<br/>[ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#ref-cref) 는 `reference_wrapper` 개체를 생성합니다.|
-|[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#bind)|`bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.<br/>[is_bind_expression](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#is_bind_expression)는  `bind()`로 생성한 함수인지 검사합니다.<br/>[is_placeholder](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#is_placeholder)는 자리 표시자를 사용했는지 검사합니다.|
-|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-hash/)|`hash()`는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.|
+|[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 지원 (C++11~)|[move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)는 좌측값을 우측값으로 형변환합니다.<br/>[move_if_noexcept()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move_if_noexcept)는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다.<br/>[forword()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)는 값 카테고리를 유지하며 인자를 다른 함수에 전달합니다.|
+|[declval()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval) (C++11~)|`declval()`은 주어진 타입을 참조 타입으로 변환하여, 참조 타입 표현식으로 변경해 줍니다.|
+|[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) (C++11~)|`initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
+|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/) (C++11~)|`tuple`은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.<br>`get()` 으로 요소에 접근합니다.<br/>[make_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#make_tuple), [tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#tie), [forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#forward_as_tuple) 을 이용하여 `tuple`을 쉽게 생성할 수 있습니다.<br/>[tuple_cat()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#tuple_cat) 으로 두개의 `tuple`을 합칩니다.<br/>[tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#tuple_size)로 컴파일 타임에 `tuple`요소 갯수를 구합니다.<br/>[tuple_element](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#tuple_element)을 이용하여 `tuple` 각 요소에 대한 타입을 구합니다.<br/>[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#piecewise_construct)를 이용하여 `pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.|
+|[function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/) (C++11~)|`function`은 `()`로 호출 가능한 함수자를 저장합니다.|
+|[bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#bad_function_call) (C++11~)|`function`에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
+|[mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#mem_fn) (C++11~)|`mem_fn()`은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.|
+|[참조자 래핑](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#reference_wrapper) (C++11~)|[reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#reference_wrapper) 는 복사나 대입이 안되는 참조자를 래핑합니다.<br/>[ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#ref-cref) 는 `reference_wrapper` 개체를 생성합니다.|
+|[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#bind) (C++11~)|`bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.<br/>[is_bind_expression](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#is_bind_expression)는  `bind()`로 생성한 함수인지 검사합니다.<br/>[is_placeholder](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-function/#is_placeholder)는 자리 표시자를 사용했는지 검사합니다.|
+|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-hash/) (C++11~)|`hash()`는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.|
 
 # 컨테이너 라이브러리
 
@@ -80,17 +80,17 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
-|[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-array/)|`array`는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.|
-|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-forward_list/)|`forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.|
-|[unordered_map<br/>unordered_multimap<br/>unordered_set<br/>unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-unordered_map-unordered_set/)|`unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.|
+|[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-array/) (C++11~)|`array`는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.|
+|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-forward_list/) (C++11~)|`forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.|
+|[unordered_map<br/>unordered_multimap<br/>unordered_set<br/>unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-unordered_map-unordered_set/) (C++11~)|`unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.|
 
 # 이터레이터 라이브러리
 
 |항목|내용|
 |--|--|
-|[move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-iterator/)|`move_iterator` 아답터는 이터레이터가 가리키는 요소를 이동 연산 합니다.|
-|[이터레이터 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-iterator/)|`next()`와 `prev()`가 추가되었습니다.|
-|[범위 접근](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-iterator/)|`begin()`과 `end()`가 추가되었습니다.|
+|[move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-iterator/) (C++11~)|`move_iterator` 아답터는 이터레이터가 가리키는 요소를 이동 연산 합니다.|
+|[이터레이터 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-iterator/) (C++11~)|`next()`와 `prev()`가 추가되었습니다.|
+|[범위 접근](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-iterator/) (C++11~)|`begin()`과 `end()`가 추가되었습니다.|
 
 # 범위 라이브러리
 
@@ -98,25 +98,25 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
-|C++11|이동 연산 및 일부 알고리즘들이 보강되었습니다.([알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/) 참고)|
+|(C++11~)|이동 연산 및 일부 알고리즘들이 보강되었습니다.([알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/) 참고)|
 
 # 문자열 라이브러리
 
 |항목|내용|
 |--|--|
-|[std::u16string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4)|`std::basic_string<char16_t>` UTF-16 인코딩을 지원합니다.|
-|[std::u32string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4)|`std::basic_string<char32_t>` UTF-32 인코딩을 지원합니다.|
+|[std::u16string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4) (C++11~)|`std::basic_string<char16_t>` UTF-16 인코딩을 지원합니다.|
+|[std::u32string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4) (C++11~)|`std::basic_string<char32_t>` UTF-32 인코딩을 지원합니다.|
 |[std::u8string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t-stdu8string) (C++20~)|`std::basic_string<char8_t>` UTF-8 인코딩을 지원합니다.|
 
 # 동시성 라이브러리
 
 |항목|내용|
 |--|--|
-|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#thread)|`thread`는 주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
-|[mutex<br/>timed_mutex<br/>recursive_mutex<br/>recursive_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#mutex)<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|`mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
-|[lock_guard<br/>unique_lock<br/>lock()<br>try_lock(br/)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#lock)<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.|
-|[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#call_once-once_flag)|`call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
-|[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-condition_variable)|`condition_variable`은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
+|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#thread) (C++11~)|`thread`는 주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
+|[mutex<br/>timed_mutex<br/>recursive_mutex<br/>recursive_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#mutex) (C++11~)<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|`mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
+|[lock_guard<br/>unique_lock<br/>lock()<br>try_lock()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#lock) (C++11~)<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.|
+|[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-thread-mutex/#call_once-once_flag) (C++11~)|`call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
+|[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-condition_variable) (C++11~)|`condition_variable`은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
 
 thread
 mutex
@@ -127,7 +127,7 @@ future
 # 수치 라이브러리
 
 random
-ratio
+
 
 # 진단 라이브러리
 
@@ -140,7 +140,7 @@ system_error
 
 |항목|내용|
 |--|--|
-|[chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-chrono/)|`system_clock`, `time_point`, `duration`개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.|
+|[chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-chrono/) (C++11~)|[system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-chrono/#clock), [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-chrono/#time-point), [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-chrono/#duration) 개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.|
 
 # 정규 표현식 라이브러리
 regex

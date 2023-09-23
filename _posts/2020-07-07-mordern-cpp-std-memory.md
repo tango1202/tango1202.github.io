@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [모던 C++ STL] (C++11~) 동적 메모리 관리(pointer_traits, addressof(), align() 등)"
+title: "#7. [모던 C++ STL] (C++11~) 동적 메모리 관리(pointer_traits, addressof(), align() 등)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -14,11 +14,11 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`pointer`|포인터 타입입니다.|
-|`element_type`|포인터가 가리키는 값의 타입입니다.|
-|`difference_type`|포인터끼리 뺀 값의 타입입니다.|
-|`template<typename U> using rebind`|`U`에 바인딩되는 타입입니다.|
-|`pointer pointer_to(element_type& r);`|`element_type`을 `pointer` 타입으로 변환합니다.|
+|`pointer` (C++11~)|포인터 타입입니다.|
+|`element_type` (C++11~)|포인터가 가리키는 값의 타입입니다.|
+|`difference_type` (C++11~)|포인터끼리 뺀 값의 타입입니다.|
+|`template<typename U> using rebind` (C++11~)|`U`에 바인딩되는 타입입니다.|
+|`pointer pointer_to(element_type& r);` (C++11~)|`element_type`을 `pointer` 타입으로 변환합니다.|
 
 # addressof()
 
@@ -62,10 +62,10 @@ void* align(
 
 |항목|내용|
 |--|--|
-|`allocator_traits`|(작성중)|
-|`allocator_arg`|(작성중)|
-|`uses_allocator`|(작성중)|
-|`scoped_allocator_adaptor`|(작성중)|
+|`allocator_traits` (C++11~)|(작성중)|
+|`allocator_arg` (C++11~)|(작성중)|
+|`uses_allocator` (C++11~)|(작성중)|
+|`scoped_allocator_adaptor` (C++11~)|(작성중)|
 |`polymorphic_allocator` (C++17)|(작성중)|
 |`uses_allocator_construction_args` (C++20~)|(작성중)|
 |`make_obj_using_allocator` (C++20~)|(작성중)|

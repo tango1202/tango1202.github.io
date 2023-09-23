@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [모던 C++ STL] (C++11~) tuple"
+title: "#9. [모던 C++ STL] (C++11~) tuple"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -39,14 +39,14 @@ EXPECT_TRUE(
 
 |항목|내용|
 |--|--|
-|`get()`|`tuple` 에서 주어진 인덱스 위치에 있는 요소의 참조자를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
-|`make_tuple()`|`tuple` 을 생성합니다.|
-|`tie()`|좌측값 참조로 구성된 `tuple`을 만듭니다. |
-|`forward_as_tuple()`|함수 인수 전달에 적합하도록, `tuple` 생성시 좌측값이나 우측값 참조가 변형되지 않도록 합니다.|
-|`tuple_cat()`|두개의 `tuple` 을 합칩니다.|
-|`tuple_size`|컴파일 타임에 `tuple`의 요소 갯수를 구합니다.|
-|`tuple_element`|`tuple`의 각 요소에 대한 타입을 제공합니다.|
-|`ignore()`|(작성중)|
+|`get()` (C++11~)|`tuple` 에서 주어진 인덱스 위치에 있는 요소의 참조자를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
+|`make_tuple()` (C++11~)|`tuple` 을 생성합니다.|
+|`tie()` (C++11~)|좌측값 참조로 구성된 `tuple`을 만듭니다. |
+|`forward_as_tuple()` (C++11~)|함수 인수 전달에 적합하도록, `tuple` 생성시 좌측값이나 우측값 참조가 변형되지 않도록 합니다.|
+|`tuple_cat()` (C++11~)|두개의 `tuple` 을 합칩니다.|
+|`tuple_size` (C++11~)|컴파일 타임에 `tuple`의 요소 갯수를 구합니다.|
+|`tuple_element` (C++11~)|`tuple`의 각 요소에 대한 타입을 제공합니다.|
+|`ignore()` (C++11~)|(작성중)|
 |`basic_common_reference` (C++23~)|(작성중)|
 |`common_type` (C++23~)|(작성중)|
 

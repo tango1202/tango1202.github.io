@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [모던 C++ STL] (C++11~) thread, mutex"
+title: "#16. [모던 C++ STL] (C++11~) thread, mutex"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -19,19 +19,19 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`thread`|주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
+|`thread` (C++11~)|주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
 |`jthread` (C++20~)|(작성중)|
 |`stop_token` (C++20~)|(작성중)|
 |`stop_source` (C++20~)|(작성중)|
 |`stop_callback` (C++20~)|(작성중)|
 |`hardware_destructive_interference_size` (C++17~)<br/>`hardware_constructive_interference_size` (C++17~)|(작성중)|
-|`mutex`<br/>`timed_mutex`<br/>`recursive_mutex`<br/>`recursive_timed_mutex`<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
+|`mutex` (C++11~)<br/>`timed_mutex` (C++11~)<br/>`recursive_mutex` (C++11~)<br/>`recursive_timed_mutex` (C++11~)<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
 |`counting_semaphore` (C++ 20)|(작성중)|
 |`binary_semaphore` (C++ 20)|(작성중)|
 |`latch` (C++ 20)|(작성중)|
 |`barrier` (C++ 20)|(작성중)|
-|`lock_guard`<br/>`unique_lock`<br/>`lock()`<br/>`try_lock()`<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`mutex`의 잠금 상태를 관리합니다.|
-|`call_once()`|주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
+|`lock_guard` (C++11~)<br/>`unique_lock` (C++11~)<br/>`lock()` (C++11~)<br/>`try_lock()` (C++11~)<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`mutex`의 잠금 상태를 관리합니다.|
+|`call_once()` (C++11~)|주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
 
 # 쓰레드
 
@@ -75,13 +75,13 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`joinable()`|`thread`가 동작중인지 확인합니다.|
-|`get_id()`|`thread`의 아이디를 구합니다.|
-|`native_handle()`|시스템에 따른 구현에 정의된 쓰레드 핸들을 리턴합니다.|
-|`hardware_concurrency()`|시스템이 지원하는 동시 쓰레드 수를 리턴합니다.|
-|`join()`|`thread`가 종료될때까지 기다립니다.|
-|`detach()`|`thread`가 실행되도록 내버려 둡니다.|
-|`swap()`|바꿔치기 합니다.|
+|`joinable()` (C++11~)|`thread`가 동작중인지 확인합니다.|
+|`get_id()` (C++11~)|`thread`의 아이디를 구합니다.|
+|`native_handle()` (C++11~)|시스템에 따른 구현에 정의된 쓰레드 핸들을 리턴합니다.|
+|`hardware_concurrency()` (C++11~)|시스템이 지원하는 동시 쓰레드 수를 리턴합니다.|
+|`join()` (C++11~)|`thread`가 종료될때까지 기다립니다.|
+|`detach()` (C++11~)|`thread`가 실행되도록 내버려 둡니다.|
+|`swap()` (C++11~)|바꿔치기 합니다.|
 
 다음은 `Message1()` 과 `Message2()` 를 서로 다른 쓰레드로 호출한 예입니다. `join()`을 사용하여 쓰레드가 끝날때까지 기다립니다.
 
@@ -235,10 +235,10 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 
 |항목|내용|
 |--|--|
-|`yield()`|현 쓰레드를 쓰레드 대기열 뒤로 이동 시켜, 다른 쓰레드들이 먼저 실행되게 합니다.|
-|`get_id()`|현 쓰레드의 아이디를 구합니다.|
-|`sleep_for()`|주어진 시간동안 쓰레드를 쉽니다.|
-|`sleep_until()`|주어진 시간까지 쓰레드를 쉽니다.|
+|`yield()` (C++11~)|현 쓰레드를 쓰레드 대기열 뒤로 이동 시켜, 다른 쓰레드들이 먼저 실행되게 합니다.|
+|`get_id()` (C++11~)|현 쓰레드의 아이디를 구합니다.|
+|`sleep_for()` (C++11~)|주어진 시간동안 쓰레드를 쉽니다.|
+|`sleep_until()` (C++11~)|주어진 시간까지 쓰레드를 쉽니다.|
 
 # mutex
 
@@ -246,10 +246,10 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 
 |항목|내용|
 |--|--|
-|`mutex`|`mutex`는 공유 자원 접근을 하나의 쓰레드에서만 처리할 수 있도록 해주는 동기화 개체입니다.|
-|`timed_mutex`|`try_lock_for()`나 `try_lock_until()`등으로 주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 `mutex`입니다.|
-|`recursive_mutex`|동일한 쓰레드 내에서 재귀적으로 `lock()`을 할 수 있는 `mutex`입니다.|
-|`recursive_timed_mutex`|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 재귀적 `mutex`입니다.|
+|`mutex` (C++11~)|`mutex`는 공유 자원 접근을 하나의 쓰레드에서만 처리할 수 있도록 해주는 동기화 개체입니다.|
+|`timed_mutex` (C++11~)|`try_lock_for()`나 `try_lock_until()`등으로 주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 `mutex`입니다.|
+|`recursive_mutex` (C++11~)|동일한 쓰레드 내에서 재귀적으로 `lock()`을 할 수 있는 `mutex`입니다.|
+|`recursive_timed_mutex` (C++11~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 재귀적 `mutex`입니다.|
 |`shared_timed_mutex` (C++14~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 다른 쓰레드들과 공유할 수 있는 `mutex`입니다.|
 |`shared_mutex` (C++17~)|다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 `mutex`입니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.|
 
@@ -257,10 +257,10 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 
 |항목|내용|
 |--|--|
-|`lock()`|현 쓰레드만 접근 가능하고, 다른 쓰레드는 대기시킵니다.|
-|`try_lock()`|`lock()`을 시도하고, 만약 다른 쓰레드에 의해 대기된다면, `false`를 리턴합니다.|
-|`unlock()`|`lock()`을 해제하여 다른 쓰레드에서도 자원을 사용할 수 있게 합니다.|
-|`native_handle()`|시스템에 따른 구현에 정의된 핸들을 리턴합니다.|
+|`lock()` (C++11~)|현 쓰레드만 접근 가능하고, 다른 쓰레드는 대기시킵니다.|
+|`try_lock()` (C++11~)|`lock()`을 시도하고, 만약 다른 쓰레드에 의해 대기된다면, `false`를 리턴합니다.|
+|`unlock()` (C++11~)|`lock()`을 해제하여 다른 쓰레드에서도 자원을 사용할 수 있게 합니다.|
+|`native_handle()` (C++11~)|시스템에 따른 구현에 정의된 핸들을 리턴합니다.|
 
 # lock
 
@@ -268,11 +268,11 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 
 |항목|내용|
 |--|--|
-|`lock_guard`|개체 생성시 `lock()`을 하고, 개체 소멸시 `unlock()` 합니다.|
-|`unique_lock`|`lock_guard` 처럼 생성시 자동으로 잠글 수도 있고, 별도로 `lock()`을 호출해야 잠글 수도 있습니다.|
-|lock 옵션|`defer_lock` : `lock()` 호출시 잠금이 됩니다.<br/>`try_to_lock` : 잠금시 `try_lock()`을 사용합니다.<br/>`adopt_lock` : 해당 쓰레드가 이미 `lock()`을 했다고 가정하고, `unlock()`만 합니다.|
-|`lock()`|여러개의 `mutex`를 `lock()`합니다.|
-|`try_lock()`|여러개의 `mutex`를 `try_lock()`합니다.|
+|`lock_guard` (C++11~)|개체 생성시 `lock()`을 하고, 개체 소멸시 `unlock()` 합니다.|
+|`unique_lock` (C++11~)|`lock_guard` 처럼 생성시 자동으로 잠글 수도 있고, 별도로 `lock()`을 호출해야 잠글 수도 있습니다.|
+|lock 옵션 (C++11~)|`defer_lock` : `lock()` 호출시 잠금이 됩니다.<br/>`try_to_lock` : 잠금시 `try_lock()`을 사용합니다.<br/>`adopt_lock` : 해당 쓰레드가 이미 `lock()`을 했다고 가정하고, `unlock()`만 합니다.|
+|`lock()` (C++11~)|여러개의 `mutex`를 `lock()`합니다.|
+|`try_lock()` (C++11~)|여러개의 `mutex`를 `try_lock()`합니다.|
 |`shared_lock` (C++14~)|(작성중)|
 |`scope_lock` (C++17~)|(작성중)|
 

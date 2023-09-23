@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), 참조자 래핑, bind())"
+title: "#10. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), 참조자 래핑, bind())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -73,24 +73,24 @@ EXPECT_TRUE(*itr == 4);
 
 |항목|내용|
 |--|--|
-|`function`|`()`로 호출 가능한 함수자를 저장합니다.|
-|`bad_function_call`|`()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
-|`mem_fn()`|인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.|
+|`function` (C++11~)|`()`로 호출 가능한 함수자를 저장합니다.|
+|`bad_function_call` (C++11~)|`()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
+|`mem_fn()` (C++11~)|인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.|
 |`move_only_function` (C++23~)|(작성중)|
 |`copyable_function` (C++26~)|(작성중)|
 |`function_ref` (C++26~)|(작성중)|
-|`bind()`|`placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, … `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.|
-|`is_bind_expression`|`bind()`로 생성한 함수인지 검사합니다.|
-|`is_placeholder`|자리 표시자를 사용했는지 검사합니다.|
-|`_1, _2, _3, _4`|자리 표시자 입니다.|  
+|`bind()` (C++11~)|`placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, … `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.|
+|`is_bind_expression` (C++11~)|`bind()`로 생성한 함수인지 검사합니다.|
+|`is_placeholder` (C++11~)|자리 표시자를 사용했는지 검사합니다.|
+|`_1, _2, _3, _4` (C++11~)|자리 표시자 입니다.|  
 |`bind_front()` (C++20~)|(작성중)|
 |`bind_back()` (C++23~)|(작성중)|
 |`not_fn()` (C++17~)|(작성중)|
 |`default_searcher` (C++17~)|(작성중)|
 |`boyer_moore_searche` (C++17~)|(작성중)| 
 |`boyer_moore_horspool_searcher` (C++17~)|(작성중)| 
-|`reference_wrapper`|복사나 대입이 안되는 참조자를 래핑합니다.| 
-|`ref()`<br/>`cref()`|`reference_wrapper` 개체를 생성합니다.| 
+|`reference_wrapper` (C++11~)|복사나 대입이 안되는 참조자를 래핑합니다.| 
+|`ref()` (C++11~)<br/>`cref()` (C++11~)|`reference_wrapper` 개체를 생성합니다.| 
 |`unwrap_reference` (C++20~)<br/>`unwrap_ref_decay` (C++20~)|(작성중)| 
 
 # bad_function_call
@@ -273,8 +273,8 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 20); // 참조자를 저장했으므로 vector
 
 |항목|내용|
 |--|--|
-|`ref(T)`|`std::reference_wrapper<T>` 생성|
-|`cref(T)`|`std::reference_wrapper<const T>` 생성|
+|`ref(T)` (C++11~)|`std::reference_wrapper<T>` 생성|
+|`cref(T)` (C++11~)|`std::reference_wrapper<const T>` 생성|
 
 ```cpp
 int a{1};

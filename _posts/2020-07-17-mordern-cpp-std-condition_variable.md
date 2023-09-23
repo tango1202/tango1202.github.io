@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++ STL] (C++11~) condition_variable"
+title: "#17. [모던 C++ STL] (C++11~) condition_variable"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -23,10 +23,10 @@ STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공
 
 |항목|내용|
 |--|--|
-|`condition_variable`|쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
-|`condition_variable_any`|(작성중)|
-|`notify_all_at_thread_exit()`|(작성중)|
-|`cv_status`|`no_timeout`, `timeout`이 정의된 열거형 상수 입니다.|
+|`condition_variable` (C++11~)|쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
+|`condition_variable_any` (C++11~)|(작성중)|
+|`notify_all_at_thread_exit()` (C++11~)|(작성중)|
+|`cv_status` (C++11~)|`no_timeout`, `timeout`이 정의된 열거형 상수 입니다.|
 
 # condition_variable
 
@@ -44,12 +44,12 @@ STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공
 
 |항목|내용|
 |--|--|
-|`notify_one()`|대기중인 한개의 쓰레드에게 알립니다.|
-|`notify_all()`|대기중인 모든 쓰레드에게 알립니다.|
-|`wait()`|Notify가 왔을때 주어진 조건자가 참이면 대기를 해제합니다.|
-|`wait_for()`|Notify가 왔을때 주어진 조건자가 참이거나 주어진 기간이 지나면 대기를 해제합니다.|
-|`wait_until()`|Notify가 왔을때 주어진 조건자가 참이거나 주어진 시간이 지나면 대기를 해제합니다.|
-|`native_handle()`|시스템에 따른 구현에 정의된 핸들을 리턴합니다.|
+|`notify_one()` (C++11~)|대기중인 한개의 쓰레드에게 알립니다.|
+|`notify_all()` (C++11~)|대기중인 모든 쓰레드에게 알립니다.|
+|`wait()` (C++11~)|Notify가 왔을때 주어진 조건자가 참이면 대기를 해제합니다.|
+|`wait_for()` (C++11~)|Notify가 왔을때 주어진 조건자가 참이거나 주어진 기간이 지나면 대기를 해제합니다.|
+|`wait_until()` (C++11~)|Notify가 왔을때 주어진 조건자가 참이거나 주어진 시간이 지나면 대기를 해제합니다.|
+|`native_handle()` (C++11~)|시스템에 따른 구현에 정의된 핸들을 리턴합니다.|
 
 예를 들어 다음의 `wait()`는 누군가가 `m_IsRun1`을 `true`로 설정하고, `m_CV.notify_one()` 또는 `m_CV.notify_all()`을 호출할때 까지 대기합니다.
 

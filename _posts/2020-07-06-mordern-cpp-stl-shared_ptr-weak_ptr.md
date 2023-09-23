@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [모던 C++ STL] (C++11~) share_ptr, make_shared(), enable_shared_from_this, owner_less, 형변환, weak_ptr, bad_weak_ptr"
+title: "#6. [모던 C++ STL] (C++11~) share_ptr, make_shared(), enable_shared_from_this, owner_less, 형변환, weak_ptr, bad_weak_ptr"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -17,9 +17,9 @@ C++11 부터는 소유권을 이전하는 스마트 포인터인 `auto_ptr`과 `
 
 |항목|내용|
 |--|--|
-|`shared_ptr`|소유권 공유용 스마트 포인터입니다.|
-|`make_shared()`|`shared_ptr`을 효율적으로 생성합니다.|
-|`weak_ptr`|`shared_ptr`의 상호 참조 문제 해결용 스마트 포인터입니다.|
+|`shared_ptr` (C++11~)|소유권 공유용 스마트 포인터입니다.|
+|`make_shared()` (C++11~)|`shared_ptr`을 효율적으로 생성합니다.|
+|`weak_ptr` (C++11~)|`shared_ptr`의 상호 참조 문제 해결용 스마트 포인터입니다.|
 
 # shared_ptr
 
@@ -96,26 +96,26 @@ std::shared_ptr<T> b{a};
 
 |항목|내용|
 |--|--|
-`constexpr shared_ptr() noexcept;`<br/><br/>`explicit shared_ptr(T* p);`<br/>`shared_ptr(T* p, deleter);`<br/>`shared_ptr(T* p, deleter, allocator);`<br/><br/>`constexpr shared_ptr(nullptr_t) noexcept;`<br/>`shared_ptr(nullptr_t p, deleter);`<br/>`shared_ptr(nullptr_t p, deleter, allocator);`<br/><br/>`explicit shared_ptr(const weak_ptr&);`<br/>`shared_ptr(unique_ptr&&);`<br/><br/>별칭 생성자<br/>`shared_ptr(const shared_ptr& other, element_type* p) noexcept;`<br/><br/>`shared_ptr( auto_ptr&&);` (C++11~C++17)|`nullptr`이나 `p`를 공유하며, 참조 카운트를 증가시킵니다. 이때 사용자 정의 `deleter`와 `allocator` 를 사용할 수 있습니다. `weak_ptr`과 `unique_ptr`로 생성할 수도 있습니다.|
-|`shared_ptr(const shared_ptr& other) noexcept;`|개체와 소유권을 공유하고 참조 카운트를 증가시킵니다.|
-|`shared_ptr(const shared_ptr&& other) noexcept;`|이동 생성합니다.|
-|`~shared_ptr();`|관리하던 개체의 참조 카운트를 감소시키고, `0`이 되면 `delete`또는 `delete[]`(C++17~)합니다.|
-|`shared_ptr& operator =(const shared_ptr& other) noexcept;`|`other` 개체와 소유권을 공유하고 참조 카운트를 증가시킵니다.|
-|`shared_ptr& operator =(shared_ptr&& r) noexcept;`|`other`가 관리하는 개체를 `this`로 이동시킵니다.|
-|`operator *() const noexcept;`|관리하는 개체의 참조자를 리턴합니다.|
-|`operator ->() const noexcept;`|관리하는 개체의 포인터를 리턴합니다.|
+`constexpr shared_ptr() noexcept;` (C++11~)<br/><br/>`explicit shared_ptr(T* p);` (C++11~)<br/>`shared_ptr(T* p, deleter);` (C++11~)<br/>`shared_ptr(T* p, deleter, allocator);` (C++11~)<br/><br/>`constexpr shared_ptr(nullptr_t) noexcept;` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter);` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter, allocator);` (C++11~)<br/><br/>`explicit shared_ptr(const weak_ptr&);` (C++11~)<br/>`shared_ptr(unique_ptr&&);` (C++11~)<br/><br/>별칭 생성자<br/>`shared_ptr(const shared_ptr& other, element_type* p) noexcept;` (C++11~)<br/><br/>`shared_ptr( auto_ptr&&);` (C++11~C++17)|`nullptr`이나 `p`를 공유하며, 참조 카운트를 증가시킵니다. 이때 사용자 정의 `deleter`와 `allocator` 를 사용할 수 있습니다. `weak_ptr`과 `unique_ptr`로 생성할 수도 있습니다.|
+|`shared_ptr(const shared_ptr& other) noexcept;` (C++11~)|개체와 소유권을 공유하고 참조 카운트를 증가시킵니다.|
+|`shared_ptr(const shared_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
+|`~shared_ptr();` (C++11~)|관리하던 개체의 참조 카운트를 감소시키고, `0`이 되면 `delete`또는 `delete[]`(C++17~)합니다.|
+|`shared_ptr& operator =(const shared_ptr& other) noexcept;` (C++11~)|`other` 개체와 소유권을 공유하고 참조 카운트를 증가시킵니다.|
+|`shared_ptr& operator =(shared_ptr&& r) noexcept;` (C++11~)|`other`가 관리하는 개체를 `this`로 이동시킵니다.|
+|`operator *() const noexcept;` (C++11~)|관리하는 개체의 참조자를 리턴합니다.|
+|`operator ->() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
 |`operator [](ptrdiff_t) const;` (C++17~)|배열을 관리하는 경우 각 요소 개체의 참조자를 리턴합니다.|
-|`explicit operator bool() const noexcept;`|`bool`로 형변환시 `nullptr` 이면 `false`를 리턴합니다.|
-|`get() const noexcept;`|관리하는 개체의 포인터를 리턴합니다.|
-|`swap(shared_ptr& other) noexcept;`|관리하는 개체를 `other`와 바꿔치기 합니다.|
+|`explicit operator bool() const noexcept;` (C++11~)|`bool`로 형변환시 `nullptr` 이면 `false`를 리턴합니다.|
+|`get() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
+|`swap(shared_ptr& other) noexcept;` (C++11~)|관리하는 개체를 `other`와 바꿔치기 합니다.|
 |`reset(T* p);`|기존에 관리하던 개체를 해제하고 `p`를 관리합니다.|
-|`use_count() const noexcept;`|참조 카운트를 리턴합니다.|
+|`use_count() const noexcept;` (C++11~)|참조 카운트를 리턴합니다.|
 |`unique() const noexcept;`(C++11~C++17)|다른 `shared_ptr`로 관리하는지 검사합니다. `use_count() == 1`과 같습니다.|
-|`lock() const noexcept;`|관리하는 개체 접근을 위해 임시 `shared_ptr`을 생성합니다.|
-|`owner_before() const noexcept;`|소유권 개체로 `<` 비교를 합니다.|
-|`get_deleter()`|관리하는 개체를 소멸시키는 `deleter`를 리턴합니다.|
-|`==`<br/>`!=` (C++11~C++20)<br/>`<` (C++11~C++20)<br/>`<=` (C++11~C++20)<br/>`>` (C++11~C++20)<br/>`>=` (C++11~C++20)<br/>`<=>` (C++20~)|관리하는 개체의 주소로 비교합니다.|
-|`<<`|관리하는 개체의 내용을 스트림에 출력합니다.|
+|`lock() const noexcept;` (C++11~)|관리하는 개체 접근을 위해 임시 `shared_ptr`을 생성합니다.|
+|`owner_before() const noexcept;` (C++11~)|소유권 개체로 `<` 비교를 합니다.|
+|`get_deleter()` (C++11~)|관리하는 개체를 소멸시키는 `deleter`를 리턴합니다.|
+|`==` (C++11~)<br/>`!=` (C++11~C++20)<br/>`<` (C++11~C++20)<br/>`<=` (C++11~C++20)<br/>`>` (C++11~C++20)<br/>`>=` (C++11~C++20)<br/>`<=>` (C++20~)|관리하는 개체의 주소로 비교합니다.|
+|`<<` (C++11~)|관리하는 개체의 내용을 스트림에 출력합니다.|
 
 # make_shared()
 
@@ -628,18 +628,18 @@ Node : Destructor
 
 |항목|내용|
 |--|--|
-|`constexpr weak_ptr() noexcept;`<br/><br/>`weak_ptr(const shared_ptr& other) noexcept;`|`shared_ptr`로 부터 생성합니다.|
-|`weak_ptr(const weak_ptr& other) noexcept;`|복사 생성합니다.|
-|`weak_ptr(const weak_ptr&& other) noexcept;`|이동 생성합니다.|
-|`~weak_ptr();`|기존에 관리하던 개체를 해제합니다. `shared_ptr`의 `weak_ptr` 참조 카운트만 감소시킬 뿐 개체에 대한 `delete`를 수행하지는 않습니다.|
-|`weak_ptr& operator =(const weak_ptr& other) noexcept;`<br/><br/>`weak_ptr& operator =(const shared_ptr& other) noexcept;`|`weak_ptr`이나 `shared_ptr`로 부터 대입받습니다.|
-|`weak_ptr& operator =(weak_ptr&& other) noexcept;`|`other`가 관리하는 개체를 `this`로 이동시킵니다.|
-|`swap(unique_ptr& other) noexcept;`|관리하는 개체를 `other`와 바꿔치기 합니다.|
-|`reset() noexcept;`|기존에 관리하던 개체를 해제합니다. `shared_ptr`의 `weak_ptr` 참조 카운트만 감소시킬 뿐 개체에 대한 `delete`를 수행하지는 않습니다.|
-|`use_count() const noexcept;`|`shared_ptr`의 참조 카운트를 리턴합니다.|
-|`expired() const noexcept;`|관리하는 개체가 소멸됐거나 소멸중인지 검사합니다. `use_count() == 0`과 같습니다.|
-|`lock() const noexcept;`|관리하는 개체 접근을 위해 임시 `shared_ptr`을 생성합니다.|
-|`owner_before() const noexcept;`|소유권 개체로 `<` 비교를 합니다.|
+|`constexpr weak_ptr() noexcept;` (C++11~)<br/><br/>`weak_ptr(const shared_ptr& other) noexcept;` (C++11~)|`shared_ptr`로 부터 생성합니다.|
+|`weak_ptr(const weak_ptr& other) noexcept;` (C++11~)|복사 생성합니다.|
+|`weak_ptr(const weak_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
+|`~weak_ptr();` (C++11~)|기존에 관리하던 개체를 해제합니다. `shared_ptr`의 `weak_ptr` 참조 카운트만 감소시킬 뿐 개체에 대한 `delete`를 수행하지는 않습니다.|
+|`weak_ptr& operator =(const weak_ptr& other) noexcept;` (C++11~)<br/><br/>`weak_ptr& operator =(const shared_ptr& other) noexcept;` (C++11~)|`weak_ptr`이나 `shared_ptr`로 부터 대입받습니다.|
+|`weak_ptr& operator =(weak_ptr&& other) noexcept;` (C++11~)|`other`가 관리하는 개체를 `this`로 이동시킵니다.|
+|`swap(unique_ptr& other) noexcept;` (C++11~)|관리하는 개체를 `other`와 바꿔치기 합니다.|
+|`reset() noexcept;` (C++11~)|기존에 관리하던 개체를 해제합니다. `shared_ptr`의 `weak_ptr` 참조 카운트만 감소시킬 뿐 개체에 대한 `delete`를 수행하지는 않습니다.|
+|`use_count() const noexcept;` (C++11~)|`shared_ptr`의 참조 카운트를 리턴합니다.|
+|`expired() const noexcept;` (C++11~)|관리하는 개체가 소멸됐거나 소멸중인지 검사합니다. `use_count() == 0`과 같습니다.|
+|`lock() const noexcept;` (C++11~)|관리하는 개체 접근을 위해 임시 `shared_ptr`을 생성합니다.|
+|`owner_before() const noexcept;` (C++11~)|소유권 개체로 `<` 비교를 합니다.|
 
 # weak_ptr 사용
 
