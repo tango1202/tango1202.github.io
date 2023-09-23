@@ -32,6 +32,8 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
+|[고정 너비 정수 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-type/#%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85)|고정 너비 정수 타입이 추가되었습니다.|
+|[고정 너비 실수 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-type/#%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%8B%A4%EC%88%98-%ED%83%80%EC%9E%85)|고정 너비 실수 타입이 추가되었습니다.|
 |[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/)|`type_index`는 `type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.|
 
 # 컨셉 라이브러리
