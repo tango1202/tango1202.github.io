@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [고전 C++ STL] vector"
+title: "#11. [고전 C++ STL] vector"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false

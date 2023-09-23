@@ -112,13 +112,13 @@ EXPECT_TRUE(result == 1 * 2 * 3 * 4 * 5);
 
 # constexpr 함수 스펙 변화
 
-`constexpr`함수는 기본적으로 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 리턴할 수 있고, 그외 스펙들은 조금씩 개선되고 있습니다. 
+`constexpr`함수는 기본적으로 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 리턴할 수 있고, 그외 스펙들은 조금씩 개선되고 있습니다. 
 
 C++11 부터는 지역 변수나 제어문도 사용할 수 없어서 상당히 제한적이었으나, 점점 개선되고 있습니다. 자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/language/constexpr)을 참고하시기 바랍니다.
 
 |항목|C++11|C++14|C++17|C++20|
 |--|--|--|--|--|
-|[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 외의 리턴|X|X|X|X|
+|[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 외의 리턴|X|X|X|X|
 |조건 연산자|O|O|O|O|
 |`static_assert()`|O|O|O|O|
 |`constexpr` 함수 호출|O|O|O|O|
@@ -152,11 +152,11 @@ EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 1 * 2 * 3 * 4 * 5);
 
 # constexpr 생성자 
 
-`constexpr`은 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 사용할 수 있는데요, 그러다 보니, 구조체나 클래스는 사용자 정의 생성자, 소멸자가 없으며 모든 멤버 변수가 `public`인 집합 타입인 경우에만 사용할 수 있습니다.
+`constexpr`은 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 사용할 수 있는데요, 그러다 보니, 구조체나 클래스는 사용자 정의 생성자, 소멸자가 없으며 모든 멤버 변수가 `public`인 집합 타입인 경우에만 사용할 수 있습니다.
 
-하지만, `constexpr` 생성자를 이용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)인 구조체나 클래스를 직접 만들 수 있습니다.
+하지만, `constexpr` 생성자를 이용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)인 구조체나 클래스를 직접 만들 수 있습니다.
 
-다음 `Area` 클래스는 `private` 멤버 변수와 생성자를 갖고 있지만, `constexpr`생성자를 사용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)으로 동작합니다.
+다음 `Area` 클래스는 `private` 멤버 변수와 생성자를 갖고 있지만, `constexpr`생성자를 사용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)으로 동작합니다.
 
 ```cpp
 class Area {

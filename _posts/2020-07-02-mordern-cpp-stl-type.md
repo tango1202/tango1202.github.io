@@ -1,18 +1,12 @@
 ---
 layout: single
-title: "#8. [고전 C++ STL] Type"
-categories: "classic-cpp-stl"
+title: "#2. [모던 C++ STL] 타입"
+categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
-
-> **모던 C++**
-> * 널 포인터를 위한 `nullptr` 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.([nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 참고)
-> * 고정 너비 정수 타입이 추가되었습니다.
-> * 고정 너비 실수 타입이 추가되었습니다.
-> * `type_index`는 `type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.([type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/) 참고)
 
 # 기본 타입
 

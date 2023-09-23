@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [고전 C++ STL] bitset"
+title: "#13. [고전 C++ STL] bitset"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -10,7 +10,7 @@ sidebar:
 
 # 개요
 
-`bitset`은 비트 단위의 데이터 관리 편의성을 위해 제공하는 유틸리티 클래스입니다.
+`bitset`은 비트 단위의 데이터를 관리하는 개체입니다.
 
 다음과 같이 `set()`, `reset()`함수로 특정 비트를 설정하며, `test()`함수로 값을 조회합니다.
 

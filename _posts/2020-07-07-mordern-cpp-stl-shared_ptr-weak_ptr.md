@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [모던 C++ STL] (C++11~) share_ptr, make_shared(), enable_shared_from_this, owner_less, 형변환, weak_ptr, bad_weak_ptr"
+title: "#7. [모던 C++ STL] (C++11~) share_ptr, make_shared(), enable_shared_from_this, owner_less, 형변환, weak_ptr, bad_weak_ptr"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

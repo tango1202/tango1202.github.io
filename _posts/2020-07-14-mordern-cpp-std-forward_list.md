@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++ STL] (C++11~) forward_list"
+title: "#14. [모던 C++ STL] (C++11~) forward_list"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

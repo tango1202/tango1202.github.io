@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [모던 C++ STL] (C++11~) array"
+title: "#13. [모던 C++ STL] (C++11~) array"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

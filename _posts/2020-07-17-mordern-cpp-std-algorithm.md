@@ -1,47 +1,12 @@
 ---
 layout: single
-title: "#15. [고전 C++ STL] 알고리즘(작성중)"
-categories: "classic-cpp-stl"
+title: "#17. [모던 C++ STL] (C++11~) 알고리즘"
+categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
-
-# 개요
-
-알고리즘은 컨테이너의 요소를 처리하는 표준화된 방법입니다. 만약 컨테이너 멤버 버전이 있다면, 멤버 버전이 효율이 더 좋습니다.
-
-다음은 시퀀스 안의 요소들에 대해 `f()`를 실행하는 `for_each()` 함수입니다.(사용하는 STL 라이브러리에 따라 다르겠지만, 대략 다음과 같이 정의되어 있습니다.)
-
-```cpp
-template<typename InputIterator, typename Function>
-Function for_each(InputIterator first, InputIterator last, Function f) {
-    // first~last 직전까지 요소에 대해 f() 호출
-    for (; first != last; ++first) { 
-        f(*first);
-    }
-    return f; 
-}
-```
-
-다음은 `std::for_each()`를 사용한 예입니다. `Setter()`함수를 이용하여 각 요소의 값을 `10`으로 변경합니다.
-
-```cpp
-// 10으로 세팅하는 함수
-void Setter(int& val) {
-    val = 10;
-}
-
-// 0으로 초기화 되어 생성
-std::vector<int> v(3);
-
-EXPECT_TRUE(v[0] == 0 && v[1] == 0 && v[2] == 0);
-
-// 모든 요소에 대해 Setter 적용
-std::for_each(v.begin(), v.end(), Setter);
-EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10); 
-```
 
 # 수정되지 않는 시퀀스 작업
 
@@ -56,7 +21,7 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10);
 |`find_last_of()`|지정된 요소들중 일치하는 값이 있는 마지막 위치를 찾습니다.|
 |`adjacent_find()`|중복된 요소의 위치를 찾습니다.|
 |`search()`<br/>`search_n()`|시퀀스에서 특정 부분 시퀀스의 위치를 찾습니다.|
-|`all_of()` (C++11~)<br/>`any_of()` (C++11~)<br>`none_of()` (C++11~)|시컨스 안의 요소들에 대해 모든 조건이 참인지, 1개 이상 참인지, 모두 거짓인지 검사합니다.|
+|`all_of()` (C++11~)<br/>`any_of()` (C++11~)<br>`none_of()` (C++11~)|시퀀스 안의 요소들에 대해 모든 조건이 참인지, 1개 이상 참인지, 모두 거짓인지 검사합니다.|
 
 # 수정되는 시퀀스 작업
 
@@ -176,6 +141,22 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10);
 |`destroy()` (C++17~)<br/>`destroy_n()` (C++17~)|| 
 |`destroy_at()` (C++17~)|| 
 |`construct_at()` (C++17~)|| 
+
+# 실행 정책
+
+|항목|내용|
+|--|--|
+|`equenced_policy` (C++17~)<br/>`parallel_policy`(C++17~)<br/>`parallel_unsequenced_policy`(C++17~)<br/>`unsequenced_policy`(C++20~)<br/>|(작성중)|
+|`seq` (C++17~)<br/>`par`(C++17~)<br/>`unseq`(C++20~)<br/>`|(작성중)|
+|`is_execution_policy` (C++17~)|(작성중)|
+
+
+
+
+
+
+
+
 
 
 

@@ -32,8 +32,11 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
-|[고정 너비 정수 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-type/#%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85) (C++11~)|고정 너비 정수 타입이 추가되었습니다.|
-|[고정 너비 실수 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-type/#%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%8B%A4%EC%88%98-%ED%83%80%EC%9E%85) (C++11~)|고정 너비 실수 타입이 추가되었습니다.|
+|[기본 타입](??)|`size_t`, `ptrdiff_f`, `NULL` 등 기본 타입을 제공합니다.|
+|[타입 최대/최소값](??)|`numeric_limits`를 이용하여 타입의 최대, 최소값을 알 수 있습니다.|
+|[런타임 타입](??)|`type_info`를 이용하여 개체의 타입 정보를 알 수 있습니다.|
+|[고정 너비 정수 타입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85) (C++11~)|고정 너비 정수 타입이 추가되었습니다.|
+|[고정 너비 실수 타입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%8B%A4%EC%88%98-%ED%83%80%EC%9E%85) (C++11~)|고정 너비 실수 타입이 추가되었습니다.|
 |[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/) (C++11~)|`type_index`는 `type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.|
 
 # 컨셉 라이브러리
@@ -45,12 +48,12 @@ C++11 STL은,
 |[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) (C++11~)|`type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.|
 |[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) (C++11~)|`ratio` 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.|
 
-
-
 # 메모리 관리 라이브러리
 
 |항목|내용|
 |--|--|
+|[할당자](??)|[allocator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 등 STL에서 개체 할당에 사용합니다.|
+|[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) (~C++11)|`auto_ptr`은 `delete[]` 미지원, `lvalue` 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.|
 |[unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/) (C++11~)|`unique_ptr`은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.<br/>[default_delete](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#default_delete)를 스마트 포인터의 `deleter`로 사용할 수 있습니다.|
 |[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr) (C++11~)|`shared_ptr`은 소유권 공유용 스마트 포인터입니다.<br/>[enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this)를 이용하여 `shared_ptr`이 관리하는 개체로부터 `shared_ptr`을 만들 수 있습니다.<br/>[owner_less](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_less)를 이용하여 소유권 개체의 주소로 비교할 수 있습니다.|
 |[bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) (C++11~)|`shared_ptr`에서 포인터가 잘못된 경우 `bad_weak_ptr` 예외를 방출합니다.|
@@ -58,11 +61,18 @@ C++11 STL은,
 |[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98) (C++11~)|`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`, `reinterpret_pointer_cast()` 로 `shared_ptr`의 관리 개체를 형변환 할 수 있습니다.|
 |[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) (C++11~)|`weak_ptr`은 `shared_ptr`의 상호 참조 문제를 해결합니다.|
 |[동적 메모리 관리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-memory/) (C++11~)|`pointer_traits`는 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.<br/>`addressof()`는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.<br/>`align()`은 메모리 정렬된 포인터를 구합니다.|
+|[가비지 컬렉터 지원](??) (C++11~C++23)|(작성중)|
+|[메모리 리소스](??) (C++17~)|(작성중)|
+|[초기화 되지 않은 스토리지](??) (C++17~)|(작성중)|
+|[메모리 관리](??) (C++20~)|(작성중)|
+|[스마트 포인터 어뎁터](??) (C++23~)|(작성중)|
+|[명시적 수명 관리](??) (C++23~)|(작성중)|
 
 # 유틸리티 라이브러리
 
 |항목|내용|
 |--|--|
+|[bitset](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-bitset/)|`bitset`은 비트 단위의 데이터를 관리하는 개체입니다.|
 |[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 지원 (C++11~)|[move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)는 좌측값을 우측값으로 형변환합니다.<br/>[move_if_noexcept()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move_if_noexcept)는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다.<br/>[forword()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)는 값 카테고리를 유지하며 인자를 다른 함수에 전달합니다.|
 |[declval()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval) (C++11~)|`declval()`은 주어진 타입을 참조 타입으로 변환하여, 참조 타입 표현식으로 변경해 줍니다.|
 |[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) (C++11~)|`initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
@@ -80,17 +90,30 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
+|[시퀀스 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/), `list`, `queue`, `stack`, `deque`, `priority_queue` 를 제공합니다.|
+|[연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)|`map`, `multimap`, `set`, `multiset`을 제공합니다.|
 |[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-array/) (C++11~)|`array`는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.|
 |[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-forward_list/) (C++11~)|`forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.|
 |[unordered_map<br/>unordered_multimap<br/>unordered_set<br/>unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-unordered_map-unordered_set/) (C++11~)|`unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.|
+|`flat_set`<br/>`flat_map`<br/>`flat_multiset`<br/>`flat_multimap` (C++23~)|(작성중)|
+|`span` (C++23~)|(작성중)|
+|`mdspan` (C++23~)|(작성중)|
 
 # 이터레이터 라이브러리
 
 |항목|내용|
 |--|--|
+|[이터레이터 기본 요소](??)|`iterator`와 `iterator_traits`를 제공합니다.|
+|[이터레이터 아답터](??)|`reverse_iterator`, `back_insert_iterator`등 이터레이터를 래핑한 아답터를 제공합니다.| 
+|[스트림 이터레이터](??)|`istream_iterator`, `ostream_iterator` 등 스트림 처리를 위한 이터레이터를 제공합니다.|
+|[이터레이터 유틸리티](??)|`advance()`, `distance()` 로 이터레이터를 이동시킵니다.|
 |[move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-iterator/) (C++11~)|`move_iterator` 아답터는 이터레이터가 가리키는 요소를 이동 연산 합니다.|
 |[이터레이터 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-iterator/) (C++11~)|`next()`와 `prev()`가 추가되었습니다.|
 |[범위 접근](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-iterator/) (C++11~)|`begin()`과 `end()`가 추가되었습니다.|
+|[이터레이터 사용자 정의](??) (C++20~)|(작성중)|
+|[이터레이터 컨셉](??) (C++20~)|(작성중)|
+|[이터레이터 연관 타입](??) (C++20~)|(작성중)|
+|[알고리즘 컨셉 및 연관 타입](??) (C++20~)|(작성중)|
 
 # 범위 라이브러리
 
@@ -98,7 +121,19 @@ C++11 STL은,
 
 |항목|내용|
 |--|--|
-|(C++11~)|이동 연산 및 일부 알고리즘들이 보강되었습니다.([알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/) 참고)|
+|[수정되지 않는 시퀀스 작업](??)|`for_each()`, `find()`, `search()`등 시퀀스를 수정되지 않는 작업입니다.|
+|[수정되는 시퀀스 작업](??)|`copy()`, `fill()`, `transform()`, `generate()`, `remove()`, `replace()` 등 시퀀스가 수정되는 작업입니다.|
+|[분할 작업](??)|`partition()` 등으로 시퀀스의 요소들을 분할하여 재배치 합니다.|
+|[정렬 작업](??)|`sort()`, `nth_element()` 등으로 시퀀스를 정렬합니다.|
+|[이진 검색 작업](??)|`lower_bound()`, `upper_bound()`, `binary_search()` 등으로 검색합니다.|
+|[정렬된 범위에서의 작업](??)|`merge()`, `set_union()`, `set_difference()`, `set_intersection()` 등으로 정렬된 시퀀스를 결합합니다.|
+|[최대/최소 작업](??)|`min()`, `max()` 등으로 최대/최소값을 구합니다.|
+|[비교 작업](??)|`equal()`, `lexicographical_compare()` 등으로 비교합니다.|
+|[순열 작업](??)|`next_permutation()`, `prev_permutation()` 등으로 순열(요소들을 중복없이 순서를 변경하여 나열)을 배치합니다.|
+|[힙 작업](??)|(작성중)|
+|[수학 작업](??)|(작성중)|
+|[메모리 유틸리티 작업](??)|(작성중)|
+|[실행 정책](??) (C++11~)|(작성중)|
 
 # 문자열 라이브러리
 

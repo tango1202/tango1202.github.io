@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [고전 C++ STL] 기타(작성중)"
+title: "#19. [고전 C++ STL] 기타(작성중)"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false

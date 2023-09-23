@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [고전 C++ STL] 함수자(Functor), 바인더, 어뎁터, 부정자"
+title: "#15. [고전 C++ STL] 함수자(Functor), 바인더, 어뎁터, 부정자"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -142,8 +142,8 @@ EXPECT_TRUE(v[0] == 11 && v[1] == 12 && v[2] == 13);
 |`logical_and`|arg1 == arg2|
 |`logical_or`|arg1 \|\| arg2|
 |`logical_not`|!arg|
-|`plus`|arg1 += arg2|
-|`minus`|arg1 -= arg2|
+|`plus`|arg1 + arg2|
+|`minus`|arg1 - arg2|
 |`multiplies`|arg1 * arg2|
 |`divides`|arg1 / arg2|
 |`modulus`|arg1 % arg2|
@@ -154,6 +154,7 @@ EXPECT_TRUE(v[0] == 11 && v[1] == 12 && v[2] == 13);
 이항 연산이 필요한 함수를 단항 함수처럼 바꿔주는 개체입니다.
 
 |항목|내용|
+|--|--|
 |`bind1st(op, x)`|알고리즘엔 단항 함수로 전달되며, `op(x, 요소)`로 이항 함수를 호출합니다.|
 |`bind2nd(op, y)`|알고리즘엔 단항 함수로 전달되며, `op(요소, y)`로 이항 함수를 호출합니다.|
 
@@ -226,6 +227,9 @@ EXPECT_TRUE(*itr == 4);
 |--|--|
 |`mem_fun()`|알고리즘에서 `f(x)`의 호출을 `x->f()` 처럼 호출되게 합니다.|
 |`mem_fun_ref()`|알고리즘에서 `f(x)`의 호출을 `x.f()` 처럼 호출되게 합니다.|
+|`ptr_fun()`|바인더, 아답터, 부정자와 일반 함수가 호환될 수 있도록 일반 함수를 `unary_function`이나 `binary_function` 개체로 만듭니다.|
+|`not1()`|단항 조건자의 반환값을 부정합니다.|
+|`not2()`|이항 조건자의 반환값을 부정합니다.|
 
 보통 컨테이너 요소들의 특정 함수를 호출해야 하는 경우 다음과 같이 이터레이터를 통해 멤버 함수를 호출하지만,
 
@@ -255,10 +259,6 @@ std::vector<A> v(2);
 std::for_each(v.begin(), v.end(), std::mem_fun_ref(&A::Func));
 ```
 
-그외 다음과 같이 아답터와 부정자가 있습니다.
 
-|항목|내용|
-|--|--|
-|`ptr_fun()`|바인더, 아답터, 부정자와 일반 함수가 호환될 수 있도록 일반 함수를 `unary_function`이나 `binary_function` 개체로 만듭니다.|
-|`not1()`|단항 조건자의 반환값을 부정합니다.|
-|`not2()`|이항 조건자의 반환값을 부정합니다.|
+
+

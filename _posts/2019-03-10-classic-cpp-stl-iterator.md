@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [고전 C++ STL] 이터레이터(반복자)"
+title: "#10. [고전 C++ STL] 이터레이터(반복자)"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -218,33 +218,9 @@ EXPECT_TRUE(v[0] == 7 && v[1] == 7 && v[2] == 7 && v[3] == 7 && v[4] == 7);
 
 # 이터레이터 아답터
 
-역방향 이터레이터나 삽입 이터레이터와 같이 이터레이터의 고유 기능인 `*`, `->`, `++`을 재구현하여 다르게 동작하는 이터레이터들입니다.
+역방향 이터레이터나 삽입 이터레이터와 같이 이터레이터의 고유 기능인 `*`, `->`, `++`을 재구현하여 다르게 동작하는 이터레이터들입니다. 자세한 사항은 모던 C++ STL의 [이터레이터](??) 를 참고하기 바랍니다.
 
-|항목|내용|
-|--|--|
-|`reverse_iterator`|역방향으로 이터레이트 합니다.|
-|`back_insert_iterator`|컨테이너 끝에 삽입합니다.|
-|`back_inserter()`|`back_insert_iterator`를 생성합니다.|
-|`front_insert_iterator`|컨테이너 앞에 삽입합니다.|
-|`front_inserter()`|`front_insert_iterator`를 생성합니다.|
-|`insert_iterator`|컨테이너에 삽입합니다.|
-|`inserter()`|`insert_iterator`를 생성합니다.|
 
-# 스트림 이터레이터
-
-|항목|내용|
-|--|--|
-|`istream_iterator`|`basic_istream`에서 사용하는 입력용 이터레이터|
-|`ostream_iterator`|`basic_ostream`에서 사용하는 출력용 이터레이터|
-|`istreambuf_iterator`|`basic_streambuf`에서 사용하는 입력용 이터레이터|
-|`ostreambuf_iterator`|`basic_streambuf`에서 사용하는 출력용 이터레이터|
-
-# 이터레이터 유틸리티
-
-|항목|내용|
-|--|--|
-|`advance()`|이터레이터를 이동시킵니다.|
-|`distance()`|이터레이터간 거리를 구합니다.|
 
 
 

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] (C++11~) 동적 메모리 관리(pointer_traits, addressof(), align() 등)"
+title: "#8. [모던 C++ STL] (C++11~) 동적 메모리 관리(pointer_traits, addressof(), align() 등)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -42,26 +42,13 @@ void* align(
 );
 ```
 
-# 메모리 관리
-
-|항목|내용|
-|--|--|
-|`to_address()` (C++20~)|(작성중)|
-|`assum_aligned()` (C++20)|(작성중)|
-
-# 스마트 포인트 어뎁터
-
-|항목|내용|
-|--|--|
-|`out_ptr_t`(C++23~)<br>`out_ptr()` (C++23)|(작성중)|
-|`inout_ptr_t`(C++23~)<br>`inout_ptr()` (C++23)|(작성중)|
-
 # 할당자
 
 기존에는 `allocator`만 있었으나([할당자(Allocator)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 참고), 좀더 많은 내용이 보강되었습니다.
 
 |항목|내용|
 |--|--|
+|`allocator`|컨테이너 등 STL에서 개체 할당에 사용합니다.([할당자(Allocator)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 참고)|
 |`allocator_traits` (C++11~)|(작성중)|
 |`allocator_arg` (C++11~)|(작성중)|
 |`uses_allocator` (C++11~)|(작성중)|
@@ -71,6 +58,17 @@ void* align(
 |`make_obj_using_allocator` (C++20~)|(작성중)|
 |`uninitialized_construct_using_allocator` (C++20~)|(작성중)|
 |`allocator_result` (C++23~)|(작성중)|
+
+# 가비지 컬렉터 지원
+
+|항목|내용|
+|--|--|
+|`declare_reachable()` (C++11~C++23)|(작성중)|
+|`undeclare_reachable()` (C++11~C++23)|(작성중)|
+|`declare_no_pointers()` (C++11~C++23)|(작성중)|
+|`undeclare_no_pointers()` (C++11~C++23)|(작성중)|
+|`pointer_safety` (C++11~C++23)|(작성중)|
+|`get_pointer_safety()` (C++11~C++23)|(작성중)|
 
 # 메모리 리소스
 
@@ -86,19 +84,30 @@ void* align(
 |`unsynchronized_pool_resource` (C++17~)|(작성중)| 
 |`monotonic_buffer_resource` (C++17~)|(작성중)| 
 
-# 가비지 컬렉터 지원
+# 초기화 되지 않은 스토리지
 
 |항목|내용|
 |--|--|
-|`declare_reachable()` (C++11~C++23)|(작성중)|
-|`undeclare_reachable()` (C++11~C++23)|(작성중)|
-|`declare_no_pointers()` (C++11~C++23)|(작성중)|
-|`undeclare_no_pointers()` (C++11~C++23)|(작성중)|
-|`pointer_safety` (C++11~C++23)|(작성중)|
-|`get_pointer_safety()` (C++11~C++23)|(작성중)|
+|`raw_storage_iterator` (~C++17)|(작성중)|
+|`get_temporary_buffer` (~C++17)|(작성중)|
+|`return_temporary_buffer` (~C++17)|(작성중)|
+
+# 메모리 관리
+
+|항목|내용|
+|--|--|
+|`to_address()` (C++20~)|(작성중)|
+|`assum_aligned()` (C++20)|(작성중)|
+
+# 스마트 포인트 어뎁터
+
+|항목|내용|
+|--|--|
+|`out_ptr_t`(C++23~)<br>`out_ptr()` (C++23)|(작성중)|
+|`inout_ptr_t`(C++23~)<br>`inout_ptr()` (C++23)|(작성중)|
 
 # 명시적 수명 관리
 
 |항목|내용|
 |--|--|
-|`start_lifetime_as` (C++23~)<br/> `start_lifetime_as_array` (C++23~)|(작성중)|
+|`start_lifetime_as` (C++23~)<br/>`start_lifetime_as_array` (C++23~)|(작성중)|

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++ STL] (C++11~) thread, mutex"
+title: "#18. [모던 C++ STL] (C++11~) thread, mutex"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
