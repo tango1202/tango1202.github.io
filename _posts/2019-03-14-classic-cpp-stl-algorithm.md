@@ -43,5 +43,5 @@ std::for_each(v.begin(), v.end(), Setter);
 EXPECT_TRUE(v[0] == 10 && v[1] == 10 && v[2] == 10); 
 ```
 
-알고리즘의 종류에 대해서는 모던 C++ STL의 [알고리즘](??) 을 참고하기 바랍니다.
+알고리즘의 종류에 대해서는 모던 C++ STL의 [알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-algorithm/) 을 참고하기 바랍니다.
 

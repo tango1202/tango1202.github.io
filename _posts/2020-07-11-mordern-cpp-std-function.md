@@ -157,11 +157,6 @@ EXPECT_TRUE(*itr == 4);
 |`boyer_moore_searche` (C++17~)|(작성중)| 
 |`boyer_moore_horspool_searcher` (C++17~)|(작성중)| 
 
-
-
-
-
-
 # Invoke
 
 |항목|내용|
@@ -169,7 +164,7 @@ EXPECT_TRUE(*itr == 4);
 |`invoke()` (C++17~)|(작성중)|
 |`invoke_r()` (C++20~)|(작성중)|
 
-# identity
+# Identity
 
 |항목|내용|
 |--|--|

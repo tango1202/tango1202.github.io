@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [모던 C++ STL] (C++11~) tuple"
+title: "#10. [모던 C++ STL] (C++11~) pair와 tuple"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -35,10 +35,13 @@ EXPECT_TRUE(
 );
 ```
 
-# tuple 유틸리티
+# pair와 tuple 유틸리티
 
 |항목|내용|
 |--|--|
+|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair)|`first`와 `second`로 2개의 요소를 관리합니다.|
+[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#piecewise_construct)|`pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.|
+|`tuple`|다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.|
 |`get()` (C++11~)|`tuple` 에서 주어진 인덱스 위치에 있는 요소의 참조자를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
 |`make_tuple()` (C++11~)|`tuple` 을 생성합니다.|
 |`tie()` (C++11~)|좌측값 참조로 구성된 `tuple`을 만듭니다. |
@@ -49,6 +52,9 @@ EXPECT_TRUE(
 |`ignore()` (C++11~)|(작성중)|
 |`basic_common_reference` (C++23~)|(작성중)|
 |`common_type` (C++23~)|(작성중)|
+|`interger_sequence` (C++14~)|(작성중)|
+|`apply()` (C++17~)|(작성중)|
+|`make_from_tuple()` (C++17~)|(작성중)|
 
 # make_tuple()
 
@@ -131,7 +137,7 @@ EXPECT_TRUE(
 
 # piecewise_construct
 
-`piecewise_construct`는 `pair`의 생성자의 오버라이드 버전을 호출하기 위한 더미 개체 인데요, `pair`의 `first`와 `second` 개체를 생성할때, 전달된 `tuple` 개체의 요소들로 초기화 해줍니다.
+`wise_construct`는 `pair`의 생성자의 오버라이드 버전을 호출하기 위한 더미 개체 인데요, `pair`의 `first`와 `second` 개체를 생성할때, 전달된 `tuple` 개체의 요소들로 초기화 해줍니다.
 
 보통 `A`와 `B` 개체를 관리하는 `pair`를 만든다면, 
 

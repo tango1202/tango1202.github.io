@@ -68,7 +68,7 @@ EXPECT_TRUE(b[0] == 1 && b[1] == 2 && b[2] == 3);
 
 # 배열, array, vector 속도 비교
 
-다음은 C스타일 배열, `array`, `vector`의 생성/소멸과 접근 속도를 테스트한 예입니다. 시간 측정을 위해 `chrono`를 사용했습니다.([chrono](??) 참고)
+다음은 C스타일 배열, `array`, `vector`의 생성/소멸과 접근 속도를 테스트한 예입니다. 시간 측정을 위해 `chrono`를 사용했습니다.([chrono]([??](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-chrono/)) 참고)
 
 1. 십만개의 요소를 십만번 생성/소멸했고,
 2. 십만개의 요소에 접근하여 값을 대입합니다.
