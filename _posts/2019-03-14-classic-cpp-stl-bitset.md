@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [고전 C++ STL] bitset"
+title: "#14. [고전 C++ STL] bitset"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false

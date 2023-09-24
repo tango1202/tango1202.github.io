@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [고전 C++ STL] 컨테이너"
+title: "#9. [고전 C++ STL] 컨테이너"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -79,7 +79,7 @@ class Node {
 
 |항목|내용|**Key** 조건|
 |--|--|--|
-|`map`|**Key** - **Value** 쌍으로 관리하며,  `pair`를 사용함.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고)<br/>이진 트리 탐색으로 요소 탐색(O(logN))<br/>요소 삽입시 `<`에 의해 정렬됨<br/>삽입되는 **Key**는 유일함<br/>첨자 연산 지원|`<` 구현|
+|`map`|**Key** - **Value** 쌍으로 관리하며,  `pair`를 사용함.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 참고)<br/>이진 트리 탐색으로 요소 탐색(O(logN))<br/>요소 삽입시 `<`에 의해 정렬됨<br/>삽입되는 **Key**는 유일함<br/>첨자 연산 지원|`<` 구현|
 |`multimap`|`map`과 동일하며 중복 **Key**허용<br/>첨자 연산 지원 안함|`<` 구현|
 |`set`|**Key**만 요소로 삽입됨<br/>이진 트리 탐색으로 요소 탐색(O(logN))<br/>요소 삽입시 `<`에 의해 정렬됨<br/>삽입되는 **Key**는 유일함|`<` 구현|
 |`multiset`|`set`과 동일하며 중복 **Key**허용|`<` 구현|

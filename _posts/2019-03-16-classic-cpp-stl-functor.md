@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [고전 C++ STL] 함수자(Functor), 바인더, 어뎁터, 부정자"
+title: "#16. [고전 C++ STL] 함수자(Functor), 바인더, 어뎁터, 부정자"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false

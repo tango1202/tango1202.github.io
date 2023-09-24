@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++ STL] (C++11~) pair와 tuple"
+title: "#13. [모던 C++ STL] (C++11~) tuple"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-기존에는 데이터를 주고받는 가벼운 개체를 만들기 위해 `pair`를 사용했는데요, `pair`는 `first`와 `second`로 두개의 요소만 관리할 수 있다는 아쉬움이 있었습니다.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고)
+기존에는 데이터를 주고받는 가벼운 개체를 만들기 위해 `pair`를 사용했는데요, `pair`는 `first`와 `second`로 두개의 요소만 관리할 수 있다는 아쉬움이 있었습니다.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 참고)
 
 C++11 부터는 `tuple`이 제공되어 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만들 수 있습니다.
 
@@ -39,7 +39,8 @@ EXPECT_TRUE(
 
 |항목|내용|
 |--|--|
-|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair)|`first`와 `second`로 2개의 요소를 관리합니다.|
+|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)|`first`와 `second`로 2개의 요소를 관리합니다.|
+|[make_pair()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)|`pair`를 생성합니다.|
 [piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)|`pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.|
 |`tuple`|다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.|
 |`get()` (C++11~)|`tuple` 에서 주어진 인덱스 위치에 있는 요소의 참조자를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
@@ -58,7 +59,7 @@ EXPECT_TRUE(
 
 # make_tuple()
 
-`make_pair`처럼([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair) 참고) `tuple` 을 생성합니다.
+`make_pair`처럼([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 참고) `tuple` 을 생성합니다.
 
 ```cpp
 std::tuple<int, std::string, char> Func() {

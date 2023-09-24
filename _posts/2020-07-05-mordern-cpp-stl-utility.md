@@ -107,7 +107,7 @@ sidebar:
 
 # 가변 인자
 
-가변 인자를 처리하는 예는 [가변 인자](??)을 참고하기 바랍니다.
+가변 인자를 처리하는 예는 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 참고하기 바랍니다.
 
 |항목|내용|
 |--|--|
@@ -116,3 +116,24 @@ sidebar:
 |`va_end`|가변 인자 사용 종료 매크로 함수|
 |`va_list`|가변 인자에 대한 `typedef`|
 |`va_copy` (C++11)|(작성중)|
+
+# C스타일 시간 유틸리티
+
+|항목|내용|
+|--|--|
+|`difftime()`|(작성중)|
+|`time()`|(작성중)|
+|`clock()`|(작성중)|
+|`timespec_get()` (C++17~)|(작성중)|
+|`asctime()`|(작성중)|
+|`ctime()`|(작성중)|
+|`strftime()`|(작성중)|
+|`wcsftime()`|(작성중)|
+|`gmtime()`|(작성중)|
+|`localtime()`|(작성중)|
+|`mktime()`|(작성중)|
+|`CLOCKS_PER_SEC`|(작성중)|
+|`tm`|(작성중)|
+|`time_t`|(작성중)|
+|`clock_t`|(작성중)|
+|`timespec` (C++17~)|(작성중)|

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#17. [고전 C++ STL] auto_ptr, 함수 인자, 리턴 타입 설계"
+title: "#18. [고전 C++ STL] auto_ptr, 함수 인자, 리턴 타입 설계"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false

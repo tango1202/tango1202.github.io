@@ -143,6 +143,19 @@ std::cout<<"MyFunc() : "<<duration.count()<<std::endl;
 |`duration_values` (C++11~)|(작성중)|
   
 
+# 날짜 / 시간 리터럴
+
+|항목|내용|
+|--|--|
+|`operator ""y` (C++20~)|(작성중)|
+|`operator ""d` (C++20~)|(작성중)|
+|`operator ""h` (C++14~)|(작성중)|
+|`operator ""min` (C++14~)|(작성중)|
+|`operator ""s` (C++14~)|(작성중)|
+|`operator ""ms` (C++14~)|(작성중)|
+|`operator ""us` (C++14~)|(작성중)|
+|`operator ""ns` (C++14~)|(작성중)|
+
 # 시/분/초 서식
 
 |항목|내용|
@@ -193,18 +206,5 @@ std::cout<<"MyFunc() : "<<duration.count()<<std::endl;
 |`time_zone_link` (C++20~)|(작성중)|
 |`nonexistent_local_time` (C++20~)|(작성중)|
 |`ambiguous_local_time` (C++20~)|(작성중)|
-
-# 날짜 / 시간 리터럴
-
-|항목|내용|
-|--|--|
-|`operator ""y` (C++20~)|(작성중)|
-|`operator ""d` (C++20~)|(작성중)|
-|`operator ""h` (C++14~)|(작성중)|
-|`operator ""min` (C++14~)|(작성중)|
-|`operator ""s` (C++14~)|(작성중)|
-|`operator ""ms` (C++14~)|(작성중)|
-|`operator ""us` (C++14~)|(작성중)|
-|`operator ""ns` (C++14~)|(작성중)|
 
 
