@@ -13,8 +13,8 @@ sidebar:
 > * 컨테이너 종류나 사용하는 알고리즘 함수에 따라 복사 생성자, 대입 연산자, 비교 연산자를 구현하라.
 
 > **모던 C++**
-> * `forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.([forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-forward_list/) 참고)
-> * `unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.([unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-unordered_map-unordered_set/) 참고)
+> * `forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.([forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/) 참고)
+> * `unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.([unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) 참고)
 
 # 개요
 

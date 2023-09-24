@@ -16,7 +16,7 @@ sidebar:
 > **모던 C++**
 > * 멤버 선언부에서 초기화를 할 수 있어 초기화 작성이 쉬워졌습니다.([멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) 참고)
 > * `alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.([alignas(), alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/) 참고)
-> `align()`은 메모리 정렬된 포인터를 구합니다.([align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-memory/#align) 참고)
+> `align()`은 메모리 정렬된 포인터를 구합니다.([align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#align) 참고)
  
 # 개요 
 

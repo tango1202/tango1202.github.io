@@ -11,7 +11,7 @@ sidebar:
 > **모던 C++**
 > * `static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.([static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-static_assert/) 참고)
 > * `tuple`은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.([tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 참고)
-> * [system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-chrono/#clock), [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-chrono/#time-point), [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-chrono/#duration) 개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.([chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-chrono/) 참고)
+> * [system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock), [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point), [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.([chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/) 참고)
 
 # pair
 

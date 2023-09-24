@@ -40,7 +40,7 @@ EXPECT_TRUE(
 |항목|내용|
 |--|--|
 |[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-etc/#pair)|`first`와 `second`로 2개의 요소를 관리합니다.|
-[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-tuple/#piecewise_construct)|`pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.|
+[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)|`pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.|
 |`tuple`|다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.|
 |`get()` (C++11~)|`tuple` 에서 주어진 인덱스 위치에 있는 요소의 참조자를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
 |`make_tuple()` (C++11~)|`tuple` 을 생성합니다.|
