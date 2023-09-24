@@ -194,7 +194,7 @@ std::cout<<"MyFunc() : "<<duration.count()<<std::endl;
 |`nonexistent_local_time` (C++20~)|(작성중)|
 |`ambiguous_local_time` (C++20~)|(작성중)|
 
-# 리터럴
+# 날짜 / 시간 리터럴
 
 |항목|내용|
 |--|--|

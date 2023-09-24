@@ -57,7 +57,6 @@ EXPECT_TRUE(Result::value == true);
 
 `ratio`는 표준에 다음과 같이 미리 정의되어 있습니다.
 
-유리수를 
 ```cpp
 typedef ratio<1,       1000000000000000000> atto;
 typedef ratio<1,          1000000000000000> femto;
