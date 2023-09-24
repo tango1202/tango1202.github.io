@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#17. [모던 C++ STL] (C++11~) 알고리즘"
+title: "#4. [모던 C++ STL] 알고리즘"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

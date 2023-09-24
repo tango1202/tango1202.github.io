@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++ STL] (C++11~) 이터레이터"
+title: "#3. [모던 C++ STL] 이터레이터"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

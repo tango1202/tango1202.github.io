@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [모던 C++ STL] (C++11~) 동적 메모리 관리(pointer_traits, addressof(), align() 등)"
+title: "#11. [모던 C++ STL] (C++11~) 동적 메모리 관리(pointer_traits, addressof(), align() 등)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

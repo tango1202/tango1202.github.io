@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [모던 C++ STL] (C++11~) pair와 tuple"
+title: "#13. [모던 C++ STL] (C++11~) pair와 tuple"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
