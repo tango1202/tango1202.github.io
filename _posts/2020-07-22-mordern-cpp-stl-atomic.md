@@ -9,7 +9,7 @@ sidebar:
 ---
 
 
-> * `atomic` 개체는 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다. 따라서 `mutex`를 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
+> * `atomic`은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다. 따라서 `mutex`를 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
 > * `memory_order` 는 `atomic`에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 열거형 상수 입니다.
 
 # 개요
@@ -32,13 +32,13 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|atomic (C++11~)|`atomic` 개체는 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다.|
-|atomic_flag (C++11~)|`atomic<bool>`의 특수한 변형입니다.|
-|atomic_ref (C++20~)|(작성중)|
+|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) (C++11~)|`atomic`은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다.|
+|[atomic_flag](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic_flag) (C++11~)|`atomic<bool>`의 특수한 변형입니다.|
+|`atomic_ref` (C++20~)|(작성중)|
 |`atomic_init()` (C++11~C++20)|C언어 호환성을 유지하며 `atomic`개체를 초기화 합니다.|
 |`ATOMIC_VAR_INIT()` (C++11~C++20)|`atomic` 개체의 초기값을 설정합니다.|
 |`ATOMIC_FLAG_INIT` (C++11~C++20)|`atomic_flag`의 초기값입니다.|
-|memory_order (C++11~)|`atomic`에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 열거형 상수 입니다.|
+|[memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order) (C++11~)|`atomic`에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 열거형 상수 입니다.|
 |`kill_dependency()` (C++11~)|(작성중)|
 |`atomic_thread_fence()` (C++11~)|(작성중)|
 |`atomic_signal_fence()` (C++11~)|(작성중)| 
@@ -91,8 +91,8 @@ EXPECT_TRUE(a.GetVal() == 200); // (O) 경쟁 상태에 빠지지 않고 잘 계
 |`T operator =(T desired)` (C++11~)|`atomic` 개체는 복사 가능하지 않으며, `store(desired)` 와 같습니다.|
 |`is_lock_free()` (C++11~)|잠금이 없는지(`lock-free`) 확인합니다. `lock-free`면 CPU의 지원이 안되므로 `mutex`등의 `lock()`으로 잠금 처리 됩니다.|
 |`is_allways_lock_free` (C++17~)|(작성중)|
-|`store()` (C++11~)|`atomic` 개체에 값을 저장합니다.|
-|`load()` (C++11~)|`atomic`개체의 값을 불러옵니다.|
+|`store()` (C++11~)|`atomic` 개체에 값을 저장합니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
+|`load()` (C++11~)|`atomic`개체의 값을 불러옵니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
 |`operator T()` (C++11~)|`atomic`개체의 값타입으로 암시적으로 형변환합니다.|
 |`exchange()` (C++11~)|`atomic` 개체의 값을 바꾸고, 이전 값을 가져옵니다.|
 |`compare_exchange_week()` (C++11~)<br/>`compare_exchange_strong()` (C++11~)|(작성중)|
@@ -195,8 +195,8 @@ b = 1;
 |--|--|
 |`memory_order_relaxed` (C++11~)|순서에 관여하지 않고, 원자성만 보장됩니다.|
 |`memory_order_consume` (C++11~)|(작성중)|
-|`memory_order_acquire` (C++11~)|읽기시 해당 명령 이후 명령들이 해당 명령 이전에 오는 것을 금지합니다.|
-|`memory_order_release` (C++11~)|쓰기시 해당 명령 이전 메모리 명령들이 해당 명령 이후로 가는 것을 금지합니다.|
+|`memory_order_acquire` (C++11~)|읽기시 해당 명령 이후 명령들이 해당 명령 이전에 오는 것을 금지합니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
+|`memory_order_release` (C++11~)|쓰기시 해당 명령 이전 메모리 명령들이 해당 명령 이후로 가는 것을 금지합니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
 |`memory_order_acq_rel` (C++11~)|읽기/쓰기/변경시 이후 명령들이 해당 명령 이전에 오는 것을 금지하고, 이전 명령들이 해당 명령 이후로 가는 것을 금지합니다.|
 |`memory_order_seq_cst` (C++11~)|기본적으로 사용됩니다.<br/>순차적 일관성을 보장해 줍니다.|
 
