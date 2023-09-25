@@ -11,7 +11,7 @@ sidebar:
 > * `thread`는 주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.
 > * `mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.
 > * `lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.
-> * `call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다. 
+> * `call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
 
 # 개요
 
@@ -52,15 +52,15 @@ sidebar:
 |항목|내용|
 |--|--|
 |`lock_guard` (C++11~)<br/>`unique_lock` (C++11~)<br/>`lock()` (C++11~)<br/>`try_lock()` (C++11~)<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`mutex`의 잠금 상태를 관리합니다.([lock_guard - mutex가 1개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0)과 [try_lock() - mutex가 여러개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#try_lock---mutex%EA%B0%80-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) 참고)|
-|[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag) (C++11~)|주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
+|[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag) (C++11~)|주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다.|
 
 # 쓰레드
 
 프로세스(Process)는 프로그램이 컴퓨터 메모리에 로딩되어 실행되고 있는 인스턴스 입니다. 한마디로 실행중인 프로그램입니다.
 
-쓰레드(Thread)는 프로세스 내에서 작동중인 CPU의 실행 단위입니다. 싱글 쓰레드라면, 하나의 실행 단위가 있어 한가지 작업한 한다는 뜻이고, 멀티 쓰레드라고 하면, 여러개의 실행 단위가 있어 여러 작업을 동시에 한다는 뜻입니다.
+쓰레드(Thread)는 프로세스 내에서 작동중인 CPU의 실행 단위입니다. 싱글 쓰레드라면, 실행 단위가 하나여서 한가지 작업만 한다는 뜻이고, 멀티 쓰레드라면, 실행 단위가 여러개여서 여러 작업을 동시에 한다는 뜻입니다.
 
-예를 들면, 싱글 쓰레드인 사람은 보고 난 후, 듣고 난 후, 말할 수 있지만, 멀티 쓰레드인 사람은 보면서 듣고 말할 수 있습니다.
+예를 들어, 싱글 쓰레드인 사람은 보고 난 후, 듣고 난 후, 말할 수 있지만, 멀티 쓰레드인 사람은 보면서 듣고 말할 수 있습니다.
 
 아무래도 멀티 쓰레드가 동시에 작업하다 보니 작업 시간은 단축될 수 있죠. 
 
@@ -68,19 +68,19 @@ sidebar:
 
 다만 헷갈려서 오동작 할 수 있습니다. 본 것을 말해야 하는데, 정신 사나워서 들은걸 말할 수도 있습니다. 
 
-컴퓨터도 마찬가지 입니다. 쓰레드를 이용한 멀티 프로그래밍 시에는 서로 다른 쓰레드가 동일한 자원을 사용할 때 **경쟁 상태(Race Condition)** 가 되어 잘못된 값을 사용하지 않도록 조정하고, 서로 자원 사용을 양보하다가 **데드락(Dead Lock)** 상태가 되지 않도록 신경 써야 합니다.  
+컴퓨터도 마찬가지 입니다. 정신 사나워서 엉뚱한 것을 연산할 수 있습니다. 예를 들어 서로 다른 쓰레드가 동일한 자원을 사용할 때 **경쟁 상태(Race Condition)** 가 되어 잘못된 값을 사용할 수 있습니다. 또는 서로 자원 사용을 양보하다가 **데드락(Dead Lock)** 상태가 되어 시스템이 멈출 수 있습니다.  
 
 # 경쟁 상태(Race Condition)
 
-다음처럼 동일한 데이터를 서로 다른 쓰레드가 하나는 값을 저장하고, 하나를 값을 읽는다고 생각해 봅시다.
+다음처럼 서로 다른 쓰레드가 동일한 데이터에 접근할때 하나는 값을 저장하고, 하나를 값을 읽는다고 생각해 봅시다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ce0506d4-9d71-4cf4-b416-d1803f518f13)
 
-동시적으로 저장하고 읽다 보니 쓰레드 B는 어느 값이 읽혀지는지 알 수 없습니다.(이런 상태를 경쟁상태(Race Condition)이라 합니다.) 따라서, 이렇게 공유되는 자원은 Lock을 걸어 다른 쓰레드가 잠시 대기하도록 해야 합니다.
+동시에 저장하고 읽다 보니 쓰레드 B가 읽어온 데이터는 쓰레드 A가 수정하기 전의 값인지, 수정한 후의 값인지 알 수 없습니다.(이런 상태를 경쟁상태(Race Condition)라 합니다.) 이런 경우를 막으려면, 공유하는 데이터에 Lock을 걸어 한개의 쓰레드만 데이터에 접근할 수 있게 하고, 다른 쓰레드는 잠시 대기하도록 해야 합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7f4c7dd4-9b54-4e51-9fda-5a7b857f52a3)
 
-만약 쓰레드 A가 데이터에 먼저 접근하여 Lock을 걸어두면, 쓰레드 A가 Lock을 풀어줄때까지 쓰레드 B는 대기합니다. 이후 쓰레드 A가 Lock을 풀어주면 그제서야 쓰레드 B가 데이터에 접근하여 값을 읽어줄 수 있습니다. 이때 쓰레드 B도 쓰레드 A가 대기할 수 있도록 Lock을 걸어줘야 합니다.
+만약 쓰레드 A가 데이터에 먼저 접근하여 Lock을 걸어두면, 쓰레드 A가 Lock을 풀어줄때까지 쓰레드 B는 대기합니다. 이후 쓰레드 A가 작업을 끝내고 Lock을 풀어주면, 그제서야 쓰레드 B가 데이터에 접근하여 작업을 할 수 있습니다. 이때 쓰레드 B도 쓰레드 A가 대기할 수 있도록 Lock을 걸어줘야 합니다.
 
 # 크리티컬 섹션(Critical Section)
 
@@ -88,11 +88,11 @@ sidebar:
 
 # 데드락(Dead Lock)
 
-만약 쓰레드A 가 Lock을 걸기만 하고 풀지 않으면 어떻게 될까요? 쓰레드 B는 무한 대기하게 됩니다.(이런 상태를 데드락(Dead Lock)이라 합니다.) 이렇게 대기하면, 원하는 작업이 끝나지 않아 프로그램은 마치 멈춘것처럼 아무 동작도 안하고, 계속 대기하게 됩니다. 프로그램을 강제 종료해야 되죠.
+만약 쓰레드 A가 Lock을 걸기만 하고 풀지 않으면 어떻게 될까요? 쓰레드 B는 무한 대기하게 됩니다.(이런 상태를 데드락(Dead Lock)이라 합니다.) 이렇게 대기하면, 원하는 작업이 끝나지 않아 프로그램은 마치 멈춘것처럼 아무 동작도 안하고, 계속 대기하게 됩니다. 결국 프로그램을 강제 종료해야 합니다.
 
 # thread
 
-`thread` 는 쓰레드 생성후 주어진 함수(또는 함수자)를 실행시키며 `join()`을 통해 쓰레드가 종료할 때까지 대기하거나, `detach()`를 통해 계속 백그라운드에서 쓰레드가 실행되도록 내버려 둡니다. 만약 `join()`이나 `detach()`를 하지 않으면 예외가 발생합니다.
+`thread` 는 쓰레드 생성한 뒤 주어진 함수(또는 함수자)를 실행시킵니다. 이후 `join()`을 이용하여 쓰레드가 종료할 때까지 대기하거나, `detach()`를 이용하여 계속 백그라운드에서 쓰레드가 실행되도록 내버려 두어야 합니다. 만약 `join()`이나 `detach()`를 하지 않으면 예외가 발생합니다.
 
 `thread`의 멤버 함수는 다음과 같습니다.
 
@@ -126,7 +126,7 @@ worker1.join(); // worker1이 종료될때까지 기다립니다.
 worker2.join(); // worker2가 종료될때까지 기다립니다.
 ```
 
-다음은 실행 결과입니다. 시스템 상황에 따라 다를 겁니다만, `Message1()` 함수의 출력과 `Message2()` 함수의 출력이 동시에 실행되다 보니 섞여서 나오는 걸 알 수 있습니다. 재밌게도, `Message1()` 함수가 `std::cout<<"Message1 : "<<i` 까지 출력하고, `<<std::endl;`를 출력하기 직전에, `Message2()의 ` `std::cout<<"Message2 : "<<i<<std::endl;`가 호출된 것을 알 수 있습니다. 
+다음은 실행 결과입니다. 시스템 상황에 따라 다를 겁니다만, `Message1()` 함수의 출력과 `Message2()` 함수의 출력이 동시에 실행되다 보니 섞여서 나오는 걸 알 수 있습니다. 재밌게도, `Message1()` 함수가 `std::cout<<"Message1 : "<<i` 까지 출력하고, `<<std::endl;`를 출력하기 직전에, `Message2()의 ` `std::cout<<"Message2 : "<<i<<std::endl;`가 호출됐네요. 
 
 ```cpp
 Message1 : 0
@@ -223,7 +223,7 @@ std::chrono::microseconds threadDuration{CheckMicrosecond(
 std::cout<<"ThreadSum : "<<threadResult<<" Duration : "<<threadDuration.count()<<std::endl; 
 ```
 
-실행 결과는 다음과 같습니다. 계산 결과는 동일한데, 이상하게도 쓰레드를 사용하는 버전이 훨씬 오래 걸립니다.
+실행 결과는 다음과 같습니다. 계산 결과는 `4950`으로 동일하게 잘 나왔습니다. 그런데, 이상하게도 쓰레드를 사용하는 버전이 훨씬 오래 걸립니다.
 
 ```cpp
 Sum : 4950 Duration : 1
@@ -232,7 +232,9 @@ ThreadSum : 4950 Duration : 272 // 쓰레드를 사용하는 버전이 훨씬 �
 
 이는 `vector`에 들어 있는 100개의 정수를 더하는데 1 마이크로초(1/1,000,000 초) 밖에 걸리지 않는 반면에, 쓰레드를 생성하는 부하가 오히려 더 있기 때문입니다. 이렇게 짧은 시간동안 실행되는 작업을 쓰레드로 만들면 오히려 더 느려집니다.
 
-`Sum()` 함수가 시간이 좀 걸리는 것처럼 시뮬레이션 하기 위해 `sleep_for()` 로 잠시 대기토록 하면,
+`Sum()` 함수가 시간이 좀 걸리는 것처럼 시뮬레이션 해서 다시 테스트 해보겠습니다. 
+
+`sleep_for()` 로 잠시 대기하도록 바꿔서 테스트 해보면,
 
 ```cpp
 void Sum(std::vector<int>::iterator itr, std::vector<int>::iterator endItr, int& result) {
@@ -260,7 +262,7 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 |--|--|
 |`yield()` (C++11~)|현 쓰레드를 쓰레드 대기열 뒤로 이동 시켜, 다른 쓰레드들이 먼저 실행되게 합니다.|
 |`get_id()` (C++11~)|현 쓰레드의 아이디를 구합니다.|
-|`sleep_for()` (C++11~)|주어진 시간동안 쓰레드를 쉽니다.|
+|`sleep_for()` (C++11~)|주어진 시간동안 쓰레드를 쉽니다.([쓰레드 속도 측정](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95) 참고)|
 |`sleep_until()` (C++11~)|주어진 시간까지 쓰레드를 쉽니다.|
 
 # mutex
@@ -276,22 +278,22 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 |`shared_timed_mutex` (C++14~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 다른 쓰레드들과 공유할 수 있는 `mutex`입니다.|
 |`shared_mutex` (C++17~)|다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 `mutex`입니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.|
 
-`mutex`에는 다음과 같은 멤버 함수가 있습니다.
+`mutex`의 멤버 함수는 다음과 같습니다. `lock()`과 `unlock()`을 이용하여 다른 쓰레드들의 접근을 차단/해제합니다. 
 
 |항목|내용|
 |--|--|
-|`lock()` (C++11~)|현 쓰레드만 접근 가능하고, 다른 쓰레드는 대기시킵니다.|
-|`try_lock()` (C++11~)|`lock()`을 시도하고, 만약 다른 쓰레드에 의해 대기된다면, `false`를 리턴합니다.|
-|`unlock()` (C++11~)|`lock()`을 해제하여 다른 쓰레드에서도 자원을 사용할 수 있게 합니다.|
+|`lock()` (C++11~)|현 쓰레드만 접근 가능하고, 다른 쓰레드는 대기시킵니다.([mutex - 경쟁 상태(Race Condition) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex---%EA%B2%BD%EC%9F%81-%EC%83%81%ED%83%9Crace-condition-%ED%95%B4%EA%B2%B0) 참고)|
+|`try_lock()` (C++11~)|`lock()`을 시도하고, 만약 다른 쓰레드에 의해 대기된다면, `false`를 리턴합니다.([try_lock() - mutex가 여러개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#try_lock---mutex%EA%B0%80-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) 참고)|
+|`unlock()` (C++11~)|`lock()`을 해제하여 다른 쓰레드에서도 자원을 사용할 수 있게 합니다.([mutex - 경쟁 상태(Race Condition) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex---%EA%B2%BD%EC%9F%81-%EC%83%81%ED%83%9Crace-condition-%ED%95%B4%EA%B2%B0) 참고)|
 |`native_handle()` (C++11~)|시스템에 따른 구현에 정의된 핸들을 리턴합니다.|
 
 # lock
 
-`mutex`는 `lock()`과 `unlock()`을 통해 다른 쓰레드들의 접근을 차단/해제합니다. 다음과 같은 유틸리티 개체와 함수들이 있습니다.
+`mutex`는 `lock()`을 호출하면, 반드시 `unlock()`을 호출해야 합니다. 그렇지 않으면 데드락(Dead Lock)에 빠지니까요. 이에 따라 스택 풀기에 의해 자연스럽게 `unlock()`이 호출되도록 `lockguard`를 제공합니다. 그외에도 다음과 같은 유틸리티 개체와 함수들이 있습니다.
 
 |항목|내용|
 |--|--|
-|`lock_guard` (C++11~)|개체 생성시 `lock()`을 하고, 개체 소멸시 `unlock()` 합니다.|
+|`lock_guard` (C++11~)|개체 생성시 `lock()`을 하고, 개체 소멸시 `unlock()` 합니다.([lock_guard - mutex가 1개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) 참고)|
 |`unique_lock` (C++11~)|`lock_guard` 처럼 생성시 자동으로 잠글 수도 있고, 별도로 `lock()`을 호출해야 잠글 수도 있습니다.|
 |lock 옵션 (C++11~)|`defer_lock` : `lock()` 호출시 잠금이 됩니다.<br/>`try_to_lock` : 잠금시 `try_lock()`을 사용합니다.<br/>`adopt_lock` : 해당 쓰레드가 이미 `lock()`을 했다고 가정하고, `unlock()`만 합니다.|
 |`lock()` (C++11~)|여러개의 `mutex`를 `lock()`합니다.|
@@ -371,7 +373,7 @@ EXPECT_TRUE(a.GetVal() == 200);
 
 # lock_guard - mutex가 1개인 경우 데드락(Dead Lock) 해결
 
-다음은 `mutex` 개체를 1개 사용했을때 발생할 수 있는 전형적인 데드락(Dead Lock)입니다. `lock`을 하고 실수로 `unlock()`을 빼먹었습니다. 
+다음은 `mutex` 개체를 1개 사용했을때 발생할 수 있는 전형적인 데드락(Dead Lock)입니다. `lock`을 하고 실수로 `unlock()`을 빼먹은 경우죠. 
 
 ```cpp
 class A {
@@ -403,8 +405,11 @@ worker2.join();
 ```cpp
 {
     mutex.lock(); 
-    // Todo 에 작성된 코드가 예외를 발생시킬 수 있습니다.
-    mutex.unlock(); // (X) 오동작. Todo에서 예외를 발생시키면 호출되지 않습니다.
+    // lock()~unlock() 구간에서 예외를 발생시킬 수 있습니다.
+    ...
+    throw "error";
+    ...
+    mutex.unlock(); // (X) 오동작. 예외를 발생시키면 호출되지 않습니다.
 }
 ```
 
@@ -413,7 +418,10 @@ worker2.join();
 ```cpp
 {
     std::lock_guard<std::mutex> lock(mutex); // 유효 범위를 벗어나면 unlock을 호출합니다.
-    // Todo. 예외를 발생시켜도 안전합니다.
+    // lock()~unlock() 구간에서 예외를 발생시켜도 안전합니다.
+    ...
+    throw "error";
+    ... 
 }
 ```
 
@@ -461,7 +469,7 @@ worker1.join();
 worker2.join(); 
 ```
 
-동일한 `mutex`를 사용한다던지, `mutex`의 호출 순서를 잘 통제하여 개선할 수도 있으나, 여의치 않은 경우 `try_lock()`을 이용하여, 데드락(Dead Lock) 상황이 될 것 같으면, 다른 쓰레드에 양보하여 데드락(Dead Lock) 상황을 피할 수 있습니다.
+상기의 데드락(Dead Lock)은 동일한 `mutex`를 사용한다던지, `mutex`의 호출 순서를 잘 통제하여 개선할 수도 있으나, 여의치 않은 경우 `try_lock()`을 이용하여, 데드락(Dead Lock) 상황이 될 것 같으면, 다른 쓰레드에 양보하여 데드락(Dead Lock) 상황을 피할 수 있습니다.
 
 ```cpp
 class A {
@@ -505,7 +513,7 @@ worker2.join();
 
 # call_once(), once_flag
 
-주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다. 
+주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
 
 ```cpp
 class A {

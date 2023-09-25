@@ -9,7 +9,7 @@ sidebar:
 ---
 
 
-> * `atomic`은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다. 따라서 `mutex`를 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
+> * `atomic`은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다. 따라서 `mutex` 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
 > * `memory_order` 는 `atomic`에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 열거형 상수 입니다.
 
 # 개요
@@ -22,13 +22,13 @@ sidebar:
 2. 값을 수정하고,
 3. 메모리의 `m_Val`의 값을 저장하는
 
-여러 명령 단위로 쪼개져 구성되어 있기 때문입니다. 
+여러 명령 단위로 쪼개져 구성되어 있기 때문에, 여러 쓰레드에서 사용하는 값이 서로 달라질 수 있으므로, `mutex`에 `lock()`을 걸어 한개의 쓰레드만 접근 가능하게 해야 한다고 말씀드렸습니다.
 
-이 때문에, 여러 쓰레드에서 사용하는 값이 서로 달라지므로, `mutex`에 `lock()`을 걸어 단일 쓰레드만 접근 가능하게 해야 합니다.
-
-C++11 STL 에서는 `atomic` 을 사용하여 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성(더이상 쪼개지지 않는 단위)할 수 있습니다. 따라서 `mutex`를 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
+C++11 STL 에서는 `atomic` 을 사용하여 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성(더이상 쪼개지지 않는 단위, 원자 단위)할 수 있습니다. 따라서 `mutex` 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5803f981-2890-4b3a-be16-8b006f3039fe)
+
+다음은 원자 단위의 연산을 지원하기 위한 유틸리티 개체와 함수들입니다.
 
 |항목|내용|
 |--|--|
@@ -46,7 +46,7 @@ C++11 STL 에서는 `atomic` 을 사용하여 메모리에서 값을 읽고, 수
 
 # atomic
 
-`atomic` 개체는 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다. 따라서 `mutex`를 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
+`atomic` 개체는 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다. 따라서 `mutex` 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
 
 다음은 [mutex - 경쟁 상태(Race Condition) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex---%EA%B2%BD%EC%9F%81-%EC%83%81%ED%83%9Crace-condition-%ED%95%B4%EA%B2%B0)에서 소개한 코드를 `automic`으로 수정한 예입니다.
 
@@ -140,13 +140,15 @@ b = 1;
 
 # atomic 쓰레드 동기화
 
-`atomic` 개체의 순차적 일관성을 조정하면, 쓰레드간 동기화가 가능합니다.
+`atomic` 개체의 순차적 일관성을 조정하면, [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable) 처럼 쓰레드간 동기화가 가능합니다.
 
 다음 예제에서,
 
 1. `m_IsCompleted.store(true, std::memory_order_release);`을 이용하여 `m_Val1`과 `m_Val2`를 수정하고,
-2. `while(!m_IsCompleted.load(std::memory_order_acquire)) {}`을 이용하여 대기 합니다.
+2. `while(!m_IsCompleted.load(std::memory_order_acquire)) {}`을 이용하여 `m_Completed`가 `true`가 될때까지 대기 합니다.
 3. `#1`, `#2`는 `#3`, `#5`에 의해 `#6`, `#7` 보다 먼저 실행됨을 보장합니다.
+
+즉, `#1`, `#2`와 `#6`, `#7`이 동기화되어 동작합니다.
 
 ```cpp
 class A {

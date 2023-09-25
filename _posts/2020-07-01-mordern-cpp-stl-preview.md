@@ -152,7 +152,7 @@ sidebar:
 |[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) (C++11~)|`thread`는 주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
 |[mutex<br/>timed_mutex<br/>recursive_mutex<br/>recursive_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++11~)<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|`mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
 |[lock_guard<br/>unique_lock<br/>lock()<br>try_lock()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock) (C++11~)<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.|
-|[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag) (C++11~)|`call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
+|[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag) (C++11~)|`call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다.|
 |[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable) (C++11~)|`condition_variable`은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
 |[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) (C++11~)|`atomic`은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다.|
 |[memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order) (C++11~)|`memory_order` 는 `atomic`에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 열거형 상수 입니다.|
