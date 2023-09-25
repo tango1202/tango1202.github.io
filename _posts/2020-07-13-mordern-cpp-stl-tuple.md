@@ -14,7 +14,7 @@ sidebar:
 
 기존에는 데이터를 주고받는 가벼운 개체를 만들기 위해 `pair`를 사용했는데요, `pair`는 `first`와 `second`로 두개의 요소만 관리할 수 있다는 아쉬움이 있었습니다.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 참고)
 
-C++11 부터는 `tuple`이 제공되어 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만들 수 있습니다.
+C++11 부터 STL 에서는 `tuple`이 제공되어 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만들 수 있습니다.
 
 1. `tuple` 정의시 사용할 타입을 나열하고,
 2. `get()` 함수에 `0`, `1`, `2`등 인덱스를 이용하여 접근합니다.
@@ -44,12 +44,12 @@ EXPECT_TRUE(
 [piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)|`pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.|
 |`tuple`|다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.|
 |`get()` (C++11~)|`tuple` 에서 주어진 인덱스 위치에 있는 요소의 참조자를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
-|`make_tuple()` (C++11~)|`tuple` 을 생성합니다.|
-|`tie()` (C++11~)|좌측값 참조로 구성된 `tuple`을 만듭니다. |
-|`forward_as_tuple()` (C++11~)|함수 인수 전달에 적합하도록, `tuple` 생성시 좌측값이나 우측값 참조가 변형되지 않도록 합니다.|
-|`tuple_cat()` (C++11~)|두개의 `tuple` 을 합칩니다.|
-|`tuple_size` (C++11~)|컴파일 타임에 `tuple`의 요소 갯수를 구합니다.|
-|`tuple_element` (C++11~)|`tuple`의 각 요소에 대한 타입을 제공합니다.|
+|[make_tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#make_tuple) (C++11~)|`tuple` 을 생성합니다.|
+|[tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie) (C++11~)|좌측값 참조로 구성된 `tuple`을 만듭니다. |
+|[forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple) (C++11~)|함수 인수 전달에 적합하도록, `tuple` 생성시 좌측값이나 우측값 참조가 변형되지 않도록 합니다.|
+|[tuple_cat()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_cat) (C++11~)|두개의 `tuple` 을 합칩니다.|
+|[tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size) (C++11~)|컴파일 타임에 `tuple`의 요소 갯수를 구합니다.|
+|[tuple_element](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_element) (C++11~)|`tuple`의 각 요소에 대한 타입을 제공합니다.|
 |`ignore()` (C++11~)|(작성중)|
 |`basic_common_reference` (C++23~)|(작성중)|
 |`common_type` (C++23~)|(작성중)|

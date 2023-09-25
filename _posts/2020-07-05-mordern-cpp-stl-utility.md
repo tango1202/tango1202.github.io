@@ -59,7 +59,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`abort()`|프로그램을 비정상 종료 시킵니다.|
+|`abort()`|프로그램을 비정상 종료 시킵니다.[terminate](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 참고|
 |`exit()`|프로그램을 정상 종료 시킵니다.|
 |`quick_exit()` (C++11~)|(작성중)|
 |`_Exit()` (C++11~)|(작성중)|

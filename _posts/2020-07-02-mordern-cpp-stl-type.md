@@ -49,7 +49,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`numeric_limits`| 타입의 최대, 최소값을 알 수 있습니다.([타입 최대/최소값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%B5%9C%EB%8C%80%EC%B5%9C%EC%86%8C%EA%B0%92) 참고)|
+|[numeric_limits](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%B5%9C%EB%8C%80%EC%B5%9C%EC%86%8C%EA%B0%92)| 타입의 최대, 최소값을 알 수 있습니다.|
 
 
 # 런타임 타입
@@ -57,7 +57,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |`type_info`|개체의 타입 정보입니다.([typeid 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)|
-|`bad_typeid`|널포인터를 역참조하여 typeid를 구할때 발생함([표준 예외](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-object/#%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8) 참고)<br/>`T* p = NULL;`<br/>`typeid(*p).name();`|
-|`bad_cast`|`dynamic_cast`의 실패시 발생함([표준 예외](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-object/#%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8) 참고)|
+|`bad_typeid`|널포인터를 역참조하여 typeid를 구할때 발생합니다.([표준 예외](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-object/#%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8) 참고)<br/>`T* p = NULL;`<br/>`typeid(*p).name();`|
+|`bad_cast`|`dynamic_cast`의 실패시 발생합니다.([표준 예외](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-object/#%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8) 참고)|
 |[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/) (C++11~)|`type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.|
 

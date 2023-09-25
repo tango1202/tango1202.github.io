@@ -24,7 +24,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`reverse_iterator`|역방향으로 이터레이트 합니다.([역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0) 참고)|
+|[reverse_iterator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)|역방향으로 이터레이트 합니다.|
 |`make_reverse_iterator()` (C++14~)|(작성중)|
 |`back_insert_iterator`|컨테이너 끝에 삽입합니다.([삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0) 참고)|
 |`back_inserter()`|`back_insert_iterator`를 생성합니다.|
@@ -43,6 +43,8 @@ sidebar:
 |`default_sentinel_t` (C++20~)|(작성중)|
 |`counted_iterator` (C++20~)|(작성중)|
 |`unreachable_sentinel_t` (C++20~)|(작성중)|
+
+다음은 `move_iterator` 사용 예입니다. `move_iterater` 를 통해 `v2`를 생성하면, 요소가 이동되는 것을 알 수 있습니다.
 
 ```cpp
 std::vector<std::string> v{"a", "b", "c"};
@@ -70,6 +72,10 @@ EXPECT_TRUE(v[0].empty() && v[1].empty() && v[2].empty()); // 요소가 이동�
 |`distance()`|이터레이터간 거리를 구합니다.|
 |`next()` (C++11~)|뒤로 이동된 이터레이터를 리턴합니다.|
 |`prev()` (C++11~)|앞으로 이동된 이터레이터를 리턴합니다.|
+
+다음 예제는 `advance()`와 `next()`, `prev()` 의 차이를 보여줍니다.
+
+`advance()` 은 인자로 전달한 이터레이터를 직접 수정하지만, `next()`와 `prev()`는 수정하지 않습니다.
 
 ```cpp
 std::vector<int> v{1, 2, 3, 4};

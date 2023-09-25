@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [모던 C++ STL] (C++11~) share_ptr, make_shared(), enable_shared_from_this, owner_less, 형변환, weak_ptr, bad_weak_ptr"
+title: "#10. [모던 C++ STL] (C++11~) shared_ptr, make_shared(), enable_shared_from_this, owner_less, 형변환, weak_ptr, bad_weak_ptr"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -17,9 +17,14 @@ C++11 부터는 소유권을 이전하는 스마트 포인터인 `auto_ptr`과 `
 
 |항목|내용|
 |--|--|
-|`shared_ptr` (C++11~)|소유권 공유용 스마트 포인터입니다.|
-|`make_shared()` (C++11~)|`shared_ptr`을 효율적으로 생성합니다.|
-|`weak_ptr` (C++11~)|`shared_ptr`의 상호 참조 문제 해결용 스마트 포인터입니다.|
+|[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr) (C++11~)|소유권 공유용 스마트 포인터입니다.|
+|[make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared) (C++11~)|`shared_ptr`을 효율적으로 생성합니다.|
+|[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) (C++11~)|`shared_ptr`의 상호 참조 문제 해결용 스마트 포인터입니다.|
+|[enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this)|`shared_ptr`이 관리하는 개체로부터 `shared_ptr`을 만듭니다.|
+|[owner_less()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_less)|소유권 개체의 주소로 비교합니다.|
+|[bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr)|`shared_ptr`에서 잘못된 `weak_ptr`을 사용할때 발생하는 예외입니다.|
+  
+|
 
 # shared_ptr
 
@@ -96,7 +101,7 @@ std::shared_ptr<T> b{a};
 
 |항목|내용|
 |--|--|
-`constexpr shared_ptr() noexcept;` (C++11~)<br/><br/>`explicit shared_ptr(T* p);` (C++11~)<br/>`shared_ptr(T* p, deleter);` (C++11~)<br/>`shared_ptr(T* p, deleter, allocator);` (C++11~)<br/><br/>`constexpr shared_ptr(nullptr_t) noexcept;` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter);` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter, allocator);` (C++11~)<br/><br/>`explicit shared_ptr(const weak_ptr&);` (C++11~)<br/>`shared_ptr(unique_ptr&&);` (C++11~)<br/><br/>별칭 생성자<br/>`shared_ptr(const shared_ptr& other, element_type* p) noexcept;` (C++11~)<br/><br/>`shared_ptr( auto_ptr&&);` (C++11~C++17)|`nullptr`이나 `p`를 공유하며, 참조 카운트를 증가시킵니다. 이때 사용자 정의 `deleter`와 `allocator` 를 사용할 수 있습니다. `weak_ptr`과 `unique_ptr`로 생성할 수도 있습니다.|
+`constexpr shared_ptr() noexcept;` (C++11~)<br/><br/>`explicit shared_ptr(T* p);` (C++11~)<br/>`shared_ptr(T* p, deleter);` (C++11~)<br/>`shared_ptr(T* p, deleter, allocator);` (C++11~)<br/><br/>`constexpr shared_ptr(nullptr_t) noexcept;` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter);` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter, allocator);` (C++11~)<br/><br/>`explicit shared_ptr(const weak_ptr&);` (C++11~)<br/>`shared_ptr(unique_ptr&&);` (C++11~)<br/><br/>[별칭 생성자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%EB%B3%84%EC%B9%AD-%EC%83%9D%EC%84%B1%EC%9E%90)<br/>`shared_ptr(const shared_ptr& other, element_type* p) noexcept;` (C++11~)<br/><br/>`shared_ptr( auto_ptr&&);` (C++11~C++17)|`nullptr`이나 `p`를 공유하며, 참조 카운트를 증가시킵니다. 이때 사용자 정의 `deleter`와 `allocator` 를 사용할 수 있습니다. `weak_ptr`과 `unique_ptr`로 생성할 수도 있습니다.|
 |`shared_ptr(const shared_ptr& other) noexcept;` (C++11~)|개체와 소유권을 공유하고 참조 카운트를 증가시킵니다.|
 |`shared_ptr(const shared_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
 |`~shared_ptr();` (C++11~)|관리하던 개체의 참조 카운트를 감소시키고, `0`이 되면 `delete`또는 `delete[]`(C++17~)합니다.|
@@ -112,7 +117,7 @@ std::shared_ptr<T> b{a};
 |`use_count() const noexcept;` (C++11~)|참조 카운트를 리턴합니다.|
 |`unique() const noexcept;`(C++11~C++17)|다른 `shared_ptr`로 관리하는지 검사합니다. `use_count() == 1`과 같습니다.|
 |`lock() const noexcept;` (C++11~)|관리하는 개체 접근을 위해 임시 `shared_ptr`을 생성합니다.|
-|`owner_before() const noexcept;` (C++11~)|소유권 개체로 `<` 비교를 합니다.|
+|`owner_before() const noexcept;` (C++11~)|소유권 개체로 `<` 비교를 합니다.([owner_before() 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_before-%EB%B9%84%EA%B5%90) 참고)|
 |`get_deleter()` (C++11~)|관리하는 개체를 소멸시키는 `deleter`를 리턴합니다.|
 |`==` (C++11~)<br/>`!=` (C++11~C++20)<br/>`<` (C++11~C++20)<br/>`<=` (C++11~C++20)<br/>`>` (C++11~C++20)<br/>`>=` (C++11~C++20)<br/>`<=>` (C++20~)|관리하는 개체의 주소로 비교합니다.|
 |`<<` (C++11~)|관리하는 개체의 내용을 스트림에 출력합니다.|
@@ -666,7 +671,7 @@ EXPECT_TRUE(sp1.use_count() == 4); // sp1, sp2, temp1, temp2 총 4개 입니다.
 
 # bad_weak_ptr
 
-`share_ptr`에서 잘못된 `weak_ptr`을 사용할때 발생하는 예외입니다. 
+`shared_ptr`에서 잘못된 `weak_ptr`을 사용할때 발생하는 예외입니다. 
 
 다음 코드는 `shared_ptr`이 소멸된 후에 `weak_ptr`을 사용하다가 `bad_weak_ptr` 예외가 발생한 예입니다.
 

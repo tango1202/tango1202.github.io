@@ -12,10 +12,10 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`for_each()`<br/>`for_each_n()` (C++17~)|시퀀스 안의 요소들에 대해 `f()`를 실행합니다.|
+|`for_each()`<br/>`for_each_n()` (C++17~)|시퀀스 안의 요소들에 대해 `f()`를 실행합니다.([알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/) 참고)|
 |`count()`<br/>`count_if()`|시퀀스에서 지정한 값인 요소의 갯수를 리턴합니다.|
 |`mismatch()`|두 시퀀스가 달라지기 시작하는 첫번째 요소를 찾습니다.|
-|`find()`<br/>`find_if()`<br/>`find_if_not()` (C++11~)|시퀀스에서 특정값의 위치를 찾습니다.|
+|`find()`<br/>`find_if()`<br/>`find_if_not()` (C++11~)|시퀀스에서 특정값의 위치를 찾습니다.([바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94) 참고)|
 |`find_end()`|시퀀스에서 특정값의 마지막 위치를 찾습니다.|
 |`find_first_of()`|지정된 요소들중 일치하는 값이 있는 첫번째 위치를 찾습니다.|
 |`find_last_of()`|지정된 요소들중 일치하는 값이 있는 마지막 위치를 찾습니다.|
@@ -59,7 +59,6 @@ sidebar:
 |`nth_element()`|시퀀스를 정렬하였을때 n요소가 위치할 곳에 n요소를 배치합니다. 즉 모든 요소를 정렬하지 않고, n요소만 제 위치에 둔다고 볼 수 있습니다. n요소 앞의 요소들은 n요소 뒤의 요소들 보다 작거나 같습니다.|
 |`partial_sort()`<br/>`partial_sort_copy()`|지정한 중간값까지 앞쪽 시퀀스만 정렬합니다.|
 |`is_sorted()` (C++11~)<br/>`is_sorted_until()` (C++11~)|졍렬되었는지 검사합니다.|
-
 
 # 이진 검색 작업
 

@@ -249,7 +249,7 @@ void g() {
 }
 ```
 
-# std::terminate
+# terminate
 
 예외를 `catch()`하지 않으면 최종적으로 `std::terminate()` 함수를 호출하며, `std::terminate()` 함수에서는 `std::terminate()` 핸들러를 호출하고, 기본 `std::terminate()` 핸들러에서는 `std::abort()`를 호출하여 프로그램을 강제 종료합니다. 
 

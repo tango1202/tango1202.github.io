@@ -17,19 +17,38 @@ sidebar:
 
 기존에는 멀티 쓰레드 관련 기능들이 표준화 되지 않아 운영체제에 따라 다르게 구현했습니다만, C++11 STL 부터는 이를 표준화 하여 제공합니다.
 
+**쓰레드 실행**
+
 |항목|내용|
 |--|--|
 |`thread` (C++11~)|주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
 |`jthread` (C++20~)|(작성중)|
+
+**쓰레드 취소**
+
+|항목|내용|
+|--|--|
 |`stop_token` (C++20~)|(작성중)|
 |`stop_source` (C++20~)|(작성중)|
 |`stop_callback` (C++20~)|(작성중)|
+
+**캐쉬 크기**
 |`hardware_destructive_interference_size` (C++17~)<br/>`hardware_constructive_interference_size` (C++17~)|(작성중)|
+
+**동기화 개체**
+
+|항목|내용|
+|--|--|
 |`mutex` (C++11~)<br/>`timed_mutex` (C++11~)<br/>`recursive_mutex` (C++11~)<br/>`recursive_timed_mutex` (C++11~)<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
 |`counting_semaphore` (C++ 20)|(작성중)|
 |`binary_semaphore` (C++ 20)|(작성중)|
 |`latch` (C++ 20)|(작성중)|
 |`barrier` (C++ 20)|(작성중)|
+
+**동기화 설정**
+
+|항목|내용|
+|--|--|
 |`lock_guard` (C++11~)<br/>`unique_lock` (C++11~)<br/>`lock()` (C++11~)<br/>`try_lock()` (C++11~)<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`mutex`의 잠금 상태를 관리합니다.|
 |`call_once()` (C++11~)|주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
 
@@ -72,6 +91,8 @@ sidebar:
 # thread
 
 `thread` 는 쓰레드 생성후 주어진 함수(또는 함수자)를 실행시키며 `join()`을 통해 쓰레드가 종료할 때까지 대기하거나, `detach()`를 통해 계속 백그라운드에서 쓰레드가 실행되도록 내버려 둡니다. 만약 `join()`이나 `detach()`를 하지 않으면 예외가 발생합니다.
+
+`thread`의 멤버 함수는 다음과 같습니다.
 
 |항목|내용|
 |--|--|

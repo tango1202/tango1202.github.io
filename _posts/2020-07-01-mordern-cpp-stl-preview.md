@@ -165,8 +165,25 @@ future
 
 random
 
+https://en.cppreference.com/w/cpp/numeric/math
+
+rand
+srand
+RAND_MAX
+
+**complex**
+
+https://en.cppreference.com/w/cpp/numeric/complex
+
+**valarray**
+
+https://en.cppreference.com/w/cpp/numeric/valarray
+
 
 # 에러 핸들링 라이브러리
+
+assert 
+https://en.cppreference.com/w/cpp/error#System_error
 
 std::exception_ptr
 std::error_code
@@ -210,24 +227,4 @@ cuchar
 |[함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)<br/>[바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)<br/>[어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)|[함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)(`unary_function`, `binery_function` 등), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)(`bind1st()`, `bind2nd()` 등), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 deprecate 되었습니다.|
 
 
-# 자가 진단
 
-assert 
-https://en.cppreference.com/w/cpp/error#System_error
-
-
-
-# 수학
-https://en.cppreference.com/w/cpp/numeric/math
-
-rand
-srand
-RAND_MAX
-
-**complex**
-
-https://en.cppreference.com/w/cpp/numeric/complex
-
-**valarray**
-
-https://en.cppreference.com/w/cpp/numeric/valarray

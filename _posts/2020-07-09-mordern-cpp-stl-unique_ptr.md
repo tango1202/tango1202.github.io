@@ -131,7 +131,7 @@ EXPECT_TRUE(*v[0] == 10 && *v[1] == 20 && *v[2] == 30);
 
 # default_delete 
 
-`unique_ptr`은 관리하는 개체를 소멸시키는 `deleter`를 사용자 정의 할 수 있습니다. 사용자 정의하는 방법은 [shared_ptr Deleter](https://tango1202.github.io/mordern-cpp/mordern-cpp-share_ptr-weak_ptr/#shared_ptr-deleter) 를 참고하세요.
+`unique_ptr`은 관리하는 개체를 소멸시키는 `deleter`를 사용자 정의 할 수 있습니다. 사용자 정의하는 방법은 [shared_ptr Deleter](https://tango1202.github.io/mordern-cpp/mordern-cpp-shared_ptr-weak_ptr/#shared_ptr-deleter) 를 참고하세요.
 
 `default_deleter`는 기본적으로 일반 포인터는 `delete` 로 소멸하고, 배열은 `delete[]`로 소멸시킵니다.
 
