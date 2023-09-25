@@ -21,7 +21,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`thread` (C++11~)|주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
+|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) (C++11~)|주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
 |`jthread` (C++20~)|(작성중)|
 
 **쓰레드 취소**
@@ -33,13 +33,15 @@ sidebar:
 |`stop_callback` (C++20~)|(작성중)|
 
 **캐쉬 크기**
+|항목|내용|
+|--|--|
 |`hardware_destructive_interference_size` (C++17~)<br/>`hardware_constructive_interference_size` (C++17~)|(작성중)|
 
 **동기화 개체**
 
 |항목|내용|
 |--|--|
-|`mutex` (C++11~)<br/>`timed_mutex` (C++11~)<br/>`recursive_mutex` (C++11~)<br/>`recursive_timed_mutex` (C++11~)<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
+|[mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++11~)<br/>`timed_mutex` (C++11~)<br/>`recursive_mutex` (C++11~)<br/>`recursive_timed_mutex` (C++11~)<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
 |`counting_semaphore` (C++ 20)|(작성중)|
 |`binary_semaphore` (C++ 20)|(작성중)|
 |`latch` (C++ 20)|(작성중)|
@@ -49,8 +51,8 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`lock_guard` (C++11~)<br/>`unique_lock` (C++11~)<br/>`lock()` (C++11~)<br/>`try_lock()` (C++11~)<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`mutex`의 잠금 상태를 관리합니다.|
-|`call_once()` (C++11~)|주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
+|`lock_guard` (C++11~)<br/>`unique_lock` (C++11~)<br/>`lock()` (C++11~)<br/>`try_lock()` (C++11~)<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`mutex`의 잠금 상태를 관리합니다.([lock_guard - mutex가 1개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0)과 [try_lock() - mutex가 여러개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#try_lock---mutex%EA%B0%80-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) 참고)|
+|[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag) (C++11~)|주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출되게 합니다.|
 
 # 쓰레드
 

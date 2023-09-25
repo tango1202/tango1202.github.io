@@ -23,7 +23,7 @@ STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공
 
 |항목|내용|
 |--|--|
-|`condition_variable` (C++11~)|쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
+|[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable/#condition_variable) (C++11~)|쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
 |`condition_variable_any` (C++11~)|(작성중)|
 |`notify_all_at_thread_exit()` (C++11~)|(작성중)|
 |`cv_status` (C++11~)|`no_timeout`, `timeout`이 정의된 열거형 상수 입니다.|

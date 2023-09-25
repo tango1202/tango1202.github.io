@@ -106,40 +106,40 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`make_heap()`||
-|`push_heap()`||
-|`pop_heap()`||
-|`sort_heap()`||
-|`is_heap()` (C++11~)<br/>`is_heap_until()` (C++11~)||
+|`make_heap()`|(작성중)|
+|`push_heap()`|(작성중)|
+|`pop_heap()`|(작성중)|
+|`sort_heap()`|(작성중)|
+|`is_heap()` (C++11~)<br/>`is_heap_until()` (C++11~)|(작성중)|
 
 # 수학 작업
 
 |항목|내용|
 |--|--|
-|`accumulate()`||
-|`inner_product()`||
-|`adjacent_difference()`||
-|`partial_sum()`||
-|`iota()` (C++11~)||
-|`reduce()` (C++17~)||
-|`exclusive_scan()` (C++17~)||
-|`inclusive_scan()` (C++17~)||
-|`transform_reduce()` (C++17~)||
-|`transform_exclusive_scan()` (C++17~)||
-|`transform_inclusive_scan()` (C++17~)||
+|`accumulate()`|(작성중)|
+|`inner_product()`|(작성중)|
+|`adjacent_difference()`|(작성중)|
+|`partial_sum()`|(작성중)|
+|`iota()` (C++11~)|(작성중)|
+|`reduce()` (C++17~)|(작성중)|
+|`exclusive_scan()` (C++17~)|(작성중)|
+|`inclusive_scan()` (C++17~)|(작성중)|
+|`transform_reduce()` (C++17~)|(작성중)|
+|`transform_exclusive_scan()` (C++17~)|(작성중)|
+|`transform_inclusive_scan()` (C++17~)|(작성중)|
 
 # 메모리 유틸리티 작업
 
 |항목|내용|
 |--|--|
-|`uninitialized_copy()`<br/>`uninitialized_copy_n()` (C++11~)|
-|`uninitialized_fill()`<br/>`uninitialized_fill_n()`||
-|`uninitialized_move()` (C++17~)<br/>`uninitialized_move_n()` (C++17~)||
-|`uninitialized_default_construct()` (C++17~)<br/>`uninitialized_default_construct_n()` (C++17~)|| 
-|`uninitialized_value_construct()` (C++17~)<br/>`uninitialized_value_construct_n()` (C++17~)|| 
-|`destroy()` (C++17~)<br/>`destroy_n()` (C++17~)|| 
-|`destroy_at()` (C++17~)|| 
-|`construct_at()` (C++17~)|| 
+|`uninitialized_copy()`<br/>`uninitialized_copy_n()` (C++11~)|(작성중)|
+|`uninitialized_fill()`<br/>`uninitialized_fill_n()`|(작성중)|
+|`uninitialized_move()` (C++17~)<br/>`uninitialized_move_n()` (C++17~)|(작성중)|
+|`uninitialized_default_construct()` (C++17~)<br/>`uninitialized_default_construct_n()` (C++17~)|(작성중)| 
+|`uninitialized_value_construct()` (C++17~)<br/>`uninitialized_value_construct_n()` (C++17~)|(작성중)| 
+|`destroy()` (C++17~)<br/>`destroy_n()` (C++17~)|(작성중)| 
+|`destroy_at()` (C++17~)|(작성중)| 
+|`construct_at()` (C++17~)|(작성중)| 
 
 # 실행 정책
 
