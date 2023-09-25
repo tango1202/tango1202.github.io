@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), 참조자 래핑, bind())"
+title: "#15. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), reference_wrapper, bind())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -55,9 +55,8 @@ std::find_if(
 |--|--|--|--|
 |함수자 정의|[함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)(`unary_function`, `binery_function`)|[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)등 활용.<br/>[function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function) 개체로 저장|기존은 불필요한 제약이었습니다.|
 |[바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)|`bind1st()`, `bind2nd()`|[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)|다수의 인자를 지원합니다.|
-|[바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)|`bind1st()`, `bind2nd()`|[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)|다수의 인자를 지원합니다.|
-
-
+|[어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)|`mem_fun(), memfun_ref(), ptr_fun()`<br/>`not1(), not2()`|[mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)|인자 있는 멤버 함수를 지원합니다.|
+|참조 타입 인자 지원|X|[reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)<br/>[ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)|기존에 지원하지 못했던 참조 타입 인자를 지원합니다.
 
 # function
 
@@ -280,7 +279,7 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 20);
 
 기존에는 이항 함수를 단항 함수로 만들기 위해 `bind1st(op, x)`나 `bind2nd(op, y)`와 같은 [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)를 이용했는데요,
 
-C++11 부터는 `bind()`함수를 추가하여, 다수의 인자(GCC의 경우 `_1`~`_29` 범위에서 지원됨)를 가진 함수도 지원합니다.
+C++11 부터 STL 에서는 `bind()`함수를 추가하여, 다수의 인자(GCC의 경우 `_1`~`_29` 범위에서 지원됨)를 가진 함수도 지원합니다.
 
 `bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
 
