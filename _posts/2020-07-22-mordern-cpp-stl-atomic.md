@@ -24,9 +24,9 @@ sidebar:
 
 여러 명령 단위로 쪼개져 구성되어 있기 때문입니다. 
 
-이때문에, 여러 쓰레드에서 사용하는 값이 서로 달라지므로, `mutex`에 `lock()`을 걸어 단일 쓰레드만 접근 가능하게 해야 합니다.
+이 때문에, 여러 쓰레드에서 사용하는 값이 서로 달라지므로, `mutex`에 `lock()`을 걸어 단일 쓰레드만 접근 가능하게 해야 합니다.
 
-`atomic` 개체는 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성(더이상 쪼개지지 않는 단위)하여 `mutex`를 사용하지 않고도 쓰레드 경쟁 상태를 해결할 수 있게 합니다.
+C++11 STL 에서는 `atomic` 을 사용하여 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성(더이상 쪼개지지 않는 단위)할 수 있습니다. 따라서 `mutex`를 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5803f981-2890-4b3a-be16-8b006f3039fe)
 
@@ -108,68 +108,6 @@ EXPECT_TRUE(a.GetVal() == 200); // (O) 경쟁 상태에 빠지지 않고 잘 계
 |`+=, -=` (C++11~)|증감후 대입합니다.|
 |`&=, \|=, ^=` (C++11~)|비트 AND, 비트 OR, 비트 XOR 후 대입합니다.|
 
-# atomic 유틸리티 함수
-
-|항목|내용|
-|--|--|
-|`atomic_store()` (C++11~)<br/>`atomic_store_explicit()` (C++11~)|(작성중)|
-|`atomic_load()` (C++11~)<br/>`atomic_load_explicit()` (C++11~)|(작성중)|
-|`atomic_exchange()` (C++11~)<br/>`atomic_exchange_explicit()` (C++11~)|(작성중)|
-|`atomic_compare_exchange_weak()` (C++11~)<br/>`atomic_compare_exchange_weak_explicit()` (C++11~)`atomic_compare_exchange_strong()` (C++11~)<br/>`atomic_compare_exchange_strong_explicit()` (C++11~)|(작성중)|
-|`atomic_fetch_add()` (C++11~)<br/>`atomic_fetch_add_explicit()` (C++11~)|(작성중)|
-|`atomic_fetch_sub()` (C++11~)<br/>`atomic_fetch_sub_explicit()` (C++11~)|(작성중)|
-|`atomic_fetch_and()` (C++11~)<br/>`atomic_fetch_and_explicit()` (C++11~)|(작성중)|
-|`atomic_fetch_or()` (C++11~)<br/>`atomic_fetch_or_explicit()` (C++11~)|(작성중)|
-|`atomic_fetch_xor()` (C++11~)<br/>`atomic_fetch_xor_explicit()` (C++11~)|(작성중)|
-|`atomic_wait()` (C++20~)<br/>`atomic_wait_explicit()` (C++20~)|(작성중)|
-|`atomic_notify_one()` (C++20~)|(작성중)|
-|`atomic_notify_all()` (C++20~)|(작성중)|
-
-# 타입 별칭
-
-`atomic<bool>`과 같은 기본 타입에 대한 `atomic` 타입들은 다음과 같이 별칭이 선언되어 있습니다.
-
-|항목|내용|
-|--|--|
-|`atomic_bool` (C++11~)|`atomic<bool>`|
-|`atomic_char` (C++11~)|`atomic<char>`|
-|`atomic_schar` (C++11~)|`atomic<signed char>`|
-
-그외 다른 별칭들은 [cppreference](https://en.cppreference.com/w/cpp/atomic/atomic)를 참고하기 바랍니다.
-
-다음의 특수 목적 별칭이 있습니다.
-
-|항목|내용|
-|--|--|
-|`atomic_signed_lock_free` (C++20~)|(작성중)|
-|`atomic_unsigned_lock_free` (C++20~)|(작성중)|
-
-# atomic_flag
-
-`atomic_flag` 는 `true`, `false`를 저장하는 `atomic<bool>`의 특수한 변형이며 `load()`, `store()`를 제공하지 않습니다. 
-
-# atomic_flag 멤버 함수
-
-|항목|내용|
-|--|--|
-|`clear()` (C++11~)|플래그를 `false`로 설정합니다.|
-|`test_and_set()` (C++11~)|`true`로 설정하고 이전값을 리턴합니다.|
-|`test()` (C++20~)|(작성중)|
-|`wait()` (C++20~)|(작성중)|
-|`notify_one()` (C++20~)|(작성중)|
-|`notify_all()` (C++20~)|(작성중)|
-
-# atomic_flag 유틸리티 함수
-
-|항목|내용|
-|--|--|
-|`atomic_flag_test_and_set()` (C++11~)<br/>`atomic_flag_test_and_set_explicit()` (C++11~)<br/>|(작성중)|
-|`atomic_flag_clear()` (C++11~)<br/>`atomic_flag_clear_explicit()` (C++11~)<br/>|(작성중)|
-|`atomic_flag_test()` (C++11~)<br/>`atomic_flag_test_explicit()` (C++11~)<br/>|(작성중)|
-|`atomic_flag_wait()` (C++11~)<br/>`atomic_flag_wait_explicit()` (C++11~)<br/>|(작성중)|
-|`atomic_flag_notify_one()` (C++11~)|(작성중)|
-|`atomic_flag_notify_all()` (C++11~)|(작성중)|
-
 # 순차적 일관성(sequential consistency)
 
 다음 코드 조각에서 `a = 1;` 이 먼저 실행될까요? 아니면 `b = 1;` 이 먼저 실행될까요?
@@ -249,6 +187,67 @@ producer.join();
 consumer.join(); 
 ```
  
+# atomic 유틸리티 함수
+
+|항목|내용|
+|--|--|
+|`atomic_store()` (C++11~)<br/>`atomic_store_explicit()` (C++11~)|(작성중)|
+|`atomic_load()` (C++11~)<br/>`atomic_load_explicit()` (C++11~)|(작성중)|
+|`atomic_exchange()` (C++11~)<br/>`atomic_exchange_explicit()` (C++11~)|(작성중)|
+|`atomic_compare_exchange_weak()` (C++11~)<br/>`atomic_compare_exchange_weak_explicit()` (C++11~)`atomic_compare_exchange_strong()` (C++11~)<br/>`atomic_compare_exchange_strong_explicit()` (C++11~)|(작성중)|
+|`atomic_fetch_add()` (C++11~)<br/>`atomic_fetch_add_explicit()` (C++11~)|(작성중)|
+|`atomic_fetch_sub()` (C++11~)<br/>`atomic_fetch_sub_explicit()` (C++11~)|(작성중)|
+|`atomic_fetch_and()` (C++11~)<br/>`atomic_fetch_and_explicit()` (C++11~)|(작성중)|
+|`atomic_fetch_or()` (C++11~)<br/>`atomic_fetch_or_explicit()` (C++11~)|(작성중)|
+|`atomic_fetch_xor()` (C++11~)<br/>`atomic_fetch_xor_explicit()` (C++11~)|(작성중)|
+|`atomic_wait()` (C++20~)<br/>`atomic_wait_explicit()` (C++20~)|(작성중)|
+|`atomic_notify_one()` (C++20~)|(작성중)|
+|`atomic_notify_all()` (C++20~)|(작성중)|
+
+# atomic 타입 별칭
+
+`atomic<bool>`과 같은 기본 타입에 대한 `atomic` 타입들은 다음과 같이 별칭이 선언되어 있습니다.
+
+|항목|내용|
+|--|--|
+|`atomic_bool` (C++11~)|`atomic<bool>`|
+|`atomic_char` (C++11~)|`atomic<char>`|
+|`atomic_schar` (C++11~)|`atomic<signed char>`|
+
+그외 다른 별칭들은 [cppreference](https://en.cppreference.com/w/cpp/atomic/atomic)를 참고하기 바랍니다.
+
+다음의 특수 목적 별칭이 있습니다.
+
+|항목|내용|
+|--|--|
+|`atomic_signed_lock_free` (C++20~)|(작성중)|
+|`atomic_unsigned_lock_free` (C++20~)|(작성중)|
+
+# atomic_flag
+
+`atomic_flag` 는 `true`, `false`를 저장하는 `atomic<bool>`의 특수한 변형이며 `load()`, `store()`를 제공하지 않습니다. 
+
+# atomic_flag 멤버 함수
+
+|항목|내용|
+|--|--|
+|`clear()` (C++11~)|플래그를 `false`로 설정합니다.|
+|`test_and_set()` (C++11~)|`true`로 설정하고 이전값을 리턴합니다.|
+|`test()` (C++20~)|(작성중)|
+|`wait()` (C++20~)|(작성중)|
+|`notify_one()` (C++20~)|(작성중)|
+|`notify_all()` (C++20~)|(작성중)|
+
+# atomic_flag 유틸리티 함수
+
+|항목|내용|
+|--|--|
+|`atomic_flag_test_and_set()` (C++11~)<br/>`atomic_flag_test_and_set_explicit()` (C++11~)<br/>|(작성중)|
+|`atomic_flag_clear()` (C++11~)<br/>`atomic_flag_clear_explicit()` (C++11~)<br/>|(작성중)|
+|`atomic_flag_test()` (C++11~)<br/>`atomic_flag_test_explicit()` (C++11~)<br/>|(작성중)|
+|`atomic_flag_wait()` (C++11~)<br/>`atomic_flag_wait_explicit()` (C++11~)<br/>|(작성중)|
+|`atomic_flag_notify_one()` (C++11~)|(작성중)|
+|`atomic_flag_notify_all()` (C++11~)|(작성중)|
 
 
 
