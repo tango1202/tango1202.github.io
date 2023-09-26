@@ -9,8 +9,11 @@ sidebar:
 ---
 
 
-> * `atomic`은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다. 따라서 `mutex` 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
-> * `memory_order` 는 `atomic`에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 열거형 상수 입니다.
+> * `promise`는 비동기 처리를 위한 데이터를 저장합니다.
+> * `future`는 비동기 함수가 완료될때까지 대기하고, 데이터를 추출합니다.
+> * `shared_future`는 여러곳에서 공유할 수 있는 `future` 입니다.
+> * `packaged_task`는 `promise`를 캡슐화하여 비동기 함수 설정만 하면 되는 유틸리티 개체 입니다.
+> * `async()`는 `packaged_task`를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.
 
 # 개요
 
@@ -95,12 +98,13 @@ EXPECT_TRUE(Sync() == 1);
 
 |항목|내용|
 |--|--|
-|`promise` (C++11~)|비동기 처리를 위한 데이터를 저장합니다.|
-|`future` (C++11~)|비동기 함수가 완료될때까지 대기하고, 값을 추출합니다.|
-|`shared_future` (C++11~)|`future`를 여러 곳에서 공유합니다.|
-|`packaged_task` (C++11~)|`promise`를 캡슐화하여 비동기 함수 설정만 하면 되도록 만든 유틸리티 개체 입니다.|
-|`async()` (C++11~)|`packaged_task`를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.|
-|`launch` (C++11~)|비동기 작업에 대한 정책입니다.|
+|[promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise) (C++11~)|비동기 처리를 위한 데이터를 저장합니다.|
+|[future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future) (C++11~)|비동기 함수가 완료될때까지 대기하고, 데이터를 추출합니다.|
+|[shared_future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#shared_future) (C++11~)|
+여러곳에서 공유할 수 있는 `future` 입니다.|
+|[packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task) (C++11~)|`promise`를 캡슐화하여 비동기 함수 설정만 하면 되는 유틸리티 개체 입니다.|
+|[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) (C++11~)|`packaged_task`를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.|
+|`launch` (C++11~)|`async()` 함수에서 사용하며, 비동기 작업에 대한 정책입니다.<br/>* `async` : 새 쓰레드를 생성한뒤 실행합니다.<br/>* `deferred` : 호출된 쓰레드에서 실행합니다.|
 |`future_status`|`future`개체 `wait_for()`시 사용하는 상태입니다.|
 |`future_error` (C++11~)|`future`나 `promise`의 오류를 보고합니다.|
 |`future_category` (C++11~)|`future`의 에러 카테고리입니다.|
@@ -137,7 +141,7 @@ EXPECT_TRUE(Sync() == 1);
 |항목|내용|
 |--|--|
 |`operator =` (C++11~)|대입합니다.|
-|`get()` (C++11~)|`wait()` 한뒤 데이터를 추출합니다. 추출한 뒤에는 데이터가 무효화 됩니다. 따라서 여러번 호출하려면 `shared_future`를 이용해야 합니다.|
+|`get()` (C++11~)|`wait()` 한뒤 데이터를 추출합니다. 이때 데이터는 `future`처럼 무효화되지 않습니다.|
 |`valid()` (C++11~)|데이터가 유효한지 확인합니다.|
 |`wait()` (C++11~)|`promise`에서 데이터를 설정할때까지 대기합니다.|
 |`wait_for()` (C++11~)|주어진 기간이 지나면 대기를 해제합니다.|
@@ -145,7 +149,7 @@ EXPECT_TRUE(Sync() == 1);
 
 # packaged_task
 
-`promise`를 캡슐화하여 비동기 함수 설정만 하면 되도록 만든 유틸리티 개체 입니다.
+`promise`를 캡슐화하여 비동기 함수 설정만 하면 되는 유틸리티 개체 입니다.
 
 다음 예제를 보면,
 

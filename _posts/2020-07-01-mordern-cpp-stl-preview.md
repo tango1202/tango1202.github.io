@@ -79,9 +79,9 @@ sidebar:
 |[함수 래퍼](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98-%EB%9E%98%ED%8D%BC)|멤버 함수를 호출할 수 있도록 함수자로 만듭니다.<br/>[mem_fun(), mem_fun_ref(), ptr_fun()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)은 deprecate 되었습니다.<br/><br/>**(C++11~)**<br/>[function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)은 `()`로 호출 가능한 함수자를 저장합니다. `function`에서 `()`을 호출할 대상이 없을 때 [bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call) 예외를 방출합니다.<br/>[mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.|
 |[참조 래퍼](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98-%EB%9E%98%ED%8D%BC) (C++11~)|[reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper) 는 복사나 대입이 안되는 참조자를 래핑합니다.<br/>[ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) 는 `reference_wrapper` 개체를 생성합니다.|
 |[바인더](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)|함수 인자값을 고정하여 호출 형태를 변경합니다.<br/>[`bind1st()`, `bind2nd()`](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94) 는 deprecate 되었습니다.<br/><br/>**(C++11~)**<br/>[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.<br/>[is_bind_expression](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_bind_expression)는  `bind()`로 생성한 함수인지 검사합니다.<br/>[is_placeholder](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_placeholder)는 자리 표시자를 사용했는지 검사합니다.|
-|[Searcher](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#searcher)|(작성중)|
-|[Invoke](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#invoke)|(작성중)|
-|[Identity](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#identity)|(작성중)|
+|[Searcher](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#searcher)|(작성중)|
+|[Invoke](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#invoke)|(작성중)|
+|[Identity](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#identity)|(작성중)|
 |[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) (C++11~)|`hash()`는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.|
 |[문자열 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) (C++17~)|(작성중)|
 |[모호성 해소](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EB%AA%A8%ED%98%B8%EC%84%B1-%ED%95%B4%EC%86%8C) (C++17~)|(작성중)|
@@ -156,8 +156,12 @@ sidebar:
 |[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable) (C++11~)|`condition_variable`은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
 |[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) (C++11~)|`atomic`은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다.|
 |[memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order) (C++11~)|`memory_order` 는 `atomic`에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 열거형 상수 입니다.|
-
-future
+|[promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise) (C++11~)|비동기 처리를 위한 데이터를 저장합니다.|
+|[future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future) (C++11~)|비동기 함수가 완료될때까지 대기하고, 데이터를 추출합니다.|
+|[shared_future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#shared_future) (C++11~)|
+여러곳에서 공유할 수 있는 `future` 입니다.|
+|[packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task) (C++11~)|`promise`를 캡슐화하여 비동기 함수 설정만 하면 되는 유틸리티 개체 입니다.|
+|[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) (C++11~)|`packaged_task`를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.|
 
 # 수치 라이브러리
 
