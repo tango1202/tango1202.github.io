@@ -196,7 +196,7 @@ void h() {
 
 # 동적 예외 사양
 
-함수 정의시 `throw()`를 사용하여 발생하는 예외를 명세화 할 수 있는데요, 사실은 명시한 예외 이외에는 `unexpected()` 핸들러로 분기하므로 사용하지 않는게 낫습니다.
+함수 정의시 `throw()`를 사용하여 발생하는 예외를 명세화 할 수 있는데요, 명시한 예외 이외의 예외가 발생하면, `unexpected()` 함수를 호출하며, `unexpected()` 함수에서는 `unexpected_handler` 를 호출합니다. 즉, 명시한 예외 이외에는 `unexpected_handler` 로 분기하므로 사용하지 않는게 낫습니다.
 
 ```cpp
 void f() throw(error1, error2) 
@@ -222,12 +222,10 @@ void f() {
 
 즉, `error1`과 `error2` 만 발생시키기 위해서, 억지로 다른 예외인 `bad_exception`으로 강제 변환합니다. 이러다 보니 불필요하게 `try-catch()` 만 추가되어 실행 속도만 느려집니다. 사용하지 마세요.
 
-동적 예외 사양에 `bad_exception`이 포함된 경우 `unexpected()` 핸들러에서 `throw;` 했을 때 예외가 그대로 전파되지 않고, `bad_exception`으로 변경됩니다.
-
 다음 코드에서 `f()`에서 동적 예외 사양에 없는 예외가 발생했을때,
 
 1. #1 의 `UnexpectedHandler()` 핸들러가 호출되고,
-2. #2 인 `bad_exception()`으로 `catch()`됩니다.
+2. #2 인 `bad_exception`으로 `catch()`됩니다.
 
 ```cpp
 void UnexpectedHandler() {
@@ -249,11 +247,11 @@ void g() {
 }
 ```
 
-# terminate
+# terminate()
 
-예외를 `catch()`하지 않으면 최종적으로 `std::terminate()` 함수를 호출하며, `std::terminate()` 함수에서는 `std::terminate()` 핸들러를 호출하고, 기본 `std::terminate()` 핸들러에서는 `std::abort()`를 호출하여 프로그램을 강제 종료합니다. 
+예외를 `catch()`하지 않으면 최종적으로 `terminate()` 함수를 호출하며, `terminate()` 함수에서는 `terminate_handler` 를 호출하고, 기본 `terminate_handler` 에서는 `abort()`를 호출하여 프로그램을 강제 종료합니다. 
 
-`std::terminate()` 핸들러는 `set_terminate()` 함수로 사용자 정의 할 수 있으며, `std::abort()`등의 프로그램 종료 코드가 포함되어야 합니다.
+`terminate()` 핸들러는 `set_terminate()` 함수로 사용자 정의 할 수 있으며, `abort()`등의 프로그램 종료 코드가 포함되어야 합니다.
 
 ```cpp
 #include <iostream>
@@ -264,7 +262,7 @@ void TerminateHandler() {
     std::abort(); // 프로그램 종료
 }
 int main() {
-    std::set_terminate(TerminateHandler); // terminate 핸들러를 설정합니다.
+    std::set_terminate(TerminateHandler); // terminate_handler를 설정합니다.
     throw 0; // 예외 발생. 내부적으로 매칭되는 catch() 가 없어 terminate()를 호출하고, TerminateHandler()가 호출 됩니다. 
     return 0;
 }

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#22. [모던 C++ STL] (C++11~) condition_variable"
+title: "#23. [모던 C++ STL] (C++11~) condition_variable"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

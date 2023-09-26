@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [모던 C++ STL] 숫자"
+title: "#7. [모던 C++ STL] 숫자"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -87,11 +87,6 @@ sidebar:
 |`exp()`<br/>`expf(), expl()` (C++11~)|(작성중)|
 |`exp2(), exp2f(), exp2l()` (C++11~)|(작성중)|
 |`expm1(), expm1f(), expm1l()` (C++11~)|(작성중)|
-
-
-
-
-
 |`log()`<br/>`logf(), logl()` (C++11~)|(작성중)|
 |`log10()`<br/>`log10f(), log10l()` (C++11~)|(작성중)|
 |`log2(), log2f(), log2l()` (C++11~)|(작성중)|

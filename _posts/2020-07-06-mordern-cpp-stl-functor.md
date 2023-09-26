@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] 함수자"
+title: "#6. [모던 C++ STL] 함수자"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -68,7 +68,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |[function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function) (C++11~)|`()`로 호출 가능한 함수자를 저장합니다.|
-|[bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call) (C++11~)|`()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
+|[bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call) (C++11~)|`function`에서 `()`로 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
 |`mem_fun()` (~C++11)<br/>`mem_fun_t` (~C++11)<br/>`mem_fun1_t` (~C++11)<br/>`const_mem_fun_t` (~C++11)<br/>`const_mem_fun1_t` (~C++11)|알고리즘에서 `f(x)`의 호출을 `x->f()` 처럼 호출되게 합니다.([아답터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 참고)|
 |`mem_fun_ref()` (~C++11)<br/>`mem_fun_ref_t` (~C++11)<br/>`mem_fun1_ref_t` (~C++11)<br/>`const_mem_fun_ref_t` (~C++11)<br/>`const_mem_fun1_ref_t` (~C++11)|알고리즘에서 `f(x)`의 호출을 `x.f()` 처럼 호출되게 합니다.([아답터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 참고)|
 |`ptr_fun()` (~C++11)|바인더, 아답터, 부정자와 일반 함수가 호환될 수 있도록 일반 함수를 `unary_function`이나 `binary_function` 개체로 만듭니다.([아답터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 참고)|

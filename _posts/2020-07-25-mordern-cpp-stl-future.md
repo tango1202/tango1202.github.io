@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#24. [모던 C++ STL] (C++11~) future"
+title: "#25. [모던 C++ STL] (C++11~) future"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

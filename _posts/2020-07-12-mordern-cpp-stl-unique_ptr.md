@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++ STL] (C++11~) unique_ptr, default_delete"
+title: "#12. [모던 C++ STL] (C++11~) unique_ptr, default_delete"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
