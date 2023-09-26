@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [모던 C++ STL] (C++11~) tuple"
+title: "#15. [모던 C++ STL] (C++11~) tuple"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

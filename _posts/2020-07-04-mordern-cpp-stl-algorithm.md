@@ -122,11 +122,15 @@ sidebar:
 |`partial_sum()`|(작성중)|
 |`iota()` (C++11~)|(작성중)|
 |`reduce()` (C++17~)|(작성중)|
-|`exclusive_scan()` (C++17~)|(작성중)|
-|`inclusive_scan()` (C++17~)|(작성중)|
 |`transform_reduce()` (C++17~)|(작성중)|
+|`exclusive_scan()` (C++17~)|(작성중)|
 |`transform_exclusive_scan()` (C++17~)|(작성중)|
+|`inclusive_scan()` (C++17~)|(작성중)|
 |`transform_inclusive_scan()` (C++17~)|(작성중)|
+|`gcd()` (C++17~)|(작성중)|
+|`lcm()` (C++17~)|(작성중)|
+|`midpoint()` (C++20~)|(작성중)|
+|`lerp()` (C++20~)|(작성중)|
 
 # 메모리 유틸리티 작업
 

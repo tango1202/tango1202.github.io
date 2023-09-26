@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#22. [모던 C++ STL] (C++11~) atomic, memory_order"
+title: "#23. [모던 C++ STL] (C++11~) atomic, memory_order"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

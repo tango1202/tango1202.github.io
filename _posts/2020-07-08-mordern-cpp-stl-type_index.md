@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] (C++11~) type_index"
+title: "#8. [모던 C++ STL] (C++11~) type_index"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
