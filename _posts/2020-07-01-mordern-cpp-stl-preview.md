@@ -163,24 +163,19 @@ sidebar:
 |[packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task) (C++11~)|`promise`를 캡슐화하여 비동기 함수 설정만 하면 되는 유틸리티 개체 입니다.|
 |[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) (C++11~)|`packaged_task`를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.|
 
-# 수치 라이브러리
+# 숫자 라이브러리
 
-random
-
-https://en.cppreference.com/w/cpp/numeric/math
-
-rand
-srand
-RAND_MAX
-
-**complex**
-
-https://en.cppreference.com/w/cpp/numeric/complex
-
-**valarray**
-
-https://en.cppreference.com/w/cpp/numeric/valarray
-
+|항목|내용|
+|--|--|
+|[complex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex)|복소수를 처리하는 개체입니다.|
+|[valarray](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#valarray)|값의 배열을 다루는 개체입니다.|
+|[공통 수학 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#%EA%B3%B5%ED%86%B5-%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98)|`abs()`, `exp()`, `sin()` 등 일반 수학 함수, 지수 함수, 거듭 제곱 함수, 삼각 함수, 에러 및 감마 함수, 부동 소수점 함수, 분류 및 비교 함수를 제공합니다.|
+|[부동 소수점 환경]() (C++11~)|(작성중)|
+|[특수 수학 함수]() (C++17~)|(작성중)|
+|[수학 상수]() (C++20~)|(작성중)|
+|[비트 조작]() (C++20~)|(작성중)|
+|[C스타일 난수 생성기]()|`rand()`, `srand()`를 제공합니다.|
+|[난수 생성기]() (C++11~)|(작성중)|
 
 # 에러 핸들링 라이브러리
 
