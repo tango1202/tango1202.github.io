@@ -176,16 +176,6 @@ sidebar:
 |[C스타일 난수 생성기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%82%9C%EC%88%98-%EC%83%9D%EC%84%B1%EA%B8%B0)|`rand()`, `srand()`를 제공합니다.|
 |[난수 생성기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#%EB%82%9C%EC%88%98-%EC%83%9D%EC%84%B1%EA%B8%B0) (C++11~)|(작성중)|
 
-# 진단 라이브러리
-
-assert 
-https://en.cppreference.com/w/cpp/error#System_error
-
-std::exception_ptr
-std::error_code
-std::error_condition
-system_error
-
 # 날짜 / 시간 라이브러리
 
 |항목|내용|
@@ -207,6 +197,20 @@ codecvt
 # 입출력 라이브러리
 
 # 파일 시스템 라이브러리
+
+# 진단 라이브러리
+
+|항목|내용|
+|--|--|
+|[진단](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%A7%84%EB%8B%A8)|`assert()`로 설계한 기능이 올바르게 사용되는지 디버그 모드에서 확인합니다.|
+|[exception](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#exception)|`throw`를 이용한 예외 보고시 일관된 인터페이스를 제공합니다.|
+|[표준 예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8)|`out_of_range`, `bad_alloc`등의 예외를 제공합니다.|
+|[예외 처리 실패](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%88%EC%99%B8-%EC%B2%98%EB%A6%AC-%EC%8B%A4%ED%8C%A8)|예외를 `catch()`하지 않았을때 `terminate()`를 호출하여 `terminate_handler`를 호출합니다.|
+|[동적 예외 사양 실패](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91-%EC%8B%A4%ED%8C%A8)(~C++17)|동적 예외 사양에서 명시한 예외 이외의 예외가 발생할때 `unexpected()`를 호출하여 `unexpected_handler`를 호출합니다.|
+|[오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8)|`<cerrono>` 에 매크로 상수로 정의되어 있습니다.<br/>자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/error/errno_macros)을 참고하기 바랍니다.|
+|[예외 캡쳐 및 저장](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%88%EC%99%B8-%EC%BA%A1%EC%B3%90-%EB%B0%8F-%EC%A0%80%EC%9E%A5) (C++11~)|(작성중)|
+|[시스템 오류](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98)|(작성중)|
+
 
 # C 라이브러리 지원
 

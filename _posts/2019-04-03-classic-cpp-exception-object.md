@@ -20,4 +20,4 @@ sidebar:
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e180dc05-a0f6-4879-abc1-376061be3162)
 
 
-표준 예외 종류에 대해서는 모던 C++ STL의 [표준 예외](??) 를 참고하기 바랍니다.
+표준 예외 종류에 대해서는 모던 C++ STL의 [표준 예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8) 를 참고하기 바랍니다.
