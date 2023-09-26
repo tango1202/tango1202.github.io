@@ -87,6 +87,11 @@ sidebar:
 |`exp()`<br/>`expf(), expl()` (C++11~)|(작성중)|
 |`exp2(), exp2f(), exp2l()` (C++11~)|(작성중)|
 |`expm1(), expm1f(), expm1l()` (C++11~)|(작성중)|
+
+
+
+
+
 |`log()`<br/>`logf(), logl()` (C++11~)|(작성중)|
 |`log10()`<br/>`log10f(), log10l()` (C++11~)|(작성중)|
 |`log2(), log2f(), log2l()` (C++11~)|(작성중)|

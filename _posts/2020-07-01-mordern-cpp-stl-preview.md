@@ -170,12 +170,12 @@ sidebar:
 |[complex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex)|복소수를 처리하는 개체입니다.|
 |[valarray](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#valarray)|값의 배열을 다루는 개체입니다.|
 |[공통 수학 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#%EA%B3%B5%ED%86%B5-%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98)|`abs()`, `exp()`, `sin()` 등 일반 수학 함수, 지수 함수, 거듭 제곱 함수, 삼각 함수, 에러 및 감마 함수, 부동 소수점 함수, 분류 및 비교 함수를 제공합니다.|
-|[부동 소수점 환경]() (C++11~)|(작성중)|
-|[특수 수학 함수]() (C++17~)|(작성중)|
-|[수학 상수]() (C++20~)|(작성중)|
-|[비트 조작]() (C++20~)|(작성중)|
-|[C스타일 난수 생성기]()|`rand()`, `srand()`를 제공합니다.|
-|[난수 생성기]() (C++11~)|(작성중)|
+|[부동 소수점 환경](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%ED%99%98%EA%B2%BD) (C++11~)|(작성중)|
+|[특수 수학 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#%ED%8A%B9%EC%88%98-%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98) (C++17~)|(작성중)|
+|[수학 상수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#%EC%88%98%ED%95%99-%EC%83%81%EC%88%98) (C++20~)|(작성중)|
+|[비트 조작](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#%EB%B9%84%ED%8A%B8-%EC%A1%B0%EC%9E%91) (C++20~)|(작성중)|
+|[C스타일 난수 생성기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%82%9C%EC%88%98-%EC%83%9D%EC%84%B1%EA%B8%B0)|`rand()`, `srand()`를 제공합니다.|
+|[난수 생성기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#%EB%82%9C%EC%88%98-%EC%83%9D%EC%84%B1%EA%B8%B0) (C++11~)|(작성중)|
 
 # 에러 핸들링 라이브러리
 
