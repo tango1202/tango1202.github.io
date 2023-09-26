@@ -42,9 +42,9 @@ STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공
 
 즉, 생산자의 데이터 생성이 완료되면, 소비자가 데이터를 사용해야 하므로, 생산자와 소비자의 작업은 동기화되어야 합니다.
 
-`condition_variable`은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다. 
+`condition_variable`은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 `notify_one()` 이나 `notify_all()`로 활성화 시켜 주는 개체입니다. 
 
-`condition_variable` 의 멤버 함수는 다음과 같습니다. `wait()` 로 대기하고 있으면, `notify_one()` 이나 `notify_all()` 로 깨워줍니다.
+`condition_variable` 의 멤버 함수는 다음과 같습니다. 
 
 |항목|내용|
 |--|--|
@@ -55,7 +55,10 @@ STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공
 |`wait_until()` (C++11~)|Notify가 왔을때 주어진 조건자가 참이거나 주어진 시간이 되면 대기를 해제합니다.|
 |`native_handle()` (C++11~)|시스템에 따른 구현에 정의된 핸들을 리턴합니다.|
 
-예를 들어 다음의 `wait()`는 누군가가 `m_IsRun1`을 `true`로 설정하고, `m_CV.notify_one()` 또는 `m_CV.notify_all()`을 호출할때 까지 대기합니다.
+예를 들어 다음의 `wait()`는 
+
+1. 누군가가 `m_IsRun1`을 `true`로 설정하고, 
+2. `m_CV.notify_one()` 또는 `m_CV.notify_all()`을 호출할때 까지 대기합니다.
 
 ```cpp
 std::condition_variable m_CV;

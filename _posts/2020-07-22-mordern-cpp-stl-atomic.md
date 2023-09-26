@@ -26,9 +26,9 @@ sidebar:
 
 C++11 STL 에서는 `atomic` 을 사용하여 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성(더이상 쪼개지지 않는 단위, 원자 단위)할 수 있습니다. 따라서 `mutex` 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5803f981-2890-4b3a-be16-8b006f3039fe)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e34af791-1282-4f5f-92d3-9150d29464ba)
 
-다음은 원자 단위의 연산을 지원하기 위한 유틸리티 개체와 함수들입니다.
+다음은 원자 단위의 명령을 지원하기 위한 유틸리티 개체와 함수들입니다.
 
 |항목|내용|
 |--|--|
@@ -131,10 +131,10 @@ b = 1;
 
 |항목|내용|
 |--|--|
-|`memory_order_relaxed` (C++11~)|순서에 관여하지 않고, 원자성만 보장됩니다.|
+|`memory_order_relaxed` (C++11~)|순서에 관여하지 않고, 원자 단위 명령만 보장됩니다.|
 |`memory_order_consume` (C++11~)|(작성중)|
-|`memory_order_acquire` (C++11~)|읽기시 해당 명령 이후 명령들이 해당 명령 이전에 오는 것을 금지합니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
-|`memory_order_release` (C++11~)|쓰기시 해당 명령 이전 메모리 명령들이 해당 명령 이후로 가는 것을 금지합니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
+|`memory_order_acquire` (C++11~)|읽기시 이후 명령들이 해당 명령 이전에 오는 것을 금지합니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
+|`memory_order_release` (C++11~)|쓰기시 이전 메모리 명령들이 해당 명령 이후로 가는 것을 금지합니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
 |`memory_order_acq_rel` (C++11~)|읽기/쓰기/변경시 이후 명령들이 해당 명령 이전에 오는 것을 금지하고, 이전 명령들이 해당 명령 이후로 가는 것을 금지합니다.|
 |`memory_order_seq_cst` (C++11~)|기본적으로 사용됩니다.<br/>순차적 일관성을 보장해 줍니다.|
 

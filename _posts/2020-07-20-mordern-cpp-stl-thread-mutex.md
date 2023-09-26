@@ -334,7 +334,8 @@ std::cout<<"Non Mutex : "<<a.GetVal()<<std::endl;
 
 이는 `A`개체의 `m_Val`이 두개의 쓰레드에 공유됨으로써 경쟁 상태(Race Condition)에 빠졌기 때문입니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c918c5a3-cf98-4c6b-ac40-d12a384dd467)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/9355f39a-945f-41a8-ab93-702eb90c1741)
+
 
 이를 해결하기 위해서는 다음처럼 자원에 접근할때 `mutex`를 이용하여 `lock()` 을 걸어두면 됩니다.
 
@@ -369,7 +370,7 @@ EXPECT_TRUE(a.GetVal() == 200);
 
 그림으로 보면 다음과 같습니다. 먼저 접근한 쓰레드가 `lock()` 을 걸어 다른 쓰레드를 대기시키기 때문에 정상적으로 동작합니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ecadca8a-5d64-4fc3-ada1-a1b652b13c49)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7a7a5391-877c-4dc4-91a6-dbc13dca0d2d)
 
 # lock_guard - mutex가 1개인 경우 데드락(Dead Lock) 해결
 
