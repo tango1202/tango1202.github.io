@@ -16,11 +16,11 @@ minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "n
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : "tango1202 블로그"
+title                    : "tango1202 블로그 - C++, STL, 모던 C++, C++11, 개발 방법론, 개체지향 원칙"
 title_separator          : "|"
 subtitle                 : "Clean Code That Works!!!"
 name                     : "tango1202"
-description              : "tango1202의 블로그 입니다."
+description              : "C++, STL, 모던 C++, C++11, 개발 방법론, 개체지향 원칙"
 url                      : "https://tango1202.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "tango1202/tango1202_blog_comment" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"

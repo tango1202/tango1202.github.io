@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#22. [모던 C++ STL] (C++11~) thread, mutex"
+title: "#22. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -33,6 +33,7 @@ sidebar:
 |`stop_callback` (C++20~)|(작성중)|
 
 **캐쉬 크기**
+
 |항목|내용|
 |--|--|
 |`hardware_destructive_interference_size` (C++17~)<br/>`hardware_constructive_interference_size` (C++17~)|(작성중)|

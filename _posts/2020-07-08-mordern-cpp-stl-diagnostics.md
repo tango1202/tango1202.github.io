@@ -51,7 +51,7 @@ sidebar:
 |`ambiguous_local_time` (C++20~)|(작성중)|
 |`format_error` (C++20~)|(작성중)|
 |`bad_typeid`|널포인터를 역참조하여 typeid를 구할때 발생합니다.<br/>`T* p = NULL;`<br/>`typeid(*p).name();`|
-|`bad_cast`|`dynamic_cast`가 실패했습니다.|
+|`bad_cast`|`dynamic_cast`가 실패시 발생합니다.|
 |`bad_any_cast` (C++17~)|(작성중)|
 |`bad_optional_access` (C++17~)|(작성중)|
 |`bad_expected_access` (C++17~)|(작성중)|

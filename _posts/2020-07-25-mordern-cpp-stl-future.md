@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#25. [모던 C++ STL] (C++11~) future"
+title: "#25. [모던 C++ STL] (C++11~) 비동기(future, promise)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

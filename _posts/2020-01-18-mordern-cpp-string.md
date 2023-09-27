@@ -79,7 +79,7 @@ std::u16string str1{u"한글"};
 std::u32string str2{U"한글"};
 
 // C++20
-// std::u8string str3{U"한글"};
+// std::u8string str3{u8"한글"};
 
 EXPECT_TRUE(str1.size() == 2);
 EXPECT_TRUE(str1[1] == u'글'); 

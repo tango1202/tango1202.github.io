@@ -85,7 +85,7 @@ sidebar:
 |[Identity](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#identity) (C++20~)|(작성중)|
 |[문자열 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) (C++17~)|(작성중)|
 |[모호성 해소](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EB%AA%A8%ED%98%B8%EC%84%B1-%ED%95%B4%EC%86%8C) (C++17~)|(작성중)|
-|[정수 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)|`operator <()`등은 deprecate되었습니다.<br/><br/>**(C++20~)**<br/>`cmp_euqal()`등으로 정수를 비교합니다.|
+|[정수 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)|`operator <()`등은 deprecate되었습니다.([대소 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90) 참고)<br/><br/>**(C++20~)**<br/>`cmp_euqal()`등으로 정수를 비교합니다.|
 |[포맷팅](??) (C++20~)|(작성중)|
 
 # 컨테이너 라이브러리
@@ -209,7 +209,7 @@ codecvt
 |[동적 예외 사양 실패](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91-%EC%8B%A4%ED%8C%A8)(~C++17)|동적 예외 사양에서 명시한 예외 이외의 예외가 발생할때 `unexpected()`를 호출하여 `unexpected_handler`를 호출합니다.|
 |[오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8)|`<cerrono>` 에 매크로 상수로 정의되어 있습니다.<br/>자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/error/errno_macros)을 참고하기 바랍니다.|
 |[예외 캡쳐 및 저장](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%88%EC%99%B8-%EC%BA%A1%EC%B3%90-%EB%B0%8F-%EC%A0%80%EC%9E%A5) (C++11~)|(작성중)|
-|[시스템 오류](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98)|(작성중)|
+|[시스템 오류](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98)(C++11~)|(작성중)|
 
 
 # C 라이브러리 지원

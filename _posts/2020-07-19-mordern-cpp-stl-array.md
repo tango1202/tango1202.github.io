@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [모던 C++ STL] (C++11~) array"
+title: "#19. [모던 C++ STL] (C++11~) C++스타일 배열(array)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

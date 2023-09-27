@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [모던 C++ STL] (C++11~) chrono"
+title: "#15. [모던 C++ STL] (C++11~) 정밀한 시간 측정(system_clock, time_point, duration)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-기존에는 날짜/시간 처리를 위해 C스타일의 `time`과 `difftime`만 제공되었으나, 
+기존에는 날짜/시간 처리를 위해 C스타일의 `time`과 `difftime`만 제공되었으나([C스타일 시간 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%8B%9C%EA%B0%84-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0) 참고), 
 
 C++11 부터 STL 에서는 좀더 다양한 정확도로 시간을 추적할 수 있는 `chrono` 라이브러리가 추가되었습니다.
 
