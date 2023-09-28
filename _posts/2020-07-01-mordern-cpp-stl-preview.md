@@ -188,7 +188,14 @@ sidebar:
 |[Timezone](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-zone) (C++20~)|(작성중)|
 
 # 정규 표현식 라이브러리
-regex
+
+|항목|내용|
+|--|--|
+|[regex_match()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_match) (C++11~)|문자열의 전체가 정규 표현식과 일치하는지 검사합니다.|
+|[regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) (C++11~)|문자열의 일부가 정규 표현식과 일치하는지 검사합니다.<br/>[regex_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_iterator)는 문자열 전체에 대해 `regex_search()` 한 결과의 이터레이터입니다.|
+|[regex_replace()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_replace) (C++11~)|문자열에서 정규 표현식과 일치하는 부분을 수정합니다.|
+
+
 
 # 현지화 라이브러리
 

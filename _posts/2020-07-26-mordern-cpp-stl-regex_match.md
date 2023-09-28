@@ -8,19 +8,24 @@ sidebar:
     nav: "docs"
 ---
 
+> * `regex_match()`는 문자열의 전체가 정규 표현식과 일치하는지 검사합니다.
+> * `regex_search()`는 문자열의 일부가 정규 표현식과 일치하는지 검사합니다.
+> * `regex_iterator`는 문자열 전체에 대해 `regex_search()` 한 결과의 이터레이터입니다.
+> * `regex_replace()`는 문자열에서 정규 표현식과 일치하는 부분을 수정합니다.
+
 # 개요
 
-C++11 부터 STL 에서는 정규 표현식 관련 개체와 유틸리티가 제공되어 패턴이 매칭되는 문자열을 쉽게 비교할 수 있습니다.
+C++11 부터 STL 에서는 정규 표현식 관련 개체와 유틸리티가 제공되어 패턴이 매칭되는 문자열을 쉽게 검사하고 수정할 수 있습니다.
 
 |항목|내용|
 |--|--|
-|`basic_regex` (C++11~)|정규 표현식을 저장합니다.<br/>* `regex` : `basic_regex<char>` 입니다.<br/>* `wregex` : `basic_regex<wchar_t>` 입니다.|
+|`basic_regex` (C++11~)|정규 표현식을 저장합니다.([regex_match()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_match) 참고)<br/>* `regex` : `basic_regex<char>` 입니다.<br/>* `wregex` : `basic_regex<wchar_t>` 입니다.|
 |`sub_match` (C++11~)|(작성중)|
-|`match_results` (C++11~)|정규표현식의 매칭 결과를 저장합니다.<br/>* `cmatch` : `match_result<const char*>` 입니다.<br/>* `wcmatch` : `match_result<const wchar_t*>` 입니다.<br/>* `smatch` : `match_result<string::const_iterator>` 입니다.<br/>* `wsmatch` : `match_result<wstring::const_iterator>` 입니다.|
-|`regex_match()` (C++11~)|문자열의 전체가 정규 표현식과 일치하는지 검사합니다.|
-|`regex_search()` (C++11~)|문자열의 일부가 정규 표현식과 일치하는지 검사합니다.|
-|`regex_replace()` (C++11~)|문자열에서 정규 표현식과 일치하는 부분을 바꿉니다.|
-|`regex_iterator` (C++11~)|문자열 전체에 대해 `regex_search()` 한 결과를 이터레이터로 리턴합니다.<br/>* `cregex_iterator` : `regex_iterator<const char*>` 입니다.<br/>* `wcregex_iterator` : `regex_iterator<const wchar_t*>` 입니다.<br/>* `sregex_iterator` : `regex_iterator<string::const_iterator>` 입니다.<br/>* `wsregex_iterator` : `regex_iterator<wstring::const_iterator>` 입니다.|
+|`match_results` (C++11~)|정규 표현식의 매칭 결과를 저장합니다.([regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) 참고)<br/>* `cmatch` : `match_result<const char*>` 입니다.<br/>* `wcmatch` : `match_result<const wchar_t*>` 입니다.<br/>* `smatch` : `match_result<string::const_iterator>` 입니다.<br/>* `wsmatch` : `match_result<wstring::const_iterator>` 입니다.|
+|[regex_match()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_match) (C++11~)|문자열의 전체가 정규 표현식과 일치하는지 검사합니다.|
+|[regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) (C++11~)|문자열의 일부가 정규 표현식과 일치하는지 검사합니다.|
+|[regex_replace()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_replace) (C++11~)|문자열에서 정규 표현식과 일치하는 부분을 수정합니다.|
+|[regex_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_iterator) (C++11~)|문자열 전체에 대해 `regex_search()` 한 결과의 이터레이터입니다.<br/>* `cregex_iterator` : `regex_iterator<const char*>` 입니다.<br/>* `wcregex_iterator` : `regex_iterator<const wchar_t*>` 입니다.<br/>* `sregex_iterator` : `regex_iterator<string::const_iterator>` 입니다.<br/>* `wsregex_iterator` : `regex_iterator<wstring::const_iterator>` 입니다.|
 |`regex_token_iterator` (C++11~)|(작성중)|
 |`regex_error` (C++11~)|(작성중)|
 |`regex_traits` (C++11~)|(작성중)|
@@ -30,7 +35,7 @@ C++11 부터 STL 에서는 정규 표현식 관련 개체와 유틸리티가 제
 
 # 정규 표현식
 
-정규 표현식은 문자열이 특정한 규칙에 부합하는지 검사 및 대체하는 형식 언어입니다.
+정규 표현식은 문자열이 특정한 패턴 규칙과 일치하는지 검사 및 수정하는 형식 언어입니다.
 
 정규 표현식은 다음과 같은 메타 문자를 이용하여 패턴 규칙을 표현합니다.
 
@@ -59,7 +64,7 @@ C++11 부터 STL 에서는 정규 표현식 관련 개체와 유틸리티가 제
 
 문자열의 전체가 정규 표현식과 일치하는지 검사합니다.
 
-다음 코드에서는 `ab[,:].*`과 일치하는 문자열을 검색합니다. 따라서 `ab,`나 `ab:`로 시작하는 모든 문자열을 검색합니다.
+다음 코드는 `ab[,:].*`과 일치하는 문자열을 검사하는 예입니다. `ab,`나 `ab:`로 시작하는 모든 문자열을 검색합니다.
 
 ```cpp
 std::vector<std::string> v{"abcd", "ab,cd", "ab:cd", "ab cd"}; 
@@ -82,7 +87,7 @@ EXPECT_TRUE(result.size() == 2 && result[0] == "ab,cd" && result[1] == "ab:cd");
 
 다음 코드는 전화번호가 있는 부분을 검사하는 예입니다.
 
-`smatch`는 `match_result<string::const_iterator>` 로서 매칭 결과를 저장합니다. `str()`을 이용하여 매칭된 문자열을 구할 수 있으며, `suffix()`를 이용하여 매칭된 다음 위치부터 다시 검사할 수 있습니다.
+`smatch`는 `match_result<string::const_iterator>` 로서 매칭 결과를 저장합니다. `str()`을 이용하여 매칭된 문자열을 구할 수 있으며, `suffix()`를 이용하여 매칭된 다음 위치부터 다시 검사합니다.
 
 ```cpp
 std::string str{
@@ -106,7 +111,7 @@ EXPECT_TRUE(result.size() == 2 && result[0] == "010-1234-5678" && result[1] == "
 
 # regex_iterator
 
-문자열 전체에 대해 `regex_search()` 한 결과를 이터레이터로 리턴합니다. 상기 예제에서는 `while()`과 `suffix()` 를 사용했지만, 이터레이터를 이용하여 다음과 같이 간소화 할 수 있습니다.
+문자열 전체에 대해 `regex_search()` 한 결과의 이터레이터입니다. 상기 예제에서는 `while()`과 `suffix()` 를 사용했지만, 이터레이터를 이용하여 다음과 같이 간소화 할 수 있습니다.
 
 ```cpp
 std::string str{
@@ -130,7 +135,7 @@ EXPECT_TRUE(result.size() == 2 && result[0] == "010-1234-5678" && result[1] == "
 
 # regex_replace()
 
-문자열에서 정규 표현식과 일치하는 부분을 바꿉니다.
+문자열에서 정규 표현식과 일치하는 부분을 수정합니다.
 
 ```cpp
 std::string str{
@@ -149,7 +154,7 @@ His home phone number is xxx-xxxx-xxxx.)");
 
 정규 표현식의 캡쳐를 이용하면, 매칭된 부분의 값을 이용하여 바꿀 수 있습니다.
 
-다음 예제에서 `([0-9]{4}_[0-9]{2}_[0-9]{2})`을 캡쳐하고, 매칭된 문자열을 바꿀때 `$1`을 이용하여 캡쳐된 값으로 바꿉니다.
+다음 예제에서 괄호를 이용하여 `([0-9]{4}_[0-9]{2}_[0-9]{2})`을 캡쳐하고, 매칭된 문자열을 바꿀때 `$1`을 이용하여 캡쳐된 값으로 바꿉니다.
 
 ```cpp
 std::string str{R"(file_2020_01_01.txt, file_2020_01_02.txt)"}; 
