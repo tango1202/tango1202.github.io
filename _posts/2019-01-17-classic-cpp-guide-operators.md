@@ -96,7 +96,7 @@ NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 평가합니다.
 |--|--|:--:|:--:|:--:|
 |NOT|`!a`|O|`bool T::operator !() const;`|`bool operator !(const T &a);`|
 |AND|`a && b`|O|`bool T::operator &&(const T2 &b) const;`|`bool operator &&(const T &a, const T2 &b);`|
-|OR|`a || b`|O|`bool T::operator ||(const T2 &b) const;`|`bool operator ||(const T &a, const T2 &b);`|
+|OR|`a \|\| b`|O|`bool T::operator \|\|(const T2 &b) const;`|`bool operator \|\|(const T &a, const T2 &b);`|
 
 # 비교 연산자
 
