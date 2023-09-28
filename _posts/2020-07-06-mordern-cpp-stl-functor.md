@@ -26,7 +26,7 @@ sidebar:
 |`greater_equal`|`arg1 >= arg2`|
 |`less_equal`|`arg1 <= arg2`|
 |`logical_and`|`arg1 == arg2`|
-|`logical_or`|`arg1 \|\| arg2`|
+|`logical_or`|`arg1 || arg2`|
 |`logical_not`|`!arg`|
 |`plus`|`arg1 + arg2`|
 |`minus`|`arg1 - arg2`|
