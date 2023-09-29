@@ -141,9 +141,13 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[u16string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4) (C++11~)|`basic_string<char16_t>` UTF-16 인코딩을 지원합니다.|
-|[u32string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4) (C++11~)|`basic_string<char32_t>` UTF-32 인코딩을 지원합니다.|
-|[u8string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t-u8string) (C++20~)|`basic_string<char8_t>` UTF-8 인코딩을 지원합니다.|
+|[C스타일 문자열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)|`strcpy()`, `srlen()`등 [널종료 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 지원하는 C스타일 문자열 함수를 제공합니다.|
+|[string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/)|바이트 문자열을 지원합니다.|
+|[wstring](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/)|와이드 문자열을 지원합니다.|
+|[u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/) (C++20~)|UTF-8을 지원합니다.|
+|[u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/) (C++11~)|UTF-16을 지원합니다.|
+|[u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/) (C++11~)|UTF-32를 지원합니다.|
+|[strerror()]([??](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#strerror))| `errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.|
 
 # 동시성 라이브러리
 

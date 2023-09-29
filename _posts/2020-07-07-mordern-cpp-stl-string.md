@@ -8,15 +8,22 @@ sidebar:
     nav: "docs"
 ---
 
+> * `string`은 바이트 문자열을 지원합니다.
+> * `wstring`은 와이드 문자열을 지원합니다.
+> * `u8string`은 UTF-8을 지원합니다.
+> * `u16string`은 UTF-16을 지원합니다.
+> * `u32string`은 UTF-32를 지원합니다.
+> * `strerror()`는 `errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.
+
 # 개요
 
-문자열을 처리하는 기본 클래스는 `basic_stirng`이며, 처리하는 문자 타입에 따라 타입을 재정의하여 `string`, `wstring`등으로 사용합니다.
+문자열을 처리하는 기본 클래스는 `basic_stirng`이며, 처리하는 문자 타입에 따라 재정의한 `string`, `wstring`등을 사용합니다.
 
 `string`, `wstring`등의 사용 방법은 [문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)을 참고하기 바랍니다.
 
 |항목|내용|
 |--|--|
-|`basic_string`|문자열의 기본 클래스입니다.<br/> * `string` : `basic_string<char>` 입니다.<br/>* `wstring` : `basic_string<wchar_t>` 입니다.<br/>* `u8string` (C++20~) : `basic_string<char8_t>` 입니다.<br/>* `u16string` (C++11~) : `basic_string<char16_t>` 입니다.<br/>* `u32string` (C++11~) : `basic_string<char32_t>` 입니다.|
+|`basic_string`|문자열의 기본 클래스입니다.<br/> * `string` : `basic_string<char>` 입니다. 바이트 문자열을 지원합니다.<br/>* `wstring` : `basic_string<wchar_t>` 입니다. 와이드 문자열을 지원합니다.<br/>* `u8string` (C++20~) : `basic_string<char8_t>` 입니다. UTF-8을 지원합니다.<br/>* `u16string` (C++11~) : `basic_string<char16_t>` 입니다. UTF-16을 지원합니다.<br/>* `u32string` (C++11~) : `basic_string<char32_t>` 입니다. UTF-32를 지원합니다.|
 |`char_traits`|`basic_string`에서 각 문자를 처리하는 타입 특성입니다.|
 |`basing_string_view` (C++17~)|(작성중)|
 
@@ -36,13 +43,13 @@ EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
 
 # 바이트 문자열, 멀티 바이트 문자열, 와이드 문자열, 유니코드 문자열
 
-영문자의 경우 0 ~ 127 까지의 7bit 만으로도 표현이 충분했기 때문에 1byte로도 저장이 가능했습니다. 이렇게 1byte 단위로 문자를 관리하는 문자열을 바이트 문자열이라 합니다.
+영문자의 경우 0 ~ 127 까지의 7bit 만으로도 표현이 충분했기 때문에 1byte로도 저장이 가능합니다. 이렇게 1byte 단위로 문자를 관리하는 문자열을 **바이트 문자열** 이라 합니다.
 
-그런데, 다양한 국가의 언어를 사용하다보니 1바이트로는 처리가 불가능했고, 127 이상의 값을 가진 문자 코드는 2바이트로 처리하게 되었습니다 이를 멀티 바이트 문자열이라고 합니다.(Microsoft에서 초창기에 만들어 사용했지만, 표준화 되지 않았고, 현재는 비권고 하고 있습니다.)
+그런데, 다양한 국가의 언어를 사용하다보니 1byte로는 처리가 불가능했고, 127 이상의 값을 가진 문자 코드는 2byte로 처리하게 되었습니다. 이처럼 1byte와 2byte를 혼용하는 문자열을 **멀티 바이트 문자열** 이라고 합니다.(Microsoft에서 초창기에 만들어 사용했지만, 표준화 되지 않았고, 현재는 비권고 되고 있습니다.)
 
-와이드 문자열은 영문자이건, 다국어 국가의 언어이건 모두 `wchar_t`로 관리하는 문자입니다. 안타깝게도 이또한 시스템의 처리방식에 따라 다릅니다.(리눅스는 4byte이고, Windows 2byte 입니다. [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고)
+**와이드 문자열** 은 영문자이건, 다국어 문자이건 모두 `wchar_t`로 관리하는 문자열입니다. 안타깝게도 이또한 시스템의 처리방식에 따라 크기가 다릅니다.(리눅스는 4byte이고, Windows 2byte 입니다. [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고)
 
-와이드 문자열은 고정된 크기(2byte또는 4byte) 이기 때문에 유니코드를 효율적으로 처리할 수 없습니다.([유니코드](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 참고) 
+**와이드 문자열** 은 고정된 크기(2byte또는 4byte) 이기 때문에 유니코드를 효율적으로 처리할 수 없습니다.([유니코드](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 참고) 
 
 이에 C++11 부터 STL에서는 유니코드를 지원하는 타입을 제공하고 있습니다.
  
@@ -185,11 +192,9 @@ EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
 |`__STDC_UTF_16__` (C++11~)|(작성중)| 
 |`__STDC_UTF_32__` (C++11~)|(작성중)| 
 
-# 오류 메시지
+# strerror()
 
-|항목|내용|
-|--|--|
-|`strerror()`|(작성중)|
+`errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.
 
 # basic_string
 
