@@ -103,8 +103,8 @@ void* align(
 
 |항목|내용|
 |--|--|
-|`out_ptr_t`(C++23~)<br>`out_ptr()` (C++23)|(작성중)|
-|`inout_ptr_t`(C++23~)<br>`inout_ptr()` (C++23)|(작성중)|
+|`out_ptr_t`(C++23~)<br>`out_ptr()` (C++23~)|(작성중)|
+|`inout_ptr_t`(C++23~)<br>`inout_ptr()` (C++23~)|(작성중)|
 
 # 명시적 수명 관리
 

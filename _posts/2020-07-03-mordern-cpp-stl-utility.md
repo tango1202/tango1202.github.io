@@ -37,7 +37,9 @@ sidebar:
 # 대소 비교
 
 |항목|내용|
-|`operator!=` (~C++20)<br/>`operator>` (~C++20)<br/>`operator<=` (~C++20)<br/>`operator>=` (~C++20)<br/>|(작성중)|
+|--|--|
+|`!=` (~C++20)|(작성중)|
+|`>, <=, >=` (~C++20)|(작성중)|
   
 # 문자열 변환
 
@@ -53,7 +55,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`in_place` (C++17)<br/>`in_place_type` (C++17)<br/>`in_place_index` (C++17)<br/>`in_place_t` (C++17)<br/>`in_place_index_t` (C++17)<br/>|(작성중)|
+|`in_place` (C++17~)<br/>`in_place_type` (C++17~)<br/>`in_place_index` (C++17~)<br/>`in_place_t` (C++17~)<br/>`in_place_index_t` (C++17~)|(작성중)|
 
 # 프로그램 지원
 
@@ -77,13 +79,12 @@ sidebar:
 |`setjmp()`|(작성중)|
 |`longjmp()`|(작성중)|
 |`jump_buf()`|(작성중)|
-
-
 |`unrechable()` (C++23~)|도달할 수 없는 실행 지점을 마킹합니다.|
 
 # 소스 코드
 
 |항목|내용|
+|--|--|
 |`source_location` (C++20~)|(작성중)|
 
 # 3자 비교
@@ -94,7 +95,8 @@ sidebar:
 |`partial_ordering` (C++20~)|(작성중)| 
 |`weak_ordering` (C++20~)|(작성중)| 
 |`strong_ordering` (C++20~)|(작성중)|  
-|`is_eq` (C++20~)<br/>`is_neq` (C++20~)<br/>`is_lt` (C++20~)<br/>`is_lteq` (C++20~)<br/>`is_gt` (C++20~)<br/>`is_gteq` (C++20~)|(작성중)|  
+|`is_eq, is_neq` (C++20~)|(작성중)
+|`is_lt, is_lteq, is_gt, is_gteq` (C++20~)|(작성중)|  
 |`compare_three_way` (C++20~)|(작성중)|
 |`compare_three_way_result` (C++20~)|(작성중)|
 |`common_comparison_category` (C++20~)|(작성중)|

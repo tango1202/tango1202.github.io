@@ -92,7 +92,7 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 
 |항목|내용|
 |--|--|
-|`begin() , end()` (C++11~)|순방향 이터레이터를 리턴합니다.|
+|`begin(), end()` (C++11~)|순방향 이터레이터를 리턴합니다.|
 |`rbegin(), rend()` (C++14~)|역방향 이터레이터를 리턴합니다.|
 |`cbegin(), cend()` (C++14~)|순방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`crbegin(), crend()` (C++14~)|역방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
@@ -148,7 +148,6 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 |`indirectly_copyable_storable` (C++20~)|(작성중)|
 |`indirectly_swappable` (C++20~)|(작성중)|  
 |`indirectly_comparable` (C++20~)|(작성중)|  
-|`permutable` (C++20~)|(작성중)|  
 |`permutable` (C++20~)|(작성중)|  
 |`mergeable` (C++20~)|(작성중)|  
 |`sortable` (C++20~)|(작성중)| 

@@ -38,7 +38,7 @@ sidebar:
 |`rotate()`<br/>`rotate_copy()`|요소들을 순환시킵니다.|
 |`random_shuffle()` (~C++17)<br/>`shuffle()` (C++11~)|요소들이 뒤섞어 재배치 합니다.|
 |`unique()`<br/>`unique_copy()`|같은 값을 가진 요소를 제거하여 유일한 값만 시퀀스에 남도록 만듭니다.|
-|`move()` (C++11~), `move_backward()` (C++11~)|시퀀스의 요소들을 다른 곳에 이동시킵니다.|
+|`move()` (C++11~)<br/>`move_backward()` (C++11~)|시퀀스의 요소들을 다른 곳에 이동시킵니다.|
 |`sample()` (C++17~)|시퀀스에서 요소를 랜덤으로 추출합니다.|
 |`shift_left()` (C++20~)<br/>`shift_right()` (C++20~)|(작성중)|
 
@@ -150,7 +150,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |`equenced_policy` (C++17~)<br/>`parallel_policy`(C++17~)<br/>`parallel_unsequenced_policy`(C++17~)<br/>`unsequenced_policy`(C++20~)<br/>|(작성중)|
-|`seq` (C++17~)<br/>`par`(C++17~)<br/>`unseq`(C++20~)<br/>`|(작성중)|
+|`seq` (C++17~)<br/>`par`(C++17~)<br/>`unseq`(C++20~)|(작성중)|
 |`is_execution_policy` (C++17~)|(작성중)|
 
 

@@ -105,7 +105,7 @@ std::shared_ptr<T> b{a};
 |`shared_ptr(const shared_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
 |`~shared_ptr();` (C++11~)|관리하던 개체의 참조 카운트를 감소시키고, `0`이 되면 `delete`또는 `delete[]`(C++17~)합니다.|
 |`shared_ptr& operator =(const shared_ptr& other) noexcept;` (C++11~)|`other` 개체와 소유권을 공유하고 참조 카운트를 증가시킵니다.|
-|`shared_ptr& operator =(shared_ptr&& r) noexcept;` (C++11~)|`other`가 관리하는 개체를 `this`로 이동시킵니다.|
+|`shared_ptr& operator =(shared_ptr&& r) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 `this`로 이동시킵니다.|
 |`operator *() const noexcept;` (C++11~)|관리하는 개체의 참조자를 리턴합니다.|
 |`operator ->() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
 |`operator [](ptrdiff_t) const;` (C++17~)|배열을 관리하는 경우 각 요소 개체의 참조자를 리턴합니다.|
@@ -118,7 +118,8 @@ std::shared_ptr<T> b{a};
 |`lock() const noexcept;` (C++11~)|관리하는 개체 접근을 위해 임시 `shared_ptr`을 생성합니다.|
 |`owner_before() const noexcept;` (C++11~)|소유권 개체로 `<` 비교를 합니다.([owner_before() 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_before-%EB%B9%84%EA%B5%90) 참고)|
 |`get_deleter()` (C++11~)|관리하는 개체를 소멸시키는 `deleter`를 리턴합니다.|
-|`==` (C++11~)<br/>`!=` (C++11~C++20)<br/>`<` (C++11~C++20)<br/>`<=` (C++11~C++20)<br/>`>` (C++11~C++20)<br/>`>=` (C++11~C++20)<br/>`<=>` (C++20~)|관리하는 개체의 주소로 비교합니다.|
+|`==` (C++11~)<br/>`!=` (C++11~C++20)|관리하는 개체의 주소로 비교합니다.|
+|`<, <=, >, >=` (C++11~C++20)<br/>`<=>` (C++20~)|관리하는 개체의 주소로 비교합니다.|
 |`<<` (C++11~)|관리하는 개체의 내용을 스트림에 출력합니다.|
 
 # make_shared()
@@ -498,10 +499,10 @@ dynamic_cast<std::shared_ptr<Base>>(derived);
 
 |항목|내용|
 |--|--|
-|`const_pointer_cast()`|상수성만 변환|
-|`static_pointer_cast()`|타입 유사성을 지키며 변환|
-|`dynamic_pointer_cast()`|타입 유사성을 지키며 변환.<br/>[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.|
-|`reinterpret_pointer_cast()`|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
+|`const_pointer_cast()` (C++11~)|상수성만 변환|
+|`static_pointer_cast()` (C++11~)|타입 유사성을 지키며 변환|
+|`dynamic_pointer_cast()` (C++11~)|타입 유사성을 지키며 변환.<br/>[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.|
+|`reinterpret_pointer_cast()` (C++11~)|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
 
 ```cpp
 class Base {
@@ -637,7 +638,7 @@ Node : Destructor
 |`weak_ptr(const weak_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
 |`~weak_ptr();` (C++11~)|기존에 관리하던 개체를 해제합니다. `shared_ptr`의 `weak_ptr` 참조 카운트만 감소시킬 뿐 개체에 대한 `delete`를 수행하지는 않습니다.|
 |`weak_ptr& operator =(const weak_ptr& other) noexcept;` (C++11~)<br/><br/>`weak_ptr& operator =(const shared_ptr& other) noexcept;` (C++11~)|`weak_ptr`이나 `shared_ptr`로 부터 대입받습니다.|
-|`weak_ptr& operator =(weak_ptr&& other) noexcept;` (C++11~)|`other`가 관리하는 개체를 `this`로 이동시킵니다.|
+|`weak_ptr& operator =(weak_ptr&& other) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 `this`로 이동시킵니다.|
 |`swap(unique_ptr& other) noexcept;` (C++11~)|관리하는 개체를 `other`와 바꿔치기 합니다.|
 |`reset() noexcept;` (C++11~)|기존에 관리하던 개체를 해제합니다. `shared_ptr`의 `weak_ptr` 참조 카운트만 감소시킬 뿐 개체에 대한 `delete`를 수행하지는 않습니다.|
 |`use_count() const noexcept;` (C++11~)|`shared_ptr`의 참조 카운트를 리턴합니다.|

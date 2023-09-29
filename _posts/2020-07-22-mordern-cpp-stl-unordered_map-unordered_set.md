@@ -89,7 +89,7 @@ sidebar:
 |`[]` (C++11~)|주어진 Key의 Value를 구합니다.|
 |`at()` (C++11~)|주어진 Key의 Value를 구합니다.|
 |`contains()` (C++20~)|(작성중)|
-|`begin()` (C++11~), `end()` (C++11~), `cbegin()` (C++11~), `cend()` (C++11~)|이터레이터<br/>`map`은 `rbegin()`, `rend()`, `crbegin()`, `crend()`를 추가로 제공합니다.|
+|`begin(), end()` (C++11~)<br/>`cbegin(), cend()` (C++11~)|이터레이터<br/>`map`은 `rbegin()`, `rend()`, `crbegin()`, `crend()`를 추가로 제공합니다.|
 |`empty()` (C++11~)|컨테이너가 비었는지 확인합니다.|
 |`size()` (C++11~)|컨테이너의 요소 갯수를 리턴합니다.|
 |`max_size()` (C++11~)|컨테이너가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
@@ -107,13 +107,13 @@ sidebar:
 |`count()` (C++11~)|주어진 Key인 요소 갯수를 리턴합니다.|
 |`find()` (C++11~)|주어진 Key인 요소를 리턴합니다.| 
 |`equal_range()` (C++11~)|주어진 Key인 요소들을 리턴합니다.<br/>`map`은 `lower_bound()`, `upper_bound()`를 추가로 제공합니다.|
-|`==` (C++11~)<br/>`!=` (~C++20)|(작성중)|
+|`==` (C++11~)<br/>`!=` (C++11~C++20)|(작성중)|
 
 해시 컨테이너는 다음 멤버 함수를 추가로 제공합니다.
 
 |항목|내용|
 |--|--|
-|`begin(size_type)` (C++11~), `end(size_type)` (C++11~)<br/>`begin(size_type)` (C++11~), `end(size_type)` (C++11~)|버킷(Bucket) 이터레이터|
+|`begin(size_type), end(size_type)` (C++11~)<br/>`cbegin(size_type), cend(size_type)` (C++11~)|버킷(Bucket) 이터레이터|
 |`bucket_count()` (C++11~)|버킷 갯수|
 |`max_bucket_count()` (C++11~)|최대 버킷 갯수|
 |`bucket_size()` (C++11~)|주어진 버킷의 요소 갯수|
