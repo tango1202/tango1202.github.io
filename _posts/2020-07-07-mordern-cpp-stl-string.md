@@ -10,11 +10,14 @@ sidebar:
 
 # 개요
 
-문자열을 처리하는 기본 클래스는 `basic_stirng`이며, 처리하는 문자 타입에 따라 타입을 재정의하여 사용합니다.
+문자열을 처리하는 기본 클래스는 `basic_stirng`이며, 처리하는 문자 타입에 따라 타입을 재정의하여 `string`, `wstring`등으로 사용합니다.
+
+`string`, `wstring`등의 사용 방법은 [문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)을 참고하기 바랍니다.
 
 |항목|내용|
 |--|--|
 |`basic_string`|문자열의 기본 클래스입니다.<br/> * `string` : `basic_string<char>` 입니다.<br/>* `wstring` : `basic_string<wchar_t>` 입니다.<br/>* `u8string` (C++20~) : `basic_string<char8_t>` 입니다.<br/>* `u16string` (C++11~) : `basic_string<char16_t>` 입니다.<br/>* `u32string` (C++11~) : `basic_string<char32_t>` 입니다.|
+|`char_traits`|`basic_string`에서 각 문자를 처리하는 타입 특성입니다.|
 |`basing_string_view` (C++17~)|(작성중)|
 
 # 널종료 문자열
@@ -29,13 +32,164 @@ EXPECT_TRUE(str1[2] == 'c');
 EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
 ```
 
-따라서, 문자열 관련 함수들은 문자열의 끝은 `\0` 문자라고 가정하고 개발되었습니다.
+따라서, C스타일 문자열 함수들은 문자열의 끝은 `\0` 문자라고 가정하고 개발되었습니다.
 
-# 바이트 문자열, 멀티 바이트 문자열, 와이드 문자열
+# 바이트 문자열, 멀티 바이트 문자열, 와이드 문자열, 유니코드 문자열
 
+영문자의 경우 0 ~ 127 까지의 7bit 만으로도 표현이 충분했기 때문에 1byte로도 저장이 가능했습니다. 이렇게 1byte 단위로 문자를 관리하는 문자열을 바이트 문자열이라 합니다.
+
+그런데, 다양한 국가의 언어를 사용하다보니 1바이트로는 처리가 불가능했고, 127 이상의 값을 가진 문자 코드는 2바이트로 처리하게 되었습니다 이를 멀티 바이트 문자열이라고 합니다.(Microsoft에서 초창기에 만들어 사용했지만, 표준화 되지 않았고, 현재는 비권고 하고 있습니다.)
+
+와이드 문자열은 영문자이건, 다국어 국가의 언어이건 모두 `wchar_t`로 관리하는 문자입니다. 안타깝게도 이또한 시스템의 처리방식에 따라 다릅니다.(리눅스는 4byte이고, Windows 2byte 입니다. [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고)
+
+와이드 문자열은 고정된 크기(2byte또는 4byte) 이기 때문에 유니코드를 효율적으로 처리할 수 없습니다.([유니코드](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 참고) 
+
+이에 C++11 부터 STL에서는 유니코드를 지원하는 타입을 제공하고 있습니다.
+ 
 # C스타일 문자열 함수
 
+**문자 분류**
 
+|바이트 문자열|와이드 문자열|내용|
+|--|--|--|
+|`isalnum()`|`iswalnum()`|(작성중)|
+|`isalpha()`|`iswalpha()`|(작성중)|
+|`islower()`|`iswlower()`|(작성중)|
+|`islower()`|`iswupper()`|(작성중)|
+|`isupper()`||(작성중)|
+|`isdigit()`|`iswdigit()`|(작성중)|
+|`isxdigit()`|`iswxdigit()`|(작성중)|
+|`iscntrl()`|`iswcntrl()`|(작성중)|
+|`isgraph()`|`iswgraph()`|(작성중)|
+|`isspace()`|`iswspace()`|(작성중)|
+|`isblank()` (C++11~)|`iswblank()` (C++11~)|(작성중)|
+|`isprint()`|`iswprint()`|(작성중)| 
+|`ispunct()`|`iswpunct()`|(작성중)| 
+||`iswctype()`|(작성중)| 
+||`wctype()`|(작성중)|  
+||`locale()`|(작성중)| 
+ 
+**문자 조작**
+
+|바이트 문자열|와이드 문자열|내용|
+|--|--|--|
+|`tolower()`|`towlower()`|(작성중)|
+|`toupper()`|`towupper()`|(작성중)|
+||`towctrans()`|(작성중)|
+||`wctrans()`|(작성중)|
+
+**문자열 조작**
+
+|바이트 문자열|와이드 문자열|내용|
+|--|--|--|
+|`strcpy()`|`wcscpy()`|(작성중)|
+|`strncpy()`|`wcsncpy()`|(작성중)|
+|`strcat()`|`wcscat()`|(작성중)|
+|`strncat()`|`wcsncat()`|(작성중)|
+|`strxfrm()`|`wcsxfrm()`|(작성중)|
+
+**문자열 검사**
+
+|바이트 문자열|와이드 문자열|내용|
+|--|--|--|
+|`strlen()`|`wcslen()`|(작성중)|
+|`strcmp()`|`wcscmp()`|(작성중)|
+|`strncmp()`|`wcsncmp()`|(작성중)|
+|`strcoll()`|`wcscoll()`|(작성중)|
+|`strchr()`|`wcschr()`|(작성중)|
+|`strrchr()`|`wcsrchr()`|(작성중)|
+|`strspn()`|`wcsspn()`|(작성중)|
+|`strcspn()`|`wcscspn()`|(작성중)|
+|`strpbrk()`|`wcspbrk()`|(작성중)|
+|`strstr()`|`wcsstr()`|(작성중)|
+|`strtok()`|`wcstok()`|(작성중)|
+
+**메모리 조작**
+
+|바이트 문자열|와이드 문자열|내용|
+|--|--|--|
+|`memchr()`|`wmemchr()`|(작성중)|
+|`memcmp()`|`wmemcmp()`|(작성중)|
+|`memset()`|`wmemset()`|(작성중)|
+|`memcpy()`|`wmemcpy()`|(작성중)| 
+|`memmove()`|`wmemmove()`|(작성중)| 
+
+**숫자 포맷**
+
+|바이트 문자열|와이드 문자열|내용|
+|--|--|--|
+|`atof()`||(작성중)|
+|`atoi()`<br/>`atol()`<br/>`atoll()` (C++11~)||(작성중)|
+|`strtol()`<br/>`strtoll()` (C++11~)|`wcstol()`<br/>`wcstoll()`|(작성중)|
+|`strtoul()`<br/>`strtoull()` (C++11~)|`wcstoul()`<br/>`wcstoull()`|(작성중)|
+|`strtof()`<br/>`strtod()`<br/>`strtold()`|`wcstof()`<br/>`wcstod()`<br/>`wcstold()`|(작성중)|
+|`strtoimax()` (C++11~)<br/>`strtoumax()` (C++11~)|`wcstoimax()` (C++11~)<br/>`wcstoumax()` (C++11~)|(작성중)|
+
+# 와이드 문자열
+
+**타입**
+
+|항목|내용|
+|--|--|
+|`wctrans_t`|(작성중)|
+|`wctype_t`|(작성중)|
+|`wint_t`|(작성중)| 
+
+**매크로**
+
+|항목|내용|
+|--|--|
+|`WEOF`|(작성중)|
+|`WCHAR_MIN`|(작성중)|
+|`WCHAR_MAX`|(작성중)| 
+
+# 멀티 바이트
+
+**멀티 바이트 문자열과 와이드 문자열간 변환**
+
+|항목|내용|
+|--|--|
+|`mblen()`|(작성중)|
+|`mbtowc()`|(작성중)|
+|`wctomb()`|(작성중)|
+|`mbstowcs()`|(작성중)|
+|`wcstombs()`|(작성중)|
+|`wcstombs()`|(작성중)|
+|`mbsinit()`|(작성중)|
+|`btowc()`|(작성중)|
+|`wctob()`|(작성중)|
+|`mbrlen()`|(작성중)| 
+|`mbrtowc()`|(작성중)| 
+|`wcrtomb()`|(작성중)| 
+|`mbsrtowcs()`|(작성중)| 
+|`wcsrtombs()`|(작성중)| 
+|`mbrtoc8()` (C++20~)|(작성중)| 
+|`c8rtomb()` (C++20~)|(작성중)| 
+|`mbrtoc16()` (C++11~)|(작성중)| 
+|`c16rtomb()` (C++11~)|(작성중)| 
+|`mbrtoc32()` (C++11~)|(작성중)| 
+|`c32rtomb()` (C++11~)|(작성중)| 
+
+**타입**
+
+|항목|내용|
+|--|--|
+|`mbstate_t`|(작성중)|
+
+**매크로**
+
+|항목|내용|
+|--|--|
+|`MB_LEN_MAX`|(작성중)|
+|`MB_CUR_MAX`|(작성중)|
+|`__STDC_UTF_16__` (C++11~)|(작성중)| 
+|`__STDC_UTF_32__` (C++11~)|(작성중)| 
+
+# 오류 메시지
+
+|항목|내용|
+|--|--|
+|`strerror()`|(작성중)|
 
 # basic_string
 
@@ -50,8 +204,6 @@ EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
 ```cpp
 static const size_type npos = -1;
 ```
-
-
 
 **생성자**
 
