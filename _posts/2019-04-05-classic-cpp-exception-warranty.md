@@ -50,10 +50,10 @@ public:
 class B {
 public:
    B() {
-      std::cout<<"Construct B"<<std::endl;
+      std::cout << "Construct B" << std::endl;
    }   
    ~B() {
-      std::cout<<"Destruct B"<<std::endl;           
+      std::cout << "Destruct B" << std::endl;           
    } 
 };
 
@@ -102,10 +102,10 @@ public:
 class B {
 public:
    B() {
-      std::cout<<"Construct B"<<std::endl;
+      std::cout << "Construct B" << std::endl;
    }   
    ~B() {
-      std::cout<<"Destruct B"<<std::endl;           
+      std::cout << "Destruct B" << std::endl;           
    } 
 };
 
@@ -114,7 +114,7 @@ class T {
    B* m_B;
 public:
    T(A* a, B* b) : m_A(a), m_B(b) { 
-      std::cout<<"Construct T"<<std::endl;
+      std::cout << "Construct T" << std::endl;
    } 
    ~T() {
       delete m_A; // 개체를 소멸합니다.
@@ -148,10 +148,10 @@ public:
 class B {
 public:
    B() {
-      std::cout<<"Construct B"<<std::endl;
+      std::cout << "Construct B" << std::endl;
    }   
    ~B() {
-      std::cout<<"Destruct B"<<std::endl;           
+      std::cout << "Destruct B" << std::endl;           
    } 
 };
 
@@ -160,7 +160,7 @@ class T {
    std::auto_ptr<B> m_B;
 public:
    T(std::auto_ptr<A> a, std::auto_ptr<B> b) : m_A(a), m_B(b) {  // 소유권 이전
-      std::cout<<"Construct T"<<std::endl;
+      std::cout << "Construct T" << std::endl;
    } 
    ~T() {
    }

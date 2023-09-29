@@ -77,7 +77,7 @@ public:
 public:
     // MyApp의 문서 내용을 저장합니다.
     void SaveMyDoc() {
-        std::cout <<"MyApp::SaveMyDoc()"<<std::endl;
+        std::cout << "MyApp::SaveMyDoc()" << std::endl;
     }
 };
 
@@ -117,7 +117,7 @@ public:
 protected:
     // MyApp의 문서 내용을 저장합니다.
     virtual void SaveDoc() override {
-        std::cout <<"MyApp::SaveDoc()"<<std::endl;
+        std::cout << "MyApp::SaveDoc()" << std::endl;
     }
 };
 
@@ -129,7 +129,7 @@ public:
 protected:
     // YourApp의 문서 내용을 저장합니다.
     virtual void SaveDoc() override {
-        std::cout <<"YourApp::SaveDoc()"<<std::endl;
+        std::cout << "YourApp::SaveDoc()" << std::endl;
     }
 };
 ```
@@ -213,7 +213,7 @@ public:
 public:
     // MyApp의 문서 내용을 저장합니다.
     virtual void SaveDoc() override {
-        std::cout <<"MyApp::SaveDoc()"<<std::endl;  
+        std::cout << "MyApp::SaveDoc()" << std::endl;  
     }
 };
 ```

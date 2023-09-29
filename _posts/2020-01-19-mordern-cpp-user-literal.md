@@ -30,7 +30,7 @@ EXPECT_TRUE(1.0_mm == 1_mm);
 
 # 문자열 추론
 
-기존 문자열을 `auto`로 초기화 하면 `const char*`로 추론되는데요, 사용자 정의 리터럴을 만들어 `std::string`으로 추론되게 할 수 있습니다.
+기존 문자열을 `auto`로 초기화 하면 `const char*`로 추론되는데요, 사용자 정의 리터럴을 만들어 `string`으로 추론되게 할 수 있습니다.
 
 ```cpp
 // const char* 형의 문자열을 std::string으로 변환
@@ -73,33 +73,21 @@ template<char...> ReturnType operator ""_t();
 
 # (C++14~) 표준 사용자 정의 리터럴
 
-C++버전에 따라 다음의 표준 사용자 정의 리터럴이 제공됩니다.
-
-**C++14**
+C++14 부터 다음의 표준 사용자 정의 리터럴이 제공됩니다.
 
 |항목|내용|
 |--|--|
-|`operator""if`<br/>`operator""i`<br/>`operator""il`|`std::complex` 리터럴|
-|`operator""h`|`std::chrono::duration`에서 시간|
-|`operator""min`|`std::chrono::duration`에서 분|
-|`operator""s`|`std::chrono::duration`에서 초|
-|`operator""ms`|`std::chrono::duration`에서 밀리초|
-|`operator""us`|`std::chrono::duration`에서 마이크로초|
-|`operator""ns`|`std::chrono::duration`에서 나노초|
-|`operator""s`|`std::basic_string` 변환|
-
-**C++17**
-
-|항목|내용|
-|--|--|
-|`operator""sv`|`string_view` 변환|
-
-**C++20**
-
-|항목|내용|
-|--|--|
-|`operator""y`|`std::chrono::year`리터럴|
-|`operator""d`|`std::chrono::day`리터럴|
+|`operator""if` (C++14~)<br/>`operator""i` (C++14~)<br/>`operator""il` (C++14~)|`complex` 리터럴|
+|`operator""h` (C++14~)|`chrono::duration`에서 시간|
+|`operator""min` (C++14~)|`chrono::duration`에서 분|
+|`operator""s` (C++14~)|`chrono::duration`에서 초|
+|`operator""ms` (C++14~)|`chrono::duration`에서 밀리초|
+|`operator""us` (C++14~)|`chrono::duration`에서 마이크로초|
+|`operator""ns` (C++14~)|`chrono::duration`에서 나노초|
+|`operator""s` (C++14~)|`basic_string` 변환|
+|`operator""sv` (C++17~)|`string_view` 변환|
+|`operator""y` (C++20~)|`chrono::year`리터럴|
+|`operator""d` (C++20~)|`chrono::day`리터럴|
 
 # (C++20~) char8_t
 

@@ -62,7 +62,7 @@ C++11은,
 |[람다 표현식, 클로져](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)|람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.| 
 |[인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-namespace/)|`inline namespace` 가 추가되어 API 버전 구성이 편리해 졌습니다.|
 |[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)|`using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.|
-|[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)|유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `std::u8string`, `std::u16string`, `std::u32string` 이 추가되었습니다.<br/>유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.<br/>`R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.|
+|[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)|유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `u8string`, `u16string`, `u32string` 이 추가되었습니다.<br/>유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.<br/>`R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.|
 |[사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/)|`int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.|
 |[생성자 위임, 생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/)|생성자 위임이 추가되어 생성자의 초기화 리스트 코드가 좀더 간결해 졌습니다.<br/>생성자 상속이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.|
 |[sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)|`sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.|

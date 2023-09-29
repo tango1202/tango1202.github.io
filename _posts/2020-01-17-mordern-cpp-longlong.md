@@ -20,7 +20,7 @@ C++11 부터는 `long long`을 제공하며 최소 8byte를 보장합니다.
 |항목|내용|용량|
 |--|--|--|
 |`long`|`int`보다 크거나 같은 정수|16bit : 4byte,<br/>32bit : 4byte,<br/>64bit : 8byte|
-|`long long`|`long`보다 크거나 같은 정수|최소 8byte|
+|`long long` (C++11~)|`long`보다 크거나 같은 정수|최소 8byte|
 
 ```cpp
 unsigned long long val{18446744073709550592ull}; 

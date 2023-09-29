@@ -11,7 +11,7 @@ sidebar:
 > * 개체는 `new` - `delete` 쌍으로 생성/소멸 하라.
 > * 배열은 `new[]` - `delete[]` 쌍으로 생성/소멸하라. `new[]`한 것을 `delete` 만 하면, 메모리 릭이 발생한다. 꼭 `delete[]`하라.
 > * `delete`는 널이면 아무 작업 안한다. 괜히 널검사하지 마라.
-> * `new`는 `std::bad_alloc()`을 발생시킨다. 괜히 널검사하지 마라.
+> * `new`는 `bad_alloc()`을 발생시킨다. 괜히 널검사하지 마라.
 > * `operator new`를 `private`로 만들어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에만 생성되는 개체를 만들 수 있다.
 
 # 개요
@@ -58,10 +58,10 @@ sidebar:
 class T {
 public:
     T() {
-        std::cout<<"New-Delete Test : T::T()"<<std::endl;
+        std::cout << "New-Delete Test : T::T()" << std::endl;
     }
     ~T() {
-        std::cout<<"New-Delete Test : T::~T()"<<std::endl;
+        std::cout << "New-Delete Test : T::~T()" << std::endl;
     }
 };
 
@@ -135,9 +135,9 @@ if (p != NULL) { // (△) 비권장. 괜히 널검사합니다.
 delete p; // (O) 널검사 없이 바로 delete 합니다.
 ```
 
-# new(std::nothrow) 와 무의미한 널검사
+# new(nothrow) 와 무의미한 널검사
 
-`new`는 메모리가 부족하여 할당이 실패하면, `std::bad_alloc()` 예외를 발생시킵니다.(C++98이후부터)
+`new`는 메모리가 부족하여 할당이 실패하면, `bad_alloc()` 예외를 발생시킵니다.(C++98이후부터)
 
 C++98 이전에는 `new`가 널을 리턴해서 다음과 같이 검사 했는데요,
 
@@ -148,7 +148,7 @@ if (t == NULL) {
 }
 ```
 
-C++98 이후부터는 `std::bad_alloc()` 예외를 발생시키므로 하기와 같이 검사해야 합니다.
+C++98 이후부터는 `bad_alloc()` 예외를 발생시키므로 하기와 같이 검사해야 합니다.
 
 ```cpp
 try {
@@ -198,8 +198,8 @@ if (t == NULL) {
 `operator new`를 재정의하려면 다음을 준수하여야 합니다.
 
 1. 최소 1byte를 할당해야 합니다.
-2. 할당 실패시 `new_handler`를 호출해야 합니다. `new_handler`가 없다면 `std::bad_alloc()`을 발생시켜야 합니다.
-3. `new_handler`에서 `std::bad_alloc()` 또는 이로부터 파생된 예외를 발생시키거나, 프로그램을 종료할 때까지 반복해야 합니다. 
+2. 할당 실패시 `new_handler`를 호출해야 합니다. `new_handler`가 없다면 `bad_alloc()`을 발생시켜야 합니다.
+3. `new_handler`에서 `bad_alloc()` 또는 이로부터 파생된 예외를 발생시키거나, 프로그램을 종료할 때까지 반복해야 합니다. 
 
 전역 `operator new`를 이용하면 상기 내용을 준수하므로 다음과 같이 전역 버전을 호출하면 됩니다.
 
@@ -218,7 +218,7 @@ public:
 `malloc()` - `free()`를 이용한다면, 
 
 1. 최소 크기 1byte를 설정해 주어야 하고,
-2. `malloc()`에서는 오류 발생시 `NULL`을 리턴하므로, `new_handler` 와 `std::bad_alloc()` 처리를 해주어야 합니다.
+2. `malloc()`에서는 오류 발생시 `NULL`을 리턴하므로, `new_handler` 와 `bad_alloc()` 처리를 해주어야 합니다.
 
 `set_new_handler()` 함수에 대응하는 `get_new_handler()` 함수는 없습니다. 그래서 `handler = std::set_new_handler(NULL);` 과 같이 호출하여, `new_handler`를 구하고, 이를 다시 복원해야 합니다.(개체 지향스러운, 예외 안전스러운 방법은 [NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/)를 참고하세요.)
 
@@ -321,12 +321,12 @@ public:
         return ::operator new(sz);
     }    
     static void operator delete(void* ptr) {
-        std::cout<<"T::delete(void* ptr)"<<std::endl;
+        std::cout << "T::delete(void* ptr)" << std::endl;
         ::operator delete(ptr); 
     }
     // sz : 해제할 byte 수                     
     static void operator delete(void* ptr, std::size_t sz) {
-        std::cout<<"delete(void* ptr, std::size_t sz)"<<std::endl;
+        std::cout << "delete(void* ptr, std::size_t sz)" << std::endl;
         ::operator delete(ptr); 
     }            
 }; 
@@ -591,7 +591,7 @@ public:
 
 `operator new`는 오류 발생시 
 
-1. `set_new_handler()` 로 전역적으로 설정된 `new_handler`를 호출하고(없다면, `std::bad_alloc()`을 발생시키고), 
+1. `set_new_handler()` 로 전역적으로 설정된 `new_handler`를 호출하고(없다면, `bad_alloc()`을 발생시키고), 
 2. `new_handler`에서 오류를 해결할 기회를 줍니다. 
  
 이 과정은 예외를 발생시키거나 프로그램이 종료할때까지 무한 반복됩니다.
@@ -601,13 +601,13 @@ public:
 1. 미리 예약된 메모리 공간을 해제하여 메모리를 추가 확보해 주거나
 2. 다른 `new_handler`를 설치하여 처리를 위임하거나
 3. `new_handler`를 제거하거나(제거되면 `bad_alloc()` 발생)
-4. `std::bad_alloc()` 또는 이로부터 파생된 예외를 발생시켜 처리를 포기하거나
-5. `std::abort()`을 하여 프로그램을 종료합니다.
+4. `bad_alloc()` 또는 이로부터 파생된 예외를 발생시켜 처리를 포기하거나
+5. `abort()`을 하여 프로그램을 종료합니다.
 
 다음 테스트 코드는 
 
 1. `T`는 `1000 M * sizeof(int)` 의 큰 공간을 할당하는 클래스입니다. 시스템에 따라 다르겠습니다만, 대략 5 ~ 6개 할당되면 `new`가 실패하게 됩니다.
-2. `MyExceptionHandler()` 는 다른 처리 없이 `std::bad_alloc`을 상속한 `MyException`을 발생시킵니다.
+2. `MyExceptionHandler()` 는 다른 처리 없이 `bad_alloc`을 상속한 `MyException`을 발생시킵니다.
 3. 테스트 코드에서 `set_new_handler()`함수를 이용하여 `MyExceptionHandler()`로 교체합니다. 사용이 끝나면 원래 `new_handler`로 복원합니다.
 4. `T`를 계속 `new`하고, 예외가 발생하면, 기존에 생성했던 `T`를 `delete`합니다.
 

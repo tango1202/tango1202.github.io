@@ -348,8 +348,8 @@ class Derived2 : public Base2 {};
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
-|출력|`std::cout<<a;`|O|X|`std::ostream& operator <<(std::ostream& os, const T& a)`|
-|입력|`std::cin>>a;`|O|X|`std::istream& operator >>(std::istream& is, T& a)`|
+|출력|`cout << a;`|O|X|`ostream& operator <<(ostream& os, const T& a)`|
+|입력|`cin >> a;`|O|X|`istream& operator >>(istream& is, T& a)`|
 
 # 연산자 우선 순위
 

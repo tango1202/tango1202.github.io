@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#23. [모던 C++ STL] (C++11~) 조건 변수(condition_variable)"
+title: "#24. [모던 C++ STL] (C++11~) 조건 변수(condition_variable)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -86,7 +86,7 @@ public:
         std::unique_lock<std::mutex> lock{mutex};
         m_CV.wait(lock, [&]() -> bool {return m_IsRun1;}); // 누군가가 m_IsRun1 == true로 하고 m_CV에서 notify할때까지 대기
 
-        std::cout<<"#2. Part1()" <<std::endl;
+        std::cout << "#2. Part1()" << std::endl;
 
         m_Str += "Hello";
 
@@ -99,7 +99,7 @@ public:
         lock.lock();
         m_CV.wait(lock, [&]() -> bool {return m_IsRun1;}); // 누군가가 m_IsRun1 == true로 하고 m_CV에서 notify할때까지 대기
         
-        std::cout<<"#6. Part1()" <<std::endl;
+        std::cout << "#6. Part1()" << std::endl;
         m_Str += "!!";
 
         m_IsRunBuild = true; // Build를 깨움
@@ -111,7 +111,7 @@ public:
         std::unique_lock<std::mutex> lock{mutex};
         m_CV.wait(lock, [&]() -> bool {return m_IsRun2;});// 누군가가 m_IsRun2 == true로 하고 m_CV에서 notify할때까지 대기
 
-        std::cout<<"#4. Part2()" <<std::endl;
+        std::cout << "#4. Part2()" << std::endl;
 
         m_Str += "World";
 
@@ -127,14 +127,14 @@ public:
         std::thread worker1{std::mem_fn(&A::Part1), std::ref(*this), std::ref(mutex)};
         std::thread worker2{std::mem_fn(&A::Part2), std::ref(*this), std::ref(mutex)};
 
-        std::cout<<"#1. Build Start" <<std::endl;
+        std::cout << "#1. Build Start" << std::endl;
         m_IsRun1 = true; // Part1을 깨움
         m_CV.notify_all(); 
 
         std::unique_lock<std::mutex> lock{mutex};
         m_CV.wait(lock, [&]() -> bool {return m_IsRunBuild;});
 
-        std::cout<<"#3. Build Wake Up" <<std::endl;
+        std::cout << "#3. Build Wake Up" << std::endl;
         m_IsRunBuild = false;
         m_IsRun1 = false;
         m_IsRun2 = true; // Part2를 깨움
@@ -144,7 +144,7 @@ public:
         lock.lock();
         m_CV.wait(lock, [&]() -> bool {return m_IsRunBuild;});
 
-        std::cout<<"#5. Build Wake Up" <<std::endl;
+        std::cout << "#5. Build Wake Up" << std::endl;
         m_IsRunBuild = false;
         m_IsRun1 = true; // Part1를 깨움
         m_IsRun2 = false; 
@@ -154,7 +154,7 @@ public:
         lock.lock();
         m_CV.wait(lock, [&]() -> bool {return m_IsRunBuild;});
 
-        std::cout<<"#7. Build Completed" <<std::endl;
+        std::cout << "#7. Build Completed" << std::endl;
 
         worker1.join(); 
         worker2.join();
@@ -163,7 +163,7 @@ public:
 
 A a{};
 a.Build();
-std::cout<<"Make String : "<<a.GetStr()<<std::endl; // HelloWorld!!를 출력함
+std::cout << "Make String : " << a.GetStr() << std::endl; // HelloWorld!!를 출력함
 ```
 
 실행 결과는 다음과 같습니다.

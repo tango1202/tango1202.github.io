@@ -40,7 +40,7 @@ int f(int a, int b) {
 인자나 리턴값이 없다면 다음과 같이 생략하여 `[] {}` 로 작성할 수 있습니다.
 
 ```cpp
-[] {std::cout<<"lambda"<<std::endl;}
+[] {std::cout << "lambda" << std::endl;}
 ```
 
 # 람다 함수 호출
@@ -68,11 +68,11 @@ int f(int a, int b) {
 
 |항목|내용|
 |--|--|
-|`[=]`|외부의 모든 변수를 `const`형 값으로 가져옵니다.|
-|`[&]`|외부의 모든 변수의 참조자를 가져옵니다.|
-|`[=, &x, &y]`|외부의 모든 변수를 값으로 가져오되 `x`, `y` 만 참조로 가져옵니다.|
-|`[&, x, y]`|외부의 모든 변수의 참조자를 가져오되 `x`, `y` 만 값으로 가져옵니다.|
-|`this`|람다 표현식을 사용한 개체의 `this` 포인터를 값으로 가져옵니다.|
+|`[=]` (C++11~)|외부의 모든 변수를 `const`형 값으로 가져옵니다.|
+|`[&]` (C++11~)|외부의 모든 변수의 참조자를 가져옵니다.|
+|`[=, &x, &y]` (C++11~)|외부의 모든 변수를 값으로 가져오되 `x`, `y` 만 참조로 가져옵니다.|
+|`[&, x, y]` (C++11~)|외부의 모든 변수의 참조자를 가져오되 `x`, `y` 만 값으로 가져옵니다.|
+|`this` (C++11~)|람다 표현식을 사용한 개체의 `this` 포인터를 값으로 가져옵니다.|
 
 다음 코드에서는 람다 표현식 외부에 정의된 `sum`을 캡쳐하고, 람다 표현식 내에서 `v`의 각 요소의 값을 전달받아 `sum`에 누적합니다.
 
@@ -227,11 +227,11 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
 ```cpp
 class T {
 public: 
-    T() {std::cout<<"T::Default Constructor"<<std::endl;}
-    T(const T&) {std::cout<<"T::Copy Constructor"<<std::endl;}
-    T(T&&) {std::cout<<"T::Move Constructor"<<std::endl;}
-    ~T() {std::cout<<"T::Destructor"<<std::endl;}
-    void operator =(const T&) {std::cout<<"T::operator =()"<<std::endl;}
+    T() {std::cout << "T::Default Constructor" << std::endl;}
+    T(const T&) {std::cout << "T::Copy Constructor" << std::endl;}
+    T(T&&) {std::cout << "T::Move Constructor" << std::endl;}
+    ~T() {std::cout << "T::Destructor" << std::endl;}
+    void operator =(const T&) {std::cout << "T::operator =()" << std::endl;}
 };
 ```
 
@@ -239,7 +239,7 @@ public:
 
     ```cpp
     T t;
-    [=]() {std::cout<<"Run Lambda"<<std::endl;}(); // t를 사용하지 않았습니다.
+    [=]() {std::cout << "Run Lambda" << std::endl;}(); // t를 사용하지 않았습니다.
     ```
     ```cpp
     T::Default Constructor
@@ -253,7 +253,7 @@ public:
     T t;
     [=]() {
         t; // t;로 사용합니다. 캡쳐시 복사 부하가 있습니다.      
-        std::cout<<"Run Lambda"<<std::endl;
+        std::cout << "Run Lambda" << std::endl;
     }();  
     ```
 
@@ -271,7 +271,7 @@ public:
     T t;
     auto f{[=]() { // auto 변수에 저장하고, 호출합니다.   
         t; 
-        std::cout<<"Run Lambda"<<std::endl;
+        std::cout << "Run Lambda" << std::endl;
     }};      
     f();
     ```
@@ -289,7 +289,7 @@ public:
     T t;
     auto f1{[=]() {
         t; 
-        std::cout<<"Run Lambda"<<std::endl;
+        std::cout << "Run Lambda" << std::endl;
     }}; 
     auto f2{f1}; // 복사 부하가 발생합니다.
     f1();
@@ -313,7 +313,7 @@ public:
     T t;
     auto f1{[&]() { // 캡쳐시 복사 부하가 없습니다.
         t; 
-        std::cout<<"Run Lambda"<<std::endl;
+        std::cout << "Run Lambda" << std::endl;
     }}; 
     auto f2{f1}; // 대입시 복사 부하가 없습니다.
     f1();

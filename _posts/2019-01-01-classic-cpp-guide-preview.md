@@ -21,7 +21,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 2. 입출력
 
     ```cpp
-    std::cout<<"Hello world"<<std::endl;
+    std::cout << "Hello world" << std::endl;
     std::cin>>val;
     ```
 
@@ -81,7 +81,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     std::vector<int> datas;
 
     for(std::vector<int>::iterator itr = datas.begin(); itr != datas.end(); ++itr) {
-        std::cout<<(*itr)<<std::endl;
+        std::cout << (*itr) << std::endl;
     }
     ```
 

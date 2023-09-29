@@ -127,10 +127,10 @@ class T {
 public:
     T() {}
     T(const T& other) {
-        std::cout<<"T::T(const T& other)"<<std::endl;   
+        std::cout << "T::T(const T& other)" << std::endl;   
     }
     T& operator =(const T& other) {
-        std::cout<<"T::operator =()"<<std::endl;
+        std::cout << "T::operator =()" << std::endl;
         return *this; 
     } 
 };
@@ -181,11 +181,11 @@ public:
         m_Val(val) {}
     Big(const Big& other) : 
         m_Val(other.m_Val) {
-        std::cout<<"Big::Big(const Big& other)"<<std::endl;  
+        std::cout << "Big::Big(const Big& other)" << std::endl;  
     }
     Big& operator =(const Big& other) {
         m_Val = other.m_Val;
-        std::cout<<"Big::operator =(const Big& other)"<<std::endl;  
+        std::cout << "Big::operator =(const Big& other)" << std::endl;  
         return *this;
     }    
     int GetVal() const {return m_Val;}

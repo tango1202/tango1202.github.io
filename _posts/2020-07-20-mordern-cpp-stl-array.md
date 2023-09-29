@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [모던 C++ STL] (C++11~) C++스타일 배열(array)"
+title: "#20. [모던 C++ STL] (C++11~) C++스타일 배열(array)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -126,14 +126,14 @@ std::chrono::microseconds CheckMicrosecond(Func f) {
 }
 
 // 생성/소멸 테스트
-std::cout<<"CStyleArray : "<<CheckMicrosecond(CStyleArrayConstruct).count()<<std::endl;
-std::cout<<"STLArray : "<<CheckMicrosecond(STLArrayConstruct).count()<<std::endl;
-std::cout<<"STLVector : "<<CheckMicrosecond(STLVectorConstruct).count()<<std::endl;
+std::cout << "CStyleArray : " << CheckMicrosecond(CStyleArrayConstruct).count() << std::endl;
+std::cout << "STLArray : " << CheckMicrosecond(STLArrayConstruct).count() << std::endl;
+std::cout << "STLVector : " << CheckMicrosecond(STLVectorConstruct).count() << std::endl;
 
 // 접근 테스트
-std::cout<<"CStyleArray : "<<CheckMicrosecond(CStyleArrayAccess).count()<<std::endl;
-std::cout<<"STLArray : "<<CheckMicrosecond(STLArrayAccess).count()<<std::endl;
-std::cout<<"STLVector : "<<CheckMicrosecond(STLVectorAccess).count()<<std::endl;
+std::cout << "CStyleArray : " << CheckMicrosecond(CStyleArrayAccess).count() << std::endl;
+std::cout << "STLArray : " << CheckMicrosecond(STLArrayAccess).count() << std::endl;
+std::cout << "STLVector : " << CheckMicrosecond(STLVectorAccess).count() << std::endl;
 
 ```
 

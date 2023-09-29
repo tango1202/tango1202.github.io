@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [모던 C++ STL] (C++11~) 해시 컨테이너(unordered_map, unordered_multimap, unordered_set, unordered_multiset)"
+title: "#22. [모던 C++ STL] (C++11~) 해시 컨테이너(unordered_map, unordered_multimap, unordered_set, unordered_multiset)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -60,7 +60,7 @@ sidebar:
 2. `set`이나 `map` 등은 이진 트리 탐색을 하기 때문에 O(logN)이 걸리고,
 3. 해시 컨테이너는 해시값(Digest)을 인덱스로 해서 찾으면 되므로 O(1)의 시간이 걸립니다. 
 
-다만, 해시값(Digest)을 그대로 컨테이너의 키값으로 사용하면, 해시 컨테이너의 버킷(Bucket)은 모든 해시값(Digest)을 저장할 수 있을 정도로 아주 아주 많아야 하기 때문에(C++에서는 `std::numeric_limits<std::size_t>::max()`), 
+다만, 해시값(Digest)을 그대로 컨테이너의 키값으로 사용하면, 해시 컨테이너의 버킷(Bucket)은 모든 해시값(Digest)을 저장할 수 있을 정도로 아주 아주 많아야 하기 때문에(C++에서는 `numeric_limits<std::size_t>::max()`), 
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2b14ccb1-dd32-40b7-9474-685cdeaa82c8)
 
@@ -129,31 +129,31 @@ sidebar:
 std::unordered_map<int, std::string> m;
 
 // 예약된 요소 수에 맞게 버킷은 자동 조정 됩니다.
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 1개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 1개
 m.reserve(2);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 2개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 2개
 m.reserve(3);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 3개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 3개
 m.reserve(4);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 5개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 5개
 m.reserve(5);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 5개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 5개
 m.reserve(6);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 7개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 7개
 m.reserve(7);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 7개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 7개
 m.reserve(8);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 11개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 11개
 m.reserve(9);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 11개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 11개
 m.reserve(100);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 103개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 103개
 m.reserve(1000);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 1031개
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 1031개
 m.reserve(10000);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 10273개        
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 10273개        
     m.reserve(100000);
-std::cout<<"bucket count : "<<m.bucket_count()<<std::endl; // 107897개  
+std::cout << "bucket count : " << m.bucket_count() << std::endl; // 107897개  
 ```
 
 기존 `map`과 사용법은 동일합니다.

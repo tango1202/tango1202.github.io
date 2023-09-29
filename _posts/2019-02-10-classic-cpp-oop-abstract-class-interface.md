@@ -42,14 +42,14 @@ public:
 class Rectangle : public Shape {
 public:
     virtual void Draw() const {
-        std::cout<<"Rectangle::Draw()"<<std::endl;
+        std::cout << "Rectangle::Draw()" << std::endl;
     }
 };
 // Shape을 구체화한 클래스 입니다. Draw()에서 타원을 그립니다.
 class Ellipse : public Shape {
 public:
     virtual void Draw() const {
-        std::cout<<"Ellipse::Draw()"<<std::endl;
+        std::cout << "Ellipse::Draw()" << std::endl;
     }
 };
 
@@ -158,14 +158,14 @@ public:
 class Rectangle : public Shape {
 public:
     virtual void Draw() const {
-        std::cout<<"Rectangle::Draw()"<<std::endl;
+        std::cout << "Rectangle::Draw()" << std::endl;
     }
 };
 // Shape을 구체화한 클래스 입니다. Draw()에서 타원을 그립니다.
 class Ellipse : public Shape { 
 public:
     virtual void Draw() const {
-        std::cout<<"Ellipse::Draw()"<<std::endl;
+        std::cout << "Ellipse::Draw()" << std::endl;
     }
 };
 

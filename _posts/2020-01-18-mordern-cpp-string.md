@@ -7,7 +7,7 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
-> * 유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `std::u8string`, `std::u16string`, `std::u32string` 이 추가되었습니다.
+> * 유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `u8string`, `u16string`, `u32string` 이 추가되었습니다.
 > * 유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다. 
 > * `R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.
 
@@ -43,8 +43,8 @@ C++11 부터는 2byte와 4byte 크기로 다루기 위한 `char16_t`와 `char32_
 |--|--|--|
 |`char`|1byte 문자|1byte|
 |`wchar_t`|와이드 문자|시스템의 비트수에 따라 다르며, 대부분 2byte 또는 4byte.<br/>단, Windows는 2byte|
-|`char16_t`| UTF-16 문자|`16bit`(2byte) 보다 크거나 같음|
-|`char32_t`| UTF-32 문자|`32bit`(4byte) 보다 크거나 같음|
+|`char16_t` (C++11~)| UTF-16 문자|`16bit`(2byte) 보다 크거나 같음|
+|`char32_t` (C++11~)| UTF-32 문자|`32bit`(4byte) 보다 크거나 같음|
 
 # 유니코드 리터럴
 
@@ -56,22 +56,22 @@ C++11 부터는 2byte와 4byte 크기로 다루기 위한 `char16_t`와 `char32_
 |--|--|
 |1byte 문자열|"abc"|
 |와이드 문자열|L"abc한글"|
-|UTF-8 문자열|u8"abc한글"|
-|UTF-16 문자열|u"abc한글"|
-|UTF-32 문자열|U"abc한글"|
+|UTF-8 문자열 (C++11~)|u8"abc한글"|
+|UTF-16 문자열 (C++11~)|u"abc한글"|
+|UTF-32 문자열 (C++11~)|U"abc한글"|
 
 # 유니코드 문자열 개체
 
 기존에는 `char`, `wchar_t` 문자열 개체만 지원했는데요([문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 참고),
 
-C++11 부터는 `char16_t`, `char32_t` 문자열인 `std::u16string`과 `std::u32string`을 지원합니다.
+C++11 부터는 `char16_t`, `char32_t` 문자열인 `u16string`과 `u32string`을 지원합니다.
 
 |항목|내용|
 |--|--|
-|`std::string`|`std::basic_string<char>`|
-|`std::wstring`|`std::basic_string<wchar_t>`|
-|`std::u16string`|`std::basic_string<char16_t>`|
-|`std::u32string`|`std::basic_string<char32_t>`|
+|`string`|`basic_string<char>`|
+|`wstring`|`basic_string<wchar_t>`|
+|`u16string` (C++11~)|`basic_string<char16_t>`|
+|`u32string` (C++11~)|`basic_string<char32_t>`|
 
 ```cpp
 // C++11
@@ -92,16 +92,16 @@ EXPECT_TRUE(str2[1] == U'글');
 // EXPECT_TRUE(str3[1] == U'글');
 ```
 
-# (C++20~) char8_t, std::u8string
+# (C++20~) char8_t, u8string
 
-C++20 부터는 UTF8 을 관리할 수 있도록 `char8_t`와 `std::u8string`이 추가되었습니다.
+C++20 부터는 UTF8 을 관리할 수 있도록 `char8_t`와 `u8string`이 추가되었습니다.
 
 # Raw String 리터럴
 
 기존 문자열은 개행을 하기 위해 다음처럼 이스케이프 문자(`\r\n`)를 추가해야 했는데요([이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90) 참고),
 
 ```cpp
-std::cout<<"abc\r\ndef"<<std::endl;
+std::cout << "abc\r\ndef" << std::endl;
 ```
 
 ```cpp
@@ -113,9 +113,9 @@ C++11 부터는 `R"()"`은 `()`안에 표기된 그대로를 문자열로 처리
 
 ```cpp
 // 이스케이프 문자와 개행을 소스코드에 기재된 그대로 출력합니다.
-std::cout<<R"(abc\r\n
+std::cout << R"(abc\r\n
 def)"
-<<std::endl;
+<< std::endl;
 ```
 
 ```cpp
@@ -127,9 +127,9 @@ def
 
 ```cpp
 // 임의 구분자 aaa 사용
-std::cout<<R"aaa(abc"()"
+std::cout << R"aaa(abc"()"
 def)aaa"
-<<std::endl;
+<< std::endl;
 ```
 
 ```cpp

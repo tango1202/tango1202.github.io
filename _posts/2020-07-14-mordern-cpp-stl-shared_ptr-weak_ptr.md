@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++ STL] (C++11~) 소유권 공유 스마트 포인터(shared_ptr, weak_ptr)"
+title: "#14. [모던 C++ STL] (C++11~) 소유권 공유 스마트 포인터(shared_ptr, weak_ptr)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -43,8 +43,8 @@ class T {
 public:
     int m_Val;
 public:
-    T() {std::cout<<"T : Constructor"<<std::endl;}
-    ~T() {std::cout<<"T : Destructor"<<std::endl;}
+    T() {std::cout << "T : Constructor" << std::endl;}
+    ~T() {std::cout << "T : Destructor" << std::endl;}
 };
 std::shared_ptr<T> a{new T{}};
 EXPECT_TRUE(a.use_count() == 1); 

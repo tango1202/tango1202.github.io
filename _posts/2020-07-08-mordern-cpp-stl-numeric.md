@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] 숫자"
+title: "#8. [모던 C++ STL] 숫자"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

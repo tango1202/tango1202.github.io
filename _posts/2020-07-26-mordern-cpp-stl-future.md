@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#25. [모던 C++ STL] (C++11~) 비동기(future, promise)"
+title: "#26. [모던 C++ STL] (C++11~) 비동기(future, promise)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -25,7 +25,7 @@ sidebar:
 
 다음 예에서 동기 함수인 `Sync()`는 비동기 함수 `Async()` 를 호출한 뒤 `Async()` 함수가 종료될때까지 대기함으로서 동기화를 구현합니다.
 
-1. `std::condition_variable m_CV;` 로 조건 변수를 생성합니다.
+1. `condition_variable m_CV;` 로 조건 변수를 생성합니다.
 2. `Async()`함수에서 데이터를 설정하기 전에 `mutex`의 `lock`을 겁니다. 작업이 끝나면, `m_IsAsyncCompleted = true`를 설정하고 `notify_all()`을 호출하여, `wait()`중인 곳에 알립니다.
 3. `Sync()` 함수에서는 `Async()`를 `thread`로 호출하여 비동기로 실행시키고, `wait()`를 실행하여 `m_IsAsyncCompleted`가 `true`가 될때까지 대기합니다.
 
@@ -201,7 +201,7 @@ try {
     EXPECT_TRUE(Sync() == 11); 
 }
 catch(const char* err) {
-    std::cout<<"Task Exception : "<<err<<std::endl;
+    std::cout << "Task Exception : " << err << std::endl;
     EXPECT_TRUE(err == "MyError");
 }
 

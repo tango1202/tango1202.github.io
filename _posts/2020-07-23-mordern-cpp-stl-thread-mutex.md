@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#22. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex)"
+title: "#23. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -112,12 +112,12 @@ sidebar:
 ```cpp
 void Message1() {
     for(int i{0};i < 100; ++i) {
-        std::cout<<"Message1 : "<<i<<std::endl;
+        std::cout << "Message1 : " << i << std::endl;
     }        
 }
 void Message2() {
     for(int i{0};i < 100; ++i) {
-        std::cout<<"Message2 : "<<i<<std::endl;
+        std::cout << "Message2 : " << i << std::endl;
     }        
 } 
 std::thread worker1{Message1};
@@ -127,11 +127,11 @@ worker1.join(); // worker1이 종료될때까지 기다립니다.
 worker2.join(); // worker2가 종료될때까지 기다립니다.
 ```
 
-다음은 실행 결과입니다. 시스템 상황에 따라 다를 겁니다만, `Message1()` 함수의 출력과 `Message2()` 함수의 출력이 동시에 실행되다 보니 섞여서 나오는 걸 알 수 있습니다. 재밌게도, `Message1()` 함수가 `std::cout<<"Message1 : "<<i` 까지 출력하고, `<<std::endl;`를 출력하기 직전에, `Message2()의 ` `std::cout<<"Message2 : "<<i<<std::endl;`가 호출됐네요. 
+다음은 실행 결과입니다. 시스템 상황에 따라 다를 겁니다만, `Message1()` 함수의 출력과 `Message2()` 함수의 출력이 동시에 실행되다 보니 섞여서 나오는 걸 알 수 있습니다. 재밌게도, `Message1()` 함수가 `cout << "Message1 : " << i` 까지 출력하고, ` << std::endl;`를 출력하기 직전에, `Message2()의 ` `cout << "Message2 : " << i << endl;`가 호출됐네요. 
 
 ```cpp
 Message1 : 0
-Message1 : 1Message2 : 0 // Message1()의 <<std::endl; 직전에 Message2()가 실행됨
+Message1 : 1Message2 : 0 // Message1()의 << std::endl; 직전에 Message2()가 실행됨
 Message2 : 1
 Message2 : 2
 Message2 : 3
@@ -152,7 +152,7 @@ Message2 : 9
 2. `Sum()` 함수는 주어진 이터레이터 범위의 요소를 모두 더합니다.
 3. `ThreadSum()` 함수를 2개의 쓰레드를 이용하여 `[시작 ~ 중간)` 과 `[중간 ~ 끝)`을 `Sum()`함수를 이용하여 각각 계산한 후 최종적으로 이 둘을 더해 리턴합니다.
 4. `CheckMicrosecond()`함수는 전달된 함수를 실행하고 실행 시간을 측정합니다. 실행시킬 함수에 인자를 전달하기 위해 가변 템플릿을 사용합니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
-5. 인자의 참조성 유지를 위해 `std::ref()`를 사용합니다.([ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) 참고)
+5. 인자의 참조성 유지를 위해 `ref()`를 사용합니다.([ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) 참고)
    
 ```cpp
 void Sum(std::vector<int>::iterator itr, std::vector<int>::iterator endItr, int& result) {
@@ -213,7 +213,7 @@ std::chrono::microseconds duration{CheckMicrosecond(
     v.begin(), v.end(), 
     std::ref(result) // 인수의 참조성 유지
 )};
-std::cout<<"Sum : "<<result<<" Duration : "<<duration.count()<<std::endl; 
+std::cout << "Sum : " << result << " Duration : " << duration.count() << std::endl; 
 
 int threadResult{0};
 std::chrono::microseconds threadDuration{CheckMicrosecond(
@@ -221,7 +221,7 @@ std::chrono::microseconds threadDuration{CheckMicrosecond(
     v.begin(), v.end(), 
     std::ref(threadResult) // 인수의 참조성 유지
 )};
-std::cout<<"ThreadSum : "<<threadResult<<" Duration : "<<threadDuration.count()<<std::endl; 
+std::cout << "ThreadSum : " << threadResult << " Duration : " << threadDuration.count() << std::endl; 
 ```
 
 실행 결과는 다음과 같습니다. 계산 결과는 `4950`으로 동일하게 잘 나왔습니다. 그런데, 이상하게도 쓰레드를 사용하는 버전이 훨씬 오래 걸립니다.
@@ -328,7 +328,7 @@ std::thread worker2{std::mem_fn(&A::Increase), std::ref(a)};
 worker1.join(); 
 worker2.join(); 
 
-std::cout<<"Non Mutex : "<<a.GetVal()<<std::endl;
+std::cout << "Non Mutex : " << a.GetVal() << std::endl;
 ```
 
 제 경우엔 198이 나왔습니다. 
@@ -365,7 +365,7 @@ std::thread worker2{std::mem_fn(&A::Increase), std::ref(a), std::ref(mutex)};
 worker1.join(); 
 worker2.join(); 
 
-std::cout<<"Mutex : "<<a.GetVal()<<std::endl;
+std::cout << "Mutex : " << a.GetVal() << std::endl;
 EXPECT_TRUE(a.GetVal() == 200);
 ```
 
@@ -526,7 +526,7 @@ public:
         std::call_once(m_OnceFlag, std::mem_fn(&A::Func), std::ref(*this));
     } 
     void Func() {
-        std::cout<<"A : Func()"<<std::endl;
+        std::cout << "A : Func()" << std::endl;
     }
 };
 

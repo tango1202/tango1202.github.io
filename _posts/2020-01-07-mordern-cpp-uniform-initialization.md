@@ -121,9 +121,9 @@ U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
     ```cpp
     class T {
     public:
-        T() {std::cout<<"T : Default Constructor"<<std::endl;}
-        T(const T&) {std::cout<<"T : Copy Constructor"<<std::endl;}
-        T& operator =(const T&) {std::cout<<"T : operator =()"<<std::endl;return *this;}
+        T() {std::cout << "T : Default Constructor" << std::endl;}
+        T(const T&) {std::cout << "T : Copy Constructor" << std::endl;}
+        T& operator =(const T&) {std::cout << "T : operator =()" << std::endl;return *this;}
     };
 
     T a{}; // 기본 생성자 호출
@@ -144,9 +144,9 @@ U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
     ```cpp
     class T {
     public:
-        T() {std::cout<<"T : Default Constructor"<<std::endl;}
-        T(const T&) {std::cout<<"T : Copy Constructor"<<std::endl;}
-        T& operator =(const T&) {std::cout<<"T : operator =()"<<std::endl;return *this;}
+        T() {std::cout << "T : Default Constructor" << std::endl;}
+        T(const T&) {std::cout << "T : Copy Constructor" << std::endl;}
+        T& operator =(const T&) {std::cout << "T : operator =()" << std::endl;return *this;}
     };
     T t;
     t = {}; // t = T{};과 동일
@@ -296,9 +296,9 @@ EXPECT_TRUE(v1[0] == 1 && v1[1] == 2);
 
 |항목|내용|
 |--|--|
-|`size()`|요소 갯수를 리턴합니다.|
-|`begin()`|첫번째 요소의 이터레이터를 리턴합니다.|
-|`end()`|마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
+|`size()` (C++11~)|요소 갯수를 리턴합니다.|
+|`begin()` (C++11~)|첫번째 요소의 이터레이터를 리턴합니다.|
+|`end()` (C++11~)|마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
 
 # initializer_list의 암시적 생성
 
@@ -378,7 +378,7 @@ auto e = {1, 2}; // e는 initializer_list<int>
 
 # 기존 생성자와 initializer_list 생성자와의 충돌
 
-중괄호 초기화 우선 순위에 따라 `initializer_list`를 사용한 버전이 비교적 우선적으로 선택됩니다. 그러다 보니 기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `std::vector<int> v2{2};` 와 같이 한다면, 요소가 2개인 `vector` 를 생성하는게 아니라, `2`값인 요소 1인 `vector`를 생성합니다.
+중괄호 초기화 우선 순위에 따라 `initializer_list`를 사용한 버전이 비교적 우선적으로 선택됩니다. 그러다 보니 기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v2{2};` 와 같이 한다면, 요소가 2개인 `vector` 를 생성하는게 아니라, `2`값인 요소 1인 `vector`를 생성합니다.
 
 ```cpp
 // 요소가 2개인 vector를 생성합니다.

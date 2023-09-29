@@ -209,14 +209,14 @@ EXPECT_TRUE(status == 1); // MY_DEBUG가 정의되어 1
 
 ```cpp
 // Line Number:118 Filename:C:\XXX\XXX.cpp
-std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl; 
+std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl; 
 ```
 
 `#line`은 해당 줄번호와 파일명을 강제로 변경해 줍니다.
 
 ```cpp
 #line 1234 "test.cpp" 
-    std::cout<<"Line Number:"<<__LINE__<<" Filename:"<<__FILE__<<std::endl;  // Line Number:1234 Filename:test.cpp      
+    std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl;  // Line Number:1234 Filename:test.cpp      
 ```
 # #error, #warning
 

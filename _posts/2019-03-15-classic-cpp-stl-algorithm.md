@@ -25,7 +25,7 @@ Function for_each(InputIterator first, InputIterator last, Function f) {
 }
 ```
 
-다음은 `std::for_each()`를 사용한 예입니다. `Setter()`함수를 이용하여 각 요소의 값을 `10`으로 변경합니다.
+다음은 `for_each()`를 사용한 예입니다. `Setter()`함수를 이용하여 각 요소의 값을 `10`으로 변경합니다.
 
 ```cpp
 // 10으로 세팅하는 함수

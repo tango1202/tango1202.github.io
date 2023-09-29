@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 문자열 상수를 많이 만들면, 프로그램 용량이 커진다. 비슷한 문장을 쓸데없이 여러개 작성하지 마라.
-> * 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하라.(배열이나 `std::string`, `std::wstring` 을 쓰면 복제된다.)
+> * 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하라.(배열이나 `string`, `wstring` 을 쓰면 복제된다.)
 
 > **모던 C++**
 > * `long long`용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` 리터럴이 추가되었습니다.([long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) 참고)
@@ -82,7 +82,7 @@ EXPECT_TRUE(str4[3] == L'\0'); // 널문자가 추가됨
 ```
 **문자열 상수 수정**
 
-문자열 상수를 향후 수정할 예정이라면, 배열이나 `std::string`, `std::wstring`에 저장하여 복제본을 만들어야 합니다.
+문자열 상수를 향후 수정할 예정이라면, 배열이나 `string`, wstring`에 저장하여 복제본을 만들어야 합니다.
 
 문자열 상수는 rodata 영역에 할당([데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고)되기 때문에 수정할 수 없습니다. 따라서 포인터를 통해서 받은 문자열 상수를 수정하려 하면, 예외가 발생합니다. 하지만, 배열로 저장하면 복제본이므로 수정할 수 있습니다.
 
@@ -100,7 +100,7 @@ EXPECT_TRUE(str2[0] == 'd');
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f98f2cc-9dff-428f-a639-42d42d9f701b)
 
-문자열의 내용을 수정할 필요가 없다면, 배열이나 `std::string`, `std::wstring`에 저장하지 마세요. 불필요하게 복제되어 복사 부하만 생깁니다.
+문자열의 내용을 수정할 필요가 없다면, 배열이나 `string`, `wstring`에 저장하지 마세요. 불필요하게 복제되어 복사 부하만 생깁니다.
 
 **결합**
 

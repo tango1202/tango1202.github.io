@@ -77,7 +77,7 @@ decltype((t->m_Val)) b = 10; // 괄호를 추가하면 좌측값 표현식으로
 
 |항목|내용|
 |--|--|
-|`decltype(xvalue)`|`T&&`, `std::move()`등으로 변환된 임시 개체. `rvalue`|
+|`decltype(xvalue)`|`T&&`, `move()`등으로 변환된 임시 개체. `rvalue`|
 |`decltype(lvalue)`|`T&`, 이름이 부여된 개체|
 |`decltype((lvalue))`|`T&`, 괄호가 추가되면 표현식으로 평가됨|
 |`decltype(prvalue)`|`T`, 이름 없는 임시 개체|

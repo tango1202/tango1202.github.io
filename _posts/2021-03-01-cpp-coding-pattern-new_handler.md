@@ -14,9 +14,9 @@ sidebar:
 
 1. 미리 예약된 공간을 해제하여 메모리를 추가 확보해 주거나
 2. 다른 `new_handler`를 설치하여 처리를 위임하거나
-3. `new_handler`를 제거하거나(제거되면 `std::bad_alloc()` 발생)
-4. `std::bad_alloc()` 또는 이로부터 파생된 예외를 발생시켜 처리를 포기하거나
-5. `std::abort()`을 하여 프로그램을 종료합니다.
+3. `new_handler`를 제거하거나(제거되면 `bad_alloc()` 발생)
+4. `bad_alloc()` 또는 이로부터 파생된 예외를 발생시켜 처리를 포기하거나
+5. `abort()`을 하여 프로그램을 종료합니다.
 
 # NewHandler의 필요성
 
@@ -39,7 +39,7 @@ sidebar:
 4. `UsingReservedHandler()` 는 예약된 메모리 공간을 해제하고 `new`를 재시도 할 수 있게 해줍니다.
 5. `AnotherHandler()` 에서 다른 처리 방법을 사용자 정의하여 구현 할 수 있습니다.
 6. `RemoveHandler()` 는 기존 핸들러를 제거합니다.
-7. `BadAllocHandler()`은 별다른 처리없이 `std::bad_alloc()`을 발생시킵니다.(`RemoveHandler()` 와 동일합니다.)
+7. `BadAllocHandler()`은 별다른 처리없이 `bad_alloc()`을 발생시킵니다.(`RemoveHandler()` 와 동일합니다.)
 8. `AbortHandler()`는 프로그램을 종료합니다.
 
 다음과 같이 구현합니다.
@@ -179,9 +179,9 @@ public:
 
         // 내부적으로는 메모리를 할당하고, 실패하면 handler를 실행하는 과정을 무한히 반복합니다.
         // handler가 std::bad_alloc이나 std::abort()를 할때 까지요.
-        std::cout<<"----## ::operator new : Start"<<std::endl;  
+        std::cout << "----## ::operator new : Start" << std::endl;  
         void* ptr = ::operator new(sz); 
-        std::cout<<"----## ::operator new : End"<<std::endl; 
+        std::cout << "----## ::operator new : End" << std::endl; 
         return ptr;
     } 
 };
@@ -190,7 +190,7 @@ public:
     // new가 실패할때까지 반복해서 재귀 할당 합니다.
     // Holder에 생성된 개체를 담습니다.
     static void Recursive() {
-        std::cout<<"## Recursive"<<std::endl;
+        std::cout << "## Recursive" << std::endl;
         Holder<T> holder(new T);
         Recursive();
     }
@@ -205,7 +205,7 @@ NewHandler::GetInstanceRef().ResetReserved(sizeof(T) * 2);
         Tester::Recursive();
     }
     catch (std::bad_alloc& e) {
-        std::cout<<"## [UsingReserved] catch (std::bad_alloc& e)"<<std::endl;    
+        std::cout << "## [UsingReserved] catch (std::bad_alloc& e)" << std::endl;    
     }
 }
 {
@@ -215,7 +215,7 @@ NewHandler::GetInstanceRef().ResetReserved(sizeof(T) * 2);
         Tester::Recursive();
     }
     catch (std::bad_alloc& e) {
-        std::cout<<"## [Remove] catch (std::bad_alloc& e)"<<std::endl;    
+        std::cout << "## [Remove] catch (std::bad_alloc& e)" << std::endl;    
     }
 }
 {

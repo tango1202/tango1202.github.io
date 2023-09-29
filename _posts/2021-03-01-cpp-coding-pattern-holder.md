@@ -107,7 +107,7 @@ TEST(TestCppPattern, Holder) {
     class T {
     public:
         ~T() {
-            std::cout<<"delete T"<<std::endl; // 화면에 표시되는 지 확인합니다.
+            std::cout << "delete T" << std::endl; // 화면에 표시되는 지 확인합니다.
         }        
     };
     // Func1에서 예외를 발생해도 정상 동작하는지 확인

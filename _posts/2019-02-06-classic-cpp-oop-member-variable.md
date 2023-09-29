@@ -302,7 +302,7 @@ class Derived : public Base { // 가상 함수 테이블 크기로 정렬됨
     char m_X;
 };
 EXPECT_TRUE(sizeof(Derived) == 8 * 2); 
-std::cout<<sizeof(Derived)<<std::endl;    
+std::cout << sizeof(Derived) << std::endl;    
 ```
 
 # 메모리 할당에 따른 멤버 변수 정의 순서

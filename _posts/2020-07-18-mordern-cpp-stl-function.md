@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#17. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), reference_wrapper, bind())"
+title: "#18. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), reference_wrapper, bind())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -258,8 +258,8 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 20); // 참조자를 저장했으므로 vector
 
 |항목|내용|
 |--|--|
-|`ref(T)` (C++11~)|`std::reference_wrapper<T>` 생성|
-|`cref(T)` (C++11~)|`std::reference_wrapper<const T>` 생성|
+|`ref(T)` (C++11~)|`reference_wrapper<T>` 생성|
+|`cref(T)` (C++11~)|`reference_wrapper<const T>` 생성|
 
 ```cpp
 int a{1};

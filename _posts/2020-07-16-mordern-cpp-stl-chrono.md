@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [모던 C++ STL] (C++11~) 정밀한 시간 측정(system_clock, time_point, duration)"
+title: "#16. [모던 C++ STL] (C++11~) 정밀한 시간 측정(system_clock, time_point, duration)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -37,7 +37,7 @@ std::chrono::microseconds CheckMicrosecond(Func func, Params... params) {
 void MyFunc() {}
 std::chrono::microseconds duration{CheckMicrosecond(MyFunc)};
 
-std::cout<<"MyFunc() : "<<duration.count()<<std::endl;
+std::cout << "MyFunc() : " << duration.count() << std::endl;
 ```
 
 # Clock

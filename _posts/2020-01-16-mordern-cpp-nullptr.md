@@ -44,9 +44,9 @@ EXPECT_TRUE(f(ptr2) == 1); // f(int) 호출
 EXPECT_TRUE(f(ptr3) == 2); // f(int*) 호출
 ```
 
-# std::nullptr_t
+# nullptr_t
 
-`std::nullptr_t`는 `nullptr`을 저장할 수 있는 타입이며, 어떠한 포인터로도 암시적으로 변환될 수 있는 타입입니다. 크기는 `sizeof(void*)`와 동일합니다.
+`nullptr_t`는 `nullptr`을 저장할 수 있는 타입이며, 어떠한 포인터로도 암시적으로 변환될 수 있는 타입입니다. 크기는 `sizeof(void*)`와 동일합니다.
 
 ```cpp
 using nullptr_t = decltype(nullptr);

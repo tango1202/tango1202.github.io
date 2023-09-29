@@ -190,12 +190,12 @@ public:
     T(int x, int y) :
         m_X(x),
         m_Y(y) {
-        std::cout<<"RVO -> T::T()"<<std::endl;
+        std::cout << "RVO -> T::T()" << std::endl;
     }
 
     // 복사 생성자
     T(const T& other) {
-        std::cout<<"RVO -> T(const T& other)"<<std::endl;    
+        std::cout << "RVO -> T(const T& other)" << std::endl;    
     }
     
     T f() {

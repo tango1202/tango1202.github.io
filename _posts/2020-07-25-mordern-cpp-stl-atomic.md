@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#24. [모던 C++ STL] (C++11~) 원자 단위 명령(atomic, memory_order)"
+title: "#25. [모던 C++ STL] (C++11~) 원자 단위 명령(atomic, memory_order)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -50,7 +50,7 @@ C++11 STL 에서는 `atomic` 을 사용하여 메모리에서 값을 읽고, 수
 
 다음은 [mutex - 경쟁 상태(Race Condition) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex---%EA%B2%BD%EC%9F%81-%EC%83%81%ED%83%9Crace-condition-%ED%95%B4%EA%B2%B0)에서 소개한 코드를 `automic`으로 수정한 예입니다.
 
-1. 기존의 `int m_Val{0};` 을 `std::atomic<int> m_Val{0};` 으로 수정하였습니다.
+1. 기존의 `int m_Val{0};` 을 `atomic<int> m_Val{0};` 으로 수정하였습니다.
 2. 기존의 `m_Val = m_Val + 1;`을 `++m_Val;`로 수정하였습니다.
 3. `int GetVal() const {return m_Val;}` 와 같이 `atomic` 개체의 값 타입이 암시적으로 형변환됩니다.
 

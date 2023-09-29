@@ -554,7 +554,7 @@ public:
 class T {
 public:
     ~T() {
-        std::cout<<"T::~T();"<<std::endl;
+        std::cout << "T::~T();" << std::endl;
     }
     void Release() {
         delete this; // (O) 자기 자신을 소멸 시킴(소멸자가 호출됨)

@@ -25,7 +25,7 @@ C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은
 |--|--|--|
 |`bool`|`true` 또는 <br/>`false`|`1 <= sizeof (bool) <= sizeof(long)`|
 |`char`|1byte 문자|1byte|
-|`wchar_t`|와이드 문자|시스템의 비트수에 따라 다르며, 대부분 2byte 또는 4byte.<br/>단, Windows는 2byte |
+|`wchar_t`|와이드 문자|시스템의 처리 방식에 따라 다르며, 2byte 또는 4byte.<br/>Windows는 2byte |
 |`short`|2byte 정수| 2byte|
 |`int`|기본 연산 단위 크기의 정수|16bit : 2byte,<br/>32bit : 4byte,<br/>64bit : 4byte|
 |`unsigned`|부호 없는 `int`|`int` 와 동일|

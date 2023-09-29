@@ -54,14 +54,14 @@ public:
     // T를 n개 만큼 저장할 수 있는 메모리 영역을 할당합니다.
     pointer allocate(size_type n, const void * = 0) {
         T* t = (T*) malloc(n * sizeof(T));
-        std::cout<<"Allocator::allocate()"<<std::endl;
+        std::cout << "Allocator::allocate()" << std::endl;
         return t;
     }
 
     // allocate에서 할당한 메모리를 해제합니다.
     void deallocate(void* p, size_type) {
         free(p);
-        std::cout<<"Allocator::deallocate()"<<std::endl;
+        std::cout << "Allocator::deallocate()" << std::endl;
     }
 
     pointer address(reference x) const {return &x;}
@@ -98,13 +98,13 @@ public:
 class A {
 public:
     A() {
-        std::cout<<"A()"<<std::endl;
+        std::cout << "A()" << std::endl;
     }
     A(const A& other) {
-        std::cout<<"A(const A& other)"<<std::endl;        
+        std::cout << "A(const A& other)" << std::endl;        
     }
     ~A() {
-        std::cout<<"~A()"<<std::endl;     
+        std::cout << "~A()" << std::endl;     
     }
 };
 

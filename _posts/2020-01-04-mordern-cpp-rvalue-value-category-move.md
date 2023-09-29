@@ -67,7 +67,7 @@ C++에서는 표현식의 값들에 대해서 식별자가 있는지, 이동이 
 |항목|내용|
 |--|--|
 |`lvalue`(left value)|좌측값으로서 변수와 같이 식별자가 있는 항목입니다.(`a = b;`와 같이 좌측값은 우측에 올 수도 있습니다.) 다른곳에서 참조할 수도 있기에 이동 연산이 지원되지 않습니다.(변수, 데이터 멤버의 이름, 함수, `&`포인터 연산, 전위 증감 연산, 문자열 상수등)<br/>대입문의 좌측에 올 수 있고, `&`로 주소를 얻어올 수 있으며, 표현식이 끝나더라도 존재합니다.|
-|`xvalue`(expiring value)|`lvalue`나 `prvalue`를 `std::move()`할때 순간적으로 관리되는 값으로서 만료되어 가는 값입니다. 해당 주소로 접근했을때 값이 있을 수도 있고, 없을 수도 있습니다. 컴파일러만 사용하므로 `&`로 주소를 얻을 수 없으며, 표현식이 끝나면 소멸됩니다.|
+|`xvalue`(expiring value)|`lvalue`나 `prvalue`를 `move()`할때 순간적으로 관리되는 값으로서 만료되어 가는 값입니다. 해당 주소로 접근했을때 값이 있을 수도 있고, 없을 수도 있습니다. 컴파일러만 사용하므로 `&`로 주소를 얻을 수 없으며, 표현식이 끝나면 소멸됩니다.|
 |`prvalue`(pure rvalue)|순수한 rvalue로서 식별자가 없는 임시 개체나 수식들입니다. 어짜피 임시로 생성된 것이므로 맘편히 삭제해도 되는 것들이며, 이동 연산이 지원됩니다.(수식, 후위 증감 연산, 문자열 상수를 제외한 상수, 람다 표현식)<br/>대입문의 우측에 올 수 있고, `&`로 주소를 얻어올 수 없으며, 표현식이 끝나면 소멸됩니다.|
 |`glvalue`(generalized lvalue)|`xvalue`와 `lvalue`를 통칭합니다.| 
 |`rvalue`(right value)|`xvalue`와 `prvalue`를 통칭합니다.|  
@@ -87,19 +87,19 @@ public:
     explicit Big(size_t size) : 
         m_Size(size), 
         m_Ptr(new char[size]) {
-        std::cout<<"Big : Default Constructor"<<std::endl; 
+        std::cout << "Big : Default Constructor" << std::endl; 
     }
 
     // 소멸자
     ~Big() {
-        std::cout<<"Big : Destructor"<<std::endl; 
+        std::cout << "Big : Destructor" << std::endl; 
         delete[] m_Ptr;
     }
 
     // 복사 생성자
     Big(const Big& other) :
         m_Size(other.m_Size) {
-        std::cout<<"Big : Copy Constructor"<<std::endl; 
+        std::cout << "Big : Copy Constructor" << std::endl; 
 
         // 메모리 공간 할당
         m_Ptr = new char[m_Size];
@@ -110,7 +110,7 @@ public:
 
     // 대입 연산자
     Big& operator =(const Big& other) {
-        std::cout<<"Big : operator ="<<std::endl; 
+        std::cout << "Big : operator =" << std::endl; 
 
         Big temp(other); // 복사 생성
         std::swap(m_Size, temp.m_Size); // 바꿔치기
@@ -157,19 +157,19 @@ public:
     explicit Big(size_t size) : 
         m_Size(size), 
         m_Ptr(new char[size]) {
-        std::cout<<"Big : Default Constructor"<<std::endl; 
+        std::cout << "Big : Default Constructor" << std::endl; 
     }
 
     // 소멸자
     ~Big() {
-        std::cout<<"Big : Destructor"<<std::endl; 
+        std::cout << "Big : Destructor" << std::endl; 
         delete[] m_Ptr;
     }
 
     // 복사 생성자
     Big(const Big& other) :
         m_Size(other.m_Size) {
-        std::cout<<"Big : Copy Constructor"<<std::endl; 
+        std::cout << "Big : Copy Constructor" << std::endl; 
 
         // 메모리 공간 할당
         m_Ptr = new char[m_Size];
@@ -180,7 +180,7 @@ public:
 
     // 대입 연산자
     Big& operator =(const Big& other) {
-        std::cout<<"Big : operator ="<<std::endl; 
+        std::cout << "Big : operator =" << std::endl; 
 
         Big temp(other);
         std::swap(m_Size, temp.m_Size);
@@ -190,7 +190,7 @@ public:
 
     // 이동 함수
     Big& Move(Big& other) {
-        std::cout<<"Big : Move()"<<std::endl; 
+        std::cout << "Big : Move()" << std::endl; 
 
         delete[] m_Ptr; // 기존 것은 삭제하고,
         m_Size = other.m_Size; // other 것을 저장한뒤
@@ -236,7 +236,7 @@ C++ 표준 위원회는 여기서 더 나아가 그냥 각자 `Move()`함수를 
 다음 코드에서 `Move()`함수를 우측값을 참조하는 이동 대입 연산자로 변경하였으며, 테스트 코드에서 우측값을 사용하기 위해
 
 1. `static_cast`을 이용하여 좌측값을 우측값으로 형변환
-2. `std::move()`를 이용하여 좌측값을 우측값으로 형변환
+2. `move()`를 이용하여 좌측값을 우측값으로 형변환
 3. `Big(40)`로 임시 개체를 생성(임시 개체는 우측값입니다.)하여 호출하였습니다. 
  
 ```cpp
@@ -387,9 +387,9 @@ T& operator =(T&& other);
 1. `T&`는 개체의 좌측값 참조라 하고,
 2. `T&&`는 개체의 우측값 참조라고 합니다.
 
-`std::move()`는 좌측값(`lvalue`) 을 우측값(`rvalue`)으로 형변환 합니다. 
+`move()`는 좌측값(`lvalue`) 을 우측값(`rvalue`)으로 형변환 합니다. 
 
-다음처럼 `static_cast`로도 형변환 할 수 있으나, 가독성을 위해 `std::move()`를 사용합니다.
+다음처럼 `static_cast`로도 형변환 할 수 있으나, 가독성을 위해 `move()`를 사용합니다.
 
 ```cpp
 T t;
@@ -424,7 +424,7 @@ EXPECT_TRUE(T::Func(std::move(A())) == 2); // 임시 개체를 move 해도 rvalu
 
 # move_if_noexcept()
 
-`std::move_if_noexcept()` 는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다. 
+`move_if_noexcept()` 는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다. 
 
 다음 코드를 보면 `A`는 예외 보증이 안되어 있고, `B`는 `noexcept`가 지정되어 있는데요,
 
@@ -436,15 +436,15 @@ class A {
 public:
     A() {}
     // noexcept가 없어서 예외가 발생할 수도 있습니다.
-    A(const A&) {std::cout<<"A : Copy Constructor"<<std::endl;}
-    A(A&&) {std::cout<<"A : Move Constructor"<<std::endl;;} 
+    A(const A&) {std::cout << "A : Copy Constructor" << std::endl;}
+    A(A&&) {std::cout << "A : Move Constructor" << std::endl;;} 
 };
 class B {
 public:
     B() {}
     // nothrow 보증합니다.
-    B(const B&) noexcept {std::cout<<"B : Copy Constructor"<<std::endl;;}
-    B(B&&) noexcept {std::cout<<"B : Move Constructor"<<std::endl;;} 
+    B(const B&) noexcept {std::cout << "B : Copy Constructor" << std::endl;;}
+    B(B&&) noexcept {std::cout << "B : Move Constructor" << std::endl;;} 
 };
 
 A a1;
@@ -483,7 +483,7 @@ EXPECT_TRUE(g(t) == 11);
 EXPECT_TRUE(g(std::move(t)) == 12);
 ```
 
-우측값 참조(`&&`)가 좌측값 참조(`&`) 로 변경되어 버렸습니다. 이해는 됩니다. `val`로 명명 되는 순간 더이상 임시 개체가 아니니까요. 이를 해결하려면 다시 한번 `std::move()`를 사용하여 우측값으로 바꿀 수도 있으나, 값 카테고리를 유지하여 전달한다은 의미로 `std::forward()`를 사용하는게 좋습니다.
+우측값 참조(`&&`)가 좌측값 참조(`&`) 로 변경되어 버렸습니다. 이해는 됩니다. `val`로 명명 되는 순간 더이상 임시 개체가 아니니까요. 이를 해결하려면 다시 한번 `move()`를 사용하여 우측값으로 바꿀 수도 있으나, 값 카테고리를 유지하여 전달한다은 의미로 `forward()`를 사용하는게 좋습니다.
 
 ```cpp
 class T {};

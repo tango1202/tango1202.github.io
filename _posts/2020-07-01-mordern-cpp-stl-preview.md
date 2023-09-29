@@ -141,9 +141,9 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[std::u16string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4) (C++11~)|`std::basic_string<char16_t>` UTF-16 인코딩을 지원합니다.|
-|[std::u32string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4) (C++11~)|`std::basic_string<char32_t>` UTF-32 인코딩을 지원합니다.|
-|[std::u8string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t-stdu8string) (C++20~)|`std::basic_string<char8_t>` UTF-8 인코딩을 지원합니다.|
+|[u16string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4) (C++11~)|`basic_string<char16_t>` UTF-16 인코딩을 지원합니다.|
+|[u32string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B0%9C%EC%B2%B4) (C++11~)|`basic_string<char32_t>` UTF-32 인코딩을 지원합니다.|
+|[u8string](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t-u8string) (C++20~)|`basic_string<char8_t>` UTF-8 인코딩을 지원합니다.|
 
 # 동시성 라이브러리
 
