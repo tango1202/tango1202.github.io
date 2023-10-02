@@ -146,6 +146,8 @@ EXPECT_TRUE(SQUARE(1 + 1) == 4); // (1 + 1) * (1 + 1)
  ```cpp
  inline int Square(int x) { return x * x;} // (O) 인자 타입에 따른 코딩 계약, 디버깅 용이
  ```
+
+ > *C++11 부터는 가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.([가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/) 참고)*
  
 **매크로 함수 특수 기능**
 

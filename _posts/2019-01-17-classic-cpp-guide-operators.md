@@ -289,8 +289,9 @@ EXPECT_TRUE(sizeof(T) = sizeof(int) * 1); // 클래스와 구조체는 멤버 �
 EXPECT_TRUE(sizeof(S) = sizeof(int) * 2); 
 EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 개체의 크기와 동일
 ```
+> *C++11 부터는 `sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.([sizeof…() 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
 
-> *C++11 부터는 `sizeof()`가 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있도록 개선되었습니다.([멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/) 참고)*
+> *C++11 부터는 개체를 인스턴스화 하지 않더라도 `sizeof()`로 개체 멤버의 크기를 구할 수 있도록 개선되었습니다.([멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/) 참고)*
 
 # typeid 연산자
 

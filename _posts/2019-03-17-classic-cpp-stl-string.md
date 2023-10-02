@@ -26,6 +26,11 @@ typedef basic_string<char>    string;
 typedef basic_string<wchar_t> wstring;  
 ```
 
+> *C++11 부터는 유니코드를 지원하는 `u16string`, `u32string` 타입이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)*
+
+> *C++20 부터는 `u8string` 타입이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)*
+
+
 1. `vector`와 유사하게 연속된 메모리를 사용하며,
 2. 컨테이너와 같이 이터레이터와 `operator []`를 지원합니다.
 3. 소멸자가 `public` Non-Virtual 이므로 상속하여 재구현 하면 안됩니다.([public Non-Virtual](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고) 이는 흔히, 그리고 많이 사용하는 자료형이여서 가상 함수 테이블의 포인터를 저장하기 아깝기 때문입니다.( [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable) 참고)

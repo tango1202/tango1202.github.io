@@ -65,9 +65,7 @@ const char* str1 = "abc"; // 문자열 상수
 const wchar_t* str2 = L"abc"; // 와이드 문자열 상수
 ```
 
-> *C++11 부터는 유니코드를 지원하는 `u""`, `U""` 리터럴이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)*
-
-> *C++20 부터는 유니코드를 지원하는 `u8""` 리터럴이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)*
+> *C++11 부터는 유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)*
 
 **배열**
 
