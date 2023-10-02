@@ -36,7 +36,7 @@ sidebar:
 |`scanf()`<br/>`fscanf()`<br/>`sscanf()`<br/>`wscanf()`<br/>`fwscanf()`<br/>`swscanf()`|(작성중)|
 |`vscanf()` (C++11~)<br/>`vfscanf()` (C++11~)<br/>`vsscanf()` (C++11~)<br/>`vswscanf()` (C++11~)<br/>`vfwscanf()` (C++11~)<br/>`vsscanf()` (C++11~)|(작성중)|
 |`printf()`<br/>`fprintf()`<br/>`sprintf()`<br/>`snprintf()` (C++11~)<br/>`wprintf()`<br/>`fwprintf()`<br/>`swprintf()`|(작성중)|
-|`vprintf()`<br/>`vfprintf()`<br/>`vsprintf()`<br/>`vsnprintf()` (C++11~)<br/>vwprintf()`<br/>`vfwprintf()`<br/>`vswprintf()`|(작성중)|
+|`vprintf()`<br/>`vfprintf()`<br/>`vsprintf()`<br/>`vsnprintf()` (C++11~)<br/>`vwprintf()`<br/>`vfwprintf()`<br/>`vswprintf()`|(작성중)|
 |`ftell()`|(작성중)|
 |`fgetpos()`|(작성중)|
 |`fseek()`|(작성중)|
@@ -140,7 +140,7 @@ sidebar:
 |`wspanbuf` (C++23~)|`basic_spanbuf<wchar_t>`|
 |`ispanstream` (C++23~)|`basic_ispanstream<char>`|
 |`wispanstream` (C++23~)|`basic_ispanstream<wchar_t>`|
-|`ospanstream (C++23~)|`basic_ospanstream<char>`|
+|`ospanstream` (C++23~)|`basic_ospanstream<char>`|
 |`wospanstream` (C++23~)|`basic_ospanstream<wchar_t>`|
 |`spanstream` (C++23~)|`basic_spanstream<char>`|
 |`wspanstream` (C++23~)|`basic_spanstream<wchar_t>`|
