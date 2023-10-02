@@ -37,4 +37,31 @@ class T {
     // static int m_H = 0; // (X) 컴파일 오류. 기존과 동일하게 정적 멤버 변수는 별도 초기화해야 함 
 };  
 ```
+# (C++14~) 비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화
 
+C++11의 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 이용하면, 다음과 같이 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern--category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)에 대해 초기화를 할 수 있습니다. 
+```cpp
+class A {
+public:
+    int m_X;
+    int m_Y;
+};
+
+A a{0, 1}; 
+EXPECT_TRUE(a.m_X == 0 && a.m_Y == 1);
+```
+
+하지만, C++14 이전 버전은 멤버 선언부 초기화와 함께 사용하면 컴파일 오류가 발생합니다.
+
+```cpp
+class A {
+public:
+    int m_X{0}; // 비정적 멤버 변수 초기화
+    int m_Y{1};
+};
+
+A a{0, 1}; // (X) ~C++14 컴파일 오류. no matching function for call to 'main()::A::A(<brace-enclosed initializer list>)'
+EXPECT_TRUE(a.m_X == 0 && a.m_Y == 1); 
+```
+
+C++14 부터는 이를 완화하여 비정적 멤버 변수를 초기화하더라도 중괄호 집합 초기화를 사용할 수 있습니다.

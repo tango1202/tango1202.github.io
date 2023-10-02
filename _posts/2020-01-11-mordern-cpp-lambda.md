@@ -182,6 +182,10 @@ int& ref{c};
 EXPECT_TRUE( a == 10 && b == 20 && c == 30);     
 ```
 
+# (C++14~) 람다 캡쳐 초기화
+
+(작성중)
+
 # 클로저 개체 대입
 
 클로저 개체는 `auto`와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 `function`을 이용하여 변수에 대입할 수 있습니다.([function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-function/) 참고)
@@ -325,3 +329,7 @@ public:
     Run Lambda
     T::Destructor
     ```
+# (C++14~) 일반화된 람다 함수
+(작성중)
+
+

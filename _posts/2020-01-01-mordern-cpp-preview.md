@@ -19,6 +19,8 @@ sidebar:
 
 1. C++11
     우측값 참조, 이동 생성자, 이동 대입 연산자, `auto`, `decltype`, 중괄호 초기화, 멤버 선언부 초기화, 무제한 공용체, `constexpr`, `static_assert`, 람다 표현식, 가변 템플릿, `nullptr`, `default`, `delete`, `override`, `final`, `noexcept`, 범위 기반 `for`, 범위 있는 열거형, 유니코드 문자열, 사용자 정의 리터럴, 명시적 형변환, 생성자 위임, 생성자 상속 등 런타임 성능 개선과 컴파일 타임 프로그래밍, 코딩 계약 강화, 코딩 편의성을 위해 많은 부분이 추가되었습니다.
+2. C++14
+    `constexpr` 함수 제약이 완화되고, 비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화를 허용하고, 변수 템플릿, `decltype(auto)`, `리턴 타입 추론`, `[[deprecated]]` 속성, 람다 캡쳐 초기화, 일반화된 람다, 이진 리터럴, 숫자 구분자가 추가되었습니다. 
 
 # 런타임 성능 개선
 
@@ -33,11 +35,12 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) (C++11~)|`constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.|
+|[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) (C++11~)|`constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.<br/><br/>**(C++14~)**<br/>제약이 완화되어 지역 변수, 2개 이상의 리턴문, `if()`, `for()`, `while()` 등을 사용할 수 있습니다.([constexpr 함수 스펙 변화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98-%EC%8A%A4%ED%8E%99-%EB%B3%80%ED%99%94) 참고)|
 |[static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/) (C++11~)|`static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.| 
 |[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) (C++11~)|`type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.|
 |[noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) (C++11~)| `noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.|
 |[가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) (C++11~)|가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.|
+|[변수 템플릿](??)|(작성중)|
 
 # 코딩 계약 강화
 
@@ -51,19 +54,20 @@ sidebar:
 |[override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override) (C++11~)|`override`가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.|
 |[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) (C++11~)| `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있고, 강제적으로 상속을 제한할 수 있습니다.|
 |[alignas, alignof](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/) (C++11~)|`alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.|
-|[attribute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/) (C++11~)|`attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.|
+|[attribute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/) (C++11~)|`attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.<br/><br/>**(C++14)**<br/>[[deprecated]]가 추가되었습니다.([표준 attribute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#%ED%91%9C%EC%A4%80-attribute) 참고)|
 
 # 코딩 편의성
 
 |항목|내용|
 |--|--|
 |[auto<br/>decltype<br/>후행 리턴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/) (C++11~)|값으로부터 타입을 추론하는 `auto` 타입과 `decltype()`이 추가되어 코딩이 간편해 졌습니다.<br/>함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.|
-|리턴 타입 추론|(작성중)|
+|[decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto) (C++14~)|`decltype()`의 `()`내 표현식이 복잡할 경우 좀더 간결하게 작성할 수 있습니다.|
+|[리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0) (C++14~)|후행 리턴 대신 `auto`나 `decltype(auto)` 를 사용할 수 있습니다.|
 |[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/) (C++11~)|`{}` 초기화가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.<br/>`{}` 복사 초기화로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.<br/>`{}` 초기화시 인자의 암시적 형변환을 일부 차단하여, 코딩 계약이 개선되었습니다.<br/>`initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
-|[멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) (C++11~)|비정적 멤버 변수도 멤버 선언부에서 초기화를 할 수 있어 초기화 작성이 쉬워졌습니다.|
+|[멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) (C++11~)|비정적 멤버 변수도 멤버 선언부에서 초기화를 할 수 있어 초기화 작성이 쉬워졌습니다.<br/><br/>**(C++14~)**<br/>[비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화](??)를 허용합니다.|
 |[범위 기반 for](https://tango1202.github.io/mordern-cpp/mordern-cpp-range-for/) (C++11~)|범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.|
 |[범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/) (C++11~)|이름 범위를 한정하는 범위 있는 열거형이 추가되어 이름 충돌 회피가 쉬워졌습니다.|
-|[람다 표현식, 클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) (C++11~)|람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.| 
+|[람다 표현식, 클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) (C++11~)|람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.<br/><br/>**(C++14~)**<br/>[람다 캡쳐 초기화]()로 임의의 변수를 초기화 할 수 있습니다.<br/>`auto`를 인자로 받는 [일반화된 람다 함수](??)가 추가되었습니다.| 
 |[인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-namespace/) (C++11~)|`inline namespace` 가 추가되어 API 버전 구성이 편리해 졌습니다.|
 |[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/) (C++11~)|`using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.|
 |[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) (C++11~)|유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `u8string`, `u16string`, `u32string` 이 추가되었습니다.<br/>유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.<br/>`R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.|
@@ -72,6 +76,8 @@ sidebar:
 |[sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90) (C++11~)|`sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.|
 |[멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/) (C++11~)|`sizeof()`가 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있도록 개선되었습니다.|
 |[템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-right-angle-bracket/) (C++11~)|파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.|
+|[이진 리터럴](??) (C++14~)|(작성중)|
+|[숫자 구분자](??) (C++14~)|가독성을 위해 `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.|
 
 # 타입
 
