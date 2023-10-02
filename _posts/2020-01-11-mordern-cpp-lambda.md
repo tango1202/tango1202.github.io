@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++] (C++11~) 람다 표현식, 클로져"
+title: "#11. [모던 C++] (C++11~) 람다 표현식, 클로저"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -15,7 +15,7 @@ sidebar:
 
 C++11 부터는 람다 표현식을 추가하여 함수 지향 프로그래밍이 좀 더 간편해 졌습니다.
 
-람다 표현식은 `prvalue` 타입([값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 참고)의 1회용 익명 함수를 만들며, 이를 **클로져(Closure)** 라고 합니다. 
+람다 표현식은 `prvalue` 타입([값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 참고)의 1회용 익명 함수를 만들며, 이를 **클로저(Closure)** 라고 합니다. 
 
 람다 표현식은 STL의 [알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)과 잘 호환될 뿐만 아니라, 캡쳐 기능등의 활용도도 높아서 복잡한 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 만들기 보다는 람다 표현식을 사용하는게 훨씬 좋습니다.
 
@@ -47,7 +47,7 @@ int f(int a, int b) {
 
 일반 함수를 호출하려면 `f(10, 20)` 와 같이 호출하는데요, 람다 표현식으로 작성된 람다 함수를 호출하려면 다음과 같이 합니다.
 
-1. 람다 표현식으로부터 생성된 개체(클로져)를 변수에 저장한뒤 호출할 수 있고,
+1. 람다 표현식으로부터 생성된 개체(클로저)를 변수에 저장한뒤 호출할 수 있고,
 
     ```cpp
     auto f{[](int a, int b) -> int {return a + b;}};
@@ -55,10 +55,10 @@ int f(int a, int b) {
     EXPECT_TRUE(val == 30);
     ```
 
-2. 클로져 개체에 `()`을 붙여 바로 호출할 수 있습니다.
+2. 클로저 개체에 `()`을 붙여 바로 호출할 수 있습니다.
 
     ```cpp
-    int val{[](int a, int b) -> int {return a + b;}(10, 20)}; // 클로져 개체에 (10, 20)을 붙여 호출합니다.
+    int val{[](int a, int b) -> int {return a + b;}(10, 20)}; // 클로저 개체에 (10, 20)을 붙여 호출합니다.
     EXPECT_TRUE(val == 30);
     ```
 
@@ -91,11 +91,11 @@ EXPECT_TRUE(sum == 1 + 2 + 3);
 
 **캡쳐 시기**
 
-람다 표현식은 클로져 개체가 생성될 때 캡쳐를 합니다. 따라서, 값으로 개체를 캡쳐할 때 클로져 개체를 생성한 시점과 호출한 시점이 다르면, 값이 다를 수 있습니다.
+람다 표현식은 클로저 개체가 생성될 때 캡쳐를 합니다. 따라서, 값으로 개체를 캡쳐할 때 클로저 개체를 생성한 시점과 호출한 시점이 다르면, 값이 다를 수 있습니다.
 
 ```cpp
 int val{1};
-auto f{[=]() -> int {return val;}}; // 클로져 개체가 생성되는 시점에 val을 캡쳐합니다.
+auto f{[=]() -> int {return val;}}; // 클로저 개체가 생성되는 시점에 val을 캡쳐합니다.
 val = 2;
 
 EXPECT_TRUE(f() == 1); // 캡쳐할 때의 값을 사용하므로 1입니다.
@@ -182,9 +182,9 @@ int& ref{c};
 EXPECT_TRUE( a == 10 && b == 20 && c == 30);     
 ```
 
-# 클로져 개체 대입
+# 클로저 개체 대입
 
-클로져 개체는 `auto`와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 `function`을 이용하여 변수에 대입할 수 있습니다.([function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-function/) 참고)
+클로저 개체는 `auto`와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 `function`을 이용하여 변수에 대입할 수 있습니다.([function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-function/) 참고)
 
 1. `auto`(단, `auto`이기 때문에 함수의 인자로 사용할 수 없습니다.)
     
@@ -210,19 +210,19 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
     }
     int c{30};
     f = [=](int a, int b) -> int {return a + b + c;}; // 캡쳐를 사용하는 람다 표현식도 사용할 수 있습니다.      
-    EXPECT_TRUE(g(f, 10, 20) == 60); // g() 함수에 클로져 개체를 저장한 f를 전달합니다. 
+    EXPECT_TRUE(g(f, 10, 20) == 60); // g() 함수에 클로저 개체를 저장한 f를 전달합니다. 
     ```
 
-# 클로져 개체 복사 부하
+# 클로저 개체 복사 부하
 
 람다 표현식에서 값 캡쳐를 사용하면, 
 
 1. 캡쳐시에 복사 부하가 있으며, 
-2. 클로져 개체간 복사시에도 복사 부하가 있으므로,
+2. 클로저 개체간 복사시에도 복사 부하가 있으므로,
 
 참조 캡쳐를 이용하는게 좋습니다.
 
-다음 `T`클래스는 클로져의 캡쳐 방식에 따라 생성자와 소멸자 호출을 탐지하기 위한 테스트 클래스입니다.
+다음 `T`클래스는 클로저의 캡쳐 방식에 따라 생성자와 소멸자 호출을 탐지하기 위한 테스트 클래스입니다.
 
 ```cpp
 class T {
