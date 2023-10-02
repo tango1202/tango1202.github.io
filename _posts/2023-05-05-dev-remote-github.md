@@ -81,21 +81,26 @@ Github는 Git으로 소스코드를 관리하는 원격 저장소 서비스 입�
 
 # 원격지 레포지토리에서 가져오기(pull)
 
-1. 일반적으로 원격지에 `push`하기 전에 원격지의 내용을 `pull`하는 것이 좋습니다.(Working Tree에 작업중인 것이 있다면 미리 commit하는 것이 좋습니다.) `--allow-unrelated-histories`은 서로 관련 기록이 없는 이질적인 프로젝트를 병합할때 사용합니다. 최초에만 1회 사용합니다.
-    
+1. 원격지와 연동하기 전에 원격지의 브랜치명과 다르다면 다음과 같이 원격지 브랜치명과 로컬 브랜치 명을 먼저 맞춰 주는게 좋습니다. 다음 예는 로컬 브랜치 명(main) 을 원격지 브랜치명(master) 로 변경하는 예입니다.
+
+    ```ini
+    git branch -m main master
+    ```
+
+2. 일반적으로 원격지에 `push`하기 전에 원격지의 내용을 `pull`하는 것이 좋습니다.(Working Tree에 작업중인 것이 있다면 미리 commit하는 것이 좋습니다.) `--allow-unrelated-histories`은 서로 관련 기록이 없는 이질적인 프로젝트를 병합할때 사용합니다. 최초에만 1회 사용합니다.   
+
     ```ini
     git pull origin master --allow-unrelated-histories
     ```
-
-2. 상기 `pull` 명령을 실행하면 다음과 같이 Github 로그인을 요청합니다.
+3. 상기 `pull` 명령을 실행하면 다음과 같이 Github 로그인을 요청합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d998f293-3982-4920-a209-02735052ae07)
 
-3. `Sign in with your browser` 를 선택하고 로그인을 진행합니다.(세션이 끊어지기 전까지 1회만 진행하면 됩니다.)
+4. `Sign in with your browser` 를 선택하고 로그인을 진행합니다.(세션이 끊어지기 전까지 1회만 진행하면 됩니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bdf1a08e-837e-4f44-8090-65c3804f459b)
 
-4. `pull`이 완료되면 다음과 같이 메시지가 나타납니다. 가장 하단에 보면 Github에서 작성한 `README.md`가 생성되었다는 메시지가 있습니다.
+5. `pull`이 완료되면 다음과 같이 메시지가 나타납니다. 가장 하단에 보면 Github에서 작성한 `README.md`가 생성되었다는 메시지가 있습니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d984b81d-7283-40c8-a699-bb18f4806942)
 
@@ -109,6 +114,12 @@ Github는 Git으로 소스코드를 관리하는 원격 저장소 서비스 입�
   
     ```ini
     git push origin master
+    ```
+
+    혹은 다음과 같이 `--set-upstream`옵션을 쓸 수 있습니다.(`--set-upstream` 을 로컬에서 원격저장소를 tracking 하기 때문에, 이후로는 `git push`만 하면 됩니다.)
+
+    ```ini
+    git push --set-upstream origin master
     ```
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5f93f824-817a-4f93-8c1c-f46c70ca2528)

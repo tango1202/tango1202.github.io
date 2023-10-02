@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++ STL] (C++11~) 컴파일 타임 타입 특성(type_traits)"
+title: "#12. [모던 C++ STL] (C++11~) 컴파일 타임 타입 특성(type_traits)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

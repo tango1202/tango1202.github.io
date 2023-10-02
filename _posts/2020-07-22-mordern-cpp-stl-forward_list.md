@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [모던 C++ STL] (C++11~) 단방향 리스트(forward_list)"
+title: "#22. [모던 C++ STL] (C++11~) 단방향 리스트(forward_list)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
