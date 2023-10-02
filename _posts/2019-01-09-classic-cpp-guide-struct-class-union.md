@@ -401,6 +401,8 @@ EXPECT_TRUE(u.s1.x == 20);
 EXPECT_TRUE(u.s2.x == 20);
 ```
 
+>*C++11 부터는 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀려 메모리 절약을 위한 코딩 자유도가 높아졌습니다.([무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/) 참고)*
+
 # 비트 필드
 
 구조체나 클래스 멤버 변수를 비트 단위로 쪼개어 사용할 수 있습니다. 

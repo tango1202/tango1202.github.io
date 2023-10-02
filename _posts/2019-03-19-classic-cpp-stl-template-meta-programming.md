@@ -53,6 +53,9 @@ unsigned int val = Factorial<5>::Val;
 EXPECT_TRUE(val == 1 * 2 * 3 * 4 * 5);
 ```
 
+> *C++11 부터는 `constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.([constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr) 참고) [constexpr 함수](
+https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 에 좀더 간결한 `Factorial()` 함수를 예시하였습니다.* 
+
 # CloneTraits 구현
 
 상속관계에 있는 개체들을 관리할때 부모 개체의 포인터를 이용해서 관리하는데요, 관리중 이를 복제하려면 자식 개체를 복제해야 하므로 `Clone()`함수를 이용합니다.([가상 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)

@@ -287,7 +287,6 @@ U u3 = static_cast<U>(t); // (O) static_cast 변환
 
 형변환 연산자를 정의하지 않고, 형을 변환시키는 변환 함수를 작성하는게 충분히 사용하기 좋고, 사용 위치를 검색하기 좋고, 분석하기 좋습니다.
 
-
 타입끼리 변환이 필요하다면 변환 함수를 사용하세요.
 
 ```cpp
@@ -311,6 +310,8 @@ U u = t.ToU();
 EXPECT_TRUE(i == 10);
 EXPECT_TRUE(c == 1);
 ```
+
+> *C++11 부터는 `explicit` 형변환 연산자를 사용하면, 명시적으로만 형변환 할 수 있어, 변환 함수 대신 형변환 연산자를 사용하는게 좋습니다.([명시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/) 참고)*
 
 # 안전하지 않은 bool 형변환 연산자 정의
 

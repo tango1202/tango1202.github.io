@@ -43,6 +43,8 @@ long double n = 3.14L; // l 또는 L
 long double o = 3.14e10L;
 ```
 
+> *C++11 부터는 `long long`용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` 리터럴이 추가되었습니다.([long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) 참고)*
+
 # 문자 상수
 
 ```cpp
@@ -54,7 +56,7 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 문자열 상수는 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 비슷한 문장을 쓸데없이 여러개 작성하지 마세요.(동일한 것을 여러번 사용하는 경우 컴파일러가 1개로 취합해 주긴 합니다만([데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고), 코드 중복이니 1개만 정의해서 사용하세요.) 
 
-**`const`형 포인터**
+**const형 포인터**
 
 수정할 필요가 없는 문자열 상수는 `const`형 포인터를 사용합니다.
 
@@ -62,6 +64,10 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 const char* str1 = "abc"; // 문자열 상수
 const wchar_t* str2 = L"abc"; // 와이드 문자열 상수
 ```
+
+> *C++11 부터는 유니코드를 지원하는 `u""`, `U""` 리터럴이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)*
+
+> *C++20 부터는 유니코드를 지원하는 `u8""` 리터럴이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)*
 
 **배열**
 
@@ -136,4 +142,5 @@ EXPECT_TRUE(str1 == str2 && str2 == str3); // (O) 동일한 문자열 상수는 
 |`\unnnn`|nnnn : 4자리의 유니코드 |![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ca05ccd7-8e34-4d7c-bb21-fb37441dfaca)|
 |`\Unnnnnnnn`|nnnnnnnn : 8자리의 유니코드 |![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e2a84daa-45ef-4464-a488-670f18365511)|
 
+> *C++11 부터는 `R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)*
 

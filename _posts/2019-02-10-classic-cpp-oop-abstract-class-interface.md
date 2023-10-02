@@ -11,6 +11,9 @@ sidebar:
 > * 기능 스펙을 정의하여 **코딩 계약**을 맺으려면 인터페이스로 정의하라.
 > * 기능 스펙과 어느 정도의 공통 기능을 제공하려면 추상 클래스로 정의하라.
 
+> **모던 C++**
+> * `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.([default와 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 참고)
+
 # 추상 클래스
 
 인스턴스화 할 수 없는 부모 클래스를 추상 클래스라고 합니다. 추상 클래스는 구체 구현한 자식 클래스들의 공통적인 일반 개념(기능 스펙)을 정의하는데 사용합니다.
@@ -68,6 +71,8 @@ for(int i = 0; i < 2; ++i) {
     delete shapes[i]; // 다형 소멸 합니다. Shape*로 Rectangle, Ellipse을 소멸합니다.
 } 
 ```
+> *C++11 부터는 `default`와 `delete`가 추가되어 암시적으로 생성되는 복사 생성자와 대입 연산자의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.([default와 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 참고)*
+
 **마땅한 순가상 함수가 없는 추상 클래스**
 
 드문 경우지만, 순가상 함수로 정의할게 마땅히 없는데 추상 클래스로 만들어야 한다면, [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 이용하면 됩니다.
@@ -190,6 +195,8 @@ for(int i = 0; i < 2; ++i) {
     delete shapes[i]; // 다형 소멸 합니다. Shape*로 Rectangle, Ellipse을 소멸합니다.
 } 
 ```
+
+> *C++11 부터는 `default`와 `delete`가 추가되어 암시적으로 생성되는 복사 생성자와 대입 연산자의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.([default와 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 참고)*
 
 `Draw()` 함수는 `IDrawable`의 함수 이므로 다음과 같이 `IDrawble` 인터페이스로 실행할 수 있습니다.
 

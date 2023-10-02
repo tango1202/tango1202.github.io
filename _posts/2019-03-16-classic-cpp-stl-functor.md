@@ -55,6 +55,8 @@ my_for_each(v.begin(), v.end(), Functor());
 EXPECT_TRUE(v[0] == 20 && v[1] == 20 && v[2] == 20); 
 ```
 
+> *C++11부터는 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.([람다 표현식, 클로져](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda) 참고)*
+
 # 함수자에서 상태 활용
 
 함수자는 개체이므로 상태를 멤버 변수로 저장하여 활용할 수 있습니다.
@@ -128,6 +130,9 @@ Adder adder(init);
 std::for_each(v.begin(), v.end(), adder);
 EXPECT_TRUE(v[0] == 11 && v[1] == 12 && v[2] == 13);
 ```
+> *C++11 부터 함수자 타입 특성 클래스(`unary_function`, `binery_function` 등)은 deprecate 되었습니다.([function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function) 참고)*
+
+> *C++11 부터는 `function`을 이용하여 `()`로 호출 가능한 함수자를 사용합니다.([function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/) 참고)*
 
 # STL 기본 함수자
 
@@ -219,6 +224,10 @@ std::vector<int>::iterator itr = std::find_if(
 EXPECT_TRUE(*itr == 4);  
 ```
 
+> *C++11 부터 바인더(`bind1st()`, `bind2nd()` 등)은 deprecate 되었습니다.([function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function) 참고)*
+
+> *C++11 부터는 `bind()`와 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.([bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind) 참고)*
+
 # 아답터와 부정자
 
 알고리즘에서는 함수 호출시 `f(컨테이너 요소)`의 형태로 구현되어 있습니다. 따라서 요소의 멤버 함수를 호출 할 수 없는데요, 하기와 같은 아답터를 이용하면 됩니다.
@@ -258,7 +267,8 @@ public:
 std::vector<A> v(2);
 std::for_each(v.begin(), v.end(), std::mem_fun_ref(&A::Func));
 ```
+> *C++11 부터 어뎁터와 부정자(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)은 deprecate 되었습니다.([function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function) 참고)*
 
-
+> *C++11 부터는 `mem_fn()`을 이용하여 멤버 함수를 호출합니다.([mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn) 참고)*
 
 

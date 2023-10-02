@@ -58,6 +58,10 @@ T obj; // (O) 기본 생성자 호출
 ```cpp
 T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 선언임
 ```
+
+> *C++11 부터는 `{}` 초기화가 추가되어 `T obj{};`와 같이 기본 생성자를 호출할 수 있습니다.([중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)*
+
+
 # 값 초기화
 
 값 초기화는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 특정한 값으로 생성할 때 사용합니다. 
@@ -66,7 +70,7 @@ T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 �
 T obj2(1); // (O) int를 전달받는 생성자 호출
 ```
 
-하기는 `T(2);`로 개체 생성 후 `obj`에 대입하는 것 같은 모양입니다만, 사실 `obj`의 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다. 모양이 오해를 불러 일으키니 사용 안하시는게 좋습니다.(그냥 `T obj3(2);`로 사용하세요.)
+하기는 `T(2);`로 개체 생성 후 `obj`에 대입하는 것 같은 모양입니다만, 사실 컴파일러 최적화에 따라 `obj`의 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 바로 호출합니다. 모양이 오해를 불러 일으키니 사용 안하시는게 좋습니다.(그냥 `T obj3(2);`로 사용하세요.)
 
 ```cpp
 // int를 전달받는 생성자 호출.

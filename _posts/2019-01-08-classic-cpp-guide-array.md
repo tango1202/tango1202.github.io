@@ -60,7 +60,7 @@ EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 
 # 배열과 vector
 
-타입이 같은 여러 데이터 집합은 배열 보다는 표준 템플릿 라이브러리의 [`vector`](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 사용하는 편이 좋습니다. 동적 요소 할당을 지원하며, 여전히 엑세스는 빠릅니다.
+타입이 같은 여러 데이터 집합은 배열 보다는 표준 템플릿 라이브러리의 [`vector`](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 사용하는 편이 좋습니다. 동적 요소 할당을 지원하며, 여전히 엑세스는 빠릅니다.(단 동적 할당을 사용하기 때문에, 메모리 할당 속도는 느립니다.)
 
 `vector`와 배열간 코딩 호환성도 나쁘지 않습니다. 정의와 초기화만 다르고, 요소 접근하는 방법이나 요소 주소를 얻는 것은 동일합니다.
 
@@ -70,6 +70,8 @@ EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 |초기화|`int a[5] = {};`|X|
 |요소 접근|`a[0]`|`v[0]`|
 |요소 주소|`&a[0]`|`&v[0]`|
+
+> *C++11 부터는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너인 `array`를 제공합니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.([array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/) 참고)*
 
 # typedef로 타입 재정의
 

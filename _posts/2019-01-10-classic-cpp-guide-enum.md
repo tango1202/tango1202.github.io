@@ -47,6 +47,8 @@ Week::Val val = Week::Sunday; // 범위 확인 연산자와 클래스명 사용
 EXPECT_TRUE(val == Week::Sunday);
 ```
 
+> *C++11 부터는 이름 범위를 한정하는 범위 있는 열거형이 추가되어 이름 충돌 회피가 쉬워졌습니다.([범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum) 참고) 클래스 내에 열거형 상수를 정의하지 마시고 범위 있는 열거형을 사용하세요.*
+
 # 열거형 값지정
 
 열거형의 각 항목은 이전 항목 + 1 의 값입니다. 디폴트는 0 부터 시작하며, 임의 정수값을 지정할 수 있습니다.

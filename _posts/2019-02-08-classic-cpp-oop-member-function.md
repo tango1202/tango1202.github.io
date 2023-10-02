@@ -158,6 +158,7 @@ EXPECT_TRUE(static_cast<Base&>(d).f() == 10); // (△) 비권장. 가려진 Base
 EXPECT_TRUE(b->v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 EXPECT_TRUE(d.v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 ```
+> *C++11 부터는 `override`가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.([override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override) 참고) 또한, `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.([final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) 참고)*
 
 **리턴값 변경**
  

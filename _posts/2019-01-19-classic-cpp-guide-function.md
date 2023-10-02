@@ -209,7 +209,7 @@ T t2(t1.f()); // T t2 = t1.f(); 와 동일
 
 상기에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 3회, `t2`를 생성하면서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 전달받는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
 
-GCC에서는 하기 2개만 실행됩니다.(컴파일러마다 다를 수 있습니다.)
+GCC에서는 하기 2개만 실행됩니다.(컴파일러 최적화 방식에 따라 다를 수 있습니다.)
 
 ```
 RVO -> T::T()

@@ -196,6 +196,8 @@ std::vector<A<int>> a; // (X) 컴파일 오류. >> 는 비트 Right Shift 연산
 std::vector<A<int> > b; // (O) 공백을 추가해야 합니다.
 ```
 
+> *C++11 부터는 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.([템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-right-angle-bracket/) 참고)*
+
 **템플릿 명시**
 
 템플릿 정의시 개체의 멤버 함수에 접근할 때 `template` 을 명시하는 경우가 있습니다.

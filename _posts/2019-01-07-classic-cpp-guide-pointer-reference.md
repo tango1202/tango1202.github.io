@@ -60,6 +60,8 @@ EXPECT_TRUE(r == 30 && x == 30);
 #define NULL 0
 ```
 
+> *C++11 부터는 널 포인터를 위한 `nullptr` 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.([nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 참고)*
+
 # 안정적인 참조자
 
 포인터는 초기화를 하지 않아 쓰레기 값을 가지고 있거나, 널값을 가질 수 있습니다. 그래서 항상 포인터가 유효한 값인지 검사해야 합니다.

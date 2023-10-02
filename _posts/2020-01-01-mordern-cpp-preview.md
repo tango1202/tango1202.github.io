@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-모던 C++ STL은,
+모던 C++ 은,
 
 1. 이동 연산을 지원하여 런타임 성능을 향상시키고, 
 2. 컴파일 타임 프로그래밍이 가능하게 하여, 런타임에 했던 작업을 최대한 컴파일 타임으로 옮겨 런타임 성능을 향상시키고,
@@ -49,7 +49,7 @@ sidebar:
 |[명시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/) (C++11~)|`explicit` 형변환 연산자를 추가하여 명시적으로 형변환 할 수 있습니다.|
 |[default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) (C++11~)| `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.|
 |[override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override) (C++11~)|`override`가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.|
-|[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) (C++11~)| `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있고, 상속 제한을 좀더 단단하게 할 수 있습니다.|
+|[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) (C++11~)| `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있고, 강제적으로 상속을 제한할 수 있습니다.|
 |[alignas, alignof](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/) (C++11~)|`alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.|
 |[attribute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/) (C++11~)|`attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.|
 
@@ -60,7 +60,7 @@ sidebar:
 |[auto<br/>decltype<br/>후행 리턴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/) (C++11~)|값으로부터 타입을 추론하는 `auto` 타입과 `decltype()`이 추가되어 코딩이 간편해 졌습니다.<br/>함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.|
 |리턴 타입 추론|(작성중)|
 |[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/) (C++11~)|`{}` 초기화가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.<br/>`{}` 복사 초기화로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.<br/>`{}` 초기화시 인자의 암시적 형변환을 일부 차단하여, 코딩 계약이 개선되었습니다.<br/>`initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
-|[멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) (C++11~)|멤버 선언부에서 초기화를 할 수 있어 초기화 작성이 쉬워졌습니다.|
+|[멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) (C++11~)|비정적 멤버 변수도 멤버 선언부에서 초기화를 할 수 있어 초기화 작성이 쉬워졌습니다.|
 |[범위 기반 for](https://tango1202.github.io/mordern-cpp/mordern-cpp-range-for/) (C++11~)|범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.|
 |[범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/) (C++11~)|이름 범위를 한정하는 범위 있는 열거형이 추가되어 이름 충돌 회피가 쉬워졌습니다.|
 |[람다 표현식, 클로져](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) (C++11~)|람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.| 
@@ -70,7 +70,7 @@ sidebar:
 |[사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/) (C++11~)|`int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.|
 |[생성자 위임, 생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/) (C++11~)|생성자 위임이 추가되어 생성자의 초기화 리스트 코드가 좀더 간결해 졌습니다.<br/>생성자 상속이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.|
 |[sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90) (C++11~)|`sizeof...()`이 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.|
-|[멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/) (C++11~)|`sizeof()`가 개체를 인스턴스화 하지 않더라도 멤버의 크기를 구할 수 있도록 개선되었습니다.|
+|[멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/) (C++11~)|`sizeof()`가 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있도록 개선되었습니다.|
 |[템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-right-angle-bracket/) (C++11~)|파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.|
 
 # 타입

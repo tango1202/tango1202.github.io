@@ -39,6 +39,11 @@ C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은
 
 그외 `signed`, `unsigned`, `short`, `long` 와 결합하여 다양한 조합이 나올 수 있습니다.([https://en.cppreference.com/w/cpp/language/types](https://en.cppreference.com/w/cpp/language/types) 참고)
 
+> *C++11 부터는 최소 8byte 크기를 보장하는 `long long` 타입이 추가되었고,([long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) 참고) 유니코드를 지원하는 `char16_t`, `char32_t` 타입이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)*
+
+> *C++20 부터는 `char8_t` 타입이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)*
+
+
 # 타입 별칭
 
 `typedef` 로 타입의 별칭을 만들 수 있습니다.(절대 `define`쓰지 마세요!!! [`#define` 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 참고)
@@ -76,6 +81,8 @@ struct ClassT {
 }; 
 ClassT<int>::ConstType constVal = 20;
 ```
+
+> *C++11 부터는 `using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.([using을 이용한 타입 별칭, 템플릿 클래스 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/) 참고)*
 
 # 타입 크기
 

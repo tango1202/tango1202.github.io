@@ -12,7 +12,7 @@ sidebar:
 > * `using` 사용시 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 커지지 않도록 주의하라.(전역 공간에 `using namespace`를 사용하면 망한다.)
 
 > **모던 C++**
-> * `inline namespace` 가 추가되어 API 버전 구성이 편리해 졌습니다.([인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-namespace/) 참고)|
+> * `inline namespace` 가 추가되어 API 버전 구성이 편리해 졌습니다.([인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-namespace/) 참고)
 
 # 개요
 
@@ -138,6 +138,24 @@ namespace MyModule3 {
 namespace {
    void f(); // 정의된 파일에서만 사용가능 함
 }
+```
+
+# 중첩 네임스페이스
+
+네임스페이스를 구조적으로 그룹핑 하기 위해 중첩할 수 있습니다.
+
+```cpp
+namespace MyLib {
+     namespace Parser {
+        void Tokenizer() {}
+    }
+    namespace File {
+        void Load() {};
+        void Save() {};
+    }
+}
+MyLib::Parser::Tokenizer();
+MyLib::File::Load();
 ```
 
 # 별칭과 합성

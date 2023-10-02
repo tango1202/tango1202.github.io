@@ -177,6 +177,8 @@ Add(1, 2); // Add<int>()가 정의 되어 포함됩니다.
 Add(10, 20); // Add<int>가 재정의 되어 포함됩니다.
 ```
 
+> *C++ 11 부터는 `extern` 으로 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.([extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/) 참고)*
+
 # export template
 
 템플릿 인스턴스화시 템플릿 정의가 필요하므로, 분할 컴파일이 되지 않으며, 외부에 모듈을 제공할 때 템플릿 정의 코드를 함께 제공해야 하는 문제가 있었습니다.([분할 컴파일을 위한 선언과 정의 분리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EB%B6%84%ED%95%A0-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC) 참고) 
@@ -216,3 +218,5 @@ MyAdd(10, 20);
 하면 되도록요.
 
 하지만, 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견도 일치하지 않아 C++11 부터 완전 remove 되었습니다. 
+
+> *C++11 부터는 `export template` 은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견되 일하지 않아 remove 되었습니다.*

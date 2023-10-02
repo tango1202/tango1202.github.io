@@ -13,7 +13,7 @@ sidebar:
 > * 매크로 함수를 쓰지 말고 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하라.
 
 > **모던 C++**
-> * `attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.([static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/) 참고)
+> * `attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.([attribute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/) 참고)
 > * `alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.([alignas(), alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/) 참고)
 > `align()`은 메모리 정렬된 포인터를 구합니다.([align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-std-memory/#align) 참고)
 > * 가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.([가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/) 참고)
@@ -233,6 +233,8 @@ std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl
 
 비표준 컴파일러 확장 기능입니다. 컴파일러마다 지원 여부는 다를 수 있으니 컴파일러 설명서를 참고해야 합니다.
 
+> *C++11 부터는 `attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.([attribute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/) 참고)*
+
 **`#pragma once`**
 
 헤더 파일을 1회만 포함시킵니다.([인클루드 가드](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-include-guard/) 참고)
@@ -270,6 +272,8 @@ EXPECT_TRUE(sizeof(T) == 8);
     EXPECT_TRUE(sizeof(T) == 5); // 1 + 4 = 5byte
 #pragma pack(pop) // 메모리 정렬 설정 원복 
 ```
+
+> *C++11 부터는 `alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.([alignas(), alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/) 참고)*
 
 **`#pragma warning`**
 
