@@ -31,7 +31,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`cmp_euqal()` (C++20~)<br/>`cmp_not_equal()` (C++20~)<br/>`cmp_less()` (C++20~)<br/>`cmp_greater()` (C++20~)<br/>`cmp_less_equal()` (C++20~)<br/>`cmp_greater_equal()` (C++20~)|(작성중)|
+|`cmp_equal()` (C++20~)<br/>`cmp_not_equal()` (C++20~)<br/>`cmp_less()` (C++20~)<br/>`cmp_greater()` (C++20~)<br/>`cmp_less_equal()` (C++20~)<br/>`cmp_greater_equal()` (C++20~)|(작성중)|
 |`in_range()` (C++20~)|(작성중)|
 
 # 대소 비교
@@ -79,7 +79,7 @@ sidebar:
 |`setjmp()`|(작성중)|
 |`longjmp()`|(작성중)|
 |`jump_buf()`|(작성중)|
-|`unrechable()` (C++23~)|도달할 수 없는 실행 지점을 마킹합니다.|
+|`unreachable()` (C++23~)|도달할 수 없는 실행 지점을 마킹합니다.|
 
 # 소스 코드
 

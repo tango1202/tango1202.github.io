@@ -33,17 +33,22 @@ sidebar:
 
 # 컨셉 라이브러리
 
+(C++20~) (작성중)
+
 # 메타 프로그래밍 라이브러리
 
 |항목|내용|
 |--|--|
 |[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) (C++11~)|`type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.|
 |[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) (C++11~)|`ratio` 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.|
+|integer_sequence (C++14~)|(작성중)|
 
 # 메모리 관리 라이브러리
 
 |항목|내용|
 |--|--|
+|[C스타일 메모리 관리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)|`malloc()`, `free()`등 C스타일 메모리 할당/해제 함수를 제공합니다.|
+|[저수준 메모리 관리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%A0%80%EC%88%98%EC%A4%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)|`operator new`, `operator delete`, `set_new_handler()`등 C++ 스타일의 메모리 할당/해제시 제어하는 방법을 제공합니다.|
 |[할당자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%ED%95%A0%EB%8B%B9%EC%9E%90)|[allocator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 등 STL에서 개체 할당에 사용합니다.|
 |[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) (~C++11)|`auto_ptr`은 `delete[]` 미지원, `lvalue` 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.<br/><br/>**(C++11~)**<br/>[unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/) 을 사용합니다.|
 |[unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/) (C++11~)|`unique_ptr`은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.<br/>[default_delete](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#default_delete)를 스마트 포인터의 `deleter`로 사용할 수 있습니다.|
@@ -148,6 +153,7 @@ sidebar:
 |[u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/) (C++11~)|UTF-16을 지원합니다.|
 |[u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/) (C++11~)|UTF-32를 지원합니다.|
 |[strerror()]([??](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#strerror))| `errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.|
+|basic_string_view (C++17~)|(작성중)|
 
 # 동시성 라이브러리
 
@@ -227,6 +233,7 @@ sidebar:
 |[오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8)|`<cerrono>` 에 매크로 상수로 정의되어 있습니다.<br/>자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/error/errno_macros)을 참고하기 바랍니다.|
 |[예외 캡쳐 및 저장](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%88%EC%99%B8-%EC%BA%A1%EC%B3%90-%EB%B0%8F-%EC%A0%80%EC%9E%A5) (C++11~)|(작성중)|
 |[시스템 오류](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98)(C++11~)|(작성중)|
+|[Stacktrace](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#stacktrace) (C++23~)|(작성중)|
 
 
 # C 라이브러리 지원

@@ -115,4 +115,9 @@ sidebar:
 |`error_code` (C++11~)|(작성중)| 
 |`system_error` (C++11~)|(작성중)|
 
+# Stacktrace
 
+|항목|내용|
+|--|--|
+|`stacktrace_entry` (C++23~)|(작성중)|
+|`basic_stacktrace` (C++23~)|(작성중)|
