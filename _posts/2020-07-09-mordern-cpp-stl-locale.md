@@ -17,7 +17,7 @@ sidebar:
 |`localeconv()`|(작성중)|
 |`lconv()`|(작성중)|
 
-# Locales
+# Locale
 
 |항목|내용|
 |--|--|
