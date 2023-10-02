@@ -209,6 +209,22 @@ sidebar:
 |[regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) (C++11~)|문자열의 일부가 정규 표현식과 일치하는지 검사합니다.<br/>[regex_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_iterator)는 문자열 전체에 대해 `regex_search()` 한 결과의 이터레이터입니다.|
 |[regex_replace()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_replace) (C++11~)|문자열에서 정규 표현식과 일치하는 부분을 수정합니다.|
 
+# 입출력 라이브러리
+
+|항목|내용|
+|--|--|
+|[C스타일 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)|`fopen()`, `fclose()`등 C스타일 입출력을 제공합니다.|
+|C++스타일 입출력|[파일 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%ED%8C%8C%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5), [문자열 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%9E%85%EC%B6%9C%EB%A0%A5), [배열 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EB%B0%B0%EC%97%B4-%EC%9E%85%EC%B6%9C%EB%A0%A5) 을 제공하고, [스트림 기반 타입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EA%B8%B0%EB%B0%98-%ED%83%80%EC%9E%85) 으로 재정의되어, `iosteam`, `filebuf`등을 제공합니다.|
+|[사전 정의된 표준 스트림 개체](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%82%AC%EC%A0%84-%EC%A0%95%EC%9D%98%EB%90%9C-%ED%91%9C%EC%A4%80-%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EA%B0%9C%EC%B2%B4)|`cin`으로 표준 입력을 받고, `cout`으로 표준 출력을 합니다.|
+|[입출력 제어](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)|`endl()`등 표준 입출력 제어를 제공합니다.|
+|[예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%98%88%EC%99%B8) (C++11~)|(작성중)|
+|[동기화 출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EB%8F%99%EA%B8%B0%ED%99%94-%EC%B6%9C%EB%A0%A5) (C++20~)|(작성중)|
+|[프린트 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%ED%94%84%EB%A6%B0%ED%8A%B8-%ED%95%A8%EC%88%98) (C++23~)|(작성중)|
+
+# 파일 시스템 라이브러리
+
+(C++17~) (작성중)
+
 # 현지화 라이브러리
 
 |항목|내용|
@@ -220,22 +236,6 @@ sidebar:
 |[문자 분류(Locale)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#%EB%AC%B8%EC%9E%90-%EB%B6%84%EB%A5%98locale)|(작성중)|
 |[문자 조작(Locale)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#%EB%AC%B8%EC%9E%90-%EC%A1%B0%EC%9E%91locale)|(작성중)|
 |[문자열 현지화 변환)()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%98%84%EC%A7%80%ED%99%94-%EB%B3%80%ED%99%98) (C++11~C++17)|(작성중)|
-
-# 입출력 라이브러리
-
-|항목|내용|
-|--|--|
-|[C스타일 입출력]()|`fopen()`, `fclose()`등 C스타일 입출력을 제공합니다.|
-|C++스타일 입출력|[파일 입출력](), [문자열 입출력](), [배열 입출력]() 을 제공하고, [스트림 기반 타입]() 으로 재정의되어, `iosteam`, `filebuf`등을 제공합니다.|
-|[사전 정의된 표준 스트림 개체]()|`cin`으로 표준 입력을 받고, `cout`으로 표준 출력을 합니다.|
-|[입출력 제어]()|`endl()`표준 입출력 제어를 제공합니다.|
-|[예외]() (C++11~)|(작성중)|
-|[동기화 출력]() (C++20~)|(작성중)|
-|[프린트 함수]() (C++23~)|(작성중)|
-
-# 파일 시스템 라이브러리
-
-(C++17~) (작성중)
 
 # 진단 라이브러리
 
