@@ -146,16 +146,8 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 
 # 날짜 / 시간 리터럴
 
-|항목|내용|
-|--|--|
-|`operator ""y` (C++20~)|(작성중)|
-|`operator ""d` (C++20~)|(작성중)|
-|`operator ""h` (C++14~)|(작성중)|
-|`operator ""min` (C++14~)|(작성중)|
-|`operator ""s` (C++14~)|(작성중)|
-|`operator ""ms` (C++14~)|(작성중)|
-|`operator ""us` (C++14~)|(작성중)|
-|`operator ""ns` (C++14~)|(작성중)|
+`operator ""h`등 날짜 / 시간을 위한 리터럴이 제공됩니다. ([표준 사용자 정의 리터럴]
+https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/#c14-%ED%91%9C%EC%A4%80-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4) 을 참고하세요.
 
 # 시/분/초 서식
 

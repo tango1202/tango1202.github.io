@@ -124,10 +124,13 @@ sidebar:
 
 # 범위 라이브러리
 
+(C++20~) (작성중)
+
 # 알고리즘 라이브러리
 
 |항목|내용|
 |--|--|
+|[C스타일 알고리즘 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%ED%95%A8%EC%88%98)|`qsort()`, `bsearch()`를 제공합니다.|
 |[수정되지 않는 시퀀스 작업](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)|`for_each()`, `find()`, `search()`등 시퀀스를 수정되지 않는 작업입니다.|
 |[수정되는 시퀀스 작업](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)|`copy()`, `fill()`, `transform()`, `generate()`, `remove()`, `replace()` 등 시퀀스가 수정되는 작업입니다.|
 |[분할 작업](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EB%B6%84%ED%95%A0-%EC%9E%91%EC%97%85)|`partition()` 등으로 시퀀스의 요소들을 분할하여 재배치 합니다.|
@@ -192,10 +195,11 @@ sidebar:
 |--|--|
 |[C스타일 시간 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%8B%9C%EA%B0%84-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)|`time()`, `clock()`등 C스타일 시간 함수를 제공합니다.|
 |[chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/) (C++11~)|[system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock), [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point), [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.|
-|[날짜 / 시간 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#%EB%82%A0%EC%A7%9C--%EC%8B%9C%EA%B0%84-%EB%A6%AC%ED%84%B0%EB%9F%B4) (C++14~)|(작성중)|
+|[날짜 / 시간 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#%EB%82%A0%EC%A7%9C--%EC%8B%9C%EA%B0%84-%EB%A6%AC%ED%84%B0%EB%9F%B4) (C++14~)|`operator ""h`와 같은 날짜 / 시간 리터럴이 제공됩니다.|
 |[시/분/초 서식](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#%EC%8B%9C%EB%B6%84%EC%B4%88-%EC%84%9C%EC%8B%9D) (C++20~)|(작성중)|
 |[Calender](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#calendar) (C++20~)|(작성중)|
 |[Timezone](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-zone) (C++20~)|(작성중)|
+|`parse()` (C++20~)|(작성중)|
 
 # 정규 표현식 라이브러리
 
@@ -221,6 +225,8 @@ sidebar:
 
 # 파일 시스템 라이브러리
 
+(C++17~) (작성중)
+
 # 진단 라이브러리
 
 |항목|내용|
@@ -235,20 +241,12 @@ sidebar:
 |[시스템 오류](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98)(C++11~)|(작성중)|
 |[Stacktrace](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#stacktrace) (C++23~)|(작성중)|
 
-
-# C 라이브러리 지원
-
-cfenv
-cinttype
-cstdint
-cuchar
-
 # deprecate/remove
 
 |항목|내용|
 |--|--|
-|[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)|`auto_ptr`은 `delete[]` 미지원, `lvalue` 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.|
-|[함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)<br/>[바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)<br/>[어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)|[함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)(`unary_function`, `binery_function` 등), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)(`bind1st()`, `bind2nd()` 등), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 deprecate 되었습니다.|
+|[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) (~C++11)|`auto_ptr`은 `delete[]` 미지원, `lvalue` 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.|
+|[함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits) (~C++11)<br/>[바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94) (~C++11)<br/>[어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) (~C++11)|[함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)(`unary_function`, `binery_function` 등), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)(`bind1st()`, `bind2nd()` 등), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 deprecate 되었습니다.|
 
 
 

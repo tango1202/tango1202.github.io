@@ -77,17 +77,17 @@ C++14 부터 다음의 표준 사용자 정의 리터럴이 제공됩니다.
 
 |항목|내용|
 |--|--|
-|`operator""if` (C++14~)<br/>`operator""i` (C++14~)<br/>`operator""il` (C++14~)|`complex` 리터럴|
-|`operator""h` (C++14~)|`chrono::duration`에서 시간|
-|`operator""min` (C++14~)|`chrono::duration`에서 분|
-|`operator""s` (C++14~)|`chrono::duration`에서 초|
-|`operator""ms` (C++14~)|`chrono::duration`에서 밀리초|
-|`operator""us` (C++14~)|`chrono::duration`에서 마이크로초|
-|`operator""ns` (C++14~)|`chrono::duration`에서 나노초|
-|`operator""s` (C++14~)|`basic_string` 변환|
-|`operator""sv` (C++17~)|`string_view` 변환|
-|`operator""y` (C++20~)|`chrono::year`리터럴|
-|`operator""d` (C++20~)|`chrono::day`리터럴|
+|`operator ""if` (C++14~)<br/>`operator""i` (C++14~)<br/>`operator""il` (C++14~)|`complex` 리터럴|
+|`operator ""y` (C++20~)|`chrono::year`리터럴|
+|`operator ""d` (C++20~)|`chrono::day`리터럴|
+|`operator ""h` (C++14~)|`chrono::duration`에서 시간|
+|`operator ""min` (C++14~)|`chrono::duration`에서 분|
+|`operator ""s` (C++14~)|`chrono::duration`에서 초|
+|`operator ""ms` (C++14~)|`chrono::duration`에서 밀리초|
+|`operator ""us` (C++14~)|`chrono::duration`에서 마이크로초|
+|`operator ""ns` (C++14~)|`chrono::duration`에서 나노초|
+|`operator ""s` (C++14~)|`basic_string` 변환|
+|`operator ""sv` (C++17~)|`string_view` 변환|
 
 # (C++20~) char8_t
 
