@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++14~) if constexpr"
+title: "#12. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++17~) if constexpr"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * `constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
+> * (C++14~) `constexpr` 함수 제약이 완화되어 지역 변수, 2개 이상의 리턴문, `if()`, `for()`, `while()` 등을 사용할 수 있습니다.
 
 # 개요
 
@@ -177,7 +178,7 @@ enum class MyEnum {Val = area.GetVal()}; // constexpr 함수 호출
 EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 2 * 5);      
 ```
 
-# (C++14~) if constexpr 
+# (C++17~) if constexpr 
 
 조건식에 따라 컴파일하거나 컴파일하지 않습니다.
 
@@ -237,7 +238,7 @@ delete ptr;
 즉, 다음과 같이 작성하면,
 
 ```cpp
-static T* Clone_14(const T* ptr) {
+static T* Clone_17(const T* ptr) {
     if (ptr == NULL) {
         return  NULL;
     }
@@ -251,14 +252,14 @@ static T* Clone_14(const T* ptr) {
     }
 } 
 int val;
-int* ptr{CloneTraits<int>::Clone_14(&val)}; // (O)
+int* ptr{CloneTraits<int>::Clone_17(&val)}; // (O)
 delete ptr; 
 ```
 
 다음과 동등하기 때문에 컴파일되고 잘 작동합니다. [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 소개한 `CloneTag`를 이용한 오버로딩 기법 보다 훨씬 직관적입니다.
 
 ```cpp
-static T* Clone_14(const T* ptr) {
+static T* Clone_17(const T* ptr) {
     if (ptr == NULL) {
         return  NULL;
     }
@@ -266,7 +267,7 @@ static T* Clone_14(const T* ptr) {
     return new T(*ptr);
 } 
 int val;
-int* ptr{CloneTraits<int>::Clone_14(&val)}; // (O)
+int* ptr{CloneTraits<int>::Clone_17(&val)}; // (O)
 delete ptr; 
 ```
 

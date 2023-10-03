@@ -8,6 +8,19 @@ sidebar:
     nav: "docs"
 ---
 
-0b11 == 3
-0b1111 == 0xF
-0b11111111 == 0xFF
+> * (C++14~) `0b`, `0B` 접두어를 이용하여 이진수 상수를 표현할 수 있습니다.
+
+# 개요
+
+`0b`, `0B` 접두어를 이용하여 이진수 상수를 표현할 수 있습니다.
+
+
+```cpp
+int val1{0b11};
+int val2{0b1111};
+int val3{0B11111111};
+
+EXPECT_TRUE(val1 == 0x03);
+EXPECT_TRUE(val2 == 0x0F);
+EXPECT_TRUE(val3 == 0xFF);
+``````

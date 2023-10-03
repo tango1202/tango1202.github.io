@@ -9,6 +9,8 @@ sidebar:
 ---
 
 > * 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다. 
+> * (C++14~) 람다 캡쳐 초기화로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
+> * (C++14~) `auto`를 인자로 받아 마치 템플릿 함수처럼 동작하는 일반화된 람다 함수가 추가되었습니다.
  
 # 개요
 기존에는 함수자를 이용하여 함수를 개체화 했는데요([함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 참고),
@@ -41,6 +43,15 @@ int f(int a, int b) {
 
 ```cpp
 [] {std::cout << "lambda" << std::endl;}
+```
+
+# 람다 리턴 생략
+
+후행 리턴이 생략되면, 함수의 리턴문에 의해 추론됩니다.([리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0) 참고)
+리턴문이 없으면 `void`로 추론됩니다.
+
+```cpp
+[](int a, int b) {return a + b;} // a + b의 결과 타입으로 리턴 타입이 추론됨
 ```
 
 # 람다 함수 호출
@@ -184,7 +195,21 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
 
 # (C++14~) 람다 캡쳐 초기화
 
-(작성중)
+람다 캡쳐시에 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
+정의한 변수는 초기값이 지정되어야 하며, 람다 내에서만 사용할 수 있습니다. 
+
+클로저 개체 생성시에 캡쳐하므로, 람다 함수를 여러번 호출하더라도 기존 값이 유지됩니다. 
+
+```cpp
+// 클로저 개체 생성시 람다 내에서 사용할 수 있는 val 변수를 만들어 캡쳐 합니다.
+// 캡쳐된 val 을 수정하기 위해 mutable로 만듭니다.
+auto f{[val = 0]() mutable -> int {return ++val;}}; 
+
+// 호출시마다  캡쳐된 val이 증가합니다.
+EXPECT_TRUE(f() == 1);
+EXPECT_TRUE(f() == 2);
+EXPECT_TRUE(f() == 3);
+```
 
 # 클로저 개체 대입
 
@@ -330,6 +355,12 @@ public:
     T::Destructor
     ```
 # (C++14~) 일반화된 람다 함수
-(작성중)
 
+C++14 부터는 람다 함수 인자로 `auto`를 사용할 수 있어, 마치 템플릿 함수처럼 동작하게 할 수 있습니다.
 
+```cpp
+auto add{[](auto a, auto b) {return a + b;}}; 
+
+EXPECT_TRUE(add(1, 2) == 3);
+EXPECT_TRUE(add(std::string{"hello"}, std::string{"world"}) == "helloworld");
+```

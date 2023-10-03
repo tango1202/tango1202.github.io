@@ -17,6 +17,8 @@ sidebar:
 > * 유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)
 > * `R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.([문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 참고)
 > * `int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.([사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/) 참고)
+> * (C++14~) `0b`, `0B` 접두어를 이용하여 이진수 상수를 표현할 수 있습니다.([이진 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-binary-literal/) 참고)
+> * (C++14~) 가독성을 위해 `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.([숫자 구분자](https://tango1202.github.io/mordern-cpp/mordern-cpp-digit-separator/) 참고)
 
 # bool 과 숫자
 
@@ -44,6 +46,10 @@ long double o = 3.14e10L;
 ```
 
 > *C++11 부터는 `long long`용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` 리터럴이 추가되었습니다.([long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) 참고)*
+
+> *C++14~ 부터는 `0b`, `0B` 접두어를 이용하여 이진수 상수를 표현할 수 있습니다.([이진 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-binary-literal/) 참고)*
+
+> *C++14~ 부터는 가독성을 위해 `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.([숫자 구분자](https://tango1202.github.io/mordern-cpp/mordern-cpp-digit-separator/) 참고)*
 
 # 문자 상수
 

@@ -10,6 +10,8 @@ sidebar:
 
 > * 값으로부터 타입을 추론하는 `auto` 타입과 `decltype()`이 추가되어 코딩이 간편해 졌습니다.
 > * 함수 인자에 의존하여 리턴 타입을 결정하는 후행 리턴이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.
+> * (C++14~) `decltype()`의 `()`내 표현식이 복잡할 경우 `decltype(auto)` 와 같이 좀더 간결하게 작성할 수 있습니다.
+> * (C++14~) 후행 리턴 대신 `auto`나 `decltype(auto)` 를 사용할 수 있습니다.
 
 # auto
 
@@ -86,7 +88,7 @@ decltype((t->m_Val)) b = 10; // 괄호를 추가하면 좌측값 표현식으로
 
 1. 추론 방식
    
-    `auto`의 경우 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따르기 때문에 배열을 포인터로 추론하고, 최상위 `const` 는 무시하지만, `decltype()`은 괄호안의 개체가 정의된 그대로 추론합니다.
+    `auto`의 경우 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따르기 때문에 배열을 포인터로 추론하고, 최상위 `const` 는 무시하지만, `decltype()`은 괄호안의 개체를 정의된 그대로 추론합니다.
 
 2. 함수 인자
    
@@ -180,6 +182,14 @@ int Func(int a, int b) {
 // Func(10, 20) 함수 결과 타입
 decltype(Func(10, 20)) c = Func(10, 20); // C++11
 decltype(auto) d = Func(10, 20); // C++14
+```
+
+`auto`의 경우 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따르기 때문에 배열을 포인터로 추론하고, 최상위 `const` 는 무시하지만, `decltype(auto)`는 `decltype()` 처럼 괄호안의 개체를 정의된 그대로 추론합니다.
+
+```cpp
+const int val = 1;
+auto c = val; // int로 추론됨. 최상위 const는 제거됨
+decltype(auto) d = val; // const int로 추론됨. 
 ```
 
 # (C++14~) 리턴 타입 추론
