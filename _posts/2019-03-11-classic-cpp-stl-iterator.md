@@ -14,6 +14,11 @@ sidebar:
 > **모던 C++**
 > * 범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.([범위 기반 for](https://tango1202.github.io/mordern-cpp/mordern-cpp-range-for/) 참고)
 > * `move_iterator` 아답터는 이터레이터가 가리키는 요소를 이동 연산 합니다.([move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 참고)
+> * `begin()`과 `end()`가 추가되었습니다.([범위 접근](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 참고)
+> * (C++14~) `rbegin()`, `rend()`, `cbegin()`, `cend()`, `crbegin()`, `crend()`가 추가되었습니다.([범위 접근](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 참고)
+
+
+
 
 # 개요
 
