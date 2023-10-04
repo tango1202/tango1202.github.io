@@ -192,7 +192,7 @@ shared_ptr<T> make_shared(Args&&... args);
     ```cpp
     class T {};
     class U {};
-    void Func(std::make_shared<T> t, std::make_shared<U> u) {}
+    void Func(std::shared_ptr<T> t, std::shared_ptr<U> u) {}
 
     Func(std::make_shared<T>(), std::make_shared<U>()); // (O) 
     ```

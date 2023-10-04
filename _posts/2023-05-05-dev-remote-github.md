@@ -116,11 +116,13 @@ Github는 Git으로 소스코드를 관리하는 원격 저장소 서비스 입�
     git push origin master
     ```
 
-    혹은 다음과 같이 `--set-upstream`옵션을 쓸 수 있습니다.(`--set-upstream` 을 로컬에서 원격저장소를 tracking 하기 때문에, 이후로는 `git push`만 하면 됩니다.)
+    혹은
 
     ```ini
     git push --set-upstream origin master
     ```
+
+    을 합니다.(`-set-upstream` 을 사용하면 로컬에서 원격저장소를 tracking 하기 때문에, 이후로는 `git push`만 하면 됩니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5f93f824-817a-4f93-8c1c-f46c70ca2528)
 

@@ -61,7 +61,7 @@ Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
     
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d7bae65a-8cc0-4315-8e45-4c8a7bcf319c)
 
-6. 설치 확인을 위해 `cmd` 에서 `gcc -v`를 입력하여 버전을 확인합니다.
+5. 설치 확인을 위해 `cmd` 에서 `gcc -v`를 입력하여 버전을 확인합니다.(gcc의 C++ 버전 지원 여부는 [gcc.gnu.org](https://gcc.gnu.org/projects/cxx-status.html)을 참고하기 바랍니다. 특정 버전의 C++ 을 사용하려면 `g++ main.cpp -std=c++11` 와 같이 버전을 명시해야 합니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1893d24b-2cc0-40e9-8213-5fb095543b49)
 
@@ -133,7 +133,7 @@ Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6a371f72-d098-4bc3-9eec-dc256fae803a)
 
-2. `C++ standard`를 `C++17`으로 변경합니다.
+2. `C++ standard`에서 intellisence 환경을 `C++17`으로 변경합니다.(Edit 화면에서 intellisence 버전입니다. 실제 컴파일은 g++ filname -std=c++11 와 같이 지정해 줘야 합니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c524277-bbd3-467b-b4d9-da4c7bdd280e)
 
