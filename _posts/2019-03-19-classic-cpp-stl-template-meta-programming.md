@@ -14,6 +14,7 @@ sidebar:
 > * `noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
 > `type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.([타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) 참고)
 >`ratio` 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.([ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 참고)
+> * (C++14~) `integer_sequence` 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.([integer_sequence](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-integer_sequence/) 참고)
 
 
 # 개요

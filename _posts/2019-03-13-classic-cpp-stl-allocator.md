@@ -13,7 +13,7 @@ sidebar:
 컨테이너의 템플릿 인자를 보면 `Allocator`를 사용하는 버전이 있습니다.
 
 ```cpp
-template <typename T, typename Allocator = allocator<T>>
+template<typename T, typename Allocator = allocator<T>>
 class vector {
     ...
 };
@@ -37,7 +37,7 @@ class vector {
 다음은 간단한 `Allocator` 구현 예입니다.
 
 ```cpp
-template <typename T>
+template<typename T>
 class Allocator {
 public:
     typedef size_t    size_type;
@@ -85,13 +85,13 @@ public:
     // T 타입에 대한 할당자(another)를 이용하여
     // 다른 타입인 U 타입용 컨테이너를 할당할 수 있게 합니다.
     // T::rebind<U>::other(another).allocate(10, static_cast<U*>(0));
-    template <class U>
+    template<class U>
     struct rebind {typedef Allocator<U> other;};
 
-    template <class U>
+    template<class U>
     Allocator(const Allocator<U>&) {}
 
-    template <class U>
+    template<class U>
     Allocator& operator =(const Allocator<U>&) {return *this;}
 };
 

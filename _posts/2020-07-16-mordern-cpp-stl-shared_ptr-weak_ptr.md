@@ -131,39 +131,71 @@ template<typename T, typename... Args>
 shared_ptr<T> make_shared(Args&&... args);
 ```
 
-`make_shared()`를 이용하면 좀더 메모리 효율적으로 `shared_ptr`을 사용할 수 있습니다.
+`make_shared()`를 사용하면 다음 장점이 있습니다.
 
-다음 코드는 `T`개체를 메모리에 할당하고, 내부적으로 제어 블록을 메모리에 할당하여 메모리를 2회 할당하지만,
+1. 메모리 효율성 향상 
 
-```cpp
-class T {
-public:
-    explicit T(int) {}    
-};
-std::shared_ptr<T> a{new T{10}}; // (△) 비권장. T를 할당하고, 내부적으로 제어 블록을 할당
-```
+    `make_shared()`를 이용하면 좀더 메모리 효율적으로 `shared_ptr`을 사용할 수 있습니다.
 
-다음은 `T`와 제어 블록의 크기를 합하여 메모리를 1회 할당합니다.
+    다음 코드는 `T`개체를 메모리에 할당하고, 내부적으로 제어 블록을 메모리에 할당하여 메모리를 2회 할당하지만,
 
-```cpp
-std::shared_ptr<T> b = std::make_shared<T>(10); // T + 제어 블록 크기만큼 할당
-```
+    ```cpp
+    class T {
+    public:
+        explicit T(int) {}    
+    };
+    std::shared_ptr<T> a{new T{10}}; // (△) 비권장. T를 할당하고, 내부적으로 제어 블록을 할당
+    ```
 
-또한 코드가 간결해지는 효과도 있습니다. `shared_ptr<T>{new T{10}}` 보다는 `make_shared<T>(10)`가 간결합니다.
+    다음은 `T`와 제어 블록의 크기를 합하여 메모리를 1회 할당합니다.
 
-```cpp
-class T {
-public:
-    explicit T(int) {}    
-};
-std::vector<std::shared_ptr<T>> v;
+    ```cpp
+    std::shared_ptr<T> b = std::make_shared<T>(10); // T + 제어 블록 크기만큼 할당
+    ```
 
-v.push_back(std::shared_ptr<T>{new T{10}});
-v.push_back(std::make_shared<T>(10)); // 구문이 좀더 간결합니다.
-v.push_back(std::shared_ptr<T>{}); // nullptr
+2. 코드 간결성 향상
 
-EXPECT_TRUE(v.size() == 3 && v[2] == nullptr);
-```
+    또한 코드가 간결해지는 효과도 있습니다. `shared_ptr<T>{new T{10}}` 보다는 `make_shared<T>(10)`가 간결합니다.
+
+    ```cpp
+    class T {
+    public:
+        explicit T(int) {}    
+    };
+    std::vector<std::shared_ptr<T>> v;
+
+    v.push_back(std::shared_ptr<T>{new T{10}});
+    v.push_back(std::make_shared<T>(10)); // 구문이 좀더 간결합니다.
+    v.push_back(std::shared_ptr<T>{}); // nullptr
+
+    EXPECT_TRUE(v.size() == 3 && v[2] == nullptr);
+    ```
+
+3. 예외 안전성 향상
+
+    또한, 예외에 좀더 안전합니다. 다음 코드는 예외에 안전한 듯 하지만, 
+
+    ```cpp
+    class T {};
+    class U {};
+    void Func(std::shared_ptr<T> t, std::shared_ptr<U> u) {}
+
+    Func(std::shared_ptr<T>{new T}, std::shared_ptr<U>{new U}); // (△) 비권장. new T, new U 호출 순서에 따라 예외가 발생합니다.
+    ```
+
+    1. `new T`
+    2. `new U`
+    3. `unique_ptr<T>`
+    4. `unique_ptr<U>`
+
+    의 순서로 실행될 경우 `new U`에서 예외가 발생할 경우 `new T`는 소멸되지 않습니다. 따라서 `make_shared()`를 사용하는게 좋습니다.
+    ```cpp
+    class T {};
+    class U {};
+    void Func(std::make_shared<T> t, std::make_shared<U> u) {}
+
+    Func(std::make_shared<T>(), std::make_shared<U>()); // (O) 
+    ```
 
 # enable_shared_from_this
 

@@ -68,7 +68,7 @@ a.g(); // (X) 컴파일 오류. 함수 정의부가 없음
 템플릿 함수는 다음처럼 정의하고 인스턴스화 합니다.
 
 ```cpp
-template <typename T>
+template<typename T>
 T Plus(T left, T right) {
     return left + right;
 }

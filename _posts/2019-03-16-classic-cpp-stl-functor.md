@@ -93,12 +93,12 @@ EXPECT_TRUE(v[0] == 11 && v[1] == 12 && v[2] == 13);
 |`binary_function`|이항 함수자|
 
 ```cpp
-template <typename Arg, typename Res>
+template<typename Arg, typename Res>
 struct unary_function {
     typedef Arg argument_type; 
     typedef Res result_type; 
 };
-template <typename Arg, typename Arg2, typename Res>
+template<typename Arg, typename Arg2, typename Res>
 struct binary_function {
     typedef Arg first_argument_type; 
     typedef Arg2 second_argument_type; 

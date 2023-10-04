@@ -189,7 +189,7 @@ class B {};
 템플릿 인자 끝 `>`가 중첩되어 `>>`가 되면 비트 Right Shift 연산자로 파싱되어 컴파일 오류가 납니다. 따라서 `> >`와 같이 공백을 추가해야 합니다.
 
 ```cpp
-template <typename T>
+template<typename T>
 class A {};
 
 std::vector<A<int>> a; // (X) 컴파일 오류. >> 는 비트 Right Shift 연산자로 파싱됩니다.

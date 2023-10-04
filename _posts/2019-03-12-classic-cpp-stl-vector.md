@@ -33,7 +33,7 @@ sidebar:
 |`explicit vector(size_type count);`|`count` 갯수 만큼 요소를 생성합니다.|
 |`vector(size_type count, const Type& value);`|`count` 갯수 만큼 요소를 생성하고, `value`로 초기화 합니다.|
 |`vector(const vector& other);`|복사 생성합니다.|
-|`template <class InputIterator>`<br/>`vector(InputIterator first, InputIterator last);`|`first`부터 `last` 직전까지의 요소(반개방 구조)를 복사합니다.|
+|`template<class InputIterator>`<br/>`vector(InputIterator first, InputIterator last);`|`first`부터 `last` 직전까지의 요소(반개방 구조)를 복사합니다.|
 
 상기 외에 `allocator`를 사용하는 생성자가 있으며, 자세한 내용은 [할당자(Allocator)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 를 참고하기 바랍니다.
 
@@ -43,7 +43,7 @@ sidebar:
 |--|--|--|
 |`=`|`vector& operator =(const vector& other);`|복사 대입 합니다. <br/>`vector`의 기존 요소를 지우고 `other`요소들을 복사합니다.|
 |`=` (C++11~)|`vector& operator =(const vector&& other) notexcept;`|이동 대입 합니다.([이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 참고)|
-|`assign()`|`void assign(size_type count, const Type& value)`<br/>`template <typename InputIterator>`<br/>`void assign(InputIterator first, InputIterator last)`|`vector`의 기존 요소를 지우고 `value`를 `count` 만큼 복사합니다.<br/>`vector`의 기존 요소를 지우고 `first`부터 `last`직전까지 복사합니다.|
+|`assign()`|`void assign(size_type count, const Type& value)`<br/>`template<typename InputIterator>`<br/>`void assign(InputIterator first, InputIterator last)`|`vector`의 기존 요소를 지우고 `value`를 `count` 만큼 복사합니다.<br/>`vector`의 기존 요소를 지우고 `first`부터 `last`직전까지 복사합니다.|
 |`resize()`|`void resize(size_type new_size)`<br/>`void resize(size_type new_size, Type value)`|`vector`의 새 크기를 지정하며, 기존 요소 갯수보다 크다면 `value`로 채웁니다. `value`가 없는 경우 요소의 기본 생성자를 호출합니다.|
 |`size()`|`size_type size() const;`|컨테이너의 요소 갯수를 리턴합니다.|
 |`empty()`|`bool empty() const;`|컨테이너가 비었는지 확인합니다.|
@@ -83,7 +83,7 @@ sidebar:
 |`erase_if()` (C++20~)||(작성중)|
 |`pop_back()`|`void pop_back();`|마지막 요소를 삭제합니다. `vector`가 비었다면 아무 동작 안합니다.|
 |`push_back()`|`void push_back(const T& value);`|`vector`끝에 요소를 추가합니다.|
-|`insert()`|`iterator insert(const_iterator position, const Type& value);`<br/>`iterator insert(const_iterator position, Type&& value);`<br/>`void insert(const_iterator position, size_type count, const Type& value);`<br/>`template <class InputIterator>`<br/>`void insert(const_iterator position,  InputIterator first, InputIterator last);`|`position`으로 지정한 위치 앞에 요소를 삽입합니다.|
+|`insert()`|`iterator insert(const_iterator position, const Type& value);`<br/>`iterator insert(const_iterator position, Type&& value);`<br/>`void insert(const_iterator position, size_type count, const Type& value);`<br/>`template<class InputIterator>`<br/>`void insert(const_iterator position,  InputIterator first, InputIterator last);`|`position`으로 지정한 위치 앞에 요소를 삽입합니다.|
 |`insert_range()` (C++23~)||(작성중)||
 |`emplace(), emplace_back()` (C++11~)||(작성중)|
 |`append_range()` (C++23~)||(작성중)|

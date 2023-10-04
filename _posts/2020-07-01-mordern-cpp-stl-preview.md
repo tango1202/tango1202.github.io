@@ -69,7 +69,7 @@ sidebar:
 |--|--|
 |[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) (C++11~)|`type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.|
 |[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) (C++11~)|`ratio` 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.|
-|integer_sequence (C++14~)|(작성중)|
+|[integer_sequence](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-integer_sequence/) (C++14~)|`integer_sequence` 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.|
 
 # 메모리 관리 라이브러리
 

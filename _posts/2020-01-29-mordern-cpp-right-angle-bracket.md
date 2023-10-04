@@ -19,7 +19,7 @@ sidebar:
 C++11 부터는 파싱을 개선하여 `vector<A<int>>`와 같은 작성법도 지원합니다.
 
 ```cpp
-template <typename T>
+template<typename T>
 class A {};
 
 std::vector<A<int> > a; // C++03. 공백을 추가해야 했습니다.
