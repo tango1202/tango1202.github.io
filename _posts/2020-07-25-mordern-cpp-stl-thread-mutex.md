@@ -12,6 +12,7 @@ sidebar:
 > * `mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.
 > * `lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.
 > * `call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
+> * (C++14~) `shared_timed_mutex`와 `shared_lock`을 이용하여 `mutex`의 소유권을 쓰레드끼리 공유할 수 있습니다. 
 
 # 개요
 
@@ -42,7 +43,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++11~)<br/>`timed_mutex` (C++11~)<br/>`recursive_mutex` (C++11~)<br/>`recursive_timed_mutex` (C++11~)<br/>[shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#shared_timed_mutex) (C++14~)<br/>`shared_mutex` (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
+|[mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++11~)<br/>`timed_mutex` (C++11~)<br/>`recursive_mutex` (C++11~)<br/>`recursive_timed_mutex` (C++11~)<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
 |`counting_semaphore` (C++ 20)|(작성중)|
 |`binary_semaphore` (C++ 20)|(작성중)|
 |`latch` (C++ 20)|(작성중)|
@@ -276,7 +277,7 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 |`timed_mutex` (C++11~)|`try_lock_for()`나 `try_lock_until()`등으로 주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 `mutex`입니다.|
 |`recursive_mutex` (C++11~)|동일한 쓰레드 내에서 재귀적으로 `lock()`을 할 수 있는 `mutex`입니다.|
 |`recursive_timed_mutex` (C++11~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 재귀적 `mutex`입니다.|
-|`shared_timed_mutex` (C++14~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 다른 쓰레드들과 공유할 수 있는 `mutex`입니다.|
+|`shared_timed_mutex` (C++14~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 다른 쓰레드들과 공유할 수 있는 `mutex`입니다.([shared_timed_mutex 와 shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) 참고)|
 |`shared_mutex` (C++17~)|다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 `mutex`입니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.|
 
 `mutex`의 멤버 함수는 다음과 같습니다. `lock()`과 `unlock()`을 이용하여 다른 쓰레드들의 접근을 차단/해제합니다. 
@@ -299,7 +300,7 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 |lock 옵션 (C++11~)|`defer_lock` : `lock()` 호출시 잠금이 됩니다.<br/>`try_to_lock` : 잠금시 `try_lock()`을 사용합니다.<br/>`adopt_lock` : 해당 쓰레드가 이미 `lock()`을 했다고 가정하고, `unlock()`만 합니다.|
 |`lock()` (C++11~)|여러개의 `mutex`를 `lock()`합니다.|
 |`try_lock()` (C++11~)|여러개의 `mutex`를 `try_lock()`합니다.|
-|`shared_lock` (C++14~)|(작성중)|
+|`shared_lock` (C++14~)|공유할 수 있는 `mutex`를 `unique_lock` 처럼 생성시 자동으로 잠글 수도 있고, 별도로 `lock()`을 호출해야 잠글 수도 있습니다. ([shared_timed_mutex 와 shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) 참고)|
 |`scope_lock` (C++17~)|(작성중)|
 
 # mutex - 경쟁 상태(Race Condition) 해결
@@ -540,4 +541,97 @@ worker2.join();
 a.OnceFunc(); // 더이상 Func()을 호출하지 않습니다.
 ```
 
-# (C++14~) shared_timed_mutex 와 shared_lock()
+# (C++14~) shared_timed_mutex 와 shared_lock
+
+`mutex`는 공유 자원 접근을 하나의 쓰레드에서만 독점하여 처리할 수 있도록 해주는 동기화 개체입니다만,
+
+C++14에서는 `shared_timed_mutex`를 이용하여 `mutex`의 소유권을 쓰레드끼리 공유할 수 있습니다. 
+
+공유 자원을 단순히 읽거나, 동일한 값으로 세팅한다면, 하나의 쓰레드에서 독점할 필요가 없으므로  `shared_timed_mutex`를 사용하는게 효율적입니다.
+
+다음 예에서 `UniqueWrite()`와 `UniqueFunc()` 은 `mutex`를 이용하여 자원을 독점하며, `SharedWrite()`와 `SharedFunc()` 은 `shared_timed_mutex`를 이용하여 자원을 공유하고 있습니다.
+
+```cpp
+void UniqueWrite(std::vector<int>::iterator itr, std::vector<int>::iterator endItr, std::mutex& mutex) {
+    for(int i = 0; itr != endItr; ++itr, ++i) {
+        std::unique_lock<std::mutex> lock(mutex); // mutex를 독점합니다.
+        *itr = 1;
+        std::this_thread::sleep_for(std::chrono::milliseconds{1}); 
+    }
+}
+void UniqueFunc(std::vector<int>::iterator itr, std::vector<int>::iterator endItr) {
+
+
+    std::mutex mutex; // mutex 개체
+    std::thread worker1{UniqueWrite, itr, endItr, std::ref(mutex)};
+    std::thread worker2{UniqueWrite, itr, endItr, std::ref(mutex)};
+    std::thread worker3{UniqueWrite, itr, endItr, std::ref(mutex)};
+    std::thread worker4{UniqueWrite, itr, endItr, std::ref(mutex)};
+    worker1.join(); 
+    worker2.join(); 
+    worker3.join();
+    worker4.join();
+}
+void SharedWrite(std::vector<int>::iterator itr, std::vector<int>::iterator endItr, std::shared_timed_mutex& mutex) {
+    for(int i = 0; itr != endItr; ++itr, i++) {
+        std::shared_lock<std::shared_timed_mutex> lock(mutex); // mutex를 공유합니다.
+        *itr = 1;
+        std::this_thread::sleep_for(std::chrono::milliseconds{1}); 
+    }
+}
+void SharedFunc(std::vector<int>::iterator itr, std::vector<int>::iterator endItr) {
+
+    std::shared_timed_mutex mutex; // mutex 개체
+    std::thread worker1{SharedWrite, itr, endItr, std::ref(mutex)};
+    std::thread worker2{SharedWrite, itr, endItr, std::ref(mutex)};
+    std::thread worker3{SharedWrite, itr, endItr, std::ref(mutex)};
+    std::thread worker4{SharedWrite, itr, endItr, std::ref(mutex)};
+    worker1.join(); 
+    worker2.join(); 
+    worker3.join();
+    worker4.join();
+}  
+template<typename Func, typename... Params>
+std::chrono::microseconds CheckMicrosecond(Func func, Params... params) {
+    std::chrono::system_clock::time_point start{std::chrono::system_clock::now()};    
+
+    func(params...);
+
+    std::chrono::system_clock::time_point end{std::chrono::system_clock::now()};
+    std::chrono::microseconds val{std::chrono::duration_cast<std::chrono::microseconds>(end - start)};
+
+    return val;
+}
+std::vector<int> v;
+
+for (int i{0}; i < 100; ++i) {
+    v.push_back(i);
+}
+
+std::chrono::microseconds uniqueDuration{CheckMicrosecond(
+    UniqueFunc, 
+    v.begin(), v.end()
+)};
+std::cout<<"UniqueFunc : "<<uniqueDuration.count()<<std::endl; 
+for (int i = 0; i < 100; ++i) {
+    EXPECT_TRUE(v[i] == 1);
+    v[i] = i; // 다시 값을 초기화 해둡니다.
+}
+
+std::chrono::microseconds sharedDuration{CheckMicrosecond(
+    SharedFunc, 
+    v.begin(), v.end() 
+)};
+std::cout<<"SharedFunc : "<<sharedDuration.count()<<std::endl;
+for (int i = 0; i < 100; ++i) {
+    EXPECT_TRUE(v[i] == 1);
+} 
+```
+
+실행시켜보면 `shared_timed_mutex`가 훨씬 빠른 것을 알 수 있습니다.
+
+```cpp
+UniqueFunc : 6360136
+SharedFunc : 1559724 //shared_timed_mutex 가 훨씬 빠릅니다.
+```
+

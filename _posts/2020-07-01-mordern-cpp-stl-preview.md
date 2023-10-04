@@ -16,20 +16,8 @@ sidebar:
 
 2. C++14
 
-    integer_sequence
-    make_unique,
-    tuple의 type 기반 get()
-    is_final()
-
-    연관 컨테이너의 이종 탐색
-    이터레이터 확장 cbegin() - cend()
-    exchange()
-    표준 사용자 정의 리터럴
-
-
-    shared_timed_mutex
-    shared_lock
-    quoted()
+    컴파일 타임 정수 타입 시퀀스(`integer_sequence`), 스마트 포인터 유틸리티(`make_unique()`), 
+    `tuple`의 타입 기반 `get()`, `is_final()`, 연관 컨테이너의 이종 탐색, 이터레이터 범위 접근(`rbegin()`, `rend()`, `cbegin()`, `cend()`, `crbegin()`, `crend()`), `exchange()`, 표준 사용자 정의 리터럴, 쓰레드 소유권 공유(`shared_timed_mutex`, `shared_lock`), `quoted()` 가 추가되었습니다.
 
 
 # 언어 지원 라이브러리
@@ -180,8 +168,8 @@ sidebar:
 |항목|내용|
 |--|--|
 |[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) (C++11~)|`thread`는 주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.|
-|[mutex<br/>timed_mutex<br/>recursive_mutex<br/>recursive_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++11~)<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|`mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
-|[lock_guard<br/>unique_lock<br/>lock()<br>try_lock()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock) (C++11~)<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.|
+|[mutex<br/>timed_mutex<br/>recursive_mutex<br/>recursive_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++11~)<br/>[shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) (C++14~)<br/>`shared_mutex` (C++17~)|`mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.<br/><br/>**(C++14~)**<br/>[shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)을 이용하여  `mutex`의 소유권을 쓰레드끼리 공유할 수 있습니다.|
+|[lock_guard<br/>unique_lock<br/>lock()<br>try_lock()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock) (C++11~)<br/>[shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) (C++14~)<br/>`scope_lock` (C++17~)|`lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.<br/><br/>**(C++14~)**<br/>[shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)을 이용하여  `mutex`의 소유권을 쓰레드끼리 공유할 수 있습니다.|
 |[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag) (C++11~)|`call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다.|
 |[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable) (C++11~)|`condition_variable`은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
 |[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) (C++11~)|`atomic`은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다.|
@@ -233,7 +221,7 @@ sidebar:
 |[C스타일 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)|`fopen()`, `fclose()`등 C스타일 입출력을 제공합니다.|
 |C++스타일 입출력|[파일 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%ED%8C%8C%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5), [문자열 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%9E%85%EC%B6%9C%EB%A0%A5), [배열 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EB%B0%B0%EC%97%B4-%EC%9E%85%EC%B6%9C%EB%A0%A5) 을 제공하고, [스트림 기반 타입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EA%B8%B0%EB%B0%98-%ED%83%80%EC%9E%85) 으로 재정의되어, `iosteam`, `filebuf`등을 제공합니다.|
 |[사전 정의된 표준 스트림 개체](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%82%AC%EC%A0%84-%EC%A0%95%EC%9D%98%EB%90%9C-%ED%91%9C%EC%A4%80-%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EA%B0%9C%EC%B2%B4)|`cin`으로 표준 입력을 받고, `cout`으로 표준 출력을 합니다.|
-|[입출력 제어](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)|`endl()`등 표준 입출력 제어를 제공합니다.|
+|[입출력 제어](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)|`endl()`등 표준 입출력 제어를 제공합니다.<br/><br/>**(C++14~)**<br/>`quoted()`는 `stringstream` 으로 입출력시에 공백, 이스케이프 등을 유지시켜 줍니다.|
 |[예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%98%88%EC%99%B8) (C++11~)|(작성중)|
 |[동기화 출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EB%8F%99%EA%B8%B0%ED%99%94-%EC%B6%9C%EB%A0%A5) (C++20~)|(작성중)|
 |[프린트 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%ED%94%84%EB%A6%B0%ED%8A%B8-%ED%95%A8%EC%88%98) (C++23~)|(작성중)|
