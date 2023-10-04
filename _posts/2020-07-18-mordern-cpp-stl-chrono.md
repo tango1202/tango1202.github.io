@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * `system_clock`, `time_point`, `duration`개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.
+> * (C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)
 
 # 개요
 
@@ -146,8 +147,7 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 
 # 날짜 / 시간 리터럴
 
-`operator ""h`등 날짜 / 시간을 위한 리터럴이 제공됩니다. ([표준 사용자 정의 리터럴]
-https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/#c14-%ED%91%9C%EC%A4%80-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4) 을 참고하세요.
+C++14 부터는 `operator ""s`등 날짜 / 시간을 위한 리터럴이 제공됩니다. [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 을 참고하세요.
 
 # 시/분/초 서식
 

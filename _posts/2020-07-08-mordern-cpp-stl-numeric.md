@@ -8,6 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
+> * (C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)
+
 # complex
 
 복소수를 처리하는 개체입니다.
@@ -28,6 +30,8 @@ sidebar:
 |`conj()`|(작성중)|
 |`proj()` (C++11~)|(작성중)|
 |`polar()`|(작성중)|
+
+> *(C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)*
 
 # valarray
 

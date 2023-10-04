@@ -25,17 +25,8 @@ sidebar:
     이터레이터 확장 cbegin() - cend()
     exchange()
     
-    날짜 / 시간 리터럴
-    문자열 리터럴
 
 표준 사용자 정의 리터럴
-|`operator ""h` (C++14~)|`chrono::duration`에서 시간|
-|`operator ""min` (C++14~)|`chrono::duration`에서 분|
-|`operator ""s` (C++14~)|`chrono::duration`에서 초|
-|`operator ""ms` (C++14~)|`chrono::duration`에서 밀리초|
-|`operator ""us` (C++14~)|`chrono::duration`에서 마이크로초|
-|`operator ""ns` (C++14~)|`chrono::duration`에서 나노초|
-|`operator ""s` (C++14~)|`basic_string` 변환|
 
 
     shared_timed_lock
@@ -55,6 +46,7 @@ sidebar:
 |[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/) (C++11~)|`type_index`는 `type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.|
 |[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) (C++11~)|`initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
 |[프로그램 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90)|`abort()`, `exit()`등 프로그램 종료 관련 함수들과 시그널 처리 함수를 제공합니다.|
+|[표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) (C++14~)|`operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.|
 |[소스 코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%86%8C%EC%8A%A4-%EC%BD%94%EB%93%9C) (C++20~)|(작성중)|
 |[3자 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#3%EC%9E%90-%EB%B9%84%EA%B5%90) (C++20~)|(작성중)|
 |[코루틴](??) (C++20~)|(작성중)|
