@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * 이동 연산을 위해 우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.
+> * (C++14~) [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/)는 주어진 값을 바꾸고 이전값을 리턴합니다. 이동 생성자와 이동 대입 연산자 구현에 활용할 수 있습니다.
 
 # 개요
 
@@ -197,7 +198,7 @@ public:
         m_Ptr = other.m_Ptr;
 
         other.m_Size = 0; // other는 초기화 합니다.
-        other.m_Ptr = NULL;
+        other.m_Ptr = nullptr;
         return *this;
     }
     
@@ -276,7 +277,7 @@ public:
         m_Ptr = other.m_Ptr;
 
         other.m_Size = 0; // other는 초기화 합니다.
-        other.m_Ptr = NULL;
+        other.m_Ptr = nullptr;
         return *this;
     }
     
@@ -311,7 +312,7 @@ Big(Big&& other) :
     m_Ptr(other.m_Ptr) {
 
     other.m_Size = 0; // other는 초기화 합니다.
-    other.m_Ptr = NULL;
+    other.m_Ptr = nullptr;
 }
 
 Big d(50);
@@ -319,6 +320,7 @@ Big e(std::move(d));
 EXPECT_TRUE(d.GetSize() == 0); // d는 이동되어 더이상 쓸 수 없음  
 EXPECT_TRUE(e.GetSize() == 50); 
 ```
+> *(C++14~) [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/)는 주어진 값을 바꾸고 이전값을 리턴합니다. 이동 생성자와 이동 대입 연산자 구현에 활용할 수 있습니다.*
 
 # 이동 연산을 이용한 리팩토링
 

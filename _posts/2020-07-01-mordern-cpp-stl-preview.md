@@ -95,7 +95,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[일반 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%9D%BC%EB%B0%98-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)|`swap()` 등을 제공합니다.|
+|[일반 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%9D%BC%EB%B0%98-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)|`swap()` 등을 제공합니다.<br/><br/>**(C++14~)**<br/>[exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/)는 주어진 값을 바꾸고 이전값을 리턴합니다. 이동 생성자와 이동 대입 연산자 구현에 활용할 수 있습니다.|
 |[가변 인자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|`va_list` 등으로 가변 인자를 처리합니다.|
 |[타입 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%83%80%EC%9E%85-%EB%B3%80%ED%99%98) (C++11~)|[move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)는 좌측값을 우측값으로 형변환 합니다.<br/>[move_if_noexcept()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move_if_noexcept)는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다.<br/>[forword()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)는 값 카테고리를 유지하며 인자를 다른 함수에 전달합니다.<br/>[declval()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval)은 주어진 타입을 참조 타입으로 변환하여, 참조 타입 표현식으로 변경해 줍니다.|
 |[bitset](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-bitset/)|`bitset`은 비트 단위의 데이터를 관리하는 개체입니다.|
@@ -182,7 +182,7 @@ sidebar:
 |[u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/) (C++20~)|UTF-8을 지원합니다.|
 |[u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/) (C++11~)|UTF-16을 지원합니다.|
 |[u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/) (C++11~)|UTF-32를 지원합니다.|
-|[strerror()]([??](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#strerror))| `errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.|
+|[strerror()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#strerror)| `errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.|
 |basic_string_view (C++17~)|(작성중)|
 
 # 동시성 라이브러리

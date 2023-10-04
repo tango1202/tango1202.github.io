@@ -13,7 +13,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |`swap()`|바꿔치기 합니다.|
-|`exchange()` (C++14~)|(작성중)|
+|[exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/) (C++14~)|주어진 값을 바꾸고 이전값을 리턴합니다. 이동 생성자와 이동 대입 연산자 구현에 활용할 수 있습니다.|
 
 # 타입 변환
 
