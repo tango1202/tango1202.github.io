@@ -111,7 +111,7 @@ int result{Factorial(5)};
 EXPECT_TRUE(result == 1 * 2 * 3 * 4 * 5);
 ```
 
-# constexpr 함수 스펙 변화
+# (C++14~) constexpr 함수 제약 완화
 
 `constexpr`함수는 기본적으로 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 리턴할 수 있고, 그외 스펙들은 조금씩 개선되고 있습니다. 
 

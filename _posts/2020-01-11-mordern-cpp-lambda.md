@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++] (C++11~) 람다 표현식, 클로저"
+title: "#11. [모던 C++] (C++11~) 람다 표현식, 클로저, (C++14~) 일반화된 람다 함수"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
