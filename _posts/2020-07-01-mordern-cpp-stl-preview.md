@@ -24,12 +24,10 @@ sidebar:
     연관 컨테이너의 이종 탐색
     이터레이터 확장 cbegin() - cend()
     exchange()
-    
-
-표준 사용자 정의 리터럴
+    표준 사용자 정의 리터럴
 
 
-    shared_timed_lock
+    shared_timed_mutex
     shared_lock
     quoted()
 

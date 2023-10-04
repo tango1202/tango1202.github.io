@@ -42,7 +42,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++11~)<br/>`timed_mutex` (C++11~)<br/>`recursive_mutex` (C++11~)<br/>`recursive_timed_mutex` (C++11~)<br/>`shared_timed_mutex` (C++14~)<br/>`shared_mutex` (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
+|[mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++11~)<br/>`timed_mutex` (C++11~)<br/>`recursive_mutex` (C++11~)<br/>`recursive_timed_mutex` (C++11~)<br/>[shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#shared_timed_mutex) (C++14~)<br/>`shared_mutex` (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
 |`counting_semaphore` (C++ 20)|(작성중)|
 |`binary_semaphore` (C++ 20)|(작성중)|
 |`latch` (C++ 20)|(작성중)|
@@ -539,3 +539,5 @@ worker2.join();
 
 a.OnceFunc(); // 더이상 Func()을 호출하지 않습니다.
 ```
+
+# (C++14~) shared_timed_mutex 와 shared_lock()
