@@ -53,6 +53,39 @@ EXPECT_TRUE(Forwarding(MySum, 1, 2, 3) == 1 + 2 + 3);
 
 다만 `Forwarding()` 함수에서 인자를 전달할때 참조자 타입은 참조성이 제거되어 전달되기 때문에 [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)를 이용해야 합니다.([reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper) 참고)
 
+|항목|내용|
+|--|--|
+|`template<typename... Types>`|여러 타입들로 구성된 매개변수 팩입니다.|
+|`template<int... Values>`|비 템플릿 개체(예를 들어 `int`)로 구성된 매개변수 팩입니다.|
+
+# 파라메터 팩 배포 및 확장
+
+인자로 전달된 파라메터 팩은 `params...`와 같이 파라메터명 뒤에 `...`을 붙여 사용할 수 있습니다. 또한 다음과 같이 표현식을 이용한 패턴으로 확장하여 배포할 수 있습니다.(패턴에는 파라메터 팩 이름이 포함되어야 합니다.)
+
+```cpp
+f(params...); // f(param1, param2, param3) 로 전개되어 배포됩니다.
+f(++params...); // f(++param1, ++param2, ++param3) 로 전개되어 배포됩니다.
+f((params + 1)...); // f((param1 + 1), (param2 + 1), (param3 + 3)) 로 전개되어 배포됩니다.
+f(&params...); // f(&param1, &param2, &param3) 로 전개되어 배포됩니다.
+f(vector[params]...); // f((vector[param1], vector[param2] vector[param3]) 로 전개됩니다.
+f(g(params)...); // f(g(param1), g(&param2), g(&param3)) 로 전개되어 배포됩니다.
+f (g(params...)  + params...); // f(g(param1, param2, param3) + param1, f(g(param1, param2, param3) + param2, f(g(param1, param2, param3) + param3) 로 전개되어 배포됩니다. 
+```
+
+다음은 파라메터 팩을 확장하여 배포한 예입니다. `Func()` 함수는 인자로 전달받은 `params`를 전개할 때 `(params + 1)`을 하여 1씩 더해서 배포합니다.
+
+```cpp
+int Sum(int a, int b, int c) {
+    return a + b + c;
+}
+template<typename... Params>
+int Func(Params... params) {
+    return Sum((params + 1)...); // 파라메터 팩의 각 요소에 1을 더해 배포합니다.
+} 
+
+EXPECT_TRUE(Func(1, 2, 3) == 2 + 3 + 4);
+```
+
 # sizeof...() 연산자
 
 C++11 부터는 `sizeof...()` 연산자가 추가되었습니다.

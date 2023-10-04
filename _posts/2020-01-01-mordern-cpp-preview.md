@@ -18,9 +18,13 @@ sidebar:
 현대적인 언어 특성에 발맞춰 여러 항목이 추가되고, 수정되었습니다.
 
 1. C++11
+
+    
     우측값 참조, 이동 생성자, 이동 대입 연산자, `auto`, `decltype`, 중괄호 초기화, 멤버 선언부 초기화, 무제한 공용체, `constexpr`, `static_assert`, 람다 표현식, 가변 템플릿, `nullptr`, `default`, `delete`, `override`, `final`, `noexcept`, 범위 기반 `for`, 범위 있는 열거형, 유니코드 문자열, 사용자 정의 리터럴, 명시적 형변환, 생성자 위임, 생성자 상속 등 런타임 성능 개선과 컴파일 타임 프로그래밍, 코딩 계약 강화, 코딩 편의성을 위해 많은 부분이 추가되었습니다.
+
 2. C++14
-    `constexpr` 함수 제약이 완화되고, 비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화를 허용하고, 변수 템플릿, `decltype(auto)`, `리턴 타입 추론`, `[[deprecated]]` 속성, 람다 캡쳐 초기화, 일반화된 람다, 이진 리터럴, 숫자 구분자가 추가되었습니다. 
+
+    `constexpr` 함수 제약이 완화되고, 비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화를 허용하고, 변수 템플릿, `decltype(auto)`, 리턴 타입 추론, `[[deprecated]]` 속성, 람다 캡쳐 초기화, 일반화된 람다, 이진 리터럴, 숫자 구분자가 추가되었습니다. 
 
 # 런타임 성능 개선
 
@@ -40,7 +44,7 @@ sidebar:
 |[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) (C++11~)|`type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.|
 |[noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) (C++11~)| `noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.|
 |[가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) (C++11~)|가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.|
-|[변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variable-template/) (C++14~)|(작성중)|
+|[변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variable-template/) (C++14~)|변수도 템플릿으로 만들 수 있습니다.|
 
 # 코딩 계약 강화
 

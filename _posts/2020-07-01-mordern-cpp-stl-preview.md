@@ -12,7 +12,35 @@ sidebar:
 
 1. C++11
 
-    템플릿 메타 프로그래밍, 스마트 포인터, 우측값 참조, 중괄호 초기화, tuple, 함수자, 해시, 유니코드, 날짜/시간, 정규 표현식, 쓰레드 처리를 위한 부분들이 보강되었습니다.
+    템플릿 메타 프로그래밍(`type_traits`, `ratio`, `unique_ptr`), 스마트 포인터(`shared_ptr`, `weak_ptr`), 우측값 참조와 이동 연산(`move()`, `forward()`, `declval()`), 중괄호 초기화(`initializer_list`), 유틸리티(`tuple`), 래퍼(`function`, `mem_fn()`, `reference_wrapper, ref(), cref()`), 바인더(`bind()`), 해시(`hash()`), 컨테이너(`array`, `forward_list`, `unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset`), 문자열(`u16string`, `u32string`), 난수 생성기, `chrono`, 정규 표현식(`regex_match()` `regex_search()`, `regex_replace()`), 동시성(`thread`, `mutex`, `lock_guard`, `unique_lock`, `call_once()`, `condition_variable`, `atomic`, `promise`, `future`, `packaged_task`, `async()`) 처리를 위한 부분들이 보강되었습니다.
+
+2. C++14
+
+    integer_sequence
+    make_unique, make_unique_for_override
+    tuple의 type 기반 get()
+    is_final()
+    연관 컨테이너의 이종 탐색
+    이터레이터 확장 cbegin() - cend()
+    exchange()
+    
+    날짜 / 시간 리터럴
+    문자열 리터럴
+
+표준 사용자 정의 리터럴
+|`operator ""h` (C++14~)|`chrono::duration`에서 시간|
+|`operator ""min` (C++14~)|`chrono::duration`에서 분|
+|`operator ""s` (C++14~)|`chrono::duration`에서 초|
+|`operator ""ms` (C++14~)|`chrono::duration`에서 밀리초|
+|`operator ""us` (C++14~)|`chrono::duration`에서 마이크로초|
+|`operator ""ns` (C++14~)|`chrono::duration`에서 나노초|
+|`operator ""s` (C++14~)|`basic_string` 변환|
+
+
+    shared_timed_lock
+    shared_lock
+    quoted()
+
 
 # 언어 지원 라이브러리
 
