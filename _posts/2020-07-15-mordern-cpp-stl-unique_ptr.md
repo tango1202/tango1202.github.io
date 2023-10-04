@@ -155,38 +155,39 @@ unique_ptr<T> make_unique(std::size_t size); // size 개의 배열 개체를 관
 
 1. `[]` 실수 방지
 
-`make_unique()`를 사용하면 `[]` 실수를 방지할 수 있습니다.
+    `make_unique()`를 사용하면 `[]` 실수를 방지할 수 있습니다.
 
-```cpp
-std::unique_ptr<T> a{new T}; 
-std::unique_ptr<T> b{new T[2]}; // (△) 비권장. 실수로 빼먹었지만 컴파일 됩니다.
-//std::unique_ptr<T> c{std::make_unique<T>(2)};  // (X) 컴파일 오류
-std::unique_ptr<T[]> d{std::make_unique<T[]>(2)};
-```
+    ```cpp
+    std::unique_ptr<T> a{new T}; 
+    std::unique_ptr<T> b{new T[2]}; // (△) 비권장. 실수로 빼먹었지만 컴파일 됩니다.
+    //std::unique_ptr<T> c{std::make_unique<T>(2)};  // (X) 컴파일 오류
+    std::unique_ptr<T[]> d{std::make_unique<T[]>(2)};
+    ```
 
 2. 예외 안전성 향상
 
-또한, 예외에 좀더 안전합니다. 다음 코드는 예외에 안전한 듯 하지만, 
+    또한, 예외에 좀더 안전합니다. 다음 코드는 예외에 안전한 듯 하지만, 
 
-```cpp
-class T {};
-class U {};
-void Func(std::unique_ptr<T> t, std::unique_ptr<U> u) {}
+    ```cpp
+    class T {};
+    class U {};
+    void Func(std::unique_ptr<T> t, std::unique_ptr<U> u) {}
 
-Func(std::unique_ptr<T>{new T}, std::unique_ptr<U>{new U}); // (△) 비권장. new T, new U 호출 순서에 따라 예외가 발생합니다.
-```
+    Func(std::unique_ptr<T>{new T}, std::unique_ptr<U>{new U}); // (△) 비권장. new T, new U 호출 순서에 따라 예외가 발생합니다.
+    ```
 
-1. `new T`
-2. `new U`
-3. `unique_ptr<T>`
-4. `unique_ptr<U>`
+    1. `new T`
+    2. `new U`
+    3. `unique_ptr<T>`
+    4. `unique_ptr<U>`
 
-의 순서로 실행될 경우 `new U`에서 예외가 발생할 경우 `new T`는 소멸되지 않습니다. 따라서 `make_unique()`를 사용하는게 좋습니다.
-```cpp
-class T {};
-class U {};
-void Func(std::unique_ptr<T> t, std::unique_ptr<U> u) {}
+    의 순서로 실행될 경우 `new U`에서 예외가 발생할 경우 `new T`는 소멸되지 않습니다. 따라서 `make_unique()`를 사용하는게 좋습니다.
+    ```cpp
+    class T {};
+    class U {};
+    void Func(std::unique_ptr<T> t, std::unique_ptr<U> u) {}
 
-Func(std::make_unique<T>(), std::make_unique<U>()); // (O) 
-```
+    Func(std::make_unique<T>(), std::make_unique<U>()); // (O) 
+    ```
+    
 # (C++20~) make_unique_for_override (작성중)
