@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#24. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex)"
+title: "#25. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#18. [모던 C++ STL] (C++11~) 간단한 데이터 개체(tuple)"
+title: "#19. [모던 C++ STL] (C++11~) 간단한 데이터 개체(tuple)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

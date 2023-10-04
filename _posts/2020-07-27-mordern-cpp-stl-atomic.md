@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#26. [모던 C++ STL] (C++11~) 원자 단위 명령(atomic, memory_order)"
+title: "#27. [모던 C++ STL] (C++11~) 원자 단위 명령(atomic, memory_order)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

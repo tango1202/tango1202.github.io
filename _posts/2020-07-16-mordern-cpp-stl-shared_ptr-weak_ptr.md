@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [모던 C++ STL] (C++11~) 소유권 공유 스마트 포인터(shared_ptr, weak_ptr)"
+title: "#16. [모던 C++ STL] (C++11~) 소유권 공유 스마트 포인터(shared_ptr, weak_ptr)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

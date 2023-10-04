@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), reference_wrapper, bind())"
+title: "#20. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), reference_wrapper, bind())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

@@ -20,7 +20,7 @@ sidebar:
     make_unique,
     tuple의 type 기반 get()
     is_final()
-    
+
     연관 컨테이너의 이종 탐색
     이터레이터 확장 cbegin() - cend()
     exchange()
@@ -127,7 +127,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |[시퀀스 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/), `list`, `queue`, `stack`, `deque`, `priority_queue` 를 제공합니다.|
-|[연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)|`map`, `multimap`, `set`, `multiset`을 제공합니다.|
+|[연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)|`map`, `multimap`, `set`, `multiset`을 제공합니다.<br/><br/>**(C++14~)**<br/>[연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.|
 |[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/) (C++11~)|`array`는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.|
 |[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/) (C++11~)|`forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.|
 |[unordered_map<br/>unordered_multimap<br/>unordered_set<br/>unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) (C++11~)|`unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.|

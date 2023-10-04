@@ -15,6 +15,7 @@ sidebar:
 > **모던 C++**
 > * `forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.([forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/) 참고)
 > * `unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.([unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) 참고)
+> * (C++14~) [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.
 
 # 개요
 
@@ -83,6 +84,9 @@ class Node {
 |`multimap`|`map`과 동일하며 중복 **Key**허용<br/>첨자 연산 지원 안함|`<` 구현|
 |`set`|**Key**만 요소로 삽입됨<br/>이진 트리 탐색으로 요소 탐색(O(logN))<br/>요소 삽입시 `<`에 의해 정렬됨<br/>삽입되는 **Key**는 유일함|`<` 구현|
 |`multiset`|`set`과 동일하며 중복 **Key**허용|`<` 구현|
+
+
+> *(C++14~) [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.*
 
 # 컨테이너 선정
 
