@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, 암시적 대입 연산자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 스마트 포인터([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등)를 사용하고, 필요없다면 못쓰게 만들어라.
-> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 대입 연산자를 예외에 안전하도록 `swap`으로 구현하고, 필요없다면 못쓰게 만들어라.
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, 암시적 복사 대입 연산자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 스마트 포인터([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등)를 사용하고, 필요없다면 못쓰게 만들어라.
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 복사 대입 연산자를 예외에 안전하도록 `swap`으로 구현하고, 필요없다면 못쓰게 만들어라.
 
 > **모던 C++**
 > * 이동 연산을 위해 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.([우측값 참조, 이동 생성자, 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
@@ -18,9 +18,9 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`=`|대입 연산자|
+|`=`|복사 대입 연산자|
 
-# 암시적 대입 연산자
+# 암시적 복사 대입 연산자
 
 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 마찬가지로, 대입 연산자를 정의하지 않으면, 컴파일러는 암시적으로 대입 연산자를 정의합니다. 기본 동작은 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 유사하게 멤버별 대입입니다.
 

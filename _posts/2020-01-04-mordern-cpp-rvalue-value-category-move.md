@@ -77,7 +77,7 @@ C++에서는 표현식의 값들에 대해서 식별자가 있는지, 이동이 
 
 일반적으로 복사/대입보다는 이동이 성능이 좋을 수 있습니다.
 
-다음은 일반적인 복사 생성자와 대입 연산자의 구현입니다. 복사 생성자에서는 새로운 메모리 공간을 할당해서 복사하고, 대입 연산자에서는 임시 개체를 생성한뒤 `swap()`으로 바꿔치기 합니다.([포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)과 [swap을 이용한 예외 안전 복사 대입 연산자]() 참고)
+다음은 일반적인 복사 생성자와 대입 연산자의 구현입니다. 복사 생성자에서는 새로운 메모리 공간을 할당해서 복사하고, 대입 연산자에서는 임시 개체를 생성한뒤 `swap()`으로 바꿔치기 합니다.([포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)과 [swap을 이용한 예외 안전 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
 
 ```cpp
 class Big {
@@ -372,7 +372,7 @@ T(T&& other);
 T& operator =(T&& other);
 ```
 
-대입 연산자가 암시적으로 생성되듯이([암시적 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고) 이동 대입 연산자도 암시적으로 생성되며, 멤버별 이동 대입 연산을 호출합니다.
+대입 연산자가 암시적으로 생성되듯이([암시적 복사 대입 연산자](??) 참고) 이동 대입 연산자도 암시적으로 생성되며, 멤버별 이동 대입 연산을 호출합니다.
 
 단, 다음 조건에서는 암시적 이동 대입 연산자를 생성하지 않습니다.
 

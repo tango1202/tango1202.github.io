@@ -19,14 +19,14 @@ sidebar:
 > * `type_index`는 `type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.([type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/) 참고)
 > * `addressof()`는 operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.([addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#addressof) 참고)
 
-# 대입 연산자
+# 복사 대입 연산자
 
-[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)는 `=` 와 같은 기본 대입 연산자와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(`a += b` 는 `a = a + b` 와 결과가 같습니다.) 
+[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)는 `=` 와 같은 기본 복사 대입 연산자와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(`a += b` 는 `a = a + b` 와 결과가 같습니다.) 
 
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
-|대입|`a = b`|O|`T& T::operator =(const T2& b);`|X|
+|복사 대입|`a = b`|O|`T& T::operator =(const T2& b);`|X|
 |추가 대입|`a += b`|O|`T& T::operator +=(const T2& b);`|`T& operator +=(T& a, const T2& b);`|
 |빼기 대입|`a -= b`|O|`T& T::operator -=(const T2& b);`|`T& operator -=(T& a, const T2& b);`|
 |곱셈 대입|`a *= b`|O|`T& T::operator *=(const T2& b);`|`T& operator *=(T& a, const T2& b);`|
@@ -381,9 +381,9 @@ class Derived2 : public Base2 {};
 
 클래스나 구조체에서 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 연산자를 오버로딩할 수 있습니다. 
 
-**대입 연산자**
+**복사 대입 연산자**
 
-하기는 `=` 연산자를 오버로딩한 예입니다. `T&` 와 같이 자기 자신의 참조를 리턴하는데요, 이는 `t1 = t2 = t2;`과 같이 연달아 대입하는 경우를 지원하고, 복사 부하를 줄이기 위함입니다.(예외에 안전한 대입 연산자를 오버로딩 하는 방법은 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)를 참고하세요.)
+하기는 `=` 연산자를 오버로딩한 예입니다. `T&` 와 같이 자기 자신의 참조를 리턴하는데요, 이는 `t1 = t2 = t2;`과 같이 연달아 대입하는 경우를 지원하고, 복사 부하를 줄이기 위함입니다.(예외에 안전한 복사 대입 연산자를 오버로딩 하는 방법은 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)를 참고하세요.)
 
 ```cpp
 class T {
@@ -470,7 +470,7 @@ EXPECT_TRUE(t3.GetVal() == 20);
 
 **`+` 보다는 `+=`이 좋은 이유**
 
-대입 연산자가 참조자 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`, 값 타입)을 리턴합니다. 이는 연산의 결과값을 리턴해야 하기 때문입니다.(내부적으로 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성될 수밖에 없습니다.) 
+산술형 대입 연산자가 참조자 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`, 값 타입)을 리턴합니다. 이는 연산의 결과값을 리턴해야 하기 때문입니다.(내부적으로 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성될 수밖에 없습니다.) 
 
 따라서, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 생성 부하가 없도록 산술형 대입 연산자를 사용하는 코딩 습관을 가지시는게 좋습니다.([임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 생성 부하가 큰 경우에는 단단한 **코딩 계약**을 위해 `+=`만 구현하고, `+`를 구현하지 않아야 합니다.)
 

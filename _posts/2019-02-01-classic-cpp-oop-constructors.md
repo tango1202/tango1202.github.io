@@ -256,7 +256,7 @@ public:
 5. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 소멸시 스마트 포인터의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 포인터를 `delete`합니다.
 
 ```cpp
-// 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.(대입 연산은 지원하지 않습니다.)
+// 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.(복사 대입 연산은 지원하지 않습니다.)
 class IntPtr {
 private:
     int* m_Ptr; // new로 생성된 개체입니다.
@@ -299,11 +299,11 @@ public:
 
     EXPECT_TRUE(t2.GetVal() == 10);
 } 
-// (X) 예외 발생. 2번 delete 합니다. 아직 대입 연산은 지원하지 않습니다.
+// (X) 예외 발생. 2번 delete 합니다. 아직 복사 대입 연산은 지원하지 않습니다.
 {
     T t1(new int(10));
     T t2(new int(20));
-    t2 = t1; // 아직 대입 연산은 지원하지 않습니다.
+    t2 = t1; // 아직 복사 대입 연산은 지원하지 않습니다.
 }
 ```
 
