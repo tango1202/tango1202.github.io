@@ -286,7 +286,7 @@ EXPECT_TRUE(a.use_count() == 2);
     shared_ptr& operator=( const shared_ptr& r ) noexcept; 
     ```
  
-    예외 발생을 하지 않으므로, 굳이 `Swap()` 을 사용할 필요가 없어서 코드가 간결합니다.([멤버 변수가 2개 이상인 경우 스마트 포인터와 복사 대입 연산자와의 호환성](??)에서 개체 대입시 예외가 발생할 수 있으므로, `Swap()`을 사용하는게 예외에 안전하다고 한 바 있습니다.)
+    예외 발생을 하지 않으므로, 굳이 `Swap()` 을 사용할 필요가 없어서 코드가 간결합니다.([멤버 변수가 2개 이상인 경우 스마트 포인터와 복사 대입 연산자와의 호환성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EA%B0%80-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EC%99%80-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80%EC%9D%98-%ED%98%B8%ED%99%98%EC%84%B1)에서 개체 대입시 예외가 발생할 수 있으므로, `Swap()`을 사용하는게 예외에 안전하다고 한 바 있습니다.)
 
 코드를 테스트 해보면, `T`개체를 복사 생성, 복사 대입하는 경우 소유권 분쟁은 없으며, `Data`를 서로 공유한다는 것을 알 수 있습니다.
 
