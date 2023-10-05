@@ -12,13 +12,17 @@ sidebar:
 
 # 개요
 
-기존에는 표현식의 다양한 상황에서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되며, 임시 개체의 불필요한 복사나 대입을 최소화 하기 위해 컴파일러가 자체적인 최적화를 해줬습니다.
+기존에는 다양한 상황에서 생성된 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 불필요한 복사나 대입이 최소화 되도록 컴파일러가 자체적인 최적화를 해줬습니다.
 
 1. 생성자 호출 최적화 및 함수 인수 전달 최적화
-    임시 개체를 그냥 lvalue로 사용합니다.([값 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94) 와 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-) 참고)
+   
+   임시 개체를 그냥 lvalue로 사용합니다.([값 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94) 와 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-) 참고)
 
 2. 리턴값 최적화(RVO)
+
     리턴할 개체를 그냥 `result`로 사용합니다.([리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo) 참고)
+
+다음 예제를 보면 컴파일러 종류에 따라 다르겠지만, gcc에서는 불필요한 이동 생성을 생략하고, 생성된 임시 개체를 그냥 사용합니다.
 
 ```cpp
 class A {};
@@ -31,24 +35,7 @@ A Func2() {return A{};}
 A result = Func2(); // A{} 기본 생성자로 생성하고, result에 이동 생성합니다. 하지만 컴파일러에 따라 리턴된 임시 개체를 그냥 result로 사용합니다.
 ```
 
-컴파일러 최적화에 따라 이동 생성자를 사용하지 않더라도, 문법적으로는 이동 생성자가 필요하므로 다음처럼 구현되어 있어야 합니다.
-
-```cpp
-class A {
-public:
-    int m_Val;
-public:
-    A() = default;
-    A(const A& other) = delete;
-    A(A&& other) = default; // 이동 생성자 사용
-    A& operator =(const A& other) = delete; 
-    A& operator =(A&& other) = delete;           
-};
-
-A a{A{}}; // 컴파일러 최적화로 이동 생성자를 사용하지 않지만, 컴파일을 위해 문법적으로는 이동 생성자가 필요합니다.
-```
-
-다음과 같이 이동 생성자를 사용하지 않으면 컴파일 오류가 발생합니다.
+하지만, 컴파일러 최적화에 따라 이동 생성자를 사용하지 않더라도, 문법적으로는 이동 생성자가 필요하므로 이동 생성자를 `delete`하면 컴파일 오류가 납니다.
 
 ```cpp
 class A {
@@ -65,7 +52,24 @@ public:
 A a{A{}}; // (X) 컴파일 오류. 이동 생성자가 없음   
 ```
 
-C++17 부터는 임시 구체화와 복사 생략 보증을 통해 임시 개체가 불필요하게 복사되지 않음을 문법적으로 보증합니다.
+따라서 억지로 다음처럼 이동 생성자를 사용해야 합니다.
+
+```cpp
+class A {
+public:
+    int m_Val;
+public:
+    A() = default;
+    A(const A& other) = delete;
+    A(A&& other) = default; // 이동 생성자 사용
+    A& operator =(const A& other) = delete; 
+    A& operator =(A&& other) = delete;           
+};
+
+A a{A{}}; // 컴파일러 최적화로 이동 생성자를 사용하지 않지만, 컴파일을 위해 문법적으로는 이동 생성자가 필요합니다.
+```
+
+하지만, C++17 부터는 임시 구체화와 복사 생략 보증을 통해 임시 개체가 불필요하게 복사되지 않음을 문법적으로 보증해 줍니다. 그덕에 상기 경우에 이동 생성자를 억지로 생성하지 않아도 컴파일 오류없이 잘 동작하게 됐습니다.
 
 # 임시 구체화(Temporary materialization)
 
