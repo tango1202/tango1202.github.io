@@ -12,6 +12,8 @@ sidebar:
 > * `{}` 복사 초기화로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.
 > * `{}` 초기화시 인자의 암시적 형변환을 일부 차단하여, 코딩 계약이 개선되었습니다.
 > * `initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.
+> * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 임시 개체가 불필요하게 복사되지 않음을 문법적으로 보증합니다. 기존 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되어 보증됩니다.
+
 
 # 중괄호 초기화
 
@@ -110,7 +112,7 @@ U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 
 # 중괄호 복사 초기화 T t = {};, t = {};, f({}), return {}
 
-`T t  = {};` 표현은 `T t = T{};`의 축약형입니다. 즉, 직접 목록 초기화인 `T{}`로 개체를 생성하고, 복사 생성자나 대입연산자를 이용하여 `t`에 복사 대입하는 표현입니다.
+`T t  = {};` 표현은 `T t = T{};`의 축약형입니다. 즉 `T t{T{}};`입니다. 직접 목록 초기화인 `T{}`로 개체를 생성하고, 복사 생성자를 이용하여 `t`를 복사 생성하는 표현입니다.
 
 1. 생성자 호출시 사용할 수 있습니다.
    
@@ -138,6 +140,7 @@ U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
     T : Default Constructor // T b = {};
     T : Default Constructor // T c = T{};
     ```
+    > *(C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 임시 개체가 불필요하게 복사되지 않음을 문법적으로 보증합니다. 기존 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되어 보증됩니다.*
 
 2. 대입문에 사용할 수 있습니다.
    

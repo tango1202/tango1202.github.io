@@ -29,11 +29,7 @@ sidebar:
 3. C++17
 고전 C++ 개선
 
-    임시 구체화 https://en.cppreference.com/w/cpp/language/implicit_conversion#Temporary_materialization
-
-    복사 생략 보증(??, Guaranteed copy elision)
-        copy-initialization and direct-initialization of objects of type T from prvalue expressions of type T (ignoring top-level cv-qualifiers) shall result in no copy or move constructors from the prvalue expression. See copy elision for more information.
-
+    임시 구체화와 복사 생략 보증
     중첩 네임스페이스
 
     if, switch의 초기식(selection statement width initializer)
@@ -193,6 +189,7 @@ wiki
 |[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/) (C++11~)|멤버 함수에 `&`, `&&` 참조 지정자가 추가되어 좌측값에서 호출될때와 우측값에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.|
 |[무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/) (C++11~)|공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀려 메모리 절약을 위한 코딩 자유도가 높아졌습니다.|
 |[extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/) (C++11~)|`extern` 템플릿을 추가하여 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.| 
+|[임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/) (C++17~)|임시 구체화와 복사 생략 보증을 통해 임시 개체가 불필요하게 복사되지 않음을 문법적으로 보증합니다. 기존 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되어 보증됩니다.|
 
 # 컴파일 타임 프로그래밍
 
