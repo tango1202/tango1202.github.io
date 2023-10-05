@@ -20,7 +20,7 @@ sidebar:
 > * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하거나 순가상 함수를 포함하라.(`is-a` 관계에서 순가상 함수가 없는 경우, 순가상 소멸자를 사용한다.)
 > * 상속을 제한하고 싶은 경우, `public` Non-Virtual 소멸자 사용으로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
 > * 상속 관계에서는 복사 생성자 대신 가상 복사 생성자를 사용하라.
-> * 부모 클래스의 대입 연산자는 오동작할 소지가 있으니 막아라.
+> * 부모 클래스의 복사 대입 연산자는 오동작할 소지가 있으니 막아라.
 
 > **모던 C++**
 > * `final`이 추가되어 강제적으로 상속을 제한할 수 있습니다.([final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) 참고)
@@ -789,9 +789,9 @@ for(int i = 0; i < 2; ++i) {
 }
 ```
 
-# 부모 개체의 대입 연산자
+# 부모 개체의 복사 대입 연산자
 
-부모 개체의 대입 연산자도 오동작을 할 수 있습니다.
+부모 개체의 복사 대입 연산자도 오동작을 할 수 있습니다.
 
 다음 코드를 보면,
 
@@ -834,7 +834,7 @@ rect1 = rect2; // (O) 메시지 표시 안됨
 *shape = ellipse; // (X) 오동작. 동일한 Shape 타입이어서 실행됩니다. Rectangle에 Ellipse를 대입합니다.
 ```
 
-`*shape = other;`를 하면, 부모는 같지만 서로 다른 클래스인 `Ellipse`에 `Other` 개체를 대입할 수 있습니다. 예제에서처럼 `typeid(*this) != typeid(other)`로 런타임에 검사하여 대처할 수도 있지만, 기본적으로 부모 클래스의 대입 연산자는 사용하지 못하게 막는게 좋습니다.
+`*shape = other;`를 하면, 부모는 같지만 서로 다른 클래스인 `Ellipse`에 `Other` 개체를 대입할 수 있습니다. 예제에서처럼 `typeid(*this) != typeid(other)`로 런타임에 검사하여 대처할 수도 있지만, 기본적으로 부모 클래스의 복사 대입 연산자는 사용하지 못하게 막는게 좋습니다.
 
 ```cpp
 class Shape {
@@ -873,5 +873,5 @@ Ellipse ellipse;
 Shape* shape = &rect1;
 
 rect1 = rect2; // (O) 메시지 표시 안됨
-*shape = rect2; // (X) 컴파일 오류. 대입 연산은 private임 
+*shape = rect2; // (X) 컴파일 오류. 복사 대입 연산은 private임 
 ```

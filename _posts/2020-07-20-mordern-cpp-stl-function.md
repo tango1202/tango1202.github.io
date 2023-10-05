@@ -11,7 +11,7 @@ sidebar:
 > * `function`은 `()`로 호출 가능한 함수자를 저장합니다.
 > * `function`에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.
 > * `mem_fn()`은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.
-> * `reference_warapper` 는 복사나 대입이 안되는 참조자를 래핑합니다.
+> * `reference_warapper` 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.
 > * `ref()`, `cref()`는 `reference_wrapper` 개체를 생성합니다.
 > * `bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
 > > * `is_bind_expression`는 `bind()`로 생성한 함수인지 검사합니다.
@@ -114,7 +114,7 @@ EXPECT_TRUE(add(obj, 1, 2) == 3); // obj.Add(1, 2);를 호출합니다.
 
 # reference_wrapper
 
-`reference_warapper` 는 복사나 대입이 안되는 참조자를 래핑하여 복사/대입이 가능하게 하고, 참조성을 유지시켜 줍니다. 
+`reference_warapper` 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑하여 복사/대입이 가능하게 하고, 참조성을 유지시켜 줍니다. 
 
 `get()`으로 관리하는 참조자를 구할 수 있으며, 다른 참조자 생성시 `operator T&() const` 을 이용한 암시적 형변환을 통해 참조자를 대입합니다.(암시적 형변환이 필요하여 `{}`는 안됩니다.) 
 

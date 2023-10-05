@@ -16,7 +16,7 @@ sidebar:
 > > * 완전한 함수로 코딩 계약과 상수성 계약을 만들어 사용자 실수를 최소화 하라.
 > * 소유권 분쟁과 복사 부하가 없도록 구현하라.
 > * 예외에 안전하게 구현하라.(예외 발생시 이전 상태로 전환하라.)
-> * 새로운 타입을 설계하듯 기본 생성자, 복사 생성자, 대입 연산자, 소멸자, 형변환 연산자, 연산자의 가시성을 조정하고, `vitual` 여부를 결정하라.
+> * 새로운 타입을 설계하듯 기본 생성자, 복사 생성자, 복사 대입 연산자, 소멸자, 형변환 연산자, 연산자의 가시성을 조정하고, `vitual` 여부를 결정하라.
 
 > **모던 C++**
 > * 이동 연산을 위해 우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다. 이동 생성자와 이동 연산자는 암시적으로 생성됩니다.([우측값 참조, 이동 생성자, 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
@@ -64,7 +64,7 @@ sidebar:
 완전하지 않은 생성자는 다음과 같은 문제가 있습니다.
 
 1. 별도로 Setter를 호출해야 하므로 사용하기 번거롭습니다.
-2. 기본값으로 대충 생성후 값을 세팅하면 불필요한 대입 연산 오버헤드가 발생합니다.
+2. 기본값으로 대충 생성후 값을 세팅하면 불필요한 복사 대입 연산 오버헤드가 발생합니다.
 3. 개체 사용자는 개체 내부 구조를 완전히 파악해야만 제대로 사용할 수 있습니다. **코딩 계약** 을 투명하게 하여 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현해야 합니다.([캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고)
 4. 불완전하게 생성된 개체를 사용했을때 발생하는 버그는 예측하기 힘듭니다.
 5. 불완전하게 생성된 개체에 별도 Setter를 호출하여 완전하게 만드는 중에 예외가 발생하면, 이미 생성된 예외 안전 처리를 위해 소멸시켜야 합니다. 혹시나 이미 이 개체를 참조하는 곳이 있다면, 처리가 곤란합니다.
@@ -113,7 +113,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)|복사 생성시 소유권을 처리할 수 있는 스마트 포인터 사용([복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)참고)|
-|[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)|대입 연산시 소유권을 처리할 수 있는 스마트 포인터 사용([복사 대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)|
+|[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)|복사 대입 연산시 소유권을 처리할 수 있는 스마트 포인터 사용([복사 대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)|
 
 # 자원 획득은 초기화
 
@@ -131,7 +131,7 @@ sidebar:
 따라서,
 
 1. **완전한 생성자**로 생성하여 생성중 오류가 발생하면 예외를 발생시켜 그동안 만들어 둔건 소멸시켜 버리고,
-2. 대입 연산중 예외가 발생하지 않도록 [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)을 이용해서 대입 연산을 구현하고, 
+2. 복사 대입 연산중 예외가 발생하지 않도록 [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)을 이용해서 복사 대입 연산을 구현하고, 
 3. 함수 실행중 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 메카니즘에 맞게 이전 상태로 되돌리고,
 4. [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)가 꼬이지 않게 소멸자에서는 예외를 발생하지 않도록 구현해야 합니다.
 
@@ -154,7 +154,7 @@ sidebar:
 |[형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)|[`explicit`로 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)|
 |명시적 형변환 함수|형변환이 꼭 필요하다면, 명시적으로 구현([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)|
 
-# 부모 개체의 생성자와 대입 연산자
+# 부모 개체의 생성자와 복사 대입 연산자
 
 상속 특성에 맞게 `protected`나 `private`으로 제공합니다.
 
@@ -162,7 +162,7 @@ sidebar:
 |--|--|
 |기본 생성자, 값 생성자|[상속 강제](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EA%B0%95%EC%A0%9C)가 필요하므로 [`protected` 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%81%EC%86%8D-%EC%A0%84%EC%9A%A9-%EA%B8%B0%EB%B0%98-%ED%81%B4%EB%9E%98%EC%8A%A4---protected-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용합니다.|
 |복사 생성자|인터페이스라면 사용못하게 `private`로 막고, 추상 클래스라면 상황에 따라 `protected`나 `private`를 사용하고, 필요하면 `Clone()`가상 함수를 구현합니다.([가상 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)|
-|대입 연산자|사용하지 못하게 `private`로 막습니다.([부모 개체의 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)|
+|복사 대입 연산자|사용하지 못하게 `private`로 막습니다.([부모 개체의 복사 대입 연산자](??) 참고)|
 
 
 # 부모 개체의 소멸자

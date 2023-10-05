@@ -316,7 +316,7 @@ EXPECT_TRUE(v1[0] == 1 && v1[1] == 2);
     };
     T t({1, 2, 3}); // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.
     ```
-2. 대입 연산의 대상이 `initializer_list` 인 경우
+2. 복사 대입 연산의 대상이 `initializer_list` 인 경우
 
     ```cpp
     std::initializer_list<int> data;

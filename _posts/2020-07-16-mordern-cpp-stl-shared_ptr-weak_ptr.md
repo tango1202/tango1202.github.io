@@ -266,11 +266,11 @@ std::shared_ptr<T> b{t->GetPtr()}; // 관리하는 개체로부터 shared_ptr을
 EXPECT_TRUE(a.use_count() == 2);   
 ```
 
-# shared_ptr을 이용한 복사 생성자, 대입 연산자
+# shared_ptr을 이용한 복사 생성자, 복사 대입 연산자
 
 [복사 대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 에서 개체의 복사 생성이나 대입 연산시 소유권 분쟁이 없도록 포인터를 복제해서 관리하는 `IntPtr`을 소개해 드렸습니다.
 
-`shared_ptr`을 이용하면 개체의 복사 생성이나 대입 연산시 포인터를 공유하는 방식으로 소유권 분생을 해결할 수 있습니다.
+`shared_ptr`을 이용하면 개체의 복사 생성이나 복사 대입 연산시 포인터를 공유하는 방식으로 소유권 분생을 해결할 수 있습니다.
 
 다음 코드는,
 
@@ -278,17 +278,17 @@ EXPECT_TRUE(a.use_count() == 2);
 2. `new`로 생성된 `Data`를 인자로 전달받기 위해 생성자에서 `unique_ptr`을 인자로 사용합니다.
 3. 복사 생성자에서 `other`개체의 각 멤버의 복사 생성자를 호출합니다.
 4. `shared_ptr` 에서 참조 카운트가 0이 되면 소멸시킬 것이므로 소멸자에서는 별다른 작업을 하지 않습니다.
-5. 대입 연산자에서는 각 멤버를 대입합니다. 
+5. 복사 대입 연산자에서는 각 멤버를 복사 대입합니다. 
    
-    이때 `shared_ptr`의 대입 연산자는 `noexcept`로 선언되어 있어서 예외를 발생하지 않습니다. 포인터 복사와 참조 카운트 변경만 있으니까 예외 발생할게 없는거죠.
+    이때 `shared_ptr`의 복사 대입 연산자는 `noexcept`로 선언되어 있어서 예외를 발생하지 않습니다. 포인터 복사와 참조 카운트 변경만 있으니까 예외 발생할게 없는거죠.
 
     ```cpp
     shared_ptr& operator=( const shared_ptr& r ) noexcept; 
     ```
  
-    예외 발생을 하지 않으므로, 굳이 `Swap()` 을 사용할 필요가 없어서 코드가 간결합니다.([멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EA%B0%80-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EC%99%80-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80%EC%9D%98-%ED%98%B8%ED%99%98%EC%84%B1)에서 개체 대입시 예외가 발생할 수 있으므로, `Swap()`을 사용하는게 예외에 안전하다고 한 바 있습니다.)
+    예외 발생을 하지 않으므로, 굳이 `Swap()` 을 사용할 필요가 없어서 코드가 간결합니다.([멤버 변수가 2개 이상인 경우 스마트 포인터와 대입 연산자와의 호환성](??)에서 개체 대입시 예외가 발생할 수 있으므로, `Swap()`을 사용하는게 예외에 안전하다고 한 바 있습니다.)
 
-코드를 테스트 해보면, `T`개체를 복사, 대입하는 경우 소유권 분쟁은 없으며, `Data`를 서로 공유한다는 것을 알 수 있습니다.
+코드를 테스트 해보면, `T`개체를 복사 생성, 복사 대입하는 경우 소유권 분쟁은 없으며, `Data`를 서로 공유한다는 것을 알 수 있습니다.
 
 ```cpp
 class Data {
@@ -341,7 +341,7 @@ EXPECT_TRUE(a.m_Data1.use_count() == 2 && b.m_Data1.use_count() == 1 && c.m_Data
 a.m_Data1->SetVal(10);
 EXPECT_TRUE(a.m_Data1->GetVal() == 10 && b.m_Data1->GetVal() == 2 && c.m_Data1->GetVal() == 3 && d.m_Data1->GetVal() == 10);
 
-// 대입 합니다. a, b, d는 동일 Data 입니다.
+// 복사 대입 합니다. a, b, d는 동일 Data 입니다.
 b = d;
 EXPECT_TRUE(a.m_Data1.use_count() == 3 && b.m_Data1.use_count() == 3 && c.m_Data1.use_count() == 1 && d.m_Data1.use_count() == 3);
 
@@ -350,7 +350,7 @@ a.m_Data1->SetVal(20);
 EXPECT_TRUE(a.m_Data1->GetVal() == 20 && b.m_Data1->GetVal() == 20 && c.m_Data1->GetVal() == 3 && d.m_Data1->GetVal() == 20);        
 ```
 
-상기 코드를 보면, 복사 생성자, 소멸자, 대입 연산자가 모두 암시적 버전과 동일한 것을 알 수 있습니다.
+상기 코드를 보면, 복사 생성자, 소멸자, 복사 대입 연산자가 모두 암시적 버전과 동일한 것을 알 수 있습니다.
 
 즉, 다음처럼 훨씬 더 간결하게 작성할 수 있습니다.
 
@@ -669,7 +669,7 @@ Node : Destructor
 |`weak_ptr(const weak_ptr& other) noexcept;` (C++11~)|복사 생성합니다.|
 |`weak_ptr(const weak_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
 |`~weak_ptr();` (C++11~)|기존에 관리하던 개체를 해제합니다. `shared_ptr`의 `weak_ptr` 참조 카운트만 감소시킬 뿐 개체에 대한 `delete`를 수행하지는 않습니다.|
-|`weak_ptr& operator =(const weak_ptr& other) noexcept;` (C++11~)<br/><br/>`weak_ptr& operator =(const shared_ptr& other) noexcept;` (C++11~)|`weak_ptr`이나 `shared_ptr`로 부터 대입받습니다.|
+|`weak_ptr& operator =(const weak_ptr& other) noexcept;` (C++11~)<br/><br/>`weak_ptr& operator =(const shared_ptr& other) noexcept;` (C++11~)|`weak_ptr`이나 `shared_ptr`로 부터 복사 대입합니다.|
 |`weak_ptr& operator =(weak_ptr&& other) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 `this`로 이동시킵니다.|
 |`swap(unique_ptr& other) noexcept;` (C++11~)|관리하는 개체를 `other`와 바꿔치기 합니다.|
 |`reset() noexcept;` (C++11~)|기존에 관리하던 개체를 해제합니다. `shared_ptr`의 `weak_ptr` 참조 카운트만 감소시킬 뿐 개체에 대한 `delete`를 수행하지는 않습니다.|

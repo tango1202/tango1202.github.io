@@ -12,7 +12,7 @@ sidebar:
 > * 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.([람다 표현식, 클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda) 참고) 
 > * `function`은 `()`로 호출 가능한 함수자를 저장합니다.([function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/) 참고)
 > * `mem_fn()`은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.([mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn) 참고)
-> * [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper), [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) 는 복사나 대입이 안되는 참조자를 래핑합니다.
+> * [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper), [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.
 > * `bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.([bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind) 참고)
 > * 함수자 타입 특성 클래스(`unary_function`, `binery_function` 등), 바인더(`bind1st()`, `bind2nd()` 등), 어뎁터와 부정자(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 deprecate 되었습니다.([function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function) 참고)
 > * `hash()`는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.([hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 참고)

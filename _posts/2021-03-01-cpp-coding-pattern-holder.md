@@ -71,13 +71,13 @@ delete ptr;
 
 # 활용 코딩 패턴
 
-1. 복사 생성과 대입연산을 막기 위해 [`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/)을 사용하고, 
+1. 복사 생성과 복사 대입 연산을 막기 위해 [`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/)을 사용하고, 
 2. 지역 변수(자동 변수)로만 생성되도록 [`OnlyStackAssignable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)을 사용합니다.
 
 # Holder의 구현
 
 1. `new`한 개체를 생성자에서 전달받고, 소멸자에서 `delete`합니다.
-2. 보통 `Holder`는 기본 생성자, 복사 생성자, 대입 연산자가 필요 없습니다.
+2. 보통 `Holder`는 기본 생성자, 복사 생성자, 복사 대입 연산자가 필요 없습니다.
 3. 보통 `Holder`는 `new` 로 생성되지 않고 스택에 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)(자동 변수)로만 생성됩니다.
 
 ```cpp
@@ -123,12 +123,12 @@ TEST(TestCppPattern, Holder) {
         }
     } // 유효 범위를 벗어나면, 예외가 발생하면 holder의 소멸자가 호출되어 ptr이 소멸됩니다.
 
-    // 복사 생성, 대입 연산, new 생성이 컴파일 안되는지 확인
+    // 복사 생성, 복사 대입 연산, new 생성이 컴파일 안되는지 확인
     {
         Holder<T> holder1(new T);
         Holder<T> holder2(new T);
         Holder<T> holder3(holder1); // (X) 컴파일 오류. 복사 생성자를 막았습니다.
-        holder2 = holder1; // (X) 컴파일 오류. 대입 연산자를 막았습니다.
+        holder2 = holder1; // (X) 컴파일 오류. 복사 대입 연산자를 막았습니다.
         Holder<T> *p = new Holder<T>(new T); // (X) 컴파일 오류. Holder를 new로 생성하지 못하도록 막았습니다.  
     }
 }

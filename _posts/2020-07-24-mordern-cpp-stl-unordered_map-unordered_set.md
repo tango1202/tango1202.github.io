@@ -174,7 +174,7 @@ EXPECT_TRUE(m[0] == "changed data");
 
 `unordered_map`과 `unordered_set`의 Key는 
 
-1. 복사 생성자를 구현해야 하고, 대입 연산자는 불필요하며,
+1. 복사 생성자를 구현해야 하고, 복사 대입 연산자는 불필요하며,
 2. 대소 비교를 하지 않으므로, `bool operator <(const T& other);` 구현은 필요 없고,
 3. 버킷(Bucket) 내에서 탐색하기 위해 `bool operator ==(const T& other);` 구현이 필요하고,
 4. 해당 개체의 해시값(Digest)를 구하기 위해 `hash()`함수자를 구현하여 `unordered_map` 정의시 전달해야 합니다.
@@ -189,7 +189,7 @@ public:
         m_Val{val}, 
         m_Str{str} {}
     A(const A& other) = default; // 복사 생성자 필요
-    A& operator =(const A& other) = delete; // 대입 연산자 불필요
+    A& operator =(const A& other) = delete; // 복사 대입 연산자 불필요
 public:
     // == 비교 연산자 필요
     bool operator ==(const A& other) const {

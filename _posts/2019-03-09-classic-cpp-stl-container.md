@@ -10,7 +10,7 @@ sidebar:
 
 > * 삽입/삭제 성능, 검색 성능, 노드 구성 용량 부하를 검토하여 최적의 컨테이너를 선택하라.
 > * 컨테이너의 변경이 용이하도록 코딩하라.
-> * 컨테이너 종류나 사용하는 알고리즘 함수에 따라 복사 생성자, 대입 연산자, 비교 연산자를 구현하라.
+> * 컨테이너 종류나 사용하는 알고리즘 함수에 따라 복사 생성자, 복사 대입 연산자, 비교 연산자를 구현하라.
 
 > **모던 C++**
 > * `forward_list`는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.([forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/) 참고)
@@ -125,7 +125,7 @@ public:
     // 복사 생성자를 구현해야 합니다.
     A(const A& other) : m_Val(other.m_Val) {}
 private:
-    // 대입 연산자를 사용하지 못하도록 private로 정의합니다.
+    // 복사 대입 연산자를 사용하지 못하도록 private로 정의합니다.
     A& operator =(const A& other) {
         m_Val = other.m_Val;
         return *this;
@@ -151,7 +151,7 @@ public:
     explicit A(int val) : m_Val(val) {}
     // 복사 생성자
     A(const A& other) : m_Val(other.m_Val) {}
-    // 대입 연산자
+    // 복사 대입 연산자
     A& operator =(const A& other) {
         m_Val = other.m_Val;
         return *this;
@@ -167,7 +167,7 @@ v.push_back(A(1));
 v.push_back(A(0));
 
 // 정렬합니다. 
-// 내부적으로 요소의 대입 연산자와 대소 비교 연산자를 사용합니다.
+// 내부적으로 요소의 복사 대입 연산자와 대소 비교 연산자를 사용합니다.
 std::sort(v.begin(), v.end()); 
 EXPECT_TRUE(v[0].m_Val == 0 && v[1].m_Val == 1); // 크기순으로 정렬됩니다.
 ```
@@ -185,7 +185,7 @@ public:
     // 복사 생성자
     A(const A& other) : m_Val(other.m_Val) {}
 private:    
-    // 대입 연산자를 사용하지 못하도록 private로 정의합니다.
+    // 복사 대입 연산자를 사용하지 못하도록 private로 정의합니다.
     A& operator =(const A& other) {
         m_Val = other.m_Val;
         return *this;

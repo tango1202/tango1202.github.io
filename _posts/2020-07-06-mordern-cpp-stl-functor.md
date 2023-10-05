@@ -83,7 +83,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper) (C++11~)|복사나 대입이 안되는 참조자를 래핑합니다.| 
+|[reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper) (C++11~)|복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.| 
 |[ref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) (C++11~)<br/>[cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) (C++11~)|`reference_wrapper` 개체를 생성합니다.| 
 |`unwrap_reference` (C++20~)<br/>`unwrap_ref_decay` (C++20~)|(작성중)| 
 

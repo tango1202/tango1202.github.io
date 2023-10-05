@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `unique_ptr`은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.
+> * `unique_ptr`은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.
 > * (C++14~) `make_unique()`를 이용하여 `unique_ptr`을 효율적으로 생성할 수 있습니다.
 
 # 개요
@@ -18,7 +18,7 @@ sidebar:
 하지만, 다음 문제로 인해 C++11에서 deprecate 되었습니다.
 
 1. 배열을 `delete[]`가 아닌 `delete`로 삭제합니다.(이러면 배열 요소들이 제대로 소멸되지 않습니다. [개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고)
-2. `lvalue` 대입 연산시 소유권을 이전하는 이동 동작을 합니다.(이동 연산과 중복됩니다.)
+2. `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 합니다.(이동 연산과 중복됩니다.)
 
 C++11 부터는 상기 문제를 보완한 `unique_ptr`이 제공됩니다.
 
@@ -58,7 +58,7 @@ EXPECT_TRUE(*c == 1 && d == nullptr);
 |`unique_ptr(const unique_ptr&) = delete;` (C++11~)|복사 생성자는 사용할 수 없습니다.|
 |`unique_ptr(unique_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
 |`~unique_ptr()` (C++11~)|관리하는 개체를 `delete` 또는 `delete[]`합니다.|
-|`unique_ptr& operator =(const unique_ptr&) = delete;` (C++11~)|대입 연산자는 사용할 수 없습니다.|
+|`unique_ptr& operator =(const unique_ptr&) = delete;` (C++11~)|복사 대입 연산자는 사용할 수 없습니다.|
 |`unique_ptr& operator =(unique_ptr&& other) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 `this`로 이동시킵니다.|
 |`operator *() const noexcept;` (C++11~)|관리하는 개체의 참조자를 리턴합니다.|
 |`operator ->() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|

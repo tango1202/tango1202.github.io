@@ -78,7 +78,7 @@ public:
     }
 
 private:
-    // 테스트와 상관없어서 복사 생성자와 대입 연산자는 private로 막아 두었습니다.
+    // 테스트와 상관없어서 복사 생성자와 복사 대입 연산자는 private로 막아 두었습니다.
     my_smart_ptr(my_smart_ptr& other) {}
     my_smart_ptr& operator =(my_smart_ptr& other) {return *this;}
 
@@ -309,7 +309,7 @@ EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name());
 class ICloneable {
 private:
     ICloneable(const ICloneable& other) {} // 인터페이스여서 외부에서 사용 못하게 복사 생성자 막음
-    ICloneable& operator =(const ICloneable& other) {return *this;} // 인터페이스여서 외부에서 사용 못하게 대입 연산자 막음    
+    ICloneable& operator =(const ICloneable& other) {return *this;} // 인터페이스여서 외부에서 사용 못하게 복사 대입 연산자 막음    
 protected:
     ICloneable() {} // 인터페이스여서 상속한 개체에서만 생성할 수 있게함 
     ~ICloneable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다. 
@@ -451,7 +451,7 @@ virtual Shape* Clone() const {
 class ICloneable {
 private:
     ICloneable(const ICloneable& other) {} // 인터페이스여서 외부에서 사용 못하게 복사 생성자 막음
-    ICloneable& operator =(const ICloneable& other) {return *this;} // 인터페이스여서 외부에서 사용 못하게 대입 연산자 막음    
+    ICloneable& operator =(const ICloneable& other) {return *this;} // 인터페이스여서 외부에서 사용 못하게 복사 대입 연산자 막음    
 protected:
     ICloneable() {} // 인터페이스여서 상속한 개체에서만 생성할 수 있게함 
     ~ICloneable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다. 
@@ -513,7 +513,7 @@ public:
     }
 
 private:
-    // 테스트와 상관없어서 복사 생성자와 대입 연산자는 private로 막아 두었습니다.
+    // 테스트와 상관없어서 복사 생성자와 복사 대입 연산자는 private로 막아 두었습니다.
     my_smart_ptr(my_smart_ptr& other) {}
     my_smart_ptr& operator =(my_smart_ptr& other) {return *this;}
 

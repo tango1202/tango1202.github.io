@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-기존에는 다양한 상황에서 생성된 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 컴파일러가 자체적으로 최적화 하여 불필요한 복사나 대입이 최소화 되도록 해줬습니다.
+기존에는 다양한 상황에서 생성된 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 컴파일러가 자체적으로 최적화 하여 불필요한 복사 생성이나 복사 대입이 최소화 되도록 해줬습니다.
 
 1. 생성자 호출 최적화 및 함수 인수 전달 최적화
    

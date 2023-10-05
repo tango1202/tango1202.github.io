@@ -21,7 +21,7 @@ sidebar:
 |--|--|
 |nothrow 보증|절대 예외를 발생하지 않습니다.<br/>[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이거나, 함수내에서 `try-catch()`로 예외를 처리한 함수등에서 한정적으로 가능합니다.|
 |기본 보증|예외가 발생해도 적어도 메모리 릭이나 리소스 릭이 없습니다.<br/>스마트 포인터나 `Holder` 개체를 활용하여 스택 개체로 만들면 쉽게 구현할 수 있습니다.([포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 참고)|
-|강한 보증|예외가 발생해도 내부 자료값이 변하지 않고 이전 상태로 복원합니다.<br/>생성자와 소멸자에서 스마트 포인터나 `Holder` 개체를 활용하여 기본 보증을 하며([복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고), 소멸자에서는 예외를 발생시키지 않습니다. 또한, 대입 연산자는 [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)으로 구현합니다.|
+|강한 보증|예외가 발생해도 내부 자료값이 변하지 않고 이전 상태로 복원합니다.<br/>생성자와 소멸자에서 스마트 포인터나 `Holder` 개체를 활용하여 기본 보증을 하며([복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고), 소멸자에서는 예외를 발생시키지 않습니다. 또한, 복사 대입 연산자는 [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)으로 구현합니다.|
 
 클래스 구현의 구체적인 방법은 [예외 안전](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84)을 참고하기 바랍니다.
 
@@ -220,7 +220,7 @@ T::~T() {
 
 [복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 언급한 것처럼, 스마트 포인터나 `Holder` 개체를 활용하여 복사 생성자를 구현하면, 스택 풀기에 의해 기본 보증과 강한 보증을 하게 됩니다.
 
-# 예외 안전에 좋은 대입 연산자
+# 예외 안전에 좋은 복사 대입 연산자
 
 [swap을 이용한 예외 안전 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)에 언급한 것처럼, `Swap()`을 이용하면 예외가 발생한 개체를 버림으로서 기본 보증과 강한 보증을 하게 됩니다. 단, 이때 `Swap()`은 예외를 발생시키지 말아야 합니다.
 
@@ -244,7 +244,7 @@ T& operator =(const T& other) {
 
 # 예외 안전에 좋은 nothrow swap
 
-예외 안전에 좋은 대입 연산자의 언급처럼 `Swap()`은 예외를 발생하지 말아야 합니다. 만약 예외를 발생했다면, 바꿔치기 하다가 일부만 변경되고 중단된 것이어서 어떻게 복원해야 할지 난감합니다. 강한 보증을 하려면 예외 발생시 완벽하게 이전 상태로 가야 하기 때문에 `Swap()`은 예외를 발생시켜서는 안됩니다. 이러한 nothrow swap 구현은 [nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 와 [스마트 포인터를 이용한 PImpl 이디엄 구현](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/#%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EC%9D%B4%EB%94%94%EC%97%84-%EA%B5%AC%ED%98%84) 을 참고하세요.
+예외 안전에 좋은 복사 대입 연산자의 언급처럼 `Swap()`은 예외를 발생하지 말아야 합니다. 만약 예외를 발생했다면, 바꿔치기 하다가 일부만 변경되고 중단된 것이어서 어떻게 복원해야 할지 난감합니다. 강한 보증을 하려면 예외 발생시 완벽하게 이전 상태로 가야 하기 때문에 `Swap()`은 예외를 발생시켜서는 안됩니다. 이러한 nothrow swap 구현은 [nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 와 [스마트 포인터를 이용한 PImpl 이디엄 구현](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/#%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EC%9D%B4%EB%94%94%EC%97%84-%EA%B5%AC%ED%98%84) 을 참고하세요.
 
 ```cpp
 class T {
