@@ -47,7 +47,7 @@ public:
 5. `m_Impl` 대입 연산을 위해 `swap`을 이용한 대입 연산자를 추가했습니다. `swap`은 포인터끼리의 바꿔치기이므로 복사 부하가 거의 없습니다.
 6. `T::Impl` 정의에서, 복사 생성자는 두고, 대입 연산자는 사용하지 않기에 `private`로 막았습니다.
 
-(`IntPtr`은 [대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)의 내용을 참고하기 바랍니다.)
+(`IntPtr`은 [대입 연산자까지 지원하는 스마트 포인터](??)의 내용을 참고하기 바랍니다.)
 
 ```cpp
 // ----
@@ -116,7 +116,7 @@ int T::GetVal2() const {return *(m_Impl->m_Val2);}
 
 # 스마트 포인터를 이용한 PImpl 이디엄 구현
 
-또한, 멤버 변수가 `m_Impl` 1개 이므로, 스마트 포인터로 만들면, 복사 생성자, 소멸자, 대입 연산자를 별도로 작성하지 않아도 됩니다.([대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
+또한, 멤버 변수가 `m_Impl` 1개 이므로, 스마트 포인터로 만들면, 복사 생성자, 소멸자, 대입 연산자를 별도로 작성하지 않아도 됩니다.([대입 연산자까지 지원하는 스마트 포인터](??) 참고)
 
 다만, 
 

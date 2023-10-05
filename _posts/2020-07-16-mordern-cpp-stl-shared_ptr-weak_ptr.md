@@ -268,7 +268,7 @@ EXPECT_TRUE(a.use_count() == 2);
 
 # shared_ptr을 이용한 복사 생성자, 대입 연산자
 
-[대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 에서 개체의 복사 생성이나 대입 연산시 소유권 분쟁이 없도록 포인터를 복제해서 관리하는 `IntPtr`을 소개해 드렸습니다.
+[대입 연산자까지 지원하는 스마트 포인터](??) 에서 개체의 복사 생성이나 대입 연산시 소유권 분쟁이 없도록 포인터를 복제해서 관리하는 `IntPtr`을 소개해 드렸습니다.
 
 `shared_ptr`을 이용하면 개체의 복사 생성이나 대입 연산시 포인터를 공유하는 방식으로 소유권 분생을 해결할 수 있습니다.
 
