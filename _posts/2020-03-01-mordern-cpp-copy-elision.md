@@ -22,7 +22,7 @@ sidebar:
 
     리턴할 개체를 그냥 `result`로 사용합니다.([리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo) 참고)
 
-다음 예제를 보면 컴파일러 종류에 따라 다르겠지만, gcc에서는 불필요한 이동 생성을 생략하고, 생성된 임시 개체를 그냥 사용합니다.
+컴파일러 종류에 따라 다르겠지만, gcc에서는 불필요한 이동 생성을 생략하고, 생성된 임시 개체를 그냥 사용합니다.
 
 ```cpp
 class A {};
