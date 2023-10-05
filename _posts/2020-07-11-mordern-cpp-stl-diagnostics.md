@@ -79,8 +79,8 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`unexpected()` (~C++17)|동적 예외 사양에서 명시한 예외 이외의 예외가 발생하면 호출됩니다.|
-|`unexpected_handler` (~C++17)|`bad_exception`을 방출합니다.|
+|`unexpected()` (~C++11)|동적 예외 사양에서 명시한 예외 이외의 예외가 발생하면 호출됩니다.|
+|`unexpected_handler` (~C++11)|`bad_exception`을 방출합니다.|
 |`get_expected()` (C++11~C++17)|(작성중)|
 |`set_expected()` (~C++17)|`unexpected_handler`를 설정합니다.|
 

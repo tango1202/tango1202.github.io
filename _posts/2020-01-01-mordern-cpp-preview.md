@@ -26,6 +26,165 @@ sidebar:
 
     [constexpr 함수 제약이 완화](??), [비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/#c14-%EB%B9%84%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EB%A9%A4%EB%B2%84-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94%EC%8B%9C-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94), [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variable-template/), [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto), [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0), [[[deprecated]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#%ED%91%9C%EC%A4%80-attribute) 속성, [람다 캡쳐 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90-%EC%B4%88%EA%B8%B0%ED%99%94), [일반화된 람다](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98), [이진 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-binary-literal/), [숫자 구분자](https://tango1202.github.io/mordern-cpp/mordern-cpp-digit-separator/)가 추가되었습니다. 
 
+3. C++17
+고전 C++ 개선
+
+    임시 구체화 https://en.cppreference.com/w/cpp/language/implicit_conversion#Temporary_materialization
+
+    복사 생략 보증(??, Guaranteed copy elision)
+        copy-initialization and direct-initialization of objects of type T from prvalue expressions of type T (ignoring top-level cv-qualifiers) shall result in no copy or move constructors from the prvalue expression. See copy elision for more information.
+
+    중첩 네임스페이스
+
+    if, switch의 초기식(selection statement width initializer)
+
+    inline variable : inline 함수와 동일. 정적 멤버 변수 초기화
+
+    
+
+모던 C++ 개선    
+ 
+    static_cast에서 설명 옵션
+    
+    람다 캡쳐 *this 값 복사
+
+    u8 문자 리터럴(u8 문자열 리터럴은 C++11~)
+
+    if constexpr
+
+    constexpr 람다
+
+    가변 템플릿을 위한 Fold 표현식(folding expressions)
+    
+    클래스 템플릿 인자 추론(Class template argument deduction (CTAD))
+    
+    auto 템플릿 인자(declareing non-type template prameter with auto)
+    
+    f() noexcept 와 f() 를 오버로딩하는 건 안됨(??)
+
+    중괄호 초기화시 auto 추론의 새로운 규칙(new rules for auto deduction from braced-init-list)
+
+    어트리뷰트 네임스페이스
+
+    어트리뷰트 추가 fallthrough, nodiscard, maybe_unused
+
+    열거형 초기화(direct-list-initialization of enums)
+
+모던 C++ 추가
+    
+    구조화된 바인딩 structured binding
+
+    __has_include
+
+STL
+
+# Utility types
+
+std::tuple:
+std::apply
+std::make_from_tuple
+deduction guides
+std::any
+std::optional
+std::variant
+searchers
+std::as_const
+std::not_fn
+
+# 기타
+
+string_view
+invoke
+filesystem
+sample(https://github.com/AnthonyCalandra/modern-cpp-features#stdsample)
+
+https://github.com/AnthonyCalandra/modern-cpp-features#prefix-sum-algorithms
+
+https://github.com/AnthonyCalandra/modern-cpp-features#string-conversion-tofrom-numbers
+
+# Memory management
+
+uninitialized memory algorithms
+std::destroy_at
+std::destroy
+std::destroy_n
+std::uninitialized_move
+std::uninitialized_value_construct
+weak_from_this
+std::pmr::memory_resource and std::polymorphic_allocator
+std::aligned_alloc
+transparent std::owner_less
+array support for std::shared_ptr
+allocation functions with explicit alignment
+
+# Compile-time programming
+
+std::byte
+std::conjunction/std::disjunction/std::negation
+type trait variable templates (xxx_+v)
+std::is_swappable
+is_invocable
+is_aggregate
+std::has_unique_object_representations
+
+# Algorithms
+std::clamp
+parallel algorithms and execution policies
+std::inclusive_scan
+std::exclusive_scan
+std::gcd
+std::lcm
+std::reduce
+
+# Iterators and containers
+
+map/set extract and map/set merge(slicing for maps and sets https://github.com/AnthonyCalandra/modern-cpp-features#splicing-for-maps-and-sets)
+map/unordered_map try_emplace and insert_or_assign
+contiguous iterators (LegacyContiguousIterator)
+non-member std::size/std::empty/std::data
+# Numerics
+mathematical special functions
+3D std::hypot
+# Others
+cache line interface
+std::launder
+std::uncaught_exceptions
+std::to_chars/std::from_chars
+std::atomic<T>::is_always_lock_free
+std::scoped_lock
+std::timespec_get
+rounding functions for std::chrono::duration and std::chrono::time_point
+
+
+deprecate
+noexcept 관련 throw() - deprecate ~C++17
+the obsolete iostreams aliases ~C++17
+trigraphs ~C++17
+the register keyword ~C++17
+bool increment ~C++17
+
+
+std::iterator,
+std::raw_storage_iterator,
+std::get_temporary_buffer,
+std::is_literal_type,
+std::result_of,
+all of <codecvt>
+
+
+
+
+
+
+wiki
+    Allow typename (as an alternative to class) in a template template parameter
+    
+    네임스페이스와 열거형에서 어트리뷰트 허용
+
+    Hexadecimal floating-point literals
+
+    Constant evaluation for all non-type template arguments
+
 # 런타임 성능 개선
 
 |항목|내용|

@@ -29,7 +29,7 @@ sidebar:
 |`fputc(), putc()`<br/>`fputwc(), putwc()`|(작성중)|
 |`fputs()`<br/>`fputws()`|(작성중)|
 |`getchar()`<br/>`getwchar()`|(작성중)|
-|`gets()` (C++11~C++14)|(작성중)|
+|`gets()` (~C++11)|`stdin`으로부터 문자열을 읽습니다.|
 |`putchar()`<br/>`putwchar()`|(작성중)|
 |`puts()`|(작성중)|
 |`ungetc()`<br/>`ungetwc()`|(작성중)|

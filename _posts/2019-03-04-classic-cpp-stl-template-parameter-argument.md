@@ -44,6 +44,8 @@ A<int, char> a;
 
 2. 템플릿 개체
 
+    `T`에 종속적인 `T val`을 템플릿 인자로 사용할 수 있습니다.
+
     ```cpp
     template<typename T, T val>
     class A {
@@ -56,6 +58,8 @@ A<int, char> a;
     ```
 
 3. 비 템플릿 개체
+
+    `int val`과 같이 `T`와 무관한 타입을 템플릿 인자로 사용할 수 있습니다.
 
     ```cpp
     template<typename T, int val>
@@ -72,6 +76,8 @@ A<int, char> a;
     ```
 
 4. 템플릿 템플릿 인자
+
+    인스턴스화 되지 않은 템플릿을 인자로 사용할 수 있습니다.
 
     ```cpp
     template<typename T> 

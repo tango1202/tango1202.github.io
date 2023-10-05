@@ -21,7 +21,7 @@ C++11 부터 STL 에서는 `tuple`이 제공되어 다수의 요소를 관리할
 |--|--|
 |[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)|`first`와 `second`로 2개의 요소를 관리합니다.|
 |[make_pair()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)|`pair`를 생성합니다.|
-[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct) (~C++11)|`pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.|
+[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct) (C++11~)|`pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.|
 |[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple) (C++11~)|다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.|
 |`get()` (C++11~)|`tuple` 에서 주어진 인덱스 위치에 있는 요소의 참조자를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
 |[make_tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#make_tuple) (C++11~)|`tuple` 을 생성합니다.|
