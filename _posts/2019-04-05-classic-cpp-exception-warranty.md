@@ -222,7 +222,7 @@ T::~T() {
 
 # 예외 안전에 좋은 대입 연산자
 
-[swap을 이용한 예외 안전 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)에 언급한 것처럼, `Swap()`을 이용하면 예외가 발생한 개체를 버림으로서 기본 보증과 강한 보증을 하게 됩니다. 단, 이때 `Swap()`은 예외를 발생시키지 말아야 합니다.
+[swap을 이용한 예외 안전 복사 대입 연산자]()에 언급한 것처럼, `Swap()`을 이용하면 예외가 발생한 개체를 버림으로서 기본 보증과 강한 보증을 하게 됩니다. 단, 이때 `Swap()`은 예외를 발생시키지 말아야 합니다.
 
 ```cpp
 class T {

@@ -76,7 +76,7 @@ class T {
     T() {} // 기본 생성자
     T(const T& other) {} // 복사 생성자
     ~T() {} // 소멸자
-    T& operator =(const T& other) {return *this;} // 대입 연산자
+    T& operator =(const T& other) {return *this;} // 복사 대입 연산자
     
     operator int() const {return 0;} // 형변환 연산자
 
@@ -110,7 +110,7 @@ class T {
 |기본 생성자|인수없이 개체를 생성합니다.<br/>([기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)|
 |복사 생성자|같은 타입의 개체를 복사 생성합니다.<br/>([복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)|
 |소멸자|개체 소멸시 호출됩니다.<br/>([소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 참고)|
-|대입 연산자와 연산자 오버로딩|개체 대입 연산자 와 그외 연산자를 오버로딩할 수 있습니다.<br/>([복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/) 와 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고)|
+|복사 대입 연산자와 연산자 오버로딩|개체의 복사 대입 연산자 와 그외 연산자를 오버로딩할 수 있습니다.<br/>([복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/) 와 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고)|
 |형변환 연산자|여러 타입으로 형변환 할 수 있도록 연산자 오버로딩을 할 수 있습니다.<br/>([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)|
 |멤버 함수|데이터를 처리하는 함수입니다.<br/>([멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
 |상수 멤버 함수|멤버 함수중 상수인 함수입니다.<br/>([상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|

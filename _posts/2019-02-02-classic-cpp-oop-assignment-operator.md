@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [고전 C++ 개체 지향] 대입 연산자와 nothrow Swap"
+title: "#2. [고전 C++ 개체 지향] 복사 대입 연산자와 nothrow Swap"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false
@@ -53,7 +53,7 @@ t2 = t1; // (O) 암시적 대입 연산자 호출
 EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 ```
 
-# swap을 이용한 예외 안전 대입 연산자
+# swap을 이용한 예외 안전 복사 대입 연산자
 
 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 언급된 것처럼 예외가 발생하기 전의 상태로 복귀해야 합니다.
 
