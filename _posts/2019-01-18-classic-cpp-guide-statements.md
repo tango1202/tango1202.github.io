@@ -13,7 +13,7 @@ sidebar:
 > * `goto`는 코드 분석을 방해하니 사용하지 마라.
 
 > **모던 C++**
-> * (C++11~) 범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.([범위 기반 for()](??) 참고)
+> * (C++11~) 범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.([범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statement/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for) 참고)
  
 # 개요
 

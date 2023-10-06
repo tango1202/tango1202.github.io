@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * 범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.
+> * (C++17~) 초기식을 포함하는 if(), switch() 가 추가되어 함수 리턴값을 평가하고 소멸하는 코드가 단순해 졌습니다.
 
 # 범위 기반 for()
 
@@ -55,4 +56,34 @@ for (int& val : v) {
 EXPECT_TRUE(v[0] == 2 && v[1] == 3 && v[2] == 4);
 ```
 
+# (C++17~) 초기식을 포함하는 if(), switch()
+
+기존에는 `if()`나 `switch()` 는 조건식 만을 평가했습니다. 따라서, 특정 함수의 리턴값을 확인하는 경우에는 다음과 같이 표현했는데요,
+
+```cpp
+int* result{Func()}; // 결과값을 구한 후
+if (result != nullptr) { // 조건 평가
+    // Todo
+}
+```
+
+만일 리턴값이 스마트 포인터라면 유효 범위를 짧게하기 위해 다음과 같이 중괄호를 이용했었습니다.
+
+```cpp
+{ // result는 중괄호가 끝나면 소멸됩니다.
+    std::shared_ptr<int> result{Func()};
+    if (result != nullptr) {
+        // Todo
+    }
+}
+```
+
+C++17 부터는 `if()` 와 `switch()`에서 초기식을 실행후 조건문을 평가할 수 있어, 다음처럼 코드를 간결하게 작성할 수 있습니다. 초기식에 작성된 변수의 유효 범위는 `if()` 나 `switch()`의 끝입니다.
+
+```cpp
+// result는 if 문 이 끝나면 소멸됩니다.
+if (std::shared_ptr<int> result{Func()}; result != nullptr) {
+    // Todo
+}
+```
 

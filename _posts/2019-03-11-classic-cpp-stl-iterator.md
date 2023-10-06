@@ -12,7 +12,7 @@ sidebar:
 > * for를 이용하여 이터레이터를 순차 탐색 할때 `itr < endItr`보다는 `itr != endItr`을 사용하라.
 
 > **모던 C++**
-> * (C++11~) 범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.([범위 기반 for()](??) 참고)
+> * (C++11~) 범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.([범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statement/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for) 참고)
 > * (C++11~) `move_iterator` 아답터는 이터레이터가 가리키는 요소를 이동 연산 합니다.([move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 참고)
 > * (C++11~) `begin()`과 `end()`가 추가되었습니다.([범위 접근](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 참고)
 > * (C++14~) `rbegin()`, `rend()`, `cbegin()`, `cend()`, `crbegin()`, `crend()`가 추가되었습니다.([범위 접근](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 참고)
@@ -79,7 +79,7 @@ EXPECT_TRUE(v[0] == 0 && v[1] == 1 && v[2] == 2 && v[3] == 3 && v[4] == 4);
 EXPECT_TRUE(v[1] == 10); 
 ```
 
-> *(C++11~) 범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.([범위 기반 for()](??) 참고)*
+> *(C++11~) 범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.([범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statement/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for) 참고)*
 
 # 이터레이터 카테고리
 
