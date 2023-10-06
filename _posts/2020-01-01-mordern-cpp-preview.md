@@ -51,13 +51,15 @@ sidebar:
 
     constexpr 람다
 
-    가변 템플릿을 위한 Fold 표현식(folding expressions)
+    f() noexcept 와 f() 를 오버로딩하는 건 안됨(??)
     
     클래스 템플릿 인자 추론(Class template argument deduction (CTAD))
     
     auto 템플릿 인자(declareing non-type template prameter with auto)
     
-    f() noexcept 와 f() 를 오버로딩하는 건 안됨(??)
+    가변 템플릿을 위한 Fold 표현식(folding expressions)
+
+
 
     중괄호 초기화시 auto 추론의 새로운 규칙(new rules for auto deduction from braced-init-list)
 
@@ -221,7 +223,7 @@ wiki
 |개선된 변수 및, 함수 및 클래스 표현 (C++11~)|**(C++11~)**<br/>[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 우측값에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.<br/>[default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.<br/>[override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.<br/>[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있고, 강제적으로 상속을 제한할 수 있습니다.<br/>[생성자 위임](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9C%84%EC%9E%84)이 추가되어 생성자의 초기화 리스트 코드가 좀더 간결해 졌습니다.<br/>[생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D)이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.<br/><br/>**(C++17~)**<br/>[인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 `include` 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, 클래스 정적 멤버 변수 정의 및 초기화가 쉬워졌습니다.|
 |[개선된 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/) (C++11~)|**(C++11~)**<br/>[인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#%EC%9D%B8%EB%9D%BC%EC%9D%B8-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4) 가 추가되어 API 버전 구성이 편리해 졌습니다.<br/><br/>**C++14**<br/> [단순한 중첩 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#c17-%EB%8B%A8%EC%88%9C%ED%95%9C-%EC%A4%91%EC%B2%A9-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4) 표현이 추가되어 `::` 로 중첩 네임스페이스를 표현할 수 있습니다.|
 |[범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/) (C++11~)|**(C++11~)**<br/>이름 범위를 한정하는 범위 있는 열거형이 추가되어 이름 충돌 회피가 쉬워졌습니다.|
-|[람다 표현식, 클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) (C++11~)|**(C++11~)**<br/>람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.<br/><br/>**(C++14~)**<br/>[람다 캡쳐 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90-%EC%B4%88%EA%B8%B0%ED%99%94)로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.<br/>`auto`를 인자로 받아 마치 템플릿 함수처럼 동작하는 [일반화된 람다 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98)가 추가되었습니다.<br/><br/>**(C++17)**<br/>람다 캡쳐시 `*this` 를 이용하여 개체 자체를 복제하여 사용합니다.([캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90) 참고)| 
+|[람다 표현식, 클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) (C++11~)|**(C++11~)**<br/>람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.<br/><br/>**(C++14~)**<br/>[람다 캡쳐 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90-%EC%B4%88%EA%B8%B0%ED%99%94)로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.<br/>`auto`를 인자로 받아 마치 템플릿 함수처럼 동작하는 [일반화된 람다 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98)가 추가되었습니다.<br/><br/>**(C++17)**<br/>람다 캡쳐시 `*this` 를 이용하여 개체 자체를 복제하여 사용합니다.([캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90) 참고)<br/>람다 함수는 요구사항이 충족되면 암시적으로 컴파일 타임 함수로 만들어지고,`constexpr` 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.([constexpr 람다 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98) 참고)| 
 |[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/) (C++11~)|**(C++11~)**<br/>`using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.|
 |[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) (C++11~)|**(C++11~)**<br/>유니코드를 지원하는 `char16_t`, `char32_t`, `u16string`, `u32string` 이 추가되었습니다.<br/>유니코드를 지원하는 `u8""`, `u""`, `U""`, `'u'`(문자), `'U'`(문자) 리터럴이 추가되었습니다.<br/>`R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.<br/><br/>**(C++17~)**<br/>유니코드를 지원하는 `'u8'`(문자) 리터럴이 추가되었습니다.|
 |[멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/) (C++11~)|**(C++11~)**<br/>`sizeof()`가 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있도록 개선되었습니다.|

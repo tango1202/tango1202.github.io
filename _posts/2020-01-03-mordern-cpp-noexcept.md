@@ -79,4 +79,34 @@ EXPECT_TRUE(noexcept(f()) == false);
 EXPECT_TRUE(noexcept(g()) == true); 
 ```
 
+# (C++17~) 함수 유형에 포함된 noexcept
 
+기존에는 함수 유형에 noexcept가 포함되지 않았습니다.
+
+따라서, 함수 포인터로 유형 정의를 할때 `noexcept`를 포함할 수 없었습니다.
+
+```cpp
+// C++14에서 noexcept는 함수 유형의 일부가 아닙니다. 
+typedef void (*MyFunc)(void); // 함수 포인터 typedef
+typedef void (*MyFunc_17)(void) noexcept; // (X) 컴파일 오류. noexcept는 함수 유형의 일부가 아닙니다. 
+
+void FuncTrue() noexcept(true) {}
+void FuncFalse() noexcept(false) {}
+
+// ~C++17 이전에는 noexcept 여부와 상관없이 대입할 수 있습니다.
+MyFunc f1{FuncTrue}; 
+MyFunc f2{FuncFalse};
+```
+
+C++17 부터는 `noexcept`가 함수 유형에 포함되었으므로, 다음 예제처럼 `noexcept`인 함수만 전달받게 할 수 있습니다.
+
+```cpp
+typedef void (*MyFunc_17)(void) noexcept; 
+
+void FuncTrue() noexcept(true) {}
+void FuncFalse() noexcept(false) {}
+
+// C++17~ 이후에는 noexcept를 고려하여 대입할 수 있습니다.
+MyFunc_17 f3{FuncTrue}; 
+MyFunc_17 f4{FuncFalse}; // (X) 컴파일 오류. noexcept가 다릅니다.
+```
