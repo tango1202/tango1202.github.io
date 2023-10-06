@@ -141,9 +141,30 @@ A<int> a{10}; // ~C++17 이전에는 타입을 명시해야 합니다.
 EXPECT_TRUE(a.Func(1, 2) == 3);
 ```
 
-C++17 부터는 클래스 템플릿도 인수를 추론하므로 다음과 같이 사용할 수 있습니다.
+C++17 부터는 클래스 템플릿도 생성자에 전달된 인수를 추론하므로 다음과 같이 사용할 수 있습니다.
 
 ```cpp
 A a_17{10}; // C++17 이후부터는 인수로부터 추론합니다.
 EXPECT_TRUE(a_17.Func(1, 2) == 3); 
+```
+
+# auto 템플릿 인자
+
+C++17 부터는 타입이 아닌 개체를 인자로 전달받을때 템플릿 인자로 `auto`를 사용할 수 있습니다.
+
+```cpp
+template<int Num>
+class A {
+public:
+    int GetNum() const {return Num;}
+};
+
+EXPECT_TRUE(A<10>{}.GetNum() == 10);
+
+template<auto Num>
+class A_17 {
+public:
+    auto GetNum() const {return Num;}
+};    
+EXPECT_TRUE(A_17<10>{}.GetNum() == 10);
 ```

@@ -59,15 +59,14 @@ sidebar:
     
     가변 템플릿을 위한 Fold 표현식(folding expressions)
 
-
-
     중괄호 초기화시 auto 추론의 새로운 규칙(new rules for auto deduction from braced-init-list)
+
+    열거형 초기화(direct-list-initialization of enums)
 
     어트리뷰트 네임스페이스
 
     어트리뷰트 추가 fallthrough, nodiscard, maybe_unused
 
-    열거형 초기화(direct-list-initialization of enums)
 
 모던 C++ 추가
     
@@ -247,6 +246,6 @@ wiki
 |항목|내용|
 |--|--|
 |[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) (~C++11)| 동적 예외 사양은 deprecate 되었습니다. 예외를 나열하는 것보다 `noexcept`로 예외가 발생하느냐 안하느냐만 관심을 둡니다.| 
-|[export 템플릿](??) (~C++11)|`export` 템플릿은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.|
+|[export 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF) (~C++11)|`export` 템플릿은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.|
 
 
