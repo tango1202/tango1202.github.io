@@ -75,7 +75,7 @@ ReturnType operator ""_r(const char*);
 template<char...> ReturnType operator ""_t();       
 ```
 
-# 이진 리터럴
+# (C++14~) 이진 리터럴
 
 `0b`, `0B` 접두어를 이용하여 이진수 상수를 표현할 수 있습니다.
 
@@ -89,7 +89,7 @@ EXPECT_TRUE(val2 == 0x0F);
 EXPECT_TRUE(val3 == 0xFF);
 ```
 
-# 숫자 구분자
+# (C++14~) 숫자 구분자
 
 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.
 
