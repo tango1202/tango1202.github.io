@@ -1,0 +1,122 @@
+---
+layout: single
+title: "#25. [모던 C++] (C++11~) extern 템플릿 (C++14~) 변수 템플릿"
+categories: "mordern-cpp"
+tag: ["cpp"]
+author_profile: false
+sidebar: 
+    nav: "docs"
+---
+
+> * `extern` 을 이용하여 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다. 
+> * (C++14~) 변수 템플릿이 추가되어 변수도 템플릿으로 만들 수 있습니다.
+
+# extern 템플릿
+
+기존에는 템플릿을 헤더 파일에 정의해 두고, 여러 파일에서 인클루드 한다면, 템플릿 정의가 중복 정의되어 코드 크기가 커지는데요([템플릿 인스턴스 중복 생성](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%A4%91%EB%B3%B5-%EC%83%9D%EC%84%B1) 참고),
+
+```cpp
+// Test_MordernCpp_ExternTemplate.h 에서
+
+namespace ExternTemplate {
+    template<typename T>
+    T Add(T a, T b) {
+        return a + b;
+    }
+}
+
+// test1.cpp 에서
+#include "Test_MordernCpp_ExternTemplate.h"
+
+TEST(TestMordern, ExternTemplate1) {
+    using namespace ExternTemplate;
+
+    EXPECT_TRUE(Add(1, 2) == 3); // Add<int>()가 정의 되어 포함됩니다.
+}
+
+// test2. cpp 에서
+#include "Test_MordernCpp_ExternTemplate.h"
+
+TEST(TestMordern, ExternTemplate2) {
+    using namespace ExternTemplate;
+
+    EXPECT_TRUE(Add(10, 20) == 30); // Add<int>가 재정의 되어 포함됩니다.
+}
+```
+
+C++11 부터는 `extern` 템플릿을 추가하여 템플릿 선언만 할 수 있으며, 불필요한 코드 크기를 최소화 할 수 있습니다. 
+
+```cpp
+// Test_MordernCpp_ExternTemplate.h 에서
+
+namespace ExternTemplate {
+    template<typename T>
+    T Add(T a, T b) {
+        return a + b;
+    }
+}
+
+// test1.cpp 에서
+#include "Test_MordernCpp_ExternTemplate.h"
+
+TEST(TestMordern, ExternTemplate1) {
+    using namespace ExternTemplate;
+
+    EXPECT_TRUE(Add(1, 2) == 3); // Add<int>()가 정의 되어 포함됩니다.
+}
+
+// test2. cpp 에서
+#include "Test_MordernCpp_ExternTemplate.h"
+
+// 이전에 정의된 템플릿을 사용합니다.
+extern template int ExternTemplate::Add<int>(int, int);
+
+TEST(TestMordern, ExternTemplate2) {
+    using namespace ExternTemplate;
+
+    EXPECT_TRUE(Add(10, 20) == 30); // Add<int>가 재정의 되어 포함됩니다.
+}
+```
+
+# (C++14~) 변수 템플릿
+
+기존의 템플릿은 클래스와 함수만 지원했는데요([템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 참고),
+
+C++14 부터는 변수도 템플릿으로 만들 수 있습니다.
+
+다음 예는 동일한 값을 지정한 `pi`를 타입에 따라 다른 정밀도로 사용하는 예입니다.
+
+```cpp
+template<class T>
+// constexpr T pi_14{3.1415926535897932385L}; // 중괄호 초기화는 암시적 형변환이 안되서 = 로 초기화 합니다.
+constexpr T pi_14 = 3.1415926535897932385L; 
+
+// 동일한 값을 타입에 따라 서로 다른 정밀도로 사용할 수 있습니다.
+std::cout << "pi_14<double> : " << std::setprecision(10) << pi_14<double> << std::endl;
+std::cout << "pi_14<float> : " << std::setprecision(10) <<pi_14<float> << std::endl;
+std::cout << "pi_14<int> : " << std::setprecision(10) <<pi_14<int> << std::endl;
+```
+
+```cpp
+pi_14<double> : 3.141592654
+pi_14<float> : 3.141592741 // double 보다 정밀도가 낮습니다.
+pi_14<int> : 3
+```
+
+또한, 템플릿 특수화를 이용하여 템플릿 메타 프로그래밍에 활용할 수 있습니다. 
+
+다음은 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)에서 소개한 `Factorial` 을 변수 템플릿으로 구현한 예입니다.
+
+```cpp
+// 1을 뺀 값을 재귀 호출합니다.
+template<int val> 
+constexpr int factorial_14 = val * factorial_14<val - 1>; 
+
+// 1일때 특수화 버전. 더이상 재귀 호출을 안합니다.
+template<>
+constexpr int factorial_14<1> = 1;
+
+EXPECT_TRUE(factorial_14<5> == 5 * 4 * 3 * 2 * 1);
+```
+
+

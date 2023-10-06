@@ -24,7 +24,7 @@ sidebar:
 
 2. C++14
 
-    [constexpr 함수 제약이 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94), [비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/#c14-%EB%B9%84%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EB%A9%A4%EB%B2%84-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94%EC%8B%9C-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94), [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variable-template/), [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto), [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0), [[[deprecated]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#%ED%91%9C%EC%A4%80-attribute) 속성, [람다 캡쳐 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90-%EC%B4%88%EA%B8%B0%ED%99%94), [일반화된 람다 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98), [이진 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c14-%EC%9D%B4%EC%A7%84-%EB%A6%AC%ED%84%B0%EB%9F%B4), [숫자 구분자](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c14-%EC%88%AB%EC%9E%90-%EA%B5%AC%EB%B6%84%EC%9E%90)가 추가되었습니다. 
+    [constexpr 함수 제약이 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94), [비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/#c14-%EB%B9%84%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EB%A9%A4%EB%B2%84-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94%EC%8B%9C-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94), [변수 템플릿](??), [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto), [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0), [[[deprecated]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#%ED%91%9C%EC%A4%80-attribute) 속성, [람다 캡쳐 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90-%EC%B4%88%EA%B8%B0%ED%99%94), [일반화된 람다 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98), [이진 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c14-%EC%9D%B4%EC%A7%84-%EB%A6%AC%ED%84%B0%EB%9F%B4), [숫자 구분자](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c14-%EC%88%AB%EC%9E%90-%EA%B5%AC%EB%B6%84%EC%9E%90)가 추가되었습니다. 
 
 3. C++17
 고전 C++ 개선
@@ -51,7 +51,7 @@ sidebar:
 
     constexpr 람다
 
-    f() noexcept 와 f() 를 오버로딩하는 건 안됨(??)
+    noexcept가 함수 유형에 포함됨
     
     클래스 템플릿 인자 추론(Class template argument deduction (CTAD))
     
@@ -198,8 +198,8 @@ wiki
 |--|--|
 |[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) (C++11~)|**(C++11~)**<br/>`constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.<br/><br/>**(C++14~)**<br/>`constexpr` 함수 제약이 완화되어 지역 변수, 2개 이상의 리턴문, `if()`, `for()`, `while()` 등을 사용할 수 있습니다.([constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94) 참고)<br/><br/>**(C++17~)**<br/>[if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.|
 |[static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/) (C++11~)|**(C++11~)**<br/>`static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.<br/><br/>**(C++17)** [static_assert의 메시지 생략](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/#c17-static_assert%EC%9D%98-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%83%9D%EB%9E%B5)을 지원합니다.| 
-|[noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) (C++11~)|**(C++11~)**<br/>`noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.|
-|개선된 템플릿 (C++11~)|**(C++11~)**<br/>[extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/)을 추가하여 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.<br/>가변 인자를 활용한 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)이 추가되어 코딩 자유도가 높아졌습니다.<br/>[sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.<br/><br/>**(C++14~)**<br/>[변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variable-template/)을 추가하여 변수도 템플릿으로 만들 수 있습니다.|
+|[noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) (C++11~)|**(C++11~)**<br/>`noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.<br/><br/>**(C++17~)**<br/>`noexcept`가 함수 유형에 포함되어 예외 처리에 대한 코딩 계약을 좀더 단단하게 할 수 있습니다.([함수 유형에 포함된 noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/#c17-%ED%95%A8%EC%88%98-%EC%9C%A0%ED%98%95%EC%97%90-%ED%8F%AC%ED%95%A8%EB%90%9C-noexcept) 참고)|
+|개선된 템플릿 (C++11~)|**(C++11~)**<br/>[extern 템플릿](??)을 추가하여 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.<br/>가변 인자를 활용한 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)이 추가되어 코딩 자유도가 높아졌습니다.<br/>[sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.<br/><br/>**(C++14~)**<br/>[변수 템플릿](??)을 추가하여 변수도 템플릿으로 만들 수 있습니다.|
 
 # 코딩 계약 강화
 
