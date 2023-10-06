@@ -12,8 +12,8 @@ sidebar:
 > * 클래스, 함수, 멤버 함수, 중첩 클래스를 템플릿으로 만들 수 있다.
 
 > **모던 C++**
-> * `extern` 템플릿을 추가하여 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.([extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/) 참고)
-> * `export template` 은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.
+> * (C++11~) `extern` 템플릿을 추가하여 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.([extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/) 참고)
+> * (C++11~) `export template` 은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.
 > * (C++14~) 변수도 템플릿으로 만들 수 있습니다.([변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variable-template/) 참고)
 
 # 템플릿 클래스
@@ -180,7 +180,7 @@ Add(1, 2); // Add<int>()가 정의 되어 포함됩니다.
 Add(10, 20); // Add<int>가 재정의 되어 포함됩니다.
 ```
 
-> *C++ 11 부터는 `extern` 으로 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.([extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/) 참고)*
+> *(C++11~) `extern` 으로 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.([extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/) 참고)*
 
 # export template
 
@@ -222,4 +222,4 @@ MyAdd(10, 20);
 
 하지만, 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견도 일치하지 않아 C++11 부터 완전 remove 되었습니다. 
 
-> *C++11 부터는 `export template` 은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.*
+> *(C++11~) `export template` 은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.*

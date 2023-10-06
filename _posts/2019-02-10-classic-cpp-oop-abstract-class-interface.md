@@ -12,7 +12,7 @@ sidebar:
 > * 기능 스펙과 어느 정도의 공통 기능을 제공하려면 추상 클래스로 정의하라.
 
 > **모던 C++**
-> * `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.([default와 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 참고)
+> * (C++11~) `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.([default와 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 참고)
 
 # 추상 클래스
 
@@ -71,7 +71,7 @@ for(int i = 0; i < 2; ++i) {
     delete shapes[i]; // 다형 소멸 합니다. Shape*로 Rectangle, Ellipse을 소멸합니다.
 } 
 ```
-> *C++11 부터는 `default`와 `delete`가 추가되어 암시적으로 생성되는 복사 생성자와 복사 대입 연산자의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.([default와 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 참고)*
+> *(C++11~) `default`와 `delete`가 추가되어 암시적으로 생성되는 복사 생성자와 복사 대입 연산자의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.([default와 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 참고)*
 
 **마땅한 순가상 함수가 없는 추상 클래스**
 
@@ -196,7 +196,7 @@ for(int i = 0; i < 2; ++i) {
 } 
 ```
 
-> *C++11 부터는 `default`와 `delete`가 추가되어 암시적으로 생성되는 복사 생성자와 복사 대입 연산자의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.([default와 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 참고)*
+> *(C++11~) `default`와 `delete`가 추가되어 암시적으로 생성되는 복사 생성자와 복사 대입 연산자의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.([default와 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 참고)*
 
 `Draw()` 함수는 `IDrawable`의 함수 이므로 다음과 같이 `IDrawble` 인터페이스로 실행할 수 있습니다.
 

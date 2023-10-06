@@ -11,8 +11,8 @@ sidebar:
 > 종속 타입인 경우 `typename`, 파싱 오류시 `template`을 작성하라.
 
 > **모던 C++**
-> * 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
-> * 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.([템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-right-angle-bracket/) 참고)
+> * (C++11~) 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
+> * (C++11~) 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.([템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-right-angle-bracket/) 참고)
 
 # 템플릿 인자
 
@@ -202,7 +202,7 @@ std::vector<A<int>> a; // (X) 컴파일 오류. >> 는 비트 Right Shift 연산
 std::vector<A<int> > b; // (O) 공백을 추가해야 합니다.
 ```
 
-> *C++11 부터는 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.([템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-right-angle-bracket/) 참고)*
+> *(C++11~) 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.([템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-right-angle-bracket/) 참고)*
 
 **템플릿 명시**
 

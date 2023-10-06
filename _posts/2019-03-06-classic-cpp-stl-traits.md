@@ -12,8 +12,8 @@ sidebar:
 > * 타입 특성 클래스를 이용하여 타입 처리 방식을 응집하라.
 
 > **모던 C++**
-> * `type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.([타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) 참고)
-> * `pointer_traits`는 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.([pointer_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#pointer_traits) 참고)
+> * (C++11~) `type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.([타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) 참고)
+> * (C++11~) `pointer_traits`는 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.([pointer_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#pointer_traits) 참고)
 
 # 개요
 
