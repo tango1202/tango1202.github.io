@@ -802,7 +802,7 @@ protected:
     Shape(const Shape& other) {} // (O) 상속해서 생성할 수 있게끔 protected 입니다.  
 public:
     virtual ~Shape() {} // 다형 소멸 하도록 public virtual    
-    Shape& operator =(const Shape& other) { //  (△) 비권장. 자식 개체가 대입될 수 있습니다.
+    Shape& operator =(const Shape& other) { //  (△) 비권장. 자식 개체가 복사 대입될 수 있습니다.
         if (typeid(*this) != typeid(other)) {
             const std::type_info& ti = typeid(other);
             std::cout << ti.name() << std::endl;  
@@ -831,7 +831,7 @@ Ellipse ellipse;
 Shape* shape = &rect1;
 
 rect1 = rect2; // (O) 메시지 표시 안됨
-*shape = ellipse; // (X) 오동작. 동일한 Shape 타입이어서 실행됩니다. Rectangle에 Ellipse를 대입합니다.
+*shape = ellipse; // (X) 오동작. 동일한 Shape 타입이어서 실행됩니다. Rectangle에 Ellipse를 복사 대입합니다.
 ```
 
 `*shape = other;`를 하면, 부모는 같지만 서로 다른 클래스인 `Ellipse`에 `Other` 개체를 대입할 수 있습니다. 예제에서처럼 `typeid(*this) != typeid(other)`로 런타임에 검사하여 대처할 수도 있지만, 기본적으로 부모 클래스의 복사 대입 연산자는 사용하지 못하게 막는게 좋습니다.
