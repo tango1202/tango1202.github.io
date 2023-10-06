@@ -13,6 +13,9 @@ sidebar:
 > * 정적 멤버 함수는 `obj.f()` 가 아닌 `T::f()` 와 같이 호출하라.
 > * 컴파일러 최적화가 쉽도록, 임시 개체를 사용하라.
 
+> **모던 C++**
+> * (C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 `include` 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, 클래스 정적 멤버 변수 정의 및 초기화가 쉬워졌습니다.
+
 # 개요
 
 |항목|내용|수명|
@@ -106,6 +109,8 @@ TEST(TestClassicCpp, Static) {
 ```
 
 정적 멤버 변수 보다는 선언과 정의를 동시에 하고, 함수 호출시에 1회 생성되는 함수내 정적 지역 변수를 사용하는게 더 좋습니다.
+
+> *(C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 `include` 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, 클래스 정적 멤버 변수 정의 및 초기화가 쉬워졌습니다.*
 
 # 정적 멤버 함수
 
