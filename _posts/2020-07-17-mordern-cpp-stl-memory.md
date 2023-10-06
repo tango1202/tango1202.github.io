@@ -79,7 +79,7 @@ void* align(
 |`allocator_arg` (C++11~)|(작성중)|
 |`uses_allocator` (C++11~)|(작성중)|
 |`scoped_allocator_adaptor` (C++11~)|(작성중)|
-|`polymorphic_allocator` (C++17)|(작성중)|
+|`polymorphic_allocator` (C++17~)|(작성중)|
 |`uses_allocator_construction_args` (C++20~)|(작성중)|
 |`make_obj_using_allocator` (C++20~)|(작성중)|
 |`uninitialized_construct_using_allocator` (C++20~)|(작성중)|

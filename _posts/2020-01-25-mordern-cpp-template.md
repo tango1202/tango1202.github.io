@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `extern` 을 이용하여 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다. 
+> * `extern`으로 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다. 
 > * (C++14~) 변수 템플릿이 추가되어 변수도 템플릿으로 만들 수 있습니다.
 
 # extern 템플릿
@@ -119,4 +119,30 @@ constexpr int factorial_14<1> = 1;
 EXPECT_TRUE(factorial_14<5> == 5 * 4 * 3 * 2 * 1);
 ```
 
+# (C++17~) 클래스 템플릿 인자 추론
 
+기존에는 템플릿 함수만 인자를 추론하고 클래스 템플릿은 인자를 추론하지 않았습니다.
+
+```cpp
+template<typename T>
+T Func(T a, T b) {return a + b;}
+
+EXPECT_TRUE(Func(1, 2) == 3); // 인수 1, 2 로부터 추론해서 사용합니다.
+
+template<typename T>
+class A {
+public:
+    explicit A(T val) {}
+    T Func(T a, T b) {return a + b;}
+};
+
+A<int> a{10};
+EXPECT_TRUE(a.Func(1, 2) == 3);
+```
+
+C++17 부터는 클래스 템플릿도 인자를 추론하므로 다음과 같이 사용할 수 있습니다.
+
+```cpp
+A a_17{10}; // 타입을 뺐지만 인수로 부터 추론합니다.
+EXPECT_TRUE(a_17.Func(1, 2) == 3); 
+```

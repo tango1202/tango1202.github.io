@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [모던 C++] (C++11~) 인라인 네임스페이스 (C++17) 단순한 중첩 네임스페이스"
+title: "#14. [모던 C++] (C++11~) 인라인 네임스페이스 (C++17~) 단순한 중첩 네임스페이스"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
