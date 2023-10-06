@@ -44,15 +44,15 @@ class Big {
 `exchange()`를 사용하면 다음과 같이 좀 더 간소하게 작성할 수 있습니다.
 
 ```cpp
-class Big {
+class Big_14 {
     size_t m_Size;
     char* m_Ptr; // 크기가 큰 데이터
 
-    Big(Big&& other) : 
+    Big_14(Big_14&& other) : 
         m_Size{std::exchange(other.m_Size, 0)}, // other는 0, nullptr로 초기화 됩니다.
         m_Ptr{std::exchange(other.m_Ptr, nullptr)} {} 
     // 이동 대입 연산자. 우측값(rvalue) 이동
-    Big& operator =(Big&& other) {
+    Big_14& operator =(Big_14&& other) {
         delete[] m_Ptr; // 기존 것은 삭제하고,
 
         m_Size = std::exchange(other.m_Size, 0);  // other는 0, nullptr로 초기화 됩니다.

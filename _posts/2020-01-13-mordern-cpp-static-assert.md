@@ -32,3 +32,9 @@ Func(&a);
 Func(a); // (X) 컴파일 오류. error: static assertion failed: only pointer
 ```
 
+# (C++17~) static_assert의 메시지 생략
+
+C++17 부터는 static_assert의 메시지 생략을 지원합니다.
+
+```cpp
+```

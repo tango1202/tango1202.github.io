@@ -55,13 +55,13 @@ EXPECT_TRUE(a.m_X == 0 && a.m_Y == 1);
 하지만, C++14 이전 버전은 멤버 선언부 초기화와 함께 사용하면 컴파일 오류가 발생합니다.
 
 ```cpp
-class A {
+class A_14 {
 public:
     int m_X{0}; // 비정적 멤버 변수 초기화
     int m_Y{1};
 };
 
-A a{0, 1}; // (X) ~C++14 컴파일 오류. no matching function for call to 'main()::A::A(<brace-enclosed initializer list>)'
+A_14 a{0, 1}; // (X) ~C++14 컴파일 오류. no matching function for call to 'main()::A::A(<brace-enclosed initializer list>)'
 EXPECT_TRUE(a.m_X == 0 && a.m_Y == 1); 
 ```
 

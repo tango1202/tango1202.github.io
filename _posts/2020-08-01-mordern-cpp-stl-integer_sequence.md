@@ -39,7 +39,7 @@ EXPECT_TRUE(
 
 ```cpp
 template<size_t N, std::size_t... params>
-auto ArrayToTuple(const std::array<int, N>& arr, std::integer_sequence<size_t, params...>) {
+auto ArrayToTuple_14(const std::array<int, N>& arr, std::integer_sequence<size_t, params...>) {
     return std::make_tuple(arr[params]...); // arr[param1], arr[param2], arr[param3] 등으로 전개됨 
 }
 
@@ -53,7 +53,7 @@ EXPECT_TRUE(
 ); 
 
 // arr 에서 2, 3, 4 인덱스만 tuple로 변환
-std::tuple<int, int, int> data2{ArrayToTuple(arr, std::integer_sequence<size_t, 2, 3, 4>{})};
+std::tuple<int, int, int> data2{ArrayToTuple_14(arr, std::integer_sequence<size_t, 2, 3, 4>{})};
 EXPECT_TRUE(
     std::get<0>(data2) == 30 &&
     std::get<1>(data2) == 40 &&
