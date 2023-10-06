@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [모던 C++] (C++11~) 사용자 정의 리터럴"
+title: "#19. [모던 C++] (C++11~) 사용자 정의 리터럴, (C++14~) 이진 리터럴, 숫자 구분자"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -10,8 +10,10 @@ sidebar:
 
 > * `int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.
 > * (C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)
+> * (C++14~) `0b`, `0B` 접두어를 이용하여 이진수 상수를 표현할 수 있습니다.
+> * (C++14~) 가독성을 위해 `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.
 
-# 개요
+# 사용자 정의 리터럴
 
 C++11 부터는 `operator""_식별자()`를 이용하여 사용자가 리터럴을 직접 정의할 수 있습니다. 동일한 값을 여러 단위계로 표현할 때 유용합니다.
 
@@ -30,7 +32,7 @@ EXPECT_TRUE(1.0_mm == 1_mm);
 ```
 > *(C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)*
 
-# 문자열 추론
+**문자열 추론**
 
 기존 문자열을 `auto`로 초기화 하면 `const char*`로 추론되는데요, 사용자 정의 리터럴을 만들어 `string`으로 추론되게 할 수 있습니다.
 
@@ -44,11 +46,11 @@ EXPECT_TRUE(str2.size() == 4);
 EXPECT_TRUE("hello"_forced_string.size() == 5); // 임시 개체도 가능
 ```
 
-# 식별자 규칙
+**식별자 규칙**
 
 식별자는 `_`로 시작해야 하며, 이중 밑줄은 허용하지 않습니다.
 
-# 인자 규칙
+**인자 규칙**
 
 사용할 수 있는 인자의 형태는 다음과 같습니다.
 
@@ -73,7 +75,34 @@ ReturnType operator ""_r(const char*);
 template<char...> ReturnType operator ""_t();       
 ```
 
-# (C++20~) char8_t
+# 이진 리터럴
+
+`0b`, `0B` 접두어를 이용하여 이진수 상수를 표현할 수 있습니다.
+
+```cpp
+int val1{0b11};
+int val2{0b1111};
+int val3{0B11111111};
+
+EXPECT_TRUE(val1 == 0x03);
+EXPECT_TRUE(val2 == 0x0F);
+EXPECT_TRUE(val3 == 0xFF);
+```
+
+# 숫자 구분자
+
+작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.
+
+큰 숫자인 경우 가독성이 좋아집니다.
+
+```cpp
+int val1{1000000};
+int val2{1'000'000};
+
+EXPECT_TRUE(val1 == val2);
+```
+
+# (C++20~) 사용자 정의 리터럴 인자 규칙 char8_t
 
 인자 규칙에 `char8_t` 이 추가되었습니다.
 
