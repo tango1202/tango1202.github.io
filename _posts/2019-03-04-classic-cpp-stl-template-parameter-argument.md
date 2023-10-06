@@ -13,6 +13,8 @@ sidebar:
 > **모던 C++**
 > * (C++11~) 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
 > * (C++11~) 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.([템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-right-angle-bracket/) 참고)
+> * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 템플릿 함수처럼 타입을 생략할 수 있습니다.
+> * (C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 템플릿 인자로 `auto`를 사용할 수 있습니다.([auto 템플릿 인자](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 참고)
 
 # 템플릿 인자
 
@@ -74,6 +76,8 @@ A<int, char> a;
     A<int, 11> b;
     a = b; // (X) 컴파일 오류. A<int, 10> 은 A<int, 11> 과 타입이 다릅니다.
     ```
+
+    > *(C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 템플릿 인자로 `auto`를 사용할 수 있습니다.([auto 템플릿 인자](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 참고)*
 
 4. 템플릿 템플릿 인자
 
