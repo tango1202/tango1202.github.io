@@ -12,7 +12,7 @@ sidebar:
 > * `using` 사용시 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 커지지 않도록 주의하라.(전역 공간에 `using namespace`를 사용하면 망한다.)
 
 > **모던 C++**
-> * (C++11~) [inline namespace](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#inline-namespace) 가 추가되어 API 버전 구성이 편리해 졌습니다.
+> * (C++11~) [인라인 네임스페이스](??) 가 추가되어 API 버전 구성이 편리해 졌습니다.
 
 # 개요
 
