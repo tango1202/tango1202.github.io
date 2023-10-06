@@ -329,7 +329,7 @@ EXPECT_TRUE(v1[0] == 1 && v1[1] == 2);
         v.push_back(*itr);
     }
     ```
-3. [범위 기반 for](https://tango1202.github.io/mordern-cpp/mordern-cpp-range-for/)에서 범위 표현식으로 사용하는 경우
+3. [범위 기반 for()](??)에서 범위 표현식으로 사용하는 경우
    
    ```cpp
    std::vector<int> v;
