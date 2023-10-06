@@ -15,6 +15,7 @@ sidebar:
 > (C++11~) `type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.([타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) 참고)
 > * (C++11~) `ratio` 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.([ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 참고)
 > * (C++14~) `integer_sequence` 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.([integer_sequence](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-integer_sequence/) 참고)
+> * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.
 
 
 # 개요
@@ -373,7 +374,7 @@ EXPECT_TRUE(typeid(*shape).name() == typeid(Rectangle).name());
 delete shape;
 ```
 
-컴파일 오류를 해결하겠다고 `Shape`의 복사 생성자를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심 성의껏 `protected`로 만든 것이니까요.(또한, CloneTraits<int>::Clone() 으로 기본 타입으로 사용한다면, `ptr->Clone()`이 없으므로 컴파일 오류가 납니다.) 
+컴파일 오류를 해결하겠다고 `Shape`의 복사 생성자를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심 성의껏 `protected`로 만든 것이니까요.(또한, `CloneTraits<int>::Clone()` 으로 기본 타입으로 사용한다면, `ptr->Clone()`이 없으므로 컴파일 오류가 납니다.) 
 
 이 문제는 함수 오버로딩을 통해 해결할 수 있습니다. 하나의 함수에서 `if()`를 통해 복사 생성자나 `Clone()`함수를 호출하는게 아니라, 복사 생성자를 사용하는 함수와 `Clone()`을 사용하는 함수를 각각 구현하고, 개체에 따라 해당 함수를 호출하게 하면 됩니다.
 
@@ -564,3 +565,4 @@ my_smart_ptr<int> sp4(sp3.Clone());
 EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name());  
 ```
 
+> *(C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.*

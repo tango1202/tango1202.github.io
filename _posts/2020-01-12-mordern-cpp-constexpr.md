@@ -10,6 +10,7 @@ sidebar:
 
 > * `constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
 > * (C++14~) `constexpr` 함수 제약이 완화되어 지역 변수, 2개 이상의 리턴문, `if()`, `for()`, `while()` 등을 사용할 수 있습니다.
+> * (C++17~) `if constexpr`을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.
 
 # 개요
 
@@ -238,21 +239,25 @@ delete ptr;
 즉, 다음과 같이 작성하면,
 
 ```cpp
-static T* Clone_17(const T* ptr) {
-    if (ptr == NULL) {
-        return  NULL;
-    }
+template<typename T>
+class CloneTraits_17 {
+public:
+    static T* Clone_17(const T* ptr) {
+        if (ptr == NULL) {
+            return  NULL;
+        }
 
-    // 조건에 맞는 부부만 컴파일 합니다.
-    if constexpr (!IsDerivedFrom<T, ICloneable>::Val) {
-        return new T(*ptr);
-    }
-    else {
-        return ptr->Clone(); 
-    }
-} 
+        // 조건에 맞는 부부만 컴파일 합니다.
+        if constexpr (!IsDerivedFrom<T, ICloneable>::Val) {
+            return new T(*ptr);
+        }
+        else {
+            return ptr->Clone(); 
+        }
+    } 
+};
 int val;
-int* ptr{CloneTraits<int>::Clone_17(&val)}; // (O)
+int* ptr{CloneTraits_17<int>::Clone_17(&val)}; // (O)
 delete ptr; 
 ```
 
@@ -267,7 +272,7 @@ static T* Clone_17(const T* ptr) {
     return new T(*ptr);
 } 
 int val;
-int* ptr{CloneTraits<int>::Clone_17(&val)}; // (O)
+int* ptr{CloneTraits_17<int>::Clone_17(&val)}; // (O)
 delete ptr; 
 ```
 

@@ -7,10 +7,11 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
-> * 유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `u8string`, `u16string`, `u32string` 이 추가되었습니다.
-> * 유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다. 
+> * 유니코드를 지원하는 `char16_t`, `char32_t`, `u16string`, `u32string` 이 추가되었습니다.
+> * 유니코드를 지원하는 `u8""`, `u""`, `U""`, `'u'`(문자), `'U'`(문자) 리터럴이 추가되었습니다. 
 > * `R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.
 > * (C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)
+> * (C++17~) 유니코드를 지원하는 `'u8'`(문자) 리터럴이 추가되었습니다.
 
 # 유니코드
 
@@ -51,15 +52,19 @@ C++11 부터는 2byte와 4byte 크기로 다루기 위한 `char16_t`와 `char32_
 
 기존에는 1byte 문자열과 와이드 문자열만 지원했는데요([문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 참고),
 
- C++11 부터는 UTF-8, UTF-16, UTF-32의 유니코드 문자열 지원을 합니다.
+ C++11 부터는 UTF-8, UTF-16, UTF-32의 유니코드 문자열 지원을 합니다.(유니코드 UTF-8 문자열은 C++11에 추가됐지만, UTF-8 문자는 C++17에 추가되었습니다.) 
 
 |항목|내용|
 |--|--|
 |1byte 문자열|"abc"|
 |와이드 문자열|L"abc한글"|
-|UTF-8 문자열 (C++11~)|u8"abc한글"|
-|UTF-16 문자열 (C++11~)|u"abc한글"|
-|UTF-32 문자열 (C++11~)|U"abc한글"|
+|UTF-8 문자열 (C++11~)|`u8"abc한글"`|
+|UTF-16 문자열 (C++11~)|`u"abc한글"`|
+|UTF-32 문자열 (C++11~)|`U"abc한글"`|
+|UTF-8 문자 (C++17~)|`u8'한'`|
+|UTF-16 문자 (C++11~)|`u'한'`|
+|UTF-32 문자 (C++11~)|`U'한'`|
+
 
 # 유니코드 문자열 개체
 
