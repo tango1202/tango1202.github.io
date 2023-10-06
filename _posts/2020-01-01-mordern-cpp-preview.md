@@ -226,7 +226,7 @@ wiki
 |[범위 기반 for](https://tango1202.github.io/mordern-cpp/mordern-cpp-range-for/) (C++11~)|범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.|
 |[범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/) (C++11~)|이름 범위를 한정하는 범위 있는 열거형이 추가되어 이름 충돌 회피가 쉬워졌습니다.|
 |[람다 표현식, 클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) (C++11~)|람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.<br/><br/>**(C++14~)**<br/>[람다 캡쳐 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90-%EC%B4%88%EA%B8%B0%ED%99%94)로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.<br/>`auto`를 인자로 받아 마치 템플릿 함수처럼 동작하는 [일반화된 람다 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98)가 추가되었습니다.| 
-|[인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-namespace/) (C++11~)|`inline namespace` 가 추가되어 API 버전 구성이 편리해 졌습니다.|
+|[네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/) (C++11~)|[inline namespace](https://tango1202.github.io/mordern-cpp/mordern-cpp-namspace/#inline-namespace) 가 추가되어 API 버전 구성이 편리해 졌습니다.|
 |[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/) (C++11~)|`using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.|
 |[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) (C++11~)|유니코드를 지원하는 `char8_t`, `char16_t`, `char32_t`, `u8string`, `u16string`, `u32string` 이 추가되었습니다.<br/>유니코드를 지원하는 `u8""`, `u""`, `U""` 리터럴이 추가되었습니다.<br/>`R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.|
 |[사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-user-literal/) (C++11~)|`int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.|
