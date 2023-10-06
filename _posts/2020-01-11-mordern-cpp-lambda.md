@@ -12,6 +12,7 @@ sidebar:
 > * (C++14~) 람다 캡쳐 초기화로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
 > * (C++14~) `auto`를 인자로 받아 마치 템플릿 함수처럼 동작하는 일반화된 람다 함수가 추가되었습니다.
 > * (C++17~) 람다 캡쳐시 `*this` 를 이용하여 개체 자체를 복제하여 사용합니다.
+> * (C++17~) 람다 함수는 요구사항이 충족되면 암시적으로 컴파일 타임 함수로 만들어지고,`constexpr` 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.
  
 # 개요
 기존에는 함수자를 이용하여 함수를 개체화 했는데요([함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 참고),
@@ -366,4 +367,28 @@ auto add{[](auto a, auto b) {return a + b;}};
 
 EXPECT_TRUE(add(1, 2) == 3);
 EXPECT_TRUE(add(std::string{"hello"}, std::string{"world"}) == "helloworld");
+```
+
+# (C++17~) constexpr 람다 함수
+
+C++17 부터 람다 함수는 요구사항이 충족되면 암시적으로 컴파일 타임 함수로 만들어지고,`constexpr` 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.
+
+```cpp
+// 명시적 constexpr 람다 함수 입니다.
+auto id_17{[](int n) constexpr {return n;}};
+static_assert(id_17(10) == 10);
+
+// 암시적 constexpr 람다 함수 입니다.
+auto add_17{[](int a, int b) {return a + b;}};
+static_assert(add_17(1, 2) == 3);
+
+// 인자로 전달한 a, b는 컴파일 타임 상수이기 때문에 요구사항이 맞아 암시적 constexpr 람다 함수 입니다.
+constexpr int a{1};
+constexpr int b{2};
+static_assert(add_17(a, b) == 3);
+
+// 인자로 전달한 c, d는 변수이기 때문에 요구사항이 맞지 않아 런타임 람다 함수 입니다.
+int c{1};
+int d{2};
+EXPECT_TRUE(add_17(c, d) == 3);
 ```
