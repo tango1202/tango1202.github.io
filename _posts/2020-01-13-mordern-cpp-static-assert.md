@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * `static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.
+> * (C++17~) `static_assert`의 메시지 생략을 지원합니다.
 
 # 개요
 
@@ -34,7 +35,13 @@ Func(a); // (X) 컴파일 오류. error: static assertion failed: only pointer
 
 # (C++17~) static_assert의 메시지 생략
 
-C++17 부터는 static_assert의 메시지 생략을 지원합니다.
+C++17 부터는 `static_assert`의 메시지 생략을 지원합니다.
 
 ```cpp
+template<typename T>
+void Func_17(T t) { 
+    static_assert(std::is_pointer<T>::value); 
+}
+int a{20};
+Func_17(a); // (X) 컴파일 오류. error: static assertion failed
 ```

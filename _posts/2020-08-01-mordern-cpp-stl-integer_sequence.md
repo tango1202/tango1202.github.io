@@ -46,7 +46,7 @@ auto ArrayToTuple_14(const std::array<int, N>& arr, std::integer_sequence<size_t
 std::array<int, 5> arr{10, 20, 30, 40, 50};    
 
 // arr 에서 0, 1 인덱스만 tuple로 변환
-std::tuple<int, int> data1{ArrayToTuple(arr, std::integer_sequence<size_t, 0, 1>{})};
+std::tuple<int, int> data1{ArrayToTuple_14(arr, std::integer_sequence<size_t, 0, 1>{})};
 EXPECT_TRUE(
     std::get<0>(data1) == 10 &&
     std::get<1>(data1) == 20 

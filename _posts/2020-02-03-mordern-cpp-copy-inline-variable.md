@@ -27,29 +27,29 @@ sidebar:
 
 ```cpp
 // Test.h 헤더 파일에서,
-inline int g_Val{10};
+inline int g_Val_17{10};
 
 // Cpp1 에서
 #include "Test.h"
-void IncreaseVal1() {
-    ++g_Val;
+void IncreaseVal1_17() {
+    ++g_Val_17;
 }
 // Cpp2 에서
 #include "Test.h"
-void IncreaseVal2() {
-    ++g_Val;
+void IncreaseVal2_17() {
+    ++g_Val_17;
 }
 
 // Cpp3 에서
 #include "Test.h"
 
-extern void IncreaseVal1(); // 다른 cpp 파일에 있는 함수 선언
-extern void IncreaseVal2();
+extern void IncreaseVal1_17(); // 다른 cpp 파일에 있는 함수 선언
+extern void IncreaseVal2_17();
 
-IncreaseVal1();
-IncreaseVal2();
+IncreaseVal1_17();
+IncreaseVal2_17();
 
-EXPECT_TRUE(g_Val == 12); 
+EXPECT_TRUE(g_Val_17 == 12); 
 ```
 
 # 인라인 변수를 이용한 클래스 정적 멤버 변수 정의
@@ -71,7 +71,7 @@ C++17 부터는 인라인 변수를 이용하여 클래스 선언부에 작성�
 ```cpp
 class T_17 {
 public:
-    static inline int s_m_Val{10}; // 정적 멤버 변수. 인라인 변수여서 클래스 선언부에서 정의 및 초기화가 가능합니다. 
+    static inline int s_m_Val_17{10}; // 정적 멤버 변수. 인라인 변수여서 클래스 선언부에서 정의 및 초기화가 가능합니다. 
 };
-EXPECT_TRUE(T_17::s_m_Val == 10);
+EXPECT_TRUE(T_17::s_m_Val_17 == 10);
 ```

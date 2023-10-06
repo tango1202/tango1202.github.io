@@ -549,7 +549,7 @@ C++14에서는 `shared_timed_mutex`를 이용하여 `mutex`의 소유권을 쓰�
 
 공유 자원을 단순히 읽거나, 동일한 값으로 세팅한다면, 하나의 쓰레드에서 독점할 필요가 없으므로  `shared_timed_mutex`를 사용하는게 효율적입니다.
 
-다음 예에서 `UniqueWrite()`와 `UniqueFunc()` 은 `mutex`를 이용하여 자원을 독점하며, `SharedWrite()`와 `SharedFunc()` 은 `shared_timed_mutex`를 이용하여 자원을 공유하고 있습니다.
+다음 예에서 `UniqueWrite()`와 `UniqueFunc()` 은 `mutex`를 이용하여 자원을 독점하며, `SharedWrite()`와 `SharedFunc_14()` 는 `shared_timed_mutex`를 이용하여 자원을 공유하고 있습니다.
 
 ```cpp
 void UniqueWrite(std::vector<int>::iterator itr, std::vector<int>::iterator endItr, std::mutex& mutex) {
@@ -572,20 +572,20 @@ void UniqueFunc(std::vector<int>::iterator itr, std::vector<int>::iterator endIt
     worker3.join();
     worker4.join();
 }
-void SharedWrite(std::vector<int>::iterator itr, std::vector<int>::iterator endItr, std::shared_timed_mutex& mutex) {
+void SharedWrite_14(std::vector<int>::iterator itr, std::vector<int>::iterator endItr, std::shared_timed_mutex& mutex) {
     for(int i = 0; itr != endItr; ++itr, i++) {
         std::shared_lock<std::shared_timed_mutex> lock(mutex); // mutex를 공유합니다.
         *itr = 1;
         std::this_thread::sleep_for(std::chrono::milliseconds{1}); 
     }
 }
-void SharedFunc(std::vector<int>::iterator itr, std::vector<int>::iterator endItr) {
+void SharedFunc_14(std::vector<int>::iterator itr, std::vector<int>::iterator endItr) {
 
     std::shared_timed_mutex mutex; // mutex 개체
-    std::thread worker1{SharedWrite, itr, endItr, std::ref(mutex)};
-    std::thread worker2{SharedWrite, itr, endItr, std::ref(mutex)};
-    std::thread worker3{SharedWrite, itr, endItr, std::ref(mutex)};
-    std::thread worker4{SharedWrite, itr, endItr, std::ref(mutex)};
+    std::thread worker1{SharedWrite_14, itr, endItr, std::ref(mutex)};
+    std::thread worker2{SharedWrite_14, itr, endItr, std::ref(mutex)};
+    std::thread worker3{SharedWrite_14, itr, endItr, std::ref(mutex)};
+    std::thread worker4{SharedWrite_14, itr, endItr, std::ref(mutex)};
     worker1.join(); 
     worker2.join(); 
     worker3.join();
@@ -619,7 +619,7 @@ for (int i = 0; i < 100; ++i) {
 }
 
 std::chrono::microseconds sharedDuration{CheckMicrosecond(
-    SharedFunc, 
+    SharedFunc_14, 
     v.begin(), v.end() 
 )};
 std::cout<<"SharedFunc : "<<sharedDuration.count()<<std::endl;
