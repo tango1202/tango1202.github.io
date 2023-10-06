@@ -12,7 +12,7 @@ sidebar:
 > * 기능 스펙과 어느 정도의 공통 기능을 제공하려면 추상 클래스로 정의하라.
 
 > **모던 C++**
-> * (C++11~) `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.([default와 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 참고)
+> * (C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.
 
 # 추상 클래스
 

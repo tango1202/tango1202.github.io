@@ -14,7 +14,7 @@ sidebar:
 > **모던 C++**
 > * (C++11~) `extern` 템플릿을 추가하여 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.([extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-extern-template/) 참고)
 > * (C++11~) `export template` 은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.
-> * (C++14~) 변수도 템플릿으로 만들 수 있습니다.([변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variable-template/) 참고)
+> * (C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variable-template/)을 추가하여 변수도 템플릿으로 만들 수 있습니다.
 
 # 템플릿 클래스
 
@@ -37,7 +37,7 @@ EXPECT_TRUE(myClass.Plus(10, 10) == 20);
 2. `T` : 템플릿 인자(Parameter)입니다. 향후 인스턴스화시 구체 타입으로 대체 됩니다.
 3. `int` : 템플릿 인자 `T`가 대체될 인수(Argument)입니다.  
 
-> *(C++14~) 변수도 템플릿으로 만들 수 있습니다.([변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variable-template/) 참고)*
+> *(C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variable-template/)을 추가하여 변수도 템플릿으로 만들 수 있습니다.*
 
 # 템플릿 정의부와 인스턴스부
 
