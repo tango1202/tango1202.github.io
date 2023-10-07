@@ -108,7 +108,7 @@ if (result.second != true) {
 ```cpp
 // 초기 데이터 입력 - 중괄호 초기화로 단순화 됐습니다.
 std::map<int, std::string> m_11{
-    {0, "data0"}, 
+    std::pair<int, std::string>{0, "data0"}, 
     {1, "data1"}
 }; 
 
