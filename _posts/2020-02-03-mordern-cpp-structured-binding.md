@@ -107,7 +107,10 @@ if (result.second != true) {
 [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for), [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 로 단순화 됐습니다.
 ```cpp
 // 초기 데이터 입력 - 중괄호 초기화로 단순화 됐습니다.
-std::map<int, std::string> m_11{{0, "data0"}, {1, "data1"}}; 
+std::map<int, std::string> m_11{
+    {0, "data0"}, 
+    {1, "data1"}
+}; 
 
 // 요소 이터레이팅 - 범위 기반 for로 단순화 됐습니다.
 for (const auto& item : m_11) {
@@ -127,7 +130,10 @@ if (result.second != true) {
 
 ```cpp
 // 초기 데이터 입력 - 중괄호 초기화로 단순화됐습니다.
-std::map<int, std::string> m_17{{0, "data0"}, {1, "data1"}}; 
+std::map<int, std::string> m_17{
+    {0, "data0"}, 
+    {1, "data1"}
+}; 
 
 // 요소 이터레이팅 - 범위 기반 for와 구조화된 바인딩으로 단순화됐습니다.
 for (const auto& [key, value]: m_17) {
