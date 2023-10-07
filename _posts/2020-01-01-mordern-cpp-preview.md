@@ -188,7 +188,6 @@ wiki
 |[람다 표현식, 클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) (C++11~)|**(C++11~)**<br/>[람다 표현식]((https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/))이 추가되어 1회용 익명 함수를 만들 수 있습니다.<br/><br/>**(C++14~)**<br/>[람다 캡쳐 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90-%EC%B4%88%EA%B8%B0%ED%99%94)로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.<br/>`auto`를 인자로 받아 마치 템플릿 함수처럼 동작하는 [일반화된 람다 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98)가 추가되었습니다.<br/><br/>**(C++17~)**<br/>[람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90)시 `*this` 를 이용하여 개체 자체를 복제하여 사용합니다.<br/>[constexpr 람다 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98)가 추가되어 요구사항이 충족되면 암시적으로 컴파일 타임 함수로 만들어지고,`constexpr` 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.| 
 |[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/) (C++11~)|**(C++11~)**<br/>[using을 이용한 타입 별칭이 추가](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.|
 |[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) (C++11~)|**(C++11~)**<br/>유니코드를 지원하는 [`char16_t`, `char32_t`, `u16string`, `u32string`](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 이 추가되었습니다.<br/>유니코드를 지원하는 [`u8""`, `u""`, `U""`, `'u'`(문자), `'U'`(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.<br/>[`R"()"`리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.<br/><br/>**(C++17~)**<br/>유니코드를 지원하는 [`'u8'`(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.<br/><br/>**(C++20~)**<br/>유니코드를 지원하는 [`char8_t`, `u8string`](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t-u8string)이 추가되었습니다.|
-|[멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/) (C++11~)|**(C++11~)**<br/>[멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.|
 |[구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/) (C++17~)|**(C++17~)**<br/>[구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 이용하여 배열, `pair`, `tuple`, 클래스등의 하위 요소나 멤버 변수에 쉽게 접근할 수 있습니다.|
 
 # 타입
@@ -198,11 +197,12 @@ wiki
 |[long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) (C++11~)|**(C++11~)**<br/>최소 8byte 크기를 보장하는 [long long 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)이 추가되었습니다.<br/>`long long`용 정수형 상수인 [`ll`, `ull`, `LL`, `ULL` 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)이 추가되었습니다.|
 |[문자열 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) (C++11~)|**(C++11~)**<br/>유니코드를 위한 [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)이 추가되었습니다.<br/><br/>**(C++20~)**<br/>[`char8_t`](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t-u8string) 가 추가되었습니다.|
 
-# C언어 호환
+
+# 사소한 수정들
 
 |항목|내용|
 |--|--|
-|[가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/) (C++11~)|**(C++11~)**<br/>가변 인자를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)가 추가되어 C언어와의 호환성이 높아졌습니다.|
+|(C++11~)|**(C++11~)**<br/>가변 인자를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)가 추가되어 C언어와의 호환성이 높아졌습니다.<br/>[멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.|
 
 # deprecate/remove
 
