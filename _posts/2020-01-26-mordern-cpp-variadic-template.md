@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#26. [모던 C++] (C++11~) 가변 템플릿, 파라메터(인자) 팩, sizeof...()"
+title: "#26. [모던 C++] (C++11~) 가변 템플릿, 파라메터(인자) 팩, sizeof...() (C++17~) Fold 표현식"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -10,6 +10,7 @@ sidebar:
 
 > * 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.
 > * `sizeof...()`가 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.
+> * (C++17~) Fold 표현식을 이용하여 파라메터 팩을 재귀적으로 반복하여 전개할 수 있습니다.
 
 # 개요
 
@@ -99,4 +100,78 @@ int Func(Types... params) {
 }
 
 EXPECT_TRUE(Func(1, 2, 3) == 3);
+```
+
+# (C++17~) Fold 표현식
+
+기존에는 파라메터 팩에서 패턴을 활용하여 확장하여 전개할 수 있었는데요, 패턴이 단순히 반복되는 형태입니다.
+
+```cpp
+int Sum(int a, int b, int c) {
+    return a + b + c;
+}
+template<typename... Params>
+int Func(Params... params) {
+    return Sum((params + 1)...); // Sum(param1 + 1, param2 + 1, param2 + 1) 으로 전개됩니다.
+} 
+
+EXPECT_TRUE(Func(1, 2, 3) == 2 + 3 + 4);
+```
+
+C++17 부터는 Fold 표현식을 이용하여 파라메터 팩을 재귀적으로 반복하여 전개할 수 있습니다.
+
+|항목|내용|
+|--|--|
+|`params op...`|단항 오른쪽 Fold<br/>`(param[1] op (... op (param[N-1] op param[N])))` 로 전개|
+|`params op...op init`|이항 오른쪽 Fold<br/>`(param[1] op (... op (param[N] op init)))` 로 전개|
+|`...op params`|단항 왼쪽 Fold<br/>`(((param[1] op param[2]) op ...) op param[N])` 로 전개|
+|`init op...op params`|이항 왼쪽 Fold<br/>`(((init op param[1]) op ...) op param[N])` 로 전개|
+
+`op`는 다음 연산자 입니다.
+
+`+` `-` `*` `/` `%` `^` `&` `|` `=` `<` `>` `<<` `>>` `+=` `-=` `*=` `/=` `%=` `^=` `&=` `|=` `<<=` `>>=` `==` `!=` `<=` `>=` `&&` `||` `,` `.*` `->*`
+
+
+```cpp
+template<typename... Params>
+int UnaryRightFold_17(Params... params) {
+    // (param[1] + (나머지 전개)) 
+    // (param[1] + (param[2] + (나머지 전개)))
+    // (param[1] + (param[2] + (param[3] + (나머지 전개))))
+    // 즉, (param[1] op (... op (param[N-1] op param[N]))) 으로 전개 됩니다.        
+    return (params +...); 
+}  
+// UnaryRightFold_17 과 동일하게 전개되나 마지막에 init 을 추가합니다.
+template<typename... Params>
+int BinaryRightFold_17(int init, Params... params) {
+    // (param[1] + (나머지 전개 + val)) 
+    // (param[1] + (param[2] + (나머지 전개 + val)))
+    // (param[1] + (param[2] + (param[3] + (나머지 전개))))
+    // 즉, (param[1] op (... op (param[N] op init))) 으로 전개 됩니다.        
+    return (params +...+ init); 
+} 
+template<typename... Params>
+int UnaryLeftFold_17(Params... params) {
+    // ((나머지 전개) + param[N]) 
+    // (((나머지 전개) + param[N-1]) + param[N]) 
+    // ((((나머지 전개) + param[N-2]) + param[N-1]) + param[N])         
+    // 즉, (((param[1] op param[2]) op ...) op param[N]) 으로 전개 됩니다.        
+    return (...+ params); 
+}   
+// UnaryLeftFold_17 과 동일하게 전개되나 마지막에 init 을 추가합니다.
+template<typename... Params>
+int BinaryLeftFold_17(int init, Params... params) {
+    // ((나머지 전개) + param[N]) 
+    // (((나머지 전개) + param[N-1]) + param[N]) 
+    // ((((나머지 전개) + param[N-2]) + param[N-1]) + param[N])         
+    // 즉, (((init op param[1]) op ...) op param[N]) 으로 전개 됩니다.        
+    return (init +...+ params); 
+}
+
+using namespace VariadicTemplate_3;
+EXPECT_TRUE(UnaryRightFold_17(1, 2, 3) == 1 + 2 + 3);
+EXPECT_TRUE(BinaryRightFold_17(10, 1, 2, 3) == 1 + 2 + 3 + 10);  
+
+EXPECT_TRUE(UnaryLeftFold_17(1, 2, 3) == 1 + 2 + 3);
+EXPECT_TRUE(BinaryLeftFold_17(10, 1, 2, 3) == 10 + 1 + 2 + 3); 
 ```
