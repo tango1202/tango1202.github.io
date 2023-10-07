@@ -75,6 +75,10 @@ std::tuple<int, std::string, char> Func() {
 좌측값 참조로 구성된 `tuple`을 만듭니다. `tuple`에서 `get()`함수를 이용해서 데이터를 확인하는데, 참 직관적이지 못합니다. 이럴때 다음처럼 `tie()` 함수를 이용하여 지역 변수의 참조자로 구성된 `tuple`을 만들면 좀더 직관적으로 데이터를 확인할 수 있습니다.
 
 ```cpp
+std::tuple<int, std::string, char> Func() {
+    return std::make_tuple(10, "Name", 'a');
+}
+
 int val;
 std::string name;
 char ch;
@@ -195,8 +199,6 @@ EXPECT_TRUE(
 상기 예에서는 인수들의 참조성이 변하지 않도록 `forward_as_tuple()`을 사용했는데요, `make_tuple()`을 사용해도 결과는 같습니다.
 
 하지만, 인자로 전달된 변수를 사용할 때에는 참조성이 변할 수도 있으므로, `piecewise_construct`를 사용할땐 `forward_as_tuple()`을 사용하는게 좋습니다.
-
-
 
 # (C++14~) 타입 기반 get()
 

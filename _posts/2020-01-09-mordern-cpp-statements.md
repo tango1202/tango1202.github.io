@@ -37,7 +37,7 @@ int sum{0};
 
 // for (auto val : v) { // val == int
 // for (const int& val : v) {  // val == const int&
-for (int val : v) {
+for (int val : v) { // 혹은 for (auto val : v)
     sum += val;
 }
 
@@ -49,7 +49,7 @@ EXPECT_TRUE(sum == 1 + 2 + 3);
 ```cpp
 std::vector<int> v{1, 2, 3};
 
-for (int& val : v) {
+for (int& val : v) { // 혹은 for (auto& val : v)
     ++val; // 벡터의 요소가 수정됩니다.
 }
 
