@@ -81,7 +81,7 @@ EXPECT_TRUE(noexcept(f()) == false);
 EXPECT_TRUE(noexcept(g()) == true); 
 ```
 
-# (C++17~) 함수 유형에 포함된 noexcept
+# (C++17~) noexcept 함수 유형 포함 
 
 기존에는 함수 유형에 noexcept가 포함되지 않았습니다.
 
