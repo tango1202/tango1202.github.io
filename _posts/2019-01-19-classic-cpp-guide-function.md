@@ -25,6 +25,8 @@ sidebar:
 > * (C++11~) [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 deprecate 되었습니다. 예외를 나열하는 것보다 [`noexcept`](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept)로 예외가 발생하느냐 안하느냐만 관심을 둡니다.
 > * (C++14~) [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0)이 가능하여 후행 리턴 대신 `auto`나 `decltype(auto)` 를 사용할 수 있습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 임시 개체가 불필요하게 복사되지 않음을 문법적으로 보증합니다. 기존에는 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.
+> * (C++17~) [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 관련해서 `throw()`가 deprecate 되었습니다. 이제 `noexcept`만 사용해야 합니다.([deprecate/remove](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 참고) 
+
 
 # 개요
 

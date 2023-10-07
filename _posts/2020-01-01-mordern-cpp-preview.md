@@ -35,33 +35,6 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
     
 모던 C++ 추가
     
-    
-
-
-
-
-deprecate
-noexcept 관련 throw() - deprecate ~C++17
-the obsolete iostreams aliases ~C++17
-trigraphs ~C++17
-the register keyword ~C++17
-bool increment ~C++17
-
-
-
-
-
-
-
-
-
-wiki
-   
-
-    Hexadecimal floating-point literals
-
-
-
 # 런타임 성능 개선
 
 |항목|내용|
@@ -96,7 +69,7 @@ wiki
 |[auto<br/>decltype<br/>후행 리턴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/) (C++11~)|**(C++11~)**<br/>값으로부터 타입을 추론하는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)이 추가되어 코딩이 간편해 졌습니다.<br/>함수 인자에 의존하여 리턴 타입을 결정하는 [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.<br/><br/>**(C++14~)**<br/>[decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)를 이용하여 `decltype()`의 `()`내 표현식이 복잡할 경우 `decltype(auto)` 와 같이 좀더 간결하게 작성할 수 있습니다.<br/>[리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0)이 가능하여 후행 리턴 대신 `auto`나 `decltype(auto)` 를 사용할 수 있습니다.|
 |[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/) (C++11~)|**(C++11~)**<br/>[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.<br/>[중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.<br/>[중괄호 초기화시 인자의 암시적 형변환을 일부 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98-%EC%B0%A8%EB%8B%A8)하여, 코딩 계약이 개선되었습니다.<br/>[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.|
 |[멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) (C++11~)|**(C++11~)**<br/>비정적 멤버 변수도 [멤버 선언부에서 초기화]((https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/))를 할 수 있어 초기화 작성이 쉬워졌습니다.<br/><br/>**(C++14~)**<br/>[비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/#c14-%EB%B9%84%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EB%A9%A4%EB%B2%84-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94%EC%8B%9C-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 허용합니다.|
-|개선된 리터럴 (C++11~)|**(C++11~)**<br/>[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.<br/>`int operator ""_km(long double val);`와 같은 [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 단위계 처리가 쉬워졌습니다.<br/><br/>**(C++14~)**<br/>[이진 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c14-%EC%9D%B4%EC%A7%84-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 `0b`, `0B` 접두어로 이진수 상수를 표현할 수 있습니다.<br/>가독성을 위한 [숫자 구분자](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c14-%EC%88%AB%EC%9E%90-%EA%B5%AC%EB%B6%84%EC%9E%90)가 추가되어 `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.|
+|개선된 리터럴 (C++11~)|**(C++11~)**<br/>[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.<br/>`int operator ""_km(long double val);`와 같은 [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 단위계 처리가 쉬워졌습니다.<br/><br/>**(C++14~)**<br/>[이진 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c14-%EC%9D%B4%EC%A7%84-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 `0b`, `0B` 접두어로 이진수 상수를 표현할 수 있습니다.<br/>가독성을 위한 [숫자 구분자](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c14-%EC%88%AB%EC%9E%90-%EA%B5%AC%EB%B6%84%EC%9E%90)가 추가되어 `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.<br/><br/>**(C++17)**<br/>`0xA.9p11`과 같은 [16진수 부동 소수점 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c17-16%EC%A7%84%EC%88%98-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 제공합니다.|
 |[개선된 제어문](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/) (C++11~)|**(C++11~)**<br/>[범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.<br/><br/>**(C++17~)**<br/>[초기식을 포함하는 if(), switch()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch) 가 추가되어 함수 리턴값을 평가하고 소멸하는 코드가 단순해 졌습니다.|
 |개선된 변수 및, 함수 및 클래스 표현 (C++11~)|**(C++11~)**<br/>[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 우측값에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.<br/>[default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.<br/>[override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.<br/>[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있고, 강제적으로 상속을 제한할 수 있습니다.<br/>[생성자 위임](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9C%84%EC%9E%84)이 추가되어 생성자의 초기화 리스트 코드가 좀더 간결해 졌습니다.<br/>[생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D)이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.<br/><br/>**(C++17~)**<br/>[인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 `include` 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, 클래스 정적 멤버 변수 정의 및 초기화가 쉬워졌습니다.|
 |[개선된 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/) (C++11~)|**(C++11~)**<br/>[인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#%EC%9D%B8%EB%9D%BC%EC%9D%B8-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)가 추가되어 API 버전 구성이 편리해 졌습니다.<br/><br/>**C++14**<br/> [단순한 중첩 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#c17-%EB%8B%A8%EC%88%9C%ED%95%9C-%EC%A4%91%EC%B2%A9-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4) 표현이 추가되어 `::` 로 중첩 네임스페이스를 표현할 수 있습니다.|
@@ -126,6 +99,9 @@ wiki
 |항목|내용|
 |--|--|
 |(~C++11)| [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 deprecate 되었습니다. 예외를 나열하는 것보다 `noexcept`로 예외가 발생하느냐 안하느냐만 관심을 둡니다.<br/>[export 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF) 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.| 
+|(C++17~)|[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 관련해서 `throw()`가 deprecate 되었습니다. 이제 `noexcept`만 사용해야 합니다.<br/>`&&, &=`등이 특수기호가 없는 인코딩을 사용하는 곳을 위해 제공했던 `trigraph`가 remove되었습니다.([cppreference](https://en.cppreference.com/w/cpp/language/operator_alternative#Trigraphs_.28removed_in_C.2B.2B17.29) 참고)<br/>변수를 CPU 레지스터에 배치하도록 힌트를 주는 `register`가 deprecate 되었습니다.<br/>`bool`의 증감 연산이 deprecate 되었습니다.|
+
+
 
 
 

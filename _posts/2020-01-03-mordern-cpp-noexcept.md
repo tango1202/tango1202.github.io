@@ -13,6 +13,7 @@ sidebar:
 > * `noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.
 > * [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 은 deprecate 되었습니다. 예외를 나열하는 것보다 `noexcept`로 예외가 발생하느냐 안하느냐만 관심을 둡니다. 
 > * (C++17~) `noexcept`가 함수 유형에 포함되어 예외 처리에 대한 코딩 계약을 좀더 단단하게 할 수 있습니다.
+> * (C++17~) [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 관련해서 `throw()`가 deprecate 되었습니다. 이제 `noexcept`만 사용해야 합니다.([deprecate/remove](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 참고) 
 
 # 개요 
 기존에는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 이용하여 함수가 발생하는 예외를 표시했는데요, 사실 명시한 예외 이외에는 `unexpected_handler` 로 분기하므로 사용하지 않는게 낫다고 말씀드렸습니다. 
@@ -111,3 +112,4 @@ void FuncFalse() noexcept(false) {}
 MyFunc_17 f3{FuncTrue}; 
 MyFunc_17 f4{FuncFalse}; // (X) 컴파일 오류. noexcept가 다릅니다.
 ```
+
