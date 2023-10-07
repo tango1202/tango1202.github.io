@@ -9,7 +9,9 @@ sidebar:
 ---
 
 > * `attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.
-> * (C++14~) 표준 어트리뷰트에 `[[deprecated]]`가 추가되었습니다.
+> * (C++14~) `[[deprecated]]`가 추가되었습니다.
+> * (C++17~) `[[fallthrough]]`, `[[nodiscard]]`, `[[maybe_unused]]` 가 추가되었습니다.
+> * (C++17~) `[[msvc::noinline]]` 와 같이 제조사 네임스페이스를 사용할 수 있습니다.
 
 # 개요
 

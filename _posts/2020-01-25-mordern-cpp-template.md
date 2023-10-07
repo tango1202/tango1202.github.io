@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * `extern`으로 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다. 
+> * 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.
 > * (C++14~) 변수 템플릿이 추가되어 변수도 템플릿으로 만들 수 있습니다.
 > * (C++17~) 클래스 템플릿 인수 추론이 추가되어 템플릿 함수처럼 타입을 생략할 수 있습니다.
 > * (C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 템플릿 인자로 `auto`를 사용할 수 있습니다.
@@ -80,6 +81,22 @@ TEST(TestMordern, ExternTemplate2) {
 }
 ```
 
+# 템플릿 오른쪽 꺽쇠 괄호
+
+템플릿 인스턴스화시 템플릿 개체로 인스턴스화 하면 `>`이 중첩됩니다.
+
+기존에는 이게 비트 Right Shift 연산자 `>>` 로 파싱되어 컴파일 되지 않았습니다. 따라서, `vector<A<int> >`와 같이 억지로 띄어쓰기를 했는데요([템플릿 파싱 오류](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98) 참고), 
+
+C++11 부터는 파싱을 개선하여 `vector<A<int>>`와 같은 작성법도 지원합니다.
+
+```cpp
+template<typename T>
+class A {};
+
+std::vector<A<int> > a; // C++03. 공백을 추가해야 했습니다.
+std::vector<A<int>> b; // C++11
+```
+
 # (C++14~) 변수 템플릿
 
 기존의 템플릿은 클래스와 함수만 지원했는데요([템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 참고),
@@ -149,7 +166,7 @@ A a_17{10}; // C++17 이후부터는 인수로부터 추론합니다.
 EXPECT_TRUE(a_17.Func(1, 2) == 3); 
 ```
 
-# auto 템플릿 인자
+# (C++17~) auto 템플릿 인자
 
 C++17 부터는 템플릿이 타입이 아닌 개체를 인자로 사용할때 템플릿 인자로 `auto`를 사용할 수 있습니다.
 
