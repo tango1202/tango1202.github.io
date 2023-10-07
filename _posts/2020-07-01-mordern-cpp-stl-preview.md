@@ -20,6 +20,95 @@ sidebar:
     [tuple의 타입 기반 get()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c14-%ED%83%80%EC%9E%85-%EA%B8%B0%EB%B0%98-get), [is_final()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1), [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/), 이터레이터 범위 접근([rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)), [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/), [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/), 쓰레드 소유권 공유([shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock), [shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)), [quoted()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4) 가 추가되었습니다.
 
 
+STL
+
+# 제거
+
+std::iterator,
+std::raw_storage_iterator,
+std::get_temporary_buffer,
+std::is_literal_type,
+std::result_of,
+all of <codecvt>
+
+# Utility types
+
+std::tuple:
+std::apply
+std::make_from_tuple
+deduction guides
+std::any
+std::optional
+std::variant
+searchers
+std::as_const
+std::not_fn
+
+# 기타
+
+string_view
+invoke
+filesystem
+sample(https://github.com/AnthonyCalandra/modern-cpp-features#stdsample)
+
+https://github.com/AnthonyCalandra/modern-cpp-features#prefix-sum-algorithms
+
+https://github.com/AnthonyCalandra/modern-cpp-features#string-conversion-tofrom-numbers
+
+# Memory management
+
+uninitialized memory algorithms
+std::destroy_at
+std::destroy
+std::destroy_n
+std::uninitialized_move
+std::uninitialized_value_construct
+weak_from_this
+std::pmr::memory_resource and std::polymorphic_allocator
+std::aligned_alloc
+transparent std::owner_less
+array support for std::shared_ptr
+allocation functions with explicit alignment
+
+# Compile-time programming
+
+std::byte
+std::conjunction/std::disjunction/std::negation
+type trait variable templates (xxx_+v)
+std::is_swappable
+is_invocable
+is_aggregate
+std::has_unique_object_representations
+
+# Algorithms
+std::clamp
+parallel algorithms and execution policies
+std::inclusive_scan
+std::exclusive_scan
+std::gcd
+std::lcm
+std::reduce
+
+# Iterators and containers
+
+map/set extract and map/set merge(slicing for maps and sets https://github.com/AnthonyCalandra/modern-cpp-features#splicing-for-maps-and-sets)
+map/unordered_map try_emplace and insert_or_assign
+contiguous iterators (LegacyContiguousIterator)
+non-member std::size/std::empty/std::data
+# Numerics
+mathematical special functions
+3D std::hypot
+# Others
+cache line interface
+std::launder
+std::uncaught_exceptions
+std::to_chars/std::from_chars
+std::atomic<T>::is_always_lock_free
+std::scoped_lock
+std::timespec_get
+rounding functions for std::chrono::duration and std::chrono::time_point
+
+
 # 언어 지원 라이브러리
 
 |항목|내용|

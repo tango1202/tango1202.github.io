@@ -35,86 +35,9 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
     
 모던 C++ 추가
     
-    __has_include
+    
 
-STL
 
-# Utility types
-
-std::tuple:
-std::apply
-std::make_from_tuple
-deduction guides
-std::any
-std::optional
-std::variant
-searchers
-std::as_const
-std::not_fn
-
-# 기타
-
-string_view
-invoke
-filesystem
-sample(https://github.com/AnthonyCalandra/modern-cpp-features#stdsample)
-
-https://github.com/AnthonyCalandra/modern-cpp-features#prefix-sum-algorithms
-
-https://github.com/AnthonyCalandra/modern-cpp-features#string-conversion-tofrom-numbers
-
-# Memory management
-
-uninitialized memory algorithms
-std::destroy_at
-std::destroy
-std::destroy_n
-std::uninitialized_move
-std::uninitialized_value_construct
-weak_from_this
-std::pmr::memory_resource and std::polymorphic_allocator
-std::aligned_alloc
-transparent std::owner_less
-array support for std::shared_ptr
-allocation functions with explicit alignment
-
-# Compile-time programming
-
-std::byte
-std::conjunction/std::disjunction/std::negation
-type trait variable templates (xxx_+v)
-std::is_swappable
-is_invocable
-is_aggregate
-std::has_unique_object_representations
-
-# Algorithms
-std::clamp
-parallel algorithms and execution policies
-std::inclusive_scan
-std::exclusive_scan
-std::gcd
-std::lcm
-std::reduce
-
-# Iterators and containers
-
-map/set extract and map/set merge(slicing for maps and sets https://github.com/AnthonyCalandra/modern-cpp-features#splicing-for-maps-and-sets)
-map/unordered_map try_emplace and insert_or_assign
-contiguous iterators (LegacyContiguousIterator)
-non-member std::size/std::empty/std::data
-# Numerics
-mathematical special functions
-3D std::hypot
-# Others
-cache line interface
-std::launder
-std::uncaught_exceptions
-std::to_chars/std::from_chars
-std::atomic<T>::is_always_lock_free
-std::scoped_lock
-std::timespec_get
-rounding functions for std::chrono::duration and std::chrono::time_point
 
 
 deprecate
@@ -125,12 +48,7 @@ the register keyword ~C++17
 bool increment ~C++17
 
 
-std::iterator,
-std::raw_storage_iterator,
-std::get_temporary_buffer,
-std::is_literal_type,
-std::result_of,
-all of <codecvt>
+
 
 
 
@@ -138,13 +56,11 @@ all of <codecvt>
 
 
 wiki
-    Allow typename (as an alternative to class) in a template template parameter
-    
-    네임스페이스와 열거형에서 어트리뷰트 허용
+   
 
     Hexadecimal floating-point literals
 
-    Constant evaluation for all non-type template arguments
+
 
 # 런타임 성능 개선
 
@@ -203,12 +119,13 @@ wiki
 |항목|내용|
 |--|--|
 |(C++11~)|**(C++11~)**<br/>가변 인자를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.<br/>[멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.|
+|(C++17~)|[__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include) 가 추가되어 `include` 하기 전에 파일이 존재하는지 확인할 수 있습니다.|
 
 # deprecate/remove
 
 |항목|내용|
 |--|--|
-|[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) (~C++11)| [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 deprecate 되었습니다. 예외를 나열하는 것보다 `noexcept`로 예외가 발생하느냐 안하느냐만 관심을 둡니다.| 
-|[export 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF) (~C++11)|[export 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF) 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.|
+|(~C++11)| [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 deprecate 되었습니다. 예외를 나열하는 것보다 `noexcept`로 예외가 발생하느냐 안하느냐만 관심을 둡니다.<br/>[export 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF) 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.| 
+
 
 
