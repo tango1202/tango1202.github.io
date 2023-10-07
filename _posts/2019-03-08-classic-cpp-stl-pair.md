@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > **모던 C++**
-> * `tuple`은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.([tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 참고)
+> * (C++11~) `tuple`은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.([tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 참고)
 
 # 개요
 

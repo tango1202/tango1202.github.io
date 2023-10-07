@@ -11,7 +11,7 @@ sidebar:
 > * 열거형은 [클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)나 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) 내에 정의하여 이름 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 축소하라.
 
 > **모던 C++**
-> * (C++11~) 이름 범위를 한정하는 범위 있는 열거형이 추가되어 이름 충돌 회피가 쉬워졌습니다.([범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum) 참고)
+> * (C++11~) 이름 범위를 한정하는 [범위 있는 열거형]((https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/))이 추가되어 이름 충돌 회피가 쉬워졌습니다.
 
 # 개요
 
@@ -47,7 +47,7 @@ Week::Val val = Week::Sunday; // 범위 확인 연산자와 클래스명 사용
 EXPECT_TRUE(val == Week::Sunday);
 ```
 
-> *(C++11~) 이름 범위를 한정하는 범위 있는 열거형이 추가되어 이름 충돌 회피가 쉬워졌습니다.([범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum) 참고) 클래스 내에 열거형 상수를 정의하지 마시고 범위 있는 열거형을 사용하세요.*
+> *(C++11~) 이름 범위를 한정하는 [범위 있는 열거형]((https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/))이 추가되어 이름 충돌 회피가 쉬워졌습니다. 클래스 내에 열거형 상수를 정의하지 마시고 범위 있는 열거형을 사용하세요.*
 
 # 열거형 값지정
 

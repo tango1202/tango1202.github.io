@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > **모던 C++**
-> * (C++11~) `initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.([initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 참고)
+> * (C++11~) [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.
 
 # 개요
 

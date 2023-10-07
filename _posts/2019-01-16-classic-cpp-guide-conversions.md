@@ -14,7 +14,7 @@ sidebar:
 > * 할 수 있는한 최선을 다하여 형변환하지 마라.
 
 > **모던 C++**
-> * (C++11~) `explicit` 형변환 연산자를 추가하여 명시적으로 형변환 할 수 있습니다.([명시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/) 참고)
+> * (C++11~) [explicit 형변환 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)를 추가하여 명시적으로 형변환 할 수 있습니다.
 > * (C++11~) `const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`, `reinterpret_pointer_cast()` 로 `shared_ptr`의 관리 개체를 형변환 할 수 있습니다.([shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98) c참고)
 
 # 개요

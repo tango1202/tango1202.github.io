@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > **모던 C++**
-> * (C++11~) 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.([람다 표현식, 클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda) 참고) 
+> * (C++11~) [람다 표현식]((https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/))이 추가되어 1회용 익명 함수를 만들 수 있습니다.
 > * (C++11~) `function`은 `()`로 호출 가능한 함수자를 저장합니다.([function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/) 참고)
 > * (C++11~) `mem_fn()`은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.([mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn) 참고)
 > * (C++11~) [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper), [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.
@@ -55,7 +55,7 @@ my_for_each(v.begin(), v.end(), Functor());
 EXPECT_TRUE(v[0] == 20 && v[1] == 20 && v[2] == 20); 
 ```
 
-> *(C++11~) 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다.([람다 표현식, 클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda) 참고)*
+> *(C++11~) [람다 표현식]((https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/))이 추가되어 1회용 익명 함수를 만들 수 있습니다.*
 
 # 함수자에서 상태 활용
 

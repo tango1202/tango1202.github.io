@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.
+> * `alignas()` 와 `alignof()`를 이용하여 메모리 정렬 방식을 표준화 했습니다.
 
 # 개요
 

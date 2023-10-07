@@ -18,7 +18,7 @@ sidebar:
 > * 소멸자에서 예외를 발생하지 마라.(필요하다면 `Release()`함수를 구현하라.)
 
 > **모던 C++**
-> * (C++11~) 소멸자는 기본적으로 `noexcept`로 동작합니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
+> * (C++11~) 소멸자는 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다.
 
 # 개요
 
@@ -370,6 +370,6 @@ T t;
 t.Release(); // 소멸자 호출전에 명시적으로 메모리나 리소스 해제
 ```
 
-> *(C++11~) 소멸자는 기본적으로 `noexcept`로 동작합니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)*
+> *(C++11~) 소멸자는 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다.*
 
 

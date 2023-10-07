@@ -14,8 +14,8 @@ sidebar:
 > * [암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [암시적 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90)가 정상 동작하도록 멤버 변수로 스마트 포인터([auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/), [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/), [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등)를 사용하라.
 
 > **모던 C++**
-> * (C++11~) 비정적 멤버 변수도 멤버 선언부에서 초기화를 할 수 있어 초기화 작성이 쉬워졌습니다.([멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) 참고)
-> * (C++11~) `alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.([alignas(), alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/) 참고)
+> * (C++11~) 비정적 멤버 변수도 [멤버 선언부에서 초기화]((https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/))를 할 수 있어 초기화 작성이 쉬워졌습니다.
+> * (C++11~) [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/)를 이용하여 메모리 정렬 방식을 표준화 했습니다.
 > * (C++11~) `align()`은 메모리 정렬된 포인터를 구합니다.([align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#align) 참고)
 > * (C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 `include` 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, 클래스 정적 멤버 변수 정의 및 초기화가 쉬워졌습니다.
  
@@ -54,7 +54,7 @@ const int m_Val4 = 0; // (O) 선언부 초기화 지원
 static const int s_c_m_Val6 = 0; // (O) 선언부 초기화 지원
 ```
 
-> *(C++11~) 비 정적 멤버 변수도 멤버 선언부에서 초기화를 할 수 있어 초기화 작성이 쉬워졌습니다.([멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) 참고)*
+> *(C++11~) 비정적 멤버 변수도 [멤버 선언부에서 초기화]((https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/))를 할 수 있어 초기화 작성이 쉬워졌습니다.*
 
 [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 선언과 정의를 분리해서 작성해야 합니다.([정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 보다는 [함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 사용을 권장합니다.)
 
@@ -281,7 +281,7 @@ EXPECT_TRUE(sizeof(T3) == sizeof(double) * 2); // 16
 
 강제로 메모리 정렬 `byte` 크기를 변경하는 방법은 [`#pragma pack`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma) 을 이용하면 됩니다. [`#pragma pack`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)을 이용하면, 메모리 정렬 `byte` 크기를 줄여 메모리 낭비는 줄일 수 있으나, 메모리 접근 속도는 저하됩니다.
 
-> *(C++11~) `alignas()` 와 `alignof()` 를 이용하여 메모리 정렬 방식을 표준화 했습니다.([alignas(), alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/) 참고)*
+> *(C++11~) [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-align/)를 이용하여 메모리 정렬 방식을 표준화 했습니다.*
 
 **빈 클래스와 자식 개체의 크기**
 

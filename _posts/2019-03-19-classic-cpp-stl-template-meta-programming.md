@@ -9,10 +9,10 @@ sidebar:
 ---
 
 > **모던 C++**
-> * (C++11~) `constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.([constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr) 참고)
-> * (C++11~) `static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.([static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-static_assert) 참고)
-> * (C++11~) `noexcept` 연산자를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.([noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept) 참고)
-> (C++11~) `type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.([타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) 참고)
+> * (C++11~) [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
+> * (C++11~) [static_assert](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)가 추가되어 컴파일 타임 진단이 가능해 졌습니다.
+> * (C++11~) [noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 이용하여 해당 함수가 `noexcept`인지 컴파일 타임에 검사할 수 있습니다.
+> * (C++11~) `type_traits`는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.([타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) 참고)
 > * (C++11~) `ratio` 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.([ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 참고)
 > * (C++14~) `integer_sequence` 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.([integer_sequence](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-integer_sequence/) 참고)
 > * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.
@@ -55,7 +55,7 @@ unsigned int val = Factorial<5>::Val;
 EXPECT_TRUE(val == 1 * 2 * 3 * 4 * 5);
 ```
 
-> *(C++11~) `constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.([constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr) 참고) [constexpr 함수](
+> *(C++11~) [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다. [constexpr 함수](
 https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 에 좀더 간결한 `Factorial_14()` 함수를 예시하였습니다.* 
 
 # CloneTraits 구현

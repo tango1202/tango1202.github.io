@@ -12,7 +12,7 @@ sidebar:
 > * 공용체는 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있으니 꼭 필요한 경우 한정적으로 사용하라.
 
 > **모던 C++**
-> * (C++11~) 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀려 메모리 절약을 위한 코딩 자유도가 높아졌습니다.([무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/) 참고)
+> * (C++11~) 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.
 
 # 개요
 
@@ -401,7 +401,7 @@ EXPECT_TRUE(u.s1.x == 20);
 EXPECT_TRUE(u.s2.x == 20);
 ```
 
->*(C++11~) 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀려 메모리 절약을 위한 코딩 자유도가 높아졌습니다.([무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/) 참고)*
+>*(C++11~) 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*
 
 # 비트 필드
 
