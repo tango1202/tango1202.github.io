@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#28. [모던 C++] (C++11~) 사소한 개선들"
+title: "#28. [모던 C++] (C++11~) 기타"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -10,8 +10,7 @@ sidebar:
 
 > * (C++11~) 가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.
 > * (C++11~) [sizeof() 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있도록 개선되었습니다.
-
-
+> * (C++17~) `__has_include` 가 추가되어 `include` 하기 전에 파일이 존재하는지 확인할 수 있습니다.
 
 # (C++11~) 가변 매크로
 
@@ -74,4 +73,14 @@ public:
 // C++03 에서는 컴파일 오류
 // C++11 부터 허용
 EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
+```
+
+# (C++17~) __has_include
+
+파일이 존재하는지 확인하는 전처리기 입니다.
+
+```cpp
+#if __has_include(<optional>)
+#  include <optional>
+#  endif
 ```

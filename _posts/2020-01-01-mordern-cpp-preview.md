@@ -198,11 +198,11 @@ wiki
 |[문자열 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) (C++11~)|**(C++11~)**<br/>유니코드를 위한 [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)이 추가되었습니다.<br/><br/>**(C++20~)**<br/>[`char8_t`](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t-u8string) 가 추가되었습니다.|
 
 
-# 사소한 수정들
+# 기타
 
 |항목|내용|
 |--|--|
-|(C++11~)|**(C++11~)**<br/>가변 인자를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-macro/)가 추가되어 C언어와의 호환성이 높아졌습니다.<br/>[멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.|
+|(C++11~)|**(C++11~)**<br/>가변 인자를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.<br/>[멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.|
 
 # deprecate/remove
 
