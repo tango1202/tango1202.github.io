@@ -86,19 +86,23 @@ EXPECT_TRUE(idRef == 20 && nameRef == "John");
 **고전 C++ 스타일**
 
 ```cpp
-// 초기 데이터 입력 - 중괄호 초기화로 단순화됐습니다.
-std::map<int, std::string> m_11{{0, "data0"}, {1, "data1"}}; 
+// 초기 데이터 입력
+std::map<int, std::string> m;
+m.insert(std::make_pair(0, "data0"));
+m.insert(std::make_pair(1, "data1"));
 
-// 요소 이터레이팅 - 범위 기반 for로 단순화됐습니다.
-for (const auto& item : m_11) {
-    std::cout << item.first << item.second << std::endl; // pair여서 first, second로 접근
+// 요소 이터레이팅
+std::map<int, std::string>::iterator itr = m.begin();
+std::map<int, std::string>::iterator endItr = m.end();
+for (; itr != endItr; ++itr) {
+    std::cout << (*itr).first << (*itr).second << std::endl; // pair여서 first, second로 접근
 }
 
-// 삽입 실패 검사 - auto 사용으로 단순화됐습니다.
-auto result{m_11.insert(std::make_pair(0, "data0"))};
+// 삽입 실패 검사
+std::pair<std::map<int, std::string>::iterator, bool> result = m.insert(std::make_pair(0, "data0"));
 if (result.second != true) {
     std::cout << "insert fail" << std::endl;
-}    
+} 
 ```
 
 **C++11 스타일**
@@ -108,7 +112,7 @@ if (result.second != true) {
 ```cpp
 // 초기 데이터 입력 - 중괄호 초기화로 단순화 됐습니다.
 std::map<int, std::string> m_11{
-    std::pair<int, std::string>{0, "data0"}, 
+    {0, "data0"}, 
     {1, "data1"}
 }; 
 

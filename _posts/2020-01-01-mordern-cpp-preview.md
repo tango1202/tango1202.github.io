@@ -195,7 +195,7 @@ wiki
 |[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/) (C++11~)|**(C++11~)**<br/>[using을 이용한 타입 별칭이 추가](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.|
 |[문자열](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) (C++11~)|**(C++11~)**<br/>유니코드를 지원하는 [`char16_t`, `char32_t`, `u16string`, `u32string`](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/) 이 추가되었습니다.<br/>유니코드를 지원하는 [`u8""`, `u""`, `U""`, `'u'`(문자), `'U'`(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.<br/>[`R"()"`리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.<br/><br/>**(C++17~)**<br/>유니코드를 지원하는 [`'u8'`(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.<br/><br/>**(C++20~)**<br/>유니코드를 지원하는 [`char8_t`, `u8string`](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t-u8string)이 추가되었습니다.|
 |[멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/) (C++11~)|**(C++11~)**<br/>[멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-sizeof/)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.|
-|[구조화된 바인딩](??) (C++17~)|[구조화된 바인딩](??)을 이용하여 배열, `pair`, `tuple`, 클래스등의 하위 요소나 멤버 변수에 쉽게 접근할 수 있습니다.
+|[구조화된 바인딩](??) (C++17~)|**(C++17~)**<br/>[구조화된 바인딩](??)을 이용하여 배열, `pair`, `tuple`, 클래스등의 하위 요소나 멤버 변수에 쉽게 접근할 수 있습니다.
 
 # 타입
 

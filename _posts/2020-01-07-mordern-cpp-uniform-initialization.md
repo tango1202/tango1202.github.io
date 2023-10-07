@@ -272,6 +272,17 @@ C++11 부터는 `{}` 도 지원합니다.
     T t{a}; // (△) 비권장. A->B로의 암시적 변환을 허용하면 차단되지 않습니다.   
    ```
 
+# 중괄호 초기화 중첩(작성중)
+
+map 초기화 사례
+
+```cpp
+std::map<int, std::string> m_11{
+    {0, "data0"}, 
+    {1, "data1"}
+};
+```
+
 # initializer_list
 
  `initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다. 
