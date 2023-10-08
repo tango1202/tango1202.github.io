@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++] (C++11~) 람다 표현식, 클로저, (C++14~) 일반화된 람다 함수, (C++17~) *this 캡쳐, constexpr 람다 함수"
+title: "#11. [모던 C++] (C++11~) 람다 표현식, 클로저, (C++14~) 람다 캡쳐 초기화, 일반화된 람다 함수, (C++17~) *this 캡쳐, constexpr 람다 함수"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다. 
+> * (C++11~) 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다. 
 > * (C++14~) 람다 캡쳐 초기화로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
 > * (C++14~) `auto`를 인자로 받아 마치 템플릿 함수처럼 동작하는 일반화된 람다 함수가 추가되었습니다.
 > * (C++17~) 람다 캡쳐시 `*this` 를 이용하여 개체 자체를 복제하여 사용합니다.
@@ -63,16 +63,16 @@ int f(int a, int b) {
 1. 람다 표현식으로부터 생성된 개체(클로저)를 변수에 저장한뒤 호출할 수 있고,
 
     ```cpp
-    auto f{[](int a, int b) -> int {return a + b;}};
-    int val{f(10, 20)}; // 함수 호출하듯이 f(10, 20) 로 호출합니다.
+    auto f_11{[](int a, int b) -> int {return a + b;}};
+    int val{f_11(10, 20)}; // 함수 호출하듯이 f_11(10, 20) 로 호출합니다.
     EXPECT_TRUE(val == 30);
     ```
 
 2. 클로저 개체에 `()`을 붙여 바로 호출할 수 있습니다.
 
     ```cpp
-    int val{[](int a, int b) -> int {return a + b;}(10, 20)}; // 클로저 개체에 (10, 20)을 붙여 호출합니다.
-    EXPECT_TRUE(val == 30);
+    int val_11{[](int a, int b) -> int {return a + b;}(10, 20)}; // 클로저 개체에 (10, 20)을 붙여 호출합니다.
+    EXPECT_TRUE(val_11 == 30);
     ```
 
 # 캡쳐
@@ -92,12 +92,12 @@ int f(int a, int b) {
 
 ```cpp
 int sum{0};
-std::vector<int> v{1, 2, 3};
+std::vector<int> v_11{1, 2, 3};
 
 std::for_each( // 시퀀스 안의 요소들에 대해 f(요소)를 실행합니다. f는 람다 함수입니다.
-    v.begin(), 
-    v.end(),
-    [&sum](int val) {sum += val;} // 캡쳐된 sum에 시퀀스 요소의 값(val)을 누적합니다.
+    v_11.begin(), 
+    v_11.end(),
+    [&sum](int val) {sum += val;} // 캡처된 sum에 시퀀스 요소의 값(val)을 누적합니다.
 );
 
 EXPECT_TRUE(sum == 1 + 2 + 3);
@@ -109,10 +109,10 @@ EXPECT_TRUE(sum == 1 + 2 + 3);
 
 ```cpp
 int val{1};
-auto f{[=]() -> int {return val;}}; // 클로저 개체가 생성되는 시점에 val을 캡쳐합니다.
+auto f_11{[=]() -> int {return val;}}; // 클로저 개체가 생성되는 시점에 val을 캡쳐합니다.
 val = 2;
 
-EXPECT_TRUE(f() == 1); // 캡쳐할 때의 값을 사용하므로 1입니다.
+EXPECT_TRUE(f_11() == 1); // 캡쳐할 때의 값을 사용하므로 1입니다.  
 ```
 
 **값 캡쳐**
@@ -162,13 +162,13 @@ public:
     int Func() {
         int local{2};
 
-        auto f{[=]() -> int {
+        auto f_11{[=]() -> int {
             // this->m_Member = 10; 
             m_Member = 10; // this->m_Member = 10; 과 동일. 멤버 변수의 값을 수정합니다.
             return m_Member + local;
         }};  
 
-        return f();
+        return f_11();
     }
 };
 
@@ -196,24 +196,6 @@ int& ref{c};
 EXPECT_TRUE( a == 10 && b == 20 && c == 30);     
 ```
 
-# (C++14~) 람다 캡쳐 초기화
-
-람다 캡쳐시에 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
-정의한 변수는 초기값이 지정되어야 하며, 람다 내에서만 사용할 수 있습니다. 
-
-클로저 개체 생성시에 캡쳐하므로, 람다 함수를 여러번 호출하더라도 기존 값이 유지됩니다. 
-
-```cpp
-// 클로저 개체 생성시 람다 내에서 사용할 수 있는 val 변수를 만들어 캡쳐 합니다.
-// 캡쳐된 val 을 수정하기 위해 mutable로 만듭니다.
-auto f{[val = 0]() mutable -> int {return ++val;}}; 
-
-// 호출시마다  캡쳐된 val이 증가합니다.
-EXPECT_TRUE(f() == 1);
-EXPECT_TRUE(f() == 2);
-EXPECT_TRUE(f() == 3);
-```
-
 # 클로저 개체 대입
 
 클로저 개체는 `auto`와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 `function`을 이용하여 변수에 대입할 수 있습니다.([function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-function/) 참고)
@@ -221,28 +203,28 @@ EXPECT_TRUE(f() == 3);
 1. `auto`(단, `auto`이기 때문에 함수의 인자로 사용할 수 없습니다.)
     
     ```cpp
-    auto f{[](int a, int b) -> int {return a + b;}};
-    EXPECT_TRUE(f(10, 20) == 30);
+    auto f_11{[](int a, int b) -> int {return a + b;}};
+    EXPECT_TRUE(f_11(10, 20) == 30);
     ```
 
 2. 함수 포인터(단, 캡쳐를 지원하지 않습니다.)
    
     ```cpp
     typedef int (*Func)(int, int); // 함수 포인터 typedef
-    Func f{[](int a, int b) -> int {return a + b;}};
-    EXPECT_TRUE(f(10, 20) == 30);
+    Func f_11{[](int a, int b) -> int {return a + b;}};
+    EXPECT_TRUE(f_11(10, 20) == 30);
     ```
 
 3. `function`(캡쳐도 지원하고, 함수 인자로 사용할 수도 있습니다.)
     
     ```cpp
-    std::function<int(int, int)> f;
-    int g(const std::function<int(int, int)>& lambda, int a, int b) { // 함수의 인자로 람다를 지정합니다.
-        return lambda(a, b);
+    std::function<int(int, int)> f_11;
+    int g(const std::function<int(int, int)>& lambda_11, int a, int b) { // 함수의 인자로 람다를 지정합니다.
+        return lambda_11(a, b);
     }
     int c{30};
-    f = [=](int a, int b) -> int {return a + b + c;}; // 캡쳐를 사용하는 람다 표현식도 사용할 수 있습니다.      
-    EXPECT_TRUE(g(f, 10, 20) == 60); // g() 함수에 클로저 개체를 저장한 f를 전달합니다. 
+    f_11 = [=](int a, int b) -> int {return a + b + c;}; // 캡쳐를 사용하는 람다 표현식도 사용할 수 있습니다.      
+    EXPECT_TRUE(g(f_11, 10, 20) == 60); // g() 함수에 클로저 개체를 저장한 f_11을 전달합니다.       
     ```
 
 # 클로저 개체 복사 부하
@@ -301,11 +283,11 @@ public:
 
     ```cpp
     T t;
-    auto f{[=]() { // auto 변수에 저장하고, 호출합니다.   
+    auto f_11{[=]() { // auto 변수에 저장하고, 호출합니다.   
         t; 
         std::cout << "Run Lambda" << std::endl;
     }};      
-    f();
+    f_11();
     ```
     ```cpp
     T::Default Constructor
@@ -319,13 +301,13 @@ public:
 
     ```cpp
     T t;
-    auto f1{[=]() {
+    auto f1_11{[=]() {
         t; 
         std::cout << "Run Lambda" << std::endl;
     }}; 
-    auto f2{f1}; // 복사 부하가 발생합니다.
-    f1();
-    f2();
+    auto f2_11{f1_11}; // 복사 부하가 발생합니다.
+    f1_11();
+    f2_11();
     ```
 
     ```cpp
@@ -343,13 +325,13 @@ public:
 
     ```cpp
     T t;
-    auto f1{[&]() { // 캡쳐시 복사 부하가 없습니다.
+    auto f1_11{[&]() { // 캡쳐시 복사 부하가 없습니다.
         t; 
         std::cout << "Run Lambda" << std::endl;
     }}; 
-    auto f2{f1}; // 대입시 복사 부하가 없습니다.
-    f1();
-    f2();      
+    auto f2_11{f1_11}; // 대입시 복사 부하가 없습니다.
+    f1_11();
+    f2_11();      
     ```
     ```cpp   
     T::Default Constructor
@@ -357,16 +339,34 @@ public:
     Run Lambda
     T::Destructor
     ```
-    
+
+# (C++14~) 람다 캡쳐 초기화
+
+람다 캡쳐시에 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
+정의한 변수는 초기값이 지정되어야 하며, 람다 내에서만 사용할 수 있습니다. 
+
+클로저 개체 생성시에 캡쳐하므로, 람다 함수를 여러번 호출하더라도 기존 값이 유지됩니다. 
+
+```cpp
+// 클로저 개체 생성시 람다 내에서 사용할 수 있는 val_14 변수를 만들어 캡쳐 합니다.
+// 캡쳐된 val_14 을 수정하기 위해 mutable로 만듭니다.
+auto f_14{[val_14 = 0]() mutable -> int {return ++val_14;}}; 
+
+// 호출시마다  캡쳐된 val이 증가합니다.
+EXPECT_TRUE(f_14() == 1);
+EXPECT_TRUE(f_14() == 2);
+EXPECT_TRUE(f_14() == 3);
+```
+
 # (C++14~) 일반화된 람다 함수
 
 C++14 부터는 람다 함수 인자로 `auto`를 사용할 수 있어, 마치 템플릿 함수처럼 동작하게 할 수 있습니다.
 
 ```cpp
-auto add{[](auto a, auto b) {return a + b;}}; 
+auto add_14{[](auto a, auto b) {return a + b;}}; 
 
-EXPECT_TRUE(add(1, 2) == 3);
-EXPECT_TRUE(add(std::string{"hello"}, std::string{"world"}) == "helloworld");
+EXPECT_TRUE(add_14(1, 2) == 3);
+EXPECT_TRUE(add_14(std::string{"hello"}, std::string{"world"}) == "helloworld");
 ```
 
 # (C++17~) constexpr 람다 함수
@@ -382,10 +382,10 @@ static_assert(id_17(10) == 10);
 auto add_17{[](int a, int b) {return a + b;}};
 static_assert(add_17(1, 2) == 3);
 
-// 인자로 전달한 a, b는 컴파일 타임 상수이기 때문에 요구사항이 맞아 암시적 constexpr 람다 함수 입니다.
-constexpr int a{1};
-constexpr int b{2};
-static_assert(add_17(a, b) == 3);
+// 인자로 전달한 a_11, b_11는 컴파일 타임 상수이기 때문에 요구사항이 맞아 암시적 constexpr 람다 함수 입니다.
+constexpr int a_11{1};
+constexpr int b_11{2};
+static_assert(add_17(a_11, b_11) == 3);
 
 // 인자로 전달한 c, d는 변수이기 때문에 요구사항이 맞지 않아 런타임 람다 함수 입니다.
 int c{1};

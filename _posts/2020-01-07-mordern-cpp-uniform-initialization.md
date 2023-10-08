@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++] (C++11~) 중괄호 초기화"
+title: "#7. [모던 C++] (C++11~) 중괄호 초기화, (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -12,6 +12,7 @@ sidebar:
 > * (C++11~) 중괄호 복사 초기화로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.
 > * (C++11~) 중괄호 초기화시 인자의 암시적 형변환을 일부 차단하여, 코딩 계약이 개선되었습니다.
 > * (C++11~) `initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.
+> * (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙이 적용되어, `initializer_list` 로 추론되는 오류가 개선되었습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.
 
 
@@ -412,52 +413,58 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 1. 문자 배열에서 단일 문자열 상수로 초기화 하면 문자열 상수로 초기화 합니다.
 
     ```cpp
-    char arr[] = {"abc"}; // char arr[] = "abc"; 와 동일
+    char arr_11[] = {"abc"}; // char arr_11[] = "abc"; 와 동일
     ```
 2. [집합 타입](https://tango1202.github.io/mordern-cpp/mordern--category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)인 경우 집합 초기화를 합니다.
 
 3. 중괄호가 비어 있고 기본 생성자가 있으면, 기본 생성자를 호출합니다.
-   
+
 4. `initializer_list`를 사용한 생성자가 있으면 해당 생성자를 호출합니다. 
 
     ```cpp
-    class T {
+    class T_11 {
     public:
-        T(int, int, int, int, int) {}
-        T(std::initializer_list<int>) {}
-        T(std::initializer_list<int>, int, int) {}
+        T_11(int, int, int, int, int) {}
+        T_11(std::initializer_list<int>) {}
+        T_11(std::initializer_list<int>, int, int) {}
     };
-    T a{1, 2, 3, 4, 5}; // T(std::initializer_list<int>)
-    T b{ {1, 2, 3}, 4, 5}; // T(std::initializer_list<int>, int, int)
+    T_11 a{1, 2, 3, 4, 5}; // T_11(std::initializer_list<int>)
+    T_11 b{ {1, 2, 3}, 4, 5}; // T_11(std::initializer_list<int>, int, int)
     ```
 
 # 기존 생성자와 initializer_list 생성자와의 충돌
 
-중괄호 초기화 우선 순위에 따라 `initializer_list`를 사용한 버전이 비교적 우선적으로 선택됩니다. 그러다 보니 기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v2{2};` 와 같이 한다면, 요소가 2개인 `vector` 를 생성하는게 아니라, `2`값인 요소 1인 `vector`를 생성합니다.
+중괄호 초기화 우선 순위에 따라 `initializer_list`를 사용한 버전이 비교적 우선적으로 선택됩니다. 그러다 보니 기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v_11{2};` 와 같이 한다면, 요소가 2개인 `vector` 를 생성하는게 아니라, `2`값인 요소 1인 `vector`를 생성합니다.
 
 ```cpp
 // 요소가 2개인 vector를 생성합니다.
-std::vector<int> v1(2);
-EXPECT_TRUE(v1.size() == 2 && v1[0] == 0 && v1[1] == 0);
+std::vector<int> v(2);
+EXPECT_TRUE(v.size() == 2 && v[0] == 0 && v[1] == 0);
 
 // 요소값이 2인 vector를 생성합니다.
-std::vector<int> v2{2};
-EXPECT_TRUE(v2.size() == 1 && v2[0] == 2);
+std::vector<int> v_11{2};
+EXPECT_TRUE(v_11.size() == 1 && v_11[0] == 2);   
 ```    
 
-# (C++17~) auto 추론의 새로운 규칙
+# (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙
 
-`auto`와 함께 중괄호 초기화를 사용하면 다음처럼 `initializer_list` 개체로 추론되는데요, `{}` 만 사용할때와 `= {}` 로 사용할 때가 다르므로 주의해서 사용해야 합니다.
+기존에는 `auto` 와 중괄호 직접 초기화를 사용하면, `initializer_list`로 추론되는 문제가 있다고 합니다.([N3681](https://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3681.html) 참고)
+
+```cpp
+auto x{foo}; // direct-initialization, initializes an initializer_list
+```
+
+제가 GCC version 8.1.0로 해보니 `auto b_17{1};` 이 `int`로 잘 추론되기는 합니다만, 아무튼 C++17 부터는 이를 개선하여 다음과 같은 규칙으로 추론됩니다.
 
 * `auto val{}` : 인자가 1개면 인자 타입으로 추론되고, 여러개면 컴파일 오류를 발생합니다.
 * `auto val = {}` : 인자들의 타입이 동일하면 `initializer_list`로 추론됩니다.
 
 ```cpp
-int a_11{1}; // a는 int
-auto b_11{1}; // b는 int
-auto c_11 = {1}; // c는 initializer_list<int>
-auto d_11 = {1, 2}; // d는 initializer_list<int>  
-// auto e_11{1, 2}; // (X) 컴파일 오류. auto에서는 단일 개체 대입 필요  
+int a_17{1}; // a는 int
+auto b_17{1}; // b는 int
+auto c_17 = {1}; // c는 initializer_list<int>
+auto d_17 = {1, 2}; // d는 initializer_list<int>  
+// auto e_17{1, 2}; // (X) 컴파일 오류. auto에서는 단일 개체 대입 필요  
 ```
 
-그런데, []
+

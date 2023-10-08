@@ -8,9 +8,38 @@ sidebar:
     nav: "docs"
 ---
 
+> * (C++11~) `using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다. 
 > * (C++11~) 가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.
 > * (C++11~) [sizeof() 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있도록 개선되었습니다.
 > * (C++17~) `__has_include` 가 추가되어 `include` 하기 전에 파일이 존재하는지 확인할 수 있습니다.
+
+# (C++11~) using 타입 별칭
+
+기존에는 타입 별칭을 위해 `typedef`를 사용했었는데요([타입 별칭](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 참고),
+
+C++11 부터는 `using`을 이용한 타입 별칭이 추가되었습니다.
+
+`using`은 다음과 같이 `typedef`와 별칭의 순서가 다릅니다만, 좀 더 직관적입니다.
+
+```cpp
+typedef unsigned long ulong;
+using ulong_11 = unsigned long; // typedef와 순서가 반대입니다.
+```
+
+# (C++11~) 템플릿 클래스 별칭
+
+`using`은 템플릿 클래스 별칭도 지원합니다.
+
+```cpp
+// typedef는 템플릿의 구체화된 타입만 지원합니다.
+typedef std::vector<int> MyVector;
+
+ // using은 템플릿을 지원합니다.
+template<typename T>
+using MyVector_11 = std::vector<T>; 
+
+MyVector_11<int> v;
+```
 
 # (C++11~) 가변 매크로
 

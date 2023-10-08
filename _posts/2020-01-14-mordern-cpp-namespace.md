@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * 인라인 네임스페이스가 추가되어 API 버전 구성이 편리해 졌습니다.
-> * (C++17~) 단순한 중첩 네임스페이스 표현이 추가되어 `::` 로 중첩 네임스페이스를 표현할 수 있습니다.
+> * (C++11~) 인라인 네임스페이스가 추가되어 API 버전 구성이 편리해 졌습니다.
+> * (C++17~) 중첩 네임스페이스 표현이 단순해져 `::` 로 표현할 수 있습니다.
 
 # 인라인 네임스페이스
 
@@ -20,13 +20,13 @@ namespace MyLib {
     namespace V1 {
         int f() {return 1;} // #1
     }
-    inline namespace V2 {
+    inline namespace V2_11 {
         int f() {return 2;} // #2
     }
 }
 
 EXPECT_TRUE(MyLib::V1::f() == 1);
-EXPECT_TRUE(MyLib::V2::f() == 2);
+EXPECT_TRUE(MyLib::V2_11::f() == 2);
 EXPECT_TRUE(MyLib::f() == 2); // MyLib에 없으면 inline 사용
 ```
 

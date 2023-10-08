@@ -164,7 +164,7 @@ EXPECT_TRUE(t.x == 10 && t.y == 20);
 
 3. 클래스, 구조체, 공용체의 멤버 변수([Zero-initialization(https://en.cppreference.com/w/cpp/language/zero_initialization)](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고)
  
-    하지만 저는 신뢰하지 않습니다. gcc version 8.1.0 디버그 모드에서는 `0`이 아니더라구요.
+    하지만 저는 신뢰하지 않습니다. GCC version 8.1.0 디버그 모드에서는 `0`이 아니더라구요.
 
 ```cpp
 int g_Val; // 전역 변수. 명시적 초기화 가능

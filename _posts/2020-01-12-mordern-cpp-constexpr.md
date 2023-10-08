@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
+> * (C++11~) `constexpr`이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
 > * (C++14~) `constexpr` 함수 제약이 완화되어 지역 변수, 2개 이상의 리턴문, `if()`, `for()`, `while()` 등을 사용할 수 있습니다.
 > * (C++17~) `if constexpr`을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.
 
@@ -37,7 +37,7 @@ public:
 
 const int size{20}; // 상수 입니다.
 
-enum class MyEnum {Val = size}; // (O) size는 컴파일 타임 상수 입니다.
+enum class MyEnum_11 {Val = size}; // (O) size는 컴파일 타임 상수 입니다.
 T<size> t; // (O) size는 컴파일 타임 상수 입니다.
 ```
 
@@ -47,24 +47,25 @@ T<size> t; // (O) size는 컴파일 타임 상수 입니다.
 int a{20};
 const int size{a}; // 변수로부터 const int를 초기화 해서 런타임 상수 입니다.
 
-enum class MyEnum {Val = size}; // (X) 컴파일 오류. size는 런타임 상수 입니다.
+enum class MyEnum_11 {Val = size}; // (X) 컴파일 오류. size는 런타임 상수 입니다.
 T<size> t; // (X) 컴파일 오류. size는 런타임 상수 입니다.
 ```
 
 `constexpr`은 좀더 명시적으로 컴파일 타임 상수임을 알려 줍니다.
 
 ```cpp
-constexpr int size{20}; // 컴파일 타입 상수 입니다.
+constexpr int size_11{20}; // 컴파일 타입 상수 입니다.
 
-enum class MyEnum {Val = size}; // (O)
-T<size> t; // (O) 
+enum class MyEnum_11 {Val = size_11}; // (O)
+T<size_11> t; // (O) 
 ```
 
 `constexpr`은  `const int`와 달리 변수를 대입하면 컴파일 오류가 발생합니다.
 
 ```cpp
 int a{20};
-constexpr int size{a}; // (X) 컴파일 오류. 상수를 대입해야 합니다.
+constexpr int size_11{a}; // (X) 컴파일 오류. 상수를 대입해야 합니다.
+
 ```
 
 # constexpr 함수
@@ -97,26 +98,52 @@ C++11 부터는 `constexpr`을 이용하여 암시적으로 인라인 함수인 
 2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작합니다.
 
 ```cpp
-constexpr int Factorial(int val) {
+constexpr int Factorial_11(int val) {
     // 마지막으로 1에 도달하면 재귀호출 안함
-    return val == 1 ? val : val * Factorial(val - 1);
+    return val == 1 ? val : val * Factorial_11(val - 1);
 }
 
 // 컴파일 타임에 계산된 120이 Val에 대입됩니다.
-enum class MyEnum {Val = Factorial(5)};
-EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 1 * 2 * 3 * 4 * 5);
+enum class MyEnum_11 {Val = Factorial_11(5)};
+EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 1 * 2 * 3 * 4 * 5);       
 
 // 변수를 전달하면, 일반 함수처럼 동작합니다.
 int val{5};
-int result{Factorial(5)};
-EXPECT_TRUE(result == 1 * 2 * 3 * 4 * 5);
+int result{Factorial_11(5)};
+```
+
+# constexpr 생성자 
+
+`constexpr`은 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 사용할 수 있는데요, 그러다 보니, 구조체나 클래스는 사용자 정의 생성자, 소멸자가 없으며 모든 멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)인 경우에만 사용할 수 있습니다.
+
+하지만, `constexpr` 생성자를 이용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)인 구조체나 클래스를 직접 만들 수 있습니다.
+
+다음 `Area_11` 클래스는 `private` 멤버 변수와 생성자를 갖고 있지만, `constexpr`생성자를 사용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)으로 동작합니다.
+
+```cpp
+class Area_11 {
+private:
+    int m_X;
+    int m_Y;
+public:
+    constexpr Area_11(int x, int y) : // 컴파일 타임 상수로 사용 가능
+        m_X(x),
+        m_Y(y) {} 
+    constexpr int GetVal_11() const {return m_X * m_Y;}
+};
+
+constexpr Area_11 area(2, 5); // 컴파일 타임 상수로 정의
+
+// 컴파일 타임에 계산된 면적이 Val에 대입됩니다.
+enum class MyEnum_11 {Val = area.GetVal_11()}; // constexpr 함수 호출
+EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 2 * 5);     
 ```
 
 # (C++14~) constexpr 함수 제약 완화
 
 `constexpr`함수는 기본적으로 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 리턴할 수 있고, 그외 스펙들은 조금씩 개선되고 있습니다. 
 
-C++11 부터는 지역 변수나 제어문도 사용할 수 없어서 상당히 제한적이었으나, 점점 개선되고 있습니다. 자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/language/constexpr)을 참고하시기 바랍니다.
+C++11 에서는 지역 변수나 제어문도 사용할 수 없어서 상당히 제한적이었으나, 점점 개선되고 있습니다. 자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/language/constexpr)을 참고하시기 바랍니다.
 
 |항목|C++11|C++14|C++17|C++20|
 |--|--|--|--|--|
@@ -150,33 +177,6 @@ constexpr int Factorial_14(int val) {
 // 컴파일 타임에 계산된 120이 Val에 대입됩니다.
 enum class MyEnum {Val = Factorial_14(5)};
 EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 1 * 2 * 3 * 4 * 5);       
-```
-
-# constexpr 생성자 
-
-`constexpr`은 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 사용할 수 있는데요, 그러다 보니, 구조체나 클래스는 사용자 정의 생성자, 소멸자가 없으며 모든 멤버 변수가 `public`인 집합 타입인 경우에만 사용할 수 있습니다.
-
-하지만, `constexpr` 생성자를 이용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)인 구조체나 클래스를 직접 만들 수 있습니다.
-
-다음 `Area` 클래스는 `private` 멤버 변수와 생성자를 갖고 있지만, `constexpr`생성자를 사용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)으로 동작합니다.
-
-```cpp
-class Area {
-private:
-    int m_X;
-    int m_Y;
-public:
-    constexpr Area(int x, int y) : // 컴파일 타임 상수로 사용 가능
-        m_X(x),
-        m_Y(y) {} 
-    constexpr int GetVal() const {return m_X * m_Y;}
-};
-
-constexpr Area area(2, 5); // 컴파일 타임 상수로 정의
-
-// 컴파일 타임에 계산된 면적이 Val에 대입됩니다.
-enum class MyEnum {Val = area.GetVal()}; // constexpr 함수 호출
-EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 2 * 5);      
 ```
 
 # (C++17~) if constexpr 
@@ -240,7 +240,7 @@ delete ptr;
 
 ```cpp
 template<typename T>
-class CloneTraits_17 {
+class CloneTraits {
 public:
     static T* Clone_17(const T* ptr) {
         if (ptr == NULL) {
@@ -257,7 +257,7 @@ public:
     } 
 };
 int val;
-int* ptr{CloneTraits_17<int>::Clone_17(&val)}; // (O)
+int* ptr{CloneTraits<int>::Clone_17(&val)}; // (O)
 delete ptr; 
 ```
 
@@ -272,7 +272,7 @@ static T* Clone_17(const T* ptr) {
     return new T(*ptr);
 } 
 int val;
-int* ptr{CloneTraits_17<int>::Clone_17(&val)}; // (O)
+int* ptr{CloneTraits<int>::Clone_17(&val)}; // (O)
 delete ptr; 
 ```
 
