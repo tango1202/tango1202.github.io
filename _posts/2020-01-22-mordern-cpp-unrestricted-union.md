@@ -12,13 +12,13 @@ sidebar:
 
 **개요**
 
-기존에는 공용체에서는 생성자/소멸자/가상 함수가 없는 trivial 타입만 공용체의 멤버가 될 수 있었는데요([공용체](
+기존에는 공용체에서는 생성자/소멸자/가상 함수가 없는 [trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85)만 공용체의 멤버가 될 수 있었는데요([공용체](
 https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 참고), 
 
 C++11 부터는 이를 완화하였습니다.
 대신 멤버들의 생성자와 소멸자가 호출되지 않으므로, 이를 수동으로 제어해야 합니다.
 
-다음에서 `MyUnion`은 non-trivial 타입인 `A`와 `B`, `Derived`를 멤버로 사용하고. 크기가 가장 큰 개체의 크기 만큼 메모리를 할당합니다.
+다음에서 `MyUnion_11`은 non-trivial 타입인 `A`와 `B`, `Derived`를 멤버로 사용하고. 크기가 가장 큰 개체의 크기 만큼 메모리를 할당합니다.
 
 ```cpp
 // 생성자와 소멸자가 있어서 non-trivial 타입입니다.
@@ -71,15 +71,15 @@ public:
     virtual int Func() override {return 2;} // #2        
 };
 
-union MyUnion {
+union MyUnion_11 {
     A m_A; // non-trivial 타입입니다.
     B m_B; // non-trivial 타입입니다.
     Derived m_Derived; // non-trivial 타입입니다.
-    MyUnion() {
-        std::cout << "MyUnion : Constructor" << std::endl;  
+    MyUnion_11() {
+        std::cout<<"MyUnion_11 : Constructor"<<std::endl;  
     }
-    ~MyUnion() {
-        std::cout << "MyUnion : Destructor" << std::endl;  
+    ~MyUnion_11() {
+        std::cout<<"MyUnion_11 : Destructor"<<std::endl;  
     }
 };
 
@@ -89,17 +89,17 @@ EXPECT_TRUE(std::is_trivial<B>::value == false);
 EXPECT_TRUE(std::is_trivial<Derived>::value == false); 
 
 // MyUnion 은 A, B, Derived 중 크기가 큰 개체만큼 메모리를 할당합니다.
-EXPECT_TRUE(sizeof(Derived) <= sizeof(A) && sizeof(A) <= sizeof(B) && sizeof(B) == sizeof(MyUnion));
+EXPECT_TRUE(sizeof(Derived) <= sizeof(A) && sizeof(A) <= sizeof(B) && sizeof(B) == sizeof(MyUnion_11));
 
 // A, B, Derived의 생성자와 소멸자가 호출되지 않습니다.
-MyUnion obj;
+MyUnion_11 obj;
 ```
 
-상기 코드를 실행하면, `A`, `B`, `Derived`의 생성자와 소멸자는 호출되지 않고, `MyUnion`만 생성자와 소멸자가 호출됩니다.
+상기 코드를 실행하면, `A`, `B`, `Derived`의 생성자와 소멸자는 호출되지 않고, `MyUnion_11`만 생성자와 소멸자가 호출됩니다.
 
 ```cpp
-MyUnion : Constructor
-MyUnion : Destructor
+MyUnion_11 : Constructor
+MyUnion_11 : Destructor
 ```
 
 `MyUnion`의 사용을 위해선 다음처럼 각 멤버의 
@@ -108,7 +108,7 @@ MyUnion : Destructor
 2. 소멸자를 호출해야 합니다.
 
 ```cpp
-MyUnion obj;
+MyUnion_11 obj;
 
 // A를 사용하기 위해 A의 생성자를 호출합니다.
 new (&obj.m_A) A(10, 20);
@@ -131,14 +131,14 @@ obj.m_Derived.~Derived();
 실행 결과를 보면 각 멤버의 생성자와 소멸자가 호출된 것을 확인 할 수 있습니다.
 
 ```cpp
-MyUnion : Constructor
+MyUnion_11 : Constructor
 A : Constructor
 A : Destructor
 B : Constructor
 B : Destructor
 Derived : Constructor
 Derived : Destructor
-MyUnion : Destructor
+MyUnion_11 : Destructor
 ```
 
 수동으로 생성자와 소멸자를 제어해야 해서 많이 불편하지만, 서로 다른 개체 타입을 관리해야 하고, 상황에 따라 여러개 중에 1개만 활성화해서 관리해야 할때 메모리를 알뜰하게 사용할 수 있습니다.

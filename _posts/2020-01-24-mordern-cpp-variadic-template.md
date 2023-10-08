@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.
-> * `sizeof...()`가 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.
+> * (C++11~) 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.
+> * (C++11~) `sizeof...()`가 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.
 > * (C++17~) Fold 표현식을 이용하여 가변 템플릿에서 파라메터 팩을 재귀적으로 반복하여 전개할 수 있습니다.
 
 # 개요
@@ -23,25 +23,24 @@ C++11 부터는 템플릿에서도 가변 인자를 사용할 수 있고, 이를
 
 ```cpp
 template<typename Type>
-Type Sum(Type param) {
+Type Sum_11(Type param) {
     return param; // 재귀 호출하다가 마지막에 도달하면 호출됩니다.
 }
 template<typename Type, typename... Types>
-Type Sum(Type param, Types... params) {
-    return param + Sum(params...); // 재귀 호출시 params의 첫번째 인자는 param으로 전달되고, 나머지는 params에 전달됩니다.
-}
+Type Sum_11(Type param, Types... params) {
+    return param + Sum_11(params...); // 재귀 호출시 params의 첫번째 인자는 param으로 전달되고, 나머지는 params에 전달됩니다.
+} 
 
-int val{Sum(1, 3, 5)};
-EXPECT_TRUE(val == 1 + 3 + 5); 
+int val{Sum_11(1, 3, 5)};
+EXPECT_TRUE(val == 1 + 3 + 5);  
 ```
 
 또한, 다음처럼 포워딩 함수를 손쉽게 만들 수 있습니다.
 
 ```cpp
-
 // func(params...) 를 호출합니다.
 template<typename Func, typename... Params>
-int Forwarding(Func func, Params... params) {
+int Forwarding_11(Func func, Params... params) {
     return func(params...);
 }
 
@@ -49,7 +48,7 @@ int MySum(int a, int b, int c) {
     return a + b + c;
 }
 
-EXPECT_TRUE(Forwarding(MySum, 1, 2, 3) == 1 + 2 + 3);
+EXPECT_TRUE(Forwarding_11(MySum, 1, 2, 3) == 1 + 2 + 3);   
 ```
 
 다만 `Forwarding()` 함수에서 인자를 전달할때 참조자 타입은 참조성이 제거되어 전달되기 때문에 [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)를 이용해야 합니다.([reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper) 참고)
@@ -80,11 +79,11 @@ int Sum(int a, int b, int c) {
     return a + b + c;
 }
 template<typename... Params>
-int Func(Params... params) {
+int Func_11(Params... params) {
     return Sum((params + 1)...); // 파라메터 팩의 각 요소에 1을 더해 배포합니다.
-} 
+}
 
-EXPECT_TRUE(Func(1, 2, 3) == 2 + 3 + 4);
+EXPECT_TRUE(Func_11(1, 2, 3) == 2 + 3 + 4);
 ```
 
 # sizeof...() 연산자
@@ -95,11 +94,11 @@ C++11 부터는 `sizeof...()` 연산자가 추가되었습니다.
 
 ```cpp
 template<typename... Types>
-int Func(Types... params) {
+int Func_11(Types... params) {
     return sizeof...(params);
 }
 
-EXPECT_TRUE(Func(1, 2, 3) == 3);
+EXPECT_TRUE(Func_11(1, 2, 3) == 3);
 ```
 
 # (C++17~) Fold 표현식
@@ -111,7 +110,7 @@ int Sum(int a, int b, int c) {
     return a + b + c;
 }
 template<typename... Params>
-int Func(Params... params) {
+int Func_11(Params... params) {
     return Sum((params + 1)...); // Sum(param1 + 1, param2 + 1, param2 + 1) 으로 전개됩니다.
 } 
 
@@ -122,15 +121,16 @@ C++17 부터는 Fold 표현식을 이용하여 파라메터 팩을 재귀적으�
 
 |항목|내용|
 |--|--|
-|`params op...`|단항 오른쪽 Fold<br/>`(param[1] op (... op (param[N-1] op param[N])))` 로 전개|
-|`params op...op init`|이항 오른쪽 Fold<br/>`(param[1] op (... op (param[N] op init)))` 로 전개|
-|`...op params`|단항 왼쪽 Fold<br/>`(((param[1] op param[2]) op ...) op param[N])` 로 전개|
-|`init op...op params`|이항 왼쪽 Fold<br/>`(((init op param[1]) op ...) op param[N])` 로 전개|
+|`(params op...)`|단항 오른쪽 Fold<br/>`(param[1] op (... op (param[N-1] op param[N])))` 로 전개|
+|`(params op...op init)`|이항 오른쪽 Fold<br/>`(param[1] op (... op (param[N] op init)))` 로 전개|
+|`(...op params)`|단항 왼쪽 Fold<br/>`(((param[1] op param[2]) op ...) op param[N])` 로 전개|
+|`(init op...op params)`|이항 왼쪽 Fold<br/>`(((init op param[1]) op ...) op param[N])` 로 전개|
 
-`op`는 다음 연산자 입니다.
+`op`는 다음 연산자들을 사용할 수 있습니다.
 
 `+` `-` `*` `/` `%` `^` `&` `|` `=` `<` `>` `<<` `>>` `+=` `-=` `*=` `/=` `%=` `^=` `&=` `|=` `<<=` `>>=` `==` `!=` `<=` `>=` `&&` `||` `,` `.*` `->*`
 
+`(params +...)`에서 괄호 자체도 Fold 표현식의 일부 입니다. 따라서 `return params +...;`와 같이 괄호를 생략하면 컴파일 오류가 발생합니다.
 
 ```cpp
 template<typename... Params>

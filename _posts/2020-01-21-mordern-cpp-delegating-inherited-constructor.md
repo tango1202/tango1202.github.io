@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * 생성자 위임이 추가되어 생성자의 초기화 리스트 코드가 좀더 간결해 졌습니다.
-> * 생성자 상속이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.
+> * (C++11~) 생성자 위임이 추가되어 생성자의 초기화 리스트 코드가 좀더 간결해 졌습니다.
+> * (C++11~) 생성자 상속이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.
 
 # 생성자 위임
 
@@ -30,15 +30,15 @@ public:
 C++11 부터는 다른 생성자에 위임할 수 있어 좀더 간결하게 생성자 코드를 만들 수 있습니다.
 
 ```cpp
-class T {
+class T_11 {
     int m_X;
     int m_Y;
     int m_Z;
 public:
-    T() : T(0, 0, 0) {} // T(int x, int y, int z)에 위임
-    explicit T(int x) : T(x, 0, 0) {} // T(int x, int y, int z)에 위임
-    T(int x, int y) : T(x, y, 0) {} // T(int x, int y, int z)에 위임
-    T(int x, int y, int z) : m_X(x), m_Y(y), m_Z(z) {} 
+    T_11() : T_11(0, 0, 0) {} // T_11(int x, int y, int z)에 위임
+    explicit T_11(int x) : T_11(x, 0, 0) {} // T_11(int x, int y, int z)에 위임
+    T_11(int x, int y) : T_11(x, y, 0) {} // T_11(int x, int y, int z)에 위임
+    T_11(int x, int y, int z) : m_X(x), m_Y(y), m_Z(z) {} 
 };
 ```
 
@@ -73,11 +73,11 @@ public:
     Base(int x, int y) : m_X(x), m_Y(y) {}
 };
 
-class Derived : public Base {
+class Derived_11 : public Base {
 public:
     // 생성자 상속
     using Base::Base; 
 };
 
-Derived d(10, 20);
+Derived_11 d(10, 20);    
 ```

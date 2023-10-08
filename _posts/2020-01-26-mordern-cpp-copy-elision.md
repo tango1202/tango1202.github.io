@@ -22,7 +22,7 @@ sidebar:
 
     리턴할 개체를 그냥 `result`로 사용합니다.([리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo) 참고)
 
-컴파일러 종류에 따라 다르겠지만, gcc에서는 불필요한 이동 생성을 생략하고, 생성된 임시 개체를 그냥 사용합니다.
+컴파일러 종류에 따라 다르겠지만, gcc에서는 불필요한 이동 생성을 생략하고, 생성된 임시 개체를 그냥 사용하도록 최적화 해줍니다.
 
 ```cpp
 class A {};
@@ -38,42 +38,42 @@ A result = Func2(); // A{} 기본 생성자로 생성하고, result에 이동 �
 아쉬운 점은, 컴파일러 최적화에 따라 이동 생성자를 사용하지 않더라도, 문법적으로는 이동 생성자가 필요하므로, 이동 생성자를 `delete`하면 컴파일 오류가 난다는 점입니다.
 
 ```cpp
-class A {
+class A_11 {
 public:
     int m_Val;
 public:
-    A() = default;
-    A(const A& other) = delete;
-    A(A&& other) = delete; // 이동 생성자 사용 안함
-    A& operator =(const A& other) = delete; 
-    A& operator =(A&& other) = delete;           
+    A_11() = default;
+    A_11(const A_11& other) = delete;
+    A_11(A_11&& other) = delete; // 이동 생성자 사용 안함
+    A_11& operator =(const A_11& other) = delete; 
+    A_11& operator =(A_11&& other) = delete;         
 };
 
-A a{A{}}; // (X) 컴파일 오류. 이동 생성자가 없음   
+A_11 a{A_11{}}; // (X) 컴파일 오류. 이동 생성자가 없음    
 ```
 
 그래서 억지로 다음처럼 이동 생성자를 사용했었습니다.
 
 ```cpp
-class A {
-public:
-    int m_Val;
-public:
-    A() = default;
-    A(const A& other) = delete;
-    A(A&& other) = default; // 이동 생성자 사용
-    A& operator =(const A& other) = delete; 
-    A& operator =(A&& other) = delete;           
-};
+    class A_11 {
+    public:
+        int m_Val;
+    public:
+        A_11() = default;
+        A_11(const A_11& other) = delete;
+        A_11(A_11&& other) = default; // 억지로 이동 생성자를 사용함
+        A_11& operator =(const A_11& other) = delete; 
+        A_11& operator =(A_11&& other) = delete;         
+    };
 
-A a{A{}}; // 컴파일러 최적화로 이동 생성자를 사용하지 않지만, 컴파일을 위해 문법적으로는 이동 생성자가 필요합니다.
+A_11 a{A_11{}}; // 컴파일러 최적화로 이동 생성자를 사용하지 않지만, 컴파일을 위해 문법적으로는 이동 생성자가 필요합니다.
 ```
 
 하지만, C++17 부터는 임시 구체화와 복사 생략 보증을 통해 임시 개체가 불필요하게 복사나 이동되지 않음을 문법적으로 보증해 줍니다. 그덕에 상기 경우에 이동 생성자를 억지로 사용하지 않아도 컴파일 오류없이 잘 동작하게 됐습니다.
 
 # 임시 구체화(Temporary materialization)
 
-임시 개체인 `prvalue`는 다른 개체를 초기화 하는데에만 사용되며, 다음의 경우만 임시적으로 구체화됩니다.
+C++17 부터 임시 개체인 `prvalue`는 다른 개체를 초기화 하는데에만 사용되며, 다음의 경우만 임시적으로 구체화되는 것으로 한정했습니다.
 
 1. `prvalue`를 참조자로 바인딩할때
 
@@ -102,7 +102,7 @@ A a{A{}}; // 컴파일러 최적화로 이동 생성자를 사용하지 않지�
 
 # 복사 생략(Copy elision)
 
-`prvalue`는 임시 구체화 기준에 따라 최대한 구체화를 하지 않으며, 최종 대상의 저장소에 직접 구현됩니다.
+C++17 부터 `prvalue`는 임시 구체화 기준에 따라 최대한 구체화를 하지 않으며, 최종 대상의 저장소에 직접 구현됩니다.
 
 ```cpp
 A a{A{}}; // A{}는 a에 구현됩니다.
@@ -116,19 +116,19 @@ A Func2() {
 A result = Func2(); // A{}는 result에 구현됩니다. move(Func2()) 하지 마세요.
 ```
 
-즉, `A a{A{}};`에서 임시 개체인 `A{}`는 `a`에 직접 구현 되므로, 문법적으로 이동 생성을 사용하지 않습니다. 따라서 C++17 에서는 다음과 같이 이동 생성자를 `delete` 해도 정상적으로 컴파일됩니다.
+즉, 다음 코드에서 `A_17 a{A_17{}};`는 임시 개체인 `A_17{}`가 `a`에 직접 구현되므로, 문법적으로 이동 생성을 사용하지 않습니다. 따라서 C++17 에서는 다음과 같이 이동 생성자를 `delete` 해도 정상적으로 컴파일됩니다.
 
 ```cpp
-class A {
+class A_17 {
 public:
     int m_Val;
 public:
-    A() = default;
-    A(const A& other) = delete;
-    A(A&& other) = delete; // 이동 생성자 사용 안함
-    A& operator =(const A& other) = delete; 
-    A& operator =(A&& other) = delete;           
-};
+    A_17() = default;
+    A_17(const A_17& other) = delete;
+    A_17(A_17&& other) = delete; // 이동 생성자 사용 안함
+    A_17& operator =(const A_17& other) = delete; 
+    A_17& operator =(A_17&& other) = delete;           
+}; 
 
-A a{A{}}; // (O) 문법적으로 이동 생성자를 사용하지 않습니다. 
+A_17 a{A_17{}}; // (O) 문법적으로 이동 생성자를 사용하지 않습니다. 
 ```

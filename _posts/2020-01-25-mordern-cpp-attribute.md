@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.
+> * (C++11~) `attribute`가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.
 > * (C++14~) `[[deprecated]]`가 추가되었습니다.
 > * (C++17~) `[[fallthrough]]`, `[[nodiscard]]`, `[[maybe_unused]]` 가 추가되었습니다.
 > * (C++17~) `[[msvc::noinline]]` 와 같이 제조사 네임스페이스를 사용할 수 있습니다.
@@ -24,14 +24,11 @@ C++11 부터는 `attribute`가 추가되어 부가 정보 전달을 표준화 �
 ```cpp
 // 함수가 항상 예외를 throw하거나 종료합니다. 
 // 컴파일러는 호출후 제어 연결을 할 필요가 없으므로, 이에 따른 최적화가 가능합니다.
-[[noreturn]] void f() {throw "error";}
+[[noreturn]] void f_11() {throw "error";}
 
 // 실제로는 리턴하므로 컴파일러는 경고를 발생합니다.
-[[noreturn]] int g() {return 0;} // 경고. function declared 'noreturn' has a 'return' statement
+[[noreturn]] int g_11() {return 0;} // 경고. function declared 'noreturn' has a 'return' statement
 ```
-# (C++17~) 네임스페이스
-
-C++17 부터는 `[[msvc::noinline]]` 와 같이 제조사 네임스페이스를 사용할 수 있습니다.
 
 # 표준 속성
 
@@ -51,3 +48,7 @@ C++버전에 따라 다음의 표준 속성이 제공됩니다. 세부 내용은
 |`likely` (C++20~)<br/>`unlikely` (C++20~)|`if`나 `switch`에서 자주 사용하는 코드 조각을 알려주어 최적화 힌트를 제공합니다.|
 |`no_unique_address` (C++20~)|멤버 변수를 다른 멤버변수나 부모 클래스 개체와 오버랩합니다.(아무 멤버 변수가 없는 개체를 최적화 할 수 있습니다.)|
 |`assume("표현식")` (C++23~)|특정 상황에 표현식이 `true`가 되도록 가정합니다. 컴파일러는 이 가정을 신뢰하고 이에 따른 최적화를 합니다.(가정이 거짓일때 동작은 정의되지 않았습니다.)|
+
+# (C++17~) 네임스페이스
+
+C++17 부터는 `[[msvc::noinline]]` 와 같이 제조사 네임스페이스를 사용할 수 있습니다.

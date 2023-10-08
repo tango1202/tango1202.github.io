@@ -320,7 +320,7 @@ public:
 B b_11{1, {2, 3}}; // B b_11{1, A{2, 3}};와 동일
 ```
 
-멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이라면, 내부적으로는 중괄호 집합 초기화를 이용합니다만, 동일한 형태로 초기화 할 수 있습니다.
+멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이라면, 내부적으로는 중괄호 집합 초기화를 이용하며, 동일한 형태로 초기화 할 수 있습니다.
 
 ```cpp
 class A {
@@ -346,7 +346,6 @@ B b_11{1, {2, 3}}; // B b_11 = B{1, A{2, 3}};와 동일
 `vector`의 경우 요소를 입력할때 `push_back()`을 사용하여 코드 작성이 번거로웠는데([vector 의 삽입과 삭제](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C) 참고), `initializer_list` 을 사용한 생성자를 이용하면 다음처럼 좀 더 간편하게 요소 값을 초기화 할 수 있습니다.
 
 ```cpp
-// 이전 방식
 // 이전 방식
 std::vector<int> v;
 v.push_back(1);
@@ -380,7 +379,7 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
     public:
         explicit T_11(std::initializer_list<int>) {}
     };
-    T_11 t({1, 2, 3}); // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.
+    T_11 t{{1, 2, 3}}; // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.
     ```
 
 2. 복사 대입 연산의 대상이 `initializer_list` 인 경우
