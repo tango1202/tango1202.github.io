@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [모던 C++] (C++11~) 사용자 정의 리터럴, (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴"
+title: "#18. [모던 C++] (C++11~) 사용자 정의 리터럴, (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.
+> * (C++11~) `int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.
 > * (C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)
 > * (C++14~) 이진 리터럴이 추가되어 `0b`, `0B` 접두어로 이진수 상수를 표현할 수 있습니다.
 > * (C++14~) 가독성을 위한 숫자 구분자가 추가되어 `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.
@@ -41,11 +41,12 @@ EXPECT_TRUE(1.0_mm == 1_mm);
 // const char* 형의 문자열을 std::string으로 변환
 std::string operator ""_forced_string(const char* str, size_t) {return std::string(str);}
 
-auto str1{"test"}; // const char*
-auto str2{"test"_forced_string}; // std::string
-EXPECT_TRUE(str2.size() == 4);
+auto str{"test"}; // const char*
+auto str_11{"test"_forced_string}; // std::string
+EXPECT_TRUE(str_11.size() == 4);
 EXPECT_TRUE("hello"_forced_string.size() == 5); // 임시 개체도 가능
 ```
+> *(C++14~) `operator ""s`은 `string` 타입인 표준 사용자 정의 리터럴입니다. 상기 `_forced_string`과 동일합니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)*
 
 **식별자 규칙**
 
@@ -81,13 +82,13 @@ template<char...> ReturnType operator ""_t();
 `0b`, `0B` 접두어를 이용하여 이진수 상수를 표현할 수 있습니다.
 
 ```cpp
-int val1{0b11};
-int val2{0b1111};
-int val3{0B11111111};
+int val1_14{0b11};
+int val2_14{0b1111};
+int val3_14{0B11111111};
 
-EXPECT_TRUE(val1 == 0x03);
-EXPECT_TRUE(val2 == 0x0F);
-EXPECT_TRUE(val3 == 0xFF);
+EXPECT_TRUE(val1_14 == 0x03);
+EXPECT_TRUE(val2_14 == 0x0F);
+EXPECT_TRUE(val3_14 == 0xFF);
 ```
 
 # (C++14~) 숫자 구분자
@@ -97,10 +98,10 @@ EXPECT_TRUE(val3 == 0xFF);
 큰 숫자인 경우 가독성이 좋아집니다.
 
 ```cpp
-int val1{1000000};
-int val2{1'000'000};
+int val{1000000};
+int val_14{1'000'000};
 
-EXPECT_TRUE(val1 == val2);
+EXPECT_TRUE(val == val_14);
 ```
 
 # (C++17~) 16진수 부동 소수점 리터럴

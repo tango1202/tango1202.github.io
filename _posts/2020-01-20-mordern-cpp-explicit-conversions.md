@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [모던 C++] (C++11~) 명시적 형변환"
+title: "#20. [모던 C++] (C++11~) 명시적 형변환"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

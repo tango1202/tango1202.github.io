@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++] (C++11~) nullptr, std::nullptr_t"
+title: "#15. [모던 C++] (C++11~) nullptr, std::nullptr_t"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-* `nullptr` 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.
+* (C++11~) `nullptr` 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.
 
 # nullptr
 
@@ -19,29 +19,32 @@ C++11 부터는 `nullptr` 리터럴이 제공됩니다.
 ```cpp
 int* ptr1{0};
 int* ptr2{NULL};
-int* ptr3{nullptr}; // C++11
+int* ptr3_11{nullptr}; // C++11
 ```
 
 `0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 만약 `auto`를 사용한다면 다음처럼 초기값에 따라 `int`나 `long long`으로 추론되는 문제가 있습니다. 그러니 앞으로는 `nullptr`을 사용하시기 바랍니다.
 
 
 ```cpp
+int f(int) {return 1;} // #1
+int f(int*) {return 2;} // #2
+
 int* ptr1{0};
 int* ptr2{NULL};
-int* ptr3{nullptr};
+int* ptr3_11{nullptr};
 
 EXPECT_TRUE(f(ptr1) == 2); // int* 이므로 f(int*) 호출
 EXPECT_TRUE(f(ptr2) == 2); // int* 이므로 f(int*) 호출
-EXPECT_TRUE(f(ptr3) == 2); // int* 이므로 f(int*) 호출
+EXPECT_TRUE(f(ptr3_11) == 2); // int* 이므로 f(int*) 호출
 
 // auto를 사용하면
 auto ptr1{0}; // int
 auto ptr2{NULL}; // long long
-auto ptr3{nullptr}; // nullptr_t
+auto ptr3_11{nullptr}; // nullptr_t
 
 EXPECT_TRUE(f(ptr1) == 1); // f(int) 호출  
 EXPECT_TRUE(f(ptr2) == 1); // f(int) 호출
-EXPECT_TRUE(f(ptr3) == 2); // f(int*) 호출
+EXPECT_TRUE(f(ptr3_11) == 2); // f(int*) 호출
 ```
 
 # nullptr_t

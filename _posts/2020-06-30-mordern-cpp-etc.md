@@ -8,7 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) `using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다. 
+> * (C++11~) `using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.
+> * (C++11~) `alignas()` 와 `alignof()`를 이용하여 메모리 정렬 방식을 표준화 했습니다. 
 > * (C++11~) 가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.
 > * (C++11~) [sizeof() 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있도록 개선되었습니다.
 > * (C++17~) `__has_include` 가 추가되어 `include` 하기 전에 파일이 존재하는지 확인할 수 있습니다.
@@ -39,6 +40,48 @@ template<typename T>
 using MyVector_11 = std::vector<T>; 
 
 MyVector_11<int> v;
+```
+
+> * `alignas()` 와 `alignof()`를 이용하여 메모리 정렬 방식을 표준화 했습니다.
+
+# (C++11~) alignas(), alignof()
+
+기존에는 `#pragma pack`을 이용하여 비표준 방식으로 **메모리 정렬(Memory Alignment)** 을 했는데요([개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고),
+
+C++11 부터는 `alignas()` 와 `alignof()` 로 이를 표준화하였습니다.
+
+|항목|내용|
+|--|--|
+|`alignof()` (C++11~)|주어진 타입의 메모리 정렬 크기를 구합니다.|
+|`alignas()` (C++11~)|주어진 값으로 메모리 정렬합니다. 단, 2, 4, 8, 16... 단위로 정렬하며, 내부 멤버중 제일 큰 값보다 작으면 무시됩니다.|
+
+```cpp
+// 4byte 단위로 정렬합니다.
+class alignas(alignof(int)) A_11 {
+    char m_A;
+    int m_B;
+};
+
+// 2, 4, 8, 16... 단위로 정렬하며, 내부 멤버중 제일 큰값보다 커야 합니다.
+class alignas(8) B_11 {
+    char m_A[13];
+    int m_B; 
+};
+
+// int 보다 적은값이므로 무시되고 alignof(int) 크기로 정렬됩니다.
+class alignas(2) C_11 {
+    char m_A[13];
+    int m_B; 
+};
+
+// 4byte 단위로 멤버 변수가 할당 되므로 char(1) + int(4) = 5 이므로 4 * 2 개 영역에 할당됨
+EXPECT_TRUE(alignof(A_11) == 4 && sizeof(A_11) == 4 * 2);
+
+// 8byte 단위로 멤버 변수가 할당 되므로 13 + int(4) = 17 이므로 8 * 3 개 영역에 할당됨
+EXPECT_TRUE(alignof(B_11) == 8 && sizeof(B_11) == 8 * 3); 
+
+// 4byte 단위로 멤버 변수가 할당 되므로 13 + int(4) = 17 이므로 4 * 5 개 영역에 할당됨
+EXPECT_TRUE(alignof(C_11) == 4 && sizeof(C_11) == 4 * 5); 
 ```
 
 # (C++11~) 가변 매크로
