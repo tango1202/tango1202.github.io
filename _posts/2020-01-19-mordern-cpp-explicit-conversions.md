@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++] (C++11~) 명시적 형변환"
+title: "#19. [모던 C++] (C++11~) 명시적 형변환"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `explicit` 형변환 연산자를 추가하여 명시적으로 형변환 할 수 있습니다.
+> * (C++11~) `explicit` 형변환 연산자를 추가하여 명시적으로 형변환 할 수 있습니다.
 
 # 개요
 
@@ -17,22 +17,22 @@ sidebar:
 C++11 부터는 `explicit` 형변환 연산자를 추가하여 명시적으로만 형변환 할 수 있게 했습니다.
 
 ```cpp
-class T1 {
+class T {
 public:
     // 암시적 형변환이 됩니다.
     operator bool() {return true;}
 };
 
-class T2 {
+class T_11 {
 public:
     // 명시적으로만 형변환 됩니다.
     explicit operator bool() {return true;} 
 };
 
-T1 t1;
-int val1{t1}; // (△) 비권장. bool() 을 이용하여 형변환 하고 암시적으로 int로 변환합니다.
+T t;
+int val1{t}; // (△) 비권장. bool() 을 이용하여 형변환 하고 암시적으로 int로 변환합니다.
 
-T2 t2;
-int val2{t2}; // (X) 컴파일 오류
-bool val3{static_cast<bool>(t2)}; // 명시적으로 변환해야 사용할 수 있습니다.
+T_11 t_11;
+// int val2{t_11}; // (X) 컴파일 오류
+bool val3{static_cast<bool>(t_11)}; // 명시적으로 변환해야 사용할 수 있습니다.
 ```

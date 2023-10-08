@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [모던 C++] (C++11~) 함수 default, 함수 delete, override, final"
+title: "#20. [모던 C++] (C++11~) 함수 default, 함수 delete, override, final"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,10 +8,10 @@ sidebar:
     nav: "docs"
 ---
 
-> * `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.
-> * `override`가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.
-> * `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.
-> * `final`이 추가되어 강제적으로 상속을 제한할 수 있습니다.
+> * (C++11~) `default`와 `delete`가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.
+> * (C++11~) `override`가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.
+> * (C++11~) `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.
+> * (C++11~) `final`이 추가되어 강제적으로 상속을 제한할 수 있습니다.
 
 # default와 delete
 
@@ -20,10 +20,10 @@ sidebar:
 C++11 부터는 `default`나 `delete` 키워드를 사용하여 제어할 수 있습니다.
 
 ```cpp
-class T {
+class T_11 {
 public:
-    T() = default; // 암시적 버전의 기본 생성자 사용
-    T(const T&) = delete; // 암시적 버전의 복사 생성자 막음    
+    T_11() = default; // 암시적 버전의 기본 생성자 사용
+    T_11(const T_11&) = delete; // 암시적 버전의 복사 생성자 막음    
 };
 ```
 
@@ -55,7 +55,7 @@ public:
 class Derived : public Base {
     virtual void Func1() override {}; // (O)
     virtual void Func2() override {}; // (O)
-    virtual void Func_2() override {}; // (X) 컴파일 오류. 부모 개체에 해당 멤버 없음
+    virtual void Func_2_11() override {}; // (X) 컴파일 오류. 부모 개체에 해당 멤버 없음
 };
 ```
 
@@ -66,10 +66,10 @@ class Derived : public Base {
 C++11 부터는 다음처럼 `final`로 상속을 제한할 수 있습니다.
 
 ```cpp
-class Base final {
+class Base_11 final {
 };
 // (X) 컴파일 오류. Base는 상속할 수 없습니다.
-class Derived : public Base {
+class Derived : public Base_11 {
 };
 ```
 
@@ -78,14 +78,14 @@ class Derived : public Base {
 ```cpp
 class Base {
 public:
-    virtual void Func1() {};
-    virtual void Func2() final {};
+    virtual void Func1_11() {};
+    virtual void Func2_11() final {};
 };
 class Derived1 : public Base {
-    virtual void Func1() override final {}; // (O) Base를 오버라이드하고, 자식 개체에서는 오버라이드 못하게 합니다.
-    virtual void Func2() override {}; // (X) 컴파일 오류. Func2는 오버라이드 할 수 없습니다.
+    virtual void Func1_11() override final {}; // (O) Base를 오버라이드하고, 자식 개체에서는 오버라이드 못하게 합니다.
+    virtual void Func2_11() override {}; // (X) 컴파일 오류. Func2_11은 오버라이드 할 수 없습니다.
 }; 
 class Derived2 : public Derived1 {
-    virtual void Func1() override final {}; // (X) 컴파일 오류. Func1은 오버라이드 할 수 없습니다.
+    virtual void Func1_11() override final {}; // (X) 컴파일 오류. Func1_11은 오버라이드 할 수 없습니다.
 }; 
 ```

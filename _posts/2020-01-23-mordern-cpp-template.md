@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#24. [모던 C++] (C++11~) extern 템플릿, (C++14~) 변수 템플릿, (C++17~) 템플릿 인수 추론, auto 템플릿 인자"
+title: "#23. [모던 C++] (C++11~) extern 템플릿, (C++14~) 변수 템플릿, (C++17~) 템플릿 인수 추론, auto 템플릿 인자"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

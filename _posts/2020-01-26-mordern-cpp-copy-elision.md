@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#27. [모던 C++] (C++17~) 임시 구체화와 복사 생략 보증"
+title: "#26. [모던 C++] (C++17~) 임시 구체화와 복사 생략 보증"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

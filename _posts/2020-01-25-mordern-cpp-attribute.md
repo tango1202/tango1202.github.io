@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#26. [모던 C++] (C++11~) 속성"
+title: "#25. [모던 C++] (C++11~) 속성"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
