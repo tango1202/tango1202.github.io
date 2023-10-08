@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#27. [모던 C++] (C++11~) attribute(작성중)"
+title: "#27. [모던 C++] (C++11~) 속성"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -33,7 +33,7 @@ C++11 부터는 `attribute`가 추가되어 부가 정보 전달을 표준화 �
 
 C++17 부터는 `[[msvc::noinline]]` 와 같이 제조사 네임스페이스를 사용할 수 있습니다.
 
-# 표준 attribute
+# 표준 속성
 
 C++버전에 따라 다음의 표준 속성이 제공됩니다. 세부 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/language/attributes)를 참고하기 바랍니다.
 
