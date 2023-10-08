@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 이동 연산을 위해 우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.
+> * (C++11~) 이동 연산을 위해 우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.
 > * (C++14~) [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/)는 주어진 값을 바꾸고 이전값을 리턴합니다. 이동 생성자와 이동 대입 연산자 구현에 활용할 수 있습니다.
 
 # 개요
@@ -68,8 +68,8 @@ C++에서는 표현식의 값들에 대해서 식별자가 있는지, 이동이 
 |항목|내용|
 |--|--|
 |`lvalue`(left value)|좌측값으로서 변수와 같이 식별자가 있는 항목입니다.(`a = b;`와 같이 좌측값은 우측에 올 수도 있습니다.) 다른곳에서 참조할 수도 있기에 이동 연산이 지원되지 않습니다.(변수, 데이터 멤버의 이름, 함수, `&`포인터 연산, 전위 증감 연산, 문자열 상수등)<br/>대입문의 좌측에 올 수 있고, `&`로 주소를 얻어올 수 있으며, 표현식이 끝나더라도 존재합니다.|
-|`xvalue`(expiring value)|`lvalue`나 `prvalue`를 `move()`할때 순간적으로 관리되는 값으로서 만료되어 가는 값입니다. 해당 주소로 접근했을때 값이 있을 수도 있고, 없을 수도 있습니다. 컴파일러만 사용하므로 `&`로 주소를 얻을 수 없으며, 표현식이 끝나면 소멸됩니다.|
-|`prvalue`(pure rvalue)|순수한 rvalue로서 식별자가 없는 임시 개체나 수식들입니다. 어짜피 임시로 생성된 것이므로 맘편히 삭제해도 되는 것들이며, 이동 연산이 지원됩니다.(수식, 후위 증감 연산, 문자열 상수를 제외한 상수, 람다 표현식)<br/>대입문의 우측에 올 수 있고, `&`로 주소를 얻어올 수 없으며, 표현식이 끝나면 소멸됩니다.|
+|`xvalue`(eXpiring value)|`lvalue`나 `prvalue`를 `move()`할때 순간적으로 관리되는 값으로서 만료되어 가는 값입니다. 해당 주소로 접근했을때 값이 있을 수도 있고, 없을 수도 있습니다. 컴파일러만 사용하므로 `&`로 주소를 얻을 수 없으며, 표현식이 끝나면 소멸됩니다.|
+|`prvalue`(pure rvalue)|순수한 `rvalue`로서 식별자가 없는 임시 개체나 수식들입니다. 어짜피 임시로 생성된 것이므로 맘편히 삭제해도 되는 것들이며, 이동 연산이 지원됩니다.(수식, 후위 증감 연산, 문자열 상수를 제외한 상수, 람다 표현식)<br/>대입문의 우측에 올 수 있고, `&`로 주소를 얻어올 수 없으며, 표현식이 끝나면 소멸됩니다.|
 |`glvalue`(generalized lvalue)|`xvalue`와 `lvalue`를 통칭합니다.| 
 |`rvalue`(right value)|`xvalue`와 `prvalue`를 통칭합니다.|  
 
@@ -147,7 +147,7 @@ Big : Destructor // a 소멸
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e4333269-db1f-41e5-8ec7-308db82869a2)
 
 
-다음 코드에서 `Move()`함수는 기존 것은 삭제하고, `other`것을 참조한 뒤, 소유권 분쟁이 없도록 `other`는 초기화 했습니다.
+다음 코드에서 `Move()`함수는 데이터를 이동시킵니다. 기존 것은 삭제하고, `other`것을 참조한 뒤, 소유권 분쟁이 없도록 `other`는 초기화 합니다.
 
 ```cpp
 class Big {
@@ -232,29 +232,29 @@ C++ 표준 위원회는 여기서 더 나아가 그냥 각자 `Move()`함수를 
 
 `=`시 이동 대입을 수행하고, 그렇지 않으면 복사 대입을 수행합니다.
 
-이에 따라 C++11 부터는 우측값 참조 타입인 `&&` 와 이동 대입 연산자인 `T& operator =(T&& other)`가 제공됩니다.
+이에 따라 C++11 부터는 우측값 참조 타입인 `&&` 와 이동 대입 연산자인 `T_11& operator =(T_11&& other)`가 제공됩니다.
 
 다음 코드에서 `Move()`함수를 우측값을 참조하는 이동 대입 연산자로 변경하였으며, 테스트 코드에서 우측값을 사용하기 위해
 
 1. `static_cast`을 이용하여 좌측값을 우측값으로 형변환
 2. `move()`를 이용하여 좌측값을 우측값으로 형변환
-3. `Big(40)`로 임시 개체를 생성(임시 개체는 우측값입니다.)하여 호출하였습니다. 
+3. `Big_11(40)`로 임시 개체를 생성(임시 개체는 우측값입니다.)하여 호출하였습니다. 
  
 ```cpp
-class Big {
+class Big_11 {
     size_t m_Size;
     char* m_Ptr; // 크기가 큰 데이터
 
 public:    
-    explicit Big(size_t size) : 
+    explicit Big_11(size_t size) : 
         m_Size(size), 
         m_Ptr(new char[size]) {}
 
     // 소멸자
-    ~Big() {delete[] m_Ptr;}
+    ~Big_11() {delete[] m_Ptr;}
 
     // 복사 생성자
-    Big(const Big& other) :
+    Big_11(const Big_11& other) :
         m_Size(other.m_Size) {
         // 메모리 공간 할당
         m_Ptr = new char[m_Size];
@@ -264,14 +264,14 @@ public:
     }
 
     // 복사 대입 연산자. 좌측값(lvalue) 대입
-    Big& operator =(const Big& other) {
-        Big temp(other);
+    Big_11& operator =(const Big_11& other) {
+        Big_11 temp(other);
         std::swap(m_Size, temp.m_Size);
         std::swap(m_Ptr, temp.m_Ptr);
         return *this;
     }
     // 이동 대입 연산자. 우측값(rvalue) 이동
-    Big& operator =(Big&& other) {
+    Big_11& operator =(Big_11&& other) {
         delete[] m_Ptr; // 기존 것은 삭제하고,
         m_Size = other.m_Size; // other 것을 저장한뒤
         m_Ptr = other.m_Ptr;
@@ -284,39 +284,40 @@ public:
     size_t GetSize() const {return m_Size;}
 }; 
 
-Big a(10);
-Big b(20);
+Big_11 a(10);
+Big_11 b(20);
 
 a = b; // b는 이름이 있는 lvalue. 복사 대입 연산자 호출
 EXPECT_TRUE(a.GetSize() == 20);   
 EXPECT_TRUE(b.GetSize() == 20);  
 
-a = static_cast<Big&&>(b); // b 를 이름이 없는 rvalue로 변환. 이동 대입 연산자 호출
+a = static_cast<Big_11&&>(b); // b 를 이름이 없는 rvalue로 변환. 이동 대입 연산자 호출
 
 EXPECT_TRUE(a.GetSize() == 20);   
 EXPECT_TRUE(b.GetSize() == 0); // b는 이동되어 더이상 쓸 수 없음  
 
-Big c(30);
+Big_11 c(30);
 a = std::move(c); // c 를 이름이 없는 rvalue로 변환. static_cast<Big&&>(c)와 동일. 이동 대입 연산자 호출
 EXPECT_TRUE(a.GetSize() == 30);
 
-a = Big(40); // Big(40) 이름이 없는 rvalue를 생성. 이동 대입 연산자 호출
+a = Big_11(40); // Big(40) 이름이 없는 rvalue를 생성. 이동 대입 연산자 호출
 EXPECT_TRUE(a.GetSize() == 40);
 ```
 
 또한, 같은 방법으로 이동 생성자를 만들 수 있습니다.
 
 ```cpp
-Big(Big&& other) : 
+// 이동 생성자
+Big_11(Big_11&& other) : 
     m_Size(other.m_Size),
     m_Ptr(other.m_Ptr) {
 
     other.m_Size = 0; // other는 초기화 합니다.
     other.m_Ptr = nullptr;
-}
+}  
 
-Big d(50);
-Big e(std::move(d));
+Big_11 d(50);
+Big_11 e(std::move(d));
 EXPECT_TRUE(d.GetSize() == 0); // d는 이동되어 더이상 쓸 수 없음  
 EXPECT_TRUE(e.GetSize() == 50); 
 ```
@@ -341,7 +342,7 @@ void Swap(T& left, T& right) {
 이동 연산을 지원하면, 하기와 같이 리팩토링 하여 개선할 수 있습니다. 만약 이동 생성자나 이동 대입 연산자가 없다면, 복사 생성자나 복사 대입 연산자를 호출하여 기존 코드와 동일하게 작동됩니다.
 
 ```cpp
-void Swap(T& left, T& right) {
+void Swap_11(T& left, T& right) {
     T temp(std::move(right)); // right 값을 temp에 옮겨두고,
     right = std::move(left); // left를 right에 옮기고,
     left = std::move(temp); // temp를 left에 옮김
@@ -353,7 +354,7 @@ void Swap(T& left, T& right) {
 이동 생성자는 다음과 같이 정의됩니다.
 
 ```cpp
-T(T&& other);
+T_11(T_11&& other);
 ```
 
 복사 생성자가 암시적으로 생성되듯이([암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고) 이동 생성자도 암시적으로 생성되며, 멤버별 이동 생성자를 호출합니다. 
@@ -369,7 +370,7 @@ T(T&& other);
 이동 대입 연산자는 다음과 같이 정의됩니다.
 
 ```cpp
-T& operator =(T&& other);
+T_11& operator =(T_11&& other);
 ```
 
 복사 대입 연산자가 암시적으로 생성되듯이([암시적 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고) 이동 대입 연산자도 암시적으로 생성되며, 멤버별 이동 대입 연산을 호출합니다.
@@ -399,61 +400,61 @@ static_cast<T&&>(t); // (△) 비권장. 가독성이 떨어집니다.
 std::move(t); // (O) 이동 연산을 위해 rvalue로 변환합니다.
 ```
 
-다음은 `Func()`을 `lvalue`와 `rvalue`를 오버로드 한 예입니다. `lvalue`인지 `rvalue`인지에 따라 다른 버전이 호출 됩니다.
+다음은 `Func_11()`을 `lvalue`와 `rvalue`를 오버로드 한 예입니다. `lvalue`인지 `rvalue`인지에 따라 다른 버전이 호출 됩니다.
 
 ```cpp
 class A{};
 class T {
 public:
-    static int Func(A&) {return 1;} // #1. lvalue
-    static int Func(A&&) {return 2;} // #2. rvalue
+    static int Func_11(A&) {return 1;} // #1. lvalue
+    static int Func_11(A&&) {return 2;} // #2. rvalue
 };
 
 A a;
 
-EXPECT_TRUE(T::Func(a) == 1); // 이름이 있는 lvalue
-EXPECT_TRUE(T::Func(static_cast<A&&>(a)) == 2); // 강제 형변환 해서 rvalue
-EXPECT_TRUE(T::Func(std::move(a)) == 2); // lvalue를 move 해서 rvalue
+EXPECT_TRUE(T::Func_11(a) == 1); // 이름이 있는 lvalue
+EXPECT_TRUE(T::Func_11(static_cast<A&&>(a)) == 2); // 강제 형변환 해서 rvalue
+EXPECT_TRUE(T::Func_11(std::move(a)) == 2); // lvalue를 move 해서 rvalue
 
 A& b = a;
-EXPECT_TRUE(T::Func(b) == 1);  
-EXPECT_TRUE(T::Func(static_cast<A&&>(b)) == 2);
-EXPECT_TRUE(T::Func(std::move(b)) == 2);
+EXPECT_TRUE(T::Func_11(b) == 1);  
+EXPECT_TRUE(T::Func_11(static_cast<A&&>(b)) == 2);
+EXPECT_TRUE(T::Func_11(std::move(b)) == 2);
 
-EXPECT_TRUE(T::Func(A()) == 2); // 임시 개체는 rvalue
-EXPECT_TRUE(T::Func(std::move(A())) == 2); // 임시 개체를 move 해도 rvalue
+EXPECT_TRUE(T::Func_11(A()) == 2); // 임시 개체는 rvalue
+EXPECT_TRUE(T::Func_11(std::move(A())) == 2); // 임시 개체를 move 해도 rvalue
 ```
 
 # move_if_noexcept()
 
 `move_if_noexcept()` 는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다. 
 
-다음 코드를 보면 `A`는 예외 보증이 안되어 있고, `B`는 `noexcept`가 지정되어 있는데요,
+다음 코드를 보면 `A_11`는 예외 보증이 안되어 있고, `B_11`는 `noexcept`가 지정되어 있는데요,
 
-1. `A`의 경우는 `noexcept`가 없어 복사 생성자가 호출되고,
-2. `B`의 경우는 `noexcept`가 있어 이동 생성자가 호출됩니다.
+1. `A_11`의 경우는 `noexcept`가 없어 복사 생성자가 호출되고,
+2. `B_11`의 경우는 `noexcept`가 있어 이동 생성자가 호출됩니다.
 
 ```cpp
-class A {
+class A_11 {
 public:
-    A() {}
+    A_11() {}
     // noexcept가 없어서 예외가 발생할 수도 있습니다.
-    A(const A&) {std::cout << "A : Copy Constructor" << std::endl;}
-    A(A&&) {std::cout << "A : Move Constructor" << std::endl;;} 
+    A_11(const A_11&) {std::cout << "A_11 : Copy Constructor" << std::endl;}
+    A_11(A_11&&) {std::cout << "A_11 : Move Constructor" << std::endl;;} 
 };
-class B {
+class B_11 {
 public:
-    B() {}
+    B_11() {}
     // nothrow 보증합니다.
-    B(const B&) noexcept {std::cout << "B : Copy Constructor" << std::endl;;}
-    B(B&&) noexcept {std::cout << "B : Move Constructor" << std::endl;;} 
+    B_11(const B_11&) noexcept {std::cout << "B_11 : Copy Constructor" << std::endl;;}
+    B_11(B_11&&) noexcept {std::cout << "B_11 : Move Constructor" << std::endl;;} 
 };
 
-A a1;
-A a2 = std::move_if_noexcept(a1); // A(A&&)가 nothrow 예외 보증이 되지 않아 그냥 A(const A&)를 호출합니다.
+A_11 a1;
+A_11 a2 = std::move_if_noexcept(a1); // A_11(A_11&&)가 nothrow 예외 보증이 되지 않아 그냥 A_11(const A_11&)를 호출합니다.
 
-B b1;
-B b2 = std::move_if_noexcept(b1); // B(B&&)가 nothrow 예외 보증이 되어 B(B&&)를 호출합니다.
+B_11 b1;
+B_11 b2 = std::move_if_noexcept(b1); // B_11(B_11&&)가 nothrow 예외 보증이 되어 B_11(B_11&&)를 호출합니다.
 ```
 
 # forward()
@@ -464,25 +465,25 @@ B b2 = std::move_if_noexcept(b1); // B(B&&)가 nothrow 예외 보증이 되어 B
 
 다음 예에서
 
-1. `g(std::move(t))`와 같이 우측값 참조를 사용하여 `g(T&& val)`가 호출되지만,
-2.  `f(val) + 2`에서 `val`은 좌측값이기 때문에 `f(T& val)`을 호출합니다.
+1. `g_11(std::move(t))`와 같이 우측값 참조를 사용하여 `g(T&& val)`가 호출되지만,
+2.  `f_11(val) + 2`에서 `val`은 좌측값이기 때문에 `f(T& val)`을 호출합니다.
 
 ```cpp
 class T {};
 
-int f(T& val) {return 10;}
-int f(T&& val) {return 20;}
+int f_11(T& val) {return 10;}
+int f_11(T&& val) {return 20;}
 
-int g(T& val) {return f(val) + 1;}
-int g(T&& val) {return f(val) + 2;} // 여기서 val은 이름이 있으니 우측값이 아닙니다. 그래서 f(T& val)을 호출합니다.
+int g_11(T& val) {return f_11(val) + 1;}
+int g_11(T&& val) {return f_11(val) + 2;} // 여기서 val은 이름이 있으니 우측값이 아닙니다. 그래서 f_11(T& val)을 호출합니다.
 
 T t;
 
-// g(T& val)와 f(T& val)가 호출되어 11입니다.
-EXPECT_TRUE(g(t) == 11); 
+// g_11(T& val)와 f_11(T& val)가 호출되어 11입니다.
+EXPECT_TRUE(g_11(t) == 11); 
 
-// g(T&& val)와 f(T& val)가 호출되어 12입니다.
-EXPECT_TRUE(g(std::move(t)) == 12);
+// g_11(T&& val)와 f_11(T& val)가 호출되어 12입니다.
+EXPECT_TRUE(g_11(std::move(t)) == 12);
 ```
 
 우측값 참조(`&&`)가 좌측값 참조(`&`) 로 변경되어 버렸습니다. 이해는 됩니다. `val`로 명명 되는 순간 더이상 임시 개체가 아니니까요. 이를 해결하려면 다시 한번 `move()`를 사용하여 우측값으로 바꿀 수도 있으나, 값 카테고리를 유지하여 전달한다은 의미로 `forward()`를 사용하는게 좋습니다.
@@ -490,19 +491,19 @@ EXPECT_TRUE(g(std::move(t)) == 12);
 ```cpp
 class T {};
 
-int f(T& val) {return 10;}
-int f(T&& val) {return 20;}
+int f_11(T& val) {return 10;}
+int f_11(T&& val) {return 20;}
 
-int g(T& val) {return f(val) + 1;}
-// int g(T&& val) {return f(std::move(val)) + 2;} // (△) 비권장. 이동 연산을 수행한다는 느낌이어서 가독성이 떨어집니다.
-int g(T&& val) {return f(std::forward<T>(val)) + 2;} // 값 카테고리를 유지한채 전달한다는 의미로 forward 사용
+int g_11(T& val) {return f_11(val) + 1;}
+// int g_11(T&& val) {return f_11(std::move(val)) + 2;} // (△) 비권장. 이동 연산을 수행한다는 느낌이어서 가독성이 떨어집니다.
+int g_11(T&& val) {return f_11(std::forward<T>(val)) + 2;} // 값 카테고리를 유지한채 전달한다는 의미로 forward 사용
 
 T t;
 
-// g(T& val)와 f(T& val)가 호출되어 11입니다.
-EXPECT_TRUE(g(t) == 11); 
+// g_11(T& val)와 f_11(T& val)가 호출되어 11입니다.
+EXPECT_TRUE(g_11(t) == 11); 
 
-// g(T&& val)와 f(T&& val)가 호출되어 22입니다.
-EXPECT_TRUE(g(std::move(t)) == 22);
+// g_11(T&& val)와 f_11(T&& val)가 호출되어 22입니다.
+EXPECT_TRUE(g_11(std::move(t)) == 22);
 ```
 

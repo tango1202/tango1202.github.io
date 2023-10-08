@@ -8,10 +8,10 @@ sidebar:
     nav: "docs"
 ---
 
-> * 중괄호 초기화가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.
-> * 중괄호 복사 초기화로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.
-> * 중괄호 초기화시 인자의 암시적 형변환을 일부 차단하여, 코딩 계약이 개선되었습니다.
-> * `initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.
+> * (C++11~) 중괄호 초기화가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.
+> * (C++11~) 중괄호 복사 초기화로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.
+> * (C++11~) 중괄호 초기화시 인자의 암시적 형변환을 일부 차단하여, 코딩 계약이 개선되었습니다.
+> * (C++11~) `initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.
 
 
@@ -32,7 +32,7 @@ T obj(); //(△) 비권장. T를 리턴하는 obj 함수 선언
 T obj1; // 기본 생성자로 T 개체 생성
 T obj2(T()); // 기본 생성자인 T()로 생성한 개체를 obj의 복사 생성자로 복사 생성
 T obj3 = T(); // T obj(T());와 동일
-T obj4(10, 'b'); // // m_A == 10, m_B == `b`인 T 개체 생성
+T obj4(10, 'b'); // m_A == 10, m_B == `b`인 T 개체 생성
 
 T arr[] = {T(), T(10, 'b')}; // T 요소 2개인 배열 생성
 
@@ -54,18 +54,18 @@ public:
     T(int a, char b) : m_A(a), m_B(b) {}    
 };
 
-T obj1{}; // 기본 생성자로 T 개체 생성
-T obj2(T{}); // 기본 생성자인 T()로 생성한 개체를 obj의 복사 생성자로 복사 생성
-T obj3 = T{}; // T obj = T();와 동일
-T obj4{10, 'b'}; // // m_A == 10, m_B == `b`인 T 개체 생성
+T obj1_11{}; // 기본 생성자로 T 개체 생성
+T obj2_11{T{}}; // 기본 생성자인 T()로 생성한 개체를 obj의 복사 생성자로 복사 생성
+T obj3_11 = T{}; // T obj = T();와 동일
+T obj4_11{10, 'b'}; // T(int a, char b) 생성자 호출. m_A == 10, m_B == `b`인 T 개체 생성
 
-T arr[]{T{}, T{10, 'b'}}; // T 요소 2개인 배열 생성
+T arr_11[]{T{}, T{10, 'b'}}; // T 요소 2개인 배열 생성
 
 struct U {
     int m_A;
     char m_B;
 };
-U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성   
+U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성    
 ```
 
 # 중괄호 직접 초기화 T t{};
@@ -80,11 +80,11 @@ U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
         T() {}
         T(int, char) {}
     };
-    T a{}; // T a(); 는 T를 리턴하는 함수 a의 정의로 인식되어 컴파일 오류가 났었습니다.
-    T b{10, 'a'}; // T(int, char)로 생성합니다.
+    T a_11{}; // T a(); 는 T를 리턴하는 함수 a의 정의로 인식되어 컴파일 오류가 났었습니다.
+    T b_11{10, 'a'}; // T(int, char)로 생성합니다.
     T{10, 'a'}; // T(int, char) 로 임시 개체를 생성합니다.
-    T* c = new T{10, 'a'}; // new 시 T(int, char)로 생성한 포인터를 d에 저장합니다.
-    delete c;
+    T* c_11 = new T{10, 'a'}; // new 시 T(int, char)로 생성한 포인터를 d에 저장합니다.
+    delete c_11;
     ```
 
 2. 클래스 멤버 변수 선언시 초기화에 사용할 수 있습니다.([멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) 참고)
@@ -92,31 +92,32 @@ U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
     ```cpp
     class T {
     public:
-        int m_A{0}; // 멤버 변수를 초기화합니다.
-        char m_B{'a'}; 
-    };  
+        int m_A_11{0}; // 멤버 변수를 초기화합니다.
+        char m_B_11{'a'}; 
+    };     
     ```
+
 3. 클래스 생성자 초기화 리스트에서 사용할 수 있습니다.
 
     ```cpp
     class T {
     public:
-        int m_A; 
-        char m_B;
+        int m_A_11; 
+        char m_B_11;
     public:
         T(int a, char b) :
-            m_A{a}, // 생성자 초기화 리스트에서 멤버 변수 초기화에서 사용합니다.
-            m_B{b} {}
+            m_A_11{a}, // 생성자 초기화 리스트에서 멤버 변수 초기화에서 사용합니다.
+            m_B_11{b} {}
     };
     ```
 
 # 중괄호 복사 초기화 T t = {};, t = {};, f({}), return {}
 
-`T t  = {};` 표현은 `T t = T{};`의 축약형입니다. 즉 `T t{T{}};`입니다. 직접 목록 초기화인 `T{}`로 개체를 생성하고, 복사 생성자를 이용하여 `t`를 복사 생성하는 표현입니다.
+`T t = {};` 표현은 `T t = T{};`의 축약형입니다. 즉 `T t{T{}};`입니다. 직접 목록 초기화인 `T{}`로 개체를 생성하고, 복사 생성자를 이용하여 `t`을 복사 생성하는 표현입니다.
 
 1. 생성자 호출시 사용할 수 있습니다.
    
-    단, `T t = T{};`는 컴파일러 최적화에 의해 `T t{};`와 동일하게 작동합니다.
+    이때, `T t{T{}};`은 컴파일러 최적화에 의해 `T t{};`와 동일하게 작동할 수 있습니다.
 
     다음 코드의 실행 결과를 보면,
 
@@ -128,17 +129,17 @@ U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
         T& operator =(const T&) {std::cout << "T : operator =()" << std::endl;return *this;}
     };
 
-    T a{}; // 기본 생성자 호출
-    T b = {}; // T b = T{};와 동일
-    T c = T{}; // T c{T{}} 와 동일. 즉 T 기본 생성자를 호출하고, 복사 생성자를 호출. 컴파일러 최적화에 의해 2개의 생성을 1개의 생성으로 바꿈
+    T a_11{}; // 기본 생성자 호출
+    T b_11 = {}; // T b_11 = T{};와 동일
+    T c_11 = T{}; // T c_11{T{}} 와 동일. 즉 T 기본 생성자를 호출하고, 복사 생성자를 호출. 컴파일러 최적화에 의해 2개의 생성을 1개의 생성으로 바꿈
     ```
 
     모두 기본 생성자를 1회만 호출하는 것을 알 수 있습니다.
 
     ```cpp
-    T : Default Constructor // T a{};
-    T : Default Constructor // T b = {};
-    T : Default Constructor // T c = T{};
+    T : Default Constructor // T a_11{};
+    T : Default Constructor // T b_11 = {};
+    T : Default Constructor // T c_11 = T{};
     ```
     > *(C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.*
 
@@ -151,14 +152,14 @@ U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
         T(const T&) {std::cout << "T : Copy Constructor" << std::endl;}
         T& operator =(const T&) {std::cout << "T : operator =()" << std::endl;return *this;}
     };
-    T t;
-    t = {}; // t = T{};과 동일
+    T t_11;
+    t_11 = {}; // t = T{};과 동일
     ```
     
     ```cpp
-    T : Default Constructor // T t;
-    T : Default Constructor // t = {}; 에서 {}는 사실 T{} 이므로 기본 생성자 호출
-    T : operator =() // t = {}; 에서 = 호출
+    T : Default Constructor // T t_11;
+    T : Default Constructor // t_11 = {}; 에서 {}는 사실 T{} 이므로 기본 생성자 호출
+    T : operator =() // t_11 = {}; 에서 = 호출
     ```
 
 3. 함수 인수 전달에 사용할 수 있습니다.
@@ -180,7 +181,7 @@ U objs{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
         T(int a, char b) : m_A(a), m_B(b) {}    
     };
 
-    T Func() {
+    T Func_11() {
         return {10, 'b'}; // return T{10, 'b'}; 와 동일
     }
     ```
@@ -194,16 +195,16 @@ C++11 부터는 `{}` 도 지원합니다.
 1. 요소 갯수 유추
  
     ```cpp
-    int arr1[] = {0, 1, 2}; // 초기화 갯수 만큼 배열 할당
-    int arr2[]{0, 1, 2}; // 초기화 갯수 만큼 배열 할당
+    int arr[] = {0, 1, 2}; // 초기화 갯수 만큼 배열 할당
+    int arr_11[]{0, 1, 2}; // 초기화 갯수 만큼 배열 할당   
     ```
 
 2. 자동 제로 초기화([자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94) 참고) 
 
     ```cpp
-    int arr1[3] = {0, 1,}; // 초기값이 모자르면 0으로 채움
-    int arr2[3]{0, 1,}; // 초기값이 모자르면 0으로 채움
-    EXPECT_TRUE(arr1[2] == 0 && arr2[2] == 0);
+    int arr[3] = {0, 1,}; // 초기값이 모자르면 0으로 채움
+    int arr_11[3]{0, 1,}; // 초기값이 모자르면 0으로 채움
+    EXPECT_TRUE(arr[2] == 0 && arr_11[2] == 0);
     ```       
 
 # 인자의 암시적 형변환 차단
@@ -221,7 +222,7 @@ C++11 부터는 `{}` 도 지원합니다.
     };
 
     T a(3.14); // (△) 비권장. double 이 int로 암시적으로 변환되어 초기화 됩니다.
-    T b{3.14}; // (X) 컴파일 오류. 암시적 변환을 차단합니다.
+    T b_11{3.14}; // (X) 컴파일 오류. 암시적 변환을 차단합니다.
     ```
 
 2. `double`에서 `float`으로의 변환을 차단합니다. 단, 상수 표현식이고, 해당 값을 `float`으로 저장할 수 있다면 허용합니다.(`int`에서 `char` 변환도 동일합니다.)
@@ -232,10 +233,10 @@ C++11 부터는 `{}` 도 지원합니다.
         explicit T(float) {};
     };  
 
-    T a{3.14}; // 3.14는 float이 저장할 수 있어서 허용
+    T a_11{3.14}; // 3.14는 float이 저장할 수 있어서 허용
 
     double doublVal = 3.14;   
-    T b{doublVal}; // (X) 컴파일 오류. double을 float으로 변환하는건 차단합니다.
+    T b_11{doublVal}; // (X) 컴파일 오류. double을 float으로 변환하는건 차단합니다.
     ```
 
 3. `int`에서 `char` 변환도 `double`에서 `float`의 변환과 동일합니다.
@@ -246,11 +247,11 @@ C++11 부터는 `{}` 도 지원합니다.
         explicit T(char) {};
     }; 
     
-    T a{10}; // 10은 char에서 저장할 수 있어서 허옹
-    T b{255}; // (X) 컴파일 오류. 255는 char에서 저장할 수 없음. 
+    T a_11{10}; // 10은 char에서 저장할 수 있어서 허옹
+    T b_11{255}; // (X) 컴파일 오류. 255는 char에서 저장할 수 없음. 
 
     int intVal = 10;  
-    T c{intVal}; // (X) 컴파일 오류. int를 char로 변환하는건 차단합니다.
+    T c_11{intVal}; // (X) 컴파일 오류. int를 char로 변환하는건 차단합니다.
     ```
 
 4. 포인터 타입에서 `bool`로의 변환을 차단합니다.
@@ -269,18 +270,70 @@ C++11 부터는 `{}` 도 지원합니다.
     };     
 
     A a;
-    T t{a}; // (△) 비권장. A->B로의 암시적 변환을 허용하면 차단되지 않습니다.   
+    T t_11{a}; // (△) 비권장. A->B로의 암시적 변환을 허용하면 차단되지 않습니다.   
    ```
 
-# 중괄호 초기화 중첩(작성중)
+# 중괄호 초기화 중첩
 
-map 초기화 사례
+배열을 초기화 할때 다음처럼 중괄호로 초기화 할 수 있는데요,
 
 ```cpp
-std::map<int, std::string> m_11{
-    {0, "data0"}, 
-    {1, "data1"}
+class A {
+    int m_X;
+    int m_Y;
+public:
+    A(int x, int y) : m_X(x), m_Y(y) {}
 };
+
+A arr_11[]{
+    A{1, 2}, // 배열의 첫번째 요소
+    A{2, 3} // 배열의 두번째 요소
+};
+```
+
+중괄호 복사 초기화의 축약 표현을 사용하면 다음처럼 표현할 수 있습니다.
+
+```cpp
+A arr_11[]{
+    {1, 2}, // A{1, 2} 와 동일
+    {2, 3} // A{2, 3} 과 동일
+};
+```
+
+또한 내부 멤버 변수 개체를 초기화 하는데에도 축약형으로 표현할 수 있습니다.
+
+```cpp
+class A {
+    int m_X;
+    int m_Y;
+public:
+    A(int x, int y) : m_X(x), m_Y(y) {}
+};
+class B {
+    int m_Val;
+    A m_A;
+public:
+    B(int val, A a) : m_Val(val), m_A(a){}
+};
+
+B b_11{1, {2, 3}}; // B b_11{1, A{2, 3}};와 동일
+```
+
+멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이라면, 내부적으로는 중괄호 집합 초기화를 이용합니다만, 동일한 형태로 초기화 할 수 있습니다.
+
+```cpp
+class A {
+public:
+    int m_X;
+    int m_Y;
+};
+class B {
+public:
+    int m_Val;
+    A m_A;
+};
+
+B b_11{1, {2, 3}}; // B b_11 = B{1, A{2, 3}};와 동일
 ```
 
 # initializer_list
@@ -293,18 +346,19 @@ std::map<int, std::string> m_11{
 
 ```cpp
 // 이전 방식
-std::vector<int> v1;
-v1.push_back(1);
-v1.push_back(2);
-EXPECT_TRUE(v1[0] == 1 && v1[1] == 2);
+// 이전 방식
+std::vector<int> v;
+v.push_back(1);
+v.push_back(2);
+EXPECT_TRUE(v[0] == 1 && v[1] == 2);
 
 // {} 를 이용하여 initializer_list로 초기화
-std::vector<int> v2{1, 2};
-EXPECT_TRUE(v2[0] == 1 && v2[1] == 2);       
+std::vector<int> v1_11{1, 2};
+EXPECT_TRUE(v1_11[0] == 1 && v1_11[1] == 2);       
 
 // = {} 형태도 지원
-std::vector<int> v3 = {1, 2};
-EXPECT_TRUE(v1[0] == 1 && v1[1] == 2); 
+std::vector<int> v2_11 = {1, 2};
+EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2); 
 ```
 # initializer_list 멤버 함수 
 
@@ -321,48 +375,35 @@ EXPECT_TRUE(v1[0] == 1 && v1[1] == 2);
 1. 생성자 인자와 함수의 인자가 `initializer_list` 인 경우
 
     ```cpp
-    class T {
+    class T_11 {
     public:
-        explicit T(std::initializer_list<int>) {}
+        explicit T_11(std::initializer_list<int>) {}
     };
-    T t({1, 2, 3}); // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.
+    T_11 t({1, 2, 3}); // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.
     ```
+
 2. 복사 대입 연산의 대상이 `initializer_list` 인 경우
 
     ```cpp
-    std::initializer_list<int> data;
-    data = {1, 2, 3}; // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다. 
-
+    std::initializer_list<int> data_11;
+    data_11 = {1, 2, 3}; // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.         
+    
     std::vector<int> v;
-    auto itr = v.begin();
-    auto endItr = v.end();
+    auto itr = data_11.begin();
+    auto endItr = data_11.end();
     for (;itr != endItr; ++itr) {
         v.push_back(*itr);
     }
     ```
+
 3. [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)에서 범위 표현식으로 사용하는 경우
    
    ```cpp
-   std::vector<int> v;
-   for (auto a : {1, 2, 3}) { // {1, 2, 3} 은 initializer_list를 생성하고 범위 기반 for문에서 사용됩니다.
-       v.push_back(a);
-   }
+    std::vector<int> v;
+    for (auto a_11 : {1, 2, 3}) { // {1, 2, 3} 은 initializer_list를 생성하고 범위 기반 for문에서 사용됩니다.
+        v.push_back(a_11);
+    }  
    ```
-
-# auto와 initializer_list
-
-`auto`와 함께 중괄호 초기화를 사용하면 다음처럼 `initializer_list` 개체로 추론되는데요, `{}` 만 사용할때와 `= {}` 로 사용할 때가 다르므로 주의해서 사용해야 합니다.
-
-* `auto val{}` : 인자가 1개면 인자 타입으로 추론되고, 여러개면 컴파일 오류를 발생합니다.
-* `auto val = {}` : 인자들의 타입이 동일하면 `initializer_list`로 추론됩니다.
-
-```cpp
-int a{1}; // a는 int
-auto b{1}; // b는 int
-auto c = {1}; // c는 initializer_list<int>
-// auto d{1, 2}; // (X) 컴파일 오류. auto에서는 단일 개체 대입 필요    
-auto e = {1, 2}; // e는 initializer_list<int>  
-```
 
 # 중괄호 초기화 우선 순위
 
@@ -403,3 +444,20 @@ EXPECT_TRUE(v1.size() == 2 && v1[0] == 0 && v1[1] == 0);
 std::vector<int> v2{2};
 EXPECT_TRUE(v2.size() == 1 && v2[0] == 2);
 ```    
+
+# (C++17~) auto 추론의 새로운 규칙
+
+`auto`와 함께 중괄호 초기화를 사용하면 다음처럼 `initializer_list` 개체로 추론되는데요, `{}` 만 사용할때와 `= {}` 로 사용할 때가 다르므로 주의해서 사용해야 합니다.
+
+* `auto val{}` : 인자가 1개면 인자 타입으로 추론되고, 여러개면 컴파일 오류를 발생합니다.
+* `auto val = {}` : 인자들의 타입이 동일하면 `initializer_list`로 추론됩니다.
+
+```cpp
+int a_11{1}; // a는 int
+auto b_11{1}; // b는 int
+auto c_11 = {1}; // c는 initializer_list<int>
+auto d_11 = {1, 2}; // d는 initializer_list<int>  
+// auto e_11{1, 2}; // (X) 컴파일 오류. auto에서는 단일 개체 대입 필요  
+```
+
+그런데, []
