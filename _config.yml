@@ -16,11 +16,11 @@ minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "n
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : "tango1202 블로그 - C++, STL, 모던 C++, C++11, 개발 방법론, 개체지향 원칙"
+title                    : "tango1202 블로그 - C++, STL, 모던 C++, C++11, C++14, C++17, C++20, 개발 방법론, 개체지향 원칙"
 title_separator          : "|"
 subtitle                 : "Clean Code That Works!!!"
 name                     : "tango1202"
-description              : "C++, STL, 모던 C++, C++11, 개발 방법론, 개체지향 원칙"
+description              : "C++, STL, 모던 C++, C++11, C++14, C++17, C++20, 개발 방법론, 개체지향 원칙"
 url                      : "https://tango1202.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "tango1202/tango1202_blog_comment" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -269,4 +269,14 @@ defaults:
       show_date: true
       read_time: true
 
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true      
+    sidebar:
+      nav: "docs"
+      
 date_format: "%Y-%m-%d"
