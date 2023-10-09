@@ -1,7 +1,7 @@
 ---
 title: "코딩을 위한 좋은 습관"
 layout: archive
-permalink: categories/coding
+permalink: categories/coding/
 author_profile: true
 sidebar: 
     nav: "categories"

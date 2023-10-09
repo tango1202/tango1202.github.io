@@ -1,7 +1,7 @@
 ---
 title: "디자인 패턴"
 layout: archive
-permalink: categories/pattern
+permalink: categories/pattern/
 author_profile: true
 sidebar: 
     nav: "categories"

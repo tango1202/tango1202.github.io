@@ -1,7 +1,7 @@
 ---
 title: "모던 C++(C++11~)"
 layout: archive
-permalink: categories/mordern-cpp
+permalink: categories/mordern-cpp/
 author_profile: true
 sidebar: 
     nav: "categories"

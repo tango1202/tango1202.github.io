@@ -1,7 +1,7 @@
 ---
 title: "고전 C++ 가이드"
 layout: archive
-permalink: categories/classic-cpp-guide
+permalink: categories/classic-cpp-guide/
 author_profile: true
 sidebar: 
     nav: "categories"

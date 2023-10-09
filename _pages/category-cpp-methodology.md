@@ -1,7 +1,7 @@
 ---
 title: "개발 방법론"
 layout: archive
-permalink: categories/methodology
+permalink: categories/methodology/
 author_profile: true
 sidebar: 
     nav: "categories"
