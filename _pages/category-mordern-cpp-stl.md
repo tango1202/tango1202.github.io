@@ -1,11 +1,11 @@
 ---
 title: "모던 C++"
 layout: archive
-permalink: categories/mordern-cpp
+permalink: categories/mordern-cpp-stl
 author_profile: true
 sidebar: 
     nav: "categories"
 ---
 
-{% assign posts = site.categories.mordern-cpp %}
+{% assign posts = site.categories.mordern-cpp-stl %}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
