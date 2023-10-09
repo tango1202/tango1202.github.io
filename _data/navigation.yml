@@ -10,23 +10,41 @@ categories:
   url: /categories/
   children:
   - title: "개발설정"
-    url: /categories/dev-setting/
-  - title: "고전 C++ 가이드"
-    url: /categories/classic-cpp-guide/
-  - title: "C++ 코딩 패턴"
-    url: /categories/cpp-coding-pattern/    
+    url: /categories/dev-setting/  
+  - title: "고전 C++과 모던 C++ 완전 정복"
+    children:    
+    - title: "고전 C++ 가이드"
+      url: /categories/classic-cpp-guide/     
+    - title: "고전 C++ 개체 지향 프로그래밍"
+      url: /categories/classic-cpp-oop/  
+    - title: "고전 C++ STL"
+      url: /categories/classic-cpp-stl/   
+    - title: "고전 C++ 예외 안전 프로그래밍"
+      url: /categories/classic-cpp-exception/  
+    - title: "모던 C++(C++11~)"
+      url: /categories/mordern-cpp/   
+    - title: "모던 C++ STL"
+      url: /categories/mordern-cpp-stl/          
+    - title: "C++ 코딩 패턴"
+      url: /categories/cpp-coding-pattern/   
   - title: "디자인 패턴"
     url: /categories/pattern/
   - title: "개체지향 원칙"
-    url: /categories/principle/
-  - title: "코딩론"
-    url: /categories/cording/
-  - title: "주석"
-    url: /categories/comment/
-  - title: "windows"
+    url: /categories/coding/ 
+  - title: "주석론"  
+    url: /categories/principle/     
+  - title: "코딩을 위한 좋은 습관"
+    url: /categories/comment/      
+  - title: "개발 방법론"
+    url: /categories/methdology/    
+  - title: "윈도우즈 프로그래밍"
     url: /categories/win/ 
-  - title: "개발방법론"
-    url: /categories/methdology/           
+
+
+
+
+
+         
 - title: "태그"
   url: /tags/
 
@@ -62,7 +80,7 @@ docs:
   - title: "개체지향 원칙"
     url: /categories/#principle/
   - title: "코딩론"
-    url: /categories/#cording/
+    url: /categories/#coding/
   - title: "주석"
     url: /categories/#comment/
   - title: "고전 C++ 가이드"

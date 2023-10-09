@@ -1,11 +1,11 @@
 ---
-title: "모던 C++ STL"
+title: "고전 C++ 가이드"
 layout: archive
-permalink: categories/mordern-cpp-stl
+permalink: categories/classic-cpp-guide
 author_profile: true
 sidebar: 
     nav: "categories"
 ---
 
-{% assign posts = site.categories.mordern-cpp-stl %}
+{% assign posts = site.categories.classic-cpp-guide %}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}

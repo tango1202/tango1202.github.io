@@ -1,11 +1,11 @@
 ---
-title: "모던 C++ STL"
+title: "주석론"
 layout: archive
-permalink: categories/mordern-cpp-stl
+permalink: categories/comment
 author_profile: true
 sidebar: 
     nav: "categories"
 ---
 
-{% assign posts = site.categories.mordern-cpp-stl %}
+{% assign posts = site.categories.comment %}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
