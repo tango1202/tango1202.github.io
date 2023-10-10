@@ -40,6 +40,7 @@ docs:
     url: /categories/classic-cpp-guide/
     category: "classic-cpp-guide"    
   - title: "고전 C++ 개체 지향 프로그래밍"
+    url: /categories/classic-cpp-oop/  
     category: "classic-cpp-oop"    
   - title: "고전 C++ STL"
     url: /categories/classic-cpp-stl/  
