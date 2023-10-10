@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [고전 C++ 가이드] 표준 예외 개체"
+title: "#3. [고전 C++ 가이드] 표준 예외 개체"
 categories: "classic-cpp-exception"
 tag: ["cpp"]
 author_profile: false
