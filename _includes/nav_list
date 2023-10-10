@@ -5,6 +5,9 @@
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
   <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</label>
   <ul class="nav__items">
+      <li>
+        <span class="nav__sub-title">{{ post.title }}</span>
+      </li>
     {% for nav in navigation %}
       <li>
         {% if nav.url %}
