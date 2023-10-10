@@ -41,11 +41,12 @@
 
       {% for category in site.categories %}
         {% if category[0] == page.categories[0] %}
-
+          {{ category[0] }}
           {% for sibling in (category.last) reversed %}
             {{% sibling.title %}} {{% sibling.url %}}
-          {% endfor %}
 
+            <li><a href="{{ sibling.url | relative_url }}"{% if sibling.url == page.url %} class="active"{% endif %}>{{ sibling.title }}</a></li>
+          {% endfor %}
         {% endif %}
 
       {% endfor %}
