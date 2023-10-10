@@ -10,6 +10,7 @@
 
         {% assign category_name = "" %}
         {% for category in site.categories %}
+        <span class="nav__sub-title">{{ category[0] }} {{ page.categories }}</span>
         {% if category[0] == page.categories %}
           <li>
             {% assign category_name = category[0] %}
