@@ -98,10 +98,6 @@ EXPECT_TRUE(str2_11[1] == U'글');
 // EXPECT_TRUE(str3_20[1] == U'글');
 ```
 
-# (C++20~) char8_t, u8string
-
-C++20 부터는 UTF8 을 관리할 수 있도록 `char8_t`와 `u8string`이 추가되었습니다.
-
 # Raw String 리터럴
 
 기존 문자열은 개행을 하기 위해 다음처럼 이스케이프 문자(`\r\n`)를 추가해야 했는데요([이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90) 참고),
@@ -143,3 +139,7 @@ std::cout << str_11 << std::endl;
 abc"()"
 def
 ```
+
+# (C++20~) char8_t, u8string
+
+C++20 부터는 UTF8 을 관리할 수 있도록 `char8_t`와 `u8string`이 추가되었습니다.
