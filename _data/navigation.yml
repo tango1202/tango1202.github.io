@@ -12,20 +12,21 @@ categories:
   - title: "Visual Studio Code로 C++ 개발환경 구축하기"
     url: /categories/dev-setting/  
   - title: "고전 C++과 모던 C++ 완전 정복"
-  - title: "고전 C++ 가이드"
-    url: /categories/classic-cpp-guide/     
-  - title: "고전 C++ 개체 지향 프로그래밍"
-    url: /categories/classic-cpp-oop/  
-  - title: "고전 C++ STL"
-    url: /categories/classic-cpp-stl/   
-  - title: "고전 C++ 예외 안전 프로그래밍"
-    url: /categories/classic-cpp-exception/  
-  - title: "모던 C++(C++11~)"
-    url: /categories/mordern-cpp/   
-  - title: "모던 C++ STL"
-    url: /categories/mordern-cpp-stl/          
-  - title: "C++ 코딩 패턴"
-    url: /categories/cpp-coding-pattern/   
+    children:
+    - title: "고전 C++ 가이드"
+      url: /categories/classic-cpp-guide/     
+    - title: "고전 C++ 개체 지향 프로그래밍"
+      url: /categories/classic-cpp-oop/  
+    - title: "고전 C++ STL"
+      url: /categories/classic-cpp-stl/   
+    - title: "고전 C++ 예외 안전 프로그래밍"
+      url: /categories/classic-cpp-exception/  
+    - title: "모던 C++(C++11~)"
+      url: /categories/mordern-cpp/   
+    - title: "모던 C++ STL"
+      url: /categories/mordern-cpp-stl/          
+    - title: "C++ 코딩 패턴"
+      url: /categories/cpp-coding-pattern/   
   - title: "디자인 패턴"
     url: /categories/pattern/
   - title: "24개의 개발 원칙"
