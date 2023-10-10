@@ -36,20 +36,19 @@
         {% else %}  
           <span class="nav__sub-title">{{ category_title }} </span>
         {% endif %}
+
+        {% for category in site.categories %}
+          {% if category[0] == page.categories[0] %}
+            <ul>
+              {% for sibling in (category.last) reversed %}
+                <li><a href="{{ sibling.url | relative_url }}"{% if sibling.url == page.url %} class="active"{% endif %}>{{ sibling.title }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endfor %}
       </li>
       {% endif %}
 
-      {% for category in site.categories %}
-        {% if category[0] == page.categories[0] %}
-          <ul>
-            {% for sibling in (category.last) reversed %}
-              <li><a href="{{ sibling.url | relative_url }}"{% if sibling.url == page.url %} class="active"{% endif %}>{{ sibling.title }}</a></li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-
-      {% endfor %}
-        
       
     {% endif %}
     {% for nav in navigation %}
