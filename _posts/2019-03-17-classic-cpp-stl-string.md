@@ -14,7 +14,7 @@ sidebar:
 
 > **모던 C++**
 > * (C++11~) 유니코드를 지원하는 [`u16string`, `u32string`](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)이 추가되었습니다.
-> * (C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)
+> * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++20~) [`u8string`]((https://tango1202.github.io/mordern-cpp/mordern-cpp-string/))이 추가되었습니다.
 
 # 개요

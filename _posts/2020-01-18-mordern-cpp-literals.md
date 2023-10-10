@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * (C++11~) `int operator ""_km(long double val);`와 같은 사용자 정의 리터럴이 추가되어 단위계 처리가 쉬워졌습니다.
-> * (C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)
+> * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++14~) 이진 리터럴이 추가되어 `0b`, `0B` 접두어로 이진수 상수를 표현할 수 있습니다.
 > * (C++14~) 가독성을 위한 숫자 구분자가 추가되어 `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.
 > * (C++17~) `0xA.9p11`과 같은 16진수 부동 소수점 리터럴을 제공합니다.
@@ -31,7 +31,7 @@ EXPECT_TRUE(1.0_m == 100.0_cm);
 EXPECT_TRUE(1.0_cm == 10.0_mm);
 EXPECT_TRUE(1.0_mm == 1_mm);
 ```
-> *(C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)*
+> *(C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공됩니다.*
 
 **문자열 추론**
 
@@ -46,7 +46,7 @@ auto str_11{"test"_forced_string}; // std::string
 EXPECT_TRUE(str_11.size() == 4);
 EXPECT_TRUE("hello"_forced_string.size() == 5); // 임시 개체도 가능
 ```
-> *(C++14~) `operator ""s`은 `string` 타입인 표준 사용자 정의 리터럴입니다. 상기 `_forced_string`과 동일합니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)*
+> *(C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.*
 
 **식별자 규칙**
 

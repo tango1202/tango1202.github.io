@@ -180,19 +180,28 @@ EXPECT_TRUE(a_17.Func(1, 2) == 3);
 
 C++17 부터는 템플릿이 타입이 아닌 개체를 인자로 사용할때 템플릿 인자로 `auto`를 사용할 수 있습니다.
 
+기존에는 임의 타입의 개체를 템플릿 인자로 사용할때, 다음과 같이 타입(`T`)과 개체(`val`)를 같이 전달받았는데요,
+
 ```cpp
-template<int Num>
+template<typename T, T val> // 타입과 개체를 전달받습니다.
 class A {
 public:
-    int GetNum() const {return Num;}
+    T GetVal() {return val;} 
 };
 
-EXPECT_TRUE(A<10>{}.GetNum() == 10);
+A<int, 10> a{};
+EXPECT_TRUE(a.GetVal() == 10);
+```
 
-template<auto Num> // 타입이 아닌 개체인 경우 auto를 사용할 수 있습니다.
+C++17 부터는 `auto`를 이용하여 임의 타입 개체를 전달받을 수 있습니다.
+
+```cpp
+template<auto val> // 타입이 아닌 개체인 경우 auto를 사용할 수 있습니다.
 class A_17 {
 public:
-    auto GetNum() const {return Num;}
-};    
-EXPECT_TRUE(A_17<10>{}.GetNum() == 10);
+    auto GetVal() const {return val;}
+};  
+
+A_17<10> a_17{};
+EXPECT_TRUE(a_17.GetVal() == 10);
 ```

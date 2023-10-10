@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)
+> * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 
 # complex
 
@@ -31,7 +31,7 @@ sidebar:
 |`proj()` (C++11~)|(작성중)|
 |`polar()`|(작성중)|
 
-> *(C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)*
+> *(C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.*
 
 # valarray
 
@@ -269,7 +269,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |`uniform_random_bit_generator` (C++11~)|(작성중)|
-|`uniform_random_bit_generator` (C++11~)|(작성중)|
+|`linear_congruential_engine` (C++11~)|(작성중)|
 |`mersenne_twister_engine` (C++11~)|(작성중)|
 |`subtract_with_carry_engine` (C++11~)|(작성중)|
 |`discard_block_engine` (C++11~)|(작성중)|

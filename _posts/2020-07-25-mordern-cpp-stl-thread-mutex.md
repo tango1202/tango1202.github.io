@@ -11,7 +11,7 @@ sidebar:
 > * `thread`는 주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.
 > * `mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.
 > * `lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.
-> * `call_once()`는 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
+> * `call_once()`를 이용하면 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
 > * (C++14~) `shared_timed_mutex`와 `shared_lock`을 이용하여 `mutex`의 소유권을 쓰레드끼리 공유할 수 있습니다. 
 
 # 개요

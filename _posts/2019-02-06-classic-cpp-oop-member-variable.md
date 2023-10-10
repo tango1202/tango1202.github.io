@@ -16,7 +16,7 @@ sidebar:
 > **모던 C++**
 > * (C++11~) 비정적 멤버 변수도 [멤버 선언부에서 초기화]((https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/))를 할 수 있어 초기화 작성이 쉬워졌습니다.
 > * (C++11~) [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof)를 이용하여 메모리 정렬 방식을 표준화 했습니다.
-> * (C++11~) `align()`은 메모리 정렬된 포인터를 구합니다.([align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#align) 참고)
+> * (C++11~) [align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#align)은 메모리 정렬된 포인터를 구합니다.
 > * (C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 `include` 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, 클래스 정적 멤버 변수 정의 및 초기화가 쉬워졌습니다.
  
 # 개요 

@@ -10,7 +10,7 @@ sidebar:
 > * (C++11~) 유니코드를 지원하는 `char16_t`, `char32_t`, `u16string`, `u32string` 이 추가되었습니다.
 > * (C++11~) 유니코드를 지원하는 `u8""`, `u""`, `U""`, `'u'`(문자), `'U'`(문자) 리터럴이 추가되었습니다. 
 > * (C++11~) `R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.
-> * (C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표준 사용자 정의 리터럴이 제공됩니다.([표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/) 참고)
+> * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++17~) 유니코드를 지원하는 `'u8'`(문자) 리터럴이 추가되었습니다.
 
 # 유니코드

@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > **모던 C++**
-> * (C++11~) `tuple`은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.([tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 참고)
+> * (C++11~) [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.
 > * (C++17~) [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 이용하여 배열, `pair`, `tuple`, 클래스등의 하위 요소나 멤버 변수에 쉽게 접근할 수 있습니다.
 
 # 개요
