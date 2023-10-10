@@ -14,6 +14,7 @@
         {% for nav in navigation %}  
         
           {% if nav.category == page.categories[0] %}
+            {% assign category_url = nav.url %}
             {% assign category_title = nav.title %}
           {% endif %}
 
@@ -31,13 +32,16 @@
 
         {% if category_title != "" %}  
         <li> 
-          {% if category_url != "" %}      
+          {{ category_url }}
+          {% if category_url %}      
             <a href="{{ category_url }}" class="nav__sub-title">{{ category_title }}</a>
           {% else %}  
             <span class="nav__sub-title">{{ category_title }} </span>
           {% endif %}
         </li>
         {% endif %}
+
+
         
       
     {% endif %}
