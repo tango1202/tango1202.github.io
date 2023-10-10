@@ -11,11 +11,11 @@
         {% assign category_name = "" %}
         {% for category in site.categories %}
         {% if category[0] == page.categories %}
-            {% assign category_name = page.categories %}
+            {% assign category_name = category[1].size %}
         {% endif %}
       {% endfor %}
 
-        <span class="nav__sub-title">{{ category_name }}</span>
+        <span class="nav__sub-title">{{ page.title }} {{page.categories}}</span>
       </li>
     {% endif %}
     {% for nav in navigation %}
