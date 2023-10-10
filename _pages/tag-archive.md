@@ -3,7 +3,7 @@ title: "태그"
 layout: tags
 permalink: /tags/
 author_profile: true
-sidebar_main: true
+sibling-post_ignore: true
 sidebar: 
-    nav: "categories"
+    nav: "docs"
 ---
