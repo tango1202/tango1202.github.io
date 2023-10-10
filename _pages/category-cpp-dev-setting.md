@@ -1,5 +1,5 @@
 ---
-title: ""Visual Studio Code로 C++ 개발환경 구축하기"
+title: "주석론"
 layout: archive
 permalink: categories/dev-setting/
 author_profile: true
@@ -9,4 +9,3 @@ sidebar:
 
 {% assign posts = site.categories.dev-setting %}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
-
