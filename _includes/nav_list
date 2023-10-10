@@ -7,18 +7,14 @@
   <ul class="nav__items">
     {% if page.sibling-post == false %}
     {% else %}
-      
+      <li>
         {% assign category_name = "" %}
         {% for category in site.categories %}
-        <li>
-        <span class="nav__sub-title">{{ page.title }} {{page.categories}} {{category[0]}}</span>
-        </li>
         {% if category[0] == page.categories %}
-            {% assign category_name = category[1].size %}
+            {% assign category_name = category[0] %}
         {% endif %}
-      {% endfor %}
-
-        <span class="nav__sub-title">{{ page.title }} {{page.categories}}</span>
+        {% endfor %}
+        <span class="nav__sub-title">{{ page.title }} {{category_name}}</span>
       </li>
     {% endif %}
     {% for nav in navigation %}
