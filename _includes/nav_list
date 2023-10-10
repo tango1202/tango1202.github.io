@@ -21,8 +21,8 @@
             {% endcomment %}
             {% assign post_cnt = 0 %}
             {% for category in site.categories %}
-              {% if category[0] == child.category  %}
-                  {% assign post_cnt = child.category %}
+              {% if category[0] == child.categories  %}
+                  {% assign post_cnt = category[1].size %}
               {% endif %}
             {% endfor %}
 
