@@ -39,7 +39,7 @@ std::apply
 std::make_from_tuple
 deduction guides
 std::any
-std::optional
+std::optional <optional>
 std::variant
 searchers
 std::as_const
@@ -47,17 +47,22 @@ std::not_fn
 
 # 기타
 
+<charconv> from_char_result
+<execution> sequenced_policy
+<filesystem> 
+
 string_view
 invoke
 filesystem
 sample(https://github.com/AnthonyCalandra/modern-cpp-features#stdsample)
 
-https://github.com/AnthonyCalandra/modern-cpp-features#prefix-sum-algorithms
+prefix-sum-algorithms https://github.com/AnthonyCalandra/modern-cpp-features#prefix-sum-algorithms
 
 https://github.com/AnthonyCalandra/modern-cpp-features#string-conversion-tofrom-numbers
 
 # Memory management
 
+<memory_resource>
 uninitialized memory algorithms
 std::destroy_at
 std::destroy
