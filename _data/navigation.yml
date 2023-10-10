@@ -37,36 +37,50 @@ categories:
 - title: "고전 C++과 모던 C++ 완전 정복"
   children:
   - title: "고전 C++ 가이드"
-    url: /categories/classic-cpp-guide/     
+    url: /categories/classic-cpp-guide/
+    category: "classic-cpp-guide"    
   - title: "고전 C++ 개체 지향 프로그래밍"
     url: /categories/classic-cpp-oop/  
+    category: "classic-cpp-oop"    
   - title: "고전 C++ STL"
-    url: /categories/classic-cpp-stl/   
+    url: /categories/classic-cpp-stl/  
+    category: "classic-cpp-stl" 
   - title: "고전 C++ 예외 안전 프로그래밍"
-    url: /categories/classic-cpp-exception/  
+    url: /categories/classic-cpp-exception/ 
+    category: "classic-cpp-exception"  
   - title: "모던 C++(C++11~)"
     url: /categories/mordern-cpp/   
+    category: "mordern-cpp"  
   - title: "모던 C++ STL"
-    url: /categories/mordern-cpp-stl/          
+    url: /categories/mordern-cpp-stl/   
+    category: "mordern-cpp-stl"        
   - title: "C++ 코딩 패턴"
-    url: /categories/cpp-coding-pattern/   
+    url: /categories/cpp-coding-pattern/  
+    category: "cpp-coding-pattern" 
 - title: "카테고리"
   url: /categories/
   children:
   - title: "Visual Studio Code로 C++ 개발환경 구축하기"
-    url: /categories/dev-setting/  
+    url: /categories/dev-setting/ 
+    category: "dev-setting"  
   - title: "디자인 패턴"
     url: /categories/pattern/
+    category: "pattern"      
   - title: "24개의 개발 원칙"
     url: /categories/principle/ 
+    category: "principle"
   - title: "주석론"  
-    url: /categories/comment/     
+    url: /categories/comment/ 
+    category: "comment"    
   - title: "코딩을 위한 좋은 습관"
-    url: /categories/coding/      
+    url: /categories/coding/ 
+    category: "coding"     
   - title: "개발 방법론"
-    url: /categories/methodology/    
+    url: /categories/methodology/
+    category: "methodology"     
   - title: "윈도우즈 프로그래밍"
     url: /categories/win/ 
+    category: "win"     
 - title: "태그"
   url: /tags/
 

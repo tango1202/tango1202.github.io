@@ -2,7 +2,6 @@
 title: "주석론"
 layout: archive
 permalink: categories/comment/
-my-category: "comment"
 author_profile: true
 sidebar: 
     nav: "categories"

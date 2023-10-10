@@ -2,7 +2,6 @@
 title: "고전 C++ 개체 지향 프로그래밍"
 layout: archive
 permalink: categories/classic-cpp-oop/
-my-category: "classic-cpp-oop"
 author_profile: true
 sidebar: 
     nav: "categories"

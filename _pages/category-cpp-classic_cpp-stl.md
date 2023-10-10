@@ -2,7 +2,6 @@
 title: "고전 C++ STL"
 layout: archive
 permalink: categories/classic-cpp-stl/
-my-category: "classic-cpp-stl"
 author_profile: true
 sidebar: 
     nav: "categories"

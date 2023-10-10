@@ -2,7 +2,6 @@
 title: "24개의 개발 원칙"
 layout: archive
 permalink: categories/principle/
-my-category: "principle"
 author_profile: true
 sidebar: 
     nav: "categories"

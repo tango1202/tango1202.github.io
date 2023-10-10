@@ -2,7 +2,6 @@
 title: "개발 방법론"
 layout: archive
 permalink: categories/methodology/
-my-category: "methodology"
 author_profile: true
 sidebar: 
     nav: "categories"
