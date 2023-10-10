@@ -21,7 +21,7 @@
             {% for child in nav.children %}
 
               {% if child.category == page.categories[0] %}
-                {% assign category_title = nav.title %}
+                {% assign category_title = child.title %}
               {% endif %}
 
             {% endfor %}
