@@ -3,6 +3,7 @@ title: "주석론"
 layout: archive
 permalink: categories/comment/
 author_profile: true
+sibling-post: false
 sidebar: 
     nav: "docs"
 ---

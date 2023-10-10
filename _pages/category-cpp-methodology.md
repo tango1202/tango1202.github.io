@@ -3,6 +3,7 @@ title: "개발 방법론"
 layout: archive
 permalink: categories/methodology/
 author_profile: true
+sibling-post: false
 sidebar: 
     nav: "docs"
 ---

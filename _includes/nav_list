@@ -5,7 +5,8 @@
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
   <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</label>
   <ul class="nav__items">
-    {% if page.sibling-post_ignore == false %}
+    {% if page.sibling-post == false %}
+    {% else %}
       <li>
         <span class="nav__sub-title">{{ page.title }}</span>
       </li>

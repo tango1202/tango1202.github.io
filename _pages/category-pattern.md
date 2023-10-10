@@ -3,6 +3,7 @@ title: "디자인 패턴"
 layout: archive
 permalink: categories/pattern/
 author_profile: true
+sibling-post: false
 sidebar: 
     nav: "docs"
 ---
