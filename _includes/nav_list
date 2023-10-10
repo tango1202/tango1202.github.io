@@ -16,7 +16,21 @@
         {% if nav.children != null %}
         <ul>
           {% for child in nav.children %}
+            {% comment %}
+            포스팅 갯수 카운팅
+            {% endcomment %}
+            {% assign post_cnt = 0 %}
+            {% for category in site.categories %}
+              {% if category[0] == child.category  %}
+                  {% assign post_cnt = category[1].size %}
+              {% endif %}
+            {% endfor %}
+
+            {% comment %}
+            갯수 추가를 위해 변경됨
             <li><a href="{{ child.url | relative_url }}"{% if child.url == page.url %} class="active"{% endif %}>{{ child.title }}</a></li>
+            {% endcomment %}
+            <li><a href="{{ child.url | relative_url }}"{% if child.url == page.url %} class="active"{% endif %}>{{ child.title }}({{ post_cnt }})</a></li>          
           {% endfor %}
         </ul>
         {% endif %}
