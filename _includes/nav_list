@@ -8,39 +8,47 @@
     {% if page.sibling-post == false %}
     {% else %}
 
-
-        {% assign category_url = "" %}
-        {% assign category_title = "" %}
-        {% for nav in navigation %}  
-        
-          {% if nav.category == page.categories[0] %}
-            {% assign category_url = nav.url %}
-            {% assign category_title = nav.title %}
-          {% endif %}
-
-          {% if nav.children != null %}
-            {% for child in nav.children %}
-
-              {% if child.category == page.categories[0] %}
-                {% assign category_url = child.url %}
-                {% assign category_title = child.title %}
-              {% endif %}
-
-            {% endfor %}
-          {% endif %}
-        {% endfor %}
-
-        {% if category_title %}  
-        <li> 
-          {% if category_url %}      
-            <a href="{{ category_url | relative_url }}" class="nav__sub-title">{{ category_title }}</a>
-          {% else %}  
-            <span class="nav__sub-title">{{ category_title }} </span>
-          {% endif %}
-        </li>
+      {% assign category_url = "" %}
+      {% assign category_title = "" %}
+      {% for nav in navigation %}  
+      
+        {% if nav.category == page.categories[0] %}
+          {% assign category_url = nav.url %}
+          {% assign category_title = nav.title %}
         {% endif %}
 
+        {% if nav.children != null %}
+          {% for child in nav.children %}
 
+            {% if child.category == page.categories[0] %}
+              {% assign category_url = child.url %}
+              {% assign category_title = child.title %}
+            {% endif %}
+
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+
+      {% if category_title %}  
+      <li> 
+        {% if category_url %}      
+          <a href="{{ category_url | relative_url }}" class="nav__sub-title">{{ category_title }}</a>
+        {% else %}  
+          <span class="nav__sub-title">{{ category_title }} </span>
+        {% endif %}
+      </li>
+      {% endif %}
+
+      {% for category in site.categories %}
+        {% if category[0] == page.categories[0] %}
+
+          {% for post in category.last %}
+            {% post.title %} {% post.url %}
+          {% endfor %}
+
+        {% endif %}
+
+      {% endif %}
         
       
     {% endif %}
