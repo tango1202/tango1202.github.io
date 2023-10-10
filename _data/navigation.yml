@@ -3,7 +3,7 @@ main:
 - title: "고전 C++ 가이드"
   url: /categories/classic-cpp-guide/     
 - title: "고전 C++ 개체 지향 프로그래밍"
-  url: /categories/classic-cpp-oop/  
+
 - title: "고전 C++ STL"
   url: /categories/classic-cpp-stl/   
 - title: "고전 C++ 예외 안전 프로그래밍"
