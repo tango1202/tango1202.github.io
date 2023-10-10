@@ -4,7 +4,7 @@ layout: archive
 permalink: categories/dev-setting/
 author_profile: true
 sidebar: 
-    nav: "categories"
+    nav: "docs"
 ---
 
 {% assign posts = site.categories.dev-setting %}

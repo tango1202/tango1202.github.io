@@ -4,7 +4,7 @@ layout: archive
 permalink: categories/classic-cpp-stl/
 author_profile: true
 sidebar: 
-    nav: "categories"
+    nav: "docs"
 ---
 
 {% assign posts = site.categories.classic-cpp-stl %}

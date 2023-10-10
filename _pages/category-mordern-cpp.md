@@ -4,7 +4,7 @@ layout: archive
 permalink: categories/mordern-cpp/
 author_profile: true
 sidebar: 
-    nav: "categories"
+    nav: "docs"
 ---
 
 {% assign posts = site.categories.mordern-cpp %}

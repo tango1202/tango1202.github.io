@@ -4,7 +4,7 @@ layout: archive
 permalink: categories/cpp-coding-pattern/
 author_profile: true
 sidebar: 
-    nav: "categories"
+    nav: "docs"
 ---
 
 {% assign posts = site.categories.cpp-coding-pattern %}

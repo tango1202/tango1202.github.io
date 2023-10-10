@@ -4,7 +4,7 @@ layout: archive
 permalink: categories/principle/
 author_profile: true
 sidebar: 
-    nav: "categories"
+    nav: "docs"
 ---
 
 {% assign posts = site.categories.principle %}
