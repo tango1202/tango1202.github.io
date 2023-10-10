@@ -32,7 +32,7 @@
         {% if category_title != "" %}  
         <li> 
           {% if category_url != "" %}      
-            <li><a href="{{ category_url }}" class="active">{{ category_title }}</a></li>
+            <a href="{{ category_url }}" class="nav__sub-title">{{ category_title }}</a>
           {% else %}  
             <span class="nav__sub-title">{{ category_title }} </span>
           {% endif %}
