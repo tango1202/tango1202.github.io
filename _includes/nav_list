@@ -42,8 +42,8 @@
       {% for category in site.categories %}
         {% if category[0] == page.categories[0] %}
 
-          {% for sibling in category.last %}
-            {% sibling.title %} {% sibling.url %}
+          {% for sibling in (category.last) reversed %}
+            {{% sibling.title %}} {{% sibling.url %}}
           {% endfor %}
 
         {% endif %}
