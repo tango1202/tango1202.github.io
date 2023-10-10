@@ -2,6 +2,7 @@
 title: "디자인 패턴"
 layout: archive
 permalink: categories/pattern/
+my-category: "pattern"
 author_profile: true
 sidebar: 
     nav: "categories"

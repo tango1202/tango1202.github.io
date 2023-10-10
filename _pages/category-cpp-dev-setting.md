@@ -2,6 +2,7 @@
 title: "Visual Studio Code로 C++ 개발환경 구축하기"
 layout: archive
 permalink: categories/dev-setting/
+my-category: "dev-setting"
 author_profile: true
 sidebar: 
     nav: "categories"

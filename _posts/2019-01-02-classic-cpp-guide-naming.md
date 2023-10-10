@@ -2,7 +2,6 @@
 layout: single
 title: "#2. [고전 C++ 가이드] 이름 짓기"
 categories: "classic-cpp-guide"
-category: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
 sidebar: 

@@ -2,6 +2,7 @@
 title: "코딩을 위한 좋은 습관"
 layout: archive
 permalink: categories/coding/
+my-category: "coding"
 author_profile: true
 sidebar: 
     nav: "categories"

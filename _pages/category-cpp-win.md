@@ -2,6 +2,7 @@
 title: "윈도우즈 프로그래밍"
 layout: archive
 permalink: categories/win/
+my-category: "win"
 author_profile: true
 sidebar: 
     nav: "categories"

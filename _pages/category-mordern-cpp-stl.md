@@ -2,6 +2,7 @@
 title: "모던 C++ STL"
 layout: archive
 permalink: categories/mordern-cpp-stl/
+my-category: "mordern-cpp-stl"
 author_profile: true
 sidebar: 
     nav: "categories"

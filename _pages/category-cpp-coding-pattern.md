@@ -2,6 +2,7 @@
 title: "C++ 코딩 패턴"
 layout: archive
 permalink: categories/cpp-coding-pattern/
+my-category: "cpp-coding-pattern"
 author_profile: true
 sidebar: 
     nav: "categories"
