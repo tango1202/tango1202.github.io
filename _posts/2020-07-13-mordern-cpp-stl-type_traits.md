@@ -177,7 +177,7 @@ ThreeType three;
 |--|--|
 |`aligned_storage`(C++11~C++23)|(작성중)|
 |`aligned_union`(C++11~C++23)|(작성중)|
-|`decay` (C++11~)|(작성중)|
+|`decay` (C++11~)|참조성을 떼고, 타입으로 만듭니다. 즉 `int &`는 `int`가 됩니다. 또한 배열은 포인터로 만듭니다.이와는 반대로 참조성을 붙여서 인자 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
 |`enable_if` (C++11~)|(작성중)|
 |`conditional` (C++11~)|(작성중)|
 |`common_type` (C++11~)|(작성중)|

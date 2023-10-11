@@ -32,11 +32,11 @@ C++11 부터 STL 에서는 `tuple`이 제공되어 다수의 요소를 관리할
 |[tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size) (C++11~)|컴파일 타임에 `tuple`의 요소 갯수를 구합니다.|
 |[tuple_element](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_element) (C++11~)|`tuple`의 각 요소에 대한 타입을 제공합니다.|
 |`ignore()` (C++11~)|(작성중)|
-|`basic_common_reference` (C++23~)|(작성중)|
-|`common_type` (C++23~)|(작성중)|
 |`interger_sequence` (C++14~)|(작성중)|
 |`apply()` (C++17~)|(작성중)|
 |`make_from_tuple()` (C++17~)|(작성중)|
+|`basic_common_reference` (C++23~)|(작성중)|
+|`common_type` (C++23~)|(작성중)|
 
 # tuple
 
@@ -222,6 +222,10 @@ EXPECT_TRUE(
     std::get<char>(result) == 'a' 
 );
 ```
+
+# (C++17~) apply()
+
+# (C++17~) make_from_tuple
 
 
 

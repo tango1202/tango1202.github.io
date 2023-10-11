@@ -27,6 +27,7 @@ STL
 std::iterator,
 std::raw_storage_iterator,
 std::get_temporary_buffer,
+return_temporary_buffer
 std::is_literal_type,
 std::result_of,
 all of <codecvt>
@@ -43,33 +44,60 @@ std::optional <optional>
 std::variant
 searchers
 std::as_const
+`to_underlying()`
+
+
 std::not_fn
+
+Searcher
+default_searcher
+boyer_moore_searche
+boyer_moore_horspool_searcher
+
+크로노
+floor, ceil, round, abs
+
+unorderd_map
+erase_f, insert_or_assign
+extract
+merge
+try_implace
+
+쓰레드 관련
+hardware_destructive_interference_size
+shared_mutex
+scope_lock
+is_allways_lock_free
 
 # 기타
 
 <charconv> from_char_result
-<execution> sequenced_policy
+<execution> sequenced_policy parallel_policy parallel_unsequenced_policy unsequenced_policy seq par unseq is_execution_policy
 <filesystem> 
 
 string_view
 invoke
 filesystem
-sample(https://github.com/AnthonyCalandra/modern-cpp-features#stdsample)
 
 prefix-sum-algorithms https://github.com/AnthonyCalandra/modern-cpp-features#prefix-sum-algorithms
 
 https://github.com/AnthonyCalandra/modern-cpp-features#string-conversion-tofrom-numbers
 
+bool_constant
 # Memory management
 
 <memory_resource>
+align_val_t
+std::launder
 uninitialized memory algorithms
 std::destroy_at
 std::destroy
 std::destroy_n
+construct_at
 std::uninitialized_move
 std::uninitialized_value_construct
 weak_from_this
+할당자
 std::pmr::memory_resource and std::polymorphic_allocator
 std::aligned_alloc
 transparent std::owner_less
@@ -93,27 +121,53 @@ std::inclusive_scan
 std::exclusive_scan
 std::gcd
 std::lcm
-std::reduce
+std::reduce, transform_reduce
+for_each_n
+sample(https://github.com/AnthonyCalandra/modern-cpp-features#stdsample)
+exclusive_scan
+transform_exclusive_scan
+inclusive_scan
+transform_inclusive_scan
 
 # Iterators and containers
 
 map/set extract and map/set merge(slicing for maps and sets https://github.com/AnthonyCalandra/modern-cpp-features#splicing-for-maps-and-sets)
 map/unordered_map try_emplace and insert_or_assign
 contiguous iterators (LegacyContiguousIterator)
-non-member std::size/std::empty/std::data
+범위 접근. non-member std::size/std::empty/std::data
 # Numerics
-mathematical special functions
+특수 수학 함수 mathematical special functions 
 3D std::hypot
 # Others
 cache line interface
-std::launder
+
 std::uncaught_exceptions
-std::to_chars/std::from_chars
+
+문자열 변환 
+std::to_chars
+to_chars_result
+std::from_chars
+from_chars_result
+chars_format
+
+모호성 해소
+in_place
+in_place_type
+in_place_index
+in_place_t
+in_place_index_t
+
 std::atomic<T>::is_always_lock_free
 std::scoped_lock
-std::timespec_get
+C스타일 시간 유틸리티 std::timespec_get, time_spec
 rounding functions for std::chrono::duration and std::chrono::time_point
 
+# 자가 진단
+bad_any_cast
+bad_optional_access
+bad_expected_access
+bad_variant_access
+uncaught_exception
 
 # 언어 지원 라이브러리
 
