@@ -35,39 +35,59 @@ C++17 부터는 `variant`를 제공하여 타입이 다른 여러 데이터들�
 |`variant_alternative`, `variant_alternative_t` (C++17~)|(작성중)|
 |`variant_npos` (C++17~)|`variant` 인덱스가 잘못된 경우를 나타냅니다.`-1`입니다.| 
 
-다음 예에서는 `any` 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. `reinterpret_cast` 대신 `any_cast()`를 사용하며, `delete`를 하지 않아도 됩니다. 
+다음 예에서는 `variant` 를 이용하여 `int` 또는 `string`으로 개체를 관리합니다.
+
+1. 기본 생성시에는 0번째 타입의 기본 생성값으로 초기화 합니다.
+2. `holds_alternative()`으로 주어진 타입이 관리되고 있는지 검사합니다.
+3. `index()` 로 현재 관리되는 타입의 인덱스를 알 수 있습니다.
+4. `get<인덱스>()` 와 `get<타입>()`으로 값에 접근할 수 있습니다. 만약 해당 값이 없으면 `bad_variant_access` 예외를 발생합니다.
+5. `get_if()`는 값이 없으면 `nullptr`을 리턴합니다.
+
+
+개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. `reinterpret_cast` 대신 `any_cast()`를 사용하며, `delete`를 하지 않아도 됩니다. 
 
 ```cpp
-std::optional<std::string> option{"Kim"};
+// 기본 생성하면 0번째 타입의 기본 생성값으로 초기화 합니다.
+std::variant<int, std::string> var{};
+EXPECT_TRUE(std::holds_alternative<int>(var) == true);
+EXPECT_TRUE(var.index() == 0 && std::get<0>(var) == 0 && std::get<int>(var) == 0);
 
-// 값을 변경합니다.
-option = "Lee";
+// 정수 값을 입력하여 인덱스는 0입니다.
+var = 1;
+EXPECT_TRUE(std::holds_alternative<int>(var) == true);
+EXPECT_TRUE(var.index() == 0 && std::get<0>(var) == 1 && std::get<int>(var) == 1);
 
-// 값에 접근합니다.
-EXPECT_TRUE(option.value() == "Lee");
-
-// 빈값으로 초기화 합니다.
-option.reset();
-
-// 값이 있는지 검사합니다.
-EXPECT_TRUE(option.has_value() == false);
-
-// = {}으로 빈 값을 대입할 수 있습니다.
-option = "Lee";
-option = {}; 
-EXPECT_TRUE(option.has_value() == false);
+// 문자열을 입력하여 인덱스는 1입니다.
+std::string str{"Hello"};
+var = str;
+EXPECT_TRUE(std::holds_alternative<std::string>(var) == true);
+EXPECT_TRUE(var.index() == 1 && std::get<1>(var) == "Hello" && std::get<std::string>(var) == "Hello");
 
 // 값이 없으면 예외를 발생합니다.
 try {
-    option.value();        
+    var = 1;
+    std::get<std::string>(var);
 }
-catch (std::bad_optional_access&) {
-    std::cout << "bad_optional_access" << std::endl;
+catch (std::bad_variant_access&) {
+    std::cout << "bad_variant_access" << std::endl;
 }
 
-// 값이 없으면 사용할 기본값을 전달합니다.
-EXPECT_TRUE(option.value_or("empty") == "empty");
+// 값이 없으면 널을 리턴합니다.
+EXPECT_TRUE(std::get_if<std::string>(&var) == nullptr);    
 ```
+
+# variant의 타입 제약
+
+`variant`는 동일한 타입을 여러개 사용할 수 없습니다.
+
+```cpp
+std::variant<int, int> var{};
+var = 1; // (X) 컴파일 오류. 타입이 동일하면 사용할 수 없습니다.
+
+```
+
+# 기본 생성과 monostate
+
 
 # valueless_by_exception()
 
@@ -83,7 +103,6 @@ EXPECT_TRUE(option.value_or("empty") == "empty");
 ```cpp
 ```
 
-# monostate
 
 # visit()
 
