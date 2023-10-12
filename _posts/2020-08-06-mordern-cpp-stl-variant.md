@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#33. [모던 C++ STL] (C++17~) any"
+title: "#35. [모던 C++ STL] (C++17~) variant"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) `any`가 추가되어 
+> * (C++17~) [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/)가 추가되어 타입의 변동 가능성이 있는 데이터를 비교적 안전하게 사용할 수 있습니다.
 
 # 개요
 
@@ -26,7 +26,7 @@ delete reinterpret_cast<T*>(data);
 
 타입 안전 측면에서는 권장하지 않는데요,
 
-C++17 부터는 `any` 를 사용하여 타입의 변동 가능성이 있는 데이터를 내부 개체로 관리하여 비교적 안전하게 사용할 수 있도록 합니다.
+C++17 부터는 `any`가 추가되어 타입의 변동 가능성이 있는 데이터를 비교적 안전하게 사용할 수 있습니다.
 
 |항목|내용|
 |--|--|
@@ -38,7 +38,7 @@ C++17 부터는 `any` 를 사용하여 타입의 변동 가능성이 있는 데�
 |`type()` (C++17~)|(작성중)|
 |`any_cast()` (C++17~)|내부 개체 타입으로 변경하여 내부 개체를 접근합니다.|
 |`make_any()` (C++17~)|(작성중)|
-|`bad_any_cast()` (C++17~)|[any](??)사용시 타입이 일치하지 않을때 예외를 발생합니다.|
+|`bad_any_cast` (C++17~)|[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 사용시 타입이 일치하지 않을때 예외를 발생합니다.|
 
 다음 예에서는 `any` 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. `reinterpret_cast` 대신 `any_cast()`를 사용하며, `delete`를 하지 않아도 됩니다. 
 

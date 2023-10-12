@@ -42,20 +42,46 @@ deduction guides
 std::any
 std::optional <optional>
 std::variant
-searchers
-std::as_const
-`to_underlying()`
-
-
-std::not_fn
 
 Searcher
 default_searcher
 boyer_moore_searche
 boyer_moore_horspool_searcher
 
+std::as_const
+`to_underlying()`
+
+
+string_view
+std::not_fn
+invoke
+<filesystem> 
+std::byte
+std::clamp
+sample(https://github.com/AnthonyCalandra/modern-cpp-features#stdsample)
+std::reduce, transform_reduce
+std::gcd
+std::lcm
+for_each_n
+
+<charconv> from_char_result
+https://github.com/AnthonyCalandra/modern-cpp-features#string-conversion-tofrom-numbers
+std::to_chars
+to_chars_result
+std::from_chars
+from_chars_result
+chars_format
+
+쓰레드 관련
+hardware_destructive_interference_size
+shared_mutex
+scope_lock scoped_lock
+is_allways_lock_free
+
 크로노
-floor, ceil, round, abs
+floor, ceil, round, abs(time_spec
+rounding functions for std::chrono::duration and std::chrono::time_point)
+C스타일 시간 유틸리티 std::timespec_get
 
 unorderd_map
 erase_f, insert_or_assign
@@ -63,27 +89,14 @@ extract
 merge
 try_implace
 
-쓰레드 관련
-hardware_destructive_interference_size
-shared_mutex
-scope_lock
-is_allways_lock_free
-
 # 기타
 
-<charconv> from_char_result
 <execution> sequenced_policy parallel_policy parallel_unsequenced_policy unsequenced_policy seq par unseq is_execution_policy
-<filesystem> 
-
-string_view
-invoke
-filesystem
 
 prefix-sum-algorithms https://github.com/AnthonyCalandra/modern-cpp-features#prefix-sum-algorithms
 
-https://github.com/AnthonyCalandra/modern-cpp-features#string-conversion-tofrom-numbers
-
 bool_constant
+
 # Memory management
 
 <memory_resource>
@@ -106,7 +119,6 @@ allocation functions with explicit alignment
 
 # Compile-time programming
 
-std::byte
 std::conjunction/std::disjunction/std::negation
 type trait variable templates (xxx_+v)
 std::is_swappable
@@ -115,18 +127,11 @@ is_aggregate
 std::has_unique_object_representations
 
 # Algorithms
-std::clamp
+
 parallel algorithms and execution policies
 std::inclusive_scan
 std::exclusive_scan
-std::gcd
-std::lcm
-std::reduce, transform_reduce
-for_each_n
-sample(https://github.com/AnthonyCalandra/modern-cpp-features#stdsample)
-exclusive_scan
 transform_exclusive_scan
-inclusive_scan
 transform_inclusive_scan
 
 # Iterators and containers
@@ -143,12 +148,6 @@ cache line interface
 
 std::uncaught_exceptions
 
-문자열 변환 
-std::to_chars
-to_chars_result
-std::from_chars
-from_chars_result
-chars_format
 
 모호성 해소
 in_place
@@ -157,15 +156,9 @@ in_place_index
 in_place_t
 in_place_index_t
 
-std::atomic<T>::is_always_lock_free
-std::scoped_lock
-C스타일 시간 유틸리티 std::timespec_get, time_spec
-rounding functions for std::chrono::duration and std::chrono::time_point
-
 # 자가 진단
 bad_any_cast
 bad_optional_access
-bad_expected_access
 bad_variant_access
 uncaught_exception
 
@@ -223,7 +216,7 @@ uncaught_exception
 |[가변 인자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|`va_list` 등으로 가변 인자를 처리합니다.|
 |[타입 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%83%80%EC%9E%85-%EB%B3%80%ED%99%98) (C++11~)|**(C++11~)**<br/>[move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)는 좌측값을 우측값으로 형변환 합니다.<br/>[move_if_noexcept()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move_if_noexcept)는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다.<br/>[forword()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)는 값 카테고리를 유지하며 인자를 다른 함수에 전달합니다.<br/>[declval()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval)은 주어진 타입을 참조 타입으로 변환하여, 참조 타입 표현식으로 변경해 줍니다.|
 |[bitset](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-bitset/)|[bitset](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-bitset/)은 비트 단위의 데이터를 관리하는 개체입니다.|
-|간단한 데이터 개체|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)는 `first`와 `second`로 2개의 요소를 관리합니다. `make_pair()`를 이용하여 `pair`를 쉽게 생성할 수 있습니다.<br/><br/>**(C++11~)**<br/>[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.<br/>`get()` 으로 요소에 접근합니다.<br/>[make_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#make_tuple), [tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie), [forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple) 을 이용하여 `tuple`을 쉽게 생성할 수 있습니다.<br/>[tuple_cat()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_cat) 으로 두개의 `tuple`을 합칩니다.<br/>[tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size)로 컴파일 타임에 `tuple`요소 갯수를 구합니다.<br/>[tuple_element](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_element)을 이용하여 `tuple` 각 요소에 대한 타입을 구합니다.<br/>[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)를 이용하여 `pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.<br/><br/>**(C++14~)**<br/>[타입 기반 `get()`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c14-%ED%83%80%EC%9E%85-%EA%B8%B0%EB%B0%98-get)을 이용하여 타입들이 서로 다르다면 타입으로 데이터에 접근할 수 있습니다.<br/><br/>**(C++17~)**<br/>[apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)는 `tuple` 형식을 전달받아 함수자를 호출합니다.<br/>[make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple)은 `tuple` 형식을 전달받아 개체를 생성합니다.<br/>[optional](??) (C++17~)(작성중) [varient](??) (C++17~)(작성중)  [any](??) (C++17~)(작성중) [expected](??) (C++23~)(작성중)|
+|간단한 데이터 개체|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)는 `first`와 `second`로 2개의 요소를 관리합니다. `make_pair()`를 이용하여 `pair`를 쉽게 생성할 수 있습니다.<br/><br/>**(C++11~)**<br/>[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.<br/>`get()` 으로 요소에 접근합니다.<br/>[make_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#make_tuple), [tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie), [forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple) 을 이용하여 `tuple`을 쉽게 생성할 수 있습니다.<br/>[tuple_cat()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_cat) 으로 두개의 `tuple`을 합칩니다.<br/>[tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size)로 컴파일 타임에 `tuple`요소 갯수를 구합니다.<br/>[tuple_element](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_element)을 이용하여 `tuple` 각 요소에 대한 타입을 구합니다.<br/>[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)를 이용하여 `pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.<br/><br/>**(C++14~)**<br/>[타입 기반 `get()`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c14-%ED%83%80%EC%9E%85-%EA%B8%B0%EB%B0%98-get)을 이용하여 타입들이 서로 다르다면 타입으로 데이터에 접근할 수 있습니다.<br/><br/>**(C++17~)**<br/>[apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)는 `tuple` 형식을 전달받아 함수자를 호출합니다.<br/>[make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple)은 `tuple` 형식을 전달받아 개체를 생성합니다.<br/>[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)이 추가되어 값이 있을 수도 있고, 없을 수도 있는 데이터를 처리할 수 있어, 미확정 상태, 값을 처리하기 부적절한 상태, 함수 리턴값 성공 여부 처리를 좀더 단순하게 할 수 있습니다.<br/>[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/)가 추가되어 타입의 변동 가능성이 있는 데이터를 비교적 안전하게 사용할 수 있습니다.<br/>[varient](??) (C++17~)(작성중)  [expected](??) (C++23~)(작성중)|
 |[함수자 타입 특성 클래스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4)|함수자의 타입 특성으로 사용됩니다.<br/><br/>**(C++11~)**<br/>[unary_function, binery_function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)는 deprecate 되었습니다.|
 |[함수자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90)|`equal_to()`, `less()` 등의 비교 연산과 `logical_and()`, `logical_or()` 등의 논리 연산과 `plus()`, `minus()`등의 산술 연산과 `bit_and()`, `bit_or()`등의 비트 연산 함수자들을 제공합니다.|
 |[부정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)|반환값을 부정합니다.<br/><br/>**(C++11~)**<br/>[not1(), not2()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 는 deprecate 되었습니다.|
