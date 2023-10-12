@@ -12,9 +12,9 @@ sidebar:
 
 # 개요
 
-기존 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)를 통해 많은 제한이 풀렸으나, 위치 지정 생성이나 소멸자를 수동으로 처리해야 하기 때문에 많은 불편함이 있었습니다.
+C++11에서 추가된 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)는 많은 제한이 풀려 타입이 다른 데이터를 공용체로 다룰 수 있는 자유도가 높아졌으나, 위치 지정 생성이나 소멸자를 수동으로 처리해야 하기 때문에 많은 불편함이 있었습니다.
 
-C++17 부터는 `variant`를 제공하여 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있게 합니다. `any`의 경우는 런타임에 동적으로 타입 캐스팅을 이용하여 관리하는 타입을 유연하게 변경할 수 있지만, `variant`는 컴파일 타입에 지정한 타입들중 하나로만 타입을 사용할 수 있습니다.
+C++17 부터는 `variant`를 제공하여 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있게 합니다. `any`의 경우는 런타임에 동적으로 캐스팅하여 관리하는 타입을 유연하게 변경할 수 있지만, `variant`는 컴파일 타임에 지정한 타입들중 하나로만 사용할 수 있습니다.
 
 |항목|내용|
 |--|--|
@@ -42,9 +42,6 @@ C++17 부터는 `variant`를 제공하여 타입이 다른 여러 데이터들�
 3. `index()` 로 현재 관리되는 타입의 인덱스를 알 수 있습니다.
 4. `get<인덱스>()` 와 `get<타입>()`으로 값에 접근할 수 있습니다. 만약 해당 값이 없으면 `bad_variant_access` 예외를 발생합니다.
 5. `get_if()`는 값이 없으면 `nullptr`을 리턴합니다.
-
-
-개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. `reinterpret_cast` 대신 `any_cast()`를 사용하며, `delete`를 하지 않아도 됩니다. 
 
 ```cpp
 // 기본 생성하면 0번째 타입의 기본 생성값으로 초기화 합니다.
@@ -83,11 +80,7 @@ EXPECT_TRUE(std::get_if<std::string>(&var) == nullptr);
 ```cpp
 std::variant<int, int> var{};
 var = 1; // (X) 컴파일 오류. 타입이 동일하면 사용할 수 없습니다.
-
 ```
-
-# 기본 생성과 monostate
-
 
 # valueless_by_exception()
 
@@ -103,6 +96,14 @@ var = 1; // (X) 컴파일 오류. 타입이 동일하면 사용할 수 없습니
 ```cpp
 ```
 
+# monostate
+
+`variant`는 기본 생성시에 0번째 타입으로 초기화 합니다. 만약 아무값도 없는 상태로 생성하려면 특별히 `monostate`로 생성합니다. `variant` 가 유효한 값이 아니므로 `valueless_by_exception`은 `false` 입니다.
+
+```cpp
+std::variant<std::monostate, int, std::string> var{};
+EXPECT_TRUE(var.valueless_by_exception() == false); 
+```
 
 # visit()
 
