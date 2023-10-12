@@ -11,6 +11,8 @@ sidebar:
 > * [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.
 > * (C++14~) 타입 기반 `get()`을 이용하여 타입들이 서로 다르다면 타입으로 데이터에 접근할 수 있습니다.
 > * (C++17~) [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 이용하여 배열, `pair`, `tuple`, 클래스등의 하위 요소나 멤버 변수에 쉽게 접근할 수 있습니다.
+> * (C++17~) [apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)는 `tuple` 형식을 전달받아 함수자를 호출합니다.
+> * (C++17~) [make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple) (C++17~)은 `tuple` 형식을 전달받아 개체를 생성합니다.
 
 # 개요
 
@@ -33,8 +35,8 @@ C++11 부터 STL 에서는 `tuple`이 제공되어 다수의 요소를 관리할
 |[tuple_element](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_element) (C++11~)|`tuple`의 각 요소에 대한 타입을 제공합니다.|
 |`ignore()` (C++11~)|(작성중)|
 |`interger_sequence` (C++14~)|(작성중)|
-|`apply()` (C++17~)|(작성중)|
-|`make_from_tuple()` (C++17~)|(작성중)|
+|[apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply) (C++17~)|`tuple` 형식을 전달받아 함수자를 호출합니다.|
+|[make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple) (C++17~)|`tuple` 형식을 전달받아 개체를 생성합니다.|
 |`basic_common_reference` (C++23~)|(작성중)|
 |`common_type` (C++23~)|(작성중)|
 
@@ -225,7 +227,48 @@ EXPECT_TRUE(
 
 # (C++17~) apply()
 
+`apply()`는 `tuple` 형식을(`array`나 `pair`도 가능합니다. `get()`과 `tuple_size`와 호환되면 됩니다.) 전달받아 함수자를 호출하는 유틸리티 함수 입니다.
+
+기존에는 `tuple`의 데이터를 함수에 전달할때 요소의 전개가 필요했습니다.
+
+```cpp
+int Sum(int a, int b, int c) {
+    return a + b + c;
+}
+
+std::tuple<int, int, int> data{1, 2, 3};
+
+// tuple의 각 요소를 전개해야 합니다.
+EXPECT_TRUE(Sum(std::get<0>(data), std::get<1>(data), std::get<2>(data)) == 1 + 2 + 3);
+```
+
+`apply()`를 이용하면, 요소의 전개를 은닉할 수 있습니다.
+
+```cpp
+int Sum(int a, int b, int c) {
+    return a + b + c;
+}
+
+std::tuple<int, int, int> data{1, 2, 3};
+
+// tuple의 요소를 전개하지 않아도 됩니다.
+EXPECT_TRUE(std::apply(Sum, data) == 1 + 2 + 3);
+```
+
 # (C++17~) make_from_tuple
+
+`make_from_tuple()`은 `tuple` 형식을(`array`나 `pair`도 가능합니다. `get()`과 `tuple_size`와 호환되면 됩니다.) 전달받아 개체를 생성하는 유틸리티 함수 입니다. 이를 이용하면, `apply()`처럼 요소의 전개를 은닉할 수 있습니다.
+
+```cpp
+class T{
+public:
+    T(int a, int b, int c) {}
+};
+
+std::tuple<int, int, int> data{1, 2, 3};
+// tuple의 요소를 전개하지 않아도 됩니다.
+T t{std::make_from_tuple<T>(std::move(data))};
+```
 
 
 

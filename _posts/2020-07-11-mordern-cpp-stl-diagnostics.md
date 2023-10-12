@@ -52,7 +52,7 @@ sidebar:
 |`format_error` (C++20~)|(작성중)|
 |`bad_typeid`|널포인터를 역참조하여 typeid를 구할때 발생합니다.<br/>`T* p = NULL;`<br/>`typeid(*p).name();`|
 |`bad_cast`|`dynamic_cast`가 실패시 발생합니다.|
-|`bad_any_cast` (C++17~)|(작성중)|
+|`bad_any_cast` (C++17~)|[any](??)사용시 타입이 일치하지 않을때 예외를 발생합니다.|
 |`bad_optional_access` (C++17~)|(작성중)|
 |`bad_expected_access` (C++17~)|(작성중)|
 |[bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) (C++11~)|`shared_ptr`에서 잘못된 `weak_ptr`을 사용할때 발생하는 예외입니다.|
