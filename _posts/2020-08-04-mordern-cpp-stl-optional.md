@@ -100,10 +100,11 @@ option = "Lee";
 option = {}; 
 EXPECT_TRUE(option.has_value() == false);
 
+// 값이 없으면 예외를 발생합니다.
 try {
     option.value();        
 }
-catch (std::bad_optional_access) {
+catch (std::bad_optional_access&) {
     std::cout << "bad_optional_access" << std::endl;
 }
 
