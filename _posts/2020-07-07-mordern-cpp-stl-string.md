@@ -10,11 +10,12 @@ sidebar:
 
 > * `string`은 바이트 문자열을 지원합니다.
 > * `wstring`은 와이드 문자열을 지원합니다.
-> * `u8string`은 UTF-8을 지원합니다.
-> * `u16string`은 UTF-16을 지원합니다.
-> * `u32string`은 UTF-32를 지원합니다.
+> * (C++20~) `u8string`은 UTF-8을 지원합니다.
+> * (C++11~) `u16string`은 UTF-16을 지원합니다.
+> * (C++11~) `u32string`은 UTF-32를 지원합니다.
 > * `strerror()`는 `errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
+> * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
 
 # 개요
 

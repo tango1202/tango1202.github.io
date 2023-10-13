@@ -47,7 +47,7 @@ sidebar:
 |`binary_negate` (~C++11)|(작성중)|
 |`not1()` (~C++11)|단항 조건자의 반환값을 부정합니다.([아답터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 참고)|
 |`not2()` (~C++11)|이항 조건자의 반환값을 부정합니다.([아답터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 참고)|
-|`not_fn()`(C++17~)|(작성중)|
+|`not_fn()`(C++17~)|인자(단항, 이항 제한이 없습니다.)로 전달한 함수자를 부정합니다.|
 
 # 바인더
 
@@ -75,6 +75,8 @@ sidebar:
 |`pointer_to_unary_function` (~C++11)|(작성중)|
 |`pointer_to_binary_function` (~C++11)|(작성중)|
 |[mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn) (C++11~)|인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.|
+|[invoke(Func, params...)](??) (C++17~)|일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다. 일반 함수인 경우 `Func(params...)`를 호출하고, 멤버 함수인 경우 `param1.Func(param1+1...)을 호출합니다.|
+|`invoke_r()` (C++20~)|(작성중)|
 |`move_only_function` (C++23~)|(작성중)|
 |`copyable_function` (C++26~)|(작성중)|
 |`function_ref` (C++26~)|(작성중)|
@@ -115,13 +117,6 @@ if (itr != data.end()) {
     EXPECT_TRUE(std::distance(data.begin(), itr) == 6);
 }
 ```
-
-# Invoke
-
-|항목|내용|
-|--|--|
-|`invoke()` (C++17~)|(작성중)|
-|`invoke_r()` (C++20~)|(작성중)|
 
 # Identity
 

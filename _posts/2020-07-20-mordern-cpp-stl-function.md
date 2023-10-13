@@ -400,3 +400,19 @@ EXPECT_TRUE(IsPlaceholder(func1) == true);
 std::function<int(int)> func2{std::bind(Sum, 1, std::placeholders::_1, 3)}; // (X) 오동작. function 개체에 저장하면, bind에 대한 관련 속성을 잃어버립니다.
 EXPECT_TRUE(IsPlaceholder(func2) == false);   
 ```
+
+# (c++17~) invoke()
+
+```cpp
+class T {
+public:
+    int Sum(int a, int b, int c) {return a + b + c;} // 멤버 함수
+};
+
+int Sum(int a, int b) {return a + b;} // 일반 함수
+
+T t;
+EXPECT_TRUE(std::invoke(&T::Sum, t, 1, 2, 3) == 1 + 2 + 3); // 멤버 함수를 호출합니다.
+
+EXPECT_TRUE(std::invoke(&Sum, 1, 2) == 1 + 2); // 일반 함수를 호출합니다.
+```
