@@ -31,8 +31,8 @@ C++17 부터는 `variant`를 제공하여 타입이 다른 여러 데이터들�
 |`get_if()` (C++17~)|주어진 타입의 값을 리턴합니다. 값이 없으면, `nullptr` 예외를 발생합니다.|
 |[monostate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/#monostate) (C++17~)|초기값 없이 `variant`를 생성합니다.|
 |`bad_variant_access` (C++17~)|[variant](??)에서 주어진 타입이 없을때 예외를 발생합니다.|
-|`variant_size`, `variant_size_t` (C++17~)|(작성중)|
-|`variant_alternative`, `variant_alternative_t` (C++17~)|(작성중)|
+|`variant_size, variant_size_t` (C++17~)|(작성중)|
+|`variant_alternative, variant_alternative_t` (C++17~)|(작성중)|
 |`variant_npos` (C++17~)|`variant` 인덱스가 잘못된 경우를 나타냅니다.`-1`입니다.| 
 
 다음 예에서는 `variant` 를 이용하여 `int` 또는 `string`으로 개체를 관리합니다.

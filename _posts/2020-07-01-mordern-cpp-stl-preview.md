@@ -69,9 +69,9 @@ std::exclusive_scan
 transform_exclusive_scan
 transform_inclusive_scan
 
-<execution> sequenced_policy parallel_policy parallel_unsequenced_policy unsequenced_policy seq par unseq is_execution_policy
+`<execution>` sequenced_policy parallel_policy parallel_unsequenced_policy unsequenced_policy seq par unseq is_execution_policy
 
-<charconv> from_char_result
+`<charconv>` from_char_result
 https://github.com/AnthonyCalandra/modern-cpp-features#string-conversion-tofrom-numbers
 std::to_chars
 to_chars_result
@@ -79,15 +79,17 @@ std::from_chars
 from_chars_result
 chars_format
 
-<filesystem> 
+`<filesystem> `
 
-쓰레드 관련
+# 쓰레드 관련
+
 hardware_destructive_interference_size
 shared_mutex
 scoped_lock
 is_allways_lock_free
 
-크로노
+# 크로노
+
 floor, ceil, round, abs(time_spec
 rounding functions for std::chrono::duration and std::chrono::time_point)
 C스타일 시간 유틸리티 std::timespec_get
@@ -104,7 +106,7 @@ bool_constant
 
 # Memory management
 
-<memory_resource>
+`<memory_resource>`
 align_val_t
 std::launder
 uninitialized memory algorithms
@@ -138,10 +140,14 @@ map/set extract and map/set merge(slicing for maps and sets https://github.com/A
 map/unordered_map try_emplace and insert_or_assign
 contiguous iterators (LegacyContiguousIterator)
 범위 접근. non-member std::size/std::empty/std::data
+
 # Numerics
+
 특수 수학 함수 mathematical special functions 
 3D std::hypot
+
 # Others
+
 cache line interface
 
 std::uncaught_exceptions
@@ -155,6 +161,7 @@ in_place_t
 in_place_index_t
 
 # 자가 진단
+
 bad_any_cast
 bad_optional_access
 bad_variant_access
