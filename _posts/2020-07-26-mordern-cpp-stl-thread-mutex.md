@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#26. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex)"
+title: "#26. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex), (C++14~) shared_timed_mutex, shared_lock, (C++17~) shared_mutex"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -37,7 +37,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`hardware_destructive_interference_size` (C++17~)<br/>`hardware_constructive_interference_size` (C++17~)|(작성중)|
+|`hardware_destructive_interference_size` (C++17~)<br/>`hardware_constructive_interference_size` (C++17~)|잘못된 공유를 방지하기 위한 최소 크기입니다. CPU L1 데이터 캐쉬 접근에 호환되는 방법을 제공합니다.|
 
 **동기화 개체**
 
@@ -53,7 +53,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`lock_guard` (C++11~)<br/>`unique_lock` (C++11~)<br/>`lock()` (C++11~)<br/>`try_lock()` (C++11~)<br/>`shared_lock` (C++14~)<br/>`scope_lock` (C++17~)|`mutex`의 잠금 상태를 관리합니다.([lock_guard - mutex가 1개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0)과 [try_lock() - mutex가 여러개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#try_lock---mutex%EA%B0%80-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) 참고)|
+|`lock_guard` (C++11~)<br/>`unique_lock` (C++11~)<br/>`lock()` (C++11~)<br/>`try_lock()` (C++11~)<br/>`shared_lock` (C++14~)<br/>`scoped_lock` (C++17~)|`mutex`의 잠금 상태를 관리합니다.([lock_guard - mutex가 1개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0)과 [try_lock() - mutex가 여러개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#try_lock---mutex%EA%B0%80-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) 참고)|
 |[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag) (C++11~)|주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다.|
 
 # 쓰레드
@@ -277,7 +277,7 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 |`timed_mutex` (C++11~)|`try_lock_for()`나 `try_lock_until()`등으로 주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 `mutex`입니다.|
 |`recursive_mutex` (C++11~)|동일한 쓰레드 내에서 재귀적으로 `lock()`을 할 수 있는 `mutex`입니다.|
 |`recursive_timed_mutex` (C++11~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 재귀적 `mutex`입니다.|
-|`shared_timed_mutex` (C++14~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 다른 쓰레드들과 공유할 수 있는 `mutex`입니다.([shared_timed_mutex 와 shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) 참고)|
+|[shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) (C++14~)|주어진 시간동안(혹은 까지) `try_lock()`을 시도하는 다른 쓰레드들과 공유할 수 있는 `mutex`입니다.|
 |`shared_mutex` (C++17~)|다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 `mutex`입니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.|
 
 `mutex`의 멤버 함수는 다음과 같습니다. `lock()`과 `unlock()`을 이용하여 다른 쓰레드들의 접근을 차단/해제합니다. 
@@ -300,8 +300,8 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 |lock 옵션 (C++11~)|`defer_lock` : `lock()` 호출시 잠금이 됩니다.<br/>`try_to_lock` : 잠금시 `try_lock()`을 사용합니다.<br/>`adopt_lock` : 해당 쓰레드가 이미 `lock()`을 했다고 가정하고, `unlock()`만 합니다.|
 |`lock()` (C++11~)|여러개의 `mutex`를 `lock()`합니다.|
 |`try_lock()` (C++11~)|여러개의 `mutex`를 `try_lock()`합니다.|
-|`shared_lock` (C++14~)|공유할 수 있는 `mutex`를 `unique_lock` 처럼 생성시 자동으로 잠글 수도 있고, 별도로 `lock()`을 호출해야 잠글 수도 있습니다. ([shared_timed_mutex 와 shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) 참고)|
-|`scope_lock` (C++17~)|(작성중)|
+|[shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) (C++14~)|공유할 수 있는 `mutex`를 `unique_lock` 처럼 생성시 자동으로 잠글 수도 있고, 별도로 `lock()`을 호출해야 잠글 수도 있습니다.|
+|[scoped_lock](??) (C++17~)|여러개의 `mutex`를 `lock()`하며 데드락을 방지합니다.|
 
 # mutex - 경쟁 상태(Race Condition) 해결
 
@@ -635,3 +635,37 @@ UniqueFunc : 6360136
 SharedFunc : 1559724 //shared_timed_mutex 가 훨씬 빠릅니다.
 ```
 
+# (C++17~) scoped_lock
+
+[try_lock() - mutex가 여러개인 경우 데드락(Dead Lock) 해결](??)에서 다수의 `mutex`가 서로 대기하는 데드락(Dead Lock) 상황을 예시하였는데요, C++17 부터는 `scope_lock`을 추가하여, 다수의 `mutex`를 사용하더라도 데드락(Dead Lock)을 방지할 수 있게 해줍니다.
+
+```cpp
+class A {
+public:
+    void Init(std::mutex& myMutex, std::mutex& yourMutex) {
+        for (int i{0}; i < 100; ++i) {
+            std::scoped_lock{myMutex, yourMutex}; // 내부적으로 데드락을 방지합니다. 
+            // Todo
+            std::this_thread::sleep_for(std::chrono::milliseconds{1});
+        }
+    }
+    void Reset(std::mutex& myMutex, std::mutex& yourMutex) {
+
+        for (int i{0}; i < 100; ++i) {
+            std::scoped_lock{myMutex, yourMutex}; // 내부적으로 데드락을 방지합니다. 
+            // Todo
+            std::this_thread::sleep_for(std::chrono::milliseconds{1});
+        }
+    }
+};
+
+A a{};
+std::mutex myMutex; // mutex 개체
+std::mutex yourMutex; 
+
+std::thread worker1{std::mem_fn(&A::Init), std::ref(a), std::ref(myMutex), std::ref(yourMutex)};
+std::thread worker2{std::mem_fn(&A::Reset), std::ref(a), std::ref(myMutex), std::ref(yourMutex)};
+
+worker1.join(); 
+worker2.join(); 
+```
