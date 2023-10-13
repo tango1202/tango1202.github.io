@@ -8,7 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
-`Path`, `File`, `디렉토리`에 대한 조작을 수행합니다.
+C++17 부터는 경로, 파일, 디렉토리에 대한 조작을 수행합니다.
+
+`<filesystem>` 헤더 파일을 포함해야 하며, `std::filesystem` 네임스페이스를 사용합니다.
 
 # 경로 문자열
 
@@ -44,8 +46,8 @@ sidebar:
 |`file_status` (C++17~)|파일의 타입과 권한 정보입니다.|
 |`last_write_time(path)` (C++17~)|`path`의 마지막 수정 시간을 구합니다.|
 |`file_time_type` (C++17~)|파일의 시간입니다.| 
-|`perms` (C++17~)|파일 시스템의 접근 권한 정보입니다.|
 |`permissions(path, perms)` (C++17~)|접근 권한 정보를 수정합니다.|
+|`perms` (C++17~)|파일 시스템의 접근 권한 정보입니다.|
 |`perm_options` (C++17~)|` permissions()`함수 실행에 사용되는 옵션입니다.|
 |`directory_entry` (C++17~)|디렉토리의 추가 정보를 제공합니다.|
 
@@ -69,6 +71,8 @@ sidebar:
 
 # 예외
 
+|항목|내용|
+|--|--|
 |`filesystem_error` (C++17~)|파일 시스템 처리에서 오류가 발생했습니다.|
 
 # 파일 타입

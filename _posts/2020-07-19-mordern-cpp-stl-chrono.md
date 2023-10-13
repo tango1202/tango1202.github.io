@@ -17,6 +17,8 @@ sidebar:
 
 C++11 부터 STL 에서는 좀더 다양한 정확도로 시간을 추적할 수 있는 `chrono` 라이브러리가 추가되었습니다.
 
+`<chrono>` 헤더 파일을 포함해야 하며, `std::chrono` 네임스페이스를 사용합니다.
+
 다음 예는 주어진 함수의 실행 시간을 측정하는 예입니다.
 
 1. `CheckMicrosecond()`함수는 전달된 함수를 실행하고 실행 시간을 측정합니다. 실행시킬 함수에 인자를 전달하기 위해 가변 템플릿을 사용합니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
