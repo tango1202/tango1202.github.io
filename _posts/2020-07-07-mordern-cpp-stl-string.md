@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] 문자열"
+title: "#7. [모던 C++ STL] 문자열, (C++17~) string_view"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -18,7 +18,7 @@ sidebar:
 
 # 개요
 
-문자열을 처리하는 기본 클래스는 `basic_stirng`이며, 처리하는 문자 타입에 따라 재정의한 `string`, `wstring`등을 사용합니다.
+문자열을 처리하는 기본 클래스는 `basic_string`이며, 처리하는 문자 타입에 따라 재정의한 `string`, `wstring`등을 사용합니다.
 
 `string`, `wstring`등의 사용 방법은 [문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)을 참고하기 바랍니다.
 
@@ -218,7 +218,7 @@ static const size_type npos = -1;
 |`basic_string()`|빈 `string` 개체를 생성합니다.|
 |`basic_string(const string& other)`|복사 생성합니다.|
 |`basic_string(const value_type* ptr)`|C 언어 스타일의 문자열로부터 문자들을 복사하여 `string` 개체를 생성합니다.|
-|`basic_string(const string& other, size_type, offset, size_type count = npos)`<br/>`string(const value_type* ptr, size_type count)`<br/>|`offset` 위치 부터 `count` 갯수만큼 문자들을 복사하여 `string`개체를 생성합니다.|
+|`basic_string(const string& other, size_type, offset, size_type count = npos)`<br/>`basic_string(const value_type* ptr, size_type count)`<br/>|`offset` 위치 부터 `count` 갯수만큼 문자들을 복사하여 `string`개체를 생성합니다.|
 |`basic_string(size_type count, value_type char_value)`|`char_value`를 `count`만큼 채운 `string`을 생성합니다.|
 |`basic_string(const_iterator first, const_iterator last)`|`first`부터 `last` 직전까지의 요소(반개방 구조)를 복사하여 `string` 개체를 생성합니다.|
 
@@ -256,14 +256,10 @@ static const size_type npos = -1;
 |--|--|--|
 |`[]`||요소에 접근합니다.|
 |`at()`||`position`위치의 요소 참조자를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
-|`begin()`||첫번째 요소의 이터레이터를 리턴합니다.|
-|`end()`||마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
-|`rbegin()`||반전된 `string`의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
-|`rend()`||반전된 `string`의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
-|`cbegin()`||첫번째 요소의 이터레이터를 리턴합니다.|
-|`cend()`||마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
-|`crbegin()`||반전된 `string`의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
-|`crend()`||반전된 `string`의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
+|`begin(), end()`||순방향 이터레이터를 리턴합니다.|
+|`rbegin(), rend()`||역방향 이터레이터를 리턴합니다.|
+|`cbegin(), cend()`||방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
+|`crbegin() crend()`||역방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`data()`||내부 데이터를 리턴합니다. 끝에 널문자가 없을 수도 있습니다.|
 |`c_str()`|O|c 스타일의 문자열을 리턴합니다.(끝에 널문자가 있습니다.)|
 |`front()`||첫번째 요소의 참조자를 리턴합니다. `string`이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
@@ -305,3 +301,121 @@ static const size_type npos = -1;
 |`stof(), stod(), stold()` (C++11~)|실수를 문자열로 바꿉니다.| 
 |`to_string()` (C++11~)|`string`을 정수 또는 실수로 바꿉니다.| 
 |`to_wstring()` (C++11~)|`wstring`을 정수 또는 실수로 바꿉니다.|  
+
+# (C++17~) string_view
+
+문자열에 대한 읽기만 필요한 함수가 있는 경우 `string`이나 `const char*`로 전달받을 수 있는데요, 둘다 문제가 좀 있습니다.
+
+1. `string`으로 인자를 만든 경우 : 암시적으로 `string`개체가 생성됩니다.
+
+    ```cpp
+    std::size_t Func(const std::string& str) {return str.length();}
+
+    std::string str1{"Hello"};
+    const char* str2{"World"};
+
+    EXPECT_TRUE(Func(str1) == 5);
+    EXPECT_TRUE(Func(str2) == 5); // (△) 비권장. 암시적으로 string 개체가 생성됩니다.
+    ```
+
+2. `const char*` 으로 인자를 만든 경우 : 널 종료 문자열을 강제로 만들어야 합니다.  
+    
+    ```cpp
+    std::size_t Func(const char* str) {
+        std::size_t i{0};
+        while(str[i] != '\0') {
+            ++i;
+        } 
+        return i;
+    }
+
+    std::string str1{"Hello"};
+    const char* str2{"World"};
+
+    EXPECT_TRUE(Func(str1.c_str()) == 5); // (△) 비권장. 널종료 문자열을 만듭니다.
+    EXPECT_TRUE(Func(str2) == 5); // (△) 비권장. 문자열의 길이는 매번 다시 '\0'까지 카운팅해야 합니다.
+    ```
+
+C++17 부터는 `string_view`가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
+
+내부적으로 `string`이나 `const char*`를 참조만 하여 메모리 낭비를 없애고, 읽기 전용 함수들만 제공하여 `string` 관련 편의 기능들을 그대로 사용할 수 있습니다.
+
+```cpp
+std::size_t Func(std::string_view sv) {
+    return sv.length();
+}
+
+std::string str1{"Hello"};
+const char* str2{"World"};
+
+EXPECT_TRUE(Func(str1) == 5); // (O) 불필요하게 string 개체를 생성하지 않습니다.
+EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하지 않습니다.
+```
+
+`basic_string`처럼 기본 클래스는 `basic_string_view` 이며, 처리하는 문자 타입에 따라 재정의한 `string_view`, `wstring_view`등을 사용합니다.
+
+|항목|내용|
+|--|--|
+|`string_view` (C++17~)|`basic_string_view<char>`|
+|`wstring_view` (C++17~)|`basic_string_view<wchar_t>`|
+|`u16string_view ` (C++17~)|`basic_string_view<char16_t>`|
+|`u32string_view ` (C++17~)|`basic_string_view<char32_t>`|
+|`u8string_view ` (C++20~)|`basic_string_view<char16_t>`|
+
+**생성자**
+
+|항목|내용|
+|--|--|
+|`basic_string_view()` (C++17~)|빈 `string_view` 개체를 생성합니다.|
+|`basic_string_view(const basic_string_view& other)` (C++17~)|복사 생성합니다. 이때 내부 관리 문자열은 참조만 하고 복제하지는 않습니다.|
+|`basic_string_view(const value_type* ptr)` (C++17~)|C 언어 스타일의 문자열을 참조합니다.|
+|`basic_string_view(const value_type* ptr, size_type count)` (C++17~)|`count`길이(널문자 포함)인 C 언어 스타일의 문자열을 참조합니다.|
+
+**연산자**
+
+|항목|내용|
+|--|--|
+|`operator =(const basic_string_view& other)` (C++17~)|`other`를 복사 대입합니다.|
+|`==` (C++17~)<br/>`!=` (~C++20)|두 문자열이 같은지, 다른지 검사합니다. 단순히 포인터 비교하는게 아니라 실제 문자들을 비교합니다.|
+|`<, <=, >, >=` (~C++20)<br/>`<=>` (C++20~)|두 문자열을 대소 비교합니다.|
+|`<<, >>` (C++17~)|출력 스트림에 출력하거나, 입력 스트림에서 문자열을 추출합니다.|
+
+**할당과 문자열 관리**
+
+|항목|내용|
+|--|--|
+|`size()`<br/>`length()` (C++17~)|문자 갯수를 리턴합니다.|
+|`empty()` (C++17~)|비었는지 확인합니다.|
+|`max_size()` (C++17~)|저장할 수 있는 최대 문자 갯수를 리턴합니다.|
+|`swap()` (C++17~)|두 `string_view`의 내부 데이터를 바꿔치기 합니다.|
+
+**문자 검색**
+
+|항목|내용|
+|--|--|
+|`[]` (C++17~)|요소에 접근합니다.|
+|`at()` (C++17~)|`position`위치의 요소 참조자를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
+|`begin(), end()` (C++17~)|순방향 이터레이터를 리턴합니다.|
+|`rbegin(), rend()` (C++17~)|역방향 이터레이터를 리턴합니다.|
+|`cbegin(), cend()` (C++17~)|방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
+|`crbegin() crend()` (C++17~)|역방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
+|`data()` (C++17~)|내부 데이터를 리턴합니다. 끝에 널문자가 없을 수도 있습니다.|
+|`front()` (C++17~)|첫번째 요소의 참조자를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
+|`back()` (C++17~)|마지막 요소의 참조자를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
+|`find()`<br/>`rfind()` (C++17~)|지정된 문자 시퀀스와 일치하는 첫번째 인덱스를 찾습니다.|
+|`find_first_of()`<br/>`find_first_not_of()` (C++17~)|지정된 문자들중 일치하는 문자가 있는 첫번째 인덱스를 찾습니다.|
+|`find_last_of()`<br/>`find_last_not_of()`| (C++17~)|지정된 문자들중 일치하는 문자가 있는 마지막 인덱스를 찾습니다.|
+
+**요소 삽입/삭제/비교/추출**
+
+|항목|`string` 특화|내용|
+|--|--|--|
+|`compare()` (C++17~)|문자열을 대소 비교합니다.|
+|`starts_with()` (C++20~)|(작성중)|
+|`ends_with()` (C++20~)|(작성중)|
+|`contains()` (C++23~)|(작성중)|
+|`replace()`|O|`string`의 요소를 지정한 문자나 다른 시퀀스로 바꿉니다.|
+|`replace_with_range()` (C++23~)|O|(작성중)|
+|`substr()` (C++17~)|`string`에서 하위 문자열을 추출합니다.|
+|`copy()` (C++17~)|`string`에서 하위 문자열을 문자 배열에 복사합니다.|
+

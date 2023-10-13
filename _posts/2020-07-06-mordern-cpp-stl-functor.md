@@ -89,11 +89,32 @@ sidebar:
 
 # Searcher
 
+[search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)의 함수자로 사용되는 문자열 검색기입니다.
+
 |항목|내용|
 |--|--|
-|`default_searcher` (C++17~)|(작성중)|
-|`boyer_moore_searche` (C++17~)|(작성중)| 
-|`boyer_moore_horspool_searcher` (C++17~)|(작성중)| 
+|`default_searcher` (C++17~)|기본 검색기 입니다.|
+|`boyer_moore_searcher` (C++17~)|[Boyer-Moore 문자열 검색 알고리즘](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm)을 사용하는 검색기 입니다.| 
+|`boyer_moore_horspool_searcher` (C++17~)|[Boyer-Moore-Horspool 문자열 검색 알고리즘](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore%E2%80%93Horspool_algorithm)을 사용하는 검색기 입니다.| 
+
+```cpp
+std::string data{"Hello world."};
+std::string sub{"wo"};
+
+auto itr = std::search(
+    data.begin(),
+    data.end(),
+    std::default_searcher(
+        sub.begin(),
+        sub.end()
+    )
+);
+
+// data에서 sub를 찾았다면 오프셋을 구해봅니다.
+if (itr != data.end()) {
+    EXPECT_TRUE(std::distance(data.begin(), itr) == 6);
+}
+```
 
 # Invoke
 

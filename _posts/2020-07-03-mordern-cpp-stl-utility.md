@@ -24,8 +24,8 @@ sidebar:
 |[forword()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward) (C++11~)|값 카테고리를 유지하며 인자를 다른 함수에 전달합니다.|
 |`forward_like()` (C++23)|(작성중)|
 |[declval()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval) (C++11~)|주어진 타입을 참조 타입으로 변환하여, 참조 타입 표현식으로 변경해 줍니다.|
-|`as_const()` (C++17~)|(작성중)|
-|`to_underlying()` (C++17~)|(작성중)|
+|`as_const(T& param)` (C++17~)|인자 `param`에 `const`를 붙여 `const T&`로   변환합니다.|
+|`to_underlying()` (C++23~)|(작성중)|
 
 # 정수 비교
 
