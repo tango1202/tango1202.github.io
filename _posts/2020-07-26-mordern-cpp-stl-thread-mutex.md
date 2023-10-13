@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#26. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex), (C++14~) shared_timed_mutex, shared_lock, (C++17~) shared_mutex"
+title: "#26. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex), (C++14~) shared_timed_mutex, shared_lock, (C++17~) shared_mutex, scoped_lock"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -13,6 +13,8 @@ sidebar:
 > * `lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.
 > * `call_once()`를 이용하면 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
 > * (C++14~) `shared_timed_mutex`와 `shared_lock`을 이용하여 `mutex`의 소유권을 쓰레드끼리 공유할 수 있습니다. 
+> * (C++17~) `shared_mutex`은 다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 `mutex`입니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.
+> * (C++17~) [scoped_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c17-scoped_lock)을 추가하여, 다수의 `mutex`를 사용하더라도 데드락(Dead Lock)을 방지할 수 있게 해줍니다.
 
 # 개요
 
@@ -301,7 +303,7 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 |`lock()` (C++11~)|여러개의 `mutex`를 `lock()`합니다.|
 |`try_lock()` (C++11~)|여러개의 `mutex`를 `try_lock()`합니다.|
 |[shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) (C++14~)|공유할 수 있는 `mutex`를 `unique_lock` 처럼 생성시 자동으로 잠글 수도 있고, 별도로 `lock()`을 호출해야 잠글 수도 있습니다.|
-|[scoped_lock](??) (C++17~)|여러개의 `mutex`를 `lock()`하며 데드락을 방지합니다.|
+|[scoped_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c17-scoped_lock) (C++17~)|여러개의 `mutex`를 `lock()`하며 데드락을 방지합니다.|
 
 # mutex - 경쟁 상태(Race Condition) 해결
 
@@ -637,7 +639,7 @@ SharedFunc : 1559724 //shared_timed_mutex 가 훨씬 빠릅니다.
 
 # (C++17~) scoped_lock
 
-[try_lock() - mutex가 여러개인 경우 데드락(Dead Lock) 해결](??)에서 다수의 `mutex`가 서로 대기하는 데드락(Dead Lock) 상황을 예시하였는데요, C++17 부터는 `scope_lock`을 추가하여, 다수의 `mutex`를 사용하더라도 데드락(Dead Lock)을 방지할 수 있게 해줍니다.
+[try_lock() - mutex가 여러개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#try_lock---mutex%EA%B0%80-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0)에서 다수의 `mutex`가 서로 대기하는 데드락(Dead Lock) 상황을 예시하였는데요, C++17 부터는 `scope_lock`을 추가하여, 다수의 `mutex`를 사용하더라도 데드락(Dead Lock)을 방지할 수 있게 해줍니다.
 
 ```cpp
 class A {

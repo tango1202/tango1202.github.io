@@ -81,7 +81,6 @@ worker1.join();
 worker2.join(); 
 
 EXPECT_TRUE(a.GetVal() == 200); // (O) 경쟁 상태에 빠지지 않고 잘 계산합니다.
-
 ```
 
 # atomic 멤버 함수
@@ -90,7 +89,7 @@ EXPECT_TRUE(a.GetVal() == 200); // (O) 경쟁 상태에 빠지지 않고 잘 계
 |--|--|
 |`T operator =(T desired)` (C++11~)|`atomic` 개체는 복사 가능하지 않으며, `store(desired)` 와 같습니다.|
 |`is_lock_free()` (C++11~)|잠금이 없는지(`lock-free`) 확인합니다. `lock-free`면 CPU의 지원이 안되므로 `mutex`등의 `lock()`으로 잠금 처리 됩니다.|
-|`is_allways_lock_free` (C++17~)|(작성중)|
+|`is_always_lock_free` (C++17~)|항상 잠금이 없는지(`lock-free`) 확인합니다.|
 |`store()` (C++11~)|`atomic` 개체에 값을 저장합니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
 |`load()` (C++11~)|`atomic`개체의 값을 불러옵니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
 |`operator T()` (C++11~)|`atomic`개체의 값타입으로 암시적으로 형변환합니다.|
