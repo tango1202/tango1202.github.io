@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), reference_wrapper, bind())"
+title: "#20. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), reference_wrapper, bind()), (C++17~) invoke()"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -8,15 +8,16 @@ sidebar:
     nav: "docs"
 ---
 
-> * `function`은 `()`로 호출 가능한 함수자를 저장합니다.
-> * `function`에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.
-> * `mem_fn()`은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.
-> * `reference_warapper` 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.
-> * `ref()`, `cref()`는 `reference_wrapper` 개체를 생성합니다.
-> * `bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
+> * (C++11~) `function`은 `()`로 호출 가능한 함수자를 저장합니다.
+> * (C++11~) `function`에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.
+> * (C++11~) `mem_fn()`은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.
+> * (C++11~) `reference_warapper` 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.
+> * (C++11~) `ref()`, `cref()`는 `reference_wrapper` 개체를 생성합니다.
+> * (C++11~) `bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
 > > * `is_bind_expression`는 `bind()`로 생성한 함수인지 검사합니다.
 > > * `is_placeholder`는 자리 표시자를 사용했는지 검사합니다.
-> * [함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)(`unary_function`, `binery_function` 등), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)(`bind1st()`, `bind2nd()` 등), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 deprecate 되었습니다. 
+> * (C++11~) [함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)(`unary_function`, `binery_function` 등), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)(`bind1st()`, `bind2nd()` 등), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 deprecate 되었습니다. 
+> * (C++17~) [invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다.
 
 # 개요
 
@@ -403,6 +404,8 @@ EXPECT_TRUE(IsPlaceholder(func2) == false);
 
 # (c++17~) invoke()
 
+C++17 부터는 `invoke()`가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다. 일반 함수인 경우 `Func(params...)`를 호출하고, 멤버 함수인 경우 `param1.Func(param1+1...)`을 호출합니다.
+
 ```cpp
 class T {
 public:
@@ -412,7 +415,7 @@ public:
 int Sum(int a, int b) {return a + b;} // 일반 함수
 
 T t;
-EXPECT_TRUE(std::invoke(&T::Sum, t, 1, 2, 3) == 1 + 2 + 3); // 멤버 함수를 호출합니다.
+EXPECT_TRUE(std::invoke(T::Sum, t, 1, 2, 3) == 1 + 2 + 3); // 멤버 함수를 호출합니다.
 
-EXPECT_TRUE(std::invoke(&Sum, 1, 2) == 1 + 2); // 일반 함수를 호출합니다.
+EXPECT_TRUE(std::invoke(Sum, 1, 2) == 1 + 2); // 일반 함수를 호출합니다.
 ```

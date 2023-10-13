@@ -111,7 +111,7 @@ sidebar:
 |`generic_category()` (C++11~)|(작성중)|
 |`system_category()` (C++11~)|(작성중)|
 |`error_condition` (C++11~)|(작성중)|
-|`errc` (C++11~)|(작성중)|
+|`errc` (C++11~)|POSIX(운영체제 호환 표준)와 호환되는 에러코드 정의입니다.[cppreference](https://en.cppreference.com/w/cpp/error/errc)를 참고하세요.|
 |`error_code` (C++11~)|(작성중)| 
 |`system_error` (C++11~)|(작성중)|
 

@@ -18,7 +18,7 @@ sidebar:
 |NULL|널포인터의 값이며, `#define NULL 0` 입니다.|
 `max_align_t` (C++11~)|(작성중)|
 |`offsetof()`|(작성중)|
-|`byte` (C++17~)|(작성중)|
+|`byte` (C++17~)|순수한 1byte 크기를 갖는 타입입니다.(`char`, `unsigned char`는 문자 처리 의미가 포함된 1byte 크기의 타입입니다.) |
 
 # 수학 타입
 

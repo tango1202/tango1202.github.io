@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] 문자열, (C++17~) string_view"
+title: "#7. [모던 C++ STL] 문자열, (C++17~) string_view, 숫자/문자열 변환"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -420,3 +420,39 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |`substr()` (C++17~)|`string`에서 하위 문자열을 추출합니다.|
 |`copy()` (C++17~)|`string`에서 하위 문자열을 문자 배열에 복사합니다.|
 
+# (C++17~) 숫자/문자열 변환
+
+C++17 부터 숫자와 문자열간의 변환을 위한 `to_char(), from_char()` 함수가 제공되며, 기존 C스타일(`itoa(), strtol()`등) 보다 안전합니다.
+
+|항목|내용|
+|--|--|
+|`to_chars()` (C++17~)|정수, 실수를 문자열로 변환합니다.|
+|`to_chars_result` (C++17~)|`to_chars()`의 리턴값입니다. 변환된 문자열을 끝 포인터(`ptr`)와 에러 코드(`ec`, [errc](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98) 타입)로 구성됩니다.|
+|`from_chars()` (C++17~)|문자열을 정수, 실수로 변환합니다.|
+|`from_chars_result` (C++17~)|`from_chars()`의 리턴값입니다. 인자로 전달된 문자열에서 숫자로 해석할 수 없는 위치(`ptr`)와 에러 코드(`ec`, [errc](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98) 타입)로 구성됩니다.|
+|`chars_format` (C++17~)|`scientific, fixed, hex, general(fixed 와 scientific)` 옵션을 제공합니다.|
+
+```cpp
+char buf[10];
+{      
+    // 11을 10진수 문자열로 변환    
+    auto [ptr, ec]{std::to_chars(buf, buf + sizeof(buf), 11, 10)}; // 구조화된 바인딩. std::to_chars_result result{std::to_chars()} 와 동일
+    if (ec == std::errc{}) {
+        EXPECT_TRUE(std::string(buf, ptr - buf) == "11");
+    }
+}
+{
+    // 11을 16진수 문자열로 변환
+    auto [ptr, ec]{std::to_chars(buf, buf + sizeof(buf), 11, 16)};
+    EXPECT_TRUE(std::string(buf, ptr - buf) == "b");
+}
+{
+    char str[]{"11year"}; // 숫자와 일반 문자로 구성됩니다.
+    int result{0};
+    auto [ptr, ec]{std::from_chars(str, str + sizeof(str), result)};
+    if (ec == std::errc{}) {
+        EXPECT_TRUE(result == 11); // 숫자 부분만 잘 변환합니다.
+    }
+    EXPECT_TRUE(ptr == &str[2]); // year는 숫자가 아니므로 첫 문자 주소를 리턴합니다.
+}
+```

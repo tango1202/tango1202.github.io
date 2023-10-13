@@ -75,7 +75,7 @@ sidebar:
 |`pointer_to_unary_function` (~C++11)|(작성중)|
 |`pointer_to_binary_function` (~C++11)|(작성중)|
 |[mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn) (C++11~)|인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.|
-|[invoke(Func, params...)](??) (C++17~)|일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다. 일반 함수인 경우 `Func(params...)`를 호출하고, 멤버 함수인 경우 `param1.Func(param1+1...)을 호출합니다.|
+|[invoke(Func, params...)](??) (C++17~)|[invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다. 일반 함수인 경우 `Func(params...)`를 호출하고, 멤버 함수인 경우 `param1.Func(param1+1...)`을 호출합니다.|
 |`invoke_r()` (C++20~)|(작성중)|
 |`move_only_function` (C++23~)|(작성중)|
 |`copyable_function` (C++26~)|(작성중)|
@@ -89,9 +89,9 @@ sidebar:
 |[ref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) (C++11~)<br/>[cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) (C++11~)|`reference_wrapper` 개체를 생성합니다.| 
 |`unwrap_reference` (C++20~)<br/>`unwrap_ref_decay` (C++20~)|(작성중)| 
 
-# Searcher
+# (C++17~) Searcher
 
-[search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)의 함수자로 사용되는 문자열 검색기입니다.
+C++17 부터는 문자열 검색기가 추가되어 [search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)의 함수자로 사용할 수 있습니다.
 
 |항목|내용|
 |--|--|

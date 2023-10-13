@@ -36,8 +36,8 @@ sidebar:
 |--|--|
 |`copy()`<br/>`copy_backward()`<br/>`copy_if()` (C++11~)<br/>`copy_n()` (C++11~)|시퀀스의 요소들을 다른 곳에 저장합니다.|
 |`fill()`<br/>`fill_n()`|모든 요소에 `value`값을 대입합니다.|
-|`transform()`|시퀀스 안의 각 요소들에 대해 `op()`를 실행후 `*result`에 대입합니다.|
-|`generate`<br/>`generate_n()`|모든 요소에 `gen()`값을 대입합니다.|
+|`transform(InputIt first1, InputIt last1, OutputIt d_first, UnaryOperation unary_op)`|시퀀스 안의 각 요소들(`first1~last1`)에 대해 `op()`를 실행후 `*d_first~`에 대입합니다.|
+|`generate()`<br/>`generate_n()`|모든 요소에 `gen()`값을 대입합니다.|
 |`remove()`<br/>`remove_if()`<br/>`remove_copy()`<br/>`remove_copy_if()`|시퀀스에서 주어진 값인 요소를 삭제합니다.(컨테이너 버전이 효율적)|
 |`replace()`<br/>`replace_if()`<br/>`replace_copy()`<br/>`replace_copy_if()`|주어진 값을 가진 요소를 다른 값으로 대체합니다.|
 |`swap()`<br/>`iter_swap()`<br/>`swap_ranges()`|두 요소나 시퀀스의 각 요소들을 바꿔치기 합니다.|
@@ -92,7 +92,7 @@ sidebar:
 |--|--|
 |`min()`<br/>/`max()`<br/>`min_element()`<br/>`max_element()`|두 값 중에 최소값이나 최대값을 리턴하거나, 시퀀스에서 최소값이나 최대값을 리턴합니다.|
 |`minmax()` (C++11~)<br/>`minmax_element()` (C++11~)|최대값과 최소값을 리턴합니다.|
-|`clamp()` (C++17~)|주어진 값을 최대/최소 범위로 조정된 값으로 리턴합니다.|
+|`clamp(const T& value, const T& min, const T& max)` (C++17~)|주어진 값(`value`)을 최대(`max`)/최소(`min`) 범위로 조정된 값으로 리턴합니다.|
 
 # 비교 작업
 
@@ -123,19 +123,19 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`accumulate()`|(작성중)|
-|`inner_product()`|(작성중)|
+|`accumulate(InputIt first, InputIt last, T init)`|주어진 시퀀스의 값들(`first~last`)을 누적합니다.|
+|`inner_product(InputIt1 first1, InputIt1 last1, InputIt2 first2, T init)`|주어진 시퀀스의 값들(`first1~last1`) 과 다른 시퀀스(`first1~`)의 각 요소를 곱하고, `init`에 누적합니다.|
 |`adjacent_difference()`|(작성중)|
-|`partial_sum()`|(작성중)|
+|`partial_sum(InputIt first, InputIt last, OutputIt d_first)`|주어진 시퀀스의 값들(`first~last`)을 누적하여 각각 `d_first`에 저장합니다.<br/>`*(d_first + 0) = *first`<br/>`*(d_first + 1) = *first + *(first + 1)`<br/>`*(d_first + 2) = *first + *(first + 1) + *(first + 2)`|
 |`iota()` (C++11~)|(작성중)|
-|`reduce()` (C++17~)|(작성중)|
-|`transform_reduce()` (C++17~)|(작성중)|
-|`exclusive_scan()` (C++17~)|(작성중)|
-|`transform_exclusive_scan()` (C++17~)|(작성중)|
-|`inclusive_scan()` (C++17~)|(작성중)|
-|`transform_inclusive_scan()` (C++17~)|(작성중)|
-|`gcd()` (C++17~)|(작성중)|
-|`lcm()` (C++17~)|(작성중)|
+|`reduce()` (C++17~)|주어진 시퀀스의 값들을 병렬로 누적합니다. `accumulate()` 보다 빠릅니다.|
+|`transform_reduce()` (C++17~)|`inner_product()`를 병렬로 적용합니다.|
+|`inclusive_scan()` (C++17~)|`partial_sum()`을 병렬로 적용합니다.|
+|`exclusive_scan()` (C++17~)|`inclusive_scan()` 과 유사하며, `i`번째 요소는 포함하지 않습니다.|
+|`transform_inclusive_scan()` (C++17~)|주어진 시퀀스에 `unary_op()`를 적용한 결과를 `inclusive_scan()`합니다.|
+|`transform_exclusive_scan()` (C++17~)|주어진 시퀀스에 `unary_op()`를 적용한 결과를 `exclusive_scan()`합니다.|
+|`gcd(m, n)` (C++17~)|`m`과 `n`의 최대 공약수를 계산합니다.|
+|`lcm(m, n)` (C++17~)|`m`과 `n`의 최소 공배수를 계산합니다.|
 |`midpoint()` (C++20~)|(작성중)|
 |`lerp()` (C++20~)|(작성중)|
 
@@ -152,13 +152,30 @@ sidebar:
 |`destroy_at()` (C++17~)|(작성중)| 
 |`construct_at()` (C++17~)|(작성중)| 
 
-# 실행 정책
+# (C++17~) 실행 정책
 
-|항목|내용|
+C++17 부터는 대부분의 알고리즘에서 병렬 작업을 지원하는 오버로딩 버전이 추가되었고, 실행 정책을 지정할 수 있습니다.
+
+```cpp
+// 실행 정책을 인자로 받습니다.
+template<typename ExecutionPolicy, typename ForwardIt, typename T>
+ForwardIt find(
+    ExecutionPolicy&& policy,
+    ForwardIt first, ForwardIt last, 
+    const T& value
+);
+```
+
+|항목|인스턴스|내용|
 |--|--|
-|`equenced_policy` (C++17~)<br/>`parallel_policy`(C++17~)<br/>`parallel_unsequenced_policy`(C++17~)<br/>`unsequenced_policy`(C++20~)<br/>|(작성중)|
-|`seq` (C++17~)<br/>`par`(C++17~)<br/>`unseq`(C++20~)|(작성중)|
-|`is_execution_policy` (C++17~)|(작성중)|
+|`sequenced_policy` (C++17~)|`seq`|단일 쓰레드에서 순차적으로 실행합니다.|
+|`parallel_policy` (C++17~)|`par`|여러 쓰레드에서 병렬로 실행합니다. 각 요소는 순차적으로 실행합니다.|
+|`parallel_unsequenced_policy` (C++17~)|`par_unseq`|병렬로 실행합니다. 각 요소가 비 순차적으로 실행됩니다.|
+|`unsequenced_policy` (C++20~)|`unseq`|(작성중)|
+
+또한, `is_execution_policy`를 이용하여 주어진 클래스가 실행 정책을 나타내는지 확인합니다.
+  
+
 
 
 
