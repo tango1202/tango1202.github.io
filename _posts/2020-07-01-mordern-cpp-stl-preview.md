@@ -286,7 +286,7 @@ uncaught_exception
 |문자열 개체|[string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/)은 바이트 문자열을 지원합니다.<br/>[wstring](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/)은 와이드 문자열을 지원합니다.<br/><br/>**(C++11~)**<br/>[u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/)은 UTF-16을 지원합니다.<br/>[u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/)은 UTF-32를 지원합니다.<br/><br/>**(C++20~)**<br/>[u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/)은 UTF-8을 지원합니다.|
 |[strerror()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#strerror)| [strerror()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#strerror)는 `errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.|
 |[basic_string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view) (C++17~)|**(C++17~)**<br/>[string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.|
-|[문자열 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) (C++17~)|(작성중)|
+|[숫자/문자열 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) (C++17~)|**(C++17~)**<br/>숫자와 문자열간의 변환을 위한 [to_char(), from_char()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) 함수가 제공되며, 기존 C스타일(`itoa(), strtol()`등) 보다 안전합니다.|
 
 # 동시성 라이브러리
 

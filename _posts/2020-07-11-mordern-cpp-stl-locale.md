@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [모던 C++ STL] 현지화"
+title: "#11. [모던 C++ STL] 현지화"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

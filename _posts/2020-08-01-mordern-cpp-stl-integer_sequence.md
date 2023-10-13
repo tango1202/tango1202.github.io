@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#30. [모던 C++ STL] (C++14~) integer_sequence"
+title: "#31. [모던 C++ STL] (C++14~) integer_sequence"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

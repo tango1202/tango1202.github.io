@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++ STL] 진단"
+title: "#12. [모던 C++ STL] 진단"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -45,7 +45,7 @@ sidebar:
 |`regex_error` (C++11~)|(작성중)|
 |`system_error` (C++11~)|(작성중)|
 |`ios_base::failure` (C++11~)|(작성중)|
-|`filesystem::filesystem_error` (C++17~)|(작성중)|
+|`filesystem_error` (C++17~)|파일 시스템 처리에서 오류가 발생했습니다.|
 |`tx_exception`|(작성중)|
 |`nonexistent_local_time` (C++20~)|(작성중)|
 |`ambiguous_local_time` (C++20~)|(작성중)|

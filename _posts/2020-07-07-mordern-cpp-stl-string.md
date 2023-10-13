@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] 문자열, (C++17~) string_view, 숫자/문자열 변환"
+title: "#7. [모던 C++ STL] 문자열, (C++17~) string_view, 숫자/문자열 변환(to_chars(), from_chars())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -10,12 +10,13 @@ sidebar:
 
 > * `string`은 바이트 문자열을 지원합니다.
 > * `wstring`은 와이드 문자열을 지원합니다.
-> * (C++20~) `u8string`은 UTF-8을 지원합니다.
 > * (C++11~) `u16string`은 UTF-16을 지원합니다.
 > * (C++11~) `u32string`은 UTF-32를 지원합니다.
 > * `strerror()`는 `errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
+> * (C++17~) 숫자와 문자열간의 변환을 위한 `to_char(), from_char()` 함수가 제공되며, 기존 C스타일(`itoa(), strtol()`등) 보다 안전합니다.
+> * (C++20~) `u8string`은 UTF-8을 지원합니다.
 
 # 개요
 
@@ -385,7 +386,7 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 
 |항목|내용|
 |--|--|
-|`size()`<br/>`length()` (C++17~)|문자 갯수를 리턴합니다.|
+|`size()` (C++17~)<br/>`length()` (C++17~)|문자 갯수를 리턴합니다.|
 |`empty()` (C++17~)|비었는지 확인합니다.|
 |`max_size()` (C++17~)|저장할 수 있는 최대 문자 갯수를 리턴합니다.|
 |`swap()` (C++17~)|두 `string_view`의 내부 데이터를 바꿔치기 합니다.|
@@ -403,20 +404,18 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |`data()` (C++17~)|내부 데이터를 리턴합니다. 끝에 널문자가 없을 수도 있습니다.|
 |`front()` (C++17~)|첫번째 요소의 참조자를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`back()` (C++17~)|마지막 요소의 참조자를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
-|`find()`<br/>`rfind()` (C++17~)|지정된 문자 시퀀스와 일치하는 첫번째 인덱스를 찾습니다.|
-|`find_first_of()`<br/>`find_first_not_of()` (C++17~)|지정된 문자들중 일치하는 문자가 있는 첫번째 인덱스를 찾습니다.|
-|`find_last_of()`<br/>`find_last_not_of()`| (C++17~)|지정된 문자들중 일치하는 문자가 있는 마지막 인덱스를 찾습니다.|
+|`find()` (C++17~)<br/>`rfind()` (C++17~)|지정된 문자 시퀀스와 일치하는 첫번째 인덱스를 찾습니다.|
+|`find_first_of()` (C++17~)<br/>`find_first_not_of()` (C++17~)|지정된 문자들중 일치하는 문자가 있는 첫번째 인덱스를 찾습니다.|
+|`find_last_of()` (C++17~)<br/>`find_last_not_of()` (C++17~)|지정된 문자들중 일치하는 문자가 있는 마지막 인덱스를 찾습니다.|
 
 **요소 삽입/삭제/비교/추출**
 
-|항목|`string` 특화|내용|
-|--|--|--|
+|항목|내용|
+|--|--|
 |`compare()` (C++17~)|문자열을 대소 비교합니다.|
 |`starts_with()` (C++20~)|(작성중)|
 |`ends_with()` (C++20~)|(작성중)|
 |`contains()` (C++23~)|(작성중)|
-|`replace()`|O|`string`의 요소를 지정한 문자나 다른 시퀀스로 바꿉니다.|
-|`replace_with_range()` (C++23~)|O|(작성중)|
 |`substr()` (C++17~)|`string`에서 하위 문자열을 추출합니다.|
 |`copy()` (C++17~)|`string`에서 하위 문자열을 문자 배열에 복사합니다.|
 

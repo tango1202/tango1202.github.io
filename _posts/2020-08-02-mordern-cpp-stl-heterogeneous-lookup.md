@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#31. [모던 C++ STL] (C++14~) 연관 컨테이너의 이종 탐색"
+title: "#32. [모던 C++ STL] (C++14~) 연관 컨테이너의 이종 탐색"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
