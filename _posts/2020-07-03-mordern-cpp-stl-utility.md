@@ -116,7 +116,6 @@ sidebar:
 |`difftime()`|(작성중)|
 |`time()`|(작성중)|
 |`clock()`|(작성중)|
-|`timespec_get()` (C++17~)|(작성중)|
 |`asctime()`|(작성중)|
 |`ctime()`|(작성중)|
 |`strftime()`|(작성중)|
@@ -128,4 +127,5 @@ sidebar:
 |`tm`|(작성중)|
 |`time_t`|(작성중)|
 |`clock_t`|(작성중)|
-|`timespec` (C++17~)|(작성중)|
+|`timespec_get()` (C++17~)|`timespec` 개체를 구합니다.|
+|`timespec` (C++17~)|초(`tv_sec`)와 나노초(`tv_nsec`	)로 구분합니다.|

@@ -45,22 +45,22 @@ sidebar:
 |`regex_error` (C++11~)|(작성중)|
 |`system_error` (C++11~)|(작성중)|
 |`ios_base::failure` (C++11~)|(작성중)|
-|`filesystem_error` (C++17~)|파일 시스템 처리에서 오류가 발생했습니다.|
 |`tx_exception`|(작성중)|
 |`nonexistent_local_time` (C++20~)|(작성중)|
 |`ambiguous_local_time` (C++20~)|(작성중)|
 |`format_error` (C++20~)|(작성중)|
 |`bad_typeid`|널포인터를 역참조하여 typeid를 구할때 발생합니다.<br/>`T* p = NULL;`<br/>`typeid(*p).name();`|
 |`bad_cast`|`dynamic_cast`가 실패시 발생합니다.|
+|`filesystem_error` (C++17~)|파일 시스템 처리에서 오류가 발생했습니다.|
 |`bad_any_cast` (C++17~)|[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 사용시 타입이 일치하지 않을때 예외를 발생합니다.|
 |`bad_optional_access` (C++17~)|[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)에서 `value()` 사용시 값이 없을때 예외를 발생합니다.|
+|`bad_variant_access` (C++17~)|[variant](??)에서 주어진 타입이 없을때 예외를 발생합니다.|
 |`bad_expected_access` (C++23~)|(작성중)|
 |[bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) (C++11~)|`shared_ptr`에서 잘못된 `weak_ptr`을 사용할때 발생하는 예외입니다.|
 |[bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call) (C++11~)|`function`에서 `()`로 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
 |`bad_alloc`|메모리 할당에 실패했습니다.([operator new와 operator delete 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고)|
 |`bad_array_new_length` (C++11~)|(작성중)|
 |`bad_exception`|동적 예외 사양에 `bad_exception`이 포함되면, `unexpected_handler` 가 호출되고, 여기서 `throw;`시 `bad_exception`으로 변환되어 전파됩니다.([동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고)|
-|`bad_variant_access` (C++17~)|(작성중)|
 
 # 예외 처리 실패
 
@@ -94,7 +94,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`uncaught_exception()` (~C++20)<br/>`uncaught_exceptions()` (C++17~)|(작성중)|
+|`uncaught_exception()` (C++11~C++17)<br/>`uncaught_exceptions()` (C++17~)|(작성중)|
 |`exception_ptr` (C++11~)|(작성중)|
 |`make_exception_ptr()` (C++11~)|(작성중)|
 |`current_exception()` (C++11~)|(작성중)|

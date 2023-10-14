@@ -10,6 +10,7 @@ sidebar:
 
 > * `system_clock`, `time_point`, `duration`개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
+> * (C++17~) [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)와 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 반올림 관련 함수인 `floor()`, `ceil()`, `round()`, `abs()`함수가 추가되었습니다.
 
 # 개요
 
@@ -22,17 +23,23 @@ C++11 부터 STL 에서는 좀더 다양한 정확도로 시간을 추적할 수
 다음 예는 주어진 함수의 실행 시간을 측정하는 예입니다.
 
 1. `CheckMicrosecond()`함수는 전달된 함수를 실행하고 실행 시간을 측정합니다. 실행시킬 함수에 인자를 전달하기 위해 가변 템플릿을 사용합니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
-2. `system_clock::now()`를 이용하여 기간을 구합니다.
-3. 구해진 기간을 `microsecond` 타입으로 저장합니다.
+2. `system_clock::now()`를 이용하여 `time_point`를 구합니다.
+3. 구해진 `time_point`를 `microsecond` 타입으로 저장합니다.
+4. 두 `time_point`간의 차를 `duration`으로 변환합니다. 
 
 ```cpp
 template<typename Func, typename... Params>
 std::chrono::microseconds CheckMicrosecond(Func func, Params... params) {
+    // func 실행전 time_point 측정
     std::chrono::system_clock::time_point start{std::chrono::system_clock::now()};    
 
+    // func 실행
     func(params...);
 
+    // func 실행 후 time_point 측정
     std::chrono::system_clock::time_point end{std::chrono::system_clock::now()};
+
+    // 두 time_point 간의 차
     std::chrono::microseconds val{std::chrono::duration_cast<std::chrono::microseconds>(end - start)};
 
     return val;
@@ -83,9 +90,9 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |`min()` (C++11~)|(작성중)|
 |`max()` (C++11~)|(작성중)|
 |`time_point_cast()`|(작성중)|
-|`floor()` (C++17~)|(작성중)|
-|`ceil()` (C++17~)|(작성중)|
-|`round()` (C++17~)|(작성중)|
+|`floor()` (C++17~)|내림합니다.|
+|`ceil()` (C++17~)|올림합니다.|
+|`round()` (C++17~)|반올림합니다.|
 |`+, -` (C++11~)|(작성중)|
 |`++, --` (C++11~)<br/>|(작성중)|
 |`+=, -=` (C++11~)|(작성중)|
@@ -110,10 +117,10 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |`min()` (C++11~)|(작성중)|
 |`max()` (C++11~)|(작성중)|
 |`duration_cast()` (C++11~)|(작성중)|
-|`floor()` (C++17~)|(작성중)|
-|`ceil()` (C++17~)|(작성중)|
-|`round()` (C++17~)|(작성중)|
-|`abs()` (C++17~)|(작성중)|
+|`floor()` (C++17~)|내림합니다.|
+|`ceil()` (C++17~)|올림합니다.|
+|`round()` (C++17~)|반올림합니다.|
+|`abs()` (C++17~)|절대값을 구합니다.|
 |`from_stream()` (C++20~)|(작성중)|
 |`+, -` (C++11~)|(작성중)|
 |`++, --` (C++11~)<br/>|(작성중)|
@@ -147,18 +154,18 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |`duration_values` (C++11~)|(작성중)|
   
 
-# 날짜 / 시간 리터럴
+# (C++14~) 날짜 / 시간 리터럴
 
 C++14 부터는 [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 
-# 시/분/초 서식
+# (C++20~) 시/분/초 서식
 
 |항목|내용|
 |--|--|
 |`hh_mm_ss` (C++20~)|(작성중)|
 |`is_am()` (C++20~)<br/>`is_pm()` (C++20~)<br/>`make12()` (C++20~)<br/>`make24()` (C++20~)|(작성중)|
 
-# Calendar
+# (C++20~) Calendar
 
 |항목|내용|
 |--|--|
@@ -180,7 +187,7 @@ C++14 부터는 [표준 사용자 정의 리터럴](https://tango1202.github.io/
 |`year_month_weekday_last` (C++20~)|(작성중)|
 |`operator /` (C++20~)|(작성중)|
 
-# Time Zone
+# (C++20~) Time Zone
 
 |항목|내용|
 |--|--|

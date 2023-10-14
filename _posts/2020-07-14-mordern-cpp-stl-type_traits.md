@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.
+> * (C++11~) `type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.
 
 # 개요
 
@@ -35,7 +35,7 @@ void Func(T t) {
 |항목|내용|
 |--|--|
 |`integral_constant`(C++11~)|정수형 타입을 생성합니다.|
-|`bool_constant` (C++17~)|(작성중)|
+|`bool_constant` (C++17~)|`integral_constant<bool, true 나 false>`|
 
 ```cpp
 typedef std::integral_constant<int, 2> TwoType;
@@ -188,7 +188,7 @@ ThreeType three;
 |`remove_cvref` (C++20~)|(작성중)|
 |`common_reference` (C++20~)<br/>`basic_common_reference` (C++20~)|(작성중)|
 
-# traits 에서의 연산
+# (C++17~) traits 에서의 연산
 
 |항목|내용|
 |--|--|

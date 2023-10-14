@@ -79,7 +79,7 @@ void* align(
 |`allocator_arg` (C++11~)|(작성중)|
 |`uses_allocator` (C++11~)|(작성중)|
 |`scoped_allocator_adaptor` (C++11~)|(작성중)|
-|`polymorphic_allocator` (C++17~)|(작성중)|
+|`polymorphic_allocator` (C++17~)|런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](??)를 사용합니다.|
 |`uses_allocator_construction_args` (C++20~)|(작성중)|
 |`make_obj_using_allocator` (C++20~)|(작성중)|
 |`uninitialized_construct_using_allocator` (C++20~)|(작성중)|
@@ -96,19 +96,6 @@ void* align(
 |`pointer_safety` (C++11~C++23)|(작성중)|
 |`get_pointer_safety()` (C++11~C++23)|(작성중)|
 
-# 메모리 리소스
-
-|항목|내용|
-|--|--|
-|`memory_resource` (C++17~)|(작성중)| 
-|`new_delete_resource()` (C++17~)|(작성중)|
-|`null_memory_resource()` (C++17~)|(작성중)|
-|`get_default_resource()` (C++17~)|(작성중)|
-|`set_default_resource()` (C++17~)|(작성중)| 
-|`pool_options` (C++17~)|(작성중)|
-|`synchronized_pool_resource` (C++17~)|(작성중)| 
-|`unsynchronized_pool_resource` (C++17~)|(작성중)| 
-|`monotonic_buffer_resource` (C++17~)|(작성중)| 
 
 # 초기화 되지 않은 스토리지
 

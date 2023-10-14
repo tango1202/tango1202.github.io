@@ -17,7 +17,7 @@ sidebar:
 2. C++14
 
     컴파일 타임 정수 타입 시퀀스([integer_sequence](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-integer_sequence/)), 스마트 포인터 유틸리티([make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique)), 
-    [tuple의 타입 기반 get()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c14-%ED%83%80%EC%9E%85-%EA%B8%B0%EB%B0%98-get), [is_final()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1), [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/), 이터레이터 범위 접근([rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)), [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/), [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/), 쓰레드 소유권 공유([shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock), [shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)), [quoted()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4) 가 추가되었습니다.
+    [tuple의 타입 기반 get()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c14-%ED%83%80%EC%9E%85-%EA%B8%B0%EB%B0%98-get), [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/), 이터레이터 범위 접근([rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)), [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/), [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/), 쓰레드 소유권 공유([shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock), [shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)), [quoted()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4) 가 추가되었습니다.
 
 
 STL
@@ -90,19 +90,17 @@ is_allways_lock_free
 
 # 크로노
 
-floor, ceil, round, abs(time_spec
-rounding functions for std::chrono::duration and std::chrono::time_point)
+floor, ceil, round, abs
 C스타일 시간 유틸리티 std::timespec_get
 
-unorderd_map
-erase_f, insert_or_assign
+# 컨테이너
+insert_or_assign
 extract
 merge
 try_implace
 
-# 기타
 
-bool_constant
+# Compile-time programming
 
 # Memory management
 
@@ -124,20 +122,10 @@ transparent std::owner_less
 array support for std::shared_ptr
 allocation functions with explicit alignment
 
-# Compile-time programming
-
-std::conjunction/std::disjunction/std::negation
-type trait variable templates (xxx_+v)
-std::is_swappable
-is_invocable
-is_aggregate
-std::has_unique_object_representations
-
 
 # Iterators and containers
 
 map/set extract and map/set merge(slicing for maps and sets https://github.com/AnthonyCalandra/modern-cpp-features#splicing-for-maps-and-sets)
-map/unordered_map try_emplace and insert_or_assign
 contiguous iterators (LegacyContiguousIterator)
 범위 접근. non-member std::size/std::empty/std::data
 
@@ -150,8 +138,6 @@ contiguous iterators (LegacyContiguousIterator)
 
 cache line interface
 
-std::uncaught_exceptions
-
 
 모호성 해소
 in_place
@@ -162,10 +148,12 @@ in_place_index_t
 
 # 자가 진단
 
+uncaught_exceptions
+
+filesystem_error
 bad_any_cast
 bad_optional_access
 bad_variant_access
-uncaught_exception
 
 # 언어 지원 라이브러리
 
@@ -182,15 +170,15 @@ uncaught_exception
 |[코루틴](??) (C++20~)|(작성중)|
 |`version` (C++20~)|**(C++20~)**<br/>라이브러리 테스트를 위한 매크로를 지원합니다. 자세한 내용은 [cppreference](https://en.cppreference.com/w/cpp/feature_test#Library_features)를 참고하세요.|
 
-# 컨셉 라이브러리
+# 컨셉 라이브러리 (C++20~)
 
 (C++20~) (작성중)
 
-# 메타 프로그래밍 라이브러리
+# 메타 프로그래밍 라이브러리 (C++11~)
 
 |항목|내용|
 |--|--|
-|[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) (C++11~)|**(C++11~)**<br/>[type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.<br/><br/>**(C++14~)**<br/>[is_final]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1))이 추가되어 `final`클래스 타입인지 검사합니다.
+|[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/) (C++11~)|**(C++11~)**<br/>[type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.<br/><br/>**(C++14~)**<br/>`is_null_pointer`, `is_final`이 추가되었습니다.<br/><br/>**(C++17~)**<br/>`bool_constant`, `is_literal`, `has_unique_object_representations`, `is_aggregate`, `is_swappable`, `is_invocable`, `invoke_result`, `void_t`, `type_identity`, `conjunction`, `disjunction`, `negation`이 추가되었습니다.|
 |[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) (C++11~)|**(C++11~)**<br/>[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.|
 |[integer_sequence](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-integer_sequence/) (C++14~)|**(C++141~)**<br/>[integer_sequence](https://tango1202.github.io/mordern-cpp-stl/) 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.|
 
@@ -224,7 +212,7 @@ uncaught_exception
 |간단한 데이터 개체|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)는 `first`와 `second`로 2개의 요소를 관리합니다. `make_pair()`를 이용하여 `pair`를 쉽게 생성할 수 있습니다.<br/><br/>**(C++11~)**<br/>[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.<br/>`get()` 으로 요소에 접근합니다.<br/>[make_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#make_tuple), [tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie), [forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple) 을 이용하여 `tuple`을 쉽게 생성할 수 있습니다.<br/>[tuple_cat()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_cat) 으로 두개의 `tuple`을 합칩니다.<br/>[tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size)로 컴파일 타임에 `tuple`요소 갯수를 구합니다.<br/>[tuple_element](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_element)을 이용하여 `tuple` 각 요소에 대한 타입을 구합니다.<br/>[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)를 이용하여 `pair`의 개체 생성시 `tuple`의 요소들로 개체 생성자를 호출합니다.<br/><br/>**(C++14~)**<br/>[타입 기반 `get()`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c14-%ED%83%80%EC%9E%85-%EA%B8%B0%EB%B0%98-get)을 이용하여 타입들이 서로 다르다면 타입으로 데이터에 접근할 수 있습니다.<br/><br/>**(C++17~)**<br/>[apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)는 `tuple` 형식을 전달받아 함수자를 호출합니다.<br/>[make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple)은 `tuple` 형식을 전달받아 개체를 생성합니다.<br/>[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)이 추가되어 값이 있을 수도 있고, 없을 수도 있는 데이터를 처리할 수 있어, 미확정 상태, 값을 처리하기 부적절한 상태, 함수 리턴값 성공 여부 처리를 좀더 단순하게 할 수 있습니다.<br/>[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/)가 추가되어 타입의 변동 가능성이 있는 데이터를 비교적 안전하게 사용할 수 있습니다.<br/>[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)를 제공하여 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있게 합니다.<br/>[expected](??) (C++23~)(작성중)|
 |[함수자 타입 특성 클래스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4)|함수자의 타입 특성으로 사용됩니다.<br/><br/>**(C++11~)**<br/>[unary_function, binery_function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)는 deprecate 되었습니다.|
 |[함수자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90)|`equal_to()`, `less()` 등의 비교 연산과 `logical_and()`, `logical_or()` 등의 논리 연산과 `plus()`, `minus()`등의 산술 연산과 `bit_and()`, `bit_or()`등의 비트 연산 함수자들을 제공합니다.<br/><br/>**(C++17~)**<br/>[문자열 검색기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#c17-searcher)(`default_searcher`, `boyer_moore_searcher`, `boyer_moore_horspool_searcher`)가 추가되어 [search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)의 함수자로 사용할 수 있습니다.|
-|[부정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)|반환값을 부정합니다.<br/><br/>**(C++11~)**<br/>[not1(), not2()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 는 deprecate 되었습니다.<br/><br/>**(C++17~)<br/>[not_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되어 인자(단항, 이항 제한이 없습니다.)로 전달한 함수자를 부정합니다.|
+|[부정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)|반환값을 부정합니다.<br/><br/>**(C++11~)**<br/>[not1(), not2()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 는 deprecate 되었습니다.<br/><br/>**(C++17~)**<br/>[not_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되어 인자(단항, 이항 제한이 없습니다.)로 전달한 함수자를 부정합니다.|
 |[함수 래퍼](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98-%EB%9E%98%ED%8D%BC)|멤버 함수를 호출할 수 있도록 함수자로 만듭니다.<br/><br/>**(C++11~)**<br/>[mem_fun(), mem_fun_ref(), ptr_fun()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)은 deprecate 되었습니다.<br/>[function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)은 `()`로 호출 가능한 함수자를 저장합니다. `function`에서 `()`로 호출할 대상이 없을 때 [bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call) 예외를 방출합니다.<br/>[mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.<br/><br/>**(C++17~)**<br/>[invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다.|
 |[참조 래퍼](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98-%EB%9E%98%ED%8D%BC) (C++11~)|**(C++11~)**<br/>[reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper) 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.<br/>[ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) 는 `reference_wrapper` 개체를 생성합니다.|
 |[바인더](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)|함수 인자값을 고정하여 호출 형태를 변경합니다.<br/><br/>**(C++11~)**<br/>[`bind1st()`, `bind2nd()`](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94) 는 deprecate 되었습니다.<br/>[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.<br/>[is_bind_expression](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_bind_expression)는  `bind()`로 생성한 함수인지 검사합니다.<br/>[is_placeholder](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_placeholder)는 자리 표시자를 사용했는지 검사합니다.|
@@ -241,7 +229,7 @@ uncaught_exception
 |항목|내용|
 |--|--|
 |[시퀀스 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/), `list`, `queue`, `stack`, `deque`, `priority_queue` 를 제공합니다.<br/><br/>**(C++11~)**<br/>[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.<br/>[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.|
-|[연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)|`map`, `multimap`, `set`, `multiset`을 제공합니다.<br/><br/>**(C++11~)**<br/>[`unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.<br/><br/>**(C++14~)**<br/>[연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.|
+|[연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)|`map`, `multimap`, `set`, `multiset`을 제공합니다.<br/><br/>**(C++11~)**<br/>[`unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.<br/><br/>**(C++14~)**<br/>[연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.><br/><br/>**(C++17~)**<br/>`insert_or_assign()`, `try_emplace()`, `extract()`, `merge()` 함수가 추가되었습니다.|
 |`flat_set`<br/>`flat_map`<br/>`flat_multiset`<br/>`flat_multimap` (C++23~)|(작성중)|
 |`span` (C++23~)|(작성중)|
 |`mdspan` (C++23~)|(작성중)|
@@ -260,7 +248,7 @@ uncaught_exception
 |[이터레이터 연관 타입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%97%B0%EA%B4%80-%ED%83%80%EC%9E%85) (C++20~)|(작성중)|
 |[알고리즘 컨셉 및 연관 타입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%BB%A8%EC%85%89-%EB%B0%8F-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0) (C++20~)|(작성중)|
 
-# 범위 라이브러리
+# 범위 라이브러리 (C++20~)
 
 (C++20~) (작성중)
 
@@ -293,7 +281,7 @@ uncaught_exception
 |[basic_string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view) (C++17~)|**(C++17~)**<br/>[string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.|
 |[숫자/문자열 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) (C++17~)|**(C++17~)**<br/>숫자와 문자열간의 변환을 위한 [to_char(), from_char()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) 함수가 제공되며, 기존 C스타일(`itoa(), strtol()`등) 보다 안전합니다.|
 
-# 동시성 라이브러리
+# 동시성 라이브러리 (C++11~)
 
 |항목|내용|
 |--|--|
@@ -320,9 +308,9 @@ uncaught_exception
 |항목|내용|
 |--|--|
 |[C스타일 시간 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%8B%9C%EA%B0%84-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)|`time()`, `clock()`등 C스타일 시간 함수를 제공합니다.|
-|[chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/) (C++11~)|**(C++11~)**<br/>[system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock), [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point), [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.<br/><br/>**(C++14~)**<br/>`operator ""h`와 같은 [날짜 / 시간 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#%EB%82%A0%EC%A7%9C--%EC%8B%9C%EA%B0%84-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 제공됩니다.<br/><br/>**(C++20~)**<br/>[시/분/초 서식](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#%EC%8B%9C%EB%B6%84%EC%B4%88-%EC%84%9C%EC%8B%9D)(작성중)<br/>[Calender](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#calendar)(작성중)<br/>[Timezone](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-zone)(작성중)<br/>`parse()`(작성중)|
+|[chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/) (C++11~)|**(C++11~)**<br/>[system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock), [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point), [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.<br/><br/>**(C++14~)**<br/>`operator ""h`와 같은 [날짜 / 시간 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c14-%EB%82%A0%EC%A7%9C--%EC%8B%9C%EA%B0%84-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 제공됩니다.<br/><br/>**(C++17~)**<br/>[time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)와 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 반올림 관련 함수인 `floor()`, `ceil()`, `round()`, `abs()`함수가 추가되었습니다.<br/><br/>**(C++20~)**<br/>[시/분/초 서식](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-%EC%8B%9C%EB%B6%84%EC%B4%88-%EC%84%9C%EC%8B%9D)(작성중)<br/>[Calender](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-calendar)(작성중)<br/>[Timezone](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone)(작성중)<br/>`parse()`(작성중)|
 
-# 정규 표현식 라이브러리
+# 정규 표현식 라이브러리 (C++11~)
 
 |항목|내용|
 |--|--|
@@ -363,7 +351,7 @@ uncaught_exception
 |[Facet](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#facet)|(작성중)|
 |[문자 분류(Locale)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#%EB%AC%B8%EC%9E%90-%EB%B6%84%EB%A5%98locale)|(작성중)|
 |[문자 조작(Locale)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#%EB%AC%B8%EC%9E%90-%EC%A1%B0%EC%9E%91locale)|(작성중)|
-|[문자열 현지화 변환)()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%98%84%EC%A7%80%ED%99%94-%EB%B3%80%ED%99%98) (C++11~C++17)|(작성중)|
+|[문자열 현지화 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%98%84%EC%A7%80%ED%99%94-%EB%B3%80%ED%99%98) (C++11~C++17)|(작성중)|
 
 # 진단 라이브러리
 
