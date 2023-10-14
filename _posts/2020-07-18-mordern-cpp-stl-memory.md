@@ -87,13 +87,15 @@ void* align(
 
 # 메모리 유틸리티 작업
 
+C++17 부터는 `uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at(), construct_at()` 함수를 추가하여 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 방법을 제공합니다.
+
 |항목|내용|
 |--|--|
 |`uninitialized_copy()`<br/>`uninitialized_copy_n()` (C++11~)|메모리를 복사합니다.|
 |`uninitialized_fill()`<br/>`uninitialized_fill_n()`|메모리를 특정 값으로 채웁니다.|
 |`uninitialized_move()` (C++17~)<br/>`uninitialized_move_n()` (C++17~)|메모리의 값을 이동시킵니다.|
-|`uninitialized_default_construct()` (C++17~)<br/>`uninitialized_default_construct_n()` (C++17~)|주어진 메모리 영역 개체들을 기본 생성자(`new T`)로 초기화 합니다. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 하지 않습니다.([위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고)| 
-|`uninitialized_value_construct()` (C++17~)<br/>`uninitialized_value_construct_n()` (C++17~)|주어진 메모리 영역 개체들을 값 생성자(`new T()`)로 초기화 합니다. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 합니다.([위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고)| 
+|`uninitialized_default_construct()` (C++17~)<br/>`uninitialized_default_construct_n()` (C++17~)|주어진 메모리 영역 개체들을 기본 생성자(`new T`)로 초기화 합니다. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 하지 않습니다.| 
+|`uninitialized_value_construct()` (C++17~)<br/>`uninitialized_value_construct_n()` (C++17~)|주어진 메모리 영역 개체들을 값 생성자(`new T()`)로 초기화 합니다. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 합니다.| 
 |`destroy()` (C++17~)<br/>`destroy_n()` (C++17~)|주어진 메모리 영역 개체들의 소멸자를 호출합니다.| 
 |`destroy_at()` (C++17~)|주어진 메모리 영역 개체의 소멸자를 호출합니다.| 
 |`construct_at()` (C++17~)|주어진 메모리 영역 개체의 생성자를 호출합니다.| 
