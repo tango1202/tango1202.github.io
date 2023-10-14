@@ -162,45 +162,30 @@ EXPECT_TRUE(t.x == 10 && t.y == 20);
    
 2. 배열의 요소 갯수보다 초기화 값을 적게 제공한 경우 나머지 요소
 
-3. 클래스, 구조체, 공용체의 멤버 변수([Zero-initialization(https://en.cppreference.com/w/cpp/language/zero_initialization)](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고)
+3. 클래스, 구조체, 공용체의 멤버 변수
+
+    * `T t;`나 `T* ptr = new T;`와 같이 괄호 없이 기본 생성자를 호출하면 자동 제로 초기화를 하지 않습니다.
+    * `T* ptr = new T();` 와 같이 괄호를 사용하여 기본 생성자를 호출하면 자동 제로 초기화를 합니다. 
  
-    하지만 저는 신뢰하지 않습니다. GCC version 8.1.0 디버그 모드에서는 `0`이 아니더라구요.
-
 ```cpp
-int g_Val; // 전역 변수. 명시적 초기화 가능
-static int s_Val; // 정적 전역 변수. 명시적 초기화 가능
-
-class T {
-public:
-    static int s_m_Val; // 정적 멤버 변수. 명시적 초기화 불가능. 선언과 정의 분리. 단 const 형은 선언에서 초기화 가능
-    static const int s_c_m_Val = 0; // 정적 상수 멤버 변수. 명시적 초기화 가능
-    int m_Val; // 멤버 변수. 명시적 초기화 불가능.
-
-    int f1() const {
-        static int s_l_Val; // 정적 지역 변수. 명시적 초기화 가능
-        return s_l_Val;
-    }
-
-    int f2() const {
-        int l_Val; // 지역 변수. 명시적 초기화 가능
-        return l_Val;
-    }
-};
-int T::s_m_Val; // 선언과 정의 분리
-const int T::s_c_m_Val = 0; // 선언과 정의 분리 
-
 T t;
+T* ptr1 = new T; // 괄호 없이 생성합니다. 자동 초기화가 안됩니다.
+T* ptr2 = new T(); // 괄호로 생성합니다. 자동 초기화가 됩니다.
 
 EXPECT_TRUE(g_Val == 0); // 전역 변수는 0으로 자동 초기화
 EXPECT_TRUE(s_Val == 0); // 정적 전역 변수는 0으로 자동 초기화
 EXPECT_TRUE(T::s_m_Val == 0); // 정적 멤버 변수는 0으로 자동 초기화
 EXPECT_TRUE(T::s_c_m_Val == 0); // 정적 상수 멤버 변수는 명시적 초기화
-EXPECT_TRUE(t.m_Val == 0); // (X) 오동작. 개체의 멤버 변수는 0으로 자동 초기화 된다고 하는데 GCC 디버그 모드는 0이 아닙니다.
+EXPECT_TRUE(ptr1->m_Val == 0 || ptr1->m_Val != 0); // new T; 로 생성하면 자동 초기화 되지 않습니다.
+EXPECT_TRUE(ptr2->m_Val == 0); // new T(); 로 생성하면 자동 초기화됩니다.
 EXPECT_TRUE(t.f1() == 0); // 정적 지역 변수는 0으로 자동 초기화
 // EXPECT_TRUE(t.f2() != 0); // 지역 변수는 쓰레기값이 될 수도 있음
 
 int arr[3] = {1, }; 
 EXPECT_TRUE(arr[0] == 1 && arr[1] == 0 && arr[2] == 0); // 배열 갯수 보다 초기화 갯수가 적을때 나머지 요소는 0으로 자동 초기화
+
+delete ptr1;
+delete ptr2;
 ```
 
 복잡하죠? 복잡하니, 모든 변수를 초기화 한다는 대원칙을 가지고 작성하세요. 개발 초기에서 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)가 없어서 자동 제로 초기화를 활용해서 개발했다가, 누군가 나중에 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 넣어버리면 낭패이고, 디버그 모드와 릴리즈 모드가 결과가 달라도 낭패이니까요.

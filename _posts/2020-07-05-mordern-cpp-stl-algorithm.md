@@ -139,19 +139,6 @@ sidebar:
 |`midpoint()` (C++20~)|(작성중)|
 |`lerp()` (C++20~)|(작성중)|
 
-# 메모리 유틸리티 작업
-
-|항목|내용|
-|--|--|
-|`uninitialized_copy()`<br/>`uninitialized_copy_n()` (C++11~)|(작성중)|
-|`uninitialized_fill()`<br/>`uninitialized_fill_n()`|(작성중)|
-|`uninitialized_move()` (C++17~)<br/>`uninitialized_move_n()` (C++17~)|(작성중)|
-|`uninitialized_default_construct()` (C++17~)<br/>`uninitialized_default_construct_n()` (C++17~)|(작성중)| 
-|`uninitialized_value_construct()` (C++17~)<br/>`uninitialized_value_construct_n()` (C++17~)|(작성중)| 
-|`destroy()` (C++17~)<br/>`destroy_n()` (C++17~)|(작성중)| 
-|`destroy_at()` (C++17~)|(작성중)| 
-|`construct_at()` (C++17~)|(작성중)| 
-
 # (C++17~) 실행 정책
 
 C++17 부터는 대부분의 알고리즘에서 병렬 작업을 지원하는 오버로딩 버전이 추가되었고, 실행 정책을 지정할 수 있습니다.

@@ -104,19 +104,20 @@ try_implace
 
 # Memory management
 
-`<memory_resource>`
+`<memory_resource>` std::pmr::memory_resource and std::polymorphic_allocator
+
 align_val_t
-std::launder
+std::uninitialized_move
+std::uninitialized_value_construct
 uninitialized memory algorithms
 std::destroy_at
 std::destroy
 std::destroy_n
 construct_at
-std::uninitialized_move
-std::uninitialized_value_construct
+
 weak_from_this
 할당자
-std::pmr::memory_resource and std::polymorphic_allocator
+std::launder
 std::aligned_alloc
 transparent std::owner_less
 array support for std::shared_ptr
@@ -188,14 +189,13 @@ bad_variant_access
 |--|--|
 |[C스타일 메모리 관리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)|`malloc()`, `free()`등 C스타일 메모리 할당/해제 함수를 제공합니다.|
 |[저수준 메모리 관리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%A0%80%EC%88%98%EC%A4%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)|`operator new`, `operator delete`, `set_new_handler()`등 C++ 스타일의 메모리 할당/해제시 제어하는 방법을 제공합니다.|
-|[할당자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%ED%95%A0%EB%8B%B9%EC%9E%90)|[allocator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 등 STL에서 개체 할당에 사용합니다.|
+|[할당자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%ED%95%A0%EB%8B%B9%EC%9E%90)|[allocator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 등 STL에서 개체 할당에 사용합니다.<br/><br/>**(C++17~)**<br/>[polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/)는 런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용합니다.|
 |[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) (~C++11)|**(C++11~)**<br/>[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 `delete[]` 미지원, `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다. 이제 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/) 을 사용합니다.|
 |[unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/) (C++11~)|**(C++11~)**<br/>[`unique_ptr`]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/))은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.<br/>[default_delete](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#default_delete)를 스마트 포인터의 `deleter`로 사용할 수 있습니다.<br/><br/>**(C++14~)**<br/>[make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique) 를 이용하여 `unique_ptr`을 효율적으로 생성할 수 있습니다.|
 |[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr) (C++11~)|**(C++11~)**<br/>[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)은 소유권 공유용 스마트 포인터입니다.<br/>[enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this)를 이용하여 `shared_ptr`이 관리하는 개체로부터 `shared_ptr`을 만들 수 있습니다.<br/>[owner_less](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_less)를 이용하여 소유권 개체의 주소로 비교할 수 있습니다.<br/>`shared_ptr`에서 포인터가 잘못된 경우 [bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) 예외를 방출합니다.<br/>[make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared) 를 이용하여 `shared_ptr`을 효율적으로 생성할 수 있습니다.<br/>[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)(`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`, `reinterpret_pointer_cast()`)을 이용하여 `shared_ptr`의 관리 개체를 형변환 할 수 있습니다.|
 |[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) (C++11~)|**(C++11~)**[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)은 `shared_ptr`의 상호 참조 문제를 해결합니다.|
 |[동적 메모리 관리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/) (C++11~)|**(C++11~)**<br/>[pointer_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#pointer_traits)는 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.<br/>[addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#addressof)는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.<br/>[align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#align)은 메모리 정렬된 포인터를 구합니다.|
 |[가비지 컬렉터 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EA%B0%80%EB%B9%84%EC%A7%80-%EC%BB%AC%EB%A0%89%ED%84%B0-%EC%A7%80%EC%9B%90) (C++11~C++23)|(작성중)|
-|[메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4) (C++17~)|(작성중)|
 |[초기화 되지 않은 스토리지](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%90%98%EC%A7%80-%EC%95%8A%EC%9D%80-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80) (C++17~)|(작성중)|
 |[메모리 관리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC) (C++20~)|(작성중)|
 |[스마트 포인터 어뎁터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%96%B4%EB%8E%81%ED%84%B0) (C++23~)|(작성중)|

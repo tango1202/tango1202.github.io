@@ -47,9 +47,15 @@ T t(); // (X) T를 리턴하는 함수 t() 선언
 
 컴파일러는 다른 생성자(값 생성자던, 복사 생성자던)가 정의되지 않으면, 암시적으로 기본 생성자를 정의합니다.
 
-암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 된다고는 합니다.([cppreference.com](https://en.cppreference.com/w/cpp/language/zero_initialization) 참고) 
+암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 됩니다.
 
-1. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 실제 테스트 해보니 GCC 디버그 모드에서는 멤버 변수가 `0`이 아닙니다. 신뢰할 수 없으니 명시적으로 초기화 하세요.(값 생성자를 이용하는게 좋습니다.) 
+
+
+1. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)는 괄호 사용 여부에 따라 동작이 다릅니다.
+
+    * `T t;`나 `T* ptr = new T;`와 같이 괄호 없이 기본 생성자를 호출하면 자동 제로 초기화를 하지 않습니다.
+    * `T* ptr = new T();` 와 같이 괄호를 사용하여 기본 생성자를 호출하면 자동 제로 초기화를 합니다.
+
 2. 참조자 형식이나 상수형 개체는 생성시 초기값이 전달되야 하기 때문에, 암시적 기본 생성자로 초기화 할 수 없습니다.(값 생성자를 이용해야 합니다.)
 
 ```cpp

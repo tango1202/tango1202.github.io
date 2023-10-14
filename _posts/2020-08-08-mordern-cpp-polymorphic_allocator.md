@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)를 제공하여 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있게 합니다.
+> * (C++17~) `polymorphic_allocator` 은 런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용해야 합니다.
 
 # 개요
 
-polymorphic_allocator 은 런타임 다형성을 지원하는 할당자입니다.
+`polymorphic_allocator` 은 런타임 다형성을 지원하는 할당자입니다.
 
-memory_resource를 사용해야 합니다.
+[메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용해야 합니다.
 
 
 # 메모리 리소스
