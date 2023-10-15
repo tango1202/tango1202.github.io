@@ -312,7 +312,7 @@ EXPECT_TRUE(i == 10);
 EXPECT_TRUE(c == 1);
 ```
 
-> *(C++11~)  `explicit` 형변환 연산자를 사용하면, 명시적으로만 형변환 할 수 있어, 변환 함수 대신 형변환 연산자를 사용하는게 좋습니다.([명시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/) 참고)*
+> *(C++11~)  [explicit 형변환 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)를 추가하여 명시적으로 형변환 할 수 있습니다. 변환 함수 대신 형변환 연산자를 사용하는게 좋습니다.*
 
 # 안전하지 않은 bool 형변환 연산자 정의
 

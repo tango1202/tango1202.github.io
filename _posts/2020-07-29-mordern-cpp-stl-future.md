@@ -104,7 +104,7 @@ EXPECT_TRUE(Sync() == 1);
 여러곳에서 공유할 수 있는 `future` 입니다.|
 |[packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task) (C++11~)|`promise`를 캡슐화하여 비동기 함수 설정만 하면 되는 유틸리티 개체 입니다.|
 |[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) (C++11~)|`packaged_task`를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.|
-|`launch` (C++11~)|`async()` 함수에서 사용하며, 비동기 작업에 대한 정책입니다.([async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) 참고)<br/>* `async` : 새 쓰레드를 생성한뒤 실행합니다.<br/>* `deferred` : 호출된 쓰레드에서 실행합니다.|
+|`launch` (C++11~)|[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) 함수에서 사용하며, 비동기 작업에 대한 정책입니다.<br/>* `async` : 새 쓰레드를 생성한뒤 실행합니다.<br/>* `deferred` : 호출된 쓰레드에서 실행합니다.|
 |`future_status`|`future`개체 `wait_for()`시 사용하는 상태입니다.|
 |`future_error` (C++11~)|`future`나 `promise`의 오류를 보고합니다.|
 |`future_category` (C++11~)|`future`의 에러 카테고리입니다.|

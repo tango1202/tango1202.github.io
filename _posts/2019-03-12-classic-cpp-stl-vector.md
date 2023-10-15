@@ -42,7 +42,7 @@ sidebar:
 |항목|정의|내용|
 |--|--|--|
 |`=`|`vector& operator =(const vector& other);`|복사 대입 합니다. <br/>`vector`의 기존 요소를 지우고 `other`요소들을 복사합니다.|
-|`=` (C++11~)|`vector& operator =(const vector&& other) notexcept;`|이동 대입 합니다.([이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 참고)|
+|`=` (C++11~)|`vector& operator =(const vector&& other) notexcept;`|[이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.|
 |`assign()`|`void assign(size_type count, const Type& value)`<br/>`template<typename InputIterator>`<br/>`void assign(InputIterator first, InputIterator last)`|`vector`의 기존 요소를 지우고 `value`를 `count` 만큼 복사합니다.<br/>`vector`의 기존 요소를 지우고 `first`부터 `last`직전까지 복사합니다.|
 |`resize()`|`void resize(size_type new_size)`<br/>`void resize(size_type new_size, Type value)`|`vector`의 새 크기를 지정하며, 기존 요소 갯수보다 크다면 `value`로 채웁니다. `value`가 없는 경우 요소의 기본 생성자를 호출합니다.|
 |`size()`|`size_type size() const;`|컨테이너의 요소 갯수를 리턴합니다.|
@@ -104,7 +104,7 @@ EXPECT_TRUE(*(&v[0]) == 10);
 EXPECT_TRUE(*((&v[0]) + 1) == 20); // 연속된 메모리여서 포인터 연산으로도 접근 가능합니다.
 ```
 
-> *(C++11~) 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너인 `array`를 제공합니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.([array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/) 참고)*
+> *(C++11~) 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너인 [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)를 제공합니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.*
 
 # [] 과 at()
 

@@ -16,7 +16,7 @@ sidebar:
 
 > **모던 C++**
 > * (C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.
-> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.
+> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.
 > * (C++11~) [멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 우측값에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.
  
 **개요**
@@ -158,7 +158,7 @@ EXPECT_TRUE(static_cast<Base&>(d).f() == 10); // (△) 비권장. 가려진 Base
 EXPECT_TRUE(b->v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 EXPECT_TRUE(d.v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 ```
-> *(C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다. 또한, `final` 이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.([final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) 참고)*
+> *(C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다. 또한, [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.*
 
 **리턴값 변경**
  

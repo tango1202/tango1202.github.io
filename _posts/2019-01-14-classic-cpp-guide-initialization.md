@@ -60,7 +60,7 @@ T obj; // (O) 기본 생성자 호출
 T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 선언임
 ```
 
-> *(C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 `T obj{};`와 같이 기본 생성자를 호출할 수 있습니다.
+> *(C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 `T obj{};`와 같이 기본 생성자를 호출할 수 있습니다.*
 
 
 # 값 초기화

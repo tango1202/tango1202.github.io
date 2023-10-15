@@ -41,7 +41,7 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
 |항목|내용|
 |--|--|
-|[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) (C++11~)|**(C++11~)**<br/>[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자가 추가되어 임시 개체 대입시 속도가 향상되었습니다.|
+|[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) (C++11~)|**(C++11~)**<br/>[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 임시 개체 대입시 속도가 향상되었습니다.|
 |[무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/) (C++11~)|**(C++11~)**<br/>공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.|
 |[임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/) (C++17~)|**(C++17~)**<br/>[임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.|
 
@@ -97,8 +97,8 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
 |항목|내용|
 |--|--|
-|(~C++11)| [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 deprecate 되었습니다. 예외를 나열하는 것보다 `noexcept`로 예외가 발생하느냐 안하느냐만 관심을 둡니다.<br/>[export 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF) 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.| 
-|(~C++17)|[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 관련해서 `throw()`가 deprecate 되었습니다. 이제 `noexcept`만 사용해야 합니다.<br/>`&&, &=`등이 특수기호가 없는 인코딩을 사용하는 곳을 위해 제공했던 `trigraph`가 remove되었습니다.([cppreference](https://en.cppreference.com/w/cpp/language/operator_alternative#Trigraphs_.28removed_in_C.2B.2B17.29) 참고)<br/>변수를 CPU 레지스터에 배치하도록 힌트를 주는 `register`가 deprecate 되었습니다.<br/>`bool`의 증감 연산이 deprecate 되었습니다.|
+|(~C++11)| [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되었습니다. 예외를 나열하는 것보다 `noexcept`로 예외가 발생하느냐 안하느냐만 관심을 둡니다.<br/>[export 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF) 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.| 
+|(~C++17)|[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 관련해서 `throw()`가 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되었습니다. 이제 `noexcept`만 사용해야 합니다.<br/>`&&, &=`등이 특수기호가 없는 인코딩을 사용하는 곳을 위해 제공했던 `trigraph`가 remove되었습니다.([cppreference](https://en.cppreference.com/w/cpp/language/operator_alternative#Trigraphs_.28removed_in_C.2B.2B17.29) 참고)<br/>변수를 CPU 레지스터에 배치하도록 힌트를 주는 `register`가 deprecate 되었습니다.<br/>`bool`의 증감 연산이 deprecate 되었습니다.|
 
 
 

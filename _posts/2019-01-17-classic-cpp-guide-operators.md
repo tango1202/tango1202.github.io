@@ -17,7 +17,7 @@ sidebar:
 > * (C++11~) [sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.
 > * (C++11~) [멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.
 > * (C++11~) [type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/) `type_info`의 래퍼로서 `type_info`를 컨테이너에서 관리할 수 있게 합니다.
-> * (C++11~) `addressof()`는 operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.([addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#addressof) 참고)
+> * (C++11~) [addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#addressof)는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.
 
 # 복사 대입 연산자
 
@@ -289,9 +289,8 @@ EXPECT_TRUE(sizeof(T) = sizeof(int) * 1); // 클래스와 구조체는 멤버 �
 EXPECT_TRUE(sizeof(S) = sizeof(int) * 2); 
 EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 개체의 크기와 동일
 ```
-> *(C++11~) [sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.
-
-> *(C++11~) 개체를 인스턴스화 하지 않더라도 `sizeof()`로 개체 멤버의 크기를 구할 수 있도록 개선되었습니다.([멤버 sizeof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)*
+> *(C++11~) [sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.*<br/>
+> *(C++11~) [멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.*
 
 # typeid 연산자
 

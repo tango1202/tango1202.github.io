@@ -29,8 +29,7 @@ typedef basic_string<char>    string;
 typedef basic_string<wchar_t> wstring;  
 ```
 
-> *(C++11~) 유니코드를 지원하는 [`u16string`, `u32string`](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)이 추가되었습니다.*
-
+> *(C++11~) 유니코드를 지원하는 [`u16string`, `u32string`](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)이 추가되었습니다.*<br/>
 > *(C++20~) [`u8string`](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)이 추가되었습니다.*
 
 

@@ -19,7 +19,7 @@ sidebar:
 
 |항목|내용|**Key** 조건|
 |--|--|--|
-|`unordered_map` (C++11~)|**Key** - **Value** 쌍으로 관리하며,  `pair`를 사용합니다.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 참고)<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.<br/>첨자 연산을 지원합니다.|`hash()` 함수자 구현<br/>`==` 구현|
+|`unordered_map` (C++11~)|**Key** - **Value** 쌍으로 관리하며, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 사용합니다.<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.<br/>첨자 연산을 지원합니다.|`hash()` 함수자 구현<br/>`==` 구현|
 |`unordered_multimap` (C++11~)|`map`과 동일하며 중복 **Key**를 허용합니다.<br/>첨자 연산을 지원 하지 않습니다.|`hash()` 함수자 구현<br/>`==` 구현|
 |`unordered_set` (C++11~)|**Key**만 요소로 삽입됩니다.<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.|`hash()` 함수자 구현<br/>`==` 구현|
 |`unordered_multiset` (C++11~)|`set`과 동일하며 중복 **Key**를 허용합니다.|`hash()` 함수자 구현<br/>`==` 구현|

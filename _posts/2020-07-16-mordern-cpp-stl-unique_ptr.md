@@ -8,14 +8,14 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [`unique_ptr`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.
+> * (C++11~) [`unique_ptr`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
 > * (C++14~) `make_unique()`를 이용하여 `unique_ptr`을 효율적으로 생성할 수 있습니다.
 
 # 개요
 
 기존 `auto_ptr`은 복사/대입시 개체의 소유권을 이전하고, 소멸시 개체를 `delete`하는 스마트 포인터입니다.([auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) 참고)
 
-하지만, 다음 문제로 인해 C++11에서 deprecate 되었습니다.
+하지만, 다음 문제로 인해 C++11에서 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
 
 1. 배열을 `delete[]`가 아닌 `delete`로 삭제합니다.(이러면 배열 요소들이 제대로 소멸되지 않습니다. [개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고)
 2. `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 합니다.(이동 연산과 중복됩니다.)

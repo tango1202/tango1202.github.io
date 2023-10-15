@@ -11,7 +11,7 @@ sidebar:
 > * (C++11~) `using`을 이용한 타입 별칭이 추가되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.
 > * (C++11~) `alignas()` 와 `alignof()`를 이용하여 메모리 정렬 방식을 표준화 했습니다. 
 > * (C++11~) 가변 인자를 활용한 가변 매크로가 추가되어 C언어와의 호환성이 높아졌습니다.
-> * (C++11~) [sizeof() 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있도록 개선되었습니다.
+> * (C++11~) [멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.
 > * (C++17~) `__has_include` 가 추가되어 `include` 하기 전에 파일이 존재하는지 확인할 수 있습니다.
 
 # (C++11~) using 타입 별칭
