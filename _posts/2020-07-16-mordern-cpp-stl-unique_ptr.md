@@ -35,7 +35,7 @@ C++11 부터는 상기 문제를 보완한 `unique_ptr`이 제공됩니다.
 ```cpp
 class T {
 public:
-    ~T() {std::cout<<"T : Destructor"<<std::endl;}    
+    ~T() {std::cout << "T : Destructor" << std::endl;}    
 };
 
 std::unique_ptr<T> a{new T}; // 단일 개체. delete를 호출하여 1개가 소멸됩니다.

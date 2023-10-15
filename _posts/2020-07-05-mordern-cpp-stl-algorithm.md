@@ -128,7 +128,7 @@ sidebar:
 |`adjacent_difference()`|(작성중)|
 |`partial_sum(InputIt first, InputIt last, OutputIt d_first)`|주어진 시퀀스의 값들(`first~last`)을 누적하여 각각 `d_first`에 저장합니다.<br/>`*(d_first + 0) = *first`<br/>`*(d_first + 1) = *first + *(first + 1)`<br/>`*(d_first + 2) = *first + *(first + 1) + *(first + 2)`|
 |`iota()` (C++11~)|(작성중)|
-|`reduce()` (C++17~)|주어진 시퀀스의 값들을 병렬로 누적합니다. `accumulate()` 보다 빠릅니다.|
+|`reduce()` (C++17~)|`reduce()`는 임의의 순서로 `accumulate()`를 처리합니다.(`accumulate()`를 병렬로 적용합니다.)|
 |`transform_reduce()` (C++17~)|`inner_product()`를 병렬로 적용합니다.|
 |`inclusive_scan()` (C++17~)|`partial_sum()`을 병렬로 적용합니다.|
 |`exclusive_scan()` (C++17~)|`inclusive_scan()` 과 유사하며, `i`번째 요소는 포함하지 않습니다.|
@@ -139,9 +139,30 @@ sidebar:
 |`midpoint()` (C++20~)|(작성중)|
 |`lerp()` (C++20~)|(작성중)|
 
+다음은 `accumulate()`와 `reduce()`의 사용예입니다. 내부적으로 `+`연산을 사용하므로, 수행 순서와 상관없이 동일한 결과를 리턴합니다.
+
+```cpp
+std::vector<int> v{1, 2, 3, 4};
+int init{0};
+
+EXPECT_TRUE(std::accumulate(v.begin(), v.end(), init) == init + v[0] + v[1] + v[2] + v[3]); // 왼쪽에서 오른쪽으로 순서대로 계산합니다.
+EXPECT_TRUE(std::reduce(v.begin(), v.end(), init) == init + v[3] + v[2] + v[0] + v[1]); // (C++17~) 순서는 뒤죽박죽이지만 계산 결과는 같습니다.
+```
+
+다만, 다음 그림에서 볼 수 있듯이 순서를 지키는 `accumulate()`는 병렬화 할 수 있는 여지가 없지만,
+
+<img width="224" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/80a6815c-bb8b-4c40-a468-c669a2ef90f8">
+
+순서를 지키지 않는 `reduce()`는 병렬화할 여지가 있습니다.
+
+<img width="299" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/bd1f572d-e27c-4a11-b656-3d3bce062153">
+
+
 # (C++17~) 실행 정책
 
-C++17 부터는 대부분의 알고리즘에서 병렬 작업을 지원하는 오버로딩 버전이 추가되었고, 실행 정책을 지정할 수 있습니다.
+C++17 부터는 대부분의 알고리즘에서 병렬 작업을 지원하는 오버로딩 버전이 추가되었고, 실행 정책을 지정할 수 있습니다. 단, 여러 쓰레드를 통한 병렬 작업을 보장하지는 않고, 병렬 작업이 가능하도록 허용합니다. 아쉽게도 GCC 12.3.0에서는 단일 쓰레드로 동작하네요. 다른 컴파일러에서도 확인해 봐야 할 듯합니다.
+
+`<execution>` 헤더 파일을 포함해야 하며, `std::execution` 네임스페이스를 사용합니다.
 
 ```cpp
 // 실행 정책을 인자로 받습니다.
@@ -161,9 +182,73 @@ ForwardIt find(
 |`unsequenced_policy` (C++20~)|`unseq`|(작성중)|
 
 또한, `is_execution_policy`를 이용하여 주어진 클래스가 실행 정책을 나타내는지 확인합니다.
-  
 
+다음 예는 GCC 12.3.0에서 일반 `Sort()`함수와 병렬 처리를 하는 `SortWithPolicy()` 함수간의 속도 비교입니다. 병렬 버전이 좀더 빨라야 하는데 그렇지 않네요. 다른 버전에서 확인해 봐야 겠습니다.
 
+```cpp
+template<typename Func, typename... Params>
+std::chrono::microseconds Measure(Func func, Params... params) {
+    std::chrono::system_clock::time_point start{std::chrono::system_clock::now()};    
+
+    func(params...);
+
+    std::chrono::system_clock::time_point end{std::chrono::system_clock::now()};
+    std::chrono::microseconds val{std::chrono::duration_cast<std::chrono::microseconds>(end - start)};
+
+    return val;
+}
+void Sort(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+    std::sort(begin, end);
+}
+
+template<typename T>
+void SortWithPolicy(T policy, std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+    std::sort(policy, begin, end);
+}
+
+std::vector<int> v(1'000'000); 
+for (int i{0}; i < 1'000'000; ++i) {
+    v[i] = 0;
+}
+
+// 일반 sort
+std::chrono::microseconds duration1{Measure(
+    Sort, 
+    v.begin(), v.end() 
+)};
+std::cout << "Sort() Duration : " << duration1.count() << std::endl; 
+
+// sequenced_policy
+std::chrono::microseconds duration2{Measure(
+    SortWithPolicy<std::execution::sequenced_policy>,
+    std::execution::seq,
+    v.begin(), v.end() 
+)};
+std::cout << "SortWithPolicy(seq) Duration : " << duration2.count() << std::endl; 
+
+// parallel_policy
+std::chrono::microseconds duration3{Measure(
+    SortWithPolicy<std::execution::parallel_policy>,
+    std::execution::par,
+    v.begin(), v.end() 
+)};
+std::cout << "SortWithPolicy(par) Duration : " << duration3.count() << std::endl;   
+
+// parallel_unsequenced_policy
+std::chrono::microseconds duration4{Measure(
+    SortWithPolicy<std::execution::parallel_unsequenced_policy>,
+    std::execution::par_unseq,
+    v.begin(), v.end() 
+)};
+std::cout << "SortWithPolicy(par_unseq) Duration : " << duration4.count() << std::endl;       
+```
+
+```cpp
+Sort() Duration : 130652
+SortWithPolicy(seq) Duration : 152534
+SortWithPolicy(par) Duration : 147467
+SortWithPolicy(par_unseq) Duration : 156102
+```
 
 
 

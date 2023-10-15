@@ -154,7 +154,7 @@ Message2 : 9
 1. `vector`에 들어 있는 100개의 정수를 더하고 테스트 합니다.
 2. `Sum()` 함수는 주어진 이터레이터 범위의 요소를 모두 더합니다.
 3. `ThreadSum()` 함수를 2개의 쓰레드를 이용하여 `[시작 ~ 중간)` 과 `[중간 ~ 끝)`을 `Sum()`함수를 이용하여 각각 계산한 후 최종적으로 이 둘을 더해 리턴합니다.
-4. `CheckMicrosecond()`함수는 전달된 함수를 실행하고 실행 시간을 측정합니다. 실행시킬 함수에 인자를 전달하기 위해 가변 템플릿을 사용합니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
+4. `Measure()`함수는 전달된 함수를 실행하고 실행 시간을 측정합니다. 실행시킬 함수에 인자를 전달하기 위해 가변 템플릿을 사용합니다.([가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 참고)
 5. 인자의 참조성 유지를 위해 `ref()`를 사용합니다.([ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) 참고)
    
 ```cpp
@@ -193,7 +193,7 @@ void ThreadSum(std::vector<int>::iterator itr, std::vector<int>::iterator endItr
 }    
 
 template<typename Func, typename... Params>
-std::chrono::microseconds CheckMicrosecond(Func func, Params... params) {
+std::chrono::microseconds Measure(Func func, Params... params) {
     std::chrono::system_clock::time_point start{std::chrono::system_clock::now()};    
 
     func(params...);
@@ -211,7 +211,7 @@ for (int i{0}; i < 100; ++i) {
 }
 
 int result{0};
-std::chrono::microseconds duration{CheckMicrosecond(
+std::chrono::microseconds duration{Measure(
     Sum, 
     v.begin(), v.end(), 
     std::ref(result) // 인수의 참조성 유지
@@ -219,7 +219,7 @@ std::chrono::microseconds duration{CheckMicrosecond(
 std::cout << "Sum : " << result << " Duration : " << duration.count() << std::endl; 
 
 int threadResult{0};
-std::chrono::microseconds threadDuration{CheckMicrosecond(
+std::chrono::microseconds threadDuration{Measure(
     ThreadSum, 
     v.begin(), v.end(), 
     std::ref(threadResult) // 인수의 참조성 유지
@@ -559,6 +559,7 @@ void UniqueWrite(std::vector<int>::iterator itr, std::vector<int>::iterator endI
         std::unique_lock<std::mutex> lock(mutex); // mutex를 독점합니다.
         *itr = 1;
         std::this_thread::sleep_for(std::chrono::milliseconds{1}); 
+        lock.unlock();
     }
 }
 void UniqueFunc(std::vector<int>::iterator itr, std::vector<int>::iterator endItr) {
@@ -579,6 +580,7 @@ void SharedWrite_14(std::vector<int>::iterator itr, std::vector<int>::iterator e
         std::shared_lock<std::shared_timed_mutex> lock(mutex); // mutex를 공유합니다.
         *itr = 1;
         std::this_thread::sleep_for(std::chrono::milliseconds{1}); 
+        lock.unlock();
     }
 }
 void SharedFunc_14(std::vector<int>::iterator itr, std::vector<int>::iterator endItr) {
@@ -594,7 +596,7 @@ void SharedFunc_14(std::vector<int>::iterator itr, std::vector<int>::iterator en
     worker4.join();
 }  
 template<typename Func, typename... Params>
-std::chrono::microseconds CheckMicrosecond(Func func, Params... params) {
+std::chrono::microseconds Measure(Func func, Params... params) {
     std::chrono::system_clock::time_point start{std::chrono::system_clock::now()};    
 
     func(params...);
@@ -610,21 +612,21 @@ for (int i{0}; i < 100; ++i) {
     v.push_back(i);
 }
 
-std::chrono::microseconds uniqueDuration{CheckMicrosecond(
+std::chrono::microseconds uniqueDuration{Measure(
     UniqueFunc, 
     v.begin(), v.end()
 )};
-std::cout<<"UniqueFunc : "<<uniqueDuration.count()<<std::endl; 
+std::cout << "UniqueFunc : " << uniqueDuration.count() << std::endl; 
 for (int i = 0; i < 100; ++i) {
     EXPECT_TRUE(v[i] == 1);
     v[i] = i; // 다시 값을 초기화 해둡니다.
 }
 
-std::chrono::microseconds sharedDuration{CheckMicrosecond(
+std::chrono::microseconds sharedDuration{Measure(
     SharedFunc_14, 
     v.begin(), v.end() 
 )};
-std::cout<<"SharedFunc : "<<sharedDuration.count()<<std::endl;
+std::cout << "SharedFunc : " << sharedDuration.count() << std::endl;
 for (int i = 0; i < 100; ++i) {
     EXPECT_TRUE(v[i] == 1);
 } 

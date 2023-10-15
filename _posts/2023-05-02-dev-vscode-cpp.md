@@ -45,7 +45,7 @@ Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
 
 1. 다음 MinGW-w64(Minimalist GNU for Windows) 다운로드 페이지로 이동합니다.([MinGW](https://sourceforge.net/projects/mingw/files/latest/download) 도 있습니다만, C++ 상위 버전 지원이 약해서 MinGW-w64를 추천합니다.)
 
-    [MinGW-w64(https://sourceforge.net/projects/mingw-w64/files/)](https://sourceforge.net/projects/mingw-w64/files/)
+    [MinGW-w64(https://sourceforge.net/projects/mingw-w64/files/)](https://sourceforge.net/projects/mingw-w64/files/)(혹은, [https://winlibs.com/](https://winlibs.com/)에서 2023.10월 현재 13.2.0 버전이 제공됩니다.)
 
 2. 스크롤하여 중간 즈음에 있는 `x86_64-posix-seh`을 다운로드 받습니다.
 

@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)를 제공하여 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있게 합니다.
+> * (C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.
 
 # 개요
 
 C++11에서 추가된 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)는 많은 제한이 풀려 타입이 다른 데이터를 공용체로 다룰 수 있는 자유도가 높아졌으나, 위치 지정 생성이나 소멸자를 수동으로 처리해야 하기 때문에 많은 불편함이 있었습니다.
 
-C++17 부터는 `variant`를 제공하여 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있게 합니다. `any`의 경우는 런타임에 동적으로 캐스팅하여 관리하는 타입을 유연하게 변경할 수 있지만, `variant`는 컴파일 타임에 지정한 타입들중 하나로만 사용할 수 있습니다.
+C++17 부터는 `variant`가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다. `any`의 경우는 런타임에 동적으로 캐스팅하여 관리하는 타입을 유연하게 변경할 수 있지만, `variant`는 컴파일 타임에 지정한 타입들중 하나로만 사용할 수 있습니다.
 
 |항목|내용|
 |--|--|

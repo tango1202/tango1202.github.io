@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * (C++11~) `unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.
-> * (C++17~) `insert_or_assign()`, `try_emplace()`, `extract()`, `merge()` 함수가 추가되었습니다.
+> * (C++17~) [`insert_or_assign(), try_emplace(), extract(), merge()`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#unordered_map-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 함수가 추가되었습니다.
   
 # 개요
 

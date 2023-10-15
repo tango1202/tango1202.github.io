@@ -383,7 +383,7 @@ std::shared_ptr<int> a{
     new int{10}, 
     [](int* obj) { // 람다 표현식외에 함수, 함수자 모두 가능합니다.
         delete obj;
-        std::cout<<"deleter test"<<std::endl;
+        std::cout << "deleter test" << std::endl;
     }
 };  
 
@@ -446,8 +446,8 @@ shared_ptr(const shared_ptr& other, element_type* p) noexcept;
 class SubData {
     int m_Val{0};
 public:
-    SubData() {std::cout<<"SubData : Constructor"<<std::endl;}
-    ~SubData() {std::cout<<"SubData : Destructor"<<std::endl;}
+    SubData() {std::cout << "SubData : Constructor" << std::endl;}
+    ~SubData() {std::cout << "SubData : Destructor" << std::endl;}
 
     int GetVal() const {return m_Val;}
     void SetVal(int val) {m_Val = val;}
@@ -455,8 +455,8 @@ public:
 class MainData {
     SubData m_SubData;
 public:
-    MainData() {std::cout<<"MainData : Constructor"<<std::endl;}
-    ~MainData() {std::cout<<"MainData : Destructor"<<std::endl;}            
+    MainData() {std::cout << "MainData : Constructor" << std::endl;}
+    ~MainData() {std::cout << "MainData : Destructor" << std::endl;}            
     SubData& GetSubData() {return m_SubData;}        
 };
 
@@ -581,10 +581,10 @@ class Node {
 
 public:
     explicit Node(std::shared_ptr<Node> parent) : m_Parent(parent) {
-        std::cout<<"Node : Constructor"<<std::endl;               
+        std::cout << "Node : Constructor" << std::endl;               
     } 
     ~Node() {
-        std::cout<<"Node : Destructor"<<std::endl;    
+        std::cout << "Node : Destructor" << std::endl;    
     }
     void Add(std::shared_ptr<Node> child) {
         m_Children.push_back(child);
@@ -629,10 +629,10 @@ class Node {
 
 public:
     explicit Node(std::weak_ptr<Node> parent) : m_Parent(parent) {
-        std::cout<<"Node : Constructor"<<std::endl;               
+        std::cout << "Node : Constructor" << std::endl;               
     } 
     ~Node() {
-        std::cout<<"Node : Destructor"<<std::endl;    
+        std::cout << "Node : Destructor" << std::endl;    
     }
     void Add(std::shared_ptr<Node> child) {
         m_Children.push_back(child);
@@ -719,6 +719,6 @@ try {
     std::shared_ptr<int> error{wp};
 }
 catch (std::bad_weak_ptr&) {
-    std::cout<<"bad_weak_ptr"<<std::endl;
+    std::cout << "bad_weak_ptr" << std::endl;
 }
 ```

@@ -76,10 +76,10 @@ union MyUnion_11 {
     B m_B; // non-trivial 타입입니다.
     Derived m_Derived; // non-trivial 타입입니다.
     MyUnion_11() {
-        std::cout<<"MyUnion_11 : Constructor"<<std::endl;  
+        std::cout << "MyUnion_11 : Constructor" << std::endl;  
     }
     ~MyUnion_11() {
-        std::cout<<"MyUnion_11 : Destructor"<<std::endl;  
+        std::cout << "MyUnion_11 : Destructor" << std::endl;  
     }
 };
 
