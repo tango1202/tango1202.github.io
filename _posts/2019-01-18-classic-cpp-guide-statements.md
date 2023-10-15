@@ -13,8 +13,8 @@ sidebar:
 > * `goto`는 코드 분석을 방해하니 사용하지 마라.
 
 > **모던 C++**
-> * (C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for) 가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.
-> * (C++17~) [초기식을 포함하는 if(), switch()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch) 가 추가되어 함수 리턴값을 평가하고 소멸하는 코드가 단순해 졌습니다.
+> * (C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.
+> * (C++17~) [초기식을 포함하는 if(), switch()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch)가 추가되어 함수 리턴값을 평가하고 소멸하는 코드가 단순해 졌습니다.
 
 # 개요
 
@@ -31,7 +31,7 @@ sidebar:
 |`return;`|함수 종료|
 |`goto LABEL;`|지정한 `LABEL`로 강제 이동(`LABEL:`와 같이 콜론으로 표기함)<br/>코드 분석을 방해하기 때문에 비권장|
 
-> *(C++17~) [초기식을 포함하는 if(), switch()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch) 가 추가되어 함수 리턴값을 평가하고 소멸하는 코드가 단순해 졌습니다.*
+> *(C++17~) [초기식을 포함하는 if(), switch()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch)가 추가되어 함수 리턴값을 평가하고 소멸하는 코드가 단순해 졌습니다.*
 
 # 중첩된 제어문
 

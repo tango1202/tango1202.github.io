@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) 중괄호 초기화가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.
-> * (C++11~) 중괄호 복사 초기화로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.
-> * (C++11~) 중괄호 초기화시 인자의 암시적 형변환을 일부 차단하여, 코딩 계약이 개선되었습니다.
+> * (C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.
+> * (C++11~) [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.
+> * (C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)시 인자의 암시적 형변환을 일부 차단하여, 코딩 계약이 개선되었습니다.
 > * (C++11~) [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.
-> * (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙이 적용되어, `initializer_list` 로 추론되는 오류가 개선되었습니다.
+> * (C++17~) [중괄호 초기화에서 auto 추론의 새로운 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c17-auto-%EC%B6%94%EB%A1%A0%EC%9D%98-%EC%83%88%EB%A1%9C%EC%9A%B4-%EA%B7%9C%EC%B9%99)이 적용되어, [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 로 추론되는 오류가 개선되었습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.
 
 
@@ -44,7 +44,7 @@ struct U {
 U objs = {10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 ```
 
-C++11 부터는 중괄호 초기화를 제공하여 클래스인지, 배열인지, 구조체의 구분없이 `{}`을 이용하여 일관성 있게 초기화 할 수 있습니다.
+C++11 부터는 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 제공하여 클래스인지, 배열인지, 구조체의 구분없이 `{}`을 이용하여 일관성 있게 초기화 할 수 있습니다.
 
 ```cpp
 class T {
@@ -73,7 +73,7 @@ U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 
 생성자를 호출하고, 초기값을 전달합니다.
 
-1. 기존에는 생성자 호출시 `T()`와 같이 `()`을 사용했는데, `{}`를 사용합니다. 특히 기본 생성자 호출이 함수 선언으로 인식되는 오류가 말끔히 해결됐습니다.
+1. 기존에는 생성자 호출시 `T()`와 같이 `()`을 사용했는데, `{}`를 사용합니다. 특히 [기본 생성자 호출이 함수 선언으로 인식되는 오류](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)가 말끔히 해결됐습니다.
 
     ```cpp
     class T {
@@ -88,7 +88,7 @@ U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
     delete c_11;
     ```
 
-2. 클래스 멤버 변수 선언시 초기화에 사용할 수 있습니다.([멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) 참고)
+2. [클래스 멤버 변수 선언](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)시 초기화에 사용할 수 있습니다.([멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/) 참고)
 
     ```cpp
     class T {
@@ -98,7 +98,7 @@ U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
     };     
     ```
 
-3. 클래스 생성자 초기화 리스트에서 사용할 수 있습니다.
+3. [클래스 생성자 초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)에서 사용할 수 있습니다.
 
     ```cpp
     class T {
@@ -114,7 +114,7 @@ U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 
 # 중괄호 복사 초기화 T t = {};, t = {};, f({}), return {}
 
-`T t = {};` 표현은 `T t = T{};`의 축약형입니다. 즉 `T t{T{}};`입니다. 직접 목록 초기화인 `T{}`로 개체를 생성하고, 복사 생성자를 이용하여 `t`을 복사 생성하는 표현입니다.
+`T t = {};` 표현은 `T t = T{};`의 축약형입니다. 즉 `T t{T{}};`입니다. [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t)인 `T{}`로 개체를 생성하고, 복사 생성자를 이용하여 `t`을 복사 생성하는 표현입니다.
 
 1. 생성자 호출시 사용할 수 있습니다.
    
@@ -200,7 +200,7 @@ C++11 부터는 `{}` 도 지원합니다.
     int arr_11[]{0, 1, 2}; // 초기화 갯수 만큼 배열 할당   
     ```
 
-2. 자동 제로 초기화([자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94) 참고) 
+2. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94) 
 
     ```cpp
     int arr[3] = {0, 1,}; // 초기값이 모자르면 0으로 채움
@@ -210,7 +210,7 @@ C++11 부터는 `{}` 도 지원합니다.
 
 # 인자의 암시적 형변환 차단
 
-중괄호 초기화는 생성자 인자의 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 기존보다는 좀더 차단해 줍니다. 코딩 계약이 좀더 단단해 졌지만, 사용자 정의 형변환은 여전히 막지 못합니다.
+중괄호 초기화는 생성자 인자의 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 기존보다는 좀더 차단해 줍니다. 코딩 계약이 좀더 단단해 졌지만, [사용자 정의 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)은 여전히 막지 못합니다.
 
 1. 실수에서 정수로 변환을 차단합니다.
 
@@ -276,7 +276,7 @@ C++11 부터는 `{}` 도 지원합니다.
 
 # 중괄호 초기화 중첩
 
-배열을 초기화 할때 다음처럼 중괄호로 초기화 할 수 있는데요,
+배열을 초기화 할때 다음처럼 [중괄호로 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/) 할 수 있는데요,
 
 ```cpp
 class A {
@@ -292,7 +292,7 @@ A arr_11[]{
 };
 ```
 
-중괄호 복사 초기화의 축약 표현을 사용하면 다음처럼 표현할 수 있습니다.
+[중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 축약 표현을 사용하면 다음처럼 표현할 수 있습니다.
 
 ```cpp
 A arr_11[]{
@@ -320,7 +320,7 @@ public:
 B b_11{1, {2, 3}}; // B b_11{1, A{2, 3}};와 동일
 ```
 
-멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이라면, 내부적으로는 중괄호 집합 초기화를 이용하며, 동일한 형태로 초기화 할 수 있습니다.
+멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이라면, 내부적으로는 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 이용하며, 동일한 형태로 초기화 할 수 있습니다.
 
 ```cpp
 class A {
@@ -339,11 +339,11 @@ B b_11{1, {2, 3}}; // B b_11 = B{1, A{2, 3}};와 동일
 
 # initializer_list
 
- `initializer_list` 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다. 
+[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다. 
  
- C++11의 컨테이너는 중괄호 초기화를 이용하여 쉽게 초기값을 입력할 수 있도록 `initializer_list` 을 사용한 생성자를 제공합니다.
+ C++11의 컨테이너는 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 이용하여 쉽게 초기값을 입력할 수 있도록 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 을 사용한 생성자를 제공합니다.
 
-`vector`의 경우 요소를 입력할때 `push_back()`을 사용하여 코드 작성이 번거로웠는데([vector 의 삽입과 삭제](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C) 참고), `initializer_list` 을 사용한 생성자를 이용하면 다음처럼 좀 더 간편하게 요소 값을 초기화 할 수 있습니다.
+`vector`의 경우 요소를 입력할때 `push_back()`을 사용하여 코드 작성이 번거로웠는데([vector 의 삽입과 삭제](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C) 참고), [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 을 사용한 생성자를 이용하면 다음처럼 좀 더 간편하게 요소 값을 초기화 할 수 있습니다.
 
 ```cpp
 // 이전 방식
@@ -370,9 +370,9 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 
 # initializer_list의 암시적 생성
 
-다음의 경우 중괄호 초기화 표현식은 `initializer_list`를 암시적으로 자동 생성합니다.
+다음의 경우 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/) 표현식은 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 암시적으로 자동 생성합니다.
 
-1. 생성자 인자와 함수의 인자가 `initializer_list` 인 경우
+1. 생성자 인자와 함수의 인자가 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 인 경우
 
     ```cpp
     class T_11 {
@@ -382,7 +382,7 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
     T_11 t{{1, 2, 3}}; // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.
     ```
 
-2. 복사 대입 연산의 대상이 `initializer_list` 인 경우
+2. 복사 대입 연산의 대상이 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 인 경우
 
     ```cpp
     std::initializer_list<int> data_11;
@@ -407,18 +407,18 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 
 # 중괄호 초기화 우선 순위
 
-중괄호 초기화는 기존 중괄호 집합 초기화와의 호환성과 `initializer_list` 의 편의성을 위해 다음의 우선 순위에 맞춰 동작합니다.
+[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)는 기존 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)와의 호환성과 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 의 편의성을 위해 다음의 우선 순위에 맞춰 동작합니다.
 
 1. 문자 배열에서 단일 문자열 상수로 초기화 하면 문자열 상수로 초기화 합니다.
 
     ```cpp
     char arr_11[] = {"abc"}; // char arr_11[] = "abc"; 와 동일
     ```
-2. [집합 타입](https://tango1202.github.io/mordern-cpp/mordern--category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)인 경우 집합 초기화를 합니다.
+2. [집합 타입](https://tango1202.github.io/mordern-cpp/mordern--category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)인 경우 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 합니다.
 
 3. 중괄호가 비어 있고 기본 생성자가 있으면, 기본 생성자를 호출합니다.
 
-4. `initializer_list`를 사용한 생성자가 있으면 해당 생성자를 호출합니다. 
+4. [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 생성자가 있으면 해당 생성자를 호출합니다. 
 
     ```cpp
     class T_11 {
@@ -433,7 +433,7 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 
 # 기존 생성자와 initializer_list 생성자와의 충돌
 
-중괄호 초기화 우선 순위에 따라 `initializer_list`를 사용한 버전이 비교적 우선적으로 선택됩니다. 그러다 보니 기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v_11{2};` 와 같이 한다면, 요소가 2개인 `vector` 를 생성하는게 아니라, `2`값인 요소 1인 `vector`를 생성합니다.
+[중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84)에 따라 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 버전이 비교적 우선적으로 선택됩니다. 그러다 보니 기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v_11{2};` 와 같이 한다면, 요소가 2개인 `vector` 를 생성하는게 아니라, `2`값인 요소 1인 `vector`를 생성합니다.
 
 ```cpp
 // 요소가 2개인 vector를 생성합니다.
@@ -447,7 +447,7 @@ EXPECT_TRUE(v_11.size() == 1 && v_11[0] == 2);
 
 # (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙
 
-기존에는 `auto` 와 중괄호 직접 초기화를 사용하면, `initializer_list`로 추론되는 문제가 있다고 합니다.([N3681](https://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3681.html) 참고)
+기존에는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 와 [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t)를 사용하면, [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론되는 문제가 있다고 합니다.([N3681](https://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3681.html) 참고)
 
 ```cpp
 auto x{foo}; // direct-initialization, initializes an initializer_list
@@ -456,7 +456,7 @@ auto x{foo}; // direct-initialization, initializes an initializer_list
 제가 GCC version 8.1.0로 해보니 `auto b_17{1};` 이 `int`로 잘 추론되기는 합니다만, 아무튼 C++17 부터는 이를 개선하여 다음과 같은 규칙으로 추론됩니다.
 
 * `auto val{}` : 인자가 1개면 인자 타입으로 추론되고, 여러개면 컴파일 오류를 발생합니다.
-* `auto val = {}` : 인자들의 타입이 동일하면 `initializer_list`로 추론됩니다.
+* `auto val = {}` : 인자들의 타입이 동일하면 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론됩니다.
 
 ```cpp
 int a_17{1}; // a는 int

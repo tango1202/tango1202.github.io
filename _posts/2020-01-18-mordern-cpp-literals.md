@@ -35,7 +35,7 @@ EXPECT_TRUE(1.0_mm == 1_mm);
 
 **문자열 추론**
 
-기존 문자열을 `auto`로 초기화 하면 `const char*`로 추론되는데요, 사용자 정의 리터럴을 만들어 `string`으로 추론되게 할 수 있습니다.
+기존 문자열을 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)로 초기화 하면 `const char*`로 추론되는데요, 사용자 정의 리터럴을 만들어 `string`으로 추론되게 할 수 있습니다.
 
 ```cpp
 // const char* 형의 문자열을 std::string으로 변환

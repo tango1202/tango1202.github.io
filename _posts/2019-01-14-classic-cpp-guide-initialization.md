@@ -145,7 +145,7 @@ EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 
 # 구조체 초기화
 
-구조체는 별도로 값 초기화를 위한 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현하지 않더라도 중괄호로 초기화를 할 수 있습니다.
+구조체는 별도로 값 초기화를 위한 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현하지 않더라도 [중괄호로 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 할 수 있습니다.
 
 ```cpp
 struct T {int x; int y;}; 

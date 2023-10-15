@@ -10,7 +10,7 @@ sidebar:
 
 > * (C++11~) 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다. 
 > * (C++14~) 람다 캡쳐 초기화로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
-> * (C++14~) `auto`를 인자로 받아 마치 템플릿 함수처럼 동작하는 일반화된 람다 함수가 추가되었습니다.
+> * (C++14~) [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 인자로 받아 마치 템플릿 함수처럼 동작하는 일반화된 람다 함수가 추가되었습니다.
 > * (C++17~) 람다 캡쳐시 `*this` 를 이용하여 개체 자체를 복제하여 사용합니다.
 > * (C++17~) constexpr 람다 함수가 추가되어 람다 함수도 컴파일 타임 함수로 만들 수 있습니다.
  
@@ -49,7 +49,7 @@ int f(int a, int b) {
 
 # 람다 리턴 생략
 
-후행 리턴이 생략되면, 함수의 리턴문에 의해 추론됩니다.([리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0) 참고)
+[후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 생략되면, 함수의 리턴문에 의해 추론됩니다.([리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0) 참고)
 리턴문이 없으면 `void`로 추론됩니다.
 
 ```cpp
@@ -198,9 +198,9 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
 
 # 클로저 개체 대입
 
-클로저 개체는 `auto`와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 `function`을 이용하여 변수에 대입할 수 있습니다.([function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-function/) 참고)
+클로저 개체는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 `function`을 이용하여 변수에 대입할 수 있습니다.([function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-function/) 참고)
 
-1. `auto`(단, `auto`이기 때문에 함수의 인자로 사용할 수 없습니다.)
+1. [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)(단, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)이기 때문에 함수의 인자로 사용할 수 없습니다.)
     
     ```cpp
     auto f_11{[](int a, int b) -> int {return a + b;}};
@@ -279,7 +279,7 @@ public:
     T::Destructor    
     ```
 
-3. 값 캡쳐를 사용하더라도, `auto` 변수에 저장하고 호출하는 것은 추가의 복사 부하가 없습니다.
+3. 값 캡쳐를 사용하더라도, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 변수에 저장하고 호출하는 것은 추가의 복사 부하가 없습니다.
 
     ```cpp
     T t;
@@ -297,7 +297,7 @@ public:
     T::Destructor
     ```
 
-4. 값 캡쳐를 사용할때 `auto` 변수들 끼리 복제하면 추가의 복사 부하가 발생합니다.
+4. 값 캡쳐를 사용할때 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 변수들 끼리 복제하면 추가의 복사 부하가 발생합니다.
 
     ```cpp
     T t;
@@ -360,7 +360,7 @@ EXPECT_TRUE(f_14() == 3);
 
 # (C++14~) 일반화된 람다 함수
 
-C++14 부터는 람다 함수 인자로 `auto`를 사용할 수 있어, 마치 템플릿 함수처럼 동작하게 할 수 있습니다.
+C++14 부터는 람다 함수 인자로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있어, 마치 템플릿 함수처럼 동작하게 할 수 있습니다.
 
 ```cpp
 auto add_14{[](auto a, auto b) {return a + b;}}; 

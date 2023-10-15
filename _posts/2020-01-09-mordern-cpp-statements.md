@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) 범위 기반 `for()`가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.
-> * (C++17~) 초기식을 포함하는 `if()`, `switch()` 가 추가되어 함수 리턴값을 평가하고 소멸하는 코드가 단순해 졌습니다.
+> * (C++11~)  [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.
+> * (C++17~) [초기식을 포함하는 if(), switch()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch)가 추가되어 함수 리턴값을 평가하고 소멸하는 코드가 단순해 졌습니다.
 
 # 범위 기반 for()
 
@@ -29,7 +29,7 @@ for (;itr_11 != endItr_11; ++itr_11) {
 EXPECT_TRUE(sum == 1 + 2 + 3);
 ```
 
-C++11 부터는 범위 기반 `for()`를 이용하여 좀더 간단하게 구현할 수 있습니다.
+C++11 부터는  [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)를 이용하여 좀더 간단하게 구현할 수 있습니다.
 
 ```cpp
 std::vector<int> v_11{1, 2, 3};

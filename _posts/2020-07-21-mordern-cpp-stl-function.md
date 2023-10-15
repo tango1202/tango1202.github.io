@@ -315,7 +315,7 @@ EXPECT_TRUE(func3(4, 5) == 1 + 4 + 5);
 
 ```
 
-`auto`를 사용하면 좀더 간결하게 표현할 수 있습니다.
+[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용하면 좀더 간결하게 표현할 수 있습니다.
 
 ```cpp
 auto func3{

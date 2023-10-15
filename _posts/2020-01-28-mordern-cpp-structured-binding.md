@@ -132,7 +132,7 @@ if (result.second != true) {
 
 **C++17 스타일**
 
-[초기식을 포함하는 if()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch) 와 구조화된 바인딩으로 단순화 되었고, 좀더 직관적입니다.
+[초기식을 포함하는 if()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch)와 구조화된 바인딩으로 단순화 되었고, 좀더 직관적입니다.
 
 ```cpp
 // 초기 데이터 입력 - 중괄호 초기화로 단순화 됐습니다.

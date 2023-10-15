@@ -22,7 +22,7 @@ int* ptr2{NULL};
 int* ptr3_11{nullptr}; // C++11
 ```
 
-`0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 만약 `auto`를 사용한다면 다음처럼 초기값에 따라 `int`나 `long long`으로 추론되는 문제가 있습니다. 그러니 앞으로는 `nullptr`을 사용하시기 바랍니다.
+`0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 만약 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용한다면 다음처럼 초기값에 따라 `int`나 `long long`으로 추론되는 문제가 있습니다. 그러니 앞으로는 `nullptr`을 사용하시기 바랍니다.
 
 
 ```cpp

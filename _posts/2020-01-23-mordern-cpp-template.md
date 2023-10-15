@@ -12,7 +12,7 @@ sidebar:
 > * (C++11~) 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.
 > * (C++14~) 변수 템플릿이 추가되어 변수도 템플릿으로 만들 수 있습니다.
 > * (C++17~) 클래스 템플릿 인수 추론이 추가되어 템플릿 함수처럼 타입을 생략할 수 있습니다.
-> * (C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 템플릿 인자로 `auto`를 사용할 수 있습니다.
+> * (C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 템플릿 인자로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다.
 
 # extern 템플릿
 
@@ -178,7 +178,7 @@ EXPECT_TRUE(a_17.Func(1, 2) == 3);
 
 # (C++17~) auto 템플릿 인자
 
-C++17 부터는 템플릿이 타입이 아닌 개체를 인자로 사용할때 템플릿 인자로 `auto`를 사용할 수 있습니다.
+C++17 부터는 템플릿이 타입이 아닌 개체를 인자로 사용할때 템플릿 인자로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다.
 
 기존에는 임의 타입의 개체를 템플릿 인자로 사용할때, 다음과 같이 타입(`T`)과 개체(`val`)를 같이 전달받았는데요,
 
@@ -193,7 +193,7 @@ A<int, 10> a{};
 EXPECT_TRUE(a.GetVal() == 10);
 ```
 
-C++17 부터는 `auto`를 이용하여 임의 타입 개체를 전달받을 수 있습니다.
+C++17 부터는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 이용하여 임의 타입 개체를 전달받을 수 있습니다.
 
 ```cpp
 template<auto val> // 타입이 아닌 개체인 경우 auto를 사용할 수 있습니다.
