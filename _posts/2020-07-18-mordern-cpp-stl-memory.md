@@ -13,10 +13,10 @@ sidebar:
 |항목|내용|
 |--|--|
 |`malloc()`|메모리를 할당합니다.([operator new와 operator delete 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고)|
-|`aligned_alloc()`|(작성중)|
 |`calloc()`|(작성중)|
 |`realloc()`|(작성중)|
 |`free()`|메모리를 해제합니다.([operator new와 operator delete 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고)|
+|`aligned_alloc()` (C++17~)|정렬된 메모리를 할당합니다.|
 
 # 저수준 메모리 관리
 
@@ -32,7 +32,30 @@ sidebar:
 |`new_handler`|`new`에서 예외 발생시 호출되는 함수 입니다.([set_new_handler() 함수를 이용한 오류 처리](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC) 참고)|
 |`nothrow`|예외 발생 대신 널을 리턴하는 `new(nothrow)`에서 사용합니다.([new(nothrow) 와 무의미한 널검사](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#newnothrow-%EC%99%80-%EB%AC%B4%EC%9D%98%EB%AF%B8%ED%95%9C-%EB%84%90%EA%B2%80%EC%82%AC) 참고)|
 |`destroying_delete` (C++20~)|(작성중)|
-|`launder()` (C++17~)|(작성중)|
+|`launder()` (C++17~)|[위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)으로 생성된 개체의 합법적인 포인터를 얻습니다.|
+
+```cpp
+class A {
+public: 
+    const int m_X;  // const 멤버 입니다. 
+    int m_Y;
+    A(int x, int y) : m_X{x}, m_Y{y} {}
+};
+
+A* ptr = new A{1, 2};
+EXPECT_TRUE(ptr->m_X == 1 && ptr->m_Y == 2);
+
+// 위치 지정 생성으로 ptr 위치에 다시 생성합니다.
+A* newPtr = new(ptr) A{3, 4};
+EXPECT_TRUE(newPtr->m_X == 3 && newPtr->m_Y == 4);
+
+// 이전 포인터인 ptr로 다루려면, launder를 사용합니다.
+EXPECT_TRUE((ptr->m_X == 1 || ptr->m_X == 3)); // (△) 비권장. 컴파일러 최적화에 의해 const 변수는 이전값 1을 가질 수도 있습니다.
+EXPECT_TRUE(ptr->m_Y == 4); // (△) 비권장. 불법입니다만, 잘 동작합니다.
+EXPECT_TRUE(std::launder(ptr)->m_X); // launder를 이용하여 합법적으로 사용할 수 있습니다.
+
+delete std::launder(ptr);
+```
 
 # pointer_traits
 

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#17. [모던 C++ STL] (C++11~) 소유권 공유 스마트 포인터(shared_ptr, weak_ptr)"
+title: "#17. [모던 C++ STL] (C++11~) 소유권 공유 스마트 포인터(shared_ptr, weak_ptr), (C++17~) 배열 지원"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -10,6 +10,8 @@ sidebar:
 
 > * (C++11~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)은 소유권 공유용 스마트 포인터입니다.
 > * (C++11~) [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)은 `shared_ptr`의 상호 참조 문제를 해결합니다.
+> * (C++17~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)에서 배열을 지원합니다.
+> * (C++17~) [shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)에 `reinterpret_pointer_cast()`가 추가되었습니다.
 
 # 개요
 
@@ -22,7 +24,7 @@ C++11 부터는 소유권을 이전하는 스마트 포인터인 `auto_ptr`과 `
 |[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) (C++11~)|`shared_ptr`의 상호 참조 문제 해결용 스마트 포인터입니다.|
 |[enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this) (C++11~)|`shared_ptr`이 관리하는 개체로부터 `shared_ptr`을 만듭니다.|
 |[owner_less()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_less) (C++11~)|소유권 개체의 주소로 비교합니다.|
-|[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98) (C++11~)|[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)(`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`, `reinterpret_pointer_cast()`)을 이용하여 `shared_ptr`의 관리 개체를 형변환 할 수 있습니다.|
+|[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98) (C++11~)|[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)(`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`)을 이용하여 `shared_ptr`의 관리 개체를 형변환 할 수 있습니다.|
 |[bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) (C++11~)|`shared_ptr`에서 잘못된 `weak_ptr`을 사용할때 발생하는 예외입니다.|
 
 # shared_ptr
@@ -534,7 +536,7 @@ dynamic_cast<std::shared_ptr<Base>>(derived);
 |`const_pointer_cast()` (C++11~)|상수성만 변환|
 |`static_pointer_cast()` (C++11~)|타입 유사성을 지키며 변환|
 |`dynamic_pointer_cast()` (C++11~)|타입 유사성을 지키며 변환.<br/>[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.|
-|`reinterpret_pointer_cast()` (C++11~)|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
+|`reinterpret_pointer_cast()` (C++17~)|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
 
 ```cpp
 class Base {
@@ -722,3 +724,9 @@ catch (std::bad_weak_ptr&) {
     std::cout << "bad_weak_ptr" << std::endl;
 }
 ```
+
+# (C++17~) 배열 지원
+
+```cpp
+
+
