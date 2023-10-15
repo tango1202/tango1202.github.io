@@ -62,7 +62,7 @@ sidebar:
 |`bind1st(op, x)` (~C++11)<br/>`binder1st()` (~C++11)|알고리즘엔 단항 함수로 전달되며, `op(x, 요소)`로 이항 함수를 호출합니다.([바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94) 참고)|
 |`bind2nd(op, y)` (~C++11)<br/>`binder2nd()` (~C++11)|알고리즘엔 단항 함수로 전달되며, `op(요소, y)`로 이항 함수를 호출합니다.([바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94) 참고)|
 |[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind) (C++11~)|`placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, … `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.|
-|[is_bind_expression](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_bind_expression) (C++11~)|`bind()`로 생성한 함수인지 검사합니다.|
+|[is_bind_expression](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_bind_expression) (C++11~)|[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)로 생성한 함수인지 검사합니다.|
 |[is_placeholder](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_placeholder) (C++11~)|자리 표시자를 사용했는지 검사합니다.|
 |`_1, _2, _3, _4` (C++11~)|자리 표시자 입니다.([bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind) 참고)|  
 |`bind_front()` (C++20~)|(작성중)|
@@ -74,7 +74,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |[function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function) (C++11~)|`()`로 호출 가능한 함수자를 저장합니다.|
-|[bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call) (C++11~)|`function`에서 `()`로 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
+|[bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call) (C++11~)|[function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)에서 `()`로 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
 |`mem_fun()` (~C++11)<br/>`mem_fun_t` (~C++11)<br/>`mem_fun1_t` (~C++11)<br/>`const_mem_fun_t` (~C++11)<br/>`const_mem_fun1_t` (~C++11)|알고리즘에서 `f(x)`의 호출을 `x->f()` 처럼 호출되게 합니다.([아답터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 참고)|
 |`mem_fun_ref()` (~C++11)<br/>`mem_fun_ref_t` (~C++11)<br/>`mem_fun1_ref_t` (~C++11)<br/>`const_mem_fun_ref_t` (~C++11)<br/>`const_mem_fun1_ref_t` (~C++11)|알고리즘에서 `f(x)`의 호출을 `x.f()` 처럼 호출되게 합니다.([아답터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 참고)|
 |`ptr_fun()` (~C++11)|바인더, 아답터, 부정자와 일반 함수가 호환될 수 있도록 일반 함수를 `unary_function`이나 `binary_function` 개체로 만듭니다.([아답터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90) 참고)|

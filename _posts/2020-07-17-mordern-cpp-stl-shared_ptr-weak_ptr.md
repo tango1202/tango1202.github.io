@@ -378,7 +378,7 @@ public:
 
 `shared_ptr`은 관리하는 개체를 소멸시키는 `deleter`를 사용자 정의 할 수 있습니다. 
 
-다음 코드에서는 람다 표현식으로 `deleter`를 전달했는데요, 함수, 함수자 모두 가능합니다.
+다음 코드에서는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)으로 `deleter`를 전달했는데요, 함수, 함수자 모두 가능합니다.
 
 ```cpp
 std::shared_ptr<int> a{

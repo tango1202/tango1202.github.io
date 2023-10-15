@@ -8,22 +8,22 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) 람다 표현식이 추가되어 1회용 익명 함수를 만들 수 있습니다. 
-> * (C++14~) 람다 캡쳐 초기화로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
-> * (C++14~) [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 인자로 받아 마치 템플릿 함수처럼 동작하는 일반화된 람다 함수가 추가되었습니다.
-> * (C++17~) 람다 캡쳐시 `*this` 를 이용하여 개체 자체를 복제하여 사용합니다.
-> * (C++17~) constexpr 람다 함수가 추가되어 람다 함수도 컴파일 타임 함수로 만들 수 있습니다.
+> * (C++11~) [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)이 추가되어 1회용 익명 함수를 만들 수 있습니다. 
+> * (C++14~) [람다 캡쳐 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90-%EC%B4%88%EA%B8%B0%ED%99%94)로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
+> * (C++14~) [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 인자로 받아 마치 템플릿 함수처럼 동작하는 [일반화된 람다 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98)가 추가되었습니다.
+> * (C++17~) [람다 캡쳐시 *this 를 이용](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90)하여 개체 자체를 복제하여 사용합니다.
+> * (C++17~) [constexpr 람다 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98)가 추가되어 람다 함수도 컴파일 타임 함수로 만들 수 있습니다.
  
 # 개요
-기존에는 함수자를 이용하여 함수를 개체화 했는데요([함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 참고),
+기존에는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 이용하여 함수를 개체화 했는데요,
 
-C++11 부터는 람다 표현식을 추가하여 함수 지향 프로그래밍이 좀 더 간편해 졌습니다.
+C++11 부터는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)을 추가하여 함수 지향 프로그래밍이 좀 더 간편해 졌습니다.
 
-람다 표현식은 `prvalue` 타입([값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 참고)의 1회용 익명 함수를 만들며, 이를 **클로저(Closure)** 라고 합니다. 
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)은 `prvalue` 타입([값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 참고)의 1회용 익명 함수를 만들며, 이를 **클로저(Closure)** 라고 합니다. 
 
-람다 표현식은 STL의 [알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)과 잘 호환될 뿐만 아니라, 캡쳐 기능등의 활용도도 높아서 복잡한 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 만들기 보다는 람다 표현식을 사용하는게 훨씬 좋습니다.
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)은 STL의 [알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)과 잘 호환될 뿐만 아니라, [캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90) 기능등의 활용도도 높아서 복잡한 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 만들기 보다는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)을 사용하는게 훨씬 좋습니다.
 
-람다 표현식의 기본 문법은 다음과 같습니다.
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)의 기본 문법은 다음과 같습니다.
 
 `[캡쳐](인자들) -> 리턴 타입 {표현식}`
 
@@ -58,9 +58,9 @@ int f(int a, int b) {
 
 # 람다 함수 호출
 
-일반 함수를 호출하려면 `f(10, 20)` 와 같이 호출하는데요, 람다 표현식으로 작성된 람다 함수를 호출하려면 다음과 같이 합니다.
+일반 함수를 호출하려면 `f(10, 20)` 와 같이 호출하는데요, [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)으로 작성된 람다 함수를 호출하려면 다음과 같이 합니다.
 
-1. 람다 표현식으로부터 생성된 개체(클로저)를 변수에 저장한뒤 호출할 수 있고,
+1. [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)으로부터 생성된 개체(클로저)를 변수에 저장한뒤 호출할 수 있고,
 
     ```cpp
     auto f_11{[](int a, int b) -> int {return a + b;}};
@@ -77,7 +77,7 @@ int f(int a, int b) {
 
 # 캡쳐
 
-람다 표현식 바깥 부분의 개체 정보들을 람다 표현식 내부에 전달합니다.
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) 바깥 부분의 개체 정보들을 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) 내부에 전달합니다.
 
 |항목|내용|
 |--|--|
@@ -85,10 +85,10 @@ int f(int a, int b) {
 |`[&]` (C++11~)|외부의 모든 변수의 참조자를 가져옵니다.|
 |`[=, &x, &y]` (C++11~)|외부의 모든 변수를 값으로 가져오되 `x`, `y` 만 참조로 가져옵니다.|
 |`[&, x, y]` (C++11~)|외부의 모든 변수의 참조자를 가져오되 `x`, `y` 만 값으로 가져옵니다.|
-|`this` (C++11~)|람다 표현식을 사용한 개체의 `this` 포인터를 값으로 가져옵니다.|
+|`this` (C++11~)|[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)을 사용한 개체의 `this` 포인터를 값으로 가져옵니다.|
 |`*this` (C++17~)|`this`는 포인터를 가져오지만, `*this`는 개체 자체를 복제하여 가져옵니다.|
 
-다음 코드에서는 람다 표현식 외부에 정의된 `sum`을 캡쳐하고, 람다 표현식 내에서 `v`의 각 요소의 값을 전달받아 `sum`에 누적합니다.
+다음 코드에서는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) 외부에 정의된 `sum`을 캡쳐하고, [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) 내에서 `v`의 각 요소의 값을 전달받아 `sum`에 누적합니다.
 
 ```cpp
 int sum{0};
@@ -105,7 +105,7 @@ EXPECT_TRUE(sum == 1 + 2 + 3);
 
 **캡쳐 시기**
 
-람다 표현식은 클로저 개체가 생성될 때 캡쳐를 합니다. 따라서, 값으로 개체를 캡쳐할 때 클로저 개체를 생성한 시점과 호출한 시점이 다르면, 값이 다를 수 있습니다.
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)은 클로저 개체가 생성될 때 캡쳐를 합니다. 따라서, 클로저 개체를 생성한 시점과 호출한 시점이 다르면, 값이 다를 수 있습니다.
 
 ```cpp
 int val{1};
@@ -198,7 +198,7 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
 
 # 클로저 개체 대입
 
-클로저 개체는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 `function`을 이용하여 변수에 대입할 수 있습니다.([function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-function/) 참고)
+클로저 개체는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)을 이용하여 변수에 대입할 수 있습니다.
 
 1. [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)(단, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)이기 때문에 함수의 인자로 사용할 수 없습니다.)
     
@@ -215,7 +215,7 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
     EXPECT_TRUE(f_11(10, 20) == 30);
     ```
 
-3. `function`(캡쳐도 지원하고, 함수 인자로 사용할 수도 있습니다.)
+3. [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)(캡쳐도 지원하고, 함수 인자로 사용할 수도 있습니다.)
     
     ```cpp
     std::function<int(int, int)> f_11;
@@ -229,14 +229,14 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
 
 # 클로저 개체 복사 부하
 
-람다 표현식에서 값 캡쳐를 사용하면, 
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)에서 값 캡쳐를 사용하면, 
 
 1. 캡쳐시에 복사 부하가 있으며, 
 2. 클로저 개체간 복사시에도 복사 부하가 있으므로,
 
 참조 캡쳐를 이용하는게 좋습니다.
 
-다음 `T`클래스는 클로저의 캡쳐 방식에 따라 생성자와 소멸자 호출을 탐지하기 위한 테스트 클래스입니다.
+다음 `T`클래스는 생성자와 소멸자 호출을 탐지하기 위한 테스트 클래스입니다.
 
 ```cpp
 class T {
@@ -249,7 +249,7 @@ public:
 };
 ```
 
-1. 값 캡쳐던, 참조 캡쳐던, 해당 개체를 람다 표현식에서 사용하지 않으면 복사하지 않습니다.
+1. 값 캡쳐던, 참조 캡쳐던, 해당 개체를 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)에서 사용하지 않으면 복사하지 않습니다.
 
     ```cpp
     T t;
@@ -261,7 +261,7 @@ public:
     T::Destructor
     ```
 
-2. 값 캡쳐를 사용하면, 대상 개체가 람다 표현식에 사용될때, 복사 생성자를 호출하여, `const` 복제본을 만듭니다.
+2. 값 캡쳐를 사용하면, 대상 개체가 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)에 사용될때, 복사 생성자를 호출하여, `const` 복제본을 만듭니다.
 
     ```cpp
     T t;
@@ -342,10 +342,10 @@ public:
 
 # (C++14~) 람다 캡쳐 초기화
 
-람다 캡쳐시에 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
+C++14 부터는 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90)시에 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
 정의한 변수는 초기값이 지정되어야 하며, 람다 내에서만 사용할 수 있습니다. 
 
-클로저 개체 생성시에 캡쳐하므로, 람다 함수를 여러번 호출하더라도 기존 값이 유지됩니다. 
+클로저 개체 생성시에 [캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90)하므로, 람다 함수를 여러번 호출하더라도 기존 값이 유지됩니다. 
 
 ```cpp
 // 클로저 개체 생성시 람다 내에서 사용할 수 있는 val_14 변수를 만들어 캡쳐 합니다.
@@ -371,7 +371,7 @@ EXPECT_TRUE(add_14(std::string{"hello"}, std::string{"world"}) == "helloworld");
 
 # (C++17~) constexpr 람다 함수
 
-C++17 부터 `constexpr` 람다 함수가 추가되어 요구사항이 충족되면 암시적으로 컴파일 타임 함수로 만들어지고,`constexpr` 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.
+C++17 부터 [constexpr 람다 함수가 추가](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%95%A8%EC%88%98)되어 요구사항이 충족되면 암시적으로 컴파일 타임 함수로 만들어지고,[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr) 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.
 
 ```cpp
 // 명시적 constexpr 람다 함수 입니다.

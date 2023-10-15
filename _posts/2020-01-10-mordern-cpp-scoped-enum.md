@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * (C++11~) 이름 범위를 한정하는 [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)이 추가되어 이름 충돌 회피가 쉬워졌습니다.
-> * (C++17~) [열거형의 중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c17-%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%97%88%EC%9A%A9)를 허용하여 암시적 형변환을 차단하는 사용자 정의 열거형의 사용이 좀더 쉬워졌습니다.
+> * (C++17~) [열거형의 중괄호 직접 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c17-%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%97%88%EC%9A%A9)하여 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하는 사용자 정의 열거형의 사용이 좀더 쉬워졌습니다.
 
 
 # 개요
@@ -81,7 +81,7 @@ MyInt_11 val3{val1};
 // MyInt_11 val7 = {10}; // (X) 컴파일 오류. 중괄호 복사 초기화는 지원하지 않습니다.        
 ```
 
-이 기능을 이용하면, 암시적 형변환을 차단하는 정수 타입을 만들 수 있습니다. 다음 예에서 `Func()`은 암시적으로 `int`로 변환될 수 있는 모든 타입이 전달될 수 있지만, `Func_11()`은 오로지 `MyInt_11`만 전달 받을 수 있습니다. 
+이 기능을 이용하면, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하는 정수 타입을 만들 수 있습니다. 다음 예에서 `Func()`은 암시적으로 `int`로 변환될 수 있는 모든 타입이 전달될 수 있지만, `Func_11()`은 오로지 `MyInt_11`만 전달 받을 수 있습니다. 
 
 ```cpp
 
@@ -99,7 +99,7 @@ Func_11(MyInt_11(10)); // MyInt_11 타입만 가능합니다.
 
 # (C++17~) 열거형의 중괄호 직접 초기화 허용
 
-C++17 부터는 [열거형의 중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c17-%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%97%88%EC%9A%A9)를 허용하여 암시적 형변환을 차단하는 사용자 정의 열거형의 사용이 좀더 쉬워졌습니다.
+C++17 부터는 [열거형의 중괄호 직접 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c17-%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%97%88%EC%9A%A9)하여 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하는 사용자 정의 열거형의 사용이 좀더 쉬워졌습니다.
 
 ```cpp
 enum MyInt_11 : int {};

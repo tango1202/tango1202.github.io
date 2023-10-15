@@ -454,7 +454,7 @@ C++언어에서는 이름이 동일한 함수를 여러개 정의하여 사용�
 
 **암시적 형변환**
 
-기본적으로 인자 타입이 일치하는 것을 선택하지만, 해당 타입의 것이 없다면 암시적 형변환이 지원되는 것을 사용하게 됩니다.
+기본적으로 인자 타입이 일치하는 것을 선택하지만, 해당 타입의 것이 없다면 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 적용하여 최대한 매핑되는 것을 사용합니다.
 
 ```cpp
 class T {
@@ -592,10 +592,10 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
    
 2. 함수 인자의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색(ADL(Argument-dependent lookup) 또는 Koenig 검색)
 
-3. 암시적 형변환을 포함하여 실행 가능 함수 결정
+3. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 포함하여 실행 가능 함수 결정
    
    1. 타입 완전 일치
-   2. 경미한 암시적 형변환
+   2. 경미한 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)
    3. 승격 일치(`bool`을 `int`로, `char`를 `int`로) 
    4. 표준 변환(자식 개체 포인터를 부모 개체 포인터로, `T*`를 `void*`로, `int`를 `double`로, `double`을 `int`로) 
    5. 사용자 정의 형변환([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)

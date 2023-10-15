@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++] (C++11~) static_assert"
+title: "#13. [모던 C++] (C++11~) static_assert()"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,14 +8,14 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C__11~) `static_assert()`가 추가되어 컴파일 타임 진단이 가능해 졌습니다.
-> * (C++17~) `static_assert`의 메시지 생략을 지원합니다.
+> * (C__11~) [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)가 추가되어 컴파일 타임 진단이 가능해 졌습니다.
+> * (C++17~) static_assert() 의 메시지 생략(??)을 지원합니다.
 
 # 개요
 
 기존에는 `assert()`를 이용하여 런타임 진단만 가능했는데요([자가 진단과 진단 최소화](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/) 참고),
 
-C++11 부터는 `static_assert()`를 이용하여 컴파일 타임 진단이 가능합니다.
+C++11 부터는 [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)를 이용하여 컴파일 타임 진단이 가능합니다.
 
 런타임 진단은 해당 코드가 실행되어야 진단이 가능하여 커버리지가 낮을 수 있지만, 컴파일 타임 진단은 컴파일 과정에서 이루어 지므로 100% 진단이 이루어집니다. 
 
@@ -35,7 +35,7 @@ Func_11(a); // (X) 컴파일 오류. error: static assertion failed: only pointe
 
 # (C++17~) static_assert의 메시지 생략
 
-C++17 부터는 `static_assert`의 메시지 생략을 지원합니다.
+C++17 부터는 `static_assert`의 메시지 생략(??)을 지원합니다.
 
 ```cpp
 template<typename T>

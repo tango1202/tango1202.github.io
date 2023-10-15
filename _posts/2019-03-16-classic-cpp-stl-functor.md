@@ -14,7 +14,7 @@ sidebar:
 > * (C++11~) [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.
 > * (C++11~) [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper), [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.
 > * (C++11~) [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
-> * (C++11~) 함수자 타입 특성 클래스(`unary_function`, `binery_function` 등), 바인더(`bind1st()`, `bind2nd()` 등), 어뎁터와 부정자(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
+> * (C++11~) 함수자 타입 특성 클래스(`unary_function`, `binery_function` 등), 바인더(`bind1st()`, `bind2nd()` 등), 어뎁터와 부정자(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function), [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind), `mem_fn()`등으로 대체되어 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
 > * (C++11~) [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.
 > * (C++17~) [not_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되어 인자(단항, 이항 제한이 없습니다.)로 전달한 함수자를 부정하는 함수자를 만듭니다.
 

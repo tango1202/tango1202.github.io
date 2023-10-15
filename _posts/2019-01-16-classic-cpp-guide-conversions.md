@@ -8,9 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
-> * 암시적 형변환은 실수하기 쉽게 만든다. 명시적으로 형변환하라.
-> * bool 형변환 연산자 정의는 하지 마라. 나아가 모든 타입의 형변환 연산자 정의를 하지 마라. 뜻하지 않게 몰래 암시적 형변환한다.
-> * 인자가 1개인 생성자는 `explicit`로 암시적 형변환을 차단하라.
+> * [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 실수하기 쉽게 만든다. 명시적으로 형변환하라.
+> * bool 형변환 연산자 정의는 하지 마라. 나아가 모든 타입의 형변환 연산자 정의를 하지 마라. 뜻하지 않게 몰래 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)한다.
+> * 인자가 1개인 생성자는 `explicit`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하라.
 > * 할 수 있는한 최선을 다하여 형변환하지 마라.
 
 > **모던 C++**
@@ -22,18 +22,18 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|암시적 형변환|C언어 잔재. 유사한 타입끼리 변환|
+|[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|C언어 잔재. 유사한 타입끼리 변환|
 |명시적 형변환 - 괄호(`(`와 `)`)|C언어 잔재.<br/>`const_cast`,<br/>`static_cast`,<br/>`reinterpret_cast`<br/>의 순서로 형변환|
 |명시적 형변환 - `const_cast`|상수성만 변환|
 |명시적 형변환 - `static_cast`|타입 유사성을 지키며 변환|
 |명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.|
 |명시적 형변환 - `reinterpret_cast`|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
 |형변환 연산자 정의|[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 제공하나 암시적 형변환이 됨|
-|`explicit`|암시적 형변환 되지 않도록 개체 생성자에 지정|
+|`explicit`|[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 되지 않도록 개체 생성자에 지정|
 
 C++언어는  
 
-1. C언어의 특성을 물려받으면서 암시적 형변환을 지원하며,
+1. C언어의 특성을 물려받으면서 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 지원하며,
 2. 이를 보완하고자 4종의 명시적 형변환(`const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`)을 제공하고,
 3. [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 연산자 정의를 제공합니다.
 
@@ -41,7 +41,7 @@ C++언어는
 
 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 에 언급되었듯, **잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게** 구현해야 하는데, 형변환을 마구 사용하다 보면, 잘못 사용할 확률이 높기 때문에, 최대한 못쓰게 통제해야 합니다.
 
-형변환이 꼭 필요한 경우라면(이런 경우가 없도록 설계하셔야 겠지만), 별도의 변환 함수를 만들어 의도적으로 호출하게 만드세요. 그래야 추후 코드 분석에 도움을 줄 수 있습니다. 암시적 형변환으로 몰래 형변환되게 한다면, 나중에 해당 위치 찾느라 밤을 새며 고생하게 됩니다.
+형변환이 꼭 필요한 경우라면(이런 경우가 없도록 설계하셔야 겠지만), 별도의 변환 함수를 만들어 의도적으로 호출하게 만드세요. 그래야 추후 코드 분석에 도움을 줄 수 있습니다. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)으로 몰래 형변환되게 한다면, 나중에 해당 위치 찾느라 밤을 새며 고생하게 됩니다.
 
 # 암시적 형변환
 
@@ -270,7 +270,7 @@ EXPECT_TRUE(i == 10);
 EXPECT_TRUE(c == 1);
 ```
 
-하지만, 기본 암시적 형변환과 어우러 지면서 예기치 못한 경우에 형변환 될 수 있습니다. 심지어 코드 분석도 힘들게 만듭니다.
+하지만, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 어우러 지면서 예기치 못한 경우에 형변환 될 수 있습니다. 심지어 코드 분석도 힘들게 만듭니다.
 
 ```cpp
 class U {};
@@ -339,7 +339,7 @@ EXPECT_TRUE(status == true);
 
 # 명시적 변환 생성 지정자(explicit)
 
-특별히 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)에 인자가 1개만 있으면, 인자 타입에서 개체 타입으로 암시적 형변환과 명시적 형변환이 가능해 집니다.(암시적인 형변환을 하므로 형변환 생성자라고도 합니다.)
+특별히 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)에 인자가 1개만 있으면, 인자 타입에서 개체 타입으로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 명시적 형변환이 가능해 집니다.([암시적인 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 하므로 형변환 생성자라고도 합니다.)
 
 ```cpp
 class T {};
@@ -359,7 +359,7 @@ U u5; // 기본 생성자로 생성
 u5 = t; // (△) 비권장. 생성후 값 대입시 암시적 변환
 ```
 
-이중 암시적 형변환 문제를 해결하려면 생성자에 `explicit` 를 추가하면 됩니다.
+이중 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 문제를 해결하려면 생성자에 `explicit`를 추가하면 됩니다.
 
 ```cpp
 class T {};
@@ -379,11 +379,11 @@ U u5; // 기본 생성자로 생성
 u5 = t; // (X) 컴파일 오류
 ```
 
-컴파일 오류를 발생시켜 암시적 형변환을 못하게 해버렸으니, 좀더 강력한 **코딩 계약** 이 되었습니다.(명시적 형변환도 못하게 만들고 싶은데, 문법의 한계로 방법이 없네요. 좀 아쉽긴 합니다.)
+컴파일 오류를 발생시켜 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 못하게 해버렸으니, 좀더 강력한 **코딩 계약** 이 되었습니다.(명시적 형변환도 못하게 만들고 싶은데, 문법의 한계로 방법이 없네요. 좀 아쉽긴 합니다.)
 
 # 코딩 계약을 무시하는 암시적 형변환
 
-암시적 형변환으로 코딩이 편해질 수 있다고 생각하시는 분도 있을 수 있는데요, **코딩 계약**을 해칠 수 있어 뜻하지 않은 버그를 만들어 냅니다. 코딩을 쉽게 만드는게 아니라, 실수하기 쉽게 만드는 겁니다.
+[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)으로 코딩이 편해질 수 있다고 생각하시는 분도 있을 수 있는데요, **코딩 계약**을 해칠 수 있어 뜻하지 않은 버그를 만들어 냅니다. 코딩을 쉽게 만드는게 아니라, 실수하기 쉽게 만드는 겁니다.
 
 사용자가 실수로 잘못 입력하지 않도록 `Year`, `Month`, `Day`만 전달받는 `Date` 클래스를 만들었다고 해봅시다. 타입에 기반한 **코딩 계약**을 만든거죠.
 
@@ -415,7 +415,7 @@ public:
 
 `Date` 클래스는 타입에 기반한 **코딩 계약**을 잘 만들어 주었지만, `Year`와 `Day`는 인자가 1개인 생성자(`int` 타입 전달)가 있기 때문에, `int`를 `Year`와 `Day`로 암시적으로 형변환합니다.
 
-`Year`와 `Day`가 암시적 형변환을 허용하는 바람에, `Date`의 타입에 기반한 **코딩 계약**은 의미가 없어져 버렸습니다. 
+`Year`와 `Day`가 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 허용하는 바람에, `Date`의 타입에 기반한 **코딩 계약**은 의미가 없어져 버렸습니다. 
 
 ```cpp
 Date d1(Year(2023), Month::Jan, Day(10)); // (O) 코딩 계약 준수.
@@ -423,4 +423,4 @@ Date d2(2023, Month::Jan, 10); // (△) 비권장. 컴파일이 되요.
 Date d3(31, Month::Jan, 13); // (△) 비권장. 31년 1월 13일로 의도하고 입력한게 맞을까요?
 ```
 
-그러니, 암시적 형변환이 되지 않도록, 생성자에 `explicit`를 꼭 넣으셔야 합니다.
+그러니, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 되지 않도록, 생성자에 `explicit`를 꼭 넣으셔야 합니다.

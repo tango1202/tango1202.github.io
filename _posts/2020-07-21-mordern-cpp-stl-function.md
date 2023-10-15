@@ -8,15 +8,15 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) `function`은 `()`로 호출 가능한 함수자를 저장합니다.
-> * (C++11~) `function`에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.
+> * (C++11~) [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)은 `()`로 호출 가능한 함수자를 저장합니다.
+> * (C++11~) [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.
 > * (C++11~) `mem_fn()`은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.
 > * (C++11~) `reference_warapper` 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.
 > * (C++11~) `ref()`, `cref()`는 `reference_wrapper` 개체를 생성합니다.
-> * (C++11~) `bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
-> > * `is_bind_expression`는 `bind()`로 생성한 함수인지 검사합니다.
+> * (C++11~) [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
+> > * `is_bind_expression`는 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)로 생성한 함수인지 검사합니다.
 > > * `is_placeholder`는 자리 표시자를 사용했는지 검사합니다.
-> * (C++11~) [함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)(`unary_function`, `binery_function` 등), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)(`bind1st()`, `bind2nd()` 등), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다. 
+> * (C++11~) [함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)(`unary_function`, `binery_function` 등), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)(`bind1st()`, `bind2nd()` 등), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/), [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function), [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind), `mem_fn()`등으로 대체되어 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다. 
 > * (C++17~) [invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다.
 
 # 개요
@@ -61,12 +61,12 @@ std::find_if(
 
 # function
 
-`function` 개체는 다음 개체들을 저장할 수 있습니다.
+[function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function) 개체는 다음 개체들을 저장할 수 있습니다.
 
 1. [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)
 2. [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)
 3. [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)
-4. `bind()` 표현식
+4. [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind) 표현식
 
 ```cpp
 std::function<int(int)> func{[](int val) -> int {return val < 7 ? true : false;}};
@@ -82,7 +82,7 @@ EXPECT_TRUE(*itr == 4);
 
 # bad_function_call
 
-`function`에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.
+[function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)에서 `()`을 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.
 
 ```cpp
 std::function<void()> func{nullptr};
@@ -117,7 +117,7 @@ EXPECT_TRUE(add(obj, 1, 2) == 3); // obj.Add(1, 2);를 호출합니다.
 
 `reference_warapper` 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑하여 복사/대입이 가능하게 하고, 참조성을 유지시켜 줍니다. 
 
-`get()`으로 관리하는 참조자를 구할 수 있으며, 다른 참조자 생성시 `operator T&() const` 을 이용한 암시적 형변환을 통해 참조자를 대입합니다.(암시적 형변환이 필요하여 `{}`는 안됩니다.) 
+`get()`으로 관리하는 참조자를 구할 수 있으며, 다른 참조자 생성시 `operator T&() const` 을 이용한 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 통해 참조자를 대입합니다.([암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 필요하여 `{}`는 안됩니다.) 
 
 ```cpp
 int a{0};
@@ -280,9 +280,9 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 20);
 
 기존에는 이항 함수를 단항 함수로 만들기 위해 `bind1st(op, x)`나 `bind2nd(op, y)`와 같은 [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)를 이용했는데요,
 
-C++11 부터 STL 에서는 `bind()`함수를 추가하여, 다수의 인자(GCC의 경우 `_1`~`_29` 범위에서 지원됨)를 가진 함수도 지원합니다.
+C++11 부터 STL 에서는 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)함수를 추가하여, 다수의 인자(GCC의 경우 `_1`~`_29` 범위에서 지원됨)를 가진 함수도 지원합니다.
 
-`bind()`는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
+[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
 
 다음 코드에서,
 
@@ -325,7 +325,7 @@ EXPECT_TRUE(func3(4, 5) == 1 + 4 + 5);
 ```
 # bind() 와 인수의 참조성 유지
 
-`bind()`는 인수를 복사하기 때문에, 만약 참조자를 사용하는 함수라면 오동작하게 됩니다.
+[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 인수를 복사하기 때문에, 만약 참조자를 사용하는 함수라면 오동작하게 됩니다.
 
 ```cpp
 // 인자들의 값을 1씩 증가시킵니다.
@@ -364,7 +364,7 @@ EXPECT_TRUE(a == 2 && b == 3 && c == 4);
 
 # is_bind_expression
 
-`is_bind_expression`는 `bind()`로 생성한 함수인지 검사합니다. 단, `function` 개체에 저장한 것을 사용하면, `bind()` 관련 속성을 잃어버리기 때문에 오동작 합니다.
+`is_bind_expression`는 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)로 생성한 함수인지 검사합니다. 단, [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function) 개체에 저장한 것을 사용하면, [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind) 관련 속성을 잃어버리기 때문에 오동작 합니다.
 
 ```cpp
 int Sum(int a, int b, int c) {return a + b + c;}
@@ -384,7 +384,7 @@ EXPECT_TRUE(IsBind(func2) == false);
 
 # is_placeholder
 
-`is_placeholder`는 자리 표시자를 사용했는지 검사합니다. 단, `function` 개체에 저장한 것을 사용하면, `bind()` 관련 속성을 잃어버리기 때문에 오동작 합니다.
+`is_placeholder`는 자리 표시자를 사용했는지 검사합니다. 단, [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function) 개체에 저장한 것을 사용하면, [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind) 관련 속성을 잃어버리기 때문에 오동작 합니다.
 
 ```cpp
 int Sum(int a, int b, int c) {return a + b + c;}
