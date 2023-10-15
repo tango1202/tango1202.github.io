@@ -269,7 +269,7 @@ bad_variant_access
 |[순열 작업](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%9C%EC%97%B4-%EC%9E%91%EC%97%85)|`next_permutation()`, `prev_permutation()` 등으로 순열(요소들을 중복없이 순서를 변경하여 나열)을 배치합니다.|
 |[힙 작업](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%ED%9E%99-%EC%9E%91%EC%97%85)|(작성중)|
 |[수학 작업](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)|`accumulate()`, `inner_product()`, `partial_sum()`과 같은 수학 연산을 제공합니다.<br/><br/>**(C++17~)**<br/>`gcd()`는 `m`과 `n`의 최대 공약수를 계산합니다.<br/>`lcm()`은 `m`과 `n`의 최소 공배수를 계산합니다.<br/>`reduce()`는 임의의 순서로 `accumulate()`를 처리합니다.<br/>`transform_reduce()`은 `inner_product()`를 병렬로 적용합니다.<br/>`inclusive_scan(), exclusive_scan(), transform_inclusive_scan(), transform_exclusive_scan()`은 `partial_sum()`을 병렬로 적용합니다.|
-|[실행 정책](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#c17-%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85) (C++17~)|**(C++17~)**<br/>대부분의 알고리즘에서 병렬 작업을 지원하는 오버로딩 버전이 추가되었고, [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#c17-%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 실행 정책을 지정할 수 있습니다.|
+|[병렬 알고리즘과 실행 정책](??) (C++17~)|**(C++17~)**<br/>대부분의 알고리즘에서 병렬 작업을 지원하는 오버로딩 버전이 추가되었고, [seq, par, par_unseq, unseq](??)으로 실행 정책을 지정할 수 있습니다.|
 
 # 문자열 라이브러리
 
