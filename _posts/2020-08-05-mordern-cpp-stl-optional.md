@@ -27,7 +27,7 @@ UI 의 체크박스를 보면,
 
 일 수 있습니다.
 
-이런 미확정 상태나 값을 표시하기 부적절한 상태 처리를 위해 `nullptr`을 활용할 수 있는데요,
+이런 미확정 상태나 값을 표시하기 부적절한 상태 처리를 위해 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)을 활용할 수 있는데요,
 
 ```cpp
 bool* option = nullptr;

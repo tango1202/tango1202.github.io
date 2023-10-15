@@ -102,7 +102,7 @@ std::shared_ptr<T> b{a};
 
 |항목|내용|
 |--|--|
-`constexpr shared_ptr() noexcept;` (C++11~)<br/><br/>`explicit shared_ptr(T* p);` (C++11~)<br/>`shared_ptr(T* p, deleter);` (C++11~)<br/>`shared_ptr(T* p, deleter, allocator);` (C++11~)<br/><br/>`constexpr shared_ptr(nullptr_t) noexcept;` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter);` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter, allocator);` (C++11~)<br/><br/>`explicit shared_ptr(const weak_ptr&);` (C++11~)<br/>`shared_ptr(unique_ptr&&);` (C++11~)<br/><br/>[별칭 생성자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%EB%B3%84%EC%B9%AD-%EC%83%9D%EC%84%B1%EC%9E%90)<br/>`shared_ptr(const shared_ptr& other, element_type* p) noexcept;` (C++11~)<br/><br/>`shared_ptr( auto_ptr&&);` (C++11~C++17)|`nullptr`이나 `p`를 공유하며, 참조 카운트를 증가시킵니다. 이때 사용자 정의 `deleter`와 `allocator` 를 사용할 수 있습니다. `weak_ptr`과 `unique_ptr`로 생성할 수도 있습니다.|
+`constexpr shared_ptr() noexcept;` (C++11~)<br/><br/>`explicit shared_ptr(T* p);` (C++11~)<br/>`shared_ptr(T* p, deleter);` (C++11~)<br/>`shared_ptr(T* p, deleter, allocator);` (C++11~)<br/><br/>`constexpr shared_ptr(nullptr_t) noexcept;` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter);` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter, allocator);` (C++11~)<br/><br/>`explicit shared_ptr(const weak_ptr&);` (C++11~)<br/>`shared_ptr(unique_ptr&&);` (C++11~)<br/><br/>[별칭 생성자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%EB%B3%84%EC%B9%AD-%EC%83%9D%EC%84%B1%EC%9E%90)<br/>`shared_ptr(const shared_ptr& other, element_type* p) noexcept;` (C++11~)<br/><br/>`shared_ptr( auto_ptr&&);` (C++11~C++17)|[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)이나 `p`를 공유하며, 참조 카운트를 증가시킵니다. 이때 사용자 정의 `deleter`와 `allocator` 를 사용할 수 있습니다. `weak_ptr`과 `unique_ptr`로 생성할 수도 있습니다.|
 |`shared_ptr(const shared_ptr& other) noexcept;` (C++11~)|개체와 소유권을 공유하고 참조 카운트를 증가시킵니다.|
 |`shared_ptr(const shared_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
 |`~shared_ptr();` (C++11~)|관리하던 개체의 참조 카운트를 감소시키고, `0`이 되면 `delete`또는 `delete[]`(C++17~)합니다.|
@@ -111,7 +111,7 @@ std::shared_ptr<T> b{a};
 |`operator *() const noexcept;` (C++11~)|관리하는 개체의 참조자를 리턴합니다.|
 |`operator ->() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
 |`operator [](ptrdiff_t) const;` (C++17~)|배열을 관리하는 경우 각 요소 개체의 참조자를 리턴합니다.|
-|`explicit operator bool() const noexcept;` (C++11~)|`bool`로 형변환시 `nullptr` 이면 `false`를 리턴합니다.|
+|`explicit operator bool() const noexcept;` (C++11~)|`bool`로 형변환시 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 이면 `false`를 리턴합니다.|
 |`get() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
 |`swap(shared_ptr& other) noexcept;` (C++11~)|관리하는 개체를 `other`와 바꿔치기 합니다.|
 |`reset(T* p);`|기존에 관리하던 개체를 해제하고 `p`를 관리합니다.|
