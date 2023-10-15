@@ -19,140 +19,6 @@ sidebar:
     컴파일 타임 정수 타입 시퀀스([integer_sequence](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-integer_sequence/)), 스마트 포인터 유틸리티([make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique)), 
     [tuple의 타입 기반 get()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c14-%ED%83%80%EC%9E%85-%EA%B8%B0%EB%B0%98-get), [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/), 이터레이터 범위 접근([rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)), [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/), [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/), 쓰레드 소유권 공유([shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock), [shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)), [quoted()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4) 가 추가되었습니다.
 
-
-STL
-
-# 제거
-
-std::iterator,
-std::raw_storage_iterator,
-std::get_temporary_buffer,
-return_temporary_buffer
-std::is_literal_type,
-std::result_of,
-all of <codecvt>
-the obsolete iostreams aliases ~C++17
-
-# Utility types
-
-std::tuple:
-std::apply
-std::make_from_tuple
-deduction guides
-std::any
-std::optional <optional>
-std::variant
-
-Searcher
-default_searcher
-boyer_moore_searche
-boyer_moore_horspool_searcher
-
-std::as_const
-`to_underlying()`
-
-
-string_view
-std::not_fn
-invoke
-std::byte
-std::clamp
-sample(https://github.com/AnthonyCalandra/modern-cpp-features#stdsample)
-std::reduce, transform_reduce
-std::gcd
-std::lcm
-for_each_n
-
-parallel algorithms and execution policies
-std::inclusive_scan
-std::exclusive_scan
-transform_exclusive_scan
-transform_inclusive_scan
-
-`<execution>` sequenced_policy parallel_policy parallel_unsequenced_policy unsequenced_policy seq par unseq is_execution_policy
-
-`<charconv>` from_char_result
-https://github.com/AnthonyCalandra/modern-cpp-features#string-conversion-tofrom-numbers
-std::to_chars
-to_chars_result
-std::from_chars
-from_chars_result
-chars_format
-
-`<filesystem> `
-
-# 쓰레드 관련
-
-hardware_destructive_interference_size
-shared_mutex
-scoped_lock
-is_allways_lock_free
-
-# 크로노
-
-floor, ceil, round, abs
-C스타일 시간 유틸리티 std::timespec_get
-
-# 컨테이너
-insert_or_assign
-extract
-merge
-try_implace
-
-
-# Compile-time programming
-
-# Memory management
-
-`<memory_resource>` std::pmr::memory_resource and std::polymorphic_allocator
-
-align_val_t
-std::uninitialized_move
-std::uninitialized_value_construct
-uninitialized memory algorithms
-std::destroy_at
-std::destroy
-std::destroy_n
-construct_at
-
-std::launder
-std::aligned_alloc
-array support for std::shared_ptr
-allocation functions with explicit alignment
-
-
-# Iterators and containers
-
-map/set extract and map/set merge(slicing for maps and sets https://github.com/AnthonyCalandra/modern-cpp-features#splicing-for-maps-and-sets)
-contiguous iterators (LegacyContiguousIterator)
-범위 접근. non-member std::size/std::empty/std::data
-
-# Numerics
-
-특수 수학 함수 mathematical special functions 
-3D std::hypot
-
-# Others
-
-cache line interface
-
-
-모호성 해소
-in_place
-in_place_type
-in_place_index
-in_place_t
-in_place_index_t
-
-# 자가 진단
-
-uncaught_exceptions
-
-filesystem_error
-bad_any_cast
-bad_optional_access
-bad_variant_access
-
 # 언어 지원 라이브러리
 
 |항목|내용|
@@ -189,8 +55,8 @@ bad_variant_access
 |[할당자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%ED%95%A0%EB%8B%B9%EC%9E%90)|[allocator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 등 STL에서 개체 할당에 사용합니다.<br/><br/>**(C++17~)**<br/>[polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/)는 런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용합니다.|
 |[메모리 유틸리티 작업](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85)|`uninitialized_copy()`, `uninitialized_fill()`등 초기화되지 않은 메모리 관리 작업을 제공합니다.<br/><br/>**(C++17)**<br/>[`uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at()`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85) 함수를 추가하여 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)의 새로운 방법을 제공합니다.|
 |[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) (~C++11)|**(C++11~)**<br/>[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 `delete[]` 미지원, `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다. 이제 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/) 을 사용합니다.|
-|[unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/) (C++11~)|**(C++11~)**<br/>[`unique_ptr`]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/))은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.<br/>[default_delete](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#default_delete)를 스마트 포인터의 `deleter`로 사용할 수 있습니다.<br/><br/>**(C++14~)**<br/>[make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique) 를 이용하여 `unique_ptr`을 효율적으로 생성할 수 있습니다.|
-|[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr) (C++11~)|**(C++11~)**<br/>[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)은 소유권 공유용 스마트 포인터입니다.<br/>[enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this)를 이용하여 `shared_ptr`이 관리하는 개체로부터 `shared_ptr`을 만들 수 있습니다.<br/>[owner_less](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_less)를 이용하여 소유권 개체의 주소로 비교할 수 있습니다.<br/>`shared_ptr`에서 포인터가 잘못된 경우 [bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) 예외를 방출합니다.<br/>[make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared) 를 이용하여 `shared_ptr`을 효율적으로 생성할 수 있습니다.<br/>[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)(`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`)을 이용하여 `shared_ptr`의 관리 개체를 형변환 할 수 있습니다.<br/><br/>**(C++17~)**<br/>[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)에 `reinterpret_pointer_cast()`가 추가되었습니다.|
+|[unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/) (C++11~)|**(C++11~)**<br/>[`unique_ptr`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권 이전용 스마트 포인터입니다. 기존 `auto_ptr`을 대체합니다. `auto_ptr`은 `delete[]` 미지원, `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.<br/>[default_delete](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#default_delete)를 스마트 포인터의 `deleter`로 사용할 수 있습니다.<br/><br/>**(C++14~)**<br/>[make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique) 를 이용하여 `unique_ptr`을 효율적으로 생성할 수 있습니다.|
+|[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr) (C++11~)|**(C++11~)**<br/>[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)은 소유권 공유용 스마트 포인터입니다.<br/>[enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this)를 이용하여 `shared_ptr`이 관리하는 개체로부터 `shared_ptr`을 만들 수 있습니다.<br/>[owner_less](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_less)를 이용하여 소유권 개체의 주소로 비교할 수 있습니다.<br/>`shared_ptr`에서 포인터가 잘못된 경우 [bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) 예외를 방출합니다.<br/>[make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared) 를 이용하여 `shared_ptr`을 효율적으로 생성할 수 있습니다.<br/>[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)(`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`)을 이용하여 `shared_ptr`의 관리 개체를 형변환 할 수 있습니다.<br/><br/>**(C++17~)**<br/>[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)에서 [배열을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#c17-%EB%B0%B0%EC%97%B4-%EC%A7%80%EC%9B%90)합니다.<br/>[shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)에 `reinterpret_pointer_cast()`가 추가되었습니다.|
 |[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) (C++11~)|**(C++11~)**[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)은 `shared_ptr`의 상호 참조 문제를 해결합니다.|
 |[동적 메모리 관리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/) (C++11~)|**(C++11~)**<br/>[pointer_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#pointer_traits)는 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.<br/>[addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#addressof)는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.<br/>[align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#align)은 메모리 정렬된 포인터를 구합니다.|
 |[가비지 컬렉터 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EA%B0%80%EB%B9%84%EC%A7%80-%EC%BB%AC%EB%A0%89%ED%84%B0-%EC%A7%80%EC%9B%90) (C++11~C++23)|(작성중)|
@@ -240,7 +106,7 @@ bad_variant_access
 |[이터레이터 아답터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%95%84%EB%8B%B5%ED%84%B0)|`reverse_iterator`, `back_insert_iterator`등 이터레이터를 래핑한 아답터를 제공합니다.<br/><br/>**(C++11~)**<br/>[move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 이터레이터가 가리키는 요소를 이동 연산 합니다.| 
 |[스트림 이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)|`istream_iterator`, `ostream_iterator` 등 스트림 처리를 위한 이터레이터를 제공합니다.|
 |[이터레이터 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)|`advance()`, `distance()` 로 이터레이터를 이동시킵니다.<br/><br/>**(C++11~)**<br/>`next()`와 `prev()`가 추가되었습니다.|
-|[범위 접근](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC) (C++11~)|**(C++11~)**<br/>[begin(), end()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)가 추가되었습니다.<br/><br/>**(C++14~)**<br/>[rbegin(), rend(), cbegin(), cend(), crbegin(), crend()]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC))가 추가되었습니다.|
+|[범위 접근](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC) (C++11~)|**(C++11~)**<br/>[begin(), end()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)가 추가되었습니다.<br/><br/>**(C++14~)**<br/>[rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)가 추가되었습니다.<br/><br/>**(C++17~)**<br/>[size(), empty(), data()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC) 가 추가되었습니다.|
 |[이터레이터 사용자 정의](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98) (C++20~)|(작성중)|
 |[이터레이터 컨셉](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%BB%A8%EC%85%89) (C++20~)|(작성중)|
 |[이터레이터 연관 타입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%97%B0%EA%B4%80-%ED%83%80%EC%9E%85) (C++20~)|(작성중)|
@@ -354,9 +220,9 @@ bad_variant_access
 
 |항목|내용|
 |--|--|
-|[진단](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%A7%84%EB%8B%A8)|[assert()]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%A7%84%EB%8B%A8))로 설계한 기능이 올바르게 사용되는지 디버그 모드에서 확인합니다.|
+|[진단](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%A7%84%EB%8B%A8)|[assert()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%A7%84%EB%8B%A8)로 설계한 기능이 올바르게 사용되는지 디버그 모드에서 확인합니다.|
 |[exception](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#exception)|`throw`를 이용한 예외 보고시 일관된 인터페이스를 제공합니다.|
-|[표준 예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8)|`out_of_range`, `bad_alloc`등의 예외를 제공합니다.|
+|[표준 예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8)|`out_of_range`, `bad_alloc`등의 예외를 제공합니다.<br/><br/>**(C++17~)**<br/>[filesystem_error](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EC%98%88%EC%99%B8), [bad_any_cast](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/), [bad_optional_access](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/), [bad_variant_access](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되었습니다.|
 |[예외 처리 실패](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%88%EC%99%B8-%EC%B2%98%EB%A6%AC-%EC%8B%A4%ED%8C%A8)|예외를 `catch()`하지 않았을때 `terminate()`를 호출하여 `terminate_handler`를 호출합니다.|
 |[동적 예외 사양 실패](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91-%EC%8B%A4%ED%8C%A8)|동적 예외 사양에서 명시한 예외 이외의 예외가 발생할때 `unexpected()`를 호출하여 `unexpected_handler`를 호출합니다.<br/><br/>**(C++11~)**<br/>deprecate 되었습니다.|
 |[오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8)|`<cerrono>` 에 매크로 상수로 정의되어 있습니다.<br/>자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/error/errno_macros)을 참고하기 바랍니다.|
@@ -368,8 +234,7 @@ bad_variant_access
 
 |항목|내용|
 |--|--|
-|(~C++11)|[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 `delete[]` 미지원, `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.<br/>[함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)(`unary_function`, `binery_function` 등), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)(`bind1st()`, `bind2nd()` 등), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2(), unary_negate(), binary_negate(), pointer_to_unary_function(), pointer_to_binary_function()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 deprecate 되었습니다.<br/>[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 이 deprecate 되면서 [unexpected()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)도 함께 deprecate 되었습니다.<br/>[gets()]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5))가 deprecate 되었습니다.|
-|(~C++14)|[random_shuffle()]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85))이 deprecate 되었습니다. `shuffle()`을 사용하세요.|
-
-
+|(~C++11)|[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 `delete[]` 미지원, `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 하는 등의 사유로 deprecate 되었습니다.<br/>[함수자 타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)(`unary_function`, `binery_function` 등), [바인더](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)(`bind1st()`, `bind2nd()` 등), [어뎁터와 부정자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2(), unary_negate(), binary_negate(), pointer_to_unary_function(), pointer_to_binary_function()` 등)가 람다 표현식, `function`, `bind()`, `mem_fn()`등으로 대체되어 deprecate 되었습니다.<br/>[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 이 deprecate 되면서 [unexpected()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)도 함께 deprecate 되었습니다.<br/>[gets()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)가 deprecate 되었습니다.|
+|(~C++14)|[random_shuffle()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)이 deprecate 되었습니다. `shuffle()`을 사용하세요.|
+|(~C++17)|[iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EA%B8%B0%EB%B3%B8-%EC%9A%94%EC%86%8C), [초기화 되지 않은 스토리지](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%90%98%EC%A7%80-%EC%95%8A%EC%9D%80-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80)(`raw_storage_iterator`, `get_temporary_buffer`, `return_temporary_buffer`), [is_literal_type](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1), [문자열 현지화 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%98%84%EC%A7%80%ED%99%94-%EB%B3%80%ED%99%98)(`wstring_convert`, `wbuffer_convert`, `codecvt_utf8`, `codecvt_utf16`, `codecvt_utf8_utf16`, `codecvt_mode`), `iostream` 별칭(`io_state, open_mode, seek_dir, streamoff, streamoff`)이 deprecate 되었습니다.|
 

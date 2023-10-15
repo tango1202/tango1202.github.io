@@ -104,7 +104,7 @@ sidebar:
 |`pow()`<br/>`powf(), powl()` (C++11~)|(작성중)|
 |`sqrt()`<br/>`sqrtf(), sqrtl()` (C++11~)|(작성중)|
 |`cbrt(), cbrtf(), cbrtl()` (C++11~)|(작성중)|
-|`hypot(), hypotf(), hypotl()` (C++11~)|(작성중)|
+|`hypot(x, y), hypotf(), hypotl()` (C++11~)|`sqrt(x^2 + y^2)`을 계산합니다.|
 
 **삼각 함수**
 

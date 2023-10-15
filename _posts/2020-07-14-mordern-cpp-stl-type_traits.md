@@ -88,7 +88,7 @@ ThreeType three;
 |`is_trivially_copyable` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85) 이나 [Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85) 처럼 간단하게 복사 가능한지 검사합니다.|
 |`is_standard_layout` (C++11~)|[표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 인지 검사합니다.|
 |`is_pod`(C++11~C++20)|[POD 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#pod-%ED%83%80%EC%9E%85plan-old-data) 인지 검사합니다.||
-|`is_literal`(C++11~C++17)|[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 인지 검사합니다.|
+|`is_literal_type`(C++11~C++17)|[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 인지 검사합니다.|
 |`is_empty` (C++11~)|멤버 변수, 가상 함수, 비어있지 않은 부모 개체가 없는 빈 개체인지 검사합니다.|
 |`is_polymorphic` (C++11~)|가상 함수가 있거나, 가상 함수를 상속한 다형성 타입인지 검사합니다.|
 |`is_abstract` (C++11~)|적어도 1개 이상의 순가상 함수가 있는 추상 클래스 타입인지 검사합니다.|

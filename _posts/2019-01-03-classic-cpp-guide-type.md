@@ -40,7 +40,7 @@ C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은
 
 그외 `signed`, `unsigned`, `short`, `long` 와 결합하여 다양한 조합이 나올 수 있습니다.([https://en.cppreference.com/w/cpp/language/types](https://en.cppreference.com/w/cpp/language/types) 참고)
 
-> *(C++11~) 최소 8byte 크기를 보장하는 `long long` 타입이 추가되었고,([long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) 참고) 유니코드를 지원하는 [`char16_t`, `char32_t` 타입]((https://tango1202.github.io/mordern-cpp/mordern-cpp-string/))이 추가되었습니다.
+> *(C++11~) 최소 8byte 크기를 보장하는 `long long` 타입이 추가되었고,([long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) 참고) 유니코드를 지원하는 [`char16_t`, `char32_t` 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)이 추가되었습니다.
 
 > *(C++20~) [`char8_t` 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/)이 추가되었습니다.*
 

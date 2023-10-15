@@ -51,10 +51,10 @@ sidebar:
 |`format_error` (C++20~)|(작성중)|
 |`bad_typeid`|널포인터를 역참조하여 typeid를 구할때 발생합니다.<br/>`T* p = NULL;`<br/>`typeid(*p).name();`|
 |`bad_cast`|`dynamic_cast`가 실패시 발생합니다.|
-|`filesystem_error` (C++17~)|파일 시스템 처리에서 오류가 발생했습니다.|
-|`bad_any_cast` (C++17~)|[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 사용시 타입이 일치하지 않을때 예외를 발생합니다.|
-|`bad_optional_access` (C++17~)|[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)에서 `value()` 사용시 값이 없을때 예외를 발생합니다.|
-|`bad_variant_access` (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)에서 주어진 타입이 없을때 예외를 발생합니다.|
+|[filesystem_error](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EC%98%88%EC%99%B8) (C++17~)|파일 시스템 처리에서 오류가 발생했습니다.|
+|[bad_any_cast](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) (C++17~)|[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 사용시 타입이 일치하지 않을때 예외를 발생합니다.|
+|[bad_optional_access](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/) (C++17~)|[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)에서 `value()` 사용시 값이 없을때 예외를 발생합니다.|
+|[bad_variant_access](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)에서 주어진 타입이 없을때 예외를 발생합니다.|
 |`bad_expected_access` (C++23~)|(작성중)|
 |[bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr) (C++11~)|`shared_ptr`에서 잘못된 `weak_ptr`을 사용할때 발생하는 예외입니다.|
 |[bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call) (C++11~)|`function`에서 `()`로 호출할 대상이 없을 때 `bad_function_call` 예외를 방출합니다.|
@@ -94,7 +94,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`uncaught_exception()` (C++11~C++17)<br/>`uncaught_exceptions()` (C++17~)|(작성중)|
+|`uncaught_exception()` (C++11~C++17)<br/>`uncaught_exceptions()` (C++17~)|예외가 발생되어 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 중인지를 감지합니다.|
 |`exception_ptr` (C++11~)|(작성중)|
 |`make_exception_ptr()` (C++11~)|(작성중)|
 |`current_exception()` (C++11~)|(작성중)|

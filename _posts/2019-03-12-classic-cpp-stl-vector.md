@@ -70,7 +70,7 @@ sidebar:
 |`cend()` (C++11~)|`const_iterator cend() const;`|마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
 |`crbegin()` (C++11~)|`const_reverse_iterator crbegin() const;`|반전된 `vector`의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
 |`crend()` (C++11~)|`const_reverse_iterator crend() const;`|반전된 `vector`의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
-|`data()`|`pointer data();`<br/>`const_pointer data() const;`|첫번째 요소의 포인터를 리턴합니다.|
+|`data()`|`pointer data();`<br/>`const_pointer data() const;`|컨테이너가 관리하는 메모리 블럭을 리턴합니다.(첫번째 요소의 포인터를 리턴합니다.)|
 |`front()`|`reference front();`<br/>`const_reference front() const;`|첫번째 요소의 참조자를 리턴합니다. `vector`가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`back()`|`reference back();`<br/>`const_reference back() const;`|마지막 요소의 참조자를 리턴합니다. `vector`가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 
