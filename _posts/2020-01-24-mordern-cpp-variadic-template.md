@@ -63,13 +63,13 @@ EXPECT_TRUE(Forwarding_11(MySum, 1, 2, 3) == 1 + 2 + 3);
 인자로 전달된 파라메터 팩은 `params...`와 같이 파라메터명 뒤에 `...`을 붙여 사용할 수 있습니다. 또한 다음과 같이 표현식을 이용한 패턴으로 확장하여 배포할 수 있습니다.(패턴에는 파라메터 팩 이름이 포함되어야 합니다.)
 
 ```cpp
-f(params...); // f(param1, param2, param3) 로 전개되어 배포됩니다.
-f(++params...); // f(++param1, ++param2, ++param3) 로 전개되어 배포됩니다.
-f((params + 1)...); // f((param1 + 1), (param2 + 1), (param3 + 3)) 로 전개되어 배포됩니다.
-f(&params...); // f(&param1, &param2, &param3) 로 전개되어 배포됩니다.
-f(vector[params]...); // f((vector[param1], vector[param2] vector[param3]) 로 전개됩니다.
-f(g(params)...); // f(g(param1), g(&param2), g(&param3)) 로 전개되어 배포됩니다.
-f (g(params...)  + params...); // f(g(param1, param2, param3) + param1, f(g(param1, param2, param3) + param2, f(g(param1, param2, param3) + param3) 로 전개되어 배포됩니다. 
+f(params...); // f(params#1, params#2, params#3) 로 전개되어 배포됩니다.
+f(++params...); // f(++params#1, ++params#2, ++params#3) 로 전개되어 배포됩니다.
+f((params + 1)...); // f((params#1 + 1), (params#2 + 1), (params#3 + 3)) 로 전개되어 배포됩니다.
+f(&params...); // f(&params#1, &params#2, &params#3) 로 전개되어 배포됩니다.
+f(vector[params]...); // f((vector[params#1], vector[params#2] vector[params#3]) 로 전개됩니다.
+f(g(params)...); // f(g(params#1), g(&params#2), g(&params#3)) 로 전개되어 배포됩니다.
+f (g(params...)  + params...); // f(g(params#1, params#2, params#3) + params#1, f(g(params#1, params#2, params#3) + param2, f(g(params#1, params#2, params#3) + params#3) 로 전개되어 배포됩니다. 
 ```
 
 다음은 파라메터 팩을 확장하여 배포한 예입니다. `Func()` 함수는 인자로 전달받은 `params`를 전개할 때 `(params + 1)`을 하여 1씩 더해서 배포합니다.
@@ -111,7 +111,7 @@ int Sum(int a, int b, int c) {
 }
 template<typename... Params>
 int Func_11(Params... params) {
-    return Sum((params + 1)...); // Sum(param1 + 1, param2 + 1, param2 + 1) 으로 전개됩니다.
+    return Sum((params + 1)...); // Sum(params#1 + 1, params#2 + 1, params#3 + 1) 으로 전개됩니다.
 } 
 
 EXPECT_TRUE(Func(1, 2, 3) == 2 + 3 + 4);
