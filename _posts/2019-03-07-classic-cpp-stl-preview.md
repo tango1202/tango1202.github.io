@@ -10,6 +10,8 @@ sidebar:
 
 Standard Template Library(STL) 의 주요 구성 요소는 하기와 같습니다.
 
+전체 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/)을 참고하기 바랍니다.
+
 |항목|내용|
 |--|--|
 |컨테이너|타입이 같은 여러개의 요소롤 저장하고 관리합니다.|

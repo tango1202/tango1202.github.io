@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * (C++11~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)은 소유권 공유용 스마트 포인터입니다.
-> * (C++11~) [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)은 `shared_ptr`의 상호 참조 문제를 해결합니다.
+> * (C++11~) [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)은 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)의 상호 참조 문제를 해결합니다.
 > * (C++17~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)에서 [배열을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#c17-%EB%B0%B0%EC%97%B4-%EC%A7%80%EC%9B%90)합니다.
 > * (C++17~) [shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)에 `reinterpret_pointer_cast()`가 추가되었습니다.
 
@@ -282,7 +282,7 @@ EXPECT_TRUE(a.use_count() == 2);
 4. `shared_ptr` 에서 참조 카운트가 0이 되면 소멸시킬 것이므로 소멸자에서는 별다른 작업을 하지 않습니다.
 5. 복사 대입 연산자에서는 각 멤버를 복사 대입합니다. 
    
-    이때 `shared_ptr`의 복사 대입 연산자는 `noexcept`로 선언되어 있어서 예외를 발생하지 않습니다. 포인터 복사와 참조 카운트 변경만 있으니까 예외 발생할게 없는거죠.
+    이때 `shared_ptr`의 복사 대입 연산자는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 선언되어 있어서 예외를 발생하지 않습니다. 포인터 복사와 참조 카운트 변경만 있으니까 예외 발생할게 없는거죠.
 
     ```cpp
     shared_ptr& operator=( const shared_ptr& r ) noexcept; 

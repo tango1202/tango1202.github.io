@@ -429,10 +429,10 @@ EXPECT_TRUE(T::Func_11(std::move(A())) == 2); // 임시 개체를 move 해도 rv
 
 `move_if_noexcept()` 는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다. 
 
-다음 코드를 보면 `A_11`는 예외 보증이 안되어 있고, `B_11`는 `noexcept`가 지정되어 있는데요,
+다음 코드를 보면 `A_11`는 예외 보증이 안되어 있고, `B_11`는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 지정되어 있는데요,
 
-1. `A_11`의 경우는 `noexcept`가 없어 복사 생성자가 호출되고,
-2. `B_11`의 경우는 `noexcept`가 있어 이동 생성자가 호출됩니다.
+1. `A_11`의 경우는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 없어 복사 생성자가 호출되고,
+2. `B_11`의 경우는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 있어 이동 생성자가 호출됩니다.
 
 ```cpp
 class A_11 {

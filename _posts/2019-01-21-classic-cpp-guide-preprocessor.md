@@ -14,7 +14,7 @@ sidebar:
 
 > **모던 C++**
 > * (C++11~) [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.
-> * [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof)를 이용하여 메모리 정렬 방식을 표준화 했습니다.
+> * (C++11~) [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof)를 이용하여 메모리 정렬 방식을 표준화 했습니다.
 > * (C++11~) [align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#align)은 메모리 정렬된 포인터를 구합니다.
 > * (C++11~) 가변 인자를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.
 
