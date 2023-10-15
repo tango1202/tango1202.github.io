@@ -8,6 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
+> **모던 C++**
+> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 오버로딩 버전이 추가되었고, `seq, par, par_unseq, unseq`으로 병렬 실행 정책을 지정할 수 있습니다.
+
 # 개요
 
 알고리즘은 컨테이너의 요소를 처리하는 표준화된 방법입니다. 만약 컨테이너 멤버 버전이 있다면, 멤버 버전이 효율이 더 좋습니다.

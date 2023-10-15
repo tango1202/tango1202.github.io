@@ -11,6 +11,7 @@ sidebar:
 > * (C++11~) 가변 인자를 활용한 가변 템플릿이 추가되어 코딩 자유도가 높아졌습니다.
 > * (C++11~) `sizeof...()`가 추가되어 가변 템플릿의 가변 인자인 파라메터 팩의 인자수를 구할 수 있습니다.
 > * (C++17~) Fold 표현식을 이용하여 가변 템플릿에서 파라메터 팩을 재귀적으로 반복하여 전개할 수 있습니다.
+> * (C++17~) [invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다.
 
 # 개요
 
@@ -57,6 +58,8 @@ EXPECT_TRUE(Forwarding_11(MySum, 1, 2, 3) == 1 + 2 + 3);
 |--|--|
 |`template<typename... Types>`|여러 타입들로 구성된 매개변수 팩입니다.|
 |`template<int... Values>`|비 템플릿 개체(예를 들어 `int`)로 구성된 매개변수 팩입니다.|
+
+> *(C++17~) [invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다.*
 
 # 파라메터 팩 배포 및 확장
 

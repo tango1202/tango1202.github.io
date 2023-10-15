@@ -8,13 +8,14 @@ sidebar:
     nav: "docs"
 ---
 
-> * `thread`는 주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.
-> * `mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.
-> * `lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.
-> * `call_once()`를 이용하면 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
+> * (C++11~) `thread`는 주어진 함수자를 쓰레드로 실행시킵니다. `yield()`, `sleep_for()`, `sleep_until()`등으로 실행 순서나 속도를 제어할 수 있습니다.
+> * (C++11~) `mutex`, `timed_mutex`, `recusive_mutex`, `recusive_timed_mutex` 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.
+> * (C++11~) `lock_guard`, `unique_lock` 등은 `mutex`의 잠금 상태를 관리합니다.
+> * (C++11~) `call_once()`를 이용하면 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
 > * (C++14~) `shared_timed_mutex`와 `shared_lock`을 이용하여 `mutex`의 소유권을 쓰레드끼리 공유할 수 있습니다. 
 > * (C++17~) `shared_mutex`은 다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 `mutex`입니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.
 > * (C++17~) [scoped_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c17-scoped_lock)을 추가하여, 다수의 `mutex`를 사용하더라도 데드락(Dead Lock)을 방지할 수 있게 해줍니다.
+> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 오버로딩 버전이 추가되었고, `seq, par, par_unseq, unseq`으로 병렬 실행 정책을 지정할 수 있습니다.
 
 # 개요
 
