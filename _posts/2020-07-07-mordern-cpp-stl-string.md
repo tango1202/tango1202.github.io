@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] 문자열, (C++17~) string_view, 숫자/문자열 변환(to_chars(), from_chars())"
+title: "#7. [모던 C++ STL] (C++11~) u16string, u32string, (C++17~) string_view, 숫자/문자열 변환(to_chars(), from_chars())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -10,25 +10,61 @@ sidebar:
 
 > * `string`은 바이트 문자열을 지원합니다.
 > * `wstring`은 와이드 문자열을 지원합니다.
-> * (C++11~) `u16string`은 UTF-16을 지원합니다.
-> * (C++11~) `u32string`은 UTF-32를 지원합니다.
+> * (C++11~)  UTF-16을 지원하는 [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+> * (C++11~) UTF-32를 지원하는 [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
 > * `strerror()`는 `errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
 > * (C++17~) 숫자와 문자열간의 변환을 위한 `to_char(), from_char()` 함수가 제공되며, 기존 C스타일(`itoa(), strtol()`등) 보다 안전합니다.
-> * (C++20~) `u8string`은 UTF-8을 지원합니다.
+> * (C++20~) UTF-8을 지원하는 `u8string`이 추가되었습니다.
 
 # 개요
 
-문자열을 처리하는 기본 클래스는 `basic_string`이며, 처리하는 문자 타입에 따라 재정의한 `string`, `wstring`등을 사용합니다.
-
-`string`, `wstring`등의 사용 방법은 [문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)을 참고하기 바랍니다.
+문자열을 처리하는 기본 클래스는 `basic_string`입니다.
 
 |항목|내용|
 |--|--|
-|`basic_string`|문자열의 기본 클래스입니다.<br/> * `string` : `basic_string<char>` 입니다. 바이트 문자열을 지원합니다.<br/>* `wstring` : `basic_string<wchar_t>` 입니다. 와이드 문자열을 지원합니다.<br/>* `u8string` (C++20~) : `basic_string<char8_t>` 입니다. UTF-8을 지원합니다.<br/>* `u16string` (C++11~) : `basic_string<char16_t>` 입니다. UTF-16을 지원합니다.<br/>* `u32string` (C++11~) : `basic_string<char32_t>` 입니다. UTF-32를 지원합니다.|
+|`basic_string`|문자열의 기본 클래스입니다.|
 |`char_traits`|`basic_string`에서 각 문자를 처리하는 타입 특성입니다.|
 |`basing_string_view` (C++17~)|(작성중)|
+
+`basic_string`은 각 타입 별로 별칭을 사용합니다.
+
+기존에는 `char`, `wchar_t` 문자열 개체만 지원했는데요([문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 참고),
+
+C++11 부터는 `char16_t`, `char32_t` 문자열인 `u16string`과 `u32string`을 지원합니다.
+
+각 별칭은 다음과 같습니다.
+
+|항목|내용|정의|
+|--|--|--|
+|`string`|바이트 문자열|`basic_string<char>`|
+|`wstring`|와이드 문자열|`basic_string<wchar_t>`|
+|`u16string` (C++11~)|UTF-16 문자열|`basic_string<char16_t>`|
+|`u32string` (C++11~)|UTF-32 문자열|`basic_string<char32_t>`|
+|`u32string` (C++20~)|UTF-8 문자열|`basic_string<char8_t>`|
+
+```cpp
+// C++11
+std::u16string str1_11{u"한글"};
+std::u32string str2_11{U"한글"};
+
+// C++20
+// std::u8string str3_20{u8"한글"};
+
+EXPECT_TRUE(str1_11.size() == 2);
+EXPECT_TRUE(str1_11[1] == u'글'); 
+
+EXPECT_TRUE(str2_11.size() == 2);
+EXPECT_TRUE(str2_11[1] == U'글');
+
+// C++20
+// EXPECT_TRUE(str3_20.size() == 2);
+// EXPECT_TRUE(str3_20[1] == U'글');
+```
+
+자세한 사용 방법은 [문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)을 참고하기 바랍니다.
+
 
 # 널종료 문자열
 
@@ -225,38 +261,7 @@ EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
 
 # basic_string
 
-대부분 `vector`와 동일하며, `string`에 필요한 기능이 추가되었습니다. 각 문자 타입별로 별칭을 만들어 사용합니다.
-
-기존에는 `char`, `wchar_t` 문자열 개체만 지원했는데요([문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 참고),
-
-C++11 부터는 `char16_t`, `char32_t` 문자열인 `u16string`과 `u32string`을 지원합니다.
-
-|항목|내용|별칭|
-|--|--|
-|`string`|바이트 문자열|`basic_string<char>`|
-|`wstring`|와이드 문자열|`basic_string<wchar_t>`|
-|`u16string` (C++11~)|UTF-16 문자열|`basic_string<char16_t>`|
-|`u32string` (C++11~)|UTF_32 문자열|`basic_string<char32_t>`|
-
-```cpp
-// C++11
-std::u16string str1_11{u"한글"};
-std::u32string str2_11{U"한글"};
-
-// C++20
-// std::u8string str3_20{u8"한글"};
-
-EXPECT_TRUE(str1_11.size() == 2);
-EXPECT_TRUE(str1_11[1] == u'글'); 
-
-EXPECT_TRUE(str2_11.size() == 2);
-EXPECT_TRUE(str2_11[1] == U'글');
-
-// C++20
-// EXPECT_TRUE(str3_20.size() == 2);
-// EXPECT_TRUE(str3_20[1] == U'글');
-```
-
+대부분 `vector`와 동일하며, `string`에 필요한 기능이 추가되었습니다. 
 
 **정적 멤버 변수**
 
