@@ -7,11 +7,12 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
-> * (C++11~) 유니코드를 지원하는 `char16_t`, `char32_t`이 추가되었습니다.
-> * (C++11~) 유니코드를 지원하는 `u8""`, `u""`, `U""`, `'u'`(문자), `'U'`(문자) 리터럴이 추가되었습니다. 
-> * (C++11~) `R"()"`리터럴이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.
+> * (C++11~) (C++11~) 유니코드를 지원하는 [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#char16_t-%EC%99%80-char32_t)이 추가되었습니다.
+> * (C++11~) 유니코드를 지원하는 [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다. 
+> * (C++11~) [R"()"리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
-> * (C++17~) 유니코드를 지원하는 `'u8'`(문자) 리터럴이 추가되었습니다.
+> * (C++17~) 유니코드를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
+> * (C++20~) 유니코드를 지원하는 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t)이 추가되었습니다.
 
 # 개요
 
@@ -46,6 +47,11 @@ C++11 부터는 유니코드 지원을 위해 2byte와 4byte 크기로 다루는
 |UTF-8 문자 (C++17~)|`u8'한'`|
 |UTF-16 문자 (C++11~)|`u'한'`|
 |UTF-32 문자 (C++11~)|`U'한'`|
+
+```cpp
+char16_t ch_11 = u'한';
+const char16_t* str_11 = u"abc한글";
+```
 
 # Raw String 리터럴
 
