@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] (C++11~) u16string, u32string, (C++17~) string_view, 숫자/문자열 변환(to_chars(), from_chars())"
+title: "#7. [모던 C++ STL] 문자열, (C++11~) u16string, u32string, (C++17~) string_view, 숫자/문자열 변환(to_chars(), from_chars())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -28,12 +28,6 @@ sidebar:
 |`char_traits`|[basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)에서 각 문자를 처리하는 타입 특성입니다.|
 
 [basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)은 각 타입 별로 별칭을 사용합니다.
-
-기존에는 `char`, `wchar_t` 문자열 개체만 지원했는데요([문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 참고),
-
-C++11 부터는 `char16_t`, `char32_t` 문자열인 `u16string`과 `u32string`을 지원합니다.
-
-각 별칭은 다음과 같습니다.
 
 |항목|내용|정의|
 |--|--|--|
@@ -64,36 +58,9 @@ EXPECT_TRUE(str2_11[1] == U'글');
 
 자세한 사용 방법은 [문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)을 참고하기 바랍니다.
 
+# 유니코드
 
-# 널종료 문자열
-
-이전 C스타일의 문자열은 문자열의 끝을 널문자로 표시합니다.
-
-```cpp
-char str1[] = "abc"; // (O) {'a', `b`, 'c', '\0'};
-EXPECT_TRUE(str1[0] == 'a');
-EXPECT_TRUE(str1[1] == 'b');
-EXPECT_TRUE(str1[2] == 'c');
-EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
-```
-
-따라서, C스타일 문자열 함수들은 문자열의 끝은 `\0` 문자라고 가정하고 개발되었습니다.
-
-# 저장 방식 관점 : 바이트 문자열, 멀티 바이트 문자열, 와이드 문자열
-
-영문자의 경우 0 ~ 127 까지의 7bit 만으로도 표현이 충분했기 때문에 1byte로도 저장이 가능합니다. 이렇게 1byte 단위로 문자를 관리하는 문자열을 **바이트 문자열** 이라 합니다.
-
-그런데, 다양한 국가의 언어를 사용하다보니 1byte로는 처리가 불가능했고, 127 이상의 값을 가진 문자 코드는 2byte로 처리하게 되었습니다. 이처럼 1byte와 2byte를 혼용하는 문자열을 **멀티 바이트 문자열** 이라고 합니다.(Microsoft에서 초창기에 만들어 사용했지만, 표준화 되지 않았고, 현재는 비권고 되고 있습니다.)
-
-**와이드 문자열** 은 영문자이건, 다국어 문자이건 모두 `wchar_t`로 관리하는 문자열입니다. 안타깝게도 이또한 시스템의 처리방식에 따라 크기가 다릅니다.(리눅스는 4byte이고, Windows 2byte 입니다. [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고)
-
-**와이드 문자열** 은 고정된 크기(2byte또는 4byte) 이기 때문에 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%BD%94%EB%93%9C-%EA%B4%80%EC%A0%90--%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 효율적으로 처리할 수 없습니다.
-
-이에 C++11 부터 STL에서는 유니코드를 지원하는 타입인 `char16_t`, `char_32_t`를 제공하고 있습니다.
-
-# 코드 관점 : 유니코드
-
-[바이트 문자열, 멀티 바이트 문자열, 와이드 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))은 문자를 어떤 크기로 저장할 것인가에 관한 구분입니다. 어쨌든 실제 문자의 코드값은 정수값에 매핑되어 처리되는데요, 역사적인 이유로 상당히 복잡해 졌습니다. 
+어쨌든 실제 문자의 코드값은 정수값에 매핑되어 처리되는데요, 역사적인 이유로 상당히 복잡해 졌습니다. 
 
 앞서 언급했듯 컴퓨터에서는 문자를 표현하기 위해서 0 ~ 127 까지의 7비트 체계의 아스키 코드(ASCII Code)를 사용했습니다. 그래서 1byte로도 충분했습니다.
 
@@ -114,6 +81,34 @@ EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
 |UTF-8|문자마다 다른 크기로 저장합니다. 이에 따라 문자 데이터 앞에 크기 정보가 필요하며, 최상위 비트가 `0`이면 7비트로 처리하고 `110`이면 2byte, `1110`이면 3byte, `11110`이면 4byte로 처리합니다.(웹 기본)<br/>* 영어 및 기호 : 1byte<br/>* 추가 라틴 및 중동 : 2byte<br/>* 한글 및 아시아 : 3byte(한글은 코드값은 2byte이지만, 크기 정보를 포함하면 3byte가 필요합니다.)<br/>* 추가 문자 : 4byte
 |UTF-16|기본적으로 2byte로 처리하고, 2byte로 표현할 수 없는 것들은 4byte로 처리합니다.(java 기본)|
 |UTF-32|모든 문자를 4byte로 처리합니다. 메모리 낭비가 심하여 잘 사용하지 않습니다.|
+
+
+# 널종료 문자열
+
+이전 C스타일의 문자열은 문자열의 끝을 널문자로 표시합니다.
+
+```cpp
+char str1[] = "abc"; // (O) {'a', `b`, 'c', '\0'};
+EXPECT_TRUE(str1[0] == 'a');
+EXPECT_TRUE(str1[1] == 'b');
+EXPECT_TRUE(str1[2] == 'c');
+EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
+```
+
+따라서, C스타일 문자열 함수들은 문자열의 끝은 `\0` 문자라고 가정하고 개발되었습니다.
+
+# 저장 방식 관점 : 바이트 문자열, 멀티 바이트 문자열, 와이드 문자열
+
+영문자는 0 ~ 127 까지의 7bit 만으로 표현이 충분하기 때문에 1byte만으로도 저장할 수 있습니다. 이렇게 1byte 단위로 문자를 저장하는 문자열을 **바이트 문자열** 이라 합니다.
+
+그런데, 다양한 국가의 언어를 사용하다보니 1byte로는 처리가 불가능했고, 127 이상의 값을 가진 문자 코드는 2byte로 처리하게 되었습니다. 이처럼 1byte와 2byte를 혼용하는 문자열을 **멀티 바이트 문자열** 이라고 합니다.(Microsoft에서 초창기에 만들어 사용했지만, 표준화 되지 않았고, 현재는 비권고 되고 있습니다.)
+
+**와이드 문자열** 은 영문자이건, 다국어 문자이건 모두 `wchar_t`로 관리하는 문자열입니다. 안타깝게도 Windows 에서는 2byte이고 리눅스에서는 4byte 이기 때문에 운영체제에 따라 다르게 동작할 수 있어 주의해야 합니다.([기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고)
+
+```cpp
+
+```
+
 
 # C스타일 문자열 함수
 
