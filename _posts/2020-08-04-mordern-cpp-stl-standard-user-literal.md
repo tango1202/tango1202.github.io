@@ -25,5 +25,5 @@ sidebar:
 |`operator ""ms` (C++14~)|`chrono::duration`에서 밀리초|
 |`operator ""us` (C++14~)|`chrono::duration`에서 마이크로초|
 |`operator ""ns` (C++14~)|`chrono::duration`에서 나노초|
-|`operator ""s` (C++14~)|`basic_string` 변환, `"abcdef"s`|
-|`operator ""sv` (C++17~)|`string_view` 변환|
+|`operator ""s` (C++14~)|[basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string) 변환, `"abcdef"s`|
+|`operator ""sv` (C++17~)|[string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view) 변환|

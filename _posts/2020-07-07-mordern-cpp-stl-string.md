@@ -8,26 +8,26 @@ sidebar:
     nav: "docs"
 ---
 
-> * `string`은 바이트 문자열을 지원합니다.
-> * `wstring`은 와이드 문자열을 지원합니다.
-> * (C++11~)  UTF-16을 지원하는 [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
-> * (C++11~) UTF-32를 지원하는 [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
-> * `strerror()`는 `errorno`([오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8) 참고)를 문자열로 출력해 줍니다.
+> * `string`은 [바이트 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))을 지원합니다.
+> * `wstring`은 [와이드 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))을 지원합니다.
+> * (C++11~)  [UTF-16]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9))을 지원하는 [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+> * (C++11~) [UTF-32]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9))를 지원하는 [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+> * [strerror()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#strerror)는 [오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8)를 문자열로 출력해 줍니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
-> * (C++17~) 숫자와 문자열간의 변환을 위한 `to_char(), from_char()` 함수가 제공되며, 기존 C스타일(`itoa(), strtol()`등) 보다 안전합니다.
-> * (C++20~) UTF-8을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.
+> * (C++17~) 숫자와 문자열간의 변환을 위한 [to_char(), from_char()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) 함수가 제공되며, 기존 C스타일([atoi(), strtol()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98 )등) 보다 안전합니다.
+> * (C++20~) [UTF-8](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.
 
 # 개요
 
-문자열을 처리하는 기본 클래스는 `basic_string`입니다. `char_traits`를 사용하여 각 문자 타입별로 문자열을 처리합니다.
+문자열을 처리하는 기본 클래스는 [basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)입니다. `char_traits`를 사용하여 각 문자 타입별로 문자열을 처리합니다.
 
 |항목|내용|
 |--|--|
-|`basic_string`|문자열의 기본 클래스입니다.|
-|`char_traits`|`basic_string`에서 각 문자를 처리하는 타입 특성입니다.|
+|[basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)|문자열의 기본 클래스입니다.|
+|`char_traits`|[basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)에서 각 문자를 처리하는 타입 특성입니다.|
 
-`basic_string`은 각 타입 별로 별칭을 사용합니다.
+[basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)은 각 타입 별로 별칭을 사용합니다.
 
 기존에는 `char`, `wchar_t` 문자열 개체만 지원했는데요([문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 참고),
 
@@ -37,11 +37,11 @@ C++11 부터는 `char16_t`, `char32_t` 문자열인 `u16string`과 `u32string`�
 
 |항목|내용|정의|
 |--|--|--|
-|`string`|바이트 문자열|`basic_string<char>`|
-|`wstring`|와이드 문자열|`basic_string<wchar_t>`|
-|`u16string` (C++11~)|UTF-16 문자열|`basic_string<char16_t>`|
-|`u32string` (C++11~)|UTF-32 문자열|`basic_string<char32_t>`|
-|`u32string` (C++20~)|UTF-8 문자열|`basic_string<char8_t>`|
+|`string`|[바이트 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))|`basic_string<char>`|
+|`wstring`|[와이드 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))|`basic_string<wchar_t>`|
+|`u16string` (C++11~)|[UTF-16 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)|`basic_string<char16_t>`|
+|`u32string` (C++11~)|[UTF-32 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)|`basic_string<char32_t>`|
+|`u32string` (C++20~)|[UTF-8 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)|`basic_string<char8_t>`|
 
 ```cpp
 // C++11
@@ -93,21 +93,19 @@ EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
 
 # 코드 관점 : 유니코드
 
-바이트 문자열, 멀티 바이트 문자열, 와이드 문자열은 문자를 어떤 크기로 저장할 것인가에 관한 내용이고, 실제 문자의 코드값을 처리하는 것은 역사적인 이유로 상당히 복잡해 졌습니다.
+[바이트 문자열, 멀티 바이트 문자열, 와이드 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))은 문자를 어떤 크기로 저장할 것인가에 관한 구분입니다. 어쨌든 실제 문자의 코드값은 정수값에 매핑되어 처리되는데요, 역사적인 이유로 상당히 복잡해 졌습니다. 
 
-앞서 언급했듯 컴퓨터에서는 문자를 표현하기 위해서 0 ~ 127 까지의 7비트 체계의 아스키 코드(ASCII Code)를 사용했습니다.
+앞서 언급했듯 컴퓨터에서는 문자를 표현하기 위해서 0 ~ 127 까지의 7비트 체계의 아스키 코드(ASCII Code)를 사용했습니다. 그래서 1byte로도 충분했습니다.
 
-하지만, 다양한 국가에서 다양한 언어를 사용하다 보니 7비트로는 표현이 불가능하여 각 국가별로 자체적인 코드 테이블을 사용했고, 서로 호환되지 않았습니다. 이에 전 세계의 모든 문자에 고유 숫자를 부여한 유니코드를 만들었는데요, 이것도 점진적으로 추가되고, 하위 호환을 유지하다보니 처리 방식이 좀 복잡합니다.
+하지만, 다양한 국가에서 다양한 언어를 사용하다 보니 1byte로는 표현이 불가능하여 각 국가별로 자체적인 코드 테이블을 사용했고, 서로 호환되지 않았습니다. 이에 전 세계의 모든 문자에 고유 숫자를 부여한 유니코드를 만들었는데요, 이것도 점진적으로 추가되고, 하위 호환을 유지하다보니 처리 방식이 좀 복잡합니다.
 
-유니코드는 기본적으로 2byte를 사용하도록 했으나, 아시아권 문자를 포함하다 보니 3byte가 필요하게 되었고, 다양한 추가 문자들을 지원하다 보니 4byte가 필요(악보 기호, 이모지등 특수 기호 지원)하게 되었습니다. 이러다 보니 유니코드는 2byte다 4byte다 혼선이 있는데, 결과적으로는 "2byte 이상이다"가 맞겠습니다.
+유니코드는 기본적으로 2byte를 사용하도록 했으나, 아시아권 문자를 포함하다 보니 3byte가 필요하게 되었고, 다양한 추가 문자들을 지원하다 보니 4byte가 필요(악보 기호, 이모지등 특수 기호 지원)하게 되었습니다. 이러다 보니 유니코드는 2byte다 4byte다 혼선이 있는데, 결과적으로는 "2byte 이상이다"가 맞겠습니다. 참고로 현대 한글의 모든 문자 11,172개는 U+AC00 ~ D7A3에 할당되어 있습니다. 
 
-현대 한글의 모든 문자 11,172개는 U+AC00 ~ D7A3에 할당되어 있습니다. 
-
-유니코드는 `U+16진수`로 표기합니다. 예를 들어 한글 "가"는 `AC00`(10진수의 `44032`)인데, `U+AC00`으로 표기합니다.
+유니코드는 `U+16진수`의 형태로 표기합니다. 예를 들어 한글 "가"는 `AC00`(10진수의 `44032`)인데, `U+AC00`으로 표기합니다.
 
 # 유니코드 인코딩
 
-유니코드를 최종본(글쎄요, 더 확장될 수도 있겠죠)인 4byte로만 표현하기엔 메모리 낭비가 심하므로 인코딩을 통해 문자 변환을 합니다.
+유니코드를 최종본(글쎄요, 더 확장될 수도 있겠죠. [유니코드 로드맵](https://www.unicode.org/roadmaps/) 참고)인 4byte로 표현하기엔 메모리 낭비가 심하므로 인코딩을 통해 문자 변환을 합니다.
 
 인코딩 방식은 다음의 3가지 방식이 있습니다.
 
@@ -323,8 +321,8 @@ static const size_type npos = -1;
 |`rbegin(), rend()`||역방향 이터레이터를 리턴합니다.|
 |`cbegin(), cend()`||방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`crbegin() crend()`||역방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
-|`data()`||컨테이너가 관리하는 메모리 블럭을 리턴합니다. 끝에 널문자가 없을 수도 있습니다.|
-|`c_str()`|O|c 스타일의 문자열을 리턴합니다.(끝에 널문자가 있습니다.)|
+|`data()`||컨테이너가 관리하는 메모리 블럭을 리턴합니다. STL 구현에 따라 끝에 널문자가 있을 수도 있지만, 표준이 아니기 때문에 [널종료 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 구할 때는 `c_str()`을 이용해야 합니다.|
+|`c_str()`|O|c 스타일의 [널종료 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 리턴합니다.(끝에 널문자가 있습니다.)|
 |`front()`||첫번째 요소의 참조자를 리턴합니다. `string`이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`back()`||마지막 요소의 참조자를 리턴합니다. `string`이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`find()`<br/>`rfind()`|O|지정된 문자 시퀀스와 일치하는 첫번째 인덱스를 찾습니다.|
@@ -381,7 +379,7 @@ static const size_type npos = -1;
     EXPECT_TRUE(Func(str2) == 5); // (△) 비권장. 암시적으로 string 개체가 생성됩니다.
     ```
 
-2. `const char*` 으로 인자를 만든 경우 : 널 종료 문자열을 강제로 만들어야 합니다.  
+2. `const char*` 으로 인자를 만든 경우 : [널종료 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 강제로 만들어야 합니다.  
     
     ```cpp
     std::size_t Func(const char* str) {
@@ -399,7 +397,7 @@ static const size_type npos = -1;
     EXPECT_TRUE(Func(str2) == 5); // (△) 비권장. 문자열의 길이는 매번 다시 '\0'까지 카운팅해야 합니다.
     ```
 
-C++17 부터는 `string_view`가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
+C++17 부터는 [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
 
 내부적으로 `string`이나 `const char*`를 참조만 하여 메모리 낭비를 없애고, 읽기 전용 함수들만 제공하여 `string` 관련 편의 기능들을 그대로 사용할 수 있습니다.
 
@@ -415,11 +413,11 @@ EXPECT_TRUE(Func(str1) == 5); // (O) 불필요하게 string 개체를 생성하�
 EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하지 않습니다.
 ```
 
-`basic_string`처럼 기본 클래스는 `basic_string_view` 이며, 처리하는 문자 타입에 따라 재정의한 `string_view`, `wstring_view`등을 사용합니다.
+[basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)처럼 기본 클래스는 `basic_string_view` 이며, 처리하는 문자 타입에 따라 재정의한 [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view), `wstring_view`등을 사용합니다.
 
 |항목|내용|
 |--|--|
-|`string_view` (C++17~)|`basic_string_view<char>`|
+|[string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view) (C++17~)|`basic_string_view<char>`|
 |`wstring_view` (C++17~)|`basic_string_view<wchar_t>`|
 |`u16string_view ` (C++17~)|`basic_string_view<char16_t>`|
 |`u32string_view ` (C++17~)|`basic_string_view<char32_t>`|
@@ -429,7 +427,7 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 
 |항목|내용|
 |--|--|
-|`basic_string_view()` (C++17~)|빈 `string_view` 개체를 생성합니다.|
+|`basic_string_view()` (C++17~)|빈 [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view) 개체를 생성합니다.|
 |`basic_string_view(const basic_string_view& other)` (C++17~)|복사 생성합니다. 이때 내부 관리 문자열은 참조만 하고 복제하지는 않습니다.|
 |`basic_string_view(const value_type* ptr)` (C++17~)|C 언어 스타일의 문자열을 참조합니다.|
 |`basic_string_view(const value_type* ptr, size_type count)` (C++17~)|`count`길이(널문자 포함)인 C 언어 스타일의 문자열을 참조합니다.|
@@ -450,7 +448,7 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |`size()` (C++17~)<br/>`length()` (C++17~)|문자 갯수를 리턴합니다.|
 |`empty()` (C++17~)|문자열이 비었는지 확인합니다.|
 |`max_size()` (C++17~)|저장할 수 있는 최대 문자 갯수를 리턴합니다.|
-|`swap()` (C++17~)|두 `string_view`의 내부 데이터를 바꿔치기 합니다.|
+|`swap()` (C++17~)|두 [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)의 내부 데이터를 바꿔치기 합니다.|
 
 **문자 검색**
 
@@ -482,7 +480,7 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 
 # (C++17~) 숫자/문자열 변환
 
-C++17 부터 숫자와 문자열간의 변환을 위한 `to_char(), from_char()` 함수가 제공되며, 기존 C스타일(`itoa(), strtol()`등) 보다 안전합니다.
+C++17 부터 숫자와 문자열간의 변환을 위한 [to_char(), from_char()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) 함수가 제공되며, 기존 C스타일([atoi(), strtol()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98 )등) 보다 안전합니다.
 
 |항목|내용|
 |--|--|

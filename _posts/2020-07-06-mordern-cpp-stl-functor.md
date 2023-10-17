@@ -50,9 +50,9 @@ sidebar:
 |`not_fn()`(C++17~)|인자(단항, 이항 제한이 없습니다.)로 전달한 함수자를 부정하는 함수자를 만듭니다.|
 
 ```cpp
-    // IsSame을 부정하는 함수자를 만듭니다.
-    auto IsDifferent{std::not_fn(IsSame)};
-    EXPECT_TRUE(IsDifferent(1, 1, 1) == false); // 인자가 여러개여도 됩니다. 
+// IsSame을 부정하는 함수자를 만듭니다.
+auto IsDifferent{std::not_fn(IsSame)};
+EXPECT_TRUE(IsDifferent(1, 1, 1) == false); // 인자가 여러개여도 됩니다. 
 ```
 
 # 바인더

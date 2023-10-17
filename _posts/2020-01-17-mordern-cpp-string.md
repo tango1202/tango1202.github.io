@@ -33,7 +33,7 @@ C++11 부터는 [유니코드](https://tango1202.github.io/mordern-cpp-stl/morde
 
 # 유니코드 리터럴
 
-기존에는 1byte 문자열과 와이드 문자열만 지원했는데요([문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 참고),
+기존에는 [바이트 문자열과 와이드 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))만 지원했는데요([문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 참고),
 
  C++11 부터는 [UTF-8, UTF-16, UTF-32](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)의 유니코드 문자 및 문자열을 지원합니다.(유니코드 UTF-8 문자열은 C++11에 추가됐지만, UTF-8 문자는 C++17에 추가되었습니다.) 
 
