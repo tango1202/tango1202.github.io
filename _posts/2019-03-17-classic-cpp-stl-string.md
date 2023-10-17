@@ -13,10 +13,10 @@ sidebar:
 > * `string`은 값 기반으로 복사/비교 하므로, 복사 생성자, `=`, `==`, `!=`, `+`, `+=`, 대소 비교, `assign()`, `append()` 등을 할때 메모리 부하와 속도 부하에 유의하라. 
 
 > **모던 C++**
-> * (C++11~) 유니코드를 지원하는 [`u16string`, `u32string`](??)이 추가되었습니다.
+> * (C++11~) UTF-16과 UTF32를 지원하는 [u16string, u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
-> * (C++20~) [`u8string`](??)이 추가되었습니다.
+> * (C++20~) UTF-8을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.
 
 # 개요
 
@@ -29,8 +29,8 @@ typedef basic_string<char>    string;
 typedef basic_string<wchar_t> wstring;  
 ```
 
-> *(C++11~) 유니코드를 지원하는 [`u16string`, `u32string`](??)이 추가되었습니다.*<br/>
-> *(C++20~) [`u8string`](??)이 추가되었습니다.*
+> *(C++11~) UTF-16과 UTF32를 지원하는 [u16string, u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.*<br/>
+> *(C++20~) UTF-8을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.*
 
 
 1. `vector`와 유사하게 연속된 메모리를 사용하며,

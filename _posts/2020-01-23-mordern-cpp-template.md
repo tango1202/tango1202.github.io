@@ -8,15 +8,15 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) `extern`으로 템플릿 선언을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다. 
-> * (C++11~) 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.
-> * (C++14~) 변수 템플릿이 추가되어 변수도 템플릿으로 만들 수 있습니다.
-> * (C++17~) 클래스 템플릿 인수 추론이 추가되어 템플릿 함수처럼 타입을 생략할 수 있습니다.
-> * (C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 템플릿 인자로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다.
+> * (C++11~) `[extern으로 템플릿 선언](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다. 
+> * (C++11~) [템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%A5%B8%EC%AA%BD-%EA%BA%BD%EC%87%A0-%EA%B4%84%ED%98%B8) 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.
+> * (C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 템플릿으로 만들 수 있습니다.
+> * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 템플릿 함수처럼 타입을 생략할 수 있습니다.
+> * (C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 [템플릿 인자로 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.
 
 # extern 템플릿
 
-기존에는 템플릿을 헤더 파일에 정의해 두고, 여러 파일에서 인클루드 한다면, 템플릿 정의가 중복 정의되어 코드 크기가 커지는데요([템플릿 인스턴스 중복 생성](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%A4%91%EB%B3%B5-%EC%83%9D%EC%84%B1) 참고),
+기존에는 템플릿을 헤더 파일에 정의해 두고, 여러 cpp 파일에서 인클루드 했었는데요, 이러면 템플릿 정의가 중복 정의되어 코드 크기가 커집니다.([템플릿 인스턴스 중복 생성](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%A4%91%EB%B3%B5-%EC%83%9D%EC%84%B1) 참고)
 
 ```cpp
 // ----
@@ -52,7 +52,7 @@ TEST(TestMordern, ExternTemplate2) {
 }
 ```
 
-C++11 부터는 `extern` 템플릿을 추가하여 템플릿 선언만 할 수 있으며, 불필요한 코드 크기를 최소화 할 수 있습니다. 
+C++11 부터는 [extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 추가하여 템플릿 선언만 할 수 있으며, 불필요한 코드 크기를 최소화 할 수 있습니다. 
 
 ```cpp
 // ----
@@ -97,7 +97,7 @@ TEST(TestMordern, ExternTemplate2) {
 
 기존에는 이게 비트 Right Shift 연산자 `>>` 로 파싱되어 컴파일 되지 않았습니다. 따라서, `vector<A<int> >`와 같이 억지로 띄어쓰기를 했는데요([템플릿 파싱 오류](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98) 참고), 
 
-C++11 부터는 파싱을 개선하여 `vector<A<int>>`와 같은 작성법도 지원합니다.
+C++11 부터는 파싱을 개선하여 `vector<A<int>>`와 같이 `>>`을 사용해도 됩니다.
 
 ```cpp
 template<typename T>
@@ -111,7 +111,7 @@ std::vector<A<int>> b_11; // C++11
 
 기존의 템플릿은 클래스와 함수만 지원했는데요([템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 참고),
 
-C++14 부터는 변수도 템플릿으로 만들 수 있습니다.
+C++14 부터는 [변수도 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)으로 만들 수 있습니다.
 
 다음 예는 동일한 값을 지정한 `pi`를 타입에 따라 다른 정밀도로 사용하는 예입니다.
 
@@ -134,7 +134,7 @@ pi_14<int> : 3
 
 또한, 템플릿 특수화를 이용하여 템플릿 메타 프로그래밍에 활용할 수 있습니다. 
 
-다음은 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)에서 소개한 `Factorial` 을 변수 템플릿으로 구현한 예입니다.
+다음은 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)에서 소개한 `Factorial` 을 [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)으로 구현한 예입니다.
 
 ```cpp
 // 1을 뺀 값을 재귀 호출합니다.
@@ -169,7 +169,7 @@ A<int> a{10}; // ~C++17 이전에는 타입을 명시해야 합니다.
 EXPECT_TRUE(a.Func(1, 2) == 3);
 ```
 
-C++17 부터는 클래스 템플릿도 생성자에 전달된 인수를 추론하므로 다음과 같이 사용할 수 있습니다.
+C++17 부터는 클래스 [템플릿도 생성자에 전달된 인수를 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)하므로 다음과 같이 사용할 수 있습니다.
 
 ```cpp
 A a_17{10}; // C++17 이후부터는 인수로부터 추론합니다.

@@ -17,7 +17,7 @@ sidebar:
 
 기존에는 암시적으로 정의되는 멤버 함수들은 `private`를 이용하여 억지로 가시성을 조정하여 사용 여부를 제어했는데요([클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고), 
 
-C++11 부터는 `default`나 `delete` 키워드를 사용하여 제어할 수 있습니다.
+C++11 부터는  [default나 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete) 키워드를 사용하여 제어할 수 있습니다.
 
 ```cpp
 class T_11 {
@@ -44,7 +44,7 @@ class Derived : public Base {
 };
 ```
 
-C++11 부터는 명시적으로 `override`를 지정함으로서 컴파일러단에서 잘못된 오버라이드인지 검사할 수 있습니다.
+C++11 부터는 명시적으로 [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)를 지정함으로서 컴파일러단에서 잘못된 오버라이드인지 검사할 수 있습니다.
 
 ```cpp
 class Base {
@@ -63,7 +63,7 @@ class Derived : public Base {
 
 기존에는 상속을 막기 위해 생성자를 `private`로 만들어 가시성을 제한 하거나, 소멸자를 `public` Non-Virtual로 만들고 상속하지 않도록 서로간에 정하자 라고 했었는데요([상속 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C) 참고),
 
-C++11 부터는 다음처럼 `final`로 상속을 제한할 수 있습니다.
+C++11 부터는 다음처럼 [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)로 상속을 제한할 수 있습니다.
 
 ```cpp
 class Base_11 final {
@@ -73,7 +73,7 @@ class Derived : public Base_11 {
 };
 ```
 
-또한, 멤버 함수의 `override`도 막을 수 있습니다.
+또한, 멤버 함수의 [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)도 막을 수 있습니다.
 
 ```cpp
 class Base {

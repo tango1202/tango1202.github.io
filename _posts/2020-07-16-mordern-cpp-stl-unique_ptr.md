@@ -143,7 +143,7 @@ std::unique_ptr<int> a{new int{10}, std::default_delete<int>{}};
 
 # (C++14~) make_unique
 
-`make_unique()`은 가변 템플릿으로서 `T`개체의 생성자 인자를 전달받아 `T`개체를 생성하고, `T`개체를 관리하는 `unique_ptr`을 생성하여 리턴합니다.
+`make_unique()`은 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)으로서 `T`개체의 생성자 인자를 전달받아 `T`개체를 생성하고, `T`개체를 관리하는 `unique_ptr`을 생성하여 리턴합니다.
 
 ```cpp
 template<typename T, typename... Args>

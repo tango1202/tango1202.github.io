@@ -16,34 +16,34 @@ sidebar:
 
 # 개요
 
-유니코드는 전 세계의 모든 문자에 고유 숫자를 부여한 코드 체계 입니다. 자세한 내용은 [유니코드](??)를 참고하시기 바랍니다.
+유니코드는 전 세계의 모든 문자에 고유 숫자를 부여한 코드 체계 입니다. 자세한 내용은 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%BD%94%EB%93%9C-%EA%B4%80%EC%A0%90--%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 참고하시기 바랍니다.
 
 # char16_t 와 char32_t
 
-기존 `wchar_t`는 시스템 비트수에 따라 가변적이어서([기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고),
+기존 `wchar_t`는 시스템에 따라 2byte 또는 4byte로 가변적이어서([기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고), [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%BD%94%EB%93%9C-%EA%B4%80%EC%A0%90--%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 처리가 어려웠습니다.
 
-C++11 부터는 유니코드 지원을 위해 2byte와 4byte 크기로 다루는 `char16_t`와 `char32_t`가 추가되었습니다.
+C++11 부터는 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%BD%94%EB%93%9C-%EA%B4%80%EC%A0%90--%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 지원을 위해 2byte 고정 크기인 `char16_t`와 4byte 고정 크기인 `char32_t`가 추가되었습니다.
 
 |항목|내용|용량|
 |--|--|--|
-|`char`|1byte 문자|1byte|
-|`wchar_t`|와이드 문자|시스템의 비트수에 따라 다르며, 대부분 2byte 또는 4byte.<br/>Windows는 2byte|
-|`char16_t` (C++11~)| UTF-16 문자|`16bit`(2byte) 보다 크거나 같음|
-|`char32_t` (C++11~)| UTF-32 문자|`32bit`(4byte) 보다 크거나 같음|
+|`char`|[1byte 문자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)|1byte|
+|`wchar_t`|[와이드 문자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)|시스템의 비트수에 따라 다르며, 대부분 2byte 또는 4byte.<br/>Windows는 2byte|
+|`char16_t` (C++11~)|[UTF-16 문자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)|`16bit`(2byte) 보다 크거나 같음|
+|`char32_t` (C++11~)|[UTF-32 문자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)|`32bit`(4byte) 보다 크거나 같음|
 
 # 유니코드 리터럴
 
 기존에는 1byte 문자열과 와이드 문자열만 지원했는데요([문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 참고),
 
- C++11 부터는 UTF-8, UTF-16, UTF-32의 유니코드 문자 및 문자열 지원을 합니다.(유니코드 UTF-8 문자열은 C++11에 추가됐지만, UTF-8 문자는 C++17에 추가되었습니다.) 
+ C++11 부터는 [UTF-8, UTF-16, UTF-32](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)의 유니코드 문자 및 문자열을 지원합니다.(유니코드 UTF-8 문자열은 C++11에 추가됐지만, UTF-8 문자는 C++17에 추가되었습니다.) 
 
 |항목|내용|
 |--|--|
-|1byte 문자열|"abc"|
-|와이드 문자열|L"abc한글"|
-|UTF-8 문자열 (C++11~)|`u8"abc한글"`|
-|UTF-16 문자열 (C++11~)|`u"abc한글"`|
-|UTF-32 문자열 (C++11~)|`U"abc한글"`|
+|[1byte 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)|"abc"|
+|[와이드 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)|L"abc한글"|
+|[UTF-8 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9) (C++11~)|`u8"abc한글"`|
+|[UTF-16 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9) (C++11~)|`u"abc한글"`|
+|[UTF-32 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9) (C++11~)|`U"abc한글"`|
 |UTF-8 문자 (C++17~)|`u8'한'`|
 |UTF-16 문자 (C++11~)|`u'한'`|
 |UTF-32 문자 (C++11~)|`U'한'`|
@@ -81,7 +81,7 @@ abc\r\n
 def
 ```
 
-`"()"` 자체를 출력할 때에는 파싱 오류가 날 수 있으므로, 임의 구분자를 지정하여 사용할 수 있습니다.
+`"()"` 자체를 출력할 때에는 파싱 오류가 날 수 있으므로, 다음 예의 `aaa`처럼 임의 구분자를 지정하여 사용할 수 있습니다.
 
 ```cpp
 // 임의 구분자 aaa 사용
@@ -97,4 +97,4 @@ def
 
 # (C++20~) char8_t
 
-C++20 부터는 UTF8 을 관리할 수 있도록 `char8_t`가 추가되었습니다.
+C++20 부터는 [UTF-8](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)을 관리할 수 있도록 `char8_t`가 추가되었습니다.

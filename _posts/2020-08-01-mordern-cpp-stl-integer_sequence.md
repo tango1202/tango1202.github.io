@@ -20,11 +20,11 @@ sidebar:
 |`index_sequence<0, 1, 2>` (C++14~)|타입이 `size_t`인 `integer_sequence` 입니다.|
 |`make_integer_sequence<type, N>` (C++14~)|`type` 타입으로 `0` ~ `N-1` 시퀀스를 만듭니다.|
 |`make_index_sequence<N>` (C++14~)|`size_t` 타입으로 `0` ~ `N-1` 시퀀스를 만듭니다.|
-|`index_sequence_for<params...>` (C++14~)|`0` ~ 파라메터 팩의 요소 갯수만큼 시퀀스를 만듭니다.<br/>즉, `make_index_sequence(sizeof...(params))`입니다.|
+|`index_sequence_for<params...>` (C++14~)|`0` ~ [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)의 요소 갯수만큼 시퀀스를 만듭니다.<br/>즉, `make_index_sequence(sizeof...(params))`입니다.|
 
 # array 에서 tuple 변환
 
-다음은 `array`의 일부 요소를 추출하여 `tuple`을 생성하는 예입니다. 나쁘진 않습니다만, 추출할 요소가 많고 복잡하면 코드가 어지러워 질 수 있습니다.
+다음은 `array`의 일부 요소를 추출하여 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 생성하는 예입니다. 나쁘진 않습니다만, 추출할 요소가 많고 복잡하면 코드가 어지러워 질 수 있습니다.
 
 ```cpp
 std::array<int, 5> arr{10, 20, 30, 40, 50};
@@ -35,7 +35,7 @@ EXPECT_TRUE(
 ); 
 ```
 
-`integer_sequence`를 이용하면, 추출할 인덱스만 지정하여 `array`를 `tuple`로 변환합니다.
+`integer_sequence`를 이용하면, 추출할 인덱스만 지정하여 `array`를 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)로 변환합니다.
 
 ```cpp
 template<size_t N, std::size_t... params>

@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) 구조화된 바인딩을 이용하여 배열, `pair`, `tuple`, 클래스등의 하위 요소나 멤버 변수에 쉽게 접근할 수 있습니다.
+> * (C++17~) [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 이용하여 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/), [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/), 클래스등의 하위 요소나 멤버 변수에 쉽게 접근할 수 있습니다.
 
 # 개요
 
-기존의 `tuple`등은 내부 요소에 접근하는게 좀 까다로웠는데요, C++11 부터는 구조화된 바인딩을 이용하여 개체의 하위 요소에 쉽게 접근할 수 있게 해줍니다.
+기존의 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)등은 내부 요소에 접근하는게 좀 까다로웠는데요, C++11 부터는 [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 이용하여 개체의 하위 요소에 쉽게 접근할 수 있게 해줍니다.
 
 |항목|내용|
 |--|--|
@@ -21,14 +21,14 @@ sidebar:
 |`const auto& [변수 목록]`|해당 개체의 내부 요소에 참조합니다. 내부 요소 수정이 불가능합니다.|
 |`auto&& [변수 목록]`|해당 개체의 내부 요소에 우측값 참조합니다.|
 
-다음과 같이 배열, `tuple`, 클래스등에 대해 적용할 수 있습니다. 
+다음과 같이 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/), 클래스등에 대해 적용할 수 있습니다. 
 
 **배열**
 
 ```cpp
 int arr[]{1, 2, 3};
 
-auto [a_17, b_17, c_17]{arr}; // auto [a_17, b_17, c_!7] = arr;
+auto [a_17, b_17, c_17]{arr}; // auto [a_17, b_17, c_17] = arr; 과 동일
 EXPECT_TRUE(a_17 == 1 && b_17 == 2 && c_17 == 3); // arr을 임시 개체에 복제하고, 복제본에 a_17 = &temp[0], b_17 = &temp[1], c_17 = &temp[2] 바인딩
 
 auto& [x_17, y_17, z_17]{arr};
@@ -47,10 +47,10 @@ EXPECT_TRUE(x_17 == 10 && y_17 == 20 && z_17 == 30); // 참조본이므로 원�
 ```cpp
 auto data_11{std::make_tuple(10, "John")};
 
-auto [id_17, name_17]{data_11};
+auto [id_17, name_17]{data_11}; // 복제본에 바인딩
 EXPECT_TRUE(id_17 == 10 && name_17 == "John");
 
-auto& [idRef_17, nameRef_17]{data_11};
+auto& [idRef_17, nameRef_17]{data_11}; // 원본에 바인딩
 EXPECT_TRUE(idRef_17 == 10 && nameRef_17 == "John");
 
 std::get<0>(data_11) = 20;
@@ -69,10 +69,10 @@ public:
 };
 T data_11;
 
-auto [id_17, name_17]{data_11};
+auto [id_17, name_17]{data_11}; // 복제본에 바인딩
 EXPECT_TRUE(id_17 == 10 && name_17 == "John");
 
-auto& [idRef_17, nameRef_17]{data_11};
+auto& [idRef_17, nameRef_17]{data_11}; // 원본에 바인딩
 EXPECT_TRUE(idRef_17 == 10 && nameRef_17 == "John");
 
 data_11.m_Id_11 = 20;
@@ -83,9 +83,11 @@ EXPECT_TRUE(idRef_17 == 20 && nameRef_17 == "John");
 
 # 컨테이너 활용
 
+[구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 컨터이너와 함께 사용하면 코드가 간결해 집니다.
+
 **고전 C++ 스타일**
 
-`insert()` 로 데이터를 추가하고, `iterator`를 이용하며, `pair`로 삽입 실패를 검사합니다.
+`insert()` 로 데이터를 추가하고, `iterator`를 이용하며, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)로 삽입 실패를 검사합니다.
 
 ```cpp
 // 초기 데이터 입력
@@ -132,7 +134,7 @@ if (result.second != true) {
 
 **C++17 스타일**
 
-[초기식을 포함하는 if()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch)와 구조화된 바인딩으로 단순화 되었고, 좀더 직관적입니다.
+[초기식을 포함하는 if()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch)와 [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)으로 단순화 되었고, 좀더 직관적입니다.
 
 ```cpp
 // 초기 데이터 입력 - 중괄호 초기화로 단순화 됐습니다.
