@@ -16,13 +16,13 @@ sidebar:
 
 # 개요
 
-유니코드는 전 세계의 모든 문자에 고유 숫자를 부여한 코드 체계 입니다. 자세한 내용은 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%BD%94%EB%93%9C-%EA%B4%80%EC%A0%90--%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 참고하시기 바랍니다.
+유니코드는 전 세계의 모든 문자에 고유 숫자를 부여한 코드 체계 입니다. 자세한 내용은 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 참고하시기 바랍니다.
 
 # char16_t 와 char32_t
 
-기존 `wchar_t`는 시스템에 따라 2byte 또는 4byte로 가변적이어서([기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고), [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%BD%94%EB%93%9C-%EA%B4%80%EC%A0%90--%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 처리가 어려웠습니다.
+기존 `wchar_t`는 시스템에 따라 2byte 또는 4byte로 가변적이어서([기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고), [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 처리가 어려웠습니다.
 
-C++11 부터는 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%BD%94%EB%93%9C-%EA%B4%80%EC%A0%90--%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 지원을 위해 2byte 고정 크기인 `char16_t`와 4byte 고정 크기인 `char32_t`가 추가되었습니다.
+C++11 부터는 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 지원을 위해 2byte 고정 크기인 `char16_t`와 4byte 고정 크기인 `char32_t`가 추가되었습니다.
 
 |항목|내용|용량|
 |--|--|--|
