@@ -12,25 +12,25 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`malloc()`|메모리를 할당합니다.([operator new와 operator delete 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고)|
+|[malloc()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|메모리를 할당합니다.|
 |`calloc()`|(작성중)|
 |`realloc()`|(작성중)|
-|`free()`|메모리를 해제합니다.([operator new와 operator delete 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고)|
+|[free()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|메모리를 해제합니다.|
 |`aligned_alloc()` (C++17~)|정렬된 메모리를 할당합니다.|
 
 # 저수준 메모리 관리
 
 |항목|내용|
 |--|--|
-|`operator new`<br/>`operator new[]`|개체나 배열의 메모리를 할당합니다.([operator new와 operator delete 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고)|
-|`operator delete`<br/>`operator delete[]`|개체나 배열의 메모리를 해제합니다.([operator new와 operator delete 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고)|
+|[operator new, operator new[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체나 배열의 메모리를 할당합니다.|
+|[operator delete, operator delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체나 배열의 메모리를 해제합니다.|
 |`get_new_handler()` (C++11~)|(작성중)|
-|`set_new_handler()`|`new`에서 예외 발생시 호출되는 함수 입니다.([set_new_handler() 함수를 이용한 오류 처리](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC) 참고)|
-|`bad_alloc`|메모리 할당에 실패했을때 발생합니다.([operator new와 operator delete 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고)|
+|[set_new_handler()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)|`new`에서 예외 발생시 호출되는 함수 입니다.|
+|[bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|메모리 할당에 실패했을때 발생합니다.|
 |`bad_array_new_length`|(작성중)|
 |`align_val_t` (C++17~)|(작성중)|
-|`new_handler`|`new`에서 예외 발생시 호출되는 함수 입니다.([set_new_handler() 함수를 이용한 오류 처리](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC) 참고)|
-|`nothrow`|예외 발생 대신 널을 리턴하는 `new(nothrow)`에서 사용합니다.([new(nothrow) 와 무의미한 널검사](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#newnothrow-%EC%99%80-%EB%AC%B4%EC%9D%98%EB%AF%B8%ED%95%9C-%EB%84%90%EA%B2%80%EC%82%AC) 참고)|
+|[new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)|`new`에서 예외 발생시 호출되는 함수 입니다.|
+|[nothrow](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#newnothrow-%EC%99%80-%EB%AC%B4%EC%9D%98%EB%AF%B8%ED%95%9C-%EB%84%90%EA%B2%80%EC%82%AC)|예외 발생 대신 널을 리턴하는 [new(nothrow)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#newnothrow-%EC%99%80-%EB%AC%B4%EC%9D%98%EB%AF%B8%ED%95%9C-%EB%84%90%EA%B2%80%EC%82%AC)에서 사용합니다.|
 |`destroying_delete` (C++20~)|(작성중)|
 |`launder()` (C++17~)|[위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)으로 생성된 개체의 합법적인 포인터를 얻습니다.|
 
@@ -97,7 +97,7 @@ void* align(
 
 |항목|내용|
 |--|--|
-|`allocator`|컨테이너 등 STL에서 개체 할당에 사용합니다.([할당자(Allocator)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 참고)|
+|[allocator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/)|컨테이너 등 STL에서 개체 할당에 사용합니다.|
 |`allocator_traits` (C++11~)|(작성중)|
 |`allocator_arg` (C++11~)|(작성중)|
 |`uses_allocator` (C++11~)|(작성중)|
@@ -110,7 +110,7 @@ void* align(
 
 # 메모리 유틸리티 작업
 
-C++17 부터는 `uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at()` 함수를 추가하여 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)의 새로운 방법을 제공합니다.
+C++17 부터는 [uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85) 함수를 추가하여 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)의 새로운 방법을 제공합니다.
 
 |항목|내용|
 |--|--|

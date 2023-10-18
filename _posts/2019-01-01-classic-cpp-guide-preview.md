@@ -91,5 +91,5 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 
 11. STL : 스마트 포인터
    
-    `auto_ptr`을 제공합니다.(모던 C++에선 사라졌습니다.)
+    [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 제공합니다.(모던 C++에선 사라졌습니다.)
 

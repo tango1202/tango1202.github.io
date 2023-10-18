@@ -8,28 +8,28 @@ sidebar:
     nav: "docs"
 ---
 
-> * `array`는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.
+> * [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.
 
 # 개요
 
-기존의 `vector`는 C스타일의 배열과 호환성이 좋았으나, 요소 추가/삭제등이 필요하여 동적 메모리를 사용하다 보니, 메모리 할당시 힙을 사용합니다. 이 때문에 아무래도 메모리 할당 측면에서는 스택에 할당되는 C스타일의 배열보다 성능이 떨어졌습니다.
+기존의 `vector`는 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)과 호환성이 좋았으나, 요소 추가/삭제등이 필요하여 동적 메모리를 사용하다 보니, 메모리 할당시 힙을 사용합니다. 이 때문에 아무래도 메모리 할당 측면에서는 스택에 할당되는 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)보다 성능이 떨어졌습니다.
 
-`array`는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.
+[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.
 
-|항목|설명|C스타일 배열|`array`|`vector`|
+|항목|설명|C스타일 배열|[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)|`vector`|
 |--|--|--|--|--|
 |연속된 메모리|모두 연속된 메모리를 사용합니다.|O|O|O|
-|동적 메모리 할당|배열과 `array`는 컴타일 타임에 크기가 결정되어 스택에 할당됩니다.|X|X|O|
-|요소 추가/삭제|배열과 `array`는 요소를 추가/삭제할 수 없습니다.|X|X|O|
+|동적 메모리 할당|[C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)과 [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 컴타일 타임에 크기가 결정되어 스택에 할당됩니다.|X|X|O|
+|요소 추가/삭제|[C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)과 [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 요소를 추가/삭제할 수 없습니다.|X|X|O|
 |요소 접근 `[]`|인덱스 범위 검사를 하지 않습니다.|O|O|O|
 |요소 접근 `at()`|인덱스 범위 검사를 합니다.|X|O|O|
-|이터레이터|`array`와 `vector`는 순방향 및 역방향 탐색을 지원합니다.|X|O|O|
+|이터레이터|[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)와 `vector`는 순방향 및 역방향 탐색을 지원합니다.|X|O|O|
 |배열 주소|데이터의 첫번째 요소의 주소를 구할 수 있습니다.|`arr` 또는 `arr[0]`|`arr.data()`|`&v[0]`|
-|포인터로의 암시적 변환|배열은 `int* p = arr;` 와 같이 포인터로 암시적 변환 됩니다.<br/>[오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 함수 인자로 배열 사용시 포인터로 취급됩니다.|O|X|X|
-|[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 통한 요소 갯수 유추|배열은 초기화 요소의 갯수로 배열의 요소 갯수를 유추하지만, `array`는 명시적으로 지정해야 합니다.|O|X|O|
+|포인터로의 암시적 변환|[C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 `int* p = arr;` 와 같이 포인터로 암시적 변환 됩니다.<br/>[오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 함수 인자로 [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 사용시 포인터로 취급됩니다.|O|X|X|
+|[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 통한 요소 갯수 유추|배열은 초기화 요소의 갯수로 [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 요소 갯수를 유추하지만, [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 명시적으로 지정해야 합니다.|O|X|O|
 |[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 통한 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)|요소의 갯수보다 적게 초기화하면 나머지 요소는 `0`으로 초기화 됩니다.|O|O|O|
-|속도|C스타일 배열과 `array`가 스택에 할당되기 때문에, 힙에 할당되는 `vector`보다 빠릅니다.|1|2|3|
-|대입|배열은 대입을 지원하지 않으며, `array`는 요소의 갯수가 같으면 대입됩니다.|X|O|O|
+|속도|[C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)과 [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)가 스택에 할당되기 때문에, 힙에 할당되는 `vector`보다 빠릅니다.|1|2|3|
+|대입|[C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 대입을 지원하지 않으며, [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 요소의 갯수가 같으면 대입됩니다.|X|O|O|
 
 
 ```cpp
@@ -53,7 +53,7 @@ EXPECT_TRUE(b[0] == 1 && b[1] == 2 && b[2] == 3);
 |`at()` (C++11~)|(작성중)|
 |`front()` (C++11~)|(작성중)|
 |`back()` (C++11~)|(작성중)|
-|`data()` (C++11~)|컨테이너가 관리하는 메모리 블럭을 리턴합니다.|
+|`data()` (C++11~)|컨테이너가 관리하는 메모리 블록을 리턴합니다.|
 |`begin(), end()` (C++11~)|(작성중)|
 |`cbegin(), cend()` (C++11~)|(작성중)|
 |`rbegin(), rend()` (C++11~)|(작성중)|
@@ -69,7 +69,7 @@ EXPECT_TRUE(b[0] == 1 && b[1] == 2 && b[2] == 3);
 
 # 배열, array, vector 속도 비교
 
-다음은 C스타일 배열, `array`, `vector`의 생성/소멸과 접근 속도를 테스트한 예입니다. 시간 측정을 위해 `chrono`를 사용했습니다.([chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/) 참고)
+다음은 [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/), `vector`의 생성/소멸과 접근 속도를 테스트한 예입니다. 시간 측정을 위해 [chrono 라이브러리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/)를 사용했습니다.
 
 1. 십만개의 요소를 십만번 생성/소멸했고,
 2. 십만개의 요소에 접근하여 값을 대입합니다.
@@ -139,7 +139,7 @@ std::cout << "STLVector : " << Measure(STLVectorAccess).count() << std::endl;
 ```
 
 실행 결과는 다음과 같습니다.
-`array`가 생성/소멸이 C스타일 배열 보다 빠른게 좀 의외이긴 합니다.
+[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)가 생성/소멸이 [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 보다 빠른게 좀 의외이긴 합니다.
 
 ```cpp
 CStyleArray : 660

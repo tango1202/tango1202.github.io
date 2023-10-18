@@ -51,7 +51,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`abort()`|프로그램을 비정상 종료 시킵니다.[terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 참고|
+|`abort()`|프로그램을 비정상 종료 시킵니다. [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 참고|
 |`exit()`|프로그램을 정상 종료 시킵니다.|
 |`quick_exit()` (C++11~)|(작성중)|
 |`_Exit()` (C++11~)|(작성중)|
@@ -103,10 +103,10 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`va_start`|가변 인자 액세스 시작 매크로 함수|
-|`va_arg`|가변인자 추출 매크로 함수|
-|`va_end`|가변 인자 사용 종료 매크로 함수|
-|`va_list`|가변 인자에 대한 `typedef`|
+|[va_start()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|가변 인자 액세스 시작 매크로 함수|
+|[va_arg()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|가변인자 추출 매크로 함수|
+|[va_end()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|가변 인자 사용 종료 매크로 함수|
+|[va_list](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|가변 인자에 대한 `typedef`|
 |`va_copy` (C++11)|(작성중)|
 
 # C스타일 시간 유틸리티

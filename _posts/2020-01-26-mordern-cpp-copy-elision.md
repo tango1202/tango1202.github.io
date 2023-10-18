@@ -98,7 +98,7 @@ C++17 부터 임시 개체인 `prvalue`는 다른 개체를 초기화 하는데�
     };
     T t({1, 2, 3}); // {1, 2, 3} 은 initializer_list로 임시 구체화됩니다.
     ```
-5. `typeid()`와 `sizeof()`에서 사용할때
+5. [typeid()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)와 `sizeof()`에서 사용할때
 
 # 복사 생략(Copy elision)
 

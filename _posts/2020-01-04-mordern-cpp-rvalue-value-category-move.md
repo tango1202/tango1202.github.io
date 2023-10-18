@@ -8,14 +8,14 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) 이동 연산을 위해 [우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 임시 개체 대입시 속도가 향상되었습니다.
+> * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 임시 개체 대입시 속도가 향상되었습니다.
 > * (C++14~) [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/)는 주어진 값을 바꾸고 이전값을 리턴합니다. 이동 생성자와 이동 대입 연산자 구현에 활용할 수 있습니다.
 
 # 개요
 
-C++의 STL을 보면 대부분 값 기반 복사/대입([컨테이너 요소 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%94%EC%86%8C-%EA%B7%9C%EC%B9%99) 참고)이 이루어져 속도 성능이 저하될 수 있습니다. 이런 문제를 해결하고자 C++11 부터 이동 연산을 지원하게 되었으며, 우측값과 값 카테고리에 대한 이해가 있어야 이를 활용할 수 있습니다. 포인터나 참조자도 어려웠습니다만, 우측값과 값 카테고리는 더욱 더 어렵습니다. 하지만 이를 이해하지 않고는 모던 C++를 활용할 수 없기에 꼭 이해해야만 합니다.
+C++의 STL을 보면 대부분 값 기반 복사/대입([컨테이너 요소 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%94%EC%86%8C-%EA%B7%9C%EC%B9%99) 참고)이 이루어져 속도 성능이 저하될 수 있습니다. 이런 문제를 해결하고자 C++11 부터 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 지원하게 되었으며, 우측값과 값 카테고리에 대한 이해가 있어야 이를 활용할 수 있습니다. 포인터나 참조자도 어려웠습니다만, 우측값과 값 카테고리는 더욱 더 어렵습니다. 하지만 이를 이해하지 않고는 모던 C++를 활용할 수 없기에 꼭 이해해야만 합니다.
 
-우측값과 이동 연산의 컨셉은 다음과 같습니다. 다음 코드를 예로 들면,
+우측값과 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)의 컨셉은 다음과 같습니다. 다음 코드를 예로 들면,
 
 1. 오른쪽 표현식(`a + b`)의 결과 값은 임시 변수임.
 2. 임시 변수는 어짜피 버려질 것이므로 굳이 `c`에 복사하지 말고 이동시키면 속도가 조금이라도 빨라짐.
@@ -67,9 +67,9 @@ C++에서는 표현식의 값들에 대해서 식별자가 있는지, 이동이 
 
 |항목|내용|
 |--|--|
-|`lvalue`(left value)|좌측값으로서 변수와 같이 식별자가 있는 항목입니다.(`a = b;`와 같이 좌측값은 우측에 올 수도 있습니다.) 다른곳에서 참조할 수도 있기에 이동 연산이 지원되지 않습니다.(변수, 데이터 멤버의 이름, 함수, `&`포인터 연산, 전위 증감 연산, 문자열 상수등)<br/>대입문의 좌측에 올 수 있고, `&`로 주소를 얻어올 수 있으며, 표현식이 끝나더라도 존재합니다.|
-|`xvalue`(eXpiring value)|`lvalue`나 `prvalue`를 `move()`할때 순간적으로 관리되는 값으로서 만료되어 가는 값입니다. 해당 주소로 접근했을때 값이 있을 수도 있고, 없을 수도 있습니다. 컴파일러만 사용하므로 `&`로 주소를 얻을 수 없으며, 표현식이 끝나면 소멸됩니다.|
-|`prvalue`(pure rvalue)|순수한 `rvalue`로서 식별자가 없는 임시 개체나 수식들입니다. 어짜피 임시로 생성된 것이므로 맘편히 삭제해도 되는 것들이며, 이동 연산이 지원됩니다.(수식, 후위 증감 연산, 문자열 상수를 제외한 상수, 람다 표현식)<br/>대입문의 우측에 올 수 있고, `&`로 주소를 얻어올 수 없으며, 표현식이 끝나면 소멸됩니다.|
+|`lvalue`(left value)|좌측값으로서 변수와 같이 식별자가 있는 항목입니다.(`a = b;`와 같이 좌측값은 우측에 올 수도 있습니다.) 다른곳에서 참조할 수도 있기에 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)이 지원되지 않습니다.(변수, 데이터 멤버의 이름, 함수, `&`포인터 연산, 전위 증감 연산, 문자열 상수등)<br/>대입문의 좌측에 올 수 있고, `&`로 주소를 얻어올 수 있으며, 표현식이 끝나더라도 존재합니다.|
+|`xvalue`(eXpiring value)|`lvalue`나 `prvalue`를 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)할때 순간적으로 관리되는 값으로서 만료되어 가는 값입니다. 해당 주소로 접근했을때 값이 있을 수도 있고, 없을 수도 있습니다. 컴파일러만 사용하므로 `&`로 주소를 얻을 수 없으며, 표현식이 끝나면 소멸됩니다.|
+|`prvalue`(pure rvalue)|순수한 `rvalue`로서 식별자가 없는 임시 개체나 수식들입니다. 어짜피 임시로 생성된 것이므로 맘편히 삭제해도 되는 것들이며, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)이 지원됩니다.(수식, 후위 증감 연산, 문자열 상수를 제외한 상수, 람다 표현식)<br/>대입문의 우측에 올 수 있고, `&`로 주소를 얻어올 수 없으며, 표현식이 끝나면 소멸됩니다.|
 |`glvalue`(generalized lvalue)|`xvalue`와 `lvalue`를 통칭합니다.| 
 |`rvalue`(right value)|`xvalue`와 `prvalue`를 통칭합니다.|  
 
@@ -237,7 +237,7 @@ C++ 표준 위원회는 여기서 더 나아가 그냥 각자 `Move()`함수를 
 다음 코드에서 `Move()`함수를 우측값을 참조하는 이동 대입 연산자로 변경하였으며, 테스트 코드에서 우측값을 사용하기 위해
 
 1. `static_cast`을 이용하여 좌측값을 우측값으로 형변환
-2. `move()`를 이용하여 좌측값을 우측값으로 형변환
+2. [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 이용하여 좌측값을 우측값으로 형변환
 3. `Big_11(40)`로 임시 개체를 생성(임시 개체는 우측값입니다.)하여 호출하였습니다. 
  
 ```cpp
@@ -339,7 +339,7 @@ void Swap(T& left, T& right) {
 }
 ```
 
-이동 연산을 지원하면, 하기와 같이 리팩토링 하여 개선할 수 있습니다. 만약 이동 생성자나 이동 대입 연산자가 없다면, 복사 생성자나 복사 대입 연산자를 호출하여 기존 코드와 동일하게 작동됩니다.
+[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 지원하면, 하기와 같이 리팩토링 하여 개선할 수 있습니다. 만약 이동 생성자나 이동 대입 연산자가 없다면, 복사 생성자나 복사 대입 연산자를 호출하여 기존 코드와 동일하게 작동됩니다.
 
 ```cpp
 void Swap_11(T& left, T& right) {
@@ -390,9 +390,9 @@ T_11& operator =(T_11&& other);
 1. `T&`는 개체의 좌측값 참조라 하고,
 2. `T&&`는 개체의 우측값 참조라고 합니다.
 
-`move()`는 좌측값(`lvalue`) 을 우측값(`rvalue`)으로 형변환 합니다. 
+[move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)는 좌측값(`lvalue`) 을 우측값(`rvalue`)으로 형변환 합니다. 
 
-다음처럼 `static_cast`로도 형변환 할 수 있으나, 가독성을 위해 `move()`를 사용합니다.
+다음처럼 `static_cast`로도 형변환 할 수 있으나, 가독성을 위해 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 사용합니다.
 
 ```cpp
 T t;
@@ -486,7 +486,7 @@ EXPECT_TRUE(g_11(t) == 11);
 EXPECT_TRUE(g_11(std::move(t)) == 12);
 ```
 
-우측값 참조(`&&`)가 좌측값 참조(`&`) 로 변경되어 버렸습니다. 이해는 됩니다. `val`로 명명 되는 순간 더이상 임시 개체가 아니니까요. 이를 해결하려면 다시 한번 `move()`를 사용하여 우측값으로 바꿀 수도 있으나, 값 카테고리를 유지하여 전달한다은 의미로 `forward()`를 사용하는게 좋습니다.
+우측값 참조(`&&`)가 좌측값 참조(`&`) 로 변경되어 버렸습니다. 이해는 됩니다. `val`로 명명 되는 순간 더이상 임시 개체가 아니니까요. 이를 해결하려면 다시 한번 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 사용하여 우측값으로 바꿀 수도 있으나, 값 카테고리를 유지하여 전달한다은 의미로 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)를 사용하는게 좋습니다.
 
 ```cpp
 class T {};

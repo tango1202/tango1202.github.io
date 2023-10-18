@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-> * `hash()`는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.
+> * (C++11~) [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.
 
 # 개요
 
-`hash()`는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.
+[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.
 
 1. 리턴되는 해시값은 `size_t` 입니다.(4byte보다 크거나 같으며, `int`와 동일한 크기입니다.)
 2. 동일한 데이터는 동일한 해시값(Digest)이 나와야 합니다.
@@ -45,4 +45,4 @@ EXPECT_TRUE(hashStr1 == hashStr2); // 같은 값은 해시값도 같습니다.
 EXPECT_TRUE(hashStr1 != hashStr3); // 다른값은 해시값도 다릅니다.
 ```
 
-`hash()`는 해시 컨테이너에서 사용될 수 있고요, 자세한 사용 방법은 [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set)을 참고하기 바랍니다.
+[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 해시 컨테이너에서 사용될 수 있고요, 자세한 사용 방법은 [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set)을 참고하기 바랍니다.

@@ -8,24 +8,24 @@ sidebar:
     nav: "docs"
 ---
 
-> * `system_clock`, `time_point`, `duration`개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.
+> * (C++11~) [system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock), [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point), [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 개체를 이용하여 좀더 다양한 정확도로 시간을 추적할 수 있습니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
-> * (C++17~) [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)와 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 반올림 관련 함수인 `floor()`, `ceil()`, `round()`, `abs()`함수가 추가되었습니다.
+> * (C++17~) [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)와 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 반올림 관련 함수인 [floor(), ceil(), round(), abs()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)함수가 추가되었습니다.
 
 # 개요
 
-기존에는 날짜/시간 처리를 위해 C스타일의 `time`과 `difftime`만 제공되었으나([C스타일 시간 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%8B%9C%EA%B0%84-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0) 참고), 
+기존에는 날짜/시간 처리를 위해 C스타일의 [time, difftime](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%8B%9C%EA%B0%84-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)만 제공되었으나([C스타일 시간 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%8B%9C%EA%B0%84-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0) 참고), 
 
-C++11 부터 STL 에서는 좀더 다양한 정확도로 시간을 추적할 수 있는 `chrono` 라이브러리가 추가되었습니다.
+C++11 부터 STL 에서는 좀더 다양한 정확도로 시간을 추적할 수 있는 [chrono 라이브러리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/)가 추가되었습니다.
 
 `<chrono>` 헤더 파일을 포함해야 하며, `std::chrono` 네임스페이스를 사용합니다.
 
 다음 예는 주어진 함수의 실행 시간을 측정하는 예입니다.
 
 1. `Measure()`함수는 전달된 함수를 실행하고 실행 시간을 측정합니다. 실행시킬 함수에 인자를 전달하기 위해 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)을 사용합니다.
-2. `system_clock::now()`를 이용하여 `time_point`를 구합니다.
-3. 구해진 `time_point`를 `microsecond` 타입으로 저장합니다.
-4. 두 `time_point`간의 차를 `duration`으로 변환합니다. 
+2. `system_clock::now()`를 이용하여 [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)를 구합니다.
+3. 구해진 [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)를 `microsecond` 타입으로 저장합니다.
+4. 두 [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)간의 차를 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)으로 변환합니다. 
 
 ```cpp
 template<typename Func, typename... Params>
@@ -54,7 +54,7 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 
 |항목|내용|
 |--|--|
-|`system_clock` (C++11~)|시스템 시계입니다.|
+|[system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock) (C++11~)|시스템 시계입니다.|
 |`steady_clock` (C++11~)|조정되지 않는 시계입니다.|
 |`high_resolution_clock` (C++11~)|사용 가능한 가장 짧은 틱 주기를 갖는 시계입니다.|
 |`is_clock` (C++20~)<br/>`is_clock_v` (C++20~)|(작성중)|
@@ -64,11 +64,11 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |`file_clock` (C++20~)|(작성중)|
 |`local_t` (C++20~)|(작성중)|
 
-`system_clock`은 다음의 멤버 함수가 있습니다.
+[system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)은 다음의 멤버 함수가 있습니다.
 
 |항목|내용|
 |--|--|
-|`now()` (C++11~)|현재 `time_point`를 리턴합니다.|
+|`now()` (C++11~)|현재 [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)를 리턴합니다.|
 |`to_time_t()` (C++11~)|`time_t`타입으로 변환합니다.|
 |`from_time_t()` (C++11~)|`time_t`타입에서 가져옵니다.|
 
@@ -78,11 +78,11 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 
 |항목|내용|
 |--|--|
-|`time_point` (C++11~)|특정 시점을 나타냅니다.|
+|[time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point) (C++11~)|특정 시점을 나타냅니다.|
 |`clock_time_conversion` (C++11~)|(작성중)|
 |`clock_cast` (C++11~)|(작성중)|
 
-`time_point`는 다음의 멤버 함수가 있습니다.
+[time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)는 다음의 멤버 함수가 있습니다.
 
 |항목|내용|
 |--|--|
@@ -105,9 +105,9 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 
 |항목|내용|
 |--|--|
-|`duration` (C++11~)|기간입니다. 두 Time Point의 차입니다.|
+|[duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) (C++11~)|기간입니다. 두 Time Point의 차입니다.|
 
-`duration` 은 다음의 멤버 함수가 있습니다.
+[duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 은 다음의 멤버 함수가 있습니다.
 
 |항목|내용|
 |--|--|

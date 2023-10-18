@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 이터레이터가 가리키는 요소를 이동 연산 합니다.
+> * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 합니다.
 
 # 이터레이터 기본 요소
 
@@ -32,7 +32,7 @@ sidebar:
 |`front_inserter()`|`front_insert_iterator`를 생성합니다.|
 |`insert_iterator`|컨테이너에 삽입합니다.|
 |`inserter()`|`insert_iterator`를 생성합니다.|
-|`move_iterator` (C++11~)|이터레이터가 가리키는 요소를 이동 연산 합니다.|
+|`move_iterator` (C++11~)|이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 합니다.|
 |`make_move_iterator()` (C++11~)|`move_iterator`를 생성합니다.|
 |`basic_const_iterator` (C++23~)|(작성중)|
 |`const_iterator` (C++23~)|(작성중)|
@@ -98,7 +98,7 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 |`crbegin(), crend()` (C++14~)|역방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`size()` (C++17~)<br/>`ssize()` (C++20~)|컨테이너의 크기를 구합니다.|
 |`empty()` (C++17~)|컨테이너가 비었는지 검사합니다.|
-|`data()` (C++17~)|컨테이너가 관리하는 메모리 블럭을 리턴합니다.|
+|`data()` (C++17~)|컨테이너가 관리하는 메모리 블록을 리턴합니다.|
 
 # 이터레이터 사용자 정의
 

@@ -37,7 +37,7 @@ C++버전에 따라 다음의 표준 속성이 제공됩니다. 세부 내용은
 
 |항목|내용|
 |--|--|
-|`noreturn` (C++11~)|함수가 항상 예외를 `throw`하거나 프로그램을 종료합니다.|
+|`noreturn` (C++11~)|함수가 항상 예외를 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하거나 프로그램을 종료합니다.|
 |`carries_dependency` (C++11~)|(작성중)|
 |`optimize_for_synchronized` (C++11~)|(작성중)|
 |`deprecated` (C++14~)<br/>`deprecated("이유")`  (C++14~)|더이상 사용되지 않음을 표시합니다.|

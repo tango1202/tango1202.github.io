@@ -63,7 +63,7 @@ void Shape::Rotate(const Degree& delta, const bool repaint /*= true*/) /* throw(
 
 6. `SetAngle` 함수에 `GetCenter()` 값을 전달하여 `shape`의 `Center`점을 중심으로 회전시킨다는 것을 명시했습니다.
 
-7. 예외 명세 `throw()`를 주석으로 적어 예외발생을 하지 않는다는 것을 명시했습니다.
+7. 예외 명세 [throw()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)를 주석으로 적어 예외발생을 하지 않는다는 것을 명시했습니다.
 
 8. 오류 발생시 강한 보증을 하여 오류로 인한 데이터 변경이 없다는 것을 명시했습니다.
 

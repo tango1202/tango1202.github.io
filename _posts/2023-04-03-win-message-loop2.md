@@ -189,13 +189,13 @@ while (1) {
 ```cpp
 BOOL idle = TRUE;
 while (1) {
-    // OnIdle 처리 블럭
+    // OnIdle 처리 블록
     // OnIdle을 호출할 필요가 있고, 메시지가 없다면 OnIdle()을 호출한다.
     while (idle && !::PeekMessage(pMsg, NULL, NULL, NULL, PM_NOREMOVE)) {
         idle = OnIdle(); // OnIdle()이 FALSE를 리턴하면, 다음 메시지 발생시까지 OnIdle()이 발생하지 않도록 한다.
     }
 
-    // 메시지 처리 블럭
+    // 메시지 처리 블록
     if (!PumpMessage(&msg, NULL, NULL, NULL)) {
         ::PostQuitMessage(0); // WM_QUIT 를 주 쓰레드로 전송
         break;
@@ -210,17 +210,17 @@ while (1) {
 `OnIdle()`이 처리되고 나면 `GetMessage()`가 호출되어 메시지 큐에 메시지가 추가되기를 기다리므로, CPU를 선점하지도 않는다.
 
 위 코드의 약간의 문제가 있다면, `PumpMessage()`에서 `DispatchMessage()`를 호출했을때 어플리케이션 구현 상태에 따라 메시지 큐에 또다른 메시지가 추가되었을 수 있다는 것이다.
-따라서, 다음과 같이 구현하여 메시지 큐의 모든 메시지를 처리한 후 `OnIdle()` 처리 블럭이 실행되도록 하는 것이 좋다.
+따라서, 다음과 같이 구현하여 메시지 큐의 모든 메시지를 처리한 후 `OnIdle()` 처리 블록이 실행되도록 하는 것이 좋다.
 
 ```cpp
 BOOL idle = TRUE;
 while (1) {
-    // OnIdle 처리 블럭
+    // OnIdle 처리 블록
     // OnIdle을 호출할 필요가 있고, 메시지가 없다면 OnIdle()을 호출한다.
     while (idle && !::PeekMessage(pMsg, NULL, NULL, NULL, PM_NOREMOVE)) {
         idle = OnIdle(); // OnIdle()이 FALSE를 리턴하면, 다음 메시지 발생시까지 OnIdle()이 발생하지 않도록 한다.
     }
-    // 메시지 처리 블럭 - 메시지 큐에 있는 모든 메시지를 처리한다.
+    // 메시지 처리 블록 - 메시지 큐에 있는 모든 메시지를 처리한다.
     do {
         if (!PumpMessage(&msg, NULL, NULL, NULL)) {
             ::PostQuitMessage(0); // WM_QUIT 를 주 쓰레드로 전송

@@ -136,7 +136,7 @@ catch (...) {
 }
 ```
 
-따라서, 예외에 안전하게 하려면 스마트 포인터나 `Holder` 개체를 활용해야 합니다. 다음 코드는 스마트 포인터인 `auto_ptr`을 사용하며, `A`에서 예외 발생시 이미 생성된 `B` 개체도 잘 소멸됩니다.
+따라서, 예외에 안전하게 하려면 스마트 포인터나 `Holder` 개체를 활용해야 합니다. 다음 코드는 스마트 포인터인 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 사용하며, `A`에서 예외 발생시 이미 생성된 `B` 개체도 잘 소멸됩니다.
 
 ```cpp
 class A {

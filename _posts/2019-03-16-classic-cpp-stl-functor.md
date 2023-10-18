@@ -14,7 +14,7 @@ sidebar:
 > * (C++11~) [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.
 > * (C++11~) [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper), [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref) 는 복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.
 > * (C++11~) [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
-> * (C++11~) 함수자 타입 특성 클래스(`unary_function`, `binery_function` 등), 바인더(`bind1st()`, `bind2nd()` 등), 어뎁터와 부정자(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)가 람다 표현식, [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function), [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind), `mem_fn()`등으로 대체되어 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
+> * (C++11~) 함수자 타입 특성 클래스([unary_function, binery_function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)등), 바인더([bind1st(), bind2nd()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)등), 어뎁터와 부정자([mem_fun(), mem_fun_ref(), ptr_fun(), not1(), not2()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)등)가 람다 표현식, [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function), [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind), [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)등으로 대체되어 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
 > * (C++11~) [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 각 타입별로 데이터의 해시값(Digest)을 리턴하는 함수자 입니다.
 > * (C++17~) [not_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되어 인자(단항, 이항 제한이 없습니다.)로 전달한 함수자를 부정하는 함수자를 만듭니다.
 
@@ -107,7 +107,7 @@ struct binary_function {
 };
 ```
 
-`Adder` 함수자는 다음처럼 `unary_function`을 상속하여 구현할 수 있습니다.
+`Adder` 함수자는 다음처럼 [unary_function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)을 상속하여 구현할 수 있습니다.
 
 ```cpp
 // 인자 1개를 사용하는 함수자 정의
@@ -131,7 +131,7 @@ Adder adder(init);
 std::for_each(v.begin(), v.end(), adder);
 EXPECT_TRUE(v[0] == 11 && v[1] == 12 && v[2] == 13);
 ```
-> *(C++11~) 함수자 타입 특성 클래스(`unary_function`, `binery_function` 등)은 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다. [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/)을 사용합니다.*<br/>
+> *(C++11~) 함수자 타입 특성 클래스([unary_function, binery_function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)등)은 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다. [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/)을 사용합니다.*<br/>
 
 # STL 기본 함수자
 
@@ -223,7 +223,7 @@ std::vector<int>::iterator itr = std::find_if(
 EXPECT_TRUE(*itr == 4);  
 ```
 
-> *(C++11~) 바인더(`bind1st()`, `bind2nd()` 등)은 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.*<br/>
+> *(C++11~) 바인더([bind1st(), bind2nd()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)등)은 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.*<br/>
 > *(C++11~) [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.*
 
 # 아답터와 부정자
@@ -234,7 +234,7 @@ EXPECT_TRUE(*itr == 4);
 |--|--|
 |`mem_fun()`|알고리즘에서 `f(x)`의 호출을 `x->f()` 처럼 호출되게 합니다.|
 |`mem_fun_ref()`|알고리즘에서 `f(x)`의 호출을 `x.f()` 처럼 호출되게 합니다.|
-|`ptr_fun()`|바인더, 아답터, 부정자와 일반 함수가 호환될 수 있도록 일반 함수를 `unary_function`이나 `binary_function` 개체로 만듭니다.|
+|`ptr_fun()`|바인더, 아답터, 부정자와 일반 함수가 호환될 수 있도록 일반 함수를 [unary_function 이나 binery_function](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits) 개체로 만듭니다.|
 |`not1()`|단항 조건자의 반환값을 부정합니다.|
 |`not2()`|이항 조건자의 반환값을 부정합니다.|
 
@@ -254,7 +254,7 @@ for (; itr != endItr; ++itr) {
 }
 ```
 
-다음처럼 `for_each()`와 `mem_fun_ref()`를 이용하면, 좀 더 간결히 만들 수 있습니다.
+다음처럼 `for_each()`와 [mem_fun_ref()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)를 이용하면, 좀 더 간결히 만들 수 있습니다.
 
 ```cpp
 class A {
@@ -265,6 +265,6 @@ public:
 std::vector<A> v(2);
 std::for_each(v.begin(), v.end(), std::mem_fun_ref(&A::Func));
 ```
-> *(C++11~) 어뎁터와 부정자(`mem_fun()`, `mem_fun_ref()`, `ptr_fun()`, `not1()`, `not2()` 등)은 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.*<br/>
+> *(C++11~) 어뎁터와 부정자([mem_fun(), mem_fun_ref(), ptr_fun(), not1(), not2()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)등)은 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.*<br/>
 > *(C++11~) [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)을 이용하여 멤버 함수를 호출합니다.*<br/>
 > *(C++17~) [not_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되어 인자(단항, 이항 제한이 없습니다.)로 전달한 함수자를 부정하는 함수자를 만듭니다.*

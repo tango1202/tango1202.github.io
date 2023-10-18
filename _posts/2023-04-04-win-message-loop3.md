@@ -79,7 +79,7 @@ void Dialog::DoModal() {
 ```cpp
 BOOL idle = TRUE;
 while (1) {
-    // OnIdle 처리 블럭
+    // OnIdle 처리 블록
     // OnIdle을 호출할 필요가 있고, 메시지가 없다면 OnIdle()을 호출한다.
     while (idle && !::PeekMessage(pMsg, NULL, NULL, NULL, PM_NOREMOVE)) {
         // owner에 WM_ENTERIDLE 을 전송하여 idle 처리를 할 수 있게 한다.
@@ -88,7 +88,7 @@ while (1) {
         idle = FALSE;
     }
 
-    // 메시지 처리 블럭 - 메시지 큐에 있는 모든 메시지를 처리한다.
+    // 메시지 처리 블록 - 메시지 큐에 있는 모든 메시지를 처리한다.
     do {
         if (!PumpMessage(&msg, NULL, NULL, NULL)) {
             ::PostQuitMessage(0); // WM_QUIT 를 주 쓰레드로 전송

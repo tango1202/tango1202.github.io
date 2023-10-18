@@ -16,7 +16,7 @@ sidebar:
 
 # 개요 
 
-설계한 기능이 올바르게 사용되는지 진단하기 위해 `assert()`를 사용할 수 있습니다. `assert()`는 디버그 모드가 아니면 아무런 작동을 하지 않으며, 디버그 모드에서만 작동됩니다.
+설계한 기능이 올바르게 사용되는지 진단하기 위해 [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)를 사용할 수 있습니다. [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)는 디버그 모드가 아니면 아무런 작동을 하지 않으며, 디버그 모드에서만 작동됩니다.
 
 ```cpp
 #ifdef NDEBUG
@@ -26,7 +26,7 @@ sidebar:
 #endif
 ```
 
-`assert()`는 `condition`이 `0`(`false`) 이면 오류가 표시됩니다. 메시지를 함께 표시하고 싶으면, `&&`을 사용할 수 있습니다.
+[assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)는 `condition`이 `0`(`false`) 이면 오류가 표시됩니다. 메시지를 함께 표시하고 싶으면, `&&`을 사용할 수 있습니다.
 
 ```cpp
 int a = 10;
@@ -59,7 +59,7 @@ int f(int a, int b, int* c) {
 }
 ```
 
-상기 코드를 다음처럼 `assert()`와 `throw()`로 작성하는게 안전합니다.
+상기 코드를 다음처럼 [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)와 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)로 작성하는게 안전합니다.
 
 ```cpp
 int f(int a, int b, int* c) {

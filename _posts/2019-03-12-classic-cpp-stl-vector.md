@@ -12,7 +12,7 @@ sidebar:
 > * `vector<bool>`은 사용하지 마라.
 
 > **모던 C++**
-> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너 입니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.
+> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.
 
 # 개요
 
@@ -70,7 +70,7 @@ sidebar:
 |`cend()` (C++11~)|`const_iterator cend() const;`|마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
 |`crbegin()` (C++11~)|`const_reverse_iterator crbegin() const;`|반전된 `vector`의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
 |`crend()` (C++11~)|`const_reverse_iterator crend() const;`|반전된 `vector`의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
-|`data()`|`pointer data();`<br/>`const_pointer data() const;`|컨테이너가 관리하는 메모리 블럭을 리턴합니다.(첫번째 요소의 포인터를 리턴합니다.)|
+|`data()`|`pointer data();`<br/>`const_pointer data() const;`|컨테이너가 관리하는 메모리 블록을 리턴합니다.(첫번째 요소의 포인터를 리턴합니다.)|
 |`front()`|`reference front();`<br/>`const_reference front() const;`|첫번째 요소의 참조자를 리턴합니다. `vector`가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`back()`|`reference back();`<br/>`const_reference back() const;`|마지막 요소의 참조자를 리턴합니다. `vector`가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 
@@ -104,7 +104,7 @@ EXPECT_TRUE(*(&v[0]) == 10);
 EXPECT_TRUE(*((&v[0]) + 1) == 20); // 연속된 메모리여서 포인터 연산으로도 접근 가능합니다.
 ```
 
-> *(C++11~) 기존 C스타일의 배열처럼 연속된 메모리를 사용하는 컨테이너인 [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)를 제공합니다. C스타일 배열처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.*
+> *(C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.*
 
 # [] 과 at()
 

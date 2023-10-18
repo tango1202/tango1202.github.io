@@ -13,7 +13,7 @@ sidebar:
 
 # 개요
 
-기존에는 `assert()`를 이용하여 런타임 진단만 가능했는데요([자가 진단과 진단 최소화](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/) 참고),
+기존에는 [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)를 이용하여 런타임 진단만 가능했는데요,
 
 C++11 부터는 [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)를 이용하여 컴파일 타임 진단이 가능합니다.
 
