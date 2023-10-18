@@ -10,13 +10,13 @@ sidebar:
 
 > * `string`은 [바이트 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))을 지원합니다.
 > * `wstring`은 [와이드 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))을 지원합니다.
-> * (C++11~)  [UTF-16]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9))을 지원하는 [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
-> * (C++11~) [UTF-32]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9))를 지원하는 [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+> * (C++11~)  [UTF-16]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9))을 지원하는 [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+> * (C++11~) [UTF-32]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9))를 지원하는 [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
 > * [strerror()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#strerror)는 [오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8)를 문자열로 출력해 줍니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
 > * (C++17~) 숫자와 문자열간의 변환을 위한 [to_char(), from_char()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) 함수가 제공되며, 기존 C스타일([atoi(), strtol()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98 )등) 보다 안전합니다.
-> * (C++20~) [UTF-8](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.
+> * (C++20~) [UTF-8](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.
 
 # 개요
 
@@ -33,27 +33,27 @@ sidebar:
 |--|--|--|
 |`string`|[바이트 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))|`basic_string<char>`|
 |`wstring`|[와이드 문자열]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%A0%80%EC%9E%A5-%EB%B0%A9%EC%8B%9D-%EA%B4%80%EC%A0%90--%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4))|`basic_string<wchar_t>`|
-|`u16string` (C++11~)|[UTF-16 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)|`basic_string<char16_t>`|
-|`u32string` (C++11~)|[UTF-32 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)|`basic_string<char32_t>`|
-|`u32string` (C++20~)|[UTF-8 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EC%9D%B8%EC%BD%94%EB%94%A9)|`basic_string<char8_t>`|
+|`u16string` (C++11~)|[UTF-16 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)|`basic_string<char16_t>`|
+|`u32string` (C++11~)|[UTF-32 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)|`basic_string<char32_t>`|
+|`u32string` (C++20~)|[UTF-8 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)|`basic_string<char8_t>`|
 
 ```cpp
 // C++11
-std::u16string str1_11{u"한글"};
-std::u32string str2_11{U"한글"};
+std::u16string str1_11{u"abc가나다"};
+std::u32string str2_11{U"abc가나다"};
 
 // C++20
-// std::u8string str3_20{u8"한글"};
+// std::u8string str3_20{u8"abc가나다"};
 
-EXPECT_TRUE(str1_11.size() == 2);
-EXPECT_TRUE(str1_11[1] == u'글'); 
+EXPECT_TRUE(str1_11.size() == 6);
+EXPECT_TRUE(str1_11[3] == u'가'); 
 
-EXPECT_TRUE(str2_11.size() == 2);
-EXPECT_TRUE(str2_11[1] == U'글');
+EXPECT_TRUE(str2_11.size() == 6);
+EXPECT_TRUE(str2_11[3] == U'가');
 
 // C++20
-// EXPECT_TRUE(str3_20.size() == 2);
-// EXPECT_TRUE(str3_20[1] == U'글');
+// EXPECT_TRUE(str3_20.size() == 6);
+// EXPECT_TRUE(str3_20[3] == U'가');
 ```
 
 자세한 사용 방법은 [문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)을 참고하기 바랍니다.
@@ -117,36 +117,113 @@ EXPECT_TRUE(strlen(str.c_str()) == 3); // 널종료 문자열을 리턴하므로
 
 그래서 확장 아스키 코드로 128 ~ 255 영역을 사용하는 방법이 도입되었는데요, 0 ~ 127 의 값이면 [아스키 코드(https://www.ascii-code.com/ASCII)](https://www.ascii-code.com/ASCII)를 사용하고, 그 이상의 값이면 코드 페이지(`437`, `ISO-8859-1`, `Windows-1250`등)에 따라 다른 기호들을 매핑합니다. [아스키 코드(https://www.ascii-code.com/ASCII)](https://www.ascii-code.com/ASCII)을 보면, 코드 페이지에 따라 128 ~ 255 영역이 서로 다른 기호로 매핑되는걸 확인할 수 있습니다.
 
-**국가별 코드 페이지**
+**국가별 코드 테이블**
 
-하지만, 128 ~ 255 영역은 한중일의 문자(`CJK`라고 합니다.)를 표현하기엔 턱없이 부족합니다. 그래서 각 국가별로 코드 테이블을 만들었고, 127 이상이면 추가 바이트를 사용합니다. 한글의 경우엔 2byte를 사용한 코드 테이블과 매핑하며, 다음과 같은 것들이 있습니다.
+확장 아스키 코드를 사용하는 방법은 라틴 문자를 사용하는 곳에서는 어느 정도 사용할 수 있으나, 한중일의 문자(`CJK`라고 합니다.)를 표현하기엔 턱없이 부족합니다. 
+
+그래서 각 국가별로 자체적인 코드 테이블을 만들었고, 127 이상이면 추가 바이트를 사용합니다. 한글의 경우엔 2byte를 사용한 코드 테이블과 매핑하며, 다음과 같은 것들이 있습니다.
 
 |항목|명칭|내용|
 |--|--|--|
 |조합형 한글|`KSSM`|총 2byte(16bit)로 한글의 초성, 중성, 종성을 표현합니다. 완성형 한글과 표준화 경합을 했으나 표준화되지 못했습니다.<br/> 1bit : 최상위 비트가 1이면 한글이고, 0이면 영문입니다.<br/>5bit : 초성<br/>5bit : 중성<br/>5bit : 종성|
-|완성형 한글|`KSC-5601` 혹은 `KS X 1001`|1987년에 표준화 되었으며, 한글 2,350자를 2byte로 정의합니다. 일부 한글을 표현하지 못하는 문제가 있습니다.<br/>`euc-kr`인코딩을 사용하면, 한글은 `KSC-5601`을 사용하고, 영문은 `KSC-5636`(아스키 코드에서 역슬래쉬(`\`)를 원(`₩`)으로 대체했습니다.)으로 처리합니다.|
-|확장 완성형 한글|`KSC-5700`|1995년에 표준화 되었으며, 완성형 한글에서 표현 못하는 문자들을 포함하여 한글 11,172자를 2byte로 정의합니다. 완성형 한글(`KSC-5601`)과 호환됩니다.|
+|완성형 한글| `KS X 1001`(구 `KSC-5601`)|1987년에 표준화 되었으며, 한글 2,350자를 2byte로 정의합니다. 일부 한글을 표현하지 못하는 문제가 있습니다.|
 
 **유니코드**
 
-국가별 코드 페이지를 사용하면, 여러 국가의 문자를 함께 표시할 수 없는 문제가 있습니다. 그래서, 전 세계의 모든 문자에 고유 숫자를 부여한 유니코드를 만들었는데요, 이것도 점진적으로 추가되고, 하위 호환을 유지하다보니 처리 방식이 좀 복잡합니다.
+국가별 코드 테이블을 사용하면, 해당 국가의 문자를 표현할 수는 있으나, 여러 국가의 문자를 함께 표현할 수는 없습니다. 그래서, 전 세계의 모든 문자에 고유 숫자를 부여한 유니코드를 만들었는데요, 이것도 점진적으로 추가되고, 하위 호환을 유지하다보니 처리 방식이 좀 복잡합니다.
 
-유니코드는 기본적으로 2byte를 사용하도록 했으나, 아시아권 문자를 포함하다 보니 3byte가 필요하게 되었고, 다양한 추가 문자들을 지원하다 보니 4byte가 필요(악보 기호, 이모지등 특수 기호 지원)하게 되었습니다. 이러다 보니 유니코드는 2byte다 4byte다 혼선이 있는데, 결과적으로는 "2byte 이상이다"가 맞겠습니다. 참고로 `KSC-5700`에 정의된 현대 한글의 모든 문자 11,172개는 U+AC00 ~ D7A3에 할당되어 있습니다. 
+유니코드는 기본적으로 2byte를 사용하도록 했으나, 아시아권 문자를 포함하다 보니 3byte가 필요하게 되었고, 다양한 추가 문자들을 지원하다 보니 4byte가 필요(악보 기호, 이모지등 특수 기호 지원)하게 되었습니다. 이러다 보니 유니코드는 2byte다 4byte다 혼선이 있는데, 결과적으로는 "2byte 이상이다"가 맞겠습니다. 
 
-유니코드는 `U+16진수`의 형태로 표기합니다. 예를 들어 한글 "가"는 `AC00`(10진수의 `44032`)인데, `U+AC00`으로 표기합니다.
+유니코드에서는 현대 한글의 모든 문자 11,172개를 2byte로 표현하며 `U+AC00 ~ U+D7A3`에 할당되어 있습니다.(유니코드는 `U+16진수`의 형태로 표기합니다. 예를 들어 한글 "가"는 `AC00`(10진수의 `44032`)인데, `U+AC00`으로 표기합니다.)
+
+|항목|명칭|내용|
+|--|--|--|
+|유니코드 한글|`ISO/IEC 10646`|1996년 2.0이 제정 되었으며, 완성형 한글에서 표현 못하는 문자들을 포함하여 한글 11,172자를 2byte로 정의합니다.|
+
 
 # 인코딩
 
-유니코드를 최종본(글쎄요, 더 확장될 수도 있겠죠. [유니코드 로드맵](https://www.unicode.org/roadmaps/) 참고)인 4byte로 표현하기엔 메모리 낭비가 심하므로 인코딩을 통해 문자 변환을 합니다.
+사용하는 코드가 조합형인지, 완성형인지, 유니코드인지에 따라 동일한 문자라도 서로 다른 코드값을 갖게 됩니다.
 
-인코딩 방식은 다음의 3가지 방식이 있습니다.
+다음은 한글 `가`, `나`, `다`의 코드 테이블 값입니다. 모두 서로 다르죠.
+
+|코드 테이블|`가`|`나`|`다`|설명|
+|--|--|--|--|--|
+|조합형|`0x8861`|`0x9061`|`0x9461`|이젠 거의 쓰이지 않습니다.|
+|완성형|`0xBOA1`|`0xB3AA`|`0xB4D9`|`euc-kr`, `cp-949`인코딩에서 사용합니다.|
+|유니코드|`U+AC00`|`U+B098`|`U+B2E4`|`UTF-8`, `UTF-16`, `UTF-32`인코딩에서 사용합니다.|
+
+따라서 완성형으로 저장된 문자를 유니코드로 읽거나, 유니코드로 저장된 문자를 완성형으로 읽으려면 서로 코드 변환을 해야 합니다.(한글 코드간의 변환은 [charset.fandom.com/](https://charset.fandom.com/ko/wiki/%ED%95%9C%EA%B8%80_%EC%9D%B8%EC%BD%94%EB%94%A9_%EB%B3%80%ED%99%98_%ED%85%8C%EC%9D%B4%EB%B8%94)을 참고하시기 바랍니다.)
+
+또한, 유니코드를 최종본(글쎄요, 더 확장될 수도 있겠죠. [유니코드 로드맵](https://www.unicode.org/roadmaps/) 참고)인 4byte로 표현하기엔 메모리 낭비가 심하므로 `UTF-8`, `UTF-16`, `UTF-32` 의 3가지 인코딩 방식을 사용하고 있습니다.
+
+**euc-kr 인코딩**
+
+`euc-kr`인코딩을 사용하면, 한글은 `KS X 1001`을 사용하고, 영문은 `KS X 1003`(구 `KSC-5636`)(아스키 코드에서 역슬래쉬(`\`)를 원(`₩`)으로 대체했습니다.)으로 처리합니다.
+
+따라서 `가나다`를 저장하면 다음과 같이 저장됩니다.
+
+<img width="237" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/9faee661-32c1-4471-b267-e68f880cb10e">
+
+**cp-949 인코딩**
+
+Microsoft에서 사용하는 확장 완성형으로서 `euc-kr`의 확장형입니다. `KS X 1001`에서 표현하지 못한 한글 8822자를 추가했습니다.
+
+**UTF-8 인코딩**
+
+웹의 기본 인코딩 방식이며, 문자마다 다른 크기로 저장합니다. 이에 따라 문자 데이터 앞에 크기 정보가 필요하며, 첫째 바이트의 최상위 비트가 `0`이면 남은 7비트에 데이터를 저장하고, `110`이면 2byte, `1110`이면 3byte, `11110`이면 4byte에 데이터를 분산해서 저장합니다. 이때 추가 byte의 최상위 비트는 `10`으로 마킹합니다. 
 
 |항목|내용|
 |--|--|
-|UTF-8|문자마다 다른 크기로 저장합니다. 이에 따라 문자 데이터 앞에 크기 정보가 필요하며, 최상위 비트가 `0`이면 7비트로 처리하고 `110`이면 2byte, `1110`이면 3byte, `11110`이면 4byte로 처리합니다.(웹 기본)<br/>* 영어 및 기호 : 1byte<br/>* 추가 라틴 및 중동 : 2byte<br/>* 한글 및 아시아 : 3byte(한글은 코드값은 2byte이지만, 크기 정보를 포함하면 3byte가 필요합니다.)<br/>* 추가 문자 : 4byte
-|UTF-16|기본적으로 2byte로 처리하고, 2byte로 표현할 수 없는 것들은 4byte로 처리합니다.(java 기본)|
-|UTF-32|모든 문자를 4byte로 처리합니다. 메모리 낭비가 심하여 잘 사용하지 않습니다.|
+|영어 및 기호|1byte|
+|추가 라틴 및 중동|2byte|
+|한글 및 아시아|3byte(한글은 코드값은 2byte이지만, 크기 정보를 포함하면 3byte가 필요합니다.)|
+|추가 문자|4byte|
 
+예를 들어 한글 `가`(`U+AC00`)는 다음과 같이 저장됩니다.
+
+<img width="493" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/96f711f2-ea17-431e-822c-8fb7b7c3dd3f">
+
+따라서 `가나다`를 저장하면 다음과 같이 저장됩니다.
+
+<img width="345" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/a9e6f5cc-bec3-4f26-ae6a-f8077f0d06b4">
+
+**UTF-16 인코딩**
+
+JAVA 에서 기본으로 사용하며, 기본적으로 2byte로 처리하고, 2byte로 표현할 수 없는 것들은 4byte로 처리합니다.
+
+**UTF-32 인코딩**
+
+모든 문자를 4byte로 처리합니다. 메모리 낭비가 심하여 잘 사용하지 않습니다.
+
+# 소스 코드와 인코딩
+
+소스 코드가 어떤 인코딩 방식을 사용하느냐에 따라 문자열 데이터는 완전히 달라집니다.
+
+다음 예제는 `char* str = "가";` 를 `UTF-8`과 `euc-kr`로 저장했을때의 차이입니다. 문자열의 길이가 서로 다르며, 코드값도 다릅니다. 
+
+**UTF-8**
+
+```cpp
+char* str = "가"; // EA B0 80 가 저장된 곳을 가리키는 포인터 입니다.
+
+EXPECT_TRUE(strlen(str) == 3); // UTF-8에서 한글 1글자는 3byte 입니다.
+EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 0) == 0xEA);
+EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 1) == 0xB0);
+EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 2) == 0x80);
+```
+
+**euc-kr 또는 cp-949**
+
+```cpp
+char* str = "가"; // B0 A1 가 저장된 곳을 가리키는 포인터 입니다.
+
+EXPECT_TRUE(strlen(str) == 2); // euc-kr에서 한글 1글자는 2byte 입니다.
+EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 0) == 0xB0);
+EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 1) == 0xA1);
+```
+
+따라서 소스 코드의 인코딩도 잘 결정해서 사용해야 하는데요, Windows는 `cp-949`를 기본적으로 사용하기 때문에, 유니코드와 다국어 처리에 적합하지 않습니다. 소스 코드 저장시에는 혼동이 없도록 `UTF-8`로 저장하시길 추천합니다.
 
 # 저장 방식 관점 : 바이트 문자열, 멀티 바이트 문자열, 와이드 문자열
 
@@ -159,7 +236,11 @@ EXPECT_TRUE(strlen(str.c_str()) == 3); // 널종료 문자열을 리턴하므로
 ```cpp
 
 ```
+# 바이트 문자열
 
+# 멀티 바이트 문자열
+
+# 와이드 문자열
 
 # C스타일 문자열 함수
 
