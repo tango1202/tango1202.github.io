@@ -64,22 +64,22 @@ sidebar:
 
 # 예외 처리 실패
 
-예외를 `catch()`하지 않으면 `terminate()` 함수를 호출합니다. 자세한 내용은 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 참고 하세요.
+예외를 `catch()`하지 않으면 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 함수를 호출합니다. 자세한 내용은 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 참고 하세요.
 
 |항목|내용|
 |--|--|
 |[terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)|예외를 `catch()`하지 않으면 호출됩니다. 기본적으로 `abort()`가 호출됩니다.|
-|`terminate_handler`|`terminate()`호출시 실행되는 함수입니다.|
+|`terminate_handler`|[terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)호출시 실행되는 함수입니다.|
 |`get_terminate()` (C++11~)|(작성중)|
 |`set_terminate()`|`terminate_handler`를 설정합니다.|
 
 # 동적 예외 사양 실패
 
-[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)에 없는 예외가 발생할 경우 `unexpected()` 함수가 호출됩니다. 자세한 내용은 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 참고하세요.
+[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)에 없는 예외가 발생할 경우 [unexpected()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 함수가 호출됩니다. 자세한 내용은 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 참고하세요.
 
 |항목|내용|
 |--|--|
-|`unexpected()` (~C++11)|동적 예외 사양에서 명시한 예외 이외의 예외가 발생하면 호출됩니다.|
+|[unexpected()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) (~C++11)|동적 예외 사양에서 명시한 예외 이외의 예외가 발생하면 호출됩니다.|
 |`unexpected_handler` (~C++11)|`bad_exception`을 방출합니다.|
 |`get_expected()` (C++11~C++17)|(작성중)|
 |`set_expected()` (~C++17)|`unexpected_handler`를 설정합니다.|

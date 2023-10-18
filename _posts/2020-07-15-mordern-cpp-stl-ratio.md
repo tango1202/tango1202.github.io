@@ -8,27 +8,27 @@ sidebar:
     nav: "docs"
 ---
 
-> * `ratio` 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.
+> * [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.
 
 # 개요
 
 보통 유리수(정수와 분수)에서 분수는 산술 연산할때 실수로 바꿔서 계산하는데요, 부동 소수점 방식이라 연산에 오차가 있을 수 있습니다.
 
-`ratio` 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.
+[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.
 
 |항목|내용|
 |--|--|
-|`ratio` (C++11~)|정확한 유리 분수를 표현합니다. `ratio::num`은 분자, `ratio::den`은 분모입니다.|
-|`ratio_add` (C++11~)|컴파일 타임에 `ratio`개체를 더합니다.|
-|`ratio_subtract` (C++11~)|컴파일 타임에 `ratio`개체를 뺍니다.|
-|`ratio_multiply` (C++11~)|컴파일 타임에 `ratio`개체를 곱합니다.|
-|`ratio_divide` (C++11~)|컴파일 타임에 `ratio`개체를 나눕니다.|
-|`ratio_equal` (C++11~)|컴파일 타임에 두 `ratio` 개체가 `==`인지 비교합니다.|
-|`ratio_not_equal` (C++11~)|컴파일 타임에 두 `ratio` 개체가 `!=`인지 비교합니다.|
-|`ratio_less` (C++11~)|컴파일 타임에 두 `ratio` 개체가 `<`인지 비교합니다.|
-|`ratio_less_equal` (C++11~)|컴파일 타임에 두 `ratio` 개체가 `<=`인지 비교합니다.|
-|`ratio_greater` (C++11~)|컴파일 타임에 두 `ratio` 개체가 `>`인지 비교합니다.|
-|`ratio_greater_equal` (C++11~)|컴파일 타임에 두 `ratio` 개체가 `>=`인지 비교합니다.|
+|[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) (C++11~)|정확한 유리 분수를 표현합니다. `ratio::num`은 분자, `ratio::den`은 분모입니다.|
+|`ratio_add` (C++11~)|컴파일 타임에 [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/)개체를 더합니다.|
+|`ratio_subtract` (C++11~)|컴파일 타임에 [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/)개체를 뺍니다.|
+|`ratio_multiply` (C++11~)|컴파일 타임에 [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/)개체를 곱합니다.|
+|`ratio_divide` (C++11~)|컴파일 타임에 [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/)개체를 나눕니다.|
+|`ratio_equal` (C++11~)|컴파일 타임에 두 [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체가 `==`인지 비교합니다.|
+|`ratio_not_equal` (C++11~)|컴파일 타임에 두 [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체가 `!=`인지 비교합니다.|
+|`ratio_less` (C++11~)|컴파일 타임에 두 [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체가 `<`인지 비교합니다.|
+|`ratio_less_equal` (C++11~)|컴파일 타임에 두 [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체가 `<=`인지 비교합니다.|
+|`ratio_greater` (C++11~)|컴파일 타임에 두 [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체가 `>`인지 비교합니다.|
+|`ratio_greater_equal` (C++11~)|컴파일 타임에 두 [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체가 `>=`인지 비교합니다.|
 
 다음은 `1 / 100` 과 `99 / 100`을 더했을 때 오차 없이 분자와 분모 모두 정확히 `1`로 계산해 줍니다.
 
@@ -43,7 +43,7 @@ enum class MyEnum {Val1 = Result::num, Val2 = Result::den};
 EXPECT_TRUE(static_cast<int>(MyEnum::Val1) == 1 && static_cast<int>(MyEnum::Val2) == 1);
 ```
 
-`ratio` 는 약분값을 사용하기 때문에, `1/3`이나 `2/3`은 같은 값으로 평가됩니다.
+[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 는 약분값을 사용하기 때문에, `1/3`이나 `2/3`은 같은 값으로 평가됩니다.
 
 ```cpp
 using Result = std::ratio_equal<
@@ -55,7 +55,7 @@ EXPECT_TRUE(Result::value == true);
 
 # 미리 정의된 ratio 타입
 
-`ratio`는 표준에 다음과 같이 미리 정의되어 있습니다.
+[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/)는 표준에 다음과 같이 미리 정의되어 있습니다.
 
 ```cpp
 typedef ratio<1,       1000000000000000000> atto;

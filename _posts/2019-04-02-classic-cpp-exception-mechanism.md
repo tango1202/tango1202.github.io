@@ -38,9 +38,9 @@ void g() {
 }
 ```
 
- C++은 좀더 예외 처리의 강제성을 줄 수 있도록 다음의 메커니즘으로 예외를 발생, 복귀, 전파, 탐지 합니다. 예외 처리를 하지 않으면 `terminate()`를 호출하여 프로그램이 종료되므로, 예외 처리를 할 수 밖에 없습니다.
+ C++은 좀더 예외 처리의 강제성을 줄 수 있도록 다음의 메커니즘으로 예외를 발생, 복귀, 전파, 탐지 합니다. 예외 처리를 하지 않으면 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출하여 프로그램이 종료되므로, 예외 처리를 할 수 밖에 없습니다.
 
-1. `throw()` 문으로 예외를 발생시킵니다. 이때 예외 정보를 담은 개체로 예외 정보를 제공합니다. `catch()`로 예외를 처리하지 않으면, `terminate()`를 호출하여 프로그램이 종료됩니다.
+1. `throw()` 문으로 예외를 발생시킵니다. 이때 예외 정보를 담은 개체로 예외 정보를 제공합니다. `catch()`로 예외를 처리하지 않으면, [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출하여 프로그램이 종료됩니다.
 2. **스택 풀기**에 의해 예외 발생전의 상태로 복귀합니다.
 3. 아무런 작업을 안하거나 `throw`로 예외를 상위 개체로 전파합니다.
 4. `try-catch()`로 예외를 탐지합니다. 
@@ -254,9 +254,9 @@ void g() {
 
 # terminate()
 
-예외를 `catch()`하지 않으면 최종적으로 `terminate()` 함수를 호출하며, `terminate()` 함수에서는 `terminate_handler` 를 호출하고, 기본 `terminate_handler` 에서는 `abort()`를 호출하여 프로그램을 강제 종료합니다. 
+예외를 `catch()`하지 않으면 최종적으로 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 함수를 호출하며, [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 함수에서는 `terminate_handler` 를 호출하고, 기본 `terminate_handler` 에서는 `abort()`를 호출하여 프로그램을 강제 종료합니다. 
 
-`terminate()` 핸들러는 `set_terminate()` 함수로 사용자 정의 할 수 있으며, `abort()`등의 프로그램 종료 코드가 포함되어야 합니다.
+[terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 핸들러는 `set_terminate()` 함수로 사용자 정의 할 수 있으며, `abort()`등의 프로그램 종료 코드가 포함되어야 합니다.
 
 ```cpp
 #include <iostream>

@@ -24,7 +24,7 @@ C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입
 2. 열거형
 3. 포인터
 4. 멤버에 대한 포인터
-5. `nullptr_t`
+5. [nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/#nullptr_t)
 
 # Trivial 타입(간단한 타입)
 

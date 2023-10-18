@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) `type_traits`가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.
+> * (C++11~) [type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.
 
 # 개요
 
 C++11 부터 STL 에서는 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)을 위해 다양한 타입 특성들을 제공합니다.
 
-예를 들면 다음과 같이 템플릿 인자로 전달된 `T`가 포인터 타입인지 아닌지에 따라 코딩할 수 있습니다. 
+예를 들면 다음과 같이 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)로 전달된 `T`가 포인터 타입인지 아닌지에 따라 코딩할 수 있습니다. 
 
 또한 `is_pointer<T>::value`와 같이 열거형 조회를 하는 것은 `is_pointer_v<T>`로 인스턴스화 된 버전을 제공하여 코딩을 조금 더 간편하게 합니다.
 
@@ -62,7 +62,7 @@ ThreeType three;
 |`is_rvalue_reference` (C++11~)|우측값 참조 타입인지 검사합니다.|
 |`is_member_object_pointer` (C++11~)|개체 멤버 변수의 포인터 타입인지 검사합니다.|
 |`is_member_function_pointer` (C++11~)|개체 멤버 함수의 포인터 타입인지 검사합니다.|
-|`is_null_pointer` (C++14~)|`nullptr_t` 타입인지 검사합니다.|
+|`is_null_pointer` (C++14~)|[nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/#nullptr_t) 타입인지 검사합니다.|
 
 # 복합 타입 카테고리
 
@@ -71,7 +71,7 @@ ThreeType three;
 |항목|내용|
 |--|--|
 |`is_arithmetic` (C++11~)|정수, 실수 타입인지 검사합니다.|
-|`is_fundamental` (C++11~)|정수, 실수, `void`, `nullptr_t` 타입인지 검사합니다.|
+|`is_fundamental` (C++11~)|정수, 실수, `void`, [nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/#nullptr_t) 타입인지 검사합니다.|
 |`is_scalar` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)인지 검사합니다.|
 |`is_object` (C++11~)|좌측값과 포인터 타입인지 검사합니다.|
 |`is_reference` (C++11~)|참조 타입(좌측값 참조와 우측값 참조)인지 검사합니다.|
@@ -94,7 +94,7 @@ ThreeType three;
 |`is_abstract` (C++11~)|적어도 1개 이상의 순가상 함수가 있는 추상 클래스 타입인지 검사합니다.|
 |`is_signed` (C++11~)|양수/음수 처리를 지원하는 타입인지 검사합니다.|
 |`is_unsigned` (C++11~)|양수/음수 처리를 지원하는 않는 타입인지 검사합니다.|
-|`is_final` (C++14~)|`final`클래스 타입인지 검사합니다.|
+|`is_final` (C++14~)|[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) 클래스 타입인지 검사합니다.|
 |`has_unique_object_representations` (C++17~)|(작성중)|
 |`is_aggregate` (C++17~)|(작성중)|
 |`is_bounded_array` (C++20~)|(작성중)|
@@ -121,7 +121,7 @@ ThreeType three;
 
 |항목|내용|
 |--|--|
-|`alignment_of` (C++11~)|메모리 정렬에 필요한 크기를 구합니다.<br/>`alignof()` 와 동일하며, C++11 이전 컴파일러와 호환성을 유지합니다.|
+|`alignment_of` (C++11~)|메모리 정렬에 필요한 크기를 구합니다.<br/>[alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof) 와 동일하며, C++11 이전 컴파일러와 호환성을 유지합니다.|
 |`rank` (C++11~)|다차원 배열의 차원수를 구합니다.|
 |`extent` (C++11~)|배열 차원의 요소 수를 구합니다.|
 
