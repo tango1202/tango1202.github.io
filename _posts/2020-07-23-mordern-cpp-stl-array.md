@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.
+> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 요소 추가/삭제가 지원되지 않으며 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.
 
 # 개요
 

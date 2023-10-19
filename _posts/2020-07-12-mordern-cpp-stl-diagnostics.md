@@ -37,7 +37,7 @@ sidebar:
 |`domain_error`|해결하고자 하는 문제 영역(도메인) 에 오류가 있습니다.|
 |`length_error`|길이 제한을 초과했습니다.|
 |[out_of_range](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#-%EA%B3%BC-at)|범위를 벗어난 요소에 접근했습니다.|
-|`future_error` (C++11~)|`future`나 `promise`의 오류를 보고합니다.|
+|`future_error` (C++11~)|[future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future)나 [promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)의 오류를 보고합니다.|
 |`runtime_error`|논리적 문제는 아니나 실행중에 오류가 발생했습니다.|
 |[range_error](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8)|유효한 범위를 벗어났습니다.|
 |`overflow_error`|계산 결과가 허용 범위 초과입니다.|

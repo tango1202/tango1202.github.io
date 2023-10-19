@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * [integer_sequence](https://tango1202.github.io/mordern-cpp-stl/) 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.
+> * (C++14~) [integer_sequence](https://tango1202.github.io/mordern-cpp-stl/) 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.
 
 # 개요
 
@@ -35,7 +35,7 @@ EXPECT_TRUE(
 ); 
 ```
 
-[integer_sequence](https://tango1202.github.io/mordern-cpp-stl/)를 이용하면, 추출할 인덱스만 지정하여 [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)를 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)로 변환합니다.
+[integer_sequence](https://tango1202.github.io/mordern-cpp-stl/)를 이용하면, 추출할 인덱스만 지정하여 [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)를 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)로 변환하는 코드를 좀더 깔끔하게 만들 수 있습니다.
 
 ```cpp
 template<size_t N, std::size_t... params>

@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `condition_variable`은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.
+> * (C++11~) [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.
 
 # 개요
 
@@ -42,9 +42,9 @@ STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공
 
 즉, 생산자의 데이터 생성이 완료되면, 소비자가 데이터를 사용해야 하므로, 생산자와 소비자의 작업은 동기화되어야 합니다.
 
-`condition_variable`은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 `notify_one()` 이나 `notify_all()`로 활성화 시켜 주는 개체입니다. 
+[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 `notify_one()` 이나 `notify_all()`로 활성화 시켜 주는 개체입니다. 
 
-`condition_variable` 의 멤버 함수는 다음과 같습니다. 
+[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable) 의 멤버 함수는 다음과 같습니다. 
 
 |항목|내용|
 |--|--|
@@ -67,7 +67,7 @@ std::unique_lock<std::mutex> lock{mutex};
 m_CV.wait(lock, [&]() -> bool {return m_IsRun1;}); 
 ```
 
-다음은 `condition_variable` 사용 예입니다.
+다음은 [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable) 사용 예입니다.
 
 `Build()` -> `Part1()` -> `Build()` -> `Part2()` -> `Build()` -> `Part1()` -> `Build()` 의 순서로 동기화 하여 실행하고 있습니다.
 

@@ -8,20 +8,20 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) `unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.
-> * (C++17~) [`insert_or_assign(), try_emplace(), extract(), merge()`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#unordered_map-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 함수가 추가되었습니다.
+> * (C++11~) [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 컨테이너로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
+> * (C++17~) [insert_or_assign(), try_emplace(), extract(), merge()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#unordered_map-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 함수가 추가되었습니다.
   
 # 개요
 
-기존의 `map`, `multimap`, `set`, `multiset`은 이진 트리 탐색을 하다보니 정렬등이 자동으로 이루어 졌는데요,
+기존의 [map, multimap, set, multiset](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)은 이진 트리 탐색을 하다보니 정렬등이 자동으로 이루어 졌는데요,
 
-`unordered_map`, `unordered_multimap`, `unordered_set`, `unordered_multiset` 은 정렬되지 않은 컨테이너로서, 해시값(Digest)을 사용하는 해시 컨테이너 입니다.
+[unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 컨테이너로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
 
 |항목|내용|**Key** 조건|
 |--|--|--|
-|`unordered_map` (C++11~)|**Key** - **Value** 쌍으로 관리하며, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 사용합니다.<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.<br/>첨자 연산을 지원합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 함수자 구현<br/>`==` 구현|
+|`unordered_map` (C++11~)|**Key** - **Value** 쌍으로 관리하며, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 사용합니다.<br/>**Key**의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.<br/>첨자 연산을 지원합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 함수자 구현<br/>`==` 구현|
 |`unordered_multimap` (C++11~)|`map`과 동일하며 중복 **Key**를 허용합니다.<br/>첨자 연산을 지원 하지 않습니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 함수자 구현<br/>`==` 구현|
-|`unordered_set` (C++11~)|**Key**만 요소로 삽입됩니다.<br/>**Key**의 해시값(Digest)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 함수자 구현<br/>`==` 구현|
+|`unordered_set` (C++11~)|**Key**만 요소로 삽입됩니다.<br/>**Key**의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)으로 요소를 탐색합니다.(O(1))<br/>삽입되는 **Key**는 유일합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 함수자 구현<br/>`==` 구현|
 |`unordered_multiset` (C++11~)|`set`과 동일하며 중복 **Key**를 허용합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 함수자 구현<br/>`==` 구현|
 
 # 해시
@@ -33,39 +33,39 @@ sidebar:
 1. 단방향 : 암호화만 합니다.
 2. 양방향 : 암호화하고, 이를 다시 원문으로 복호화 합니다.
 
-일반적으로 비밀번호 등은 단방향만 하면 됩니다. 사용자가 입력한 비밀번호를 암호화해서 데이터베이스에 저장해 두고, 나중에 비밀번호를 입력하면, 다시 암호화해서 암호화된 비밀번호와 비교하면 되니까요. 이런 단방향 암호화를 할때 사용하는 것이 해시 함수이고, 해시 함수의 결과를 해시값(Digest)이라고 합니다.
+일반적으로 비밀번호 등은 단방향만 하면 됩니다. 사용자가 입력한 비밀번호를 암호화해서 데이터베이스에 저장해 두고, 나중에 비밀번호를 입력하면, 다시 암호화해서 암호화된 비밀번호와 비교하면 되니까요. 이런 단방향 암호화를 할때 사용하는 것이 해시 함수이고, 해시 함수의 결과를 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)이라고 합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2acb4e61-94ce-456c-b0c3-8b1df4f007ba)
 
-해시 함수는 동일한 데이터를 암호화하면 반드시 동일한 해시값(Digest)이 나와야 하며, SHA(Secure Hash Algorithm)-256(해시값을 256bit(32byte)로 변환함)이 가장 대표적인 알고리즘입니다.
+해시 함수는 동일한 데이터를 암호화하면 반드시 동일한 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)이 나와야 하며, SHA(Secure Hash Algorithm)-256([해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 256bit(32byte)로 변환함)이 가장 대표적인 알고리즘입니다.
 
 # 해시 보완
 
-해시값(Digest)으로부터 원래 데이터를 추출하는 것은 어렵지만, 원래 데이터와 해시값(Digest)간의 매핑 테이블인 Rainbow Table은 어렵지 않게 만들 수 있습니다. 그냥 이것 저것 아무 데이터로 해시 함수 돌려보고 기록해 두면 되니까요. 많은 해커들이 이런 정보들을 사용하고 있다고 합니다.
+[해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)으로부터 원래 데이터를 추출하는 것은 어렵지만, 원래 데이터와 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)간의 매핑 테이블인 Rainbow Table은 어렵지 않게 만들 수 있습니다. 그냥 이것 저것 아무 데이터로 해시 함수 돌려보고 기록해 두면 되니까요. 많은 해커들이 이런 정보들을 사용하고 있다고 합니다.
 
 이를 보완하는 방법은 다음과 같은 것이 있습니다.
 
 1. 해시 함수를 여러번 호출합니다.
 
-2. 원래 데이터에 추가 데이터를 강제로 붙여서 해시값(Digest)을 구합니다.(추가 데이터를 소금을 친다는 의미로 Salted 해시 라고 합니다.)
+2. 원래 데이터에 추가 데이터를 강제로 붙여서 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 구합니다.(추가 데이터를 소금을 친다는 의미로 Salted 해시 라고 합니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d09989e0-edf0-4373-afaa-17056b5c3d0c)
 
 # 해시 컨테이너
 
-해시 컨테이너는 해시값(Digest)을 이용해서 요소를 관리하는 컨테이너입니다. 요소를 저장하는 공간을 버킷(Bucket)이라 합니다.
+[해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 이용해서 요소를 관리하는 컨테이너입니다. 요소를 저장하는 공간을 버킷(Bucket)이라 합니다.
 
 속도 성능을 보면,
 
 1. `vector`는 순차 탐색을 하기 때문에 O(N)의 시간이 걸리고,
 2. `set`이나 `map` 등은 이진 트리 탐색을 하기 때문에 O(logN)이 걸리고,
-3. 해시 컨테이너는 해시값(Digest)을 인덱스로 해서 찾으면 되므로 O(1)의 시간이 걸립니다. 
+3. [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 인덱스로 해서 찾으면 되므로 O(1)의 시간이 걸립니다. 
 
-다만, 해시값(Digest)을 그대로 컨테이너의 키값으로 사용하면, 해시 컨테이너의 버킷(Bucket)은 모든 해시값(Digest)을 저장할 수 있을 정도로 아주 아주 많아야 하기 때문에(C++에서는 `numeric_limits<std::size_t>::max()`), 
+다만, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 그대로 컨테이너의 키값으로 사용하면, [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 버킷(Bucket)은 모든 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 저장할 수 있을 정도로 아주 아주 많아야 하기 때문에(C++에서는 `numeric_limits<std::size_t>::max()`), 
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2b14ccb1-dd32-40b7-9474-685cdeaa82c8)
 
-해시값(Digest)이 적당히 분포되도록 해시 키값을 구하여 사용해야 합니다.
+[해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)이 적당히 분포되도록 해시 키값을 구하여 사용해야 합니다.
 
 ```
 해시 키값 = 해시값 % 컨테이너 버킷(Bucket) 갯수
@@ -110,7 +110,7 @@ sidebar:
 |`equal_range()` (C++11~)|주어진 Key인 요소들을 리턴합니다.<br/>`map`은 `lower_bound()`, `upper_bound()`를 추가로 제공합니다.|
 |`==` (C++11~)<br/>`!=` (C++11~C++20)|(작성중)|
 
-해시 컨테이너는 다음 멤버 함수를 추가로 제공합니다.
+[해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 다음 멤버 함수를 추가로 제공합니다.
 
 |항목|내용|
 |--|--|
@@ -153,11 +153,11 @@ m.reserve(1000);
 std::cout << "bucket count : " << m.bucket_count() << std::endl; // 1031개
 m.reserve(10000);
 std::cout << "bucket count : " << m.bucket_count() << std::endl; // 10273개        
-    m.reserve(100000);
+m.reserve(100000);
 std::cout << "bucket count : " << m.bucket_count() << std::endl; // 107897개  
 ```
 
-기존 `map`과 사용법은 동일합니다.
+기존 [map](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#map-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)과 사용법은 동일합니다.
 
 ```cpp
 std::unordered_map<int, std::string> m;
@@ -173,12 +173,12 @@ EXPECT_TRUE(m[0] == "changed data");
 
 [컨테이너 요소 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%94%EC%86%8C-%EA%B7%9C%EC%B9%99) 에서 개체를 `set`이나 `map`의 Key로 사용하려면, 복사 생성자와 `bool operator <(const T& other);`을 구현해야 한다고 말씀드렸는데요,
 
-`unordered_map`과 `unordered_set`의 Key는 
+[unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)의 Key는 
 
 1. 복사 생성자를 구현해야 하고, 복사 대입 연산자는 불필요하며,
 2. 대소 비교를 하지 않으므로, `bool operator <(const T& other);` 구현은 필요 없고,
 3. 버킷(Bucket) 내에서 탐색하기 위해 `bool operator ==(const T& other);` 구현이 필요하고,
-4. 해당 개체의 해시값(Digest)를 구하기 위해 [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)함수자를 구현하여 `unordered_map` 정의시 전달해야 합니다.
+4. 해당 개체의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)를 구하기 위해 [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)함수자를 구현하여 [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) 정의시 전달해야 합니다.
 
 ```cpp
 class A {

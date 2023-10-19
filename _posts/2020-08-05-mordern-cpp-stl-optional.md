@@ -55,7 +55,7 @@ if (result.second != true) {
 } 
 ```
 
-C++17 부터는 `optional`이 추가되어 값이 있을 수도 있고, 없을 수도 있는 데이터를 처리할 수 있어, 미확정 상태, 값을 처리하기 부적절한 상태, 함수 리턴값 성공 여부 처리를 좀더 단순하게 할 수 있습니다.
+C++17 부터는 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)이 추가되어 값이 있을 수도 있고, 없을 수도 있는 데이터를 처리할 수 있어, 미확정 상태, 값을 처리하기 부적절한 상태, 함수 리턴값 성공 여부 처리를 좀더 단순하게 할 수 있습니다.
 
 |항목|내용|
 |--|--|
@@ -65,20 +65,20 @@ C++17 부터는 `optional`이 추가되어 값이 있을 수도 있고, 없을 �
 |`(bool)`, `has_value()` (C++17~)|값이 있는지 검사합니다.|
 |`value()` (C++17~)|값을 리턴합니다. 값이 없으면, `bad_optional_access` 예외를 발생합니다.|
 |`value_or(default)` (C++17~)|값이 있으면 값을 리턴하고, 없으면 인자로 전달한 `default`를 리턴합니다.|
-|`emplace()` (C++17~)|내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 `optional`내에서 내부 개체를 직접 생성합니다.|
+|`emplace()` (C++17~)|내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)내에서 내부 개체를 직접 생성합니다.|
 |`reset()` (C++17~)|내부 개체를 초기화합니다.|
 |`swap()` (C++17~)|바꿔치기 합니다.|
 |`==`, `!=` (~C++17)|관리하는 개체를 비교합니다.|
 |`<, <=, >, >=` (C++17~)<br/>`<=>` (C++20~)|관리하는 개체를 비교합니다.|
 |`make_optional()` (C++17~)|(작성중)|
-|`nullopt_t` (C++17~)|`optional`이 초기화되지 않았을때의 타입입니다.|
+|`nullopt_t` (C++17~)|[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)이 초기화되지 않았을때의 타입입니다.|
 |`bad_optional_access` (C++17~)|[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)에서 `value()` 사용시 값이 없을때 예외를 발생합니다.|
 |`and_then()` (C++23~)|(작성중)|
 |`transform()` (C++23~)|(작성중)|
 |`or_else()` (C++23~)|(작성중)|
 
 
-다음 예에서는 `any` 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. `reinterpret_cast` 대신 `any_cast()`를 사용하며, `delete`를 하지 않아도 됩니다. 
+다음 예에서는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. `reinterpret_cast` 대신 `any_cast()`를 사용하며, `delete`를 하지 않아도 됩니다. 
 
 ```cpp
 std::optional<std::string> option{"Kim"};

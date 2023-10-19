@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.
+> * (C++11~) [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.
 
 # 개요
 

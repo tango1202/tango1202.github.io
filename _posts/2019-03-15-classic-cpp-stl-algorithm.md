@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > **모던 C++**
-> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 오버로딩 버전이 추가되었고, `seq, par, par_unseq, unseq`으로 병렬 실행 정책을 지정할 수 있습니다.
+> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 오버로딩 버전이 추가되었고, [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
 
 # 개요
 

@@ -10,8 +10,8 @@ sidebar:
 
 > * `string`은 [바이트 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)을 지원합니다.
 > * `wstring`은 [와이드 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 지원합니다.
-> * (C++11~)  [UTF-16]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9))을 지원하는 [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
-> * (C++11~) [UTF-32]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9))를 지원하는 [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+> * (C++11~)  [UTF-16](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+> * (C++11~) [UTF-32](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)를 지원하는 [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
 > * [strerror()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#strerror)는 [오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8)를 문자열로 출력해 줍니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
