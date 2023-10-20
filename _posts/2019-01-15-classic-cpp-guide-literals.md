@@ -9,7 +9,6 @@ sidebar:
 ---
 
 > * 문자열 상수를 많이 만들면, 프로그램 용량이 커진다. 비슷한 문장을 쓸데없이 여러개 작성하지 마라.
-> * 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하라.(배열이나 `string`, `wstring` 을 쓰면 복제된다.)
 
 > **모던 C++**
 > * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)용 정수형 상수인 [`ll`, `ull`, `LL`, `ULL` 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)이 추가되었습니다.
@@ -55,6 +54,7 @@ long double o = 3.14e10L;
 
 # 문자 상수
 
+문자 상수는 1byte 크기인 `''`와 `wchar_t` 크기인 `L''`이 있습니다.
 ```cpp
 char a = 'A';
 wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
@@ -62,7 +62,9 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 # 문자열 상수
 
-문자열 상수는 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 비슷한 문장을 쓸데없이 여러개 작성하지 마세요.(동일한 것을 여러번 사용하는 경우 컴파일러가 1개로 취합해 주긴 합니다만([데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고), 코드 중복이니 1개만 정의해서 사용하세요.) 
+문자열 상수는 문자 상수들의 집합으로서, 문자열의 끝을 나타내는 널문자(`\0`)가 추가되어 있으며, [데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)의 `rodata`에서 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 비슷한 문장을 쓸데없이 여러개 작성하지 마세요.(동일한 것을 여러번 사용하는 경우 컴파일러가 1개로 취합해 주긴 합니다만([데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고), 코드 중복이니 1개만 정의해서 사용하세요.) 
+
+`const char*`나 `const wchar*`로 문자열 상수가 있는 영역을 참조하거나, 배열을 이용하여 복사할 수 있습니다. 
 
 **const형 포인터**
 
@@ -94,27 +96,6 @@ EXPECT_TRUE(str4[1] == L'b');
 EXPECT_TRUE(str4[2] == L'c');
 EXPECT_TRUE(str4[3] == L'\0'); // 널문자가 추가됨
 ```
-**문자열 상수 수정**
-
-문자열 상수를 향후 수정할 예정이라면, 배열이나 `string`, wstring`에 저장하여 복제본을 만들어야 합니다.
-
-문자열 상수는 rodata 영역에 할당([데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고)되기 때문에 수정할 수 없습니다. 따라서 포인터를 통해서 받은 문자열 상수를 수정하려 하면, 예외가 발생합니다. 하지만, 배열로 저장하면 복제본이므로 수정할 수 있습니다.
-
-```cpp
-const char* str1 = "abc"; // 문자열 상수
-char* temp = const_cast<char*>(str1);
-// (X) 예외 발생. 문자열 상수는 rodata에 있기 때문에 수정할 수 없습니다.
-*temp = 'd';
-
-char str2[] = "abc"; // {'a', `b`, 'c', '\0'};
-// (O) 배열은 문자열 상수의 복제본이어서 항목을 수정할 수 있습니다.
-str2[0] = 'd';
-EXPECT_TRUE(str2[0] == 'd');
-```
-
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f98f2cc-9dff-428f-a639-42d42d9f701b)
-
-문자열의 내용을 수정할 필요가 없다면, 배열이나 `string`, `wstring`에 저장하지 마세요. 불필요하게 복제되어 복사 부하만 생깁니다.
 
 **결합**
 
@@ -127,6 +108,8 @@ const char* str3 = "Hello " // (O) 개행된 문자열 상수 붙이기
                    "World";   
 EXPECT_TRUE(str1 == str2 && str2 == str3); // (O) 동일한 문자열 상수는 컴파일러가 1개만 생성해 줍니다.   
 ```
+
+> *(C++11~) [R"()"리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.*
 
 # 이스케이프 문자
 
@@ -150,5 +133,5 @@ EXPECT_TRUE(str1 == str2 && str2 == str3); // (O) 동일한 문자열 상수는 
 |`\unnnn`|nnnn : 4자리의 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ca05ccd7-8e34-4d7c-bb21-fb37441dfaca)|
 |`\Unnnnnnnn`|nnnnnnnn : 8자리의 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e2a84daa-45ef-4464-a488-670f18365511)|
 
-> *(C++11~) [R"()"리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행된 문자열이나 확장된 기호 표시를 좀더 편하게 입력할 수 있습니다.*
+
 

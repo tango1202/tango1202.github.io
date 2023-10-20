@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [고전 C++ 가이드] 전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, pragma)"
+title: "#22. [고전 C++ 가이드] 전처리기(매크로 상수, 매크로 함수, 조건부 컴파일, include, pragma)"
 categories: "classic-cpp-guide"
 tag: ["cpp"]
 author_profile: false
