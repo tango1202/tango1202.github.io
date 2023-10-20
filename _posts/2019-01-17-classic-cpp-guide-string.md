@@ -165,7 +165,24 @@ Microsoft에서 사용하는 확장 완성형으로서 `euc-kr`의 확장형입�
 
 **UTF-16 인코딩**
 
-JAVA 에서 기본으로 사용하며, 기본적으로 2byte로 처리하고, 2byte로 표현할 수 없는 것들은 4byte로 처리합니다.
+JAVA 에서 기본으로 사용하며, BMP(Basic Multilingual Plane)라 불리는 기본적인 문자들은 2byte로 처리하고, 2byte로 표현할 수 없는 확장된 것들은 4byte로 처리합니다. 이렇게 확장된 영역을 서로게이트(Surrogate) 영역이라 하며 상위 2byte를 상위 서로게이트라 하고, 하위 2byte를 하위 서로게이트라고 합니다.
+
+BMP 에서는 `0xD800(1101 0000 0000 0000)` ~ `0xDFFF(1101 1111 1111 1111 1111)`을 사용하지 않으며, 이에 따라 서로게이트를 표현할때 상기 범위의 값으로 변환하여 처리합니다.
+
+예를 들어 2byte로 표현할 수 없는 `𐐷`(`U+10437`)의 변환 방법은 다음과 같습니다.
+
+1. 상위 1byte에서 하위 5bit에서 1을 빼서 4bit로 만듭니다.
+2. 상위 서로게이트 영역을 `1101 10`, 하위 서로게이트 영역을 `1101 11`로 마킹하고 데이터를 채웁니다.
+
+<img width="603" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/3d57e656-83dc-4745-b069-efe49899bf3b">
+
+
+따라서 `𐐷`을 UTF-16으로 저장하면 `0xD801DC37` 이 되는데요, 빅 엔디안(낮은 주소에 상위 바이트를 저장)이냐 리틀 엔디안(낮은 주소에 하위 바이트 저장)이냐에 따라 다음과 같이 저장됩니다.
+
+* 빅 엔디안(UTF-16 BE) : `0xD801DC37`
+* 리틀 엔디안(UTF-16 LE) : `0x01D837DC`
+
+
 
 **UTF-32 인코딩**
 
@@ -271,15 +288,22 @@ EXPECT_TRUE(wstr[6] == 0x0000); // 널문자
 
 **와이드 문자열** 은 영문자이건, 다국어 문자이건 모두 `wchar_t`로 관리하는 문자열입니다. 안타깝게도 Windows 에서는 2byte이고 리눅스에서는 4byte 이기 때문에 운영체제에 따라 다르게 동작할 수 있어 주의해야 합니다.([기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고)
 
+|항목|`wchar_t` 크기|인코딩|
+|--|--|--|
+|Windows|2byte|[UTF-16]((https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9))|
+|Windows 외 운영체제|4byte|[UTF-32]((https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9))|
+
+다음은 Windows 에서 UTF-8로 저장한 소스 코드의 실행예입니다.
+
 ```cpp
 wchar_t* wstr = L"abc가나다"; // abc[0x61 0x62 0x63] 가[0xAC00] 나[0xB098] 다[0xB2E4] 가 저장된 영역을 가리키는 포인터 입니다.
 EXPECT_TRUE(wcslen(wstr) == 6); // Windows에서는 2byte 단위로 저장합니다.
 
-EXPECT_TRUE(wstr[0] == 0x0061); // 0x0061. 아스키 코드 a
-EXPECT_TRUE(wstr[1] == 0x0062); // 0x0062. 아스키 코드 b
-EXPECT_TRUE(wstr[2] == 0x0063); // 0x0063. 아스키 코드 c
-EXPECT_TRUE(wstr[3] == 0xAC00); // 0xAC00. 유니코드 가
-EXPECT_TRUE(wstr[4] == 0xB098); // 0xB098. 유니코드 나
-EXPECT_TRUE(wstr[5] == 0xB2E4); // 0xB2E4. 유니코드 다
+EXPECT_TRUE(wstr[0] == 0x0061); // 0x0061. UTF-16 인코딩. 아스키 코드 a
+EXPECT_TRUE(wstr[1] == 0x0062); // 0x0062. UTF-16 인코딩. 아스키 코드 b
+EXPECT_TRUE(wstr[2] == 0x0063); // 0x0063. UTF-16 인코딩. 아스키 코드 c
+EXPECT_TRUE(wstr[3] == 0xAC00); // 0xAC00. UTF-16 인코딩. 유니코드 가
+EXPECT_TRUE(wstr[4] == 0xB098); // 0xB098. UTF-16 인코딩. 유니코드 나
+EXPECT_TRUE(wstr[5] == 0xB2E4); // 0xB2E4. UTF-16 인코딩. 유니코드 다
 EXPECT_TRUE(wstr[6] == 0x0000); // 널문자   
 ```
