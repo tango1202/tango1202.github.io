@@ -10,13 +10,13 @@ sidebar:
 
 > * 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하라.(배열이나 `string`, `wstring` 을 쓰면 복제된다.)
 > * 멀티 바이트 문자열은 권장하지 않는다. 사용하지 마라.
-> * 소스 코드 저장시에는 다국어 처리에 적합하도록 `UTF-8`로 저장하라.
+> * 소스 코드 저장시에는 다국어 처리에 적합하도록 [UTF-8](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)로 저장하라.
 
 > **모던 C++**
-> * (C++11~) [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
-> * (C++11~) [UTF-16과 UTF-32](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)를 지원하는 [u16string, u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
-> * (C++17~) [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
-> * (C++20~) [UTF-8](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.
+> * (C++11~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
+> * (C++11~) [UTF-16과 UTF-32](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)를 지원하는 [u16string, u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+> * (C++17~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
+> * (C++20~) [UTF-8](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.
 
 # 개요
 
@@ -74,7 +74,7 @@ EXPECT_TRUE(str2[0] == 'd');
 
 # 유니코드
 
-컴퓨터는 이진수로 처리되며, 문자열을 구성하는 문자들도 사실은 정수값에 매핑됩니다. 최초에는 [아스키 코드(https://www.ascii-code.com/ASCII)](https://www.ascii-code.com/ASCII)를 사용했다가, 다양한 문자 처리를 위해 현재에는 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 사용하고 있습니다.
+컴퓨터는 이진수로 처리되며, 문자열을 구성하는 문자들도 사실은 정수값에 매핑됩니다. 최초에는 [아스키 코드(https://www.ascii-code.com/ASCII)](https://www.ascii-code.com/ASCII)를 사용했다가, 다양한 문자 처리를 위해 현재에는 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 사용하고 있습니다.
 
 **아스키 코드**
 
@@ -105,20 +105,20 @@ EXPECT_TRUE(str2[0] == 'd');
 
 **유니코드**
 
-국가별 코드 테이블을 사용하면, 해당 국가의 문자를 표현할 수는 있으나, 여러 국가의 문자를 함께 표현할 수는 없습니다. 그래서, 전 세계의 모든 문자에 고유 숫자를 부여한 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 만들었는데요, 이것도 점진적으로 추가되고, 하위 호환을 유지하다보니 처리 방식이 좀 복잡합니다.
+국가별 코드 테이블을 사용하면, 해당 국가의 문자를 표현할 수는 있으나, 여러 국가의 문자를 함께 표현할 수는 없습니다. 그래서, 전 세계의 모든 문자에 고유 숫자를 부여한 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 만들었는데요, 이것도 점진적으로 추가되고, 하위 호환을 유지하다보니 처리 방식이 좀 복잡합니다.
 
-[유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 기본적으로 2byte를 사용하도록 했으나, 아시아권 문자를 포함하다 보니 3byte가 필요하게 되었고, 다양한 추가 문자들을 지원하다 보니 4byte가 필요(악보 기호, 이모지등 특수 기호 지원)하게 되었습니다. 이러다 보니 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 2byte다 4byte다 혼선이 있는데, 결과적으로는 "2byte 이상이다"가 맞겠습니다. 
+[유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 기본적으로 2byte를 사용하도록 했으나, 아시아권 문자를 포함하다 보니 3byte가 필요하게 되었고, 다양한 추가 문자들을 지원하다 보니 4byte가 필요(악보 기호, 이모지등 특수 기호 지원)하게 되었습니다. 이러다 보니 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 2byte다 4byte다 혼선이 있는데, 결과적으로는 "2byte 이상이다"가 맞겠습니다. 
 
-[유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)에서는 현대 한글의 조합 가능한 모든 문자 11,172개를 2byte로 표현하며 `U+AC00 ~ U+D7A3`에 할당되어 있습니다.([유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 `U+16진수`의 형태로 표기합니다. 예를 들어 한글 "가"는 `AC00`(10진수의 `44032`)인데, `U+AC00`으로 표기합니다.)
+[유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)에서는 현대 한글의 조합 가능한 모든 문자 11,172개를 2byte로 표현하며 `U+AC00 ~ U+D7A3`에 할당되어 있습니다.([유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 `U+16진수`의 형태로 표기합니다. 예를 들어 한글 "가"는 `AC00`(10진수의 `44032`)인데, `U+AC00`으로 표기합니다.)
 
 |항목|명칭|내용|
 |--|--|--|
-|[유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 한글|`ISO/IEC 10646`|1996년 2.0이 제정 되었으며, 완성형 한글에서 표현 못하는 문자들을 포함하여 한글 11,172자를 2byte로 정의합니다.|
+|[유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 한글|`ISO/IEC 10646`|1996년 2.0이 제정 되었으며, 완성형 한글에서 표현 못하는 문자들을 포함하여 한글 11,172자를 2byte로 정의합니다.|
 
 
 # 인코딩
 
-사용하는 코드가 조합형인지, 완성형인지, [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)인지에 따라 동일한 문자라도 서로 다른 코드값을 갖게 됩니다.
+사용하는 코드가 조합형인지, 완성형인지, [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)인지에 따라 동일한 문자라도 서로 다른 코드값을 갖게 됩니다.
 
 다음은 한글 `가`, `나`, `다`의 코드 테이블 값입니다. 모두 서로 다르죠.
 
@@ -126,11 +126,11 @@ EXPECT_TRUE(str2[0] == 'd');
 |--|--|--|--|--|
 |조합형(`KSSM`)|`0x8861`|`0x9061`|`0x9461`|이젠 거의 쓰이지 않습니다.|
 |완성형(`KS X 1001`)|`0xBOA1`|`0xB3AA`|`0xB4D9`|`euc-kr`, `cp-949`인코딩에서 사용합니다.|
-|[유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|`U+AC00`|`U+B098`|`U+B2E4`|`UTF-8`, `UTF-16`, `UTF-32`인코딩에서 사용합니다.|
+|[유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|`U+AC00`|`U+B098`|`U+B2E4`|`UTF-8`, `UTF-16`, `UTF-32`인코딩에서 사용합니다.|
 
-따라서 완성형으로 저장된 문자를 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)로 읽거나, [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)로 저장된 문자를 완성형으로 읽으려면 서로 코드 변환을 해야 합니다.(한글 코드간의 변환은 [charset.fandom.com/](https://charset.fandom.com/ko/wiki/%ED%95%9C%EA%B8%80_%EC%9D%B8%EC%BD%94%EB%94%A9_%EB%B3%80%ED%99%98_%ED%85%8C%EC%9D%B4%EB%B8%94)을 참고하시기 바랍니다.)
+따라서 완성형으로 저장된 문자를 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)로 읽거나, [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)로 저장된 문자를 완성형으로 읽으려면 서로 코드 변환을 해야 합니다.(한글 코드간의 변환은 [charset.fandom.com/](https://charset.fandom.com/ko/wiki/%ED%95%9C%EA%B8%80_%EC%9D%B8%EC%BD%94%EB%94%A9_%EB%B3%80%ED%99%98_%ED%85%8C%EC%9D%B4%EB%B8%94)을 참고하시기 바랍니다.)
 
-또한, [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 최종본(글쎄요, 더 확장될 수도 있겠죠. [유니코드 로드맵](https://www.unicode.org/roadmaps/) 참고)인 4byte로 표현하기엔 메모리 낭비가 심하므로 `UTF-8`, `UTF-16`, `UTF-32` 의 3가지 인코딩 방식을 사용하고 있습니다.
+또한, [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 최종본(글쎄요, 더 확장될 수도 있겠죠. [유니코드 로드맵](https://www.unicode.org/roadmaps/) 참고)인 4byte로 표현하기엔 메모리 낭비가 심하므로 `UTF-8`, `UTF-16`, `UTF-32` 의 3가지 인코딩 방식을 사용하고 있습니다.
 
 **euc-kr 인코딩**
 
@@ -146,7 +146,7 @@ Microsoft에서 사용하는 확장 완성형으로서 `euc-kr`의 확장형입�
 
 **UTF-8 인코딩**
 
-웹의 기본 [인코딩](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 방식이며, 문자마다 다른 크기로 저장합니다. 이에 따라 문자 데이터 앞에 크기 정보가 필요하며, 첫째 바이트의 최상위 비트가 `0`이면 남은 7비트에 데이터를 저장하고, `110`이면 2byte, `1110`이면 3byte, `11110`이면 4byte에 데이터를 분산해서 저장합니다. 이때 추가 byte의 최상위 비트는 `10`으로 마킹합니다. 
+웹의 기본 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 방식이며, 문자마다 다른 크기로 저장합니다. 이에 따라 문자 데이터 앞에 크기 정보가 필요하며, 첫째 바이트의 최상위 비트가 `0`이면 남은 7비트에 데이터를 저장하고, `110`이면 2byte, `1110`이면 3byte, `11110`이면 4byte에 데이터를 분산해서 저장합니다. 이때 추가 byte의 최상위 비트는 `10`으로 마킹합니다. 
 
 |항목|내용|
 |--|--|
@@ -173,7 +173,7 @@ JAVA 에서 기본으로 사용하며, 기본적으로 2byte로 처리하고, 2b
 
 # 소스 코드와 인코딩
 
-소스 코드가 어떤 [인코딩](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 방식을 사용하느냐에 따라 문자열 데이터는 완전히 달라집니다.
+소스 코드가 어떤 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 방식을 사용하느냐에 따라 문자열 데이터는 완전히 달라집니다.
 
 다음 예제는 `char* str = "가";` 를 `UTF-8`과 `euc-kr`로 저장했을때의 차이입니다. 문자열의 길이가 서로 다르며, 코드값도 다릅니다. 
 
@@ -198,7 +198,7 @@ EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 0) == 0xB0);
 EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 1) == 0xA1);
 ```
 
-따라서 [소스 코드의 인코딩](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)도 잘 결정해서 사용해야 하는데요, Windows는 `cp-949`를 기본적으로 사용하기 때문에, [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)와 다국어 처리에 적합하지 않습니다. 소스 코드 저장시에는 혼동이 없도록 `UTF-8`로 저장하시길 추천합니다.
+따라서 [소스 코드의 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)도 잘 결정해서 사용해야 하는데요, Windows는 `cp-949`를 기본적으로 사용하기 때문에, [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)와 다국어 처리에 적합하지 않습니다. 소스 코드 저장시에는 혼동이 없도록 `UTF-8`로 저장하시길 추천합니다.
 
 # 바이트 문자열
 
@@ -215,13 +215,13 @@ EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 3) == 0x00); // 널문자
 ```
 # 멀티 바이트 문자열
 
-한글등 다양한 국가의 문자들은 1byte로 처리할 수 없으며, 파일의 [인코딩](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)에 따라 2byte이상의 코드값이 저장됩니다. 이처럼 1byte외 여러 byte를 혼용하는 문자열을 **멀티 바이트 문자열** 이라고 합니다. Microsoft에서 초창기에 만들어 사용했지만, 표준화 되지 않았고, 현재는 비권고 되고 있습니다.
+한글등 다양한 국가의 문자들은 1byte로 처리할 수 없으며, 파일의 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)에 따라 2byte이상의 코드값이 저장됩니다. 이처럼 1byte외 여러 byte를 혼용하는 문자열을 **멀티 바이트 문자열** 이라고 합니다. Microsoft에서 초창기에 만들어 사용했지만, 표준화 되지 않았고, 현재는 비권고 되고 있습니다.
 
-다음은 `UTF-8`로 [인코딩](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)된 파일에서 [멀티 바이트 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)을 사용하는 예입니다.
+다음은 `UTF-8`로 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)된 파일에서 [멀티 바이트 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)을 사용하는 예입니다.
 
-1. `char* str = "abc가나다";`는 [유니코드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)로 [인코딩](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 되어 `abc[0x61 0x62 0x63] 가[0xEA 0xB0 0x80] 나[0xEB 0x82 0x98] 다[0xEB 0x8B 0xA4]`를 저장합니다.
+1. `char* str = "abc가나다";`는 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)로 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 되어 `abc[0x61 0x62 0x63] 가[0xEA 0xB0 0x80] 나[0xEB 0x82 0x98] 다[0xEB 0x8B 0xA4]`를 저장합니다.
 2. 바이트 문자열용 [strlen()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)함수를 사용하면 아무 생각없이 널문자까지 카운트하므로, `12`가 됩니다.
-3. [locale()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#c%EC%8A%A4%ED%83%80%EC%9D%BC-locale)함수를 호출하여 [멀티 바이트](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8) 함수 호출전에 [인코딩](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 정보를 전달합니다.
+3. [locale()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#c%EC%8A%A4%ED%83%80%EC%9D%BC-locale)함수를 호출하여 [멀티 바이트](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8) 함수 호출전에 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 정보를 전달합니다.
 4. [mblen()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8)함수를 이용하여 해당 주소의 문자가 몇 바이트 크기인지 구합니다.
 5. [mbstowcs()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8)함수를 이용하여 해당 주소의 문자들의 코드를 `wchar_t`로 변환합니다.
 
