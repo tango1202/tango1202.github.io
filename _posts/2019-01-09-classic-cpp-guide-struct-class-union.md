@@ -81,7 +81,7 @@ class T {
     operator int() const {return 0;} // 형변환 연산자
 
     void f1(int) {} // 멤버 함수
-    void f2(int) {} // 상수 멤버 함수
+    void f2(int) const {} // 상수 멤버 함수
 
     virtual void f3(int) {} // 가상 함수    
     virtual void f4(int) = 0; // 순가상 함수
