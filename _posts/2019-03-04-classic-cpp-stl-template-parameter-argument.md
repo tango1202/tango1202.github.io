@@ -114,7 +114,7 @@ A<int, char> a;
 
 **불완전한 형식의 인스턴스화**
 
-전방 선언등 불완전한 형식이라도 인수로 지정할 수 있습니다.
+[전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)등 불완전한 형식이라도 인수로 지정할 수 있습니다.
 
 ```cpp
 class A; // 전방 선언

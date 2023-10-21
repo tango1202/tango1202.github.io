@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 선언과 정의 분리, 전방 선언으로 컴파일 종속성을 최소화 하라.
+> * 선언과 정의 분리, [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)으로 컴파일 종속성을 최소화 하라.
 
 # 인클루드 가드
 
@@ -16,11 +16,9 @@ sidebar:
 
 <img width="474" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/fefed6ef-c1b3-41ba-83bd-9725ab4df01d">
 
-따라서 관례적으로 헤더 파일은 [인클루드 가드](??)를 이용하여 1회만 `include`되도록 만듭니다. 
+따라서 관례적으로 헤더 파일은 [인클루드 가드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%9D%B8%ED%81%B4%EB%A3%A8%EB%93%9C-%EA%B0%80%EB%93%9C)를 이용하여 1회만 `include`되도록 만듭니다. 
 
-다음 코드의 `#define MyClass_h`는 헤더 파일을 `include`시 1회만 포함하게 하는 [인클루드 가드](??)입니다.(*컴파일러에 따라 [#pramga once](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)를 제공하기도 합니다. 하지만, 비표준이니까 사용하지 않는게 좋습니다.*)
-
-`#ifndef MyClass_h` 전처리를 이용하여 `MyClass_h`가 정의되지 않은 최초 1회만 포함시킵니다.
+다음 코드를 보면 `#ifndef MyClass_h` 전처리를 이용하여 `MyClass_h`가 정의되지 않은 경우만 포함시킵니다. 포함된 경우에는 `#define MyClass_h`로 `MyClass_h` 매크로를 정의합니다. 따라서 다음번 부터는 `MyClass_h` 매크로가 정의되었으므로, 더이상 포함되지 않습니다.(*컴파일러에 따라 [#pramga once](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)를 제공하기도 합니다. 하지만, 비표준이니까 사용하지 않는게 좋습니다.*)
 
 ```cpp
 // ----
@@ -126,7 +124,7 @@ public:
 };
 ```
 
-다음과 같이 멤버 변수 정의시 포인터 변수나 참조자를 사용하면 굳이 `include`하지 않고, ***해당 개체는 클래스이다*** 라고 알려주는 전방 선언만 해도 됩니다.
+다음과 같이 멤버 변수 정의시 포인터 변수나 참조자를 사용하면 굳이 `include`하지 않고, ***해당 개체는 클래스이다*** 라고 알려주는 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 해도 됩니다.
 
 ```cpp
 class MyClass; // 전방 선언
@@ -166,7 +164,7 @@ A::~A() {delete m_MyClass;} // 소멸합니다.
 int A::f() {return m_MyClass->Func();} // MyClass를 사용합니다.
 ```
 
-전방 선언을 활용한 `include` 구성은 다음과 같은데요, `MyClass.h` 를 수정하면 이를 `include` 한 `MyClass.cpp`, `A.cpp`, `B.cpp`만 컴파일되어 연쇄적으로 빌드되는 걸 방지합니다.
+[전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 활용한 `include` 구성은 다음과 같은데요, `MyClass.h` 를 수정하면 이를 `include` 한 `MyClass.cpp`, `A.cpp`, `B.cpp`만 컴파일되어 연쇄적으로 빌드되는 걸 방지합니다.
 
 <img width="429" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/1740de86-9407-4af6-b790-17ccceca5a89">
 
@@ -183,12 +181,12 @@ class YourClass {
 }; 
 ```
 
-이런 경우, 전방 선언으로 `YourClass`가 무언지 컴파일러에게 알려줘야 합니다. 
+이런 경우, [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)으로 `YourClass`가 무언지 컴파일러에게 알려줘야 합니다. 
 
-이때 전방 선언만 참조하는 곳(`MyClass`)은 
+이때 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 참조하는 곳(`MyClass`)은 
 
 1. 구체 정의가 아닌 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 사용하여야 하고, 
-2. 전방 선언한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 
+2. [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 
  
 이에 따라 클래스 선언과 정의를 분리하고 다음 순서대로 작성해야 합니다.
 
@@ -223,7 +221,7 @@ void MyClass::f() {
 
 **중첩 클래스의 전방 선언**
 
-[중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)는 전방 선언을 할 수 없습니다.
+[중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)는 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 할 수 없습니다.
 
 ```cpp
 class T; // (O)
@@ -234,7 +232,7 @@ public:
 };
 ```
 
-클래스 내에서 [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)를 전방 선언할 수 있으나 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)가 동일해야 합니다.
+클래스 내에서 [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)를 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)할 수 있으나 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)가 동일해야 합니다.
 
 ```cpp
 class T {

@@ -8,6 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
+> * [5대 원칙(SOLID)](https://tango1202.github.io/principle/principle-solid/)정도는 알고 구조체나 클래스를 만들어라.
 > * 구조체와 클래스의 차이는 초기화 방법과 기본 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)(구조체는 `public`, 클래스는 `private`) 뿐이다.
 > * 공용체는 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있으니 꼭 필요한 경우 한정적으로 사용하라.
 
@@ -18,6 +19,18 @@ sidebar:
 # 개요
 
 구조체와 클래스와 공용체는 타입이 다른 여러 데이터를 집합으로 묶고, [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 이들을 가공하여 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)할 수 있습니다. 
+
+모든 소프트웨어의 기본 원칙은,
+
+> * Clean Code That Works(작동하는 깔끔한 코드)
+
+입니다.
+
+개체 지향 프로그래밍에서는 이를 위해 [추상화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/), [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/), [다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/), [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)의 문법적 특징을 제공하는데요,
+
+구조체와 클래스는 이를 구현하는 근간입니다. 구조체와 클래스를 얼마나 잘 만드느냐에 따라 좋은 소프트웨어가 될 수 있고, 느리고 오류 투성이인 소프트웨어가 될 수 있습니다.
+
+그래서 구조체와 클래스의 단편적인 문법보다는 왜 이런 구성 요소가 있고, 어떻게 활용하는지, 활용함으로서 어떤 효과가 있는지 아는게 좋습니다. 그러기 위해서는 개체 지향의 철학이나 원리를 어느정도 알고 접근하시는게 좋은데요, 특히 [5대 원칙(SOLID)](https://tango1202.github.io/principle/principle-solid/) 정도는 사전에 숙지하시고 구조체나 클래스를 만드시길 추천합니다.
 
 구조체와 클래스는 [초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/) 방법과 기본 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90) 외에는 모두 동일합니다.
 
@@ -105,7 +118,7 @@ class T {
 };
 ```
 
-각 항목은 다음을 참고하기 바랍니다.
+다음은 클래스의 구성 요소들입니다.
 
 |항목|내용|
 |--|--|
@@ -126,7 +139,7 @@ class T {
 
 # 클래스 선언과 정의 분리
 
-클래스는 헤더 파일과 소스 파일에 선언과 정의를 분리하여 작성할 수 있습니다. 정의시에는 범위 확인 연산자(`::`)를 사용합니다.
+클래스는 헤더 파일과 소스 파일에 선언과 정의를 분리하여 작성할 수 있습니다. 정의시에는 범위 확인 연산자(`::`)를 사용합니다.(*자세한 내용은 [선언과 정의 분리 효과](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC-%ED%9A%A8%EA%B3%BC)를 참고하기 바랍니다.*)
 
 ```cpp
 // ----
@@ -204,7 +217,8 @@ d.m_Val = 10; // 이제 public이라 접근 가능합니다.
    
 접근 할 수 없습니다.  
 
-`friend`는 은닉을 통한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 해칠 수 있기 때문에 사용하지 않는게 좋습니다.
+`friend`는 은닉을 통한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 해칠 수 있기 때문에 사용하지 않는게 좋습니다.(*`friend` 대상은 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 없어도 됩니다.*)
+
 
 ```cpp
 class FriendT {
@@ -304,7 +318,8 @@ EXPECT_TRUE(u.s1.x == 20);
 EXPECT_TRUE(u.s2.x == 20);
 ```
 
->*(C++11~) 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*
+>*(C++11~) 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*<br/>
+> *(C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.*
 
 # this 포인터
 

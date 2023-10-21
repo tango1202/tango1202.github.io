@@ -19,7 +19,7 @@ PImpl(pointer to implementation, 구현에 대한 포인터)은 구현의 상세
 2. 개체 선언부에서 중첩 클래스를 포인터 멤버 변수로 정의합니다.
 3. 개체 정의부에서 중첩 클래스의 실제 선언 및 정의를 합니다.
 
-그러면, 선언부에서는 중첩 클래스의 포인터형 변수의 크기만 알면 되기 때문에 [전방 선언](??)만 하면 됩니다.
+그러면, 선언부에서는 중첩 클래스의 포인터형 변수의 크기만 알면 되기 때문에 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 하면 됩니다.
 
 ```cpp
 // 선언에서, 아마도 헤더 파일
@@ -36,12 +36,12 @@ public:
 }; 
 ```
 
-헤더 파일에는 `Impl`의 전방 선언만 있으므로, 이 헤더파일을 `#include` 해봤자, 내부 구현이 어떻게 되는지 알 수 없고, 알 필요도 없습니다. 즉 , `Impl`의 내부 구현에서 사용한 `IntPtr`이 은닉되어 컴파일 종속성이 최소화됩니다. 이제 `Impl`의 내부 구현을 이리저리 바꾸더라도, 최소한만 컴파일 되기 때문에 대규모 프로젝트에서의 빌드 시간을 단축할 수 있습니다.
+헤더 파일에는 `Impl`의 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 있으므로, 이 헤더파일을 `#include` 해봤자, 내부 구현이 어떻게 되는지 알 수 없고, 알 필요도 없습니다. 즉 , `Impl`의 내부 구현에서 사용한 `IntPtr`이 은닉되어 컴파일 종속성이 최소화됩니다. 이제 `Impl`의 내부 구현을 이리저리 바꾸더라도, 최소한만 컴파일 되기 때문에 대규모 프로젝트에서의 빌드 시간을 단축할 수 있습니다.
 
 다음 예제는  [멤버 변수가 2개 이상인 경우 스마트 포인터와 복사 대입 연산자와의 호환성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EA%B0%80-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EC%99%80-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80%EC%9D%98-%ED%98%B8%ED%99%98%EC%84%B1) 의 클래스 `T`를 PImpl 방식으로 리팩토링 한 예입니다.
 
 1. `m_Val1`, `m_Val2`를 `T::Impl`로 이전하였습니다.
-2. `T`에서 `class Impl;` 전방 선언을 하고, `Impl* m_Impl;`을 포인터 멤버 변수로 선언하였습니다.
+2. `T`에서 `class Impl;` [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 하고, `Impl* m_Impl;`을 포인터 멤버 변수로 선언하였습니다.
 3. `m_Impl` 복사 생성을 위해 `T`의 복사 생성자를 추가했습니다.
 4. `m_Impl` 소멸을 위해 `T`의 소멸자를 추가했습니다.
 5. `m_Impl` 복사 대입 연산을 위해 `swap`을 이용한 복사 대입 연산자를 추가했습니다. `swap`은 포인터끼리의 바꿔치기이므로 복사 부하가 거의 없습니다.
@@ -139,7 +139,7 @@ class T {
 ```
 와 같이 해야 하는데, `ImplPtr`의 실제 크기등을 알아아 하므로, 제대로된 선언이 필요합니다.
 
-그래서, 다음처럼 `ImplPtr`을 선언하면, 이번에는 `T::Impl`의 전방 선언이 필요합니다.
+그래서, 다음처럼 `ImplPtr`을 선언하면, 이번에는 `T::Impl`의 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 필요합니다.
 
 ```cpp
 class ImplPtr {
@@ -151,7 +151,7 @@ class T {
 };
 ```
 
-그래서, 다음처럼 `T::Impl`의 전방 선언을 해보시면, 중첩 클래스여서 전방 선언이 안됩니다.(중첩 클래스는 전방 선언이 안됩니다. [전방 선언](??) 참고)
+그래서, 다음처럼 `T::Impl`의 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 해보시면, 중첩 클래스여서 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 안됩니다.(중첩 클래스는 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 안됩니다.)
 
 ```cpp
 class T::Impl; // (X) 컴파일 오류. 중첩 클래스는 전방 선언을 할 수 없습니다.

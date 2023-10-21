@@ -12,16 +12,19 @@ sidebar:
 > * 무조건 `const`를 들이대라.
 > * `const` 변수와 `const` 함수는 메모리를 수정하지 않기 때문에 예외가 발생하지 않는다.
 
+> **모던 C++**
+> * (C++11~) [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
+
 # 개요
+
+`const`인 개체나 함수를 사용하면, 메모리의 수정이 없으므로 예외에 안전합니다. 안전한 프로그램을 위해, 할 수 있는 한 최대한 많이 `const`로 작성하는 것이 좋습니다.
+
+또한, **상수성 계약** 을 준수하세요. 예외 발생 부분만 빼고는 대부분 컴파일 오류가 발생하니, 계약을 지키기 까다롭지도 않습니다.
 
 |항목|내용|
 |--|--|
 |상수 개체|개체 정의시 `const` 한정자를 붙여 상수 개체를 만들 수 있습니다. 상수 개체는 값을 변경할 수 없습니다.<br/>생성시 초기화 해야 합니다.|
 |상수 멤버 함수|[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)의 뒤에 `const` 한정자를 붙여 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 만들 수 있습니다.<br/>[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 변경할 수 없습니다.<br/>단, `mutable`로 정의된 개체는 수정 가능합니다.|
-
-`const`인 개체나 함수를 사용하면, 메모리의 수정이 없으므로 예외에 안전합니다. 안전한 프로그램을 위해, 할 수 있는 한 최대한 많이 `const`로 작성하는 것이 좋습니다.
-
-다만, 다음 **상수성 계약** 을 준수하세요. 예외 발생 부분만 빼고는 대부분 컴파일 오류가 발생하니, 계약을 지키기 까다롭지도 않습니다.
 
 # 상수성 계약
 
@@ -154,9 +157,9 @@ TEST(TestClassicCpp, Mutable) {
 
 ```cpp
 unsigned int *p = 0x1234;
-*p = 0x0001;
-*p = 0x0002;
-*p = 0x0003;
+*p = 0x0001; // 0x1234에 0x0001이 써질 때의 명령 실행
+*p = 0x0002; // 0x1234에 0x0002가 써질 때의 명령 실행
+*p = 0x0003; // 0x1234에 0x0003이 써질 때의 명령 실행
 ```
 
 `*p` 에 쓰기 명령을 주어 3개의 명령을 수행합니다.
@@ -165,7 +168,7 @@ unsigned int *p = 0x1234;
 
 ```cpp
 unsigned int *p = 0x1234;
-*p = 0x0003; // 최종값만 저장합니다.
+*p = 0x0003; // 최종값만 저장합니다. 즉, 0x1234에 0x0003이 써질 때의 명령만 실행됩니다.
 ```
 
 이런 최적화를 막기 위해 `volatile`을 사용합니다.

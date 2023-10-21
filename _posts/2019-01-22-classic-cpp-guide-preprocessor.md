@@ -240,7 +240,7 @@ std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl
 
 **`#pragma once`**
 
-헤더 파일을 1회만 포함시킵니다.([인클루드 가드](??) 참고)
+헤더 파일을 1회만 포함시킵니다.([인클루드 가드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%9D%B8%ED%81%B4%EB%A3%A8%EB%93%9C-%EA%B0%80%EB%93%9C) 참고)
 
 ```cpp
 // 헤더 파일에서
