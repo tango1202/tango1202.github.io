@@ -19,7 +19,7 @@ PImpl(pointer to implementation, 구현에 대한 포인터)은 구현의 상세
 2. 개체 선언부에서 중첩 클래스를 포인터 멤버 변수로 정의합니다.
 3. 개체 정의부에서 중첩 클래스의 실제 선언 및 정의를 합니다.
 
-그러면, 선언부에서는 중첩 클래스의 포인터형 변수의 크기만 알면 되기 때문에 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 하면 됩니다.
+그러면, 선언부에서는 중첩 클래스의 포인터형 변수의 크기만 알면 되기 때문에 [전방 선언](??)만 하면 됩니다.
 
 ```cpp
 // 선언에서, 아마도 헤더 파일
@@ -151,7 +151,7 @@ class T {
 };
 ```
 
-그래서, 다음처럼 `T::Impl`의 전방 선언을 해보시면, 중첩 클래스여서 전방 선언이 안됩니다.(중첩 클래스는 전방 선언이 안됩니다. [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8) 참고)
+그래서, 다음처럼 `T::Impl`의 전방 선언을 해보시면, 중첩 클래스여서 전방 선언이 안됩니다.(중첩 클래스는 전방 선언이 안됩니다. [전방 선언](??) 참고)
 
 ```cpp
 class T::Impl; // (X) 컴파일 오류. 중첩 클래스는 전방 선언을 할 수 없습니다.

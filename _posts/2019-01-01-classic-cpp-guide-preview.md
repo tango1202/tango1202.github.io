@@ -33,7 +33,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     using namespace std;
     ```
 
-4. [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)
+4. [포인터와 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)
    
    포인터 외에 참조자를 제공합니다. 포인터는 널(`NULL`)이 될 수 있지만, 참조자는 널이 될 수 없습니다.
 
@@ -41,21 +41,42 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
    int i;
    int& j = i;
    ```
+5. [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/), [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), [구조체, 클래스, 공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)
 
-5. [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)
+    데이터를 저장하고 처리합니다.
+
+    특히 [구조체와 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)는 데이터와 이를 처리하는 함수를 응집하여 개체 지향 프로그래밍을 가능하게 합니다. 
+
+6. [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)
+
+    `10`, `20`등 값을 나타내는 상수입니다.
+
+7. [연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/)
+
+    `+`, `-`등 데이터들을 연산합니다.
+
+8. [제어문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/)
+
+    `if()`, `for()`등 구문을 분기하거나 반복합니다.
+
+9. [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)
+
+    코드를 재활용하여 구조적 프로그래밍을 가능하게 합니다.
+  
+10. [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)
    
-   용도에 따라 구분될 수 있게 `static_cast`, `const_cast`, `dynamic_cast`, `reinterpret_cast` 의 형변환 방법을 제공합니다.
+    용도에 따라 구분될 수 있게 `static_cast`, `const_cast`, `dynamic_cast`, `reinterpret_cast` 의 형변환 방법을 제공합니다.
 
-6. 예외처리
+1. [예외처리](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)
    
-   예외를 발생시키거나 처리할 수 있습니다.
+    예외를 발생시키거나 처리할 수 있습니다.
 
-   ```cpp
-   try {}
-   catch (...) {}
-   ```
+    ```cpp
+    try {}
+    catch (...) {}
+    ```
 
-7. STL : 문자열
+2. [STL : 문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)
 
     표준 템플릿 라이브러리(Standard Template Library, STL)를 통해 문자열 타입을 제공합니다.
 
@@ -64,7 +85,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     std::string str = "Hello world";
     ```
 
-8.  STL : 컨테이너
+3.  [STL : 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)
 
     데이터 자료구조를 관리할 수 있는 컨테이너를 제공합니다.(`vector`, `list`, `queue`, `stack`, `deque`, `priority_queue`, `set`, `multiset`, `map`, `multimap`)
 
@@ -73,9 +94,9 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     data[0] = 10;
     ```
 
-9. STL : 이터레이터(반복자)
+4. [STL : 이터레이터(반복자)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)
 
-    컨테이너의 원소 탐색을 위해 이터레이터(반복자)를 제공합니다.
+    컨테이너의 요소 탐색을 위해 이터레이터(반복자)를 제공합니다.
 
     ```cpp
     std::vector<int> datas;
@@ -85,11 +106,11 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     }
     ```
 
-10. STL : 알고리즘
+5. [STL : 알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)
     
     일련의 동작에 대한 표준 알고리즘을 제공합니다.(`for_each`, `find`, `count`, `replace`, `copy`, `sort` 등)
 
-11. STL : 스마트 포인터
+6. [STL : 스마트 포인터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)
    
     [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 제공합니다.(모던 C++에선 사라졌습니다.)
 

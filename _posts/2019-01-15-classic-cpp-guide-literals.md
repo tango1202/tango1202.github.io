@@ -130,8 +130,8 @@ EXPECT_TRUE(str1 == str2 && str2 == str3); // (O) 동일한 문자열 상수는 
 |`\v`|세로탭|0x0b|
 |`\nnn`|nnn : 3자리의 8진수||
 |`\xn...`|n... : 임의 자리 16진수 ||
-|`\unnnn`|nnnn : 4자리의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ca05ccd7-8e34-4d7c-bb21-fb37441dfaca)|
-|`\Unnnnnnnn`|nnnnnnnn : 8자리의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e2a84daa-45ef-4464-a488-670f18365511)|
+|`\unnnn`|nnnn : 2byte(16진수 4자리)의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ca05ccd7-8e34-4d7c-bb21-fb37441dfaca)|
+|`\Unnnnnnnn`|nnnnnnnn : 4byte(16진수 8자리)의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e2a84daa-45ef-4464-a488-670f18365511)|
 
 
 

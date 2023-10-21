@@ -231,6 +231,7 @@ std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl
 #endif
 ```
 
+
 # #pragma
 
 비표준 컴파일러 확장 기능입니다. 컴파일러마다 지원 여부는 다를 수 있으니 컴파일러 설명서를 참고해야 합니다.
@@ -239,7 +240,7 @@ std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl
 
 **`#pragma once`**
 
-헤더 파일을 1회만 포함시킵니다.([인클루드 가드](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-include-guard/) 참고)
+헤더 파일을 1회만 포함시킵니다.([인클루드 가드](??) 참고)
 
 ```cpp
 // 헤더 파일에서

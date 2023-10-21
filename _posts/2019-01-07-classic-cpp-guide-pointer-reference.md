@@ -17,14 +17,6 @@ sidebar:
 
 # 개요
 
-|항목|포인터|참조자|
-|--|--|--|
-|정의|개체나 함수의 주소값 저장|개체나 함수의 별칭|
-|nullable|가능|불가능|
-|용량|32bit : 4byte,<br/>64bit : 8byte|참조하는 개체의 별칭으로서 해당 용량은 스펙에 정의되지 않음.<br/>다만, `sizeof()`시 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의됨.(`sizeof(T&) == sizeof(T)`)|
-|초기화|생성하면서 초기화,<br/>생성후 초기화 가능|생성하면서 초기화만 가능|
-|값 변경|다른 포인터로 변경 가능<br/>가리키는 개체의 실제값 변경 가능|다른 참조자로 변경 불가능<br/>참조하는 개체의 실제값 변경 가능|
-
 포인터와 참조자는 대상 개체를 가리키기 위한 타입입니다. 주로 하기 경우에 사용됩니다.
 
 1. 대상 개체가 너무 커서 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)나 [리턴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)시 복사 부하가 너무 큰 경우
@@ -49,6 +41,16 @@ int& r = x; // r은 x의 별칭입니다.
 r = 30; // r이 참조하는 곳(x)의 실제값이 30이 됩니다.
 EXPECT_TRUE(r == 30 && x == 30);
 ```
+
+다음은 포인터와 참조자의 차이점입니다.
+
+|항목|포인터|참조자|
+|--|--|--|
+|정의|개체나 함수의 주소값 저장|개체나 함수의 별칭|
+|nullable|가능|불가능|
+|용량|32bit : 4byte,<br/>64bit : 8byte|참조하는 개체의 별칭으로서 해당 용량은 스펙에 정의되지 않음.<br/>다만, `sizeof()`시 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의됨.(`sizeof(T&) == sizeof(T)`)|
+|초기화|생성하면서 초기화,<br/>생성후 초기화 가능|생성하면서 초기화만 가능|
+|값 변경|다른 포인터로 변경 가능<br/>가리키는 개체의 실제값 변경 가능|다른 참조자로 변경 불가능<br/>참조하는 개체의 실제값 변경 가능|
 
 # 널 포인터
 
@@ -105,13 +107,15 @@ void f(int& r) {
 }
 ```
 
-꼭 포인터를 써야만 하는 경우가 아니라면 참조자를 사용하시기 바랍니다.
+사실 코드를 꼼꼼히 살펴보면 `if (p == NULL) {}`과 같은 널검사를 숱하게 빼먹은걸 보고 놀라실 수 있습니다. 구현 논리에 집중해서 코딩하다보면 흔히들 빼먹게 되거든요. 
+
+런타임 오류가 발생한 다음에야 뒤늦게 추가하게 될 수 있으니, 꼭 포인터를 써야만 하는 경우가 아니라면 참조자 사용을 습관화 하시는게 좋습니다.
 
 # Dangling 참조자
 
-[지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 참조를 리턴할 경우에는 함수 종료후 소멸된 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 참조하게 되므로 비정상 동작합니다. 
+[지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 참조를 리턴하면, 함수 종료후 소멸된 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 참조하게 되므로 비정상 동작합니다. 
 
-이러한 참조자를 Dangling 참조자 라고 합니다.(`const T&`와 같이 상수형 참조를 하면 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 참조를 리턴해도 사용할 수는 있습니다. 사용할 수는 있어도, [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 참조했다는 컴파일 경고도 나오고, 함수 선언도 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 참조를 리턴([Getter](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98) 참고)하는 느낌을 주기 때문에, 안쓰시는게 좋습니다.) 
+이러한 참조자를 Dangling 참조자 라고 합니다.(*`const T&`와 같이 상수형 참조를 하면 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 참조를 리턴해도 사용할 수는 있습니다. 사용할 수는 있어도, [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 참조했다는 컴파일 경고도 나오고, 함수 선언도 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 참조를 리턴([Getter](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98) 참고)하는 느낌을 주기 때문에, 안쓰시는게 좋습니다.*) 
 
 ```cpp
 int& GetX() { 
@@ -137,11 +141,11 @@ r = 10; // (X) 예외 발생. p가 NULL이라 10을 NULL(0)주소 위치에 넣�
 
 # 포인터 사용법
 
-포인터는 개체 포인터, 배열 포인터, 함수 포인터, 다형성 포인터, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 포인터, [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 포인터의 형태로, 개체 정의, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정의, [함수 리턴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 정의시 사용합니다. 
+포인터는 좀더 세부적으로 개체 포인터, 배열 포인터, 함수 포인터, 다형성 포인터, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 포인터, [멤버 함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 구분할 수 있습니다.
 
 **개체 포인터**
 
-`const`의 오른쪽에 `*`이 있으면 포인터가 참조하는 실제 데이터가 `const` 이고, 왼쪽에 `*`이 있으면 포인터형 변수가 `const`입니다.([상수 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EB%B3%80%EC%88%98) 언급)
+[상수 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EB%B3%80%EC%88%98)에서 언급했듯, `const`의 오른쪽에 `*`이 있으면 포인터가 참조하는 실제 데이터가 `const` 이고, 왼쪽에 `*`이 있으면 포인터형 변수가 `const`입니다.
 
 ```cpp
 int obj = 10;
@@ -180,7 +184,7 @@ EXPECT_TRUE(p6[0] == 1 && p6[1] == 2);
 
 **함수 포인터**
 
-함수 포인터로 함수 자체를 변수처럼 사용할 수 있습니다.([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
+[함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 함수 자체를 변수처럼 사용할 수 있습니다.
 
 ```cpp
 void TestFunc(int) {}
@@ -194,7 +198,7 @@ p8(10); // (*p8)(10); 도 가능. TestFunc 함수 호출
 
 **다형성 포인터**
 
-부모 개체로 자식 개체를 다형적으로 사용할때 포인터를 사용합니다.([다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/) 참고)
+부모 개체로 자식 개체를 [다형적으로 사용](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)할때 포인터를 사용합니다.
 
 ```cpp
 class Base {
@@ -216,7 +220,7 @@ public:
 
 **멤버 변수 포인터, 멤버 함수 포인터**
 
-라이브러리 구성시 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 포인터나 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 포인터를 사용할 수 있습니다.([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
+라이브러리 구성시 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 포인터나 [멤버 함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 사용할 수 있습니다.
 
 ```cpp
 // 멤버 변수 포인터 - 라이브러리 개발시 사용할 수도 있음
@@ -236,7 +240,7 @@ public:
 
 # 참조자 사용법
 
-참조자는 개체 참조자, 배열 참조자, 함수 참조자, 다형성 참조자, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 참조자, [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참조자의 형태로, 개체 정의, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정의, [함수 리턴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 정의시 사용합니다. 포인터와는 달리 널을 사용할 수 없습니다. 
+참조자는 개체 참조자, 배열 참조자, 함수 참조자, 다형성 참조자, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 참조자, [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참조자로 구분할 수 있습니다. 포인터와는 달리 널을 사용할 수 없습니다. 
 
 **개체 참조자**
 
