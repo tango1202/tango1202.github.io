@@ -135,7 +135,7 @@ int& ref{c};
 EXPECT_TRUE(b == 20);         
 ```
 
-이런 경우 `mutable`을 사용하면 캡쳐한 개체를 수정할 수 있으나, 원본이 아닌 복제본만 수정됩니다.(원본을 수정하려면 참조 캡쳐를 이용하셔야 합니다.)
+이런 경우 [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)을 사용하면 캡쳐한 개체를 수정할 수 있으나, 원본이 아닌 복제본만 수정됩니다.(원본을 수정하려면 참조 캡쳐를 이용하셔야 합니다.)
 
 ```cpp
 int a{1};

@@ -81,10 +81,10 @@ decltype((t->m_Val)) b_11 = 10; // 괄호를 추가하면 좌측값 표현식으
 
 |항목|내용|
 |--|--|
-|`decltype(xvalue)`|`T&&`, [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)등으로 변환된 임시 개체. `rvalue`|
+|`decltype(xvalue)`|`T&&`, [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)등으로 변환된 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4). `rvalue`|
 |`decltype(lvalue)`|`T&`, 이름이 부여된 개체|
 |`decltype((lvalue))`|`T&`, 괄호가 추가되면 표현식으로 평가됨|
-|`decltype(prvalue)`|`T`, 이름 없는 임시 개체|
+|`decltype(prvalue)`|`T`, 이름 없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)|
 
 # auto 와 decltype()의 차이점
 

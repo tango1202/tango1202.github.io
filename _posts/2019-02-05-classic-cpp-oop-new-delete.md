@@ -31,7 +31,7 @@ sidebar:
 |`operator delete(void*)`|개체의 메모리를 해제 합니다.|
 |`operator new[](std::size_t)`|배열의 메모리를 할당합니다.|
 |`operator delete[](void*)`|배열의 메모리를 해제합니다.|
-|`operator new(void*)`|주어진 메모리 위치에 개체를 배치하여 생성자를 호출합니다.(Placement New, 위치 지정 생성)|
+|`operator new(void*)`|주어진 메모리 위치에 개체를 배치하여 생성자를 호출합니다.([위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1))|
 |`set_new_handler()`|`new`에서 예외 발생시 호출되는 함수입니다.|
 
 개체를 동적으로 생성/소멸할때([힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당됩니다.) `new`와 `delete`를 사용합니다.
@@ -39,7 +39,7 @@ sidebar:
 `new`는 다음의 순서로 개체의 메모리 할당과 생성자 호출을 실행합니다.([생성/소멸 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8-%EC%97%B0%EC%82%B0%EC%9E%90) 언급)
 
 1. 전역 `operator new(std::size_t)`로 메모리 공간 할당(오류 발생시 `set_new_handler()`에 설정한 `new_handler` 실행)
-2. 구조체이거나 클래스이면 `operator new(void*)`(위치 지정 생성)를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
+2. 구조체이거나 클래스이면 `operator new(void*)`([위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1))를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
 3. 메모리 주소를 해당 타입으로 형변환하여 리턴
 
 `delete`는 다음의 순서로 개체의 소멸자 호출과 메모리 해제를 실행합니다.([개체 소멸 순서](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EA%B0%9C%EC%B2%B4-%EC%86%8C%EB%A9%B8-%EC%88%9C%EC%84%9C) 참고)
@@ -444,7 +444,7 @@ delete[] arr; // operator delete[](void* ptr, std::size_t sz) 호출
 
 # operator new(ptr) : Placement New(위치 지정 생성)
 
-`void* operator new(size_t sz, void* ptr)`와 같이 `void*` 를 인자로 전달받는 `operator new`를 특별히 Placement New(위치 지정 생성)이라 합니다. Placement New(위치 지정 생성)는 주어진 `operator new` 등으로 할당한 메모리 위치에 생성자를 실행합니다. 즉, 해당 메모리 위치에 개체를 생성한다고 보셔도 됩니다. 
+`void* operator new(size_t sz, void* ptr)`와 같이 `void*` 를 인자로 전달받는 `operator new`를 특별히 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)이라 합니다. [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)은 주어진 `operator new` 등으로 할당한 메모리 위치에 생성자를 실행합니다. 즉, 해당 메모리 위치에 개체를 생성한다고 보셔도 됩니다. 
 
 다음과 같은 클래스 `T`가 있는 경우,
 
@@ -505,7 +505,7 @@ EXPECT_TRUE(other->GetX() == 100 && other->GetY() == 200);
 free(buffer);    
 ```
 
-`operator new`를 재구현 하면, 전역 Placement New(위치 지정 생성)를 가리기 때문에, 재정의해야 합니다.
+`operator new`를 재구현 하면, 전역 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)을 가리기 때문에, 재정의해야 합니다.
 
 ```cpp
 class T {
@@ -548,7 +548,7 @@ t->~T(); // Placement New를 사용하면 명시적으로 소멸자를 호출해
 T::operator delete(buffer);
 ```
 
-Placement New(위치 지정 생성)를 재정의했다고 해서 기본 `new` - `delete` 할때 Placement New(위치 지정 생성)가 사용되지는 않습니다.
+[위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)을 재정의했다고 해서 기본 `new` - `delete` 할때 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)이 사용되지는 않습니다.
 
 ```cpp
 T* t = new T; // operator new(size_t sz, void* ptr) 가 호출되지는 않습니다.

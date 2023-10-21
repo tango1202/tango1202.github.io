@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 문자열 상수를 많이 만들면, 프로그램 용량이 커진다. 비슷한 문장을 쓸데없이 여러개 작성하지 마라.
+> * [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 많이 만들면, 프로그램 용량이 커진다. 비슷한 문장을 쓸데없이 여러개 작성하지 마라.
 
 > **모던 C++**
 > * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)용 정수형 상수인 [`ll`, `ull`, `LL`, `ULL` 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)이 추가되었습니다.
@@ -23,6 +23,8 @@ sidebar:
 > * (C++17~) `0xA.9p11`과 같은 [16진수 부동 소수점 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c17-16%EC%A7%84%EC%88%98-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 제공합니다.
 
 # bool 과 숫자
+
+`true`, `false`와 8진수/10진수/16진수 정수, `unsigned`, `long`, 고정 소수점 실수와 부동 소수점 실수가 제공됩니다.
 
 ```cpp
 // bool 형
@@ -54,7 +56,9 @@ long double o = 3.14e10L;
 
 # 문자 상수
 
-문자 상수는 1byte 크기인 `''`와 `wchar_t` 크기인 `L''`이 있습니다.
+문자 상수는 1byte 크기인 `''`와 `wchar_t` 크기(*Windows 에서는 2byte이고 리눅스에서는 4byte. [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고*)
+인`L''`이 있습니다.
+
 ```cpp
 char a = 'A';
 wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
@@ -62,9 +66,11 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 # 문자열 상수
 
-문자열 상수는 문자 상수들의 집합으로서, 문자열의 끝을 나타내는 널문자(`\0`)가 추가되어 있으며, [데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)의 `rodata`에서 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 비슷한 문장을 쓸데없이 여러개 작성하지 마세요.(동일한 것을 여러번 사용하는 경우 컴파일러가 1개로 취합해 주긴 합니다만([데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고), 코드 중복이니 1개만 정의해서 사용하세요.) 
+문자열 상수는 문자 상수들의 집합으로서, 문자열의 끝을 나타내는 널문자(`\0`)가 추가되어 있으며, [데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)의 `rodata`에서 프로그램 수명만큼 존재합니다. 프로그램 용량이 커질 수도 있으니, 비슷한 문장을 쓸데없이 여러개 작성하지 마세요.(*동일한 것을 여러번 사용하는 경우 컴파일러가 1개로 취합해 주긴 합니다만([데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고), 코드 중복이니 1개만 정의해서 사용하세요.*) 
 
-`const char*`나 `const wchar*`로 문자열 상수가 있는 영역을 참조하거나, 배열을 이용하여 복사할 수 있습니다. 
+문자열이 커봐야 얼마나 크겠어? 하실 수도 있지만, 다국어로 번역되다 보면 무시 못할 크기로 커집니다.
+
+`const char*`나 `const wchar_t*`로 문자열 상수가 있는 영역을 참조하거나, 배열을 이용하여 복사할 수 있습니다. 
 
 **const형 포인터**
 
@@ -81,7 +87,7 @@ const wchar_t* str2 = L"abc"; // 와이드 문자열 상수
 
 **배열**
 
-배열을 문자열 상수로 초기화 하면, 끝에 널문자(`\0`) 가 추가됩니다.([배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94/) 언급)
+배열을 문자열 상수로 초기화 하면, 끝에 널문자(`\0`) 가 추가됩니다.(*[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94/) 언급*)
 
 ```cpp
 char str3[] = "abc"; // {'a', `b`, 'c', '\0'};
@@ -99,7 +105,7 @@ EXPECT_TRUE(str4[3] == L'\0'); // 널문자가 추가됨
 
 **결합**
 
-문자열 상수가 너무 긴 경우에, 서로 연달아 배치하면 자동으로 이어 붙이기가 됩니다. 하기 예에서 `str1`, `str2`, `str3`은 모두 `Hello World` 문자열 상수를 가리키며, 동일한 메모리 주소를 사용합니다.(동일한 문자열을 여러번 사용하는 경우 컴파일러가 1개로 취합해줌. [데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고)
+문자열 상수가 너무 긴 경우에, 서로 연달아 배치하면 자동으로 이어 붙이기가 됩니다. 하기 예에서 `str1`, `str2`, `str3`은 모두 `Hello World` 문자열 상수를 가리키며, 동일한 메모리 주소를 사용합니다.(*동일한 문자열을 여러번 사용하는 경우 컴파일러가 1개로 취합해 줍니다. [데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고*)
 
 ```cpp
 const char* str1 = "Hello World"; 
@@ -130,8 +136,8 @@ EXPECT_TRUE(str1 == str2 && str2 == str3); // (O) 동일한 문자열 상수는 
 |`\v`|세로탭|0x0b|
 |`\nnn`|nnn : 3자리의 8진수||
 |`\xn...`|n... : 임의 자리 16진수 ||
-|`\unnnn`|nnnn : 2byte(16진수 4자리)의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ca05ccd7-8e34-4d7c-bb21-fb37441dfaca)|
-|`\Unnnnnnnn`|nnnnnnnn : 4byte(16진수 8자리)의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e2a84daa-45ef-4464-a488-670f18365511)|
+|`\unnnn`|nnnn : 2byte(*16진수 4자리*)의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ca05ccd7-8e34-4d7c-bb21-fb37441dfaca)|
+|`\Unnnnnnnn`|nnnnnnnn : 4byte(*16진수 8자리*)의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e2a84daa-45ef-4464-a488-670f18365511)|
 
 
 

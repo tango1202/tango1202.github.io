@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * [5대 원칙(SOLID)](https://tango1202.github.io/principle/principle-solid/)정도는 사전에 숙지하고 구조체/클래스/공용체를 만들어라.
-> * 구조체와 클래스의 차이는 초기화 방법과 기본 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)(구조체는 `public`, 클래스는 `private`) 뿐이다.
+> * 구조체와 클래스의 차이는 초기화 방법과 기본 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)(*구조체는 `public`, 클래스는 `private`*) 뿐이다.
 > * 공용체는 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있으니 꼭 필요한 경우 한정적으로 사용하라.
 
 > **모던 C++**
@@ -22,7 +22,7 @@ sidebar:
 
 모든 소프트웨어의 기본 원칙은,
 
-> * Clean Code That Works(작동하는 깔끔한 코드)
+> * Clean Code That Works(*작동하는 깔끔한 코드*)
 
 입니다.
 
@@ -60,15 +60,15 @@ C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 집합 초기화
 |항목|구조체|클래스|공용체|
 |--|--|--|--|
 |용량|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 총합|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 총합|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들중 가장 큰값|
-|초기화|`T t = {10, 20};` 와 같이 중괄호 집합 초기화 지원|값 생성자|X|
-|기본 접근 지정자|`public`|`private`|`public`|
+|[초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/)|`T t = {10, 20};` 와 같이 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94) 지원|값 생성자|X|
+|기본 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)|`public`|`private`|`public`|
 |[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|O|O|O|
 |[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|O|O|O|
 |참조자 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|O|O|X|
 |재정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)|O|O|X|
 |재정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)|O|O|X|
 |[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)|O|O|X|
-|상속|O|O|X|
+|[상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)|O|O|X|
 
 # 구조체와 클래스
 
@@ -76,9 +76,9 @@ C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 집합 초기화
 
 **멤버 사양**
    
-클래스(구조체)의 멤버는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/) 뿐만아니라, [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4), [타입 재정의(typdef)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 포함할 수 있습니다.
+클래스/구조체)의 멤버는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/) 뿐만아니라, [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4), [타입 재정의(typdef)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 포함할 수 있습니다.
 
-특히, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 정의하지 않으면, 컴파일러가 암시적으로 정의해 줍니다.([클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고)
+특히, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 정의하지 않으면, 컴파일러가 암시적으로 정의해 줍니다.(*[클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고*)
 
 ```cpp
 class T {
@@ -110,7 +110,7 @@ class T {
     // 열거형 상수
     enum {Left, Top, Right, Bottom}; 
 
-    // 중첩 클래스(구조체)
+    // 중첩 클래스/구조체
     class NestedClass { 
         int m_D3;
     };
@@ -192,7 +192,7 @@ int T::f2() {} // inline화 안됨
 
 **`using` 선언**
 
-`using`을 사용하면 부모 클래스에서 지정한 접근 지정자를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.([리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고)
+`using`을 사용하면 부모 클래스에서 지정한 접근 지정자를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.(*[리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고*)
 
 ```cpp
 class Base {
@@ -273,7 +273,7 @@ class W { // T의 friend인 U 의 friend
 
 # 공용체
 
-공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유하다 보니 하나의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하면, 다른 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)이 바뀌면(플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
+공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유하다 보니 하나의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하면, 다른 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)이 바뀌면(*플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라*) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
 
 또한, 구조체와 클래스와 달리 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)나, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)와 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 가질 수 없습니다.
 

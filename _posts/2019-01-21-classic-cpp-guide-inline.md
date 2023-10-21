@@ -28,14 +28,14 @@ sidebar:
 
 함수 호출은 하기 단계를 거칩니다.
 
-1. 인수를 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 쌓습니다.(함수 호출 부하)
-2. 함수를 호출합니다.(함수 호출 부하)
-3. 함수내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 쌓습니다.(함수 호출 부하)
+1. 인수를 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 쌓습니다.(*함수 호출 부하*)
+2. 함수를 호출합니다.(*함수 호출 부하*)
+3. 함수내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 쌓습니다.(*함수 호출 부하*)
 4. 함수의 코드를 실행합니다.
-5. 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 리턴합니다.(함수 호출 부하)
-6. [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 쌓인 정보를 제거합니다.(함수 호출 부하)
+5. 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 리턴합니다.(*함수 호출 부하*)
+6. [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 쌓인 정보를 제거합니다.(*함수 호출 부하*)
 
-인라인 함수는 상기의 함수 호출 부하(미세하겠지만)를 줄이기 위해 함수가 호출된 자리에 직접 코드를 삽입(코드 치환)하는 함수입니다.(비슷한 일을 `define` 함수가 합니다만, 어지간하면 쓰지 마세요!!! [`#define` 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%ED%95%A8%EC%88%98) 참고)
+인라인 함수는 상기의 함수 호출 부하(*미세하겠지만*)를 줄이기 위해 함수가 호출된 자리에 직접 코드를 삽입(*코드 치환*)하는 함수입니다.(*비슷한 일을 `define` 함수가 합니다만, 어지간하면 쓰지 마세요!!! [`#define` 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%ED%95%A8%EC%88%98) 참고)*
 
 ```cpp
 inline int Plus(int a, int b) {
@@ -52,9 +52,9 @@ void f() {
 }
 ```
 
-**클래스 멤버 함수의 인라인화**
+# 클래스 멤버 함수의 인라인화
 
-클래스(구조체) 선언부에 정의한 함수는 컴파일러 판단에 따라 `inline` 화 됩니다.([구조체와 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B5%AC%EC%A1%B0%EC%B2%B4%EC%99%80-%ED%81%B4%EB%9E%98%EC%8A%A4) 언급)
+클래스/구조체 선언부에 정의한 함수는 컴파일러 판단에 따라 `inline` 화 됩니다.(*[구조체와 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B5%AC%EC%A1%B0%EC%B2%B4%EC%99%80-%ED%81%B4%EB%9E%98%EC%8A%A4) 언급*)
 
 ```cpp
 // h에서
@@ -67,7 +67,7 @@ class T {
 int T::f2() {return 0;} // inline화 안됨
 ```
 
-**여러 cpp에서 사용하는 인라인 함수 정의**
+# 여러 cpp에서 사용하는 인라인 함수 정의
 
 보통 헤더 파일에서 함수를 정의하고, 여러개의 `cpp`에서 `include`하면 함수가 중복 정의되었다며 오류가 발생합니다.
 
@@ -103,16 +103,16 @@ TEST(TestClassicCpp, Inline) {
 }
 ```
 
-**인라인 함수 특징**
+# 인라인 함수 특징
 
-인라인 함수도 함수이다 보니 함수 고유의 장점(함수 코드 재활용, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와의 타입에 기반한 **코딩 계약**, 디버깅 용이)은 유지합니다. 또한, 함수 호출부에 직접 코드를 삽입하기 때문에 다음과 같은 특징이 있습니다.
+인라인 함수도 함수이다 보니 함수 고유의 장점(*함수 코드 재활용, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와의 타입에 기반한 **코딩 계약**, 디버깅 용이*)은 유지합니다. 또한, 함수 호출부에 직접 코드를 삽입하기 때문에 다음과 같은 특징이 있습니다.
 
 1. 함수 호출 부하가 줄어듭니다.
 2. 실행 파일 용량이 커집니다.
 
 따라서, 함수 실행 속도가 아주 아주 빠른데 자주 호출되는 함수라면, 함수 호출 부하를 줄이기 위해 사용하는 게 좋습니다.
 
-**인라인화 판단**
+# 인라인화 판단
 
 `inline`을 지정했다고 해서 모두 인라인 함수가 되는 것은 아닙니다. 컴파일러에게 인라인화 가능한지 요청하는 것이고, 컴파일러 판단에 의해 인라인화 됩니다. 
 

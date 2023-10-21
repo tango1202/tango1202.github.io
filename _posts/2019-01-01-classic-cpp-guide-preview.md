@@ -78,7 +78,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 
 2. [STL : 문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)
 
-    표준 템플릿 라이브러리(Standard Template Library, STL)를 통해 문자열 타입을 제공합니다.
+    표준 템플릿 라이브러리(*Standard Template Library, STL*)를 통해 문자열 타입을 제공합니다.
 
     ```cpp
     #include <string>
@@ -87,7 +87,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 
 3.  [STL : 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)
 
-    데이터 자료구조를 관리할 수 있는 컨테이너를 제공합니다.(`vector`, `list`, `queue`, `stack`, `deque`, `priority_queue`, `set`, `multiset`, `map`, `multimap`)
+    데이터 자료구조를 관리할 수 있는 컨테이너를 제공합니다.(*`vector`, `list`, `queue`, `stack`, `deque`, `priority_queue`, `set`, `multiset`, `map`, `multimap`*)
 
     ```cpp
     std::vector<int> data(100); // 기본값으로 초기화된 100개의 요소
@@ -108,9 +108,9 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 
 5. [STL : 알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)
     
-    일련의 동작에 대한 표준 알고리즘을 제공합니다.(`for_each`, `find`, `count`, `replace`, `copy`, `sort` 등)
+    일련의 동작에 대한 표준 알고리즘을 제공합니다.(*`for_each`, `find`, `count`, `replace`, `copy`, `sort` 등*)
 
 6. [STL : 스마트 포인터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)
    
-    [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 제공합니다.(모던 C++에선 사라졌습니다.)
+    [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 제공합니다.(*모던 C++에선 사라졌습니다.*)
 

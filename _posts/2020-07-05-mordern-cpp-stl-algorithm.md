@@ -151,10 +151,10 @@ EXPECT_TRUE(std::reduce(v.begin(), v.end(), init) == init + v[3] + v[2] + v[0] +
 
 다만, 다음 그림에서 볼 수 있듯이 순서를 지키는 `accumulate()`는 병렬화 할 수 있는 여지가 없지만,
 
-<img width="224" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/80a6815c-bb8b-4c40-a468-c669a2ef90f8">
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/80a6815c-bb8b-4c40-a468-c669a2ef90f8)
 
 순서를 지키지 않는 `reduce()`는 병렬화할 여지가 있습니다.
 
-<img width="299" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/bd1f572d-e27c-4a11-b656-3d3bce062153">
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bd1f572d-e27c-4a11-b656-3d3bce062153)
 
 

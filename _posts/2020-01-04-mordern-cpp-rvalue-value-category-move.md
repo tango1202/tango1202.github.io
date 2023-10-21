@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 임시 개체 대입시 속도가 향상되었습니다.
+> * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 대입시 속도가 향상되었습니다.
 > * (C++14~) [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/)는 주어진 값을 바꾸고 이전값을 리턴합니다. [이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 구현에 활용할 수 있습니다.
 
 # 개요
@@ -69,7 +69,7 @@ C++에서는 표현식의 값들에 대해서 식별자가 있는지, 이동이 
 |--|--|
 |`lvalue`(left value)|좌측값으로서 변수와 같이 식별자가 있는 항목입니다.(`a = b;`와 같이 좌측값은 우측에 올 수도 있습니다.) 다른곳에서 참조할 수도 있기에 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)이 지원되지 않습니다.(변수, 데이터 멤버의 이름, 함수, `&`포인터 연산, 전위 증감 연산, 문자열 상수등)<br/>대입문의 좌측에 올 수 있고, `&`로 주소를 얻어올 수 있으며, 표현식이 끝나더라도 존재합니다.|
 |`xvalue`(eXpiring value)|`lvalue`나 `prvalue`를 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)할때 순간적으로 관리되는 값으로서 만료되어 가는 값입니다. 해당 주소로 접근했을때 값이 있을 수도 있고, 없을 수도 있습니다. 컴파일러만 사용하므로 `&`로 주소를 얻을 수 없으며, 표현식이 끝나면 소멸됩니다.|
-|`prvalue`(pure rvalue)|순수한 `rvalue`로서 식별자가 없는 임시 개체나 수식들입니다. 어짜피 임시로 생성된 것이므로 맘편히 삭제해도 되는 것들이며, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)이 지원됩니다.(수식, 후위 증감 연산, 문자열 상수를 제외한 상수, 람다 표현식)<br/>대입문의 우측에 올 수 있고, `&`로 주소를 얻어올 수 없으며, 표현식이 끝나면 소멸됩니다.|
+|`prvalue`(pure rvalue)|순수한 `rvalue`로서 식별자가 없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)나 수식들입니다. 어짜피 임시로 생성된 것이므로 맘편히 삭제해도 되는 것들이며, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)이 지원됩니다.(수식, 후위 증감 연산, 문자열 상수를 제외한 상수, 람다 표현식)<br/>대입문의 우측에 올 수 있고, `&`로 주소를 얻어올 수 없으며, 표현식이 끝나면 소멸됩니다.|
 |`glvalue`(generalized lvalue)|`xvalue`와 `lvalue`를 통칭합니다.| 
 |`rvalue`(right value)|`xvalue`와 `prvalue`를 통칭합니다.|  
 
@@ -77,7 +77,7 @@ C++에서는 표현식의 값들에 대해서 식별자가 있는지, 이동이 
 
 일반적으로 복사/대입보다는 이동이 성능이 좋을 수 있습니다.
 
-다음은 일반적인 복사 생성자와 복사 대입 연산자의 구현입니다. 복사 생성자에서는 새로운 메모리 공간을 할당해서 복사하고, 복사 대입 연산자에서는 임시 개체를 생성한뒤 `swap()`으로 바꿔치기 합니다.([포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)과 [swap을 이용한 예외 안전 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
+다음은 일반적인 복사 생성자와 복사 대입 연산자의 구현입니다. 복사 생성자에서는 새로운 메모리 공간을 할당해서 복사하고, 복사 대입 연산자에서는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 생성한뒤 `swap()`으로 바꿔치기 합니다.([포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)과 [swap을 이용한 예외 안전 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
 
 ```cpp
 class Big {
@@ -140,7 +140,7 @@ Big : Destructor // b 소멸
 Big : Destructor // a 소멸
 ```
 
-여기서 만약 `b`가 `a`에 값을 대입하고, 더이상 사용되지 않는 임시 개체(우측값)라면 어떨까요? 굳이 `temp`를 생성해서 복제본을 만들 필요없이 `b`의 값을 바로 `a`에 전달(이동)해도 됩니다. `a`가 기존 것을 버리고, `b` 데이터만 가지면 되니까요. 
+여기서 만약 `b`가 `a`에 값을 대입하고, 더이상 사용되지 않는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)(우측값)라면 어떨까요? 굳이 `temp`를 생성해서 복제본을 만들 필요없이 `b`의 값을 바로 `a`에 전달(이동)해도 됩니다. `a`가 기존 것을 버리고, `b` 데이터만 가지면 되니까요. 
 
 다음 그림에서 `a = b;`등으로 `a`가 `b`의 데이터를 갖도록 만들때, 복사 대입과 이동 대입의 차이를 도식화 했습니다. 이동 대입이 훨씬 간결한 것을 알 수 있습니다.(다만, `b`가 참조하는 데이터는 없어집니다.)
 
@@ -227,7 +227,7 @@ Big : Destructor // a 소멸
 
 C++ 표준 위원회는 여기서 더 나아가 그냥 각자 `Move()`함수를 구현하는 것에 만족하지 않고, 기존 `=`에서 식별자가 부여된(이름 있는) 좌측값(`lvalue`) 대입과 식별자가 부여되지 않은(이름 없는) 우측값(`rvalue`) 대입을 오버로딩해서 제공하고, `=`가 복사 대입 연산자로 사용되거나 이동 대입 연산자로 사용되게 하여 기존 코드와 호환되면서 속도를 향상시킬 수 있도록 했습니다.
 
-1. `=` 의 인수가 우측값(`rvalue`) 이고(대입 후 버려지는 이름 없는 임시 개체), 
+1. `=` 의 인수가 우측값(`rvalue`) 이고(*대입 후 버려지는 이름 없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)*), 
 2. 이동 대입 연산자가 정의되어 있다면,
 
 `=`시 이동 대입을 수행하고, 그렇지 않으면 복사 대입을 수행합니다.
@@ -238,7 +238,7 @@ C++ 표준 위원회는 여기서 더 나아가 그냥 각자 `Move()`함수를 
 
 1. `static_cast`을 이용하여 좌측값을 우측값으로 형변환
 2. [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 이용하여 좌측값을 우측값으로 형변환
-3. `Big_11(40)`로 임시 개체를 생성(임시 개체는 우측값입니다.)하여 호출하였습니다. 
+3. `Big_11(40)`로 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 생성(*[임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)는 우측값입니다.*)하여 호출하였습니다. 
  
 ```cpp
 class Big_11 {
@@ -325,7 +325,7 @@ EXPECT_TRUE(e.GetSize() == 50);
 
 # 이동 연산을 이용한 리팩토링
 
-기존 코드들에 `=`가 많이 사용되고 있을 텐데요, 이동 대입 연산자만 추가해 두면, 이름이 없는 임시 개체(우측값)가 대입될때, 복사 대입 대신 이동 대입을 하게 되어 속도가 향상될 수 있습니다. 
+기존 코드들에 `=`가 많이 사용되고 있을 텐데요, 이동 대입 연산자만 추가해 두면, 이름이 없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)(우측값)가 대입될때, 복사 대입 대신 이동 대입을 하게 되어 속도가 향상될 수 있습니다. 
 
 또한 명시적으로 작성한 좌측값 대입이라 할지라도, 약간의 리팩토링으로 성능을 향상시킬 수 있습니다.
 
@@ -461,7 +461,7 @@ B_11 b2 = std::move_if_noexcept(b1); // B_11(B_11&&)가 nothrow 예외 보증이
 
 인자의 값 카테고리를 유지하며 다른 함수에 전달합니다.
 
-우측값(`rvalue`)을 `T&& val`와 같이 함수의 인자로 전달받는 순간, 이름을 갖게 되어 좌측값(`lvalue`)이 되버립니다. 이름이 있으니, 그 이름을 가지고 다른데 사용할 수 있어서 더이상 임시 개체가 아닌 거죠. 
+우측값(`rvalue`)을 `T&& val`와 같이 함수의 인자로 전달받는 순간, 이름을 갖게 되어 좌측값(`lvalue`)이 되버립니다. 이름이 있으니, 그 이름을 가지고 다른데 사용할 수 있어서 더이상 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 아닌 거죠. 
 
 다음 예에서
 
@@ -486,7 +486,7 @@ EXPECT_TRUE(g_11(t) == 11);
 EXPECT_TRUE(g_11(std::move(t)) == 12);
 ```
 
-우측값 참조(`&&`)가 좌측값 참조(`&`) 로 변경되어 버렸습니다. 이해는 됩니다. `val`로 명명 되는 순간 더이상 임시 개체가 아니니까요. 이를 해결하려면 다시 한번 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 사용하여 우측값으로 바꿀 수도 있으나, 값 카테고리를 유지하여 전달한다은 의미로 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)를 사용하는게 좋습니다.
+우측값 참조(`&&`)가 좌측값 참조(`&`) 로 변경되어 버렸습니다. 이해는 됩니다. `val`로 명명 되는 순간 더이상 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 아니니까요. 이를 해결하려면 다시 한번 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 사용하여 우측값으로 바꿀 수도 있으나, 값 카테고리를 유지하여 전달한다은 의미로 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)를 사용하는게 좋습니다.
 
 ```cpp
 class T {};

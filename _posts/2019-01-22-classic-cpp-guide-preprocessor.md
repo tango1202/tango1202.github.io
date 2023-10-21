@@ -20,27 +20,27 @@ sidebar:
 
 # 개요
 
+전처리기는 컴파일되기 전에 소스 코드에서 식별자 부분을 대체 목록으로 치환시켜 주거나, 특정 조건에 맞게 코드 블록을 포함시켜 줍니다.
+
 |항목|내용|
 |--|--|
-|`#define` 상수|식별자를 대체 목록으로 치환함|
-|`#define()` 함수|인자들을 대체 목록에 반영하여 치환함|
-|`#undef`|`define` 정의를 취소함|
-|`defined()`|주어진 식별자가 `define` 되었는지 검사함|
-|`#if`|`if` 제어문과 유사.<br/>조건이 참이면 해당 코드 블록 포함|
-|`#elif`|`else if` 제어문과 유사.<br/>조건이 참이면 해당 코드 블록 포함|
-|`#ifdef`|주어진 식별자가 `define` 되었으면 해당 코드 블록 포함|
-|`#ifndef`|주어진 식별자가 `define`되지 않았으면 해당 코드 블록 포함|
-|`#else`|`#if`, `#elif`, `#ifdef`, `#ifndef`가 아닌 경우 해당 코드 블록 포함|
-|`#endif`|`#if`, `#elif`, `#ifdef`, `#ifndef`, `#else`의 끝|
-|`#include`|파일 포함|
-|`#line`|`__LINE__`과 `__FILE__` 강제 지정|
-|`__LINE__`|현재 파일의 줄번호,<br/>혹은 `#line`으로 지정한 줄번호|
-|`__FILE__`|현재 파일명,<br/>혹은 `#line`으로 지정한 파일명|
-|`#error`|메시지를 표시하고 컴파일 종료|
-|`#warning`|메시지를 표시하고 컴파일 진행|
-|`#pragma`|비표준 컴파일러 동작|
-
-전처리기는 컴파일되기 전에 소스 코드에서 식별자 부분을 대체 목록으로 치환시켜 주거나, 특정 조건에 맞게 코드 블록을 포함시켜 줍니다.
+|[#define 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)|식별자를 대체 목록으로 치환함|
+|[#define() 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%ED%95%A8%EC%88%98)|인자들을 대체 목록에 반영하여 치환함|
+|[#undef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#undef)|`define` 정의를 취소함|
+|[defined()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BB%B4%ED%8C%8C%EC%9D%BC)|주어진 식별자가 `define` 되었는지 검사함|
+|[#if](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BB%B4%ED%8C%8C%EC%9D%BC)|`if` 제어문과 유사.<br/>조건이 참이면 해당 코드 블록 포함|
+|[#elif](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BB%B4%ED%8C%8C%EC%9D%BC)|`else if` 제어문과 유사.<br/>조건이 참이면 해당 코드 블록 포함|
+|[#ifdef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BB%B4%ED%8C%8C%EC%9D%BC)|주어진 식별자가 `define` 되었으면 해당 코드 블록 포함|
+|[#ifndef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BB%B4%ED%8C%8C%EC%9D%BC)|주어진 식별자가 `define`되지 않았으면 해당 코드 블록 포함|
+|[#else](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BB%B4%ED%8C%8C%EC%9D%BC)|`#if`, `#elif`, `#ifdef`, `#ifndef`가 아닌 경우 해당 코드 블록 포함|
+|[#endif](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BB%B4%ED%8C%8C%EC%9D%BC)|`#if`, `#elif`, `#ifdef`, `#ifndef`, `#else`의 끝|
+|[#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)|파일 포함|
+|[#line](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#line-file-line)|`__LINE__`과 `__FILE__` 강제 지정|
+|[__LINE__](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#line-file-line)|현재 파일의 줄번호,<br/>혹은 `#line`으로 지정한 줄번호|
+|[__FILE__](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#line-file-line)|현재 파일명,<br/>혹은 `#line`으로 지정한 파일명|
+|[#error](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#error-warning)|메시지를 표시하고 컴파일 종료|
+|[#warning](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#error-warning)|메시지를 표시하고 컴파일 진행|
+|[#pragma](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)|비표준 컴파일러 동작|
 
 # #define 상수
 
@@ -90,7 +90,7 @@ EXPECT_TRUE(typeid(Logical) == typeid(int));
 
 가 낫습니다.
 
-`#define` 치환은 묻지도 따지지도 않고 수행되기 때문에, 다음과 같이 헤더 파일에 `#define`을 사용하면 동료들이 미칠 수 있습니다. 그러니 꼭 중복되지 않을 만한 식별자로 작성하세요.(대문자 처럼요. [매크로 대문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-naming/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EB%8C%80%EB%AC%B8%EC%9E%90) 참고)
+`#define` 치환은 묻지도 따지지도 않고 수행되기 때문에, 다음과 같이 헤더 파일에 `#define`을 사용하면 동료들이 미칠 수 있습니다. 그러니 꼭 중복되지 않을 만한 식별자로 작성하세요.(*대문자 처럼요. [매크로 대문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-naming/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EB%8C%80%EB%AC%B8%EC%9E%90) 참고*)
 
 ```cpp
 #define public private 
@@ -103,7 +103,7 @@ EXPECT_TRUE(typeid(Logical) == typeid(int));
 
 **define 개행**
 
-`#define`은 한줄로 작성하여야 하나, 너무 긴 경우 `\`로 개행하여 작성할 수 있습니다.(이때 `\`뒤에 어떤 공백도 없어야 합니다.)
+`#define`은 한줄로 작성하여야 하나, 너무 긴 경우 `\`로 개행하여 작성할 수 있습니다.(*이때 `\`뒤에 어떤 공백도 없어야 합니다.*)
 
 ```cpp
 // 개행으로 f 함수 매크로문 정의
@@ -118,7 +118,7 @@ int val = f(3);
 EXPECT_TRUE(val == 6);
 ```
 
-# #define 함수
+# #define() 함수
 
  매크로 함수는 인자들을 대체 목록에 반영하여 치환합니다. 함수라고는 하지만 단순 치환입니다.
 
@@ -222,7 +222,7 @@ std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl
 ```
 # #error, #warning
 
-`#error`와 `#warning`은 조건부 컴파일시 OS 환경이나 컴파일러 환경이나 라이브러리 환경을 검사하고, 컴파일을 중단(`#error`)시키거나 계속 진행(`#warning`)시킵니다.
+`#error`와 `#warning`은 조건부 컴파일시 OS 환경이나 컴파일러 환경이나 라이브러리 환경을 검사하고, 컴파일을 중단(*`#error`*)시키거나 계속 진행(*`#warning`*)시킵니다.
 
 ```cpp
 #define OS_WIN
@@ -240,7 +240,7 @@ std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl
 
 **`#pragma once`**
 
-헤더 파일을 1회만 포함시킵니다.([인클루드 가드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%9D%B8%ED%81%B4%EB%A3%A8%EB%93%9C-%EA%B0%80%EB%93%9C) 참고)
+헤더 파일을 1회만 포함시킵니다.(*[인클루드 가드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%9D%B8%ED%81%B4%EB%A3%A8%EB%93%9C-%EA%B0%80%EB%93%9C) 참고*)
 
 ```cpp
 // 헤더 파일에서
@@ -250,7 +250,7 @@ std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl
 
 **`#pragma pack`**
 
-컴파일러는 클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 **메모리 정렬(Memory Alignment)** 을 합니다.([개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고) 
+컴파일러는 클래스나 구조체의 멤버 변수를 할당하는데 있어, 메모리 접근 편의를 위해 **메모리 정렬(Memory Alignment)** 을 합니다.(*[개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고*) 
 
 다음 코드는 메모리 정렬을 수행하여, `char`(1byte) + 패딩(3byte) + `int`(4byte) = 8byte가 됩니다.
 
@@ -263,7 +263,7 @@ class T {
 EXPECT_TRUE(sizeof(T) == 8); 
 ```
 
-`#pragma pack`을 이용하면, 메모리 정렬 byte 크기를 조정할 수 있어 메모리 낭비를 줄일 수 있습니다.(다만 메모리 접근 속도는 저하됩니다.)
+`#pragma pack`을 이용하면, 메모리 정렬 byte 크기를 조정할 수 있어 메모리 낭비를 줄일 수 있습니다.(*다만 메모리 접근 속도는 저하됩니다.*)
 
 ```cpp
 #pragma pack(push, 1) // 메모리 정렬을 1byte 단위로 설정      

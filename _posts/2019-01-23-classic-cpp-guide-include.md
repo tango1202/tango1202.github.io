@@ -10,11 +10,18 @@ sidebar:
 
 > * 선언과 정의 분리, [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)으로 컴파일 종속성을 최소화 하라.
 
+
+# 선언과 정의 분리
+
+C++에서는 일반적으로 클래스 선언부는 헤더 파일에 작성하고, 클래스 멤버 함수 정의부는 cpp 파일에 작성 합니다. 이때 선언부를 포함하기 위해 cpp 파일에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)를 사용합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7912cb35-8fe3-4961-8157-0092b078b85d)
+
 # 인클루드 가드
 
 프로젝트 규모가 커지면, 여러 cpp에서 헤더 파일을 `include`하다가 중복 `include` 될 수 있습니다. 만약 헤더 파일에 전역 변수 정의나 함수 정의 등이 있다면, 중복 정의되었다며 컴파일 오류가 발생하게 됩니다.
 
-<img width="474" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/fefed6ef-c1b3-41ba-83bd-9725ab4df01d">
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fefed6ef-c1b3-41ba-83bd-9725ab4df01d)
 
 따라서 관례적으로 헤더 파일은 [인클루드 가드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%9D%B8%ED%81%B4%EB%A3%A8%EB%93%9C-%EA%B0%80%EB%93%9C)를 이용하여 1회만 `include`되도록 만듭니다. 
 
@@ -39,14 +46,10 @@ public:
 
 # 선언과 정의 분리 효과
 
-C++에서는
+선언과 정의를 분리하면,
 
 1. 컴파일 속도 향상과,
-2. 실제 구현 코드의 은닉을 위하여,
-
-클래스 선언부는 헤더 파일에 작성하고, 클래스 멤버 함수 정의부는 cpp 파일에 작성하여 선언과 정의를 분리하여 파일을 구성합니다. 이때 선언부를 포함하기 위해 cpp 파일에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)를 사용합니다.
-
-<img width="394" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/7912cb35-8fe3-4961-8157-0092b078b85d">
+2. 실제 구현 코드의 은닉이 가능합니다.
 
 다음은 선언과 정의의 분리 예입니다.
 
@@ -86,9 +89,22 @@ int MyClass::Func() const {
 `MyClass`를 사용하는 곳에서,
 
 ```cpp
+// ----
+// A.cpp 소스 파일 에서
+// ----
 #include "MyClass.h" // MyClass 선언을 포함합니다.
 
 void f() {
+    MyClass myClass; // MyClass 를 사용합니다.
+    myClass.Func();
+}
+
+// ----
+// B.cpp 소스 파일 에서
+// ----
+#include "MyClass.h" // MyClass 선언을 포함합니다.
+
+void g() {
     MyClass myClass; // MyClass 를 사용합니다.
     myClass.Func();
 }
@@ -96,9 +112,9 @@ void f() {
 
 상기와 같이 코드를 구성하면,
 
-1. `MyClass.h`를 수정하면 이를 `include`한 `MyClass.cpp`, `A.cpp`, `B.cpp`가 컴파일 되지만, `MyClass.cpp`가 수정되면, 수정한 `MyClass.cpp`파일만 컴파일 하면 됩니다. 결과적으로 선언과 정의를 분리하고 적절히 `include`하면, 컴파일 종속성이 낮아져 불필요한 컴파일을 하지 않으므로 빌드 속도가 향상됩니다.
+1. `MyClass.h`를 수정하면 이를 `include`한 `MyClass.cpp`, `A.cpp`, `B.cpp`가 컴파일 되지만, `MyClass.cpp`를 수정하면, 수정한 `MyClass.cpp`파일만 컴파일 됩니다. 결과적으로 선언과 정의를 분리하고 적절히 `include`하면, 컴파일 종속성이 낮아져 불필요한 컴파일을 하지 않으므로 빌드 속도가 향상됩니다.
 
-    <img width="560" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/10a80bdf-9ce0-4561-955a-656fa5afef31">
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/10a80bdf-9ce0-4561-955a-656fa5afef31)
 
 2. 외부에 모듈을 제공할때 `MyClass.h`와 컴파일된 파일만 제공하면 되므로 소스 코드를 은닉할 수 있습니다.
 
@@ -106,7 +122,7 @@ void f() {
 
 `MyClass`를 여러 클래스에서 `include` 하여 사용하는 구성을 생각해 봅시다.
 
-<img width="433" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/19c036c4-78b2-4ee0-9802-34dde81d89df">
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19c036c4-78b2-4ee0-9802-34dde81d89df)
 
 상기 구성에서 `A`와 `B` 클래스는 멤버 변수로 `MyClass`를 사용하므로, `MyClass.h`를 `include`하였습니다. 이에 따라 `MyClass.h`가 수정되면 `MyClass.cpp`, `A.h`, `A.cpp`, `B.h`, `B.cpp`, `Other.cpp`가 모두 빌드 됩니다. 특히, `Other.cpp`처럼 `A.h`, `B.h`를 `include`한 다른 곳이 있다면, 연쇄적으로 다시 빌드 됩니다. `include`를 잘못 구성하면, 뭐 하나 수정할 때마다 전체 빌드되어 컴파일 속도가 현저히 떨어지죠.
 
@@ -140,6 +156,31 @@ public:
 
 ```cpp
 // ----
+// MyClass.h 헤더 파일에서
+// ----
+#ifndef MyClass_h
+#define MyClass_h // 인클루드 가드
+
+class MyClass {
+private:
+    int m_Val;
+public:
+    int Func() const; // Func() 멤버 함수 선언   
+};
+
+#endif // MyClass_h
+
+// ----
+// MyClass.cpp 소스 파일 에서
+// ----
+# include "MyClass.h"
+
+// Func 함수 정의 
+int MyClass::Func() const {
+    return m_Val;
+}
+
+// ----
 // A.h 헤더 파일에서
 // ----
 class MyClass; // 전방 선언
@@ -155,18 +196,17 @@ public:
 // ----
 // A.cpp cpp 파일에서
 // ----
-
 #include "A.h"
 #include "MyClass.h" // MyClass 실제로 사용하므로 include 합니다.
 
 A::A() : m_MyClass(new MyClass()) {} // 생성합니다.
 A::~A() {delete m_MyClass;} // 소멸합니다.
-int A::f() {return m_MyClass->Func();} // MyClass를 사용합니다.
+int A::f() const {return m_MyClass->Func();} // MyClass를 사용합니다.
 ```
 
-[전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 활용한 `include` 구성은 다음과 같은데요, `MyClass.h` 를 수정하면 이를 `include` 한 `MyClass.cpp`, `A.cpp`, `B.cpp`만 컴파일되어 연쇄적으로 빌드되는 걸 방지합니다.
+상기 구성을 그림으로 보면 다음과 같습니다. `MyClass.h` 를 수정하면 이를 `include` 한 `MyClass.cpp`, `A.cpp`, `B.cpp`만 컴파일되어 연쇄적으로 빌드되는 걸 방지합니다.
 
-<img width="429" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/1740de86-9407-4af6-b790-17ccceca5a89">
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e0c87b61-73c5-45c6-84fc-0b774ca1a38d)
 
 # 전방 선언을 이용한 상호 참조 해결
 
@@ -183,10 +223,10 @@ class YourClass {
 
 이런 경우, [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)으로 `YourClass`가 무언지 컴파일러에게 알려줘야 합니다. 
 
-이때 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 참조하는 곳(`MyClass`)은 
+이때 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 참조하는 곳(*`MyClass`*)은 
 
 1. 구체 정의가 아닌 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 사용하여야 하고, 
-2. [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)한 것의 실제 선언(`YourClass` 선언) 후 해당 개체를 사용해야 합니다. 
+2. [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)한 것의 실제 선언(*`YourClass` 선언*) 후 해당 개체를 사용해야 합니다. 
  
 이에 따라 클래스 선언과 정의를 분리하고 다음 순서대로 작성해야 합니다.
 

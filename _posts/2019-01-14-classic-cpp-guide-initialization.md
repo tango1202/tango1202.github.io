@@ -10,7 +10,7 @@ sidebar:
 
 > * 생성하면서 초기화 하라.
 > * 초기화되지 않은 변수를 사용하지 마라.
-> * 자동 제로 초기화를 활용하지 마라. 나중에 낭패 본다.
+> * 자동 제로 초기화를 활용하지 마라. 낭패볼 수 있다.
 
 > **모던 C++**
 > * (C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.
@@ -22,18 +22,18 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|기본 초기화|`T obj;`|
-|값 초기화|`T obj();`|
-|복사 초기화|`T obj = other;` 또는<br/>`T obj(other);`|
-|생성 후 대입(불필요한 부하)|`T obj;`<br/>`obj = other;`|
-|배열 초기화|`T arr[] = {};`,<br/> `char str[] = "abc";`|
-|구조체 초기화|`struct T {`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`int x;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`int y;`<br/>`};`<br/>`T t = {0, 10};`|
+|[기본 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B8%B0%EB%B3%B8-%EC%B4%88%EA%B8%B0%ED%99%94)|`T obj;`|
+|[값 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94)|`T obj();`|
+|[복사 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94)|`T obj = other;` 또는<br/>`T obj(other);`|
+|[생성 후 대입(*불필요한 부하*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1-%ED%9B%84-%EB%8C%80%EC%9E%85--%ED%95%98%EC%A7%80-%EB%A7%88%EB%9D%BC)|`T obj;`<br/>`obj = other;`|
+|[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94)|`T arr[] = {};`,<br/> `char str[] = "abc";`|
+|[구조체 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B5%AC%EC%A1%B0%EC%B2%B4-%EC%B4%88%EA%B8%B0%ED%99%94)|`struct T {`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`int x;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`int y;`<br/>`};`<br/>`T t = {0, 10};`|
 
-생성 후 대입하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 **예외 안전** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.([swap을 이용한 예외 안전 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
+생성 후 대입하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 **예외 안전** 프로그래밍에도 좋지 않습니다. 생성 후 대입 과정에서 예외가 발생하면 난감해지니까요.(*[swap을 이용한 예외 안전 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고*)
 
 또한, 개체 생성시 초기화를 하지 않으면, 초기화되지 않은 개체를 사용하는 실수를 할 수 있습니다. 그러니 항상 생성과 동시에 초기화 하는 것이 좋습니다.
 
-다음은 초기화 테스트용 클래스입니다. [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90), `int`를 전달받는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)(형변환이 되지 않게 `explicit`로 정의. [명시적 변환 생성 지정자(explicit)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고), [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)를 정의하였습니다.
+다음은 초기화 테스트용 클래스입니다. [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90), `int`를 전달받는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)(*형변환이 되지 않게 `explicit`로 정의. [명시적 변환 생성 지정자(explicit)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고*), [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)를 정의하였습니다.
 
 ```cpp
 class T {
@@ -54,7 +54,7 @@ public:
 T obj; // (O) 기본 생성자 호출
 ```
 
-`T obj1();`와 같이 괄호로 정의하면, 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식됩니다. 
+`T obj1();`와 같이 괄호로 정의하면, 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식되니 주의하세요. 
 
 ```cpp
 T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 선언임
@@ -80,7 +80,7 @@ T val = other; // T val(other); 와 동일합니다.
 
 따라서, 하기는 `T(2);`로 개체 생성 후 `obj3`에 대입하는 것 같은 모양입니다만, `T obj3(T(2));`와 동일합니다.
 
-즉, `T(2)`로 생성한 임시 개체를 복사 생성하는 코드입니다. 하지만 컴파일러 최적화에 따라 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90) 로 생성한 개체를 그냥 `obj3`로 사용하고, 복사 생성자는 호출하지 않을 수 있습니다. 상황에 따라 최적화가 안되면 비효율적인 코드이니 사용 안하시는게 좋습니다.(그냥 `T obj3(2);`로 사용하세요.)
+즉, `T(2)`로 생성한 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 복사 생성하는 코드입니다. 하지만 컴파일러 최적화에 따라 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90) 로 생성한 개체를 그냥 `obj3`로 사용하고, 복사 생성자는 호출하지 않을 수 있습니다. 상황에 따라 최적화가 안되면 비효율적인 코드이니 사용 안하시는게 좋습니다.(*그냥 `T obj3(2);`로 사용하세요.*)
 
 ```cpp
 // int를 전달받는 생성자 호출.
@@ -93,7 +93,7 @@ T obj3 = T(2); // T obj3(T(2)); 와 동일
 # 복사 초기화
 
 복사 초기화는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 인자가 1개인 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출해 줍니다. 인자가 1개인 생성자는 뜻하지 않게 형변환이 될 수 있으므로 `explicit`로 정의하는게 좋습니다.
-([명시적 변환 생성 지정자(`explicit`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고)
+(*[명시적 변환 생성 지정자(`explicit`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고*)
 
 ```cpp
 T other;
@@ -116,7 +116,7 @@ obj = other; // (△) 비권장. 생성하고 대입하지 말고, 완전하게 
 
 # 배열 초기화
 
-배열 정의시 배열의 크기가 유추될 수 있어야 하며, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 할 수 있습니다.([배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고) 
+배열 정의시 배열의 크기가 유추될 수 있도록 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 할 수 있으며, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 할 수 있습니다.(*[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고*) 
 
 ```cpp
 int arr1[3]; // (△) 비권장. int 형 3개 정의. 초기화 되지 않아 비권장 
@@ -145,7 +145,7 @@ EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 
 # 구조체 초기화
 
-구조체는 별도로 값 초기화를 위한 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현하지 않더라도 [중괄호로 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 할 수 있습니다.
+구조체는 별도로 값 초기화를 위한 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현하지 않더라도 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 할 수 있습니다.
 
 ```cpp
 struct T {int x; int y;}; 
@@ -188,15 +188,15 @@ delete ptr1;
 delete ptr2;
 ```
 
-복잡하죠? 복잡하니, 모든 변수를 초기화 한다는 대원칙을 가지고 작성하세요. 개발 초기에서 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)가 없어서 자동 제로 초기화를 활용해서 개발했다가, 누군가 나중에 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 넣어버리면 낭패이고, 디버그 모드와 릴리즈 모드가 결과가 달라도 낭패이니까요.
+복잡하죠? 복잡하니, 모든 변수를 초기화 한다는 대원칙을 가지고 작성하세요. 생성자 없이 자동 제로 초기화를 활용해서 개발했는데, 다른 누군가가 `T* ptr1 = new T;`와 같이 사용한다면 낭패니까요.
 
 |항목|자동 제로 초기화 지원|선언에서 명시적 초기화 지원|권장 초기화 방법|
 |--|:--:|:--:|--|
-|전역 변수|O|O|선언시 초기화|
-|정적 전역 변수|O|O|선언시 초기화|
-|정적 멤버 변수|O|X|사용 비권장. 정적 지역 변수 사용|
-|정적 상수 멤버 변수|X|O|선언시 초기화|
-|개체의 멤버 변수|△|X|[생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/). (GCC 디버그 모드에서는 `0`이 아니어서 △로 표기했습니다. 신뢰할 수 없으니 명시적으로 초기화 하세요.)|
-|정적 지역 변수|O|O|선언시 초기화|
-|지역 변수|X|O|선언시 초기화|
+|[전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)|O|O|선언시 초기화|
+|[정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)|O|O|선언시 초기화|
+|[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)|O|X|사용 비권장. 정적 지역 변수 사용|
+|[정적 상수 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)|X|O|선언시 초기화|
+|개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|△|X|[기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)의 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8). (*`new T;`와 `new T();`가 달라서 △로 표기했습니다. 실수할 소지가 많으니 명시적으로 초기화 하세요.*)|
+|[함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)|O|O|선언시 초기화|
+|[지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)|X|O|선언시 초기화|
 

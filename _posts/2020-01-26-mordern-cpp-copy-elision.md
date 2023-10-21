@@ -16,13 +16,13 @@ sidebar:
 
 1. [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94)
    
-   임시 개체를 그냥 `lvalue`(임시 개체를 전달받는 변수)로 사용합니다.([값 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94) 와 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-) 참고)
+   [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 그냥 `lvalue`([임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 전달받는 변수)로 사용합니다.([값 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94) 와 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-) 참고)
 
 2. [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)
 
     리턴할 개체를 그냥 리턴값을 저장할 변수로 사용합니다.
 
-컴파일러 종류에 따라 다르겠지만, gcc에서는 상기 최적화를 수행하여 불필요한 이동 생성을 생략하고, 생성된 임시 개체를 그냥 사용합니다.
+컴파일러 종류에 따라 다르겠지만, gcc에서는 상기 최적화를 수행하여 불필요한 이동 생성을 생략하고, 생성된 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 그냥 사용합니다.
 
 ```cpp
 class A {};
@@ -69,11 +69,11 @@ A_11 a{A_11{}}; // (X) 컴파일 오류. 이동 생성자가 없음
 A_11 a{A_11{}}; // 컴파일러 최적화로 이동 생성자를 사용하지 않지만, 컴파일을 위해 문법적으로는 이동 생성자가 필요합니다.
 ```
 
-하지만, C++17 부터는 [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 임시 개체가 불필요하게 복사나 이동되지 않음을 문법적으로 보증해 줍니다. 그덕에 상기 경우에 이동 생성자를 억지로 사용하지 않아도 컴파일 오류없이 잘 동작하게 됐습니다.
+하지만, C++17 부터는 [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 불필요하게 복사나 이동되지 않음을 문법적으로 보증해 줍니다. 그덕에 상기 경우에 이동 생성자를 억지로 사용하지 않아도 컴파일 오류없이 잘 동작하게 됐습니다.
 
 # 임시 구체화(Temporary materialization)
 
-C++17 부터 임시 개체인 `prvalue`는 다른 개체를 초기화 하는데에만 사용되며, 다음의 경우만 [임시적으로 구체화](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/#%EC%9E%84%EC%8B%9C-%EA%B5%AC%EC%B2%B4%ED%99%94temporary-materialization)되는 것으로 한정했습니다.
+C++17 부터 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 `prvalue`는 다른 개체를 초기화 하는데에만 사용되며, 다음의 경우만 [임시적으로 구체화](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/#%EC%9E%84%EC%8B%9C-%EA%B5%AC%EC%B2%B4%ED%99%94temporary-materialization)되는 것으로 한정했습니다.
 
 1. `prvalue`를 참조자로 바인딩할때
 
@@ -116,7 +116,7 @@ A Func2() {
 A result = Func2(); // A{}는 result에 구현됩니다. move(Func2()) 하지 마세요.
 ```
 
-즉, 다음 코드에서 `A_17 a{A_17{}};`는 임시 개체인 `A_17{}`가 `a`에 직접 구현되므로, 문법적으로 이동 생성을 사용하지 않습니다. 따라서 C++17 에서는 다음과 같이 이동 생성자를 `delete` 해도 정상적으로 컴파일됩니다.
+즉, 다음 코드에서 `A_17 a{A_17{}};`는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 `A_17{}`가 `a`에 직접 구현되므로, 문법적으로 이동 생성을 사용하지 않습니다. 따라서 C++17 에서는 다음과 같이 이동 생성자를 `delete` 해도 정상적으로 컴파일됩니다.
 
 ```cpp
 class A_17 {

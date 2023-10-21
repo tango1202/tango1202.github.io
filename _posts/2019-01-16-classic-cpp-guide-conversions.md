@@ -9,39 +9,39 @@ sidebar:
 ---
 
 > * [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 실수하기 쉽게 만든다. 명시적으로 형변환하라.
-> * bool 형변환 연산자 정의는 하지 마라. 나아가 모든 타입의 형변환 연산자 정의를 하지 마라. 뜻하지 않게 몰래 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)한다.
+> * [bool 형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%80-bool-%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)는 하지 마라. 나아가 모든 타입의 형변환 연산자 정의를 하지 마라. 뜻하지 않게 몰래 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)한다.
 > * 인자가 1개인 생성자는 `explicit`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하라.
 > * 할 수 있는한 최선을 다하여 형변환하지 마라.
 
 > **모던 C++**
 > * (C++11~) [explicit 형변환 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)가 추가되어 명시적으로 형변환 할 수 있습니다.
-> * (C++11~) [shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)(`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`)을 이용하여 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 관리 개체를 형변환 할 수 있습니다.
+> * (C++11~) [shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)(*`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`*)을 이용하여 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 관리 개체를 형변환 할 수 있습니다.
 > * (C++17~) [shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)에 `reinterpret_pointer_cast()`가 추가되었습니다.
 
 # 개요
 
-|항목|내용|
-|--|--|
-|[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|C언어 잔재. 유사한 타입끼리 변환|
-|명시적 형변환 - 괄호(`(`와 `)`)|C언어 잔재.<br/>`const_cast`,<br/>`static_cast`,<br/>`reinterpret_cast`<br/>의 순서로 형변환|
-|명시적 형변환 - `const_cast`|상수성만 변환|
-|명시적 형변환 - `static_cast`|타입 유사성을 지키며 변환|
-|명시적 형변환 - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.|
-|명시적 형변환 - `reinterpret_cast`|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
-|형변환 연산자 정의|[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 제공하나 암시적 형변환이 됨|
-|`explicit`|[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 되지 않도록 개체 생성자에 지정|
-
 C++언어는  
 
 1. C언어의 특성을 물려받으면서 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 지원하며,
-2. 이를 보완하고자 4종의 명시적 형변환(`const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`)을 제공하고,
+2. 이를 보완하고자 4종의 명시적 형변환(*`const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`*)을 제공하고,
 3. [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 연산자 정의를 제공합니다.
 
-형변환은 타입에 기반한 **코딩 계약** 을 위반하기 때문에 사용하지 않는 것이 좋습니다.(작성자의 의도 인지, 실수인지 판단하기 어려워 집니다.)
+형변환은 타입에 기반한 **코딩 계약** 을 위반하기 때문에 사용하지 않는 것이 좋습니다.(*작성자의 의도인지, 실수인지 판단하기 어렵습니다.*)
 
 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 에 언급되었듯, **잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게** 구현해야 하는데, 형변환을 마구 사용하다 보면, 잘못 사용할 확률이 높기 때문에, 최대한 못쓰게 통제해야 합니다.
 
-형변환이 꼭 필요한 경우라면(이런 경우가 없도록 설계하셔야 겠지만), 별도의 변환 함수를 만들어 의도적으로 호출하게 만드세요. 그래야 추후 코드 분석에 도움을 줄 수 있습니다. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)으로 몰래 형변환되게 한다면, 나중에 해당 위치 찾느라 밤을 새며 고생하게 됩니다.
+형변환이 꼭 필요한 경우라면(*이런 경우가 없도록 설계하셔야 겠지만*), 별도의 변환 함수를 만들어 의도적으로 호출하게 만드세요. 그래야 추후 코드 분석에 도움을 줄 수 있습니다. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)으로 몰래 형변환되게 한다면, 나중에 해당 위치 찾느라 밤을 새며 고생하게 됩니다.
+
+|항목|내용|
+|--|--|
+|[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|C언어 잔재. 유사한 타입끼리 변환|
+|[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) - 괄호(*`(`와 `)`*)|C언어 잔재.<br/>`const_cast`,<br/>`static_cast`,<br/>`reinterpret_cast`<br/>의 순서로 형변환|
+|[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) - `const_cast`|상수성만 변환|
+|[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) - `static_cast`|타입 유사성을 지키며 변환|
+|[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체(*[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체*)만 가능.|
+|[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) - `reinterpret_cast`|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
+|[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)|[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 제공하나 암시적 형변환이 됨|
+|[explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)|[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 되지 않도록 개체 생성자에 지정|
 
 # 암시적 형변환
 
@@ -105,7 +105,7 @@ C++언어는
 
 **C언어 스타일 형변환-`()`**
 
-암시적으로 형변환 되지 않는다면, 괄호(`(`와 `)`)로 C언어 스타일로 명시적으로 형변환(`const_cast`, `static_cast`, `reinterpret_cast` 의 순서) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 `const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
+암시적으로 형변환 되지 않는다면, 괄호(*`(`와 `)`*)로 C언어 스타일로 명시적으로 형변환(*`const_cast`, `static_cast`, `reinterpret_cast` 의 순서*) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 `const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
 
 ```cpp
 {
@@ -122,7 +122,7 @@ C++언어는
 
 **`const_cast`**
 
-`const_cast`로 포인터나 참조자의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 뗄 수 있습니다.(그러나 **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 위반이니 하지 마세요.)
+`const_cast`로 포인터나 참조자의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 뗄 수 있습니다.(*그러나 **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 위반이니 하지 마세요.*)
 
 ```cpp
 {
@@ -139,7 +139,7 @@ C++언어는
 
 **`static_cast`**
 
-`static_cast`로 암시적으로 형변환되지 않는 것들을 명시적으로 할 수 있습니다.(하지만 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.)
+`static_cast`로 암시적으로 형변환되지 않는 것들을 명시적으로 할 수 있습니다.(*하지만 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.*)
 
 ```cpp
 {
@@ -178,7 +178,7 @@ C++언어는
 
 **`dynamic_cast`**
 
-`dynamic_cast`는 상속 관계가 있는 개체간의 변환을 합니다.([Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.) 변환에 실패하면, 포인터 유형인 경우 널(`NULL`)을 리턴하고, 참조 유형인 경우 [bad_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 예외를 발생시킵니다. 
+`dynamic_cast`는 상속 관계가 있는 개체간의 변환을 합니다.(*[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.*) 변환에 실패하면, 포인터 유형인 경우 널(`NULL`)을 리턴하고, 참조 유형인 경우 [bad_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 예외를 발생시킵니다. 
 
 ```cpp
 class Base {
@@ -205,7 +205,7 @@ EXPECT_TRUE(other == NULL);
 
 **`reinterpret_cast`**
 
-`reinterpret_cast`는 상속관계를 무시하고 그냥 변환해 버릴 뿐만 아니라, 정수를 포인터로 변환하기까지 합니다.(하지만, [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)은 지켜줍니다. 아무튼 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.)
+`reinterpret_cast`는 상속관계를 무시하고 그냥 변환해 버릴 뿐만 아니라, 정수를 포인터로 변환하기까지 합니다.(*하지만, [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)은 지켜줍니다. 아무튼 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.*)
 
 ```cpp
 {
@@ -339,7 +339,7 @@ EXPECT_TRUE(status == true);
 
 # 명시적 변환 생성 지정자(explicit)
 
-특별히 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)에 인자가 1개만 있으면, 인자 타입에서 개체 타입으로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 명시적 형변환이 가능해 집니다.([암시적인 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 하므로 형변환 생성자라고도 합니다.)
+특별히 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)에 인자가 1개만 있으면, 인자 타입에서 개체 타입으로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 명시적 형변환이 가능해 집니다.(*[암시적인 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 하므로 형변환 생성자라고도 합니다.*)
 
 ```cpp
 class T {};
@@ -379,7 +379,7 @@ U u5; // 기본 생성자로 생성
 u5 = t; // (X) 컴파일 오류
 ```
 
-컴파일 오류를 발생시켜 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 못하게 해버렸으니, 좀더 강력한 **코딩 계약** 이 되었습니다.(명시적 형변환도 못하게 만들고 싶은데, 문법의 한계로 방법이 없네요. 좀 아쉽긴 합니다.)
+컴파일 오류를 발생시켜 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 못하게 해버렸으니, 좀더 강력한 **코딩 계약** 이 되었습니다.(*명시적 형변환도 못하게 만들고 싶은데, 문법의 한계로 방법이 없네요. 좀 아쉽긴 합니다.*)
 
 # 코딩 계약을 무시하는 암시적 형변환
 

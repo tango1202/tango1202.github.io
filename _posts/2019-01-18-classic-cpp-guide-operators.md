@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되지 않도록 이항 산술 연산자(`a = a + b`)보다는 산술형 대입 연산자(`a += b`)를 사용하라.
+> * [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되지 않도록 이항 산술 연산자(*`a = a + b`*)보다는 산술형 대입 연산자(*`a += b`*)를 사용하라.
 > * 후위형 증감 연산자는 헷갈리고, 쓸데없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되니 사용하지 마라. 
 > * 비교 연산 오버로딩은 `<`을 활용해서 구현하라.
 
@@ -21,7 +21,7 @@ sidebar:
 
 # 복사 대입 연산자
 
-[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)는 `=` 와 같은 기본 복사 대입 연산자와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(`a += b` 는 `a = a + b` 와 결과가 같습니다.) 
+[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)는 `=` 와 같은 기본 복사 대입 연산자와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(*`a += b` 는 `a = a + b` 와 결과가 같습니다.*) 
 
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
@@ -60,16 +60,17 @@ sidebar:
 
 # 증감 연산자
 
+
+전위형 연산의 경우 값을 먼저 증감시킨뒤 증감한 값을 리턴합니다만, 후위형 연산의 경우는 값을 증감 시키기 전의 값을 리턴합니다.
+
+후위형의 이러한 특징은 불필요한 복사 부하가 생길 뿐만아니라, 분석을 헷갈리게 할 수 있기 때문에(*의도인지, 실수인지*), 후위형 보다는 전위형 증감 연산자를 사용하는게 좋습니다.
+
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |전위 증가|`++a`|O|`T& T::operator ++();`|`T& operator ++(T& a);`|
 |전위 감소|`--a`|O|`T& T::operator --();`|`T& operator --(T& a);`|
 |후위 증가|`a++`|O|`const T T::operator ++(int);`|`const T operator ++(T& a, int);`|
 |후위 감소|`a--`|O|`const T T::operator --(int);`|`const T operator --(T& a, int);`|
-
-전위형 연산의 경우 값을 먼저 증감시킨뒤 증감한 값을 리턴합니다만, 후위형 연산의 경우는 값을 증감 시키기 전의 값을 리턴합니다.
-
-후위형의 이러한 특징은 불필요한 복사 부하가 생길 뿐만아니라, 분석을 헷갈리게 할 수 있기 때문에(의도인지, 실수인지), 후위형 보다는 전위형 증감 연산자를 사용하는게 좋습니다.
 
 ```cpp
 // 전위형 - 증감시킨 값을 리턴
@@ -100,7 +101,7 @@ NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 평가합니다.
 
 # 비교 연산자
 
-대소 비교를 합니다.
+대소 비교를 합니다. 실수 비교 연산의 경우는 오차 범위를 고려해야 합니다.(*[실수 비교](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%EC%8B%A4%EC%88%98-%EB%B9%84%EA%B5%90) 참고*) 
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
@@ -111,8 +112,6 @@ NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 평가합니다.
 |이하|`a <= b`|O|`bool T::operator <=(const T2& b) const;`|`bool operator <=(const T& a, const T2& b);`|
 |이상|`a >= b`|O|`bool T::operator >=(const T2& b) const;`|`bool operator >=(const T& a, const T2& b);`|
 
-실수 비교 연산의 경우는 오차 범위를 고려해야 합니다.([실수 비교](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%EC%8B%A4%EC%88%98-%EB%B9%84%EA%B5%90) 참고) 
-
 # 대소 비교의 논리 조건
 
 대소 비교는 하기 논리 조건을 만족해야 합니다.
@@ -120,10 +119,10 @@ NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 평가합니다.
 1. `x < x` 는 거짓
 2. `x < y` 이고 `y < z` 이면, `x < z` 
 3. `!(x < y)` 이면, `(y <= x)` 
-4. `x < y` 도 아니고 `y < x` 도 아니면, `x` 는 `y` 와 동등함(equivalence) (동등관계) 
+4. `x < y` 도 아니고 `y < x` 도 아니면, `x` 는 `y` 와 동등함(*equivalence. 동등관계*) 
 5. `x equivalence y` 이고 `y equivalence z` 이면, `x equivalence z`
 
-상기 논리 조건이 모두 만족한다면(만족해야만 합니다.), 비교 연산들은 모두 `<` 로 표현할 수 있습니다.
+상기 논리 조건이 모두 만족한다면(*만족해야만 합니다.*), 비교 연산들은 모두 `<` 로 표현할 수 있습니다.
 
 ```cpp
 int x = 10;
@@ -160,6 +159,8 @@ EXPECT_TRUE(!(x < y)); // x >= y
 
 # 형변환 연산자
 
+형변환은 최대한 안하는 것이 좋습니다. 형변환의 자세한 내용은 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 을 참고하세요.
+
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |C언어 스타일|`(T)a`|O|`operator T() const;`|X|
@@ -167,8 +168,6 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |타입 유사성을 지키며 변환|`static_cast`|X|X|X|
 |타입 유사성을 지키며 변환. ([Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98) 지원)|`dynamic_cast`|X|X|X|
 |상속관계를 무시하고 변환|`reinterpret_cast`|X|X|X|
-
-형변환은 최대한 안하는 것이 좋습니다. 형변환의 자세한 내용은 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 을 참고하세요.
 
 # 접근 연산자
 
@@ -181,18 +180,18 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |포인터 개체의 멤버|`a->b`|O|`R* T::operator ->();`<br/>`const R* T::operator ->() const;`|X|
 |개체 멤버에 대한 포인터|`a.*b`|X|X|X|
 |포인터인 개체 멤버에 대한 포인터|`a->*b`|O|`R& T::operator ->*(S b);`<br/>`const R& T::operator ->*(S b) const;`|`R& operator ->*(T a, S b);`|
-|범위 확인 연산자(네임스페이스 멤버)|`namespaceName::member`|X|X|X|
-|범위 확인 연산자(전역 멤버)|`::member`|X|X|X|
-|범위 확인 연산자(개체의 정적 멤버, 열거형)|`className::member`|X|X|X| 
-|범위 확인 연산자(개체 멤버)|`className::member`|X|X|X| 
+|범위 확인 연산자(*네임스페이스 멤버*)|`namespaceName::member`|X|X|X|
+|범위 확인 연산자(*전역 멤버*)|`::member`|X|X|X|
+|범위 확인 연산자(*개체의 정적 멤버, 열거형*)|`className::member`|X|X|X| 
+|범위 확인 연산자(*개체 멤버*)|`className::member`|X|X|X| 
 
 # 함수 호출 연산자
+
+괄호 표현식으로 사용할 수 있는 특수한 표현식입니다. 표준 템플릿 라이브러리(*Standard Template Library, STL*)의 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 처럼 사용할 수 있습니다.
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |함수 호출 연산자|`a(a1, a2)`|O|`R T::operator ()(Param1 &a1, Param2 &a2, ...);`|X|
-
-괄호 표현식으로 사용할 수 있는 특수한 표현식입니다. 표준 템플릿 라이브러리(Standard Template Library, STL)의 함수자 처럼 사용할 수 있습니다.([함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 참고)
 
 ```cpp
 class T {
@@ -211,7 +210,7 @@ EXPECT_TRUE(t.operator ()(10, 20) == 30); // t(10, 20) 호출과 동일. operato
 |--|--|:--:|:--:|:--:|
 |콤마 연산자|`a, b`|O|`T2& T::operator ,(T2 &b);`|`T2& operator ,(const T &a, T2 &b);`|
 
-`a`표현식을 평가하고, `b`표현식을 평가합니다. (`a, b, c, d`와 같이 나열할 수 있습니다.) 코드 분석이 어려워 권장하지 않습니다.
+`a`표현식을 평가하고, `b`표현식을 평가합니다. (*`a, b, c, d`와 같이 나열할 수 있습니다.*) 코드 분석이 어려워 권장하지 않습니다.
 
 ```cpp
 class T {
@@ -229,11 +228,11 @@ EXPECT_TRUE(T::f((++i, arr[i])) == 2);
 
 # 조건 연산자
 
+`a`가 참인 경우 `b`, 거짓인 경우 `c`를 평가합니다.
+
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |조건 연산자|`a ? b : c`|X|X|X|
-
-`a`가 참인 경우 `b`, 거짓인 경우 `c`를 평가합니다.
 
 ```cpp
 int result = true ? 10 : 20;
@@ -248,7 +247,9 @@ EXPECT_TRUE(result == 10);
 2. 구조체이거나 클래스이면 `operator new(void*)`를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
 3. 메모리 주소를 해당 타입으로 형변환하여 리턴
 
-즉 `new`와 `operator new`의 역할은 다릅니다. `operator new`는 C언어의 `malloc`과 유사하다고 할 수 있습니다.
+즉 `new`와 `operator new`의 역할은 다릅니다. `operator new`는 C언어의 [malloc()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)과 유사하다고 할 수 있습니다.
+
+`operator new`와 `operator delete`와 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)에 대해서는 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
 
 
 |항목|내용|사용예|오버로딩|개체 멤버 정의|전역 정의|
@@ -257,18 +258,16 @@ EXPECT_TRUE(result == 10);
 |`operator delete(void*)`|개체 소멸|`delete p;`|O|`void operator delete(void* ptr, std::size_t sz)`|`void operator delete(void* ptr, std::size_t sz)`|
 |`operator new[](std::size_t)`|배열 생성시 사용|`T* arr = new T[10];`|O|`void* operator new[](std::size_t sz);`|`void* operator new[](std::size_t sz);`|
 |`operator delete[](void*)`|배열 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
-|`operator new(void*)`|Placement New(위치 지정 생성, 특정 메모리 위치에 개체 생성자 호출)|`T* p = new(buf) T;`|X|X|X|
-
-`operator new`와 `operator delete`와 Placement New(위치 지정 생성)에 대해서는 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
+|`operator new(void*)`|[위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1). 특정 메모리 위치에 개체 생성자 호출|`T* p = new(buf) T;`|X|X|X|
 
 # sizeof 연산자
+
+개체의 용량을 리턴합니다. 단 참조자의 경우 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의되어 있습니다.(*`sizeof(T&) == sizeof(T)`, [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 언급*)
 
 |항목|내용|
 |--|--|
 |`sizeof(개체명)`|개체의 용량 리턴|
 |`sizeof(타입명)`|타입이나 클래스명, 구조체명, 공용체명의 용량 리턴|
-
-개체의 용량을 리턴합니다. 단 참조자의 경우 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의되어 있습니다.(`sizeof(T&) == sizeof(T)`, [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 언급)
 
 ```cpp
 short i;
@@ -294,20 +293,19 @@ EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 �
 
 # typeid 연산자
 
-개체의 타입 비교를 위해 사용합니다.(`<typeinfo>`를 `include`해야 합니다.)
+개체의 타입 비교를 위해 사용합니다.(*`<typeinfo>`를 `include`해야 합니다.*)
 
 |항목|내용|
 |--|--|
 |`typeid(개체명)`|개체 타입 정보 리턴|
 |`typeid(타입명)`|타입이나 클래스명, 구조체명, 공용체명의 타입 정보 리턴|
 
-하기 예는 상속관계에서 가상 함수가 없는 경우와 있는 경우에 따라 `typeid` 동작을 보여 줍니다.([Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)에 따라 동작이 다릅니다.)
+[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체인지 아닌지에 따라 동작이 다릅니다.
 
-1. [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 경우
-    정의한 개체 타입을 리턴합니다.
-
-2. [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 경우
-    참조하는 개체 타입을 리턴합니다.
+|항목|내용|
+|--|--|
+|[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 경우|정의한 개체 타입을 리턴합니다.|
+|[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 경우|참조하는 개체 타입을 리턴합니다.|
 
 ```cpp
 // 가상 함수 없음
@@ -359,9 +357,9 @@ class Derived2 : public Base2 {};
 
 |순위|연산자|
 |--|--|
-|1|`::`(범위 확인 연산자)|
-|2|`a++`, `a--`, `()`(함수 호출 연산자), `a[]`, `.`, `->`|
-|3|`++a`, `--a`, `+a`, `-a`, `!`, `~`, `(int)`(C언어 스타일 형변환), `a`, `&a`, `sizeof`, `new`, `new[]`, `delete`, `delete[]`|
+|1|`::`(*범위 확인 연산자*)|
+|2|`a++`, `a--`, `()`(*함수 호출 연산자*), `a[]`, `.`, `->`|
+|3|`++a`, `--a`, `+a`, `-a`, `!`, `~`, `(int)`(*C언어 스타일 형변환*), `a`, `&a`, `sizeof`, `new`, `new[]`, `delete`, `delete[]`|
 |4|`.*`, `->*`|
 |5|`a * b`, `a / b`, `a %b`|
 |6|`a + b`, `a - b`|
@@ -382,7 +380,7 @@ class Derived2 : public Base2 {};
 
 **복사 대입 연산자**
 
-하기는 `=` 연산자를 오버로딩한 예입니다. `T&` 와 같이 자기 자신의 참조를 리턴하는데요, 이는 `t1 = t2 = t2;`과 같이 연달아 대입하는 경우를 지원하고, 복사 부하를 줄이기 위함입니다.(예외에 안전한 복사 대입 연산자를 오버로딩 하는 방법은 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)를 참고하세요.)
+하기는 `=` 연산자를 오버로딩한 예입니다. `T&` 와 같이 자기 자신의 참조를 리턴하는데요, 이는 `t1 = t2 = t2;`과 같이 연달아 대입하는 경우를 지원하고, 복사 부하를 줄이기 위함입니다.(*예외에 안전한 복사 대입 연산자를 오버로딩 하는 방법은 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)를 참고하세요.*)
 
 ```cpp
 class T {
@@ -469,9 +467,9 @@ EXPECT_TRUE(t3.GetVal() == 20);
 
 **`+` 보다는 `+=`이 좋은 이유**
 
-산술형 대입 연산자가 참조자 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`, 값 타입)을 리턴합니다. 이는 연산의 결과값을 리턴해야 하기 때문입니다.(내부적으로 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성될 수밖에 없습니다.) 
+산술형 대입 연산자가 참조자 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`, 값 타입)을 리턴하는데요, 이는 연산의 결과값을 저장할 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 있어야 하기 때문이죠. 
 
-따라서, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 생성 부하가 없도록 산술형 대입 연산자를 사용하는 코딩 습관을 가지시는게 좋습니다.([임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 생성 부하가 큰 경우에는 단단한 **코딩 계약**을 위해 `+=`만 구현하고, `+`를 구현하지 않아야 합니다.)
+따라서, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 생성 부하가 없도록 산술형 대입 연산자를 사용하는 코딩 습관을 가지시는게 좋습니다.
 
 ```cpp
 T t1(10);
@@ -516,7 +514,7 @@ inline T operator +(int left, const T& right) {
 
 또한 후위형은 
 
-1. 증감 시키기 전의 값을 리턴하기 위해 현재값을 복제하며,(후위형은 분석을 헷갈리게 할 뿐 아니라, 복사 부하 까지 있습니다. 이러한 특성 때문에 후위형 보다는 전위형을 쓰시는게 좋습니다.)
+1. 증감 시키기 전의 값을 리턴하기 위해 현재값을 복제하며,(*후위형은 분석을 헷갈리게 할 뿐 아니라, 복사 부하 까지 있습니다. 이러한 특성 때문에 후위형 보다는 전위형을 쓰시는게 좋습니다.*)
 2. `t++++;`처럼 사용할 수 없도록 `const T`를 리턴합니다.
 
 ```cpp
@@ -552,7 +550,7 @@ EXPECT_TRUE(t.GetVal() == 12);
 
 **비교 연산자**
 
-비교 연산자는 `<` 만 오버로딩하고, `==`, `!=`, `<`, `>`, `<=`, `>=`는 `<`로 부터 구현하는게 좋습니다.(대소 비교의 논리 조건 참고)
+비교 연산자는 `<` 만 오버로딩하고, `==`, `!=`, `<`, `>`, `<=`, `>=`는 `<`로 부터 구현하는게 좋습니다.(*대소 비교의 논리 조건 참고*)
 
 ```cpp
 class T {

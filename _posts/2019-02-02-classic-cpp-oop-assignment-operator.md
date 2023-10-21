@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, 암시적 복사 대입 연산자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 스마트 포인터([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등)를 사용하고, 필요없다면 못쓰게 만들어라.
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 1개라면, 암시적 복사 대입 연산자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 스마트 포인터(*[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등*)를 사용하고, 필요없다면 못쓰게 만들어라.
 > * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 2개 이상이라면, 복사 대입 연산자를 예외에 안전하도록 `swap`으로 구현하고, 필요없다면 못쓰게 만들어라.
 
 > **모던 C++**
-> * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 임시 개체 대입시 속도가 향상되었습니다.
+> * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 대입시 속도가 향상되었습니다.
 
  # 개요
 
@@ -68,8 +68,8 @@ T& operator =(const T& other) {
 
 이러한 문제를 해결하기 위해, 
 
-1. 임시 개체를 만든 뒤,
-2. `swap`을 이용해 `this`와 임시 개체를 바꿔치기하여,
+1. [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 만든 뒤,
+2. `swap`을 이용해 `this`와 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 바꿔치기하여,
 
 예외에 안전한 복사 대입 연산자를 구현할 수 있습니다.
 
@@ -119,8 +119,8 @@ EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 
 **`swap`의 복사 부하**
 
-임시 개체를 만들고 버리는 것은 미세한 차이는 있겠으나 멤버별 복사 대입 연산과 동등한 부하입니다.
-하지만, `swap`의 과정에서 복사 대입이 일어나므로 대용량의 자료 구조라면 심각한 복사 부하가 있을 수 있습니다.(`int`같은 기본 자료형은 복사 부하가 거의 없다고 보셔도 됩니다.)
+[임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 만들고 버리는 것은 미세한 차이는 있겠으나 멤버별 복사 대입 연산과 동등한 부하입니다.
+하지만, `swap`의 과정에서 복사 대입이 일어나므로 대용량의 자료 구조라면 심각한 복사 부하가 있을 수 있습니다.(*`int`같은 기본 자료형은 복사 부하가 거의 없다고 보셔도 됩니다.*)
 
 ```cpp
 class T {
@@ -146,7 +146,7 @@ std::swap(t1, t2); // 복사 생성 1회 복사 대입 2회
 1. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)별 복사 대입 방식을 사용하면, 복사 대입 연산이 1회 일어나지만, 
 2. `swap`을 이용하면, 복사 생성 1회와 복사 대입 연산 2회가 발생하는 걸 알 수 있습니다. 
 
-보통 `swap`은 다음과 같이 임시 개체를 만들고, 각각 값을 복사 대입하기 때문에 복사 대입 연산에서 복사 부하가 있을 수 밖에 없습니다. 또한 복사 대입 과정에서 또다른 예외가 더 발생할 수도 있기 때문에 좋지 않습니다. 
+보통 `swap`은 다음과 같이 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 만들고, 각각 값을 복사 대입하기 때문에 복사 대입 연산에서 복사 부하가 있을 수 밖에 없습니다. 또한 복사 대입 과정에서 또다른 예외가 더 발생할 수도 있기 때문에 좋지 않습니다. 
 
 ```cpp
 swap(T& left, T& right) {
@@ -162,7 +162,7 @@ swap(T& left, T& right) {
 
 그러나, 아주 많은 기본 자료형을 사용하거나 동적으로 할당하는 자료를 가지고 있다면, 복사 부하도 크고, 예외 발생 확률도 높습니다.
 
-이럴 경우 `swap`으로 복사 대입 연산자를 구현하려면 비교적 복사 부하가 적고, 예외 발생 확률도 낮은 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 작성해야 합니다.(포인터 복사는 8byte끼리의 복사이므로 복사 부하가 적고, 예외 발생 확률도 낮습니다.)
+이럴 경우 `swap`으로 복사 대입 연산자를 구현하려면 비교적 복사 부하가 적고, 예외 발생 확률도 낮은 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 작성해야 합니다.(*포인터 복사는 8byte끼리의 복사이므로 복사 부하가 적고, 예외 발생 확률도 낮습니다.*)
 
 다음 예제에서
 
@@ -170,7 +170,7 @@ swap(T& left, T& right) {
 2. `Big`의 복사 생성자와 복사 대입 연산자에 메시지를 출력해서 복사 부하를 확인합니다.
 3. `T`는 `Big`을 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 관리합니다.
 4. [포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81) 이 없도록 `T`의 복사 생성자에서 `Big`을 복제하고 소멸자에서 `delete` 합니다.
-5. 복사 대입 연산자는 임시 개체를 만들고 `swap`으로 구현합니다.
+5. 복사 대입 연산자는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 만들고 `swap`으로 구현합니다.
 6. `swap`은 [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)들끼리 교체하여 복사 부하를 줄입니다.
 
 ```cpp
@@ -233,13 +233,13 @@ t2 = t1; // (O) swap 버전 복사 대입 연산자 호출
 
 EXPECT_TRUE(t2.GetBig()->GetVal() == 10);
 ```
-하기는 실행 결과 입니다. 복사 대입 연산시 임시 개체(`temp`)를 생성하느라 복사 생성자(`T(const T& other)`) 에서 `Big` 개체 1개를 복사 생성한 것(멤버별 복사 대입에서와 거의 동등한 부하입니다.) 외에는 다른 복사 부하가 없습니다.
+하기는 실행 결과 입니다. 복사 대입 연산시 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)(`temp`)를 생성하느라 복사 생성자(`T(const T& other)`) 에서 `Big` 개체 1개를 복사 생성한 것(*멤버별 복사 대입에서와 거의 동등한 부하입니다.*) 외에는 다른 복사 부하가 없습니다.
 
 ```cpp
 Big::Big(const Big& other)
 ```
 
- 임시 개체(`temp`)에서 `new`된 `Big`개체들은 `this`에 포인터 복사되고, `this`가 관리하던 `Big`개체들은 임시 개체에 전달된 후 버려집니다. 따라서 `swap`으로 인한 복사는 포인터 복사(8byte 복사) 뿐이므로, 복사 부하는 거의 없다고 보셔도 무방합니다.
+ [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)(`temp`)에서 `new`된 `Big`개체들은 `this`에 포인터 복사되고, `this`가 관리하던 `Big`개체들은 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)에 전달된 후 버려집니다. 따라서 `swap`으로 인한 복사는 포인터 복사(*8byte 복사*) 뿐이므로, 복사 부하는 거의 없다고 보셔도 무방합니다.
 
 즉, [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 정의한 개체의 복사 대입 연산자를 `swap`으로 구현하면,
 
@@ -401,9 +401,9 @@ public:
 }
 ```
 
-혹은 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 무조건 1개로 유지하는 방법도 있습니다.([PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/) 참고)
+혹은 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 무조건 1개로 유지하는 방법도 있습니다.(*[PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/) 참고*)
 
 # 복사 대입 연산자 사용 제한
 
-[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)의 경우와 마찬가지로, 만약 복사 대입 연산자가 필요없다면, 암시적 복사 대입 연산자도 사용할 수 없도록 `private` 로 만드는게 좋습니다.([`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/) 참고) 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 복사 대입 연산자를 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
+[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)의 경우와 마찬가지로, 만약 복사 대입 연산자가 필요없다면, 암시적 복사 대입 연산자도 사용할 수 없도록 `private` 로 만드는게 좋습니다.(*[`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/) 참고*) 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 복사 대입 연산자를 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
 

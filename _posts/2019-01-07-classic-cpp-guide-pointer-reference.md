@@ -8,12 +8,12 @@ sidebar:
     nav: "docs"
 ---
 
-> * 포인터 보다는 참조자를 사용하라.(널검사가 필요없다.)
-> * [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 참조자를 리턴하지 마라.(이미 소멸된 개체다.)
+> * 포인터 보다는 참조자를 사용하라.(*널검사가 필요없다.*)
+> * [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 참조자를 리턴하지 마라.(*이미 소멸된 개체다.*)
 
 > **모던 C++**
 > * (C++11~) [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.
-> * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [우측값 참조(`&&`)](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 임시 개체 대입시 속도가 향상되었습니다.
+> * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [우측값 참조(`&&`)](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 대입시 속도가 향상되었습니다.
 
 # 개요
 
@@ -21,8 +21,8 @@ sidebar:
 
 1. 대상 개체가 너무 커서 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)나 [리턴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)시 복사 부하가 너무 큰 경우
 2. 원본 데이터를 값을 확인 또는 수정하고 싶은 경우
-3. 함수 자체를 전달하고 싶은 경우([함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
-4. 부모 개체를 통해 자식 개체를 사용하고 싶은 경우([다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/) 참고)
+3. 함수 자체를 전달하고 싶은 경우(*[함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고*)
+4. 부모 개체를 통해 자식 개체를 사용하고 싶은 경우(*[다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/) 참고*)
 
 포인터는 `&`로 주소값을 얻고, `*`로 실제값에 접근합니다.
 
@@ -48,7 +48,7 @@ EXPECT_TRUE(r == 30 && x == 30);
 |--|--|--|
 |정의|개체나 함수의 주소값 저장|개체나 함수의 별칭|
 |nullable|가능|불가능|
-|용량|32bit : 4byte,<br/>64bit : 8byte|참조하는 개체의 별칭으로서 해당 용량은 스펙에 정의되지 않음.<br/>다만, `sizeof()`시 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의됨.(`sizeof(T&) == sizeof(T)`)|
+|용량|32bit : 4byte,<br/>64bit : 8byte|참조하는 개체의 별칭으로서 해당 용량은 스펙에 정의되지 않음.<br/>다만, `sizeof()`시 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의됨.(*`sizeof(T&) == sizeof(T)`*)|
 |초기화|생성하면서 초기화,<br/>생성후 초기화 가능|생성하면서 초기화만 가능|
 |값 변경|다른 포인터로 변경 가능<br/>가리키는 개체의 실제값 변경 가능|다른 참조자로 변경 불가능<br/>참조하는 개체의 실제값 변경 가능|
 

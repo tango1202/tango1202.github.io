@@ -13,7 +13,8 @@ sidebar:
 > * 컴파일러 최적화가 쉽도록, RVO가 쉽도록, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하라.
 > * 다형적인 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
 > * 리턴 타입과 인자 타입은 값을 사용할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 사용할 것인지, [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
-> * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(ADL(Argument-dependent lookup) 또는 Koenig 검색)하는 원리를 이해하라.
+> * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(*ADL(Argument-dependent lookup) 또는 Koenig 검색*)하는 원리를 이해하라.
+> * 함수에 전달하는 인수는 순서대로 호출되지 않는다. 컴파일러 마음이다.
 
 > **모던 C++**
 > * (C++11~) 함수 인자에 의존하여 리턴 타입을 결정하는 [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다. 
@@ -32,11 +33,11 @@ sidebar:
 
 함수는 다음 목적을 위해 만듭니다.
 
-1. 함수 코드 재활용(코드 중복 제거) 
+1. 함수 코드 재활용(*코드 중복 제거*) 
 2. 함수 인자와의 타입에 기반한 **코딩 계약**
 3. 디버깅 편의성
 
-함수 정의의 일반적인 형태는 하기와 같습니다.(`[]`인 부분은 옵션입니다.)
+함수 정의의 일반적인 형태는 하기와 같습니다.(*`[]`인 부분은 옵션입니다.*)
 
 ```cpp
 return_type function_name(parameter_list) [const] [throw(exception_list)] {}
@@ -46,8 +47,8 @@ return_type function_name(parameter_list) [const] [throw(exception_list)] {}
 |--|--|
 |`return_type`|함수 결과의 타입. 배열은 안됨|
 |`parameter_list`|인자 목록|
-|`[const]`|멤버 함수인 경우 개체를 수정하지 않음([상수 한정자(const), 변경 가능 지정자(mutable), 최적화 제한 한정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 참고)
-|`[throw(exception-list)]`|함수가 발생하는 예외 사양.<br/>나열된 예외 이외에는 `unexpected_handler` 로 분기함. 사용하지 말 것.([동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고)|
+|`[const]`|멤버 함수인 경우 개체를 수정하지 않음(*[상수 한정자(const), 변경 가능 지정자(mutable), 최적화 제한 한정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 참고*)
+|`[throw(exception-list)]`|함수가 발생하는 예외 사양.<br/>나열된 예외 이외에는 `unexpected_handler` 로 분기함. 사용하지 말 것.(*[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고*)|
 
 # 함수 포인터
 
@@ -71,9 +72,9 @@ p = f; // 함수 포인터에 f 함수 대입. p = &f; 와 동일
 p(10); // f 함수 실행. (*p)(10); 과 동일
 ```
 
-함수 포인터는 **의존성 주입([의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고)** 을 활용하여, 원하는 알고리즘으로 손쉽게 변경하거나, [제어의 역전 원칙](https://tango1202.github.io/principle/principle-inversion-of-control/) 에 따라 프레임워크에서 제어를 통제하고자 할때 사용할 수 있습니다.
+함수 포인터는 **의존성 주입(*[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고*)** 을 활용하여, 원하는 알고리즘으로 손쉽게 변경하거나, [제어의 역전 원칙](https://tango1202.github.io/principle/principle-inversion-of-control/) 에 따라 프레임워크에서 제어를 통제하고자 할때 사용할 수 있습니다.
 
-예를 들어 계산기 프로그램을 만들기 위해 `Button`을 만든다고 합시다. `Button`은 `Click`시 버튼에 할당된 연산(더하기, 빼기)을 수행하는 역할만 하려고 합니다. 이럴 경우 연산 행위를 수행하는 함수를 함수 포인터로 `Button`에 전달하고, `Button`은 `Click`시 함수 포인터를 호출해 주면 됩니다.
+예를 들어 계산기 프로그램을 만들기 위해 `Button`을 만든다고 합시다. `Button`은 `Click`시 버튼에 할당된 연산(*더하기, 빼기*)을 수행하는 역할만 하려고 합니다. 이럴 경우 연산 행위를 수행하는 함수를 함수 포인터로 `Button`에 전달하고, `Button`은 `Click`시 함수 포인터를 호출해 주면 됩니다.
 
 ```cpp
 typedef int (*Func)(int, int); // 함수 포인터 typedef
@@ -105,7 +106,7 @@ EXPECT_TRUE(minusButton.Click(10, 20) == -10);
 
 ```
 
-상기의 사례는 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하거나 **의존성 주입([의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고)** 을 활용해서도 구현 할 수 있습니다.
+상기의 사례는 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하거나 **의존성 주입(*[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고*)** 을 활용해서도 구현 할 수 있습니다.
 
 
 **멤버 함수 포인터**
@@ -179,7 +180,7 @@ class T {
 };
 ```
 
-특별히 함수의 지역 변수를 참조자로 리턴하면 오류가 발생하니 주의하시기 바랍니다.([Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고)
+특별히 함수의 지역 변수를 참조자로 리턴하면 오류가 발생하니 주의하시기 바랍니다.(*[Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고*)
 
 **리턴 타입**
 
@@ -222,14 +223,14 @@ T t2(t1.f()); // T t2 = t1.f(); 와 동일
 
 상기에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 3회, `t2`를 생성하면서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 전달받는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
 
-GCC에서는 하기 2개만 실행됩니다.(컴파일러 최적화 방식에 따라 다를 수 있습니다.)
+GCC에서는 하기 2개만 실행됩니다.(*컴파일러 최적화 방식에 따라 다를 수 있습니다.*)
 
 ```
 RVO -> T::T()
 RVO -> T::T()
 ```
 
-이는 리턴값인 `result`가 `t2`에 전달되므로, 괜히 생성하고 전달하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 Return Value Optimization(RVO) 라고 합니다. 
+이는 리턴값인 `result`가 `t2`에 전달되므로, 괜히 생성하고 전달하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 Return Value Optimization(*RVO*) 라고 합니다. 
 
 컴파일러마다 최적화하는 방법이 다를 수 있기 때문에, 컴파일러가 최적화를 쉽게 할 수 있도록 리턴값을 명시적으로 변수로 만들기 보다는,
 
@@ -257,7 +258,7 @@ void f(int a, int b); // (O)
 
 **이름이 없는 인자**
 
-함수 정의부에서 사용하지 않는다면, 그리고 함수 포인터 선언 용도라면 인자명을 생략할 수 있습니다. 또한 템플릿 함수 구현시 오버로딩을 위해 생략할 수 있습니다.([타입 처리 방법 공통화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/#%ED%83%80%EC%9E%85-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95-%EA%B3%B5%ED%86%B5%ED%99%94) 참고)
+함수 정의부에서 사용하지 않는다면, 그리고 함수 포인터 선언 용도라면 인자명을 생략할 수 있습니다. 또한 템플릿 함수 구현시 오버로딩을 위해 생략할 수 있습니다.(*[타입 처리 방법 공통화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/#%ED%83%80%EC%9E%85-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95-%EA%B3%B5%ED%86%B5%ED%99%94) 참고*)
 
 ```cpp
 void f(int, int); // (O)
@@ -299,7 +300,7 @@ void f(); // (O)
 void f(void); // (O)
 ```
 
-`void`를 다른 인자와 함께 섞어 쓰거나(`void*`는 포인터형이기에 괜찮습니다.), `const`와 함께 쓰는건 컴파일 오류가 납니다.
+`void`를 다른 인자와 함께 섞어 쓰거나, `const`와 함께 쓰는건 컴파일 오류가 납니다.(*`void*`는 포인터형이기에 괜찮습니다.*)
 
 ```cpp
 int f(void, int); // (X) 컴파일 오류
@@ -351,7 +352,7 @@ EXPECT_TRUE(f1() == 10); // 아무값도 주지 않으면 a 는 10
 EXPECT_TRUE(f1(20) == 20);
 ```
 
-기본값 인자를 사용하면, 그 뒤로는 다 기본값을 사용해야 합니다.(단 `...`은 가능합니다. `int g(int n = 0, ...);`)
+기본값 인자를 사용하면, 그 뒤로는 다 기본값을 사용해야 합니다.(*단 `...`은 가능합니다. `int g(int n = 0, ...);`*)
 
 ```cpp
 int f2(int a, int b = 20, int c = 30); // (O)
@@ -590,15 +591,15 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
  
 1. 자신의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색
    
-2. 함수 인자의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색(ADL(Argument-dependent lookup) 또는 Koenig 검색)
+2. 함수 인자의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색(*ADL(Argument-dependent lookup) 또는 Koenig 검색*)
 
 3. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 포함하여 실행 가능 함수 결정
    
    1. 타입 완전 일치
    2. 경미한 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)
-   3. 승격 일치(`bool`을 `int`로, `char`를 `int`로) 
-   4. 표준 변환(자식 개체 포인터를 부모 개체 포인터로, `T*`를 `void*`로, `int`를 `double`로, `double`을 `int`로) 
-   5. 사용자 정의 형변환([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)
+   3. 승격 일치(*`bool`을 `int`로, `char`를 `int`로*) 
+   4. 표준 변환(*자식 개체 포인터를 부모 개체 포인터로, `T*`를 `void*`로, `int`를 `double`로, `double`을 `int`로*) 
+   5. 사용자 정의 형변환(*[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고*)
 
 
 다음 경우를 보면 `g()` 에서 `MyFunc()`을 호출하면, 같은 네임스페이스에서 `MyFunc(double)`을 찾고, 인자 `1`을 `double`로 암시적으로 변환해서 사용하게 됩니다.
@@ -626,7 +627,7 @@ EXPECT_TRUE(B::g() == 2); // B::MyFunc 이 채택됨
 int MyFunc(const C::Date&, double) {return 2;}
 ```
 
-ADL(Argument-dependent lookup) 또는 Koenig 검색에 의해 네임스페이스 `C`의 함수들에서도 검색하게 됩니다.
+ADL(*Argument-dependent lookup*) 또는 Koenig 검색에 의해 네임스페이스 `C`의 함수들에서도 검색하게 됩니다.
 
 그래서 함수 후보군은
 
@@ -661,7 +662,7 @@ EXPECT_TRUE(D::g() == 1); // C::MyFunc 이 채택됨
 
 보통의 경우엔 그렇습니다만, 공식적으로는 연산자 우선 순위를 제외한 모든 실행 순서는 컴파일러 마음입니다.
 
-심지어 속도 향상을 위해 컴파일러가 최적화를 위해 캐쉬된 내용을 활용하기 위해 임의로 순서를 바꿀 수도 있습니다.([순차적 일관성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#%EC%88%9C%EC%B0%A8%EC%A0%81-%EC%9D%BC%EA%B4%80%EC%84%B1sequential-consistency) 참고)
+심지어 속도 향상을 위해 컴파일러가 최적화를 위해 캐쉬된 내용을 활용하기 위해 임의로 순서를 바꿀 수도 있습니다.(*[순차적 일관성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#%EC%88%9C%EC%B0%A8%EC%A0%81-%EC%9D%BC%EA%B4%80%EC%84%B1sequential-consistency) 참고*)
 
 다음은 `a(a_sub())`, `b()`, `c()` 함수의 결과를 `f()` 에 전달하는 예인데요, `a->b->c`의 순서로 실행된다고 보증하지 않습니다. `a->b->c`, `a->c->b`, `b->a->c`, `b->c->a`, `c->a->b`, `c->b->a`의 6가지 경우의 수중 하나로 실행됩니다. 이점 유의해야 예외 안전 프로그래밍([스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 참고)과 쓰레드 프로그래밍([쓰레드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/) 참고)을 할 수 있습니다. 
 

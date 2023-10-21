@@ -28,7 +28,7 @@ sidebar:
 
 # 배열 초기화
 
-배열 정의시 배열의 크기가 유추될 수 있어야 합니다. 배열 갯수를 명시적으로 지정하거나, [중괄호 집합 초기화를 이용한 배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94)에서 초기화 항목을 1개 이상 지정해 주면 됩니다.(갯수보다 초기화 값을 적게 제공하면, 나머지는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94) 됩니다.)
+배열 정의시 배열의 크기가 유추될 수 있어야 합니다. 배열 갯수를 명시적으로 지정하거나, [중괄호 집합 초기화를 이용한 배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94)에서 초기화 항목을 1개 이상 지정해 주면 됩니다.(*갯수보다 초기화 값을 적게 제공하면, 나머지는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94) 됩니다.*)
 
 ```cpp
 int arr1[3]; // (△) 비권장. int 형 3개 정의. 초기화 되지 않아 비권장 
@@ -72,7 +72,7 @@ EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 |요소 접근|`a[0]`|`v[0]`|
 |요소 주소|`&a[0]`|`&v[0]`|
 
-단, [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 동적 할당을 사용하기 때문에, 배열보다는 메모리 할당 속도가 현저히 느립니다.([배열, array, vector 속도 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/#%EB%B0%B0%EC%97%B4-array-vector-%EC%86%8D%EB%8F%84-%EB%B9%84%EA%B5%90) 참고)
+단, [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 동적 할당을 사용하기 때문에, 배열보다는 메모리 할당 속도가 현저히 느립니다.(*[배열, array, vector 속도 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/#%EB%B0%B0%EC%97%B4-array-vector-%EC%86%8D%EB%8F%84-%EB%B9%84%EA%B5%90) 참고*)
 
 > *(C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.*
 

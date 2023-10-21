@@ -11,12 +11,12 @@ sidebar:
 > * 기본 생성자가 필요하다면 명시적으로 구현하고, 필요없다면 못쓰게 만들어라.
 > * 값 생성자에서는 필요한 인자를 모두 나열하고 초기화하라. 
 > * 인자가 1개인 값 생성자는 `explicit`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하라.
-> * 암시적 복사 생성자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 스마트 포인터([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등)를 사용하고, 필요없다면 못쓰게 만들어라.
+> * 암시적 복사 생성자가 정상 동작하도록 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 스마트 포인터(*[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등*)를 사용하고, 필요없다면 못쓰게 만들어라.
 > * 생성자에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
 > * 상속 전용 기반 클래스는 `protected` 생성자로 만들어라.
 
 > **모던 C++**
-> * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 임시 개체 대입시 속도가 향상되었습니다.
+> * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 대입시 속도가 향상되었습니다.
 > * (C++11~) [생성자 위임](https://tango1202.github.io/mordern-cpp/mordern-cpp-delegating-inherited-constructor/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9C%84%EC%9E%84)이 추가되어 생성자의 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 코드가 좀더 간결해 졌습니다.
  
 # 개요
@@ -32,7 +32,7 @@ sidebar:
 
 # 기본 생성자
 
-인수없는 생성자를 기본 생성자라고 합니다. `T t;`로 개체를 정의(인스턴스화)합니다.(`T t();` 와 같이 하면 `T`를 리턴하는 함수 `t()`선언입니다. [기본 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B8%B0%EB%B3%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 언급)
+인수없는 생성자를 기본 생성자라고 합니다. `T t;`로 개체를 정의(*인스턴스화*)합니다.(*`T t();` 와 같이 하면 `T`를 리턴하는 함수 `t()`선언입니다. [기본 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B8%B0%EB%B3%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 언급*)
 
 ```cpp
 class T {
@@ -45,7 +45,7 @@ T t(); // (X) T를 리턴하는 함수 t() 선언
 
 # 암시적 기본 생성자
 
-컴파일러는 다른 생성자(값 생성자던, 복사 생성자던)가 정의되지 않으면, 암시적으로 기본 생성자를 정의합니다.
+컴파일러는 다른 생성자(*값 생성자던, 복사 생성자던*)가 정의되지 않으면, 암시적으로 기본 생성자를 정의합니다.
 
 암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 됩니다.
 
@@ -56,7 +56,7 @@ T t(); // (X) T를 리턴하는 함수 t() 선언
     * `T t;`나 `T* ptr = new T;`와 같이 괄호 없이 기본 생성자를 호출하면 자동 제로 초기화를 하지 않습니다.
     * `T* ptr = new T();` 와 같이 괄호를 사용하여 기본 생성자를 호출하면 자동 제로 초기화를 합니다.
 
-2. 참조자 형식이나 상수형 개체는 생성시 초기값이 전달되야 하기 때문에, 암시적 기본 생성자로 초기화 할 수 없습니다.(값 생성자를 이용해야 합니다.)
+2. 참조자 형식이나 상수형 개체는 생성시 초기값이 전달되야 하기 때문에, 암시적 기본 생성자로 초기화 할 수 없습니다.(*값 생성자를 이용해야 합니다.*)
 
 ```cpp
 class T1 {
@@ -96,7 +96,7 @@ T6 t6; // (X) 컴파일 오류. 기본 생성자 정의 안됨
 
 # 명시적 기본 생성자
 
-기본 생성자가 필요하다면, 암시적인 기본 생성자를 활용하기 보다는 명시적으로 정의해서 사용하는 편이 유지보수 측면에서 좋습니다.([명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 모든 요소를 나열하고 초기화 하는게 **코딩 계약**상 좋습니다.)
+기본 생성자가 필요하다면, 암시적인 기본 생성자를 활용하기 보다는 명시적으로 정의해서 사용하는 편이 유지보수 측면에서 좋습니다.(*[명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 모든 요소를 나열하고 초기화 하는게 **코딩 계약**상 좋습니다.*)
 
 ```cpp
 class T {
@@ -126,7 +126,7 @@ T t3(10); // (O) 임의 값으로 값 생성자 호출
 
 값 생성자 구현은 
 
-1. [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 모든 요소를 나열하고 초기화하는게 **코딩 계약**상 좋고,([초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고)
+1. [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 모든 요소를 나열하고 초기화하는게 **코딩 계약**상 좋고,(*[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고*)
 2. 불필요한 대입의 오버헤드를 줄이기 위해 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)를 이용하는게 좋습니다.
 
 ```cpp
@@ -144,7 +144,7 @@ T t(10, 20); // (O) 개체 정의(인스턴스화)
 
 # 형변환 생성자
 
-특별히 값 생성자에 인자가 1개만 있으면, [암시적인 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 하므로 형변환 생성자라고도 합니다. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 없도록 꼭 `explicit`를 사용해야 합니다.([명시적 변환 생성 지정자(`explicit`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고)
+특별히 값 생성자에 인자가 1개만 있으면, [암시적인 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 하므로 형변환 생성자라고도 합니다. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 없도록 꼭 `explicit`를 사용해야 합니다.(*[명시적 변환 생성 지정자(`explicit`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고*)
 
 # 암시적 복사 생성자
 
@@ -175,7 +175,7 @@ EXPECT_TRUE(t3.GetX() == 10 && t3.GetY() == 20);
 
 # 포인터 멤버 변수의 소유권 분쟁
 
-`new` 로 생성한 것은 `delete`로 소멸([힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다. 그렇다고 여러 차례 `delete` 한다면 예외가 발생합니다.([개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고) 생성한 것은 1회 `delete` 해야 합니다.
+`new` 로 생성한 것은 `delete`로 소멸(*[힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고*) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다. 그렇다고 여러 차례 `delete` 한다면 예외가 발생합니다.(*[개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고*) 생성한 것은 1회 `delete` 해야 합니다.
 
 생성자에서 `new`로 생성한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 전달받고, 안전한 소멸을 보장하기 위해 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 `delete`로 소멸시키는 `T`개체를 정의한다고 합시다.
 
@@ -214,9 +214,9 @@ public:
 
 **소유권 분쟁** 을 해결하는 방법은 
 
-1. 소유권 이전을 하거나([auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/), [unique_ptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-unique_ptr/)),
+1. 소유권 이전을 하거나(*[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/), [unique_ptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-unique_ptr/)*),
 2. 깊은 복제를 하거나, 
-3. 자원을 공유하거나([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)), 
+3. 자원을 공유하거나(*[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)*), 
 4. 유일한 자원으로 대체해서 사용하는
 
 방법이 있습니다. 
@@ -251,14 +251,14 @@ public:
 
 # 복사 생성자만 지원하는 스마트 포인터
 
-[힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들기 위해 복사 생성자를 클래스마다 일일이 명시적으로 개발하는 것 보다는, 암시적 복사 생성자를 그대로 사용할 수 있도록 스마트 포인터([shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등)를 만들어 사용하는게 코드도 간결하고 분석하기 좋습니다. 여기서는 `int`형을 지원하는 것만 구현해 보도록 하겠습니다.(모든 타입을 지원하는 일반화된 스마트 포인터의 구현 예는 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) 참고)
+[힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체의 복제본을 만들기 위해 복사 생성자를 클래스마다 일일이 명시적으로 개발하는 것 보다는, 암시적 복사 생성자를 그대로 사용할 수 있도록 스마트 포인터(*[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등*)를 만들어 사용하는게 코드도 간결하고 분석하기 좋습니다. 여기서는 `int`형을 지원하는 것만 구현해 보도록 하겠습니다.(*모든 타입을 지원하는 일반화된 스마트 포인터의 구현 예는 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/) 참고*)
 
-스마트 포인터는 다음 단계를 통해 포인터 복제를 대행하고, [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 벗어나 자동 소멸될 때([소멸자 호출 시점](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%8B%9C%EC%A0%90) 참고) 포인터를 `delete`합니다. 
+스마트 포인터는 다음 단계를 통해 포인터 복제를 대행하고, [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 벗어나 자동 소멸될 때(*[소멸자 호출 시점](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%8B%9C%EC%A0%90) 참고*) 포인터를 `delete`합니다. 
 
 1. 스마트 포인터를 클래스 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 정의해 둡니다.
 2. 암시적 복사 생성자가 호출되면, 내부적으로 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 복사 생성자를 호출합니다. 이때 스마트 포인터의 복사 생성자가 호출됩니다.
 3. 스마트 포인터의 복사 생성자에서 포인터 복제를 합니다.
-4. 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출뒤 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들이 소멸됩니다.([개체 소멸 순서](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EA%B0%9C%EC%B2%B4-%EC%86%8C%EB%A9%B8-%EC%88%9C%EC%84%9C) 참고)
+4. 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출뒤 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들이 소멸됩니다.(*[개체 소멸 순서](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EA%B0%9C%EC%B2%B4-%EC%86%8C%EB%A9%B8-%EC%88%9C%EC%84%9C) 참고*)
 5. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 소멸시 스마트 포인터의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 포인터를 `delete`합니다.
 
 ```cpp
@@ -359,8 +359,8 @@ EXPECT_TRUE(d.GetVal() == 1);
 
 만약 기본 생성자나 복사 생성자가 필요없다면, 생성자를 사용할 수 없게 만드는게 좋습니다. 어짜피 사용하지 않을거라 내버려 뒀는데, 누군가가 유지보수 하면서 무심결에 사용하게 된다면, 오동작을 할 수 있거든요. 의도하지 않았다면 동작하지 않게 해야 합니다.
 
-* 기본 생성자 : 다른 생성자(값 생성자던, 복사 생성자던)가 정의되면, 암시적 기본 생성자가 정의되지 않으므로 사용이 제한됩니다. 그렇지 않은 경우 명시적으로 기본 생성자를 구현하고, `private` 또는 `protected`로 사용을 제한합니다.
-* 복사 생성자 : `private`로 정의하면 다른 곳에서는 사용하지 못하고,([`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/) 참고) `protected`로 정의하면 상속받은 자식 개체에서만 사용할 수 있습니다.
+* 기본 생성자 : 다른 생성자(*값 생성자던, 복사 생성자던*)가 정의되면, 암시적 기본 생성자가 정의되지 않으므로 사용이 제한됩니다. 그렇지 않은 경우 명시적으로 기본 생성자를 구현하고, `private` 또는 `protected`로 사용을 제한합니다.
+* 복사 생성자 : `private`로 정의하면 다른 곳에서는 사용하지 못하고,(*[`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/) 참고*) `protected`로 정의하면 상속받은 자식 개체에서만 사용할 수 있습니다.
 
 
 ```cpp
@@ -378,7 +378,7 @@ T t3(t1); // (X) 컴파일 오류. 복사 생성자를 사용할 수 없게 priv
 
 # 상속 전용 기반 클래스 - `protected` 생성자
 
-상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만들 수 있습니다. 그러면 개체 정의(인스턴스화)에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.([상속 강제](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EA%B0%95%EC%A0%9C) 참고)
+상속해서만 사용할 수 있는 클래스는 `protected`로 생성자를 만들 수 있습니다. 그러면 개체 정의(*인스턴스화*)에서는 사용할 수 없고, 상속해서만 사용할 수 있습니다.(*[상속 강제](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EA%B0%95%EC%A0%9C) 참고*)
 
 
 ```cpp
@@ -419,7 +419,7 @@ class U : public T {};
 T t(T::CreateFromA(10)); // (O) T를 복사 생성    
 ```
 
-혹은 생성자에서 모든 처리를 하기 힘든 개체를 생성할때도 유용합니다.(시스템 종속성이 높다던지, 일단 생성후 환경 정돈을 해야 한다던지 등이요.)
+혹은 생성자에서 모든 처리를 하기 힘든 개체를 생성할때도 유용합니다.(*시스템 종속성이 높다던지, 일단 생성후 환경 정돈을 해야 한다던지 등이요.*)
 
 ```cpp
 class T {
