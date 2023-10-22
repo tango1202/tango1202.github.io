@@ -157,7 +157,7 @@ GoogleTest는
 
 첫번째 방법인 소스코드를 복제하여 사용하는 방법으로 GoogleTest를 설치하도록 하겠습니다. 
 
-1. 다음 링크에서 GoogleTest의 소스코드(zip파일)를 다운로드 받습니다.(현재 v1.13.0 버전이 release 되었습니다.)
+1. 다음 링크에서 GoogleTest의 소스코드(zip파일)를 다운로드 받습니다.(*현재 v1.13.0 버전이 release 되었습니다. C++14 이상에서 빌드됩니다. C++11에서 사용하려면 [https://github.com/google/googletest/releases/tag/release-1.12.1](https://github.com/google/googletest/releases/tag/release-1.12.1)을 다운로드 하셔야 합니다.*)
 
      [GoogleTest Github(https://github.com/google/googletest)](https://github.com/google/googletest)
 

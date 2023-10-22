@@ -5,13 +5,24 @@
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
   <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</label>
   <ul class="nav__items">
+
+    {% comment %}
+    sibling-post 가 특별히 false로 세팅되어 있으면, 해당 페이지와 동일한 카테고리의 목록을 표시하지 않는다.
+    {% endcomment %}
     {% if page.sibling-post == false %}
+
+    {% comment %}
+    sibling-post 가 없거나 true 면, 해당 페이지와 동일한 카테고리의 목록을 표시한다.
+    {% endcomment %}   
     {% else %}
 
       {% assign category_url = "" %}
       {% assign category_title = "" %}
       {% for nav in navigation %}  
       
+        {% comment %}
+        page.categories가 동일한 것을 navigation 에서 찾아 url과 title을 구한다. 이때 child가 있다면 child에서도 찾는다.
+        {% endcomment %}  
         {% if nav.category == page.categories[0] %}
           {% assign category_url = nav.url %}
           {% assign category_title = nav.title %}
@@ -29,6 +40,9 @@
         {% endif %}
       {% endfor %}
 
+      {% comment %}
+      page.categories가 동일한 것이 navigation에 있어서 찾았다면, 해당 카테고리의 다른 포스팅들의 목록을 출력한다. 
+      {% endcomment %}  
       {% if category_title %}  
       <li> 
         {% if category_url %}      
@@ -63,7 +77,7 @@
         <ul>
           {% for child in nav.children %}
             {% comment %}
-            포스팅 갯수 카운팅
+            포스팅 갯수 카운팅. 출력하려는 child의 카테고리 명과 동일한 것을 site.categories에서 찾아서 size 정보를 얻어옴
             {% endcomment %}
             {% assign post_cnt = 0 %}
             {% for category in site.categories %}

@@ -38,8 +38,8 @@ EXPECT_TRUE(f(ptr2) == 2); // int* 이므로 f(int*) 호출
 EXPECT_TRUE(f(ptr3_11) == 2); // int* 이므로 f(int*) 호출
 
 // auto를 사용하면
-auto ptr1{0}; // int
-auto ptr2{NULL}; // long long
+auto ptr1{0}; // (△) 비권장. int
+auto ptr2{NULL}; // (△) 비권장. long long
 auto ptr3_11{nullptr}; // nullptr_t
 
 EXPECT_TRUE(f(ptr1) == 1); // f(int) 호출  
