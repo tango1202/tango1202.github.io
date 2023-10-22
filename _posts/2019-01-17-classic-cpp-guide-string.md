@@ -165,7 +165,7 @@ Microsoft에서 사용하는 확장 완성형으로서 `euc-kr`의 확장형입�
 
 **UTF-16 인코딩**
 
-JAVA 에서 기본으로 사용하며, BMP(*Basic Multilingual Plane*)라 불리는 기본적인 문자들은 2byte로 처리(*한글은 2byte입니다.*)하고, 2byte로 표현할 수 없는 확장된 것들은 4byte로 처리합니다. 이렇게 확장된 영역을 서로게이트(Surrogate) 영역이라 하며 상위 2byte를 상위 서로게이트라 하고, 하위 2byte를 하위 서로게이트라고 합니다.
+JAVA 에서 기본으로 사용하며, BMP(*Basic Multilingual Plane*)라 불리는 기본적인 문자들은 2byte로 처리(*한글은 2byte입니다.*)하고, 2byte로 표현할 수 없는 확장된 것들은 4byte로 처리합니다. 이렇게 확장된 영역을 서로게이트(*Surrogate*) 영역이라 하며 상위 2byte를 상위 서로게이트라 하고, 하위 2byte를 하위 서로게이트라고 합니다.
 
 BMP 에서는 `0xD800(1101 0000 0000 0000)` ~ `0xDFFF(1101 1111 1111 1111 1111)`을 사용하지 않으며, 이에 따라 서로게이트를 표현할때 상기 범위의 값으로 변환하여 처리합니다.
 
@@ -192,43 +192,45 @@ BMP 에서는 `0xD800(1101 0000 0000 0000)` ~ `0xDFFF(1101 1111 1111 1111 1111)`
 
 소스 코드가 어떤 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 방식을 사용하느냐에 따라 문자열 데이터는 완전히 달라집니다.
 
-다음 예제는 `char* str = "가";` 를 `UTF-8`과 `euc-kr`로 저장했을때의 차이입니다. 문자열의 길이가 서로 다르며, 코드값도 다릅니다. 
+다음 예제는 `const char* str = "가";` 를 `UTF-8`과 `euc-kr`로 저장했을때의 차이입니다. 문자열의 길이가 서로 다르며, 코드값도 다릅니다. 
 
 **UTF-8**
 
 ```cpp
-char* str = "가"; // UTF-8 가[0xEA 0xB0 0x80] 가 저장된 곳을 가리키는 포인터 입니다.
+const char* str = "가"; // UTF-8 가[0xEA 0xB0 0x80] 가 저장된 곳을 가리키는 포인터 입니다.
 
 EXPECT_TRUE(strlen(str) == 3); // UTF-8에서 한글 1글자는 3byte 입니다.
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 0) == 0xEA);
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 1) == 0xB0);
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 2) == 0x80);
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 0) == 0xEA);
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 1) == 0xB0);
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 2) == 0x80);
 ```
 
 **euc-kr 또는 cp-949**
 
 ```cpp
-char* str = "가"; // 완성형 가[0xB0 0xA1] 가 저장된 곳을 가리키는 포인터 입니다.
+const char* str = "가"; // 완성형 가[0xB0 0xA1] 가 저장된 곳을 가리키는 포인터 입니다.
 
 EXPECT_TRUE(strlen(str) == 2); // euc-kr에서 한글 1글자는 2byte 입니다.
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 0) == 0xB0);
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 1) == 0xA1);
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 0) == 0xB0);
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 1) == 0xA1);
 ```
 
 따라서 [소스 코드의 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)도 잘 결정해서 사용해야 하는데요, `euc-kr`이나 Windows의 `cp-949`는 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)와의 호환성이 없기에 다국어 처리에 적합하지 않습니다. 소스 코드는 `UTF-8`로 저장하시길 추천합니다.
 
 # 바이트 문자열
 
-영문자는 0 ~ 127 까지의 7bit 만으로 표현이 충분하기 때문에 1byte만으로도 저장할 수 있습니다. 이렇게 1byte 단위로 문자를 저장하는 문자열을 **바이트 문자열** 이라 합니다.
+영문자는 0 ~ 127 까지의 7bit 만으로 표현이 충분하기 때문에 1byte만으로도 저장할 수 있습니다. 이렇게 1byte 단위로 문자를 저장하는 문자열을 **바이트 문자열** 이라 합니다. 
+
+C++에서 기본적으로 사용하는 처리방식이며, 영문자만 처리됩니다.
 
 ```cpp
-char* str = "abc"; // 0x61 0x62 0x63 가 저장된 영역을 가리키는 포인터 입니다.
+const char* str = "abc"; // 0x61 0x62 0x63 가 저장된 영역을 가리키는 포인터 입니다.
 
 EXPECT_TRUE(strlen(str) == 3); // UTF-8에서 영문 3글자는 3byte입니다.
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 0) == 0x61); // 0x61. 아스키 코드 a
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 1) == 0x62); // 0x62. 아스키 코드 b
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 2) == 0x63); // 0x63. 아스키 코드 c
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 3) == 0x00); // 널문자
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 0) == 0x61); // 0x61. 아스키 코드 a
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 1) == 0x62); // 0x62. 아스키 코드 b
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 2) == 0x63); // 0x63. 아스키 코드 c
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 3) == 0x00); // 널문자
 ```
 # 멀티 바이트 문자열
 
@@ -236,33 +238,33 @@ EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 3) == 0x00); // 널문자
 
 다음은 `UTF-8`로 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)된 파일에서 [멀티 바이트 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)을 사용하는 예입니다.
 
-1. `char* str = "abc가나다";`는 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)로 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 되어 `abc[0x61 0x62 0x63] 가[0xEA 0xB0 0x80] 나[0xEB 0x82 0x98] 다[0xEB 0x8B 0xA4]`를 저장합니다.
+1. `const char* str = "abc가나다";`는 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)로 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 되어 `abc[0x61 0x62 0x63] 가[0xEA 0xB0 0x80] 나[0xEB 0x82 0x98] 다[0xEB 0x8B 0xA4]`를 저장합니다.
 2. 바이트 문자열용 [strlen()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)함수를 사용하면 아무 생각없이 널문자까지 카운트하므로, `12`가 됩니다.
 3. [locale()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#c%EC%8A%A4%ED%83%80%EC%9D%BC-locale)함수를 호출하여 [멀티 바이트](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8) 함수 호출전에 [인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 정보를 전달합니다.
 4. [mblen()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8)함수를 이용하여 해당 주소의 문자가 몇 바이트 크기인지 구합니다.
 5. [mbstowcs()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8)함수를 이용하여 해당 주소의 문자들의 코드를 `wchar_t`로 변환합니다.
 
 ```cpp
-char* str = "abc가나다"; // abc[0x61 0x62 0x63] 가[0xEA 0xB0 0x80] 나[0xEB 0x82 0x98] 다[0xEB 0x8B 0xA4] 가 저장된 영역을 가리키는 포인터 입니다.
+const char* str = "abc가나다"; // abc[0x61 0x62 0x63] 가[0xEA 0xB0 0x80] 나[0xEB 0x82 0x98] 다[0xEB 0x8B 0xA4] 가 저장된 영역을 가리키는 포인터 입니다.
 EXPECT_TRUE(strlen(str) == 12); // UTF-8에서 한글 1글자는 12byte입니다. a(1) + b(1) + c(1) + 가(3) + 나(3) + 다(3) 1 + 1 + 1 + 3 + 3 + 3 = 12 
 
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 0) == 0x61); // 0x61. 아스키 코드 a
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 1) == 0x62); // 0x62. 아스키 코드 b
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 2) == 0x63); // 0x63. 아스키 코드 c
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 0) == 0x61); // 0x61. 아스키 코드 a
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 1) == 0x62); // 0x62. 아스키 코드 b
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 2) == 0x63); // 0x63. 아스키 코드 c
 
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 3) == 0xEA); // 가
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 4) == 0xB0); 
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 5) == 0x80); 
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 3) == 0xEA); // 가
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 4) == 0xB0); 
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 5) == 0x80); 
 
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 6) == 0xEB); // 나
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 7) == 0x82); 
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 8) == 0x98); 
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 6) == 0xEB); // 나
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 7) == 0x82); 
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 8) == 0x98); 
 
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 9) == 0xEB); // 다
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 10) == 0x8B); 
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 11) == 0xA4); 
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 9) == 0xEB); // 다
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 10) == 0x8B); 
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 11) == 0xA4); 
 
-EXPECT_TRUE(*reinterpret_cast<unsigned char*>(str + 12) == 0x00); // 널문자  
+EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 12) == 0x00); // 널문자  
 
 std::setlocale(LC_ALL, "en_US.utf8");
 EXPECT_TRUE(mblen(str + 0, MB_CUR_MAX) == 1); // a 문자는 1byte 크기임
@@ -288,15 +290,19 @@ EXPECT_TRUE(wstr[6] == 0x0000); // 널문자
 
 **와이드 문자열** 은 영문자이건, 다국어 문자이건 모두 `wchar_t`로 관리하는 문자열입니다. 안타깝게도 Windows 에서는 2byte이고 리눅스에서는 4byte 이기 때문에 운영체제에 따라 다르게 동작할 수 있어 주의해야 합니다.(*[기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고*)
 
+문자열의 코드값은 OS에 따라 [UTF-16]((https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9))이나 [UTF-32]((https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9))로 저장됩니다.
+
 |항목|`wchar_t` 크기|인코딩|
 |--|--|--|
 |Windows|2byte|[UTF-16]((https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9))|
 |Windows 외 운영체제|4byte|[UTF-32]((https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9))|
 
+한글의 경우는 [UTF-16](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)의 BMP(*Basic Multilingual Plane*) 영역이므로 서로게이트(*Surrogate*) 처리없이 간단하게 사용할 수 있습니다.
+
 다음은 Windows 에서 [UTF-8](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)로 저장한 소스 코드의 실행예입니다.
 
 ```cpp
-wchar_t* wstr = L"abc가나다"; // abc[0x61 0x62 0x63] 가[0xAC00] 나[0xB098] 다[0xB2E4] 가 저장된 영역을 가리키는 포인터 입니다.
+const wchar_t* wstr = L"abc가나다"; // abc[0x61 0x62 0x63] 가[0xAC00] 나[0xB098] 다[0xB2E4] 가 저장된 영역을 가리키는 포인터 입니다.
 EXPECT_TRUE(wcslen(wstr) == 6); // Windows에서는 2byte 단위로 저장합니다.
 
 EXPECT_TRUE(wstr[0] == 0x0061); // 0x0061. UTF-16 인코딩. 아스키 코드 a

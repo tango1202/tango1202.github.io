@@ -382,18 +382,22 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
     T_11 t{{1, 2, 3}}; // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.
     ```
 
-2. 복사 대입 연산의 대상이 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 인 경우
+2. 복사 대입 연산자의 인자가 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 인 경우
 
     ```cpp
-    std::initializer_list<int> data_11;
-    data_11 = {1, 2, 3}; // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.         
-    
-    std::vector<int> v;
-    auto itr = data_11.begin();
-    auto endItr = data_11.end();
-    for (;itr != endItr; ++itr) {
-        v.push_back(*itr);
-    }
+    class T_11 {
+    public:
+        void operator =(std::initializer_list<int> data_11) { // 복사 대입 연산자가 initializer_list를 전달받습니다.
+            std::vector<int> v;
+            auto itr = data_11.begin();
+            auto endItr = data_11.end();
+            for (;itr != endItr; ++itr) {
+                v.push_back(*itr);
+            }
+        }    
+    };
+    T_11 t;
+    t = {1, 2, 3}; // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.  
     ```
 
 3. [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)에서 범위 표현식으로 사용하는 경우

@@ -62,7 +62,6 @@ T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 �
 
 > *(C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 `T obj{};`와 같이 기본 생성자를 호출할 수 있습니다.*
 
-
 # 값 초기화
 
 값 초기화는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 특정한 값으로 생성할 때 사용합니다. 
@@ -102,6 +101,12 @@ T obj1 = 1; // (X) 컴파일 오류. explicit 가 아니라면 int를 전달받�
 T obj1 = other; // (O) 타입이 같다면 복사 생성자가 호출됨
 T obj2(other); // (O) 명시적으로 복사 생성자 호출됨
 ```
+
+# 초기화 파싱 오류
+
+
+
+
 
 # 생성 후 대입 : 하지 마라.
 

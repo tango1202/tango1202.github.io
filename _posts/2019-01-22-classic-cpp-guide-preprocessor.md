@@ -196,6 +196,37 @@ int status = 0;
 EXPECT_TRUE(status == 1); // MY_DEBUG가 정의되어 1
 ```
 
+# __cplusplus
+
+C++ 인지 확인 하거나, C++ 버전을 확인합니다. C++ 버전별로 호환되는 코드를 작성할때 사용합니다.
+
+버전값은 다음과 같습니다.
+
+|항목|내용|
+|--|--|
+|C++98|199711L|
+|C++98 TR1|199711L|
+|C++11|201103L|
+|C++14|201402L|
+|C++17|201703L|
+|C++20|202002L|
+
+```cpp
+#ifndef __cplusplus
+    #error C++ is required    
+#elif 202002L <= __cplusplus
+    // C++20 이상인 코드
+#elif 201703L <= __cplusplus
+    // C++17 이상인 코드
+#elif 201402L <= __cplusplus
+    // C++14 이상인 코드    
+#elif 201103L <= __cplusplus
+    // C++11 이상인 코드        
+#else
+    // C++98
+#endif
+```
+
 # #include
 
 헤더 파일을 포함합니다. 마치 `#include`위치에 대상 파일이 코딩된 것처럼 만들어 줍니다.
