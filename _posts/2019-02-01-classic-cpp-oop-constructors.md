@@ -32,7 +32,7 @@ sidebar:
 
 # 기본 생성자
 
-인수없는 생성자를 기본 생성자라고 합니다. `T t;`로 개체를 정의(*인스턴스화*)합니다.(*`T t();` 와 같이 하면 `T`를 리턴하는 함수 `t()`선언입니다. [기본 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B8%B0%EB%B3%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 언급*)
+인수없는 생성자를 기본 생성자라고 합니다. `T t;`로 개체를 정의(*인스턴스화*)합니다.(*`T t();` 와 같이 하면 `T`를 리턴하는 함수 `t()`선언입니다. [초기화 파싱 오류](??) 참고*)
 
 ```cpp
 class T {
@@ -48,8 +48,6 @@ T t(); // (X) T를 리턴하는 함수 t() 선언
 컴파일러는 다른 생성자(*값 생성자던, 복사 생성자던*)가 정의되지 않으면, 암시적으로 기본 생성자를 정의합니다.
 
 암시적 기본 생성자에서는 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 수행하기 때문에 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 메모리 영역이 제로(`0`)로 초기화 됩니다.
-
-
 
 1. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)는 괄호 사용 여부에 따라 동작이 다릅니다.
 
