@@ -14,7 +14,7 @@ sidebar:
 
 > **모던 C++**
 > * (C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.
-> * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.
+> * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.
 
 # 개요
 
@@ -40,6 +40,7 @@ class T {
 public:
     T() {} // 기본 생성자
     explicit T(int t) {} // int를 전달받는 생성자. explicit를 주어 암시적 형변환을 막음
+    T(int x, int y) {} // 값 2개를 전달받는 생성자
     T(const T& other) {} // 복사 생성자
 
     void operator =(const T& other) {} // 복사 대입 연산자
@@ -54,10 +55,10 @@ public:
 T obj; // (O) 기본 생성자 호출
 ```
 
-`T obj1();`와 같이 괄호로 정의하면, 개체 생성이 아니라 T를 리턴하는 `obj1()` 함수 선언으로 인식되니 주의하세요. (*[초기화 파싱 오류]() 참고*)
+`T obj();`와 같이 괄호로 정의하면, 개체 생성이 아니라 T를 리턴하는 `obj()` 함수 선언으로 인식되니 주의하세요. (*[초기화 파싱 오류]() 참고*)
 
 ```cpp
-T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 선언임
+T obj(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj 함수 선언임
 ```
 
 > *(C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 `T obj{};`와 같이 기본 생성자를 호출할 수 있습니다.*
@@ -67,60 +68,88 @@ T obj1(); // (△) 비권장. 초기화 아님. T를 리턴하는 obj1 함수 �
 값 초기화는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 특정한 값으로 생성할 때 사용합니다. 
 
 ```cpp
-T obj2(1); // (O) int를 전달받는 생성자 호출
+T obj(1); // (O) int를 전달받는 생성자 호출
+T obj(1, 2); // (O) 값 2개를 전달받는 생성자 호출
 ```
 
-또한, `T val(other);` 나 `T val = other;` 를 사용할 수 있는데요, 이 둘은 완전히 동일한 표현입니다.
+특별히 값이 1개이면, [형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)라고 하는데요, 복사 대입 연산자(`=`) 형태로 표현할 수 있습니다. 하지만 이게 프로그래머의 의도인지, 실수인지 헷갈릴때가 있습니다.
 
 ```cpp
-T val(other);
-T val = other; // T val(other); 와 동일합니다.
+T obj = 1; // (△) 비권장. T t(int x); 를 호출을 위한 것인지, 정수 1을 T에 잘못 대입한 것인지 헷갈립니다.
 ```
 
-따라서, 하기는 `T(2);`로 개체 생성 후 `obj3`에 대입하는 것 같은 모양입니다만, `T obj3(T(2));`와 동일합니다.
+그래서 복사 대입 연산자(`=`) 형태는 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용하여 컴파일 오류로 막는게 좋습니다.
 
-즉, `T(2)`로 생성한 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 복사 생성하는 코드입니다. 하지만 컴파일러 최적화에 따라 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90) 로 생성한 개체를 그냥 `obj3`로 사용하고, 복사 생성자는 호출하지 않을 수 있습니다. 상황에 따라 최적화가 안되면 비효율적인 코드이니 사용 안하시는게 좋습니다.(*그냥 `T obj3(2);`로 사용하세요.*)
+대신 다음과 같이 명시적으로 생성한 개체를 대입하는 형태로 표현할 수도 있는데요, 이 방식은 `T(1)`로 생성한 개체를 `T obj` 의 복사 생성자를 호출하여 생성하는 구문이어서 생성자가 2회 호출되어 비효율적입니다.(*사실 컴파일러 최적화에 의해 생성자를 1회 호출하기는 합니다. [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94) 참고*)
 
 ```cpp
-// int를 전달받는 생성자 호출.
-// (△) 비권장. T(2) 로 개체 생성후 obj3의 복사 생성자 호출. 컴파일러 최적화로 복사 생성자는 호출되지 않을 수 있음. 컴파일러 최적화가 안될 수도 있으니 T obj3(2); 로 호출하는게 더 좋음.
-T obj3 = T(2); // T obj3(T(2)); 와 동일
+T obj = T(1); // (△) 비권장. T(1)로 생성한 개체를 T obj 의 복사 생성자를 호출하여 생성합니다.
 ```
 
-> *(C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.*
+그리고, 명시적으로 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)와 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하는 다음과 같은 표현이 있을 수 있습니다. 이 또한 `T obj = T(1);` 와 동일하게 생성자가 2회 호출되어 비효율적입니다.(*사실 컴파일러 최적화에 의해 생성자를 1회 호출하기는 합니다. [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94) 참고*)
+
+```cpp
+T obj(T(1)); // (△) 비권장. T(1)로 생성한 개체를 T obj 의 복사 생성자를 호출하여 생성합니다.
+```
+
+상기와 여러가지 가능한 표현 방식이 있습니다만, 다음과 같이 생성자를 직접 호출하는게 암시적 형변환에 안전하고 효율적입니다.
+
+```cpp
+T obj(1); // (O) int를 전달받는 생성자 호출
+T obj(1, 2); // (O) 값 2개를 전달받는 생성자 호출
+```
+
+> *(C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.*
 
 # 복사 초기화
 
-복사 초기화는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 인자가 1개인 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출해 줍니다. 인자가 1개인 생성자는 뜻하지 않게 형변환이 될 수 있으므로 `explicit`로 정의하는게 좋습니다.
+복사 초기화는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 앞서 소개한 인자가 1개인 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)(*[형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)*)를 호출해 줍니다. 다시 한번 말씀드리지만, 인자가 1개인 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)는 뜻하지 않게 형변환이 될 수 있으므로 `explicit`로 정의하는게 좋고요.
 (*[명시적 변환 생성 지정자(`explicit`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고*)
 
 ```cpp
 T other;
 
-T obj1 = 1; // (X) 컴파일 오류. explicit 가 아니라면 int를 전달받는 값 생성자가 호출됨
+T obj1 = 1; // (△) 비권장. explicit 가 아니라면 int를 전달받는 값 생성자가 호출됨
 T obj1 = other; // (O) 타입이 같다면 복사 생성자가 호출됨
 T obj2(other); // (O) 명시적으로 복사 생성자 호출됨
 ```
 
 # 초기화 파싱 오류
 
-함수 선언의 문법과 생성자의 문법이 유사하여 컴파일러가 이 둘을 구분하지 못합니다. 
+안타깝게도 함수 선언의 문법과 생성자 호출의 문법이 유사하여 컴파일러가 이 둘을 구분하지 못합니다. 따라서, C언어와의 호환성을 위해 그냥 함수 선언으로 해석합니다.
 
 ```cpp
-T f(); // (△) 비권장. T 타입을 리턴하는 함수 f()를 선언합니다.
-T obj(); // T 타입의 obj 개체를 기본 생성자로 생성합니다.
+T f(); // T 타입을 리턴하는 함수 f()를 선언합니다.
+T obj(); // T 타입의 obj 개체를 기본 생성자로 생성하고 싶지만, 사실은 T 타입을 리턴하는 함수 obj()를 선언합니다.
 ```
 
-따라서, C언어와의 호환성을 위해 그냥 함수 선언으로 해석합니다.
+|항목|의도|컴파일러 해석|
+|--|--|--|
+|`T obj();`|`T` 타입의 `obj` 개체를 기본 생성자로 생성하고 싶습니다.|`T` 타입을 리턴하는 함수 `obj()`를 선언합니다.|
+|`T obj(T());`|`T` 타입의 기본 생성자로 생성한 것을 `obj`에 복사 생성하고 싶습니다.|`T` 타입을 리턴하고, `T(*)()` 함수 포인터를 인자로 전달받은 함수 `obj()`를 선언합니다.|
+
+따라서 상기 의도에 따른 표현은 다음과 같이 해야 합니다.
+
+|항목|바른 표현|내용|
+|--|--|--|
+|`T obj();`|`T obj;`|단, [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)가 안됩니다.|
+|`T obj();` 또는<br/>`T obj(T());`|`T obj = T();`|[자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)가 됩니다. 다만 기본 생성자로 생성한 것을 복사 생성자에 전달하는 것이므로, 생성자가 2회 호출될 수 있습니다. 다만, 다행스럽게도 컴파일러에 따라 1회로 최적화 해줍니다.(*[생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94) 참고*)|
 
 
-초기화를 위한 생성자 호출해서 C++ 언어 파싱
-플릿 인자 끝 `>`가 중첩되어 `>>`가 되면 비트 Right Shift 연산자로 파싱되어 컴파일 오류가 납니다.
-
-
-> *(C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 `T obj{};`와 같이 기본 생성자를 호출할 수 있습니다.*
+> *(C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 `T obj{};`와 같이 기본 생성자를 호출할 수 있습니다.*<br/>
+> *(C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94?), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.*
 
 # 생성자 호출 및 함수 인수 전달 최적화
+
+생성자 호출이나 함수 인자 전달시 다음 생성 사례들은 컴파일러에 따라 1회 생성자 호출로 최적화 해줍니다.(*상황에 따라 최적화가 안되면 비효율적인 코드가 될 수 있습니다.*)
+
+|항목|의도|컴파일러 최적화|
+|--|--|--|
+|`T obj = T();`|기본 생성자로 생성한 것을 복사 생성자를 호출하여 전달합니다.|`obj`의 메모리 위치에 기본 생성자를 호출합니다.|
+|`T obj = T(arg);`|`T(arg)`로 생성한 것을 복사 생성자를 호출하여 전달합니다.|`obj`의 메모리 위치에 `T(arg)` 생성자를 호출합니다.|
+|`T obj(T(arg));`|`T(arg)`로 생성한 것을 복사 생성자를 호출하여 전달합니다.|`T obj = T(arg);`과 동일합니다.|
+
+> *(C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.*
 
 # 생성 후 대입 : 하지 마라.
 
