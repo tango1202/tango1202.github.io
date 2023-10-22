@@ -19,7 +19,7 @@ sidebar:
 
 # 개요
 
-일반적으로 메모리 공간을 오랫동안 차지하는 전역 변수나 정적 변수보다는 사용이 끝나면  메모리를 반납하는 임시 변수나 지역 변수가 좋습니다. 프로그램 시작과 끝을 관장하면서 필요한 변수가 아니라면 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)나 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)로 작성하시기 바랍니다.
+일반적으로 메모리 공간을 오랫동안 차지하는 전역 변수나 정적 변수보다는 사용이 끝나면  메모리를 반납하는 임시 개체나 지역 변수가 좋습니다. 프로그램 시작과 끝을 관장하면서 필요한 변수가 아니라면 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)나 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)로 작성하시기 바랍니다.
 
 수명 주기에 따라 다음과 같이 변수와 함수를 구분할 수 있습니다.
 

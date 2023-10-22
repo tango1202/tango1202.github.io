@@ -41,6 +41,7 @@ class T {
 # (C++14~) 비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화
 
 C++11의 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 이용하면, 다음과 같이 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern--category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)에 대해 초기화를 할 수 있습니다. 
+
 ```cpp
 class A {
 public:
