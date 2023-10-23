@@ -254,7 +254,7 @@ Big::Big(const Big& other)
 2. 소멸시 스마트 포인터에서 `delete` 해주고,
 3. 복사 대입 연산시 스마트 포인터에서 `swap`해 주므로,
 
-암시적 복사 생성자, [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90), 암시적 복사 대입 연산자와 호환되어 별도로 구현할 필요가 없어집니다. 따라서 다음처럼 복사 생성자, 소멸자, 복사 대입 연산자 정의 없이 간소하게 클래스를 작성할 수 있습니다.
+[암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90), 암시적 복사 대입 연산자와 호환되어 별도로 구현할 필요가 없어집니다. 따라서 다음처럼 복사 생성자, 소멸자, 복사 대입 연산자 정의 없이 간소하게 클래스를 작성할 수 있습니다.
 
 ```cpp
 class T {
