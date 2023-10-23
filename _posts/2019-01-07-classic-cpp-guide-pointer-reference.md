@@ -260,7 +260,7 @@ const int& r4 = 20; // (O) const T&로 상수 참조 가능
 
 ```cpp
 int a[2];
-int(& r5)[2] = a; // 괄호로 감쌈
+int(&r5)[2] = a; // 괄호로 감쌈
 r5[0] = 10;
 EXPECT_TRUE(a[0] == 10);
 ```

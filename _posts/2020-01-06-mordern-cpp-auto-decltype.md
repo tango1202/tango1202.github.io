@@ -20,15 +20,19 @@ sidebar:
 
 추론 규칙은 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따릅니다.
 
-
+즉, 배열은 포인터로 추론되고, 최상위 `const`는 무시됩니다.
 
 ```cpp
 int a = 0;
 const int b = 0;
 
 auto c_11 = a; // int로 추론됨
-auto d_11 = b; // 최상위 const는 무시되므로 const int 가 아닌 int로 추론됨
-d_11 = 10;   
+
+int arr[] = {1, 2, 3};
+auto d_11 = arr; // 배열이 아니라 int*로 추론됨
+
+auto e_11 = b; // 최상위 const는 무시되므로 const int 가 아닌 int로 추론됨
+e_11 = 10; // const가 아니여서 값을 대입받을 수 있습니다.  
 
 std::vector<int> v;
 
@@ -47,6 +51,8 @@ double Func_11(int a, auto b) {
     return a + b;   
 }
 ```
+
+
 
 > *(C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 [템플릿 인자로 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.*
 

@@ -448,6 +448,19 @@ EXPECT_TRUE(v.size() == 2 && v[0] == 0 && v[1] == 0);
 std::vector<int> v_11{2};
 EXPECT_TRUE(v_11.size() == 1 && v_11[0] == 2);   
 ```    
+# 중괄호 초기화와 auto
+
+`auto`를 중괄호 초기화 할때 [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t) 와 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)에서의 추론 결과가 다릅니다.
+
+```cpp
+// 중괄호 직접 초기화
+auto a_11{1}; // a는 int
+auto b_11{1, 2}; // (X) 컴파일 오류. auto에서는 단일 개체 대입 필요  
+
+// 중괄호 복사 초기화
+auto c_11 = {1}; // c는 initializer_list<int>
+auto d_11 = {1, 2}; // d는 initializer_list<int>  
+```
 
 # (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙
 

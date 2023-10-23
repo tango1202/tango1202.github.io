@@ -59,6 +59,19 @@ int arr[3];
 // Parameter : int*
 f(arr); // f<int*>(int*)
 ```
+단, [배열의 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%B0%B8%EC%A1%B0%EC%9E%90-%EC%82%AC%EC%9A%A9%EB%B2%95)는 변환하지 않고 그대로 사용됩니다. 
+
+따라서 다음처럼 템플릿 함수를 이용하여 배열의 갯수를 구할 수 있습니다.
+
+```cpp
+template<typename T, size_t N>
+std::size_t f(T(&arr)[N]) { // 배열에 대한 참조
+    return N;
+}
+int arr[3];
+EXPECT_TRUE(sizeof(arr) == 3 * sizeof(int)); // 배열의 전체 용량
+EXPECT_TRUE(f(arr) == 3); // 배열 요소 갯수
+```
 
 함수는 함수 포인터로 추론합니다.
 
