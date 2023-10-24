@@ -59,6 +59,13 @@ EXPECT_TRUE(str2[2] == L'c');
 EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 ```
 
+# 배열 대입
+
+```cpp
+
+
+```
+
 # 배열과 vector
 
 속도 성능에 영향이 없다면 배열 보다는 표준 템플릿 라이브러리의 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 사용하는 편이 유지보수시 확장성 측면에서 좋습니다. 동적 요소 할당을 지원하며, 랜덤 접근을 하므로 여전히 엑세스는 빠릅니다.

@@ -20,7 +20,7 @@ sidebar:
 
 추론 규칙은 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따릅니다.
 
-즉, 배열은 포인터로 추론되고, 최상위 `const`는 무시됩니다.
+즉, 배열은 포인터로 추론되고, 최상위 `const`는 무시됩니다. 특히 참조성은 제거됩니다.
 
 ```cpp
 int a = 0;
@@ -34,6 +34,11 @@ auto d_11 = arr; // 배열이 아니라 int*로 추론됨
 auto e_11 = b; // 최상위 const는 무시되므로 const int 가 아닌 int로 추론됨
 e_11 = 10; // const가 아니여서 값을 대입받을 수 있습니다.  
 
+int x = 10;
+int& ref = x;
+auto f_11 = ref; // 참조성이 제거되어 int로 추론됩니다.
+auto& g_11 = ref; // auto&을 이용하여 억지로 참조자로 받을 수 있습니다.
+
 std::vector<int> v;
 
 // std::vector<int>::iterator itr = v.begin(); 
@@ -43,7 +48,7 @@ auto itr_11 = v.begin(); // 템플릿 사용에 따른 긴 타입명 간소화
 auto endItr_11 = v.end();
 ```
 
-함수 인자 정의시에는 사용할 수 없습니다.(인자에 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 쓰면 오버로딩 결정이 좀 애매해 질 수 있거든요. [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고)
+함수 인자 정의시에는 사용할 수 없습니다.(*인자에 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 쓰면 오버로딩 결정이 좀 애매해 질 수 있거든요. [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
 
 ```cpp
 // (X) 컴파일 오류
@@ -52,9 +57,10 @@ double Func_11(int a, auto b) {
 }
 ```
 
-
-
 > *(C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 [템플릿 인자로 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.*
+
+
+`auto`를 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 이용하여 초기화 하면 상황에 따라 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론될 수 있습니다. [중괄호 초기화와 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto)을 참고하세요.
 
 # decltype()
 
@@ -96,7 +102,30 @@ decltype((t->m_Val)) b_11 = 10; // 괄호를 추가하면 좌측값 표현식으
 
 1. 추론 방식
    
-    [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)의 경우 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따르기 때문에 배열을 포인터로 추론하고, 최상위 `const` 는 무시하지만, [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)은 괄호안의 개체를 정의된 그대로 추론합니다.
+    [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)의 경우 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따르기 때문에 배열을 포인터로 추론하고, 최상위 `const` 는 무시하고 참조성은 제거되지만, [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)은 괄호안의 개체를 정의된 그대로 추론합니다.
+
+    ```cpp
+    // 배열
+    {
+        int arr[] = {1, 2, 3};
+        auto a_11 = arr; // int*
+        decltype(arr) d_11 = {1, 2, 3}; // int d_11[3] 
+    }
+    // 최상위 const
+    {
+        const int constInt = 10;
+        auto a_11 = constInt; // int
+        decltype(constInt) d_11 = constInt; // const int
+    }
+    // 참조성
+    {
+        int x = 10;
+        int& ref = x;
+
+        auto a_11 = ref; // int
+        decltype(ref) d_11 = ref; // int&
+    }
+    ```
 
 2. 함수 인자
    
@@ -194,7 +223,9 @@ decltype(Func(10, 20)) c_11 = Func(10, 20); // C++11
 decltype(auto) d_14 = Func(10, 20); // C++14
 ```
 
-[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)의 경우 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따르기 때문에 배열을 포인터로 추론하고, 최상위 `const` 는 무시하지만, `decltype(auto)`는 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype) 처럼 괄호안의 개체를 정의된 그대로 추론합니다.
+[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)의 경우 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따르기 때문에 배열을 포인터로 추론하고, 최상위 `const` 는 무시하고, 참조성은 제거되지만, `decltype(auto)`는 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype) 처럼 괄호안의 개체를 정의된 그대로 추론합니다.
+
+다만, 배열의 경우는 `int arr2[3] = arr1;`과 같이 배열끼리의 복사 대입 표현식이 성립하지 않으므로, 
 
 ```cpp
 const int val = 1;
