@@ -20,7 +20,7 @@ sidebar:
 
 # 개요
 
-[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)에서 언급한 것처럼 문자열은 `const char*`나 `const wchar*`로 문자열 상수가 있는 영역을 참조하거나, 배열을 이용하여 복사할 수 있습니다. 
+[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)에서 언급한 것처럼 문자열은 `const char*`나 `const wchar_t*`로 문자열 상수가 있는 영역을 참조하거나, 배열을 이용하여 복사할 수 있습니다. 
 
 또한, STL 에서 `string`, `wstring`개체를 제공하여 문자열을 저장 및 관리 할 수 있습니다.(*[문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 참고*)
 
