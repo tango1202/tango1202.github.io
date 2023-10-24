@@ -127,7 +127,7 @@ public:
 
 # 가상 함수
 
-`virtual`을 붙이면 가상 함수가 되며, 부모 개체로 자식 개체에서 재구현한 함수에 접근할 수 있습니다.
+`virtual`을 붙이면 가상 함수가 되며, 부모 개체의 포인터나 참조자로 자식 개체에서 재구현한 함수(*이를 오버라이딩(overriding)이라 합니다.*)에 접근할 수 있습니다. 
 
 다음 코드에서 일반 함수인 `f()`와 가상 함수인 `v()`를 `Derived`에서 재구현 했을때, 어떻게 동작하는지 나타내었습니다.
 
@@ -145,7 +145,7 @@ public:
 class Derived : public Base {
 public:
     int f() {return 20;} // (△) 비권장. Base의 동일한 이름의 비 가상 함수를 가림
-    virtual int v() {return 20;} // (O) Base의 가상 함수 재구현
+    virtual int v() {return 20;} // (O) Base의 가상 함수 재구현(오버라이딩)  굳이 virtual을 붙일 필요는 없습니다.
 };
 
 Derived d;
@@ -158,6 +158,12 @@ EXPECT_TRUE(static_cast<Base&>(d).f() == 10); // (△) 비권장. 가려진 Base
 EXPECT_TRUE(b->v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 EXPECT_TRUE(d.v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 ```
+
+자식 개체에서 부모 개체의 함수를 오버라이딩 하려면,
+
+1. 부모 개체에서 `virtual` 함수로 선언해야 합니다.
+1. 자식 개체에서 함수명/인자 타입/[const](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)/[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)이 동일해야 합니다. 만일 다르다면, 오버라이딩 되지 않습니다. 컴파일러가 오류를 잘 감지하지 못하니 주의하시기 바랍니다.
+
 > *(C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다. 또한, [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.*
 
 **리턴값 변경**

@@ -27,6 +27,13 @@ typedef unsigned long ulong;
 using ulong_11 = unsigned long; // typedef와 순서가 반대입니다.
 ```
 
+[함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)인 경우는 훨씬 더 직관적입니다.
+
+```cpp
+typedef void (*Func)(int); 
+using Func_11 = void (*)(int);
+```
+
 # (C++11~) 템플릿 클래스 별칭
 
 `using`은 템플릿 클래스 별칭도 지원합니다.

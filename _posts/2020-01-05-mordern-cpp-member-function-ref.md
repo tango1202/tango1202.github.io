@@ -13,7 +13,7 @@ sidebar:
 
 # 개요
 
-[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 우측값에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.다.
+[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 우측값에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.
 
 ```cpp
 class T {
@@ -27,3 +27,5 @@ EXPECT_TRUE(t.Func_11() == 1); // 좌측값이므로 #1 호출
 EXPECT_TRUE(std::move(t).Func_11() == 2); // move는 우측값이므로 #2 호출
 EXPECT_TRUE(T().Func_11() == 2); // T() 는 임시 개체(우측값)이므로 #2 호출   
 ```
+
+# 이동 연산을 지원하는 Wrapper 설계

@@ -59,19 +59,109 @@ double Func_11(int a, auto b) {
 
 > *(C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 [템플릿 인자로 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.*
 
-
 `auto`를 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 이용하여 초기화 하면 상황에 따라 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론될 수 있습니다. [중괄호 초기화와 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto)을 참고하세요.
+
+# auto의 장점
+
+1. 초기화하지 않으면 생성할 수 없습니다.
+
+    ```cpp
+    int a; // 쓰레기값으로 생성합니다.
+    auto a; // (X) 컴파일 오류. 초기값이 없어 타입을 추론하지 못해 컴파일 오류가 납니다.
+    ```
+
+2. 기나긴 타입명을 간단하게 표현합니다.
+
+    ```cpp
+    std::vector<int>::iterator itr = v.begin();
+    auto v.begin();
+    ```
+
+3. 타입 종속적으로 표현되므로 리팩토링이 편합니다.
+
+    ```cpp
+    int f() {...}
+
+    int a = f(); // (△) 비권장. f()함수의 리턴 타입이 long으로 변경되면 수정해야 합니다.
+    auto a = f(); // (O) f()함수의 리턴 타입이 long으로 변경되더라도 수정할 필요가 없습니다.
+    ```
+
+4. 의도치 않은 타입 불일치로 발생하는 암시적 형변환을 차단합니다.
+
+    ```cpp
+    int f() {...}
+
+    long a = f(); // (△) 비권장. int가 long으로 암시젹 형변환 됩니다.
+    auto a = f(); // (O) 형변환 되지 않습니다.
+    ```
+
+# 중괄호 초기화와 auto
+
+`auto`를 중괄호 초기화와 궁합이 맞지 않습니다.(*[https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto)* 참고)
+
+```cpp
+// 모두 int 10으로 초기화됩니다.
+int a = 10;
+int a(10);
+int a{10};
+
+auto b_11 = 10; // int 10으로 초기화됩니다.
+auto b_11(10); // int 10으로 초기화 됩니다.
+auto b_11{10}; // int 10으로 초기화 됩니다.
+auto b_11 = {10}; // (△) 비권장. initializer_list로 초기화됩니다.
+```
+
+# 암시적 형변환과 auto
+
+[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 `auto`는 궁합이 맞지 않습니다. 
+
+다음은 정수의 최대/최소를 0 ~ 10 으로 한정하는 `MyInt` 클래스 입니다. `int`로의 변환을 쉽게 하기 위해 `operator int()`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 했다고 합시다.
+
+`int val = MyInt(11);`와 같이 `int`타입에 대입할때는 별다른 문제가 없어 보입니다.
+
+하지만, `auto val_11 = MyInt(11);`와 같이 표현하면, `val_11`은 `MyInt`타입입니다. 따라서, `int&` 참조자로 변환할 수 없습니다. 
+
+이걸 해결하려면, `auto`를 사용하지 않고 `int`로 명시하던지, `static_cast<int>`로 명시적으로 변환하던지 해야 합니다. 
+
+하지만, 근본적으로 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 말씀드렸듯, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 사용하지 마세요.
+
+```cpp
+class MyInt {
+    int m_Val;
+public:
+    explicit MyInt(int val) : m_Val(Clamp(val, 0, 10)) {}
+    operator int() {return m_Val;} // int로 형변환 됩니다.
+
+private:
+    int Clamp(int val, int min, int max) { // 최대/최소값으로 변경합니다.
+        if (val < min) {return min;}
+        if (max < val) {return max;}
+
+        return val;
+    }
+};
+
+int val = MyInt(11); // (△) 비권장. 암시적으로 int로 변경됩니다. 
+EXPECT_TRUE(val == 10);
+EXPECT_TRUE(val + 1 == 11);
+
+// auto val_11 = MyInt(11); // MyInt입니다.
+// int& ref = val_11; // (X) 컴파일 오류. 참조자로 변환될 수 없습니다.
+
+auto val_11 = static_cast<int>(MyInt(11)); // 명시적으로 int 입니다.
+int& ref = val_11; // (△) 비권장. 참조자로 변환될 수 있습니다만, 근본적으로는 암시적 형변환을 사용하지 마세요.
+```
 
 # decltype()
 
-`()` 안의 개체나 표현식에 따라 타입을 추론하여 결정합니다.
+`()` 안의 개체나 표현식의 타입으로 추론합니다. 이때 `auto`처럼 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따르지 않고, 선언된 타입 그대로 추론합니다.
 
 ```cpp
 int a = 0;
 const int b = 0;
 
-decltype(a) c_11 = a; // a와 동일한 int로 추론됨
-decltype(b) d_11 = a; // auto와는 다르게 b와 동일한 const int로 추론됨
+decltype(a) c_11 = a; // int. a와 동일한 int로 추론됨
+decltype(b) d_11 = a; // const int. auto와는 다르게 b와 동일한 const int로 추론됨
 d_11 = 10; // (X) 컴파일 오류. const int이므로 값대입 안됨
 ```
 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)은 괄호안의 개체 자체를 평가하지만, 괄호를 추가하면 좌측값 표현식으로 평가하여 특별히 `T&`로 추론합니다.
@@ -225,12 +315,32 @@ decltype(auto) d_14 = Func(10, 20); // C++14
 
 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)의 경우 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따르기 때문에 배열을 포인터로 추론하고, 최상위 `const` 는 무시하고, 참조성은 제거되지만, `decltype(auto)`는 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype) 처럼 괄호안의 개체를 정의된 그대로 추론합니다.
 
-다만, 배열의 경우는 `int arr2[3] = arr1;`과 같이 배열끼리의 복사 대입 표현식이 성립하지 않으므로, 
+다만, 배열의 경우는 [배열끼리의 대입이 허용되지 않으므로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EB%8C%80%EC%9E%85), `decltype(auto) d_14 = {1, 2, 3};`와 같은 표현은 컴파일 오류가 발생합니다.
 
 ```cpp
-const int val = 1;
-auto c_11 = val; // int로 추론됨. 최상위 const는 제거됨
-decltype(auto) d_14 = val; // const int로 추론됨. 
+// 배열
+{
+    int arr[] = {1, 2, 3};
+    auto a_11 = arr; // int*
+    decltype(arr) d_11 = {1, 2, 3}; // int d_11[3] 
+    // decltype(auto) d_14 = {1, 2, 3}; // (X) 컴파일 오류. 중괄호 복사 초기화로 배열 요소의 타입까지는 추론하지 못합니다.
+}
+// 최상위 const
+{
+    const int constInt = 10;
+    auto a_11 = constInt; // int
+    decltype(constInt) d_11 = constInt; // const int
+    decltype(auto) d_14 = constInt; // const int
+}
+// 참조성
+{
+    int x = 10;
+    int& ref = x;
+
+    auto a_11 = ref; // int
+    decltype(ref) d_11 = ref; // int&
+    decltype(auto) d_14 = ref; // int&
+}
 ```
 
 # (C++14~) 리턴 타입 추론
@@ -248,6 +358,8 @@ C++14부터 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decl
 auto Add1_14(int a, int b) {
     return a + b;
 }
+int result1 = Add1_14(10, 20); // int를 리턴
+
 auto Add2_14(int a, int b) {
 
     const int result = a + b;
@@ -255,6 +367,7 @@ auto Add2_14(int a, int b) {
     // 템플릿 함수 인수 추론에 의해 const int 대신 int가 사용됩니다.
     return result;
 }
+int result2 = Add2_14(10, 20); // const int를 리턴했지만 템플릿 함수 인수 추론 규칙에 따라 int를 리턴
 
 decltype(auto) Add3_14(int a, int b) {
     const int result = a + b;
@@ -262,12 +375,16 @@ decltype(auto) Add3_14(int a, int b) {
     // 개체 엑세스로 평가. result 타입 그대로 평가
     return result; 
 }
+const int result3 = Add3_14(10, 20); // const int 리턴. 리턴하는 result 타입과 동일
+
 decltype(auto) Add4_14(int a, int b) {
     const int result = a + b; // (X) 예외 발생. Func4의 지역 변수 참조를 전달하기 때문
 
     // 좌측값 표현식의 결과로 평가. T&형태로 평가
     return (result); 
 }
+const int& result4 = Add4_14(10, 20); // const int& 리턴. 리턴하는 (result) 표현식과 동일
+
 // (X) 컴파일 오류. 리턴 타입은 동일해야 합니다.
 auto Add5_14(int a, int b) {
     if (a < 10) {
@@ -282,10 +399,6 @@ public:
     // (X) 컴파일 오류. 가상 함수는 리턴 타입 추론을 할 수 없습니다.
     virtual auto Add_14(int a) {return a;}
 };
-auto result1 = Add1_14(10, 20); // int를 리턴
-auto result2 = Add2_14(10, 20); // const int를 리턴했지만 템플릿 함수 인수 추론 규칙에 따라 int를 리턴
-auto result3 = Add3_14(10, 20); // const int 리턴. 리턴하는 result 타입과 동일
-auto result4 = Add4_14(10, 20); // const int& 리턴. 리턴하는 (result) 표현식과 동일
 ```
 
 

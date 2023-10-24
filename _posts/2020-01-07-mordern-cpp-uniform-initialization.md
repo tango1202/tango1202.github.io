@@ -16,6 +16,26 @@ sidebar:
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.
 
 
+# 개요
+
+C++11 부터는 개체 생성시 중괄호 초기화를 이용한 방법이 추가되어 일관된 초기화 방법을 제공하고, [초기화 파싱 오류](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)를 개선했습니다.
+
+다음과 같이 기존 괄호(`()`)를 중괄호(`{}`)로 대체하여 초기화 할 수 있습니다.
+
+```cpp
+int a = 10;
+
+int b(10); // 괄호 초기화
+int b_11{10}; // 중괄호 직접 초기화
+
+int c = int(10); // (△) 비권장. int(10)로 생성한 개체를 int c에 복사합니다.
+int c_11 = int{10}; // 중괄호 복사 초기화. int c_11 = {10} 과 동일
+
+int d(int(10)); // (△) 비권장. int(10)로 생성한 개체를 int d에 복사합니다.
+int d_11{int{10}}; // int{10}으로 생성한 개체를 int d_11에 복사합니다.
+// int d_11{{10}}; // (X) 컴파일 오류. 기본 타입은 중괄호 중첩을 지원하지 않습니다. 
+```
+
 # 중괄호 초기화
 
 [초기화 파싱 오류](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98) 에서도 언급했듯 `()`을 사용하는 초기화 방법은 컴파일러가 다르게 해석(*기본 생성자 호출을 함수 선언으로 오해*)할 소지가 있습니다. 그리고, 클래스인지, 배열인지, 구조체 인지에 따라 때로는 괄호를 생략하거나, 괄호를 넣거나, 중괄호를 사용해야 하거나 뒤죽 박죽입니다.
@@ -44,7 +64,7 @@ struct U {
 U objs = {10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 ```
 
-C++11 부터는 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 제공하여 클래스인지, 배열인지, 구조체의 구분없이 `{}`을 이용하여 일관성 있게 초기화 할 수 있습니다.
+C++11 부터는 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 제공하여 클래스인지, 배열인지, 구조체의 구분없이 `{}`을 이용하여 일관성 있게 초기화 할 수 있으며, [초기화 파싱 오류](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)도 해결했습니다.
 
 ```cpp
 class T {
@@ -115,6 +135,19 @@ U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 # 중괄호 복사 초기화 T t = {};, t = {};, f({}), return {}
 
 `T t = {};` 표현은 `T t = T{};`의 축약형입니다. [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t)인 `T{}`로 개체를 생성하고, 복사 생성자를 이용하여 `t`을 복사 생성하는 표현입니다.
+
+```cpp
+class T {
+public:
+    T() {}
+    explicit T(int) {}
+private:
+    T(const T&) {} // 복사 생성자를 사용할 수 없습니다.
+};       
+
+T a_11{10};
+// T b_11 = {10}; // (X) 컴파일 오류. 복사 생성자를 사용합니다.
+```
 
 1. 생성자 호출시 사용할 수 있습니다.
    
@@ -437,17 +470,23 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 
 # 기존 생성자와 initializer_list 생성자와의 충돌
 
-[중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84)에 따라 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 버전이 비교적 우선적으로 선택됩니다. 그러다 보니 기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v_11{2};` 와 같이 한다면, 요소가 2개인 `vector` 를 생성하는게 아니라, `2`값인 요소 1인 `vector`를 생성합니다.
+[중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 3번에 따라 `vector<int> v{}` 는 `vector`의 기본 생성자를 호출하고, `vector<int> {{}}`는 빈 `initializer_list`로 `vector`를 생성합니다.
+
+상기는 별로 심각하지 않을 수 있지만, [중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 4번인 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 버전이 비교적 우선적으로 선택되는 부분은 심각합니다. 기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v_11{2};` 와 같이 한다면, 요소가 2개인 `vector` 를 생성하는게 아니라, `2`값인 요소 1인 `vector`를 생성합니다.
 
 ```cpp
-// 요소가 2개인 vector를 생성합니다.
-std::vector<int> v(2);
-EXPECT_TRUE(v.size() == 2 && v[0] == 0 && v[1] == 0);
+std::vector<int> v1(); // 함수 선언
+std::vector<int> v1_11{}; // 기본 생성자
 
-// 요소값이 2인 vector를 생성합니다.
-std::vector<int> v_11{2};
-EXPECT_TRUE(v_11.size() == 1 && v_11[0] == 2);   
-```    
+std::vector<int> v2_11{{}}; // 빈 initializer_list로 vector 생성
+
+std::vector<int> v3(2); // 요소 갯수가 2개인 vector 생성
+EXPECT_TRUE(v3.size() == 2 && v3[0] == 0 && v3[1] == 0);
+
+std::vector<int> v3_11{2}; // 요소값이 2인 vector 생성
+EXPECT_TRUE(v3_11.size() == 1 && v3_11[0] == 2);  
+```
+
 # 중괄호 초기화와 auto
 
 `auto`를 중괄호 초기화 할때 [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t) 와 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)에서의 추론 결과가 다릅니다.

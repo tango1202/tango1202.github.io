@@ -61,9 +61,22 @@ EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 
 # 배열 대입
 
+배열끼리는 대입할 수 없습니다. 배열의 각 요소를 일일이 복사해야 합니다. 다만, 포인터형 변수를 이용하여 접근할 수 있습니다. 
+
 ```cpp
+int arr1[] = {1, 2, 3};
 
+// int arr2[] = arr1; // (X) 컴파일 오류. 배열끼리는 대입되지 않습니다.
+int arr2[3];
+for (int i = 0; i < sizeof(arr1) / sizeof(int); ++i) { // 배열의 각 요소를 복사합니다.
+    arr2[i] = arr1[i];
+} 
+EXPECT_TRUE(arr2[0] == 1 && arr2[1] == 2 && arr2[2] == 3);
 
+int* ptr = arr1; // 포인터형 변수에 대입할 수 있습니다.
+
+ptr[1] = 20;
+EXPECT_TRUE(arr1[1] == 20);
 ```
 
 # 배열과 vector

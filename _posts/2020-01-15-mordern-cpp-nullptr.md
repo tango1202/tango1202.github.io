@@ -47,6 +47,14 @@ EXPECT_TRUE(f(ptr2) == 1); // f(int) 호출
 EXPECT_TRUE(f(ptr3_11) == 2); // f(int*) 호출
 ```
 
+또한 다음과 같은 구문을 만났을때 좀더 명확한 분석이 가능합니다.
+
+```cpp
+auto result = Func();
+if (result == 0) {} // (△) 비권장. result가 정수인지 포인터인지 불명확 합니다.
+if (result == nullptr) {} // result는 포인터라는 것이 좀더 명확합니다.
+```
+
 # nullptr_t
 
 [nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/#nullptr_t)는 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)을 저장할 수 있는 타입이며, 어떠한 포인터로도 암시적으로 변환될 수 있는 타입입니다. 크기는 `sizeof(void*)`와 동일합니다.

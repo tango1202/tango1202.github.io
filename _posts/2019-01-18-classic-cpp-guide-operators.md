@@ -297,8 +297,10 @@ EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 �
 
 |항목|내용|
 |--|--|
-|`typeid(개체명)`|개체 타입 정보 리턴|
-|`typeid(타입명)`|타입이나 클래스명, 구조체명, 공용체명의 타입 정보 리턴|
+|`typeid(개체명)`|개체 `type_info` 리턴|
+|`typeid(타입명)`|타입이나 클래스명, 구조체명, 공용체명의 `type_info` 리턴|
+
+`type_info`의 `name()`은 타입의 이름입니다만, 모든 타입에 대해 유일하다고 보장하지는 않습니다.(*컴파일러 제조사 마음입니다.*) 따라서, 개발이나 디버깅시의 힌트를 참고하는 정도로만 사용하시기 바랍니다. 
 
 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체인지 아닌지에 따라 동작이 다릅니다.
 
@@ -306,6 +308,8 @@ EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 �
 |--|--|
 |[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 경우|정의한 개체 타입을 리턴합니다.|
 |[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 경우|참조하는 개체 타입을 리턴합니다.|
+
+
 
 ```cpp
 // 가상 함수 없음
