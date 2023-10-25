@@ -69,7 +69,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 
 1. [예외처리](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)
    
-    예외를 발생시키거나 처리할 수 있습니다.
+    예외를 방출하거나 처리할 수 있습니다.
 
     ```cpp
     try {}

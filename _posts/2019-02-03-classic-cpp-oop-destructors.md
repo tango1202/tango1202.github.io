@@ -15,7 +15,7 @@ sidebar:
 > * `is-a`관계에서는 `public` Virtual 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
 > * `has-a`관계에서는 `protected` Non-Virtual 소멸자를 사용하라.
 > * 생성자처럼 소멸자에서도 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
-> * 소멸자에서 예외를 발생하지 마라.(필요하다면 `Release()`함수를 구현하라.)
+> * 소멸자에서 예외를 방출하지 마라.(필요하다면 `Release()`함수를 구현하라.)
 
 > **모던 C++**
 > * (C++11~) 소멸자는 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다.
@@ -123,7 +123,7 @@ Derived d;
 
 # 암시적 소멸자
 
-복사 생성자, 복사 대입 연산자와 마찬가지로, 소멸자를 정의하지 않으면, 컴파일러는 암시적으로 소멸자를 정의합니다. 암시적 소멸자는 아무 작업을 하지 않으며 예외를 발생하지 않습니다.
+복사 생성자, 복사 대입 연산자와 마찬가지로, 소멸자를 정의하지 않으면, 컴파일러는 암시적으로 소멸자를 정의합니다. 암시적 소멸자는 아무 작업을 하지 않으며 예외를 방출하지 않습니다.
 
 소멸자를 명시적으로 구현해서 사용한 리소스를 직접 소멸시키기 보다는 암시적 소멸자를 그대로 사용할 수 있도록 스마트 포인터([auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/), [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/), [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등)를 이용하는게 실수를 줄일 수 있고 예외 안전에 더 좋습니다.([Holder의 필요성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/#holder%EC%9D%98-%ED%95%84%EC%9A%94%EC%84%B1) 참고)
 
@@ -355,9 +355,9 @@ Derived d; // (X) 오동작. 소멸자에서 가상 함수 호출
 4. BaseMemberObj::~BaseMemberObj()
 ```
 
-# 소멸자에서 예외 발생 금지
+# 소멸자에서 예외 방출 금지
 
-예외 발생에 따른 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)시에도 개체가 소멸되면서 소멸자가 호출됩니다. 이러한 상황에서 또다시 예외가 발생하면, 정상적인 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 방해하므로 소멸자에서는 예외가 발생하지 않도록 해야 합니다. 
+예외 발생에 따른 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)시에도 개체가 소멸되면서 소멸자가 호출됩니다. 이러한 상황에서 또다시 예외가 발생하면, 정상적인 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 방해하므로 소멸자에서는 예외를 방출하지 않도록 해야 합니다. 
 소멸자에서 예외가 발생할 것 같으면 `Release()`와 같은 별도의 정리 함수를 만들어 소멸자 호출전에 명시적으로 호출하는게 좋습니다.
 
 ```cpp

@@ -392,7 +392,7 @@ T_11& operator =(T_11&& other);
 
 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)는 좌측값(`lvalue`) 을 우측값(`rvalue`)으로 형변환 합니다. 
 
-다음처럼 `static_cast`로도 형변환 할 수 있으나, 가독성을 위해 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 사용합니다.
+다음처럼 `static_cast`로도 형변환 할 수 있으나, 가독성을 위해 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 사용합니다. 
 
 ```cpp
 T t;
@@ -424,6 +424,8 @@ EXPECT_TRUE(T::Func_11(std::move(b)) == 2);
 EXPECT_TRUE(T::Func_11(A()) == 2); // 임시 개체는 rvalue
 EXPECT_TRUE(T::Func_11(std::move(A())) == 2); // 임시 개체를 move 해도 rvalue
 ```
+
+`move()`함수는 `T`와 `T&`를 단순히 `&&`로 변환해 주는 함수이므로 `const T` 를 전달하면 `const T&&`로 변경합니다. 그런데, 이동 생성자, 이동 대입 연산자는 `T&&`를 사용하므로 `const T&&`로 변환하면 호출되지 않습니다. 따라서 `const`를 제거하고 사용해야 합니다.(*[이동 연산을 지원하는 Wrapper 설계](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%84-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-wrapper-%EC%84%A4%EA%B3%84) 참고*)
 
 # move_if_noexcept()
 
