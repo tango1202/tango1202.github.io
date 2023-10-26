@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [모던 C++] (C++11~) 우측값, 이동 연산, 이동 생성자, 이동 대입 연산자, move(), forward(), 값 카테고리"
+title: "#7. [모던 C++] (C++11~) 우측값, 이동 연산, 이동 생성자, 이동 대입 연산자, move(), forward(), 값 카테고리"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 대입시 속도가 향상되었습니다.
+> * (C++11~) [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90), [이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가됨에 따라 [기본 생성자, 복사 생성자, 복사 대입 연산자, 이동 생성자, 이동 대입 연산자, 소멸자의 암시적 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%A0%95%EC%9D%98)가 재정립 되었습니다.
 > * (C++14~) [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/)는 주어진 값을 바꾸고 이전값을 리턴합니다. [이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 구현에 활용할 수 있습니다.
 
 # 개요
@@ -142,7 +143,7 @@ Big : Destructor // a 소멸
 
 여기서 만약 `b`가 `a`에 값을 대입하고, 더이상 사용되지 않는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)(우측값)라면 어떨까요? 굳이 `temp`를 생성해서 복제본을 만들 필요없이 `b`의 값을 바로 `a`에 전달(이동)해도 됩니다. `a`가 기존 것을 버리고, `b` 데이터만 가지면 되니까요. 
 
-다음 그림에서 `a = b;`등으로 `a`가 `b`의 데이터를 갖도록 만들때, 복사 대입과 이동 대입의 차이를 도식화 했습니다. 이동 대입이 훨씬 간결한 것을 알 수 있습니다.(다만, `b`가 참조하는 데이터는 없어집니다.)
+다음 그림에서 `a = b;`등으로 `a`가 `b`의 데이터를 갖도록 만들때, 복사 대입과 이동 대입의 차이를 도식화 했습니다. 이동 대입이 훨씬 간결한 것을 알 수 있습니다.(*다만, `b`가 참조하는 데이터는 없어집니다.*)
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e4333269-db1f-41e5-8ec7-308db82869a2)
 
@@ -225,7 +226,7 @@ Big : Destructor // a 소멸
 
 # 우측값 참조, 이동 생성자, 이동 대입 연산자
 
-C++ 표준 위원회는 여기서 더 나아가 그냥 각자 `Move()`함수를 구현하는 것에 만족하지 않고, 기존 `=`에서 식별자가 부여된(이름 있는) 좌측값(`lvalue`) 대입과 식별자가 부여되지 않은(이름 없는) 우측값(`rvalue`) 대입을 오버로딩해서 제공하고, `=`가 복사 대입 연산자로 사용되거나 이동 대입 연산자로 사용되게 하여 기존 코드와 호환되면서 속도를 향상시킬 수 있도록 했습니다.
+C++ 표준 위원회는 여기서 더 나아가 그냥 각자 `Move()`함수를 구현하는 것에 만족하지 않고, 기존 `=`에서 식별자가 부여된(*이름이 있는*) 좌측값(`lvalue`) 대입과 식별자가 부여되지 않은(*이름이 없는*) 우측값(`rvalue`) 대입을 오버로딩해서 제공하고, `=`가 복사 대입 연산자로 사용되거나 이동 대입 연산자로 사용되게 하여 기존 코드와 호환되면서 속도를 향상시킬 수 있도록 했습니다.
 
 1. `=` 의 인수가 우측값(`rvalue`) 이고(*대입 후 버려지는 이름 없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)*), 
 2. 이동 대입 연산자가 정의되어 있다면,
@@ -329,7 +330,7 @@ EXPECT_TRUE(e.GetSize() == 50);
 
 # 이동 연산을 이용한 리팩토링
 
-기존 코드들에 `=`가 많이 사용되고 있을 텐데요, 이동 대입 연산자만 추가해 두면, 이름이 없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)(우측값)가 대입될때, 복사 대입 대신 이동 대입을 하게 되어 속도가 향상될 수 있습니다. 
+기존 코드들에 `=`가 많이 사용되고 있을 텐데요, 이동 대입 연산자만 추가해 두면, 이름이 없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)(*우측값*)가 대입될때, 복사 대입 대신 이동 대입을 하게 되어 속도가 향상될 수 있습니다. 
 
 또한 명시적으로 작성한 좌측값 대입이라 할지라도, 약간의 리팩토링으로 성능을 향상시킬 수 있습니다.
 
@@ -343,7 +344,7 @@ void Swap(T& left, T& right) {
 }
 ```
 
-[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 지원하면, 하기와 같이 리팩토링 하여 개선할 수 있습니다. 만약 이동 생성자나 이동 대입 연산자가 없다면, 복사 생성자나 복사 대입 연산자를 호출하여 기존 코드와 동일하게 작동됩니다.(*[move()]([move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move))는 이동 생성자나 이동 대입 연산자 호출을 위해 `&&` 형태로 형변환 합니다.*)
+다음과 같이 변경하면, 내부적으로 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 수행하기 때문에 속도를 개선할 수 있습니다. 만약 이동 생성자나 이동 대입 연산자가 없다면, 복사 생성자나 복사 대입 연산자를 호출하여 기존 코드와 동일하게 작동되므로 코드 호환성도 보장됩니다.
 
 ```cpp
 void Swap_11(T& left, T& right) {
@@ -361,7 +362,7 @@ void Swap_11(T& left, T& right) {
 T(T&& other);
 ```
 
-복사 생성자가 암시적으로 생성되듯이([암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고) 이동 생성자도 암시적으로 생성되며, 멤버별 이동 생성자를 호출합니다.(*단, 멤버별 이동 생성자가 정의되지 않았다면, 복사 생성자를 호출합니다.*)
+[복사 생성자가 암시적으로 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)되듯이 이동 생성자도 암시적으로 생성되며, 멤버별 이동 생성자를 호출합니다.(*단, 멤버별 이동 생성자가 정의되지 않았다면, 복사 생성자를 호출합니다.*)
 
 단, 다음 조건에서는 암시적 이동 생성자를 생성하지 않습니다.
 
@@ -377,7 +378,7 @@ T(T&& other);
 T& operator =(T&& other);
 ```
 
-복사 대입 연산자가 암시적으로 생성되듯이([암시적 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고) 이동 대입 연산자도 암시적으로 생성되며, 멤버별 이동 대입 연산을 호출합니다.(*단, 멤버별 이동 대입 연산자가 정의되지 않았다면, 복사 대입 연산자를 호출합니다.*)
+[복사 대입 연산자가 암시적으로 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)되듯이 이동 대입 연산자도 암시적으로 생성되며, 멤버별 이동 대입 연산을 호출합니다.(*단, 멤버별 이동 대입 연산자가 정의되지 않았다면, 복사 대입 연산자를 호출합니다.*)
 
 단, 다음 조건에서는 암시적 이동 대입 연산자를 생성하지 않습니다.
 
@@ -389,57 +390,125 @@ T& operator =(T&& other);
 
 # 이동 연산에 따른 암시적 정의
 
-[클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/)에 언급한 것처럼, 기존에는 기본 생성자, 복사 생성자, 복사 대입 연산자, 소멸자만 암시적으로 정의했는데요, C++11 부터는 이동 생성자와 이동 대입 연산자가 추가 되었습니다.
+[클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/)에 언급한 것처럼, 기존에는 기본 생성자, 복사 생성자, 복사 대입 연산자, 소멸자만 암시적으로 정의했는데요, C++11 부터는 이동 생성자와 이동 대입 연산자의 암시적 정의도 추가되어 약간 변경되었습니다. 눈여겨 볼 점은 복사 생성자, 복사 대입 연산자의 암시적 정의 규칙인데요, 이동 생성자나 이동 대입 연산자를 정의하면 암시적으로 정의하지 않습니다.
 
-암시적으로 생성되는 조건은 다음과 같습니다.
+암시적으로 정의되는 조건은 다음과 같습니다.
 
 |항목|내용|
 |--|--|
-|기본 생성자|기존과 동일하게 사용자 정의한 다른 생성자가 없으면 암시적으로 생성합니다.|
-|복사 생성자|기존과 동일하게 사용자 정의한 복사 생성자가 없으면 암시적으로 생성됩니다. 단, C++11에 추가된 이동 생성자와 이동 대입 연산자가 정의되면 암시적으로 생성하지 않습니다.
-|복사 대입 연산자|기존과 동일하게 사용자 정의한 복사 대입 연산자가 없으면 암시적으로 생성됩니다. 단, C++11에 추가된 이동 생성자와 이동 대입 연산자가 정의되면 암시적으로 생성하지 않습니다.|
-|이동 생성자|복사 생성자, 이동 생성자, 이동 대입 연산자, 복사 대입 연산자, 소멸자를 사용자 정의한 경우에는 생성하지 않습니다.|
-|이동 대입 연산자|복사 생성자, 이동 생성자, 이동 대입 연산자, 복사 대입 연산자, 소멸자를 사용자 정의한 경우에는 생성하지 않습니다.|
+|기본 생성자|기존과 동일하게 사용자 정의한 다른 생성자가 없으면 암시적으로 정의합니다.|
+|복사 생성자|기존과 동일하게 사용자 정의한 복사 생성자가 없으면 암시적으로 정의됩니다. ***단, C++11에 추가된 이동 생성자나 이동 대입 연산자가 정의되면 암시적으로 정의하지 않습니다.***|
+|복사 대입 연산자|기존과 동일하게 사용자 정의한 복사 대입 연산자가 없으면 암시적으로 정의됩니다. ***단, C++11에 추가된 이동 생성자나 이동 대입 연산자가 정의되면 암시적으로 정의하지 않습니다.***|
+|이동 생성자|복사 생성자, 이동 생성자, 이동 대입 연산자, 복사 대입 연산자, 소멸자를 사용자 정의한 경우에는 정의하지 않습니다.(*세부적인 규칙은 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)를 참고하세요.*)|
+|이동 대입 연산자|복사 생성자, 이동 생성자, 이동 대입 연산자, 복사 대입 연산자, 소멸자를 사용자 정의한 경우에는 정의하지 않습니다.(*세부적인 규칙은 [이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 참고하세요.*)|
 
-# 암시적 이동 생성자와 암시적 이동 대입 연산자의 암시적 생성 제약
+# 암시적 이동 생성자와 암시적 이동 대입 연산자의 default 정의
 
 암시적 이동 생성자와 암시적 이동 대입 연산자의 자동 생성 조건은 상당히 까다롭습니다. 복사 생성자, 이동 생성자, 복사 대입 연산자, 이동 대입 연산자, 소멸자를 사용자 중 한개라도 정의되면 안되니까요.
 
-이렇게 까다로운 이유는, 복사 생성자/이동 생성자/복사 대입 연산자/이동 대입 연산자/소멸자중 한개라도 정의되었다는 의미는 개체의 생성/대입/이동/소멸중 뭔가 사용자가 커스텀한 요소가 있다는 뜻이므로, 암시적 버전을 어설프게 제공했다가 호환이 안될 수 있기 때문입니다. 특히 [이동 연산을 이용한 리팩토링](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A6%AC%ED%8C%A9%ED%86%A0%EB%A7%81)에서 언급했듯, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)은 이동 생성자나 이동 대입 연산자가 없다면, 복사 생성자나 복사 대입 연산자를 호출하기 때문에 동작상의 문제는 없거든요.
+이렇게 까다로운 이유는, 복사 생성자/이동 생성자/복사 대입 연산자/이동 대입 연산자/소멸자중 한개라도 정의되었다는 의미는 개체의 생성/대입/이동/소멸중 뭔가 사용자가 특별히 처리한 부분이 있다는 뜻이기 때문입니다.
+
+암시적 버전을 어설프게 제공했다가 호환이 안될 수 있죠. 특히 [이동 연산을 이용한 리팩토링](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A6%AC%ED%8C%A9%ED%86%A0%EB%A7%81)에서 언급했듯, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)은 이동 생성자나 이동 대입 연산자가 없다면, 복사 생성자나 복사 대입 연산자를 호출하기 때문에 동작상의 문제는 없으니 아예 제공은 안해버린 거죠.
 
 하지만 이 부분은 리팩토링 하다 보면 암시적 이동 생성자와 암시적 이동 대입 연산자가 의도치 않게 가려지는 사이드 이펙트를 유발합니다.
 
-예를 들어 데이터를 관리하는 `CopyableMoveable` 개체가 있다고 합니다. 
+예를 들어 데이터를 관리하는 `CopyableMoveable` 개체가 있다고 합니다. `T`타입의 개체를 복사 생성하거나 이동 생성합니다.
 
 ```cpp
 // 관리하는 개체를 복사 생성이나 이동 생성 합니다.
 template<typename T>
-class CopyableMoveable {
+class CopyableMoveable_11 {
     T* m_Data;
-    explicit CopyableMoveable(T* data) : m_Data(data) {}
+public:
+    CopyableMoveable_11() : m_Data(nullptr) {}
+
+    explicit CopyableMoveable_11(T* data) : m_Data(data) {}
     
     // 복사 생성
-    CopyableMoveable(const CopyableMoveable& other) : 
+    CopyableMoveable_11(const CopyableMoveable_11& other) : 
         m_Data(other.m_Data != nullptr ? new T(*other.m_Data) : nullptr) {
-        std::cout << "CopyableMoveable : Copy Constructor" << std::endl;       
+        std::cout << "CopyableMoveable_11 : Copy Constructor" << std::endl;       
     } 
 
     // 이동 생성
-    CopyableMoveable(CopyableMoveable&& other) : 
+    CopyableMoveable_11(CopyableMoveable_11&& other) : 
         m_Data(other.m_Data) {
-        std::cout << "CopyableMoveable : Move Constructor" << std::endl;   
+        std::cout << "CopyableMoveable_11 : Move Constructor" << std::endl;   
 
         other.m_Data = nullptr; // other는 초기화 합니다.
     }  
 
-    ~CopyableMoveable() {delete m_Data;}
+    ~CopyableMoveable_11() {delete m_Data;}
 };
-class A {
+```
+
+다음과 같이 `A_11`에서 사용하면 별 문제 없어 보입니다.
+
+```cpp
+class A_11 {
 private:
-    CopyableMoveable<int> m_Data;
+    CopyableMoveable_11<int> m_Data;
 public:
-    explicit A(int* data) : m_CopyableMoveable<int>(data) {}
+    explicit A_11(int* data) : m_Data(data) {}
 };
+
+A_11 a(new int(10));
+A_11 b(a); // 복사 생성자 호출
+A_11 c(std::move(a)); // 이동 생성자 호출
+```
+
+실행 결과 입니다. 잘 호출되는군요.
+
+```cpp
+CopyableMoveable_11 : Copy Constructor
+CopyableMoveable_11 : Move Constructor
+```
+
+하지만, 소멸자를 정의하는 순간 암시적 이동 생성자와 암시적 이동 대입 연산자는 만들어지지 않습니다.
+
+```cpp
+class A_11 {
+private:
+    CopyableMoveable_11<int> m_Data;
+public:
+    explicit A_11(int* data) : m_Data(data) {}
+    ~A_11() {} // 암시적 이동 생성자와 암시적 이동 대입 연산자가 만들어 지지 않습니다.
+};
+
+A_11 a(new int(10));
+A_11 b(a); // 복사 생성자 호출
+A_11 c(std::move(a)); // (△) 비권장. 복사 생성자 호출
+```
+
+실행 결과 입니다. 이동 연산은 복사 연산으로 소리 소문없이 바껴버렸습니다. 성능 개선을 꿈꾸고 `CopyableMoveable_11`을 공들여 만들었지만, 물거품이 되버렸습니다. 문제는 이러한 변경을 컴파일러가 감지해 주지 않는다는 겁니다. 
+
+```cpp
+CopyableMoveable_11 : Copy Constructor
+CopyableMoveable_11 : Copy Constructor
+```
+
+따라서 이동 연산을 사용하는 클래스라면 암시적 버전을 그대로 사용하더라도, `default`를 이용하여 명시적으로 표기하는게 좋습니다. 단, [이동 연산에 따른 암시적 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%A0%95%EC%9D%98)의 언급에서 처럼 이동 생성자나 이동 대입 연산자가 정의되면 복사 생성자와 복사 대입 연산자도 정의해야 합니다.
+
+```cpp
+class A_11 {
+private:
+    CopyableMoveable_11<int> m_Data;
+public:
+    explicit A_11(int* data) : m_Data(data) {}
+    A_11(A_11&) = default; // 암시적 복사 생성자를 사용합니다.
+    A_11(A_11&&) = default; // 암시적 이동 생성자를 사용합니다.
+    ~A_11() {} // 암시적 이동 생성자와 암시적 이동 대입 연산자가 만들어 지지 않습니다.
+};
+
+A_11 a(new int(10));
+A_11 b(a); // 복사 생성자 호출
+A_11 c(std::move(a)); // 이동 생성자 호출
+```
+실행 결과는 다음과 같습니다.
+
+```cpp
+CopyableMoveable_11 : Copy Constructor
+CopyableMoveable_11 : Move Constructor
 ```
 
 # move()

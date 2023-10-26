@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++] (C++11~) 중괄호 초기화, (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙"
+title: "#9. [모던 C++] (C++11~) 중괄호 초기화, (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
