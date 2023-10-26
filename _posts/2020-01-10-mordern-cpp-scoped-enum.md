@@ -70,7 +70,7 @@ Week_11 week_11 = Week_11::Sunday;
 ```
 # 전방 선언
 
-범위 있는 열거형은 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 지원 합니다.
+범위 있는 열거형은 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 지원합니다. 지난날 열거형 항목이 추가될 때마다 엄청나게 많은 파일들이 쓸데없이 재빌드 되던 걸 생각하면, 참 사소하지만 감사한 기능입니다.
 
 ```cpp
 enum MyEnum; // (X) 컴파일 오류.

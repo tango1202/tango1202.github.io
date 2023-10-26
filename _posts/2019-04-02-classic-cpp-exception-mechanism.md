@@ -109,7 +109,7 @@ catch (std::out_of_range& e) { // 참조자를 사용합니다.
 `try-catch()`로 
 
 1. 탐지하지 않으면, 예외는 상위 개체에 그대로 전파되고, 
-2. 탐지하면, 더이상 예외는 상위 개체에 전파되지 않는데요, `throw;`를 이용하면, 상위 개체에 그대로 전파할 수 있습니다.
+2. 탐지하면, 더이상 예외는 상위 개체에 전파되지 않는데요, 이를 다시 재전파하려면 `throw;`를 사용합니다.
 
 ```cpp
 try {
@@ -168,7 +168,7 @@ void h() {
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e9cbb724-c094-4cb0-851f-e753e1afbbd0)
 
 
-스택 풀기에 따른 개체 소멸시에는 소멸자가 호출되므로, 소멸자예서 예외를 방출하면, 정상적인 스택 풀기를 방해합니다. 따라서 소멸자에서는 예외를 방출하면 안됩니다.([소멸자에서 예외 방출 금지](??) 참고)
+스택 풀기에 따른 개체 소멸시에는 소멸자가 호출되므로, 소멸자예서 예외를 방출하면, 정상적인 스택 풀기를 방해합니다. 따라서 소멸자에서는 예외를 방출하면 안됩니다.([소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고)
 
 이때 , 힙에 생성된 개체는 스택 풀기에 의해 해제되지 않으므로,
 
@@ -198,7 +198,7 @@ void h() {
 
 # 동적 예외 사양
 
-함수 정의시 [throw()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)를 사용하여 발생하는 예외를 명세화 할 수 있는데요, 명시한 예외 이외의 예외가 발생하면, `unexpected()` 함수를 호출하며, `unexpected()` 함수에서는 `unexpected_handler` 를 호출합니다. 즉, 명시한 예외 이외에는 `unexpected_handler` 로 분기하므로 사용하지 않는게 낫습니다.
+함수 정의시 [throw()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)를 사용하여 방출하는 예외를 명세화 할 수 있는데요, 명시한 예외 이외의 예외가 발생하면, `unexpected()` 함수를 호출하며, `unexpected()` 함수에서는 `unexpected_handler` 를 호출합니다. 즉, 명시한 예외 이외에는 `unexpected_handler` 로 분기하므로 사용하지 않는게 낫습니다.
 
 ```cpp
 void f() throw(error1, error2) 
@@ -222,12 +222,12 @@ void f() {
 }
 ```
 
-즉, `error1`과 `error2` 만 발생시키기 위해서, 억지로 다른 예외인 [bad_exception](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)으로 강제 변환합니다. 이러다 보니 불필요하게 `try-catch()` 만 추가되어 실행 속도만 느려집니다. 사용하지 마세요.
+즉, `error1`과 `error2` 만 방출하기 위해서, 억지로 다른 예외인 [bad_exception](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)으로 강제 변환합니다. 이러다 보니 불필요하게 `try-catch()` 만 추가되어 실행 속도만 느려집니다. 사용하지 마세요.
 
 다음 코드에서 `f()`에서 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)에 없는 예외가 발생했을때,
 
 1. #1 의 `UnexpectedHandler()` 핸들러가 호출되고,
-2. #2 인 [bad_exception](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)으로 `catch()`됩니다.
+2. `UnexpectedHandler()`에서 별다른 처리없이 예외를 전파하면, `catch()` 될때까지 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 합니다. 하기 예에서는 #2 인 [bad_exception](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)으로 `catch()`됩니다.
 
 ```cpp
 void UnexpectedHandler() {

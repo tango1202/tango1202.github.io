@@ -62,10 +62,9 @@ Func_11(10);
 Func_11('a'); // (X) 컴파일 오류. delete된 함수입니다.
 ```
 
-
 # override
 
-기존에는 부모 개체의 가상 함수를 상속할 때 아무런 조치 없이 상속했는데요, 가끔 오타인지, 새로운 가상 함수 정의인지 헷갈릴 때가 있습니다. 
+기존에는 부모 개체의 가상 함수를 상속할 때 아무런 조치 없이 상속했는데요, 가끔 오타인지, 새로운 가상 함수 정의인지 헷갈릴 때가 있습니다. 하기와 같은 실수를 찾아내는게 상당히 어려웠죠.
 
 ```cpp
 class Base {
@@ -80,7 +79,7 @@ class Derived : public Base {
 };
 ```
 
-C++11 부터는 명시적으로 [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)를 지정함으로서 컴파일러단에서 잘못된 오버라이딩인지 검사할 수 있습니다.
+C++11 부터는 명시적으로 [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)를 지정해주면 컴파일러단에서 잘못된 오버라이딩인지 검사해 줍니다. 무조건 사용하세요. 삶이 쾌적해 집니다.
 
 ```cpp
 class Base {

@@ -179,7 +179,7 @@ catch (...) {
 
 # 예외와 소멸자
 
-소멸자에서 예외를 방출하면 안됩니다. 예외가 발생하면 스택풀기가 이루어져서 소멸자가 불리는데, 이 소멸자에서 또 예외를 발생하면 정상적인 스택 풀기를 방해합니다.([소멸자에서 예외 방출 금지](??) 참고)
+소멸자에서 예외를 방출하면 안됩니다. 예외가 발생하면 스택풀기가 이루어져서 소멸자가 불리는데, 이 소멸자에서 또 예외를 발생하면 정상적인 스택 풀기를 방해합니다.([소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고)
 
 예외 방출을 막기 위해 단순히 `try-catch()`로 예외를 무시하기 보다는
 
@@ -244,7 +244,7 @@ T& operator =(const T& other) {
 
 # 예외 안전에 좋은 nothrow swap
 
-예외 안전에 좋은 복사 대입 연산자의 언급처럼 `Swap()`은 예외를 발생하지 말아야 합니다. 만약 예외를 발생했다면, 바꿔치기 하다가 일부만 변경되고 중단된 것이어서 어떻게 복원해야 할지 난감합니다. 강한 보증을 하려면 예외 발생시 완벽하게 이전 상태로 가야 하기 때문에 `Swap()`은 예외를 발생시켜서는 안됩니다. 이러한 nothrow swap 구현은 [nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 와 [스마트 포인터를 이용한 PImpl 이디엄 구현](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/#%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EC%9D%B4%EB%94%94%EC%97%84-%EA%B5%AC%ED%98%84) 을 참고하세요.
+예외 안전에 좋은 복사 대입 연산자의 언급처럼 `Swap()`은 예외를 방출하지 말아야 합니다. 만약 예외가 발생한다면, 바꿔치기 하다가 일부만 변경되고 중단된 것이어서 어떻게 복원해야 할지 난감합니다. 강한 보증을 하려면 예외 발생시 완벽하게 이전 상태로 가야 하기 때문에 `Swap()`은 예외를 발생시켜서는 안됩니다. 이러한 nothrow swap 구현은 [nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 와 [스마트 포인터를 이용한 PImpl 이디엄 구현](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/#%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EC%9D%B4%EB%94%94%EC%97%84-%EA%B5%AC%ED%98%84) 을 참고하세요.
 
 ```cpp
 class T {

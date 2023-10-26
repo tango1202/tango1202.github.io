@@ -24,7 +24,7 @@ sidebar:
 |`~T() {}`|소멸자<br/>([암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고)|
 
 
-클래스를 정의할 때, 생성자, 복사 대입 연산자, 소멸자를 정의하지 않으면 컴파일러가 암시적으로 정의합니다.
+클래스의 기본 생성자, 복사 생성자, 복사 대입 연산자, 소멸자를 정의하지 않으면, 이들을 사용할때 컴파일러가 암시적으로 정의합니다.(*단, 기본 생성자는 아무 생성자라도 정의되어 있으면, 암시적으로 정의되지 않습니다. [암시적 기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 참고하세요.*)
 
 ```cpp
 class Object {
@@ -37,7 +37,7 @@ class T {
 };
 ```
 
-에서, 컴파일러에 의해 클래스 `T`는 암시적으로 다음처럼 정의됩니다.
+에서, 기본 생성자, 복사 생성자, 복사 대입 연산자, 소멸자가 코드에서 사용되었다면, 컴파일러에 의해 클래스 `T`는 암시적으로 다음처럼 정의됩니다.
 
 ```cpp
 class Object {

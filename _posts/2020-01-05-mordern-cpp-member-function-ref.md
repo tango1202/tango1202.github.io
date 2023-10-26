@@ -117,14 +117,14 @@ Big_11 big = A_11().GetData();
 Big_11 big = std::move(A_11().GetData()); 
 ```
 
-다음처럼 해야 이동 생성을 할 수 있습니다.
+다음처럼 `const_cast`로 상수성을 버려야 이동 생성을 할 수 있습니다.
 
 ```cpp
 // Big_11의 이동 생성자 호출
 Big_11 big = std::move(const_cast<Big_11&>(A_11().GetData())); 
 ```
 
-참 실수하기 쉽고, 타이핑도 번거롭습니다.
+참 실수하기 쉽고, 타이핑도 번거롭죠.
 
 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 에 언급되었듯, **잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게** 구현하기 위해 [멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)를 이용하면 다음처럼 레퍼를 작성할 수 있습니다.
 

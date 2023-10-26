@@ -28,7 +28,7 @@ sidebar:
 
 # 코드 세그먼트
 
-코드 세그먼트 부분은 프로그램 코드가 저장됩니다.
+코드 세그먼트 부분은 프로그램 코드, [제어문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/), [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/), [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)등이 저장되며 읽기 전용입니다.
 
 # 데이터 세그먼트 
 

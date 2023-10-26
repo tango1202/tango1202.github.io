@@ -14,7 +14,7 @@ sidebar:
 
 # 개요
 
-[throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 에서 예외를 발생할 때 예외 개체를 만들어 예외에 대한 정보를 담아 전달합니다.(`catch()`에서 예외 개체를 전달받을때, 예외 개체가 복사 생성되지 않도록 참조자로 받는게 좋습니다.)
+[throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 에서 예외를 발생시킬 때 예외 개체를 만들어 예외에 대한 정보를 담아 전달합니다.(`catch()`에서 예외 개체를 전달받을때, 예외 개체가 복사 생성되지 않도록 참조자로 받는게 좋습니다.)
 
 표준에서 예외 개체는 다음과 같은 상속 구조를 가집니다.
 
