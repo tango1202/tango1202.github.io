@@ -67,12 +67,12 @@ class Node {
 
 |항목|내용|
 |--|--|
-|`vector`|타입이 동일한 요소를 연속적인 메모리 공간에 관리<br/>배열과 유사<br/>요소 삽입/삭제에 비효율적임<br/>랜덤 접근 지원|
+|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)|타입이 동일한 요소를 연속적인 메모리 공간에 관리<br/>배열과 유사<br/>요소 삽입/삭제에 비효율적임<br/>랜덤 접근 지원|
 |`list`|타입이 동일한 요소를 연결된 리스트로 관리<br/>요소 삽입/삭제에 최적화<br/>양방향 순차 접근 지원, 랜덤 접근 불가|
 |`queue`|타입이 동일한 요소를 선입선출 방식으로 관리<br/>`front()`시 선입된 요소 반환<br/>내부적으론 `deque`으로 구현됨|
 |`stack`|타입이 동일한 요소를 후입선출 방식으로 관리|
-|`deque`|양방향에서 입출력이 가능한 `queue`. 앞과 뒤에서 요소를 넣거나 뺄 수 있음<br/>양쪽 입력/삭제가 `list`와 같은 효율<br/>랜덤 접근은 `vector`와 같은 효율<br/>중간 입출력은 `vector`와 같이 비효율적임|
-|`priority_queue`|우선 순위에 따라 정렬된 `queue`<br/>`top()`시 가장 큰 요소 반환<br/>내부적으론 `vector`로 구현됨|
+|`deque`|양방향에서 입출력이 가능한 `queue`. 앞과 뒤에서 요소를 넣거나 뺄 수 있음<br/>양쪽 입력/삭제가 `list`와 같은 효율<br/>랜덤 접근은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같은 효율<br/>중간 입출력은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같이 비효율적임|
+|`priority_queue`|우선 순위에 따라 정렬된 `queue`<br/>`top()`시 가장 큰 요소 반환<br/>내부적으론 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)로 구현됨|
 
 # 연관 컨테이너
 
@@ -90,17 +90,17 @@ class Node {
 
 # 컨테이너 선정
 
-보통은 `map`과 `set`이 검색에 유리하지만, 연속 메모리를 가진 `vector`도 데이터 갯수가 적으면 속도가 빠릅니다. 요소 갯수에 따라 가변적이기 때문에 최초 설계 단계에서 어느 컨테이너가 적합하다 단정 짓기 쉽지 않습니다.
+보통은 `map`과 `set`이 검색에 유리하지만, 연속 메모리를 가진 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)도 데이터 갯수가 적으면 속도가 빠릅니다. 요소 갯수에 따라 가변적이기 때문에 최초 설계 단계에서 어느 컨테이너가 적합하다 단정 짓기 쉽지 않습니다.
 
 그래서,
 
-1. 기본적으로 `vector`를 사용하고,
+1. 기본적으로 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 사용하고,
 2. 속도 개선이 필요할 정도로 프로그램의 성능이 떨어진다면 컨테이너를 이것 저것 바꾸며 프로파일러로 속도 측정하고,
 3. 측정 결과를 바탕으로 컨테이너를 결정하는게 좋습니다.
 
 따라서 코딩시 컨테이너 변경이 용이하도록 작성하여야 합니다.
 
-|항목|`vector`|`list`|`map`, `set`|
+|항목|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)|`list`|`map`, `set`|
 |--|--|--|--|
 |데이터 추가가 빈번한 경우|O|O|X|
 |빈번한 삽입/삭제|X|O|X|

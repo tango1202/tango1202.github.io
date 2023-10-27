@@ -647,7 +647,7 @@ root->Add(std::shared_ptr<Node>{new Node{root}});
 EXPECT_TRUE(root.use_count() == 1);
 ```
 
-`root` 의 참조 카운트는 1개여서 `root`소멸시 `Node`를 소멸시키며, `vector`가 소멸되고, `vector`에 추가됐던 자식 `Node`들이 소멸되어, 생성된 `Node`개체들이 모두 정상적으로 소멸됩니다.
+`root` 의 참조 카운트는 1개여서 `root`소멸시 `Node`를 소멸시키며, [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 소멸되고, [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에 추가됐던 자식 `Node`들이 소멸되어, 생성된 `Node`개체들이 모두 정상적으로 소멸됩니다.
 
 ```cpp
 Node : Constructor

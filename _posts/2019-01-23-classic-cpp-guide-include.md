@@ -25,7 +25,7 @@ C++에서는 일반적으로 클래스 선언부는 헤더 파일에 작성하�
 
 따라서 관례적으로 헤더 파일은 [인클루드 가드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%9D%B8%ED%81%B4%EB%A3%A8%EB%93%9C-%EA%B0%80%EB%93%9C)를 이용하여 1회만 `include`되도록 만듭니다. 
 
-다음 코드를 보면 `#ifndef MyClass_h` 전처리를 이용하여 `MyClass_h`가 정의되지 않은 경우만 포함시킵니다. 포함된 경우에는 `#define MyClass_h`로 `MyClass_h` [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)를 정의합니다. 따라서 다음번 부터는 `MyClass_h` [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)가 정의되었으므로, 더이상 포함되지 않습니다.(*컴파일러에 따라 [#pramga once](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)를 제공하기도 합니다. 하지만, 비표준이니까 사용하지 않는게 좋습니다.*)
+다음 코드를 보면 `#ifndef MyClass_h` 전처리를 이용하여 `MyClass_h`가 정의되지 않은 경우만 포함시킵니다. 포함된 경우에는 `#define MyClass_h`로 `MyClass_h` [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)를 정의합니다. 따라서 다음번 부터는 `MyClass_h` [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)가 정의되었으므로, 더이상 포함되지 않습니다.(*컴파일러에 따라 [#pramga once](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)를 제공하기도 합니다. 하지만, 비표준이니까 사용하지 않는게 좋습니다.*)
 
 ```cpp
 // ----

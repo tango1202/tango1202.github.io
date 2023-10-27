@@ -20,7 +20,7 @@ sidebar:
 
 C++11 부터는 [using을 이용한 타입 별칭이 추가](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-using-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)되었습니다.
 
-`using`은 다음과 같이 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)와 별칭의 순서가 다릅니다만, 좀 더 직관적입니다.
+[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-using-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)은 다음과 같이 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)와 별칭의 순서가 다릅니다만, 좀 더 직관적입니다.
 
 ```cpp
 typedef unsigned long ulong;
@@ -36,7 +36,7 @@ using Func_11 = void (*)(int);
 
 # (C++11~) 템플릿 클래스 별칭
 
-`using`은 템플릿 클래스 별칭도 지원합니다.
+[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-using-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)은 템플릿 클래스 별칭도 지원합니다.
 
 ```cpp
 // typedef는 템플릿의 구체화된 타입만 지원합니다.
@@ -93,9 +93,9 @@ EXPECT_TRUE(alignof(C_11) == 4 && sizeof(C_11) == 4 * 5);
 
 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)는 C99 에 도입되었으며, C와의 호환성을 위해 C++11에 추가되었습니다.
 
-[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 사용하는 함수를 매크로 함수([#define() 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%ED%95%A8%EC%88%98) 참고)로 호출할 때 사용합니다.
+[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 사용하는 함수를 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)로 호출할 때 사용합니다.
 
-다음 코드에서처럼 매크로 함수 정의시에 `...`을 사용하고, `__VA_ARGS__`를 이용하여 전달할 수 있습니다.
+다음 코드에서처럼 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98) 정의시에 `...`을 사용하고, `__VA_ARGS__`를 이용하여 전달할 수 있습니다.
 
 ```cpp
 

@@ -8,20 +8,20 @@ sidebar:
     nav: "docs"
 ---
 
-> * `swap`을 이용하여 `vector`가 할당한 영역을 해제할 수 있다.
+> * `swap`을 이용하여 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 할당한 영역을 해제할 수 있다.
 > * `vector<bool>`은 사용하지 마라.
 
 > **모던 C++**
-> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.
+> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.
 
 # 개요
 
-`vector`는 타입이 동일한 요소를 연속적인 메모리 공간에 관리하는 컨테이너입니다. 
+[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 타입이 동일한 요소를 연속적인 메모리 공간에 관리하는 컨테이너입니다. 
 
 1. 배열과 유사합니다.([배열과 vector](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4%EA%B3%BC-vector) 참고)
 2. 랜덤 접근을 지원합니다.
 3. 요소 삽입/삭제시 연속적인 메모리 공간에 관리하기 위해 나머지 요소들을 재배치합니다. 이에 따라 선형 시간이 필요하며, 비효율적입니다.(요소 삽입/삭제가 빈번하면 `list`가 유리합니다.)
-4. 요소가 추가되어 컨테이너의 용량을 늘려야 하는 경우, 재할당이 수행됩니다. 재할당 시에는 모든 요소가 새롭게 할당된 공간에 이동되어야 하므로 속도 부하가 있고, 요소의 참조나 이터레이터가 무효화됩니다. 따라서 `vector`는 재할당 시도를 최소화 하기 위해, 재할당시 실제 추가/삭제되는 크기가 아니라 좀 넉넉한 크기로 재할당합니다.
+4. 요소가 추가되어 컨테이너의 용량을 늘려야 하는 경우, 재할당이 수행됩니다. 재할당 시에는 모든 요소가 새롭게 할당된 공간에 이동되어야 하므로 속도 부하가 있고, 요소의 참조나 이터레이터가 무효화됩니다. 따라서 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 재할당 시도를 최소화 하기 위해, 재할당시 실제 추가/삭제되는 크기가 아니라 좀 넉넉한 크기로 재할당합니다.
 
 # vector 멤버 함수
 
@@ -29,7 +29,7 @@ sidebar:
 
 정의|내용|
 |--|--|
-|`vector();`|요소가 없는 빈 `vector`를 생성합니다.|
+|`vector();`|요소가 없는 빈 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성합니다.|
 |`explicit vector(size_type count);`|`count` 갯수 만큼 요소를 생성합니다.|
 |`vector(size_type count, const Type& value);`|`count` 갯수 만큼 요소를 생성하고, `value`로 초기화 합니다.|
 |`vector(const vector& other);`|복사 생성합니다.|
@@ -41,15 +41,15 @@ sidebar:
 
 |항목|정의|내용|
 |--|--|--|
-|`=`|`vector& operator =(const vector& other);`|복사 대입 합니다. <br/>`vector`의 기존 요소를 지우고 `other`요소들을 복사합니다.|
+|`=`|`vector& operator =(const vector& other);`|복사 대입 합니다. <br/>[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기존 요소를 지우고 `other`요소들을 복사합니다.|
 |`=` (C++11~)|`vector& operator =(const vector&& other) notexcept;`|[이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.|
-|`assign()`|`void assign(size_type count, const Type& value)`<br/>`template<typename InputIterator>`<br/>`void assign(InputIterator first, InputIterator last)`|`vector`의 기존 요소를 지우고 `value`를 `count` 만큼 복사합니다.<br/>`vector`의 기존 요소를 지우고 `first`부터 `last`직전까지 복사합니다.|
-|`resize()`|`void resize(size_type new_size)`<br/>`void resize(size_type new_size, Type value)`|`vector`의 새 크기를 지정하며, 기존 요소 갯수보다 크다면 `value`로 채웁니다. `value`가 없는 경우 요소의 기본 생성자를 호출합니다.|
+|`assign()`|`void assign(size_type count, const Type& value)`<br/>`template<typename InputIterator>`<br/>`void assign(InputIterator first, InputIterator last)`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기존 요소를 지우고 `value`를 `count` 만큼 복사합니다.<br/>[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기존 요소를 지우고 `first`부터 `last`직전까지 복사합니다.|
+|`resize()`|`void resize(size_type new_size)`<br/>`void resize(size_type new_size, Type value)`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 새 크기를 지정하며, 기존 요소 갯수보다 크다면 `value`로 채웁니다. `value`가 없는 경우 요소의 기본 생성자를 호출합니다.|
 |`size()`|`size_type size() const;`|컨테이너의 요소 갯수를 리턴합니다.|
 |`empty()`|`bool empty() const;`|컨테이너가 비었는지 확인합니다.|
-|`capacity()`|`size_type capacity() const;`|메모리를 더 할당하지 않고 `vector`에 저장할 수 있는 요소 갯수를 리턴합니다.(`vector`는 메모리 할당이 빈번히 발생하지 않도록 실제 요소 갯수보다 큰 크기를 할당하기도 하고, 삽입/삭제에 따라 실제 요소 갯수보다 더 많은 메모리를 관리할 수 있습니다.)|
+|`capacity()`|`size_type capacity() const;`|메모리를 더 할당하지 않고 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에 저장할 수 있는 요소 갯수를 리턴합니다.([vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 메모리 할당이 빈번히 발생하지 않도록 실제 요소 갯수보다 큰 크기를 할당하기도 하고, 삽입/삭제에 따라 실제 요소 갯수보다 더 많은 메모리를 관리할 수 있습니다.)|
 |`shrink_to_fit()`||(작성중)|
-|`reserve()`|`void reserve(size_type count);`|`vector`의 메모리 공간을 최소한 `count` 갯수 만큼의 요소를 저장할 수 있도록 예약합니다.|
+|`reserve()`|`void reserve(size_type count);`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 메모리 공간을 최소한 `count` 갯수 만큼의 요소를 저장할 수 있도록 예약합니다.|
 |`max_size()`|`size_type max_size() const;`|컨테이너가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
 |`swap()`|`void swap(vector<Type, Allocator>& other);`|두 컨테이너의 내부 데이터를 바꿔치기 합니다.|
 |`==`<br/>`!=` (~C++20)|(작성중)|
@@ -64,15 +64,15 @@ sidebar:
 |`at()`|`reference at(size_type position);`<br/>`const_reference at(size_type position) const;`|`position`위치의 요소 참조자를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
 |`begin()`|`iterator begin();`<br/>`const_iterator begin() const;`|첫번째 요소의 이터레이터를 리턴합니다.|
 |`end()`|`iterator end();`<br/>`const_iterator end() const;`|마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
-|`rbegin()`|`reverse_iterator rbegin();`<br/>`const_reverse_iterator rbegin() const;`|반전된 `vector`의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
-|`rend()`|`reverse_iterator rend();`<br/>`const_reverse_iterator rend() const;`|반전된 `vector`의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
+|`rbegin()`|`reverse_iterator rbegin();`<br/>`const_reverse_iterator rbegin() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
+|`rend()`|`reverse_iterator rend();`<br/>`const_reverse_iterator rend() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
 |`cbegin()` (C++11~)|`const_iterator cbegin() const;`|첫번째 요소의 이터레이터를 리턴합니다.|
 |`cend()` (C++11~)|`const_iterator cend() const;`|마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
-|`crbegin()` (C++11~)|`const_reverse_iterator crbegin() const;`|반전된 `vector`의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
-|`crend()` (C++11~)|`const_reverse_iterator crend() const;`|반전된 `vector`의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
+|`crbegin()` (C++11~)|`const_reverse_iterator crbegin() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
+|`crend()` (C++11~)|`const_reverse_iterator crend() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
 |`data()`|`pointer data();`<br/>`const_pointer data() const;`|컨테이너가 관리하는 메모리 블록을 리턴합니다.(첫번째 요소의 포인터를 리턴합니다.)|
-|`front()`|`reference front();`<br/>`const_reference front() const;`|첫번째 요소의 참조자를 리턴합니다. `vector`가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
-|`back()`|`reference back();`<br/>`const_reference back() const;`|마지막 요소의 참조자를 리턴합니다. `vector`가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
+|`front()`|`reference front();`<br/>`const_reference front() const;`|첫번째 요소의 참조자를 리턴합니다. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
+|`back()`|`reference back();`<br/>`const_reference back() const;`|마지막 요소의 참조자를 리턴합니다. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 
 **요소 삽입/삭제**
 
@@ -81,8 +81,8 @@ sidebar:
 |`clear()`|`void clear();`|모든 요소를 지웁니다. 이때 메모리 영역은 그대로 입니다.|
 |`erase()`|`iterator erase(const_iterator position);`<br/>`iterator erase(const_iterator first, const_iterator last);`|`position`위치의 요소를 삭제하거나 `first`와 `last` 직전까지의 요소(반개방 구조)를 삭제합니다. 이터레이터가 유효하지 않다면, 아무 생각없이 실행되어 오동작 합니다.|
 |`erase_if()` (C++20~)||(작성중)|
-|`pop_back()`|`void pop_back();`|마지막 요소를 삭제합니다. `vector`가 비었다면 아무 동작 안합니다.|
-|`push_back()`|`void push_back(const T& value);`|`vector`끝에 요소를 추가합니다.|
+|`pop_back()`|`void pop_back();`|마지막 요소를 삭제합니다. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 비었다면 아무 동작 안합니다.|
+|`push_back()`|`void push_back(const T& value);`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)끝에 요소를 추가합니다.|
 |`insert()`|`iterator insert(const_iterator position, const Type& value);`<br/>`iterator insert(const_iterator position, Type&& value);`<br/>`void insert(const_iterator position, size_type count, const Type& value);`<br/>`template<class InputIterator>`<br/>`void insert(const_iterator position,  InputIterator first, InputIterator last);`|`position`으로 지정한 위치 앞에 요소를 삽입합니다.|
 |`insert_range()` (C++23~)||(작성중)||
 |`emplace(), emplace_back()` (C++11~)||(작성중)|
@@ -90,7 +90,7 @@ sidebar:
 
 # 배열과 vector
 
-`vector`는 연속된 메모리 공간에 요소들을 순차적으로 관리하기 때문에 포인터 연산을 통해서도 요소 접근이 가능합니다.
+[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 연속된 메모리 공간에 요소들을 순차적으로 관리하기 때문에 포인터 연산을 통해서도 요소 접근이 가능합니다.
 
 ```cpp
 std::vector<int> v;
@@ -104,7 +104,7 @@ EXPECT_TRUE(*(&v[0]) == 10);
 EXPECT_TRUE(*((&v[0]) + 1) == 20); // 연속된 메모리여서 포인터 연산으로도 접근 가능합니다.
 ```
 
-> *(C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.*
+> *(C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.*
 
 # [] 과 at()
 
@@ -121,9 +121,9 @@ reference at(size_type position) {
 
 # size와 capacity
 
-`size()`는 요소의 갯수이며, `capacity()`는 메모리를 더 할당하지 않고 `vector`에 저장할 수 있는 요소의 갯수입니다.
+`size()`는 요소의 갯수이며, `capacity()`는 메모리를 더 할당하지 않고 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에 저장할 수 있는 요소의 갯수입니다.
 
-보통은 이게 일치해서 요소를 저장하는데 필요한 만큼만 메모리를 할당해야 하는데요, `vector`의 `resize()`은 상당한 부하가 있습니다.
+보통은 이게 일치해서 요소를 저장하는데 필요한 만큼만 메모리를 할당해야 하는데요, [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 `resize()`은 상당한 부하가 있습니다.
 
 연속된 메모리 공간에 요소를 저장해야 하므로,
 
@@ -131,7 +131,7 @@ reference at(size_type position) {
 2. 기존 요소들을 새롭게 할당한 메모리에 복사합니다. 
 3. 기존 메모리 공간에 있는 요소들을 소멸시킵니다.
 
-이처럼 부하가 상당하다보니, `vector`는 요소 추가나 삭제시 변동된 메모리 용량을 다시 조정하지 않습니다.
+이처럼 부하가 상당하다보니, [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 요소 추가나 삭제시 변동된 메모리 용량을 다시 조정하지 않습니다.
 
 다음 코드에서 100개의 요소를 생성하고, `clear()`했지만, `capacity()`는 그대로 인걸 알 수 있습니다.
 
@@ -142,7 +142,7 @@ v.clear();
 EXPECT_TRUE(v.capacity() == old); // clear해서 요소를 모두 지웠지만, capacity는 그대로 입니다.
 ```
 
-또한 `vector`는 요소 추가시마다 매번 해당 크기만큼 메모리 확보를 하지 않고, 메모리 할당 시도를 최소화 하도록 적당한 시점에 좀더 큰 공간을 확보합니다.
+또한 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 요소 추가시마다 매번 해당 크기만큼 메모리 확보를 하지 않고, 메모리 할당 시도를 최소화 하도록 적당한 시점에 좀더 큰 공간을 확보합니다.
 
 다음 코드를 실행시켜 보면,
 
@@ -190,7 +190,7 @@ v.push_back(0); // (0)
 
 # clear와 swap
 
-`vector`는 `clear()`를 하더라도 속도 효율을 위해 메모리 공간을 해제하지 않으므로, 
+[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 `clear()`를 하더라도 속도 효율을 위해 메모리 공간을 해제하지 않으므로, 
 
 ```cpp
 std::vector<int> v(100);
@@ -199,7 +199,7 @@ v.clear();
 EXPECT_TRUE(v.capacity() == old); // clear를 했지만 메모리 용량은 그대로 입니다.
 ```
 
-다음처럼 `swap()`을 이용한 바꿔치기로 요소 소멸 및 메모리를 해제할 수 있습니다.(`vector`는 pImpl로 구현되어 `swap()`시 복사 부하가 거의 없습니다. [PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/) 참고)
+다음처럼 `swap()`을 이용한 바꿔치기로 요소 소멸 및 메모리를 해제할 수 있습니다.([vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 pImpl로 구현되어 `swap()`시 복사 부하가 거의 없습니다. [PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/) 참고)
 
 ```cpp
 std::vector<int> v(100);
@@ -209,9 +209,9 @@ v.swap(temp); // vector는 pImpl로 구현되어 swap시 복사 부하가 없습
 EXPECT_TRUE(v.capacity() == 0); // 크기가 0인 vector와 바꿔치기 했습니다.
 ```
 
-# `vector<bool>`
+# vector<bool>
 
-`vector`의 `bool` 특수화 버전은, `bool`타입을 저장하는 컨테이너가 아니라, 용량 최적화를 위해 `bool` 8개를 1byte에 저장하여 사용하는 특수 개체입니다. `[]`는 특정 항목에 접근하는 프록시로 구현되어 있고, `&v[0]`과 같은 포인터 연산이나 컨테이너를 위한 일부 알고리즘들과 호환되지 않습니다.(실제 사용보다는 프록시를 활용한 컨테이너 구현 실험차 만들었다는 설도 있습니다.) 
+[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 `bool` 특수화 버전은, `bool`타입을 저장하는 컨테이너가 아니라, 용량 최적화를 위해 `bool` 8개를 1byte에 저장하여 사용하는 특수 개체입니다. `[]`는 특정 항목에 접근하는 프록시로 구현되어 있고, `&v[0]`과 같은 포인터 연산이나 컨테이너를 위한 일부 알고리즘들과 호환되지 않습니다.(실제 사용보다는 프록시를 활용한 컨테이너 구현 실험차 만들었다는 설도 있습니다.) 
 
 따라서,
  

@@ -41,7 +41,7 @@ auto result{
 EXPECT_TRUE((*result).m_Name == "Lee" && (*result).m_Val == 10);
 ```
 
-이때 탐색할 `"Lee"`만 알고 있고, `10`은 모르고 있다면, 그냥 요소들을 다 뒤저서 값비교를 해야 합니다. [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 장점을 살리지 못하니, 이럴게 사용할 바엔 차라리 `vector`가 낫죠. 
+이때 탐색할 `"Lee"`만 알고 있고, `10`은 모르고 있다면, 그냥 요소들을 다 뒤저서 값비교를 해야 합니다. [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 장점을 살리지 못하니, 이럴게 사용할 바엔 차라리 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 낫죠. 
 
 C++14 부터는 [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.
 

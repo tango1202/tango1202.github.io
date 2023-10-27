@@ -190,9 +190,9 @@ int T::f2() {} // inline화 안됨
 |`protected`|상속받은 자식 개체에만 허용| 
 |`public`(구조체 기본값)|외부 접근 허용|
 
-**`using` 선언**
+# using 선언
 
-`using`을 사용하면 부모 클래스에서 지정한 접근 지정자를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.(*[리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고*)
+[using 선언](??) 을 사용하면 [네임스페이스](??)의 것을 가져올 수 있을 뿐만 아니라, 부모 클래스에서 지정한 접근 지정자를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.(*[리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고*)
 
 ```cpp
 class Base {

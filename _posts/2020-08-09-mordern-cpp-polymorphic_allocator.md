@@ -14,9 +14,9 @@ sidebar:
 
 [polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/)는 런타임 다형성을 지원하는 할당자로서 [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 이용합니다.
 
-`<memory_resource>` 헤더 파일을 포함해야 하며, `std::pmr` 네임스페이스를 사용합니다.
+`<memory_resource>` 헤더 파일을 포함해야 하며, `std::pmr` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 사용합니다.
 
-다음은 스택에 100byte 메모리 풀을 사용하고, `vector`요소 생성시 해당 메모리 풀에 생성하는 예입니다. 실질적인 메모리 할당과 해제를 한번에 하기 때문에 속도 효율적입니다.
+다음은 스택에 100byte 메모리 풀을 사용하고, [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)요소 생성시 해당 메모리 풀에 생성하는 예입니다. 실질적인 메모리 할당과 해제를 한번에 하기 때문에 속도 효율적입니다.
 
 ```cpp
 unsigned char data[100]; // 100 byte 공간을 할당합니다.

@@ -63,7 +63,7 @@ sidebar:
 
     * `nCount` 라고 쓰면 본인도 모르게 `count` 가 `int` 형이라고 가정하고 작성하게 됩니다. 하지만 이러한 가정은 언제든지 바뀔 수 있고요, 가정이 바뀌면 당신의 코드는 어떤 잉여효과를 쏟아낼지 예측하기 힘듭니다. 되도록이면 가정하지 마세요. 만약 가정한다면 `Assert`도 도배해 두고요.
 
-    또, 클래스 앞에 C 를 붙이거나 열거형 앞에 `e`를 붙이거나, [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)는 대문자로 쓰거나 하는 일반적인 C++ 언어의 관습도 사라져야 합니다. C 접두어를 써가며 이게 굳이 "클래스다"라고 인지하며 코딩하는 건 좋지 않은 습관입니다. 모든 가정을 버리셔야 좋은 코드가 작성됩니다. 사실 클래스라고해서 다르게 처리하지도 않잖아요?
+    또, 클래스 앞에 C 를 붙이거나 열거형 앞에 `e`를 붙이거나, [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)는 대문자로 쓰거나 하는 일반적인 C++ 언어의 관습도 사라져야 합니다. C 접두어를 써가며 이게 굳이 "클래스다"라고 인지하며 코딩하는 건 좋지 않은 습관입니다. 모든 가정을 버리셔야 좋은 코드가 작성됩니다. 사실 클래스라고해서 다르게 처리하지도 않잖아요?
 
     열거형 상수도 마찬가지입니다. 일반적으로 코딩할때 `e` 접두어가 없으면 낯설어하시는 분들이 많습니다. 이런분들은 열거형 상수를 전역적으로 정의하고 사용하시는데 익숙하신 분들입니다. 클래스 내부에 국지적으로 열거형 상수를 정의하신다면, 이름 충돌의 우려도 적을 뿐 아니라 이름도 간결해 집니다.
 
@@ -94,9 +94,9 @@ sidebar:
 
     손가락 타이핑 수도 줄이고 코드도 간결한 클래스 내부 열거형 상수를 정의를 쓰시기 바랍니다.
 
-    그리고, [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 대문자는 이제 불필요하죠. 맞죠? [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 쓰지 마세요. 열거형 상수를 쓰시기 바랍니다. [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)는 개체지향프로그래밍의 사상과 철학을 해치는 "goto 문 보다 더 나쁜 코딩 습관" 입니다.
+    그리고, [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98) 대문자는 이제 불필요하죠. 맞죠? [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98) 쓰지 마세요. 열거형 상수를 쓰시기 바랍니다. [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)는 개체지향프로그래밍의 사상과 철학을 해치는 "goto 문 보다 더 나쁜 코딩 습관" 입니다.
 
-    그래도 팀 누군가가 [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)를 자꾸 쓴다고 화가 나서, 헤더 파일 아무곳에나 다음과 같이 작성하진 마시고요. 
+    그래도 팀 누군가가 [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)를 자꾸 쓴다고 화가 나서, 헤더 파일 아무곳에나 다음과 같이 작성하진 마시고요. 
 
     ```cpp
     #define public private

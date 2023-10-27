@@ -8,9 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
-> * [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)를 쓰지 말고 [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)를 사용하라.
+> * [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)를 쓰지 말고 [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)를 사용하라.
 > * [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)로 타입의 별칭을 만들지 말고 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 사용하라.
-> * 매크로 함수를 쓰지 말고 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하라.
+> * [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)를 쓰지 말고 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하라.
 
 > **모던 C++**
 > * (C++11~) [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.
@@ -120,7 +120,7 @@ EXPECT_TRUE(val == 6);
 
 # 매크로 함수
 
- 매크로 함수는 인자들을 대체 목록에 반영하여 치환합니다. 함수라고는 하지만 단순 치환입니다.
+ [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)는 인자들을 대체 목록에 반영하여 치환합니다. 함수라고는 하지만 단순 치환입니다.
 
  ```cpp
 #define SQUARE(x) x * x // (△) 비권장. 인자와 코딩 계약이 안됩니다.
@@ -151,7 +151,7 @@ EXPECT_TRUE(SQUARE(1 + 1) == 4); // (1 + 1) * (1 + 1)
  
 **매크로 함수 특수 기능**
 
-매크로 함수에서는 하기의 특수 기능이 있습니다.
+[매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)에서는 하기의 특수 기능이 있습니다.
 
 |항목|내용|
 |--|--|

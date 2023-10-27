@@ -121,7 +121,7 @@ EXPECT_TRUE(var.valueless_by_exception() == false);
 
 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) 가 관리하는 값으로 함수자를 호출합니다.
 
-예를들어 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)를 저장한 `vector`의 각 요소에 `Func()`을 호출하고 싶다면 다음과 같이 `holds_alternative()`로 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 주어진 타입의 값을 저장했는지 확인 후 `Func()`에 해당 값을 전달해야 합니다.
+예를들어 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)를 저장한 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 각 요소에 `Func()`을 호출하고 싶다면 다음과 같이 `holds_alternative()`로 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 주어진 타입의 값을 저장했는지 확인 후 `Func()`에 해당 값을 전달해야 합니다.
 
 ```cpp
 std::vector<std::variant<int, std::string>> v{

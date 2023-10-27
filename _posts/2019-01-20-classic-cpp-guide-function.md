@@ -313,9 +313,9 @@ int f(const void); // (X) 컴파일 오류
 
 |항목|내용|
 |--|--|
-|`va_start()`|가변 인자 액세스 시작 매크로 함수|
-|`va_arg()`|가변인자 추출 매크로 함수|
-|`va_end()`|가변 인자 사용 종료 매크로 함수|
+|`va_start()`|가변 인자 액세스 시작 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
+|`va_arg()`|가변인자 추출 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
+|`va_end()`|가변 인자 사용 종료 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
 |`va_list`|가변 인자에 대한 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)|
 
 가변 인자를 사용하려면 `cstdarg`를 `include`해야 합니다.
@@ -621,20 +621,20 @@ namespace B {
 EXPECT_TRUE(B::g() == 2); // B::MyFunc 이 채택됨
 ```
 
-하지만 `MyFunc()`함수의 인자가 다음처럼 특정 네임스페이스의 것을 참조한다면, 
+하지만 `MyFunc()`함수의 인자가 다음처럼 특정[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 것을 참조한다면, 
 
 ```cpp
 int MyFunc(const C::Date&, double) {return 2;}
 ```
 
-ADL(*Argument-dependent lookup*) 또는 Koenig 검색에 의해 네임스페이스 `C`의 함수들에서도 검색하게 됩니다.
+ADL(*Argument-dependent lookup*) 또는 Koenig 검색에 의해 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) `C`의 함수들에서도 검색하게 됩니다.
 
 그래서 함수 후보군은
 
-* 네임스페이스 `C`에서는 `int MyFunc(const Date&, int)`
-* 네임스페이스 `D`에서는 `int MyFunc(const C::Date&, double)`
+* [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) `C`에서는 `int MyFunc(const Date&, int)`
+* [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) `D`에서는 `int MyFunc(const C::Date&, double)`
 
-이 찾아지게 되고, 타입이 완전 일치하는 네임스페이스 `C`의 `int MyFunc(const Date&, int)`이 사용됩니다.
+이 찾아지게 되고, 타입이 완전 일치하는 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) `C`의 `int MyFunc(const Date&, int)`이 사용됩니다.
 
 좀더 넓은 범위에서 타입이 일치하는 함수를 찾도록 도와주는 역할입니다만, 의도한 동작일 수도 있고, 아닐 수도 있고, 분석이 어려워질 수도 있으니, 원리를 이해하고 사용하시기 바랍니다.
 

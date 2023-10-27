@@ -12,7 +12,7 @@ sidebar:
 > * `new[]`-`delete[]` 쌍을 준수하라.
 
 > **모던 C++**
-> * (C++11~)[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.
+> * (C++11~)[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.
 
 # 개요
 
@@ -83,9 +83,9 @@ EXPECT_TRUE(arr1[1] == 20);
 
 속도 성능에 영향이 없다면 배열 보다는 표준 템플릿 라이브러리의 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 사용하는 편이 유지보수시 확장성 측면에서 좋습니다. 동적 요소 할당을 지원하며, 랜덤 접근을 하므로 여전히 엑세스는 빠릅니다.
 
-`vector`와 배열간 코딩 호환성도 나쁘지 않습니다. 정의와 초기화만 다르고, 요소 접근하는 방법이나 요소 주소를 얻는 것은 동일합니다.
+[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 배열간 코딩 호환성도 나쁘지 않습니다. 정의와 초기화만 다르고, 요소 접근하는 방법이나 요소 주소를 얻는 것은 동일합니다.
 
-|항목|배열|`vector`|
+|항목|배열|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)|
 |--|--|--|
 |정의|`int a[5];`|`vector<int> v(5);`|
 |초기화|`int a[5] = {};`|X|
@@ -94,7 +94,7 @@ EXPECT_TRUE(arr1[1] == 20);
 
 단, [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 동적 할당을 사용하기 때문에, 배열보다는 메모리 할당 속도가 현저히 느립니다.(*[배열, array, vector 속도 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/#%EB%B0%B0%EC%97%B4-array-vector-%EC%86%8D%EB%8F%84-%EB%B9%84%EA%B5%90) 참고*)
 
-> *(C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 `vector` 보다 성능이 좋습니다.*
+> *(C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 스택에 할당되므로, 힙에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.*
 
 # typedef로 타입 재정의
 

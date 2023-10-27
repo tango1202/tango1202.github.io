@@ -34,7 +34,7 @@ typedef basic_string<wchar_t> wstring;
 > *(C++20~) [UTF-8](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.*
 
 
-1. `vector`와 유사하게 연속된 메모리를 사용하며,
+1. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 유사하게 연속된 메모리를 사용하며,
 2. 컨테이너와 같이 이터레이터와 `operator []`를 지원합니다.
 3. 소멸자가 `public` Non-Virtual 이므로 상속하여 재구현 하면 안됩니다.([public Non-Virtual](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고) 이는 흔히, 그리고 많이 사용하는 자료형이여서 가상 함수 테이블의 포인터를 저장하기 아깝기 때문입니다.( [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable) 참고)
 4. 문자열 상수를 복제하여 관리합니다. 따라서, 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하는게 좋습니다.([문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 참고)

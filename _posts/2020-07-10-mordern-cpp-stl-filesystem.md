@@ -12,7 +12,7 @@ sidebar:
 
 C++17 부터는 경로, 파일, 디렉토리를 조작하는 [파일 시스템 라이브러리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/)가 제공됩니다.
 
-`<filesystem>` 헤더 파일을 포함해야 하며, `std::filesystem` 네임스페이스를 사용합니다.
+`<filesystem>` 헤더 파일을 포함해야 하며, `std::filesystem` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 사용합니다.
 
 # 경로 문자열
 

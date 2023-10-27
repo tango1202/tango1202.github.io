@@ -11,7 +11,7 @@ sidebar:
 > * (C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)가 추가되어 클래스, 배열, 구조체를 일관성 있게 초기화 할 수 있습니다.
 > * (C++11~) [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.
 > * (C++11~) [중괄호 초기화시 인자의 암시적 형변환을 일부 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98-%EC%B0%A8%EB%8B%A8)하여, 코딩 계약이 개선되었습니다.
-> * (C++11~) [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.
+> * (C++11~) [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 가 추가되어 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)등 컨테이너 요소 추가가 간편해 졌습니다.
 > * (C++17~) [중괄호 초기화에서 auto 추론의 새로운 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c17-auto-%EC%B6%94%EB%A1%A0%EC%9D%98-%EC%83%88%EB%A1%9C%EC%9A%B4-%EA%B7%9C%EC%B9%99)이 적용되어, [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 로 추론되는 오류가 개선되었습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.
 
@@ -372,11 +372,11 @@ B b_11{1, {2, 3}}; // B b_11 = B{1, A{2, 3}};와 동일
 
 # initializer_list
 
-[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다. 
+[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 가 추가되어 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)등 컨테이너 요소 추가가 간편해 졌습니다. 
  
  C++11의 컨테이너는 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 이용하여 쉽게 초기값을 입력할 수 있도록 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 을 사용한 생성자를 제공합니다.
 
-`vector`의 경우 요소를 입력할때 `push_back()`을 사용하여 코드 작성이 번거로웠는데([vector 의 삽입과 삭제](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C) 참고), [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 을 사용한 생성자를 이용하면 다음처럼 좀 더 간편하게 요소 값을 초기화 할 수 있습니다.
+[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 경우 요소를 입력할때 `push_back()`을 사용하여 코드 작성이 번거로웠는데([vector 의 삽입과 삭제](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C) 참고), [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 을 사용한 생성자를 이용하면 다음처럼 좀 더 간편하게 요소 값을 초기화 할 수 있습니다.
 
 ```cpp
 // 이전 방식
@@ -470,9 +470,9 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 
 # 기존 생성자와 initializer_list 생성자와의 충돌
 
-[중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 3번에 따라 `vector<int> v{}` 는 `vector`의 기본 생성자를 호출하고, `vector<int> {{}}`는 빈 `initializer_list`로 `vector`를 생성합니다.
+[중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 3번에 따라 `vector<int> v{}` 는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기본 생성자를 호출하고, `vector<int> {{}}`는 빈 `initializer_list`로 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성합니다.
 
-상기는 별로 심각하지 않을 수 있지만, [중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 4번인 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 버전이 비교적 우선적으로 선택되는 부분은 심각합니다. 기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v_11{2};` 와 같이 한다면, 요소가 2개인 `vector` 를 생성하는게 아니라, `2`값인 요소 1인 `vector`를 생성합니다.
+상기는 별로 심각하지 않을 수 있지만, [중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 4번인 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 버전이 비교적 우선적으로 선택되는 부분은 심각합니다. 기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v_11{2};` 와 같이 한다면, 요소가 2개인 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 를 생성하는게 아니라, `2`값인 요소 1인 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성합니다.
 
 ```cpp
 std::vector<int> v1(); // 함수 선언

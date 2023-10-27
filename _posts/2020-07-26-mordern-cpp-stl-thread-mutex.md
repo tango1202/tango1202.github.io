@@ -152,7 +152,7 @@ Message2 : 9
 
 다음은 쓰레드의 속도를 측정하는 코드입니다.
 
-1. `vector`에 들어 있는 100개의 정수를 더하고 테스트 합니다.
+1. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에 들어 있는 100개의 정수를 더하고 테스트 합니다.
 2. `Sum()` 함수는 주어진 이터레이터 범위의 요소를 모두 더합니다.
 3. `ThreadSum()` 함수를 2개의 쓰레드를 이용하여 `[시작 ~ 중간)` 과 `[중간 ~ 끝)`을 `Sum()`함수를 이용하여 각각 계산한 후 최종적으로 이 둘을 더해 리턴합니다.
 4. `Measure()`함수는 전달된 함수를 실행하고 실행 시간을 측정합니다. 실행시킬 함수에 인자를 전달하기 위해 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)을 사용합니다.
@@ -235,7 +235,7 @@ Sum : 4950 Duration : 1
 ThreadSum : 4950 Duration : 272 // 쓰레드를 사용하는 버전이 훨씬 오래 걸립니다.
 ```
 
-이는 `vector`에 들어 있는 100개의 정수를 더하는데 1 마이크로초(1/1,000,000 초) 밖에 걸리지 않는 반면에, 쓰레드를 생성하는 부하가 오히려 더 있기 때문입니다. 이렇게 짧은 시간동안 실행되는 작업을 쓰레드로 만들면 오히려 더 느려집니다.
+이는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에 들어 있는 100개의 정수를 더하는데 1 마이크로초(1/1,000,000 초) 밖에 걸리지 않는 반면에, 쓰레드를 생성하는 부하가 오히려 더 있기 때문입니다. 이렇게 짧은 시간동안 실행되는 작업을 쓰레드로 만들면 오히려 더 느려집니다.
 
 `Sum()` 함수가 시간이 좀 걸리는 것처럼 시뮬레이션 해서 다시 테스트 해보겠습니다. 
 
@@ -261,7 +261,7 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 
 # 쓰레드 yield(), sleep_for(), sleep_until()
 
-현재 동작하는 쓰레드에 대하여 다음 함수를 사용할 수 있습니다.(`this_thread` 네임스페이스에 정의되어 있습니다.)
+현재 동작하는 쓰레드에 대하여 다음 함수를 사용할 수 있습니다.(`this_thread` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에 정의되어 있습니다.)
 
 |항목|내용|
 |--|--|

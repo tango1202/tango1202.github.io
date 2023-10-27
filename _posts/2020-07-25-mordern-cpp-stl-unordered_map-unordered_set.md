@@ -57,7 +57,7 @@ sidebar:
 
 속도 성능을 보면,
 
-1. `vector`는 순차 탐색을 하기 때문에 O(N)의 시간이 걸리고,
+1. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 순차 탐색을 하기 때문에 O(N)의 시간이 걸리고,
 2. `set`이나 `map` 등은 이진 트리 탐색을 하기 때문에 O(logN)이 걸리고,
 3. [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 인덱스로 해서 찾으면 되므로 O(1)의 시간이 걸립니다. 
 

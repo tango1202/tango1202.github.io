@@ -10,7 +10,7 @@ sidebar:
 
 > * 밑줄로 시작하지 말고, 이중 밑줄을 사용하지 마라.
 > * 헝가리안 표기법을 사용하지 마라.
-> * 매크로는 대문자로 작성하라.
+> * [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)는 대문자로 작성하라.
 > * 이름을 반복하지 마라.
 
 # 개요

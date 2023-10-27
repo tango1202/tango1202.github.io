@@ -47,7 +47,7 @@ C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은
 
 # 타입 별칭
 
-[typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)로 타입의 별칭을 만들 수 있습니다.(*절대 [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 쓰지 마세요!!! [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 참고*)
+[typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)로 타입의 별칭을 만들 수 있습니다.(*절대 [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 쓰지 마세요!!! [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98) 참고*)
 
 ```cpp
 // 단순하게

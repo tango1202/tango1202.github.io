@@ -162,7 +162,7 @@ EXPECT_TRUE(v[0] == 11 && v[1] == 12 && v[2] == 13);
 |`bind1st(op, x)`|알고리즘엔 단항 함수로 전달되며, `op(x, 요소)`로 이항 함수를 호출합니다.|
 |`bind2nd(op, y)`|알고리즘엔 단항 함수로 전달되며, `op(요소, y)`로 이항 함수를 호출합니다.|
 
-`vector`에서 7보다 작은 첫 요소를 찾으려고 합니다. `find_if()` 를 사용하려고 봤더니 단항 함수자인 조건자(Predicate)를 사용합니다.
+[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에서 7보다 작은 첫 요소를 찾으려고 합니다. `find_if()` 를 사용하려고 봤더니 단항 함수자인 조건자(Predicate)를 사용합니다.
 
 ```cpp
 template<typename InputIterator, typename Predicate>

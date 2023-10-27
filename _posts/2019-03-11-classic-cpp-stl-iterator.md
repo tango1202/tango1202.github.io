@@ -91,7 +91,7 @@ EXPECT_TRUE(v[1] == 10);
 |`output`|쓰기 전용<br/>`++`, `*`, `=`, 복사 생성자||
 |`forward`|단방향 탐색<br/>`input`과 연산자 동일||
 |`bidirectional`|양방향 탐색<br/>`forward` 에서 `--`추가|`list`<br/>`map`|
-|`random access`|랜덤 접근 탐색<br/> `bidirectional`에서 `+`, `-`, `+=`, `-=`, `<`, `>`, `<=`, `>=`, `[]` 추가|`vector`|
+|`random access`|랜덤 접근 탐색<br/> `bidirectional`에서 `+`, `-`, `+=`, `-=`, `<`, `>`, `<=`, `>=`, `[]` 추가|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)|
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5d7a3f38-3c6f-4321-a6d0-b5ddc75792db)
 
@@ -150,7 +150,7 @@ std::vector<int> v(5); // 5개의 요소 생성(클래스면 생성자를 호출
 Fill(v.begin(), 5, 7); // v[0] ~ v[4] 에 7 대입.
 ```
 
-하지만 다음은 `vector`가 할당되지 않아 오류가 발생합니다.
+하지만 다음은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 할당되지 않아 오류가 발생합니다.
 
 ```cpp
 std::vector<int> v; // 빈 벡터

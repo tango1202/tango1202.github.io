@@ -9,13 +9,13 @@ sidebar:
 ---
 
 > **모던 C++**
-> * (C++11~) [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)가 추가되어 `vector`등 컨테이너 요소 추가가 간편해 졌습니다.
+> * (C++11~) [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)가 추가되어 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)등 컨테이너 요소 추가가 간편해 졌습니다.
 
 # 개요
 
 컨테이너에 요소 추가/삽입/삭제 방법은 컨테이너의 특성에 따라 다릅니다.
 
-|항목|`vector`|`list`|`map`|내용|
+|항목|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)|`list`|`map`|내용|
 |--|--|--|--|--|
 |뒤에 추가|O|O|X|[연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 추가후 정렬되므로, 뒤에 추가할 수 없음|
 |삽입|O|O|O|시퀀스 컨테이너는 어느 위치에 삽입할지 지정해야 하지만, [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 **Key** 값으로 정렬하므로 지정할 필요 없음. 또한 [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 동일한 **Key** 값이면 삽입에 실패하므로 성공/실패 여부를 리턴함|
@@ -25,7 +25,7 @@ sidebar:
 
 # vector 의 삽입과 삭제
 
-`vector`는 
+[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 
 
 1. `push_back()`을 통해 뒤에 추가할 수 있으며,
 2. `insert()`로 특정 위치에 삽입할 수 있고,
@@ -59,7 +59,7 @@ EXPECT_TRUE(*result == 1); // 삭제한 요소의 다음 요소를 리턴함
 
 # list 의 삽입과 삭제
 
-`list`는 `vector`와 달리 이터레이터가 렌덤 접근되지 않습니다. 따라서 이터레이터의 `++` 연산자를 이용하여 접근합니다. 그외 `push_back()`, `insert()`, `erase()`는 `vector`와 동일합니다. 
+`list`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 달리 이터레이터가 렌덤 접근되지 않습니다. 따라서 이터레이터의 `++` 연산자를 이용하여 접근합니다. 그외 `push_back()`, `insert()`, `erase()`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 동일합니다. 
 
 ```cpp
 std::list<int> l;
