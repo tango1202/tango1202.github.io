@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 템플릿은 인스턴스화 되기 전에는 코드를 생성하지 않는다.
-> * 클래스, 함수, 멤버 함수, 중첩 클래스를 템플릿으로 만들 수 있다.
+> * 클래스, 함수, 멤버 함수, [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)를 템플릿으로 만들 수 있다.
 
 > **모던 C++**
 > * (C++11~) [extern으로 템플릿 선언](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.
@@ -97,7 +97,7 @@ EXPECT_TRUE(Plus('a', static_cast<char>(1)) == 'b'); // (O) 인수로부터 char
 
 # 템플릿 멤버 함수와 템플릿 중첩 클래스
 
-멤버 함수, 중첩 클래스도 템플릿으로 만들 수 있습니다.
+멤버 함수, [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)도 템플릿으로 만들 수 있습니다.
 
 단,
 

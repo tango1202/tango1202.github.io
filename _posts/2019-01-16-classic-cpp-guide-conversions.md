@@ -23,7 +23,7 @@ sidebar:
 C++언어는  
 
 1. C언어의 특성을 물려받으면서 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 지원하며,
-2. 이를 보완하고자 4종의 명시적 형변환(*`const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`*)을 제공하고,
+2. 이를 보완하고자 4종의 [명시적 형변환(*const_cast, static_cast, dynamic_cast, reinterpret_cast*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 제공하고,
 3. [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 연산자 정의를 제공합니다.
 
 형변환은 타입에 기반한 **코딩 계약** 을 위반하기 때문에 사용하지 않는 것이 좋습니다.(*작성자의 의도인지, 실수인지 판단하기 어렵습니다.*)
@@ -36,11 +36,11 @@ C++언어는
 |--|--|
 |[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|C언어 잔재. 유사한 타입끼리 변환|
 |[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) - 괄호(*`(`와 `)`*)|C언어 잔재.<br/>`const_cast`,<br/>`static_cast`,<br/>`reinterpret_cast`<br/>의 순서로 형변환|
-|[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) - `const_cast`|상수성만 변환|
-|[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) - `static_cast`|타입 유사성을 지키며 변환|
-|[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) - `dynamic_cast`|타입 유사성을 지키며 변환.<br/>[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체(*[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체*)만 가능.|
-|[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) - `reinterpret_cast`|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
-|[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)|[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 제공하나 암시적 형변환이 됨|
+|[명시적 형변환 - const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|상수성만 변환|
+|[명시적 형변환 - static_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|타입 유사성을 지키며 변환|
+|[명시적 형변환 - dynamic_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|타입 유사성을 지키며 변환.<br/>[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체(*[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체*)만 가능.|
+|[명시적 형변환 - reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|
+|[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)|[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 제공하나 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 됨|
 |[explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)|[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 되지 않도록 개체 생성자에 지정|
 
 # 암시적 형변환
@@ -105,7 +105,7 @@ C++언어는
 
 **C언어 스타일 형변환-`()`**
 
-암시적으로 형변환 되지 않는다면, 괄호(*`(`와 `)`*)로 C언어 스타일로 명시적으로 형변환(*`const_cast`, `static_cast`, `reinterpret_cast` 의 순서*) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 `const_cast`, `static_cast`, `dynamic_cast`, `reinterpret_cast`을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
+암시적으로 형변환 되지 않는다면, 괄호(*`(`와 `)`*)로 C언어 스타일로 [명시적으로 형변환(*const_cast, static_cast, reinterpret_cast 의 순서*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 [const_cast, static_cast, dynamic_cast, reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
 
 ```cpp
 {
@@ -120,9 +120,9 @@ C++언어는
 }
 ```
 
-**`const_cast`**
+**const_cast**
 
-`const_cast`로 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 뗄 수 있습니다.(*그러나 **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 위반이니 하지 마세요.*)
+`const_cast`는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 뗄 수 있습니다.(*그러나 **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 위반이니 하지 마세요.*)
 
 ```cpp
 {
@@ -137,9 +137,9 @@ C++언어는
 }
 ```
 
-**`static_cast`**
+**static_cast**
 
-`static_cast`로 암시적으로 형변환되지 않는 것들을 명시적으로 할 수 있습니다.(*하지만 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.*)
+`static_cast`는 암시적으로 형변환되지 않는 것들을 명시적으로 형변환할 수 있습니다.(*하지만 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.*)
 
 ```cpp
 {
@@ -176,9 +176,9 @@ C++언어는
 }
 ```
 
-**`dynamic_cast`**
+**dynamic_cast**
 
-`dynamic_cast`는 상속 관계가 있는 개체간의 변환을 합니다.(*[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.*) 변환에 실패하면, 포인터 유형인 경우 널(`NULL`)을 리턴하고, 참조 유형인 경우 [bad_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 예외를 방출합니다. 
+`dynamic_cast`는 상속 관계가 있는 개체간의 형변환을 합니다.(*[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.*) 변환에 실패하면, 포인터 유형인 경우 널(`NULL`)을 리턴하고, 참조 유형인 경우 [bad_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 예외를 방출합니다. 
 
 ```cpp
 class Base {
@@ -203,9 +203,9 @@ Other* other = dynamic_cast<Other*>(b);
 EXPECT_TRUE(other == NULL);
 ```
 
-**`reinterpret_cast`**
+**reinterpret_cast**
 
-`reinterpret_cast`는 상속관계를 무시하고 그냥 변환해 버릴 뿐만 아니라, 정수를 포인터로 변환하기까지 합니다.(*하지만, [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)은 지켜줍니다. 아무튼 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.*)
+`reinterpret_cast`는 상속관계를 무시하고 그냥 형변환할 뿐만 아니라, 정수를 포인터로 형변환하기까지 합니다.(*하지만, [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)은 지켜줍니다. 아무튼 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.*)
 
 ```cpp
 {
@@ -232,7 +232,7 @@ EXPECT_TRUE(other == NULL);
 ```
 **아무 연관 관계도 없는 타입끼리의 형변환**
 
-아무 연관 관계도 없는 타입끼리 형변환되지는 않습니다. 다만 `reinterpret_cast`를 이용하면 연관관계가 없는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 타입끼리 변환이 가능합니다.
+아무 연관 관계도 없는 타입끼리는 형변환되지 않습니다. 다만 `reinterpret_cast`를 이용하면 연관관계가 없는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 타입끼리 변환이 가능합니다.
 
 ```cpp
 class T {};

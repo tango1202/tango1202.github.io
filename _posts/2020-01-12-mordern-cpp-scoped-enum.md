@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) 이름 범위를 한정하는 [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)이 추가되어 이름 충돌 회피가 쉬워졌고, 암시적 형변환을 차단하며, 전방선언도 지원합니다.
-> * (C++17~) [열거형의 중괄호 직접 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c17-%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%97%88%EC%9A%A9)하여 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하는 사용자 정의 열거형의 사용이 좀더 쉬워졌습니다.
+> * (C++11~) 이름 범위를 한정하는 [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)이 추가되어 이름 충돌 회피가 쉬워졌고, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하며, [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)도 지원합니다.
+> * (C++17~) [열거형의 중괄호 직접 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c17-%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%97%88%EC%9A%A9)하여 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하는 사용자 정의 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)의 사용이 좀더 쉬워졌습니다.
 
 
 # 개요
 
-기존에는 열거형의 이름이 한정되지 않아 이름 충돌의 우려가 있어 클래스 내에 정의하는 방식을 사용했었는데요,([열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/) 참고) 
+기존에는 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)의 이름이 한정되지 않아 이름 충돌의 우려가 있어 클래스 내에 정의하는 방식을 사용했었는데요,
 
 ```cpp
 // 기존
@@ -50,7 +50,7 @@ Week_11 week{Week_11::Sunday}; // 범위명을 지정하여 이름 충돌 회피
 
 # 열거형의 암시적 형변환
 
-기존 [열거형 상수는 암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/#%EC%97%B4%EA%B1%B0%ED%98%95-%EC%83%81%EC%88%98-%ED%98%95%EB%B3%80%ED%99%98)이 되지만, [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)은 형변환되지 않습니다.
+기존 [열거형은 암시적으로 형변환](??)이 되지만, [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)은 형변환되지 않습니다.
 
 ```cpp
 enum Week {
@@ -70,7 +70,7 @@ Week_11 week_11 = Week_11::Sunday;
 ```
 # 전방 선언
 
-범위 있는 열거형은 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 지원합니다. 지난날 열거형 항목이 추가될 때마다 엄청나게 많은 파일들이 쓸데없이 재빌드 되던 걸 생각하면, 참 사소하지만 감사한 기능입니다.
+[범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)은 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 지원합니다. 지난날 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/) 항목이 추가될 때마다 엄청나게 많은 파일들이 쓸데없이 재빌드 되던 걸 생각하면, 참 사소하지만 감사한 기능입니다.
 
 ```cpp
 enum MyEnum; // (X) 컴파일 오류.
@@ -79,19 +79,7 @@ enum class MyEnum_11;
 
 # 기반 타입
 
-열거형은 모든 열거자 값을 나타낼 수 있는 정수 형식의 크기로 설정됩니다. 따라서 다음 예는 `char`, `short`, `int` 크기중 하나가 될 수 있습니다.
-
-```cpp
-enum MyEnum {a, b, c};
-
-EXPECT_TRUE(sizeof(MyEnum) == sizeof(char) || sizeof(MyEnum) == sizeof(short) || sizeof(MyEnum) == sizeof(int));
-```
-
-그런데, 열거형의 값이 추가 되다 보면 어느 순간 `sizeof()`가 달라질 수 있었는데요, 파일 저장시에 열거형의 크기만큼 오프셋을 이동하는 코드를이 있으면 호환성이 깨질 수 있습니다. 이런 문제를 해결하고자 다음과 같이 충분히 큰값을 `dummy` 값으로 사용하곤 했습니다.
-
-```cpp
-enum MyEnum {a, b, c, dummy = 0XFFFFFFFF};
-```
+기존에는 [열거형의 크기](??)를 지정하기 위하여 열거자에 강제적으로 `dummy` 값을 입력했는데요, 
 
 C++11 부터는 [기반 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EA%B8%B0%EB%B0%98-%ED%83%80%EC%9E%85)을 지정할 수 있습니다. 기본적으로는 `int`를 사용하며, 다음과 같이 명시적으로 변경할 수 있습니다.
 
@@ -108,7 +96,7 @@ enum class MyEnum2_11 : char {i, j, k}; // char 형을 기반 타입으로 사�
     enum MyInt_11 : int {}; // 열거자가 빠졌습니다!!
 ```
 
-보통 나열된 열거자를 사용하기 위해 열거형을 정의하는데, 이를 생략하다니 좀 의아한데요, 재밌게도 다음과 같이 값을 대입할 수 있습니다. 반드시 같은 타입의 열거형만 대입할 수 있어요.
+보통 나열된 열거자를 사용하기 위해 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)을 정의하는데, 이를 생략하다니 좀 의아한데요, 재밌게도 다음과 같이 값을 대입할 수 있습니다. 반드시 같은 타입의 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)만 대입할 수 있어요.
 
 ```cpp
 enum MyInt_11 : int {};
@@ -142,7 +130,7 @@ Func_11(MyInt_11(10)); // MyInt_11 타입만 가능합니다.
 
 # (C++17~) 열거형의 중괄호 직접 초기화 허용
 
-C++17 부터는 [열거형의 중괄호 직접 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c17-%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%97%88%EC%9A%A9)하여 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하는 사용자 정의 열거형의 사용이 좀더 쉬워졌습니다.
+C++17 부터는 [열거형의 중괄호 직접 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c17-%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%97%88%EC%9A%A9)하여 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하는 사용자 정의 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)의 사용이 좀더 쉬워졌습니다.
 
 ```cpp
 enum MyInt_11 : int {};

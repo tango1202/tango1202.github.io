@@ -16,10 +16,10 @@ sidebar:
 PImpl(pointer to implementation, 구현에 대한 포인터)은 구현의 상세 정보를 은닉하는 프로그래밍 기법으로서, 코드간 종속성이나, 컴파일 종속성을 최소화 해줍니다.
 
 1. 개체 내부의 [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)에 멤버 변수들을 정의합니다.
-2. 개체 선언부에서 중첩 클래스를 포인터 멤버 변수로 정의합니다.
-3. 개체 정의부에서 중첩 클래스의 실제 선언 및 정의를 합니다.
+2. 개체 선언부에서 [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)를 포인터 멤버 변수로 정의합니다.
+3. 개체 정의부에서 [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)의 실제 선언 및 정의를 합니다.
 
-그러면, 선언부에서는 중첩 클래스의 포인터형 변수의 크기만 알면 되기 때문에 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 하면 됩니다.
+그러면, 선언부에서는 [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)의 포인터형 변수의 크기만 알면 되기 때문에 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 하면 됩니다.
 
 ```cpp
 // 선언에서, 아마도 헤더 파일
@@ -151,7 +151,7 @@ class T {
 };
 ```
 
-그래서, 다음처럼 `T::Impl`의 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 해보시면, 중첩 클래스여서 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 안됩니다.(중첩 클래스는 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 안됩니다.)
+그래서, 다음처럼 `T::Impl`의 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 해보시면, [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)여서 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 안됩니다.
 
 ```cpp
 class T::Impl; // (X) 컴파일 오류. 중첩 클래스는 전방 선언을 할 수 없습니다.
@@ -181,7 +181,7 @@ public:
 
 다음은 전체 코드입니다.
 
-1. 중첩 클래스인 `T::Impl`을 밖으로 빼서 `TImpl`로 선언하였습니다.
+1. [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)인 `T::Impl`을 밖으로 빼서 `TImpl`로 선언하였습니다.
 2. 스마트 포인터인 `TImplPtr`을 정의했습니다.
 3. 스마트 포인터를 사용하므로 `T`의 복사 생성자, 소멸자, 복사 대입 연산자, `Swap`을 제거했습니다.
 

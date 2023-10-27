@@ -29,11 +29,11 @@ public:
 
 # delete를 이용한 암시적 형변환과 템플릿 인스턴스화 차단
 
-`delete`는 그 어떤 함수도 삭제할 수 있습니다. "함수를 안만들면 되지, 뭐하러 만들고 삭제하냐" 할 수 있을텐데요, 이 기능을 활용하면, 재밌게도 함수 호출시의 암시적 형변환을 차단할 수 있습니다.
+`delete`는 그 어떤 함수도 삭제할 수 있습니다. "함수를 안만들면 되지, 뭐하러 만들고 삭제하냐" 할 수 있을텐데요, 이 기능을 활용하면, 재밌게도 함수 호출시의 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단할 수 있습니다.
 
-다음의 `Func_11(int)`함수는 `Func_11('a')`와 같이 `char`를 전달해도 실행됩니다. `char`가 `int`로 암시적 형변환되기 때문이죠. 
+다음의 `Func_11(int)`함수는 `Func_11('a')`와 같이 `char`를 전달해도 실행됩니다. `char`가 `int`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)되기 때문이죠. 
 
-그런데, `void Func_11(char) = delete;`와 같이 `char`를 사용하는 함수를 `delete`한다면, `Func_11('a')`와 같이 호출했을때 컴파일 오류가 발생하여 암시적 형변환을 차단할 수 있습니다.
+그런데, `void Func_11(char) = delete;`와 같이 `char`를 사용하는 함수를 `delete`한다면, `Func_11('a')`와 같이 호출했을때 컴파일 오류가 발생하여 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단할 수 있습니다.
 
 ```cpp
 class T_11 {

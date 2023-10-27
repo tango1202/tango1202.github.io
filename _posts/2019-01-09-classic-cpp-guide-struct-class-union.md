@@ -8,17 +8,17 @@ sidebar:
     nav: "docs"
 ---
 
-> * [5대 원칙(SOLID)](https://tango1202.github.io/principle/principle-solid/)정도는 사전에 숙지하고 구조체/클래스/공용체를 만들어라.
+> * [5대 원칙(SOLID)](https://tango1202.github.io/principle/principle-solid/)정도는 사전에 숙지하고 구조체/클래스/[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)를 만들어라.
 > * 구조체와 클래스의 차이는 초기화 방법과 기본 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)(*구조체는 `public`, 클래스는 `private`*) 뿐이다.
-> * 공용체는 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있으니 꼭 필요한 경우 한정적으로 사용하라.
+> * [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있으니 꼭 필요한 경우 한정적으로 사용하라.
 
 > **모던 C++**
-> * (C++11~) 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.
+> * (C++11~) [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버에서 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.
 > * (C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.
 
 # 개요
 
-구조체와 클래스와 공용체는 타입이 다른 여러 데이터를 집합으로 묶고, [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 이들을 가공하여 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)할 수 있습니다. 
+구조체와 클래스와 [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 타입이 다른 여러 데이터를 집합으로 묶고, 이들을 처리하는 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 함께 제공하는 개체입니다. 특히 데이터를 처리하는 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 제공함으로서 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 가능하게 합니다.
 
 모든 소프트웨어의 기본 원칙은,
 
@@ -30,7 +30,7 @@ sidebar:
 
 구조체와 클래스는 이를 구현하는 근간입니다. 구조체와 클래스를 얼마나 잘 만드느냐에 따라 좋은 소프트웨어가 될 수 있고, 느리고 오류 투성이인 소프트웨어가 될 수 있습니다.
 
-그래서 구조체와 클래스의 단편적인 문법보다는 왜 이런 구성 요소가 있고, 어떻게 활용하는지, 활용함으로서 어떤 효과가 있는지 아는게 좋습니다. 그러기 위해서는 개체 지향의 철학이나 원리를 어느정도 알고 접근하시는게 좋은데요, 특히 [5대 원칙(SOLID)](https://tango1202.github.io/principle/principle-solid/) 정도는 사전에 숙지하시고 구조체나 클래스를 만드시길 추천합니다.
+그래서 구조체와 클래스의 단편적인 문법보다는 왜 이런 구성 요소가 있고, 어떻게 활용하는지, 활용함으로서 어떤 효과가 있는지 아는게 좋습니다. 그러기 위해서는 개체 지향의 철학이나 원리를 어느정도 알고 접근하시는게 좋은데요, 특히 [5대 원칙(SOLID)](https://tango1202.github.io/principle/principle-solid/) 정도는 사전에 숙지하시고 구조체와 클래스를 만드시길 추천합니다.
 
 구조체와 클래스는 [초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/) 방법과 기본 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90) 외에는 모두 동일합니다.
 
@@ -51,13 +51,13 @@ public:
 C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 집합 초기화 미지원
 ```
 
-공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유합니다. 이에 따라 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있습니다. 따라서 꼭 필요한 경우에만 한정적으로 사용하기 바랍니다. 또한, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)나 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들이 제한됩니다.
+[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유합니다. 이에 따라 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있습니다. 따라서 꼭 필요한 경우에만 한정적으로 사용하기 바랍니다. 또한, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)나 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들이 제한됩니다.
 
-> *(C++11~) 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*
+> *(C++11~) [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버에서 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*
 
-다음은 구조체, 클래스, 공용체의 차이점입니다.
+다음은 구조체, 클래스, [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)의 차이점입니다.
 
-|항목|구조체|클래스|공용체|
+|항목|구조체|클래스|[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)|
 |--|--|--|--|
 |용량|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 총합|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들의 총합|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들중 가장 큰값|
 |[초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/)|`T t = {10, 20};` 와 같이 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94) 지원|값 생성자|X|
@@ -72,13 +72,9 @@ C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 집합 초기화
 
 # 구조체와 클래스
 
-구조체와 클래스는 [추상화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/), [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/), [다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/), [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들을 제공합니다.
+클래스/구조체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/) 뿐만아니라, [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4), [타입 재정의(typdef)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 포함할 수 있습니다.
 
-**멤버 사양**
-   
-클래스/구조체)의 멤버는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/) 뿐만아니라, [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4), [타입 재정의(typdef)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 포함할 수 있습니다.
-
-특히, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 정의하지 않으면, 컴파일러가 암시적으로 정의해 줍니다.(*[클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고*)
+특히, [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 정의하지 않으면, 컴파일러가 암시적으로 정의해 줍니다.(*[클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고*)
 
 ```cpp
 class T {
@@ -120,7 +116,7 @@ class T {
 };
 ```
 
-다음은 클래스의 구성 요소들입니다.
+다음은 클래스/구조체의 구성 요소들입니다.
 
 |항목|내용|
 |--|--|
@@ -141,7 +137,7 @@ class T {
 
 # 클래스 선언과 정의 분리
 
-클래스는 헤더 파일과 소스 파일에 선언과 정의를 분리하여 작성할 수 있습니다. 정의시에는 범위 확인 연산자(`::`)를 사용합니다.(*자세한 내용은 [선언과 정의 분리 효과](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC-%ED%9A%A8%EA%B3%BC)를 참고하기 바랍니다.*)
+클래스/구조체는 헤더 파일과 소스 파일에 선언과 정의를 분리하여 작성할 수 있습니다. 정의시에는 범위 확인 연산자(`::`)를 사용합니다.(*자세한 내용은 [선언과 정의 분리 효과](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC-%ED%9A%A8%EA%B3%BC)를 참고하기 바랍니다.*)
 
 ```cpp
 // ----
@@ -182,7 +178,7 @@ int T::f2() {} // inline화 안됨
 
 # 접근 지정자
  
-접근 지정자로 외부 접근을 통제할 수 있습니다.
+[접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)로 외부 접근을 통제할 수 있습니다.
 
 |항목|내용|
 |--|--|
@@ -192,7 +188,7 @@ int T::f2() {} // inline화 안됨
 
 **using 선언을 이용한 접근 지정자 수정**
 
-[using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8) 을 사용하면 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 것을 가져올 수 있을 뿐만 아니라, 부모 클래스에서 지정한 접근 지정자를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.(*[리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고*)
+[using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8) 을 사용하면 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 것을 가져올 수 있을 뿐만 아니라, 부모 클래스에서 지정한 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.(*[리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고*)
 
 ```cpp
 class Base {
@@ -210,16 +206,16 @@ d.m_Val = 10; // 이제 public이라 접근 가능합니다.
 
 # friend
 
-일반적으로 `public`만 외부에서 접근할 수 있으나 특별히 `friend`로 허용한 [클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)와 [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)는 `protected`와 `private`에 접근할 수 있습니다. 
+일반적으로 `public`만 외부에서 접근할 수 있으나 특별히 [friend](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#friend)로 허용한 클래스/구조체와 [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)는 `protected`와 `private`에 접근할 수 있습니다. 
 
 이때
 
-1. `friend`인 클래스와 상속 관계거나, 
-2. `friend`인 클래스와 `friend`관계인 클래스는 
+1. [friend](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#friend)인 클래스/구조체와 상속 관계거나, 
+2. [friend](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#friend)인 클래스/구조체와 [friend](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#friend)관계인 클래스/구조체는 
    
 접근 할 수 없습니다.  
 
-`friend`는 은닉을 통한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 해칠 수 있기 때문에 사용하지 않는게 좋습니다.(*`friend` 대상은 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 없어도 됩니다.*)
+[friend](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#friend)는 은닉을 통한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 해칠 수 있기 때문에 사용하지 않는게 좋습니다.(*[friend](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#friend) 대상은 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 없어도 됩니다.*)
 
 
 ```cpp
@@ -273,9 +269,9 @@ class W { // T의 friend인 U 의 friend
 
 # 공용체
 
-공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유하다 보니 하나의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하면, 다른 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)이 바뀌면(*플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라*) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
+[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유하다 보니 하나의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하면, 다른 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)이 바뀌면(*플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라*) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
 
-또한, 구조체와 클래스와 달리 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)나, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)와 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 가질 수 없습니다.
+또한, 클래스/구조체와 달리 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)나, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)와 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 가질 수 없습니다.
 
 ```cpp
 class C {
@@ -320,12 +316,12 @@ EXPECT_TRUE(u.s1.x == 20);
 EXPECT_TRUE(u.s2.x == 20);
 ```
 
->*(C++11~) 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*<br/>
+>*(C++11~) [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버에서 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*<br/>
 > *(C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.*
 
 # this 포인터
 
-`this` 포인터는 개체 자신을 가리키는 포인터 입니다. 
+[this 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)는 개체 자신을 가리키는 포인터 입니다. 
 
 ```cpp
 class Outer {
@@ -387,7 +383,7 @@ t2->Release(); // (O)
 
 # 함수 내부의 로컬 클래스
 
-함수 내부에 클래스/구조체/공용체를 정의하여, 함수 내부에서만 한정해서 사용할 수 있습니다.
+함수 내부에 클래스/구조체/[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)를 정의하여, 함수 내부에서만 한정해서 사용할 수 있습니다.
 
 ```cpp
 void OuterFunc() {
@@ -406,7 +402,7 @@ void OuterFunc() {
 
 # 중첩 클래스
 
-클래스/구조체/공용체 내부에 다른 클래스/구조체/공용체를 정의할 수 있습니다.
+클래스/구조체/[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 내부에 다른 클래스/구조체/[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)를 정의할 수 있습니다.
 
 ```cpp
 // 클래스에서 가능
@@ -429,7 +425,7 @@ union Union {
 };
 ```
 
-중첩 클래스는 바깥 클래스의 `private`에 접근 가능합니다. 외부에서 접근할 경우에는 범위 확인 연산자(`::`)를 사용합니다.
+[중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)는 바깥 클래스의 `private`에 접근 가능합니다. 외부에서 접근할 경우에는 범위 확인 연산자(`::`)를 사용합니다.
 
 ```cpp
 class Outer {
@@ -454,11 +450,11 @@ Outer::Nested nested; // (O) 외부에서 접근할 경우 :: 사용
 
 # 비트 필드
 
-구조체나 클래스 멤버 변수를 비트 단위로 쪼개어 사용할 수 있습니다. 
+클래스/구조체 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 비트 단위로 쪼개어 사용할 수 있습니다. 
 
-다음 코드는 비트 필드의 구현 예입니다. 
+다음 코드는 [비트 필드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EB%B9%84%ED%8A%B8-%ED%95%84%EB%93%9C)의 구현 예입니다. 
 
-1. 멤버 변수 뒤에 `: 비트 수`를 지정하여 만들 수 있습니다.
+1. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 뒤에 `: 비트 수`를 지정하여 만들 수 있습니다.
 2. 저장하려는 값이 비트 범위를 벗어날 경우에는 상위 비트를 버립니다. 
 3. [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 제공하지 않습니다.
 

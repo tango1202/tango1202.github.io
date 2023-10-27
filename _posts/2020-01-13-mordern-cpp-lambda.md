@@ -85,7 +85,7 @@ int f(int a, int b) {
 |`[&]` (C++11~)|외부의 모든 변수의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 가져옵니다.|
 |`[=, &x, &y]` (C++11~)|외부의 모든 변수를 값으로 가져오되 `x`, `y` 만 참조로 가져옵니다.|
 |`[&, x, y]` (C++11~)|외부의 모든 변수의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 가져오되 `x`, `y` 만 값으로 가져옵니다.|
-|`this` (C++11~)|[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)을 사용한 개체의 `this` 포인터를 값으로 가져옵니다.|
+|`this` (C++11~)|[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)을 사용한 개체의 [this 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 값으로 가져옵니다.|
 |`*this` (C++17~)|`this`는 포인터를 가져오지만, `*this`는 개체 자체를 복제하여 가져옵니다.|
 
 다음 코드에서는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) 외부에 정의된 `sum`을 캡쳐하고, [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/) 내에서 `v`의 각 요소의 값을 전달받아 `sum`에 누적합니다.
@@ -152,7 +152,7 @@ int& ref{c};
 EXPECT_TRUE( a == 1 && b == 20 && c == 3);         
 ```
 
-개체의 멤버 함수 내에서 사용할 때에는 값 캡쳐시 `this` 포인터가 복제되어 개체의 내부 멤버 변수를 수정할 수 있습니다.
+개체의 멤버 함수 내에서 사용할 때에는 값 캡쳐시 [this 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)가 복제되어 개체의 내부 멤버 변수를 수정할 수 있습니다.
 
 ```cpp
 class T {

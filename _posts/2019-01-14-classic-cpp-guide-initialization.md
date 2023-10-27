@@ -92,7 +92,7 @@ T obj = T(1); // (△) 비권장. T(1)로 생성한 개체를 T obj 의 복사 �
 T obj(T(1)); // (△) 비권장. T(1)로 생성한 개체를 T obj 의 복사 생성자를 호출하여 생성합니다.
 ```
 
-상기와 여러가지 가능한 표현 방식이 있습니다만, 다음과 같이 생성자를 직접 호출하는게 암시적 형변환에 안전하고 효율적입니다.
+상기와 여러가지 가능한 표현 방식이 있습니다만, 다음과 같이 생성자를 직접 호출하는게 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)에 안전하고 효율적입니다.
 
 ```cpp
 T obj(1); // (O) int를 전달받는 생성자 호출
@@ -164,7 +164,7 @@ obj = other; // (△) 비권장. 생성하고 대입하지 말고, 완전하게 
 
 # 배열 초기화
 
-[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 정의시 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 크기가 유추될 수 있도록 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 할 수 있으며, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 할 수 있습니다.(*[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고*) 
+[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 정의시 [배열 요소의 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)가 유추될 수 있도록 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 할 수 있으며, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 할 수 있습니다.(*[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고*) 
 
 ```cpp
 int arr1[3]; // (△) 비권장. int 형 3개 정의. 초기화 되지 않아 비권장 
@@ -208,9 +208,9 @@ EXPECT_TRUE(t.x == 10 && t.y == 20);
 
 1. [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98), [정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)
    
-2. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 요소 갯수보다 초기화 값을 적게 제공한 경우 나머지 요소
+2. [배열 요소의 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)보다 초기화 값을 적게 제공한 경우 나머지 요소
 
-3. 클래스, 구조체, 공용체의 멤버 변수
+3. 클래스, 구조체, [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)의 멤버 변수
 
     * `T t;`나 `T* ptr = new T;`와 같이 괄호 없이 기본 생성자를 호출하면 자동 제로 초기화를 하지 않습니다.
     * `T* ptr = new T();` 와 같이 괄호를 사용하여 기본 생성자를 호출하면 자동 제로 초기화를 합니다. 

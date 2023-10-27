@@ -182,7 +182,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |포인터인 개체 멤버에 대한 포인터|`a->*b`|O|`R& T::operator ->*(S b);`<br/>`const R& T::operator ->*(S b) const;`|`R& operator ->*(T a, S b);`|
 |범위 확인 연산자(*[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) 멤버*)|`namespaceName::member`|X|X|X|
 |범위 확인 연산자(*전역 멤버*)|`::member`|X|X|X|
-|범위 확인 연산자(*개체의 정적 멤버, 열거형*)|`className::member`|X|X|X| 
+|범위 확인 연산자(*개체의 정적 멤버, [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)*)|`className::member`|X|X|X| 
 |범위 확인 연산자(*개체 멤버*)|`className::member`|X|X|X| 
 
 # 함수 호출 연산자
@@ -620,7 +620,7 @@ EXPECT_TRUE(t1 >= t2);
 
 **열거형 연산자 오버로딩**
 
-열거형도 연산자 오버로딩을 할 수 있습니다.
+[열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)도 연산자 오버로딩을 할 수 있습니다.
 
 ```cpp
 

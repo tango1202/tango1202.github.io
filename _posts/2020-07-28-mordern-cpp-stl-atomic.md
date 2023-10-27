@@ -10,7 +10,7 @@ sidebar:
 
 
 > * (C++11~) [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다. 따라서 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
-> * (C++11~) [memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order) 는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 열거형 상수 입니다.
+> * (C++11~) [memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order) 는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)입니다.
 
 # 개요
 
@@ -38,7 +38,7 @@ C++11 STL 에서는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern
 |`atomic_init()` (C++11~C++20)|C언어 호환성을 유지하며 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)개체를 초기화 합니다.|
 |`ATOMIC_VAR_INIT()` (C++11~C++20)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체의 초기값을 설정합니다.|
 |`ATOMIC_FLAG_INIT` (C++11~C++20)|`atomic_flag`의 초기값입니다.|
-|[memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order) (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 열거형 상수 입니다.|
+|[memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order) (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)입니다.|
 |`kill_dependency()` (C++11~)|(작성중)|
 |`atomic_thread_fence()` (C++11~)|(작성중)|
 |`atomic_signal_fence()` (C++11~)|(작성중)| 
@@ -126,7 +126,7 @@ b = 1;
 
 # memory_order
 
-[memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order)는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 열거형 상수 입니다.
+[memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order)는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)입니다.
 
 |항목|내용|
 |--|--|

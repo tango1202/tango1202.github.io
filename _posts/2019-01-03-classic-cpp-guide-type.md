@@ -36,7 +36,7 @@ C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은
 |`long double`|확장 정밀도 부동소수점 실수|16byte 또는 10byte 또는 8byte. 단, Visual C++ 은 `double` 과 동일|
 |`*`|[포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)|32bit : 4byte,<br/>64bit : 8byte|
 |`&`|[참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)|참조하는 개체의 별칭으로서 해당 용량은 스펙에 정의되지 않음.<br/>다만, `sizeof()`시 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의됨.(*`sizeof(T&) == sizeof(T)`*)|
-|[enum](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)|열거형 상수|모든 열거자 값을 나타낼 수 있는 정수 형식의 크기. (보통 4byte)|
+|[enum](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)|[열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)|모든 열거자 값을 나타낼 수 있는 정수 형식의 크기. (보통 4byte)|
 
 그외 `signed`, `unsigned`, `short`, `long` 와 결합하여 다양한 조합이 나올 수 있습니다.(*[https://en.cppreference.com/w/cpp/language/types](https://en.cppreference.com/w/cpp/language/types) 참고*)
 

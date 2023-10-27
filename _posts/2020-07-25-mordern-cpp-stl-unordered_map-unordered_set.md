@@ -104,7 +104,7 @@ sidebar:
 |`emplace()` (C++11~), `emplace_hint()` (C++11~)|요소 개체 생성을 위한 인수(`Key`, `Value`)를 전달하여 컨테이너 내에서 요소 개체(`pair<Key, Value>`)를 생성한 뒤 삽입합니다.|
 |`try_emplace()` (C++17~)|Key없다면 삽입하고, 있다면 아무 작업 안합니다.|
 |`extract()` (C++17~)|요소를 추출합니다. 컨테이너 갯수는 1 감소합니다.|
-|`merge(source)` (C++17~)|`source`에서 `this`에 없는 요소(Key만 비교합니다.)는 추출하여 `this`에 추가합니다. `source`의 요소는 추출된 만큼 감소합니다.|
+|`merge(source)` (C++17~)|`source`에서 [this](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 없는 요소(Key만 비교합니다.)는 추출하여 [this](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 추가합니다. `source`의 요소는 추출된 만큼 감소합니다.|
 |`count()` (C++11~)|주어진 Key인 요소 갯수를 리턴합니다.|
 |`find()` (C++11~)|주어진 Key인 요소를 리턴합니다.| 
 |`equal_range()` (C++11~)|주어진 Key인 요소들을 리턴합니다.<br/>`map`은 `lower_bound()`, `upper_bound()`를 추가로 제공합니다.|

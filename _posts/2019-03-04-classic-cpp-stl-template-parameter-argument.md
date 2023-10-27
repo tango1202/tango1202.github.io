@@ -123,7 +123,7 @@ typedef class {} B; // 이름없이 클래스를 typedef
 template<typename T>
 class C {}; 
 
-C<A> x1;  // (O) A는 전방선언만 한 클래스 개체
+C<A> x1;  // (O) A는 전방 선언만 한 클래스 개체
 C<A*> x2; // (O)
 C<B> x3;  // (O) B는 이름 없는 클래스의 typedef   
 ```

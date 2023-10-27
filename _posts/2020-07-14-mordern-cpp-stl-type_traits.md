@@ -16,7 +16,7 @@ C++11 부터 STL 에서는 [템플릿 메타 프로그래밍](https://tango1202.
 
 예를 들면 다음과 같이 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)로 전달된 `T`가 포인터 타입인지 아닌지에 따라 코딩할 수 있습니다. 
 
-또한 `is_pointer<T>::value`와 같이 열거형 조회를 하는 것은 `is_pointer_v<T>`로 인스턴스화 된 버전을 제공하여 코딩을 조금 더 간편하게 합니다.
+또한 `is_pointer<T>::value`와 같이 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/) 조회를 하는 것은 `is_pointer_v<T>`로 인스턴스화 된 버전을 제공하여 코딩을 조금 더 간편하게 합니다.
 
 ```cpp
 template<typename T>
@@ -53,8 +53,8 @@ ThreeType three;
 |`is_integral` (C++11~)|정수형 타입인지 검사합니다.|
 |`is_floating_point` (C++11~)|실수형 타입인지 검사합니다.|
 |`is_array` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 타입인지 검사합니다.|
-|`is_enum` (C++11~)|열거형 타입인지 검사합니다.|
-|`is_union` (C++11~)|공용체 타입인지 검사합니다.|
+|`is_enum` (C++11~)|[열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)인지 검사합니다.|
+|`is_union` (C++11~)|[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 타입인지 검사합니다.|
 |`is_class` (C++11~)|구조체, 클래스 타입인지 검사합니다.|
 |`is_function` (C++11~)|함수 타입인지 검사합니다.|
 |`is_pointer` (C++11~)|포인터 타입인지 검사합니다.|
@@ -75,7 +75,7 @@ ThreeType three;
 |`is_scalar` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)인지 검사합니다.|
 |`is_object` (C++11~)|좌측값과 포인터 타입인지 검사합니다.|
 |`is_reference` (C++11~)|참조 타입(좌측값 참조와 우측값 참조)인지 검사합니다.|
-|`is_compound` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), 함수, 개체 포인터, 함수 포인터, 멤버 변수 포인터, 멤버 함수 포인터, 참조자, 구조체/클래스, 공용체, 열거형인지 검사합니다. `int`와 같은 기본 타입은 `false` 입니다.|
+|`is_compound` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), 함수, 개체 포인터, 함수 포인터, 멤버 변수 포인터, 멤버 함수 포인터, 참조자, 구조체/클래스, [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4), [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)인지 검사합니다. `int`와 같은 기본 타입은 `false` 입니다.|
 |`is_member_pointer` (C++11~)|멤버 변수 포인터, 멤버 함수 포인터 인지 검사합니다.|
 
 # 타입 특성

@@ -59,7 +59,7 @@ EXPECT_TRUE(*c == 1 && d == nullptr);
 |`unique_ptr(unique_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
 |`~unique_ptr()` (C++11~)|관리하는 개체를 `delete` 또는 `delete[]`합니다.|
 |`unique_ptr& operator =(const unique_ptr&) = delete;` (C++11~)|복사 대입 연산자는 사용할 수 없습니다.|
-|`unique_ptr& operator =(unique_ptr&& other) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 `this`로 이동시킵니다.|
+|`unique_ptr& operator =(unique_ptr&& other) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 [this](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 이동시킵니다.|
 |`operator *() const noexcept;` (C++11~)|관리하는 개체의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.|
 |`operator ->() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
 |`operator [](size_t) const;` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 관리하는 경우 각 요소 개체의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.|

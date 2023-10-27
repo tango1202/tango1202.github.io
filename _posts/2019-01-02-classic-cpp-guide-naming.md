@@ -38,7 +38,7 @@ C언어에서 사용하던 헝가리안은 C++의 [타입 일반화 철학](http
 
 # 매크로 대문자
    
-[매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)는 대문자로 씁니다.(*사실 아예 [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 자체를 안쓰는게 좋습니다. [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)는 [상수 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EB%B3%80%EC%88%98), [enum](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/), [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 로 대치할 수 있습니다.*)
+[매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)는 대문자로 씁니다.(*사실 아예 [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 자체를 안쓰는게 좋습니다. [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)는 [상수 개체](??), [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/), [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 로 대치할 수 있습니다.*)
 
 # 반복하는 이름 
 

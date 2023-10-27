@@ -87,7 +87,7 @@ T* arr = new T[3]; // (O) 메모리 할당(sizeof(T) * 3 + 오버헤드). 생성
 delete[] arr; // (O) 소멸자 3회 호출. 메모리 해제(sizeof(T) * 3 + 오버헤드)
 ```
 
-로 하면 실행 결과는 다음과 같이 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소의 갯수 만큼 생성자와 소멸자가 호출됩니다.
+로 하면 실행 결과는 다음과 같이 [배열 요소의 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98) 만큼 생성자와 소멸자가 호출됩니다.
 
 ```cpp
 New-Delete Test : T::T()
@@ -100,12 +100,12 @@ New-Delete Test : T::~T()
 
 **`delete`와 `delete[]` 의 차이**
 
-`delete`는 개체의 소멸자를 1회 호출하고, 주어진 메모리를 해제하는 역할을 하고, `delete[]`는 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수만큼 소멸자를 호출하고, 주어진 메모리를 해제하는 역할을 합니다.
+`delete`는 개체의 소멸자를 1회 호출하고, 주어진 메모리를 해제하는 역할을 하고, `delete[]`는 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)만큼 소멸자를 호출하고, 주어진 메모리를 해제하는 역할을 합니다.
 
-그러다 보니 `new[]`로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 생성할때 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소의 갯수가 내부적으로 오버헤드 공간에 저장되고, 이를 `delete[]`시에 사용합니다.
+그러다 보니 `new[]`로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 생성할때 [배열 요소의 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)가 내부적으로 오버헤드 공간에 저장되고, 이를 `delete[]`시에 사용합니다.
 
-1. `int`등 기본 자료형일 경우, 생성자/소멸자를 호출할 필요가 없으므로, 메모리가 `sizeof(int)` * [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수로 할당됩니다.
-2. 클래스인 경우 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수 만큼 생성자/소멸자가 호출되어야 하므로, 내부적으로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수를 저장하는 오버헤드 공간이 추가되어 할당됩니다.(`sizeof(T)` * [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수 + 오버헤드(4byte 이거나 8byte))
+1. `int`등 기본 자료형일 경우, 생성자/소멸자를 호출할 필요가 없으므로, 메모리가 `sizeof(int)` * [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)로 할당됩니다.
+2. 클래스인 경우 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수 만큼 생성자/소멸자가 호출되어야 하므로, 내부적으로 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)를 저장하는 오버헤드 공간이 추가되어 할당됩니다.(*`sizeof(T)` * [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98) + 오버헤드(4byte 이거나 8byte)*)
 
 혹여나 실수로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 `delete`로 소멸시키면, 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있습니다. 따라서, `new[]`로 생성한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 꼭 `delete[]`로 소멸시켜야 합니다.
 
@@ -424,7 +424,7 @@ delete base; // (X) 오동작. Base의 소멸자가 호출되고 Base의 크기�
 
 # operator new[]와 operator delete[] 재정의
 
-[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 `operator new[]`와 `operator delete[]`를 사용합니다. 일반 자료형의 경우에는 `sz`에 `sizeof(T) * 배열 요수 갯수`가 전달되지만, 클래스와 같이 생성자/소멸자가 있는 개체는 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 개수만큼 생성자/소멸자를 호출해야 하므로, 내부적으로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수를 관리하는 오버헤드(4byte 이거나 8byte)가 추가 되어 전달됩니다.
+[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 `operator new[]`와 `operator delete[]`를 사용합니다. 일반 자료형의 경우에는 `sz`에 `sizeof(T) * [배열 요수 갯수]`가 전달되지만, 클래스와 같이 생성자/소멸자가 있는 개체는 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)만큼 생성자/소멸자를 호출해야 하므로, 내부적으로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수를 관리하는 오버헤드(4byte 이거나 8byte)가 추가 되어 전달됩니다.
 
 ```cpp
 class T {

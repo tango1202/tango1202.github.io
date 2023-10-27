@@ -371,7 +371,7 @@ int f2(int a, int b /*= 20*/, int c /*= 30*/) { // (O) 선언과 정의 분리�
 }
 ```
 
-`this` 는 기본값으로 사용할 수 없습니다.
+[this 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)는 기본값으로 사용할 수 없습니다.
    
 ```cpp
 class T {

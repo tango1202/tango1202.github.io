@@ -239,7 +239,7 @@ EXPECT_TRUE(t2.GetBig()->GetVal() == 10);
 Big::Big(const Big& other)
 ```
 
- [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)(`temp`)에서 `new`된 `Big`개체들은 `this`에 포인터 복사되고, `this`가 관리하던 `Big`개체들은 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)에 전달된 후 버려집니다. 따라서 `swap`으로 인한 복사는 포인터 복사(*8byte 복사*) 뿐이므로, 복사 부하는 거의 없다고 보셔도 무방합니다.
+ [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)(`temp`)에서 `new`된 `Big`개체들은 [this](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 포인터 복사되고, [this](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)가 관리하던 `Big`개체들은 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)에 전달된 후 버려집니다. 따라서 `swap`으로 인한 복사는 포인터 복사(*8byte 복사*) 뿐이므로, 복사 부하는 거의 없다고 보셔도 무방합니다.
 
 즉, [포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)로 정의한 개체의 복사 대입 연산자를 `swap`으로 구현하면,
 

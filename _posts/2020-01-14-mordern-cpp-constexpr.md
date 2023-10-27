@@ -24,7 +24,7 @@ C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-
 
 컴파일 타임 상수는 읽기 전용 메모리인 [코드 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)에 할당되므로 예외에 안전합니다. 할 수 있다면 최대한 컴파일 타임 상수로 만드는게 좋습니다.
 
-컴파일 타임 상수는 다음과 같이 열거형 상수 값지정이나 비 템플릿 개체 인수 전달을 통해 확인 할 수 있습니다.
+컴파일 타임 상수는 다음과 같이 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)의 값지정이나 비 템플릿 개체 인수 전달을 통해 확인 할 수 있습니다.
 
 `const int` 를 사용하면 컴파일 타임 상수로 취급되는되요,
 
@@ -91,7 +91,7 @@ enum class MyEnum {Val = Factorial<5>::Val};
 EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 1 * 2 * 3 * 4 * 5);
 ```
 
-C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)을 이용하여 암시적으로 인라인 함수인 컴파일 타임 함수를 만들 수 있습니다.
+C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)을 이용하여 암시적으로 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)인 컴파일 타임 함수를 만들 수 있습니다.
 
 1. 컴파일 타임 상수를 전달하면 컴파일 타임 함수로 동작하고,
 2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작합니다.

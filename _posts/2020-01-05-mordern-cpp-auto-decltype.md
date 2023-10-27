@@ -61,7 +61,7 @@ double Func_11(int a, auto b) {
 
 # auto의 장점
 
-타입을 명시적으로 선언하기 보다는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 사용하는게 [생성 후 대입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1-%ED%9B%84-%EB%8C%80%EC%9E%85--%ED%95%98%EC%A7%80-%EB%A7%88%EB%9D%BC)을 방지하고, 코딩량도 줄어들고, 암시적 형변환도 차단하여 훨씬 좋습니다.
+타입을 명시적으로 선언하기 보다는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 사용하는게 [생성 후 대입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1-%ED%9B%84-%EB%8C%80%EC%9E%85--%ED%95%98%EC%A7%80-%EB%A7%88%EB%9D%BC)을 방지하고, 코딩량도 줄어들고, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)도 차단하여 훨씬 좋습니다.
 
 1. 초기화하지 않으면 생성할 수 없습니다.
 
@@ -86,7 +86,7 @@ double Func_11(int a, auto b) {
     auto a = f(); // (O) f()함수의 리턴 타입이 long으로 변경되더라도 수정할 필요가 없습니다.
     ```
 
-4. 의도치 않은 타입 불일치로 발생하는 암시적 형변환을 차단합니다.
+4. 의도치 않은 타입 불일치로 발생하는 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단합니다.
 
     ```cpp
     int f() {...}

@@ -26,13 +26,13 @@ sidebar:
 |--|--|
 |조건 분기|템플릿과 템플릿 특수화나 함수 오버로딩으로 구현|
 |반복|재귀 호출로 구현|
-|변수|열거형 상수로 구현|
+|변수|[열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)으로 구현|
 
 다음은 컴파일 타임에 팩토리얼(1~N 까지의 곱) 을 구하는 예입니다.
 
 다음 코드를 보면,
 
-1. `Factorial<5>::Val`에서 열거형 상수값을 가져오면, 재귀적으로 `Factorial<4>::Val`, `Factorial<3>::Val`, `Factorial<2>::Val`, `Factorial<1>::Val` 의 값을 가져와 곱합니다.
+1. `Factorial<5>::Val`에서 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)값을 가져오면, 재귀적으로 `Factorial<4>::Val`, `Factorial<3>::Val`, `Factorial<2>::Val`, `Factorial<1>::Val` 의 값을 가져와 곱합니다.
 2. 마지막으로 `Factorial<0>::Val`은 `1`을 곱하여, 결과값에 영향을 주지 않고, 재귀적 호출을 중단합니다.
 
 ```cpp

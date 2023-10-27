@@ -75,7 +75,7 @@ void SaveFile(const std::wstring& pathName) const {}
 이와 같이 새로운 기능 추가시, 기존 코드의 수정 없이 새로운 Visitor만 만들면 되므로, 코드가 좀더 유연해 집니다.(아쉬운 점은 `IVsitor`와 `Shape`이 상호 참조 되는 점인데, 기능 추가와 **의존성 부패** 간의 트레이드 오프가 필요해 집니다.)
 
 ```cpp
-class Shape; // 상호 참조가 되어 전방선언이 필요합니다.
+class Shape; // 상호 참조가 되어 전방 선언이 필요합니다.
 
 // 개체를 방문하여 개체별로 작업합니다.
 class IVisitor {
