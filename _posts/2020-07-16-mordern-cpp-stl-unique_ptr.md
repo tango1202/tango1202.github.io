@@ -141,6 +141,69 @@ EXPECT_TRUE(*v[0] == 10 && *v[1] == 20 && *v[2] == 30);
 std::unique_ptr<int> a{new int{10}, std::default_delete<int>{}};
 ```
 
+# unique_ptr을 이용한 PImpl 구현
+
+[PImpl 이디엄](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/)에서 구현에 대한 상세 정보를 은닉하여, 컴파일 종속성을 최소화한 방법을 소개해 드렸는데요, [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)을 이용하면 좀더 손쉽게 구현할 수 있습니다.
+
+
+```cpp
+// ----
+// 선언에서
+// ----
+class T {
+    class Impl; // 포인터만 사용되므로 전방 선언으로 충분합니다.
+    std::unique_ptr<Impl> m_Impl; // 스마트 포인터여서 소멸자에서 delete 합니다.
+
+public:
+    T(int x, int y);
+    T(const T& other); // 복사 생성자입니다.
+    T(T&& other) = default; // 복사 생성자를 정의했기 때문에 암시적 이동 생성자가 정의되지 않습니다. 따라서, 명시적으로 정의합니다.
+
+    bool IsValid() const;
+    int GetX() const;
+    int GetY() const;
+
+    void SetX(int x);
+    void SetY(int y);
+};
+```
+
+```cpp
+// ----
+// 정의에서
+// ----
+class T::Impl {
+public:
+    int m_X;
+    int m_Y;
+    Impl(int x, int y) : m_X(x), m_Y(y) {}
+}; 
+
+T::T(int x, int y) : m_Impl{std::unique_ptr<T::Impl>{new Impl{x, y}}} {}
+T::T(const T& other) : m_Impl{other.m_Impl ? new Impl(*other.m_Impl) : nullptr} {}
+
+bool T::IsValid() const {return m_Impl ? true : false;}
+int T::GetX() const {return m_Impl->m_X;}
+int T::GetY() const {return m_Impl->m_Y;}
+
+void T::SetX(int x) {m_Impl->m_X = x;}
+void T::SetY(int y) {m_Impl->m_Y = y;}
+
+T a{10, 20};
+EXPECT_TRUE(a.IsValid() && a.GetX() == 10 && a.GetY() == 20);
+
+T b{a}; // 복사 생성합니다.
+EXPECT_TRUE(b.IsValid() && b.GetX() == 10 && b.GetY() == 20);
+a.SetX(1);
+a.SetY(2);
+EXPECT_TRUE(a.IsValid() && a.GetX() == 1 && a.GetY() == 2); 
+EXPECT_TRUE(b.IsValid() && b.GetX() == 10 && b.GetY() == 20);
+
+T c{std::move(b)};
+EXPECT_TRUE(b.IsValid() == false); // 이동되어 Impl은 무효화되었습니다.
+EXPECT_TRUE(c.IsValid() && c.GetX() == 10 && c.GetY() == 20);
+```
+
 # (C++14~) make_unique()
 
 [make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique)는 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)을 생성합니다. 이때 `T`개체의 생성자 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달받아 내부적으로 `T`개체를 생성합니다.

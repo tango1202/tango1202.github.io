@@ -97,9 +97,11 @@ std::shared_ptr<T> a{new T{}};
 std::shared_ptr<T> b{a};
 ```
 
-상기 코드의 상황을 그림으로 도식화 하면 다음과 같습니다. `a`와 `b`는 같은 [제어 블록](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr%EC%9D%98-%EC%A0%9C%EC%96%B4-%EB%B8%94%EB%A1%9Dcontrol-block)을 공유함으로서, 관리 대상 개체 포인터와 참조 카운트를 공유합니다.
+상기 코드의 상황을 그림으로 도식화 하면 다음과 같습니다. `a`와 `b`는 같은 [제어 블록](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr%EC%9D%98-%EC%A0%9C%EC%96%B4-%EB%B8%94%EB%A1%9Dcontrol-block)을 공유함으로서, 관리 대상 개체 포인터와 참조 카운트를 공유합니다. 포인터 1개를 관리하는 것 치고는 추가 메모리가 제법 필요하죠. 포인터 관리 편의성과 메모리 용량 최적화 사이에서 신중하게 선택해서 사용해야 됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5117fc7c-c283-41d3-811f-f27354c338cc)
+
+또한, [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 [Allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-allocator)와 [Deleter](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-deleter)를 별도로 지정할 수 있는데요, 별도로 지정하면, 이 정보도 [제어 블록](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr%EC%9D%98-%EC%A0%9C%EC%96%B4-%EB%B8%94%EB%A1%9Dcontrol-block)에 포함됩니다. 
 
 # shared_ptr 멤버 함수 
 
@@ -126,6 +128,35 @@ std::shared_ptr<T> b{a};
 |`==` (C++11~)<br/>`!=` (C++11~C++20)|관리하는 개체의 주소로 비교합니다.|
 |`<, <=, >, >=` (C++11~C++20)<br/>`<=>` (C++20~)|관리하는 개체의 주소로 비교합니다.|
 |`<<` (C++11~)|관리하는 개체의 내용을 스트림에 출력합니다.|
+
+# shared_ptr 소유권 분쟁
+
+[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 잘못 사용하면 [소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81)이 생길 수 있습니다.
+
+다음은 올바른 사용예입니다. `b`를 `a`로 부터 생성했기 때문에 제어 블록을 공유하고, 참조 카운트도 공유합니다.
+
+```cpp
+// 올바른 예
+std::shared_ptr<int> a{new int{}};
+EXPECT_TRUE(a.use_count() == 1); 
+
+std::shared_ptr<int> b{a};
+EXPECT_TRUE(a.use_count() == 2 && b.use_count() == 2); // a, b 가 같은 제어 블록을 공유합니다.
+```
+
+다음은 잘못된 사용예입니다. `p`로부터 각각 `a`, `b`를 생성했기 때문에 제어 블록을 각자 생성하고, 각자 참조 카운트를 사용합니다. 따라서, 유효 범위를 벗어나면 각자 `p`를 `delete`하고, 결국 `p`는 2번 `delete`하여 오동작을 하게 됩니다.
+
+```cpp
+// 잘못된 예
+int* p = new int{10};
+std::shared_ptr<int> a{p}; // p를 관리하는 제어 블록을 생성합니다.
+std::shared_ptr<int> b{p}; // (X) 오동작. p를 관리하는 제어 블록을 생성합니다.
+
+EXPECT_TRUE(a.use_count() == 1); // a, b가 각각의 제어 블록을 사용하기 때문에 참조 카운트는 각각 1입니다.
+EXPECT_TRUE(b.use_count() == 1);
+```
+
+상기와 같이 포인터를 생성한 뒤애 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)에 전달하는 건 좋지 않은 코딩 습관입니다. `std::shared_ptr<int> a{new int{}};`와 같이 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 생성자에 바로 개체를 생성해서 전달하거나, [make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared)를 이용하는게 좋습니다.
 
 # make_shared()
 
@@ -201,6 +232,31 @@ shared_ptr<T> make_shared(Args&&... args);
 
     Func(std::make_shared<T>(), std::make_shared<U>()); // (O) 
     ```
+
+# make_shared() 와 initializer_list 
+
+ [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받는 생성자가 있어서 생성자 호출시 `()`와 `{}`가 달랐습니다.(*[기존 생성자와 initializer_list 생성자와의 충돌](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EA%B8%B0%EC%A1%B4-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-initializer_list-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%EC%9D%98-%EC%B6%A9%EB%8F%8C) 참고*)
+
+```cpp
+std::vector<int> v(2); // 요소 갯수가 2개인 vector 생성
+EXPECT_TRUE(v.size() == 2 && v[0] == 0 && v[1] == 0);
+
+std::vector<int> v_11{2}; // initializer_list 버전 호출. 요소값이 2인 vector 생성
+EXPECT_TRUE(v_11.size() == 1 && v_11[0] == 2);  
+```
+[make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared)는 생성자 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달받아 내부적으로 개체를 생성하는데요, `()`형태로 생성자를 호출합니다. 따라서, [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 생성자를 호출하고 싶은 경우에는 다음과 같이 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)변수를 만들어 전달해줘야 합니다.
+
+```cpp
+auto v{std::make_shared<std::vector<int>>(2)}; // 요소 갯수가 2개인 vector 생성
+EXPECT_TRUE(v->size() == 2 && (*v)[0] == 0 && (*v)[1] == 0);
+
+std::initializer_list<int> list{2};
+auto v_11{std::make_shared<std::vector<int>>(list)}; // initializer_list 버전 호출. 요소값이 2인 vector 생성
+EXPECT_TRUE((*v_11).size() == 1 && (*v_11)[0] == 2); 
+```
+# allocate_shared()
+
+[make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared)와 동일하며, 추가로 [Allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-allocator)를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받습니다.
 
 # enable_shared_from_this
 
