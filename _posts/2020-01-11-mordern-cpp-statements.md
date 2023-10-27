@@ -43,7 +43,7 @@ for (int val_11 : v_11) { // 혹은 for (auto val_11 : v_11)
 EXPECT_TRUE(sum == 1 + 2 + 3);
 ```
 
-또한 참조자 타입을 이용하면 컨테이너 요소의 값을 쉽게 변경할 수 있습니다.
+또한 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입을 이용하면 컨테이너 요소의 값을 쉽게 변경할 수 있습니다.
 
 ```cpp
 std::vector<int> v_11{1, 2, 3};

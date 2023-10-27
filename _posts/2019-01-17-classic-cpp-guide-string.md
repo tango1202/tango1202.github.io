@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하라.(*배열이나 `string`, `wstring` 을 쓰면 복제된다.*)
+> * 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하라.(*[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)이나 `string`, `wstring` 을 쓰면 복제된다.*)
 > * [멀티 바이트 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)은 권장하지 않는다. 사용하지 마라.
 > * 소스 코드 저장시에는 다국어 처리에 적합하도록 [UTF-8](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)로 저장하라.
 
@@ -20,7 +20,7 @@ sidebar:
 
 # 개요
 
-[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)에서 언급한 것처럼 문자열은 `const char*`나 `const wchar_t*`로 문자열 상수가 있는 영역을 참조하거나, 배열을 이용하여 복사할 수 있습니다. 
+[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)에서 언급한 것처럼 문자열은 `const char*`나 `const wchar_t*`로 문자열 상수가 있는 영역을 참조하거나, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 이용하여 복사할 수 있습니다. 
 
 또한, STL 에서 `string`, `wstring`개체를 제공하여 문자열을 저장 및 관리 할 수 있습니다.(*[문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 참고*)
 
@@ -70,7 +70,7 @@ EXPECT_TRUE(str2[0] == 'd');
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f98f2cc-9dff-428f-a639-42d42d9f701b)
 
-문자열의 내용을 수정할 필요가 없다면, 배열이나 `string`, `wstring`에 저장하지 마세요. 불필요하게 복제되어 복사 부하만 생깁니다.
+문자열의 내용을 수정할 필요가 없다면, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)이나 `string`, `wstring`에 저장하지 마세요. 불필요하게 복제되어 복사 부하만 생깁니다.
 
 # 유니코드
 

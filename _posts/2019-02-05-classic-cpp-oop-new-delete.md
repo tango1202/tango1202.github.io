@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 개체는 `new` - `delete` 쌍으로 생성/소멸 하라.
-> * 배열은 `new[]` - `delete[]` 쌍으로 생성/소멸하라. `new[]`한 것을 `delete` 만 하면, 메모리 릭이 발생한다. 꼭 `delete[]`하라.
+> * [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 `new[]` - `delete[]` 쌍으로 생성/소멸하라. `new[]`한 것을 `delete` 만 하면, 메모리 릭이 발생한다. 꼭 `delete[]`하라.
 > * `delete`는 널이면 아무 작업 안한다. 괜히 널검사하지 마라.
 > * `new`는 `bad_alloc()`을 발생시킨다. 괜히 널검사하지 마라.
 > * `operator new`를 `private`로 만들어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에만 생성되는 개체를 만들 수 있다.
@@ -24,13 +24,13 @@ sidebar:
 |--|--|
 |`new`|개체의 메모리를 할당하고, 생성자를 호출합니다.|
 |`delete`|개체의 소멸자를 호출하고, 메모리를 해제합니다.|
-|`new[]`|배열의 메모리를 할당하고, 각 배열 요소의 생성자들을 호출합니다.|
-|`delete[]`|각 배열 요소의 소멸자들을 호출하고, 메모리를 해제합니다.|
+|`new[]`|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 메모리를 할당하고, 각 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소의 생성자들을 호출합니다.|
+|`delete[]`|각 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소의 소멸자들을 호출하고, 메모리를 해제합니다.|
 |`new(std::nothrow)`|메모리 할당 실패시 NULL 을 리턴합니다. 단, 생성자에서 예외를 발생시키면 해당 예외를 전파합니다.|
 |`operator new(std::size_t)`|개체의 메모리를 할당합니다.|
 |`operator delete(void*)`|개체의 메모리를 해제 합니다.|
-|`operator new[](std::size_t)`|배열의 메모리를 할당합니다.|
-|`operator delete[](void*)`|배열의 메모리를 해제합니다.|
+|`operator new[](std::size_t)`|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 메모리를 할당합니다.|
+|`operator delete[](void*)`|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 메모리를 해제합니다.|
 |`operator new(void*)`|주어진 메모리 위치에 개체를 배치하여 생성자를 호출합니다.([위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1))|
 |`set_new_handler()`|`new`에서 예외 발생시 호출되는 함수입니다.|
 
@@ -80,14 +80,14 @@ New-Delete Test : T::T()
 New-Delete Test : T::~T()
 ```
 
-배열 생성/소멸 시에는 `new[]` - `delete[]`를 이용합니다.
+[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 생성/소멸 시에는 `new[]` - `delete[]`를 이용합니다.
 
 ```cpp
 T* arr = new T[3]; // (O) 메모리 할당(sizeof(T) * 3 + 오버헤드). 생성자 3회 호출
 delete[] arr; // (O) 소멸자 3회 호출. 메모리 해제(sizeof(T) * 3 + 오버헤드)
 ```
 
-로 하면 실행 결과는 다음과 같이 배열 요소의 갯수 만큼 생성자와 소멸자가 호출됩니다.
+로 하면 실행 결과는 다음과 같이 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소의 갯수 만큼 생성자와 소멸자가 호출됩니다.
 
 ```cpp
 New-Delete Test : T::T()
@@ -100,14 +100,14 @@ New-Delete Test : T::~T()
 
 **`delete`와 `delete[]` 의 차이**
 
-`delete`는 개체의 소멸자를 1회 호출하고, 주어진 메모리를 해제하는 역할을 하고, `delete[]`는 배열 요소 갯수만큼 소멸자를 호출하고, 주어진 메모리를 해제하는 역할을 합니다.
+`delete`는 개체의 소멸자를 1회 호출하고, 주어진 메모리를 해제하는 역할을 하고, `delete[]`는 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수만큼 소멸자를 호출하고, 주어진 메모리를 해제하는 역할을 합니다.
 
-그러다 보니 `new[]`로 배열을 생성할때 배열 요소의 갯수가 내부적으로 오버헤드 공간에 저장되고, 이를 `delete[]`시에 사용합니다.
+그러다 보니 `new[]`로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 생성할때 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소의 갯수가 내부적으로 오버헤드 공간에 저장되고, 이를 `delete[]`시에 사용합니다.
 
-1. `int`등 기본 자료형일 경우, 생성자/소멸자를 호출할 필요가 없으므로, 메모리가 `sizeof(int)` * 배열 요소 갯수로 할당됩니다.
-2. 클래스인 경우 배열 요소 갯수 만큼 생성자/소멸자가 호출되어야 하므로, 내부적으로 배열 요소 갯수를 저장하는 오버헤드 공간이 추가되어 할당됩니다.(`sizeof(T)` * 배열 요소 갯수 + 오버헤드(4byte 이거나 8byte))
+1. `int`등 기본 자료형일 경우, 생성자/소멸자를 호출할 필요가 없으므로, 메모리가 `sizeof(int)` * [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수로 할당됩니다.
+2. 클래스인 경우 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수 만큼 생성자/소멸자가 호출되어야 하므로, 내부적으로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수를 저장하는 오버헤드 공간이 추가되어 할당됩니다.(`sizeof(T)` * [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수 + 오버헤드(4byte 이거나 8byte))
 
-혹여나 실수로 배열을 `delete`로 소멸시키면, 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있습니다. 따라서, `new[]`로 생성한 배열은 꼭 `delete[]`로 소멸시켜야 합니다.
+혹여나 실수로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 `delete`로 소멸시키면, 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있습니다. 따라서, `new[]`로 생성한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 꼭 `delete[]`로 소멸시켜야 합니다.
 
 ```cpp
 T* arr = new T[3]; // (O) 메모리 할당(sizeof(T) * 3 + 오버헤드). 생성자 3회 호출
@@ -424,7 +424,7 @@ delete base; // (X) 오동작. Base의 소멸자가 호출되고 Base의 크기�
 
 # operator new[]와 operator delete[] 재정의
 
-배열은 `operator new[]`와 `operator delete[]`를 사용합니다. 일반 자료형의 경우에는 `sz`에 `sizeof(T) * 배열 요수 갯수`가 전달되지만, 클래스와 같이 생성자/소멸자가 있는 개체는 배열 요소 개수만큼 생성자/소멸자를 호출해야 하므로, 내부적으로 배열 요소 갯수를 관리하는 오버헤드(4byte 이거나 8byte)가 추가 되어 전달됩니다.
+[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 `operator new[]`와 `operator delete[]`를 사용합니다. 일반 자료형의 경우에는 `sz`에 `sizeof(T) * 배열 요수 갯수`가 전달되지만, 클래스와 같이 생성자/소멸자가 있는 개체는 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 개수만큼 생성자/소멸자를 호출해야 하므로, 내부적으로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수를 관리하는 오버헤드(4byte 이거나 8byte)가 추가 되어 전달됩니다.
 
 ```cpp
 class T {
@@ -576,7 +576,7 @@ delete p;
 ```
 # 힙에만 생성되는 개체
 
-소멸자를 `private`나 `protected` 로 만들면, 스택에 생성된 개체가 암시적으로 소멸될때,([소멸자 호출 시점](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%8B%9C%EC%A0%90) 참고) 소멸자에 접근하지 못해 컴파일 오류가 납니다. 이걸 활용하면 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에만 생성되는 개체를 만들 수 있습니다. 단 명시적으로 소멸할 수 있도록 `Destroy()` 함수를 별도로 제공해야 합니다.
+소멸자를 `private`나 `protected` 로 만들면, [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 생성된 개체가 암시적으로 소멸될때,([소멸자 호출 시점](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%8B%9C%EC%A0%90) 참고) 소멸자에 접근하지 못해 컴파일 오류가 납니다. 이걸 활용하면 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에만 생성되는 개체를 만들 수 있습니다. 단 명시적으로 소멸할 수 있도록 `Destroy()` 함수를 별도로 제공해야 합니다.
 
 ```cpp
 class T {

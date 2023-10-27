@@ -63,7 +63,7 @@ public:
 Derived d(10, 20);
 ```
 
-C++11 부터는 [using 선언](??)의 형태로 부모 개체의 생성자를 그대로 상속받아 사용할 수 있습니다.
+C++11 부터는 [using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)의 형태로 부모 개체의 생성자를 그대로 상속받아 사용할 수 있습니다.
 
 ```cpp
 class Base {

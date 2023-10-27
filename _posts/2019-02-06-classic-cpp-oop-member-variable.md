@@ -24,7 +24,7 @@ sidebar:
 |항목|내용|초기화|권장 초기화 방법|수명|
 |--|--|--|--|--|
 |멤버 변수|특정 개체에 속하는 변수|선택|초기화 리스트|개체 생성시 생성자 실행전 초기화 리스트에서 생성 ~ 소멸자 실행 후 종료|
-|참조자 멤버 변수|멤버 변수와 동일|필수|초기화 리스트|멤버 변수와 동일|
+|[참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 멤버 변수|멤버 변수와 동일|필수|초기화 리스트|멤버 변수와 동일|
 |포인터 멤버 변수|멤버 변수와 동일<br/>널 지원|선택|초기화 리스트|멤버 변수와 동일|
 |상수 멤버 변수|멤버 변수와 동일<br/>수정 불가|필수|초기화 리스트<br/>선언부 초기화|멤버 변수와 동일|
 |[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)|특정 개체에 속하지 않는 변수.<br/>클래스에 응집되어 있는 전역 변수.|선택|별도 정의|`main` 호출 ~ `main` 종료|
@@ -32,7 +32,7 @@ sidebar:
 
 멤버 변수는 개체의 데이터를 저장 및 관리합니다. 주로 `private`로 은닉하고, [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)와 [Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#setter-%ED%95%A8%EC%88%98)를 통해 외부에 노출합니다.
 
-참조자 멤버 변수와 상수 멤버 변수는 초기화가 필수입니다. 반드시 값 생성자를 만들어 초기화 리스트를 이용해서 초기화해야 합니다.
+[참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 멤버 변수와 상수 멤버 변수는 초기화가 필수입니다. 반드시 값 생성자를 만들어 초기화 리스트를 이용해서 초기화해야 합니다.
 
 ```cpp
 class T {

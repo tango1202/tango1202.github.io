@@ -113,8 +113,8 @@ std::shared_ptr<T> b{a};
 |`shared_ptr& operator =(shared_ptr&& r) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 `this`로 이동시킵니다.|
 |`operator *() const noexcept;` (C++11~)|관리하는 개체의 참조자를 리턴합니다.|
 |`operator ->() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
-|`operator [](ptrdiff_t) const;` (C++17~)|배열을 관리하는 경우 각 요소 개체의 참조자를 리턴합니다.|
-|`explicit operator bool() const noexcept;` (C++11~)|`bool`로 형변환시 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 이면 `false`를 리턴합니다.|
+|`operator [](ptrdiff_t) const;` (C++17~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 관리하는 경우 각 요소 개체의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.|
+|`explicit operator bool() const noexcept;` (C++11~)|[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로 형변환시 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 이면 `false`를 리턴합니다.|
 |`get() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
 |`swap(shared_ptr& other) noexcept;` (C++11~)|관리하는 개체를 `other`와 바꿔치기 합니다.|
 |`reset(T* p);`|기존에 관리하던 개체를 해제하고 `p`를 관리합니다.|
@@ -231,7 +231,7 @@ EXPECT_TRUE(a.use_count() == 2);
 
 그런데, 상기 방법은 개체를  [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 형태로 알고 있어야 가능합니다. 그래서, 원본 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 필요한 곳까지 인수로 전달해 줘야 합니다. 
 
-하지만 이렇게 항상 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 인수로 전달하는 건 부담이죠. 그래서 개체 포인터나 개체 참조자로 전달했다가 뒤늦게 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 만들어야 하는 경우가 오면 낭패입니다. 
+하지만 이렇게 항상 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 인수로 전달하는 건 부담이죠. 그래서 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 전달했다가 뒤늦게 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 만들어야 하는 경우가 오면 낭패입니다. 
 
 만약 관리하는 개체로부터 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 만들기 위해 다음과 같이 작성한다면, `b`가 `a`의 [제어 블록](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr%EC%9D%98-%EC%A0%9C%EC%96%B4-%EB%B8%94%EB%A1%9Dcontrol-block)을 공유하지 않고 새로운 [제어 블록](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr%EC%9D%98-%EC%A0%9C%EC%96%B4-%EB%B8%94%EB%A1%9Dcontrol-block)을 만들어 관리하기 때문에 추후 소유권 분쟁이 발생합니다.
 
@@ -722,7 +722,7 @@ catch (std::bad_weak_ptr&) {
 
 # (C++17~) 배열 지원
 
-C++17 부터는 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)에서도 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)처럼 배열을 지원합니다.
+C++17 부터는 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)에서도 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)처럼 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 지원합니다.
 
 ```cpp
 std::unique_ptr<int[]> ptr{new int[3]{0, 1, 2}}; // 배열 개체. delete[] 를 호출하여 2개가 소멸됩니다.

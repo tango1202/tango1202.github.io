@@ -70,7 +70,7 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 문자열이 커봐야 얼마나 크겠어? 하실 수도 있지만, 다국어로 번역되다 보면 무시 못할 크기로 커집니다.
 
-`const char*`나 `const wchar_t*`로 문자열 상수가 있는 영역을 참조하거나, 배열을 이용하여 복사할 수 있습니다. 
+`const char*`나 `const wchar_t*`로 문자열 상수가 있는 영역을 참조하거나, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 이용하여 복사할 수 있습니다. 
 
 **const형 포인터**
 
@@ -87,7 +87,7 @@ const wchar_t* str2 = L"abc"; // 와이드 문자열 상수
 
 **배열**
 
-배열을 문자열 상수로 초기화 하면, 끝에 널문자(`\0`) 가 추가됩니다.(*[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94/) 언급*)
+[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 문자열 상수로 초기화 하면, 끝에 널문자(`\0`) 가 추가됩니다.(*[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94/) 언급*)
 
 ```cpp
 char str3[] = "abc"; // {'a', `b`, 'c', '\0'};

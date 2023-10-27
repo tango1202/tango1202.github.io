@@ -122,7 +122,7 @@ C++언어는
 
 **`const_cast`**
 
-`const_cast`로 포인터나 참조자의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 뗄 수 있습니다.(*그러나 **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 위반이니 하지 마세요.*)
+`const_cast`로 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 뗄 수 있습니다.(*그러나 **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 위반이니 하지 마세요.*)
 
 ```cpp
 {
@@ -232,7 +232,7 @@ EXPECT_TRUE(other == NULL);
 ```
 **아무 연관 관계도 없는 타입끼리의 형변환**
 
-아무 연관 관계도 없는 타입끼리 형변환되지는 않습니다. 다만 `reinterpret_cast`를 이용하면 연관관계가 없는 포인터나 참조자 타입끼리 변환이 가능합니다.
+아무 연관 관계도 없는 타입끼리 형변환되지는 않습니다. 다만 `reinterpret_cast`를 이용하면 연관관계가 없는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 타입끼리 변환이 가능합니다.
 
 ```cpp
 class T {};
@@ -316,7 +316,7 @@ EXPECT_TRUE(c == 1);
 
 # 안전하지 않은 bool 형변환 연산자 정의
 
-`bool`은 암시적으로 `int`로 형변환되면서 뜻하지 않은 동작을 할 수 있습니다. 타입에 기반한 **코딩 계약** 을 위반하니, `bool` 형변환을 정의하지 마세요.
+[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)은 암시적으로 `int`로 형변환되면서 뜻하지 않은 동작을 할 수 있습니다. 타입에 기반한 **코딩 계약** 을 위반하니, [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/) 형변환을 정의하지 마세요.
 
 ```cpp
 class T {

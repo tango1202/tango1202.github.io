@@ -26,7 +26,7 @@ C++11 부터 STL 에서는 [tuple](https://tango1202.github.io/mordern-cpp-stl/m
 |[make_pair()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 생성합니다.|
 [piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct) (C++11~)|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)의 개체 생성시 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)의 요소들로 개체 생성자를 호출합니다.|
 |[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple) (C++11~)|다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.|
-|`get()` (C++11~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 에서 주어진 인덱스 위치에 있는 요소의 참조자를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
+|`get()` (C++11~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 에서 주어진 인덱스 위치에 있는 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
 |[make_tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#make_tuple) (C++11~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 을 생성합니다.|
 |[tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie) (C++11~)|좌측값 참조로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만듭니다. |
 |[forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple) (C++11~)|함수 인수 전달에 적합하도록, [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 생성시 좌측값이나 우측값 참조가 변형되지 않도록 합니다.|
@@ -77,7 +77,7 @@ std::tuple<int, std::string, char> Func() {
 
 # tie()
 
-좌측값 참조로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만듭니다. [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)에서 `get()`함수를 이용해서 데이터를 확인하는데, 참 직관적이지 못합니다. 이럴때 다음처럼 [tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie) 함수를 이용하여 지역 변수의 참조자로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만들면 좀더 직관적으로 데이터를 확인할 수 있습니다.
+좌측값 참조로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만듭니다. [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)에서 `get()`함수를 이용해서 데이터를 확인하는데, 참 직관적이지 못합니다. 이럴때 다음처럼 [tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie) 함수를 이용하여 지역 변수의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만들면 좀더 직관적으로 데이터를 확인할 수 있습니다.
 
 ```cpp
 std::tuple<int, std::string, char> Func() {

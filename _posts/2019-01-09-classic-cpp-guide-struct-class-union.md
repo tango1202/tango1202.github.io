@@ -51,7 +51,7 @@ public:
 C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 집합 초기화 미지원
 ```
 
-공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유합니다. 이에 따라 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있습니다. 따라서 꼭 필요한 경우에만 한정적으로 사용하기 바랍니다. 또한, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)나 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들이 제한됩니다.
+공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유합니다. 이에 따라 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있습니다. 따라서 꼭 필요한 경우에만 한정적으로 사용하기 바랍니다. 또한, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)나 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들이 제한됩니다.
 
 > *(C++11~) 공용체 멤버에서 생성자/소멸자/가상 함수 사용 제한이 풀린 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*
 
@@ -64,7 +64,7 @@ C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 집합 초기화
 |기본 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)|`public`|`private`|`public`|
 |[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|O|O|O|
 |[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|O|O|O|
-|참조자 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|O|O|X|
+|[참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|O|O|X|
 |재정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)|O|O|X|
 |재정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)|O|O|X|
 |[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)|O|O|X|
@@ -190,9 +190,9 @@ int T::f2() {} // inline화 안됨
 |`protected`|상속받은 자식 개체에만 허용| 
 |`public`(구조체 기본값)|외부 접근 허용|
 
-# using 선언
+**using 선언을 이용한 접근 지정자 수정**
 
-[using 선언](??) 을 사용하면 [네임스페이스](??)의 것을 가져올 수 있을 뿐만 아니라, 부모 클래스에서 지정한 접근 지정자를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.(*[리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고*)
+[using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8) 을 사용하면 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 것을 가져올 수 있을 뿐만 아니라, 부모 클래스에서 지정한 접근 지정자를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.(*[리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고*)
 
 ```cpp
 class Base {
@@ -275,7 +275,7 @@ class W { // T의 friend인 U 의 friend
 
 공용체는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)들끼리 메모리 영역을 공유하다 보니 하나의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하면, 다른 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)도 값이 수정된 효과를 볼 수 있습니다. 그러나, 타입의 크기나 [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)이 바뀌면(*플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라*) 오동작을 할 수 있으니, 주의해서 사용해야 합니다.
 
-또한, 구조체와 클래스와 달리 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)나, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)와 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 가질 수 없습니다.
+또한, 구조체와 클래스와 달리 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)나, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)와 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 가질 수 없습니다.
 
 ```cpp
 class C {
@@ -460,7 +460,7 @@ Outer::Nested nested; // (O) 외부에서 접근할 경우 :: 사용
 
 1. 멤버 변수 뒤에 `: 비트 수`를 지정하여 만들 수 있습니다.
 2. 저장하려는 값이 비트 범위를 벗어날 경우에는 상위 비트를 버립니다. 
-3. 포인터나 참조자를 제공하지 않습니다.
+3. [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 제공하지 않습니다.
 
 ```cpp
 class Flag {

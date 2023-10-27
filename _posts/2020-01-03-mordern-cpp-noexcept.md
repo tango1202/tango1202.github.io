@@ -95,7 +95,7 @@ C++11 부터는 소멸자는 [noexcept](https://tango1202.github.io/mordern-cpp/
 class T_11{
 public:
     ~T_11() noexcept(false) {} // 예외를 방출할 수 있습니다.
-}
+};
 ```
 
 # 이동 연산 변환의 안전성

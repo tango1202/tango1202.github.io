@@ -179,7 +179,7 @@ catch (...) {
 
 # 예외와 소멸자
 
-소멸자에서 예외를 방출하면 안됩니다. 예외가 발생하면 스택풀기가 이루어져서 소멸자가 불리는데, 이 소멸자에서 또 예외를 발생하면 정상적인 스택 풀기를 방해합니다.([소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고)
+소멸자에서 예외를 방출하면 안됩니다. 예외가 발생하면 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)가 이루어져서 소멸자가 불리는데, 이 소멸자에서 또 예외를 발생하면 정상적인 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 방해합니다.([소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고)
 
 예외 방출을 막기 위해 단순히 `try-catch()`로 예외를 무시하기 보다는
 
@@ -218,7 +218,7 @@ T::~T() {
 
 # 예외 안전에 좋은 복사 생성자
 
-[복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 언급한 것처럼, 스마트 포인터나 `Holder` 개체를 활용하여 복사 생성자를 구현하면, 스택 풀기에 의해 기본 보증과 강한 보증을 하게 됩니다.
+[복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 언급한 것처럼, 스마트 포인터나 `Holder` 개체를 활용하여 복사 생성자를 구현하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 의해 기본 보증과 강한 보증을 하게 됩니다.
 
 # 예외 안전에 좋은 복사 대입 연산자
 

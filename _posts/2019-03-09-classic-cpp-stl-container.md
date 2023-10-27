@@ -67,7 +67,7 @@ class Node {
 
 |항목|내용|
 |--|--|
-|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)|타입이 동일한 요소를 연속적인 메모리 공간에 관리<br/>배열과 유사<br/>요소 삽입/삭제에 비효율적임<br/>랜덤 접근 지원|
+|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)|타입이 동일한 요소를 연속적인 메모리 공간에 관리<br/>[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)과 유사<br/>요소 삽입/삭제에 비효율적임<br/>랜덤 접근 지원|
 |`list`|타입이 동일한 요소를 연결된 리스트로 관리<br/>요소 삽입/삭제에 최적화<br/>양방향 순차 접근 지원, 랜덤 접근 불가|
 |`queue`|타입이 동일한 요소를 선입선출 방식으로 관리<br/>`front()`시 선입된 요소 반환<br/>내부적으론 `deque`으로 구현됨|
 |`stack`|타입이 동일한 요소를 후입선출 방식으로 관리|

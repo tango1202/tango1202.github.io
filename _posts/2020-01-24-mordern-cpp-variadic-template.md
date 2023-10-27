@@ -57,7 +57,7 @@ int MySum(int a, int b, int c) {
 EXPECT_TRUE(Forwarding_11(MySum, 1, 2, 3) == 1 + 2 + 3);   
 ```
 
-다만 `Forwarding()` 함수에서 인자를 전달할때 참조자 타입은 참조성이 제거되어 전달되기 때문에 [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)를 이용해야 합니다.
+다만 `Forwarding()` 함수에서 인자를 전달할때 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입은 참조성이 제거되어 전달되기 때문에 [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)를 이용해야 합니다.
 
 |항목|내용|
 |--|--|

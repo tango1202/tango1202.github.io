@@ -82,9 +82,9 @@ int f(int a, int b) {
 |항목|내용|
 |--|--|
 |`[=]` (C++11~)|외부의 모든 변수를 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)형 값으로 가져옵니다.|
-|`[&]` (C++11~)|외부의 모든 변수의 참조자를 가져옵니다.|
+|`[&]` (C++11~)|외부의 모든 변수의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 가져옵니다.|
 |`[=, &x, &y]` (C++11~)|외부의 모든 변수를 값으로 가져오되 `x`, `y` 만 참조로 가져옵니다.|
-|`[&, x, y]` (C++11~)|외부의 모든 변수의 참조자를 가져오되 `x`, `y` 만 값으로 가져옵니다.|
+|`[&, x, y]` (C++11~)|외부의 모든 변수의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 가져오되 `x`, `y` 만 값으로 가져옵니다.|
 |`this` (C++11~)|[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)을 사용한 개체의 `this` 포인터를 값으로 가져옵니다.|
 |`*this` (C++17~)|`this`는 포인터를 가져오지만, `*this`는 개체 자체를 복제하여 가져옵니다.|
 

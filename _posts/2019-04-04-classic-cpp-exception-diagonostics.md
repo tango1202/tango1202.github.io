@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 사전 가정과 사후 가정을 진단하라.
-> * 진단 코드가 최소화 되도록, 포인터 보다는 참조자를 사용하고, 코딩 계약을 단단하게 만들어라.
+> * 진단 코드가 최소화 되도록, 포인터 보다는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용하고, 코딩 계약을 단단하게 만들어라.
 
 > **모던 C++**
 > * (C++11~)[static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)가 추가되어 컴파일 타임 진단이 가능해 졌습니다.
@@ -96,7 +96,7 @@ int f(int a, int b, int* c) {
 
 가정이 최소화 되면 진단하는 부분도 줄어들며 코드의 가독성, 유지보수성, 사용 용이성은 향상됩니다.
 
-1. 불필요한 널검사가 없도록 참조자를 사용합니다.
+1. 불필요한 널검사가 없도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용합니다.
    
     ```cpp
     void f(T* obj) {

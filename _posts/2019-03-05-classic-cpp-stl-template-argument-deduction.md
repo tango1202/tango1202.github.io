@@ -32,7 +32,7 @@ f<double>(0, (int)0); // double f(double, int)
 f(0, 0); // int f(int, int)
 ```
 
-값 타입과 포인터 타입은 타입 그대로, 참조자는 참조성을 제거하고 추론합니다. 단 명시적으로 참조자를 작성하면 참조자로 사용할 수 있습니다.
+값 타입과 포인터 타입은 타입 그대로, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 참조성을 제거하고 추론합니다. 단 명시적으로 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 작성하면 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 사용할 수 있습니다.
 
 ```cpp
 template<typename T, typename U, typename V>
@@ -47,7 +47,7 @@ f(val, ptr, ref); // f<int, int*, int>(int, int*, int). 참조자가 제거됩�
 f<int, int*, int&>(val, ptr, ref); // f<int, int*, int&>(int, int*, int&). 명시적으로 지정하면 참조자로 사용됨
 ```
 
-배열 인수는 포인터로 추론합니다.
+[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 인수는 포인터로 추론합니다.
 
 ```cpp
 template<typename T>
@@ -61,7 +61,7 @@ f(arr); // f<int*>(int*)
 ```
 단, [배열의 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%B0%B8%EC%A1%B0%EC%9E%90-%EC%82%AC%EC%9A%A9%EB%B2%95)는 변환하지 않고 그대로 사용됩니다. 
 
-따라서 다음처럼 템플릿 함수를 이용하여 배열의 갯수를 구할 수 있습니다.
+따라서 다음처럼 템플릿 함수를 이용하여 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 갯수를 구할 수 있습니다.
 
 ```cpp
 template<typename T, size_t N>
@@ -99,7 +99,7 @@ const int a = 0;
 f(a); // f<int>(int)
 ```
 
-참조자의 참조자는 참조자가 될 수 있도록 변환합니다.
+[참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)가 될 수 있도록 변환합니다.
 
 ```cpp
 template<typename T>
@@ -447,7 +447,7 @@ EXPECT_TRUE(f(b) == 2);
 
 **참조자로 인한 모호**
 
-포인터의 경우 `T`보다는 `T*`가 특수화된 버전이므로, 선택됩니다만, 참조자는 붙이거나 뗄 수 있습니다. 다음 코드에서는 #1, #2 모두 `f(int&)` 버전을 제공할 수 있기 때문에 모호성 오류가 발생합니다.
+포인터의 경우 `T`보다는 `T*`가 특수화된 버전이므로, 선택됩니다만, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 붙이거나 뗄 수 있습니다. 다음 코드에서는 #1, #2 모두 `f(int&)` 버전을 제공할 수 있기 때문에 모호성 오류가 발생합니다.
 
 ```cpp
 template<typename T>

@@ -18,7 +18,7 @@ sidebar:
 2. 동일한 데이터는 동일한 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)이 나와야 합니다.
 3. 서로 다른 데이터라도 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)은 충돌될 수 있습니다. 확률적으로는 `1.0 / std::numeric_limits<std::size_t>::max()` 입니다.
 
-STL 에서는 `bool`, `int`등의 기본 타입과 `string`등의 STL 타입에 대해 모두 정의되어 있어 이를 사용할 수 있습니다.
+STL 에서는 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/), `int`등의 기본 타입과 `string`등의 STL 타입에 대해 모두 정의되어 있어 이를 사용할 수 있습니다.
 
 
 ```cpp

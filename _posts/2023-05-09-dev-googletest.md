@@ -69,7 +69,7 @@ include_directories(${gtest_build_include_dirs})
 
 # 테스트용 매크로 함수
 
-테스트를 수행하는 [매크로 함수](??)는 `EXPECT` 계열과 `ASSERT` 계열이 있습니다. `EXPECT` 계열은 테스트가 실패하더라도 다음 테스트를 진행하지만, `ASSERT` 계열은 테스트가 실패하면 즉시 중단됩니다.(`EXPECT` 계열의 모든 것에 대응하는 `ASSERT` 계열이 있습니다.)
+테스트를 수행하는 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)는 `EXPECT` 계열과 `ASSERT` 계열이 있습니다. `EXPECT` 계열은 테스트가 실패하더라도 다음 테스트를 진행하지만, `ASSERT` 계열은 테스트가 실패하면 즉시 중단됩니다.(`EXPECT` 계열의 모든 것에 대응하는 `ASSERT` 계열이 있습니다.)
 
 **일반화된 검증**
 

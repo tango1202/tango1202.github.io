@@ -294,7 +294,7 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 
 # lock
 
-[mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)는 `lock()`을 호출하면, 반드시 `unlock()`을 호출해야 합니다. 그렇지 않으면 데드락(Dead Lock)에 빠지니까요. 이에 따라 스택 풀기에 의해 자연스럽게 `unlock()`이 호출되도록 [lock_guard](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0)를 제공합니다. 그외에도 다음과 같은 유틸리티 개체와 함수들이 있습니다.
+[mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)는 `lock()`을 호출하면, 반드시 `unlock()`을 호출해야 합니다. 그렇지 않으면 데드락(Dead Lock)에 빠지니까요. 이에 따라 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 의해 자연스럽게 `unlock()`이 호출되도록 [lock_guard](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0)를 제공합니다. 그외에도 다음과 같은 유틸리티 개체와 함수들이 있습니다.
 
 |항목|내용|
 |--|--|
@@ -419,7 +419,7 @@ worker2.join();
 }
 ```
 
-따라서 `new - delete`와 같이 `lock() - unlock()` 도 스택 풀기에 의해 자연스럽게 호출되어야 합니다. 스마트 포인터 처럼요. [lock_guard](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) 는 생성시 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 `lock()` 하고 소멸시 `unlock()`해줍니다.
+따라서 `new - delete`와 같이 `lock() - unlock()` 도 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 의해 자연스럽게 호출되어야 합니다. 스마트 포인터 처럼요. [lock_guard](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) 는 생성시 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 `lock()` 하고 소멸시 `unlock()`해줍니다.
 
 ```cpp
 {

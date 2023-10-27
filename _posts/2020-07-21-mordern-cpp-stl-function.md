@@ -11,7 +11,7 @@ sidebar:
 > * (C++11~) [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)은 `()`로 호출 가능한 함수자를 저장합니다.
 > * (C++11~) [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)에서 `()`을 호출할 대상이 없을 때 [bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call) 예외를 방출합니다.
 > * (C++11~) [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)은 인자가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.
-> * (C++11~) [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)는 복사 생성이나 복사 대입이 안되는 참조자를 래핑합니다.
+> * (C++11~) [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)는 복사 생성이나 복사 대입이 안되는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 래핑합니다.
 > * (C++11~) [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)는 [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper) 개체를 생성합니다.
 > * (C++11~) [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 `placeholders::_1`(GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨)와 같은 자리 표시자와 조합하여 특정 인자만을 사용하는 함수자를 생성합니다.
 > > * (C++11~) [is_bind_expression](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_bind_expression)는 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)로 생성한 함수인지 검사합니다.
@@ -115,9 +115,9 @@ EXPECT_TRUE(add(obj, 1, 2) == 3); // obj.Add(1, 2);를 호출합니다.
 
 # reference_wrapper
 
-[reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)는 복사 생성이나 복사 대입이 안되는 참조자를 래핑하여 복사/대입이 가능하게 하고, 참조성을 유지시켜 줍니다. 
+[reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)는 복사 생성이나 복사 대입이 안되는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 래핑하여 복사/대입이 가능하게 하고, 참조성을 유지시켜 줍니다. 
 
-`get()`으로 관리하는 참조자를 구할 수 있으며, 다른 참조자 생성시 `operator T&() const` 을 이용한 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 통해 참조자를 대입합니다.([암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 필요하여 `{}`는 안됩니다.) 
+`get()`으로 관리하는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 구할 수 있으며, 다른 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 생성시 `operator T&() const` 을 이용한 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 통해 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 대입합니다.([암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 필요하여 `{}`는 안됩니다.) 
 
 ```cpp
 int a{0};
@@ -133,7 +133,7 @@ EXPECT_TRUE(a == 20);
 
 **템플릿 함수 인수 추론시의 참조성**
 
-템플릿 함수 인수 추론시에는 참조자의 참조성을 제거하고 추론합니다.([템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 참고)
+템플릿 함수 인수 추론시에는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)의 참조성을 제거하고 추론합니다.([템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 참고)
 
 다음 `Assign()` 함수는 당연히 인수로 전달한 `a`의 값을 수정합니다. 인자가 `int&` 타입 이니까요.
 
@@ -160,7 +160,7 @@ Assign(a, 10); // (X) 오동작. T == int 여서 a의 복제본이 사용됩니�
 EXPECT_TRUE(a == 0);   
 ```
 
-하지만, 강제로 참조자로 바꿔도, 인수 `int&`는 `int`로 추론되기 때문에 `T == int` 가 되어 `obj`는 `a`의 복제본입니다. 즉, 참조자를 인식하지 못합니다.
+하지만, 강제로 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 바꿔도, 인수 `int&`는 `int`로 추론되기 때문에 `T == int` 가 되어 `obj`는 `a`의 복제본입니다. 즉, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 인식하지 못합니다.
 
 ```cpp
 int a{0};
@@ -196,11 +196,11 @@ void Forwarding(Func func, Params... params) {
 }  
 ```
 
-`void f(int, int*);` 와 같은 함수는 잘 호출됩니다만, 참조자를 사용하면 문제가 생깁니다. 
+`void f(int, int*);` 와 같은 함수는 잘 호출됩니다만, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용하면 문제가 생깁니다. 
 
 인수가 `T`던, `T&` 던 `Forwarding()` 함수에서는 인자를 `T`로 취급해 복제본을 사용해 버리니까요. `func()`호출시 복제된 인자를 사용하기 때문에, 참조성은 깨져버립니다.
 
-이럴때 [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)를 사용하면, `Forwarding()` 함수가 [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)를 복제해 버리더라도, 내부적으로는 개체의 참조자를 관리하므로, 참조성을 유지할 수 있습니다. 
+이럴때 [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)를 사용하면, `Forwarding()` 함수가 [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper)를 복제해 버리더라도, 내부적으로는 개체의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 관리하므로, 참조성을 유지할 수 있습니다. 
 
 ```cpp
 void Assign(int& obj, int val) {
@@ -234,7 +234,7 @@ EXPECT_TRUE(a == 20);
 
 **컨테이너 요소 활용**
 
-또한, 참조자를 컨테이너 요소로 사용할 수 있습니다.
+또한, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 컨테이너 요소로 사용할 수 있습니다.
 
 ```cpp
 int a{1};

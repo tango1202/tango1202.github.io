@@ -78,7 +78,7 @@ delete ptr;
 
 1. `new`한 개체를 생성자에서 전달받고, 소멸자에서 `delete`합니다.
 2. 보통 `Holder`는 기본 생성자, 복사 생성자, 복사 대입 연산자가 필요 없습니다.
-3. 보통 `Holder`는 `new` 로 생성되지 않고 스택에 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)(자동 변수)로만 생성됩니다.
+3. 보통 `Holder`는 `new` 로 생성되지 않고 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)(자동 변수)로만 생성됩니다.
 
 ```cpp
 // 유효 범위가 지나면, T 타입의 포인터를 소멸시키는 개체

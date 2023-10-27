@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권 이전용 스마트 포인터입니다. 기존 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 대체합니다. [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 배열의 `delete[]` 미지원, `lvalue` 복사 대입 연산시 이동 동작을 하는 등의 사유로 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
+> * (C++11~) [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권 이전용 스마트 포인터입니다. 기존 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 대체합니다. [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 `delete[]` 미지원, `lvalue` 복사 대입 연산시 이동 동작을 하는 등의 사유로 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
 > * (C++14~) [make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique)를 이용하여 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)을 효율적으로 생성할 수 있습니다.
 
 # 개요
@@ -17,14 +17,14 @@ sidebar:
 
 하지만, 다음 문제로 인해 C++11에서 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
 
-1. 배열을 `delete[]`가 아닌 `delete`로 삭제합니다.(이러면 배열 요소들이 제대로 소멸되지 않습니다. [개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고)
+1. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 `delete[]`가 아닌 `delete`로 삭제합니다.(이러면 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소들이 제대로 소멸되지 않습니다. [개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고)
 2. `lvalue` 복사 대입 연산시 소유권을 이전하는 이동 동작을 합니다.([이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)과 중복됩니다.)
 
 C++11 부터는 상기 문제를 보완한 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)이 제공됩니다.
 
 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)과 동일하게 소유권을 이전하는 스마트 포인터이며, 다음이 개선되었습니다.
 
-1. 일반 포인터는 `delete`하고, 배열은 `delete[]`합니다.
+1. 일반 포인터는 `delete`하고, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 `delete[]`합니다.
 2. 복사 생성자와 `operator =(const T&)`는 제공하지 않고, 이동 생성자와 `operator =(const T&&)`만 제공합니다. 즉, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)만 제공합니다.
 
 다음은 사용예 입니다.
@@ -60,10 +60,10 @@ EXPECT_TRUE(*c == 1 && d == nullptr);
 |`~unique_ptr()` (C++11~)|관리하는 개체를 `delete` 또는 `delete[]`합니다.|
 |`unique_ptr& operator =(const unique_ptr&) = delete;` (C++11~)|복사 대입 연산자는 사용할 수 없습니다.|
 |`unique_ptr& operator =(unique_ptr&& other) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 `this`로 이동시킵니다.|
-|`operator *() const noexcept;` (C++11~)|관리하는 개체의 참조자를 리턴합니다.|
+|`operator *() const noexcept;` (C++11~)|관리하는 개체의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.|
 |`operator ->() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
-|`operator [](size_t) const;` (C++11~)|배열을 관리하는 경우 각 요소 개체의 참조자를 리턴합니다.|
-|`explicit operator bool() const noexcept;` (C++11~)|`bool`로 형변환시 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 이면 `false`를 리턴합니다.|
+|`operator [](size_t) const;` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 관리하는 경우 각 요소 개체의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.|
+|`explicit operator bool() const noexcept;` (C++11~)|[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로 형변환시 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 이면 `false`를 리턴합니다.|
 |`get() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
 |`swap(unique_ptr& other) noexcept;` (C++11~)|관리하는 개체를 `other`와 바꿔치기 합니다.|
 |`reset(T* p) noexcept;` (C++11~)|기존에 관리하던 개체를 해제하고 `p`를 관리합니다.|
@@ -135,7 +135,7 @@ EXPECT_TRUE(*v[0] == 10 && *v[1] == 20 && *v[2] == 30);
 
 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 관리하는 개체를 소멸시키는 `deleter`를 사용자 정의 할 수 있습니다. 사용자 정의하는 방법은 [shared_ptr Deleter](https://tango1202.github.io/mordern-cpp/mordern-cpp-shared_ptr-weak_ptr/#shared_ptr-deleter) 를 참고하세요.
 
-[default_delete](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#default_delete)는 기본적으로 일반 포인터는 `delete` 로 소멸하고, 배열은 `delete[]`로 소멸시킵니다.
+[default_delete](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#default_delete)는 기본적으로 일반 포인터는 `delete` 로 소멸하고, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 `delete[]`로 소멸시킵니다.
 
 ```cpp
 std::unique_ptr<int> a{new int{10}, std::default_delete<int>{}};

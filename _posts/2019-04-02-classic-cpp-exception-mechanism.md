@@ -10,10 +10,10 @@ sidebar:
 
 > * 해결할 수 없는 예외 상황은 오류 코드 리턴보다는 강제성이 있는 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)로 보고하라.
 > * 예외를 해결할 수 있는 곳에서 탐지하라.
-> * `catch()`에서 예외 개체가 복사 생성되지 않도록 참조자로 받아라.
+> * `catch()`에서 예외 개체가 복사 생성되지 않도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 받아라.
 > * 예외를 그대로 전파할 경우에는 [throw;](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)를 사용하라.
 > * 소멸자에서 예외를 방출하지 마라.(필요하다면 `Release()`함수를 구현하라.)
-> * 스택 풀기와 호환되도록 스마트 포인터를 사용하라.
+> * [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)와 호환되도록 스마트 포인터를 사용하라.
 > * 함수 정의시 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 사용하지 마라.
 
 > **모던 C++**
@@ -41,7 +41,7 @@ void g() {
  C++은 좀더 예외 처리의 강제성을 줄 수 있도록 다음의 메커니즘으로 예외를 발생, 복귀, 전파, 탐지 합니다. 예외 처리를 하지 않으면 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출하여 프로그램이 종료되므로, 예외 처리를 할 수 밖에 없습니다.
 
 1. [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 문으로 예외를 발생시킵니다. 이때 예외 정보를 담은 개체로 예외 정보를 제공합니다. `catch()`로 예외를 처리하지 않으면, [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출하여 프로그램이 종료됩니다.
-2. **스택 풀기**에 의해 예외 발생전의 상태로 복귀합니다.
+2. **[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)**에 의해 예외 발생전의 상태로 복귀합니다.
 3. 아무런 작업을 안하거나 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)로 예외를 상위 개체로 전파합니다.
 4. `try-catch()`로 예외를 탐지합니다. 
 
@@ -81,7 +81,7 @@ unsigned char ToChar(int val) {
 }
 ```
 
-상기 `ToChar()`함수와 같이 예외를 발생시키는 함수가 있다면, 호출전에 조건 검사를 실행해서 호출할 수 있고, `try-catch()`를 이용하여 탐지할 수 있습니다. 이때 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)한 예외 개체는 `catch()`에서 받아서 사용할 수 있는데, 예외 개체가 복사 생성되지 않도록 참조자로 사용하는게 좋습니다.(그냥 복사 생성하게 하면, 예외 상황에서 또다른 예외가 발생할 수도 있거든요.)
+상기 `ToChar()`함수와 같이 예외를 발생시키는 함수가 있다면, 호출전에 조건 검사를 실행해서 호출할 수 있고, `try-catch()`를 이용하여 탐지할 수 있습니다. 이때 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)한 예외 개체는 `catch()`에서 받아서 사용할 수 있는데, 예외 개체가 복사 생성되지 않도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 사용하는게 좋습니다.(그냥 복사 생성하게 하면, 예외 상황에서 또다른 예외가 발생할 수도 있거든요.)
 
 ```cpp
 int val = 'A';
@@ -138,9 +138,9 @@ catch (...) {} // 그외 모든 예외 타입
 
 # 스택 풀기(예외 복귀)
 
-C++ 은 예외 상황이 발생하면,  `catch()` 될때까지 거꾸로 스택을 하나하나 풀면서(해제하면서, 소멸시키면서) 생성한 개체의 소멸자를 호출하고, 메모리를 해제합니다. 이러한 과정을 거쳐 예외 발생 전의 상태로 복귀합니다.
+C++ 은 예외 상황이 발생하면,  `catch()` 될때까지 거꾸로 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)을 하나하나 풀면서(해제하면서, 소멸시키면서) 생성한 개체의 소멸자를 호출하고, 메모리를 해제합니다. 이러한 과정을 거쳐 예외 발생 전의 상태로 복귀합니다.
 
-다음 코드에서 `h()` 함수는 예외를 발생시키는 함수 `f()`와 `g()`를 호출하지만, `f()`가 예외를 발생시키면 스택을 풀고 `catch()`문으로 이동하기 때문에, `g()`함수는 호출되지 않습니다.
+다음 코드에서 `h()` 함수는 예외를 발생시키는 함수 `f()`와 `g()`를 호출하지만, `f()`가 예외를 발생시키면 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)을 풀고 `catch()`문으로 이동하기 때문에, `g()`함수는 호출되지 않습니다.
 
 ```cpp
 int f(int val) {
@@ -163,14 +163,14 @@ void h() {
 }
 ```
 
-스택의 상황은 다음과 같이 변경됩니다.
+[스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)의 상황은 다음과 같이 변경됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e9cbb724-c094-4cb0-851f-e753e1afbbd0)
 
 
-스택 풀기에 따른 개체 소멸시에는 소멸자가 호출되므로, 소멸자예서 예외를 방출하면, 정상적인 스택 풀기를 방해합니다. 따라서 소멸자에서는 예외를 방출하면 안됩니다.([소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고)
+[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 따른 개체 소멸시에는 소멸자가 호출되므로, 소멸자예서 예외를 방출하면, 정상적인 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 방해합니다. 따라서 소멸자에서는 예외를 방출하면 안됩니다.([소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고)
 
-이때 , 힙에 생성된 개체는 스택 풀기에 의해 해제되지 않으므로,
+이때 , 힙에 생성된 개체는 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 의해 해제되지 않으므로,
 
 ```cpp
     try {

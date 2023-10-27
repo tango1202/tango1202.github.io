@@ -173,7 +173,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
-|배열 요소|`a[b]`|O|`R& T::operator [](S b);`<br/>`const R& T::operator [](S b) const;`|X|
+|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소|`a[b]`|O|`R& T::operator [](S b);`<br/>`const R& T::operator [](S b) const;`|X|
 |포인터 실제값|`*a`|O|`R& T::operator *();`<br/>`const R& T::operator *() const;`|`R& operator *(T a);`|
 |개체 주소|`&a`|O|`R* T::operator &();`<br/>`const R* T::operator &() const;`|`R* operator &(T a);`|
 |개체의 멤버|`a.b`|X|X|X|
@@ -256,13 +256,13 @@ EXPECT_TRUE(result == 10);
 |--|--|--|:--:|:--:|:--:|
 |`operator new(std::size_t)`|개체 생성|`T* p = new T;`|O|`void* operator new(std::size_t sz);`|`void* operator new(std::size_t sz);`|
 |`operator delete(void*)`|개체 소멸|`delete p;`|O|`void operator delete(void* ptr, std::size_t sz)`|`void operator delete(void* ptr, std::size_t sz)`|
-|`operator new[](std::size_t)`|배열 생성시 사용|`T* arr = new T[10];`|O|`void* operator new[](std::size_t sz);`|`void* operator new[](std::size_t sz);`|
-|`operator delete[](void*)`|배열 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
+|`operator new[](std::size_t)`|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 생성시 사용|`T* arr = new T[10];`|O|`void* operator new[](std::size_t sz);`|`void* operator new[](std::size_t sz);`|
+|`operator delete[](void*)`|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
 |`operator new(void*)`|[위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1). 특정 메모리 위치에 개체 생성자 호출|`T* p = new(buf) T;`|X|X|X|
 
 # sizeof 연산자
 
-개체의 용량을 리턴합니다. 단 참조자의 경우 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의되어 있습니다.(*`sizeof(T&) == sizeof(T)`, [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 언급*)
+개체의 용량을 리턴합니다. 단 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)의 경우 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의되어 있습니다.(*`sizeof(T&) == sizeof(T)`, [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 언급*)
 
 |항목|내용|
 |--|--|
@@ -471,7 +471,7 @@ EXPECT_TRUE(t3.GetVal() == 20);
 
 **`+` 보다는 `+=`이 좋은 이유**
 
-산술형 대입 연산자가 참조자 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`, 값 타입)을 리턴하는데요, 이는 연산의 결과값을 저장할 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 있어야 하기 때문이죠. 
+산술형 대입 연산자가 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`, 값 타입)을 리턴하는데요, 이는 연산의 결과값을 저장할 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 있어야 하기 때문이죠. 
 
 따라서, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 생성 부하가 없도록 산술형 대입 연산자를 사용하는 코딩 습관을 가지시는게 좋습니다.
 

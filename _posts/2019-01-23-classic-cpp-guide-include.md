@@ -140,7 +140,7 @@ public:
 };
 ```
 
-다음과 같이 멤버 변수 정의시 포인터 변수나 참조자를 사용하면 굳이 `include`하지 않고, ***해당 개체는 클래스이다*** 라고 알려주는 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 해도 됩니다.
+다음과 같이 멤버 변수 정의시 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 사용하면 굳이 `include`하지 않고, ***해당 개체는 클래스이다*** 라고 알려주는 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 해도 됩니다.
 
 ```cpp
 class MyClass; // 전방 선언

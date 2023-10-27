@@ -75,7 +75,7 @@ A_11 a{A_11{}}; // 컴파일러 최적화로 이동 생성자를 사용하지 �
 
 C++17 부터 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 `prvalue`는 다른 개체를 초기화 하는데에만 사용되며, 다음의 경우만 [임시적으로 구체화](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/#%EC%9E%84%EC%8B%9C-%EA%B5%AC%EC%B2%B4%ED%99%94temporary-materialization)되는 것으로 한정했습니다.
 
-1. `prvalue`를 참조자로 바인딩할때
+1. `prvalue`를 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 바인딩할때
 
     ```cpp
     T& t = T{}; // T{}는 임시 구체화 됩니다.
@@ -87,7 +87,7 @@ C++17 부터 [임시 개체](https://tango1202.github.io/classic-cpp-guide/class
     int val = T{}.m_Val; // T{} 는 임시 구체화 됩니다.
     ```
 
-3. 배열을 포인터로 변환하거나 배열의 첨자 연산(`[]`)을 할때
+3. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 포인터로 변환하거나 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 첨자 연산(`[]`)을 할때
 
 4. [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)에서 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 초기화할때
 

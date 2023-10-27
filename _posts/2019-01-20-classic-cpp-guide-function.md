@@ -12,7 +12,7 @@ sidebar:
 > * 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하라.
 > * 컴파일러 최적화가 쉽도록, RVO가 쉽도록, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하라.
 > * 다형적인 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
-> * 리턴 타입과 인자 타입은 값을 사용할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 사용할 것인지, [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
+> * 리턴 타입과 인자 타입은 값을 사용할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용할 것인지, [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
 > * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(*ADL(Argument-dependent lookup) 또는 Koenig 검색*)하는 원리를 이해하라.
 > * 함수에 전달하는 인수는 순서대로 호출되지 않는다. 컴파일러 마음이다.
 
@@ -45,7 +45,7 @@ return_type function_name(parameter_list) [const] [throw(exception_list)] {}
 
 |항목|내용|
 |--|--|
-|`return_type`|함수 결과의 타입. 배열은 안됨|
+|`return_type`|함수 결과의 타입. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 안됨|
 |`parameter_list`|인자 목록|
 |`[const]`|멤버 함수인 경우 개체를 수정하지 않음(*[상수 한정자(const), 변경 가능 지정자(mutable), 최적화 제한 한정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 참고*)
 |`[throw(exception-list)]`|함수가 방출하는 예외 사양.<br/>나열된 예외 이외에는 `unexpected_handler` 로 분기함. 사용하지 말 것.(*[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고*)|
@@ -180,13 +180,13 @@ class T {
 };
 ```
 
-특별히 함수의 지역 변수를 참조자로 리턴하면 오류가 발생하니 주의하시기 바랍니다.(*[Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고*)
+특별히 함수의 지역 변수를 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 리턴하면 오류가 발생하니 주의하시기 바랍니다.(*[Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고*)
 
 **리턴 타입**
 
 리턴 타입은 
 
-1. 값을 리턴할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 리턴할 것인지
+1. 값을 리턴할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴할 것인지
 2. [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 리턴할 것인지, 비 상수를 리턴할 것인지
 
 신중하게 결정해야 복사 부하를 줄이고, 타입에 기반한 **코딩 계약** 을 수립할 수 있습니다. 해당 방법에 대해서는 [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)를 참고하기 바랍니다.
@@ -444,7 +444,7 @@ EXPECT_TRUE(p->f6() == 10); // 가상 함수 테이블을 참조하여 Base 의 
 
 인자 타입은 
 
-1. 값을 전달받을 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 전달받을 것인지
+1. 값을 전달받을 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 전달받을 것인지
 2. [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 전달받을 것인지, 비 상수를 전달받을 것인지
 
 신중하게 결정해야 복사 부하를 줄이고, 타입에 기반한 **코딩 계약** 을 수립할 수 있습니다. 해당 방법에 대해서는 [Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#setter-%ED%95%A8%EC%88%98)를 참고하기 바랍니다.
@@ -474,7 +474,7 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
 
 인자의 타입을 검사할때 동일 타입으로 취급하는 규칙이 있습니다.
 
-1. 배열은 포인터로 취급됩니다.
+1. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 취급됩니다.
 
     즉, 
 
@@ -492,7 +492,7 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
     int* p = a;
     ```
 
-    와 같이 배열을 포인터로 다룰 수 있기 때문입니다.
+    와 같이 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 포인터로 다룰 수 있기 때문입니다.
 
 2. 최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 인자 타입에서 제거하고 취급합니다.
 
@@ -597,12 +597,12 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
    
    1. 타입 완전 일치
    2. 경미한 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)
-   3. 승격 일치(*`bool`을 `int`로, `char`를 `int`로*) 
+   3. 승격 일치(*[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)을 `int`로, `char`를 `int`로*) 
    4. 표준 변환(*자식 개체 포인터를 부모 개체 포인터로, `T*`를 `void*`로, `int`를 `double`로, `double`을 `int`로*) 
    5. 사용자 정의 형변환(*[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고*)
 
 
-다음 경우를 보면 `g()` 에서 `MyFunc()`을 호출하면, 같은 네임스페이스에서 `MyFunc(double)`을 찾고, 인자 `1`을 `double`로 암시적으로 변환해서 사용하게 됩니다.
+다음 경우를 보면 `g()` 에서 `MyFunc()`을 호출하면, 같은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에서 `MyFunc(double)`을 찾고, 인자 `1`을 `double`로 암시적으로 변환해서 사용하게 됩니다.
 
 ```cpp
 namespace A {

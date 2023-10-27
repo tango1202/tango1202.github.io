@@ -260,15 +260,15 @@ static const size_type npos = -1;
 |항목|`string` 특화|내용|
 |--|--|--|
 |`[]`||요소에 접근합니다.|
-|`at()`||`position`위치의 요소 참조자를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
+|`at()`||`position`위치의 요소 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
 |`begin(), end()`||순방향 이터레이터를 리턴합니다.|
 |`rbegin(), rend()`||역방향 이터레이터를 리턴합니다.|
 |`cbegin(), cend()`||방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`crbegin() crend()`||역방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`data()`||컨테이너가 관리하는 메모리 블록을 리턴합니다. STL 구현에 따라 끝에 널문자가 있을 수도 있지만, 표준이 아니기 때문에 [널종료 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 구할 때는 `c_str()`을 이용해야 합니다.|
 |`c_str()`|O|c 스타일의 [널종료 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 리턴합니다.(끝에 널문자가 있습니다.)|
-|`front()`||첫번째 요소의 참조자를 리턴합니다. `string`이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
-|`back()`||마지막 요소의 참조자를 리턴합니다. `string`이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
+|`front()`||첫번째 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `string`이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
+|`back()`||마지막 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `string`이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`find()`<br/>`rfind()`|O|지정된 문자 시퀀스와 일치하는 첫번째 인덱스를 찾습니다.|
 |`find_first_of()`<br/>`find_first_not_of()`|O|지정된 문자들중 일치하는 문자가 있는 첫번째 인덱스를 찾습니다.|
 |`find_last_of()`<br/>`find_last_not_of()`|O|지정된 문자들중 일치하는 문자가 있는 마지막 인덱스를 찾습니다.|
@@ -294,7 +294,7 @@ static const size_type npos = -1;
 |`replace()`|O|`string`의 요소를 지정한 문자나 다른 시퀀스로 바꿉니다.|
 |`replace_with_range()` (C++23~)|O|(작성중)|
 |`substr()`|O|`string`에서 하위 문자열을 추출합니다.|
-|`copy()`|O|`string`에서 하위 문자열을 문자 배열에 복사합니다.|
+|`copy()`|O|`string`에서 하위 문자열을 문자 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|
 |`getline()`|O|IO 스트림으로부터 데이터를 읽습니다.|
 
 # 숫자 변환
@@ -399,14 +399,14 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |항목|내용|
 |--|--|
 |`[]` (C++17~)|요소에 접근합니다.|
-|`at()` (C++17~)|`position`위치의 요소 참조자를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
+|`at()` (C++17~)|`position`위치의 요소 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
 |`begin(), end()` (C++17~)|순방향 이터레이터를 리턴합니다.|
 |`rbegin(), rend()` (C++17~)|역방향 이터레이터를 리턴합니다.|
 |`cbegin(), cend()` (C++17~)|방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`crbegin() crend()` (C++17~)|역방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`data()` (C++17~)|컨테이너가 관리하는 메모리 블록을 리턴합니다. 끝에 널문자가 없을 수도 있습니다.|
-|`front()` (C++17~)|첫번째 요소의 참조자를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
-|`back()` (C++17~)|마지막 요소의 참조자를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
+|`front()` (C++17~)|첫번째 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
+|`back()` (C++17~)|마지막 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`find()` (C++17~)<br/>`rfind()` (C++17~)|지정된 문자 시퀀스와 일치하는 첫번째 인덱스를 찾습니다.|
 |`find_first_of()` (C++17~)<br/>`find_first_not_of()` (C++17~)|지정된 문자들중 일치하는 문자가 있는 첫번째 인덱스를 찾습니다.|
 |`find_last_of()` (C++17~)<br/>`find_last_not_of()` (C++17~)|지정된 문자들중 일치하는 문자가 있는 마지막 인덱스를 찾습니다.|
@@ -420,7 +420,7 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |`ends_with()` (C++20~)|(작성중)|
 |`contains()` (C++23~)|(작성중)|
 |`substr()` (C++17~)|`string`에서 하위 문자열을 추출합니다.|
-|`copy()` (C++17~)|`string`에서 하위 문자열을 문자 배열에 복사합니다.|
+|`copy()` (C++17~)|`string`에서 하위 문자열을 문자[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|
 
 # (C++17~) 숫자/문자열 변환
 

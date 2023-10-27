@@ -14,7 +14,7 @@ sidebar:
 
 # 개요
 
-C++의 STL을 보면 대부분 값 기반 복사/대입([컨테이너 요소 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%94%EC%86%8C-%EA%B7%9C%EC%B9%99) 참고)이 이루어져 속도 성능이 저하될 수 있습니다. 이런 문제를 해결하고자 C++11 부터 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 지원하게 되었으며, 우측값과 값 카테고리에 대한 이해가 있어야 이를 활용할 수 있습니다. 포인터나 참조자도 어려웠습니다만, 우측값과 값 카테고리는 더욱 더 어렵습니다. 하지만 이를 이해하지 않고는 모던 C++를 활용할 수 없기에 꼭 이해해야만 합니다.
+C++의 STL을 보면 대부분 값 기반 복사/대입([컨테이너 요소 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%94%EC%86%8C-%EA%B7%9C%EC%B9%99) 참고)이 이루어져 속도 성능이 저하될 수 있습니다. 이런 문제를 해결하고자 C++11 부터 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 지원하게 되었으며, 우측값과 값 카테고리에 대한 이해가 있어야 이를 활용할 수 있습니다. [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)도 어려웠습니다만, 우측값과 값 카테고리는 더욱 더 어렵습니다. 하지만 이를 이해하지 않고는 모던 C++를 활용할 수 없기에 꼭 이해해야만 합니다.
 
 우측값과 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)의 컨셉은 다음과 같습니다. 다음 코드를 예로 들면,
 
@@ -51,7 +51,7 @@ int* ptr2 = &0; // (X) 컴파일 오류. 상수 0은 & 위치 참조가 안되�
 int b = &(a + 10); // (X) 컴파일 오류. 수식 (a + 10)은 & 위치 참조가 안되므로 우측값
 ```
 
-혹은 참조자로 저장할 수 없으면 우측값입니다.
+혹은 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 저장할 수 없으면 우측값입니다.
 
 ```cpp
 int a = 0; 

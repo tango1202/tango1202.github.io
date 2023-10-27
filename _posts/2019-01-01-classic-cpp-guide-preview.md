@@ -35,7 +35,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 
 4. [포인터와 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)
    
-   포인터 외에 참조자를 제공합니다. 포인터는 널(`NULL`)이 될 수 있지만, 참조자는 널이 될 수 없습니다.
+   포인터 외에 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 제공합니다. 포인터는 널(`NULL`)이 될 수 있지만, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 널이 될 수 없습니다.
 
    ```cpp
    int i;

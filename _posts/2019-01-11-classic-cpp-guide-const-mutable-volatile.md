@@ -49,7 +49,7 @@ const int x; // (X) 컴파일 오류. 초기값 없음
 const int x = 10; // (O) x의 값은 이제 변경될 수 없음
 ```
 
-포인터(*혹은 참조자*)형 변수의 경우 `const*`와 같이 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)의 오른쪽에 `*`이 있으면 포인터가 참조하는 실제 데이터가 상수이고, 왼쪽에 `*`이 있으면 포인터형 변수가 상수입니다.(*[포인터(Pointer)와 참조자(Reference)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 언급*)
+포인터(*혹은 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)*)형 변수의 경우 `const*`와 같이 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)의 오른쪽에 `*`이 있으면 포인터가 참조하는 실제 데이터가 상수이고, 왼쪽에 `*`이 있으면 포인터형 변수가 상수입니다.(*[포인터(Pointer)와 참조자(Reference)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 언급*)
 
 ```cpp
 int obj = 10;

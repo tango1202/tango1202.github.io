@@ -42,7 +42,7 @@ C++11 STL 에서는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern
 |`kill_dependency()` (C++11~)|(작성중)|
 |`atomic_thread_fence()` (C++11~)|(작성중)|
 |`atomic_signal_fence()` (C++11~)|(작성중)| 
-|`_Atomic()` (C++23~)|C언어 호환용 [매크로 함수](??)입니다.| 
+|`_Atomic()` (C++23~)|C언어 호환용 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)입니다.| 
 
 # atomic
 

@@ -52,7 +52,7 @@ ThreeType three;
 |`is_void` (C++11~)|`void` 타입인지 검사합니다.|
 |`is_integral` (C++11~)|정수형 타입인지 검사합니다.|
 |`is_floating_point` (C++11~)|실수형 타입인지 검사합니다.|
-|`is_array` (C++11~)|배열 타입인지 검사합니다.|
+|`is_array` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 타입인지 검사합니다.|
 |`is_enum` (C++11~)|열거형 타입인지 검사합니다.|
 |`is_union` (C++11~)|공용체 타입인지 검사합니다.|
 |`is_class` (C++11~)|구조체, 클래스 타입인지 검사합니다.|
@@ -75,7 +75,7 @@ ThreeType three;
 |`is_scalar` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)인지 검사합니다.|
 |`is_object` (C++11~)|좌측값과 포인터 타입인지 검사합니다.|
 |`is_reference` (C++11~)|참조 타입(좌측값 참조와 우측값 참조)인지 검사합니다.|
-|`is_compound` (C++11~)|배열, 함수, 개체 포인터, 함수 포인터, 멤버 변수 포인터, 멤버 함수 포인터, 참조자, 구조체/클래스, 공용체, 열거형인지 검사합니다. `int`와 같은 기본 타입은 `false` 입니다.|
+|`is_compound` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), 함수, 개체 포인터, 함수 포인터, 멤버 변수 포인터, 멤버 함수 포인터, 참조자, 구조체/클래스, 공용체, 열거형인지 검사합니다. `int`와 같은 기본 타입은 `false` 입니다.|
 |`is_member_pointer` (C++11~)|멤버 변수 포인터, 멤버 함수 포인터 인지 검사합니다.|
 
 # 타입 특성
@@ -122,8 +122,8 @@ ThreeType three;
 |항목|내용|
 |--|--|
 |`alignment_of` (C++11~)|메모리 정렬에 필요한 크기를 구합니다.<br/>[alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof) 와 동일하며, C++11 이전 컴파일러와 호환성을 유지합니다.|
-|`rank` (C++11~)|다차원 배열의 차원수를 구합니다.|
-|`extent` (C++11~)|배열 차원의 요소 수를 구합니다.|
+|`rank` (C++11~)|다차원 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 차원수를 구합니다.|
+|`extent` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 차원의 요소 수를 구합니다.|
 
 # 타입 관계
 
@@ -168,8 +168,8 @@ ThreeType three;
 
 |항목|내용|
 |--|--|
-|`remove_extent` (C++11~)|배열의 첫번째 차원을 제거합니다. 즉, `int[][][]` 는 `int[][]`가 됩니다.|
-|`remove_all_extents` (C++11~)|배열의 모든 차원을 제거합니다.|
+|`remove_extent` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 첫번째 차원을 제거합니다. 즉, `int[][][]` 는 `int[][]`가 됩니다.|
+|`remove_all_extents` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 모든 차원을 제거합니다.|
   
 # 기타 변환
 
@@ -177,7 +177,7 @@ ThreeType three;
 |--|--|
 |`aligned_storage`(C++11~C++23)|(작성중)|
 |`aligned_union`(C++11~C++23)|(작성중)|
-|`decay` (C++11~)|참조성을 떼고, 타입으로 만듭니다. 즉 `int &`는 `int`가 됩니다. 또한 배열은 포인터로 만듭니다.이와는 반대로 참조성을 붙여서 인자 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
+|`decay` (C++11~)|참조성을 떼고, 타입으로 만듭니다. 즉 `int &`는 `int`가 됩니다. 또한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 만듭니다.이와는 반대로 참조성을 붙여서 인자 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
 |`enable_if` (C++11~)|(작성중)|
 |`conditional` (C++11~)|(작성중)|
 |`common_type` (C++11~)|(작성중)|

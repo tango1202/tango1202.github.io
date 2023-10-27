@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 이름 충돌을 피하기 위해 복잡한 접두어를 쓰지 말고, [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 사용하라.
-> * [using](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#%EA%B0%9C%EC%9A%94) 사용시 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 커지지 않도록 주의하라.(*전역 공간에 `using namespace`를 사용하면 망한다.*)
+> * [using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)과 [using 지시문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8) 사용시 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 커지지 않도록 주의하라.(*전역 공간에 `using namespace`를 사용하면 망한다.*)
 
 > **모던 C++**
 > * (C++11~) [인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#%EC%9D%B8%EB%9D%BC%EC%9D%B8-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)가 추가되어 API 버전 구성이 편리해 졌습니다.
@@ -51,8 +51,8 @@ sidebar:
 |--|--|
 |정의|`namespace Test {`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`void f() {}`<br/>`}`|
 |사용|`Test::f();`|
-|[using 선언](??)|[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 특정 항목 사용.<br/>`using Test::f;`|
-|[using지시문]|[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 전체 항목 사용.<br/>`using namespace Test;`|
+|[using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)|[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 특정 항목 사용.<br/>`using Test::f;`|
+|[using 지시문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8)|[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 전체 항목 사용.<br/>`using namespace Test;`|
 
 # 네임스페이스 항목의 선언과 정의 분리
 
@@ -83,9 +83,21 @@ EXPECT_TRUE(C::h() == 30);
 
 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 특정 항목을 현재의 이름 공간으로 가져옵니다.
 
+다음은 `Test` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에서 `f`라는 이름을 가져옵니다.
+
+```cpp
+using Test::f;
+```
 
 # using 지시문
 
+[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 전체 항목을 현재의 이름 공간으로 가져옵니다.
+
+다음은 `Test` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 모든 이름을 가져옵니다.
+
+```cpp
+using namespace Test;
+```
 
 # 서로 다른 네임스페이스 항목 사용
 
@@ -94,8 +106,8 @@ EXPECT_TRUE(C::h() == 30);
 다른 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 항목은 
 
 1. 명시적으로 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) 명을 지정하거나, 
-2. [using 선언](??)이나, 
-3. [using](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#%EA%B0%9C%EC%9A%94) 지시문을 사용해야 합니다.
+2. [using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)이나, 
+3. [using 지시문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8)을 사용해야 합니다.
 
 ```cpp
 namespace D {
@@ -124,9 +136,9 @@ namespace F {
 }
 ```
 
-# 전역 공간 using지시문 금지
+# 전역 공간 using 지시문 금지
 
-[using](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#%EA%B0%9C%EC%9A%94) 지시문을 전역 공간에 사용하면, 이름 충돌의 가능성이 높아 집니다. 전역 공간에서 사용하지 마세요.
+[using 지시문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8)을 전역 공간에 사용하면, 이름 충돌의 가능성이 높아 집니다. 전역 공간에서 사용하지 마세요.
 
 ```cpp
 namespace MyModule1 {
@@ -225,7 +237,9 @@ namespace My {
 }
 ```
 
-이제 `My` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에 `std::swap()`보다 성능이 좋은 `swap()`함수를 만들었다 칩시다. 새로운 `swap()`함수를 사용하도록 리팩토링 해야 하는데요, 같은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에 있는 함수라 그냥 `std::`만 삭제하면 되죠. 혹시 1,000군데 사용했다면, 찾기/바꾸기로 하면 되고요. 그런데, `std::`버전이 성능이 더 좋아 되돌린다면, 또 찾기/바꾸기를 해야 겠군요. 어딘지 좀 미련한 느낌입니다.
+이제 `My` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에 `std::swap()`보다 성능이 좋은 `swap()`함수를 만들어 보고 성능 확인을 해본다고 가정합시다.
+
+새로운 `swap()`함수를 사용하도록 리팩토링 해야 하는데요, 같은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에 있는 함수라 그냥 `std::`만 삭제하면 되죠. 만약 1,000군데 사용했다면, 찾기/바꾸기로 하면 되고요. 그런데, 바꿔놓고 보니 기존의 `std::swap()`버전이 성능이 더 좋아 되돌린다면, 또다시 찾기/바꾸기를 해서 바꾸면 됩니다. 되기는 합니다만, 어딘지 좀 미련한 느낌입니다.
 
 ```cpp
 namespace My {
@@ -238,7 +252,9 @@ namespace My {
 }
 ```
 
-다음처럼 애초에 [using 선언](??)만 하여 암시적으로 사용한다면, 코드 본문은 수정할 필요없이 [using 선언](??)만 수정하면 되므로 뭔가 좀더 그럴싸 합니다.
+[using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)을 이용하면 좀더 그럴싸 하게 작업할 수 있습니다.
+
+다음처럼 애초에 [using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)만 하여 암시적으로 사용한다면, 코드 본문은 수정할 필요없이 [using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)만 수정하면 되니까요.
 
 ```cpp
 namespace My {
@@ -265,5 +281,33 @@ namespace My {
 }
 ```
 
+# 네임스페이스를 이용한 코드 관리
+
+[using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8) 이나 [using 지시문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8)의 암시적 사용성은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 코드의 버전 관리나 OS별 관리 용도로도 사용할 수 있게 해줍니다.
+
+다음 코드는 `MyLib`을 OS별로 구성하고, `YourLib`에서 버전을 선택해서 사용하는 예입니다. [using 지시문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8)만 변경하여 `Windows`용과 `Linux`용을 쉽게 교체할 수 있습니다.
+
+```cpp
+namespace MyLib {
+    namespace Windows {
+        int f() {return 1;} // #1
+    }
+    namespace Linux {
+        int f() {return 2;} // #2
+    }
+};
+
+namespace YourLib {
+    using namespace MyLib::Windows; // Windows 버전을 사용합니다.
+
+    int g() {
+        return f(); // MyLib::Windows::f() 가 호출됩니다.
+    }
+};
+
+EXPECT_TRUE(YourLib::g() == 1);
+```
+
+> *(C++11~) [인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#%EC%9D%B8%EB%9D%BC%EC%9D%B8-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)가 추가되어 API 버전 구성이 편리해 졌습니다.*
 
 

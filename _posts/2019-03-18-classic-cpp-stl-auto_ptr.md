@@ -12,7 +12,7 @@ sidebar:
 > * 복사 부하, 상수성, 스마트 포인터를 이용하여 좀더 단단한 코딩 계약을 만들어라.
 
 > **모던 C++**
-> * (C++11~) [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권 이전용 스마트 포인터입니다. 기존 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 대체합니다. [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 배열의 `delete[]` 미지원, `lvalue` 복사 대입 연산시 이동 동작을 하는 등의 사유로 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
+> * (C++11~) [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권 이전용 스마트 포인터입니다. 기존 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 대체합니다. [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 `delete[]` 미지원, `lvalue` 복사 대입 연산시 이동 동작을 하는 등의 사유로 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
 > * (C++11~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)은 소유권 공유용 스마트 포인터입니다.
 > * (C++11~) [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)은 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)의 상호 참조 문제를 해결합니다.
 
@@ -22,12 +22,10 @@ sidebar:
 
 하지만 몇가지 문제점이 있습니다.
 
-1. 배열을 `delete[]`가 아닌 `delete`로 삭제합니다.(이러면 배열 요소들이 제대로 소멸되지 않습니다. [개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고)
-2. 복사 대입 연산자에서 소유권을 이전합니다.(의도한 코드입니다만, 이게 암시적으로 동작하면서 런타임 오류가 많이 발생합니다.)
+1. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 `delete[]`가 아닌 `delete`로 삭제합니다.(*이러면 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소들이 제대로 소멸되지 않습니다. [개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고*)
+2. 복사 대입 연산자에서 소유권을 이전합니다.(*의도한 코드입니다만, 이게 암시적으로 동작하면서 런타임 오류가 많이 발생합니다.*)
 
 > *(C++11~) [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되어 더이상 사용하시면 안되고, [unique_ptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-unique_ptr/)을 사용해야 합니다.*
-
-
 
 포인터를 사용할 때 머리가 복잡해 지는 것은 
 
@@ -120,7 +118,7 @@ u1 = u2; //(O) 소유권을 u1으로 이전합니다.
 |항목|내용|
 |--|--|
 |`auto_ptr& operator =(auto_ptr& other);`|기존 관리하던 개체를 해제하고 `other`의 개체를 관리합니다. 이때 `other`는 더이상 개체를 관리하지 않습니다.|
-|`*`|관리하는 개체의 참조자를 리턴합니다.|
+|`*`|관리하는 개체의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.|
 |`->`|관리하는 개체의 포인터를 리턴합니다.|
 |`get();`|관리하는 개체의 포인터를 리턴합니다.|
 |`reset(T* p);`|기존에 관리하던 개체를 해제하고 `p`를 관리합니다.|
@@ -188,7 +186,7 @@ EXPECT_TRUE(b.get() == NULL); // 더이상 포인터를 관리하지 않음
 [함수, 함수 포인터, 리턴, 인자(매개변수, Parameter)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/) 에서 
 
 
-1. 값을 전달받을 것인지, 참조자를 전달받을 것인지
+1. 값을 전달받을 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 전달받을 것인지
 2. 상수를 전달받을 것인지, 비 상수를 전달받을 것인지
 
 신중하게 결정해야 복사 부하를 줄이고, 타입에 기반한 코딩 계약 을 수립할 수 있다고 언급하였고,

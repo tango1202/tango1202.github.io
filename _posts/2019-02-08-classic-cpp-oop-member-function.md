@@ -11,8 +11,8 @@ sidebar:
 > * 멤버 변수를 수정하지 않으면, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성하라.
 > * 자식 개체에서 부모 개체의 비 가상 함수를 재정의 하지 마라.
 > * 가상 함수를 정의하면 가상 함수 테이블을 위한 추가 공간이 필요하니 꼭 필요한 경우만 사용하라.
-> * Getter 함수의 리턴값은 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성하라.
-> * Setter 함수의 인자는 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성하라.
+> * Getter 함수의 리턴값은 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 작성하라.
+> * Setter 함수의 인자는 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 작성하라.
 
 > **모던 C++**
 > * (C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.
@@ -81,7 +81,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
     };
     ```
 
-2. 멤버 변수를 몰래 수정할 수 있는 포인터나 참조자를 리턴하지 않습니다.
+2. 멤버 변수를 몰래 수정할 수 있는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 리턴하지 않습니다.
    
     ```cpp
     class T {
@@ -127,7 +127,7 @@ public:
 
 # 가상 함수
 
-`virtual`을 붙이면 가상 함수가 되며, 부모 개체의 포인터나 참조자로 자식 개체에서 재구현한 함수(*이를 오버라이딩(overriding)이라 합니다.*)에 접근할 수 있습니다. 
+`virtual`을 붙이면 가상 함수가 되며, 부모 개체의 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 자식 개체에서 재구현한 함수(*이를 오버라이딩(overriding)이라 합니다.*)에 접근할 수 있습니다. 
 
 다음 코드에서 일반 함수인 `f()`와 가상 함수인 `v()`를 `Derived`에서 재구현 했을때, 어떻게 동작하는지 나타내었습니다.
 
@@ -185,7 +185,7 @@ public:
 
 # 가상 함수 테이블(Virtual Function Table, vTable)
 
-부모 클래스에 가상 함수가 있다면, 내부적으로 해당 개체의 시작 주소에 가상 함수 테이블(가상 함수 포인터에 대한 배열)을 생성합니다. 컴파일러에 따라 다를 수도 있으나 대부분 8byte 입니다. 가상 함수 호출시에는 가상 함수 테이블을 참조하여 호출하게 됩니다.
+부모 클래스에 가상 함수가 있다면, 내부적으로 해당 개체의 시작 주소에 가상 함수 테이블(*가상 함수 포인터에 대한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)*)을 생성합니다. 컴파일러에 따라 다를 수도 있으나 대부분 8byte 입니다. 가상 함수 호출시에는 가상 함수 테이블을 참조하여 호출하게 됩니다.
 
 ```cpp
 class Base {
@@ -246,8 +246,8 @@ Dog dog; // (O)
 개체의 멤버 변수를 리턴하는 함수를 특별히 Getter 함수라고 합니다. 다음 규칙에 맞춰 리턴문을 작성하는게 좋습니다.
 
 1. `int` 등 기본 자료형의 경우는 복사 부하가 참조 부하보다 적기 때문에 값을 리턴하는게 좋습니다. 
-2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 참조자를 리턴하는게 좋습니다.
-3. 멤버 변수는 널이 되는 경우가 없기 때문에 포인터보다는 참조자로 리턴하는게 좋습니다.
+2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴하는게 좋습니다.
+3. 멤버 변수는 널이 되는 경우가 없기 때문에 포인터보다는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 리턴하는게 좋습니다.
 4. 멤버 변수를 수정하지 않는다면 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성합니다.
 5. 값 타입을 리턴하는 경우는 어짜피 리턴값이 복제되므로, 리턴값에 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 굳이 붙일 필요가 없습니다. 
 
@@ -299,9 +299,9 @@ public:
 개체의 멤버 변수를 설정하는 함수를 특별히 Setter 함수라고 합니다. 다음 규칙에 맞춰 인자를 작성하는게 좋습니다.
 
 1. int 등 기본 자료형의 경우는 복사 부하가 참조 부하보다 적기 때문에 값을 전달하는게 좋습니다. 
-2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 참조자를 전달하는게 좋습니다.
+2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 전달하는게 좋습니다.
 3. 멤버 변수를 수정하는 것이지 인자를 수정하는게 아니기 때문에 인자는 상수여야 합니다.
-4. 널검사가 최소화 될 수 있도록, 널이 되지 않는 경우라면 포인터보다는 참조자를 전달하는게 좋습니다.
+4. 널검사가 최소화 될 수 있도록, 널이 되지 않는 경우라면 포인터보다는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 전달하는게 좋습니다.
 5. 값 타입을 전달하는 경우는 어짜피 인자에 복제되므로, 굳이 인자에 `const`를 붙일 필요가 없습니다. 
 
 ```cpp

@@ -22,8 +22,8 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[operator new, operator new[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체나 배열의 메모리를 할당합니다.|
-|[operator delete, operator delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체나 배열의 메모리를 해제합니다.|
+|[operator new, operator new[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체나 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 메모리를 할당합니다.|
+|[operator delete, operator delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체나 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 메모리를 해제합니다.|
 |`get_new_handler()` (C++11~)|(작성중)|
 |[set_new_handler()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)|`new`에서 예외 발생시 호출되는 함수 입니다.|
 |[bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|메모리 할당에 실패했을때 발생합니다.|
@@ -123,7 +123,7 @@ C++17 부터는 [uninitialized_move(), uninitialized_default_construct(), uninit
 |`destroy_at()` (C++17~)|주어진 메모리 영역 개체의 소멸자를 호출합니다.| 
 |`construct_at()` (C++20~)|주어진 메모리 영역 개체의 생성자를 호출합니다.| 
 
-다음 예는 스택에 `data` 버퍼을 생성하고 3개의 `T` 개체를 생성하고 소멸시키는 예입니다.
+다음 예는 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 `data` 버퍼을 생성하고 3개의 `T` 개체를 생성하고 소멸시키는 예입니다.
 ```cpp
 class T {
 private:
@@ -142,7 +142,7 @@ public:
     int GetY() const {return m_Y;}
 };
 
-unsigned char data[sizeof(T) * 3]; // // T 개체 3개를 저장할 수 있는 스택 영역을 확보합니다.
+unsigned char data[sizeof(T) * 3]; // T 개체 3개를 저장할 수 있는 스택 영역을 확보합니다.
 
 auto begin{reinterpret_cast<T*>(data)};
 auto end{begin + 3}; 

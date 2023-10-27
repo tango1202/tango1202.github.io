@@ -37,7 +37,7 @@ C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입
    * 가상 함수 없음
    * 부모 클래스 없음
    * trivial이 아닌 멤버 변수가 없음
-* trivial 타입의 배열
+* trivial 타입의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 
 # 표준 레이아웃 타입
 
@@ -50,7 +50,7 @@ C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입
   * 가상 함수 없음
   * 부모 클래스 없음
   * 모든 멤버는 표준 레이아웃 이어야 함
-* 표준 레이아웃 타입의 배열
+* 표준 레이아웃 타입의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 
 # POD 타입(Plan Old Data)
 
@@ -62,7 +62,7 @@ travial 이면서 표준 레이아웃인 타입입니다. 메모리 레이아웃
 
 * 스칼라 타입
 * 참조자
-* 리터럴 타입의 배열
+* 리터럴 타입의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 * 람다 함수
 * 집합 타입
   * 사용자 정의 생성자, 소멸자가 없으며 모든 멤버 변수가 `public`인 구조체나 클래스
@@ -74,7 +74,7 @@ https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%
 
 **집합 타입**은 타입이 같거나 다른 여러 데이터를 저장하는 개체입니다.
 
-* 배열
+* [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 * 구조체/클래스/공용체
   * 사용자 정의 생성자, 소멸자가 없음
   * 모든 멤버 변수가 `public`
