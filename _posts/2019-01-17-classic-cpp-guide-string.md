@@ -26,7 +26,7 @@ sidebar:
 
 # 널종료 문자열
 
-C언어에서는 문자열의 끝에 널문자(`\0`)를 사용합니다. 따라서, C스타일 문자열 함수들은 문자열의 끝이 널문자(`\0`)라고 가정하고 개발되었습니다. 예를 들어 문자열의 길이를 구하는 [strlen()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)함수는 널문자(`\0`)를 만날때까지 문자들을 카운팅합니다.
+C언어에서는 문자열의 끝에 널문자(`\0`)를 사용합니다. 따라서, [C스타일 문자열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)들은 문자열의 끝이 널문자(`\0`)라고 가정하고 개발되었습니다. 예를 들어 문자열의 길이를 구하는 [strlen()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)함수는 널문자(`\0`)를 만날때까지 문자들을 카운팅합니다.
 
 ```cpp
 size_t MyStrlen(const char * str) {

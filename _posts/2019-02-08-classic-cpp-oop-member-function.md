@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 멤버 변수를 수정하지 않으면, 상수 멤버 함수로 작성하라.
+> * 멤버 변수를 수정하지 않으면, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성하라.
 > * 자식 개체에서 부모 개체의 비 가상 함수를 재정의 하지 마라.
 > * 가상 함수를 정의하면 가상 함수 테이블을 위한 추가 공간이 필요하니 꼭 필요한 경우만 사용하라.
 > * Getter 함수의 리턴값은 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 참조자로 작성하라.
@@ -69,7 +69,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
 
 # 상수 멤버 함수
 
-멤버 함수의 뒤에 `const`를 붙여 상수 멤버 함수를 만들 수 있습니다. 상수 멤버 함수는 [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD) 에 따라 다음을 준수합니다.
+멤버 함수의 뒤에 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 붙여 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 만들 수 있습니다. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD) 에 따라 다음을 준수합니다.
 
 1. 멤버 변수를 수정하지 않습니다.
     
@@ -91,7 +91,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
     };
     ```
 
-3. 내부 구현시 상수 멤버 함수만을 호출합니다.
+3. 내부 구현시 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)만을 호출합니다.
  
     ```cpp
     class T {
@@ -105,11 +105,11 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
 4. 메모리를 수정하지 않기 때문에 예외를 발생하지 않습니다.
 
 따라서 상수성을 잘 지키면, 예외에 안전하며, [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)에 의해 안전하게 코딩할 수 있습니다. 함수가 개체를 변경시키는지
-아닌지 항상 분명하게 인지하고, 최대한 상수 멤버 함수로 작성하세요.
+아닌지 항상 분명하게 인지하고, 최대한 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성하세요.
 
 # 비 상수 멤버 함수의 비 상수성 전파
 
-상수 멤버 함수가 될 수 있음에도 비 상수 멤버 함수로 작성한다면, 이를 사용하는 모든 함수나 개체들이 비 상수로 만들어져야 합니다. 비 상수성은 전파되니 상수 멤버 함수가 될 수 있다면 꼭 상수 멤버 함수로 만드세요.
+[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 될 수 있음에도 비 상수 멤버 함수로 작성한다면, 이를 사용하는 모든 함수나 개체들이 비 상수로 만들어져야 합니다. 비 상수성은 전파되니 상수 멤버 함수가 될 수 있다면 꼭 상수 멤버 함수로 만드세요.
 
 ```cpp
 class T {
@@ -162,7 +162,7 @@ EXPECT_TRUE(d.v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 자식 개체에서 부모 개체의 함수를 오버라이딩 하려면,
 
 1. 부모 개체에서 `virtual` 함수로 선언해야 합니다.
-1. 자식 개체에서 함수명/인자 타입/[const](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)/[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)이 동일해야 합니다. 만일 다르다면, 오버라이딩 되지 않습니다. 컴파일러가 오류를 잘 감지하지 못하니 주의하시기 바랍니다.
+1. 자식 개체에서 함수명/인자 타입/[상수 멤버 함수의 const](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)/[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)이 동일해야 합니다. 만일 다르다면, 오버라이딩 되지 않습니다. 컴파일러가 오류를 잘 감지하지 못하니 주의하시기 바랍니다.
 
 > *(C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다. 또한, [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.*
 
@@ -248,8 +248,8 @@ Dog dog; // (O)
 1. `int` 등 기본 자료형의 경우는 복사 부하가 참조 부하보다 적기 때문에 값을 리턴하는게 좋습니다. 
 2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 참조자를 리턴하는게 좋습니다.
 3. 멤버 변수는 널이 되는 경우가 없기 때문에 포인터보다는 참조자로 리턴하는게 좋습니다.
-4. 멤버 변수를 수정하지 않는다면 상수 멤버 함수로 작성합니다.
-5. 값 타입을 리턴하는 경우는 어짜피 리턴값이 복제되므로, 리턴값에 `const`를 굳이 붙일 필요가 없습니다. 
+4. 멤버 변수를 수정하지 않는다면 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성합니다.
+5. 값 타입을 리턴하는 경우는 어짜피 리턴값이 복제되므로, 리턴값에 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 굳이 붙일 필요가 없습니다. 
 
 ```cpp
 class T {};

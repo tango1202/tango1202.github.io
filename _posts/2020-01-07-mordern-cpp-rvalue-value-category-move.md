@@ -385,7 +385,7 @@ T& operator =(T&& other);
 * 복사 생성자, 이동 생성자, 복사 대입 연산자, 소멸자를 사용자 정의한 경우
 * 멤버 변수가 이동될 수 없는 경우
 * 부모 클래스가 이동될 수 없는 경우
-* `const` 타입의 멤버 변수가 있는 경우
+* [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 타입의 멤버 변수가 있는 경우
 * 참조 타입의 멤버 변수가 있는 경우
 
 # 이동 연산에 따른 암시적 정의
@@ -553,11 +553,11 @@ EXPECT_TRUE(T::Func_11(A()) == 2); // 임시 개체는 rvalue
 EXPECT_TRUE(T::Func_11(std::move(A())) == 2); // 임시 개체를 move 해도 rvalue
 ```
 
-`move()`함수는 `T`와 `T&`를 단순히 `&&`로 변환해 주는 함수이므로 `const T` 를 전달하면 `const T&&`로 변경합니다. 그런데, 이동 생성자, 이동 대입 연산자는 `T&&`를 사용하므로 `const T&&`로 변환하면 호출되지 않습니다. 따라서 `const`를 제거하고 사용해야 합니다.(*[이동 연산을 지원하는 Wrapper 설계](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%84-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-wrapper-%EC%84%A4%EA%B3%84) 참고*)
+`move()`함수는 `T`와 `T&`를 단순히 `&&`로 변환해 주는 함수이므로 `const T` 를 전달하면 `const T&&`로 변경합니다. 그런데, 이동 생성자, 이동 대입 연산자는 `T&&`를 사용하므로 `const T&&`로 변환하면 호출되지 않습니다. 따라서 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 제거하고 사용해야 합니다.(*[이동 연산을 지원하는 Wrapper 설계](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%84-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-wrapper-%EC%84%A4%EA%B3%84) 참고*)
 
 # move_if_noexcept()
 
-`move_if_noexcept()` 는 nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다. 
+`move_if_noexcept()` 는 [nothrow 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%B3%B4%EC%A6%9D-%EC%A2%85%EB%A5%98)이 되는 경우에만 `&&`로 형변환 합니다. 
 
 다음 코드를 보면 `A_11`는 예외 보증이 안되어 있고, `B_11`는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 지정되어 있는데요,
 

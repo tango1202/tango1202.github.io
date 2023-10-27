@@ -74,7 +74,7 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 **const형 포인터**
 
-수정할 필요가 없는 문자열 상수는 `const`형 포인터를 사용합니다.
+수정할 필요가 없는 문자열 상수는 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)형 포인터를 사용합니다.
 
 ```cpp
 const char* str1 = "abc"; // 문자열 상수

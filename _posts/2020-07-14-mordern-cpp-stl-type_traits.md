@@ -82,7 +82,7 @@ ThreeType three;
 
 |항목|내용|
 |--|--|
-|`is_const` (C++11~)|`const` 타입인지 검사합니다.|
+|`is_const` (C++11~)|[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 타입인지 검사합니다.|
 |`is_volatile` (C++11~)|`volatile` 타입인지 검사합니다.|
 |`is_trivial` (C++11~)|[Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85) 인지 검사합니다.|
 |`is_trivially_copyable` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85) 이나 [Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85) 처럼 간단하게 복사 가능한지 검사합니다.|
@@ -129,7 +129,7 @@ ThreeType three;
 
 |항목|내용|
 |--|--|
-|`is_same` (C++11~)|두개의 타입이 동일한지 검사합니다. 이때 `const`와 `volatile`을 고려합니다. 즉 `int`와 `const int`는 다른 타입입니다.|
+|`is_same` (C++11~)|두개의 타입이 동일한지 검사합니다. 이때 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)와 `volatile`을 고려합니다. 즉 `int`와 `const int`는 다른 타입입니다.|
 |`is_base_of` (C++11~)|`Base`가 `Derived`의 부모인지 검사합니다.([CloneTraits 구현](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/#clonetraits-%EA%B5%AC%ED%98%84) 의 `IsDerivedFrom` 참고)|
 |`is_convertible` (C++11~)<br/>`is_nothrow_convertible` (C++20~)|`From` 타입이 `To`로 변환 가능한지 검사합니다.|
 |`is_invocable` (C++17~)<br/>`is_invocable_r` (C++17~)<br/>`is_nothrow_invocable` (C++17~)<br/>`is_nothrow_invocable_r` (C++17~)|(작성중)|
@@ -140,8 +140,8 @@ ThreeType three;
 
 |항목|내용|
 |--|--|
-|`remove_cv` (C++11~)<br/>`remove_const` (C++11~)<br/>`remove_volatile` (C++11~)|`const`나 `volatile` 한정자를 제거합니다.|
-|`add_cv` (C++11~)<br/>`add_const` (C++11~)<br/>`add_volatile` (C++11~)|`const`나 `volatile` 한정자를 추가합니다.|
+|`remove_cv` (C++11~)<br/>`remove_const` (C++11~)<br/>`remove_volatile` (C++11~)|[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)나 `volatile` 한정자를 제거합니다.|
+|`add_cv` (C++11~)<br/>`add_const` (C++11~)<br/>`add_volatile` (C++11~)|[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)나 `volatile` 한정자를 추가합니다.|
 
 # 참조자
 

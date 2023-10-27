@@ -66,7 +66,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 10. [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)
    
     용도에 따라 구분될 수 있게 `static_cast`, `const_cast`, `dynamic_cast`, `reinterpret_cast` 의 형변환 방법을 제공합니다.
-
+11. [템플릿]
 1. [예외처리](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)
    
     예외를 방출하거나 처리할 수 있습니다.

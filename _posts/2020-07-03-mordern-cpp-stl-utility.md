@@ -20,11 +20,11 @@ sidebar:
 |항목|내용|
 |--|--|
 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move) (C++11~)|좌측값을 우측값으로 형변환 합니다.|
-|[move_if_noexcept()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move_if_noexcept) (C++11~)|nothrow 보증이 되는 경우에만 `&&`로 형변환 합니다.|
+|[move_if_noexcept()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move_if_noexcept) (C++11~)|[nothrow 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%B3%B4%EC%A6%9D-%EC%A2%85%EB%A5%98)이 되는 경우에만 `&&`로 형변환 합니다.|
 |[forword()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward) (C++11~)|값 카테고리를 유지하며 인자를 다른 함수에 전달합니다.|
 |`forward_like()` (C++23)|(작성중)|
 |[declval()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval) (C++11~)|주어진 타입을 참조 타입으로 변환하여, 참조 타입 표현식으로 변경해 줍니다.|
-|`as_const(T& param)` (C++17~)|인자 `param`에 `const`를 붙여 `const T&`로   변환합니다.|
+|`as_const(T& param)` (C++17~)|인자 `param`에 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 붙여 `const T&`로 변환합니다.|
 |`to_underlying()` (C++23~)|(작성중)|
 
 # 정수 비교

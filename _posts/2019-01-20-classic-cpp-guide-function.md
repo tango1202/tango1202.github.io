@@ -300,7 +300,7 @@ void f(); // (O)
 void f(void); // (O)
 ```
 
-`void`를 다른 인자와 함께 섞어 쓰거나, `const`와 함께 쓰는건 컴파일 오류가 납니다.(*`void*`는 포인터형이기에 괜찮습니다.*)
+`void`를 다른 인자와 함께 섞어 쓰거나, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)와 함께 쓰는건 컴파일 오류가 납니다.(*`void*`는 포인터형이기에 `const void*`는 괜찮습니다.*)
 
 ```cpp
 int f(void, int); // (X) 컴파일 오류
@@ -494,7 +494,7 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
 
     와 같이 배열을 포인터로 다룰 수 있기 때문입니다.
 
-2. 최상위 `const`는 인자 타입에서 제거하고 취급합니다.
+2. 최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 인자 타입에서 제거하고 취급합니다.
 
     즉,
 

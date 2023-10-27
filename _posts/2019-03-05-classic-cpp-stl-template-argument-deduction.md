@@ -87,7 +87,7 @@ void Func(int) {}
 f(Func); // // f<void (*)(int)>(void (*)(int))
 ```
 
-최상위 `const`는 무시됩니다.([오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고)
+최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 무시됩니다.(*[오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
 
 ```cpp
 using namespace Deduction_4;
@@ -429,7 +429,7 @@ EXPECT_TRUE( a + 10 == 1);
 
 **동등한 템플릿 함수**
 
-동등한 템플릿이면 모호하여 컴파일 오류가 발생합니다. 다음의 경우는 `T`와 `const T`로 다릅니다만, 최상위 `const`는 제거되어 결국 동등해집니다.
+동등한 템플릿이면 모호하여 컴파일 오류가 발생합니다. 다음의 경우는 `T`와 `const T`로 다릅니다만, 최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 제거되어 결국 동등해집니다.
 
 ```cpp
 template<typename T>
@@ -447,7 +447,7 @@ EXPECT_TRUE(f(b) == 2);
 
 **참조자로 인한 모호**
 
-포인터의 경우 `T` 보다는 `T*` 가 특수화된 버전이므로, 선택됩니다만, 참조자는 붙이거나 뗄 수 있습니다. 다음 코드에서는 #1, #2 모두 `f(int&)` 버전을 제공할 수 있기 때문에 모호성 오류가 발생합니다.
+포인터의 경우 `T`보다는 `T*`가 특수화된 버전이므로, 선택됩니다만, 참조자는 붙이거나 뗄 수 있습니다. 다음 코드에서는 #1, #2 모두 `f(int&)` 버전을 제공할 수 있기 때문에 모호성 오류가 발생합니다.
 
 ```cpp
 template<typename T>

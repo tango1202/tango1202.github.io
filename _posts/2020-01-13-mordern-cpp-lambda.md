@@ -81,7 +81,7 @@ int f(int a, int b) {
 
 |항목|내용|
 |--|--|
-|`[=]` (C++11~)|외부의 모든 변수를 `const`형 값으로 가져옵니다.|
+|`[=]` (C++11~)|외부의 모든 변수를 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)형 값으로 가져옵니다.|
 |`[&]` (C++11~)|외부의 모든 변수의 참조자를 가져옵니다.|
 |`[=, &x, &y]` (C++11~)|외부의 모든 변수를 값으로 가져오되 `x`, `y` 만 참조로 가져옵니다.|
 |`[&, x, y]` (C++11~)|외부의 모든 변수의 참조자를 가져오되 `x`, `y` 만 값으로 가져옵니다.|
@@ -117,7 +117,7 @@ EXPECT_TRUE(f_11() == 1); // 캡쳐할 때의 값을 사용하므로 1입니다.
 
 **값 캡쳐**
 
-값으로 개체를 캡쳐하면 복제본을 만들어 `const`로 사용합니다. 따라서, 그 값을 수정할 수 없습니다. 다만, 포인터 변수는 `int* const`여서 `ptr`은 수정할 수 없지만, `*ptr`은 수정할 수 있습니다.
+값으로 개체를 캡쳐하면 복제본을 만들어 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)로 사용합니다. 따라서, 그 값을 수정할 수 없습니다. 다만, 포인터 변수는 `int* const`여서 `ptr`은 수정할 수 없지만, `*ptr`은 수정할 수 있습니다.
 
 ```cpp
 int a{1};
@@ -261,7 +261,7 @@ public:
     T::Destructor
     ```
 
-2. 값 캡쳐를 사용하면, 대상 개체가 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)에 사용될때, 복사 생성자를 호출하여, `const` 복제본을 만듭니다.
+2. 값 캡쳐를 사용하면, 대상 개체가 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)에 사용될때, 복사 생성자를 호출하여, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 복제본을 만듭니다.
 
     ```cpp
     T t;

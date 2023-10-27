@@ -145,7 +145,7 @@ r = 10; // (X) 예외 발생. p가 NULL이라 10을 NULL(0)주소 위치에 넣�
 
 **개체 포인터**
 
-[상수 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EB%B3%80%EC%88%98)에서 언급했듯, `const`의 오른쪽에 `*`이 있으면 포인터가 참조하는 실제 데이터가 `const` 이고, 왼쪽에 `*`이 있으면 포인터형 변수가 `const`입니다.
+[상수 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EB%B3%80%EC%88%98)에서 언급했듯, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)의 오른쪽에 `*`이 있으면 포인터가 참조하는 실제 데이터가 상수이고, 왼쪽에 `*`이 있으면 포인터형 변수가 상수입니다.
 
 ```cpp
 int obj = 10;

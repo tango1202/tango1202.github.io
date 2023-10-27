@@ -56,7 +56,7 @@ EXPECT_TRUE(val == 1 * 2 * 3 * 4 * 5);
 ```
 
 > *(C++11~) [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다. [constexpr 함수](
-https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 에 좀더 간결한 `Factorial_14()` 함수를 예시하였습니다.* 
+https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)에 좀더 간결한 `Factorial_14()` 함수를 예시하였습니다.* 
 
 # CloneTraits 구현
 

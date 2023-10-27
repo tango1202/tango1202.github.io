@@ -62,7 +62,7 @@ T t(); // (X) T를 리턴하는 함수 t() 선언
 |`T t;`나 `T* ptr = new T;`|괄호 없이 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하면 자동 제로 초기화를 하지 않습니다.|
 |`T* ptr = new T();`| 괄호를 사용하여 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하면 자동 제로 초기화를 합니다.|
 
-그리고, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 형식이나 `const`로 선언된 상수 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)는 생성시 초기값이 전달되야 하기 때문에, [암시적 기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 초기화 할 수 없습니다.(*[값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용해야 합니다.*)
+그리고, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 형식이나 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)로 선언된 [상수 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)는 생성시 초기값이 전달되야 하기 때문에, [암시적 기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 초기화 할 수 없습니다.(*[값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용해야 합니다.*)
 
 ```cpp
 class T1 {
