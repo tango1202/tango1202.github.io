@@ -51,8 +51,8 @@ sidebar:
 |--|--|
 |정의|`namespace Test {`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`void f() {}`<br/>`}`|
 |사용|`Test::f();`|
-|[using 선언](??)|[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 임의 항목 사용.<br/>`using Test::f;`|
-|[using](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#%EA%B0%9C%EC%9A%94)지시문|[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 전체 항목 사용.<br/>`using namespace Test;`|
+|[using 선언](??)|[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 특정 항목 사용.<br/>`using Test::f;`|
+|[using지시문]|[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 전체 항목 사용.<br/>`using namespace Test;`|
 
 # 네임스페이스 항목의 선언과 정의 분리
 
@@ -78,6 +78,14 @@ int C::h() { // C::로 명시해서 정의할 수 있음
 EXPECT_TRUE(C::g() == 30); 
 EXPECT_TRUE(C::h() == 30);
 ```
+
+# using 선언
+
+[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 특정 항목을 현재의 이름 공간으로 가져옵니다.
+
+
+# using 지시문
+
 
 # 서로 다른 네임스페이스 항목 사용
 
