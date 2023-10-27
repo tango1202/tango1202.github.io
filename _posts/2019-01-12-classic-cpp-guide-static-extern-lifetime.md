@@ -36,7 +36,7 @@ sidebar:
 
 # 지역 변수
 
-함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), 함수내 정의된 변수등 블록 유효 범위에서 사용할 수 있는 변수입니다. 블록의 범위를 벗어나면 자동으로 소멸됩니다.(*해당 변수가 [구조체, 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)라면 자동으로 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출하므로 **자동 변수**라고도 합니다.*)
+함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), 함수내 정의된 변수등 블록 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 사용할 수 있는 변수입니다. 블록의 범위를 벗어나면 자동으로 소멸됩니다.(*해당 변수가 [구조체, 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)라면 자동으로 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출하므로 **자동 변수**라고도 합니다.*)
 
 ```cpp
 void f() {

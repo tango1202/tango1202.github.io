@@ -316,7 +316,7 @@ int f(const void); // (X) 컴파일 오류
 |`va_start()`|가변 인자 액세스 시작 매크로 함수|
 |`va_arg()`|가변인자 추출 매크로 함수|
 |`va_end()`|가변 인자 사용 종료 매크로 함수|
-|`va_list`|가변 인자에 대한 `typedef`|
+|`va_list`|가변 인자에 대한 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)|
 
 가변 인자를 사용하려면 `cstdarg`를 `include`해야 합니다.
 

@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 이름의 유효 범위는 짧게 유지하라. 중괄호(`{}`) 블록으로 짧게 만들 수 있다.
+> * 이름의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)는 짧게 유지하라. 중괄호(`{}`) 블록으로 짧게 만들 수 있다.
 
 # 개요
 
@@ -37,9 +37,9 @@ TEST(TestClassicCpp, Scope) {
 
 # 이름의 유효 범위가 짧으면 좋은 이유
 
-프로젝트 규모가 커지면, 서로 다른 영역에서 동일한 이름을 사용하게 될 확률이 높습니다. 특히 직관적이고 좋은 이름일수록요. 이름이 서로 충돌나거나 가리지 않도록 이름의 유효 범위를 짧게 유지하는게 좋습니다.
+프로젝트 규모가 커지면, 서로 다른 영역에서 동일한 이름을 사용하게 될 확률이 높습니다. 특히 직관적이고 좋은 이름일수록요. 이름이 서로 충돌나거나 가리지 않도록 이름의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 짧게 유지하는게 좋습니다.
 
-특히 이름 충돌시 매크로가 관여되면 대환장 파티가 열릴 수 있습니다.(*[`#define` 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 참고*)
+특히 이름 충돌시 [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)가 관여되면 대환장 파티가 열릴 수 있습니다.(*[매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 참고*)
 
 # 블록을 활용한 유효 범위 통제
 
@@ -79,7 +79,7 @@ void f() {
 }
 ```
 
-유효 범위를 짧게 해서 블록화 해보세요.
+[유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 짧게 해서 블록화 해보세요.
 
 ```cpp
 

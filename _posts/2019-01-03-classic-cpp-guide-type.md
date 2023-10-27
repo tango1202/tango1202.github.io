@@ -9,11 +9,11 @@ sidebar:
 ---
 
 > * 타입 크기에 의존하여 코딩하지 마라. OS에 따라, 컴파일러에 따라, 시스템 비트수에 따라 크기가 달라질 수 있다.
-> * 대소 비교가 필요한 경우에는 정수 타입을 사용하라. 실수 타입은 오차가 있다.
+> * 대소 비교가 필요한 경우에는 정수 타입을 사용하라. [실수 비교](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%EC%8B%A4%EC%88%98-%EB%B9%84%EA%B5%90)는 오차가 있다.
 
 > **모던 C++**
 > * (C++11~) 값으로부터 타입을 추론하는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)이 추가되어 코딩이 간편해 졌습니다.
-> * (C++11~) [using을 이용한 타입 별칭이 추가](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-using-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.
+> * (C++11~) [using을 이용한 타입 별칭이 추가](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-using-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)되어 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.
 > * (C++11~) 최소 8byte 크기를 보장하는 [long long 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)이 추가되었습니다.
 > * (C++11~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#char16_t-%EC%99%80-char32_t)이 추가되었습니다.
 > * (C++20~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t)이 추가되었습니다.
@@ -36,7 +36,7 @@ C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은
 |`long double`|확장 정밀도 부동소수점 실수|16byte 또는 10byte 또는 8byte. 단, Visual C++ 은 `double` 과 동일|
 |`*`|포인터|32bit : 4byte,<br/>64bit : 8byte|
 |`&`|참조자|참조하는 개체의 별칭으로서 해당 용량은 스펙에 정의되지 않음.<br/>다만, `sizeof()`시 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의됨.(*`sizeof(T&) == sizeof(T)`*)|
-|`enum`|열거형 상수|모든 열거자 값을 나타낼 수 있는 정수 형식의 크기. (보통 4byte)|
+|[enum](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)|열거형 상수|모든 열거자 값을 나타낼 수 있는 정수 형식의 크기. (보통 4byte)|
 
 그외 `signed`, `unsigned`, `short`, `long` 와 결합하여 다양한 조합이 나올 수 있습니다.(*[https://en.cppreference.com/w/cpp/language/types](https://en.cppreference.com/w/cpp/language/types) 참고*)
 
@@ -47,7 +47,7 @@ C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은
 
 # 타입 별칭
 
-`typedef` 로 타입의 별칭을 만들 수 있습니다.(*절대 `define`쓰지 마세요!!! [`#define` 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 참고*)
+[typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)로 타입의 별칭을 만들 수 있습니다.(*절대 [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 쓰지 마세요!!! [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98) 참고*)
 
 ```cpp
 // 단순하게
@@ -83,7 +83,7 @@ struct ClassT {
 ClassT<int>::ConstType constVal = 20;
 ```
 
-> *(C++11~) [using을 이용한 타입 별칭이 추가](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-using-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)되어 `typedef` 보다 좀 더 직관적인 표현이 가능해 졌습니다.*
+> *(C++11~) [using을 이용한 타입 별칭이 추가](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-using-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)되어 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.*
 
 # 타입 크기
 
@@ -105,7 +105,7 @@ EXPECT_TRUE(sizeof(myClass) == sizeof(myClassRef)); // sizeof() 시 참조하는
 
 # 타입 최대/최소값
 
-`numeric_limits`로 타입의 최대, 최소값을 알 수 있습니다.
+[numeric_limits](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%B5%9C%EB%8C%80%EC%B5%9C%EC%86%8C%EA%B0%92)로 타입의 최대, 최소값을 알 수 있습니다.
 
 ```cpp
 EXPECT_TRUE(std::numeric_limits<int>::max() == 2147483647);

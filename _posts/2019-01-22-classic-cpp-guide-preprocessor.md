@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * 매크로 상수를 쓰지 말고 [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)를 사용하라.
-> * 매크로로 타입의 별칭을 만들지 말고 [`typedef`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 사용하라.
+> * [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)를 쓰지 말고 [열거형 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)를 사용하라.
+> * [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)로 타입의 별칭을 만들지 말고 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 사용하라.
 > * 매크로 함수를 쓰지 말고 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하라.
 
 > **모던 C++**
@@ -42,7 +42,7 @@ sidebar:
 |[#warning](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#error-warning)|메시지를 표시하고 컴파일 진행|
 |[#pragma](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)|비표준 컴파일러 동작|
 
-# #define 상수
+# 매크로 상수
 
 주어진 식별자를 대체 목록으로 치환합니다. 흔히 정수형 상수, 실수형 상수, [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)에 이름을 붙이거나 [타입의 별칭](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)을 작성하기 위해 사용합니다. 
 
@@ -118,7 +118,7 @@ int val = f(3);
 EXPECT_TRUE(val == 6);
 ```
 
-# #define() 함수
+# 매크로 함수
 
  매크로 함수는 인자들을 대체 목록에 반영하여 치환합니다. 함수라고는 하지만 단순 치환입니다.
 
@@ -238,7 +238,7 @@ C++ 인지 확인 하거나, C++ 버전을 확인합니다. C++ 버전별로 호
 
 # __LINE__, __FILE__, #line
 
-`__LINE__`과 `__FILE__` 은 줄번호와 파일명을 나타내는 미리 지정된 매크로 입니다. 디버깅시 현재 라인수와 파일명을 표시할 수 있습니다.
+`__LINE__`과 `__FILE__` 은 줄번호와 파일명을 나타내는 미리 지정된 [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 입니다. 디버깅시 현재 라인수와 파일명을 표시할 수 있습니다.
 
 ```cpp
 // Line Number:118 Filename:C:\XXX\XXX.cpp

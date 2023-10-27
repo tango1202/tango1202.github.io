@@ -23,7 +23,7 @@ sidebar:
 
 * 어디서나 이중 밑줄이 있는 식별자
 * 밑줄과 대문자로 시작하는 식별자
-* 글로벌 네임스페이스에서 밑줄로 시작하는 식별자
+* 글로벌 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에서 밑줄로 시작하는 식별자
 
 그래서, 하기 규칙을 따르시는게 좋습니다.
 
@@ -32,13 +32,13 @@ sidebar:
 
 # 타입 명시 금지
     
-C언어에서 사용하던 헝가리안은 C++의 타입 일반화 철학(*어느 타입이던 동작하는 `swap()`등*)과 맞지 않습니다. 개체 지향에 아무런 이점도 없고, 유지보수만 힘듭니다.
+C언어에서 사용하던 헝가리안은 C++의 [타입 일반화 철학](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-generic/)(*어느 타입이던 동작하는 `swap()`등*)과 맞지 않습니다. 개체 지향에 아무런 이점도 없고, 유지보수만 힘듭니다.
 
 * C언어 스타일의 헝가리안 표기법 금지(*`int nCount`, X*)
 
 # 매크로 대문자
    
-매크로는 대문자로 씁니다.(*사실 아예 매크로 자체를 안쓰는게 좋습니다. 매크로는 [상수 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EB%B3%80%EC%88%98), `enum`, 인라인 함수, `typedef` 로 대치할 수 있습니다.*)
+[매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)는 대문자로 씁니다.(*사실 아예 [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 자체를 안쓰는게 좋습니다. [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)는 [상수 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EB%B3%80%EC%88%98), [enum](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/), [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 로 대치할 수 있습니다.*)
 
 # 반복하는 이름 
 
@@ -60,4 +60,4 @@ textEditor.Remove();
 
 이름따위 반복되던 말던 컴파일만 되면 괜찮다고 하실 수도 있는데요, 반복되는 이름을 피하며 코딩하면, 자연스럽게 구조가 만들어지고 API가 설계됩니다. 
 
-꼭 지키시기 바랍니다. 좋은 코드는 좋은 이름에서부터 시작됩니다.
+꼭 지키시기 바랍니다. ***좋은 코드는 좋은 이름에서부터 시작됩니다.***

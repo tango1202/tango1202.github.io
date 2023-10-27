@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 힙에 동적으로 메모리에 할당한 것은 명시적으로 소멸시켜라.
-> * 스택에 생성된 변수는 유효 범위가 종료되면 자동 소멸 된다.
+> * 스택에 생성된 변수는 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 종료되면 자동 소멸 된다.
 
 # 개요
 

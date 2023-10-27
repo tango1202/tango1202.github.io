@@ -57,7 +57,7 @@ unsigned char ToChar(int val) {
 }
 ```
 
-상기 코드는 `val`이 `0 <= val && val < 256` 일때만 정상 동작하므로, 유효 범위를 벗어나는 인수가 전달되면, [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)를 이용하여 예외를 발생시켜야 합니다.
+상기 코드는 `val`이 `0 <= val && val < 256` 일때만 정상 동작하므로, [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 벗어나는 인수가 전달되면, [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)를 이용하여 예외를 발생시켜야 합니다.
 
 ```cpp
 unsigned char ToChar(int val) {

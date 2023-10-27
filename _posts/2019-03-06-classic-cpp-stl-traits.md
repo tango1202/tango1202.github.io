@@ -21,7 +21,7 @@ sidebar:
 
 # 템플릿 인자 코딩 계약
 
-다음 코드에서 `Runner`는 외형적으로는 아무 타입이나 받아들일 수 있습니다. 하지만 내부에 `typedef`을 사용하여 `T`가 `Type`과 `PointerType` 을 제공하도록 강제하고 있습니다. 따라서 `Runner`를 사용하려면, `A` 클래스 처럼 `ObjTraits`를 상속하거나, `B`클래스 처럼 `Type`과 `PointerType`을 제공해야만 합니다.
+다음 코드에서 `Runner`는 외형적으로는 아무 타입이나 받아들일 수 있습니다. 하지만 내부에 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)을 사용하여 `T`가 `Type`과 `PointerType` 을 제공하도록 강제하고 있습니다. 따라서 `Runner`를 사용하려면, `A` 클래스 처럼 `ObjTraits`를 상속하거나, `B`클래스 처럼 `Type`과 `PointerType`을 제공해야만 합니다.
 
 
 ```cpp
@@ -110,7 +110,7 @@ EXPECT_TRUE(AddFloor(d1, d2) == 2); // 내림
 이런 경우 
 
 1. `CeilTag`, `FoorTag`와 같은 더미 클래스를 만들고, 
-2. `A`, `B`, `C`, `D`에 올림을 할지 내림을 할지 `AddTag`로 `typedef`하고,
+2. `A`, `B`, `C`, `D`에 올림을 할지 내림을 할지 `AddTag`로 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)하고,
 3. `Add()` 함수에서 `typename T::AddTag addTag;` 와 같이 오버로딩할 수 있게 더미 개체를 만들고,
 4. `AddInternal()` 함수를 호출하여 올림과 내림을 수행할 수 있습니다.
 
@@ -180,8 +180,8 @@ EXPECT_TRUE(Add(d1, d2) == 2); // 내림
 
 상기 코드에서 타입을 처리하는 특성만 따로 뽑아내어 `AddTraits` 를 만들 수 있습니다. 타입 처리 방식이 응집되어 유지보수가 좀더 간결해 집니다.
 
-1. `AddTraits` 클래스를 만들고 일반적인 것들은 올림이 되도록 `AddTag`로 `typedef`하고,
-2. `C`, `D` 는 내림이 되도록 `typedef`합니다.
+1. `AddTraits` 클래스를 만들고 일반적인 것들은 올림이 되도록 `AddTag`로 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)하고,
+2. `C`, `D` 는 내림이 되도록 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)합니다.
 3. `Add()` 함수에서 `typename AddTraits<T>::AddTag addTag;` 와 같이 `AddTraits`를 통해 오버로딩할 수 있게 더미 개체를 만듭니다.
    
 ```cpp

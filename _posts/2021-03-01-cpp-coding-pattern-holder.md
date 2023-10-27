@@ -67,7 +67,7 @@ catch (...) {
 delete ptr;
 ```
 
-고맙게도 유효 범위를 벗어나거나 예외 발생시에는 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 따라 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)의 개체들이 하나씩 소멸됩니다. 이를 이용하여 포인터를 관리하는 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체를 만들면 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에서 소멸되면서 포인터를 `delete`할 수 있습니다. 이렇게 포인터를 관리하는 개체를 `Holder` 라고 합니다.
+고맙게도 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 벗어나거나 예외 발생시에는 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 따라 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)의 개체들이 하나씩 소멸됩니다. 이를 이용하여 포인터를 관리하는 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체를 만들면 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에서 소멸되면서 포인터를 `delete`할 수 있습니다. 이렇게 포인터를 관리하는 개체를 `Holder` 라고 합니다.
 
 # 활용 코딩 패턴
 

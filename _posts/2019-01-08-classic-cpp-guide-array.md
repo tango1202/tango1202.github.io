@@ -98,7 +98,7 @@ EXPECT_TRUE(arr1[1] == 20);
 
 # typedef로 타입 재정의
 
-`typedef`로 배열 타입을 재정의할 수 있습니다.
+[typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)로 배열 타입을 재정의할 수 있습니다.
 
 ```cpp
 typedef int MyArray[5]; 

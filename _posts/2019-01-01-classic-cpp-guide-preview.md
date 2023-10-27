@@ -27,7 +27,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 
 3. [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)
 
-    이름 충돌을 피하기 위한 유효 범위를 제공합니다.
+    이름 충돌을 피하기 위한 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 제공합니다.
 
     ```cpp
     using namespace std;
@@ -66,8 +66,12 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 10. [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)
    
     용도에 따라 구분될 수 있게 `static_cast`, `const_cast`, `dynamic_cast`, `reinterpret_cast` 의 형변환 방법을 제공합니다.
-11. [템플릿]
-1. [예외처리](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)
+
+1. [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)
+
+    타입에 따라 클래스나 함수를 생성하는 틀입니다.
+
+2. [예외처리](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)
    
     예외를 방출하거나 처리할 수 있습니다.
 
@@ -76,7 +80,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     catch (...) {}
     ```
 
-2. [STL : 문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)
+3. [STL : 문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)
 
     표준 템플릿 라이브러리(*Standard Template Library, STL*)를 통해 문자열 타입을 제공합니다.
 
@@ -85,7 +89,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     std::string str = "Hello world";
     ```
 
-3.  [STL : 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)
+4.  [STL : 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)
 
     데이터 자료구조를 관리할 수 있는 컨테이너를 제공합니다.(*`vector`, `list`, `queue`, `stack`, `deque`, `priority_queue`, `set`, `multiset`, `map`, `multimap`*)
 
@@ -94,7 +98,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     data[0] = 10;
     ```
 
-4. [STL : 이터레이터(반복자)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)
+5. [STL : 이터레이터(반복자)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)
 
     컨테이너의 요소 탐색을 위해 이터레이터(반복자)를 제공합니다.
 
@@ -106,11 +110,11 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
     }
     ```
 
-5. [STL : 알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)
+6. [STL : 알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)
     
     일련의 동작에 대한 표준 알고리즘을 제공합니다.(*`for_each`, `find`, `count`, `replace`, `copy`, `sort` 등*)
 
-6. [STL : 스마트 포인터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)
+7. [STL : 스마트 포인터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)
    
     [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 제공합니다.(*모던 C++에선 사라졌습니다.*)
 

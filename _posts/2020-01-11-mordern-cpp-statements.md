@@ -66,7 +66,7 @@ if (result != nullptr) { // 조건 평가
 }
 ```
 
-리턴값이 만약 스마트 포인터라면 유효 범위를 짧게하기 위해 다음과 같이 중괄호를 이용했었습니다.
+리턴값이 만약 스마트 포인터라면 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 짧게하기 위해 다음과 같이 중괄호를 이용했었습니다.
 
 ```cpp
 { 
