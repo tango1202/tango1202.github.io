@@ -18,9 +18,9 @@ sidebar:
 |항목|읽기/쓰기|내용|
 |--|--|--|
 |코드(*텍스트*) 세그먼트|읽기|프로그램 코드, [제어문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/), [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/), [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)등|
-|데이터 세그먼트(*BSS, Block Started by Single*)|읽기/쓰기|초기화 안된(혹은 0으로 초기화된) 전역 변수 또는 정적 변수|
+|데이터 세그먼트(*BSS, Block Started by Single*)|읽기/쓰기|초기화 안된(혹은 0으로 초기화된) [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98) 또는 정적 변수|
 |데이터 세그먼트(*rodata, read only data*)|읽기|[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)|
-|데이터 세그먼트(*data*)|읽기/쓰기|0 이외의 값으로 초기화된 전역 변수 또는 정적 변수|
+|데이터 세그먼트(*data*)|읽기/쓰기|0 이외의 값으로 초기화된 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98) 또는 정적 변수|
 |힙(*Heap*) 세그먼트|읽기/쓰기|`new` 등으로 생성한 동적 메모리. 명시적으로 소멸시켜야 함|
 |[스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)(*Stack*) 세그먼트|읽기/쓰기|함수의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)등. 자동 소멸됨| 
 

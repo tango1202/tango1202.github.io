@@ -16,7 +16,7 @@ sidebar:
 기존에는 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)에서만 멤버 변수를 초기화 할 수 있었는데요, 
 
 C++11 부터는 멤버 변수 선언시에도 초기화 할 수 있습니다.
-단, 정적 멤버 변수는 기존과 동일하게 별도 정의부에서 초기화해야 합니다.
+단, [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 기존과 동일하게 별도 정의부에서 초기화해야 합니다.
 
 ```cpp
 class A {

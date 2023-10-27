@@ -138,7 +138,7 @@ float floatVal_17 = 0xA.9p11; // 21632
 
 # (C++20~) 사용자 정의 리터럴 인자 규칙 char8_t
 
-[인자 규칙](??)에 `char8_t`이 추가되었습니다.
+[인자 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%9D%B8%EC%9E%90-%EA%B7%9C%EC%B9%99)에 `char8_t`이 추가되었습니다.
 
 ```cpp
 ReturnType operator ""_u(char8_t); 

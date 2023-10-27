@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * 멤버 변수를 수정하지 않으면, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성하라.
+> * [정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 `obj.f()` 가 아닌 `T::f()` 와 같이 호출하라.
 > * 자식 개체에서 부모 개체의 비 가상 함수를 재정의 하지 마라.
 > * 가상 함수를 정의하면 가상 함수 테이블을 위한 추가 공간이 필요하니 꼭 필요한 경우만 사용하라.
 > * Getter 함수의 리턴값은 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 작성하라.
@@ -23,15 +24,16 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`T() {}`|생성자<br/>([생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 참고)|
-|`~T() {}`|소멸자<br/>([소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 참고)|
-|`T& operator =(const T& other) {}`|복사 대입 연산자 와 연산자 오버로딩<br/>([복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/) 와 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고)|
-|`operator U() const {}`|형변환 연산자<br/>([형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고)|
+|`T() {}`|[생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)|
+|`~T() {}`|[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)|
+|`T& operator =(const T& other) {}`|[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)|
+|`operator U() const {}`|[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)|
+|`T& operator +=(const T& other) {}`| [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|
 |`U f() {}`|멤버 함수|
 |`U f() const {}`|[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|
+|`static U f() {}`|[정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|
 |`virtual U f() {}`|가상 함수|
 |`virtual U f() = 0;`|순가상 함수|
-|`static U f() {}`|정적 멤버 함수<br/>([정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참고)|
 
 # 멤버 함수
 
@@ -123,6 +125,21 @@ class U {
 public:
     int GetInnerVal() const {m_T.GetVal();} // (X) 컴파일 오류. m_T.GetVal()은 비 상수 멤버 함수여서 상수 멤버 함수인 GetInnerVal() 이 호출할 수 없습니다.
 };
+```
+
+# 정적 멤버 함수
+
+[멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에 `static`을 사용하여 개체에 속하지 않는 [정적 멤버 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 정의 할 수 있습니다.
+
+```cpp
+class T {
+public:
+    static int f() {return 10;} // 정적 멤버 함수
+};
+
+EXPECT_TRUE(T::f() == 10); // (O) T의 정적 멤버 함수 호출
+T obj;
+EXPECT_TRUE(obj.f() == 10); // (△) 비권장. T의 정적 멤버 함수 호출. 되기는 합니다만 일반 멤버 함수 호출과 구분이 안되어 가독성이 떨어집니다.
 ```
 
 # 가상 함수

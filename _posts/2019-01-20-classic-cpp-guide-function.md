@@ -318,7 +318,7 @@ int f(const void); // (X) 컴파일 오류
 |`va_end()`|[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 사용 종료 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
 |`va_list`|[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)에 대한 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)|
 
-[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 사용하려면 `cstdarg`를 `include`해야 합니다.
+[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 사용하려면 `cstdarg`를 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)해야 합니다.
 
 ```cpp
 #include <cstdarg>
@@ -379,7 +379,7 @@ class T {
 };
 ```
 
-전역 변수를 기본값으로 사용하면, 런타임 호출 시점의 값을 반영합니다.
+[전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)를 기본값으로 사용하면, 런타임 호출 시점의 값을 반영합니다.
 
 ```cpp
 int g_Val = 10;
@@ -392,7 +392,7 @@ g_Val = 20;
 EXPECT_TRUE(f4() == 20);
 ```
 
-전역 변수의 경우와 마찬가지로 함수 호출을 기본값으로 사용하면, 런타임 호출 시점의 값을 반영합니다.
+[전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)의 경우와 마찬가지로 함수 호출을 기본값으로 사용하면, 런타임 호출 시점의 값을 반영합니다.
 
 ```cpp
 int g_Val = 10;

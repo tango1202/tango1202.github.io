@@ -11,14 +11,14 @@ sidebar:
 > * 인라인은 요청일 뿐이다. 컴파일러가 인라인화를 판단한다.
 
 > **모던 C++**
-> * (C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 `include` 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, [클래스 정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 정의 및 초기화가 쉬워졌습니다.
+> * (C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, [클래스 정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 정의 및 초기화가 쉬워졌습니다.
 
 # 개요
 
 `inline`은 다음 2개의 역할을 합니다.
 
 1. 컴파일러가 함수 호출 최적화를 할 수 있게 요청합니다.
-2. 여러 파일에서 `include` 한 함수가 중복 정의되지 않도록 링커에게 알려줍니다. 
+2. 여러 파일에서 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 한 함수가 중복 정의되지 않도록 링커에게 알려줍니다. 
 
 |항목|내용|
 |--|--|
@@ -69,9 +69,9 @@ int T::f2() {return 0;} // inline화 안됨
 
 # 여러 cpp에서 사용하는 인라인 함수 정의
 
-보통 헤더 파일에서 함수를 정의하고, 여러개의 `cpp`에서 `include`하면 함수가 중복 정의되었다며 오류가 발생합니다.
+보통 헤더 파일에서 함수를 정의하고, 여러개의 `cpp`에서 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하면 함수가 중복 정의되었다며 오류가 발생합니다.
 
-하지만 `inline`을 사용하면, 상기에 언급했듯 여러 파일에서 `include` 한 함수가 중복 정의되지 않도록 링커에게 알려주므로, 오류 없이 잘 빌드 됩니다.
+하지만 `inline`을 사용하면, 상기에 언급했듯 여러 파일에서 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 한 함수가 중복 정의되지 않도록 링커에게 알려주므로, 오류 없이 잘 빌드 됩니다.
 
 ```cpp
 // MyInline.h 에서

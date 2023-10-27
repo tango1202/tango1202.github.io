@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 `include` 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, [클래스 정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 정의 및 초기화가 쉬워졌습니다.
+> * (C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, [클래스 정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 정의 및 초기화가 쉬워졌습니다.
 
 # 개요
 
@@ -17,13 +17,13 @@ sidebar:
 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)는 
 
 1. 컴파일러가 함수 호출 최적화를 할 수 있게 요청합니다.
-2. 여러 파일에서 `include` 한 함수가 중복 정의되지 않도록 링커에게 알려줍니다.
+2. 여러 파일에서 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 한 함수가 중복 정의되지 않도록 링커에게 알려줍니다.
 
 의 역할을 가졌는데요,
 
-[인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)는 여러 파일에서 `include` 한 함수가 중복 정의되지 않도록 링커에게 알려주는 역할만 합니다.
+[인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)는 여러 파일에서 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 한 함수가 중복 정의되지 않도록 링커에게 알려주는 역할만 합니다.
 
-따라서, 헤더 파일에서 `inline` 으로 변수를 선언해 두면, 여러 `cpp` 에서 `include` 하여 사용할 수 있습니다.
+따라서, 헤더 파일에서 `inline` 으로 변수를 선언해 두면, 여러 `cpp` 에서 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하여 사용할 수 있습니다.
 
 ```cpp
 // Test.h 헤더 파일에서,
