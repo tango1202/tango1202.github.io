@@ -185,6 +185,8 @@ public:
 2. 스마트 포인터인 `TImplPtr`을 정의했습니다.
 3. 스마트 포인터를 사용하므로 `T`의 복사 생성자, 소멸자, 복사 대입 연산자, `Swap`을 제거했습니다.
 
+STL을 이용하면 좀더 간단하게 구현할 수 있습니다. 자세한 내용은 [unique_ptr을 이용한 PImpl 구현](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#unique_ptr%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EA%B5%AC%ED%98%84)을 참고하세요.
+
 ```cpp
 // --------
 // 선언에서
