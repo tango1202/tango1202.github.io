@@ -11,14 +11,14 @@ sidebar:
 > 종속 타입인 경우 `typename`, 파싱 오류시 `template`을 작성하라.
 
 > **모던 C++**
-> * (C++11~) 가변 인자를 활용한 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)이 추가되어 코딩 자유도가 높아졌습니다.
+> * (C++11~) 파라메터 팩을 이용한 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)이 추가되어 코딩 자유도가 높아졌습니다.
 > * (C++11~) [템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%A5%B8%EC%AA%BD-%EA%BA%BD%EC%87%A0-%EA%B4%84%ED%98%B8) 파싱을 개선하여 템플릿 인스턴스화시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.
 > * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 템플릿 함수처럼 타입을 생략할 수 있습니다.
-> * (C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 [템플릿 인자로 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.
+> * (C++17~) 템플릿이 타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.
 
 # 템플릿 인자
 
-템플릿 클래스 정의시 `<>` 사이에 인자(Parameter) 집합을 정의하고, 템플릿 인스턴스화시 전달한 인수(Argument) 집합으로 대체되어 클래스가 생성됩니다.
+템플릿 클래스 정의시 `<>` 사이에 [템플릿 인자(Parameter)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 집합을 정의하고, 템플릿 인스턴스화시 전달한 인수(Argument) 집합으로 대체되어 클래스가 생성됩니다.
 
 ```cpp
 // T, U : 인자(Parameter) 집합
@@ -29,7 +29,7 @@ class A {};
 A<int, char> a; 
 ```
 
-템플릿 인자는 다음처럼 타입, 템플릿 개체, 비 템플릿 개체, 템플릿 템플릿 인자로 작성할 수 있습니다.
+[템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)는 다음처럼 타입, 템플릿 개체, 비 템플릿 개체, 템플릿 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)로 작성할 수 있습니다.
 
 1. 타입
    
@@ -46,7 +46,7 @@ A<int, char> a;
 
 2. 템플릿 개체
 
-    `T`에 종속적인 `T val`을 템플릿 인자로 사용할 수 있습니다.
+    `T`에 종속적인 `T val`을 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)로 사용할 수 있습니다.
 
     ```cpp
     template<typename T, T val>
@@ -61,7 +61,7 @@ A<int, char> a;
 
 3. 비 템플릿 개체
 
-    `int val`과 같이 `T`와 무관한 타입을 템플릿 인자로 사용할 수 있습니다.
+    `int val`과 같이 `T`와 무관한 타입을 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)로 사용할 수 있습니다.
 
     ```cpp
     template<typename T, int val>
@@ -77,7 +77,7 @@ A<int, char> a;
     a = b; // (X) 컴파일 오류. A<int, 10> 은 A<int, 11> 과 타입이 다릅니다.
     ```
 
-    > *(C++17~) 템플릿이 타입이 아닌 개체를 인자로 사용할때 [템플릿 인자로 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.*
+    > *(C++17~) 템플릿이 타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.*
 
 4. 템플릿 템플릿 인자
 
@@ -130,7 +130,7 @@ C<B> x3;  // (O) B는 이름 없는 클래스의 typedef
 
 # 기본 템플릿 인자
 
-함수의 [기본값 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)와 마찬가지로 인자에 기본값을 줄 수 있으며, 기본값 인자를 사용하면, 그 뒤로는 다 기본값을 사용해야 합니다.
+함수의 [기본값 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)와 마찬가지로 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)에 기본값을 줄 수 있으며, 기본값 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 사용하면, 그 뒤로는 다 기본값을 사용해야 합니다.
 
 ```cpp
 template<typename T = char, typename U = int>
@@ -184,7 +184,7 @@ void f(typename B<T>::Type val) {} // (O)
 
 **템플릿 인자 끝 `>` 과 대소 비교 `>`**  
 
-템플릿 인자 집합 내에 대소 비교 `>`가 있다면, 컴파일러가 헷갈리므로 다음처럼 괄호를 사용해야 합니다.
+[템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 집합 내에 대소 비교 `>`가 있다면, 컴파일러가 헷갈리므로 다음처럼 괄호를 사용해야 합니다.
 
 ```cpp
 template<bool b = 3 > 4> // (X) 컴파일 오류. 
@@ -196,7 +196,7 @@ class B {};
 
 **템플릿 인자 끝 `>` 중첩**
 
-템플릿 인자 끝 `>`가 중첩되어 `>>`가 되면 비트 Right Shift 연산자로 파싱되어 컴파일 오류가 납니다. 따라서 `> >`와 같이 공백을 추가해야 합니다.
+[템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 끝 `>`가 중첩되어 `>>`가 되면 비트 Right Shift 연산자로 파싱되어 컴파일 오류가 납니다. 따라서 `> >`와 같이 공백을 추가해야 합니다.
 
 ```cpp
 template<typename T>
@@ -279,7 +279,7 @@ public:
 
 # 템플릿 동등성
 
-템플릿 인자의 이름이 다르더라도 의미상으로 동일하면 동등한 템플릿입니다.
+[템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)의 이름이 다르더라도 의미상으로 동일하면 동등한 템플릿입니다.
 
 ```cpp
 template<typename T> // #1.

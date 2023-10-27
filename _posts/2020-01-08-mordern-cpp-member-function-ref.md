@@ -110,7 +110,7 @@ Big_11 big = std::move(a).GetData();
 Big_11 big = A_11().GetData(); 
 ```
 
-그러면 다음은 될까요? 리턴값을 `move()`했지만, `const Big&`를 `const Big&&`를 바꾸기 때문에, 이동 생성자와 인자 타입이 달라 (*이동 생성자는 `Big_11(Big_11&& other)`입니다. [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)가 다르죠.*) 그냥 복사 생성자를 호출합니다.
+그러면 다음은 될까요? 리턴값을 `move()`했지만, `const Big&`를 `const Big&&`를 바꾸기 때문에, 이동 생성자와 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입이 달라 (*이동 생성자는 `Big_11(Big_11&& other)`입니다. [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)가 다르죠.*) 그냥 복사 생성자를 호출합니다.
 
 ```cpp
 // A_11().GetData()는 const Big_11&를 리턴하고, move() 는 const Big_11&& 을 리턴. 이동 생성자 인자 타입과 다르므로, 그냥 복사 생성자 호출 

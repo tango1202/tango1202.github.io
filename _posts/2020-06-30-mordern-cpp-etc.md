@@ -10,7 +10,7 @@ sidebar:
 
 > * (C++11~) [using을 이용한 타입 별칭이 추가](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-using-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)되어 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.
 > * (C++11~) [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof)를 이용하여 메모리 정렬 방식을 표준화 했습니다.
-> * (C++11~) 가변 인자를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.
+> * (C++11~) 파라메터 팩을 이용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.
 > * (C++11~) [멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.
 > * (C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 `include` 하기 전에 파일이 존재하는지 확인할 수 있습니다.
 
@@ -110,7 +110,7 @@ public:
         for (int i{0}; i < count; ++i) {
             result += va_arg(paramList, int); // 가변 인자 추출
         }
-        va_end(paramList); // 가변인자 처리 끝
+        va_end(paramList); // 가변 인자 처리 끝
         return result;       
     }
 };
@@ -119,7 +119,7 @@ EXPECT_TRUE(T::Sum(3, 1, 2, 3) == 1 + 2 + 3);
 EXPECT_TRUE(MY_SUM(3, 1, 2, 3) == 1 + 2 + 3);
 ```
 
-하지만, 인자가 없는 경우에는 `T::Sum(count, )`로 치환되어 컴파일 오류가 납니다.
+하지만, 인수가 없는 경우에는 `T::Sum(count, )`로 치환되어 컴파일 오류가 납니다.
 
 ```cpp
 // 가변 인자에 인수가 없는 경우

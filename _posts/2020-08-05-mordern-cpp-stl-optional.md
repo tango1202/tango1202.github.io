@@ -64,7 +64,7 @@ C++17 부터는 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-c
 |`->()`, `*` (C++17~)|값에 접근합니다.|
 |`(bool)`, `has_value()` (C++17~)|값이 있는지 검사합니다.|
 |`value()` (C++17~)|값을 리턴합니다. 값이 없으면, `bad_optional_access` 예외를 발생합니다.|
-|`value_or(default)` (C++17~)|값이 있으면 값을 리턴하고, 없으면 인자로 전달한 `default`를 리턴합니다.|
+|`value_or(default)` (C++17~)|값이 있으면 값을 리턴하고, 없으면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달한 `default`를 리턴합니다.|
 |`emplace()` (C++17~)|내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)내에서 내부 개체를 직접 생성합니다.|
 |`reset()` (C++17~)|내부 개체를 초기화합니다.|
 |`swap()` (C++17~)|바꿔치기 합니다.|

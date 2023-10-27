@@ -78,7 +78,7 @@ sidebar:
 |아예 신경쓰지 않습니다.|프로그램이 죽던지, 나중에 프로그래머가 디버깅하다가 스트레스로 죽던지 하니, 신경 쓰셔야 합니다.|
 |오류 코드를 리턴합니다.|리턴된 오류는 대부분 무시될 수 있습니다. 엔진 안쪽의 하위 개체들이라면 예외를 발생시키고, 이를 처리할 수 있는 곳까지 방출하여, 상위 개체에서 처리할 수 있도록 해줘야 합니다.([예외 레이어링](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81) 참고)|
 |전역 오류 코드를 세팅합니다.|호출한 곳에서 오류를 확인할 확률은 0.00001% 입니다. 함수 호출 후 `GetLastError()`를 다시 검사하는 경우는 거의 없잖아요?|
-|자가 진단 후 현 함수를 정상 종료 시킵니다.|`if (condition) return;` 와 같이 인자를 검사하고 그냥 종료 시키면, 잘못된 인자에 대한 처리가 수행되지 않습니다. 시스템이 정말 계속 안전하게 돌아갈지 의문이고, 이게 나중에 알 수 없는 버그의 원인이 되기도 합니다.|
+|자가 진단 후 현 함수를 정상 종료 시킵니다.|`if (condition) return;` 와 같이 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 검사하고 그냥 종료 시키면, 잘못된 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 대한 처리가 수행되지 않습니다. 시스템이 정말 계속 안전하게 돌아갈지 의문이고, 이게 나중에 알 수 없는 버그의 원인이 되기도 합니다.|
 |오류가 발생할 경우 호출할 함수를 호출합니다.|`new_handler`가 이런 구조인데요, 사실 이런 구조는 사용법이 좀 어렵습니다.|
 
 

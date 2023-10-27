@@ -103,7 +103,7 @@ T obj(1, 2); // (O) 값 2개를 전달받는 생성자 호출
 
 # 복사 초기화
 
-복사 초기화는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 앞서 소개한 인자가 1개인 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)(*[형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)*)를 호출해 줍니다. 다시 한번 말씀드리지만, 인자가 1개인 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)는 뜻하지 않게 형변환이 될 수 있으므로 `explicit`로 정의하는게 좋고요.
+복사 초기화는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 앞서 소개한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개인 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)(*[형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)*)를 호출해 줍니다. 다시 한번 말씀드리지만, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개인 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)는 뜻하지 않게 형변환이 될 수 있으므로 `explicit`로 정의하는게 좋고요.
 (*[명시적 변환 생성 지정자(`explicit`)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 참고*)
 
 ```cpp
@@ -126,7 +126,7 @@ T obj(); // T 타입의 obj 개체를 기본 생성자로 생성하고 싶지만
 |항목|의도|컴파일러 해석|
 |--|--|--|
 |`T obj();`|`T` 타입의 `obj` 개체를 기본 생성자로 생성하고 싶습니다.|`T` 타입을 리턴하는 함수 `obj()`를 선언합니다.|
-|`T obj(T());`|`T` 타입의 기본 생성자로 생성한 것을 `obj`에 복사 생성하고 싶습니다.|`T` 타입을 리턴하고, `T(*)()` 함수 포인터를 인자로 전달받은 함수 `obj()`를 선언합니다.|
+|`T obj(T());`|`T` 타입의 기본 생성자로 생성한 것을 `obj`에 복사 생성하고 싶습니다.|`T` 타입을 리턴하고, `T(*)()` 함수 포인터를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받은 함수 `obj()`를 선언합니다.|
 
 따라서 상기 의도에 따른 표현은 다음과 같이 해야 합니다.
 
@@ -141,7 +141,7 @@ T obj(); // T 타입의 obj 개체를 기본 생성자로 생성하고 싶지만
 
 # 생성자 호출 및 함수 인수 전달 최적화
 
-생성자 호출이나 함수 인자 전달시 다음 생성 사례들은 컴파일러에 따라 1회 생성자 호출로 최적화 해줍니다.(*상황에 따라 최적화가 안되면 비효율적인 코드가 될 수 있습니다.*)
+생성자 호출이나 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 전달시 다음 생성 사례들은 컴파일러에 따라 1회 생성자 호출로 최적화 해줍니다.(*상황에 따라 최적화가 안되면 비효율적인 코드가 될 수 있습니다.*)
 
 |항목|의도|컴파일러 최적화|
 |--|--|--|

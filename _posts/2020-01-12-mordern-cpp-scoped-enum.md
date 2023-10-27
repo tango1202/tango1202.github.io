@@ -50,7 +50,7 @@ Week_11 week{Week_11::Sunday}; // 범위명을 지정하여 이름 충돌 회피
 
 # 열거형의 암시적 형변환
 
-기존 [열거형은 암시적으로 형변환](??)이 되지만, [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)은 형변환되지 않습니다.
+기존 [열거형은 암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 되지만, [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)은 형변환되지 않습니다.
 
 ```cpp
 enum Week {
@@ -79,7 +79,7 @@ enum class MyEnum_11;
 
 # 기반 타입
 
-기존에는 [열거형의 크기](??)를 지정하기 위하여 열거자에 강제적으로 `dummy` 값을 입력했는데요, 
+기존에는 [열거형의 크기](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/#%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%ED%81%AC%EA%B8%B0)를 지정하기 위하여 열거자에 강제적으로 `dummy` 값을 입력했는데요, 
 
 C++11 부터는 [기반 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EA%B8%B0%EB%B0%98-%ED%83%80%EC%9E%85)을 지정할 수 있습니다. 기본적으로는 `int`를 사용하며, 다음과 같이 명시적으로 변경할 수 있습니다.
 

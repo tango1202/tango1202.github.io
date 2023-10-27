@@ -41,8 +41,8 @@ void SaveFile() const {
 
 경로명이 함수내에 있기 때문에, 파일명이나 경로가 바뀐다면 `SaveFile()`함수를 수정해야 합니다.
 
-하지만, `pathName`을 인자로 요청한다면, 파일명이나 경로가 바꼈을때 `SaveFile()`함수를 수정할 필요가 없습니다. 인자로 전달하면 되니까요.
-경로명 변경 확장에는 열려있고, `SaveFile ()`함수 수정에는 닫혀 있게 됩니다.
+하지만, `pathName`을 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 요청한다면, 파일명이나 경로가 바꼈을때 `SaveFile()`함수를 수정할 필요가 없습니다. [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달하면 되니까요.
+경로명 변경 확장에는 열려있고, `SaveFile()`함수 수정에는 닫혀 있게 됩니다.
 
 ```cpp
 void SaveFile(const std::wstring& pathName) const {}

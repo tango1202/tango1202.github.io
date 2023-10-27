@@ -13,7 +13,7 @@ sidebar:
 조금 풀어 쓰면,
 
 1. 클래스 생성시 필요한 요소를 명시적으로 요청하고,
-2. 함수 호출시 전역이나 인프라 요소를 몰래 사용하지 말고, 인자로 요청하라.
+2. 함수 호출시 전역이나 인프라 요소를 몰래 사용하지 말고, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 요청하라.
 
 라는 뜻입니다. 
 
@@ -102,7 +102,7 @@ class Rectangle {
 };
 ```
 
-이젠 외부에서 `view` 중심점을 구해 `RotateAt()`에 전달하여야 합니다. 함수가 필요로 하는 모든 요소를 인자로 제공했기 때문에([완전한 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%ED%95%A8%EC%88%98) 참고), **코딩 계약** 이 좀더 투명해 졌습니다. 
+이젠 외부에서 `view` 중심점을 구해 `RotateAt()`에 전달하여야 합니다. 함수가 필요로 하는 모든 요소를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 제공했기 때문에([완전한 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%ED%95%A8%EC%88%98) 참고), **코딩 계약** 이 좀더 투명해 졌습니다. 
 
 ```cpp
 // view 중심점을 구합니다.

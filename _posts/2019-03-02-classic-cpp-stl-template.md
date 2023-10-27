@@ -38,9 +38,9 @@ MyClass<int> myClass;
 EXPECT_TRUE(myClass.Plus(10, 10) == 20); 
 ```
 
-1. `typename` : 템플릿 인자 정의에 사용합니다.(`class` 키워드를 사용해도 됩니다. 클래스로 한정하지 않고 타입의 이름이란 의미로 `typename`을 더 선호합니다.)
-2. `T` : 템플릿 인자(Parameter)입니다. 향후 인스턴스화시 구체 타입으로 대체 됩니다.
-3. `int` : 템플릿 인자 `T`가 대체될 인수(Argument)입니다.  
+1. `typename` : [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 정의에 사용합니다.(`class` 키워드를 사용해도 됩니다. 클래스로 한정하지 않고 타입의 이름이란 의미로 `typename`을 더 선호합니다.)
+2. `T` : [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)(Parameter)입니다. 향후 인스턴스화시 구체 타입으로 대체 됩니다.
+3. `int` : [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) `T`가 대체될 인수(Argument)입니다.  
 
 > *(C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 템플릿으로 만들 수 있습니다.*<br/>
 > *(C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 템플릿 함수처럼 타입을 생략할 수 있습니다.*
@@ -139,7 +139,7 @@ b.h();
 
 # 템플릿 선언과 정의 분리
 
-선언과 정의를 분리할 때, 바깥쪽 템플릿과 안쪽 템플릿이 있다면, 여러개의 인자 집합이 필요합니다.
+선언과 정의를 분리할 때, 바깥쪽 템플릿과 안쪽 템플릿이 있다면, 여러개의 [템플릿 인자](?https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 집합이 필요합니다.
 
 ```cpp
 template<typename T> 

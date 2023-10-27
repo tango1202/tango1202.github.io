@@ -178,7 +178,7 @@ Other<int> other;
 f(other, 10); // f<int>(Other<int>, int)
 ```
 
-템플릿의 인자 타입이 정확히 일치하지 않으면 추론할 수 없습니다. 하기에서 `A<10>`에서 `10`은 `int` 타입이기 때문에 `short`를 사용하는 `f()` 함수로 전달할 수 없습니다. 
+[템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 타입이 정확히 일치하지 않으면 추론할 수 없습니다. 하기에서 `A<10>`에서 `10`은 `int` 타입이기 때문에 `short`를 사용하는 `f()` 함수로 전달할 수 없습니다. 
 
 다만, `f<10>(a)`와 같이 명시적으로 호출하여 `short` 에 `10`을 전달하고, 같은 `A<10>` 타입으로 만들어 사용할 수 있습니다.  
 
@@ -201,10 +201,10 @@ f<10>(a); // 명시적으로 10을 전달하여 A<10> 타입이 됨. 같은 타�
 
 # 템플릿 함수 오버로딩 결정 규칙
 
-서로 인자가 다른 함수들은 오버로딩 후보군에서 가장 적합한 것으로 결정됩니다.([오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고)
+서로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다른 함수들은 오버로딩 후보군에서 가장 적합한 것으로 결정됩니다.([오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고)
 
 
-하지만 템플릿 함수의 경우는 정의시에는 인자가 다르지만, 인스턴스화 과정에서 인자가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 오버로딩 버전(**좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.)을 선택하게 됩니다.
+하지만 템플릿 함수의 경우는 정의시에는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다르지만, 인스턴스화 과정에서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 오버로딩 버전(**좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.)을 선택하게 됩니다.
 
 
 예를 들면,
@@ -232,15 +232,8 @@ EXPECT_TRUE(f(&a) == 2);
     ```
 
 2. 더 특수화된 버전 선택 - **Partial Ordering**
-    ```cpp
-    template<typename T> 
-    int f(T) {return 1;} // #1.
-
-    template<typename T> 
-    int f(T*) {return 2;} // #2.
-    ```
     
-    에서 포인터만 처리하는(좀 더 적은 타입을 허용하는) #2 선택
+    `f(T)`와 `f(T*)`에서 포인터만 처리하는(*좀 더 적은 타입을 허용하는*) #2 선택
 
 3. 템플릿이 아닌 일반 함수와 오버로딩 규칙 적용. 이때 일반 함수가 우선 순위가 높음
 
@@ -300,7 +293,7 @@ const int* p;
 EXPECT_TRUE(f(p) == 3);
 ```
 
-특수화된 버전 선택시 기본 인자는 무시하고 오버로딩 버전을 결정합니다.
+특수화된 버전 선택시 [인자의 기본값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)는 무시하고 오버로딩 버전을 결정합니다.
 
 ```cpp
 template<typename T>
@@ -318,7 +311,7 @@ EXPECT_TRUE(f(p) == 2);
 
 **특수화된 인자**
 
-인자가 템플릿 타입을 이용하여 좀 더 적합하게 특수화(좀 더 적은 타입을 허용) 되었다면, 해당 특수화된 버전을 선택합니다.
+[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 템플릿 타입을 이용하여 좀 더 적합하게 특수화(*좀 더 적은 타입을 허용*) 되었다면, 해당 특수화된 버전을 선택합니다.
 
 ```cpp
 template<typename T>

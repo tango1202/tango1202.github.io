@@ -33,7 +33,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |`logic_error`|프로그램 내의 논리가 잘못되었습니다.|
-|[invalid_argument](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8)| 잘못된 인자를 전달했습니다.|
+|[invalid_argument](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8)| 잘못된 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달했습니다.|
 |`domain_error`|해결하고자 하는 문제 영역(도메인) 에 오류가 있습니다.|
 |`length_error`|길이 제한을 초과했습니다.|
 |[out_of_range](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#-%EA%B3%BC-at)|범위를 벗어난 요소에 접근했습니다.|

@@ -33,7 +33,7 @@ EXPECT_TRUE(1.0_mm == 1_mm);
 ```
 > *(C++14~) `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공됩니다.*
 
-**문자열 추론**
+# 문자열 추론
 
 기존 문자열을 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)로 초기화 하면 `const char*`로 추론되는데요, [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 만들어 `string`으로 추론되게 할 수 있습니다.
 
@@ -48,13 +48,13 @@ EXPECT_TRUE("hello"_forced_string.size() == 5); // 임시 개체도 가능
 ```
 > *(C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.*
 
-**식별자 규칙**
+# 식별자 규칙
 
 식별자는 `_`로 시작해야 하며, 이중 밑줄은 허용하지 않습니다.
 
-**인자 규칙**
+# 인자 규칙
 
-사용할 수 있는 인자의 형태는 다음과 같습니다.
+사용할 수 있는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 형태는 다음과 같습니다.
 
 ```cpp
 // 정수
@@ -138,7 +138,7 @@ float floatVal_17 = 0xA.9p11; // 21632
 
 # (C++20~) 사용자 정의 리터럴 인자 규칙 char8_t
 
-인자 규칙에 `char8_t` 이 추가되었습니다.
+[인자 규칙](??)에 `char8_t`이 추가되었습니다.
 
 ```cpp
 ReturnType operator ""_u(char8_t); 

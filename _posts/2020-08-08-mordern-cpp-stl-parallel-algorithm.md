@@ -31,7 +31,7 @@ sidebar:
 
 `<execution>` 헤더 파일을 포함해야 하며, `std::execution` 네임스페이스를 사용합니다.
 
-실행 정책을 지원하는 알고리즘 함수는 다음과 같이 실행 정책을 인자로 받습니다.
+실행 정책을 지원하는 알고리즘 함수는 다음과 같이 실행 정책을 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받습니다.
 
 ```cpp
 // 실행 정책을 인자로 받습니다.

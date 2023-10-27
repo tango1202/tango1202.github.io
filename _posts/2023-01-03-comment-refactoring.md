@@ -53,9 +53,9 @@ void Shape::Rotate(const Degree& delta, const bool repaint /*= true*/) /* throw(
 
 1. `Degree`라는 클래스를 만들어 전달할 인수가 `Degree` 형태라는 것을 명시했습니다. 아울러 클래스 이므로 0 ~ 360 범위를 넘어서면 정규화될 것이라는 믿음을 심어 주었습니다.
 
-2. `delta` 라고 인자를 두어 상대값이라는 것을 명시했습니다.
+2. `delta` 라고 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 두어 상대값이라는 것을 명시했습니다.
 
-3. `repaint` 인자를 두어 상황에 따라 화면을 갱신할 수 있다는 것을 명시했습니다.
+3. `repaint` [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 두어 상황에 따라 화면을 갱신할 수 있다는 것을 명시했습니다.
 
 4. `shape`의 각도를 저장하는 함수가 아니라, 실제로 회전시킨다는 의미로 함수명을 `Rotate`라로 변경했습니다.
 

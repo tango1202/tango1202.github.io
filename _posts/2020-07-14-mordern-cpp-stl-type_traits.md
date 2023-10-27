@@ -83,7 +83,7 @@ ThreeType three;
 |항목|내용|
 |--|--|
 |`is_const` (C++11~)|[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 타입인지 검사합니다.|
-|`is_volatile` (C++11~)|`volatile` 타입인지 검사합니다.|
+|`is_volatile` (C++11~)|[volatile](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%B5%9C%EC%A0%81%ED%99%94-%EC%A0%9C%ED%95%9C-%ED%95%9C%EC%A0%95%EC%9E%90volatile) 타입인지 검사합니다.|
 |`is_trivial` (C++11~)|[Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85) 인지 검사합니다.|
 |`is_trivially_copyable` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85) 이나 [Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85) 처럼 간단하게 복사 가능한지 검사합니다.|
 |`is_standard_layout` (C++11~)|[표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 인지 검사합니다.|
@@ -106,11 +106,11 @@ ThreeType three;
 
 |항목|내용|
 |--|--|
-|`is_constructible` (C++11~)<br/>`is_trivially_constructible` (C++11~)<br/>`is_nothrow_constructible` (C++11~)|열거된 인자 타입으로 생성될 수 있는지 검사합니다.|
+|`is_constructible` (C++11~)<br/>`is_trivially_constructible` (C++11~)<br/>`is_nothrow_constructible` (C++11~)|열거된 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입으로 생성될 수 있는지 검사합니다.|
 |`is_default_constructible` (C++11~)<br/>`is_trivially_default_constructible` (C++11~)<br/>`is_nothrow_default_constructible` (C++11~)|기본 생성자로 생성될 수 있는지 검사합니다.|
 |`is_copy_constructible` (C++11~)<br/>`is_trivially_copy_constructible` (C++11~)<br/>`is_nothrow_copy_constructible` (C++11~)|복사 생성자로 생성될 수 있는지 검사합니다.|
 |`is_move_constructible` (C++11~)<br/>`is_trivially_move_constructible` (C++11~)<br/>` is_nothrow_move_constructible` (C++11~)|이동 생성자로 생성될 수 있는지 검사합니다.|
-|`is_assignable` (C++11~)<br/>`is_trivially_assignable` (C++11~)<br/>` is_nothrow_assignable` (C++11~)|주어진 인자 타입으로 대입될 수 있는지 검사합니다.|
+|`is_assignable` (C++11~)<br/>`is_trivially_assignable` (C++11~)<br/>` is_nothrow_assignable` (C++11~)|주어진 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입으로 대입될 수 있는지 검사합니다.|
 |`is_copy_assignable` (C++11~)<br/>`is_trivially_copy_assignable` (C++11~)<br/>` is_nothrow_copy_assignable` (C++11~)|복사 대입될 수 있는지 검사합니다.|
 |`is_move_assignable` (C++11~)<br/>`is_trivially_move_assignable` (C++11~)<br/>` is_nothrow_move_assignable` (C++11~)|이동 대입될 수 있는지 검사합니다.|
 |`is_destructible` (C++11~)<br/>` is_trivially_destructible` (C++11~)<br/>` is_nothrow_destructible` (C++11~)|소멸 가능한 타입인지 검사합니다.|
@@ -129,7 +129,7 @@ ThreeType three;
 
 |항목|내용|
 |--|--|
-|`is_same` (C++11~)|두개의 타입이 동일한지 검사합니다. 이때 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)와 `volatile`을 고려합니다. 즉 `int`와 `const int`는 다른 타입입니다.|
+|`is_same` (C++11~)|두개의 타입이 동일한지 검사합니다. 이때 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)와 [volatile](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%B5%9C%EC%A0%81%ED%99%94-%EC%A0%9C%ED%95%9C-%ED%95%9C%EC%A0%95%EC%9E%90volatile)을 고려합니다. 즉 `int`와 `const int`는 다른 타입입니다.|
 |`is_base_of` (C++11~)|`Base`가 `Derived`의 부모인지 검사합니다.([CloneTraits 구현](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/#clonetraits-%EA%B5%AC%ED%98%84) 의 `IsDerivedFrom` 참고)|
 |`is_convertible` (C++11~)<br/>`is_nothrow_convertible` (C++20~)|`From` 타입이 `To`로 변환 가능한지 검사합니다.|
 |`is_invocable` (C++17~)<br/>`is_invocable_r` (C++17~)<br/>`is_nothrow_invocable` (C++17~)<br/>`is_nothrow_invocable_r` (C++17~)|(작성중)|
@@ -140,8 +140,8 @@ ThreeType three;
 
 |항목|내용|
 |--|--|
-|`remove_cv` (C++11~)<br/>`remove_const` (C++11~)<br/>`remove_volatile` (C++11~)|[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)나 `volatile` 한정자를 제거합니다.|
-|`add_cv` (C++11~)<br/>`add_const` (C++11~)<br/>`add_volatile` (C++11~)|[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)나 `volatile` 한정자를 추가합니다.|
+|`remove_cv` (C++11~)<br/>`remove_const` (C++11~)<br/>`remove_volatile` (C++11~)|[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)나 [volatile](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%B5%9C%EC%A0%81%ED%99%94-%EC%A0%9C%ED%95%9C-%ED%95%9C%EC%A0%95%EC%9E%90volatile) 한정자를 제거합니다.|
+|`add_cv` (C++11~)<br/>`add_const` (C++11~)<br/>`add_volatile` (C++11~)|[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)나 [volatile](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%B5%9C%EC%A0%81%ED%99%94-%EC%A0%9C%ED%95%9C-%ED%95%9C%EC%A0%95%EC%9E%90volatile) 한정자를 추가합니다.|
 
 # 참조자
 
@@ -177,7 +177,7 @@ ThreeType three;
 |--|--|
 |`aligned_storage`(C++11~C++23)|(작성중)|
 |`aligned_union`(C++11~C++23)|(작성중)|
-|`decay` (C++11~)|참조성을 떼고, 타입으로 만듭니다. 즉 `int &`는 `int`가 됩니다. 또한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 만듭니다.이와는 반대로 참조성을 붙여서 인자 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
+|`decay` (C++11~)|참조성을 떼고, 타입으로 만듭니다. 즉 `int&`는 `int`가 됩니다. 또한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 만듭니다. 이와는 반대로 참조성을 붙여서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
 |`enable_if` (C++11~)|(작성중)|
 |`conditional` (C++11~)|(작성중)|
 |`common_type` (C++11~)|(작성중)|

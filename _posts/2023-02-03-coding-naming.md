@@ -30,7 +30,7 @@ sidebar:
 
     * 가독성이 향상되는 경우에만 약어를 씁니다.
 
-    * [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 비교적 짧다면 약어를 씁니다. 함수의 지역 변수나 인자로 사용되는 것인데, 함수의 라인수가 길지 않다면 써도 무방하다고 봅니다.
+    * [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 비교적 짧다면 약어를 씁니다. 함수의 지역 변수나 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용되는 것인데, 함수의 라인수가 길지 않다면 써도 무방하다고 봅니다.
    
     * 검색하기 힘들거나 검색 정확도를 떨어뜨리는 약어는 쓰지 않습니다.
 

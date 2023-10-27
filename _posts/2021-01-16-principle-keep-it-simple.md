@@ -19,7 +19,7 @@ sidebar:
 
 간단하게 만드는게 사실 더 어렵습니다.
 
-1. 함수명, 인자명을 간결하고, 명확하게 합니다.
+1. 함수명, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명을 간결하고, 명확하게 합니다.
 2. 설명이 필요 없도록 상황에 맞는 디자인 패턴을 사용합니다.
 3. 사용자 친화적인 방법을 사용합니다.
 4. 팀내에서 공통된 컨벤션을 준수합니다.

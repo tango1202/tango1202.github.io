@@ -16,7 +16,7 @@ sidebar:
 > * (C++11~) [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.
 > * (C++11~) [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof)를 이용하여 메모리 정렬 방식을 표준화 했습니다.
 > * (C++11~) [align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#align)은 메모리 정렬된 포인터를 구합니다.
-> * (C++11~) 가변 인자를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.
+> * (C++11~) [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.
 
 # 개요
 
@@ -25,7 +25,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |[#define 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)|식별자를 대체 목록으로 치환함|
-|[#define() 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%ED%95%A8%EC%88%98)|인자들을 대체 목록에 반영하여 치환함|
+|[#define() 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%ED%95%A8%EC%88%98)|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들을 대체 목록에 반영하여 치환함|
 |[#undef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#undef)|`define` 정의를 취소함|
 |[defined()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BB%B4%ED%8C%8C%EC%9D%BC)|주어진 식별자가 `define` 되었는지 검사함|
 |[#if](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BB%B4%ED%8C%8C%EC%9D%BC)|`if` 제어문과 유사.<br/>조건이 참이면 해당 코드 블록 포함|
@@ -120,7 +120,7 @@ EXPECT_TRUE(val == 6);
 
 # 매크로 함수
 
- [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)는 인자들을 대체 목록에 반영하여 치환합니다. 함수라고는 하지만 단순 치환입니다.
+ [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들을 대체 목록에 반영하여 치환합니다. 함수라고는 하지만 단순 치환입니다.
 
  ```cpp
 #define SQUARE(x) x * x // (△) 비권장. 인자와 코딩 계약이 안됩니다.
@@ -128,26 +128,26 @@ EXPECT_TRUE(val == 6);
 EXPECT_TRUE(SQUARE(2) == 4); // 2 * 2
 ```
 
-문제 없어 보일 수도 있겠으나, 수식을 인자로 입력하면 단순 치환에 따라 연산 우선 순위가 꼬여 엉뚱한 결과가 나올 수 있습니다.
+문제 없어 보일 수도 있겠으나, 수식을 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 입력하면 단순 치환에 따라 연산 우선 순위가 꼬여 엉뚱한 결과가 나올 수 있습니다.
 
 ```cpp
 EXPECT_TRUE(SQUARE(1 + 1) == 3); // (X) 오동작. 연산자 우선 순위가 꼬였습니다. 1 + 1 * 1 + 1
 ```
 
-이를 해결하는 방법으로 대체되는 인자에 괄호를 사용하는 방법이 있기는 합니다.
+이를 해결하는 방법으로 대체되는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 괄호를 사용하는 방법이 있기는 합니다.
 
 ```cpp
 #define SQUARE(x) (x) * (x) // (△) 비권장. 연산 우선 순위는 해결됐지만, 여전히 인자와 코딩 계약이 안됩니다.
 EXPECT_TRUE(SQUARE(1 + 1) == 4); // (1 + 1) * (1 + 1)
 ```
 
-연산 우선 순위를 해결했다고 하더라도, 여전히 인자 타입에 따른 **코딩 계약**은 할 수 없습니다. 그러니, **코딩 계약**과 디버깅 편의를 위해 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하는게 좋습니다.
+연산 우선 순위를 해결했다고 하더라도, 여전히 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에 따른 **코딩 계약**은 할 수 없습니다. 그러니, **코딩 계약**과 디버깅 편의를 위해 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)를 사용하는게 좋습니다.
 
  ```cpp
  inline int Square(int x) { return x * x;} // (O) 인자 타입에 따른 코딩 계약, 디버깅 용이
  ```
 
- > *(C++11~) 가변 인자를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.*
+ > *(C++11~) [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.*
  
 **매크로 함수 특수 기능**
 
@@ -155,8 +155,8 @@ EXPECT_TRUE(SQUARE(1 + 1) == 4); // (1 + 1) * (1 + 1)
 
 |항목|내용|
 |--|--|
-|`#`|인자를 문자열 리터럴로 변경|
-|`##`|인자를 연결|
+|`#`|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 문자열 리터럴로 변경|
+|`##`|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 연결|
 
 ```cpp
 #define MAKE_STRING_LITERAL(x) #x

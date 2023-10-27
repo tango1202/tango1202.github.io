@@ -143,7 +143,7 @@ std::unique_ptr<int> a{new int{10}, std::default_delete<int>{}};
 
 # (C++14~) make_unique()
 
-[make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique)는 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)을 생성합니다. 이때 `T`개체의 생성자 인자를 전달받아 내부적으로 `T`개체를 생성합니다.
+[make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique)는 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)을 생성합니다. 이때 `T`개체의 생성자 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달받아 내부적으로 `T`개체를 생성합니다.
 
 ```cpp
 template<typename T, typename... Args>

@@ -589,9 +589,9 @@ B_11 b2 = std::move_if_noexcept(b1); // B_11(B_11&&)가 nothrow 예외 보증이
 
 # forward()
 
-인자의 값 카테고리를 유지하며 다른 함수에 전달합니다.
+[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 값 카테고리를 유지하며 다른 함수에 전달합니다.
 
-우측값(`rvalue`)을 `T&& val`와 같이 함수의 인자로 전달받는 순간, 이름을 갖게 되어 좌측값(`lvalue`)이 되버립니다. 이름이 있으니, 그 이름을 가지고 다른데 사용할 수 있어서 더이상 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 아닌 거죠. 
+우측값(`rvalue`)을 `T&& val`와 같이 [함수의 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받는 순간, 이름을 갖게 되어 좌측값(`lvalue`)이 되버립니다. 이름이 있으니, 그 이름을 가지고 다른데 사용할 수 있어서 더이상 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 아닌 거죠. 
 
 다음 예에서
 

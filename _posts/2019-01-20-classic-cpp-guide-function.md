@@ -12,17 +12,17 @@ sidebar:
 > * 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하라.
 > * 컴파일러 최적화가 쉽도록, RVO가 쉽도록, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하라.
 > * 다형적인 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
-> * 리턴 타입과 인자 타입은 값을 사용할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용할 것인지, [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
-> * 함수 오버로딩시 함수 인자의 유효 공간에서도 탐색(*ADL(Argument-dependent lookup) 또는 Koenig 검색*)하는 원리를 이해하라.
+> * 리턴 타입과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입은 값을 사용할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용할 것인지, [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
+> * 함수 오버로딩시 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 유효 공간에서도 탐색(*ADL(Argument-dependent lookup) 또는 Koenig 검색*)하는 원리를 이해하라.
 > * 함수에 전달하는 인수는 순서대로 호출되지 않는다. 컴파일러 마음이다.
 
 > **모던 C++**
-> * (C++11~) 함수 인자에 의존하여 리턴 타입을 결정하는 [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다. 
+> * (C++11~) [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 의존하여 리턴 타입을 결정하는 [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다. 
 > * (C++11~) [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.
 > * (C++11~) [중괄호 초기화시 인자의 암시적 형변환을 일부 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98-%EC%B0%A8%EB%8B%A8)하여, 코딩 계약이 개선되었습니다.
 > * (C++11~) [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 이용하여 함수의 예외 방출 여부를 보증합니다.
 > * (C++11~) [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)이 추가되어 1회용 익명 함수를 만들 수 있습니다. 
-> * (C++11~) 가변 인자를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.
+> * (C++11~) [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.
 > * (C++11~) [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되었습니다. 예외를 나열하는 것보다 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept)로 예외를 방출하느냐 안하느냐만 관심을 둡니다.
 > * (C++14~) [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0)이 가능하여 [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85) 대신 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)나 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)를 사용할 수 있습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.
@@ -34,7 +34,7 @@ sidebar:
 함수는 다음 목적을 위해 만듭니다.
 
 1. 함수 코드 재활용(*코드 중복 제거*) 
-2. 함수 인자와의 타입에 기반한 **코딩 계약**
+2. [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와의 타입에 기반한 **코딩 계약**
 3. 디버깅 편의성
 
 함수 정의의 일반적인 형태는 하기와 같습니다.(*`[]`인 부분은 옵션입니다.*)
@@ -46,7 +46,7 @@ return_type function_name(parameter_list) [const] [throw(exception_list)] {}
 |항목|내용|
 |--|--|
 |`return_type`|함수 결과의 타입. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 안됨|
-|`parameter_list`|인자 목록|
+|`parameter_list`|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 목록|
 |`[const]`|멤버 함수인 경우 개체를 수정하지 않음(*[상수 한정자(const), 변경 가능 지정자(mutable), 최적화 제한 한정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 참고*)
 |`[throw(exception-list)]`|함수가 방출하는 예외 사양.<br/>나열된 예외 이외에는 `unexpected_handler` 로 분기함. 사용하지 말 것.(*[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고*)|
 
@@ -250,7 +250,7 @@ return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최
 
 **명명된 인자 선언**
 
-함수의 인자는 인자 타입과 이름을 지정하여 선언합니다.
+[함수의 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 타입과 이름을 지정하여 선언합니다.
 
 ```cpp
 void f(int a, int b); // (O)
@@ -258,13 +258,13 @@ void f(int a, int b); // (O)
 
 **이름이 없는 인자**
 
-함수 정의부에서 사용하지 않는다면, 그리고 함수 포인터 선언 용도라면 인자명을 생략할 수 있습니다. 또한 템플릿 함수 구현시 오버로딩을 위해 생략할 수 있습니다.(*[타입 처리 방법 공통화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/#%ED%83%80%EC%9E%85-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95-%EA%B3%B5%ED%86%B5%ED%99%94) 참고*)
+함수 정의부에서 사용하지 않는다면, 그리고 함수 포인터 선언 용도라면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명을 생략할 수 있습니다. 또한 템플릿 함수 구현시 오버로딩을 위해 생략할 수 있습니다.(*[타입 처리 방법 공통화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/#%ED%83%80%EC%9E%85-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95-%EA%B3%B5%ED%86%B5%ED%99%94) 참고*)
 
 ```cpp
 void f(int, int); // (O)
 ```
 
-이외에, 사용하지 않는 인자를 억지로 작성해야 한다는건 악취가 난다는 뜻입니다. 설계 변경을 추천합니다. 그럼에도 불구하고 꼭 인자 생략을 해야 한다면, 하기 작성 방법을 고려해 보세요.
+이외에, 사용하지 않는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 억지로 작성해야 한다는건 악취가 난다는 뜻입니다. 설계 변경을 추천합니다. 그럼에도 불구하고 꼭 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 생략을 해야 한다면, 하기 작성 방법을 고려해 보세요.
 
 ```cpp
 void f(int, int) {
@@ -293,14 +293,14 @@ void f(int a, int b) {
 
 **인자 없음**
 
-인자가 없으면 생략하거나 `void`를 작성할 수 있습니다.
+[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 없으면 생략하거나 `void`를 작성할 수 있습니다.
 
 ```cpp
 void f(); // (O)
 void f(void); // (O)
 ```
 
-`void`를 다른 인자와 함께 섞어 쓰거나, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)와 함께 쓰는건 컴파일 오류가 납니다.(*`void*`는 포인터형이기에 `const void*`는 괜찮습니다.*)
+`void`를 다른 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와 함께 섞어 쓰거나, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)와 함께 쓰는건 컴파일 오류가 납니다.(*`void*`는 포인터형이기에 `const void*`는 괜찮습니다.*)
 
 ```cpp
 int f(void, int); // (X) 컴파일 오류
@@ -309,16 +309,16 @@ int f(const void); // (X) 컴파일 오류
 
 # 가변 인자(...)
 
-인자가 1개 이상인 경우 `...`으로 가변 인자를 처리할 수 있습니다.
+[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개 이상인 경우 `...`으로 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 처리할 수 있습니다.
 
 |항목|내용|
 |--|--|
-|`va_start()`|가변 인자 액세스 시작 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
-|`va_arg()`|가변인자 추출 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
-|`va_end()`|가변 인자 사용 종료 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
-|`va_list`|가변 인자에 대한 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)|
+|`va_start()`|[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 액세스 시작 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
+|`va_arg()`|[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 추출 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
+|`va_end()`|[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 사용 종료 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
+|`va_list`|[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)에 대한 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)|
 
-가변 인자를 사용하려면 `cstdarg`를 `include`해야 합니다.
+[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 사용하려면 `cstdarg`를 `include`해야 합니다.
 
 ```cpp
 #include <cstdarg>
@@ -332,7 +332,7 @@ public:
         for (int i = 0; i < count; ++i) {
             result += va_arg(paramList, int); // 가변 인자 추출
         }
-        va_end(paramList); // 가변인자 처리 끝
+        va_end(paramList); // 가변 인자 처리 끝
         return result;       
     }
 };
@@ -341,7 +341,7 @@ EXPECT_TRUE(T::Sum(3, 1, 2, 3) == 1 + 2 + 3);
 
 # 기본값 인자
 
-함수 선언시 인자에 기본값을 줄 수 있습니다.
+함수 선언시 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 기본값을 줄 수 있습니다.
 
 ```cpp
 int f1(int a = 10) {  // 인수를 전달하지 않으면 기본값 10
@@ -352,7 +352,7 @@ EXPECT_TRUE(f1() == 10); // 아무값도 주지 않으면 a 는 10
 EXPECT_TRUE(f1(20) == 20);
 ```
 
-기본값 인자를 사용하면, 그 뒤로는 다 기본값을 사용해야 합니다.(*단 `...`은 가능합니다. `int g(int n = 0, ...);`*)
+[기본값 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)를 사용하면, 그 뒤로는 다 기본값을 사용해야 합니다.(*단 `...`은 가능합니다. `int g(int n = 0, ...);`*)
 
 ```cpp
 int f2(int a, int b = 20, int c = 30); // (O)
@@ -406,7 +406,7 @@ g_Val = 20;
 EXPECT_TRUE(f5() == 20);
 ```
 
-상속 관계에서 인자의 기본값을 재정의하면, 혼란을 야기할 수 있습니다.
+상속 관계에서 [인자의 기본값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)을 재정의하면, 혼란을 야기할 수 있습니다.
 
 ```cpp
 class Base {
@@ -442,7 +442,7 @@ EXPECT_TRUE(p->f6() == 10); // 가상 함수 테이블을 참조하여 Base 의 
 
 **인자 타입**
 
-인자 타입은 
+[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입은 
 
 1. 값을 전달받을 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 전달받을 것인지
 2. [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 전달받을 것인지, 비 상수를 전달받을 것인지
@@ -451,11 +451,11 @@ EXPECT_TRUE(p->f6() == 10); // 가상 함수 테이블을 참조하여 Base 의 
 
 # 오버로딩된 함수 결정 규칙
 
-C++언어에서는 이름이 동일한 함수를 여러개 정의하여 사용할 수 있습니다. 이렇게 함수명이 동일한 경우 인자 타입에 따라 알맞은 함수를 호출하게 됩니다. 
+C++언어에서는 이름이 동일한 함수를 여러개 정의하여 사용할 수 있습니다. 이렇게 함수명이 동일한 경우 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에 따라 알맞은 함수를 호출하게 됩니다. 
 
 **암시적 형변환**
 
-기본적으로 인자 타입이 일치하는 것을 선택하지만, 해당 타입의 것이 없다면 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 적용하여 최대한 매핑되는 것을 사용합니다.
+기본적으로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입이 일치하는 것을 선택하지만, 해당 타입의 것이 없다면 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 적용하여 최대한 매핑되는 것을 사용합니다.
 
 ```cpp
 class T {
@@ -472,7 +472,7 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
 
 **동일 함수 취급**
 
-인자의 타입을 검사할때 동일 타입으로 취급하는 규칙이 있습니다.
+[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 타입을 검사할때 동일 타입으로 취급하는 규칙이 있습니다.
 
 1. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 취급됩니다.
 
@@ -494,7 +494,7 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
 
     와 같이 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 포인터로 다룰 수 있기 때문입니다.
 
-2. 최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 인자 타입에서 제거하고 취급합니다.
+2. 최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에서 제거하고 취급합니다.
 
     즉,
 
@@ -543,7 +543,7 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
     double f(int) {return 9.};
     ```
 
-    는 인자가 같으니, 오버로딩 후보 목록에서 1개만 사용됩니다.
+    는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같으니, 오버로딩 후보 목록에서 1개만 사용됩니다.
 
 ```cpp
 class T {
@@ -591,7 +591,7 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
  
 1. 자신의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색
    
-2. 함수 인자의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색(*ADL(Argument-dependent lookup) 또는 Koenig 검색*)
+2. [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색(*ADL(Argument-dependent lookup) 또는 Koenig 검색*)
 
 3. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 포함하여 실행 가능 함수 결정
    
@@ -602,7 +602,7 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
    5. 사용자 정의 형변환(*[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고*)
 
 
-다음 경우를 보면 `g()` 에서 `MyFunc()`을 호출하면, 같은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에서 `MyFunc(double)`을 찾고, 인자 `1`을 `double`로 암시적으로 변환해서 사용하게 됩니다.
+다음 경우를 보면 `g()` 에서 `MyFunc()`을 호출하면, 같은 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에서 `MyFunc(double)`을 찾고, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) `1`을 `double`로 암시적으로 변환해서 사용하게 됩니다.
 
 ```cpp
 namespace A {
@@ -621,7 +621,7 @@ namespace B {
 EXPECT_TRUE(B::g() == 2); // B::MyFunc 이 채택됨
 ```
 
-하지만 `MyFunc()`함수의 인자가 다음처럼 특정[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 것을 참조한다면, 
+하지만 `MyFunc()`함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다음처럼 특정[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 것을 참조한다면, 
 
 ```cpp
 int MyFunc(const C::Date&, double) {return 2;}
@@ -666,7 +666,7 @@ EXPECT_TRUE(D::g() == 1); // C::MyFunc 이 채택됨
 
 다음은 `a(a_sub())`, `b()`, `c()` 함수의 결과를 `f()` 에 전달하는 예인데요, `a->b->c`의 순서로 실행된다고 보증하지 않습니다. `a->b->c`, `a->c->b`, `b->a->c`, `b->c->a`, `c->a->b`, `c->b->a`의 6가지 경우의 수중 하나로 실행됩니다. 이점 유의해야 예외 안전 프로그래밍([스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 참고)과 쓰레드 프로그래밍([쓰레드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/) 참고)을 할 수 있습니다. 
 
-`a()` 함수는 `a_sub()`의 결과를 인자로 받으므로, `a_sub()`보다 나중에 실행됨을 보증합니다.(예를 들어 `b->a_sub->c->a`가 될 수도 있습니다.)
+`a()` 함수는 `a_sub()`의 결과를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받으므로, `a_sub()`보다 나중에 실행됨을 보증합니다.(예를 들어 `b->a_sub->c->a`가 될 수도 있습니다.)
 
 ```cpp
 f(a(a_sub()), b(), c());

@@ -44,12 +44,12 @@ assert(a == 11 && "Test Message"); // 거짓 && 참은 거짓이므로 표시함
 
 특히 
 
-1. 사전 가정 : 인자에 전달된 인수가 유효한 값인지, 가정한 값과 같은지,
+1. 사전 가정 : [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 전달된 인수가 유효한 값인지, 가정한 값과 같은지,
 2. 사후 가정 : 연산 결과나 수행 결과가 기대치와 맞는지
 3. 오버 플로우, 실수 연산 가정 : 주어진 연산의 결과가 오버 플로우는 없는지, 실수 연산시 오차 범위 내인지 
 4. 인프라 가정 : 파일, 네트워크, 데이터베이스 상황이 가정과 맞는지
 
-만약 다음 `f()` 함수의 인자의 `a`, `b`, `c`가 특정 범위 값만 지원한다면,
+만약 다음 `f()` 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 `a`, `b`, `c`가 특정 범위 값만 지원한다면,
 
 ```cpp
 int f(int a, int b, int* c) {

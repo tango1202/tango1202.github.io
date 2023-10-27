@@ -13,7 +13,7 @@ sidebar:
 
 # 개요
 
-컨테이너의 템플릿 인자를 보면 `Allocator`를 사용하는 버전이 있습니다.
+컨테이너의 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 보면 `Allocator`를 사용하는 버전이 있습니다.
 
 ```cpp
 template<typename T, typename Allocator = allocator<T>>

@@ -75,7 +75,7 @@ EXPECT_TRUE(v[0].empty() && v[1].empty() && v[2].empty()); // 요소가 이동�
 
 다음 예제는 `advance()`와 `next()`, `prev()` 의 차이를 보여줍니다.
 
-`advance()` 은 인자로 전달한 이터레이터를 직접 수정하지만, `next()`와 `prev()`는 수정하지 않습니다.
+`advance()` 은 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달한 이터레이터를 직접 수정하지만, `next()`와 `prev()`는 수정하지 않습니다.
 
 ```cpp
 std::vector<int> v{1, 2, 3, 4};

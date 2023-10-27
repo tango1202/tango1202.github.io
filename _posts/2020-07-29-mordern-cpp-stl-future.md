@@ -154,7 +154,7 @@ EXPECT_TRUE(Sync() == 1);
 다음 예제를 보면,
 
 1. `Async()` 함수는 [promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)에 설정될 데이터를 리턴합니다.
-2. [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) 생성시 `Async()` 함수의 인자를 전달합니다.
+2. [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) 생성시 `Async()` 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달합니다.
 
 ```cpp
 int Async(int val) {

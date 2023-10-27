@@ -283,13 +283,13 @@ delete t; // T::operator delete(void* ptr)
 
 **operator new 오버로딩**
 
-`operator new`의 경우 인자를 추가하여 다양한 사용자 정의를 할 수 있습니다.
+`operator new`의 경우 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 추가하여 다양한 사용자 정의를 할 수 있습니다.
 
 ```cpp
 static void* operator new(std::size_t sz, Param1 param1, Param2 param2 ...);
 ```
 
-다음과 같이 `int val` 등 인자가 추가된 버전을 만들 수 있고,
+다음과 같이 `int val` 등 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 추가된 버전을 만들 수 있고,
 
 ```cpp
 static void* operator new(std::size_t sz, int val) { // int val을 인자로 전달받습니다.
@@ -297,7 +297,7 @@ static void* operator new(std::size_t sz, int val) { // int val을 인자로 전
 }
 ```
 
-해당 인자에 인수(예제에서는 그냥 `1`)를 전달하여 `new(1)`과 같이 호출할 수 있습니다.
+해당 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 인수(예제에서는 그냥 `1`)를 전달하여 `new(1)`과 같이 호출할 수 있습니다.
 
 ```cpp
 T* t = new(1) T; // T::operator new(std::size_t sz, int val), 기본 생성자 호출
@@ -444,7 +444,7 @@ delete[] arr; // operator delete[](void* ptr, std::size_t sz) 호출
 
 # operator new(ptr) : Placement New(위치 지정 생성)
 
-`void* operator new(size_t sz, void* ptr)`와 같이 `void*` 를 인자로 전달받는 `operator new`를 특별히 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)이라 합니다. [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)은 주어진 `operator new` 등으로 할당한 메모리 위치에 생성자를 실행합니다. 즉, 해당 메모리 위치에 개체를 생성한다고 보셔도 됩니다. 
+`void* operator new(size_t sz, void* ptr)`와 같이 `void*` 를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받는 `operator new`를 특별히 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)이라 합니다. [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)은 주어진 `operator new` 등으로 할당한 메모리 위치에 생성자를 실행합니다. 즉, 해당 메모리 위치에 개체를 생성한다고 보셔도 됩니다. 
 
 다음과 같은 클래스 `T`가 있는 경우,
 
