@@ -16,36 +16,35 @@ sidebar:
 
 # auto
 
-선언되는 변수의 타입을 초기값으로부터 추론하여 결정합니다. 특히, 템플릿 사용에 따른 긴 타입명을 간소하게 표현할 수 있습니다.
+선언되는 변수의 타입을 초기값으로부터 추론하여 결정합니다. 
 
 추론 규칙은 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따릅니다.
 
-즉, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 추론되고, 최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 무시됩니다. 특히 참조성은 제거됩니다.
+즉, 
+
+* [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 추론되고, 
+* 최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 무시됩니다. 
+* 특히 참조성은 제거됩니다.
 
 ```cpp
 int a = 0;
 const int b = 0;
 
-auto c_11 = a; // int로 추론됨
+auto c_11 = a; // int
 
+// 배열은 포인터로 추론됩니다.
 int arr[] = {1, 2, 3};
-auto d_11 = arr; // 배열이 아니라 int*로 추론됨
+auto d_11 = arr; // int*
 
-auto e_11 = b; // 최상위 const는 무시되므로 const int 가 아닌 int로 추론됨
+// 최상위 const는 무시됩니다.
+auto e_11 = b; // int
 e_11 = 10; // const가 아니여서 값을 대입받을 수 있습니다.  
 
+// 참조성은 제거됩니다.
 int x = 10;
 int& ref = x;
-auto f_11 = ref; // 참조성이 제거되어 int로 추론됩니다.
+auto f_11 = ref; // int
 auto& g_11 = ref; // auto&을 이용하여 억지로 참조자로 받을 수 있습니다.
-
-std::vector<int> v;
-
-// std::vector<int>::iterator itr = v.begin(); 
-// std::vector<int>::iterator endItr = v.end();
-
-auto itr_11 = v.begin(); // 템플릿 사용에 따른 긴 타입명 간소화
-auto endItr_11 = v.end();
 ```
 
 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정의시에는 사용할 수 없습니다.(*[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 쓰면 오버로딩 결정이 좀 애매해 질 수 있거든요. [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
@@ -74,7 +73,10 @@ double Func_11(int a, auto b) {
 
     ```cpp
     std::vector<int>::iterator itr = v.begin();
-    auto v.begin();
+    std::vector<int>::iterator endItr = v.end();  
+
+    auto itr = v.begin(); // 템플릿 사용에 따른 긴 타입명을 간소하게 표현합니다.
+    auto endItr = v.end();
     ```
 
 3. 타입 종속적으로 표현되므로 리팩토링이 편합니다.
@@ -91,21 +93,22 @@ double Func_11(int a, auto b) {
     ```cpp
     int f() {...}
 
-    long a = f(); // (△) 비권장. int가 long으로 암시젹 형변환 됩니다.
+    long a = f(); // (△) 비권장. int가 long으로 암시젹 형변환됩니다.
     auto a = f(); // (O) 형변환 되지 않습니다.
     ```
 
 # 중괄호 초기화와 auto
 
-[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)를 이용하여 초기화 하면 상황에 따라 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론될 수 있습니다. [중괄호 초기화와 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto)를 참고하세요.
+[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 [중괄호로 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/) 하면, 상황에 따라 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론될 수 있습니다. [중괄호 초기화와 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto)를 참고하세요.
 
-다음 예를 보면, `b_11 = {10};`의 경우 `initializer_list`로 추론됩니다.
+다음 예를 보면, `b_11 = {10};`의 경우 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론됩니다.
 
 ```cpp
 // 모두 int 10으로 초기화됩니다.
 int a = 10;
 int a(10);
 int a{10};
+int a = {10};
 
 auto b_11 = 10; // int 10으로 초기화됩니다.
 auto b_11(10); // int 10으로 초기화 됩니다.
@@ -115,7 +118,7 @@ auto b_11 = {10}; // (△) 비권장. initializer_list로 초기화됩니다.
 
 # 암시적 형변환과 auto
 
-[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)는 궁합이 맞지 않습니다. 
+[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)와는 궁합이 맞지 않습니다. 
 
 다음은 정수의 최대/최소를 0 ~ 10 으로 한정하는 `MyInt` 클래스 입니다. `int`로의 변환을 쉽게 하기 위해 `operator int()`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 했다고 합시다.
 

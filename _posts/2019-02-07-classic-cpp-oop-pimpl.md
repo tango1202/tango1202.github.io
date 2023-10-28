@@ -116,118 +116,55 @@ int T::GetVal2() const {return *(m_Impl->m_Val2);}
 
 # 스마트 포인터를 이용한 PImpl 이디엄 구현
 
-또한, 멤버 변수가 `m_Impl` 1개 이므로, 스마트 포인터로 만들면, 복사 생성자, 소멸자, 복사 대입 연산자를 별도로 작성하지 않아도 됩니다.([복사 대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
+또한, 멤버 변수가 `m_Impl` 1개 이므로, 스마트 포인터로 만들면, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 별도로 작성하지 않아도 됩니다.([복사 대입 연산자까지 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EA%B9%8C%EC%A7%80-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고)
 
-다만, 
 
-```cpp
-class T {
-    class Impl;
-    Impl* m_Impl;
-...
-};    
-```
+선언부에서는,
 
-을 스마트 포인터로 변경하면,
+1. `Impl`을 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 합니다.
+2. `Impl`을 관리하는 스마트 포인터인 `ImplPtr`을 선언합니다. `T`의 [암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 [암시적 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)와 [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90)와 호환되도록 만들 예정입니다.
+
+3. 스마트 포인터를 사용하므로 `T`의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/), `Swap()`을 제거했습니다.
+
+
 
 ```cpp
-class T {
-    class Impl;
-    ImplPtr m_Impl; // (X) 컴파일 오류. ImplPtr의 제대로된 선언이 필요합니다.
-...
-};  
-```
-와 같이 해야 하는데, `ImplPtr`의 실제 크기등을 알아아 하므로, 제대로된 선언이 필요합니다.
-
-그래서, 다음처럼 `ImplPtr`을 선언하면, 이번에는 `T::Impl`의 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 필요합니다.
-
-```cpp
-class ImplPtr {
-    T::Impl* m_Ptr; // (X) 컴파일 오류. T::Impl 의 전방 선언이 필요합니다.
-};
-class T {
-    class Impl;
-    ImplPtr m_Impl; 
-};
-```
-
-그래서, 다음처럼 `T::Impl`의 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 해보시면, [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)여서 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)이 안됩니다.
-
-```cpp
-class T::Impl; // (X) 컴파일 오류. 중첩 클래스는 전방 선언을 할 수 없습니다.
-class ImplPtr {
-    T::Impl* m_Ptr; 
-};
-class T {
-    class Impl;
-    ImplPtr m_Impl; 
-};
-```
-
-그래서, 스마트 포인터로 PImpl을 구현하려면, 중첩 클래스가 아닌 일반 클래스로 정의해야 됩니다.
-
-이제 다음처럼 복사 생성자, 소멸자, 복사 대입 연산자 정의 없이 간소하게 클래스를 작성할 수 있습니다.
-
-```cpp
-class T {
-    TImplPtr m_Impl; 
-public:
-    T(int* val1, int* val2);
-
-    int GetVal1() const;
-    int GetVal2() const;
-};
-```
-
-다음은 전체 코드입니다.
-
-1. [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)인 `T::Impl`을 밖으로 빼서 `TImpl`로 선언하였습니다.
-2. 스마트 포인터인 `TImplPtr`을 정의했습니다.
-3. 스마트 포인터를 사용하므로 `T`의 복사 생성자, 소멸자, 복사 대입 연산자, `Swap`을 제거했습니다.
-
-STL을 이용하면 좀더 간단하게 구현할 수 있습니다. 자세한 내용은 [unique_ptr을 이용한 PImpl 구현](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#unique_ptr%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EA%B5%AC%ED%98%84)을 참고하세요.
-
-```cpp
-// --------
+// ----
 // 선언에서
-// --------
-
 // ----
-// T클래스의 Impl 전방 선언
-// ----
-class TImpl; // 중첩 클래스는 전방 선언이 안되어 별도 클래스로 선언하고, 전방 선언합니다.
-
-// ----    
-// TImplPtr 선언
-// ----
-class TImplPtr {
-private:
-    TImpl* m_Ptr; 
-public: 
-    explicit TImplPtr(TImpl* ptr);
-    TImplPtr(const TImplPtr& other);
-    ~TImplPtr();
-
-    TImplPtr& operator =(const TImplPtr& other);
-    void Swap(TImplPtr& other);
-
-    const TImpl* operator ->() const;
-    TImpl* operator ->();
-
-    const TImpl& operator *() const;
-    TImpl& operator *();
-
-    bool IsValid() const;  
-};
 
 // ----    
 // (O) T 선언 : 복사 생성자, 소멸자, swap을 이용한 복사 대입 연산자, Swap 불필요
 // ----
 class T {
-    // 중첩 클래스는 전방 선언이 안되어 별도 클래스로 선언하고, 전방 선언합니다.
+
+    class Impl; // 전방 선언
+    // ----    
+    // ImplPtr 선언
+    // ----
+    class ImplPtr {
+    private:
+        Impl* m_Ptr; // 포인터형 변수로 사용합니다.
+    public: 
+        explicit ImplPtr(Impl* ptr);
+        ImplPtr(const ImplPtr& other);
+        ~ImplPtr();
+
+        ImplPtr& operator =(const ImplPtr& other);
+        void Swap(ImplPtr& other);
+
+        const Impl* operator ->() const;
+        Impl* operator ->();
+
+        const Impl& operator *() const;
+        Impl& operator *();
+
+        bool IsValid() const;  
+    };       
+
     // (O) 스마트 포인터를 사용하여, 복사 생성자, 소멸자를 구현할 필요가 없고, 
     // (O) 멤버 변수도 1개여서 Swap으로 복사 대입 연산자를 구현할 필요가 없습니다.
-    TImplPtr m_Impl; 
+    ImplPtr m_Impl; 
 public:
     // val1, val2 : new 로 생성된 것을 전달하세요.
     T(int* val1, int* val2);
@@ -235,10 +172,17 @@ public:
     int GetVal1() const;
     int GetVal2() const;
 };
+```
 
-// --------
+정의부에서는,
+
+1. `IntPtr`을 사용한 `Impl`을 구현합니다.
+2. `ImplPtr`을 구현합니다. 이때, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 구현하여 `T`의 [암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [암시적 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [암시적 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%86%8C%EB%A9%B8%EC%9E%90)와 호환되게 합니다.
+
+```cpp
+// ----
 // 정의에서
-// --------
+// ----
 
 // 복사 생성시 m_Ptr을 복제하고, 소멸시 delete 합니다.
 // 복사 대입 연산은 임시 개체 생성 후 swap 합니다.
@@ -271,76 +215,59 @@ public:
 };
 
 // ----
-// TImpl 정의
+// Impl 정의
 // ----
-class TImpl {
+class T::Impl {
 public: // T 에서 멤버 변수를 자유롭게 쓰도록 public 입니다.
     // 스마트 포인터를 사용합니다. 암시적 복사 생성자에서 복제본을 만들고, 소멸자에서 잘 소멸합니다.
     IntPtr m_Val1;
     IntPtr m_Val2;
-    TImpl(int* val1, int* val2) : 
+    Impl(int* val1, int* val2) : 
         m_Val1(val1),
         m_Val2(val2) {}
 private:        
     // 복사 대입 연산자는 사용하지 않으므로 private로 못쓰게 만듭니다.
-    TImpl& operator =(const TImpl& other) {return *this;}  
+    Impl& operator =(const Impl& other) {return *this;}  
 };
 
 // ----
-// TImplPtr 정의
+// ImplPtr 정의
 // ----
-TImplPtr::TImplPtr(TImpl* ptr) :
+T::ImplPtr::ImplPtr(T::Impl* ptr) :
     m_Ptr(ptr) {}
-TImplPtr::TImplPtr(const TImplPtr& other) :
-    m_Ptr(other.IsValid() ? new TImpl(*other.m_Ptr) : NULL) {} // TImpl의 복사 생성자를 호출합니다.
-TImplPtr::~TImplPtr() {delete m_Ptr;} // TImpl을 소멸시킵니다.
+T::ImplPtr::ImplPtr(const T::ImplPtr& other) :
+    m_Ptr(other.IsValid() ? new T::Impl(*other.m_Ptr) : NULL) {} // Impl의 복사 생성자를 호출합니다.
+T::ImplPtr::~ImplPtr() {delete m_Ptr;} // Impl을 소멸시킵니다.
 
-TImplPtr& TImplPtr::operator =(const TImplPtr& other) {
-    TImplPtr temp(other); 
+T::ImplPtr& T::ImplPtr::operator =(const T::ImplPtr& other) {
+    ImplPtr temp(other); 
     Swap(temp); 
     return *this;
 }
-void TImplPtr::Swap(TImplPtr& other) {
+void T::ImplPtr::Swap(T::ImplPtr& other) {
     std::swap(this->m_Ptr, other.m_Ptr);  
 }
 
-const TImpl* TImplPtr::operator ->() const {return m_Ptr;}
-TImpl* TImplPtr::operator ->() {return m_Ptr;}
+const T::Impl* T::ImplPtr::operator ->() const {return m_Ptr;}
+T::Impl* T::ImplPtr::operator ->() {return m_Ptr;}
 
-const TImpl& TImplPtr::operator *() const {return *m_Ptr;}
-TImpl& TImplPtr::operator *() {return *m_Ptr;}
+const T::Impl& T::ImplPtr::operator *() const {return *m_Ptr;}
+T::Impl& T::ImplPtr::operator *() {return *m_Ptr;}
 
-bool TImplPtr::IsValid() const {return m_Ptr != NULL ? true : false;}    
+bool T::ImplPtr::IsValid() const {return m_Ptr != NULL ? true : false;}    
 
 // ----
 // T 정의
 // ----
 T::T(int* val1, int* val2) :
-    m_Impl(new TImpl(val1, val2)) {}
+    m_Impl(new T::Impl(val1, val2)) {}
 
 // TImpl의 멤버 변수를 이용합니다.
 int T::GetVal1() const {return *(m_Impl->m_Val1);}
 int T::GetVal2() const {return *(m_Impl->m_Val2);}    
-
-TEST(TestClassicCpp, PImpl) {
-    {
-        // (O) 힙 개체를 복제하여 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
-        {
-            T t1(new int(10), new int(20));
-            T t2(t1); // 새로운 int형 개체를 만들고 10, 20을 복제합니다.
-
-            EXPECT_TRUE(t2.GetVal1() == 10 && t2.GetVal2() == 20);
-        } 
-        // (O) 복사 대입 연산 시에도 소유권 분쟁 없이 각자의 힙 개체를 delete 합니다.
-        {
-            T t1(new int(10), new int(20));
-            T t2(new int(1), new int (2));
-            t2 = t1; // (O) swap 버전 복사 대입 연산자 호출
-            EXPECT_TRUE(t2.GetVal1() == 10 && t2.GetVal2() == 20);
-        }
-    }
-}
 ```
+
+STL을 이용하면 좀더 간단하게 구현할 수 있습니다. 자세한 내용은 [unique_ptr을 이용한 PImpl 구현](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#unique_ptr%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EA%B5%AC%ED%98%84)을 참고하세요.
 
 # PImpl 이디엄 오버헤드
 
