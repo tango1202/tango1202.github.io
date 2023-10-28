@@ -41,7 +41,7 @@ EXPECT_TRUE(v[0] == 1 && v[1] == 2);
 
 |항목|내용|
 |--|--|
-|`new_delete_resource()` (C++17~)|전역 `new`, `delete`를 사용하는 메모리 리소스를 리턴합니다.|
+|`new_delete_resource()` (C++17~)|전역 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8), [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 사용하는 메모리 리소스를 리턴합니다.|
 |`null_memory_resource()` (C++17~)|메모리 할당을 안하는 메모리 리소스를 리턴합니다.|
 |`get_default_resource()` (C++17~)|기본 메모리 리소스를 구합니다.|
 |`set_default_resource()` (C++17~)|기본 메모리 리소스를 설정합니다.| 

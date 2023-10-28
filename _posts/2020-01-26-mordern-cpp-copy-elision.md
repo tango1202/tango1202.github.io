@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)들이 표준화 되었습니다.
+> * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)등이 표준화 되었습니다.
 
 # 개요
 
@@ -35,7 +35,7 @@ A Func2() {return A{};}
 A result = Func2(); // A{} 기본 생성자로 생성하고, result에 이동 생성합니다. 하지만 컴파일러에 따라 리턴된 임시 개체를 그냥 result로 사용합니다.
 ```
 
-아쉬운 점은, 컴파일러 최적화에 따라 이동 생성자를 사용하지 않더라도, 문법적으로는 이동 생성자가 필요하므로, 이동 생성자를 `delete`하면 컴파일 오류가 난다는 점입니다.
+아쉬운 점은, 컴파일러 최적화에 따라 이동 생성자를 사용하지 않더라도, 문법적으로는 이동 생성자가 필요하므로, 이동 생성자를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)하면 컴파일 오류가 난다는 점입니다.
 
 ```cpp
 class A_11 {
@@ -116,7 +116,7 @@ A Func2() {
 A result = Func2(); // A{}는 result에 구현됩니다. move(Func2()) 하지 마세요.
 ```
 
-즉, 다음 코드에서 `A_17 a{A_17{}};`는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 `A_17{}`가 `a`에 직접 구현되므로, 문법적으로 이동 생성을 사용하지 않습니다. 따라서 C++17 에서는 다음과 같이 이동 생성자를 `delete` 해도 정상적으로 컴파일됩니다.
+즉, 다음 코드에서 `A_17 a{A_17{}};`는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 `A_17{}`가 `a`에 직접 구현되므로, 문법적으로 이동 생성을 사용하지 않습니다. 따라서 C++17 에서는 다음과 같이 이동 생성자를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 해도 정상적으로 컴파일됩니다.
 
 ```cpp
 class A_17 {

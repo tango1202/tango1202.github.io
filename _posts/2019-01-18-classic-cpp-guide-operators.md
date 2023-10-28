@@ -21,7 +21,7 @@ sidebar:
 
 # 복사 대입 연산자
 
-[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)는 `=` 와 같은 기본 복사 대입 연산자와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(*`a += b` 는 `a = a + b` 와 결과가 같습니다.*) 
+[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)는 `=` 와 같은 기본 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(*`a += b` 는 `a = a + b` 와 결과가 같습니다.*) 
 
 
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
@@ -241,13 +241,13 @@ EXPECT_TRUE(result == 10);
 
 # 생성/소멸 연산자
 
-개체 생성시 사용하는 `new`는 하기 단계를 수행합니다.
+개체 생성시 사용하는 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 하기 단계를 수행합니다.
 
 1. 전역 `operator new(std::size_t)`로 메모리 공간 할당
 2. 구조체이거나 클래스이면 `operator new(void*)`를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
 3. 메모리 주소를 해당 타입으로 형변환하여 리턴
 
-즉 `new`와 `operator new`의 역할은 다릅니다. `operator new`는 C언어의 [malloc()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)과 유사하다고 할 수 있습니다.
+즉 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)와 `operator new`의 역할은 다릅니다. `operator new`는 C언어의 [malloc()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)과 유사하다고 할 수 있습니다.
 
 `operator new`와 `operator delete`와 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)에 대해서는 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
 
@@ -363,7 +363,7 @@ class Derived2 : public Base2 {};
 |--|--|
 |1|`::`(*범위 확인 연산자*)|
 |2|`a++`, `a--`, `()`(*함수 호출 연산자*), `a[]`, `.`, `->`|
-|3|`++a`, `--a`, `+a`, `-a`, `!`, `~`, `(int)`(*C언어 스타일 형변환*), `a`, `&a`, `sizeof`, `new`, `new[]`, `delete`, `delete[]`|
+|3|`++a`, `--a`, `+a`, `-a`, `!`, `~`, `(int)`(*C언어 스타일 형변환*), `a`, `&a`, `sizeof`, [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8), `new[]`, [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8), [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)`|
 |4|`.*`, `->*`|
 |5|`a * b`, `a / b`, `a %b`|
 |6|`a + b`, `a - b`|

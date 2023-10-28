@@ -223,7 +223,7 @@ for(int i = 0; i < 2; ++i) {
 } 
 ```
 
-인터페이스는 다형 소멸을 지원하지 않으므로, 다음과 같이 `IDrawable` 포인터로 `delete`할 수 없습니다.
+인터페이스는 다형 소멸을 지원하지 않으므로, 다음과 같이 `IDrawable` 포인터로 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)할 수 없습니다.
 
 ```cpp
 // (X) 컴파일 오류. protected 소멸자 이므로, IDrawable로 다형 소멸 되지 않습니다.

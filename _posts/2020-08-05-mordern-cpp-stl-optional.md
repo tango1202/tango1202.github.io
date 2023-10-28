@@ -39,7 +39,7 @@ bool* option = nullptr;
  option = nullptr; // 값이 없음. 미확정 상태, 값을 표시하기 부적절한 상태
 ```
 
-아무래도 멀쩡한 값을 포인터로 처리하다 보니 사용이 불편하고, `delete`를 해야 하는 부담이 있었습니다.
+아무래도 멀쩡한 값을 포인터로 처리하다 보니 사용이 불편하고, [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 해야 하는 부담이 있었습니다.
 
 
 또한 실패할 수 있는 리턴값 처리시에도 다음과 같이 성공시의 값과, 성공 여부를 리턴해야 하는 불편함도 있었습니다.
@@ -78,7 +78,7 @@ C++17 부터는 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-c
 |`or_else()` (C++23~)|(작성중)|
 
 
-다음 예에서는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. `reinterpret_cast` 대신 `any_cast()`를 사용하며, `delete`를 하지 않아도 됩니다. 
+다음 예에서는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. `reinterpret_cast` 대신 `any_cast()`를 사용하며, [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 하지 않아도 됩니다. 
 
 ```cpp
 std::optional<std::string> option{"Kim"};

@@ -32,7 +32,7 @@ C++11 부터는 소유권을 이전하는 스마트 포인터인 [auto_ptr](http
 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권을 이전합니다만, [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)은 개체의 소유권을 공유하는 스마트 포인터입니다. 
 
 1. 소유권이 공유될때마다 참조 카운트를 증가시키고, 
-2. 스마트 포인터가 소멸될때마다 참조 카운트를 감소시켜 `0`이 될때 `delete`합니다.
+2. 스마트 포인터가 소멸될때마다 참조 카운트를 감소시켜 `0`이 될때 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)합니다.
 
 다음 코드를 보면 참조 카운트가 
 
@@ -110,7 +110,7 @@ std::shared_ptr<T> b{a};
 `constexpr shared_ptr() noexcept;` (C++11~)<br/><br/>`explicit shared_ptr(T* p);` (C++11~)<br/>`shared_ptr(T* p, deleter);` (C++11~)<br/>`shared_ptr(T* p, deleter, allocator);` (C++11~)<br/><br/>`constexpr shared_ptr(nullptr_t) noexcept;` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter);` (C++11~)<br/>`shared_ptr(nullptr_t p, deleter, allocator);` (C++11~)<br/><br/>`explicit shared_ptr(const weak_ptr&);` (C++11~)<br/>`shared_ptr(unique_ptr&&);` (C++11~)<br/><br/>[별칭 생성자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%EB%B3%84%EC%B9%AD-%EC%83%9D%EC%84%B1%EC%9E%90)<br/>`shared_ptr(const shared_ptr& other, element_type* p) noexcept;` (C++11~)<br/><br/>`shared_ptr( auto_ptr&&);` (C++11~C++17)|[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)이나 `p`를 공유하며, 참조 카운트를 증가시킵니다. 이때 사용자 정의 `deleter`와 `allocator` 를 사용할 수 있습니다. [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)과 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)로 생성할 수도 있습니다.|
 |`shared_ptr(const shared_ptr& other) noexcept;` (C++11~)|개체와 소유권을 공유하고 참조 카운트를 증가시킵니다.|
 |`shared_ptr(const shared_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
-|`~shared_ptr();` (C++11~)|관리하던 개체의 참조 카운트를 감소시키고, `0`이 되면 `delete`또는 `delete[]`(C++17~)합니다.|
+|`~shared_ptr();` (C++11~)|관리하던 개체의 참조 카운트를 감소시키고, `0`이 되면 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)또는 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)(C++17~)합니다.|
 |`shared_ptr& operator =(const shared_ptr& other) noexcept;` (C++11~)|`other` 개체와 소유권을 공유하고 참조 카운트를 증가시킵니다.|
 |`shared_ptr& operator =(shared_ptr&& r) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 [this](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 이동시킵니다.|
 |`operator *() const noexcept;` (C++11~)|관리하는 개체의 참조자를 리턴합니다.|
@@ -144,7 +144,7 @@ std::shared_ptr<int> b{a};
 EXPECT_TRUE(a.use_count() == 2 && b.use_count() == 2); // a, b 가 같은 제어 블록을 공유합니다.
 ```
 
-다음은 잘못된 사용예입니다. `p`로부터 각각 `a`, `b`를 생성했기 때문에 제어 블록을 각자 생성하고, 각자 참조 카운트를 사용합니다. 따라서, 유효 범위를 벗어나면 각자 `p`를 `delete`하고, 결국 `p`는 2번 `delete`하여 오동작을 하게 됩니다.
+다음은 잘못된 사용예입니다. `p`로부터 각각 `a`, `b`를 생성했기 때문에 제어 블록을 각자 생성하고, 각자 참조 카운트를 사용합니다. 따라서, 유효 범위를 벗어나면 각자 `p`를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)하고, 결국 `p`는 2번 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)하여 오동작을 하게 됩니다.
 
 ```cpp
 // 잘못된 예
@@ -336,7 +336,7 @@ EXPECT_TRUE(a.use_count() == 2);
 다음 코드는,
 
 1. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 멤버 변수로 사용합니다.
-2. `new`로 생성된 `Data`를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받기 위해 생성자에서 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)을 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용합니다.
+2. [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)로 생성된 `Data`를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받기 위해 생성자에서 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)을 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용합니다.
 3. 복사 생성자에서 `other`개체의 각 멤버의 복사 생성자를 호출합니다.
 4. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 에서 참조 카운트가 0이 되면 소멸시킬 것이므로 소멸자에서는 별다른 작업을 하지 않습니다.
 5. 복사 대입 연산자에서는 각 멤버를 복사 대입합니다. 
@@ -671,7 +671,7 @@ Node : Constructor
 
 # weak_ptr
 
-[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)은 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)로부터 생성되며, [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)과 개체는 공유하지만, 소유권은 공유하지 않는 포인터 입니다. 즉, 참조 카운트를 증가/감소 하지 않고, [제어 블록](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr%EC%9D%98-%EC%A0%9C%EC%96%B4-%EB%B8%94%EB%A1%9Dcontrol-block)에서 별도의 [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) 카운트를 증가/감소 시키기만 할 뿐, 개체를 `delete` 하지 않습니다.(개체는 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)에서 `delete`합니다.)
+[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)은 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)로부터 생성되며, [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)과 개체는 공유하지만, 소유권은 공유하지 않는 포인터 입니다. 즉, 참조 카운트를 증가/감소 하지 않고, [제어 블록](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr%EC%9D%98-%EC%A0%9C%EC%96%B4-%EB%B8%94%EB%A1%9Dcontrol-block)에서 별도의 [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) 카운트를 증가/감소 시키기만 할 뿐, 개체를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 하지 않습니다.(개체는 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)에서 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)합니다.)
 
 상호 참조에서 `m_Parent`를 [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)로 수정해 보면,
 
@@ -721,11 +721,11 @@ Node : Destructor
 |`constexpr weak_ptr() noexcept;` (C++11~)<br/><br/>`weak_ptr(const shared_ptr& other) noexcept;` (C++11~)|[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)로 부터 생성합니다.|
 |`weak_ptr(const weak_ptr& other) noexcept;` (C++11~)|복사 생성합니다.|
 |`weak_ptr(const weak_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
-|`~weak_ptr();` (C++11~)|기존에 관리하던 개체를 해제합니다. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) 참조 카운트만 감소시킬 뿐 개체에 대한 `delete`를 수행하지는 않습니다.|
+|`~weak_ptr();` (C++11~)|기존에 관리하던 개체를 해제합니다. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) 참조 카운트만 감소시킬 뿐 개체에 대한 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 수행하지는 않습니다.|
 |`weak_ptr& operator =(const weak_ptr& other) noexcept;` (C++11~)<br/><br/>`weak_ptr& operator =(const shared_ptr& other) noexcept;` (C++11~)|[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)이나 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)로 부터 복사 대입합니다.|
 |`weak_ptr& operator =(weak_ptr&& other) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 [this](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 이동시킵니다.|
 |`swap(unique_ptr& other) noexcept;` (C++11~)|관리하는 개체를 `other`와 바꿔치기 합니다.|
-|`reset() noexcept;` (C++11~)|기존에 관리하던 개체를 해제합니다. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) 참조 카운트만 감소시킬 뿐 개체에 대한 `delete`를 수행하지는 않습니다.|
+|`reset() noexcept;` (C++11~)|기존에 관리하던 개체를 해제합니다. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) 참조 카운트만 감소시킬 뿐 개체에 대한 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 수행하지는 않습니다.|
 |`use_count() const noexcept;` (C++11~)|[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 참조 카운트를 리턴합니다.|
 |`expired() const noexcept;` (C++11~)|관리하는 개체가 소멸됐거나 소멸중인지 검사합니다. `use_count() == 0`과 같습니다.|
 |[lock() const noexcept;](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr-%EC%82%AC%EC%9A%A9) (C++11~)|관리하는 개체 접근을 위해 임시 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 생성합니다.|
