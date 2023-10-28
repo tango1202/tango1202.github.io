@@ -60,6 +60,7 @@ EXPECT_TRUE(r == 30 && x == 30);
 |용량|32bit : 4byte,<br/>64bit : 8byte|참조하는 개체의 별칭으로서 해당 용량은 스펙에 정의되지 않음.<br/>다만, `sizeof()`시 참조하는 개체와 동일 크기를 리턴하도록 스펙에 정의됨.(*`sizeof(T&) == sizeof(T)`*)|
 |초기화|생성하면서 초기화,<br/>생성후 초기화 가능|생성하면서 초기화만 가능|
 |값 변경|다른 포인터로 변경 가능<br/>가리키는 개체의 실제값 변경 가능|다른 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 변경 불가능<br/>참조하는 개체의 실제값 변경 가능|
+|다차원|`int*`의 포인터인 `int**`가 지원됩니다.<br/>`int* p;`<br/>`int** pp = &p;`|참조자의 참조는 불법입니다.<br/>`int& r = val;`<br/>`int& & rr = r; // (X)`|
 
 # 널 포인터
 

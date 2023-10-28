@@ -202,7 +202,7 @@ EXPECT_TRUE(t3.GetX() == 10 && t3.GetY() == 20);
 
 # 포인터 멤버 변수의 소유권 분쟁
 
-`new`로 생성한 것은 `delete`로 소멸(*[힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고*) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다. 그렇다고 여러 차례 `delete` 한다면 예외가 발생합니다.(*[개체 생성/소멸과 배열 생성/소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8%EA%B3%BC-%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 참고*) `new`로 생성한 것은 단 한번만 `delete` 해야 합니다.
+`new`로 생성한 것은 `delete`로 소멸(*[힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 참고*) 시켜야 합니다. 그렇지 않으면 메모리 릭이 발생합니다. 그렇다고 여러 차례 `delete` 한다면 예외가 발생합니다.(*[delete 여러번 호출 금지](??) 참고*) `new`로 생성한 것은 단 한번만 `delete` 해야 합니다.
 
 예를 들어 생성자에서 `new`로 생성한 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99) 개체를 전달받고, 안전한 소멸을 보장하기 위해 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 `delete`로 소멸시키는 `T`개체를 정의한다고 합시다.(*[암시적 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 다음 코드의 주석처럼 멤버별 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다.*)
 

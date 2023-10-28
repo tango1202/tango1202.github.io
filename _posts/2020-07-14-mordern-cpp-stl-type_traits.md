@@ -35,6 +35,8 @@ void Func(T t) {
 |항목|내용|
 |--|--|
 |`integral_constant`(C++11~)|정수형 타입을 생성합니다.|
+|`true_type`(C++11~)|`integral_constant<bool, true>`의 별칭입니다.|
+|`false_type`(C++11~)|`integral_constant<bool, false>`의 별칭입니다.|
 |`bool_constant` (C++17~)|`integral_constant<bool, true 나 false>`|
 
 ```cpp
@@ -177,7 +179,7 @@ ThreeType three;
 |--|--|
 |`aligned_storage`(C++11~C++23)|(작성중)|
 |`aligned_union`(C++11~C++23)|(작성중)|
-|`decay` (C++11~)|참조성을 떼고, 타입으로 만듭니다. 즉 `int&`는 `int`가 됩니다. 또한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 만듭니다. 이와는 반대로 참조성을 붙여서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
+|`decay` (C++11~)|참조성, `const`, `volatile`등의 속성을 떼고, 타입으로 만듭니다. 즉 `const int&`이던 `int&&`이던 모두 `int`가 됩니다. 또한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 만듭니다. <br/>이와는 반대로 참조성을 붙여서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
 |`enable_if` (C++11~)|(작성중)|
 |`conditional` (C++11~)|(작성중)|
 |`common_type` (C++11~)|(작성중)|

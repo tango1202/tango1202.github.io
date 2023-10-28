@@ -147,7 +147,6 @@ Big : Destructor // a 소멸
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e4333269-db1f-41e5-8ec7-308db82869a2)
 
-
 다음 코드에서 `Move()`함수는 데이터를 이동시킵니다. 기존 것은 삭제하고, `other`것을 참조한 뒤, 소유권 분쟁이 없도록 `other`는 초기화 합니다.
 
 ```cpp
@@ -616,7 +615,7 @@ EXPECT_TRUE(g_11(t) == 11);
 EXPECT_TRUE(g_11(std::move(t)) == 12);
 ```
 
-우측값 참조(`&&`)가 좌측값 참조(`&`) 로 변경되어 버렸습니다. 이해는 됩니다. `val`로 명명 되는 순간 더이상 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 아니니까요. 이를 해결하려면 다시 한번 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 사용하여 우측값으로 바꿀 수도 있으나, 값 카테고리를 유지하여 전달한다은 의미로 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)를 사용하는게 좋습니다.
+우측값 참조(`&&`)가 좌측값 참조(`&`) 로 변경되어 버렸습니다. 이해는 됩니다. `val`로 명명 되는 순간 더이상 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 아니니까요. 이를 해결하려면 다시 한번 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 사용하여 우측값으로 바꿀 수도 있으나, 값 카테고리를 유지하여 전달한다는 의미로 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)를 사용하는게 좋습니다.
 
 ```cpp
 class T {};

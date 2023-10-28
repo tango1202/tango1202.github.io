@@ -266,30 +266,31 @@ void f(int, int); // (O)
 
 이외에, 사용하지 않는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 억지로 작성해야 한다는건 악취가 난다는 뜻입니다. 설계 변경을 추천합니다. 그럼에도 불구하고 꼭 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 생략을 해야 한다면, 하기 작성 방법을 고려해 보세요.
 
+다음과 같이 함수 본문에서 컴파일러 경고를 막기 위해 억지로 사용할 수는 있지만, 명시적으로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명을 적었기 때문에 컴파일러 최적화가 힘들수 있고요,
+
+```cpp
+void f(int a, int b) {
+    // 명시적으로 사용한 것이기에 컴파일러가 최적화 하기 힘듭니다.
+    a; // (△) 사용하지 않는 인자에 대한 warning 제거. 
+    b; // (△) 사용하지 않는 인자에 대한 warning 제거. 
+}
+```
+
+다음은 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명이 없어 컴파일러 최적화의 여지는 있으나, 어떤 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 필요한 건지 가독성이 좀 떨어집니다.
+
 ```cpp
 void f(int, int) {
     // (△) 비권장. 어떤 인자가 필요했던 것인지 알기 힘듭니다.
 }
 ```
 
-보다는
+따라서, 컴파일러 최적화 여지도 있고, 가독성도 있도록 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명만 주석으로 만드는 걸 추천합니다.
 
 ```cpp
 void f(int /*a*/, int /*b*/) {
-    // (△) 비권장. 주석 처리하는 부분이 귀찮아 집니다.
+    // (O) 인자명이 없어 컴파일러가 최적화 할 수 있습니다.
 }
 ```
-
-보다는
-
-```cpp
-void f(int a, int b) {
-    a; // (O) 사용하지 않는 인자에 대한 warning 제거
-    b; // (O) 사용하지 않는 인자에 대한 warning 제거
-}
-```
-
-가 낫습니다.
 
 **인자 없음**
 

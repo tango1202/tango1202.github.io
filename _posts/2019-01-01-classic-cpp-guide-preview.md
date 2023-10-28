@@ -65,7 +65,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
   
 10. [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)
    
-    용도에 따라 구분될 수 있게 [static_cast, const_cast, dynamic_cast, reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 의 형변환 방법을 제공합니다.
+    용도에 따라 구분하여 형변환 할 수 있도록 [static_cast, const_cast, dynamic_cast, reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)를 제공합니다.
 
 1. [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)
 

@@ -19,14 +19,14 @@ sidebar:
 
 # 개요
 
-일반적으로 메모리 공간을 오랫동안 차지하는 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)나 정적 변수보다는 사용이 끝나면 메모리를 바로 반납하는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)나 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)가 메모리 관리에 좋습니다. 시스템 자원을 관리하는 등의 수명이 길어야 할 이유가 없다면, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)나 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)로 작성하시기 바랍니다.
+일반적으로 메모리 공간을 오랫동안 차지하는 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)나 정적 변수보다는 사용이 끝나면 메모리를 바로 반납하는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)나 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)가 메모리 관리에 좋습니다. 시스템 자원을 관리하는 등의 ***수명이 길어야 할 이유가 없다면, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)나 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)로 작성***하시기 바랍니다.
 
 수명 주기에 따라 다음과 같이 변수를 구분할 수 있습니다.
 
 |항목|내용|수명|
 |--|--|--|
 |[지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)|블록 안에서만 사용 가능한 변수| `{` ~ `}` 범위에서 생성과 소멸|
-|[전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)|모든 파일에서 사용 가능한 변수.<br/>제어가 처음으로 정의를 통과할때 생성됨.|`main` 호출 ~ `main` 종료|
+|[전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)|모든 파일에서 사용 가능한 변수<br/>제어가 처음으로 정의를 통과할때 생성됨|`main` 호출 ~ `main` 종료|
 |[정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)|현재 파일에서만 사용할 수 있는 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)|`main` 호출 ~ `main` 종료|
 |[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)|특정 개체에 속하는 변수|개체 생성시 생성자 실행전 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)에서 생성 ~ 소멸자 실행 후 종료|
 |[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)|특정 개체에 속하지 않는 변수|`main` 호출 ~ `main` 종료|
@@ -37,7 +37,7 @@ sidebar:
 
 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), 함수내 정의된 변수등 블록 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 사용할 수 있는 변수입니다. 블록의 범위를 벗어나면 자동으로 소멸됩니다.(*해당 변수가 [구조체, 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)라면 자동으로 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출하므로 **자동 변수**라고도 합니다.*)
 
-이러한 자동 소멸은 스마트 포인터(*[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/), [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/), [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등*)나 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)의 개념으로 많이 활용되니 잘 알아 두시기 바랍니다.
+이러한 자동 소멸은 스마트 포인터(*[auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/), [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/), [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등*)나 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)의 개념으로 많이 활용되니 잘 기억해 두시기 바랍니다.
 
 ```cpp
 void f() {
@@ -47,7 +47,7 @@ void f() {
 
 # 전역 변수
 
-[전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)는 모든 파일에서 사용할 수 있는 변수입니다. 하지만, [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 도 안되고, 괜히 미리 생성되어 [제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/) 도 위반합니다.
+[전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)는 모든 파일에서 사용할 수 있는 변수입니다. 하지만, [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 도 안되고, 괜히 미리 생성해 두기 때문에 [제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/)도 위반합니다.
 
 여러 파일에서 사용할 경우에는 다음처럼 `extern`을 사용하여 선언해 줘야 합니다.
 

@@ -54,9 +54,9 @@ sidebar:
 또한 `delete`는 소멸자 호출, 메모리 해제를 수행하지만,
 `operator delete`는 메모리 해제만 수행합니다.
 
-# 개체 생성/소멸과 배열 생성/소멸
+# 개체 생성/소멸
 
-개체 생성/소멸 시에는 `new` - `delete`를 이용합니다.
+개체 생성/소멸 시에는 `new` - `delete`를 이용합니다. 생성된 개체는 [힙](??)에 할당됩니다.
 
 ```cpp
 class T {
@@ -79,6 +79,8 @@ delete t; // (O) 소멸자 호출. 메모리 해제
 New-Delete Test : T::T()
 New-Delete Test : T::~T()
 ```
+
+# 배열 생성/소멸
 
 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 생성/소멸 시에는 `new[]` - `delete[]`를 이용합니다.
 
@@ -114,7 +116,7 @@ T* arr = new T[3]; // (O) 메모리 할당(sizeof(T) * 3 + 오버헤드). 생성
 delete arr; // (X) 예외 발생. 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있음
 ```
 
-**`delete` 여러번 호출 금지**
+# delete 여러번 호출 금지
 
 `delete`를 여러번 실행하면 예외가 발생합니다. 생성한 개체는 1회만 `delete`해야 합니다.
 
@@ -127,7 +129,7 @@ delete p; // (O) new로 생성한 것은 반드시 delete 해야 합니다.
 delete p; // (X) 예외 발생. 두번 죽일 순 없습니다.  
 ```
 
-**`delete` NULL**
+# `delete` NULL
 
 널을 `delete`하면 아무 동작 안합니다. 따라서 다음과 같이 `if`검사를 할 필요가 없습니다. 그냥 delete 하시면 됩니다.
 
