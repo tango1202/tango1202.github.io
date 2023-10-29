@@ -87,7 +87,7 @@ EXPECT_TRUE(IsDifferent(1, 1, 1) == false); // 인자가 여러개여도 됩니�
 |`copyable_function` (C++26~)|(작성중)|
 |`function_ref` (C++26~)|(작성중)|
 
-# 참조 레퍼
+# 참조 래퍼
 
 |항목|내용|
 |--|--|

@@ -27,7 +27,7 @@ EXPECT_TRUE(std::move(t).Func_11() == 2); // move는 우측값이므로 #2 호�
 EXPECT_TRUE(T().Func_11() == 2); // T() 는 임시 개체(우측값)이므로 #2 호출   
 ```
 
-# 이동 연산을 지원하는 Wrapper 설계
+# 이동 연산을 지원하는 래퍼
 
 이동 연산을 지원하기 위해 이동 생성자를 구현한 `Big_11` 개체가 있다고 합시다.
 
@@ -71,7 +71,7 @@ public:
 };    
 ```
 
-이를 관리하는 레퍼는 다음과 같이 만들 수 있습니다.
+이를 관리하는 래퍼는 다음과 같이 만들 수 있습니다.
 
 ```cpp
 class A_11 {
@@ -126,7 +126,7 @@ Big_11 big = std::move(const_cast<Big_11&>(A_11().GetData()));
 
 참 실수하기 쉽고, 타이핑도 번거롭죠.
 
-[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 에 언급되었듯, **잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게** 구현하기 위해 [멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)를 이용하면 다음처럼 레퍼를 작성할 수 있습니다.
+[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 에 언급되었듯, **잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게** 구현하기 위해 [멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)를 이용하면 다음처럼 래퍼를 작성할 수 있습니다.
 
 ```cpp
 class A_11 {
