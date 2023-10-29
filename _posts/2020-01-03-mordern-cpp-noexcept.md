@@ -98,22 +98,6 @@ public:
 };
 ```
 
-# 이동 연산 변환의 안전성
-
-C++11의 컴파일러는 기존 복사 연산을 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)으로 대체하여 성능을 향상시킵니다. 다만, 기존 코드와의 호환성이 보장될때만 대체합니다. 
-
-한마디로, ***가능하면 이동하되, 필요하면 복사합니다.***
-
-[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 `push_back()`을 보면 새로운 요소를 추가할때 [용량](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#size%EC%99%80-capacity)이 부족하다면, 새로운 메모리 영역을 할당하고, 기존 요소를 새로운 메모리 영역에 복사하고, 새로운 요소를 추가합니다. 이때 요소의 복사 과정에서 예외가 발생하더라도, 원본 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 그대로 이므로 `push_back()`은 [강한 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%B3%B4%EC%A6%9D-%EC%A2%85%EB%A5%98)이 된다고 할 수 있습니다.
-
-하지만 이를 이동 연산으로 하면 어떨까요?
-
-기존 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 요소들을 이동하는 중에 예외가 발생한다면, 원본 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 이미 수정된 상태이기에 [강한 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%B3%B4%EC%A6%9D-%EC%A2%85%EB%A5%98)이 된다고 할 수 없습니다. 따라서, 컴파일러가 마음 놓고 복사 연산을 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)으로 바꿀 수는 없습니다. 이전 코드의 예외 안전성을 해치니까요.
-
-그래서, 컴파일러는 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)이 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 선언되어 예외를 방출하지 않는 경우에만 복사 연산을  [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)으로 대체한다고 합니다.
-
-그러니  [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위한 이동 생성자와 이동 대입 연산자는 최대한 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 만드는게 좋습니다. 그리고, [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 도요.(*궁극적으로 모든 함수가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)면 어떨까... 상상만 해봅니다.*)
-
 # noexcept() 연산자
 
 컴파일 타임에 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) 인지 검사합니다.

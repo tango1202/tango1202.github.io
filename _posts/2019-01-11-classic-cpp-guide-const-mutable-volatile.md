@@ -69,6 +69,43 @@ const int* const p4 = &obj; // *p4 수정 불가. p4 수정 불가
 p4 = p1; // (X) 컴파일 오류
 ```
 
+# 복사 대입시 최상위 const 제거
+
+[상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)는 그 값을 수정할 수 없지만, 이를 복사 대입하여 복제본을 만들면 수정할 수 있습니다.
+
+```cpp
+const int constVal = 10;
+constVal = 20; // (X) 컴파일 오류. 상수 개체는 수정할 수 없습니다.
+
+int a = constVal;
+a = 20; // (O) 상수 개체를 복사 대입하면 복사본은 수정할 수 있습니다.
+EXPECT_TRUE(val == 20 && constVal == 10);
+
+const int b = constVal;
+b = 20; // (X) 컴파일 오류. 상수 개체를 상수 개체로 복사 대입하면 수정할 수 없습니다.
+
+```
+
+포인터나 참조자로 대입받는 것은 복사 대입이 아니므로 상수성을 유지해야 합니다.
+
+```cpp
+int data = 10;
+const int* constPtr = &data;
+const int& constRef = data;
+
+int* a = constPtr; // (X) 컴파일 오류. 상수 개체 포인터는 상수 개체 포인터로 받아야 합니다.
+const int* b = constPtr; // (O)
+
+int& c = *constPtr; // (X) 컴파일 오류. 상수 개체 포인터는 상수 개체 참조자로 받아야 합니다.
+const int& d = *constPtr; // (O)
+
+int& e = constRef; // (X) 컴파일 오류. 상수 개체 참조자는 상수 개체 참조자로 받아야 합니다.
+const int& f = constRef; // (O) 
+
+int* g = &constRef; // (X) 컴파일 오류. 상수 개체 참조자는 상수 개체 포인터로 받아야 합니다.
+const int* h = &constRef; // (O)
+```
+
 # 리턴값의 상수성
 
 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)에 무의미하게 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 붙일 필요는 없습니다. 의미에 맞게 붙이거나 떼야 합니다.
@@ -104,7 +141,6 @@ int* GetX5() {return &m_X;}
 void f(int x); // (O) 인수를 x에 복사해서 사용함.
 void f(const int x); // (△) 비권장. 인수를 x에 복사해서 쓰되 f에서 수정하지 않음. 호출하는 쪽에선 무의미
 ```
-
 
 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 포인터나 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입이라면, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용하여 전달된 인수(*함수에 전달하는 개체. Argument*)를 함수가 수정하는지, 수정하지 않는지 **코딩 계약**을 만들어 주는 게 좋습니다. 이런 정보들이 프로그래밍 환경을 좀더 쾌적하게 해주거든요.
 

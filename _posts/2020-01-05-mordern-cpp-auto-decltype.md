@@ -7,6 +7,14 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
+> * [MEC++#1] [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 숙지하라.
+>   * 참조성은 제거된다.
+>   * 최상위 const 는 무시된다.
+>   * 배열은 포인터로 변경된다.
+>   * 함수는 함수 포인터로 변경된다.
+> * [MEC++#2] auto의 추론 규칙을 숙지하라.
+>   * [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 사용한다.
+>   * `auto val= {10};`, `auto val{10};`은 initializer_list로 추론된다.
 
 > * (C++11~) 값으로부터 타입을 추론하는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)이 추가되어 코딩이 간편해 졌습니다.
 > * (C++11~) [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 의존하여 리턴 타입을 결정하는 [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.
@@ -18,12 +26,38 @@ sidebar:
 
 선언되는 변수의 타입을 초기값으로부터 추론하여 결정합니다. 
 
+```cpp
+auto a_11 = 10; // int
+auto b_11 = 10L; // long
+auto c_11 = 10UL; // unsigned long
+
+std::vector<int> v;
+auto d_11 = v.begin(); // std::vector<int>::iterator
+```
+
+# auto 추론 규칙
+
 추론 규칙은 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따릅니다.
 
 즉, 
 
 * [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 추론되고, 
+
+    ```cpp
+    // 배열은 포인터로 추론됩니다.
+    int arr[] = {1, 2, 3};
+    auto a_11 = arr; // int*
+    ```
+
 * 최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 무시됩니다. 
+
+    ```cpp
+    // 최상위 const는 무시됩니다.
+    const int constVal = 0;
+    auto a_11 = constVal; // int
+    a_11 = 10; // const가 아니여서 값을 대입받을 수 있습니다. 
+    ```
+
 * 특히 참조성은 제거됩니다.
 
 ```cpp
@@ -47,7 +81,28 @@ auto f_11 = ref; // int
 auto& g_11 = ref; // auto&을 이용하여 억지로 참조자로 받을 수 있습니다.
 ```
 
-[함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정의시에는 사용할 수 없습니다.(*[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 쓰면 오버로딩 결정이 좀 애매해 질 수 있거든요. [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
+단, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 [중괄호로 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/) 하면, 상황에 따라 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론될 수 있습니다. 자세한 내용은 [중괄호 초기화와 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto)를 참고하세요.
+
+다음 예를 보면, 
+
+* `auto b_11(10);`의 경우 컴파일러에 따라 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 또는 `int`로 추론될 수 있습니다.(*[중괄호 초기화와 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto) 참고*)
+
+* `auto b_11 = {10};`의 경우 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론됩니다.
+
+```cpp
+// 모두 int 10으로 초기화됩니다.
+int a = 10;
+int a(10);
+int a{10};
+int a = {10};
+
+auto b_11 = 10; // int 10으로 초기화됩니다.
+auto b_11(10); // int 10으로 초기화 됩니다.
+auto b_11{10}; // initializer_list<int> 또는 int 10으로 초기화 됩니다
+auto b_11 = {10}; // (△) 비권장. initializer_list로 초기화됩니다.
+```
+
+그리고, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정의시에는 사용할 수 없습니다.(*[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 쓰면 오버로딩 결정이 좀 애매해 질 수 있거든요. [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
 
 ```cpp
 // (X) 컴파일 오류
@@ -96,25 +151,6 @@ double Func_11(int a, auto b) {
     long a = f(); // (△) 비권장. int가 long으로 암시젹 형변환됩니다.
     auto a = f(); // (O) 형변환 되지 않습니다.
     ```
-
-# 중괄호 초기화와 auto
-
-[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 [중괄호로 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/) 하면, 상황에 따라 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론될 수 있습니다. [중괄호 초기화와 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto)를 참고하세요.
-
-다음 예를 보면, `b_11 = {10};`의 경우 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론됩니다.
-
-```cpp
-// 모두 int 10으로 초기화됩니다.
-int a = 10;
-int a(10);
-int a{10};
-int a = {10};
-
-auto b_11 = 10; // int 10으로 초기화됩니다.
-auto b_11(10); // int 10으로 초기화 됩니다.
-auto b_11{10}; // int 10으로 초기화 됩니다.
-auto b_11 = {10}; // (△) 비권장. initializer_list로 초기화됩니다.
-```
 
 # 암시적 형변환과 auto
 
