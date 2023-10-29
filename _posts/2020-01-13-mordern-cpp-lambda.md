@@ -41,7 +41,7 @@ int f(int a, int b) {
 }
 ```
 
-[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)나 리턴값이 없다면 다음과 같이 생략하여 `[] {}` 로 작성할 수 있습니다.
+[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)나 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 없다면 다음과 같이 생략하여 `[] {}` 로 작성할 수 있습니다.
 
 ```cpp
 [] {std::cout << "lambda" << std::endl;}

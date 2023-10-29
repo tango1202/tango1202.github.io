@@ -67,7 +67,7 @@ EXPECT_TRUE(*charContainer.GetAt(5) == 'c');
 보기 싫은 부분이 참 많습니다.
 
 1. `IContainer`에서 `void*` 를 사용합니다. 상속받아 사용할 타입이 `int`일지, `char`일지 모르므로, 그냥 다 되도록 `void*` 로 만들었습니다.
-2. `GetAt()`함수가 값을 저장하고, 값을 리턴해야 하는데, 부모 개체에서 `void*`를 사용하니 어쩔 수 없이 `int*`와 `char*`를 사용합니다.([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)의 리턴값 변경 참고)
+2. `GetAt()`함수가 값을 저장하고, 값을 리턴해야 하는데, 부모 개체에서 `void*`를 사용하니 어쩔 수 없이 `int*`와 `char*`를 사용합니다.([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)
 3. `SetAt()`함수는 더 심각합니다. 아예 `void*`를 전달받을 수 밖에 없습니다.
 4. 내부적으로 `void*` 여서 지저분하게 `static_cast`를 사용합니다.
 5. 사용할때도 포인터라서 `&`, `*`을 사용해야 하고, 예제에는 없지만, 사실은 널검사도 해야 합니다.

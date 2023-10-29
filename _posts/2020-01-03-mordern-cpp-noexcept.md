@@ -132,7 +132,7 @@ EXPECT_TRUE(noexcept(g()) == true);
 
 기존에는 함수 유형에 noexcept가 포함되지 않았습니다.
 
-따라서, 함수 포인터로 유형 정의를 할때 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 포함할 수 없었습니다.
+따라서, [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 유형 정의를 할때 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 포함할 수 없었습니다.
 
 ```cpp
 // C++14에서 noexcept는 함수 유형의 일부가 아닙니다. 

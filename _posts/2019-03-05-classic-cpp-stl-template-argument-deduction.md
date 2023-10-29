@@ -73,7 +73,7 @@ EXPECT_TRUE(sizeof(arr) == 3 * sizeof(int)); // 배열의 전체 용량
 EXPECT_TRUE(f(arr) == 3); // 배열 요소 갯수
 ```
 
-함수는 함수 포인터로 추론합니다.
+함수는 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 추론합니다.
 
 ```cpp
 template<typename T>

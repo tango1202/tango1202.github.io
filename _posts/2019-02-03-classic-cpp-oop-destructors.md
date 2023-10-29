@@ -55,13 +55,13 @@ public:
 
 # 개체 소멸 순서
 
-개체가 소멸되면, 소멸자 본문이 실행되고, 본문내의 지역 변수를 소멸시키고, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 소멸시킵니다. 그뒤 부모 클래스의 소멸자를 호출합니다. 모든 소멸자 호출이 끝나면, 메모리를 해제합니다.
+개체가 소멸되면, 소멸자 본문이 실행되고, 본문내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 소멸시키고, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 소멸시킵니다. 그뒤 부모 클래스의 소멸자를 호출합니다. 모든 소멸자 호출이 끝나면, 메모리를 해제합니다.
 
 1. 소멸자 본문 실행 
-2. 본문 내의 지역 변수 소멸(선언의 역순)
+2. 본문 내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 소멸(선언의 역순)
 3. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 소멸(선언의 역순)
 4. 부모 클래스 소멸자 본문 호출
-5. 부모 클래스 소멸자 본문내의 지역 변수 소멸(선언의 역순)
+5. 부모 클래스 소멸자 본문내의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 소멸(선언의 역순)
 6. 부모 클래스 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 소멸(선언의 역순)
 7. 메모리 해제
 

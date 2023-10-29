@@ -77,8 +77,8 @@ ThreeType three;
 |`is_scalar` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)인지 검사합니다.|
 |`is_object` (C++11~)|좌측값과 포인터 타입인지 검사합니다.|
 |`is_reference` (C++11~)|참조 타입(좌측값 참조와 우측값 참조)인지 검사합니다.|
-|`is_compound` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), 함수, 개체 포인터, 함수 포인터, 멤버 변수 포인터, 멤버 함수 포인터, 참조자, 구조체/클래스, [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4), [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)인지 검사합니다. `int`와 같은 기본 타입은 `false` 입니다.|
-|`is_member_pointer` (C++11~)|멤버 변수 포인터, 멤버 함수 포인터 인지 검사합니다.|
+|`is_compound` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), 함수, 개체 포인터, 함수 포인터, 멤버 변수 포인터, [멤버 함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0), 참조자, 구조체/클래스, [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4), [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)인지 검사합니다. `int`와 같은 기본 타입은 `false` 입니다.|
+|`is_member_pointer` (C++11~)|멤버 변수 포인터, [멤버 함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 인지 검사합니다.|
 
 # 타입 특성
 

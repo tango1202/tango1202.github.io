@@ -141,7 +141,7 @@ T obj(); // T 타입의 obj 개체를 기본 생성자로 생성하고 싶지만
 |항목|의도|컴파일러 해석|
 |--|--|--|
 |`T obj();`|`T` 타입의 `obj` 개체를 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성하고 싶습니다.|`T` 타입을 리턴하는 함수 `obj()`를 선언합니다.|
-|`T obj(T());`|`T` 타입의 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성한 것을 `obj`에 복사 생성하고 싶습니다.|`T` 타입을 리턴하고, `T(*)()` 함수 포인터를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받은 함수 `obj()`를 선언합니다.|
+|`T obj(T());`|`T` 타입의 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성한 것을 `obj`에 복사 생성하고 싶습니다.|`T` 타입을 리턴하고, `T(*)()` [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받은 함수 `obj()`를 선언합니다.|
 
 따라서 상기 의도에 따른 표현은 다음과 같이 해야 합니다.
 

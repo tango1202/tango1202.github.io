@@ -20,7 +20,7 @@ sidebar:
 
 2. [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)
 
-    리턴할 개체를 그냥 리턴값을 저장할 변수로 사용합니다.
+    리턴할 개체를 그냥 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 저장할 변수로 사용합니다.
 
 컴파일러 종류에 따라 다르겠지만, gcc에서는 상기 최적화를 수행하여 불필요한 이동 생성을 생략하고, 생성된 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 그냥 사용합니다.
 

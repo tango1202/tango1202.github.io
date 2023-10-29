@@ -37,7 +37,7 @@ void Shape::SetAngle(float angle);
 
 7. `Shape`을 회전 시켰으면, 화면 갱신도 같이 해주나요? 
 
-8. 리턴값이 `void`면 정말 항상 성공하는 함수인가요? 절대 오류가 발생하지 않나요? 
+8. [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 `void`면 정말 항상 성공하는 함수인가요? 절대 오류가 발생하지 않나요? 
 
 9. 정말 예외 발생은 없는 거죠?
 

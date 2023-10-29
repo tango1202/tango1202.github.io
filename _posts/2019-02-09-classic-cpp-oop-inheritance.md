@@ -195,7 +195,7 @@ EXPECT_TRUE(d.Base::f() == 10);
 
 # 부모 개체의 가상 함수 오버라이딩
 
-부모 개체의 가상 함수를 오버라이딩(함수명과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 동일하며 자식 개체에서 재구현)하여 다형적으로 동작하게 할 수 있습니다. 단, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입은 동일해야 하며, 리턴값은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다.([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)
+부모 개체의 가상 함수를 오버라이딩(함수명과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 동일하며 자식 개체에서 재구현)하여 다형적으로 동작하게 할 수 있습니다. 단, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입은 동일해야 하며, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다.([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)
 
 ```cpp
 class Base {
@@ -745,7 +745,7 @@ Shape shape(rect); // (X) 오동작. shape은 Rectangle을 알지 못해 복사 
 
 해야 합니다.
 
-[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에 언급했듯, 가상 함수 오버라이딩시 리턴값은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다. 따라서, 다음처럼 자식 개체의 타입을 리턴하는 `Clone()`을 만들 수 있습니다.
+[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에 언급했듯, 가상 함수 오버라이딩시 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다. 따라서, 다음처럼 자식 개체의 타입을 리턴하는 `Clone()`을 만들 수 있습니다.
 
 ```cpp
 class Shape {

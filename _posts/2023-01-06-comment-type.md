@@ -165,11 +165,11 @@ C++ 에서 문법적으로는 다음의 두가지 주석이 있습니다.
 
 9. [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), 데이터 선언/정의 주석, 리턴 주석
 
-   함수 선언부에 주로 적게 되는데요, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 단위, 허용 범위, 함수의 작동방식, 리턴값 등을 작성합니다. 주로 리팩토링해서 최소화 시키는 것이 좋습니다.
+   함수 선언부에 주로 적게 되는데요, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 단위, 허용 범위, 함수의 작동방식, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 등을 작성합니다. 주로 리팩토링해서 최소화 시키는 것이 좋습니다.
 
 9. 리턴 주석
 
-   리턴값의 의미, 성공시의 값, 실패시의 값등을 적습니다. 
+   [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 의미, 성공시의 값, 실패시의 값등을 적습니다. 
 
 9. 설계 이념, 클래스 설계 철학
 

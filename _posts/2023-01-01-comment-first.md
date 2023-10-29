@@ -42,7 +42,7 @@ sidebar:
 
 3. 함수 수행에 필요한 사전가정, 사후가정을 적습니다.
 
-4. 함수의 리턴값이 어떠한 의미를 가지는지 적습니다.
+4. 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 어떠한 의미를 가지는지 적습니다.
 
 5. 함수가 실패했을때 어떻게 오류를 처리하는지 적습니다.
 

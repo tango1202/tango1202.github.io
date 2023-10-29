@@ -73,7 +73,7 @@ p4 = p1; // (X) 컴파일 오류
 
 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)에 무의미하게 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 붙일 필요는 없습니다. 의미에 맞게 붙이거나 떼야 합니다.
 
-[리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/)이라면 어짜피 리턴값이 복제되므로, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 붙일 필요가 없거든요.
+[리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/)이라면 어짜피 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 복제되므로, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 붙일 필요가 없거든요.
 
 ```cpp
 // (O) 멤버 변수의 값을 리턴하는 const 함수

@@ -321,7 +321,7 @@ public:
 
 다음의 `IsDerivedFrom` 템플릿은 `D`가 `B`를 상속했는지 검사합니다.
 
-1. `Yes`는 `No`는 `Test()`함수의 리턴값으로 사용되며, 어떤 오버로딩 함수가 호출되었는지 리턴값의 `sizeof()`로 확인할 수 있습니다.
+1. `Yes`는 `No`는 `Test()`함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)으로 사용되며, 어떤 오버로딩 함수가 호출되었는지 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 `sizeof()`로 확인할 수 있습니다.
 2. `Test()` 함수는 2개의 오버로딩 버전을 제공합니다. `D*` 가 `B*`로 변환되면 `Yes` 개체를 리턴하고, 그렇지 않으면 `No` 개체를 리턴합니다. 즉, `D`가 `B`를 상속했다면 `Yes`를 리턴합니다.
 3. `D`가 `B`를 상속했다면 열거값 `Val`에 `true`를 세팅하고, 그렇지 않으면 `false`를 세팅합니다.
 

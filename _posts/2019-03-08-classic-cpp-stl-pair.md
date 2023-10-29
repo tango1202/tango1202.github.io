@@ -14,7 +14,7 @@ sidebar:
 
 # 개요
 
-[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)는 두개의 데이터를 저장합니다. 함수의 리턴값등에서 두개의 값을 리턴해야 할 때 일일이 클래스를 만들어 이용하기 보다는 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 이용하여 가볍게 전달할 수 있습니다.
+[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)는 두개의 데이터를 저장합니다. 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)등에서 두개의 값을 리턴해야 할 때 일일이 클래스를 만들어 이용하기 보다는 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 이용하여 가볍게 전달할 수 있습니다.
 
 ```cpp
 std::pair<int, char> f() {

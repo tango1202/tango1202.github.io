@@ -9,11 +9,11 @@ sidebar:
 ---
 
 > * [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 사용하지 마라.
-> * 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하라.
-> * 컴파일러 최적화가 쉽도록, [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)가 쉽도록, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하라.
+> * [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하라.
+> * 멤버 개체의 참조가 아니라면, 컴파일러 최적화가 쉽도록, [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)가 가능하도록, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 은 값 타입으로 리턴하라.
 > * 다형적인 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에서 부모 개체와 자식 개체의 기본값을 다르게 하지 마라.
-> * 리턴 타입과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입은 값을 사용할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용할 것인지, [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
-> * 함수 오버로딩시 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 유효 공간에서도 탐색(*ADLArgument-dependent lookup, ADL 또는 Koenig 검색*)하는 원리를 이해하라.
+> * [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 타입과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입은 값을 사용할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용할 것인지, [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용할 것인지, 비 상수를 사용할 것인지 신중하게 결정하라.
+> * 함수 오버로딩시 [함수 인자의 유효 범위에서 탐색(Argument-dependent lookup, ADL 또는 Koenig 검색)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99argument-dependent-lookup-adl)하는 원리를 이해하라.
 > * 함수에 전달하는 인수는 순서대로 호출되지 않는다. 컴파일러 마음이다.
 
 > **모던 C++**
@@ -27,7 +27,6 @@ sidebar:
 > * (C++14~) [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0)이 가능하여 [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85) 대신 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)나 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)를 사용할 수 있습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)등이 표준화 되었습니다.
 > * (C++17~) [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 관련해서 [throw()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)가 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되었습니다. 이제 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)만 사용해야 합니다.
-
 
 # 개요
 
@@ -45,24 +44,30 @@ return_type function_name(parameter_list) [const] [throw(exception_list)] {}
 
 |항목|내용|
 |--|--|
-|`return_type`|함수 결과의 타입. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 안됨|
-|`parameter_list`|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 목록|
-|`[const]`|멤버 함수인 경우 개체를 수정하지 않음(*[상수 한정자(const), 변경 가능 지정자(mutable), 최적화 제한 한정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 참고*)
-|`[throw(exception-list)]`|함수가 방출하는 예외 사양.<br/>나열된 예외 이외에는 `unexpected_handler` 로 분기함. 사용하지 말 것.(*[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고*)|
+|[return_type](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)|함수 결과인 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 타입입니다. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 사용할 수 없습니다.|
+|[parameter_list](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 목록입니다.|
+|[const](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|멤버 함수인 경우 개체를 수정하지 않습니다.(*[상수 한정자(const), 변경 가능 지정자(mutable), 최적화 제한 한정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 참고*)
+|[throw(exception-list)](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)|함수가 방출하는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)입니다.<br/>나열된 예외 이외에는 `unexpected_handler` 로 분기하는데요, 사용하지 마세요. 이유는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 참고하기 바랍니다.|
+
+함수를 만드는데 있어서 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 타입을 어떻게 하느냐에 따라서 불필요한 복사 부하를 최소화 하여 성능을 개선시킬 수 있으니, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 타입은 신중하게 결정해야 합니다. 
 
 # 함수 포인터
 
-함수 포인터로 함수 자체를 변수처럼 사용할 수 있습니다.
+[함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 함수 자체를 변수처럼 사용할 수 있습니다.
+
+다음 예에서 `void (*p)(int);`로 `void`를 리턴하고, `int`를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받는 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) `p`를 선언합니다.
+
+`p = f;` 또는 `p = &f;`로 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) `p`가 `f()`함수를 가리키게 할 수 있고, `p()` 나 `(*p)()`로 `f()`함수를 호출할 수 있습니다.
 
 ```cpp
-void (*p)(int); // void 를 리턴하고 int형을 인수로 전달받는 함수의 함수 포인터 p 정의
+void (*p)(int); // void 를 리턴하고 int형을 인수로 전달받는 함수의 함수 포인터 p 선언
 
 void f(int) {} // f 함수 정의
 p = f; // 함수 포인터에 f 함수 대입. p = &f; 와 동일
 p(10); // f 함수 실행. (*p)(10); 과 동일
 ```
 
-`typdef`를 사용하면 좀더 변수스럽게 사용할 수 있습니다.
+[타입 재정의(typdef)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EC%9E%AC%EC%A0%95%EC%9D%98%EB%B3%84%EC%B9%AD)를 사용하면 좀더 변수스럽게 사용할 수 있습니다.
 
 ```cpp
 typedef void (*Func)(int); // void 를 리턴하고 int형을 인수로 전달받는 함수의 함수 포인터 타입 정의
@@ -72,9 +77,11 @@ p = f; // 함수 포인터에 f 함수 대입. p = &f; 와 동일
 p(10); // f 함수 실행. (*p)(10); 과 동일
 ```
 
-함수 포인터는 **의존성 주입(*[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고*)** 을 활용하여, 원하는 알고리즘으로 손쉽게 변경하거나, [제어의 역전 원칙](https://tango1202.github.io/principle/principle-inversion-of-control/) 에 따라 프레임워크에서 제어를 통제하고자 할때 사용할 수 있습니다.
+[함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)는 **의존성 주입(*[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고*)** 을 활용하여, 원하는 알고리즘으로 손쉽게 변경하거나, [제어의 역전 원칙](https://tango1202.github.io/principle/principle-inversion-of-control/) 에 따라 프레임워크에서 제어를 통제하고자 할때 사용할 수 있습니다.
 
-예를 들어 계산기 프로그램을 만들기 위해 `Button`을 만든다고 합시다. `Button`은 `Click`시 버튼에 할당된 연산(*더하기, 빼기*)을 수행하는 역할만 하려고 합니다. 이럴 경우 연산 행위를 수행하는 함수를 함수 포인터로 `Button`에 전달하고, `Button`은 `Click`시 함수 포인터를 호출해 주면 됩니다.
+예를 들어 계산기 프로그램을 만들기 위해 `Button`을 만든다고 가정해 봅시다. `Button`은 `Click()`시 버튼에 할당된 연산(*더하기, 빼기*)을 수행하는 역할만 하려고 합니다. 이럴 경우 연산 행위를 수행하는 함수를 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 `Button`에 전달하고, `Button`은 `Click()`시 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 호출해 주면 됩니다.
+
+다음 예에서 `plus()` 함수와 `minus()` 함수를 `Button` 생성자에 전달하여 `m_Func`에 저장한 뒤, `Click()`시 이를 호출하여, `Button`에 따라 더하기나 빼기를 수행합니다.
 
 ```cpp
 typedef int (*Func)(int, int); // 함수 포인터 typedef
@@ -103,15 +110,18 @@ Button minusButton(minus); // 클릭시 빼기
 
 EXPECT_TRUE(plusButton.Click(10, 20) == 30); 
 EXPECT_TRUE(minusButton.Click(10, 20) == -10); 
-
 ```
 
-상기의 사례는 함수 포인터 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하거나 **의존성 주입(*[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고*)** 을 활용해서도 구현 할 수 있습니다.
+상기의 사례는 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 대신 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 나 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하거나 **의존성 주입(*[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고*)** 을 활용해서도 구현 할 수 있습니다.
 
 
 **멤버 함수 포인터**
 
-개체의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)도 함수 포인터로 접근 할 수 있습니다.
+개체의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)도 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 접근 할 수 있습니다.
+
+다음 예에서 `typedef int (Data::*Func)() const;`는 `Data`클래스의 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)중 `int`를 리턴하고, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 없는 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) `Func`을 선언합니다.
+
+`Func func = &Data::Print;` 와 같이 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) `Func`이 `Print()`함수를 가리키게 할 수 있고, `(data.*func)();`와 같이 개체로부터 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 호출할 수 있습니다.
 
 ```cpp
 class Data { 
@@ -126,7 +136,9 @@ Data data;
 EXPECT_TRUE((data.*func)() == 1); // data 개체로 부터 멤버 함수 포인터 실행
 ```
 
-예를 들어 인쇄 버튼이 상황에 따라 프린터에 출력하거나 화면 미리보기를 수행한다고 해봅시다. 동적으로 호출되는 멤버 함수가 달라지는데요, 멤버 함수 포인터를 전달해서 구현할 수 있습니다.
+예를 들어 인쇄 버튼이 상황에 따라 프린터에 출력하거나 화면 미리보기를 수행한다고 해봅시다. 동적으로 호출되는 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 달라지는데요, [멤버 함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 전달해서 구현할 수 있습니다.
+
+다음 예에서는 `Button`의 `Click()` 함수를 호출할때 `m_Data`의 어떤 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 실행할지 동적으로 전달하고 있습니다.
 
 ```cpp
 class Data { 
@@ -156,7 +168,9 @@ EXPECT_TRUE(button.Click(&Data::Preview) == 2); // data 개체로 부터 Preview
 
 # 리턴값
 
-함수는 리턴문을 통해 결과값을 전달합니다.
+함수가 리턴문을 통해 전달하는 결과값을 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이라 합니다.
+
+void, 값 타입, 포인터, const 포인터, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90), const [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴할 수 있으며, 특별히 함수의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 리턴하면 오류가 발생하니 주의하시기 바랍니다.(*[Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고*)
 
 ```cpp
 class T {
@@ -168,32 +182,16 @@ class T {
 };
 ```
 
-또한 리턴문은 특정 조건에서 강제 종료시 사용할 수 있습니다.
+[리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 타입은
 
-```cpp
-class T {
-    void f() {
-        if () {
-            return;
-        }
-    }
-};
-```
-
-특별히 함수의 지역 변수를 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 리턴하면 오류가 발생하니 주의하시기 바랍니다.(*[Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고*)
-
-**리턴 타입**
-
-리턴 타입은 
-
-1. 값을 리턴할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴할 것인지
+1. 값을 리턴할 것인지, 포인터를 리턴할 것인지, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴할 것인지
 2. [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 리턴할 것인지, 비 상수를 리턴할 것인지
 
 신중하게 결정해야 복사 부하를 줄이고, 타입에 기반한 **코딩 계약** 을 수립할 수 있습니다. 해당 방법에 대해서는 [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)를 참고하기 바랍니다.
 
 # 리턴값 최적화(Return Value Optimization, RVO)
 
-일반적으로 리턴되는 값은 다른 변수에 대입됩니다.
+일반적으로 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 다른 변수에 복사 생성 혹은 복사 대입됩니다.
 
 ```cpp
 class T {
@@ -223,28 +221,157 @@ T t2(t1.f()); // T t2 = t1.f(); 와 동일
 
 상기에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 3회, `t2`를 생성하면서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 전달받는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
 
-GCC에서는 하기 2개만 실행됩니다.(*컴파일러 최적화 방식에 따라 다를 수 있습니다.*)
+GCC에서는 하기 2개만 실행됩니다. 심지어 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 호출되지도 않습니다.(*컴파일러 최적화 방식에 따라 다를 수 있습니다.*)
 
+```cpp
+RVO -> T::T() // t1 생성
+RVO -> T::T() // t2 생성
 ```
-RVO -> T::T()
-RVO -> T::T()
+
+이는 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)인 `result`가 `t2`에 전달되므로, 괜히 생성하고 전달하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)(*Return Value Optimization, RVO*) 라고 합니다. 
+
+[리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)는 다음 조건에서 수행됩니다.
+
+1. [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 값 타입이어야 합니다.([참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입이 아닙니다.)
+
+2. [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 타입이 리턴하려는 개체와 같은 타입이어야 합니다.
+
+상기의 `f()`함수는 이 두가지 조건을 모두 충족하기 때문에 컴파일러가 [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)를 해줍니다.
+
+```cpp
+T f() { // 리턴값은 T 로 값 타입입니다.
+    T result(0, 0); // 리턴값과 리턴하려는 개체가 타입이 같습니다.
+    return result;
+}
 ```
 
-이는 리턴값인 `result`가 `t2`에 전달되므로, 괜히 생성하고 전달하는게 아니라 리턴할 개체를 그냥 `t2`로 사용하기 때문입니다. 이를 [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)(*Return Value Optimization, RVO*) 라고 합니다. 
-
-컴파일러마다 최적화하는 방법이 다를 수 있기 때문에, 컴파일러가 최적화를 쉽게 할 수 있도록 리턴값을 명시적으로 변수로 만들기 보다는,
+또는 컴파일러가 최적화를 쉽게 할 수 있도록 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 명시적으로 변수로 만들기 보다는,
 
 ```cpp
 T result(0, 0);
+.
+. // 복잡한 제어문들. 
+.
 return result; // (△) 비권장. 컴파일러가 최적화를 못할 수도 있습니다.
 ```
 
-다음처럼 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하는게 좋습니다.
+다음처럼 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 사용하는게 좋을 수 있습니다.
 
 ```cpp
 return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최적화하기 편합니다.
 ```
 > *(C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)등이 표준화 되었습니다.*
+
+# 값 타입 리턴값
+
+함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 이용하지 않고 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 통해 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)에 포인터나 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 전달하여 함수의 결과값을 대입받을 수 있습니다만, 심각한 복사 부하가 있습니다.
+
+다음 예에서는
+
+1. `T Create()`로 값 타입을 리턴하는 경우
+2. `T* CreatePtr()`로 포인터 타입을 리턴하는 경우
+3. `Create(T* ptr)`로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 통해 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 대입 받는 경우
+3. `Create(T& ref)`로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 통해 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 대입 받는 경우
+
+를 비교한 예입니다.
+
+```cpp
+class T {
+    int m_X;
+    int m_Y;
+public:
+    T() {
+        std::cout << "T : Default Constructor" << std::endl;
+    }
+    // 값 생성자
+    T(int x, int y) :
+        m_X(x),
+        m_Y(y) {
+        std::cout << "T : Value Constructor" << std::endl;
+    }
+
+    // 복사 생성자
+    T(const T& other) {
+        std::cout << "T : Copy Constructor" << std::endl;    
+    }
+    // 복사 대입 연산자
+    T& operator =(const T& other) {
+        std::cout << "T : Assign" << std::endl;    
+        return *this;
+    }    
+    
+    // 값 타입으로 생성합니다. RVO 가 적용됩니다.
+    static T Create() { 
+        T result(0, 0);
+        return result;
+    }
+
+    // 포인터를 생성해서 리턴합니다. 호출한 곳에서 delete 해줘야 합니다.
+    static T* CreatePtr() {
+        return new T(0, 0);
+    }
+
+    // 생성된 개체에 복사 대입 합니다. 포인터라서 널검사가 필요합니다. NULL 이면 예외를 방출합니다.
+    static void Create(T* ptr) {
+        if (ptr == NULL) {
+            throw std::invalid_argument("NULL"); 
+        }
+
+        *ptr = T(0, 0);
+    }
+
+    // 생성된 개체에 복사 대입 합니다.
+    static void Create(T& ref) {
+        ref = T(0, 0);
+    }
+};
+
+T a = T::Create(); // 리턴값 최적화로 복사하지 않습니다.
+
+T* b = T::CreatePtr(); // (△) 비권장. 생성한 포인터만 복사합니다. 포인터이기 때문에 나중에 delete 해야 합니다.
+delete b;
+
+T c; 
+T::Create(&c); // (△) 비권장. 생성 후 대입 받으면, 기본 생성자, 값 생성자, 복사 대입 연산자가 호출됩니다.
+
+T d;
+T::Create(d); // (△) 비권장. 생성 후 대입 받으면, 기본 생성자, 값 생성자, 복사 대입 연산자가 호출됩니다.
+```
+
+실행 결과는 다음과 같습니다.
+
+1. [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 값 타입으로 사용한 경우가 복사 부하도 가장 적고, 인터페이스도 깔끔합니다.
+
+2. 포인터 타입을 리턴하면 복사 부하는 없으나, [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)의 부담이 있고, 
+
+3. 포인터를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달하는건 2회의 생성과 1회 대입이 있을 뿐만아니라 예외 방출까지 합니다.
+
+4. [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달하는 것도 2회의 생성과 1회 대입이 있습니다.
+
+```cpp
+// T a = Create();
+T : Value Constructor
+
+// T* b = CreatePtr();
+T : Value Constructor
+
+// T c;
+// Create(&c);
+T : Default Constructor
+T : Value Constructor
+T : Assign
+
+// T d;
+// Create(d);
+T : Default Constructor
+T : Value Constructor
+T : Assign
+```
+
+복사 부하도 없고 사용법도 깔끔하니, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 값 타입을 사용하시기 바랍니다.
+
+단, 클래스 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)인 경우 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴하셔야 합니다. [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)를 참고하세요.
+
 
 # 인자(매개변수, Parameter)
 
@@ -258,13 +385,21 @@ void f(int a, int b); // (O)
 
 **이름이 없는 인자**
 
-함수 정의부에서 사용하지 않는다면, 그리고 함수 포인터 선언 용도라면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명을 생략할 수 있습니다. 또한 템플릿 함수 구현시 오버로딩을 위해 생략할 수 있습니다.(*[타입 처리 방법 공통화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/#%ED%83%80%EC%9E%85-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95-%EA%B3%B5%ED%86%B5%ED%99%94) 참고*)
+함수 정의부에서 사용하지 않는다면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명을 생략할 수 있습니다.
 
-```cpp
-void f(int, int); // (O)
-```
+다음 2가지 경우입니다.
 
-이외에, 사용하지 않는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 억지로 작성해야 한다는건 악취가 난다는 뜻입니다. 설계 변경을 추천합니다. 그럼에도 불구하고 꼭 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 생략을 해야 한다면, 하기 작성 방법을 고려해 보세요.
+* [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 선언 용도라면 생략할 수 있습니다.
+
+    ```cpp
+    void f(int, int); // (O)
+    ```
+
+* 템플릿 함수 구현시 오버로딩을 위해 생략할 수 있습니다.(*[타입 처리 방법 공통화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/#%ED%83%80%EC%9E%85-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95-%EA%B3%B5%ED%86%B5%ED%99%94) 참고*)
+
+이것 외에는 사용하지 않는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 억지로 작성해야 하는 경우입니다. 
+
+설계가 잘못된 겁니다. 악취가 난다는 뜻입니다. [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/) 위반입니다. 설계 변경을 추천합니다. 그럼에도 불구하고 꼭 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 생략을 해야 한다면, 하기 작성 방법을 고려해 보세요.
 
 다음과 같이 함수 본문에서 컴파일러 경고를 막기 위해 억지로 사용할 수는 있지만, 명시적으로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명을 적었기 때문에 컴파일러 최적화가 힘들수 있고요,
 
@@ -319,7 +454,7 @@ int f(const void); // (X) 컴파일 오류
 |`va_end()`|[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 사용 종료 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
 |`va_list`|[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)에 대한 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)|
 
-[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 사용하려면 `cstdarg`를 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)해야 합니다.
+[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 사용하려면 `<cstdarg>`를 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)해야 합니다.
 
 ```cpp
 #include <cstdarg>
@@ -407,7 +542,9 @@ g_Val = 20;
 EXPECT_TRUE(f5() == 20);
 ```
 
-상속 관계에서 [인자의 기본값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)을 재정의하면, 혼란을 야기할 수 있습니다.
+상속 관계에서 [인자의 기본값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)을 재정의하면, 혼란을 야기할 수 있습니다. 
+
+다음과 같이 `Base`와 `Derived`의 인스턴스를 생성하고 호출하면, 각자의 기본값대로 처리됩니다.
 
 ```cpp
 class Base {
@@ -424,7 +561,7 @@ public:
 };
 ```
 
-다음과 같이 `Base`와 `Derived`의 인스턴스를 생성하고 호출하면, 각자의 기본값대로 처리됩니다.
+실행 결과를 보면, `Base` 개체로 호출할 때와 `Derived` 개체로 호출할때 각자의 값으로 실행되는 걸 알 수 있습니다.
 
 ```cpp
 Base b;
@@ -433,13 +570,15 @@ EXPECT_TRUE(b.f6() == 10);
 EXPECT_TRUE(d.f6() == 20);    
 ```
 
-하지만 부모 개체인 `Base*` 통해 접근하면 `Base`의 기본값으로 처리됩니다. 이러한 차이가 생기므로, 부모 개체와 자식 개체의 기본값은 같은 값으로 하는게 좋습니다.
+하지만 `Derived`개체를 부모 개체인 `Base*` 통해 접근하면 [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)을 참조하여 호출하므로, `Base`의 기본값으로 처리됩니다. 
 
 ```cpp
 Derived d;
 Base* p = &d;
 EXPECT_TRUE(p->f6() == 10); // 가상 함수 테이블을 참조하여 Base 의 기본값인 10을 사용합니다.   
 ```
+
+이러한 차이가 생기므로, 부모 개체와 자식 개체의 기본값은 같은 값으로 하는게 좋습니다.
 
 **인자 타입**
 
@@ -588,7 +727,10 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
 
 # 함수 인자의 유효 범위 탐색 규칙(Argument-dependent lookup, ADL)
 
-함수 인자의 유효 범위 탐색 규칙(*Argument-dependent lookup, ADL*) 또는 Koenig 검색은 
+오버로딩한 함수를 탐색할때 해당 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) 에서도 동일한 이름의 함수를 탐색한다는 규칙입니다. 
+Argument-dependent lookup(*ADL*) 또는 Koenig 검색이라고 합니다. 
+
+구체적인 사례는 [오버로딩 함수 탐색 규칙]()을 참고하세요.
 
 # 오버로딩 함수 탐색 규칙
 
@@ -596,7 +738,7 @@ EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따�
  
 1. 자신의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색
    
-2. [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색(*Argument-dependent lookup, ADL 또는 Koenig 검색*)
+2. [함수 인자의 유효 범위에서 탐색(Argument-dependent lookup, ADL 또는 Koenig 검색)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99argument-dependent-lookup-adl)
 
 3. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 포함하여 실행 가능 함수 결정
    
@@ -626,13 +768,13 @@ namespace B {
 EXPECT_TRUE(B::g() == 2); // B::MyFunc 이 채택됨
 ```
 
-하지만 `MyFunc()`함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다음처럼 특정[네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 것을 참조한다면, 
+하지만 `MyFunc()`함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다음처럼 특정 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 것을 참조한다면, 
 
 ```cpp
 int MyFunc(const C::Date&, double) {return 2;}
 ```
 
-ADL(*Argument-dependent lookup*) 또는 Koenig 검색에 의해 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) `C`의 함수들에서도 검색하게 됩니다.
+[함수 인자의 유효 범위에서 탐색(Argument-dependent lookup, ADL 또는 Koenig 검색)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99argument-dependent-lookup-adl)에 의해 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) `C`의 함수들에서도 검색하게 됩니다.
 
 그래서 함수 후보군은
 
@@ -665,13 +807,13 @@ EXPECT_TRUE(D::g() == 1); // C::MyFunc 이 채택됨
 
 코드를 위에서부터 아래로 읽고, 왼쪽에서 오른쪽으로 읽기 때문에 읽는 순서대로 실행될 것이다 예측할 수 있는데요,
 
-보통의 경우엔 그렇습니다만, 공식적으로는 연산자 우선 순위를 제외한 모든 실행 순서는 컴파일러 마음입니다.
+보통의 경우엔 그렇습니다만, 공식적으로는 [연산자 우선 순위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84)를 제외한 모든 실행 순서는 컴파일러 마음입니다.
 
 심지어 속도 향상을 위해 컴파일러가 최적화를 위해 캐쉬된 내용을 활용하기 위해 임의로 순서를 바꿀 수도 있습니다.(*[순차적 일관성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#%EC%88%9C%EC%B0%A8%EC%A0%81-%EC%9D%BC%EA%B4%80%EC%84%B1sequential-consistency) 참고*)
 
-다음은 `a(a_sub())`, `b()`, `c()` 함수의 결과를 `f()` 에 전달하는 예인데요, `a->b->c`의 순서로 실행된다고 보증하지 않습니다. `a->b->c`, `a->c->b`, `b->a->c`, `b->c->a`, `c->a->b`, `c->b->a`의 6가지 경우의 수중 하나로 실행됩니다. 이점 유의해야 예외 안전 프로그래밍([스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 참고)과 쓰레드 프로그래밍([쓰레드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/) 참고)을 할 수 있습니다. 
+다음은 `a(a_sub())`, `b()`, `c()` 함수의 결과를 `f()` 에 전달하는 예인데요, `a->b->c`의 순서로 실행된다고 보증하지 않습니다. `a->b->c`, `a->c->b`, `b->a->c`, `b->c->a`, `c->a->b`, `c->b->a`의 6가지 경우의 수중 하나로 실행됩니다. 이점 유의해야 예외 안전 프로그래밍(*[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 참고*)과 쓰레드 프로그래밍(*[쓰레드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/) 참고*)을 할 수 있습니다. 
 
-`a()` 함수는 `a_sub()`의 결과를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받으므로, `a_sub()`보다 나중에 실행됨을 보증합니다.(예를 들어 `b->a_sub->c->a`가 될 수도 있습니다.)
+`a()` 함수는 `a_sub()`의 결과를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받으므로, `a_sub()`보다 나중에 실행됨을 보증합니다.(*예를 들어 `b->a_sub->c->a`가 될 수도 있습니다.*)
 
 ```cpp
 f(a(a_sub()), b(), c());
