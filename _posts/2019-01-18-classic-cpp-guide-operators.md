@@ -10,7 +10,7 @@ sidebar:
 
 > * [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되지 않도록 이항 산술 연산자(*`a = a + b`*)보다는 산술형 대입 연산자(*`a += b`*)를 사용하라.
 > * 후위형 증감 연산자는 헷갈리고, 쓸데없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되니 사용하지 마라. 
-> * 비교 연산 오버로딩은 `<`을 활용해서 구현하라.
+> * [비교 연산 오버로딩]()은 `<`을 활용해서 구현하라.
 
 > **모던 C++**
 > * (C++11~) `int operator ""_km(long double val);`와 같은 [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 단위계 처리가 쉬워졌습니다.
@@ -374,6 +374,8 @@ class Derived2 : public Base2 {};
 |11|`a ^ b`|
 |12|`a | b`|
 |13|`a && b`|
+
+
 |14|`a || b`|
 |15|`a ? b : c`, `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `<<=`, `>>=`, `&=`, `^=`, `|=`|
 |16|`,`|

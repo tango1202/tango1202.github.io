@@ -13,13 +13,13 @@ sidebar:
 > **모던 C++**
 > * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)용 정수형 상수인 [`ll`, `ull`, `LL`, `ULL` 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)이 추가되었습니다.
 > * (C++11~) [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.
-> * (C++11~) [유니코드](??)를 지원하는 [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
+> * (C++11~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
 > * (C++11~) [R"()"리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행이나 [이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)를 좀더 편하게 입력할 수 있습니다.
 > * (C++11~) `int operator ""_km(long double val);`와 같은 [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 단위계 처리가 쉬워졌습니다.
 > * (C++14~) [이진 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%9D%B4%EC%A7%84-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 `0b`, `0B` 접두어로 이진수 상수를 표현할 수 있습니다.
 > * (C++14~) 가독성을 위한 [숫자 구분자](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c14-%EC%88%AB%EC%9E%90-%EA%B5%AC%EB%B6%84%EC%9E%90)가 추가되어 `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
-> * (C++17~) [유니코드](??)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
+> * (C++17~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
 > * (C++17~) `0xA.9p11`과 같은 [16진수 부동 소수점 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#c17-16%EC%A7%84%EC%88%98-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 제공합니다.
 
 # 개요
@@ -70,7 +70,7 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 # 문자열 상수
 
-[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)는 [문자 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90-%EC%83%81%EC%88%98)들의 집합으로서, 문자열의 끝을 나타내는 [널문자(*정수 0인 문자, `'\0'`*)](??)가 추가되어 있으며, [데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)의 `rodata`에서 프로그램 수명만큼 존재합니다.
+[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)는 [문자 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90-%EC%83%81%EC%88%98)들의 집합으로서, 문자열의 끝을 나타내는 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 추가되어 있으며, [데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)의 `rodata`에서 프로그램 수명만큼 존재합니다.
 
 프로그램 용량이 커질 수도 있으니, 비슷한 문장을 쓸데없이 여러개 작성하지 마세요.(*동일한 것을 여러번 사용하는 경우 컴파일러가 1개로 취합해 주긴 합니다만([데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고), 코드 중복이니 1개만 정의해서 사용하세요.*) 
 
@@ -78,9 +78,9 @@ wchar_t b = L'A'; // 와이드 문자 2byte 또는 4byte
 
 `const char*`나 `const wchar_t*`로 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)가 있는 영역을 참조하거나, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 이용하여 복사할 수 있습니다. 
 
-> *(C++11~) [유니코드](??)를 지원하는 [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.*<br/>
+> *(C++11~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.*<br/>
 > *(C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.*<br/>
-> *(C++17~) [유니코드](??)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.*
+> *(C++17~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.*
 
 **const형 포인터**
 
@@ -93,7 +93,7 @@ const wchar_t* str2 = L"abc"; // 와이드 문자열 상수
 
 **배열**
 
-[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94)에서 언급했듯, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 하면, 끝에 [널문자(*정수 0인 문자, `'\0'`*)](??)가 추가됩니다.
+[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94)에서 언급했듯, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 하면, 끝에 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 추가됩니다.
 
 ```cpp
 char str3[] = "abc"; // {'a', `b`, 'c', '\0'};
@@ -125,7 +125,7 @@ EXPECT_TRUE(str1 == str2 && str2 == str3); // (O) 동일한 문자열 상수는 
 
 # 이스케이프 문자
 
-언어 내부에서 사용하는 기호여서 [문자 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90-%EC%83%81%EC%88%98)나 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 컴파일러가 파싱할 수 없거나, 개행등 키보드로 표시할 수 없는 특수 문자들은 `\`을 이용하여 표현할 수 있습니다.(*[널문자(*정수 0인 문자, `'\0'`*)](??)도 [이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)로서 8진수 `0`입니다.*)
+언어 내부에서 사용하는 기호여서 [문자 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90-%EC%83%81%EC%88%98)나 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 컴파일러가 파싱할 수 없거나, 개행등 키보드로 표시할 수 없는 특수 문자들은 `\`을 이용하여 표현할 수 있습니다.(*[널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)도 [이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)로서 8진수 `0`입니다.*)
 
 |항목|내용|[아스키 코드(https://www.ascii-code.com/ASCII)](https://www.ascii-code.com/ASCII)|
 |--|--|--|
@@ -142,8 +142,8 @@ EXPECT_TRUE(str1 == str2 && str2 == str3); // (O) 동일한 문자열 상수는 
 |`\v`|세로탭|0x0b|
 |`\nnn`|nnn : 3자리의 8진수||
 |`\xn...`|n... : 임의 자리 16진수 ||
-|`\unnnn`|nnnn : 2byte(*16진수 4자리*)의 [유니코드](??)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ca05ccd7-8e34-4d7c-bb21-fb37441dfaca)|
-|`\Unnnnnnnn`|nnnnnnnn : 4byte(*16진수 8자리*)의 [유니코드](??)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e2a84daa-45ef-4464-a488-670f18365511)|
+|`\unnnn`|nnnn : 2byte(*16진수 4자리*)의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ca05ccd7-8e34-4d7c-bb21-fb37441dfaca)|
+|`\Unnnnnnnn`|nnnnnnnn : 4byte(*16진수 8자리*)의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)|![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e2a84daa-45ef-4464-a488-670f18365511)|
 
 
 **개행 문자**

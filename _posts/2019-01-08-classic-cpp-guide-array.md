@@ -57,7 +57,7 @@ EXPECT_TRUE(arr3[0] == 0 && arr3[1] == 0 && arr3[2] == 0);
 EXPECT_TRUE(arr4[2] == 0);
 ```
 
-문자 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 경우 특별히 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 할 수 있습니다. 이때 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 마지막 요소에 [널문자(*정수 0인 문자, `'\0'`*)](??)가 추가됩니다. 따라서 `"abc"`의 배열 갯수는 [널문자(*정수 0인 문자, `'\0'`*)](??)를 포함하여 `4`이며, 문자열의 길이는 `3`입니다.
+문자 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 경우 특별히 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 할 수 있습니다. 이때 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 마지막 요소에 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 추가됩니다. 따라서 `"abc"`의 배열 갯수는 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)를 포함하여 `4`이며, 문자열의 길이는 `3`입니다.
 
 ```cpp
 char str1[] = "abc"; // (O) {'a', `b`, 'c', '\0'};

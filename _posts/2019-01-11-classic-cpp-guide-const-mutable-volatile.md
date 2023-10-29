@@ -106,7 +106,7 @@ void f(const int x); // (△) 비권장. 인수를 x에 복사해서 쓰되 f에
 ```
 
 
-[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 포인터나 [참조자](??) 타입이라면, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용하여 전달된 인수(*함수에 전달하는 개체. Argument*)를 함수가 수정하는지, 수정하지 않는지 **코딩 계약**을 만들어 주는 게 좋습니다. 이런 정보들이 프로그래밍 환경을 좀더 쾌적하게 해주거든요.
+[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 포인터나 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입이라면, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 사용하여 전달된 인수(*함수에 전달하는 개체. Argument*)를 함수가 수정하는지, 수정하지 않는지 **코딩 계약**을 만들어 주는 게 좋습니다. 이런 정보들이 프로그래밍 환경을 좀더 쾌적하게 해주거든요.
 
 ```cpp
 void f(int* x); // (O) x가 가리키는 값을 f에서 수정함.
