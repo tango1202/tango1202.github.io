@@ -9,8 +9,8 @@ sidebar:
 ---
 
 > * [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되지 않도록 이항 산술 연산자(*`a = a + b`*)보다는 산술형 대입 연산자(*`a += b`*)를 사용하라.
-> * 후위형 증감 연산자는 헷갈리고, 쓸데없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되니 사용하지 마라. 
-> * [비교 연산 오버로딩]()은 `<`을 활용해서 구현하라.
+> * [후위형 증감 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A6%9D%EA%B0%90-%EC%97%B0%EC%82%B0%EC%9E%90)는 헷갈리고, 쓸데없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되니 사용하지 마라. 
+> * 비교 연산 오버로딩은 [`<`을 활용](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)해서 구현하라.
 
 > **모던 C++**
 > * (C++11~) `int operator ""_km(long double val);`와 같은 [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 단위계 처리가 쉬워졌습니다.
@@ -59,7 +59,6 @@ sidebar:
 |비트 Right Shift|`a >> b`|O|`T T::operator >>(const T2 &b) const;`|`T operator >>(const T &a, const T2 &b);`|
 
 # 증감 연산자
-
 
 전위형 연산의 경우 값을 먼저 증감시킨뒤 증감한 값을 리턴합니다만, 후위형 연산의 경우는 값을 증감 시키기 전의 값을 리턴합니다.
 
@@ -206,11 +205,11 @@ EXPECT_TRUE(t.operator ()(10, 20) == 30); // t(10, 20) 호출과 동일. operato
 
 # 콤마 연산자
 
+`a`표현식을 평가하고, `b`표현식을 평가합니다. (*`a, b, c, d`와 같이 나열할 수 있습니다.*) 코드 분석이 어려워 권장하지 않습니다.
+
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |콤마 연산자|`a, b`|O|`T2& T::operator ,(T2 &b);`|`T2& operator ,(const T &a, T2 &b);`|
-
-`a`표현식을 평가하고, `b`표현식을 평가합니다. (*`a, b, c, d`와 같이 나열할 수 있습니다.*) 코드 분석이 어려워 권장하지 않습니다.
 
 ```cpp
 class T {
@@ -243,13 +242,16 @@ EXPECT_TRUE(result == 10);
 
 개체 생성시 사용하는 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 하기 단계를 수행합니다.
 
-1. 전역 `operator new(std::size_t)`로 메모리 공간 할당
-2. 구조체이거나 클래스이면 `operator new(void*)`를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
+1. 전역 [operator new(std::size_t)]((https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98))로 메모리 공간 할당
+2. 구조체이거나 클래스이면 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 인 `operator new(void*)`를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
 3. 메모리 주소를 해당 타입으로 형변환하여 리턴
 
-즉 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)와 `operator new`의 역할은 다릅니다. `operator new`는 C언어의 [malloc()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)과 유사하다고 할 수 있습니다.
+즉 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는  
 
-`operator new`와 `operator delete`와 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)에 대해서는 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
+* [operator new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) : C언어의 [malloc()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)과 유사
+* [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) : 생성자 호출
+
+로 구성되어 있습니다. 좀더 자세한 내용은 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
 
 
 |항목|내용|사용예|오버로딩|개체 멤버 정의|전역 정의|
@@ -363,7 +365,7 @@ class Derived2 : public Base2 {};
 |--|--|
 |1|`::`(*범위 확인 연산자*)|
 |2|`a++`, `a--`, `()`(*함수 호출 연산자*), `a[]`, `.`, `->`|
-|3|`++a`, `--a`, `+a`, `-a`, `!`, `~`, `(int)`(*C언어 스타일 형변환*), `a`, `&a`, `sizeof`, [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8), `new[]`, [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8), [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)`|
+|3|`++a`, `--a`, `+a`, `-a`, `!`, `~`, `(int)`(*C언어 스타일 형변환*), `a`, `&a`, `sizeof`, [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8), [new[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8), [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8), [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)|
 |4|`.*`, `->*`|
 |5|`a * b`, `a / b`, `a %b`|
 |6|`a + b`, `a - b`|
@@ -374,8 +376,6 @@ class Derived2 : public Base2 {};
 |11|`a ^ b`|
 |12|`a | b`|
 |13|`a && b`|
-
-
 |14|`a || b`|
 |15|`a ? b : c`, `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `<<=`, `>>=`, `&=`, `^=`, `|=`|
 |16|`,`|
