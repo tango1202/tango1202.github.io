@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 코드 분석을 위해 제어의 중첩을 최소화 하라.(*조건 상태표를 활용하라.*)
+> * 코드 분석을 위해 [제어의 중첩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/#%EC%A4%91%EC%B2%A9%EB%90%9C-%EC%A0%9C%EC%96%B4%EB%AC%B8)을 최소화 하라.(*[조건 상태표](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/#%EC%A0%9C%EC%96%B4-%ED%8C%90%EB%8B%A8%EA%B3%BC-%EC%8B%A4%ED%96%89%EC%9D%98-%EA%B5%AC%EB%B6%84%EC%A1%B0%EA%B1%B4-%EC%83%81%ED%83%9C%ED%91%9C)를 활용하라.*)
 > * [예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)할 수 있도록 [사전 조건 검사](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/#%EC%82%AC%EC%A0%84-%EC%A1%B0%EA%B1%B4-%EA%B2%80%EC%82%AC)를 수행하라.
 > * `goto`는 코드 분석을 방해하니 사용하지 마라.
 
@@ -17,6 +17,10 @@ sidebar:
 > * (C++17~) [초기식을 포함하는 if(), switch()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch)가 추가되어 함수 리턴값을 평가하고 소멸하는 코드가 단순해 졌습니다.
 
 # 개요
+
+조건식에 따라 분기하거나 반복하는 제어문들을 제공합니다.
+
+단순한 조건 검사에서 복잡한 로직 구현까지 두루두루 제어문이 사용되는데요, STL 에서는 [시퀀스 처리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85), [정렬](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%A0%95%EB%A0%AC-%EC%9E%91%EC%97%85), [검색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%9D%B4%EC%A7%84-%EA%B2%80%EC%83%89-%EC%9E%91%EC%97%85), [수학](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85) 등 일반화된 [알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/)들을 제공합니다. 한번 훑어보시고, 필요한 것이 있다면 [알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/)을 활용하시는 게 유지보수 측면에서 좋습니다.
 
 |항목|내용|
 |--|--|
@@ -59,7 +63,7 @@ if (a && b && c) {
 
 # 제어 판단과 실행의 구분(조건 상태표)
 
-복잡한 제어 구조를 가진 경우, 상태를 판단하는 역할(*조건 상태표 기준으로 계산*)과 실행하는 역할을 분리하면, 구조가 간결해 질 수 있습니다.
+복잡한 제어 구조를 가진 경우, 상태를 판단하는 역할(*[조건 상태표](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/#%EC%A0%9C%EC%96%B4-%ED%8C%90%EB%8B%A8%EA%B3%BC-%EC%8B%A4%ED%96%89%EC%9D%98-%EA%B5%AC%EB%B6%84%EC%A1%B0%EA%B1%B4-%EC%83%81%ED%83%9C%ED%91%9C) 기준으로 계산*)과 실행하는 역할을 분리하면, 구조가 간결해 질 수 있습니다.
 
 ```cpp
 if (a && b) { // (△) 비권장. if 중첩이 많아 분석하기 힘듭니다.
@@ -116,7 +120,7 @@ switch (state) {
 
 # if와 else
 
-`if`는 `else` 상황을 동반할 때가 많습니다. 단순한 `NULL` 검사인 경우는 상관없습니다만, 복잡한 상황일 경우 `else` 인 경우의 처리가 정말 필요 없어서 생략한 건지, 실수로 빼먹은 건지 혼동될 수 있으니, `else` 상황에 대해 주석으로나마 고려한 흔적을 남기는게 좋습니다. 
+`if`는 `else` 상황을 동반할 때가 많습니다. 단순한 널검사인 경우는 상관없습니다만, 복잡한 상황일 경우 `else` 인 경우의 처리가 정말 필요 없어서 생략한 건지, 실수로 빼먹은 건지 혼동될 수 있으니, `else` 상황에 대해 주석으로나마 고려한 흔적을 남기는게 좋습니다. 
 
 ```cpp
 if (condition) { // (△) 비권장. else문이 고려되었는지 판단하기 어렵습니다.
@@ -137,7 +141,7 @@ else {
 
 # 사전 조건 검사
 
-함수내에서 본문을 실행하기 전에, 실행하기에 적합한 상태인지 검사(*[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 조건은 맞는지 등*)한 뒤 본문을 실행하는게 좋습니다. 그렇지 않고 뒤죽박죽 쓰다보면 예외에 안전한 함수를 만들기 어려워 집니다.
+함수내에서 본문을 실행하기 전에, 실행하기에 적합한 상태인지 검사(*[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 조건은 맞는지 등*)한 뒤 본문을 실행하는게 좋습니다. 그렇지 않고 뒤죽박죽 쓰다보면 [예외에 안전한 코드](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)를 만들기 어려워 집니다.
 
 ```cpp
 ErrorCode f(param1, param2) {

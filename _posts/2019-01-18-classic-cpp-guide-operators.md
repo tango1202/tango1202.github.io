@@ -260,7 +260,7 @@ EXPECT_TRUE(result == 10);
 |[operator delete(void*)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체 소멸|`delete p;`|O|`void operator delete(void* ptr, std::size_t sz)`|`void operator delete(void* ptr, std::size_t sz)`|
 |[operator new[](std::size_t)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98-1)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 생성시 사용|`T* arr = new T[10];`|O|`void* operator new[](std::size_t sz);`|`void* operator new[](std::size_t sz);`|
 |[operator delete[](void*)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98-1)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
-|`operator new(void*)`|[위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1). 특정 메모리 위치에 개체 생성자 호출|`T* p = new(buf) T;`|X|X|X|
+|[operator new(void*)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)|[위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1). 특정 메모리 위치에 개체 생성자 호출|`T* p = new(buf) T;`|X|X|X|
 
 # sizeof 연산자
 
@@ -269,7 +269,9 @@ EXPECT_TRUE(result == 10);
 |항목|내용|
 |--|--|
 |`sizeof(개체명)`|개체의 용량 리턴|
+|`sizeof(배열명)`|배열의 전체 용량 리턴|
 |`sizeof(타입명)`|타입이나 클래스명, 구조체명, 공용체명의 용량 리턴|
+|`sizeof(참조자)`|참조하는 개체와 동일|
 
 ```cpp
 short i;
@@ -473,7 +475,7 @@ EXPECT_TRUE(t3.GetVal() == 20);
 
 **`+` 보다는 `+=`이 좋은 이유**
 
-산술형 대입 연산자가 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`, 값 타입)을 리턴하는데요, 이는 연산의 결과값을 저장할 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 있어야 하기 때문이죠. 
+산술형 대입 연산자가 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 형식(`T&`)를 리턴하는데 반해, 이항 산술 연산의 경우 개체 형식(`T`, 값 타입)을 리턴하는데요, 이는 연산의 결과값을 저장할 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 있어야 하기 때문입니다. 
 
 따라서, [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 생성 부하가 없도록 산술형 대입 연산자를 사용하는 코딩 습관을 가지시는게 좋습니다.
 
@@ -556,7 +558,9 @@ EXPECT_TRUE(t.GetVal() == 12);
 
 **비교 연산자**
 
-비교 연산자는 `<` 만 오버로딩하고, `==`, `!=`, `<`, `>`, `<=`, `>=`는 `<`로 부터 구현하는게 좋습니다.(*대소 비교의 논리 조건 참고*)
+비교 연산자는 일관된 논리 결과값을 구하기 위해 `<` 만 구현하고, `==`, `!=`, `<`, `>`, `<=`, `>=`는 `<`로 부터 구현하는게 좋습니다.(*[대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4) 참고*)
+
+각각 구현하다보면, `a < b` 와 `b < c` 인데, `c < a` 가 되버리는 논리적 결함이 생길 수도 있거든요.
 
 ```cpp
 class T {
