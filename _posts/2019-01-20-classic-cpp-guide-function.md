@@ -586,7 +586,7 @@ EXPECT_TRUE(t.f(const_cast<const int*>(&a)) == 7); // (O) const int* 는 const i
 EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따라 상수 함수 선택됨
 ```
 
-# 함수 인자의 유효 범위 탐색 규칙(Argument-dependent lookup, ADL*)
+# 함수 인자의 유효 범위 탐색 규칙(Argument-dependent lookup, ADL)
 
 함수 인자의 유효 범위 탐색 규칙(*Argument-dependent lookup, ADL*) 또는 Koenig 검색은 
 
