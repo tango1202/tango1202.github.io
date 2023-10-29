@@ -171,11 +171,11 @@ EXPECT_TRUE(m[0] == "changed data");
 
 # unordered_map의 Key
 
-[컨테이너 요소 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%94%EC%86%8C-%EA%B7%9C%EC%B9%99) 에서 개체를 `set`이나 `map`의 Key로 사용하려면, 복사 생성자와 `bool operator <(const T& other);`을 구현해야 한다고 말씀드렸는데요,
+[컨테이너 요소 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%94%EC%86%8C-%EA%B7%9C%EC%B9%99) 에서 개체를 `set`이나 `map`의 Key로 사용하려면, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 `bool operator <(const T& other);`을 구현해야 한다고 말씀드렸는데요,
 
 [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)의 Key는 
 
-1. 복사 생성자를 구현해야 하고, 복사 대입 연산자는 불필요하며,
+1. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현해야 하고, [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 불필요하며,
 2. 대소 비교를 하지 않으므로, `bool operator <(const T& other);` 구현은 필요 없고,
 3. 버킷(Bucket) 내에서 탐색하기 위해 `bool operator ==(const T& other);` 구현이 필요하고,
 4. 해당 개체의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)를 구하기 위해 [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)함수자를 구현하여 [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) 정의시 전달해야 합니다.

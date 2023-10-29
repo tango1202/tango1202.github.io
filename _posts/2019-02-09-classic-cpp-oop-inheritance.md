@@ -19,8 +19,8 @@ sidebar:
 > * 부모 개체의 기본 구현을 자식 개체에서 재정의해야 한다면, 유틸리티로 제공하라.
 > * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하거나 순가상 함수를 포함하라.(`is-a` 관계에서 순가상 함수가 없는 경우, 순가상 소멸자를 사용한다.)
 > * 상속을 제한하고 싶은 경우, `public` Non-Virtual 소멸자 사용으로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
-> * 상속 관계에서는 복사 생성자 대신 가상 복사 생성자를 사용하라.
-> * 부모 클래스의 복사 대입 연산자는 오동작할 소지가 있으니 막아라.
+> * 상속 관계에서는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)자 대신 [가상 복사 생성자](??)를 사용하라.
+> * [부모 개체의 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 오동작할 소지가 있으니 막아라.
 
 > **모던 C++**
 > * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있고, 강제적으로 상속을 제한할 수 있습니다.
@@ -712,7 +712,7 @@ EXPECT_TRUE(typeid(*dancer) == typeid(Idol));
 
 # 가상 복사 생성자
 
-부모 개체의 복사 생성자는 오동작을 할 수 있습니다.
+부모 개체의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 오동작을 할 수 있습니다.
 
 다음 코드를 보면, `Shape`개체에 자식 개체인 `Rectangle`이 전달될 수 있습니다. `Shape`은 `Rectangle`을 알지 못해 복사할 수 없습니다.
 
@@ -740,8 +740,8 @@ Shape shape(rect); // (X) 오동작. shape은 Rectangle을 알지 못해 복사 
 
 따라서,
 
-1. 복사 생성자를 사용하지 못하도록 `private`로 막던지, 
-2. 복사 생성자를 `protected`로 만들고, 자식 개체에서 자기 자신을 복제하는 가상 함수인 `Clone()` 함수를 구현하던지,
+1. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하지 못하도록 `private`로 막던지, 
+2. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 `protected`로 만들고, 자식 개체에서 자기 자신을 복제하는 가상 함수인 `Clone()` 함수를 구현하던지,
 
 해야 합니다.
 
@@ -791,7 +791,7 @@ for(int i = 0; i < 2; ++i) {
 
 # 부모 개체의 복사 대입 연산자
 
-부모 개체의 복사 대입 연산자도 오동작을 할 수 있습니다.
+[부모 개체의 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)도 오동작을 할 수 있습니다.
 
 다음 코드를 보면,
 

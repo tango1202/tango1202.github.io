@@ -26,6 +26,17 @@ sidebar:
 |초기화|`int arr[3] = {1, 2, 3};`,<br/>`char str[] = "abc";`|
 |초기화를 이용한 크기 유추|`int arr[] = {1, 2, 3};`|
 
+# 배열 요소의 갯수
+
+배열 요소의 갯수는 [sizeof()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하여 다음처럼 구할 수 있습니다.
+
+```cpp
+int arr[3];
+EXPECT_TRUE(sizeof(arr) / sizeof(int) == 3); // 배열의 전체 크기 / 배열 요소 크기
+```
+
+템플릿을 이용하는 방법도 있습니다. [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 참고하세요.
+
 # 배열 초기화
 
 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 정의시 [배열 요소의 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)가 유추될 수 있어야 합니다. 
@@ -46,7 +57,7 @@ EXPECT_TRUE(arr3[0] == 0 && arr3[1] == 0 && arr3[2] == 0);
 EXPECT_TRUE(arr4[2] == 0);
 ```
 
-문자 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 경우 특별히 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 할 수 있습니다. 이때 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 마지막 요소에 [널문자(*정수 0인 문자, `\0`*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 추가됩니다.
+문자 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 경우 특별히 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 초기화 할 수 있습니다. 이때 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 마지막 요소에 [널문자(*정수 0인 문자, `'\0'`*)](??)가 추가됩니다. 따라서 `"abc"`의 배열 갯수는 [널문자(*정수 0인 문자, `'\0'`*)](??)를 포함하여 `4`이며, 문자열의 길이는 `3`입니다.
 
 ```cpp
 char str1[] = "abc"; // (O) {'a', `b`, 'c', '\0'};
@@ -54,23 +65,17 @@ EXPECT_TRUE(str1[0] == 'a');
 EXPECT_TRUE(str1[1] == 'b');
 EXPECT_TRUE(str1[2] == 'c');
 EXPECT_TRUE(str1[3] == '\0'); // 널문자가 추가됨
+EXPECT_TRUE(sizeof(str1) / sizeof(char) == 4); // 배열 갯수는 널문자를 포함하여 4
+EXPECT_TRUE(strlen(str1) == 3); // 문자열의 길이는 3
 
 wchar_t str2[] = L"abc"; // (O) {L'a', L`b`, L'c', L'\0'};
 EXPECT_TRUE(str2[0] == L'a');
 EXPECT_TRUE(str2[1] == L'b');
 EXPECT_TRUE(str2[2] == L'c');
 EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
+EXPECT_TRUE(sizeof(str2) / sizeof(wchar_t) == 4); // 배열 갯수는 널문자를 포함하여 4
+EXPECT_TRUE(wcslen(str2) == 3); // 문자열의 길이는 3
 ```
-# 배열 요소의 갯수
-
-배열 요소의 갯수는 [sizeof()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하여 다음처럼 구할 수 있습니다.
-
-```cpp
-int arr[3];
-EXPECT_TRUE(sizeof(arr) / sizeof(int) == 3); // 배열의 전체 크기 / 배열 요소 크기
-```
-
-템플릿을 이용하는 방법도 있습니다. [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 참고하세요.
 
 # 배열 대입
 

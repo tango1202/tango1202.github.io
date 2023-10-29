@@ -87,8 +87,8 @@ EXPECT_TRUE(v[1] == 10);
 
 |항목|내용|컨테이너|
 |--|--|--|
-|`input`|읽기 전용<br/>`++`, `*`, `->`, `=`, `==`, `!=`, 복사 생성자||
-|`output`|쓰기 전용<br/>`++`, `*`, `=`, 복사 생성자||
+|`input`|읽기 전용<br/>`++`, `*`, `->`, `=`, `==`, `!=`, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)||
+|`output`|쓰기 전용<br/>`++`, `*`, `=`, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)||
 |`forward`|단방향 탐색<br/>`input`과 연산자 동일||
 |`bidirectional`|양방향 탐색<br/>`forward` 에서 `--`추가|`list`<br/>`map`|
 |`random access`|랜덤 접근 탐색<br/> `bidirectional`에서 `+`, `-`, `+=`, `-=`, `<`, `>`, `<=`, `>=`, `[]` 추가|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)|
@@ -164,9 +164,9 @@ Fill(v.begin(), 5, 7); // (X) 예외 발생. v가 5개 할당되지 않았다면
 구현 방법은 다음과 같습니다.
 
 1. 값 생성자에서는 Container를 전달받습니다.
-2. 복사 생성자에서는 컨테이너 참조자를 복사합니다.
-3. 복사 대입 연산자는 사용하지 않으므로 `private`로 정의합니다.
-4. 복사 대입 연산자중 컨테이너 값 타입을 전달하면, `push_back()`을 하여 추가합니다.
+2. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)에서는 컨테이너 참조자를 복사합니다.
+3. [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 사용하지 않으므로 `private`로 정의합니다.
+4. [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)중 컨테이너 값 타입을 전달하면, `push_back()`을 하여 추가합니다.
 5. 무조건 끝에 추가하는 것이므로, `++`은 아무 동작 안하게 합니다.
 6. `*` 시 자기 자신을 리턴하여 `*first = value;`시 #4가 호출되게 합니다.
 

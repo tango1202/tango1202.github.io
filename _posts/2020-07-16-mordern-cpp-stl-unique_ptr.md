@@ -25,7 +25,7 @@ C++11 부터는 상기 문제를 보완한 [unique_ptr](https://tango1202.github
 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)과 동일하게 소유권을 이전하는 스마트 포인터이며, 다음이 개선되었습니다.
 
 1. 일반 포인터는 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)하고, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)합니다.
-2. 복사 생성자와 `operator =(const T&)`는 제공하지 않고, 이동 생성자와 `operator =(const T&&)`만 제공합니다. 즉, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)만 제공합니다.
+2. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 `operator =(const T&)`는 제공하지 않고, 이동 생성자와 `operator =(const T&&)`만 제공합니다. 즉, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)만 제공합니다.
 
 다음은 사용예 입니다.
 
@@ -55,10 +55,10 @@ EXPECT_TRUE(*c == 1 && d == nullptr);
 |항목|내용|
 |--|--|
 |`constexpr unique_ptr() noexcept;` (C++11~)<br/><br/>`explicit unique_ptr(T* p) noexcept;` (C++11~)<br/>`unique_ptr(T* p, deleter) noexcept;` (C++11~)<br/><br>`constexpr unique_ptr(nullptr_t) noexcept;` (C++11~)<br/><br/>`unique_ptr(auto_ptr&&) noexcept;` (C++11~C++17)|[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)이나 `p`를 관리합니다. 이때 사용자 정의 `deleter`를 사용할 수 있습니다.|
-|`unique_ptr(const unique_ptr&) = delete;` (C++11~)|복사 생성자는 사용할 수 없습니다.|
+|`unique_ptr(const unique_ptr&) = delete;` (C++11~)|[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 사용할 수 없습니다.|
 |`unique_ptr(unique_ptr&& other) noexcept;` (C++11~)|이동 생성합니다.|
 |`~unique_ptr()` (C++11~)|관리하는 개체를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 또는 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)합니다.|
-|`unique_ptr& operator =(const unique_ptr&) = delete;` (C++11~)|복사 대입 연산자는 사용할 수 없습니다.|
+|`unique_ptr& operator =(const unique_ptr&) = delete;` (C++11~)|[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 사용할 수 없습니다.|
 |`unique_ptr& operator =(unique_ptr&& other) noexcept;` (C++11~)|이동 대입합니다.<br/>`other`가 관리하는 개체를 [this](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 이동시킵니다.|
 |`operator *() const noexcept;` (C++11~)|관리하는 개체의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.|
 |`operator ->() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
@@ -151,8 +151,8 @@ std::unique_ptr<int> a{new int{10}, std::default_delete<int>{}};
 
 1. `Impl`을 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 합니다.
 2. [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)로 `m_Impl` 개체를 만듭니다. 스마트 포인터이므로, 소멸자에서 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)할 필요가 없습니다.
-3. 복사 생성자를 선언합니다.
-4. 복사 생성자가 정의되어 이동 생성자가 암시적으로 정의되지 않으므로 [default](??)를 사용하여 명시적으로 정의합니다.(*[암시적 이동 생성자와 암시적 이동 대입 연산자의 default 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-default-%EC%A0%95%EC%9D%98) 참고*)
+3. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 선언합니다.
+4. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)가 정의되어 이동 생성자가 암시적으로 정의되지 않으므로 [default](??)를 사용하여 명시적으로 정의합니다.(*[암시적 이동 생성자와 암시적 이동 대입 연산자의 default 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-default-%EC%A0%95%EC%9D%98) 참고*)
 
 ```cpp
 // ----
@@ -179,7 +179,7 @@ public:
 정의부에서는,
 
 1. `Impl`을 구현합니다.
-2. `T`를 구현합니다. 이때 복사 생성자는 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)이 관리하는 개체의 복제본을 사용합니다. 
+2. `T`를 구현합니다. 이때 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)이 관리하는 개체의 복제본을 사용합니다. 
 
 ```cpp
 // ----

@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-> * [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 실수하기 쉽게 만든다. 명시적으로 형변환하라.
-> * [bool 형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%80-bool-%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)는 하지 마라. 나아가 모든 타입의 형변환 연산자 정의를 하지 마라. 뜻하지 않게 몰래 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)한다.
-> * [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개인 생성자는 `explicit`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하라.
+> * [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 실수하기 쉽게 만든다. [명시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)하라.
+> * [bool 형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%80-bool-%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)는 하지 마라. 나아가 모든 타입의 [형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)를 하지 마라. 뜻하지 않게 몰래 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)한다.
+> * [인자가 1개인 값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)는 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하라.
 > * 할 수 있는한 최선을 다하여 형변환하지 마라.
 
 > **모던 C++**
-> * (C++11~) [explicit 형변환 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)가 추가되어 명시적으로 형변환 할 수 있습니다.
+> * (C++11~) [explicit 형변환 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)가 추가되어 [명시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 할 수 있습니다.
 > * (C++11~) [shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)(*`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`*)을 이용하여 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 관리 개체를 형변환 할 수 있습니다.
 > * (C++17~) [shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)에 `reinterpret_pointer_cast()`가 추가되었습니다.
 
@@ -24,13 +24,13 @@ C++언어는
 
 1. C언어의 특성을 물려받으면서 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 지원하며,
 2. 이를 보완하고자 4종의 [명시적 형변환(*const_cast, static_cast, dynamic_cast, reinterpret_cast*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 제공하고,
-3. [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 연산자 정의를 제공합니다.
+3. [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 [형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)를 제공합니다.
 
 형변환은 타입에 기반한 **코딩 계약** 을 위반하기 때문에 사용하지 않는 것이 좋습니다.(*작성자의 의도인지, 실수인지 판단하기 어렵습니다.*)
 
 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 에 언급되었듯, **잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게** 구현해야 하는데, 형변환을 마구 사용하다 보면, 잘못 사용할 확률이 높기 때문에, 최대한 못쓰게 통제해야 합니다.
 
-형변환이 꼭 필요한 경우라면(*이런 경우가 없도록 설계하셔야 겠지만*), 별도의 변환 함수를 만들어 의도적으로 호출하게 만드세요. 그래야 추후 코드 분석에 도움을 줄 수 있습니다. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)으로 몰래 형변환되게 한다면, 나중에 해당 위치 찾느라 밤을 새며 고생하게 됩니다.
+형변환이 꼭 필요한 경우라면(*이런 경우가 없도록 설계하셔야 겠지만*), 별도의 변환 함수를 만들어 의도적으로 호출하게 만드세요. 그래야 추후 코드 분석에 도움을 줄 수 있습니다. [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)으로 몰래 형변환되게 한다면, 나중에 해당 위치 찾느라 밤을 새며 고생할 수 있거든요.
 
 |항목|내용|
 |--|--|
@@ -45,7 +45,7 @@ C++언어는
 
 # 암시적 형변환
 
-각 타입은 다음 규칙에 따라 암시적으로 형변환 됩니다. 하지만 타입에 기반한 **코딩 계약** 을 망쳐버리고, 코드 분석도 어렵게 만듭니다. C언어의 나쁜 잔재이니 사용하지 마시고, 명시적 변환을 사용하세요.
+각 타입은 다음 규칙에 따라 [암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 됩니다. 하지만 타입에 기반한 **코딩 계약** 을 망쳐버리고, 코드 분석도 어렵게 만듭니다. C언어의 나쁜 잔재이니 사용하지 마시고, [명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 사용하세요.
 
 ```cpp
 {
@@ -105,7 +105,7 @@ C++언어는
 
 **C언어 스타일 형변환-`()`**
 
-암시적으로 형변환 되지 않는다면, 괄호(*`(`와 `)`*)로 C언어 스타일로 [명시적으로 형변환(*const_cast, static_cast, reinterpret_cast 의 순서*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 [const_cast, static_cast, dynamic_cast, reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
+[암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 되지 않는다면, 괄호(*`(`와 `)`*)로 C언어 스타일로 [명시적으로 형변환(*const_cast, static_cast, reinterpret_cast 의 순서*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 예외가 발생할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 [const_cast, static_cast, dynamic_cast, reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
 
 ```cpp
 {
@@ -139,7 +139,7 @@ C++언어는
 
 **static_cast**
 
-`static_cast`는 암시적으로 형변환되지 않는 것들을 명시적으로 형변환할 수 있습니다.(*하지만 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.*)
+`static_cast`는 [암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)되지 않는 것들을 [명시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)할 수 있습니다.(*하지만 타입에 기반한 **코딩 계약** 을 위반하니 사용하지 마세요.*)
 
 ```cpp
 {
@@ -238,11 +238,13 @@ EXPECT_TRUE(other == NULL);
 class T {};
 class U {};
 
+// 아무 연관 관계도 없는 타입끼리는 형변환되지 않습니다.
 T t;
 U u1 = (U)t; // (X) 컴파일 오류
 U u2 = static_cast<U>(t); // (X) 컴파일 오류
 U u3 = reinterpret_cast<U>(t); // (X) 컴파일 오류
 
+// 포인터와 참조자 타입은 형변환 됩니다만, 최대한 사용하지 마세요.
 U* u4 = (U*)&t; // (△) 비권장 
 U* u5 = static_cast<U*>(&t); // (X) 컴파일 오류
 U* u6 = reinterpret_cast<U*>(&t); // (△) 비권장 
@@ -250,7 +252,9 @@ U* u6 = reinterpret_cast<U*>(&t); // (△) 비권장
 
 # 형변환 연산자 정의
 
-[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 형변환 연산자를 정의할 수 있습니다. 
+[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 [형변환 연산자를 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)할 수 있습니다. 
+
+다음은 `T`를 `int`와 `char` 타입으로 변환하는 [형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 예입니다.
 
 ```cpp
 class T {
@@ -272,6 +276,10 @@ EXPECT_TRUE(c == 1);
 
 하지만, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 어우러 지면서 예기치 못한 경우에 형변환 될 수 있습니다. 심지어 코드 분석도 힘들게 만듭니다.
 
+다음은 `T`를 `U`로 형변환하는 [형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 예인데요,
+
+`U u1 = t;` 와 같이 사용했을때 `u1`이 잘 생성됩니다. 하지만 이게 프로그래머의 의도인지, `U` 타입의 값을 넣어주려고 한걸 실수인지 헷갈릴때가 있습니다. 
+
 ```cpp
 class U {};
 class T {
@@ -286,9 +294,9 @@ U u2 = (U)t; // (△) 비권장. C언어 스타일 형변환
 U u3 = static_cast<U>(t); // (O) static_cast 변환
 ```
 
-형변환 연산자를 정의하지 않고, 형을 변환시키는 변환 함수를 작성하는게 충분히 사용하기 좋고, 사용 위치를 검색하기 좋고, 분석하기 좋습니다.
+[형변환 연산자를 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)하지 않고, 형을 변환시키는 변환 함수를 작성하는게 충분히 사용하기 좋고, 사용 위치를 검색하기 좋고, 분석하기 좋습니다.
 
-타입끼리 변환이 필요하다면 변환 함수를 사용하세요.
+타입끼리 변환이 필요하다면 다음처럼 변환 함수를 사용하세요.
 
 ```cpp
 class U {};
@@ -312,11 +320,15 @@ EXPECT_TRUE(i == 10);
 EXPECT_TRUE(c == 1);
 ```
 
-> *(C++11~)  [explicit 형변환 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)가 추가되어  명시적으로 형변환 할 수 있습니다. 변환 함수 대신 형변환 연산자를 사용하는게 좋습니다.*
+> *(C++11~)  [explicit 형변환 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)가 추가되어  [명시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 할 수 있습니다. 이제는 변환 함수 대신 [explicit 형변환 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)를 사용하는게 좋습니다.*
 
 # 안전하지 않은 bool 형변환 연산자 정의
 
 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)은 암시적으로 `int`로 형변환되면서 뜻하지 않은 동작을 할 수 있습니다. 타입에 기반한 **코딩 계약** 을 위반하니, [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/) 형변환을 정의하지 마세요.
+
+다음은 `T`를 `bool`로 형변환하는 [형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 예인데요,
+
+`if (0 < t)` 와 같이 정수 비교를 하는데도 `t`가 `bool`로 형변환되고, `bool`이 `int`로 형변환되면서, 아무런 컴파일 오류없이 사용됩니다. 의도한 코드라도 이러지 마세요. 암시적인 상황을 활용해서 복잡하게 의도하는건 코드 분석이나 **코딩 계약**에 좋지 않습니다.
 
 ```cpp
 class T {
@@ -339,7 +351,7 @@ EXPECT_TRUE(status == true);
 
 # 명시적 변환 생성 지정자(explicit)
 
-특별히 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)에 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개만 있으면, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에서 개체 타입으로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 명시적 형변환이 가능해 집니다.(*[암시적인 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 하므로 형변환 생성자라고도 합니다.*)
+특별히 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)에 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개만 있으면, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에서 개체 타입으로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 [명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 가능해 집니다.(*[암시적인 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 하므로 [형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)라고도 합니다.*)
 
 ```cpp
 class T {};
@@ -359,7 +371,11 @@ U u5; // 기본 생성자로 생성
 u5 = t; // (△) 비권장. 생성후 값 대입시 암시적 변환
 ```
 
-이중 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 문제를 해결하려면 생성자에 `explicit`를 추가하면 됩니다.
+이중 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 문제를 해결하려면 생성자에 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 추가하면 됩니다.
+
+이제 `U u2 = t;`이나 `u5 = t;`와 같은 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 컴파일 오류를 발생시킵니다. 컴파일 오류를 발생시켜 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 못하게 해버렸으니, 좀더 강력한 **코딩 계약** 이 되었죠.(관련해서 [값 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94)와 [형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)도 참고하세요.) 
+
+[명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)도 못하게 만들고 싶은데, 문법의 한계로 방법이 없네요. 좀 아쉽긴 합니다.
 
 ```cpp
 class T {};
@@ -378,8 +394,6 @@ U u4 = static_cast<U>(t); // (O) static_cast 변환
 U u5; // 기본 생성자로 생성
 u5 = t; // (X) 컴파일 오류
 ```
-
-컴파일 오류를 발생시켜 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 못하게 해버렸으니, 좀더 강력한 **코딩 계약** 이 되었습니다.(*명시적 형변환도 못하게 만들고 싶은데, 문법의 한계로 방법이 없네요. 좀 아쉽긴 합니다.*)
 
 # 코딩 계약을 무시하는 암시적 형변환
 
@@ -413,9 +427,9 @@ public:
 };
 ```
 
-`Date` 클래스는 타입에 기반한 **코딩 계약**을 잘 만들어 주었지만, `Year`와 `Day`는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개인 생성자(`int` 타입 전달)가 있기 때문에, `int`를 `Year`와 `Day`로 암시적으로 형변환합니다.
+`Date` 클래스는 타입에 기반한 **코딩 계약**을 잘 만들어 주었지만, `Year`와 `Day`는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개인 생성자(`int` 타입 전달)가 있기 때문에, `int`를 `Year`와 `Day`로 [암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)합니다.
 
-`Year`와 `Day`가 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 허용하는 바람에, `Date`의 타입에 기반한 **코딩 계약**은 의미가 없어져 버렸습니다. 
+`Year`와 `Day`가 `int`의 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 허용하는 바람에, `Date`의 타입에 기반한 **코딩 계약**은 의미가 없어져 버렸습니다. 그냥 `int` 값을 전달해도 컴파일 오류없이 사용할 수 있거든요.
 
 ```cpp
 Date d1(Year(2023), Month::Jan, Day(10)); // (O) 코딩 계약 준수.
@@ -423,4 +437,4 @@ Date d2(2023, Month::Jan, 10); // (△) 비권장. 컴파일이 되요.
 Date d3(31, Month::Jan, 13); // (△) 비권장. 31년 1월 13일로 의도하고 입력한게 맞을까요?
 ```
 
-그러니, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 되지 않도록, 생성자에 `explicit`를 꼭 넣으셔야 합니다.
+그러니, ***[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 되지 않도록, [인자가 1개인 값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)에 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)*** 를 꼭 넣으셔야 합니다.

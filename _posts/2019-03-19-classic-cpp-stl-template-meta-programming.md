@@ -127,7 +127,7 @@ EXPECT_TRUE(typeid(*sp2.GetPtr()).name() == typeid(Rectangle).name());
 
 **1. 템플릿 특수화를 이용하는 방법**
 
-`my_smart_ptr`의 일반 버전은 복사 생성자를 사용하고, `Clone`을 제공하는 개체는 `Clone()`함수를 이용하여 특수화 할 수 있습니다. 하지만 이 방법은 템플릿 코드들이 중복되어 권장하지 않습니다.
+`my_smart_ptr`의 일반 버전은 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하고, `Clone`을 제공하는 개체는 `Clone()`함수를 이용하여 특수화 할 수 있습니다. 하지만 이 방법은 템플릿 코드들이 중복되어 권장하지 않습니다.
 
 ```cpp
 template<typename T>
@@ -301,7 +301,7 @@ EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name());
 
 **3. 템플릿 메타 프로그래밍을 이용하는 방법**
 
-템플릿 메타 프로그래밍을 이용한다면, 컴파일 타임에 `CloneTraits`가 복사 생성자를 호출할지, `Clone()` 함수를 호출할지 스스로 판단하여 분기하게 할 수 있습니다.
+템플릿 메타 프로그래밍을 이용한다면, 컴파일 타임에 `CloneTraits`가 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출할지, `Clone()` 함수를 호출할지 스스로 판단하여 분기하게 할 수 있습니다.
 
 먼저, 다음과 같이 단위 인터페이스인 `ICloneable`을 정의합니다. 추후 `CloneTraits`에서 `ICloneable` 을 상속한 개체는 `Clone()`을 이용하여 복제할 예정입니다.
 
@@ -342,9 +342,9 @@ public:
 };
 ```
 
-이제 `CloneTraits`에서 `IsDerivedFrom<>::Val`에 따라 복사 생성자나 `Clone()`함수를 호출해 주면 됩니다. 
+이제 `CloneTraits`에서 `IsDerivedFrom<>::Val`에 따라 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 `Clone()`함수를 호출해 주면 됩니다. 
 
-이때 일반적인 프로그래밍 방식대로 `if()`문을 이용하면, 코드내에 언급한 것처럼 `Shape`의 복사 생성자는 `protected` 여서 사용할 수 없으므로 컴파일 오류가 납니다.
+이때 일반적인 프로그래밍 방식대로 `if()`문을 이용하면, 코드내에 언급한 것처럼 `Shape`의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 `protected` 여서 사용할 수 없으므로 컴파일 오류가 납니다.
 
 ```cpp
 template<typename T>
@@ -374,9 +374,9 @@ EXPECT_TRUE(typeid(*shape).name() == typeid(Rectangle).name());
 delete shape;
 ```
 
-컴파일 오류를 해결하겠다고 `Shape`의 복사 생성자를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심 성의껏 `protected`로 만든 것이니까요.(또한, `CloneTraits<int>::Clone()` 으로 기본 타입으로 사용한다면, `ptr->Clone()`이 없으므로 컴파일 오류가 납니다.) 
+컴파일 오류를 해결하겠다고 `Shape`의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심 성의껏 `protected`로 만든 것이니까요.(또한, `CloneTraits<int>::Clone()` 으로 기본 타입으로 사용한다면, `ptr->Clone()`이 없으므로 컴파일 오류가 납니다.) 
 
-이 문제는 함수 오버로딩을 통해 해결할 수 있습니다. 하나의 함수에서 `if()`를 통해 복사 생성자나 `Clone()`함수를 호출하는게 아니라, 복사 생성자를 사용하는 함수와 `Clone()`을 사용하는 함수를 각각 구현하고, 개체에 따라 해당 함수를 호출하게 하면 됩니다.
+이 문제는 함수 오버로딩을 통해 해결할 수 있습니다. 하나의 함수에서 `if()`를 통해 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 `Clone()`함수를 호출하는게 아니라, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하는 함수와 `Clone()`을 사용하는 함수를 각각 구현하고, 개체에 따라 해당 함수를 호출하게 하면 됩니다.
 
 1. `Clone()`함수를 오버로딩 하기 위해 `CloneTag<true>`와 `CloneTag<false>`타입을 만듭니다.
 2. `IsDerivedFrom<>::Val`에 따라 오버로딩된 `Clone()`함수를 호출합니다.

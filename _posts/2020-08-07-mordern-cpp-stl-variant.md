@@ -84,7 +84,7 @@ var = 1; // (X) 컴파일 오류. 타입이 동일하면 사용할 수 없습니
 
 # valueless_by_exception()
 
-[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)는 생성시에 `0`번째 타입의 개체의 기본 생성자로 초기화 해주고, 별도로 초기화 하는 함수도 없기 때문에, 일반적인 상황에선 항상 유효한 개체를 갖게 되는데요,
+[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)는 생성시에 `0`번째 타입의 개체의 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 초기화 해주고, 별도로 초기화 하는 함수도 없기 때문에, 일반적인 상황에선 항상 유효한 개체를 갖게 되는데요,
 
 생성자나 대입 과정에서 예외가 발생하면 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 유효하지 않은 상태가 발생합니다. `valueless_by_exception()`는 이런 경우 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)의 유효성을 검사합니다.
 

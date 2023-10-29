@@ -10,14 +10,14 @@ sidebar:
 
 > * `string`과 `wstring`은 소멸자가 `public` Non-Virtual 이므로 상속하여 재구현 하지 마라.
 > * 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하라.(*[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)이나 `string`, `wstring` 을 쓰면 복제된다.*)
-> * `string`은 값 기반으로 복사/비교 하므로, 복사 생성자, `=`, `==`, `!=`, `+`, `+=`, 대소 비교, `assign()`, `append()` 등을 할때 메모리 부하와 속도 부하에 유의하라. 
-> * `data()`는 [널종료 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)이 아닐 수도 있다. `c_str()`을 사용하라.
+> * `string`은 값 기반으로 복사/비교 하므로, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), `=`, `==`, `!=`, `+`, `+=`, 대소 비교, `assign()`, `append()` 등을 할때 메모리 부하와 속도 부하에 유의하라. 
+> * `data()`는 [널종료 문자열](??)이 아닐 수도 있다. `c_str()`을 사용하라.
 
 > **모던 C++**
-> * (C++11~) [UTF-16과 UTF-32](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)를 지원하는 [u16string, u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+> * (C++11~) [UTF-16과 UTF-32](??)를 지원하는 [u16string, u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
-> * (C++20~) [UTF-8](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.
+> * (C++20~) [UTF-8](??)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.
 
 # 개요
 
@@ -30,15 +30,15 @@ typedef basic_string<char> string;
 typedef basic_string<wchar_t> wstring;  
 ```
 
-> *(C++11~) [UTF-16과 UTF-32](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)를 지원하는 [u16string, u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.*<br/>
-> *(C++20~) [UTF-8](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.*
+> *(C++11~) [UTF-16과 UTF-32](??)를 지원하는 [u16string, u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.*<br/>
+> *(C++20~) [UTF-8](??)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.*
 
 
 1. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 유사하게 연속된 메모리를 사용하며,
 2. 컨테이너와 같이 이터레이터와 `operator []`를 지원합니다.
 3. 소멸자가 `public` Non-Virtual 이므로 상속하여 재구현 하면 안됩니다.([public Non-Virtual](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고) 이는 흔히, 그리고 많이 사용하는 자료형이여서 가상 함수 테이블의 포인터를 저장하기 아깝기 때문입니다.( [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable) 참고)
-4. 문자열 상수를 복제하여 관리합니다. 따라서, 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하는게 좋습니다.([문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 참고)
-5. `string`은 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 기반이 아니라 값 기반으로 관리되므로, 복사 생성자, `=`, `==`, `!=`, `+`, `+=`, 대소 비교, `assign()`, `append()` 등이 메모리 부하나 속도 부하가 있습니다.
+4. [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 복제하여 관리합니다. 따라서, 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하는게 좋습니다.([문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 참고)
+5. `string`은 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 기반이 아니라 값 기반으로 관리되므로, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), `=`, `==`, `!=`, `+`, `+=`, 대소 비교, `assign()`, `append()` 등이 메모리 부하나 속도 부하가 있습니다.
 
 ```cpp
 std::string s1("OK"); // 문자열 상수는 새로운 메모리 공간에 복제되어 저장됩니다.
@@ -65,9 +65,9 @@ s1[0] = 'a'; // [] 로 문자에 접근할 수 있습니다.
 
 # C스타일 문자열과의 호환
 
-C++ 문자열은 C스타일의 문자열과의 호환성을 위하여 기본적으로 [널종료 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 지원합니다. [널종료 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)로 생성할 수 있으며, `c_str()`함수를 이용하여 [널종료 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)로 변환할 수 있습니다. 
+C++ 문자열은 C스타일의 문자열과의 호환성을 위하여 기본적으로 [널종료 문자열](??)을 지원합니다. [널종료 문자열](??)로 생성할 수 있으며, `c_str()`함수를 이용하여 [널종료 문자열](??)로 변환할 수 있습니다. 
 
-`c_str()`함수의 변환 효율성을 위해 STL 구현에 따라 내부 메모리 블록에 널문자(`\0`)를 저장할 수도, 저장하지 않을 수도 있습니다. 따라서 내부 메모리 블록을 구하는 `data()`함수는 [널종료 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 리턴한다고 보장하지 않으니 주의해야 합니다.
+`c_str()`함수의 변환 효율성을 위해 STL 구현에 따라 내부 메모리 블록에 [널문자(*정수 0인 문자, `'\0'`*)](??)를 저장할 수도, 저장하지 않을 수도 있습니다. 따라서 내부 메모리 블록을 구하는 `data()`함수는 [널종료 문자열](??)을 리턴한다고 보장하지 않으니 주의해야 합니다.
 
 ```cpp
 std::string str = "abc"; // 널종료 문자열로 생성할 수 있습니다.

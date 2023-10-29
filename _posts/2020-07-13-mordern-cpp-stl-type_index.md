@@ -12,9 +12,9 @@ sidebar:
 
 # 개요
 
-[typeid()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)는 `const type_info&`를 리턴하는데요, 이는 [컨테이너 요소 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%94%EC%86%8C-%EA%B7%9C%EC%B9%99)인 복사 생성자나 [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)를 위한 대소 비교를 제공하지 않아 컨테이너에 추가할 수 없습니다.
+[typeid()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)는 `const type_info&`를 리턴하는데요, 이는 [컨테이너 요소 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%94%EC%86%8C-%EA%B7%9C%EC%B9%99)인 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)를 위한 대소 비교를 제공하지 않아 컨테이너에 추가할 수 없습니다.
 
-[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/)는 `const type_info&`를 컨테이너의 요소로 사용할 수 있게끔 복사 생성자와 대소 비교를 구현한 래퍼입니다. 
+[type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/)는 `const type_info&`를 컨테이너의 요소로 사용할 수 있게끔 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 대소 비교를 구현한 래퍼입니다. 
 
 이를 이용하면 `const type_info&`를 관리하는 컨테이너를 만들 수 있습니다. 
 

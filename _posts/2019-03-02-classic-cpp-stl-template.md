@@ -102,7 +102,7 @@ EXPECT_TRUE(Plus('a', static_cast<char>(1)) == 'b'); // (O) 인수로부터 char
 단,
 
 1. 생성자는 타입을 명시적으로 지정할 수 없습니다. 인수로부터 추론됩니다.
-2. 소멸자, 복사 생성자는 만들 수 없습니다.
+2. 소멸자, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 만들 수 없습니다.
 3. 가상 함수는 지원하지 않습니다.
 
 ```cpp

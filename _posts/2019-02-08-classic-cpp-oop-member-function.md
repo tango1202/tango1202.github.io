@@ -26,7 +26,7 @@ sidebar:
 |--|--|
 |`T() {}`|[생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)|
 |`~T() {}`|[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)|
-|`T& operator =(const T& other) {}`|[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/)|
+|`T& operator =(const T& other) {}`|[복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)|
 |`operator U() const {}`|[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)|
 |`T& operator +=(const T& other) {}`| [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|
 |`U f() {}`|멤버 함수|

@@ -10,7 +10,7 @@ sidebar:
 
 > * 삽입/삭제 성능, 검색 성능, 노드 구성 용량 부하를 검토하여 최적의 컨테이너를 선택하라.
 > * 컨테이너의 변경이 용이하도록 코딩하라.
-> * 컨테이너 종류나 사용하는 알고리즘 함수에 따라 복사 생성자, 복사 대입 연산자, 비교 연산자를 구현하라.
+> * 컨테이너 종류나 사용하는 알고리즘 함수에 따라 복사 생성자, [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), 비교 연산자를 구현하라.
 
 > **모던 C++**
 > * (C++11~) [forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.
@@ -114,7 +114,7 @@ class Node {
 
 **복사 생성자**
 
-시퀀스 컨테이너의 요소는 기본적으로 복사 생성자를 정의해야 합니다.
+시퀀스 컨테이너의 요소는 기본적으로 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 정의해야 합니다.
 
 ```cpp
 class A {
@@ -174,7 +174,7 @@ EXPECT_TRUE(v[0].m_Val == 0 && v[1].m_Val == 1); // 크기순으로 정렬됩니
 
 **연관 컨테이너의 Key**
 
-[연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 **Key**는 컨테이너에 삽입시 대소 비교하여 정렬하는데 사용되므로, 복사 생성자와 `bool operator <(const T& other);`을 지원해야 합니다.(`<`연산자는 [대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)을 충족해야 합니다.)
+[연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 **Key**는 컨테이너에 삽입시 대소 비교하여 정렬하는데 사용되므로, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)와 `bool operator <(const T& other);`을 지원해야 합니다.(`<`연산자는 [대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)을 충족해야 합니다.)
 
 ```cpp
 class A {

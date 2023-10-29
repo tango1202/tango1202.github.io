@@ -109,8 +109,8 @@ ThreeType three;
 |항목|내용|
 |--|--|
 |`is_constructible` (C++11~)<br/>`is_trivially_constructible` (C++11~)<br/>`is_nothrow_constructible` (C++11~)|열거된 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입으로 생성될 수 있는지 검사합니다.|
-|`is_default_constructible` (C++11~)<br/>`is_trivially_default_constructible` (C++11~)<br/>`is_nothrow_default_constructible` (C++11~)|기본 생성자로 생성될 수 있는지 검사합니다.|
-|`is_copy_constructible` (C++11~)<br/>`is_trivially_copy_constructible` (C++11~)<br/>`is_nothrow_copy_constructible` (C++11~)|복사 생성자로 생성될 수 있는지 검사합니다.|
+|`is_default_constructible` (C++11~)<br/>`is_trivially_default_constructible` (C++11~)<br/>`is_nothrow_default_constructible` (C++11~)|[기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성될 수 있는지 검사합니다.|
+|`is_copy_constructible` (C++11~)<br/>`is_trivially_copy_constructible` (C++11~)<br/>`is_nothrow_copy_constructible` (C++11~)|[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성될 수 있는지 검사합니다.|
 |`is_move_constructible` (C++11~)<br/>`is_trivially_move_constructible` (C++11~)<br/>` is_nothrow_move_constructible` (C++11~)|이동 생성자로 생성될 수 있는지 검사합니다.|
 |`is_assignable` (C++11~)<br/>`is_trivially_assignable` (C++11~)<br/>` is_nothrow_assignable` (C++11~)|주어진 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입으로 대입될 수 있는지 검사합니다.|
 |`is_copy_assignable` (C++11~)<br/>`is_trivially_copy_assignable` (C++11~)<br/>` is_nothrow_copy_assignable` (C++11~)|복사 대입될 수 있는지 검사합니다.|

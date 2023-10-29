@@ -27,8 +27,8 @@ sidebar:
 
 표준 예외는 다음을 준수해야 합니다.
 
-1. 복사 생성자 구현
-2. 복사 대입 연산자 구현
+1. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 구현
+2. [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 구현
 
 |항목|내용|
 |--|--|

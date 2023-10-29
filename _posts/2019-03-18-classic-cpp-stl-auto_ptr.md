@@ -23,7 +23,7 @@ sidebar:
 하지만 몇가지 문제점이 있습니다.
 
 1. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)가 아닌 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)로 삭제합니다.(*이러면 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소들이 제대로 소멸되지 않습니다. [delete와 delete[] 의 차이](??) 참고*)
-2. 복사 대입 연산자에서 소유권을 이전합니다.(*의도한 코드입니다만, 이게 암시적으로 동작하면서 런타임 오류가 많이 발생합니다.*)
+2. [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)에서 소유권을 이전합니다.(*의도한 코드입니다만, 이게 암시적으로 동작하면서 런타임 오류가 많이 발생합니다.*)
 
 > *(C++11~) [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되어 더이상 사용하시면 안되고, [unique_ptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-unique_ptr/)을 사용해야 합니다.*
 
@@ -70,7 +70,7 @@ delete u1.m_T; // (△) 비권장. U의 사용법을 잘 숙지하고, 엄청 �
 delete u2.m_T;
 ```
 
-그래서 [포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81) 에서 언급한 대로 소멸자에서 소멸시켜야 합니다. 그러나 이 방법도 `U`를 복사 생성자로 생성하거나 복사 대입 연산자를 사용하면 소유권 분쟁이 일어나 낭패입니다.([포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81) 참고)
+그래서 [포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81) 에서 언급한 대로 소멸자에서 소멸시켜야 합니다. 그러나 이 방법도 `U`를 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성하거나 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 사용하면 소유권 분쟁이 일어나 낭패입니다.([포인터 멤버 변수의 소유권 분쟁](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81) 참고)
 
 ```cpp
 class T {};
