@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
+> * 헤더 파일에서 다른 헤더 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하는 것은 최소화 하라.
 > * 선언과 정의 분리, [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)으로 컴파일 종속성을 최소화 하라.
-
 
 # 선언과 정의 분리
 
@@ -19,13 +19,15 @@ C++에서는 일반적으로 클래스 선언부는 헤더 파일에 작성하�
 
 # 인클루드 가드
 
-프로젝트 규모가 커지면, 여러 cpp에서 헤더 파일을 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하다가 중복 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 될 수 있습니다. 만약 헤더 파일에 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98) 정의나 함수 정의 등이 있다면, 중복 정의되었다며 컴파일 오류가 발생하게 됩니다.
+프로젝트 규모가 커지면, 여러 cpp에서 헤더 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하다가 중복 포함이 될 수 있습니다. 만약 헤더 파일에 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98) 정의나 함수 정의 등이 있다면, 중복 정의되었다며 컴파일 오류가 발생하게 됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fefed6ef-c1b3-41ba-83bd-9725ab4df01d)
 
-따라서 관례적으로 헤더 파일은 [인클루드 가드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%9D%B8%ED%81%B4%EB%A3%A8%EB%93%9C-%EA%B0%80%EB%93%9C)를 이용하여 1회만 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)되도록 만듭니다. 
+따라서 관례적으로 헤더 파일은 [인클루드 가드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%9D%B8%ED%81%B4%EB%A3%A8%EB%93%9C-%EA%B0%80%EB%93%9C)를 이용하여 1회만 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)되도록 만듭니다. 
 
-다음 코드를 보면 `#ifndef MyClass_h` 전처리를 이용하여 `MyClass_h`가 정의되지 않은 경우만 포함시킵니다. 포함된 경우에는 `#define MyClass_h`로 `MyClass_h` [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)를 정의합니다. 따라서 다음번 부터는 `MyClass_h` [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)가 정의되었으므로, 더이상 포함되지 않습니다.(*컴파일러에 따라 [#pramga once](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)를 제공하기도 합니다. 하지만, 비표준이니까 사용하지 않는게 좋습니다.*)
+다음 코드를 보면 `#ifndef MyClass_h` 전처리를 이용하여 `MyClass_h`가 정의되지 않은 경우만 포함시킵니다. 포함된 경우에는 `#define MyClass_h`로 `MyClass_h` [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)를 정의합니다. 
+
+따라서 다음번 부터는 `MyClass_h` [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)가 정의되었으므로, 더이상 포함되지 않습니다.(*컴파일러에 따라 [#pramga once](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#pragma)를 제공하기도 합니다. 하지만, 비표준이니까 사용하지 않는게 좋습니다.*)
 
 ```cpp
 // ----
@@ -112,7 +114,7 @@ void g() {
 
 상기와 같이 코드를 구성하면,
 
-1. `MyClass.h`를 수정하면 이를 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)한 `MyClass.cpp`, `A.cpp`, `B.cpp`가 컴파일 되지만, `MyClass.cpp`를 수정하면, 수정한 `MyClass.cpp`파일만 컴파일 됩니다. 결과적으로 선언과 정의를 분리하고 적절히 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하면, 컴파일 종속성이 낮아져 불필요한 컴파일을 하지 않으므로 빌드 속도가 향상됩니다.
+1. `MyClass.h`를 수정하면 이를 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)한 `MyClass.cpp`, `A.cpp`, `B.cpp`가 컴파일 되지만, `MyClass.cpp`를 수정하면, 수정한 `MyClass.cpp`파일만 컴파일 됩니다. 결과적으로 선언과 정의를 분리하고 적절히 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하면, 컴파일 종속성이 낮아져 불필요한 컴파일을 하지 않으므로 빌드 속도가 향상됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/10a80bdf-9ce0-4561-955a-656fa5afef31)
 
@@ -120,15 +122,15 @@ void g() {
 
 # 전방 선언
 
-`MyClass`를 여러 클래스에서 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하여 사용하는 구성을 생각해 봅시다.
+`MyClass`를 여러 클래스에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하여 사용하는 구성을 생각해 봅시다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19c036c4-78b2-4ee0-9802-34dde81d89df)
 
-상기 구성에서 `A`와 `B` 클래스는 멤버 변수로 `MyClass`를 사용하므로, `MyClass.h`를 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하였습니다. 이에 따라 `MyClass.h`가 수정되면 `MyClass.cpp`, `A.h`, `A.cpp`, `B.h`, `B.cpp`, `Other.cpp`가 모두 빌드 됩니다. 특히, `Other.cpp`처럼 `A.h`, `B.h`를 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)한 다른 곳이 있다면, 연쇄적으로 다시 빌드 됩니다. [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)를 잘못 구성하면, 뭐 하나 수정할 때마다 전체 빌드되어 컴파일 속도가 현저히 떨어지죠.
+상기 구성에서 `A`와 `B` 클래스는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 `MyClass`를 사용하므로, `MyClass.h`를 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하였습니다. 이에 따라 `MyClass.h`가 수정되면 `MyClass.cpp`, `A.h`, `A.cpp`, `B.h`, `B.cpp`, `Other.cpp`가 모두 빌드 됩니다. 특히, `Other.cpp`처럼 `A.h`, `B.h`를 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)한 다른 곳이 있다면, 연쇄적으로 다시 빌드 됩니다. [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)를 잘못 구성하면, 뭐 하나 수정할 때마다 전체 빌드되어 컴파일 속도가 현저히 떨어지죠.
 
-그래서 컴파일 종속성을 낮추기 위해 헤더 파일에서 다른 헤더 파일을 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하는 것은 최소화 하는게 좋습니다.
+그래서 컴파일 종속성을 낮추기 위해 ***헤더 파일에서 다른 헤더 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하는 것은 최소화*** 하는게 좋습니다.
 
-상기 예에서 `A`, `B` 클래스가 `MyClass`를 멤버 변수로 사용하기 때문에 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하였는데요,
+상기 예에서 `A`, `B` 클래스가 `MyClass`를 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 사용하기 때문에 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하였는데요,
 
 ```cpp
 #include "MyClass.h"
@@ -140,7 +142,7 @@ public:
 };
 ```
 
-다음과 같이 멤버 변수 정의시 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 사용하면 굳이 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하지 않고, ***해당 개체는 클래스이다*** 라고 알려주는 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 해도 됩니다.
+다음과 같이 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 정의시 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 사용하면 굳이 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하지 않고, ***해당 개체는 클래스이다*** 라고 알려주는 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)만 해도 됩니다.
 
 ```cpp
 class MyClass; // 전방 선언
@@ -204,7 +206,7 @@ A::~A() {delete m_MyClass;} // 소멸합니다.
 int A::f() const {return m_MyClass->Func();} // MyClass를 사용합니다.
 ```
 
-상기 구성을 그림으로 보면 다음과 같습니다. `MyClass.h` 를 수정하면 이를 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 한 `MyClass.cpp`, `A.cpp`, `B.cpp`만 컴파일되어 연쇄적으로 빌드되는 걸 방지합니다.
+상기 구성을 그림으로 보면 다음과 같습니다. `MyClass.h` 를 수정하면 이를 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 한 `MyClass.cpp`, `A.cpp`, `B.cpp`만 컴파일되어 연쇄적으로 빌드되는 걸 방지합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e0c87b61-73c5-45c6-84fc-0b774ca1a38d)
 
@@ -261,11 +263,11 @@ void MyClass::f() {
 
 **중첩 클래스의 전방 선언**
 
-[중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)는 바깥 클래스에서 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 할 수 없습니다. 클래스 내에서 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)해야 합니다.
+[중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)는 클래스 바깥에서 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 할 수 없습니다. 클래스 내에서 [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)해야 합니다.
 
 ```cpp
 class T; // (O)
-class T::Nested; // (X) 컴파일 오류. 중첩 클래스는 바깥 클래스에서 전방 선언을 할 수 없습니다.
+class T::Nested; // (X) 컴파일 오류. 중첩 클래스는 클래스 바깥에서 전방 선언을 할 수 없습니다.
 
 class T {
 public:

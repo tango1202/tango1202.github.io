@@ -297,7 +297,7 @@ EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 �
 
 # typeid 연산자
 
-개체의 타입 비교를 위해 사용합니다.(*`<typeinfo>`를 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)해야 합니다.*)
+개체의 타입 비교를 위해 사용합니다.(*`<typeinfo>`를 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)해야 합니다.*)
 
 |항목|내용|
 |--|--|

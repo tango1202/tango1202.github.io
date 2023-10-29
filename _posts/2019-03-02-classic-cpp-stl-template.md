@@ -168,7 +168,7 @@ a.g<int>(10); // 템플릿 멤버 함수 호출
 
 # 템플릿 인스턴스 중복 생성
 
-동일한 템플릿을 인스턴스화 할때 각각의 파일에서 템플릿 정의를 [include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하면 각 파일별로 템플릿 인스턴스가 생성됩니다.(마치 템플릿을 [인라인화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/) 하는 것 처럼요.) 이에 따라 프로그램 코드 용량이 커질 수 있습니다.
+동일한 템플릿을 인스턴스화 할때 각각의 파일에서 템플릿 정의를 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하면 각 파일별로 템플릿 인스턴스가 생성됩니다.(마치 템플릿을 [인라인화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/) 하는 것 처럼요.) 이에 따라 프로그램 코드 용량이 커질 수 있습니다.
 
 ```cpp
 // test.h 에서

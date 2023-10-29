@@ -57,7 +57,7 @@ EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 
 예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 언급된 것처럼 예외가 발생하기 전의 상태로 복귀해야 합니다.
 
-[암시적 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 각 멤버 변수별로 복사 대입을 하는데요, 그러다 보니 중간에 예외가 발생했을 경우, 이전에 이미 수정한 개체를 복원할 수 없어 예외 처리가 어렵습니다.
+[암시적 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 각 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)별로 복사 대입을 하는데요, 그러다 보니 중간에 예외가 발생했을 경우, 이전에 이미 수정한 개체를 복원할 수 없어 예외 처리가 어렵습니다.
 
 ```cpp
 T& operator =(const T& other) {
@@ -158,7 +158,7 @@ swap(T& left, T& right) {
 
 # nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화
 
-개체가 `int`형과 같은 기본 자료형 멤버 변수를 1~2개 사용하고 있다면, 복사 대입 연산 부하도 적고, 예외 발생 확률도 낮습니다. 그냥 예외 발생이 없는 `nothrow swap`으로 취급해도 무방합니다. 
+개체가 `int`형과 같은 기본 자료형 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 1~2개 사용하고 있다면, 복사 대입 연산 부하도 적고, 예외 발생 확률도 낮습니다. 그냥 예외 발생이 없는 `nothrow swap`으로 취급해도 무방합니다. 
 
 그러나, 아주 많은 기본 자료형을 사용하거나 동적으로 할당하는 자료를 가지고 있다면, 복사 부하도 크고, 예외 발생 확률도 높습니다.
 

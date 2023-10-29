@@ -123,7 +123,7 @@ ThreeType three;
 
 |항목|내용|
 |--|--|
-|`alignment_of` (C++11~)|메모리 정렬에 필요한 크기를 구합니다.<br/>[alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof) 와 동일하며, C++11 이전 컴파일러와 호환성을 유지합니다.|
+|`alignment_of` (C++11~)|[메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)에 필요한 크기를 구합니다.<br/>[alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof) 와 동일하며, C++11 이전 컴파일러와 호환성을 유지합니다.|
 |`rank` (C++11~)|다차원 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 차원수를 구합니다.|
 |`extent` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 차원의 요소 수를 구합니다.|
 

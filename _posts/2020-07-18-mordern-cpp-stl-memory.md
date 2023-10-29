@@ -80,7 +80,7 @@ T* addressof(T& arg) noexcept;
 
 # align()
 
-`space` 크기의 버퍼 공간에 `size`크기의 개체를 `alignment` 로 메모리 정렬했을때의 연속된 메모리 포인터인 `ptr`을 구합니다.
+`space` 크기의 버퍼 공간에 `size`크기의 개체를 `alignment` 로 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)했을때의 연속된 메모리 포인터인 `ptr`을 구합니다.
 
 ```cpp
 void* align( 

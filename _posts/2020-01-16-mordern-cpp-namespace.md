@@ -30,7 +30,7 @@ EXPECT_TRUE(MyLib::V2_11::f() == 2);
 EXPECT_TRUE(MyLib::f() == 2); // MyLib에 없으면 inline 사용
 ```
 
-이는 API 버전 처리에 효과적입니다. 각각의 버전을 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)로 분리하고, 사용하려는 버전에만 `inline` 을 추가하면 됩니다.
+이는 API 버전 처리에 효과적입니다. 각각의 버전을 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)로 분리하고, 사용하려는 버전에만 [inline](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)을 추가하면 됩니다.
 
 # (C++17~) 단순한 중첩 네임스페이스
 
