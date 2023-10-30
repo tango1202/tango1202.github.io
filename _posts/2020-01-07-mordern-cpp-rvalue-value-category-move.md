@@ -1,12 +1,16 @@
 ---
 layout: single
-title: "#5. [모던 C++] (C++11~) 우측값, 이동 연산, 이동 생성자, 이동 대입 연산자, move(), forward(), 값 카테고리"
+title: "#7. [모던 C++] (C++11~) 우측값, 이동 연산, 이동 생성자, 이동 대입 연산자, move(), forward(), 값 카테고리"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
+
+> * [MEC++#17] 특수 멤버 함수들의 자동 작성 조건을 숙지하라.([이동 연산에 따른 암시적 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%A0%95%EC%9D%98))
+> * [MEC++#23] std::move와 std::forward를 숙지하라.
+
 
 > * (C++11~) [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/)을 위해 [우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 대입시 속도가 향상되었습니다.
 > * (C++11~) [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90), [이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가됨에 따라 [기본 생성자, 복사 생성자, 복사 대입 연산자, 이동 생성자, 이동 대입 연산자, 소멸자의 암시적 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%A0%95%EC%9D%98)가 재정립 되었습니다.
@@ -569,6 +573,44 @@ EXPECT_TRUE(T::Func_11(A()) == 2); // 임시 개체는 rvalue
 EXPECT_TRUE(T::Func_11(std::move(A())) == 2); // 임시 개체를 move 해도 rvalue
 ```
 
+# move() 원리
+
+`move()`함수는 STL에 다음처럼 구현됩니다.
+
+1. `remove_reference`는 좌측값이던, 우측값이던 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 제거한 타입입니다.
+2. 참조성을 제거한 것에 `&&`을 붙여 캐스팅하여 리턴합니다.
+
+먼저 참조성을 제거한 것 말고는 `static_cast<T&&>`와 같죠.
+
+```cpp
+template<typename T>
+typename remove_reference<T>::&& move(T&& param) {
+    using ReturnType = typname remove_reference<T>::type&&;
+
+    return static_cast<ReturnType>(param);
+}
+```
+
+```cpp
+template<typename T>
+T&& MyMove(T& val) {
+    using ReturnType = T&;
+    auto T
+    return static_cast<ReturnType&&>
+}
+
+class T{
+public:
+    int Func(T&) {return 1;} // #1
+    int Func(T&&) {return 1;} // #2
+};
+T a;
+
+T& b = a;
+EXPECT_TRUE(a.Func(MyMove(b)));
+```
+
+
 `move()`함수는 `T`와 `T&`를 단순히 `&&`로 변환해 주는 함수이므로 `const T` 를 전달하면 `const T&&`로 변경합니다. 그런데, 이동 생성자, 이동 대입 연산자는 `T&&`를 사용하므로 `const T&&`로 변환하면 호출되지 않습니다. 따라서 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 제거하고 사용해야 합니다.(*[이동 연산을 지원하는 래퍼](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%84-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EB%9E%98%ED%8D%BC) 참고*)
 
 # move_if_noexcept()
@@ -653,3 +695,6 @@ EXPECT_TRUE(g_11(t) == 11);
 EXPECT_TRUE(g_11(std::move(t)) == 22);
 ```
 
+# 참조 축약
+
+참조자 끼리 중복될때의 규칙

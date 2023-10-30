@@ -8,6 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
+> * [MEC++#19] 소유권 공유 자원의 관리에는 std::shared_ptr를 사용하라(new한 포인터를 직접 사용하지 마라.[shared_ptr 소유권 분쟁](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81))
+> * [MEC++#20] std::shared_ptr처럼 작동하되 대상을 잃을 수도 있는 포인터가 필요하면 std::weak_ptr를 사용하라.
+> * [MEC++#21] new를 직접 사용하는 것보다 std::make_unique와 std::make_shared를 선호하라(메모리 할당 횟수가 준다. 예외 안전성이 향상된다)
+
+
 > * (C++11~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)은 소유권 공유용 스마트 포인터입니다.
 > * (C++11~) [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)은 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)의 상호 참조 문제를 해결합니다.
 > * (C++17~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)에서 [배열을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#c17-%EB%B0%B0%EC%97%B4-%EC%A7%80%EC%9B%90)합니다.
@@ -156,7 +161,7 @@ EXPECT_TRUE(a.use_count() == 1); // a, b가 각각의 제어 블록을 사용하
 EXPECT_TRUE(b.use_count() == 1);
 ```
 
-상기와 같이 포인터를 생성한 뒤애 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)에 전달하는 건 좋지 않은 코딩 습관입니다. `std::shared_ptr<int> a{new int{}};`와 같이 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 생성자에 바로 개체를 생성해서 전달하거나, [make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared)를 이용하는게 좋습니다.
+상기와 같이 포인터를 생성한 뒤에 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)에 전달하는 건 좋지 않은 코딩 습관입니다. `std::shared_ptr<int> a{new int{}};`와 같이 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 생성자에 바로 개체를 생성해서 전달하거나, [make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared)를 이용하는게 좋습니다.
 
 # make_shared()
 

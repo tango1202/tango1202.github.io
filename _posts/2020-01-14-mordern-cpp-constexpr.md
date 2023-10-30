@@ -8,6 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
+> * [MEC++#15] 가능하면 항상 constexpr을 사용하라.(컴파일 타임, 런타임 모두 사용할 수 있다)
+
 > * (C++11~) [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
 > * (C++14~) [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 제약이 완화되어 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), 2개 이상의 리턴문, `if()`, `for()`, `while()` 등을 사용할 수 있습니다.
 > * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.

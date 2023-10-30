@@ -8,6 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
+> * [MEC++#18] 소유권 독점 자원의 관리에는 std::unique_ptr를 사용하라.
+> * [MEC++#22] PImpl 관용구를 사용할때에는 특수 멤버 함수들을 구현파일에서 정의하라.(재현되지는 않음. 사유는 암묵적으로 inline인 소멸자인 ~T()는, pImpl의 raw 포인터를 삭제하기 전에 static_assert()를 검사하는데, 이 시점에 impl은 전방 선언이어서 불완전하여 delete가 해석되지 않음. 따라서 Impl 구현 코드가 있는 cpp에 T()::~T() = default; 넣어 소멸자 정의 시점을 변경함.)
+
 > * (C++11~) [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권 이전용 스마트 포인터입니다. 기존 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 대체합니다. [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 미지원, `lvalue` 복사 대입 연산시 이동 동작을 하는 등의 사유로 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
 > * (C++14~) [make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique)를 이용하여 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)을 효율적으로 생성할 수 있습니다.
 

@@ -8,6 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
+> * [MEC++#14] 예외를 방출하지 않을 함수는 noexcept로 선언하라.(noexcept는 최적화 여지가 크다. 이동 연산, swap, 소멸자는 noxcept로)
+
 > * (C++11~) [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 이용하여 함수의 예외 방출 여부를 보증합니다.
 > * (C++11~) 소멸자는 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다.
 > * (C++11~) [noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 이용하여 해당 함수가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인지 컴파일 타임에 검사할 수 있습니다.
@@ -82,6 +84,14 @@ f_11(); // noexcept 함수 내에서 사용하는 함수 f()가 예외를 발생
 2. 또한, 향후 하위 함수들이 수정되어 혹여나 예외를 발생시키면, 사용되는 모든 곳의 예외 처리를 재검토 해서 수정하겠다는 ***모든 조직원의 공감대***가 형성되어야 합니다.
 
 그렇지 않으면 오히려 안쓰는게 낫습니다. 그나마 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)의 기회조차 컴파일러 최적화에 의해 차단되니까요.
+
+하지만 그럼에도 불구하고 다음은 꼭 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 고려하십시요.
+
+1. 복사 연산을 안전하게 이동 연산으로 변환할 수 있는 이동 생성자, 이동 대입 연산자(*[이동 연산 변환의 안전성](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0-%EB%B3%80%ED%99%98%EC%9D%98-%EC%95%88%EC%A0%84%EC%84%B1) 참고*)
+
+2. 예외에 안전한 복사 대입을 위한 [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)
+
+3. 정상적인 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 위한 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)
 
 # 소멸자 예외
 
