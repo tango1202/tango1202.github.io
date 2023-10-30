@@ -149,8 +149,8 @@ ThreeType three;
 
 |항목|내용|
 |--|--|
-|`remove_reference` (C++11~)|타입에서 좌측값 참조, 우측값 참조의 참조성을 제거합니다.|
-|`add_lvalue_reference` (C++11~)<br/>`add_rvalue_reference` (C++11~)|타입에서 좌측값 참조, 우측값 참조의 참조성을 추가합니다.|
+|`remove_reference` (C++11~)|타입에서 좌측값 참조, 우측값 참조의 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 제거합니다.|
+|`add_lvalue_reference` (C++11~)<br/>`add_rvalue_reference` (C++11~)|타입에서 좌측값 참조, 우측값 참조의 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 추가합니다.|
 
 # 포인터
 
@@ -179,7 +179,7 @@ ThreeType three;
 |--|--|
 |`aligned_storage`(C++11~C++23)|(작성중)|
 |`aligned_union`(C++11~C++23)|(작성중)|
-|`decay` (C++11~)|참조성, `const`, `volatile`등의 속성을 떼고, 타입으로 만듭니다. 즉 `const int&`이던 `int&&`이던 모두 `int`가 됩니다. 또한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 만듭니다. <br/>이와는 반대로 참조성을 붙여서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
+|`decay` (C++11~)|[참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90), `const`, `volatile`등의 속성을 떼고, 타입으로 만듭니다. 즉 `const int&`이던 `int&&`이던 모두 `int`가 됩니다. 또한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 만듭니다. <br/>이와는 반대로 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 붙여서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
 |`enable_if` (C++11~)|(작성중)|
 |`conditional` (C++11~)|(작성중)|
 |`common_type` (C++11~)|(작성중)|
