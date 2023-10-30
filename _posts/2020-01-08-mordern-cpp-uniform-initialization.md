@@ -507,7 +507,12 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 
 # 기존 생성자와 initializer_list 생성자와의 충돌
 
-[중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 3번에 따라 `vector<int> v{}` 는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기본 생성자를 호출하고, `vector<int> v{{}}`는 빈 `initializer_list`로 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성합니다.
+[중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 3번에 따라 다음처럼 해석됩니다.
+
+```cpp
+vector<int> v{}; // 기본 생성자 호출
+vector<int> v{{ }}; // 빈 initializer_list로 생성
+```
 
 상기는 별로 심각하지 않을 수 있지만, [중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 4번인 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 버전이 비교적 우선적으로 선택되는 부분은 심각합니다. 
 
@@ -517,7 +522,7 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 std::vector<int> v1(); // 함수 선언
 std::vector<int> v1_11{}; // 기본 생성자
 
-std::vector<int> v2_11{{}}; // 빈 initializer_list로 vector 생성
+std::vector<int> v2_11{{ }}; // 빈 initializer_list로 vector 생성
 
 std::vector<int> v3(2); // 요소 갯수가 2개인 vector 생성
 EXPECT_TRUE(v3.size() == 2 && v3[0] == 0 && v3[1] == 0);
