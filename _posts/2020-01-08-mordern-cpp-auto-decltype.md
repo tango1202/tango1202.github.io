@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++] (C++11~) auto, decltype(), declval(), 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론, (C++17~) auto의 중괄호 초기화 특수 추론 규칙 개선"
+title: "#8. [모던 C++] (C++11~) auto, decltype(), declval(), 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론, (C++17~) auto의 중괄호 초기화 특수 추론 규칙 개선"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

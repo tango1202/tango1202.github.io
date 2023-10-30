@@ -7,6 +7,7 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
+> * [MEC++#9] typedef 보다 별칭 선언을 선호하라.([템플릿 클래스 별칭 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B3%84%EC%B9%AD))
 
 > * (C++11~) [using을 이용한 타입 별칭이 추가](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-using-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)되어 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.
 > * (C++11~) [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof)를 이용하여 [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 표준화 했습니다.
