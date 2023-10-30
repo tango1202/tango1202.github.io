@@ -21,7 +21,7 @@ sidebar:
 > * (C++14~) [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)의 `()`내 표현식이 복잡할 경우 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)와 같이 좀더 간결하게 작성할 수 있습니다.
 > * (C++14~) [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85) 대신 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)나 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)를 사용할 수 있습니다.
 > * (C++17~) 템플릿이 타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다. 
-> * (C++17~) [중괄호 초기화에서 auto 추론의 새로운 규칙](??)이 적용되어, [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 로 추론되는 오류가 개선되었습니다.
+> * (C++17~) [중괄호 초기화에서 auto 추론의 새로운 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c17-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%97%90%EC%84%9C-auto-%EC%B6%94%EB%A1%A0%EC%9D%98-%EC%83%88%EB%A1%9C%EC%9A%B4-%EA%B7%9C%EC%B9%99)이 적용되어, [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 로 추론되는 오류가 개선되었습니다.
 
 # auto
 
@@ -129,7 +129,7 @@ auto d_11 = {1, 2}; // d는 initializer_list<int>
 ```
 
 상기에서 `auto a_11{1};`를 `initializer_list<int>` 또는 `int`라고 했는데요,
-원래 C++11에서는 `initializer_list<int>`로 추론됩니다. 그런데, 2014년에 [중괄호 초기화에서 auto 추론의 새로운 규칙](??)인 [N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)가 받아들여졌고, 일부 컴파일러에서(*제 경우엔 GCC version 8.1.0 이상에서*) C++11 환경에서도 `int`로 추론됩니다.
+원래 C++11에서는 `initializer_list<int>`로 추론됩니다. 그런데, 2014년에 [중괄호 초기화에서 auto 추론의 새로운 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c17-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%97%90%EC%84%9C-auto-%EC%B6%94%EB%A1%A0%EC%9D%98-%EC%83%88%EB%A1%9C%EC%9A%B4-%EA%B7%9C%EC%B9%99)인 [N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)가 받아들여졌고, 일부 컴파일러에서(*제 경우엔 GCC version 8.1.0 이상에서*) C++11 환경에서도 `int`로 추론됩니다.
 
 # auto의 장점
 
@@ -461,7 +461,7 @@ public:
 ```
 # (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙
 
-C++17 부터 [중괄호 초기화와 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto)에서 언급한 [중괄호 초기화에서 auto 추론의 새로운 규칙](??)인 [N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)이 공식적으로 적용되었습니다.(*[N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)과 [N3681](https://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3681.html) 참고*)
+C++17 부터 [중괄호 초기화와 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto)에서 언급한 [중괄호 초기화에서 auto 추론의 새로운 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c17-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%97%90%EC%84%9C-auto-%EC%B6%94%EB%A1%A0%EC%9D%98-%EC%83%88%EB%A1%9C%EC%9A%B4-%EA%B7%9C%EC%B9%99)인 [N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)이 공식적으로 적용되었습니다.(*[N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)과 [N3681](https://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3681.html) 참고*)
 
 기존에는 `auto x{10};`는 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론되었으나, C++17 부터는 `int`로 추론됩니다.
 
