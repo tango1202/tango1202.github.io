@@ -584,7 +584,7 @@ dynamic_cast<std::shared_ptr<Base>>(derived);
 
 |항목|내용|
 |--|--|
-|`const_pointer_cast()` (C++11~)|상수성만 변환|
+|`const_pointer_cast()` (C++11~)|[상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)만 변환|
 |`static_pointer_cast()` (C++11~)|타입 유사성을 지키며 변환|
 |`dynamic_pointer_cast()` (C++11~)|타입 유사성을 지키며 변환.<br/>[Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)가 있는 개체([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체)만 가능.|
 |`reinterpret_pointer_cast()` (C++17~)|상속관계를 무시하고 변환.<br/>정수를 포인터로 변환.|

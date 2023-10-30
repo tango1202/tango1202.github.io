@@ -590,27 +590,32 @@ EXPECT_TRUE(p->f6() == 10); // 가상 함수 테이블을 참조하여 Base 의 
 
 C++언어에서는 이름이 동일한 함수를 여러개 정의하여 사용할 수 있습니다. 이렇게 함수명이 동일한 경우 전달한 인수와 전달받는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에 따라 알맞은 함수를 호출하게 됩니다. 
 
+```cpp
+int f(int) {return 1;} //#1
+int f(char) {return 2;} //#2
+int f(long) {return 3;} // #3
 
+EXPECT_TRUE(f(10) == 1); // int f(int) 호출
+EXPECT_TRUE(f('a') == 2); // int f(char) 호출
+EXPECT_TRUE(f(10L) == 3); // int f(long) 호출
+```
 
 # 오버로딩된 함수 결정 규칙
 
-[함수 오버로딩](??) 시에는 다음과 같은 규칙에 맞춰 호출할 함수를 결정합니다.
+[함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 시에는 다음과 같은 규칙에 맞춰 호출할 함수를 결정합니다.
 
 **암시적 형변환**
 
 기본적으로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입이 일치하는 것을 선택하지만, 해당 타입의 것이 없다면 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 적용하여 최대한 매핑되는 것을 사용합니다.
 
 ```cpp
-class T {
-public:
-    int f(int) {return 1;}
-    int f(double) {return 2;}
-};
-T t;
-EXPECT_TRUE(t.f(1) == 1); // (O) 타입 일치. int 버전 호출
-EXPECT_TRUE(t.f(1.) == 2); // (O) 타입 일치. double 버전 호출
+int f(int) {return 1;}
+int f(double) {return 2;}
+
+EXPECT_TRUE(f(1) == 1); // (O) 타입 일치. int 버전 호출
+EXPECT_TRUE(f(1.) == 2); // (O) 타입 일치. double 버전 호출
 EXPECT_TRUE(t.f(1L) == 1); // (X) 컴파일 오류. long 버전이 없음
-EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, double로 암시적 형변환 되므로 double 버전 호출
+EXPECT_TRUE(f(1.F) == 2); // (△) 비권장. float 버전이 없지만, double로 암시적 형변환 되므로 double 버전 호출
 ```
 
 **동일 함수 취급**
@@ -619,40 +624,40 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
 
 1. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 취급됩니다.
 
-    즉, 
-
-    ```cpp
-    int f(int a[3]);
-    int f(int a[]);
-    int f(int* a);
-    ```
-    는 모두 동일합니다.
-
-    이는
-
     ```cpp
     int a[3] = {0, 1, 2};
     int* p = a;
     ```
 
-    와 같이 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 포인터로 다룰 수 있기 때문입니다.
-
-2. 최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에서 제거하고 취급합니다.
-
-    즉,
+    와 같이 포인터는 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을  대입받을 수 있기 때문에 포인터를 대입받은 건지 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 대입받은 건지 구분할 수 없습니다. 따라서 동일 함수로 취급하며 다음과 같이 컴파일 오류가 발생합니다.
 
     ```cpp
-    int f(int a);
-    int f(const int a);
+    int f(int* a) {return 1;} 
+    // int f(int a[3]) {return 2;} // (X) 컴파일 오류. 배열은 f(int* a)와 동일해서 오버로딩 안됨.
+    // int f(int a[]) {return 3;} // (X) 컴파일 오류. 배열은 f(int* a)와 동일해서 오버로딩 안됨.
+    ```
+
+2. [최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에서 제거하고 취급합니다.
+    
+    [복사 대입시 최상위 const 제거](??) 의 언급처럼 [상수 개체](??)는 복사 대입시 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)이 제거될 수 있습니다.
+    
+    ```cpp
+    const int constVal = 10;
+    int val = constVal; // 상수성이 제거되었습니다.
     ```
     
-    는 동일합니다. `int`로 받던, `const int`로 받던 최상위 데이터가 함수쪽으로 복제되는건 똑같으니까요.
+    와 같이 `int`는 `const int`를 대입받을 수 있기 때문에 `int`를 대입받은 건지 `const int`를 대입받은 건지 구분할 수 없습니다. 따라서 동일 함수로 취급하며 다음과 같이 컴파일 오류가 발생합니다.
+
+    ```cpp
+    int f(int a) {return 1;} 
+    // int f(const int a) {return 2;} // (X) 컴파일 오류. int f(int) 와 동일해서 오버로딩 안됨.
+    ```
 
     [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 관점에서 보면,
 
     ```cpp
     int f(int* a);
-    int f(int* const a);
+    // int f(int* const a); // (X) 컴파일 오류
     ```
 
     가 동일합니다.
@@ -666,67 +671,101 @@ EXPECT_TRUE(t.f(1.F) == 2); // (△) 비권장. float 버전이 없지만, doubl
 
     는 다릅니다. `int* a` 는 `a`의 실제값을 수정할 수 있고, `const int* a`는 수정할 수 없으니까요.
 
-3. 함수의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)은 다른 타입으로 취급합니다.
+**함수 상수성 구분**
 
-    즉,
+함수의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)은 다른 타입으로 취급합니다.
 
-    ```cpp
-    int f(int a);
-    int f(int a) const;
-    ```
-
-    는 다릅니다.
-
-4. 리턴 타입은 오버로딩 함수를 결정하는데 사용하지 않습니다.
-
-    즉,
-
-    ```cpp
-    int f(int) {return 1;}
-    double f(int) {return 9.};
-    ```
-
-    는 리턴 타입은 다르지만, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같으니, 오버로딩 후보 목록에서 1개만 사용됩니다.
-
-다음은 함수의 오버로딩이 결정되는 사례입니다.
 ```cpp
 class T {
 public:
-    
-    int f(int) {return 1;}
-    int f(int* a) {return 2;} 
-
-    // (X) 컴파일 오류. 배열은 f(int* a)와 동일해서 오버로딩 안됨.
-    // int f(int a[3]) {return 3;}
-    // int f(int a[]) {return 4;}
-
-    // (X) 컴파일 오류. int f(int) 와 int f(const int) 는 동일해서 오버로딩 안됨.
-    // int f(const int) {return 5;}
-
-    // (X) 컴파일 오류. f(int* a)와 f(int* const a)는 동일해서 오버로딩 안됨.
-    // int f(int* const a) {return 6;}
-
-    // (O) f(int)와 f(const int) 는 동일해서 오버로딩 안되지만, 
-    // f(int* a)와 f(const int* a)는 다르므로(포인터 자체가 const가 아니라 가리키는 곳이 const임) 오버로딩 됨
-    int f(const int* a) {return 7;}
-
-    // (O) 함수 상수성에 따라 선택됨
-    int f(int) const {return 8;} 
-
-    // (X) 컴파일 오류. 리턴 타입은 오버로딩 함수를 취급하는데 사용하지 않습니다.
-    // double f(int) {return 9.};
+    int f() {return 1;}
+    int f() const {return 2;} // (O) 함수 상수성에 따라 선택됨 
 };
 
-T t;
-EXPECT_TRUE(t.f(1) == 1); // (O) 타입 일치. int 버전 호출
-int a = 10;
-EXPECT_TRUE(t.f(&a) == 2); // (O) 타입 일치. int* 버전 호출
-int arr[3] = {1, 2, 3};
-EXPECT_TRUE(t.f(arr) == 2); // (O) 배열은 int* 버전 호출
-int* const p = &a;
-EXPECT_TRUE(t.f(p) == 2); // (O) int* const는 int* 버전 호출
-EXPECT_TRUE(t.f(const_cast<const int*>(&a)) == 7); // (O) const int* 는 const int* 버전 호출
-EXPECT_TRUE(const_cast<const T&>(t).f(1) == 8); // (O) 개체 상수성에 따라 상수 함수 선택됨
+T val;
+const T constVal = val;
+
+EXPECT_TRUE(val.f() == 1);
+EXPECT_TRUE(constVal.f() == 2);
+```
+
+**리턴 타입 무시**
+
+리턴 타입은 오버로딩 함수를 결정하는데 사용하지 않습니다.
+
+```cpp
+int f(int) {return 1;}
+// double f(int) {return 2;} // (X) 컴파일 오류. 리턴 타입은 오버로딩 함수 결정에 사용하지 않음
+```
+
+는 리턴 타입은 다르지만, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같으니, 동일한 함수가 새롭게 정의되어 오류를 발생합니다. 
+
+**값 타입과 참조자간의 모호성**
+
+`int`, `int&`은 모두 `const int&`에 대입됩니다. *수정할 수 있는 것이지만, 수정하지 않고 사용하겠다는 의미*여서 위험하지 않죠. 
+
+```cpp
+int f(const int& a) {return 1;} //int 타입, int& 타입, const int& 타입을 모두 받을 수 있습니다.
+
+int val = 10;
+int& ref = val;
+const int& constRef = val;
+
+EXPECT_TRUE(f(val) == 1); // int를 const int&에 대입하여 호출합니다.
+EXPECT_TRUE(f(ref) == 1); // int&를 const int&에 대입하여 호출합니다.
+EXPECT_TRUE(f(constRef) == 1); 
+```
+
+하지만, `const int&`를 `int&`로 변경하는건 위험합니다. *수정할 수 없는 것을 수정하겠다*는 의미이니까요. 그래서 대입할 수 없습니다. 
+
+```cpp
+int f(int& a) {return 1;} //int 타입, int& 타입을 받을 수 있습니다.
+
+int val = 10;
+int& ref = val;
+const int& constRef = val;
+
+EXPECT_TRUE(f(val) == 1); // int를 int&에 대입하여 호출합니다.
+EXPECT_TRUE(f(ref) == 1); 
+// EXPECT_TRUE(f(constRef) == 1); // (X) 컴파일 오류. const int&는 int&에 대입되지 않습니다.        
+```
+`f(const int& a)`과 `f(int& a)` 모두 `int` 와 `int&`를 호출하는데요, 둘을 오버로딩해보면, [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 유지하여 잘 선택해서 호출해줍니다.
+
+```cpp
+int f(int& a) {return 1;} // int 타입, int& 타입을 받을 수 있습니다.
+int f(const int& a) {return 2;} // const int 타입, const int& 타입을 받을 수 있습니다.  
+
+int val = 10;
+const int constVal = 10;
+
+int& ref = val;
+const int& constRef = val;
+
+EXPECT_TRUE(f(val) == 1); // int를 int&에 대입하여 호출합니다.
+EXPECT_TRUE(f(constVal) == 2); // const int를 const int&에 대입하여 호출합니다.
+
+EXPECT_TRUE(f(ref) == 1); 
+EXPECT_TRUE(f(constRef) == 2);
+```
+
+하지만 값 타입과 함께 사용하면 모호성 오류가 발생합니다. `int`, `const int`, `int&`, `const int&` 모두 `int`에 대입되니까요.
+
+```cpp
+int f(int a) {return 1;} // int 타입, const int 타입, int& 타입, const int& 타입을 받을 수 있습니다.
+int f(int& a) {return 2;} // int 타입, int& 타입을 받을 수 있습니다.
+int f(const int& a) {return 3;} // const int 타입, const int& 타입을 받을 수 있습니다. 
+
+int val = 10;
+const int constVal = 10;
+
+int& ref = val;
+const int& constRef = val;
+
+// EXPECT_TRUE(f(val) == 1); // (X) 컴파일 오류. f(int)와 f(int&)와 f(const int&)가 모호합니다.
+// EXPECT_TRUE(f(constVal) == 1); // (X) 컴파일 오류. f(int)와 f(const int&)가 모호합니다.
+
+// EXPECT_TRUE(f(ref) == 2); // (X) 컴파일 오류. f(int)와 f(int&)와 f(const int&)가 모호합니다.
+// EXPECT_TRUE(f(constRef) == 3); // (X) 컴파일 오류. f(int)와 f(const int&)가 모호합니다.
 ```
 
 # 함수 인자의 유효 범위 탐색 규칙(Argument-dependent lookup, ADL)

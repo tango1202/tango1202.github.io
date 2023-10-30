@@ -163,10 +163,10 @@ EXPECT_TRUE(!(x < y)); // x >= y
 |항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |C언어 스타일|`(T)a`|O|`operator T() const;`|X|
-|상수성만 변환|`const_cast`|X|X|X|
-|타입 유사성을 지키며 변환|`static_cast`|X|X|X|
-|타입 유사성을 지키며 변환. ([Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98) 지원)|`dynamic_cast`|X|X|X|
-|상속관계를 무시하고 변환|`reinterpret_cast`|X|X|X|
+|[상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)만 변환|[const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|X|X|X|
+|타입 유사성을 지키며 변환|[static_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|X|X|X|
+|타입 유사성을 지키며 변환. ([Runtime Type Info(RTTI)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98) 지원)|[dynamic_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|X|X|X|
+|상속관계를 무시하고 변환|[reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|X|X|X|
 
 # 접근 연산자
 

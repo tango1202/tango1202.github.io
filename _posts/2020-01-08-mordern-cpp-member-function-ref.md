@@ -117,7 +117,7 @@ Big_11 big = A_11().GetData();
 Big_11 big = std::move(A_11().GetData()); 
 ```
 
-다음처럼 `const_cast`로 상수성을 버려야 이동 생성을 할 수 있습니다.
+다음처럼 [const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)로 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 버려야 이동 생성을 할 수 있습니다.
 
 ```cpp
 // Big_11의 이동 생성자 호출

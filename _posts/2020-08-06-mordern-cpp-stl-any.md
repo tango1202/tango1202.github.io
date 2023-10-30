@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-기존에는 타입의 변동 가능성이 있는 데이터는 `void*`로 저장한뒤 이를 사용할때 실제 사용할 타입으로 변환하기 위해 `reinterpret_cast`를 사용했었습니다. 
+기존에는 타입의 변동 가능성이 있는 데이터는 `void*`로 저장한뒤 이를 사용할때 실제 사용할 타입으로 변환하기 위해 [reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)를 사용했었습니다. 
 
 ```cpp
 void* data{new int}; // int 타입을 사용합니다.
@@ -40,7 +40,7 @@ C++17 부터는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-st
 |`make_any()` (C++17~)|(작성중)|
 |`bad_any_cast` (C++17~)|[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 사용시 타입이 일치하지 않을때 예외를 발생합니다.|
 
-다음 예에서는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. `reinterpret_cast` 대신 `any_cast()`를 사용하며, [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 하지 않아도 됩니다. 
+다음 예에서는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. [reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 대신 `any_cast()`를 사용하며, [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 하지 않아도 됩니다. 
 
 ```cpp
 std::any data{10}; // 정수 타입을 사용합니다.

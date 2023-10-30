@@ -69,7 +69,7 @@ EXPECT_TRUE(*charContainer.GetAt(5) == 'c');
 1. `IContainer`에서 `void*` 를 사용합니다. 상속받아 사용할 타입이 `int`일지, `char`일지 모르므로, 그냥 다 되도록 `void*` 로 만들었습니다.
 2. `GetAt()`함수가 값을 저장하고, 값을 리턴해야 하는데, 부모 개체에서 `void*`를 사용하니 어쩔 수 없이 `int*`와 `char*`를 사용합니다.([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)
 3. `SetAt()`함수는 더 심각합니다. 아예 `void*`를 전달받을 수 밖에 없습니다.
-4. 내부적으로 `void*` 여서 지저분하게 `static_cast`를 사용합니다.
+4. 내부적으로 `void*` 여서 지저분하게 [static_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)를 사용합니다.
 5. 사용할때도 포인터라서 `&`, `*`을 사용해야 하고, 예제에는 없지만, 사실은 널검사도 해야 합니다.
 
 다형적으로 동작할 수 없는 코드 구조를 억지로 인터페이스화 해서 만들어진 일입니다. 이러지 마세요. 과도한 설계입니다. 차라리 추상화하지 말고 다음처럼 구현하는게 차라리 낫습니다.

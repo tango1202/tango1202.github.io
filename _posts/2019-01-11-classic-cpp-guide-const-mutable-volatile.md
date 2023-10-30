@@ -33,7 +33,7 @@ sidebar:
 1. [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)는 생성과 함께 [초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/) 되어야 합니다.(*컴파일 오류*)
 2. [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)는 변경할 수 없습니다.(*컴파일 오류*)
 3. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하지 않습니다.(*컴파일 오류, 단 [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)로 수정 가능합니다.*)
-4. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 몰래 수정할 수 있는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 리턴하지 않습니다.(*컴파일 오류. 단, `const_cast`로 억지로 구현 가능하나 하지 마세요.*)
+4. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 몰래 수정할 수 있는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 리턴하지 않습니다.(*컴파일 오류. 단, [const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)로 억지로 구현 가능하나 하지 마세요.*)
 5. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 내부 구현에서 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)만을 호출합니다.(*컴파일 오류*)
 6. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 예외를 발생하지 않습니다.(*일반적으로 발생하지 않습니다만, 복잡한 연산들이 있다면, 노력해서 예외가 발생하지 않도록 구현해야 합니다.*)
 7. [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)로 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)을 구현한 경우 예외가 발생할 수 있습니다.(*이때에는 [예외 처리](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)를 해야 합니다.*)
@@ -71,21 +71,23 @@ p4 = p1; // (X) 컴파일 오류
 
 # 복사 대입시 최상위 const 제거
 
-[상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)는 그 값을 수정할 수 없지만, 이를 복사 대입하여 복제본을 만들면 수정할 수 있습니다.
+[최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)란 포인터나 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)가 아닌 개체 타입의 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 말합니다. `const int*`나 `const int&` 말고 `const int`처럼요.
+
+[최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)인 [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)는 그 값을 수정할 수 없지만, 복사 대입하여 복제본을 만들면 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 제거할 수 있습니다.
 
 ```cpp
 const int constVal = 10;
 constVal = 20; // (X) 컴파일 오류. 상수 개체는 수정할 수 없습니다.
 
-int a = constVal;
-a = 20; // (O) 상수 개체를 복사 대입하면 복제본은 수정할 수 있습니다.
-EXPECT_TRUE(a == 20 && constVal == 10);
+const int a = constVal;
+a = 20; // (X) 컴파일 오류. 상수 개체를 상수 개체로 복사 대입하면 수정할 수 없습니다.
 
-const int b = constVal;
-b = 20; // (X) 컴파일 오류. 상수 개체를 상수 개체로 복사 대입하면 수정할 수 없습니다.
+int b = constVal;
+b = 20; // (O) 상수 개체를 복사 대입하면 복제본은 수정할 수 있습니다.
+EXPECT_TRUE(b == 20 && constVal == 10);
 ```
 
-하지만, 포인터나 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 대입받는 것은 복사 대입이 아니므로 상수성을 유지해야 합니다.
+하지만, 포인터나 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 대입받는 것은 복사 대입이 아니므로 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 유지해야 합니다.(*[const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)로 억지로 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 땔 수는 있습니다만 하지 마세요.*)
 
 ```cpp
 int data = 10;
@@ -105,33 +107,28 @@ int* g = &constRef; // (X) 컴파일 오류. 상수 개체 참조자는 상수 �
 const int* h = &constRef; // (O)
 ```
 
-복사 대입시 복제본의 상수성이 제거될 수 있는 것는 참 당연한 것입니다. 복제본이니까요. 그런데, 이 당연한 규칙 때문에 복잡한 규칙들이 파생됩니다.
+[최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)인 [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)의 복사 대입시 복제본의 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)이 제거될 수 있는 것은 참 당연한 것입니다. 복제본이니까요. 그런데, 이 당연한 규칙 때문에 복잡한 규칙들이 파생됩니다.
 
+1. [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 에서 [최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에서 제거하고 취급합니다.
 
-
-
-1. [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)
-
-    다음은 동일 함수로 취급합니다. 
+    예를 들어 다음의 함수를 보면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 `int`와 `const int`로 동일하지만, 둘다 `int` 타입의 인수나 `const int` 타입의 인수를 대입받을 수 있습니다. [오버로딩된 함수 결정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)이 모호해지므로 아예 이둘을 동일 함수로 취급합니다.
 
     ```cpp
-    int f(int a); // 인수가 const int여도 잘 동작합니다.
+    int f(int a);
     int f(const int a);
     ```
 
-2. [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)
+2. [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 에서 [최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)는 무시됩니다.
 
-    `const int`를 전달해도 `int`를 전달한 것처럼 구체화 됩니다.
+    템플릿 인스턴스화 할때 `int`와 `const int`가 구분된다면, 상기 1번 문제가 똑같이 발생하게 됩니다. 따라서, `const int`를 전달하더라도 [최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)는 무시하고 `int`로 취급합니다.
 
     ```cpp
     template<typename T>
     void f(T) {}
 
     const int a = 0;
-    f(a); // f<int>(int) 로 구체화 됩니다. 
+    f(a); // f<int>(int)
     ```
-
-에 활용됩니다.
 
 # 리턴값의 상수성
 
@@ -147,7 +144,7 @@ int GetX1() const {return m_X;}
 const int GetX2() const {return m_X;} 
 ```
 
-[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 포인터를 리턴하는 경우, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)인지 아닌지에 따라 포인터 상수성을 맞춰서 리턴해야 합니다. 다음의 `GetX4()`처럼 맞지 않게 리턴하면, **상수성 계약** 위반입니다.(*억지로 `const_cast`를 하지 마세요.*)
+[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 포인터를 리턴하는 경우, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)인지 아닌지에 따라 포인터 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 맞춰서 리턴해야 합니다. 다음의 `GetX4()`처럼 맞지 않게 리턴하면, **상수성 계약** 위반입니다.(*억지로 [const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)를 하지 마세요.*)
 
 ```cpp
 // (O) 멤버 변수의 값을 수정하지 않는 const 함수

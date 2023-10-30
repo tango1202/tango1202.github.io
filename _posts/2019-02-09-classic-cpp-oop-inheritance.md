@@ -658,7 +658,7 @@ delete p;
 
 # Runtime Type Info(RTTI)와 형변환
 
-런타임에 개체의 타입 정보를 얻어내고, `dynamic_cast` 로 형변환 할 수 있습니다.
+런타임에 개체의 타입 정보를 얻어내고, [dynamic_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 로 형변환 할 수 있습니다.
 
 다만, 가상 함수가 있어야 구체적인 자식 개체(구현 개체)를 알 수 있습니다.([명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 [typeid 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
 
