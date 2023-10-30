@@ -586,9 +586,15 @@ EXPECT_TRUE(p->f6() == 10); // 가상 함수 테이블을 참조하여 Base 의 
 
 이러한 차이가 생기므로, 부모 개체와 자식 개체의 [기본값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)은 같은 값으로 하는게 좋습니다.
 
+# 함수 오버로딩
+
+C++언어에서는 이름이 동일한 함수를 여러개 정의하여 사용할 수 있습니다. 이렇게 함수명이 동일한 경우 전달한 인수와 전달받는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에 따라 알맞은 함수를 호출하게 됩니다. 
+
+
+
 # 오버로딩된 함수 결정 규칙
 
-C++언어에서는 이름이 동일한 함수를 여러개 정의하여 사용할 수 있습니다. 이렇게 함수명이 동일한 경우 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에 따라 알맞은 함수를 호출하게 됩니다. 
+[함수 오버로딩](??) 시에는 다음과 같은 규칙에 맞춰 호출할 함수를 결정합니다.
 
 **암시적 형변환**
 

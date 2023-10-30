@@ -90,7 +90,8 @@ f(Func); // // f<void (*)(int)>(void (*)(int))
 최상위 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 무시됩니다.(*[오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
 
 ```cpp
-using namespace Deduction_4;
+template<typename T>
+void f(T) {}
 
 const int a = 0;
 // Argument : const int -> int로 조정 

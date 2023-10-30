@@ -78,15 +78,14 @@ const int constVal = 10;
 constVal = 20; // (X) 컴파일 오류. 상수 개체는 수정할 수 없습니다.
 
 int a = constVal;
-a = 20; // (O) 상수 개체를 복사 대입하면 복사본은 수정할 수 있습니다.
-EXPECT_TRUE(val == 20 && constVal == 10);
+a = 20; // (O) 상수 개체를 복사 대입하면 복제본은 수정할 수 있습니다.
+EXPECT_TRUE(a == 20 && constVal == 10);
 
 const int b = constVal;
 b = 20; // (X) 컴파일 오류. 상수 개체를 상수 개체로 복사 대입하면 수정할 수 없습니다.
-
 ```
 
-포인터나 참조자로 대입받는 것은 복사 대입이 아니므로 상수성을 유지해야 합니다.
+하지만, 포인터나 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 대입받는 것은 복사 대입이 아니므로 상수성을 유지해야 합니다.
 
 ```cpp
 int data = 10;
@@ -105,6 +104,34 @@ const int& f = constRef; // (O)
 int* g = &constRef; // (X) 컴파일 오류. 상수 개체 참조자는 상수 개체 포인터로 받아야 합니다.
 const int* h = &constRef; // (O)
 ```
+
+복사 대입시 복제본의 상수성이 제거될 수 있는 것는 참 당연한 것입니다. 복제본이니까요. 그런데, 이 당연한 규칙 때문에 복잡한 규칙들이 파생됩니다.
+
+
+
+
+1. [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)
+
+    다음은 동일 함수로 취급합니다. 
+
+    ```cpp
+    int f(int a); // 인수가 const int여도 잘 동작합니다.
+    int f(const int a);
+    ```
+
+2. [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)
+
+    `const int`를 전달해도 `int`를 전달한 것처럼 구체화 됩니다.
+
+    ```cpp
+    template<typename T>
+    void f(T) {}
+
+    const int a = 0;
+    f(a); // f<int>(int) 로 구체화 됩니다. 
+    ```
+
+에 활용됩니다.
 
 # 리턴값의 상수성
 
