@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [모던 C++] (C++11~) auto, decltype(), declval(), 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론"
+title: "#9. [모던 C++] (C++11~) auto, decltype(), declval(), 후행 리턴 타입, (C++14~) decltype(auto), 리턴 타입 추론, (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -21,6 +21,7 @@ sidebar:
 > * (C++14~) [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)의 `()`내 표현식이 복잡할 경우 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)와 같이 좀더 간결하게 작성할 수 있습니다.
 > * (C++14~) [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85) 대신 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)나 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)를 사용할 수 있습니다.
 > * (C++17~) 템플릿이 타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다. 
+> * (C++17~) [중괄호 초기화에서 auto 추론의 새로운 규칙](??)이 적용되어, [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 로 추론되는 오류가 개선되었습니다.
 
 # auto
 
@@ -112,6 +113,23 @@ double Func_11(int a, auto b) {
 ```
 
 > *(C++17~) 템플릿이 타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.*
+
+# 중괄호 초기화와 auto
+
+[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 중괄호 초기화 할때 [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t) 와 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)에서의 추론 결과가 다릅니다.
+
+```cpp
+// 중괄호 직접 초기화
+auto a_11{1}; //(△) a는 initializer_list<int> 또는 int
+auto b_11{1, 2}; // (X) 컴파일 오류. auto에서는 단일 개체 대입 필요  
+
+// 중괄호 복사 초기화
+auto c_11 = {1}; // c는 initializer_list<int>
+auto d_11 = {1, 2}; // d는 initializer_list<int>  
+```
+
+상기에서 `auto a_11{1};`를 `initializer_list<int>` 또는 `int`라고 했는데요,
+원래 C++11에서는 `initializer_list<int>`로 추론됩니다. 그런데, 2014년에 [중괄호 초기화에서 auto 추론의 새로운 규칙](??)인 [N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)가 받아들여졌고, 일부 컴파일러에서(*제 경우엔 GCC version 8.1.0 이상에서*) C++11 환경에서도 `int`로 추론됩니다.
 
 # auto의 장점
 
@@ -441,6 +459,23 @@ public:
     virtual auto Add_14(int a) {return a;}
 };
 ```
+# (C++17~) 중괄호 초기화에서 auto 추론의 새로운 규칙
 
+C++17 부터 [중괄호 초기화와 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-auto)에서 언급한 [중괄호 초기화에서 auto 추론의 새로운 규칙](??)인 [N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)이 공식적으로 적용되었습니다.(*[N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)과 [N3681](https://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3681.html) 참고*)
+
+기존에는 `auto x{10};`는 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론되었으나, C++17 부터는 `int`로 추론됩니다.
+
+전체적으로 다음과 같은 규칙으로 추론됩니다.
+
+* `auto val{}` : [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입으로 추론되고, 여러개면 컴파일 오류를 발생합니다.
+* `auto val = {}` : [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들의 타입이 동일하면 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론됩니다.
+
+```cpp
+int a_17{1}; // a는 int
+auto b_17{1}; // b는 int. 기존에는 initializer_list<int> 일 수 있었음
+auto c_17 = {1}; // c는 initializer_list<int>
+auto d_17 = {1, 2}; // d는 initializer_list<int>  
+// auto e_17{1, 2}; // (X) 컴파일 오류. auto에서는 단일 개체 대입 필요  
+```
 
 
