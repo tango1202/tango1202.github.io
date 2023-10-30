@@ -194,7 +194,7 @@ T a_11{10};
     [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 축약 표현을 사용해서 `int{10}`을 `{10}`으로 바꿔보면 [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/)은 [중괄호 초기화 중첩](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%A4%91%EC%B2%A9)을 지원하지 않는다며 컴파일 오류가 납니다.
 
     ```cpp
-    // int c_11{　{10}　}; // (X) 컴파일 오류. 기본 타입은 중괄호 중첩을 지원하지 않습니다. 
+    // int c_11{ {10} }; // (X) 컴파일 오류. 기본 타입은 중괄호 중첩을 지원하지 않습니다. 
     int d_11 = {10};
     ``` 
 
@@ -210,7 +210,7 @@ T a_11{10};
     T b_11 = T{10}; // (O)
 
     // 축약형
-    T a_11{　{10}　}; // (O)
+    T a_11{ {10} }; // (O)
     T b_11 = T{10}; // (O)              
     ```
 
@@ -449,7 +449,7 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
     public:
         explicit T_11(std::initializer_list<int>) {}
     };
-    T_11 t{　{1, 2, 3}　}; // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.
+    T_11 t{ {1, 2, 3} }; // {1, 2, 3} 은 initializer_list를 생성해서 전달합니다.
     ```
 
 2. [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 인 경우
@@ -511,7 +511,7 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 
 ```cpp
 vector<int> v{}; // 기본 생성자 호출
-vector<int> v{　{}　}; // 빈 initializer_list로 생성
+vector<int> v{ {} }; // 빈 initializer_list로 생성
 ```
 
 상기는 별로 심각하지 않을 수 있지만, [중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 4번인 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 버전이 비교적 우선적으로 선택되는 부분은 심각합니다. 
@@ -522,7 +522,7 @@ vector<int> v{　{}　}; // 빈 initializer_list로 생성
 std::vector<int> v1(); // 함수 선언
 std::vector<int> v1_11{}; // 기본 생성자
 
-std::vector<int> v2_11{　{}　}; // 빈 initializer_list로 vector 생성
+std::vector<int> v2_11{ {} }; // 빈 initializer_list로 vector 생성
 
 std::vector<int> v3(2); // 요소 갯수가 2개인 vector 생성
 EXPECT_TRUE(v3.size() == 2 && v3[0] == 0 && v3[1] == 0);
