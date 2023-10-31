@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++] (C++11~) explicit 형변환 연산자"
+title: "#21. [모던 C++] (C++11~) explicit 형변환 연산자"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

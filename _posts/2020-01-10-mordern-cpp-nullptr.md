@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++] (C++11~) nullptr, nullptr_t"
+title: "#10. [모던 C++] (C++11~) nullptr, nullptr_t"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

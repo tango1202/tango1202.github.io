@@ -96,7 +96,7 @@ T : Destructor
 5. 관리 대상 개체의 `allocator`(있는 경우)
 
 ```cpp
-class T{};
+class T {};
 
 std::shared_ptr<T> a{new T{}};
 std::shared_ptr<T> b{a};

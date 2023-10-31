@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++17~) if constexpr"
+title: "#15. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++17~) if constexpr"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

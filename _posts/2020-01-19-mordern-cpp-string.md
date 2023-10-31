@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#18. [모던 C++] (C++11~) 유니코드 문자(char16_t, char32_t) 유니코드 리터럴(u8/u/U), R 리터럴, (C++20~) char8_t"
+title: "#19. [모던 C++] (C++11~) 유니코드 문자(char16_t, char32_t) 유니코드 리터럴(u8/u/U), R 리터럴, (C++20~) char8_t"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

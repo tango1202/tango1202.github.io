@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [모던 C++] (C++11~) 중괄호 초기화"
+title: "#6. [모던 C++] (C++11~) 중괄호 초기화"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -194,7 +194,7 @@ T a_11{10};
     [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 축약 표현을 사용해서 `int{10}`을 `{10}`으로 바꿔보면 [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/)은 [중괄호 초기화 중첩](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%A4%91%EC%B2%A9)을 지원하지 않는다며 컴파일 오류가 납니다.
 
     ```cpp
-    // int c_11{  // (X) 컴파일 오류. 기본 타입은 중괄호 중첩을 지원하지 않습니다. 
+    // int c_11{ // (X) 컴파일 오류. 기본 타입은 중괄호 중첩을 지원하지 않습니다. 
     //    {10}
     // };
     int d_11 = {10};
@@ -212,7 +212,9 @@ T a_11{10};
     T b_11 = T{10}; // (O)
 
     // 축약형
-    T a_11{{10}}; // (O)
+    T a_11{ // (O)
+        {10} // T{10}
+    }; 
     T b_11 = T{10}; // (O)              
     ```
 
@@ -298,7 +300,7 @@ C++11 부터는 `{}` 도 지원합니다.
     T b_11{3.14}; // (X) 컴파일 오류. 암시적 변환을 차단합니다.
     ```
 
-2. `double`에서 `float`으로의 변환을 차단합니다. 단, 상수 표현식이고, 해당 값을 `float`으로 저장할 수 있다면 허용합니다.(`int`에서 `char` 변환도 동일합니다.)
+2. `double`에서 `float`으로의 변환을 경고합니다. 단, 상수 표현식에서 해당 값을 저장할 수 없다면 컴파일 오류이고, 해당 값을 저장할 수 있다면 허용합니다.(*`int`에서 `char` 변환도 동일합니다.*)
 
     ```cpp
     class T {
@@ -306,10 +308,10 @@ C++11 부터는 `{}` 도 지원합니다.
         explicit T(float) {};
     };  
 
-    T a_11{3.14}; // 3.14는 float이 저장할 수 있어서 허용
+    T a_11{3.14}; // 상수 표현식은 값 범위라면 허용. 3.14는 float이 저장할 수 있어서 허용
 
-    double doublVal = 3.14;   
-    T b_11{doublVal}; // (X) 컴파일 오류. double을 float으로 변환하는건 차단합니다.
+    double doubleVal = 3.14;   
+    T b_11{doubldVal}; // (X) 컴파일 경고. double을 float으로 변환하는건 경고합니다.
     ```
 
 3. `int`에서 `char` 변환도 `double`에서 `float`의 변환과 동일합니다.
@@ -320,14 +322,20 @@ C++11 부터는 `{}` 도 지원합니다.
         explicit T(char) {};
     }; 
     
-    T a_11{10}; // 10은 char에서 저장할 수 있어서 허옹
+    T a_11{10}; // 상수 표현식은 값 범위라면 허용. 10은 char에서 저장할 수 있어서 허옹
     T b_11{255}; // (X) 컴파일 오류. 255는 char에서 저장할 수 없음. 
 
     int intVal = 10;  
-    T c_11{intVal}; // (X) 컴파일 오류. int를 char로 변환하는건 차단합니다.
+    T c_11{intVal}; // (X) 컴파일 경고. int를 char로 변환하는건 경고합니다.
     ```
 
-4. 포인터 타입에서 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로의 변환을 차단합니다.
+4. 포인터 타입에서 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로의 변환을 경고해 줍니다.
+
+    ```cpp
+    int* ptr;
+    bool b(ptr);
+    bool b_11{ptr}; // (X) 컴파일 경고. int*에서 bool로 변환하는건 경고합니다.
+    ```
    
 5. 사용자가 [형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90) 를 작성하면 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 허용됩니다.
    
@@ -522,7 +530,7 @@ vector<int> v{
 
 상기는 별로 심각하지 않을 수 있지만, [중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 4번인 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 버전이 비교적 우선적으로 선택되는 부분은 심각합니다. 
 
-기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v_11{2};` 와 같이 한다면, 요소가 2개인 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 를 생성하는게 아니라, `2`값인 요소 1인 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성합니다. 따라서 요소 갯수가 2개인  [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성하려면 `v3(2)`와 같이 `()`를 사용해야 합니다.
+기존 생성자들과 충돌할 수도 있는데요, `vector(size_t count);` 를 호출하기 위해 `vector<int> v_11{2};` 와 같이 한다면, 요소가 2개인 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 를 생성하는게 아니라, `2`값인 요소 하나만 있는  [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성합니다. 따라서 요소 갯수가 2개인  [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성하려면 `v3(2)`와 같이 `()`를 사용해야 합니다.
 
 ```cpp
 std::vector<int> v1(); // 함수 선언
