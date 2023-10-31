@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++] (C++11~) 범위 있는 열거형, (C++17~) 열거형의 중괄호 직접 초기화 허용"
+title: "#14. [모던 C++] (C++11~) 범위 있는 열거형, (C++17~) 열거형의 중괄호 직접 초기화 허용"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

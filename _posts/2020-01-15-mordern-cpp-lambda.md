@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [모던 C++] (C++11~) 람다 표현식, 클로저, (C++14~) 람다 캡쳐 초기화, 일반화된 람다 함수, (C++17~) *this 캡쳐, constexpr 람다 함수"
+title: "#15. [모던 C++] (C++11~) 람다 표현식, 클로저, (C++14~) 람다 캡쳐 초기화, 일반화된 람다 함수, (C++17~) *this 캡쳐, constexpr 람다 함수"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

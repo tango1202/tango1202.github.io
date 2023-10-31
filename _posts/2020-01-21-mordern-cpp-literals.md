@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++] (C++11~) 사용자 정의 리터럴, (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴"
+title: "#21. [모던 C++] (C++11~) 사용자 정의 리터럴, (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
