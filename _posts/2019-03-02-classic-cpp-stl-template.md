@@ -45,7 +45,7 @@ EXPECT_TRUE(myClass.Plus(10, 10) == 20);
 > *(C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 템플릿으로 만들 수 있습니다.*<br/>
 > *(C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 템플릿 함수처럼 타입을 생략할 수 있습니다.*
 
-# 템플릿 정의부와 인스턴스화
+# 템플릿 정의부와 템플릿 인스턴스화
 
 템플릿은 개체 타입만 변경하여 클래스나 함수를 생성할 수 있는 틀이고, 인스턴스화를 거쳐 클래스나 함수 코드를 생성합니다.
 
