@@ -22,8 +22,8 @@ sidebar:
 예외에 안전하려면 다음을 준수하여야 합니다.
 
 1. 예외 상황을 사전에 예측하고 프로그래밍 해야 합니다. 모든 함수는 실패할 수 있다고 가정하세요.([자가 진단과 진단 최소화](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/) 참고)
-2. 예외가 발생했을때 메모리 릭이나 리소스 릭은 없어야 합니다.([예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 참고)
-3. 예외가 발생했을때 예외 발생 전의 상태로 복원해야 합니다.([예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 참고)
+2. 예외가 발생했을때 메모리 릭이나 리소스 릭은 없어야 합니다.([기본 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 참고)
+3. 예외가 발생했을때 예외 발생 전의 상태로 복원해야 합니다.([강한 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 참고)
 
 # 일반적인 예외 상황에서 대처 방안
 

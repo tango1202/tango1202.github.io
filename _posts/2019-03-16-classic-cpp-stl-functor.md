@@ -86,7 +86,7 @@ EXPECT_TRUE(v[0] == 11 && v[1] == 12 && v[2] == 13);
 
 # 함수자 타입 특성 클래스(Traits)
 
-함수자 정의시 표준적인 사용을 위해 다음의 타입 특성 클래스를 사용하는게 좋습니다.
+함수자 정의시 표준적인 사용을 위해 다음의 [타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/)를 이용하여 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 사용하는게 좋습니다.
 
 |항목|내용|
 |--|--|

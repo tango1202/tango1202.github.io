@@ -19,7 +19,7 @@ sidebar:
 
 |항목|읽기/쓰기|내용|
 |--|--|--|
-|[코드(*텍스트*) 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)|읽기|프로그램 코드, [제어문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/), [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/), [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)등|
+|[코드(*텍스트*) 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)|읽기|프로그램 코드, [제어문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/), [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/), [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)등|
 |[데이터 세그먼트(*BSS, Block Started by Single*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)|읽기/쓰기|초기화 안된(혹은 0으로 초기화된) [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98) 또는 정적 변수|
 |[데이터 세그먼트(*rodata, read only data*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)|읽기|[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)|
 |[데이터 세그먼트(*data*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)|읽기/쓰기|0 이외의 값으로 초기화된 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98) 또는 정적 변수|
@@ -30,7 +30,7 @@ sidebar:
 
 # 코드 세그먼트
 
-[코드 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)는 프로그램 코드, [제어문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/), [상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/), [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)등이 저장되며 읽기 전용입니다.
+[코드 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)는 프로그램 코드, [제어문](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-statements/), [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/), [함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/)등이 저장되며 읽기 전용입니다.
 
 # 데이터 세그먼트 
 

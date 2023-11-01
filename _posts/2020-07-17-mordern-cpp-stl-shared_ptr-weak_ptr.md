@@ -212,9 +212,9 @@ shared_ptr<T> make_shared(Args&&... args);
     EXPECT_TRUE(v.size() == 3 && v[2] == nullptr);
     ```
 
-3. 예외 안전성 향상
+3. [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 향상
 
-    또한, 예외에 좀더 안전합니다. 다음 코드는 예외에 안전한 듯 하지만, 
+    또한, 예외에 좀더 안전합니다. 다음 코드는 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)을 하는 듯 하지만, 
 
     ```cpp
     class T {};
@@ -229,7 +229,7 @@ shared_ptr<T> make_shared(Args&&... args);
     3. `unique_ptr<T>`
     4. `unique_ptr<U>`
 
-    의 순서로 실행될 경우 `new U`에서 예외가 발생할 경우 `new T`는 소멸되지 않습니다. 따라서 [make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared)를 사용하는게 좋습니다.
+    의 순서로 실행될 경우 `new U`에서 예외가 발생할 경우 `new T`는 소멸되지 않습니다. [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)을 못하죠. 따라서 [make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared)를 사용하는게 좋습니다.
     ```cpp
     class T {};
     class U {};
