@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * (C++11~) 최소 8byte 크기를 보장하는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) 타입이 추가되었습니다.
-> * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` 리터럴이 추가되었습니다.
+> * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)이 추가되었습니다.
 
 # 개요
 

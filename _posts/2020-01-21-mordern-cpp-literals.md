@@ -16,7 +16,7 @@ sidebar:
 
 # 사용자 정의 리터럴
 
-C++11 부터는 `operator""_식별자()`를 이용하여 사용자가 리터럴을 직접 정의할 수 있습니다. 동일한 값을 여러 단위계로 표현할 때 유용합니다.
+C++11 부터는 `operator""_식별자()`를 이용하여 사용자가 [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)을 직접 정의할 수 있습니다. 동일한 값을 여러 단위계로 표현할 때 유용합니다.
 
 ```cpp
 // mm 단위로 리턴
@@ -106,7 +106,7 @@ EXPECT_TRUE(val == val_14);
 
 # (C++17~) 16진수 부동 소수점 리터럴
 
-기존에는 16진수 정수 리터럴만 제공했는데요, 
+기존에는 16진수 정수 [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)만 제공했는데요, 
 
 ```cpp
 int val = 0x1a; // 16진수. x 또는 X. a~f 또는 A~F

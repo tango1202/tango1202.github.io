@@ -122,7 +122,7 @@ int result{Factorial_11(5)};
 
 # constexpr 생성자 
 
-[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)은 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 사용할 수 있는데요, 그러다 보니, 구조체/클래스는 사용자 정의 생성자, 소멸자가 없으며 모든 멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)인 경우에만 사용할 수 있습니다.
+[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)은 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 사용할 수 있는데요, 그러다 보니, 구조체/클래스는 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없으며 모든 멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)인 경우에만 사용할 수 있습니다.
 
 하지만, [constexpr 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)인 구조체/클래스를 직접 만들 수 있습니다.
 

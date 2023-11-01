@@ -35,7 +35,7 @@ A Func2() {return A{};}
 A result = Func2(); // A{} 기본 생성자로 생성하고, result에 이동 생성합니다. 하지만 컴파일러에 따라 리턴된 임시 개체를 그냥 result로 사용합니다.
 ```
 
-아쉬운 점은, 컴파일러 최적화에 따라 이동 생성자를 사용하지 않더라도, 문법적으로는 이동 생성자가 필요하므로, 이동 생성자를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)하면 컴파일 오류가 난다는 점입니다.
+아쉬운 점은, 컴파일러 최적화에 따라 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하지 않더라도, 문법적으로는 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)가 필요하므로, [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)하면 컴파일 오류가 난다는 점입니다.
 
 ```cpp
 class A_11 {
@@ -52,7 +52,7 @@ public:
 A_11 a{A_11{}}; // (X) 컴파일 오류. 이동 생성자가 없음    
 ```
 
-그래서 억지로 다음처럼 이동 생성자를 사용했었습니다.
+그래서 억지로 다음처럼 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용했었습니다.
 
 ```cpp
     class A_11 {
@@ -69,7 +69,7 @@ A_11 a{A_11{}}; // (X) 컴파일 오류. 이동 생성자가 없음
 A_11 a{A_11{}}; // 컴파일러 최적화로 이동 생성자를 사용하지 않지만, 컴파일을 위해 문법적으로는 이동 생성자가 필요합니다.
 ```
 
-하지만, C++17 부터는 [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 불필요하게 복사나 이동되지 않음을 문법적으로 보증해 줍니다. 그덕에 상기 경우에 이동 생성자를 억지로 사용하지 않아도 컴파일 오류없이 잘 동작하게 됐습니다.
+하지만, C++17 부터는 [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 불필요하게 복사나 이동되지 않음을 문법적으로 보증해 줍니다. 그덕에 상기 경우에 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)를 억지로 사용하지 않아도 컴파일 오류없이 잘 동작하게 됐습니다.
 
 # 임시 구체화(Temporary materialization)
 

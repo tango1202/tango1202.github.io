@@ -21,7 +21,7 @@ sidebar:
 |--|--|
 |nothrow 보증|절대 예외를 발생하지 않습니다.<br/>[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이거나, 함수내에서 `try-catch()`로 예외를 처리한 함수등에서 한정적으로 가능합니다.|
 |기본 보증|예외가 발생해도 적어도 메모리 릭이나 리소스 릭이 없습니다.<br/>스마트 포인터나 `Holder` 개체를 활용하여 스택 개체로 만들면 쉽게 구현할 수 있습니다.([포인터 멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 참고)|
-|강한 보증|예외가 발생해도 내부 자료값이 변하지 않고 이전 상태로 복원합니다.<br/>생성자와 소멸자에서 스마트 포인터나 `Holder` 개체를 활용하여 기본 보증을 하며([복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고), 소멸자에서는 예외를 발생시키지 않습니다. 또한, [복사 대입 연산자는 nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)으로 구현합니다.|
+|강한 보증|예외가 발생해도 내부 자료값이 변하지 않고 이전 상태로 복원합니다.<br/>생성자와 소멸자에서 스마트 포인터나 `Holder` 개체를 활용하여 기본 보증을 하며([복사 생성자만 지원하는 스마트 포인터](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EB%A7%8C-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서는 예외를 발생시키지 않습니다. 또한, [복사 대입 연산자는 nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)으로 구현합니다.|
 
 클래스 구현의 구체적인 방법은 [예외 안전](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84)을 참고하기 바랍니다.
 
@@ -84,7 +84,7 @@ t.SetA(new A); // A개체가 생성되면서 예외를 발생합니다.
 따라서, 생성할 때 완전하게 생성해야 합니다.([완전한 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 생성 도중 예외가 발생하면, 생성하던 개체를 버리면 되니까요.
 
-하지만 이 방법도 인수가 1개 이상이라면, 1개 인수 생성이 예외가 발생했을때 다른 인수들의 소멸자가 불리지 않아, 기본 보증을 위반합니다.
+하지만 이 방법도 인수가 1개 이상이라면, 1개 인수 생성이 예외가 발생했을때 다른 인수들의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 불리지 않아, 기본 보증을 위반합니다.
 
 다음 코드에서
 
@@ -179,7 +179,7 @@ catch (...) {
 
 # 예외와 소멸자
 
-소멸자에서 예외를 방출하면 안됩니다. 예외가 발생하면 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)가 이루어져서 소멸자가 불리는데, 이 소멸자에서 또 예외를 발생하면 정상적인 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 방해합니다.([소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고)
+[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 예외를 방출하면 안됩니다. 예외가 발생하면 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)가 이루어져서 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 불리는데, 이 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 또 예외를 발생하면 정상적인 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 방해합니다.([소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고)
 
 예외 방출을 막기 위해 단순히 `try-catch()`로 예외를 무시하기 보다는
 

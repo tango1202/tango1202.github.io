@@ -29,7 +29,7 @@ EXPECT_TRUE(T().Func_11() == 2); // T() 는 임시 개체(우측값)이므로 #2
 
 # 이동 연산을 지원하는 래퍼
 
-이동 연산을 지원하기 위해 이동 생성자를 구현한 `Big_11` 개체가 있다고 합시다.
+이동 연산을 지원하기 위해 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현한 `Big_11` 개체가 있다고 합시다.
 
 ```cpp
 class Big_11 {
@@ -99,7 +99,7 @@ A_11 a;
 Big_11 big{a.GetData()}; 
 ```
 
-만약 `a`가 이제 버려질 값이라면, 복사 부하를 줄이기 위해 이동 생성자를 호출하는게 좋습니다. 하지만 다음과 같이 `A_11` 개체를 우측값으로 만들어 봤자, `GetData()`는 `const Big_11&`인 좌측값 참조를 리턴하므로, `Big_11`의 이동 생성자는 호출되지 않습니다. 
+만약 `a`가 이제 버려질 값이라면, 복사 부하를 줄이기 위해 이동 생성자를 호출하는게 좋습니다. 하지만 다음과 같이 `A_11` 개체를 우측값으로 만들어 봤자, `GetData()`는 `const Big_11&`인 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴하므로, `Big_11`의 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)는 호출되지 않습니다. 
 
 ```cpp
 // a은 좌측값. std::move(a_11)는 우측값. Big_11의 복사 생성자 호출
@@ -110,7 +110,7 @@ Big_11 big{std::move(a).GetData()};
 Big_11 big{A_11().GetData()}; 
 ```
 
-그러면 다음은 될까요? [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 `move()`했지만, `const Big&`를 `const Big&&`를 바꾸기 때문에, 이동 생성자와 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입이 달라 (*이동 생성자는 `Big_11(Big_11&& other)`입니다. [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)가 다르죠.*) 그냥 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다.
+그러면 다음은 될까요? [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 `move()`했지만, `const Big&`를 `const Big&&`를 바꾸기 때문에, [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)와 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입이 달라 (*[이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)는 `Big_11(Big_11&& other)`입니다. [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)가 다르죠.*) 그냥 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다.
 
 ```cpp
 // A_11().GetData()는 const Big_11&를 리턴하고, move() 는 const Big_11&& 을 리턴. 이동 생성자 인자 타입과 다르므로, 그냥 복사 생성자 호출 

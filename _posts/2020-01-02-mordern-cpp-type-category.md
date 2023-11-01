@@ -32,7 +32,7 @@ C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입
 
 * 스칼라 타입
 * trivial 클래스
-   * 사용자 정의 생성자, 소멸자 없음
+   * 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 없음
    * 서로 다른 접근 지정이 가능함
    * 가상 함수 없음
    * 부모 클래스 없음
@@ -45,7 +45,7 @@ C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입
 
 * 스칼라 타입
 * 표준 레이아웃 클래스
-  * 사용자 정의 생성자, 소멸자가 있어도 됨
+  * 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 있어도 됨
   * 동일한 접근 지정이어야 함
   * 가상 함수 없음
   * 부모 클래스 없음
@@ -65,7 +65,7 @@ travial 이면서 표준 레이아웃인 타입입니다. 메모리 레이아웃
 * 리터럴 타입의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 * 람다 함수
 * 집합 타입
-  * 사용자 정의 생성자, 소멸자가 없으며 모든 멤버 변수가 `public`인 구조체나 클래스
+  * 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없으며 모든 멤버 변수가 `public`인 구조체나 클래스
 * (C++14~) `void`
   * C++14 이상부터 void도 리터럴 타입이어서 [constexpr 함수](
 https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)가 `void`를 리턴할 수 있습니다.
@@ -76,7 +76,7 @@ https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%
 
 * [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 * 구조체/클래스/공용체
-  * 사용자 정의 생성자, 소멸자가 없음
+  * 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없음
   * 모든 멤버 변수가 `public`
   * 부모 클래스가 없음
   * 가상 함수 없음

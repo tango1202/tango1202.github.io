@@ -153,7 +153,7 @@ EXPECT_TRUE(SQUARE(1 + 1) == 4); // (1 + 1) * (1 + 1)
 
 |항목|내용|
 |--|--|
-|`#`|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 문자열 리터럴로 변경|
+|`#`|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 [문자열 상수 리터럴](??)로 변경|
 |`##`|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 연결|
 
 ```cpp

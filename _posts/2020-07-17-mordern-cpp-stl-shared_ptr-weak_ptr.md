@@ -79,7 +79,7 @@ EXPECT_TRUE(a.use_count() == 2 && b.use_count() == 2);
 EXPECT_TRUE(a.use_count() == 2 && b.use_count() == 2);
 ```
 
-실행 시키면 다음과 같이 생성자와 소멸자는 1회 호출됩니다.
+실행 시키면 다음과 같이 생성자와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 1회 호출됩니다.
 
 ```cpp
 T : Constructor
@@ -343,7 +343,7 @@ EXPECT_TRUE(a.use_count() == 2);
 1. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 멤버 변수로 사용합니다.
 2. [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)로 생성된 `Data`를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받기 위해 생성자에서 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)을 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용합니다.
 3. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)에서 `other`개체의 각 멤버의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다.
-4. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 에서 참조 카운트가 0이 되면 소멸시킬 것이므로 소멸자에서는 별다른 작업을 하지 않습니다.
+4. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 에서 참조 카운트가 0이 되면 소멸시킬 것이므로 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서는 별다른 작업을 하지 않습니다.
 5. [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)에서는 각 멤버를 복사 대입합니다. 
    
     이때 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 선언되어 있어서 예외를 발생하지 않습니다. 포인터 복사와 참조 카운트 변경만 있으니까 예외 발생할게 없는거죠.
@@ -416,7 +416,7 @@ a.m_Data1->SetVal(20);
 EXPECT_TRUE(a.m_Data1->GetVal() == 20 && b.m_Data1->GetVal() == 20 && c.m_Data1->GetVal() == 3 && d.m_Data1->GetVal() == 20);        
 ```
 
-상기 코드를 보면, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), 소멸자, [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 모두 암시적 버전과 동일한 것을 알 수 있습니다.
+상기 코드를 보면, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 모두 암시적 버전과 동일한 것을 알 수 있습니다.
 
 즉, 다음처럼 훨씬 더 간결하게 작성할 수 있습니다.
 
@@ -660,7 +660,7 @@ root->Add(std::shared_ptr<Node>{new Node{root}});
 EXPECT_TRUE(root.use_count() == 3);
 ```
 
-실행 결과를 보면 다음과 같이 `Node`의 생성자만 불리고 소멸자가 안불립니다. 
+실행 결과를 보면 다음과 같이 `Node`의 생성자만 불리고 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 안불립니다. 
 
 ```
 Node : Constructor
@@ -668,7 +668,7 @@ Node : Constructor
 Node : Constructor
 ```
 
-이는 `root`가 소멸할때 참조 카운트를 `3`에서 `2`로 바꿀뿐 관리하는 `Node` 소멸은 안하기 때문입니다. `root`에서 관리하는 `Node`의 소멸자가 안불리니 `m_Children`에 있는 자식 `Node`들도 소멸되지 않아 아무런 소멸자도 불리지 않게 됩니다. 자식 `Node`가 `m_Parent`로 소유권을 갖고 있기 때문에 벌어진 일입니다.
+이는 `root`가 소멸할때 참조 카운트를 `3`에서 `2`로 바꿀뿐 관리하는 `Node` 소멸은 안하기 때문입니다. `root`에서 관리하는 `Node`의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 안불리니 `m_Children`에 있는 자식 `Node`들도 소멸되지 않아 아무런 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)도 불리지 않게 됩니다. 자식 `Node`가 `m_Parent`로 소유권을 갖고 있기 때문에 벌어진 일입니다.
 
 이러한 경우를 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)라 하며, [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)시에 소유권을 공유하면, 서로 소유권을 주장하다가 결국 상기 예제처럼 아무것도 소멸을 못시키게 됩니다. 
 

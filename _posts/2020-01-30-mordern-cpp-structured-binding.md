@@ -19,7 +19,7 @@ sidebar:
 |`auto [변수 목록]`|해당 개체의 복제본을 만들어 내부 요소를 참조합니다. 수정시 복제본이 수정됩니다.|
 |`auto& [변수 목록]`|해당 개체의 내부 요소에 참조합니다. 내부 요소 수정이 가능합니다.|
 |`const auto& [변수 목록]`|해당 개체의 내부 요소에 참조합니다. 내부 요소 수정이 불가능합니다.|
-|`auto&& [변수 목록]`|해당 개체의 내부 요소에 우측값 참조합니다.|
+|`auto&& [변수 목록]`|해당 개체의 내부 요소를 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)합니다.|
 
 다음과 같이 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/), 클래스등에 대해 적용할 수 있습니다. 
 

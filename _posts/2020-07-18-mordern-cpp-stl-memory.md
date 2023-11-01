@@ -119,8 +119,8 @@ C++17 부터는 [uninitialized_move(), uninitialized_default_construct(), uninit
 |`uninitialized_move()` (C++17~)<br/>`uninitialized_move_n()` (C++17~)|메모리의 값을 이동시킵니다.|
 |`uninitialized_default_construct()` (C++17~)<br/>`uninitialized_default_construct_n()` (C++17~)|주어진 메모리 영역 개체들을 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)(`new T`)로 초기화 합니다. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 하지 않습니다.| 
 |`uninitialized_value_construct()` (C++17~)<br/>`uninitialized_value_construct_n()` (C++17~)|주어진 메모리 영역 개체들을 값 생성자(`new T()`)로 초기화 합니다. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)를 합니다.| 
-|`destroy()` (C++17~)<br/>`destroy_n()` (C++17~)|주어진 메모리 영역 개체들의 소멸자를 호출합니다.| 
-|`destroy_at()` (C++17~)|주어진 메모리 영역 개체의 소멸자를 호출합니다.| 
+|`destroy()` (C++17~)<br/>`destroy_n()` (C++17~)|주어진 메모리 영역 개체들의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출합니다.| 
+|`destroy_at()` (C++17~)|주어진 메모리 영역 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출합니다.| 
 |`construct_at()` (C++20~)|주어진 메모리 영역 개체의 생성자를 호출합니다.| 
 
 다음 예는 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 `data` 버퍼을 생성하고 3개의 `T` 개체를 생성하고 소멸시키는 예입니다.
@@ -157,7 +157,7 @@ EXPECT_TRUE((begin + 2)->GetX() == 10 && (begin + 2)->GetY() == 20);
 std::destroy(begin, end);
 ```
 
-실행 결과를 보면 생성자 3회, 소멸자 3회 호출된 것을 알 수 있습니다.
+실행 결과를 보면 생성자 3회, [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 3회 호출된 것을 알 수 있습니다.
 
 ```cpp
 T : Constructor

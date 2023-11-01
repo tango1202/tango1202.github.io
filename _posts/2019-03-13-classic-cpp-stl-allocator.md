@@ -34,7 +34,7 @@ class vector {
 |`allocate()`|`n`개 만큼 저장할 수 있는 메모리 영역을 할당합니다.|
 |`deallocate()`|`allocate()`에서 할당한 메모리를 해제합니다.|
 |`construct()`|지정한 메모리 위치에 요소 개체의 생성자를 호출합니다. ([위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고)|
-|`destroy()`|지정한 메모리 위치에 요소 개체의 소멸자를 호출합니다.([위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고)|
+|`destroy()`|지정한 메모리 위치에 요소 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출합니다.([위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고)|
 |`rebind`|요소 타입에 대한 할당자를 이용하여 다른 타입용 컨테이너를 할당할 수 있게 합니다.|
 
 다음은 간단한 `Allocator` 구현 예입니다.

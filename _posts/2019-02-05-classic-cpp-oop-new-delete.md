@@ -23,9 +23,9 @@ sidebar:
 |항목|내용|
 |--|--|
 |[new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)|개체의 메모리를 할당하고, 생성자를 호출합니다.|
-|[delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)|개체의 소멸자를 호출하고, 메모리를 해제합니다.|
+|[delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)|개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출하고, 메모리를 해제합니다.|
 |`new[]`|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 메모리를 할당하고, 각 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소의 생성자들을 호출합니다.|
-|[delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)|각 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소의 소멸자들을 호출하고, 메모리를 해제합니다.|
+|[delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)|각 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)들을 호출하고, 메모리를 해제합니다.|
 |`new(std::nothrow)`|메모리 할당 실패시 NULL 을 리턴합니다. 단, 생성자에서 예외를 발생시키면 해당 예외를 전파합니다.|
 |`operator new(std::size_t)`|개체의 메모리를 할당합니다.|
 |`operator delete(void*)`|개체의 메모리를 해제 합니다.|
@@ -44,14 +44,14 @@ sidebar:
 
 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 다음의 순서로 개체의 소멸자 호출과 메모리 해제를 실행합니다.([개체 소멸 순서](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EA%B0%9C%EC%B2%B4-%EC%86%8C%EB%A9%B8-%EC%88%9C%EC%84%9C) 참고)
 
-1. 개체의 소멸자 호출
+1. 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출
 2. 개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 소멸
 3. 전역 `operator delete(void*)`로 메모리 할당 해제
 
 즉 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 메모리 할당, 생성자 호출, 메모리 주소를 형변환해서 리턴하지만,
 `operator new`는 `void*` 형 메모리를 할당하기만 합니다.
 
-또한 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 소멸자 호출, 메모리 해제를 수행하지만,
+또한 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출, 메모리 해제를 수행하지만,
 `operator delete`는 메모리 해제만 수행합니다.
 
 # 개체 생성/소멸
@@ -89,7 +89,7 @@ T* arr = new T[3]; // (O) 메모리 할당(sizeof(T) * 3 + 오버헤드). 생성
 delete[] arr; // (O) 소멸자 3회 호출. 메모리 해제(sizeof(T) * 3 + 오버헤드)
 ```
 
-로 하면 실행 결과는 다음과 같이 [배열 요소의 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98) 만큼 생성자와 소멸자가 호출됩니다.
+로 하면 실행 결과는 다음과 같이 [배열 요소의 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98) 만큼 생성자와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 호출됩니다.
 
 ```cpp
 New-Delete Test : T::T()
@@ -102,14 +102,14 @@ New-Delete Test : T::~T()
 
 # delete와 delete[] 의 차이
 
-[delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 개체의 소멸자를 1회 호출하고, 주어진 메모리를 해제하는 역할을 하고, [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)만큼 소멸자를 호출하고, 주어진 메모리를 해제하는 역할을 합니다.
+[delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 1회 호출하고, 주어진 메모리를 해제하는 역할을 하고, [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)만큼 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출하고, 주어진 메모리를 해제하는 역할을 합니다.
 
 그러다 보니 `new[]`로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 생성할때 [배열 요소의 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)가 내부적으로 오버헤드 공간에 저장되고, 이를 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)시에 사용합니다.
 
-1. `int`등 기본 자료형일 경우, 생성자/소멸자를 호출할 필요가 없으므로, 메모리가 `sizeof(int)` * [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)로 할당됩니다.
-2. 클래스인 경우 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수 만큼 생성자/소멸자가 호출되어야 하므로, 내부적으로 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)를 저장하는 오버헤드 공간이 추가되어 할당됩니다.(*`sizeof(T)` * [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98) + 오버헤드(4byte 이거나 8byte)*)
+1. `int`등 기본 자료형일 경우, 생성자/[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출할 필요가 없으므로, 메모리가 `sizeof(int)` * [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)로 할당됩니다.
+2. 클래스인 경우 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수 만큼 생성자/[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 호출되어야 하므로, 내부적으로 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)를 저장하는 오버헤드 공간이 추가되어 할당됩니다.(*`sizeof(T)` * [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98) + 오버헤드(4byte 이거나 8byte)*)
 
-혹여나 실수로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)로 소멸시키면, 소멸자가 1회만 호출되고, 프로그램이 다운될 수 있습니다. 따라서, `new[]`로 생성한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 꼭 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)로 소멸시켜야 합니다.
+혹여나 실수로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)로 소멸시키면, [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 1회만 호출되고, 프로그램이 다운될 수 있습니다. 따라서, `new[]`로 생성한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 꼭 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)로 소멸시켜야 합니다.
 
 ```cpp
 T* arr = new T[3]; // (O) 메모리 할당(sizeof(T) * 3 + 오버헤드). 생성자 3회 호출
@@ -383,16 +383,16 @@ delete base; // Base::delete(void* ptr, std::size_t sz) 호출
 
 # virtual 소멸자인 경우 `operator delete`
 
-[다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 지원하려면, 꼭 `virtual` 소멸자를 사용해야 한다고 언급한바 있습니다. 그렇지 않으면 `Base` 소멸자만 불려서 `Derived`의 소멸자가 불리지 않아, 메모릭 릭이 발생할 수 있다고요.
+[다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 지원하려면, 꼭 [가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용해야 한다고 언급한바 있습니다. 그렇지 않으면 `Base` [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)만 불려서 `Derived`의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 불리지 않아, 메모릭 릭이 발생할 수 있다고요.
 
-`operator delete`에서도 마찬가지 입니다. 자식 클래스에서 할당된 메모리를 모두 해제하려면 꼭 `virtual` 소멸자를 사용하셔야 합니다.
+`operator delete`에서도 마찬가지 입니다. 자식 클래스에서 할당된 메모리를 모두 해제하려면 꼭 [가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하셔야 합니다.
 
-다음 코드는 상기 코드에서 소멸자의 `virtual`만 뺀 코드입니다. 실행시켜 확인해 보면, 
+다음 코드는 상기 코드에서 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)의 `virtual`만 뺀 코드입니다. 실행시켜 확인해 보면, 
 
 1. `operator new` 시에는 `Derived`의 크기인 16byte가 전달되나, 
 2. `operator delete`시에는 `Base`의 크기인 8byte가 전달되어, 
    
-메모리의 일부만 해제되어 메모리 릭이 발생합니다. 그러니, [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 하려면 꼭 `virtual` 소멸자를 사용하세요.
+메모리의 일부만 해제되어 메모리 릭이 발생합니다. 그러니, [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 하려면 꼭 [가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하세요.
 
 ```cpp
 // sizeof(Base) == sizeof(int) * 2 = 8byte
@@ -426,7 +426,7 @@ delete base; // (X) 오동작. Base의 소멸자가 호출되고 Base의 크기�
 
 # operator new[]와 operator delete[] 재정의
 
-[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 `operator new[]`와 `operator delete[]`를 사용합니다. 일반 자료형의 경우에는 `sz`에 `sizeof(T) * [배열 요수 갯수]`가 전달되지만, 클래스와 같이 생성자/소멸자가 있는 개체는 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)만큼 생성자/소멸자를 호출해야 하므로, 내부적으로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수를 관리하는 오버헤드(4byte 이거나 8byte)가 추가 되어 전달됩니다.
+[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 `operator new[]`와 `operator delete[]`를 사용합니다. 일반 자료형의 경우에는 `sz`에 `sizeof(T) * [배열 요수 갯수]`가 전달되지만, 클래스와 같이 생성자/[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 있는 개체는 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)만큼 생성자/[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출해야 하므로, 내부적으로 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소 갯수를 관리하는 오버헤드(4byte 이거나 8byte)가 추가 되어 전달됩니다.
 
 ```cpp
 class T {
@@ -466,7 +466,7 @@ public:
 };
 ```
 
-다음과 같이 할당된 `buffer`에 `new(buffer) T;`로 생성자를 호출하여 개체를 생성시킬 수 있습니다. 이때 명시적으로 `t->~T()`와 같이 소멸자를 호출해야 합니다.
+다음과 같이 할당된 `buffer`에 `new(buffer) T;`로 생성자를 호출하여 개체를 생성시킬 수 있습니다. 이때 명시적으로 `t->~T()`와 같이 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출해야 합니다.
 
 ```cpp
 void* buffer = malloc(sizeof(T)); // T 클래스 크기만큼 메모리를 할당합니다.
@@ -482,7 +482,7 @@ free(buffer); // malloc 으로 할당한 메모리를 해제합니다.
 
 1. 다른 개체를 배치시킬 수도 있고,
 2.  `buffer`를 직접 수정하여 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 의 값을 변경할 수도 있으며(비권장), 
-3.  소멸자 호출 후에도 값 접근을 할 수 있습니다.(비권장) 
+3.  [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출 후에도 값 접근을 할 수 있습니다.(비권장) 
 
 ```cpp
 void* buffer = malloc(sizeof(T));
@@ -578,7 +578,7 @@ delete p;
 ```
 # 힙에만 생성되는 개체
 
-소멸자를 `private`나 `protected` 로 만들면, [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 생성된 개체가 암시적으로 소멸될때,([소멸자 호출 시점](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%8B%9C%EC%A0%90) 참고) 소멸자에 접근하지 못해 컴파일 오류가 납니다. 이걸 활용하면 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에만 생성되는 개체를 만들 수 있습니다. 단 명시적으로 소멸할 수 있도록 `Destroy()` 함수를 별도로 제공해야 합니다.
+[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 `private`나 `protected` 로 만들면, [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 생성된 개체가 암시적으로 소멸될때,([소멸자 호출 시점](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90-%ED%98%B8%EC%B6%9C-%EC%8B%9C%EC%A0%90) 참고) [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에 접근하지 못해 컴파일 오류가 납니다. 이걸 활용하면 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에만 생성되는 개체를 만들 수 있습니다. 단 명시적으로 소멸할 수 있도록 `Destroy()` 함수를 별도로 제공해야 합니다.
 
 ```cpp
 class T {

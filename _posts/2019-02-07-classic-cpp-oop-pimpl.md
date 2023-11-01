@@ -43,7 +43,7 @@ public:
 1. `m_Val1`, `m_Val2`를 `T::Impl`로 이전하였습니다.
 2. `T`에서 `class Impl;` [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)을 하고, `Impl* m_Impl;`을 포인터 멤버 변수로 선언하였습니다.
 3. `m_Impl` 복사 생성을 위해 `T`의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 추가했습니다.
-4. `m_Impl` 소멸을 위해 `T`의 소멸자를 추가했습니다.
+4. `m_Impl` 소멸을 위해 `T`의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 추가했습니다.
 5. `m_Impl` 복사 대입 연산을 위해 [swap을 이용한 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 추가했습니다. `swap`은 포인터끼리의 바꿔치기이므로 복사 부하가 거의 없습니다.
 6. `T::Impl` 정의에서, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 두고, [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 사용하지 않기에 `private`로 막았습니다.
 

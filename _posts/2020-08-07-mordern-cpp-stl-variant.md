@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-C++11에서 추가된 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)는 많은 제한이 풀려 타입이 다른 데이터를 [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)로 다룰 수 있는 자유도가 높아졌으나, 위치 지정 생성이나 소멸자를 수동으로 처리해야 하기 때문에 많은 불편함이 있었습니다.
+C++11에서 추가된 [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)는 많은 제한이 풀려 타입이 다른 데이터를 [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)로 다룰 수 있는 자유도가 높아졌으나, 위치 지정 생성이나 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 수동으로 처리해야 하기 때문에 많은 불편함이 있었습니다.
 
 C++17 부터는 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다. [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/)의 경우는 런타임에 동적으로 캐스팅하여 관리하는 타입을 유연하게 변경할 수 있지만, [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)는 컴파일 타임에 지정한 타입들중 하나로만 사용할 수 있습니다.
 

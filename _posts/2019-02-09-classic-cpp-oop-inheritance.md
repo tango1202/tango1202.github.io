@@ -11,14 +11,14 @@ sidebar:
 > * 부모 개체의 멤버 함수를 오버로딩 하지 마라. [오버로딩 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99)에서 제외된다.
 > * 자식 개체를 부모 개체에 대입하지 마라. 아무런 오류 없이 복사 손실 된다.
 > * 구현 코드가 없는 [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)인 경우에만 다중 상속하라.
-> * 소멸자에서 가이드한 것과 같이,
-> > * 다형 소멸이 필요하면 부모 개체에 `virtual` 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
-> > * `public` Non-Virtual 소멸자인 개체는 상속하지 마라.
-> > * `is-a`관계에서는 `public` Virtual 소멸자를 사용하라.(`virtual` 소멸자가 아니면 메모리 릭이 발생한다.)
-> > * `has-a`관계에서는 `protected` Non-Virtual 소멸자를 사용하라.
+> * [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 가이드한 것과 같이,
+> > * 다형 소멸이 필요하면 부모 개체에 [가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하라.([가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)가 아니면 메모리 릭이 발생한다.)
+> > * [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)인 개체는 상속하지 마라.
+> > * `is-a`관계에서는 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하라.([가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)가 아니면 메모리 릭이 발생한다.)
+> > * `has-a`관계에서는 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하라.
 > * 부모 개체의 기본 구현을 자식 개체에서 재정의해야 한다면, 유틸리티로 제공하라.
-> * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하거나 순가상 함수를 포함하라.(`is-a` 관계에서 순가상 함수가 없는 경우, 순가상 소멸자를 사용한다.)
-> * 상속을 제한하고 싶은 경우, `public` Non-Virtual 소멸자 사용으로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
+> * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하거나 순가상 함수를 포함하라.(`is-a` 관계에서 순가상 함수가 없는 경우, [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용한다.)
+> * 상속을 제한하고 싶은 경우, [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 사용으로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
 > * 상속 관계에서는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)자 대신 [가상 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하라.
 > * [부모 개체의 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 오동작할 소지가 있으니 막아라.
 
@@ -389,10 +389,10 @@ for(int i = 0; i < 3; ++i) {
 
 물려받은 기능은 주로 외부에 그대로 노출되므로, `public` 상속을 받습니다. 
 
-부모 개체의 소멸자는 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만듭니다.
+부모 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만듭니다.
 
-1. 외부에서 부모 개체 포인터로 소멸시키기 때문에 `public` 소멸자로 정의하고,
-2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 해야 하므로 `virtual` 소멸자로 만듭니다. 만약 `virtual`로 하지 않으면, 자식 개체의 소멸자가 호출되지 않아 메모리 릭이 발생할 수 있습니다.
+1. 외부에서 부모 개체 포인터로 소멸시키기 때문에 [public 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)로 정의하고,
+2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 해야 하므로 [가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만듭니다. 만약 `virtual`로 하지 않으면, 자식 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 호출되지 않아 메모리 릭이 발생할 수 있습니다.
 
 # has-a 관계
 
@@ -408,10 +408,10 @@ for(int i = 0; i < 3; ++i) {
 
 을 합니다.
 
-부모 개체의 소멸자는 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만듭니다.
+부모 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만듭니다.
 
-1. 부모 개체를 상속받아서만 사용하도록 함과 동시에 부모 개체 포인터로부터 [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 시도하지 못하도록 `protected` 소멸자로 정의하고,
-2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 안하므로 Non-Virtual 소멸자로 만듭니다.
+1. 부모 개체를 상속받아서만 사용하도록 함과 동시에 부모 개체 포인터로부터 [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 시도하지 못하도록 [protected 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 정의하고,
+2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 안하므로 [Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만듭니다.
 
 **공통 코드 구현**
 
@@ -599,9 +599,9 @@ public:
 
 2. 순가상 함수가 있으면 됩니다.
    
-3. `has-a` 관계이면 `protected` Non-Virtual 소멸자로 만들면 됩니다.
+3. `has-a` 관계이면 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들면 됩니다.
    
-4. 1, 2, 3으로 할 수 없는 경우는 `is-a` 관계에서 다형 소멸이 필요하여 `public` Virtual 소멸자를 써야 하는데, 순가상 함수가 없는 경우입니다. `protected` 생성자로 할 수 없고, 순가상 함수가 없으므로 다음처럼 인스턴스화 할 수 있습니다.
+4. 1, 2, 3으로 할 수 없는 경우는 `is-a` 관계에서 다형 소멸이 필요하여 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 써야 하는데, 순가상 함수가 없는 경우입니다. `protected` 생성자로 할 수 없고, 순가상 함수가 없으므로 다음처럼 인스턴스화 할 수 있습니다.
  
     ```cpp
     class T {

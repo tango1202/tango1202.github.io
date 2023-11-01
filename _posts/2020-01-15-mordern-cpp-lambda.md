@@ -19,7 +19,7 @@ sidebar:
 
 C++11 부터는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)을 추가하여 함수 지향 프로그래밍이 좀 더 간편해 졌습니다.
 
-[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)은 `prvalue` 타입([값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 참고)의 1회용 익명 함수를 만들며, 이를 **클로저(Closure)** 라고 합니다. 
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)은 `prvalue` 타입(*[값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 참고*)의 1회용 익명 함수를 만들며, 이를 **클로저(Closure)** 라고 합니다. 
 
 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)은 STL의 [알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)과 잘 호환될 뿐만 아니라, [캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90) 기능등의 활용도도 높아서 복잡한 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 만들기 보다는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/)을 사용하는게 훨씬 좋습니다.
 
@@ -236,7 +236,7 @@ EXPECT_TRUE( a == 10 && b == 20 && c == 30);
 
 참조 캡쳐를 이용하는게 좋습니다.
 
-다음 `T`클래스는 생성자와 소멸자 호출을 탐지하기 위한 테스트 클래스입니다.
+다음 `T`클래스는 생성자와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출을 탐지하기 위한 테스트 클래스입니다.
 
 ```cpp
 class T {
