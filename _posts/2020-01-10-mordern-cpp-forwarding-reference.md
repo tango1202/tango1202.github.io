@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [모던 C++] (C++11~) 전달 참조"
+title: "#10. [모던 C++] (C++11~) 전달 참조와 완벽한 전달"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -12,11 +12,146 @@ sidebar:
 
 > * [MEC++#24] 전달 참조와 우측값 참조를 구별하라.([전달 참조](??))
 
+# 개요
+
+값 타입이나 포인터는 함수를 통해 전달할 때 [값 카테고리](??)나 타입이 변하지 않습니다. 복사 대입이 될 뿐이죠.
+
+```cpp
+int a;
+int b = a; // 복사 대입 됩니다.
+int* p1 = a; 
+int* p2 = p1; // 포인터가 가리키는 값 말고 포인터 값은 복사 대입됩니다.
+```
+
+하지만 [참조자](??)의 경우는 [값 카테고리](??)나 타입이 변할 수 있습니다. 
+[템플릿 함수 인수 추론](??)에서 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 제거하고 추론한다고 말씀드렸었죠. 다음 예에서 `f()`함수는 [좌측값 참조](??)인 `ref`를 전달해 봤자 값 타입으로 전달받습니다.
+
+```cpp
+template<typename T, typename U, typename V>
+void f(T, U, V) {}
+
+int val = 0;
+int* ptr = NULL;
+int& ref = val;
+
+f(val, ptr, ref); // f<int, int*, int>(int, int*, int). 참조자가 제거됩니다.
+```
+
+또한, [우측값 참조](??)는 인자로 받는 순간 이름이 부여되서 [좌측값 참조](??)가 됩니다.([이름이 부여된 우측값](??) 참고)
+
+```cpp
+class A {
+public:
+    int Func() & {return 1;} 
+    int Func() && {return 2;}    
+};
+
+void f(A&& a) {
+    EXPECT_TRUE(a.Func() == 1);
+}
+```
+
+이렇게 [참조자](??)는 [함수 인자](??) 전달에 따라 [값 카테고리](??)나 타입이 변경되는 문제가 있습니다. 
+
+이에 따라 [전달 참조라는 특수한 참조자](??)를 이용하여 [완벽한 전달](??)을 합니다.
+
+# 참조 축약
+
+[전달 참조](??)를 공부하기 전에 [참조 축약](??)의 개념을 알아두는게 좋습니다.
+
+원칙적으로 포인터의 포인터는 합법이지만, [참조자](??)의 참조는 불법입니다. [참조자](??)는 메모리상에 어떻게 구성되는지 표준에 정의되지 않았고, 그저 개체에 대한 별칭이니까요. 그저 또다른 별칭을 만들뿐 포인터처럼 다차원적으로 구성되지는 않습니다.
+
+```cpp
+int* p;
+int** pp = &p; // 포인터의 포인터는 합법입니다.
+
+int& r = val;
+int& & rr = r; // (X) 컴파일 오류. 참조자의 참조는 불법입니다.
+int& r2 = r; // 또다른 별칭일 뿐입니다.
+```
+
+하지만, 템플릿을 사용하면 [참조자](??)에 참조를 더할 수 있습니다. 마치 [참조자](??)의 참조 처럼요.
+
+[템플릿 함수 인수 추론](??)에서 말씀드렸듯, [참조성](??)은 제거되지만, 명시적으로 지정하면 [참조자](??)로 사용됩니다.
+
+```cpp
+template<typename T>
+void f(T) {}
+
+int val = 0;
+int& ref = val;
+f(ref); // f<int>(int). 참조자가 제거됩니다.
+f<int&>(ref); // f<int&>(int&). 명시적으로 지정하면 참조자로 사용됨
+```
+
+따라서, 템플릿 클래스에도 이러한 특징을 적용하여 다음과 같은 [타입 특성 클래스](??)를 만들 수 있습니다.
+
+```cpp
+template<typename T>
+class Convert_11 {
+public:
+    using Type = T;
+};
+
+Convert_11<int>::Type a; // int
+Convert_11<int&>::Type b = a; // int&입니다. 참조자 입니다.
+```
+
+즉, `T`가 `int&`라면, 다음의 `LRef`는 `int&` + `&`이며, `RRef`는 `int&` + `&&`이 됩니다. [참조자](??)에 참조를 더하게 된거죠. 마치 [참조자](??)를 참조한 것처럼요. 
+
+```cpp
+template<typename T>
+class Convert_11 {
+public:
+    using LRef = T&; // T 타입에 좌측값 참조를 더합니다.
+    using RRef = T&&; // T 타입에 우측값 참조를 더합니다.
+};
+```
+
+[참조자](??)에 참조를 더한 결과는 [포인터처럼 다차원적으로 동작](??)하지는 않고, [좌측값 참조](??)나 [우측값 참조](??) 중 하나로 [참조 축약](??)됩니다.
+
+1. 기본 형태
+
+```cpp
+class T {};
+T obj;
+Convert_11<T>::LRef a = obj; // T&
+Convert_11<T>::RRef b = std::move(obj); // T&& 
+```
+
+2. & + & 과 & + &&
+
+```cpp
+class T {};
+T obj;
+Convert_11<T&>::LRef a = obj; // T&, & + &
+Convert_11<T&>::RRef b = obj; // T&, & + &&
+```
+
+3. && + & 과 && + &&
+```cpp
+class T {};
+T obj;
+Convert_11<T&&>::LRef a = obj; // T&, && + &
+Convert_11<T&&>::RRef b = std::move(obj);; // T&&, && + &&  
+```
+
+즉 다음과 같이 [참조 축약](??)을 합니다. [우측값 참조](??)끼리를 더한 경우를 제외하고는 모두 [좌측값 참조](??)가 됩니다.
+
+|항목|결과|
+|--|--|
+|`&` + `&`|`&`|
+|`&` + `&&`|`&`|
+|`&&` + `&`|`&`|
+|`&&` + `&&`|`&&`|
+
+[참조 축약](??)은 [템플릿 인스턴스화](??), [auto](??), [typedef](??)와 [using](??), [decltype()](??) 에서 발생합니다.
+
 # 전달 참조
 
-[전달 참조](??)는 [우측값 참조](??)나 [좌측값 참조](??)를 할 수 있는 특수한 [참조자](??)입니다.
+[전달 참조](??)는 [우측값 참조](??)나 [좌측값 참조](??)를 전달받을 수 있는 특수한 [참조자](??)입니다.
 
-`A&&`의 형태로 [우측값 참조](??)를 전달 받을 수 있는데요,
+`A&&`의 형태로 타입에 `&&`을 붙이면, [우측값 참조](??)를 전달 받을 수 있는데요,
 
 ```cpp
 A val;
@@ -99,57 +234,7 @@ void Func(T&& param) { // 템플릿 함수 인수 추론을 합니다.
         void g(U&& val) {} // val 타입으로 추론합니다.
     }; 
 
-# 참조 축약
 
-
-참조자의 참조는 불법입니다.
-
-템플릿 인수 추론에서 참조성은 제거합니다.
-
-다음처럼 억지로 참조자로 만들 수 있습니다.
-
-
-
-
-
-참조 축약을 위해 만들어 보면
-
-```cpp
-template<typename T>
-class Convert_11 {
-public:
-    using LRef = T&; // T 타입에 좌측값 참조를 더합니다.
-    using RRef = T&&; // T 타입에 우측값 참조를 더합니다.
-};
-```
-
-1. 기본 형태
-
-```cpp
-class T {};
-T obj;
-Convert_11<T>::LRef a = obj; // T&
-Convert_11<T>::RRef b = std::move(obj); // T&& 
-```
-
-2. & + & 과 & + &&
-
-```cpp
-class T {};
-T obj;
-Convert_11<T&>::LRef a = obj; // T&, & + &
-Convert_11<T&>::RRef b = obj; // T&, & + &&
-```
-
-3. && + & 과 && + &&
-```cpp
-class T {};
-T obj;
-Convert_11<T&&>::LRef a = obj; // T&, && + &
-Convert_11<T&&>::RRef b = std::move(obj);; // T&&, && + &&  
-```
-
-즉 다음과 같이 참조 축약을 합니다.
 
 
 # move() 원리
@@ -189,5 +274,20 @@ T& b = a;
 EXPECT_TRUE(a.Func(MyMove(b)));
 ```
 
+# const 타입 move()
 
 `move()`함수는 `T`와 `T&`를 단순히 `&&`로 변환해 주는 함수이므로 `const T` 를 전달하면 `const T&&`로 변경합니다. 그런데, 이동 생성자, 이동 대입 연산자는 `T&&`를 사용하므로 `const T&&`로 변환하면 호출되지 않습니다. 따라서 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 제거하고 사용해야 합니다.(*[이동 연산을 지원하는 래퍼](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%84-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EB%9E%98%ED%8D%BC) 참고*)
+
+# forward() 원리
+
+MEC++29 참조 축약을 숙지하라.
+
+# forward()를 이용한 완벽한 전달
+
+MEC++#25 우측값 참조에는 std::move()를, 전달 참조에는 std::forward()를 사용하라.
+MEC++#30 완벽한 전달이 실패하는 경우들을 잘 알아둬라
+
+# 전달 참조의 오버로딩
+
+MEC++#26 전달 참조에 대한 오버로딩을 피하라.
+MEC++#27 전달 참조에 대한 오버로딩 대신 사용할 수 있는 기법들을 알아 두라

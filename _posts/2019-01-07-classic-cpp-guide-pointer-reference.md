@@ -250,6 +250,10 @@ public:
 }  
 ```
 
+# 다차원 포인터
+
+(작성중)
+
 # 참조자 사용법
 
 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 개체 참조자, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 참조자, 함수 참조자, [다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/) 참조자, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 참조자, [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 참조자로 구분할 수 있습니다. 포인터와는 달리 [널 값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EB%84%90-%ED%8F%AC%EC%9D%B8%ED%84%B0)을 사용할 수 없습니다. 
