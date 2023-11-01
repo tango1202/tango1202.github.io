@@ -55,9 +55,9 @@ EXPECT_TRUE(t2.GetX() == 10 && t2.GetY() == 20);
 
 # swap을 이용한 예외 보증 복사 대입 연산자
 
-예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 언급된 것처럼 예외가 발생하기 전의 상태로 복귀해야 합니다.
+예외가 발생하면, [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 언급된 것처럼 예외가 발생하기 전의 상태로 복귀해야 합니다.(*이를 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)이라 합니다.*)
 
-[암시적 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 각 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)별로 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)을 하는데요, 그러다 보니 중간에 예외가 발생했을 경우, 이전에 이미 수정한 개체를 복원할 수 없어 예외 처리가 어렵습니다.
+[암시적 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 각 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)별로 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)을 하는데요, 그러다 보니 중간에 예외가 발생했을 경우, 이전에 이미 수정한 개체를 복원할 수 없어 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)이 안됩니다.
 
 ```cpp
 T& operator =(const T& other) {
@@ -155,6 +155,8 @@ swap(T& left, T& right) {
     left = temp; // 복사 대입 연산 1회 - swap에 따른 추가 복사 부하
 }
 ```
+
+따라서, [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 기법을 이용하여 `swap()`은 복사 부하도 없고, 예외도 발생시키지 않도록 최적화해야 합니다.
 
 # nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화
 
