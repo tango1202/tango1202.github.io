@@ -234,7 +234,7 @@ Big : Destructor // a 소멸
 
 쓸데없이 `temp`가 생성되는게 빠졌습니다. 생성 부하나 복사 부하가 상당히 큰 개체라면 성능 향상을 기대할 수 있습니다. 
 
-# 이동 연산 : 우측값 참조, 이동 생성자, 이동 대입 연산자
+# 이동 연산(이동 생성, 이동 대입) : 우측값 참조, 이동 생성자, 이동 대입 연산자
 
 C++ 표준화 위원회는 여기서 더 나아가 그냥 각자 `Move()`함수를 구현하는 것에 만족하지 않고, 기존 `=`에서 식별자가 부여된(*이름이 있는*) 좌측값(`lvalue`) 대입과 식별자가 부여되지 않은(*이름이 없는*) [우측값](??)(`rvalue`) 대입을 오버로딩해서 제공하고, `=`가 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)로 사용되거나 [이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)로 사용되게 하여 기존 코드와 호환되면서 속도를 향상시킬 수 있도록 했습니다.
 
