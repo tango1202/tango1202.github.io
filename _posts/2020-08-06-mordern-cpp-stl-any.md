@@ -30,7 +30,7 @@ C++17 부터는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-st
 
 |항목|내용|
 |--|--|
-|`=` (C++17~)|복사 대입 또는 이동 대입합니다.|
+|`=` (C++17~)|[복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 또는 [이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
 |`emplace()` (C++17~)|내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 `any`내에서 내부 개체를 직접 생성합니다.|
 |`reset()` (C++17~)|내부 개체를 초기화합니다.|
 |`swap()` (C++17~)|바꿔치기 합니다.|

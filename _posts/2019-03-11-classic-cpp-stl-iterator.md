@@ -13,7 +13,7 @@ sidebar:
 
 > **모던 C++**
 > * (C++11~) (C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.
-> * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 합니다.
+> * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.
 > * (C++11~) [begin(), end()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)가 추가되었습니다.
 > * (C++14~) [rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)가 추가되었습니다.
 > * (C++17~) [size(), empty(), data()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC) 가 추가되었습니다.

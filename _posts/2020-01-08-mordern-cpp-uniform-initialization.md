@@ -132,7 +132,7 @@ U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 
 # 중괄호 복사 초기화 T t = {};, t = {};, f({}), return {}
 
-`T t = {};` 표현은 `T t = T{};`의 축약형입니다. [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t)인 `T{}`로 개체를 생성하고, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 `t`을 복사 생성하는 표현입니다.
+`T t = {};` 표현은 `T t = T{};`의 축약형입니다. [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t)인 `T{}`로 개체를 생성하고, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 `t`을 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)하는 표현입니다.
 
 그래서 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)가 있고, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)가 없다면, `T a_11{}`은 되나 `T b_11 = {}`는 안됩니다. `=`하나 차이로요.
 

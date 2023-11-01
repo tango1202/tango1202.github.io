@@ -18,7 +18,7 @@ C++17 부터는 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cp
 
 |항목|내용|
 |--|--|
-|`=` (C++17~)|복사 대입 또는 이동 대입합니다.|
+|`=` (C++17~)|[복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 또는 [이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
 |`index()` (C++17~)|현재 관리되는 타입의 인덱스를 리턴합니다.|
 |[valueless_by_exception()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/#valueless_by_exception) (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 유효한지 검사합니다.|
 |`emplace()` (C++17~)|내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)내에서 내부 개체를 직접 생성합니다.|

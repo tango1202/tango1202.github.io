@@ -10,7 +10,7 @@ sidebar:
 
 > * 해결할 수 없는 예외 상황은 오류 코드 리턴보다는 강제성이 있는 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)로 보고하라.
 > * 예외를 해결할 수 있는 곳에서 탐지하라.
-> * `catch()`에서 예외 개체가 복사 생성되지 않도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 받아라.
+> * `catch()`에서 예외 개체가 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)되지 않도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 받아라.
 > * 예외를 그대로 전파할 경우에는 [throw;](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)를 사용하라.
 > * [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 예외를 방출하지 마라.(필요하다면 `Release()`함수를 구현하라.)
 > * [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)와 호환되도록 스마트 포인터를 사용하라.
@@ -81,7 +81,7 @@ unsigned char ToChar(int val) {
 }
 ```
 
-상기 `ToChar()`함수와 같이 예외를 발생시키는 함수가 있다면, 호출전에 조건 검사를 실행해서 호출할 수 있고, `try-catch()`를 이용하여 탐지할 수 있습니다. 이때 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)한 예외 개체는 `catch()`에서 받아서 사용할 수 있는데, 예외 개체가 복사 생성되지 않도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 사용하는게 좋습니다.(그냥 복사 생성하게 하면, 예외 상황에서 또다른 예외가 발생할 수도 있거든요.)
+상기 `ToChar()`함수와 같이 예외를 발생시키는 함수가 있다면, 호출전에 조건 검사를 실행해서 호출할 수 있고, `try-catch()`를 이용하여 탐지할 수 있습니다. 이때 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)한 예외 개체는 `catch()`에서 받아서 사용할 수 있는데, 예외 개체가 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)되지 않도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 사용하는게 좋습니다.(그냥 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)하게 하면, 예외 상황에서 또다른 예외가 발생할 수도 있거든요.)
 
 ```cpp
 int val = 'A';

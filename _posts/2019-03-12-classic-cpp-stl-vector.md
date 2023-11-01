@@ -32,7 +32,7 @@ sidebar:
 |`vector();`|요소가 없는 빈 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성합니다.|
 |`explicit vector(size_type count);`|`count` 갯수 만큼 요소를 생성합니다.|
 |`vector(size_type count, const Type& value);`|`count` 갯수 만큼 요소를 생성하고, `value`로 초기화 합니다.|
-|`vector(const vector& other);`|복사 생성합니다.|
+|`vector(const vector& other);`|[복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
 |`template<class InputIterator>`<br/>`vector(InputIterator first, InputIterator last);`|`first`부터 `last` 직전까지의 요소(반개방 구조)를 복사합니다.|
 
 상기 외에 `allocator`를 사용하는 생성자가 있으며, 자세한 내용은 [할당자(Allocator)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 를 참고하기 바랍니다.
@@ -41,8 +41,8 @@ sidebar:
 
 |항목|정의|내용|
 |--|--|--|
-|`=`|`vector& operator =(const vector& other);`|복사 대입 합니다. <br/>[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기존 요소를 지우고 `other`요소들을 복사합니다.|
-|`=` (C++11~)|`vector& operator =(const vector&& other) notexcept;`|[이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.|
+|`=`|`vector& operator =(const vector& other);`|[복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다. <br/>[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기존 요소를 지우고 `other`요소들을 복사합니다.|
+|`=` (C++11~)|`vector& operator =(const vector&& other) notexcept;`|[이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.|
 |`assign()`|`void assign(size_type count, const Type& value)`<br/>`template<typename InputIterator>`<br/>`void assign(InputIterator first, InputIterator last)`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기존 요소를 지우고 `value`를 `count` 만큼 복사합니다.<br/>[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기존 요소를 지우고 `first`부터 `last`직전까지 복사합니다.|
 |`resize()`|`void resize(size_type new_size)`<br/>`void resize(size_type new_size, Type value)`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 새 크기를 지정하며, 기존 요소 갯수보다 크다면 `value`로 채웁니다. `value`가 없는 경우 요소의 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다.|
 |`size()`|`size_type size() const;`|컨테이너의 요소 갯수를 리턴합니다.|

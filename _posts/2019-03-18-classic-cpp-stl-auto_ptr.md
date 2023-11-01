@@ -12,7 +12,7 @@ sidebar:
 > * 복사 부하, [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/), 스마트 포인터를 이용하여 좀더 단단한 코딩 계약을 만들어라.
 
 > **모던 C++**
-> * (C++11~) [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권 이전용 스마트 포인터입니다. 기존 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 대체합니다. [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 미지원, `lvalue` 복사 대입 연산시 이동 동작을 하는 등의 사유로 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
+> * (C++11~) [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 소유권 이전용 스마트 포인터입니다. 기존 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 대체합니다. [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 미지원, `lvalue` [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 연산시 이동 동작을 하는 등의 사유로 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
 > * (C++11~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)은 소유권 공유용 스마트 포인터입니다.
 > * (C++11~) [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)은 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)의 상호 참조 문제를 해결합니다.
 
@@ -90,7 +90,7 @@ u1 = u2; //(X) 예외 발생. 기존 u1 것은 delete해야 하고, u1, u2는 �
 
 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 이러한 소유권 분쟁을 해결하기 위해 소유권을 이전하는 스마트 포인터 입니다.
 
-1. 복사 생성시, 복사 대입시 소유권을 이전합니다.
+1. [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)시, [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)시 소유권을 이전합니다.
 2. 소멸시 관리하는 개체를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)합니다.
 
 따라서 다음과 같이 `T* m_T;` 대신 `auto_ptr<T> m_T;`로 관리하면 소유권을 이전하면서 사용할 수 있습니다.
@@ -130,7 +130,7 @@ u1 = u2; //(O) 소유권을 u1으로 이전합니다.
 
 1. 생성시 `ptr`을 멤버 변수로 저장합니다.
 2. 소멸시 `m_Ptr`을 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)합니다.
-3. 복사 생성과 복사 대입 연산시 기존 포인터는 삭제하고, 신규 포인터를 저장 관리합니다. 이때 `other`가 관리하는 포인터는 `NULL`로 초기화하여 더이상 관리하지 않습니다.
+3. [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)과 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 연산시 기존 포인터는 삭제하고, 신규 포인터를 저장 관리합니다. 이때 `other`가 관리하는 포인터는 `NULL`로 초기화하여 더이상 관리하지 않습니다.
 4. `->`, `*`연산자를 오버로딩하여 관리하는 포인터에 접근할 수 있게 합니다.
 
 ```cpp

@@ -20,7 +20,7 @@ sidebar:
 
 # 개요
 
-[생성 후 대입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1-%ED%9B%84-%EB%8C%80%EC%9E%85--%ED%95%98%EC%A7%80-%EB%A7%88%EB%9D%BC)하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 [**예외 안전** 프로그래밍](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)에도 좋지 않습니다. [생성 후 대입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1-%ED%9B%84-%EB%8C%80%EC%9E%85--%ED%95%98%EC%A7%80-%EB%A7%88%EB%9D%BC) 과정에서 예외가 발생하면 난감해지니까요.(*[swap을 이용한 예외 안전 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고*)
+[생성 후 대입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1-%ED%9B%84-%EB%8C%80%EC%9E%85--%ED%95%98%EC%A7%80-%EB%A7%88%EB%9D%BC)하는 건, 생성과 대입의 2개 과정을 거쳐서 낭비입니다. 또한 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)에도 좋지 않습니다. [생성 후 대입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1-%ED%9B%84-%EB%8C%80%EC%9E%85--%ED%95%98%EC%A7%80-%EB%A7%88%EB%9D%BC) 과정에서 예외가 발생하면 난감해지니까요.(*[swap을 이용한 예외 보증 복사 대입 연산자](??) 참고*)
 
 또한, 개체 생성시 초기화를 하지 않으면, 초기화되지 않은 개체를 사용하는 실수를 할 수 있습니다. 그러니 ***항상 생성과 동시에 초기화*** 하는 것이 좋습니다.
 
@@ -141,7 +141,7 @@ T obj(); // T 타입의 obj 개체를 기본 생성자로 생성하고 싶지만
 |항목|의도|컴파일러 해석|
 |--|--|--|
 |`T obj();`|`T` 타입의 `obj` 개체를 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성하고 싶습니다.|`T` 타입을 리턴하는 함수 `obj()`를 선언합니다.|
-|`T obj(T());`|`T` 타입의 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성한 것을 `obj`에 복사 생성하고 싶습니다.|`T` 타입을 리턴하고, `T(*)()` [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받은 함수 `obj()`를 선언합니다.|
+|`T obj(T());`|`T` 타입의 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성한 것을 `obj`에 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)하고 싶습니다.|`T` 타입을 리턴하고, `T(*)()` [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받은 함수 `obj()`를 선언합니다.|
 
 따라서 상기 의도에 따른 표현은 다음과 같이 해야 합니다.
 

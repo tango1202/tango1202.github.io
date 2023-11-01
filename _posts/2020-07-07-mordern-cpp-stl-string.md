@@ -221,7 +221,7 @@ static const size_type npos = -1;
 |항목|내용|
 |--|--|
 |`basic_string()`|빈 `string` 개체를 생성합니다.|
-|`basic_string(const string& other)`|복사 생성합니다.|
+|`basic_string(const string& other)`|[복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
 |`basic_string(const value_type* ptr)`|C 언어 스타일의 문자열로부터 문자들을 복사하여 `string` 개체를 생성합니다.|
 |`basic_string(const string& other, size_type, offset, size_type count = npos)`<br/>`basic_string(const value_type* ptr, size_type count)`<br/>|`offset` 위치 부터 `count` 갯수만큼 문자들을 복사하여 `string`개체를 생성합니다.|
 |`basic_string(size_type count, value_type char_value)`|`char_value`를 `count`만큼 채운 `string`을 생성합니다.|
@@ -231,8 +231,8 @@ static const size_type npos = -1;
 
 |항목|내용|
 |--|--|
-|`operator =(const basic_stiring& other)`|`other`를 복사 대입합니다.|
-|`operator =(const basic_stiring&& other) noexcept` (C++11~)|`other`를 이동 대입합니다.|
+|`operator =(const basic_stiring& other)`|`other`를 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)합니다.|
+|`operator =(const basic_stiring&& other) noexcept` (C++11~)|`other`를 [이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
 |`+`|두 문자열을 연결하여 새로운 문자열을 만듭니다.|
 |`+=`|문자열에 문자나 문자열을 추가합니다.|
 |`==`<br/>`!=` (~C++20)|두 문자열이 같은지, 다른지 검사합니다. 단순히 포인터 비교하는게 아니라 실제 문자들을 비교합니다.|
@@ -372,7 +372,7 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |항목|내용|
 |--|--|
 |`basic_string_view()` (C++17~)|빈 [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-string_view) 개체를 생성합니다.|
-|`basic_string_view(const basic_string_view& other)` (C++17~)|복사 생성합니다. 이때 내부 관리 문자열은 참조만 하고 복제하지는 않습니다.|
+|`basic_string_view(const basic_string_view& other)` (C++17~)|[복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)합니다. 이때 내부 관리 문자열은 참조만 하고 복제하지는 않습니다.|
 |`basic_string_view(const value_type* ptr)` (C++17~)|C 언어 스타일의 문자열을 참조합니다.|
 |`basic_string_view(const value_type* ptr, size_type count)` (C++17~)|`count`길이([널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4) 포함)인 C 언어 스타일의 문자열을 참조합니다.|
 
@@ -380,7 +380,7 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 
 |항목|내용|
 |--|--|
-|`operator =(const basic_string_view& other)` (C++17~)|`other`를 복사 대입합니다.|
+|`operator =(const basic_string_view& other)` (C++17~)|`other`를 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)합니다.|
 |`==` (C++17~)<br/>`!=` (~C++20)|두 문자열이 같은지, 다른지 검사합니다. 단순히 포인터 비교하는게 아니라 실제 문자들을 비교합니다.|
 |`<, <=, >, >=` (~C++20)<br/>`<=>` (C++20~)|두 문자열을 대소 비교합니다.|
 |`<<, >>` (C++17~)|출력 스트림에 출력하거나, 입력 스트림에서 문자열을 추출합니다.|

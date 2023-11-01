@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 우측값에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.
+> * (C++11~) [멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.
 
 # 개요
 
-[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 우측값에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.
+[멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.
 
 ```cpp
 class T {
@@ -84,7 +84,7 @@ public:
 };
 ```
 
-`GetData()`를 호출하는 곳에서 복사 생성하지 않도록 `const Big_11&`를 리턴했습니다. 아주 좋네요.
+`GetData()`를 호출하는 곳에서 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)하지 않도록 `const Big_11&`를 리턴했습니다. 아주 좋네요.
 
 ```cpp
 A_11 a;
@@ -99,7 +99,7 @@ A_11 a;
 Big_11 big{a.GetData()}; 
 ```
 
-만약 `a`가 이제 버려질 값이라면, 복사 부하를 줄이기 위해 이동 생성자를 호출하는게 좋습니다. 하지만 다음과 같이 `A_11` 개체를 우측값으로 만들어 봤자, `GetData()`는 `const Big_11&`인 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴하므로, `Big_11`의 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)는 호출되지 않습니다. 
+만약 `a`가 이제 버려질 값이라면, 복사 부하를 줄이기 위해 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하는게 좋습니다. 하지만 다음과 같이 `A_11` 개체를 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)으로 만들어 봤자, `GetData()`는 `const Big_11&`인 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴하므로, `Big_11`의 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)는 호출되지 않습니다. 
 
 ```cpp
 // a은 좌측값. std::move(a_11)는 우측값. Big_11의 복사 생성자 호출
@@ -117,7 +117,7 @@ Big_11 big{A_11().GetData()};
 Big_11 big{std::move(A_11().GetData())}; 
 ```
 
-다음처럼 [const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)로 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 버려야 이동 생성을 할 수 있습니다.
+다음처럼 [const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)로 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 버려야 [이동 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)을 할 수 있습니다.
 
 ```cpp
 // Big_11의 이동 생성자 호출
@@ -143,7 +143,7 @@ public:
 };
 ```
 
-기존 `GetData()` 함수에 `&`을 붙였고, `GetData() &&` 오버로딩 버전이 추가되었습니다. 이제 `A_11`이 임시 개체(우측값) 일때는 알아서 `GetData() &&` 버전을 호출하므로, 사용하기 훨씬 수월합니다.
+기존 `GetData()` 함수에 `&`을 붙였고, `GetData() &&` 오버로딩 버전이 추가되었습니다. 이제 `A_11`이 [임시 개체](??)([우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)) 일때는 알아서 `GetData() &&` 버전을 호출하므로, 사용하기 훨씬 수월합니다.
 
 ```cpp
 // a은 좌측값. #1이 호출되어 const Big_11&을 리턴하고, Big_11의 복사 생성자 호출

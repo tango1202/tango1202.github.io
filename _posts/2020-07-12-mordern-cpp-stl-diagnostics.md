@@ -20,7 +20,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`=`|복사 대입합니다.|
+|`=`|[복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)합니다.|
 |`what()`|설명 문자열을 리턴합니다.|
 
 # 표준 예외

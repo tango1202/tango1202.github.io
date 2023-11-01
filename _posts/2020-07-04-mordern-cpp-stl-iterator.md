@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 합니다.
+> * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.
 
 # 이터레이터 기본 요소
 
@@ -32,7 +32,7 @@ sidebar:
 |`front_inserter()`|`front_insert_iterator`를 생성합니다.|
 |`insert_iterator`|컨테이너에 삽입합니다.|
 |`inserter()`|`insert_iterator`를 생성합니다.|
-|`move_iterator` (C++11~)|이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/) 합니다.|
+|`move_iterator` (C++11~)|이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.|
 |`make_move_iterator()` (C++11~)|`move_iterator`를 생성합니다.|
 |`basic_const_iterator` (C++23~)|(작성중)|
 |`const_iterator` (C++23~)|(작성중)|

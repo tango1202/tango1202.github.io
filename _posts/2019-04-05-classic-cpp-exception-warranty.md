@@ -33,7 +33,7 @@ sidebar:
 
 # 예외와 생성자
 
-다음처럼 일부 멤버 변수만 초기화 하고, 나중에 별도 함수를 호출하여 초기화를 마무리하면, 사용자가 실수로 빼먹을 수도 있고, **예외 안전** 프로그래밍에도 좋지 않습니다. 불완전하게 생성된 개체에 별도 Setter를 호출하여 완전하게 만드는 중에 예외가 발생하면, 이미 생성된 예외 안전 처리를 위해 소멸시켜야 하는데, 혹시나 이미 이 개체를 참조하는 곳이 있다면, 찾기도 힘들고, 찾았더라도 처리를 어찌해야 할지 난감해 지니까요.([예외와 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8%EC%99%80-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
+다음처럼 일부 멤버 변수만 초기화 하고, 나중에 별도 함수를 호출하여 초기화를 마무리하면, 사용자가 실수로 빼먹을 수도 있고, [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)에도 좋지 않습니다. 불완전하게 생성된 개체에 별도 Setter를 호출하여 완전하게 만드는 중에 예외가 발생하면, [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 처리를 위해 소멸시켜야 하는데, 혹시나 이미 이 개체를 참조하는 곳이 있다면, 찾기도 힘들고, 찾았더라도 처리를 어찌해야 할지 난감해 지니까요.([예외와 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8%EC%99%80-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
 
 생성자에서 예외 상황이 발생하면 생성한 멤버 변수를 소멸하고 예외를 발생시키면 됩니다.
@@ -222,7 +222,7 @@ T::~T() {
 
 # 예외 안전에 좋은 복사 대입 연산자
 
-[swap을 이용한 예외 안전 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)에 언급한 것처럼, `Swap()`을 이용하면 예외가 발생한 개체를 버림으로서 기본 보증과 강한 보증을 하게 됩니다. 단, 이때 `Swap()`은 예외를 발생시키지 말아야 합니다.
+[swap을 이용한 예외 보증 복사 대입 연산자](??)에 언급한 것처럼, `Swap()`을 이용하면 예외가 발생한 개체를 버림으로서 기본 보증과 강한 보증을 하게 됩니다. 단, 이때 `Swap()`은 예외를 발생시키지 말아야 합니다.
 
 ```cpp
 class T {
@@ -244,7 +244,7 @@ T& operator =(const T& other) {
 
 # 예외 안전에 좋은 nothrow swap
 
-[예외 안전에 좋은 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)의 언급처럼 `Swap()`은 예외를 방출하지 말아야 합니다. 만약 예외가 발생한다면, 바꿔치기 하다가 일부만 변경되고 중단된 것이어서 어떻게 복원해야 할지 난감합니다. 강한 보증을 하려면 예외 발생시 완벽하게 이전 상태로 가야 하기 때문에 `Swap()`은 예외를 발생시켜서는 안됩니다. 이러한 nothrow swap 구현은 [nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 와 [스마트 포인터를 이용한 PImpl 이디엄 구현](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/#%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EC%9D%B4%EB%94%94%EC%97%84-%EA%B5%AC%ED%98%84) 을 참고하세요.
+[예외 안전에 좋은 복사 대입 연산자](??)의 언급처럼 `Swap()`은 예외를 방출하지 말아야 합니다. 만약 예외가 발생한다면, 바꿔치기 하다가 일부만 변경되고 중단된 것이어서 어떻게 복원해야 할지 난감합니다. 강한 보증을 하려면 예외 발생시 완벽하게 이전 상태로 가야 하기 때문에 `Swap()`은 예외를 발생시켜서는 안됩니다. 이러한 nothrow swap 구현은 [nothrow swap - 포인터 멤버 변수를 이용한 swap 최적화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 와 [스마트 포인터를 이용한 PImpl 이디엄 구현](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-pimpl/#%EC%8A%A4%EB%A7%88%ED%8A%B8-%ED%8F%AC%EC%9D%B8%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EC%9D%B4%EB%94%94%EC%97%84-%EA%B5%AC%ED%98%84) 을 참고하세요.
 
 ```cpp
 class T {

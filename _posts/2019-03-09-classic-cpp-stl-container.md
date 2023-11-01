@@ -10,7 +10,7 @@ sidebar:
 
 > * 삽입/삭제 성능, 검색 성능, 노드 구성 용량 부하를 검토하여 최적의 컨테이너를 선택하라.
 > * 컨테이너의 변경이 용이하도록 코딩하라.
-> * 컨테이너 종류나 사용하는 알고리즘 함수에 따라 복사 생성자, [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), 비교 연산자를 구현하라.
+> * 컨테이너 종류나 사용하는 알고리즘 함수에 따라 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), 비교 연산자를 구현하라.
 
 > **모던 C++**
 > * (C++11~) [forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.

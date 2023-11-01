@@ -191,7 +191,7 @@ class T {
 
 # 리턴값 최적화(Return Value Optimization, RVO)
 
-일반적으로 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 다른 변수에 복사 생성 혹은 복사 대입됩니다.
+일반적으로 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 다른 변수에 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 혹은 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)됩니다.
 
 ```cpp
 class T {
@@ -639,7 +639,7 @@ EXPECT_TRUE(f(1.F) == 2); // (△) 비권장. float 버전이 없지만, double�
 
 2. [최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입에서 제거하고 취급합니다.
     
-    [복사 대입시 최상위 const 제거](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0) 의 언급처럼 [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)는 복사 대입시 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)이 제거될 수 있습니다.
+    [복사 대입시 최상위 const 제거](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0) 의 언급처럼 [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)는 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)시 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)이 제거될 수 있습니다.
     
     ```cpp
     const int constVal = 10;
@@ -863,7 +863,7 @@ EXPECT_TRUE(D::g() == 1); // C::MyFunc 이 채택됨
 5. `c->a->b`, 
 6. `c->b->a`
 
-의 6가지 경우의 수중 하나로 실행됩니다. 이점 유의해야 예외 안전 프로그래밍(*[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 참고*)과 쓰레드 프로그래밍(*[쓰레드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/) 참고*)을 할 수 있습니다. 
+의 6가지 경우의 수중 하나로 실행됩니다. 이점 유의해야 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)(*[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 참고*)과 쓰레드 프로그래밍(*[쓰레드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/) 참고*)을 할 수 있습니다. 
 
 `a()` 함수는 `a_sub()`의 결과를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받으므로, `a_sub()`보다 나중에 실행됨을 보증합니다.(*예를 들어 `b->a_sub->c->a`가 될 수도 있습니다.*)
 
