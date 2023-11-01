@@ -252,7 +252,21 @@ public:
 
 # 다차원 포인터
 
-(작성중)
+포인터를 가리키는 포인터를 만들 수 있습니다.
+
+```cpp
+int val = 10;
+int* p = &val; // val 의 포인터
+int** pp = &p; // p의 포인터. 즉 val의 포인터의 포인터
+
+EXPECT_TRUE(*p == 10);
+
+EXPECT_TRUE(*pp == p); // pp는 p를 가리킵니다.
+EXPECT_TRUE(**pp == 10); // *(*pp) == *(p) 이므로 **pp는 p가 가리키는 val 입니다.
+```
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cfc3aaa2-45ea-4663-a921-9c9e1f3fcf58)
+
 
 # 참조자 사용법
 

@@ -51,7 +51,7 @@ t.Func_11(10);
 t.Func_11('a'); // (X) 컴파일 오류. delete된 함수입니다.
 ```
 
-또한 특정 타입의 템플릿 인스턴스화를 차단할 수 있습니다. 
+또한 특정 타입의 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)를 차단할 수 있습니다. 
 
 다음 예에서는 `char`타입의 템플릿 함수 특수화를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 하여 `char`타입의 인스턴스화를 차단합니다.
 

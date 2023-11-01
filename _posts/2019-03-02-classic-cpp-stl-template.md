@@ -49,10 +49,10 @@ EXPECT_TRUE(myClass.Plus(10, 10) == 20);
 
 템플릿은 개체 타입만 변경하여 클래스나 함수를 생성할 수 있는 틀이고, 인스턴스화를 거쳐 클래스나 함수 코드를 생성합니다.
 
-템플릿은 템플릿 정의 부분과 [템플릿 인스턴스화](??) 부분으로 나뉩니다. 
+템플릿은 템플릿 정의 부분과 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 부분으로 나뉩니다. 
 
 1. 템플릿 정의 : 아직 타입이 구체화 되지 않은 상태(코드가 생성되지 않은 상태) 
-2. 템플릿 인스턴스화 : 지정한 타입과 바인딩되어 구체적인 클래스를 생성한 상태(코드가 생성된 상태)
+2. [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) : 지정한 타입과 바인딩되어 구체적인 클래스를 생성한 상태(코드가 생성된 상태)
 
 템플릿은 인스턴스화 될때 코드를 생성하므로, 템플릿 정의 시점에는 멤버 함수가 불완전해도 컴파일이 됩니다. 단, 인스턴스화 시점에는 컴파일에 필요한 정보를 모두 알고 있어야 합니다.
 
@@ -190,7 +190,7 @@ Add(10, 20); // Add<int>가 재정의 되어 포함됩니다.
 
 # export 템플릿
 
-템플릿 인스턴스화시 템플릿 정의가 필요하므로, 분할 컴파일이 되지 않으며, 외부에 모듈을 제공할 때 템플릿 정의 코드를 함께 제공해야 하는 문제가 있었습니다.([분할 컴파일을 위한 선언과 정의 분리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EB%B6%84%ED%95%A0-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC) 참고) 
+[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 템플릿 정의가 필요하므로, 분할 컴파일이 되지 않으며, 외부에 모듈을 제공할 때 템플릿 정의 코드를 함께 제공해야 하는 문제가 있었습니다.([분할 컴파일을 위한 선언과 정의 분리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EB%B6%84%ED%95%A0-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC) 참고) 
 
 이러한 문제를 해결하기 위해 템플릿 선언과 정의를 분리하는 `export`를 제공했는데요,
 
