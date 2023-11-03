@@ -29,8 +29,8 @@ int* p2 = p1; // 포인터가 가리키는 값 말고 포인터 값은 복사 �
 다음 예에서 `f()`함수는 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)인 `ref`를 전달해 봤자 값 타입으로 전달받습니다.(*[템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 참고*)
 
 ```cpp
-template<typename T, typename U, typename V>
-void f(T, U, V) {}
+template<typename U, typename V, typename W>
+void f(U, V, W) {}
 
 int val = 0;
 int* ptr = NULL;
@@ -39,7 +39,7 @@ int& ref = val;
 f(val, ptr, ref); // f<int, int*, int>(int, int*, int). 참조자가 제거됩니다.
 ```
 
-또한, [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 이름이 있는 변수로 전달 받는 순간 이름이 부여되서 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)가 됩니다.(*[이름이 부여된 우측값](??) 참고*)
+또한, [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 이름이 있는 변수로 전달 받는 순간 이름이 부여되서 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)가 됩니다.(*[이름이 부여된 우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%A6%84%EC%9D%B4-%EB%B6%80%EC%97%AC%EB%90%9C-%EC%9A%B0%EC%B8%A1%EA%B0%92) 참고*)
 
 ```cpp
 class A {};
@@ -471,18 +471,18 @@ Forwarding_11(a, ref, std::move(b));
 
 `std::forward<A&&>(param3)`의 경우는 특별히 `std::forward<A>(param3)`와 같이 `&&`없이 사용할 수 있습니다.(*[forward() 원리](??) 참고*)
 
-[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0) 라면 다음과 같이 `forward<T>()`, `forward<U>()`, `forward<V>()`와 같이 `&`나 `&&` 명시 없이 사용할 수 있습니다.(*[forward() 원리](??) 참고*)
+[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0) 라면 다음과 같이 `forward<U>()`, `forward<V>()`, `forward<W>()`와 같이 `&`나 `&&` 명시 없이 사용할 수 있습니다.(*[forward() 원리](??) 참고*)
 
 ```cpp
 class A {};
 void f_11(A param1, A& param2, A&& param3) {}
 
-template<typename T, typename U, typename V>
-void Forwarding_11(T&& param1, U&& param2, V&& param3) {
+template<typename U, typename V, typename W>
+void Forwarding_11(U&& param1, V&& param2, W&& param3) {
     f_11(
-        std::forward<T>(param1), // A&&로 전달합니다. param1은 Forwarding_11 함수에서 임시로 복사 대입 받은 것이므로, 임시 개체로 취급하고, f_11에 이동 대입한 후 버립니다.
-        std::forward<U>(param2), // A&로 전달합니다.
-        std::forward<V>(param3) // A&&로 전달합니다.
+        std::forward<U>(param1), // A&&로 전달합니다. param1은 Forwarding_11 함수에서 임시로 복사 대입 받은 것이므로, 임시 개체로 취급하고, f_11에 이동 대입한 후 버립니다.
+        std::forward<V>(param2), // A&로 전달합니다.
+        std::forward<W>(param3) // A&&로 전달합니다.
     );
 }
 
@@ -500,13 +500,13 @@ Forwarding_11(a, ref, std::move(b));
 [forward()](??) 함수는 STL에 대략 다음처럼 구현됩니다.
 
 ```cpp
-// #1
+// #1. 기본 템플릿 함수
 template<typename T> 
 T&& forward(typename remove_reference<T>::type& param) {
     return static_cast<T&&>(param);
 }
 
-// #2. 우측값 참조일 경우 오버로딩
+// #2. 우측값 참조일 경우 오버로딩 함수
 template<typename T>
 T&& forward(typename remove_reference<T>::type&& param) {
     return static_cast<T&&>(param);
@@ -517,219 +517,248 @@ T&& forward(typename remove_reference<T>::type&& param) {
 
 각 케이스별로 살펴 보겠습니다.
 
-**값 타입이 전달된 경우**
+1. **값 타입이 전달된 경우**
 
-```cpp
-class A {};
-void f(A val) {}
-void Forwarding_11(A param) {
-    f(std::forward<A>(param));
-}
-
-A a;
-Forwarding_11(a);
-```
-와 같이 사용한 경우 입니다. `#1` 오버로딩이 사용되며, `T == A`, `param == A` 입니다.
-
-`forward()` 함수는 다음처럼 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 됩니다.
-
-```cpp
-// #1. 템플릿 전개
-A + && forward(typename A + & param) {
-    return static_cast<A + &&>(param);
-}
-
-// [참조 축약]을 반영하면 다음과 같습니다. 즉 `A&` 를 전달받아 `A&&`로 리턴합니다.
-A&& forward(typename A& param) {
-    return static_cast<A&&>(param);
-}
-``` 
-
-즉, 다음처럼 값 타입으로 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달 받았다면, 전달 과정에서 또다시 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)하지 않도록 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)로 전달합니다.
-
-```cpp
-void f(T val) {}
-void Forwarding_11(T param) {
-    f(std::forward<T>(param)); // 우측값 참조로 전달합니다.
-}   
-```
-
-다만 다음과 같이 [forward()](??)로 이동된 `param`을 다시 사용한다면 낭패이니 주의하세요.
-
-```cpp
-void f(T val) {}
-void Forwarding_11(T param) {
-    f(std::forward<T>(param)); // 우측값 참조로 전달합니다.
-
-    param.GetData(); // (X) 오동작. param은 이동되었습니다. 사용하시면 안됩니다. 
-}   
-```
-
-[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)로 사용한 경우에 값 타입을 전달하면, 
-
-```cpp
-class A {};
-void f(A val) {}
-
-template<typename T>
-void Forwarding_11(T&& param) { // 전달 참조입니다. 값 타입을 전달하면, T == A, param은 A&입니다.
-    f(std::forward<T>(param));
-}
-```
-
-값 타입이 전달되었으므로 `param`은 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)가 됩니다. 즉,  `T == A`, `param == A&` 입니다. 
-
-따라서, [템플릿 인스턴스화](??)와 [참조 축약](??)을 반영하면, `A&& forward(typename A& param)` 형태로 동일합니다.
-
-```cpp
-// #1. 템플릿 전개
-A + && forward(typename A + & param) {
-    return static_cast<A + &&>(param);
-}
-
-// 참조 축약 버전
-A&& forward(typename A& param) {
-    return static_cast<A&&>(param);
-}
-``` 
-
-**[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입이 전달된 경우**
-
-```cpp
-class A {};
-void f(A& val) {}
-void Forwarding_11(A& param) {
-    f(std::forward<A&>(param));
-}
-
-A a;
-A& ref = a;
-Forwarding_11(ref);
-```
-
-와 같이 사용한 경우 입니다. `#1` 오버로딩이 사용되며, `T == A&`, `param == A&` 입니다.
-
-`forward()` 함수는 다음처럼 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 됩니다.
-
-```cpp
-// #1. 템플릿 전개
-A& + && forward(typename A + & param) {
-    return static_cast<A& + &&>(param);
-}
-
-// [참조 축약]을 반영하면 다음과 같습니다. 즉 `A&` 를 전달받아 `A&`로 리턴합니다.
-A& forward(typename A& param) {
-    return static_cast<A&>(param);
-}
-```
-
-[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)로 사용한 경우에 [좌측값 참조](??)를 전달하면, 
-
-```cpp
-class A {};
-void f(A& val) {}
-
-template<typename T>
-void Forwarding_11(T&& param) { // 전달 참조입니다. 좌측값 참조을 전달하면, T == A&, param은 A&입니다. 
-    // forward 함수에는 템플릿 인자로 T를 전달(즉, A&)합니다.
-    f(std::forward<T>(param));
-}
-```
-
-[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)가 전달되었으므로 `param`은 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)가 되어  즉, `T == A&`, `param == A&` 입니다. 
-
-따라서, [템플릿 인스턴스화](??)와 [참조 축약](??)을 반영하면, `A& forward(typename A& param)` 형태로 동일합니다.
-
-```cpp
-// #1. 템플릿 전개
-A& + && forward(typename A + & param) {
-    return static_cast<A& + &&>(param);
-}
-
-// 참조 축약 버전
-A& forward(typename A& param) {
-    return static_cast<A&>(param);
-}
-``` 
-
-**[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 타입이지만, 이름이 부여된 좌측값이 전달된 경우**
-
-```cpp
-class A {};
-void f(A&& val) {}
-void Forwarding_11(A&& param) {
-    f(std::forward<A&&>(param));
-}
-
-A a;
-Forwarding_11(std::move(a));
-```
-와 같이 사용한 경우 입니다. `#1` 오버로딩이 사용되며, `T == A&&`, `Forwarding_11()`이 전달받은 `param`은 `A&&` 이지만, `forward()`에 전달할때는 `A&` 입니다.
-
-
-
-`forward()` 함수는 다음처럼 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 됩니다.
-
-```cpp
-// #1
-A&& + && forward(typename A + & param) {
-    return static_cast<A&& + &&>(param);
-}
-
-이므로, 참조 축약을 반영하면 다음과 같습니다. 즉 `A&` 를 전달받아 `A&&`로 리턴합니다.
-
-A&& forward(typename A + & param) {
-    return static_cast<A&&>(param);
-}
-```
-
-    결국 `forward<T>`와 `forward<T&&>`는 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 결과가 동일합니다.
-
-
-4. [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 타입이 전달된 경우(T == A&&, param == A&&)
-
-    `forward()` 함수는 다음처럼 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 됩니다.
+    다음과 같이 `Forwarding_11()` 함수에 `A` 타입의 값을 전달한 경우 입니다. 
 
     ```cpp
-    // #2
+    class A {};
+    void f(A val) {}
+    void Forwarding_11(A param) {
+        f(std::forward<A>(param));
+    }
+
+    A a;
+    Forwarding_11(a);
+    ```
+
+    `#1` 오버로딩이 사용되며, `forward()`함수는 `T == A`, `param == A` 로 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)됩니다.
+
+    ```cpp
+    // #1. 템플릿 전개
+    A + && forward(typename A + & param) {
+        return static_cast<A + &&>(param);
+    }
+
+    // [참조 축약]을 반영하면 다음과 같습니다. 즉 `A&` 를 전달받아 `A&&`로 리턴합니다.
+    A&& forward(typename A& param) {
+        return static_cast<A&&>(param);
+    }
+    ``` 
+
+    눈여겨 볼 점은, 값 타입으로 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달 받았다면, 전달 과정에서 또다시 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)하지 않도록 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)로 전달한다는 것입니다.
+
+    ```cpp
+    void f(T val) {}
+    void Forwarding_11(T param) {
+        f(std::forward<T>(param)); // 우측값 참조로 전달합니다.
+    }   
+    ```
+
+    따라서 다음과 같이 [forward()](??)로 이동된 `param`을 다시 사용한다면 낭패이니 주의하세요.
+
+    ```cpp
+    void f(T val) {}
+    void Forwarding_11(T param) {
+        f(std::forward<T>(param)); // 우측값 참조로 전달합니다.
+
+        param.GetData(); // (X) 오동작. param은 이동되었습니다. 사용하시면 안됩니다. 
+    }   
+    ```
+
+2. **좌측값 참조 타입이 전달된 경우**
+
+    다음과 같이 `Forwarding_11()` 함수에 `A&` 타입의 값을 전달한 경우 입니다. 
+
+    ```cpp
+    class A {};
+    void f(A& val) {}
+    void Forwarding_11(A& param) {
+        f(std::forward<A&>(param));
+    }
+
+    A a;
+    A& ref = a;
+    Forwarding_11(ref);
+    ```
+
+    `#1` 오버로딩이 사용되며, `forward()`함수는 `T == A&`, `param == A&` 로 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)됩니다. 
+
+    ```cpp
+    // #1. 템플릿 전개
+    A& + && forward(typename A + & param) {
+        return static_cast<A& + &&>(param);
+    }
+
+    // [참조 축약]을 반영하면 다음과 같습니다. 즉 `A&` 를 전달받아 `A&`로 리턴합니다.
+    A& forward(typename A& param) {
+        return static_cast<A&>(param);
+    }
+    ```
+
+3. **우측값 참조 타입이지만, 이름이 부여된 좌측값이 전달된 경우**
+
+    다음과 같이 `Forwarding_11()` 함수에 `A&&` 타입의 값을 전달한 경우입니다. 
+
+    ```cpp
+    class A {};
+    void f(A&& val) {}
+    void Forwarding_11(A&& param) {
+        f(std::forward<A&&>(param)); // param은 우측값을 참조하는 좌측값입니다.
+    }
+
+    A a;
+    Forwarding_11(std::move(a));
+    ```
+
+    `#1` 오버로딩이 사용되며, `T == A&&` 이고, `Forwarding_11()`이 전달받은 `param`은 `A&&` 이지만 이름이 부여됐기 때문에 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)인 `A&` 입니다. 따라서 `forward()`함수에는 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 전달되므로, `param == A&` 로 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)됩니다. 
+
+    ```cpp
+    // #1. 템플릿 전개
+    A&& + && forward(typename A + & param) {
+        return static_cast<A&& + &&>(param);
+    }
+
+    // 참조 축약을 반영하면 다음과 같습니다. 즉 `A&` 를 전달받아 `A&&`로 리턴합니다.
+    A&& forward(typename A + & param) {
+        return static_cast<A&&>(param);
+    }
+    ```
+
+    `std::forward<A>(param)` 로 전달하는 경우도 살펴보면,
+
+    ```cpp
+    // #1. 템플릿 전개
+    A + && forward(typename A + & param) {
+        return static_cast<A + &&>(param);
+    }
+
+    // 참조 축약을 반영하면 다음과 같습니다. 즉 `A&` 를 전달받아 `A&&`로 리턴합니다.
+    A&& forward(typename A& param) {
+        return static_cast<A&&>(param);
+    }
+    ```
+
+    `std::forward<A&&>(param)` 와 동일하게 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)됩니다.
+
+    즉, `forward<A>`와 `forward<A&&>`는 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 결과가 동일하므로, 구분해서 호출할 것 없이 `forward<A>`로 호출해도 됩니다.
+
+
+4. **[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 타입이 전달된 경우**
+
+    다음과 같이 `Forwarding_11()`함수 내에서 직접 `move()`등으로 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 형변환한 경우입니다.
+
+    ```cpp
+    class A {};
+    void f(A&& val) {}
+    void Forwarding_11(A& param) {
+        f(std::forward<A&&>(std::move(param))); // move() 함수로 우측값으로 형변환 합니다.
+    }
+
+    A a;
+    Forwarding_11(a);
+    ```
+
+    이경우에는 `#2` 오버로딩이 사용되며, `T == A&&`, `param == A&&` 로 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)됩니다.
+
+    ```cpp
+    // #1. 템플릿 전개
     A&& + && forward(typename A + && param) {
         return static_cast<A&& + &&>(param);
     }
 
-    이므로 [참조 축약]을 반영하면 다음과 같습니다. 즉 `A&&` 를 전달받아 `A&&`로 리턴합니다.
-
-    ```cpp
+    // [참조 축약]을 반영하면 다음과 같습니다. 즉 `A&&` 를 전달받아 `A&&`로 리턴합니다.
     A&& forward(typename A&& param) {
         return static_cast<A&&>(param);
     }
     ```
 
-    `forword<A>`와 같이 `A`를 전달하더라도 동일하게 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 됩니다.
+    `std::forward<A>(param)` 로 전달하는 경우도 살펴보면,
 
     ```cpp
-     A + && forward(typename A + && param) {
+    // #1. 템플릿 전개
+    A + && forward(typename A + && param) {
         return static_cast<A + &&>(param);
-    }  
-    
-    이므로,
+    }
 
+    // 참조 축약을 반영하면 다음과 같습니다. 즉 `A&&` 를 전달받아 `A&&`로 리턴합니다.
     A&& forward(typename A&& param) {
         return static_cast<A&&>(param);
-    }     
+    }
     ```
 
-결론적으로 전달되는 타입에 따라 다음과 같이 변환합니다. [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)인 경우만 빼고는 모두 forward<T>의 형태로 호출할 수 있습니다.
+    `std::forward<A&&>(param)` 와 동일하게 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)됩니다.
 
-|항목|형태|리턴값|
+    즉, `forward<A>`와 `forward<A&&>`는 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 결과가 동일하므로, 구분해서 호출할 것 없이 `forward<A>`로 호출해도 됩니다.
+
+
+결론적으로 전달되는 타입에 따라 다음과 같이 변환합니다. [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)인 경우만 빼고는 모두 `forward<T>`의 형태로 호출할 수 있습니다.
+
+|항목|형태|[리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)|
 |--|--|--|
 |값 타입|`forward<T>(값타입)`|`T&&`|
 |[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)|`forward<T&>(좌측값 참조)`| `T&`|
 |[함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)처럼 [우측값을 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)하는 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)|`forward<T&&>(좌측값 참조)`<br/>`forward<T>(좌측값 참조)`| `T&&`|
 |[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)|`forward<T&&>(우측값 참조)`<br/>`forward<T>(우측값 참조)`|`T&&`|
 
-[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)인 경우는 모두 `forward<T>`의 형태로 호출할 수 있습니다.
+[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)인 경우는 다음과 같이 `forward<U>()`, `forward<V>()`, `forward<W>()`와 같이 모두 `&`나 `&&` 명시 없이 사용할 수 있습니다.
 
+```cpp
+class A {};
+void f_11(A param) {}
+void g_11(A& param) {}
+void h_11(A&& param) {}
 
+template<typename U, typename V, typename W>
+void Forwarding_11(U&& param1, V&& param2, W&& param3) {
+
+    // 전달 참조는 값타입을 좌측값 참조로 받습니다.
+    // 따라서, U == A&, param1 == A& 이므로
+    // T == A&, param == A& 로 템플릿 인스턴스화 합니다.
+    // template<typename T> 
+    // A& + && forward(A + & param) {
+    //    return static_cast<A& + &&>(param);
+    // }
+    // 즉, A&를 A&로 형변환 합니다.
+    f_11(std::forward<U>(param1));
+
+    // 전달 참조는 좌측값 참조 타입을 좌측값 참조로 받습니다.
+    // 따라서, V == A&, param1 == A& 이므로
+    // T == A&, param == A& 로 템플릿 인스턴스화 합니다.
+    // template<typename T> 
+    // A& + && forward(A + & param) {
+    //    return static_cast<A& + &&>(param);
+    // }
+    // 즉, A&를 A&로 형변환 합니다.
+    g_11(std::forward<V>(param2));
+
+    // 전달 참조는 우측값 참조 타입을 우측값 참조로 받습니다.
+    // 따라서, W == A&&, param3 == A& 이므로
+    // T == A&&, param == A& 로 템플릿 인스턴스화 합니다.
+    // template<typename T> 
+    // A&& + && forward(A + & param) {
+    //    return static_cast<A&& + &&>(param);
+    // }
+    // 즉, A&를 A&&로 형변환 합니다.
+    h_11(std::forward<W>(param3));
+}
+
+A a;
+A b;
+A& ref = a;
+
+Forwarding_11(a, ref, std::move(b));
+```
+
+결론적으로는 다음과 같습니다.
+
+|항목|[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)의 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)|[forward()](??) 함수의 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)|[리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)|
+|--|--|--|--|
+|값 타입|`U == A&, param1 == A&`|`T == A&, param == A&`|`T&`|
+|[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)|`V == A&, param1 == A&`|`T == A&, param == A&`| `T&`|
+|[함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)처럼 [우측값을 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)하는 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)|`W == A&&, param3 == A&`|`T == A&&, param == A&`|`T&&`|
+
+[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)가 아닌 경우 값 타입은 `T&&`로 변환하지만, [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)인 경우는 `T&`로 변환되는 점이 다릅니다.
 
 MEC++29 참조 축약을 숙지하라.
 
