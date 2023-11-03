@@ -10,7 +10,7 @@ sidebar:
 
 > * [MEC++#11] 정의되지 않은 비공개 함수보다 삭제된 함수를 선호하라([delete를 이용한 암시적 형변환과 템플릿 인스턴스화 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#delete%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98%EA%B3%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94-%EC%B0%A8%EB%8B%A8))
 > * [MEC++#12] 재정의 함수들을 override로 선언하라(오버라이드가 안되는 사용자 실수를 감지해준다.)
->   * 멤버 함수 참조 한정자로 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value), 좌측값을 구분해서 함수 호출 가능[이동 연산을 지원하는 래퍼](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%84-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-%EB%9E%98%ED%8D%BC)
+>   * 멤버 함수 참조 한정자로 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value), 좌측값을 구분해서 함수 호출 가능
 
 > * (C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.
 > * (C++11~)  [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.
