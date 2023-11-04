@@ -12,7 +12,19 @@ sidebar:
 >   * move 구현 원리, const를 move할때 주의하라.
 >   * forward는 우측값 참조일때만 우측값 참조로 변환한다.
 
-> * [MEC++#24] 전달 참조와 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 구별하라.([전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0))
+
+> * [MEC++#24] 전달 참조와 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 구별하라.
+> * [MEC++#25] [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)에는 std::move()를, 전달 참조에는 std::forward()를 사용하라.
+>   * forward()가 적합한 곳에 move()를 잘못 사용하지 마라.
+>   * 전달 참조를 이용하면 함수 오버로딩 수가 줄어든다.
+>   * 값 타입 리턴은 리턴값 최적화를 한다. 괜히 move() 사용하지 마라.
+>   * 인자를 리턴할때 move()를 고려하라. 
+> * [MEC++#26] 전달 참조에 대한 오버로딩을 피하라.
+>   * 전달 참조 버전이 생각보다 광범위하게 매칭됩니다. 따라서 전달 참조를 사용하는 함수는 오버로딩 하지 않는게 좋습니다.
+> * [MEC++#27] 전달 참조에 대한 오버로딩 대신 사용할 수 있는 기법들을 알아 두라.
+>   * 전달 참조내에서 오버로딩 타입을 검사하여 직접 분기함.
+>   * enable_if를 이용하여 전달 참조 버전이 특정 조건에서 오버로딩 되지 않도록 제한함
+> * [MEC++#28] 참조 축약을 숙지하라.
 
 > * (C++11~) [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)가 추가되어 포워딩 함수에서도 효율적으로 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달할 수 있습니다.
 
@@ -72,7 +84,9 @@ void Forwarding_11(A&& param) { // 함수 인자는 이름이 부여됐으므로
 }
 ```
 
-[참조 축약](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%B0%B8%EC%A1%B0-%EC%B6%95%EC%95%BD)을 활용한 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC) 함수를 이용하여 [완벽하게 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)하는 방법이 좀더 효율적이고 직관적입니다. 
+[move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)는 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)와 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 모두 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)로 바꿔버리기 때문에 포워딩에 적절하지는 않습니다.
+
+포워딩에서는 [참조 축약](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%B0%B8%EC%A1%B0-%EC%B6%95%EC%95%BD)을 활용한 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC) 함수를 이용하여 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 전달하고, [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)로 전달하는 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 하는게 더 좋습니다.
 
 # 참조 축약
 
@@ -683,24 +697,263 @@ void Forwarding2_11(A param) { // #2. 일반 버전
 }
 ```
 
+# 전달 참조를 이용한 함수 오버로딩
+
+[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)를 이용하면 오버로딩 함수의 갯수를 줄일 수 있습니다.
+
+예를 들어 `string`개체를 세팅하는 함수는 다음의 3가지 버전이 필요합니다.
+
+```cpp
+class A {
+    std::string m_String;
+public:
+    void SetString(const std::string& str) {m_String = str;} // lvalue 로 세팅
+    void SetString(std::string&& str) {m_String = str;} // 임시 개체이면 이동 연산을 위해 rvalue로 세팅
+    void SetString(const char* str) {m_String = str;} // const char*로 세팅.    
+};
+```
+
+[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)를 이용하면 다음 한개의 함수로 구현할 수 있습니다. 코드량을 현저히 줄일 수 있죠.
+
+```cpp
+class A {
+    std::string m_String;
+public:
+    template<typename T>
+    void SetString_11(T&& param) { // 전달 참조
+        // const T& 를 전달받으면 const T& 전달
+        // T&& 를 전달받으면 T&& 전달
+        // const char* 를 전달받으면 cosnt char* 전달
+        m_String = std::forward<T>(param); 
+    }
+}; 
+
+A a;
+
+std::string str = "Hello";
+a.SetString_11(str);
+a.SetString_11(std::move(str));
+a.SetString_11("World");
+```
+
+하지만, [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)를 사용한 함수는 거의 대부분의 타입과 매칭되어 원하지 않는 타입까지 호출해버리는 문제가 있습니다. 
+
+다음 코드를 보면, `short`, `char`등 `int`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)되는 타입들도 `Func_11(int)`이 아닌 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0) 버전을 호출하는데요,
+
+```cpp
+class A {
+public:
+    template<typename T>
+    int Func_11(T&& param) {return 1;} // 어지간 하면, 다 전달 참조 버전이 호출됩니다.
+    int Func_11(int) {return 2;}
+}; 
+
+A a;
+
+EXPECT_TRUE(a.Func_11(1) == 2);
+EXPECT_TRUE(a.Func_11((short)1) == 1); // 전달 참조 버전이 호출됩니다.
+EXPECT_TRUE(a.Func_11((char)'a') == 1); // 전달 참조 버전이 호출됩니다.
+```
+
+이는 [오버로딩된 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99)에서 언급한 바와 같이 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 보다는 타입 완전 일치가 우선이기 때문입니다. [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)의 추론 버전은 타입이 완전히 일치하거든요.
+
+따라서 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)를 제공하는 함수는 오버로딩 하지 않는게 좋습니다. 
+
+하지만, 꼭 해야 하는 경우가 생긴다면, [CloneTraits 구현](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/#clonetraits-%EA%B5%AC%ED%98%84)에서 처럼 `Tag`를 이용하여 오버로딩할 수 있습니다.
+
+다음은 기본적으로 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)버전을 호출한뒤 함수내에서 정수 계열인지 아닌지 검사하여 `FuncInternal_11(T&&, false_type)`와 `FuncInternal_11(T&&, true_type)`으로 분기합니다.(*`is_integral`, `true_type`, `false_type`은 [타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/)를 참고하시기 바랍니다.*)
+
+```cpp
+class A {
+public:
+    template<typename T>
+    int Func_11(T&& param) {
+        FuncInternal_11(
+            std::forward<T>(param),
+            std::is_integral<typename std::remove_reference<T>::type>() // 정수 타입이면 true_type, 아니면 false_type
+        );
+    }
+
+    template<typename T> 
+    int FuncInternal_11(T&& param, std::false_type) {return 1;} // 정수 외 계열이 호출합니다.
+
+    int FuncInternal_11(int, std::true_type) {return 2;} // 정수 계열이 호출합니다.
+}; 
+
+A a;
+
+EXPECT_TRUE(a.Func_11(1) == 2);
+EXPECT_TRUE(a.Func_11((short)1) == 2); 
+EXPECT_TRUE(a.Func_11((char)'a') == 2);  
+EXPECT_TRUE(a.Func_11("Hello") == 1);  
+```
+
+또한, [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)로 생성자를 만들면 좀더 심각해 집니다.
+
+`A_11 b(a);` 와 같이 실행해도 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)가 실행되지 않거든요. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 `const A_11&` 이고 `a`는 `A_11&`이니까요. 그래서 `const_cast<const A_11&>`로 형변환해야 합니다.
+
+```cpp
+class A_11 {
+public:
+    int m_Val;
+public:
+    A_11() {m_Val = 0;}
+
+    template<typename T>
+    A_11(T&& param) {m_Val = 1;} // 어지간 하면, 다 전달 참조 버전이 호출됩니다.
+    
+    A_11(const A_11& other) {m_Val = 2;} // 복사 생성자
+}; 
+
+A_11 a;
+
+A_11 b(a); // 복사 생성자를 불러봐도 A_11&로 평가되어 전달 참조 버전이 호출됩니다.
+EXPECT_TRUE(b.m_Val == 1);
+
+A_11 c(const_cast<const A_11&>(a)); // 강제로 const A_11& 로 바꾸면 복사 생성자가 호출됩니다.
+EXPECT_TRUE(c.m_Val == 2);    
+```
+
+[const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)를 써야 하다니, [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)를 안쓰고 말지, [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)은 정말 싫죠. 다행히 우회할 방법이 있습니다.
+
+[enable_if()](??)를 이용하면 되는데요,
+
+1. `typename = enable_if<조건>::type`으로 조건이 거짓이면 [SFINAE](??)에 의해 오버로딩 함수 후보 목록에서 제외되게 합니다.
+2. [is_integral](??) 로 `T`가 정수 타입인지 검사합니다.
+3. [decay](??)를 이용하여 `T`의 [참조성](??)을 제거하고 검사합니다.
+
+다음예에서는 `A_11 b(a)`로 복사 생성자가 호출되고, `A_11 c(val)`로 전달 참조 버전 생성자가 호출되됩니다.
+
+```cpp
+class A_11 {
+public:
+    int m_Val;
+public:
+    A_11() {m_Val = 0;}
+
+    template< 
+        typename T, 
+        typename = typename std::enable_if< // 조건이 거짓이면 type이 정의되지 않아 오버로딩 함수 후보 목록에서 제외됩니다.
+            std::is_integral< 
+                typename std::decay<T>::type // 전달된 T의 참조성을 제거한 타입을 검사합니다.
+            >::value // 조건. 정수형 타입이면 true 입니다.
+        >::type // 조건이 true인 경우에만 enable_if<>::type이 정의됩니다.
+    >
+    A_11(T&& param) {m_Val = 1;} // 정수 타입만, 전달 참조 버전이 호출되도록 합니다.
+    
+    A_11(const A_11& other) {m_Val = 2;} // 복사 생성자
+}; 
+
+A_11 a;
+
+A_11 b(a); // 복사 생성자가 호출됩니다.
+EXPECT_TRUE(b.m_Val == 2);
+
+int val;
+A_11 c(val); // 전달 참조 버전이 호출됩니다.
+```
+
+# forward()가 적합한 곳에 move()의 잘못된 사용
+
+[forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC) 가 적합한 곳에 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 잘못 사용하면, 좌측값까지 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)되어 데이터가 무효화되어 사용할 수 없게 됩니다. 
 
 
+```cpp
+class A {
+    std::string m_String;
+public:
+    template<typename T>
+    void SetString_11(T&& str) { // 전달 참조
+        // forward() 가 적합한데, move()를 사용했습니다. 무조건 이동 연산 합니다.
+        m_String = std::move<T>(str); 
+    }
+}; 
+
+A a;
+
+std::string str = "Hello";
+a.SetString_11(str);
+
+std::string str2 = str; // 이동 연산되어 str의 값은 무효화되었습니다.
+EXPECT_TRUE(str2.empty() == true); 
+```
+
+따라서, 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 그냥 전달하는 것인지, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 하는 것인지 잘 구분해서 적용해야 합니다.
 
 
-MEC++29 참조 축약을 숙지하라.
+# 값 타입 리턴에서 move()의 비효율성
 
+`A_11` 클래스 타입을 리턴하는 함수 `f()`를 다음과 같이 구현하여 사용할 수 있는데요,
 
+```cpp
+class A_11 {
+public:
+    A_11() {std::cout << "A_11 : Default Constructor" << std::endl;}    
+    A_11(const A_11&) {std::cout << "A_11 : Copy Constructor" << std::endl;}  
+    A_11(A_11&&) {std::cout << "A_11 : Move Constructor" << std::endl;}  
+    
+    A_11& operator =(const A_11& other) = delete;
+    A_11& operator =(A_11&& other) = delete;
+};
+```
 
+다음과 같이 호출하면,
+
+```cpp
+A_11 f() {
+    A_11 result; // 지역 변수를 정의합니다.
+    return result; // 리턴하면서 임시 개체를 생성합니다.
+}
+``` 
+
+ `f()`에서 `result`를 생성하면서 1회, `f()`에서 리턴한 값으로 `a`를 생성하면서 2회 생성될 것 같지만, [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)에 의해 리턴할 개체 `result`를 그냥 `a`로 사용하게 하여 1회만 생성됩니다. 
+
+```cpp
+A_11 : Default Constructor
+```
+
+하지만, 불필요한 복사 연산을 최소화 하겠다며, 직접 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 이용하여 리턴하면,  
+
+```cpp
+A_11 f_11() {
+    A_11 result; // 지역 변수를 정의합니다.
+    return std::move(result); // 리턴하면서 임시 개체를 이동합니다.
+}  
+```
+
+다음과 같이 [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)는 동작하지 않고, [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90) 1회와 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90) 1회가 호출됩니다.
+
+```cpp
+A_11 : Default Constructor
+A_11 : Move Constructor
+```
+
+불필요한 복사 연산은 없지만, [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)할때보다 [이동 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)이 추가되어 오히려 비효율적입니다. 따라서 값 타입을 리턴할때는 직접 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 사용하여 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 하기 보다는 그냥 [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)를 사용하는 편이 훨씬 낫습니다.
+
+혹여나 컴파일러가 [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)를 할 수 없다면, 리턴되는 개체를 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)으로 취급하므로, 굳이 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 사용할 필요는 없습니다.
+
+# 값 타입 인자, 우측값 타입 인자를 리턴할 경우 move()의 효율성
+
+인자를 다시 리턴하는 함수라면 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move) 사용을 고려하는게 좋습니다. 
+
+```cpp
+A f_11(A param) {
+    return std::move(param); // param은 f_11 함수에서만 사용하므로, 리턴시에 이동시켜도 무방합니다.
+} 
+A g_11(A& param) {
+    return std::move(param); // (△) 비권장. param은 다른 곳에서 사용할 수도 있는 왼쪽값 참조이므로 함부로 이동시키면 안됩니다.
+}
+A h_11(A&& param) {
+    return std::move(param); // param은 우측값이므로 임시 개체 이므로, 리턴시에 이동시켜도 무방합니다.
+} 
+```
 
 # forward()를 이용한 완벽한 전달
 
-MEC++#25 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)에는 std::move()를, 전달 참조에는 std::forward()를 사용하라.
+
 MEC++#30 완벽한 전달이 실패하는 경우들을 잘 알아둬라
 
-# 전달 참조의 오버로딩
 
-MEC++#26 전달 참조에 대한 오버로딩을 피하라.
-MEC++#27 전달 참조에 대한 오버로딩 대신 사용할 수 있는 기법들을 알아 두라
 
 
 

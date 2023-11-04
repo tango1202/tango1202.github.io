@@ -202,7 +202,7 @@ f<10>(a); // 명시적으로 10을 전달하여 A<10> 타입이 됨. 같은 타�
 
 # 템플릿 함수 오버로딩 결정 규칙
 
-서로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다른 함수들은 오버로딩 후보군에서 가장 적합한 것으로 결정됩니다.([오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고)
+서로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다른 함수들은 오버로딩 후보군에서 가장 적합한 것으로 결정됩니다.(*[오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
 
 
 하지만 템플릿 함수의 경우는 정의시에는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다르지만, 인스턴스화 과정에서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 오버로딩 버전(**좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.)을 선택하게 됩니다.
@@ -486,4 +486,113 @@ EXPECT_TRUE(f(ch, p) == 2);
 // (X) 컴파일 오류. 어느것을 호출할지 모호함.
 EXPECT_TRUE(f(i, p) == 2);
 ```
+
+# SFINAE(Substitution failure is not an error)
+
+
+[SFINAE](??)는 ***[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 과정에서 발생할 수 있는 대체 실패는 컴파일 오류가 아니다***라는 뜻입니다.
+
+다음 `A`클래스를 보면, `Int`와 `Char`라는 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)을 가지고 있고, `f()` 함수는 이를 사용하고 있습니다.
+
+`f<A>()`를 사용한다면, 
+
+```cpp
+class A {
+public:
+    typedef int Int; // 종속 타입
+    typedef char Char; // 종속 타입                
+};
+
+template<typename T>
+typename T::Int f(typename T::Int param) {
+    return 1;
+};
+template<typename T>
+typename T::Char f(typename T::Char param) {
+    return 2;
+};
+
+EXPECT_TRUE(f<A>(10) == 1);
+EXPECT_TRUE(f<A>('a') == 2);
+```
+
+전달한 인수에 부합하는 함수를 호출하기 위해, [템플릿 함수 오버로딩 결정 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 다음 오버로딩 함수 후보군이 만들어지고, [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 가장 적합한 함수가 호출됩니다.
+
+```cpp
+A::Int f(A::Int param); // typename T::Int f(typename T::Int param)
+A::Char f(A::Char param); // typename T::Char f(typename T::Char param)
+```
+
+다음 `B`클래스는, [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85) 이 `Int`만 있고, `Char`는 없습니다.
+
+`f<B>()`를 사용한다면, 
+
+```cpp
+class B {
+public:
+    typedef int Int; // 종속 타입
+};
+
+EXPECT_TRUE(f<B>(10) == 1);
+EXPECT_TRUE(f<B>('a') == 1);  
+```
+
+다음과 같은 오버로딩 함수 후보 목록이 생깁니다.
+
+```cpp
+B::Int f(B::Int param); // typename T::Int f(typename T::Int param)
+B::Char f(B::Char param); // typename T::Char f(typename T::Char param)
+```
+
+하지만, `B`에는 `Char` [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)이 없으니 `B::Char f(B::Char param);` 는 대체 실패를 합니다. 이러한 실패는 컴파일 오류가 아니며, 그냥 오버로딩 함수 후보 목록에서 제외합니다. 이걸 [SFINAE](??) 라고 합니다. 
+
+따라서 오버로딩 함수 후보 목록은 다음 하나밖에 없으며,
+
+```cpp
+B::Int f(B::Int param); // typename T::Int f(typename T::Int param)
+```
+
+다음 코드는 합법적으로 실행됩니다.
+
+```cpp
+EXPECT_TRUE(f<B>(10) == 1);
+EXPECT_TRUE(f<B>('a') == 1); // int 타입으로 암시적 형변환되어 호출됩니다. 
+```
+
+[SFINAE](??)는 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)에서만 평가됩니다. 
+
+따라서, 다음 코드는
+
+```cpp
+class A {
+public:
+    typedef int Int; // 종속 타입
+    typedef char Char; // 종속 타입
+};
+
+template<typename T>
+typename T::Int f(typename T::Int param) {
+    return 1;
+};
+template<typename T>
+typename T::Char f(typename T::Char param) {
+    typename T::ResultType result = 2; // A에는 ResultType이 없습니다.
+    return result;
+};
+```
+
+다음과 같은 2개의 오버로딩 함수 후보 목록을 만드는데요,
+
+```cpp
+A::Int f(A::Int param); // typename T::Int f(typename T::Int param)
+A::Char f(A::Char param); // typename T::Char f(typename T::Char param)
+```
+
+`f<A>(10)`를 호출하면, `A::Int f(A::Int param);`이 호출되어 정상 동작하지만, `f<A>('a')`는 `ResultType`이 없으므로, 컴파일 오류를 발생시킵니다.
+
+```cpp
+EXPECT_TRUE(f<A>(10) == 1);
+EXPECT_TRUE(f<A>('a') == 2); // (X) 컴파일 오류. ResultType이 없습니다.
+```
+
 

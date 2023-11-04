@@ -219,9 +219,9 @@ T t1(0, 0);
 T t2(t1.f()); // T t2 = t1.f(); 와 동일
 ```
 
-상기에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴하면서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 3회, `t2`를 생성하면서 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 전달받는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하여 4회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
+상기에서 `T` 개체는 `t1`생성시 1회, `f()`에서 `result`를 생성하면서 2회, `f()`에서 리턴한 값으로 `t2`를 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)하면서 3회 생성될 것 같지만, 실제 확인해 보면 그렇지 않습니다.
 
-GCC에서는 하기 2개만 실행됩니다. 심지어 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 호출되지도 않습니다.(*컴파일러 최적화 방식에 따라 다를 수 있습니다.*)
+GCC에서는 하기 2개만 실행됩니다. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 호출되지도 않습니다.(*컴파일러 최적화 방식에 따라 다를 수 있습니다.*)
 
 ```cpp
 RVO -> T::T() // t1 생성
@@ -260,6 +260,7 @@ return result; // (△) 비권장. 컴파일러가 최적화를 못할 수도 �
 ```cpp
 return result(0, 0); // (O) 임시 개체를 생성하는게 컴파일러가 최적화하기 편합니다.
 ```
+
 > *(C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)등이 표준화 되었습니다.*
 
 # 값 타입 리턴값
@@ -773,7 +774,7 @@ const int& constRef = val;
 오버로딩한 함수를 탐색할때 해당 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) 에서도 동일한 이름의 함수를 탐색한다는 규칙입니다. 
 Argument-dependent lookup(*ADL*) 또는 Koenig 검색이라고 합니다. 
 
-구체적인 사례는 [오버로딩 함수 탐색 규칙]()을 참고하세요.
+구체적인 사례는 [오버로딩 함수 탐색 규칙](??)을 참고하세요.
 
 # 오버로딩 함수 탐색 규칙
 

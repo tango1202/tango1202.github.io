@@ -51,8 +51,26 @@ EXPECT_TRUE(myClass.Plus(10, 10) == 20);
 
 템플릿은 템플릿 정의 부분과 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 부분으로 나뉩니다. 
 
-1. 템플릿 정의 : 아직 타입이 구체화 되지 않은 상태(코드가 생성되지 않은 상태) 
-2. [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) : 지정한 타입과 바인딩되어 구체적인 클래스를 생성한 상태(코드가 생성된 상태)
+1. 템플릿 정의 : 아직 타입이 구체화 되지 않은 상태(*코드가 생성되지 않은 상태*) 
+2. [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) : [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)가 지정한 타입으로 대체되어 구체적인 클래스를 생성한 상태(*코드가 생성된 상태*)입니다.
+
+    다음 템플릿 클래스는
+    ```cpp
+    template<typename T> 
+    class MyClass {
+    public:
+        T Plus(T left, T right) const {return left + right;}    
+    };
+    ```
+    
+    `MyClass<int>`와 같이 인스턴스화 하면 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) `T`가 `int`로 대체되어 다음과 같아집니다.
+
+    ```cpp
+    class MyClass<int> {
+    public:
+        int Plus(int left, int right) const {return left + right;}    
+    };
+    ```
 
 템플릿은 인스턴스화 될때 코드를 생성하므로, 템플릿 정의 시점에는 멤버 함수가 불완전해도 컴파일이 됩니다. 단, 인스턴스화 시점에는 컴파일에 필요한 정보를 모두 알고 있어야 합니다.
 

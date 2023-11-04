@@ -29,6 +29,17 @@ class A {};
 A<int, char> a; 
 ```
 
+만약 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 `A`에서 사용하지 않는다면, 인자명을 생략할 수 있습니다.
+
+```cpp
+// 인자를 사용하지 않는다면, 인자명을 생략할 수 있습니다.
+template<typename, typename> 
+class A {};
+
+// int, char : 인자에 대응되는 인수(Argument) 집합
+A<int, char> a;   
+```
+
 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)는 다음처럼 타입, 템플릿 개체, 비 템플릿 개체, 템플릿 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)로 작성할 수 있습니다.
 
 1. 타입
