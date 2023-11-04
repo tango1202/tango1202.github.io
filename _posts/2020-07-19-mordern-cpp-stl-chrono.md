@@ -29,12 +29,12 @@ C++11 부터 STL 에서는 좀더 다양한 정확도로 시간을 추적할 수
 
 ```cpp
 template<typename Func, typename... Params>
-std::chrono::microseconds Measure(Func func, Params... params) {
+std::chrono::microseconds Measure(Func func, Params&&... params) {
     // func 실행전 time_point 측정
     std::chrono::system_clock::time_point start{std::chrono::system_clock::now()};    
 
     // func 실행
-    func(params...);
+    func(std::forward<Params>(params)...);
 
     // func 실행 후 time_point 측정
     std::chrono::system_clock::time_point end{std::chrono::system_clock::now()};

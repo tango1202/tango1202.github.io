@@ -180,7 +180,7 @@ ThreeType three;
 |`aligned_storage`(C++11~C++23)|(작성중)|
 |`aligned_union`(C++11~C++23)|(작성중)|
 |`decay` (C++11~)|[참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90), `const`, `volatile`등의 속성을 떼고, 타입으로 만듭니다. 즉 `const int&`이던 `int&&`이던 모두 `int`가 됩니다. 또한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 만듭니다. <br/>이와는 반대로 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 붙여서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
-|[enable_if](??) (C++11~)|지정한 조건이 참인 경우만 템플릿을 활성화 합니다.|
+|[enable_if](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#enable_if) (C++11~)|지정한 조건이 참인 경우만 템플릿을 활성화 합니다.|
 |`conditional` (C++11~)|(작성중)|
 |`common_type` (C++11~)|(작성중)|
 |`underlying_type` (C++11~)|(작성중)|
@@ -192,7 +192,7 @@ ThreeType three;
 
 # enable_if
 
-주어진 조건이 참인 경우만 템플릿을 활성화 시킵니다. 내부적으로 [SFINAE](??)를 이용합니다. 즉, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), 리턴 타입, [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)등에 사용하여 조건이 참이어서 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 `type`이 정의되어 있으면 오버로딩 함수 후보군으로 활성화 시키고, 정의되어 있지 않으면 비활성 시킵니다.
+주어진 조건이 참인 경우만 템플릿을 활성화 시킵니다. 내부적으로 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)를 이용합니다. 즉, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), 리턴 타입, [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)등에 사용하여 조건이 참이어서 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 `type`이 정의되어 있으면 오버로딩 함수 후보군으로 활성화 시키고, 정의되어 있지 않으면 비활성 시킵니다.
 
 ```cpp
 template<bool B, class T = void>
@@ -216,7 +216,7 @@ EXPECT_TRUE(Sum(std::string("Hello"), std::string("World")) == std::string("Hell
 
 다음처럼 정수 타입만 실행되게 수정할 수 있습니다.
 
-1. `typename U = enable_if<조건>::type`으로 조건이 거짓이면 [SFINAE](??)에 의해 오버로딩 함수 후보 목록에서 제외되게 합니다.(*이때 `U`는 사용되지 않으므로, `typename = enable_if<조건>::type` 와 같이 생략하는게 좋습니다.*)
+1. `typename U = enable_if<조건>::type`으로 조건이 거짓이면 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)에 의해 오버로딩 함수 후보 목록에서 제외되게 합니다.(*이때 `U`는 사용되지 않으므로, `typename = enable_if<조건>::type` 와 같이 생략하는게 좋습니다.*)
 
 2. `std::is_integral<T>::value` 로 `T`가 정수 타입인지 검사합니다.
 

@@ -774,7 +774,7 @@ const int& constRef = val;
 오버로딩한 함수를 탐색할때 해당 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/) 에서도 동일한 이름의 함수를 탐색한다는 규칙입니다. 
 Argument-dependent lookup(*ADL*) 또는 Koenig 검색이라고 합니다. 
 
-구체적인 사례는 [오버로딩 함수 탐색 규칙](??)을 참고하세요.
+구체적인 사례는 [오버로딩 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99)을 참고하세요.
 
 # 오버로딩 함수 탐색 규칙
 
