@@ -63,7 +63,7 @@ travial 이면서 표준 레이아웃인 타입입니다. 메모리 레이아웃
 * 스칼라 타입
 * 참조자
 * 리터럴 타입의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
-* 람다 함수
+* 람다 표현식
 * 집합 타입
   * 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없으며 모든 멤버 변수가 `public`인 구조체나 클래스
 * (C++14~) `void`

@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#14] 예외를 방출하지 않을 함수는 noexcept로 선언하라.(noexcept는 최적화 여지가 크다. 이동 연산, swap, 소멸자는 noxcept로)
+> * [MEC++#14] 예외를 방출하지 않을 함수는 noexcept로 선언하라.(noexcept는 최적화 여지가 크다. 이동 연산, swap, 소멸자는 noxcept로 만들어라.)
 
 > * (C++11~) [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 이용하여 함수의 예외 방출 여부를 보증합니다.
 > * (C++11~) [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다.

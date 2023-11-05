@@ -8,25 +8,22 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#23] std::move와 std::forward를 숙지하라.
->   * move 구현 원리, const를 move할때 주의하라.
->   * forward는 우측값 참조일때만 우측값 참조로 변환한다.
-
+> * [MEC++#23] std::move와 std::forward를 숙지하라.([move 원리](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#move-%EC%9B%90%EB%A6%AC), [상수 개체의 move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4%EC%9D%98-move). [forward() 와 완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC), [forward() 원리](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%9B%90%EB%A6%AC) 참고)
 
 > * [MEC++#24] 전달 참조와 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 구별하라.
 > * [MEC++#25] [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)에는 std::move()를, 전달 참조에는 std::forward()를 사용하라.
->   * forward()가 적합한 곳에 move()를 잘못 사용하지 마라.
->   * 전달 참조를 이용하면 함수 오버로딩 수가 줄어든다.
->   * 값 타입 리턴은 리턴값 최적화를 한다. 괜히 move() 사용하지 마라.
->   * 인자를 리턴할때 move()를 고려하라. 
-> * [MEC++#26] 전달 참조에 대한 오버로딩을 피하라.
+>   * forward()가 적합한 곳에 move()를 잘못 사용하지 마라.([forward()가 적합한 곳에 move()의 잘못된 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward%EA%B0%80-%EC%A0%81%ED%95%A9%ED%95%9C-%EA%B3%B3%EC%97%90-move%EC%9D%98-%EC%9E%98%EB%AA%BB%EB%90%9C-%EC%82%AC%EC%9A%A9) 참고)
+>   * 전달 참조를 이용하면 함수 오버로딩 수가 줄어든다.([전달 참조를 이용한 함수 오버로딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고)
+>   * 값 타입 리턴은 리턴값 최적화를 한다. 괜히 move() 사용하지 마라.([값 타입 리턴에서 move()의 비효율성](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EA%B0%92-%ED%83%80%EC%9E%85-%EB%A6%AC%ED%84%B4%EC%97%90%EC%84%9C-move%EC%9D%98-%EB%B9%84%ED%9A%A8%EC%9C%A8%EC%84%B1) 참고)
+>   * 인자를 리턴할때 move()를 고려하라.([값 타입 인자, 우측값 타입 인자를 리턴할 경우 move()의 효율성](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EA%B0%92-%ED%83%80%EC%9E%85-%EC%9D%B8%EC%9E%90-%EC%9A%B0%EC%B8%A1%EA%B0%92-%ED%83%80%EC%9E%85-%EC%9D%B8%EC%9E%90%EB%A5%BC-%EB%A6%AC%ED%84%B4%ED%95%A0-%EA%B2%BD%EC%9A%B0-move%EC%9D%98-%ED%9A%A8%EC%9C%A8%EC%84%B1) 참고)
+> * [MEC++#26] 전달 참조에 대한 오버로딩을 피하라.([전달 참조를 이용한 함수 오버로딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고)
 >   * 전달 참조 버전이 생각보다 광범위하게 매칭됩니다. 따라서 전달 참조를 사용하는 함수는 오버로딩 하지 않는게 좋습니다.
-> * [MEC++#27] 전달 참조에 대한 오버로딩 대신 사용할 수 있는 기법들을 알아 두라.
->   * 전달 참조내에서 오버로딩 타입을 검사하여 직접 분기함.
->   * enable_if를 이용하여 전달 참조 버전이 특정 조건에서 오버로딩 되지 않도록 제한함
-> * [MEC++#28] 참조 축약을 숙지하라.
+> * [MEC++#27] 전달 참조에 대한 오버로딩 대신 사용할 수 있는 기법들을 알아 두라.([전달 참조를 이용한 함수 오버로딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고)
+>   * 전달 참조내에서 오버로딩 타입을 검사하여 Tag 개체를 이용하여 직접 분기하여 호출할 수 있습니다.
+>   * enable_if를 이용하여 전달 참조 버전이 특정 조건에서 오버로딩 되지 않도록 제한할 수 있습니다.
+> * [MEC++#28] 참[참조 축약](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%B0%B8%EC%A1%B0-%EC%B6%95%EC%95%BD)을 숙지하라.
 > * [MEC++#30] 완벽 전달이 실패하는 경우들을 잘 알아두라.
->   * 중괄호 초기화는 직접 전달 참조 안됨. 전달 참조와 중괄호 초기화 참고.
+>   * 중괄호 초기화는 전달 참조와 궁합이 잘 안맞습니다([전달 참조와 중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0%EC%99%80-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)
 
 > * (C++11~) [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)가 추가되어 포워딩 함수에서도 효율적으로 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 [완벽하게 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)할 수 있습니다.
 

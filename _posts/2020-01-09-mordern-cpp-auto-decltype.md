@@ -20,9 +20,9 @@ sidebar:
 > * [MEC++#3] decltype의 작동 방식을 숙지하라.
 >   * 왼값 표현식에 대해 항상 T&로 추론한다.
 > * [MEC++#4] 연역된 형식을 파악하는 방법을 알아둬라.
->   * IDE, 컴파일러 진단, 실행시점 출력(typeid 부정확)
+>   * IDE, 컴파일러 진단, 실행시점 출력(typeid 부정확)등이 있다.
 > * [MEC++#5] 명시적 선언보다는 auto를 선호하라.([auto의 장점](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto%EC%9D%98-%EC%9E%A5%EC%A0%90)참고)
-> * [MEC++#6] auto가 원치 않은 형식으로 연역될 때에는 명시적 형식의 초기치를 사용하라.([암시적 형변환과 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98%EA%B3%BC-auto))
+> * [MEC++#6] auto가 원치 않은 형식으로 연역될 때에는 명시적 형식의 초기치를 사용하라.([암시적 형변환과 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98%EA%B3%BC-auto) 참고)
 
 > * (C++11~) 값으로부터 타입을 추론하는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)이 추가되어 코딩이 간편해 졌습니다.
 > * (C++11~) [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 의존하여 리턴 타입을 결정하는 [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 추가되어 좀더 동적인 함수 설계가 가능해 졌습니다.
@@ -169,7 +169,7 @@ auto d_11 = {1, 2}; // d는 initializer_list<int>
 
 하지만, `auto val_11 = MyInt(11);`와 같이 표현하면, `val_11`은 `MyInt`타입입니다. 따라서, `int&`로 변환할 수 없습니다. 
 
-이걸 해결하려면, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 사용하지 않고 `int`로 명시하던지, [static_cast<int>](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)로 명시적으로 변환하던지 해야 합니다. 
+이걸 해결하려면, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 사용하지 않고 `int`로 명시하던지, `static_cast<int>`로 명시적으로 변환하던지 해야 합니다. 
 
 하지만, [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)에서 말씀드렸듯, 근본적으로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 사용하지 마세요.
 
