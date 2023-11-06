@@ -378,12 +378,12 @@ public:
     T::Destructor    
     ```
 
-3. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용하더라도, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 변수에 저장하고 호출하는 것은 추가의 복사 부하가 없습니다.
+3. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용하고, [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)를 변수에 저장하고 호출하는 것은 추가의 복사 부하가 없습니다. 즉, 2와 동일합니다.
 
     ```cpp
     T t;
     auto f_11{
-            [=]() { // auto 변수에 저장하고, 호출합니다.   
+            [=]() { // 변수에 저장하고, 호출합니다.   
             t; 
             std::cout << "Run Lambda" << std::endl;
         }
@@ -398,7 +398,7 @@ public:
     T::Destructor
     ```
 
-4. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용할때 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 변수들 끼리 복제하면 추가의 복사 부하가 발생합니다.
+4. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용할때 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 끼리 복제하면 추가의 복사 부하가 발생합니다.
 
     ```cpp
     T t;
@@ -408,7 +408,7 @@ public:
             std::cout << "Run Lambda" << std::endl;
         }
     }; 
-    auto f2_11{f1_11}; // 복사 부하가 발생합니다.
+    auto f2_11{f1_11}; // 클로저를 복제합니다. 복사 부하가 발생합니다.
     f1_11();
     f2_11();
     ```
@@ -416,7 +416,7 @@ public:
     ```cpp
     T::Default Constructor
     T::Copy Constructor // 람다 캡쳐시 복사 생성자를 호출하여 const 복제본을 만듭니다.
-    T::Copy Constructor // f2{f1}시 복제본을 만듭니다. 추가 복사 부하가 있습니다.
+    T::Copy Constructor // f2{f1}시 클로저 복제본을 만듭니다. 추가 복사 부하가 있습니다.
     Run Lambda
     Run Lambda
     T::Destructor
@@ -517,6 +517,7 @@ EXPECT_TRUE(Forwarding_14(std::move(val)) == 2);
 |[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)|`decltype(param) == int&, param == int&`|`T == int&, param == int&`|`int&`|
 |[함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)처럼 [우측값을 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)하는 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)|`decltype(param) == int&&, param == int&`|`T == int&&, param == int&`|`int&&`|
 
+따라서 [일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에서는 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)을 이용하여 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 할 수 있습니다.
 
 ```cpp
 int f_11(int&) {return 1;}
@@ -539,7 +540,7 @@ EXPECT_TRUE(Forwarding_14(std::move(val)) == 2); // 전달 참조에서 우측�
 
 # (C++17~) constexpr 람다 표현식
 
-C++17 부터 [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 요구사항이 충족되면 암시적으로 컴파일 타임 함수로 만들어지고,[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr) 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.
+C++17 부터 [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 요구사항이 충족되면 암시적으로 컴파일 타임 함수로 만들어지고, [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr) 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.
 
 ```cpp
 // 명시적 constexpr 람다 표현식 입니다.
