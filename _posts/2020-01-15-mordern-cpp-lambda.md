@@ -11,11 +11,12 @@ sidebar:
 > * [MEC++#31] 기본 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90) 모드를 피하라.
 >   * [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)하는 항목을 나열하는게 직관적이다.
 >   * `[=]`는 `this`를 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)한다.
-> * [MEC++#32] 객체를 [클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 안으로 이동하려면 초기화 갈무리를 사용하라.
+> * [MEC++#32] 객체를 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 안으로 이동하려면 초기화 갈무리를 사용하라.(*[클로저에 이동 연산 전달](??) 참고*)
+> * [MEC++#33] forward()를 통해서 전달할 auto&& 인자는 decltype을 사용하라.(*[일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 참고*)
 
 > * (C++11~) [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 1회용 익명 함수를 만들 수 있습니다. 
 > * (C++14~) [람다 캡쳐 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90-%EC%B4%88%EA%B8%B0%ED%99%94)로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
-> * (C++14~) [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받아 마치 템플릿 함수처럼 동작하는 [일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)가 추가되었습니다.
+> * (C++14~) [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받아 마치 [템플릿 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98)처럼 동작하는 [일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)가 추가되었습니다.
 > * (C++17~) [람다 캡쳐시 *this 를 이용](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90)하여 개체 자체를 복제하여 사용합니다.
 > * (C++17~) [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)가 추가되어 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)도 컴파일 타임 함수로 만들 수 있습니다.
  
@@ -24,7 +25,7 @@ sidebar:
 
 C++11 부터는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)을 추가하여 함수 지향 프로그래밍이 좀 더 간편해 졌습니다.
 
-[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)은 `prvalue` 타입(*[값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 참고*)의 1회용 익명 함수자를 만들며, 이를 [클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 라고 합니다. 
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)은 `prvalue` 타입(*[값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 참고*)의 1회용 익명 함수자를 만들며, 이를 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 라고 합니다. 
 
 # 람다 표현식
 
@@ -60,7 +61,7 @@ int f(int a, int b) {
 
 # 람다 표현식 리턴 생략
 
-[후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 생략되면, 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)에 의해 추론됩니다.([리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0) 참고)
+[후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 생략되면, 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)에 의해 추론됩니다.(*[리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0) 참고*)
 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 없으면 `void`로 추론됩니다.
 
 ```cpp
@@ -69,9 +70,9 @@ int f(int a, int b) {
 
 # 클로저 호출(람다 표현식 실행)
 
-일반 함수를 호출하려면 `f(10, 20)` 와 같이 호출하는데요, [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)으로 작성된 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)을 호출하려면 다음과 같이 합니다.
+일반 함수를 호출하려면 `f(10, 20)` 와 같이 호출하는데요, [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)으로 작성된 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)를 호출하려면 다음과 같이 합니다.
 
-1. [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)으로부터 생성된 [클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)를 변수에 저장한뒤 호출할 수 있고,
+1. [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)으로부터 생성된 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)를 변수에 저장한뒤 호출할 수 있고,
 
     ```cpp
     auto f_11{
@@ -81,7 +82,7 @@ int f(int a, int b) {
     EXPECT_TRUE(val == 30);
     ```
 
-2. [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에 `()`을 붙여 바로 [클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)를 호출할 수 있습니다.
+2. [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에 `()`을 붙여 바로 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)를 호출할 수 있습니다.
 
     ```cpp
     int val_11{
@@ -121,10 +122,9 @@ EXPECT_TRUE(sum == 1 + 2 + 3);
 
 `[=]`나 `[&]` 는 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)되는 대상이 무엇인지 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 본문을 확인해야 알 수 있으므로 `[&var1, &var2]`와 같이 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)하는 항목을 나열하는게 좀 더 직관적이여서 좋습니다.
 
+# 람다 캡쳐 시점
 
-**람다 캡쳐 시기**
-
-[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)은 [클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)가 생성될 때 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)를 합니다. 따라서, [클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)를 생성한 시점과 호출한 시점이 다르면, 값이 다를 수 있습니다.
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)은 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)가 생성될 때 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)를 합니다. 따라서, [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)를 생성한 시점과 호출한 시점이 다르면, 값이 다를 수 있습니다.
 
 ```cpp
 int val{1};
@@ -156,7 +156,7 @@ int& ref{c};
 EXPECT_TRUE(b == 20);         
 ```
 
-이런 경우 [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)을 사용하면 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)한 개체를 수정할 수 있으나, 원본이 아닌 복제본만 수정됩니다.(*원본을 수정하려면 참조 캡쳐를 이용하셔야 합니다.*)
+이런 경우 [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)을 사용하면 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)한 개체를 수정할 수 있으나, 원본이 아닌 복제본만 수정됩니다.(*원본을 수정하려면 [참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)를 이용하셔야 합니다.*)
 
 ```cpp
 int a{1};
@@ -173,7 +173,7 @@ int& ref{c};
 EXPECT_TRUE( a == 1 && b == 20 && c == 3);         
 ```
 
-개체의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 내에서 사용할 때에는 값 캡쳐시 [this 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)가 복제되어 개체의 내부 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정할 수 있습니다.
+개체의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 내에서 사용할 때에는 [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)시 [this 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)가 복제되어 개체의 내부 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정할 수 있습니다.
 
 ```cpp
 class T {
@@ -202,7 +202,7 @@ EXPECT_TRUE(t.GetMember() == 10); // 멤버 변수가 수정되어 있습니다.
 
 # 참조 캡쳐
 
-참조 캡쳐를 이용하면, [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)한 개체를 수정할 수 있습니다.
+[참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)를 이용하면, [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)한 개체를 수정할 수 있습니다.
 
 ```cpp
 int a{1};
@@ -219,9 +219,9 @@ int& ref{c};
 EXPECT_TRUE( a == 10 && b == 20 && c == 30);     
 ```
 
-# 클로저로 이동 연산 전달
+# 클로저에 이동 연산 전달
 
-[캡처](??)는 값 캡처를 이용한 [복사 대입](??)과, 참조 캡처를 이용한 참조로 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 내부에 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 바깥 부분의 개체 정보들을 전달합니다. 그런데, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)으로 전달하려면 어떻게 할까요?
+[람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)는 [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 이용한 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)과, [참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)를 이용한 참조로 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 내부에 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 바깥 부분의 개체 정보들을 전달합니다. 그런데, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)으로 전달하려면 어떻게 할까요?
 
 다음과 같이 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)만 지원하는 개체 `A_11`이 있다고 합시다.
 
@@ -238,7 +238,7 @@ public:
 };
 ```
 
-다음과 같이 값 캡쳐는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)가 없으므로 사용할 수 없습니다.
+다음과 같이 [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)가 없으므로 사용할 수 없습니다.
 
 ```cpp
 A_11 a; // 기본 생성과 이동 생성만 가능한 개체입니다.
@@ -246,7 +246,7 @@ A_11 a; // 기본 생성과 이동 생성만 가능한 개체입니다.
 [a]() {a;}(); // (X) 컴파일 오류. 복사 생성자가 delete 되었습니다.
 ```
 
-물론 참조 캡쳐는 이용할 수 있으나, 이동된 것은 아니죠.
+물론 [참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)는 이용할 수 있으나, 이동된 것은 아니죠.
 
 ```cpp
 A_11 a; // 기본 생성과 이동 생성만 가능한 개체입니다.
@@ -259,11 +259,14 @@ A_11 a; // 기본 생성과 이동 생성만 가능한 개체입니다.
 1. `func_11`은 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 저장합니다. 추후 `func_11()`와 같이 호출해 주어야 합니다.
 2. [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)로 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 생성합니다. 
 
-    이때 첫번째 인자는 함수처럼 호출될 수 있는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 입니다. [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)으로 만들어진 [클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 처럼요.
+    이때 첫번째 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 함수처럼 호출될 수 있는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 입니다. [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)으로 만들어진 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 처럼요.
 
-    두번째 인자는 첫번째 인자인 [클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)에 인수로 전달될 개체입니다. 
+    두번째 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 첫번째 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)인 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)에 인수로 전달될 개체입니다. 
 
-    [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 `Closure(param);`의 형태로 호출하는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 생성합니다.
+    결과적으로 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 `Closure(param);`의 형태로 호출하는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 생성합니다.
+3. [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)으로 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)를 전달합니다. 여기서 `const A_11& param`를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용하는데요, [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)로부터 생성된 개체(*#4에서 생성된 개체*)를 참조로 전달받습니다. 
+4. `std::move(a)`로 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 전달합니다. [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 이값을 개체로 저장(*`변수 = 우측값 참조;`이다 보니, [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)가 호출됩니다.*)하고 있다가 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 호출하는 #5 시점에 사용합니다.
+5. [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 실행합니다. 즉, 함수를 호출합니다.
 
 ```cpp
 A_11 a; // 기본 생성과 이동 생성만 가능한 개체입니다.
@@ -274,12 +277,23 @@ auto func_11 { // #1. bind 개체를 저장합니다. func_11() 형태로 호출
         std::move(a) // #4. 우측값 참조. bind 내에서 이동 생성자로부터 생성된 개체가 만들어 집니다.
     )
 };
-func_11(); // 함수를 호출합니다.
+func_11(); // #5. 함수를 호출합니다.
+```
+
+> *(C++14~) [람다 캡쳐 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90-%EC%B4%88%EA%B8%B0%ED%99%94)로 람다내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다. 이를 이용하면 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)으로 전달하는게 훨씬 간단해 집니다.*
+
+```cpp
+A_11 a; // 기본 생성과 이동 생성만 가능한 개체입니다.
+
+auto f_14{
+    [b = std::move(a)](){b;} // a를 이동 생성한 b를 사용합니다.
+}; 
+f_14();
 ```
 
 # 클로저 대입
 
-[클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)을 이용하여 변수에 대입할 수 있습니다.
+[클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)와 [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)을 이용하여 변수에 대입할 수 있습니다.
 
 1. [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)(*단, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)이기 때문에 [함수의 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용할 수 없습니다.*)
     
@@ -300,7 +314,7 @@ func_11(); // 함수를 호출합니다.
     EXPECT_TRUE(f_11(10, 20) == 30);
     ```
 
-3. [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)(*[람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)도 지원하고, 함수 인자로 사용할 수도 있습니다.*)
+3. [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)(*[람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)도 지원하고, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용할 수도 있습니다.*)
     
     ```cpp
     std::function<int(int, int)> f_11;
@@ -314,12 +328,12 @@ func_11(); // 함수를 호출합니다.
 
 # 클로저 복사 부하
 
-[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에서 값 캡쳐를 사용하면, 
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에서 [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용하면, 
 
 1. [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)시에 복사 부하가 있으며, 
-2. [클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)간 복사시에도 복사 부하가 있으므로,
+2. [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)간 복사시에도 복사 부하가 있으므로,
 
-참조 캡쳐를 이용하는게 좋습니다.
+[참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)를 이용하는게 좋습니다.
 
 다음 `T`클래스는 생성자와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출을 탐지하기 위한 테스트 클래스입니다.
 
@@ -334,7 +348,7 @@ public:
 };
 ```
 
-1. 값 캡쳐던, 참조 캡쳐던, 해당 개체를 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에서 사용하지 않으면 복사하지 않습니다.
+1. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)던, [참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)던, 해당 개체를 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에서 사용하지 않으면 복사하지 않습니다.
 
     ```cpp
     T t;
@@ -346,7 +360,7 @@ public:
     T::Destructor
     ```
 
-2. 값 캡쳐를 사용하면, 대상 개체가 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에 사용될때, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하여, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 복제본을 만듭니다.
+2. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용하면, 대상 개체가 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에 사용될때, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하여, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 복제본을 만듭니다.
 
     ```cpp
     T t;
@@ -364,7 +378,7 @@ public:
     T::Destructor    
     ```
 
-3. 값 캡쳐를 사용하더라도, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 변수에 저장하고 호출하는 것은 추가의 복사 부하가 없습니다.
+3. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용하더라도, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 변수에 저장하고 호출하는 것은 추가의 복사 부하가 없습니다.
 
     ```cpp
     T t;
@@ -384,7 +398,7 @@ public:
     T::Destructor
     ```
 
-4. 값 캡쳐를 사용할때 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 변수들 끼리 복제하면 추가의 복사 부하가 발생합니다.
+4. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용할때 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 변수들 끼리 복제하면 추가의 복사 부하가 발생합니다.
 
     ```cpp
     T t;
@@ -410,7 +424,7 @@ public:
     T::Destructor
     ```
 
-5. 참조 캡쳐를 사용하면 복사 부하가 없습니다.
+5. [참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)를 사용하면 복사 부하가 없습니다.
 
     ```cpp
     T t;
@@ -433,10 +447,10 @@ public:
 
 # (C++14~) 람다 캡쳐 초기화
 
-C++14 부터는 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)시에 [람다 표현식](??)내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
-정의한 변수는 초기값이 지정되어야 하며, [람다 표현식](??) 내에서만 사용할 수 있습니다. 
+C++14 부터는 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)시에 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)내에서 사용하는 임의 변수를 정의하여 사용할 수 있습니다.
+정의한 변수는 초기값이 지정되어야 하며, [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 내에서만 사용할 수 있습니다. 
 
-[클로저(Closure)](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 생성시에 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)하므로, [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)을 여러번 호출하더라도 기존 값이 유지됩니다. 
+[클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 생성시에 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)하므로, [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)을 여러번 호출하더라도 기존 값이 유지됩니다. 
 
 ```cpp
 // 클로저 생성시 람다 내에서 사용할 수 있는 val_14 변수를 만들어 람다 캡쳐 합니다.
@@ -453,7 +467,7 @@ EXPECT_TRUE(f_14() == 3);
 
 # (C++14~) 일반화된 람다 표현식
 
-C++14 부터는 [람다 표현식](??)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있어, 마치 [템플릿 함수](??)처럼 동작하게 할 수 있습니다. 다만 [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0)에서와 같이 [auto의 중괄호 초기화 특수 추론 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8A%B9%EC%88%98-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99)은 적용되지 않습니다.
+C++14 부터는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있어, 마치 [템플릿 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98)처럼 동작하게 할 수 있습니다. 다만 [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0)에서와 같이 [auto의 중괄호 초기화 특수 추론 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8A%B9%EC%88%98-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99)은 적용되지 않습니다.
 
 ```cpp
 auto add_14{
@@ -462,6 +476,65 @@ auto add_14{
 
 EXPECT_TRUE(add_14(1, 2) == 3);
 EXPECT_TRUE(add_14(std::string{"hello"}, std::string{"world"}) == "helloworld");
+```
+
+마치 [템플릿 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98)와 유사하죠.
+
+```cpp
+template<typename T, typename U> 
+auto add_14(T a, U b) {
+    return a + b;
+} 
+
+EXPECT_TRUE(add_14(1, 2) == 3);
+EXPECT_TRUE(add_14(std::string{"hello"}, std::string{"world"}) == "helloworld");
+```
+
+하지만 템플릿 표현이 아니다 보니 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 위한 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0) 구문을 사용하기 어렵습니다.
+
+```cpp
+int f_11(int&) {return 1;}
+int f_11(int&&) {return 2;}
+
+auto Forwarding_14{
+    [](auto&& param) {
+        return f_11(std::forward<??>(param)); // (X) 컴파일 오류. 템플릿이라면 템플릿 인자 T를 전달하면 되는데, ??에 무얼 전달해야 할까요? 
+    }
+}; 
+
+int val;
+int& ref = val;
+EXPECT_TRUE(Forwarding_14(val) == 1);
+EXPECT_TRUE(Forwarding_14(ref) == 1);
+EXPECT_TRUE(Forwarding_14(std::move(val)) == 2);
+```
+
+다행히 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0) 인 변수를 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)을 해보면, [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 나오고, [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)로 나옵니다. 즉, [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)을 사용하면, [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC) 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 [forward() 원리](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%9B%90%EB%A6%AC)에서와 살펴본 것과 동일해 집니다.
+
+|항목|[전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)|[forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC) 함수의 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)|[forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC) 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)|
+|--|--|--|--|
+|값 타입|`decltype<param> == int&, param == int&`|`T == int&, param == int&`|`int&`|
+|[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)|`decltype(param) == int&, param == int&`|`T == int&, param == int&`|`int&`|
+|[함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)처럼 [우측값을 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)하는 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)|`decltype(param) == int&&, param == int&`|`T == int&&, param == int&`|`int&&`|
+
+
+```cpp
+int f_11(int&) {return 1;}
+int f_11(int&&) {return 2;}
+
+auto Forwarding_14{
+    [](auto&& param) {
+        // 전달 참조일때 decltype(param)은 
+        // param이 좌측값 참조이면 T&, param이 우측값 참조이면 T&& 입니다.
+        return f_11(std::forward<decltype(param)>(param)); 
+    }
+}; 
+
+int val;
+int& ref = val;
+EXPECT_TRUE(Forwarding_14(val) == 1); // 전달 참조에서 값 타입은 좌측값 참조입니다.
+EXPECT_TRUE(Forwarding_14(ref) == 1); // 전달 참조에서 좌측값 참조는 그대로 좌측값 참조입니다.
+EXPECT_TRUE(Forwarding_14(std::move(val)) == 2); // 전달 참조에서 우측값 참조는 그대로 우측값 참조입니다.       
 ```
 
 # (C++17~) constexpr 람다 표현식

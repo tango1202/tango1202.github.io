@@ -8,6 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
+> * [MEC++#34] bind() 보다는 람다를 선호하라.
+>   * 람다가 가독성이 좋다.
+
 > * (C++11~) [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)은 `()`로 호출 가능한 함수자를 저장합니다.
 > * (C++11~) [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)에서 `()`을 호출할 대상이 없을 때 [bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call) 예외를 방출합니다.
 > * (C++11~) [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)은 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.
@@ -220,6 +223,16 @@ auto func3{
 };
 EXPECT_TRUE(func3(4, 5) == 1 + 4 + 5);
 ```
+
+사실 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind) 보다는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 훨씬 더 직관적이니, [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)보다는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)을 사용하시는게 좋습니다.(*더 직관적인 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 있는데, 도대체 왜 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)를 표준에 넣었을까 찾아보니, 2005년 표준의 TR1에 이미 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)가 포함되었다고 하네요. 기존 코드 호환 용도 정도로만 사용하라고 제공하는 듯 합니다.*)
+
+```cpp
+auto func3{
+    [](int b, int c) {return Sum(1, b, c);}
+};
+EXPECT_TRUE(func3(4, 5) == 1 + 4 + 5); 
+```
+
 # bind() 와 인수의 참조성 유지
 
 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)는 인수를 복사하기 때문에, 만약 참조자를 사용하는 함수라면 오동작하게 됩니다.
