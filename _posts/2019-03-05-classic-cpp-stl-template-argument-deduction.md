@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ STL] 템플릿 함수 인수 추론과 오버로딩 결정 규칙"
+title: "#5. [고전 C++ STL] 함수 템플릿 인수 추론과 오버로딩 결정 규칙"
 categories: "classic-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -9,17 +9,17 @@ sidebar:
 ---
 
 > * 오버로딩 시에는 `T`보다는 `T*` 보다는 `const T*`가 선택된다.
-> * 연산자 오버로딩 함수는 비멤버 [템플릿 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98)로 작성하라.
-> * 템플릿 함수 인수 추론시 `T&`는 `T`로 추론된다.
+> * 연산자 오버로딩 함수는 비멤버 [함수 템플릿](??)으로 작성하라.
+> * 함수 템플릿 인수 추론시 `T&`는 `T`로 추론된다.
 
 # 개요
 
-템플릿 함수의 인스턴스화는 다음 2가지 과정을 거칩니다.
+함수 템플릿의 인스턴스화는 다음 2가지 과정을 거칩니다.
 
-1. 템플릿 함수 인수 추론 : 전달된 타입을 어떤 타입으로 사용할지 추론
-2. 템플릿 함수 오버로딩 결정 : 인수 추론 후 일반 함수와 여러개의 템플릿 함수중 적합한 것을 결정
+1. 함수 템플릿 인수 추론 : 전달된 타입을 어떤 타입으로 사용할지 추론
+2. 함수 템플릿 오버로딩 결정 : 인수 추론 후 일반 함수와 여러개의 함수 템플릿중 적합한 것을 결정
 
-# 템플릿 함수 인수 추론
+# 함수 템플릿 인수 추론
 
 `<>`내의 인수가 생략됐거나 `<>`가 아예없는 경우 경우 누락된 인수를 추론합니다.
 
@@ -61,7 +61,7 @@ f(arr); // f<int*>(int*)
 ```
 단, [배열의 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%B0%B8%EC%A1%B0%EC%9E%90-%EC%82%AC%EC%9A%A9%EB%B2%95)는 변환하지 않고 그대로 사용됩니다. 
 
-따라서 다음처럼 [템플릿 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98)를 이용하여 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)를 구할 수 있습니다.
+따라서 다음처럼 [함수 템플릿](??)을 이용하여 [배열 요소 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)를 구할 수 있습니다.
 
 ```cpp
 template<typename T, size_t N>
@@ -200,12 +200,12 @@ f(a); // (X) 컴파일 오류. A<int>와 A<short>는 서로 다른 타입이기�
 f<10>(a); // 명시적으로 10을 전달하여 A<10> 타입이 됨. 같은 타입이어서 함수 호출됨   
 ```
 
-# 템플릿 함수 오버로딩 결정 규칙
+# 함수 템플릿 오버로딩 결정 규칙
 
 서로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다른 함수들은 오버로딩 후보군에서 가장 적합한 것으로 결정됩니다.(*[오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
 
 
-하지만 [템플릿 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98)의 경우는 정의시에는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다르지만, 인스턴스화 과정에서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 오버로딩 버전(**좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.)을 선택하게 됩니다.
+하지만 [함수 템플릿](??)의 경우는 정의시에는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다르지만, 인스턴스화 과정에서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 오버로딩 버전(**좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.)을 선택하게 됩니다.
 
 
 예를 들면,
@@ -215,7 +215,7 @@ template<typename T>
 int f(T) {return 1;} // #1.
 
 template<typename T> 
-int f(T*) {return 2;} // #2. 템플릿 함수 오버로딩. 
+int f(T*) {return 2;} // #2. 함수 템플릿 오버로딩. 
 
 int a;
 // #1 T == int* 이면 int f(int*)
@@ -225,7 +225,7 @@ EXPECT_TRUE(f(&a) == 2);
 
 상기 코드는 다음 단계에 따라 특수화된 버전을 선택합니다.
 
-1. 템플릿 함수 후보 생성  
+1. 함수 템플릿 후보 생성  
    
     ```cpp
     int f(int*) // #1. 로부터 T == int* 인 경우
@@ -240,9 +240,9 @@ EXPECT_TRUE(f(&a) == 2);
 
 # 오버로딩 사례
 
-**템플릿 함수보다는 일반 함수**
+**함수 템플릿보다는 일반 함수**
 
-[템플릿 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98) 보다는 일반 함수를 선호합니다.
+[함수 템플릿](??) 보다는 일반 함수를 선호합니다.
 
 ```cpp
 int f(int) {return 1;} // #1.
@@ -354,7 +354,7 @@ EXPECT_TRUE(f(0, (A<int, int>*)0) == 2);
 EXPECT_TRUE(f(0) == 2);      
 ```     
 
-**연산자 오버로딩 템플릿 함수**
+**연산자 오버로딩 함수 템플릿**
 
 일반적으로 연산자 오버로딩 시에는 멤버 버전과 비멤버 버전중 멤버 버전이 선택됩니다.
 
@@ -362,7 +362,7 @@ EXPECT_TRUE(f(0) == 2);
 template<typename T>
 class A {
 public:
-int operator +(int) const {return 1;} // #1.
+    int operator +(int) const {return 1;} // #1.
 };
 
 template<typename T>
@@ -376,7 +376,7 @@ A<int> a;
 EXPECT_TRUE( a + 10 == 1);
 ```
 
-하지만 멤버 버전이 템플릿 멤버 함수라면, 비멤버 버전으로 임시 생성하고 오버로딩을 평가하기 때문에, 모호성 문제가 발생하며, 그냥 대충 비멤버 버전을 호출합니다.(경고가 나오긴 합니다.) 
+하지만 멤버 버전이 함수 템플릿이라면, 비멤버 버전으로 임시 생성하고 오버로딩을 평가하기 때문에, 모호성 문제가 발생하며, 그냥 대충 비멤버 버전을 호출합니다.(경고가 나오긴 합니다.) 
 
 ```cpp
 template<typename T>
@@ -421,7 +421,7 @@ EXPECT_TRUE( a + 10 == 1);
 
 # 오버로딩 실패 사례
 
-**동등한 템플릿 함수**
+**동등한 함수 템플릿**
 
 동등한 템플릿이면 모호하여 컴파일 오류가 발생합니다. 다음의 경우는 `T`와 `const T`로 다릅니다만, [최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)는 제거되어 결국 동등해집니다.
 
@@ -515,7 +515,7 @@ EXPECT_TRUE(f<A>(10) == 1);
 EXPECT_TRUE(f<A>('a') == 2);
 ```
 
-전달한 인수에 부합하는 함수를 호출하기 위해, [템플릿 함수 오버로딩 결정 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 다음 오버로딩 함수 후보군이 만들어지고, [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 가장 적합한 함수가 호출됩니다.
+전달한 인수에 부합하는 함수를 호출하기 위해, [함수 템플릿 오버로딩 결정 규칙](??)에 따라 다음 오버로딩 함수 후보군이 만들어지고, [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 가장 적합한 함수가 호출됩니다.
 
 ```cpp
 A::Int f(A::Int param); // typename T::Int f(typename T::Int param)

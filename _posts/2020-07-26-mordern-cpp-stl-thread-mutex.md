@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * [MEC++#16] const 멤버 함수를 쓰레드에 안전하게 작성하라(mutex, atomic)
+> * [MEC++#37] thread 들을 모든 경로에서 합류 불가능하게 만들어라.(join(), detach()를 사용하라.)
 
 > * (C++11~) [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 주어진 함수자를 쓰레드로 실행시킵니다. [yield(), sleep_for(), sleep_until()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-yield-sleep_for-sleep_until)등으로 실행 순서나 속도를 제어할 수 있습니다.
 > * (C++11~) [mutex, timed_mutex, recusive_mutex, recusive_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.

@@ -15,18 +15,18 @@ sidebar:
 > * (C++11~) [extern으로 템플릿 선언](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.
 > * (C++11~) [export 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF)은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.
 > * (C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 템플릿으로 만들 수 있습니다.
-> * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [템플릿 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98)처럼 타입을 생략할 수 있습니다.
+> * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](??)처럼 타입을 생략할 수 있습니다.
 
 # 템플릿
 
 타입에 따라 클래스나 함수를 생성하는 틀입니다.
 
-# 템플릿 클래스
+# 클래스 템플릿
 
-템플릿 클래스는 하기와 같이 정의되고 인스턴스화 됩니다.
+클래스 템플릿는 하기와 같이 정의되고 인스턴스화 됩니다.
 
 ```cpp
-// 템플릿 클래스 정의부 - 코드가 생성되지 않은 상태
+// 클래스 템플릿 정의부 - 코드가 생성되지 않은 상태
 template<typename T> 
 class MyClass {
 public:
@@ -43,7 +43,7 @@ EXPECT_TRUE(myClass.Plus(10, 10) == 20);
 3. `int` : [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) `T`가 대체될 인수(Argument)입니다.  
 
 > *(C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 템플릿으로 만들 수 있습니다.*<br/>
-> *(C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [템플릿 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98)처럼 타입을 생략할 수 있습니다.*
+> *(C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](??)처럼 타입을 생략할 수 있습니다.*
 
 # 템플릿 정의부와 템플릿 인스턴스화
 
@@ -54,7 +54,7 @@ EXPECT_TRUE(myClass.Plus(10, 10) == 20);
 1. 템플릿 정의 : 아직 타입이 구체화 되지 않은 상태(*코드가 생성되지 않은 상태*) 
 2. [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) : [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)가 지정한 타입으로 대체되어 구체적인 클래스를 생성한 상태(*코드가 생성된 상태*)입니다.
 
-    다음 템플릿 클래스는
+    다음 클래스 템플릿는
     ```cpp
     template<typename T> 
     class MyClass {
@@ -87,9 +87,9 @@ a.f(); // A<int>::g() 를 사용하지 않았기에 컴파일 됨
 a.g(); // (X) 컴파일 오류. 함수 정의부가 없음
 ```
 
-# 템플릿 함수
+# 함수 템플릿
 
-[템플릿 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98)는 다음처럼 정의하고 인스턴스화 합니다.
+[함수 템플릿](??)은 다음처럼 정의하고 인스턴스화 합니다.
 
 ```cpp
 template<typename T>
@@ -105,13 +105,13 @@ EXPECT_TRUE(Plus<char>('a', 1) == 'b');
 
 ```cpp
 EXPECT_TRUE(Plus(10, 10) == 20); // (O) 인수로부터 int가 추론됨
-EXPECT_TRUE(Plus<>(10, 10) == 20); // (O) <>를 기재하여 템플릿 함수임을 명시하고, 인수로부터 추론
+EXPECT_TRUE(Plus<>(10, 10) == 20); // (O) <>를 기재하여 함수 템플릿임을 명시하고, 인수로부터 추론
 
 EXPECT_TRUE(Plus('a', 1) == 'b'); // (X) 컴파일 오류. 인수가 int, char로 각각 다르므로 추론이 어려움 
 EXPECT_TRUE(Plus('a', static_cast<char>(1)) == 'b'); // (O) 인수로부터 char 가 추론됨
 ```
 
-템플릿 인수 추론의 좀더 상세한 내용은 [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 참고하시기 바랍니다.
+템플릿 인수 추론의 좀더 상세한 내용은 [함수 템플릿 인수 추론](??)을 참고하시기 바랍니다.
 
 # 템플릿 멤버 함수와 템플릿 중첩 클래스
 
@@ -169,11 +169,11 @@ public:
     U g(U val); // 템플릿 멤버 함수 선언
 };
 
-// 템플릿 클래스의 멤버 함수 정의
-template<typename T> // 템플릿 클래스
+// 클래스 템플릿의 멤버 함수 정의
+template<typename T> // 클래스 템플릿
 void A<T>::f() {} 
 
-// 템플릿 클래스의 템플릿 멤버 함수 정의 - 인자 집합 2개 필요
+// 클래스 템플릿의 템플릿 멤버 함수 정의 - 인자 집합 2개 필요
 template<typename T> // 바깥쪽 인자
 template<typename U> // 안쪽 인자
 U A<T>::g(U val) {return val + val;} 

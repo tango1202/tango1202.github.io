@@ -7,7 +7,7 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
-> * [MEC++#9] typedef 보다 별칭 선언을 선호하라.([템플릿 클래스 별칭 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B3%84%EC%B9%AD))
+> * [MEC++#9] typedef 보다 별칭 선언을 선호하라.([클래스 템플릿 별칭 지원](??))
 
 > * (C++11~) [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)이 추가되어 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.
 
@@ -31,9 +31,9 @@ typedef void (*Func)(int);
 using Func_11 = void (*)(int);
 ```
 
-# 템플릿 클래스 별칭
+# 클래스 템플릿 별칭
 
-[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)은 [템플릿 클래스 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B3%84%EC%B9%AD)도 지원합니다.
+[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)은 [클래스 템플릿 별칭](??)도 지원합니다.
 
 ```cpp
 // typedef는 템플릿의 구체화된 타입만 지원합니다.

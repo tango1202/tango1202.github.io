@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-[integer_sequence](https://tango1202.github.io/mordern-cpp-stl/) 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다. 템플릿 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용하여 [파라메터 팩 배포 및 확장](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)에 사용할 수 있습니다.
+[integer_sequence](https://tango1202.github.io/mordern-cpp-stl/) 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다. 함수 템플릿의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용하여 [파라메터 팩 배포 및 확장](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)에 사용할 수 있습니다.
 
 |항목|내용|
 |--|--|

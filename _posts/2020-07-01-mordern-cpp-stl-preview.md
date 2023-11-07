@@ -10,6 +10,9 @@ sidebar:
 
 > * [MEC++#13] iterator 보다 const_iterator를 선호하라.( cbegin(), cend(), crbegin(), crend()이 추가되고 insert, erase 등의 멤버 함수에서 const_iterator를 지원함)
 
+> * [MEC++#42] 삽입 대신 생성 삽입을 고려하라.(*e
+_back() 등*)
+
 모던 C++ STL은,
 
 1. C++11
@@ -94,7 +97,7 @@ sidebar:
 
 # 컨테이너 라이브러리
 
-각 컨테이너에 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 이용한 초기화가 추가되었으며, `emplace()` 계열 함수들(요소 개체를 생성해서 전달하는 것이 아니라, 요소 개체의 생성자 인수들을 전달하면 컨테이너 내에서 요소 개체를 직접 생성함)이 추가되었습니다.
+각 컨테이너에 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 이용한 초기화가 추가되었으며, [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용한 `emplace()` 계열 함수들(*요소 개체를 생성해서 전달하는 것이 아니라, 요소 개체의 생성자 인수들을 전달하면 컨테이너 내에서 요소 개체를 직접 생성함*)이 추가되었습니다.
 
 |항목|내용|
 |--|--|

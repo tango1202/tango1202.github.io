@@ -35,7 +35,7 @@ int arr[3];
 EXPECT_TRUE(sizeof(arr) / sizeof(int) == 3); // 배열의 전체 크기 / 배열 요소 크기
 ```
 
-템플릿을 이용하는 방법도 있습니다. [템플릿 함수 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 참고하세요.
+템플릿을 이용하는 방법도 있습니다. [함수 템플릿 인수 추론](??)을 참고하세요.
 
 # 배열 초기화
 

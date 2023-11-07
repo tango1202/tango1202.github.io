@@ -349,6 +349,31 @@ EXPECT_TRUE(e.GetSize() == 50);
 ```
 > *(C++14~) [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/)는 주어진 값을 바꾸고 이전값을 리턴합니다. [이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 구현에 활용할 수 있습니다.*
 
+# 우측값 참조
+
+[우측값 참조](??)는 [우측값](??)을 참조하는 [참조자](??) 입니다. 좌측값은 참조할 수 없습니다.
+
+이름이 부여된 좌측값과 [좌측값 참조](??)는 참조할 수 없으며, [static_cast](??)나 [move()](??)로 형변환해야 합니다.
+또한 [임시 개체](??)는 [우측값](??) 이므로 형변환 없이 사용할 수 있습니다. 
+
+```cpp
+class A {};
+
+A val;
+A& ref = val;
+
+A&& rref1 = val; // (X) 컴파일 오류. val은 좌측값입니다.
+A&& rref2 = ref; // (X) 컴파일 오류. ref는 좌측값 참조 입니다.
+
+A&& rref3 = static_cast<A&&>(val); // 좌측값을 형변환 하여 참조할 수 있습니다.
+A&& rref4 = static_cast<A&&>(ref); // 좌측값 참조를 형변환 하여 참조할 수 있습니다.
+
+A&& rref5 = std::move(val); // 좌측값을 move를 이용하여 형변환하여 참조할 수 있습니다.
+A&& rref6 = std::move(ref); // 좌측값 참조를 move를 이용하여 형변환하여 참조할 수 있습니다.
+
+A&& rref7 = A(); // 임시 개체는 우측값이므로 참조 할 수 있습니다.
+```
+
 # 이동 생성자
 
 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)는 다음과 같이 정의됩니다.
