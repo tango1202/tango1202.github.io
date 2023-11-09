@@ -79,7 +79,7 @@ C++에서는 표현식에 대해서 이름(*식별자*)가 있는지, [이동 �
 
 |항목|내용|
 |--|--|
-|`lvalue`(left value)|좌측값으로서 변수와 같이 식별자가 있는 항목입니다. `lvalue = 10;`처럼 좌측에 올 수도 있고 `var = lvalue;`와 같이 우측에 올 수도 있습니다. 다른곳에서 참조할 수도 있기에 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)을 하면 데이터가 유실될 수 있으므로 주의해야 합니다.(*변수, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/), 함수, `&`포인터 연산, [전위 증감 연산](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A6%9D%EA%B0%90-%EC%97%B0%EC%82%B0%EC%9E%90), [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)등*)<br/>대입문의 좌측에 올 수 있고, `&`로 주소를 얻어올 수 있으며, 표현식이 끝나더라도 존재합니다.|
+|`lvalue`(left value)|좌측값으로서 변수와 같이 식별자가 있는 항목입니다. `lvalue = 10;`처럼 좌측에 올 수도 있고 `var = lvalue;`와 같이 우측에 올 수도 있습니다. 다른곳에서 참조할 수도 있기에 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)을 하면 데이터가 유실될 수 있으므로 주의해야 합니다.(*변수, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/), 함수, `&`포인터 연산, [전위 증감 연산](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A6%9D%EA%B0%90-%EC%97%B0%EC%82%B0%EC%9E%90), [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)등*)<br/>`&`로 주소를 얻어올 수 있으며, 표현식이 끝나더라도 존재합니다.|
 |`xvalue`(eXpiring value)|`lvalue`나 `prvalue`를 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)할때 순간적으로 관리되는 값으로서 만료되어 가는 값입니다. 해당 주소로 접근했을때 값이 있을 수도 있고, 없을 수도 있습니다. 컴파일러만 사용하므로 `&`로 주소를 얻을 수 없으며, 표현식이 끝나면 소멸됩니다.|
 |`prvalue`(pure rvalue)|순수한 `rvalue`로서 식별자가 없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)나 수식들입니다. 어짜피 임시로 생성된 것이므로 맘편히 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)해도 되는 것들입니다.(*수식, [후위 증감 연산](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A6%9D%EA%B0%90-%EC%97%B0%EC%82%B0%EC%9E%90), [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 제외한 [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/), [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 등*)<br/>대입문의 우측에 올 수 있고, `&`로 주소를 얻어올 수 없으며, 표현식이 끝나면 소멸됩니다.|
 |`glvalue`(generalized lvalue)|`xvalue`와 `lvalue`를 통칭합니다.| 
@@ -341,39 +341,68 @@ EXPECT_TRUE(e.GetSize() == 50);
 
 # 우측값 참조
 
-[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)는 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)을 참조하는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 입니다. 
+[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)는 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)을 참조하는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 입니다.
 
-이름이 부여된 좌측값과 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 참조할 수 없으며, [static_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)나 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)로 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)해야 합니다.
-또한 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)는 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)이므로 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 없이 사용할 수 있습니다. 
+좌측값을 직접 참조할 수는 없으며, [static_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)나 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)로 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)해서 참조할 수 있습니다.
+
+[임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)는 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)이므로 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 없이 참조할 수 있습니다. 
 
 ```cpp
 class A {};
 
 A val;
-A& ref = val;
 
-A&& rref1 = val; // (X) 컴파일 오류. val은 좌측값입니다.
-A&& rref2 = ref; // (X) 컴파일 오류. ref는 좌측값 참조 입니다.
+A&& rref1 = val; // (X) 컴파일 오류. val은 좌측값입니다. 좌측값을 직접 참조할 수 없습니다.
 
-A&& rref3 = static_cast<A&&>(val); // 좌측값을 형변환 하여 참조할 수 있습니다.
-A&& rref4 = static_cast<A&&>(ref); // 좌측값 참조를 형변환 하여 참조할 수 있습니다.
-
-A&& rref5 = std::move(val); // 좌측값을 move를 이용하여 형변환하여 참조할 수 있습니다.
-A&& rref6 = std::move(ref); // 좌측값 참조를 move를 이용하여 형변환하여 참조할 수 있습니다.
-
-A&& rref7 = A(); // 임시 개체는 우측값이므로 참조할 수 있습니다.
+A&& rref2 = static_cast<A&&>(val); // 좌측값을 형변환 하여 참조할 수 있습니다.
+A&& rref3 = std::move(val); // 좌측값을 move를 이용하여 형변환하여 참조할 수 있습니다.
+A&& rref4 = A(); // 임시 개체는 우측값이므로 참조할 수 있습니다.
 ```
 
-한편, [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 별도의 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)을 하더라도 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)을 참조할 수 없습니다. 하지만, [이름이 부여된 우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%A6%84%EC%9D%B4-%EB%B6%80%EC%97%AC%EB%90%9C-%EC%9A%B0%EC%B8%A1%EA%B0%92)라면, 별도의 형변환없이 참조할 수 있는데요, 이는 [이름이 부여된 우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%A6%84%EC%9D%B4-%EB%B6%80%EC%97%AC%EB%90%9C-%EC%9A%B0%EC%B8%A1%EA%B0%92)는 좌측값이기 때문입니다. 이 황당한 말장난은 [이름이 부여된 우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%A6%84%EC%9D%B4-%EB%B6%80%EC%97%AC%EB%90%9C-%EC%9A%B0%EC%B8%A1%EA%B0%92)을 참고하시기 바랍니다. 
+[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)와 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 모두 [참조자](??) 로서 특정 개체를 참조합니다만, 서로 다른 타입이어서, 서로간의 변환이 필요합니다.
 
-```cpp
-class A {};
-A val;
-// A& ref = std::move(val); // (X) 컴파일 오류. 좌측값 참조는 우측값을 참조할 수 없습니다.
-// A& ref = static_cast<A&>(std::move(val)); // (X) 컴파일 오류. 우측값을 형변환하여 참조할 수 없습니다.
-A&& rref = std::move(val); 
-A& ref = rref; // 이름이 부여된 우측값 참조는 좌측값이기에 좌측값 참조로 참조할 수 있습니다. 
-```
+1. [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)에 대입하는 경우
+
+    [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 [static_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)나 [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)로 형변환해야 합니다.
+   
+    ```cpp
+    class A {}; 
+
+    A val;    
+    A& ref = val;  
+    A&& rref = std::move(val); 
+
+    A&& rref1 = ref; // (X) 컴파일 오류. 우측값 참조는 좌측값 참조를 참조할 수 없습니다.
+    A&& rref2 = static_cast<A&&>(ref); // 좌측값 참조를 형변환하여 참조할 수 있습니다.
+    A&& rref3 = std::move(ref); // 좌측값 참조를 move를 이용하여 형변환하여 참조할 수 있습니다.
+    ```
+
+2. [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)을 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)에 대입하는 경우
+
+    [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)는 형변환을 하더라도 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)을 참조할 수 없습니다. `A()`와 같이 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)을 직접 생성해도 마찬가지 입니다. 소멸될 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)을 참조하면 [Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90)가 되니까요.
+
+    ```cpp
+    A val;    
+    A& ref = val;  
+    A&& rref = std::move(val); 
+
+    A& ref1 = std::move(val); // (X) 컴파일 오류. 좌측값 참조는 우측값을 참조할 수 없습니다.
+    A& ref2 = static_cast<A&>(std::move(val)); // (X) 컴파일 오류. 좌측값 참조는 우측값을 참조할 수 없습니다.
+    A& ref3 = std::move(val); // (X) 컴파일 오류. 좌측값 참조는 우측값을 참조할 수 없습니다.
+    A& ref4 = A(); // (X) 컴파일 오류. 좌측값 참조는 임시 개체인 우측값을 참조할 수 없습니다.
+    ```
+
+3. [이름이 부여된 우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%A6%84%EC%9D%B4-%EB%B6%80%EC%97%AC%EB%90%9C-%EC%9A%B0%EC%B8%A1%EA%B0%92)를 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)에 대입하는 경우
+
+    [이름이 부여된 우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%A6%84%EC%9D%B4-%EB%B6%80%EC%97%AC%EB%90%9C-%EC%9A%B0%EC%B8%A1%EA%B0%92)라면, 별도의 형변환없이 참조할 수 있는데요, 이는 [이름이 부여된 우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%A6%84%EC%9D%B4-%EB%B6%80%EC%97%AC%EB%90%9C-%EC%9A%B0%EC%B8%A1%EA%B0%92)는 좌측값이기 때문입니다. 이 황당한 말장난은 [이름이 부여된 우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%A6%84%EC%9D%B4-%EB%B6%80%EC%97%AC%EB%90%9C-%EC%9A%B0%EC%B8%A1%EA%B0%92)을 참고하시기 바랍니다. 
+
+    ```cpp
+    class A {};
+    A val;
+    A&& rref = std::move(val); 
+
+    A& ref5 = rref; // 이름이 부여된 우측값 참조는 좌측값이기에 좌측값 참조로 참조할 수 있습니다.
+    ```
 
 # 이름이 부여된 우측값
 
@@ -393,7 +422,7 @@ EXPECT_TRUE(f_11(rvalue_11) == 1); // f_11(A&)를 호출합니다.
 EXPECT_TRUE(f_11(std::move(lvalue)) == 2); // f_11(A&&)를 호출합니다.
 ```
 
-따라서 모든 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 이름이 있으므로 좌측값입니다. 그러다 보니 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)를 전달 받은 함수에서 또다시 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)를 전달 받는 함수를 호출하면 의외의 결과가 나옵니다.
+따라서 모든 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 이름이 있으므로 좌측값입니다. 그러다 보니 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)를 전달 받은 함수에서 또다시 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)를 전달 받는 함수를 호출하면 의외의 결과가 나옵니다.
 
 다음 예에서 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value) 버전의 `g_11(A&& val)`를 호출하더라도, 좌측값 버전인 `f_11(A& val)`을 호출하는 걸 알 수 있습니다.
 

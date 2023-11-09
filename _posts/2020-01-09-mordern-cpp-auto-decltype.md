@@ -95,7 +95,7 @@ double Func_11(int a, auto b) {
     // 참조성은 제거됩니다.
     int x = 10;
     int& ref = x;
-    auto f_11 = ref; // int
+    auto f_11 = ref; // int. 참조성이 제거됩니다.
     auto& g_11 = ref; // auto&을 이용하여 억지로 참조자로 받을 수 있습니다.
     ```
 
@@ -163,13 +163,13 @@ auto d_11 = {1, 2}; // d는 initializer_list<int>
 
 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)와는 궁합이 맞지 않습니다. 
 
-다음은 정수의 최대/최소를 0 ~ 10 으로 한정하는 `MyInt` 클래스 입니다. `int`로의 변환을 쉽게 하기 위해 `operator int()`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 했다고 합시다.
+다음은 정수의 최대/최소를 0 ~ 10 으로 한정하는 `MyInt` 클래스 입니다. `int`로의 변환을 쉽게 하기 위해 `operator int()`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 했다고 합시다.(*나쁜 설계죠. 최대/최소를 0 ~ 10 으로 한정한 클래스를 만들고, `int` 복제본을 리턴받아 마음껏 수정할 수 있게 하니까요. `const int&`를 리턴하는게 좋은 설계입니다.*)
 
-`int val = MyInt(11);`와 같이 `int`타입에 대입할때는 별다른 문제가 없어 보입니다.
+`int val = MyInt(11);`와 같이 `int`타입에 대입할때는 별다른 문제없이 대입됩니다.
 
-하지만, `auto val_11 = MyInt(11);`와 같이 표현하면, `val_11`은 `MyInt`타입입니다. 따라서, `int&`로 변환할 수 없습니다. 
+하지만, `auto val_11 = MyInt(11);`와 같이 표현하면, `val_11`은 `MyInt`타입입니다. 따라서, `int&`로 변환할 수 없습니다. 이덕에 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 있다는 걸 감지하고, `MyInt` 클래스의 미세한 헛점을 파악할 수 있겠네요.
 
-이걸 해결하려면, [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 사용하지 않고 `int`로 명시하던지, `static_cast<int>`로 명시적으로 변환하던지 해야 합니다. 
+물론 억지로 `int`로 바꿀 수는 있습니다. [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 사용하지 않고 `int`로 명시하던지, `static_cast<int>`로 명시적으로 변환하던지 해야 합니다. 
 
 하지만, [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)에서 말씀드렸듯, 근본적으로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 사용하지 마세요.
 
@@ -190,14 +190,17 @@ private:
 };
 
 int val = MyInt(11); // (△) 비권장. 암시적으로 int로 변경됩니다. 
-EXPECT_TRUE(val == 10);
-EXPECT_TRUE(val + 1 == 11);
 
-// auto val_11 = MyInt(11); // MyInt입니다.
-// int& ref = val_11; // (X) 컴파일 오류. 참조자로 변환될 수 없습니다.
+EXPECT_TRUE(val == 10); // 최대 / 최소가 잘 한정되어 있습니다.
+EXPECT_TRUE(val + 1 == 11); // (△) 비권장. 값 한정한게 엉망이 되버렸습니다. 이게 다 암시적 형변환으로 int 복제본을 만들었기 때문이에요. 사실 const int&를 리턴하는게 좋습니다.
+
+int& ref = val; // (△) 비권장. int&로 변환될 수 있습니다.
+
+auto val_11 = MyInt(11); // MyInt입니다.
+int& ref = val_11; // (X) 컴파일 오류. MyInt는 int&로 변환될 수 없습니다.
 
 auto val_11 = static_cast<int>(MyInt(11)); // 명시적으로 int 입니다.
-int& ref = val_11; // (△) 비권장. 참조자로 변환될 수 있습니다만, 근본적으로는 암시적 형변환을 사용하지 마세요.
+int& ref = val_11; // (△) 비권장. int&로 변환될 수 있습니다.
 ```
 
 # decltype()

@@ -106,7 +106,7 @@ EXPECT_TRUE(str2[0] == 'd');
 
 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 기본적으로 2byte를 사용하도록 했으나, 아시아권 문자를 포함하다 보니 3byte가 필요하게 되었고, 다양한 추가 문자들을 지원하다 보니 4byte가 필요(*악보 기호, 이모지등 특수 기호 지원*)하게 되었습니다. 이러다 보니 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 2byte다 4byte다 혼선이 있는데, 결과적으로는 ***2byte 이상이다***가 맞겠습니다. 
 
-[유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)에서는 현대 한글의 조합 가능한 모든 문자 11,172개를 2byte로 표현하며 `U+AC00 ~ U+D7A3`에 할당되어 있습니다.(*[유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 `U+16진수`의 형태로 표기합니다. 예를 들어 한글 "가"는 `AC00`(10진수의 `44032`)인데, `U+AC00`으로 표기합니다.*)
+[유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)에서는 현대 한글의 조합 가능한 모든 문자 11,172개를 2byte로 표현하며 `U+AC00 ~ U+D7A3`에 할당해 두었습니다.(*[유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 `U+16진수`의 형태로 표기합니다. 예를 들어 한글 "가"는 `AC00`(10진수의 `44032`)인데, `U+AC00`으로 표기합니다.*)
 
 |항목|명칭|내용|
 |--|--|--|
@@ -284,7 +284,7 @@ EXPECT_TRUE(wstr[6] == 0x0000); // 널문자
 
 [와이드 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)은 영문자이건, 다국어 문자이건 모두 `wchar_t`로 관리하는 문자열입니다. 안타깝게도 Windows 에서는 2byte이고 리눅스에서는 4byte 이기 때문에 운영체제에 따라 다르게 동작할 수 있어 주의해야 합니다.(*[기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고*)
 
-문자열의 코드값은 OS에 따라 [UTF-16 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)이나 [UTF-32 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9)으로로 저장됩니다.
+문자열의 코드값은 OS에 따라 [UTF-16 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)이나 [UTF-32 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9)으로 저장됩니다.
 
 |항목|`wchar_t` 크기|인코딩|
 |--|--|--|
