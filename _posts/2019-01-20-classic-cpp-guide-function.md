@@ -36,20 +36,66 @@ sidebar:
 2. [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와의 타입에 기반한 **코딩 계약**
 3. 디버깅 편의성
 
+# 함수 정의
+
 함수 정의의 일반적인 형태는 하기와 같습니다.(*`[]`인 부분은 옵션입니다.*)
 
 ```cpp
-return_type function_name(parameter_list) [const] [throw(exception_list)] {}
+리턴 타입 function_name(인자 목록) [const] [throw(예외 목록)] {}
 ```
 
 |항목|내용|
 |--|--|
-|[return_type](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)|함수 결과인 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 타입입니다. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 사용할 수 없습니다.|
-|[parameter_list](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 목록입니다.|
+|[리턴 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)|함수 결과인 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 타입입니다. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 사용할 수 없습니다.|
+|[인자 목록](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 목록입니다.|
 |[const](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|멤버 함수인 경우 개체를 수정하지 않습니다.(*[상수 한정자(const), 변경 가능 지정자(mutable), 최적화 제한 한정자(volatile)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 참고*)
-|[throw(exception-list)](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)|함수가 방출하는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)입니다.<br/>나열된 예외 이외에는 `unexpected_handler` 로 분기하는데요, 사용하지 마세요. 이유는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 참고하기 바랍니다.|
+|[throw(예외 목록)](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)|함수가 방출하는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)입니다.<br/>나열된 예외 이외에는 `unexpected_handler` 로 분기하는데요, 사용하지 마세요. 이유는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 참고하기 바랍니다.|
 
 함수를 만드는데 있어서 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 타입을 어떻게 하느냐에 따라서 불필요한 복사 부하를 최소화 하여 성능을 개선시킬 수 있으니, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 타입은 신중하게 결정해야 합니다. 
+
+# 함수 선언
+
+다음에서 `g()`함수는 `f()`함수를 사용하고 있는데, 컴파일 시점에 `f()`함수에 대한 정보가 없으므로 컴파일 오류가 발생합니다.
+
+```cpp
+int g(int param) {return f(param);} // (X) 컴파일 오류. f() 함수를 사용했지만, 나중에 정의되어 알지 못합니다.
+int f(int param) {return param * 2;}  
+```
+
+따라서, `f()`함수의 정의 순서를 다음과 같이 변경해야 하는데요,
+
+```cpp
+int f(int param) {return param * 2;}  // g() 함수보다 먼저 정의합니다.
+int g(int param) {return f(param);} 
+```
+
+모든 함수들을 사용 순서에 따라 이렇게 재배치하는 것은 상당히 까다로운 일입니다. 
+
+또한 함수 정의가 별도의 cpp파일에 정의되어 있을 경우, 이를 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 해서 사용해야 하는데, 여러개의 cpp 에서 사용해야 한다면, 여러개의 cpp 에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 할 수도 없는 노릇입니다. 함수 정의가 중복되어 컴파일 오류가 발생하니까요.
+
+함수 선언은 이러한 경우 어떠한 함수가 있다고 컴파일러에 미리 알려주는 역할을 합니다. 함수 정의는 중복되면 안되지만, 선언은 중복될 수 있기 때문에 함수 선언을 헤더 파일에 작성한 후 여러 cpp 에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)해도 됩니다. 
+
+함수 선언은,
+
+1. 함수 정의에서 본문(*{...} 부분입니다.*)을 빼고 세미콜론(`;`)을 사용한 형태입니다.
+2. 함수 정의의 [리턴 타입]((https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)), 함수명, [인자 목록](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), [const](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 여부, [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)이 동일해야 합니다.
+3. 함수 정의의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명은 맞출 필요는 없습니다. 심지어 생략해도 됩니다. 하지만, 관례적으로 동일하게 합니다.
+4. 함수 선언만 하고 정의가 없다면 링크 시점에 오류가 발생합니다.
+
+
+다음 예에서는 `f()`함수 선언을 상단에 미리 해놨기 때문에, `g()`함수를 `f()`함수보다 먼저 정의해도 사용할 수 있습니다.
+
+```cpp
+int f(int param); // 함수 선언 
+                  // 인자명을 꼭 동일하게 맞출 필요는 없습니다. 
+                  // 관례적으로 맞출 뿐입니다. 
+                  // 즉, int f(int); 와 같이 하셔도 됩니다.
+                  
+int g(int param) {return f(param);} // (O) 선언만 된 함수 사용
+int f(int param) {return param * 2;} // 함수 정의   
+
+EXPECT_TRUE(g(10) == 20); 
+```
 
 # 함수 포인터
 

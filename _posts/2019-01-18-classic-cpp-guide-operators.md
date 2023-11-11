@@ -575,7 +575,7 @@ public:
     } 
 
     bool operator ==(const T& other) const {
-        return !(this->m_Val < other.m_Val || other.m_Val < this->m_Val);
+        return !(*this < other || other < *this);
     }
     bool operator !=(const T& other) const {
         return !(*this == other);
@@ -623,6 +623,46 @@ T t1(10);
 T t2(10); 
 EXPECT_TRUE(t1 >= t2);   
 ```
+
+비교 연산은 `true`던 `false`던, 결과값이 판단되면 재빠르게 리턴하는게 좋습니다. 특히, 멤버 변수가 많은 경우 연산을 많이 하게 되니 다음과 같이 작성하는게 좋습니다.
+
+```cpp
+class T {
+private:
+    int m_X;
+    int m_Y;
+    int m_Z;
+
+public:  
+
+    bool operator <(const T& other) const {
+        if (this->m_X < other.m_X) return true; // 작다고 판단되면 바로 리턴
+        if (other.m_X < this->m_X) return false; // 크다고 판단되면 바로 리턴
+  
+        if (this->m_Y < other.m_Y) return true;
+        if (other.m_Y < this->m_Y) return false;
+
+        return this->m_Z < other.m_Z;
+    }
+    bool operator ==(const T& other) const { 
+        if (this->m_X != other.m_X) return false; // 다르다고 판단되면 바로 리턴
+        if (this->m_Y != other.m_Y) return false;
+
+        return this->m_Z == other.m_Z;
+    }
+    bool operator !=(const T& other) const {
+        return !(*this == other);
+    }
+    bool operator >(const T& other) const {
+        return other < *this;
+    }
+    bool operator <=(const T& other) const {
+        return !(other < *this);
+    }
+    bool operator >=(const T& other) const {
+        return !(*this < other);
+    }
+};
 
 **열거형 연산자 오버로딩**
 
