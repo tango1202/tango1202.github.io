@@ -371,6 +371,7 @@ int g_A = f(); // 전역 변수. 런타임에 f() 함수를 이용해서 초기�
 
 extern int g_A;
 int g_B = g_A; // (△) 비권장. 컴파일 단계에선 일단 0으로 초기화 하고, 나중에 링크 단계에서 g_A의 값으로 초기화 합니다.
+               // g_A가 초기화 되었다는 보장이 없기에 링크 순서에 따라 0 또는 10이 됩니다.
 
 int main() {
     std::cout << "g_A : " << g_A << std::endl;
@@ -380,7 +381,7 @@ int main() {
 }
 ```
 
-C++20 부터는 [constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)가 추가되어 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 컴파일 타임에 초기화되도록 강제할 수 있습니다.
+C++20 부터는 [constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)가 추가되어 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 컴파일 타임에 초기화되도록 강제할 수 있습니다. 따라서, [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)의 생성 시점이 명확하지 않은 문제가 해결 됩니다.(*하지만, 이 방법 보다는 여전히 [함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 사용하는게 좋아 보입니다.*)
 
 상기 코드에 [constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)을 사용하면, 링크 타임이 아니라 컴파일 타임에 초기화 되므로, 링크 순서에 따라 `g_B`가 `0`이 되거나 `10`이 되는 문제를 수정할 수 있습니다.
 

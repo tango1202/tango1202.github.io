@@ -11,7 +11,7 @@ sidebar:
 > * [MEC++#31] 기본 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90) 모드를 피하라.
 >   * [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)하는 항목을 나열하는게 직관적이다.
 >   * `[=]`는 `this`를 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)한다.
-> * [MEC++#32] 객체를 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 안으로 이동하려면 초기화 갈무리를 사용하라.(*[클로저에 이동 연산 전달](??) 참고*)
+> * [MEC++#32] 객체를 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 안으로 이동하려면 초기화 갈무리를 사용하라.(*[클로저에 이동 연산 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%97%90-%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0-%EC%A0%84%EB%8B%AC) 참고*)
 > * [MEC++#33] forward()를 통해서 전달할 auto&& 인자는 decltype을 사용하라.(*[일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 참고*)
 
 > * (C++11~) [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 1회용 익명 함수를 만들 수 있습니다. 

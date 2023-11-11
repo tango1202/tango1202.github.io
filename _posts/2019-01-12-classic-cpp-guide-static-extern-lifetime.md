@@ -147,6 +147,7 @@ int g_A = f(); // 전역 변수. 런타임에 f() 함수를 이용해서 초기�
 
 extern int g_A;
 int g_B = g_A; // (△) 비권장. 컴파일 단계에선 일단 0으로 초기화 하고, 나중에 링크 단계에서 g_A의 값으로 초기화 합니다.
+               // g_A가 초기화 되었다는 보장이 없기에 링크 순서에 따라 0 또는 10이 됩니다.
 
 int main() {
     std::cout << "g_A : " << g_A << std::endl;
@@ -193,6 +194,49 @@ public:
 EXPECT_TRUE(T::GetVal() == 31); // 1회 호출
 EXPECT_TRUE(T::GetVal() == 32); // 2회 호출
 EXPECT_TRUE(T::GetVal() == 33); // 3회 호출
+```
+
+또한 [정적 변수의 초기화 순서](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%B3%80%EC%88%98%EC%9D%98-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%88%9C%EC%84%9C)를 제어하는데에도 유용합니다.
+
+다음 코드에서 `B`는 `A`를 이용해서 생성하고, `C`는 `B`를 이용해서 생성되는데요, [함수내의 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)이다 보니 `GetInstance()`함수가 호출될때 최초 1회만 생성됨을 보장합니다. 따라서 사용하는 개체가 생성되어 초기화됨을 보장합니다.
+
+또한,
+
+* [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용하여 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)을 차단했습니다.
+* [private 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A0%91%EA%B7%BC-%EC%B0%A8%EB%8B%A8---private-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하여 `GetInstance()` 함수로만 생성할 수 있게 했습니다.
+
+```cpp
+class A {
+private:
+    A() {} // private여서 외부에서 생성할 수 없습니다.
+public:
+    static A& GetInstance() {
+        static A s_A;
+        return s_A;
+    }    
+};
+class B {
+private:
+    explicit B(A) {} // private여서 외부에서 생성할 수 없습니다. A로부터 생성됩니다.
+public:
+    static B& GetInstance() {
+        static B s_B(A::GetInstance()); // A::GetInstance()로 A개체는 반드시 생성되고 초기화 됨을 보장합니다.
+        return s_B;
+    } 
+};
+class C {
+private:
+    explicit C(B) {} // private여서 외부에서 생성할 수 없습니다. B로부터 생성됩니다.
+public:
+    static C& GetInstance() {
+        static C s_C(B::GetInstance()); // B::GetInstance()로 B개체는 반드시 생성되고 초기화 됨을 보장합니다.
+        return s_C;
+    } 
+
+};
+A& g_A = A::GetInstance();
+B& g_B = B::GetInstance();
+C& g_C = C::GetInstance(); 
 ```
 
 # 임시 개체
