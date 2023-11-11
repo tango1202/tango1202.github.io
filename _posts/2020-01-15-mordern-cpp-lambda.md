@@ -482,7 +482,8 @@ EXPECT_TRUE(add_14(std::string{"hello"}, std::string{"world"}) == "helloworld");
 
 ```cpp
 template<typename T, typename U> 
-auto add_14(T a, U b) {
+auto add_14(T a, U b) { // add_14(T a, T b) 가 아닙니다. 
+                        // auto이다 보니 a, b가 같은 타입이라는 보장이 없습니다.
     return a + b;
 } 
 
