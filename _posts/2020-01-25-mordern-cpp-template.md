@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#25. [모던 C++] (C++11~) extern 템플릿, (C++14~) 변수 템플릿, (C++17~) 템플릿 인수 추론, auto 템플릿 인자, (C++20~) 템플릿 인자에 타입이 아닌 개체 지원 확장"
+title: "#25. [모던 C++] (C++11~) extern 템플릿, (C++14~) 변수 템플릿, (C++17~) 템플릿 인수 추론, auto 템플릿 인자, (C++20~) 축약된 함수 템플릿, 템플릿 인자에 타입이 아닌 개체 지원 확장"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -13,7 +13,8 @@ sidebar:
 > * (C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 템플릿으로 만들 수 있습니다.
 > * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.
 > * (C++17~) 타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.
-> * [템플릿 인자에 타입이 아닌 개체 지원이 확장](?https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%97%90-%ED%83%80%EC%9E%85%EC%9D%B4-%EC%95%84%EB%8B%8C-%EA%B0%9C%EC%B2%B4-%EC%A7%80%EC%9B%90-%ED%99%95%EC%9E%A5)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
+> * (C++20~) [축약된 함수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%EC%B6%95%EC%95%BD%EB%90%9C-%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 제공되어 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다.
+> * (C++20~) [템플릿 인자에 타입이 아닌 개체 지원이 확장](?https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%97%90-%ED%83%80%EC%9E%85%EC%9D%B4-%EC%95%84%EB%8B%8C-%EA%B0%9C%EC%B2%B4-%EC%A7%80%EC%9B%90-%ED%99%95%EC%9E%A5)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
 
 # extern 템플릿
 
@@ -210,7 +211,7 @@ EXPECT_TRUE(a_17.GetVal() == 10);
 
 기존에는 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 없었고, C++14 부터 [일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에서만 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있었습니다.
 
-C++20 부터는 [축약된 함수 템플릿](??)이 제공되어 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다.
+C++20 부터는 [축약된 함수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%EC%B6%95%EC%95%BD%EB%90%9C-%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 제공되어 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다.
 
 ```cpp
 // template<typename T> 
@@ -234,8 +235,6 @@ template<typename T>
 void i_20(T param1, auto param2) {} // 템플릿 내에서 혼합해서 사용할 수 있습니다.
 i_20(10, 3.14);
 ```
-
-
 
 # (C++20~) 템플릿 인자에 타입이 아닌 개체 지원 확장
 
@@ -283,4 +282,28 @@ public:
 template<MyClass_11 myClass> 
 class B_20 {};
 B_20<MyClass_11{1}> b; // 리터럴 타입
+```
+
+# initializer_list 사용시 클래스 템플릿 인수 추론 지원
+
+C++17 부터 도입된 [클래스 템플릿 인수 추론](??)은 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 초기화시 [클래스 템플릿 인수 추론](??)이 되지 않았습니다.
+
+따라서, `std::vector<int> v_11{1, 2, 3};`와 같이 [템플릿 인자](??)를 명시해야 했는데요, 
+
+C++20 부터는 
+
+```cpp
+template<typename T>
+class A {
+public:
+    explicit A(T val) {}
+};
+
+A<int> a{10}; // ~C++17 이전에는 타입을 명시해야 합니다.
+A b_17{10}; // C++17 부터는 인수 타입으로부터 추론합니다.
+
+
+std::vector<int> v_11{1, 2, 3}; // ~C++20 이전에는 타입을 명시해야 합니다.
+std::vector v_20{1, 2, 3}; // initializer_list의 요소 타입으로 부터 vector의 템플릿 인수를 추론합니다.
+
 ```

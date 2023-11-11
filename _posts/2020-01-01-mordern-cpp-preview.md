@@ -46,7 +46,9 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
      * (O) explicit(bool) : true인 경우만 명시적으로 동작함
     * (O) 템플릿 인자에 타입이 아닌 개체 지원 확장
     * (O) 축약된 기능 템플릿
-        * https://en.cppreference.com/w/cpp/language/function_template#Abbreviated_function_template
+        * (O) initializer 사용시 템플릿 인수 추론
+        cppreference(Initializer list constructors in class template argument deduction)
+    * 기존에는 initializer 사용시 안됐으나, 이제는 됨. std::vector v{ 1, 2, 3, 4, 5 };   
 
 
 
@@ -61,9 +63,7 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
 
     * 템플릿 개선
-        * (O) initializer 사용시 템플릿 인수 추론
-          cppreference(Initializer list constructors in class template argument deduction)
-            * 기존에는 initializer 사용시 안됐으나, 이제는 됨. std::vector v{ 1, 2, 3, 4, 5 };    
+ 
 
     * 람다 개선
 
