@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#22. [모던 C++] (C++11~) explicit 형변환 연산자"
+title: "#22. [모던 C++] (C++11~) explicit 형변환 연산자, (C++20~) explicit(bool)"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -35,4 +35,46 @@ int val1{t}; // (△) 비권장. bool() 을 이용하여 형변환 하고 암시
 T_11 t_11;
 // int val2{t_11}; // (X) 컴파일 오류
 bool val3{static_cast<bool>(t_11)}; // 명시적으로 변환해야 사용할 수 있습니다.
+```
+
+# (C++20~) explicit(bool)
+
+기존에는 형변환을 막기 위해서 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용했습니다.
+
+```cpp
+template<typename T>
+class A {
+    T m_Val;
+public:
+    explicit A(T val) : m_Val{val} {} // 모든 타입에 대해 형변환을 차단합니다.
+};
+
+A<int> a{0};
+A<int> b = 0; // (X) 컴파일 오류. explicit로 차단했습니다.
+
+A<std::string> c{"Hello"};
+A<std::string> d = std::string("World"); // (X) 컴파일 오류. explicit로 차단했습니다.
+```
+
+하지만 모든 타입에 대해서 형변환을 차단하는데요,
+
+C++20 부터는 [explicit(bool)](??)이 추가되어 특정 조건일 때만 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)로 동작하게 할 수 있습니다.
+
+다음 예는 `int` 타입인 경우에만 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)로 동작하고, 그외 타입은 [암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)됩니다.
+
+```cpp
+template<typename T>
+class A_20 {
+    T m_Val;
+public:
+    // 정수 타입인 경우만 explicit 입니다.
+    explicit(std::is_integral<T>::value) A_20(T val) : m_Val{val} {}
+};
+
+A_20<int> a{0};
+A_20<int> b = 0; // (X) 컴파일 오류. explicit로 차단했습니다.
+
+A_20<std::string> c{"Hello"};
+A_20<std::string> d = std::string("World"); // (O) 정수 타입이 아니어서 암시적 형변환을 허용합니다.       
+
 ```

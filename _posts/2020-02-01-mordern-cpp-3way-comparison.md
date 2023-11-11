@@ -8,7 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++10~) [3중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
+> * (C++20~) [3중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
+> * (C++20~) [3중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)를 `default`로 정의할 수 있습니다.
 
 # 개요
 

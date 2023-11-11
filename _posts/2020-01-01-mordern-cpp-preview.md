@@ -39,19 +39,17 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
 4. C++20
 
-    * (O) 3중 비교 <=>
-        https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison
+    * (O) 3중 비교 연산자
     * (O)지정된 초기화(Designated initalizers)
     * (O) consteval 즉시 평가 함수
-        * https://github.com/AnthonyCalandra/modern-cpp-features#immediate-functions
-        * constexpr 함수는 런타임에도 동작함. consteval은 컴파일에만 동작함    
     * (O) constinit 컴파일 타임에 static 변수가 초기화되도록 강제함 static 생성 순서가 명확해짐
-        * https://github.com/AnthonyCalandra/modern-cpp-features#constinit
+     * (O) explicit(bool) : true인 경우만 명시적으로 동작함
+        * https://github.com/AnthonyCalandra/modern-cpp-features#explicitbool 
+        * https://en.cppreference.com/w/cpp/language/explicit
 
 
 
- 
-        
+
 
     * (O) Concept : 공통된 성질끼리 묶는기능. 제약조건(?)
         * https://github.com/AnthonyCalandra/modern-cpp-features#concepts
@@ -142,9 +140,7 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
         f(arr);
         int(&r)[] = arr;
         ```
-     * (O) explicit(bool) : true인 경우만 명시적으로 동작함
-        * https://github.com/AnthonyCalandra/modern-cpp-features#explicitbool 
-        * https://en.cppreference.com/w/cpp/language/explicit
+
 
     * (O) 비트 필드 생성자에서 초기화
         * https://en.cppreference.com/w/cpp/language/bit_field#Cpp20_Default_member_initializers_for_bit_fields

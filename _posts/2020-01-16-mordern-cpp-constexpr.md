@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++17~) if constexpr, (C++20~) consteval 함수"
+title: "#16. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++17~) if constexpr, (C++20~) consteval 함수, constinit 변수"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -13,6 +13,9 @@ sidebar:
 > * (C++11~) [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
 > * (C++14~) [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 제약이 완화되어 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), 2개 이상의 리턴문, `if()`, `for()`, `while()` 등을 사용할 수 있습니다.
 > * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.
+> * (C++20~) [consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다.
+> * (C++20~) [constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)가 추가되어 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 컴파일 타임에 초기화되도록 강제할 수 있습니다.
+
 
 # 개요
 
@@ -327,14 +330,14 @@ delete ptr;
 
 # (C++20~) consteval 함수
 
-[constexpr 함수](??)는 
+[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 
 
 1. 컴파일 타임 상수를 전달하면 컴파일 타임 함수로 동작하고,
 2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작했는데요,
 
-C++20 부터는 [consteval 함수](??)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다. 이렇게 컴파일 타임에만 동작하는 함수를 즉시 함수(*immediate function*)라고 합니다.
+C++20 부터는 [consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다. 이렇게 컴파일 타임에만 동작하는 함수를 즉시 함수(*immediate function*)라고 합니다.
 
-[consteval 함수](??)도 [constexpr 함수](??)와 같이 제약이 있으며, [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)를 참고하시기 바랍니다.
+[consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)도 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)와 같이 제약이 있으며, [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)를 참고하시기 바랍니다.
 
 ```cpp
 constexpr int Add_14(int a, int b) {return a + b;}
@@ -352,27 +355,78 @@ EXPECT_TRUE(Add_14(a, b) == 30); // 런타임 함수로 사용
 EXPECT_TRUE(Add_20(a, b) == 30); // (X) 컴파일 오류. 런타임 함수로 사용할 수 없습니다.
 ```
 
-# (C++20~) consteval 변수
+# (C++20~) constinit 변수
 
-기존의 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 프로그램이 시작될 때 생성되고, 프로그램이 종료될 때 해제됩니다. 하지만 생성되는 시점이 명확하지 않아 [함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 사용하라고 가이드 했는데요,(*[정적 변수의 초기화 순서]() 참고*)
+[전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 프로그램이 시작될 때 생성되고, 프로그램이 종료될 때 해제됩니다. 하지만 생성되는 시점이 명확하지 않아 링크 순서에 따라 다음 예의 `g_B`가 `0`이 되거나 `10`이 됩니다. 따라서, [함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 사용하라고 가이드 했었죠.(*[정적 변수의 초기화 순서](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%B3%80%EC%88%98%EC%9D%98-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%88%9C%EC%84%9C) 참고*)
 
 ```cpp
 // Test_A.cpp에서
 int f() {return 10;}
-int g_Val = f(); // 전역 변수. 런타임에 f() 함수를 이용해서 초기화 합니다.
+int g_A = f(); // 전역 변수. 런타임에 f() 함수를 이용해서 초기화 합니다.
 ```
 
 ```cpp
 // Test_B.cpp에서
 #include <iostream>
 
-extern int g_Val;
-static int s_Val = g_Val; // (△) 비권장. 컴파일 단계에선 일단 0으로 초기화 하고, 나중에 링크 단계에서 g_Val의 값으로 초기화 합니다.
+extern int g_A;
+int g_B = g_A; // (△) 비권장. 컴파일 단계에선 일단 0으로 초기화 하고, 나중에 링크 단계에서 g_A의 값으로 초기화 합니다.
 
 int main() {
-    std::cout << "g_Val : " << g_Val << std::endl;
-    std::cout << "s_Val : " << s_Val << std::endl;
+    std::cout << "g_A : " << g_A << std::endl;
+    std::cout << "g_B : " << g_B << std::endl;
 
     return 0;
 }
+```
+
+C++20 부터는 [constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)가 추가되어 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 컴파일 타임에 초기화되도록 강제할 수 있습니다.
+
+상기 코드에 [constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)을 사용하면, 링크 타임이 아니라 컴파일 타임에 초기화 되므로, 링크 순서에 따라 `g_B`가 `0`이 되거나 `10`이 되는 문제를 수정할 수 있습니다.
+
+```cpp
+// Test_A.cpp에서
+constexpr int f_11() {return 10;} // 컴파일 타임 상수 입니다.
+constinit int g_A_20 = f_11(); // 컴파일 타임에 초기화 됩니다.
+```
+
+```cpp
+// Test_B.cpp에서
+#include <iostream>
+
+extern constinit int g_A_20;
+int g_B_20 = g_A_20; // 컴파일 타임에 초기화 됩니다.
+
+int main() {
+    std::cout << "g_A_20 : " << g_A_20 << std::endl;
+    std::cout << "g_B_20 : " << g_B_20 << std::endl;
+
+    return 0;
+}
+```
+
+컴파일 타임에 변수값이 결정된다는 측면에서 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)과 유사하지만, 다음과 같은 차이가 있습니다.
+
+|항목|[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)|[constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)|
+|--|--|--|
+|의미|컴파일 타임 상수 입니다.|컴파일 타임에 초기화되어야 합니다.|
+|[상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)|[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)입니다.|[constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)의 이름 때문에 오해하기 쉬운데, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)가 아닙니다. 상수로 만드려면, `constinit const int`와 같이 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 별도로 붙여야 합니다.|
+|[지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 적용|지원합니다.|지원하지 않습니다.<br/>[전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)에만 사용 가능합니다.|
+
+다음은 [constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)를 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)에 사용한 예입니다.
+
+```cpp
+constexpr int f_11() {return 10;} // 컴파일 타임 함수 입니다.
+
+// constinit int 로 받을 수도 있지만, s_Val_20과 s_m_Val_20에 대입하기 위해 const를 붙였습니다.
+constinit const int g_Val_20 = f_11(); // constinit여서 컴파일 타임에 초기화 되어야 합니다.
+    
+// g_Val_20은 컴파일 타임 const 상수 입니다.
+constinit static int s_Val_20 = g_Val_20; // constinit여서 컴파일 타임에 초기화 되어야 합니다.
+
+class T_20 {
+public:
+    // C++17 부터 인라인 변수를 이용하여 정적 멤버 변수를 멤버 선언부에서 초기화할 수 있습니다.
+    constinit static inline int s_m_Val_20 = g_Val_20; // constinit여서 컴파일 타임에 초기화 되어야 합니다.
+};
 ```
