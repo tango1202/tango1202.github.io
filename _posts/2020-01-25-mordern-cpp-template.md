@@ -284,13 +284,13 @@ class B_20 {};
 B_20<MyClass_11{1}> b; // 리터럴 타입
 ```
 
-# initializer_list 사용시 클래스 템플릿 인수 추론 지원
+# initializer_list 사용시 클래스 템플릿 인수 추론
 
 C++17 부터 도입된 [클래스 템플릿 인수 추론](??)은 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 초기화시 [클래스 템플릿 인수 추론](??)이 되지 않았습니다.
 
 따라서, `std::vector<int> v_11{1, 2, 3};`와 같이 [템플릿 인자](??)를 명시해야 했는데요, 
 
-C++20 부터는 
+C++20 부터는 [initializer_list 사용시 클래스 템플릿 인수 추론]을 지원하여, 
 
 ```cpp
 template<typename T>
@@ -301,7 +301,6 @@ public:
 
 A<int> a{10}; // ~C++17 이전에는 타입을 명시해야 합니다.
 A b_17{10}; // C++17 부터는 인수 타입으로부터 추론합니다.
-
 
 std::vector<int> v_11{1, 2, 3}; // ~C++20 이전에는 타입을 명시해야 합니다.
 std::vector v_20{1, 2, 3}; // initializer_list의 요소 타입으로 부터 vector의 템플릿 인수를 추론합니다.
