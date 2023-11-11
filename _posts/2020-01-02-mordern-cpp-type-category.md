@@ -77,7 +77,7 @@ https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%
 * [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 * 구조체/클래스/공용체
   * 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없음
+    * 멤버 변수 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 없음
   * 모든 멤버 변수가 `public`
   * 부모 클래스가 없음
   * 가상 함수 없음
-  * 멤버 변수 초기화 없음

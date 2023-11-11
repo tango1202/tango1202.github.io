@@ -39,6 +39,11 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
 4. C++20
 
+    * (O) 3중 비교 <=>
+        https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison
+
+        
+
     * (O) Concept : 공통된 성질끼리 묶는기능. 제약조건(?)
         * https://github.com/AnthonyCalandra/modern-cpp-features#concepts
 
@@ -47,8 +52,7 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
     * (O) 모듈 : include 기법외 방법. 컴파일 시간 개선         
 
-    * (O) 3중 비교 <=>
-        https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison
+
 
     * (O)지정된 초기화(Designated initalizers) A a{ .x = 1 };
         * https://github.com/AnthonyCalandra/modern-cpp-features#designated-initializers
