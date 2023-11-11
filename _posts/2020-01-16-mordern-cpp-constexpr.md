@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++17~) if constexpr"
+title: "#16. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++17~) if constexpr, (C++20~) consteval 함수"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -325,4 +325,54 @@ int* ptr{CloneTraits<int>::Clone_17(&val)}; // (O)
 delete ptr; 
 ```
 
+# (C++20~) consteval 함수
 
+[constexpr 함수](??)는 
+
+1. 컴파일 타임 상수를 전달하면 컴파일 타임 함수로 동작하고,
+2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작했는데요,
+
+C++20 부터는 [consteval 함수](??)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다. 이렇게 컴파일 타임에만 동작하는 함수를 즉시 함수(*immediate function*)라고 합니다.
+
+[consteval 함수](??)도 [constexpr 함수](??)와 같이 제약이 있으며, [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)를 참고하시기 바랍니다.
+
+```cpp
+constexpr int Add_14(int a, int b) {return a + b;}
+consteval int Add_20(int a, int b) {return a + b;}
+
+enum class MyEnum_11 {Val = Add_14(1, 2)}; // 컴파일 타임 함수로 사용
+EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 3); 
+
+enum class MyEnum_11 {Val = Add_20(1, 2)}; // 컴파일 타임 함수로 사용
+EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 3); 
+
+int a{10};
+int b{20};
+EXPECT_TRUE(Add_14(a, b) == 30); // 런타임 함수로 사용
+EXPECT_TRUE(Add_20(a, b) == 30); // (X) 컴파일 오류. 런타임 함수로 사용할 수 없습니다.
+```
+
+# (C++20~) consteval 변수
+
+기존의 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 프로그램이 시작될 때 생성되고, 프로그램이 종료될 때 해제됩니다. 하지만 생성되는 시점이 명확하지 않아 [함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 사용하라고 가이드 했는데요,(*[정적 변수의 초기화 순서]() 참고*)
+
+```cpp
+// Test_A.cpp에서
+int f() {return 10;}
+int g_Val = f(); // 전역 변수. 런타임에 f() 함수를 이용해서 초기화 합니다.
+```
+
+```cpp
+// Test_B.cpp에서
+#include <iostream>
+
+extern int g_Val;
+static int s_Val = g_Val; // (△) 비권장. 컴파일 단계에선 일단 0으로 초기화 하고, 나중에 링크 단계에서 g_Val의 값으로 초기화 합니다.
+
+int main() {
+    std::cout << "g_Val : " << g_Val << std::endl;
+    std::cout << "s_Val : " << s_Val << std::endl;
+
+    return 0;
+}
+```

@@ -56,7 +56,7 @@ my_for_each(v.begin(), v.end(), Functor());
 EXPECT_TRUE(v[0] == 20 && v[1] == 20 && v[2] == 20); 
 ```
 
-> *(C++11~) [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 1회용 익명 함수를 만들 수 있습니다.*
+> *(C++11~) [](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 1회용 익명 함수를 만들 수 있습니다.*
 
 # 함수자에서 상태 활용
 

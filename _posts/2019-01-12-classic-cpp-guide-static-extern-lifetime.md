@@ -120,6 +120,60 @@ TEST(TestClassicCpp, Static) {
 
 > *(C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, [클래스 정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 정의 및 초기화가 쉬워졌습니다.*
 
+# 정적 변수의 초기화 순서
+
+[전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 프로그램이 실행될때 생성되고, 종료할때 소멸됩니다. 다만, 정확히 언제 생성되고 초기화될지는 모호합니다.
+
+보통은 정의 순서대로 생성되고 초기화됩니다.
+
+```cpp
+int g_Val = 10; // 전역 변수
+static int s_Val = g_Val; // 정적 전역 변수
+```
+
+하지만 여러 cpp 파일로 [파일을 구성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/)했다면, 어떤 파일을 먼저 링크하냐에 따라 초기화 값이 달라질 수 있습니다.
+
+다음은 `g_Val`이 런타임에 초기화될 경우, 링크 순서에 따라 `s_Val`의 값이 달라지는 예입니다.
+
+```cpp
+// Test_A.cpp에서
+int f() {return 10;}
+int g_Val = f(); // 전역 변수. 런타임에 f() 함수를 이용해서 초기화 합니다.
+```
+
+```cpp
+// Test_B.cpp에서
+#include <iostream>
+
+extern int g_Val;
+static int s_Val = g_Val; // (△) 비권장. 컴파일 단계에선 일단 0으로 초기화 하고, 나중에 링크 단계에서 g_Val의 값으로 초기화 합니다.
+
+int main() {
+    std::cout << "g_Val : " << g_Val << std::endl;
+    std::cout << "s_Val : " << s_Val << std::endl;
+
+    return 0;
+}
+```
+
+다음은 상기 2개 파일의 링크 순서를 바꿔서 실행한 결과 입니다. 링크 순서에 따라 `s_Val`의 값이 다른 것을 알 수 있습니다.
+
+```cpp
+F:\Data\language_test\test\static>g++ -c Test_A.cpp 
+F:\Data\language_test\test\static>g++ -c Test_B.cpp  
+F:\Data\language_test\test\static>g++ Test_A.o Test_B.o -o g_Val
+F:\Data\language_test\test\static>g_Val
+g_Val : 10
+s_Val : 0 // Test_A와 Test_B의 순서로 링크하니 0입니다.
+
+F:\Data\language_test\test\static>g++ Test_B.o Test_A.o -o s_Val
+F:\Data\language_test\test\static>s_Val
+g_Val : 10
+s_Val : 10 // Test_B와 Test_A의 순서로 링크하니 10입니다.
+```
+
+이러한 문제 때문에 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)가 서로간의 정의 순서에 종속적으로 생성되고 초기화되는건 좋지 않습니다. 유지보수 하다보면 아주 손쉽게 망가지거든요. 그러니 [함수내 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 사용하세요.
+
 # 함수내 정적 지역 변수
 
 [함수내의 정적 지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)는 함수가 호출될 때 최초 1회만 생성되고, 초기화되는 특징을 가지고 있습니다. [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 대신 사용하면, 언제 생성되는지 좀더 명시적으로 알 수 있습니다. 또한, 클래스의 [정적 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)와 함께 사용하면, 전역 자원을 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)하기도 좋습니다.

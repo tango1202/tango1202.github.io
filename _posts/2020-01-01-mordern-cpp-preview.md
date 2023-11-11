@@ -41,7 +41,16 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
     * (O) 3중 비교 <=>
         https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison
+    * (O)지정된 초기화(Designated initalizers)
+    * (O) consteval 즉시 평가 함수
+        * https://github.com/AnthonyCalandra/modern-cpp-features#immediate-functions
+        * constexpr 함수는 런타임에도 동작함. consteval은 컴파일에만 동작함    
+    * (O) constinit 컴파일 타임에 static 변수가 초기화되도록 강제함 static 생성 순서가 명확해짐
+        * https://github.com/AnthonyCalandra/modern-cpp-features#constinit
 
+
+
+ 
         
 
     * (O) Concept : 공통된 성질끼리 묶는기능. 제약조건(?)
@@ -53,20 +62,6 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
     * (O) 모듈 : include 기법외 방법. 컴파일 시간 개선         
 
 
-
-    * (O)지정된 초기화(Designated initalizers) A a{ .x = 1 };
-        * https://github.com/AnthonyCalandra/modern-cpp-features#designated-initializers
-        * 지정자 순서는 정의 순서와 같아야 함. 구조체 안의 구조체 초기화 안됨. 지정자를 사용하면 모두 지정자로 초기화 해야 함.
-
-        ```cpp
-        struct A { int x, y; };
-        struct B { struct A a; };
-        
-        struct A a = {.y = 1, .x = 2}; // valid C, invalid C++ (out of order)
-        int arr[3] = {[1] = 5};        // valid C, invalid C++ (array)
-        struct B b = {.a.x = 0};       // valid C, invalid C++ (nested)
-        struct A a = {.x = 1, 2};      // valid C, invalid C++ (mixed)
-        ```
     * 템플릿 개선
         * (O) 탬플릿의 비타입 인수에서 클래스 사용
             * https://github.com/AnthonyCalandra/modern-cpp-features#class-types-in-non-type-template-parameters
@@ -115,12 +110,9 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
         * (O) constexpr에서 런타임에서 동작시 try - catch 허용, throw는 안됨
         * (O) constexpr 함수에서 asm : 런타임만 가능
    
-    * (O) consteval 즉시 평가 함수
-        * https://github.com/AnthonyCalandra/modern-cpp-features#immediate-functions
-        * constexpr 함수는 런타임에도 동작함. consteval은 컴파일에만 동작함
 
-    * (O) constinit 컴파일 타임에 static 변수가 초기화되도록 강제함 static 생성 순서가 명확해짐
-        * https://github.com/AnthonyCalandra/modern-cpp-features#constinit
+
+
 
 
     * (O) Ranged for 에서 초기화 문

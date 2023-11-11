@@ -18,6 +18,7 @@ sidebar:
 > * (C++11~) [중괄호 초기화시 인자의 암시적 형변환을 일부 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98-%EC%B0%A8%EB%8B%A8)하여, 코딩 계약이 개선되었습니다.
 > * (C++11~) [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 가 추가되어 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)등 컨테이너 요소 추가가 간편해 졌습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)등이 표준화 되었습니다.
+> * (C++20~) [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)를 추가하여, [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하여, 어떤 멤버 변수를 초기화하는지 지명 할 수 있습니다. 
 
 # 개요
 
@@ -559,20 +560,20 @@ public:
 T_11 obj{1, 2, 3, 4, 5}; // 갯수가 많아지면 어느값이 어느 멤버 변수를 초기화 하는지 헷갈립니다.
 ```
 
-C++20 부터는 [지명 초기화](??)를 추가하여, [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하여, 어떤 멤버 변수를 초기화하는지 지명 할 수 있습니다. 
+C++20 부터는 [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)를 추가하여, [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하여, 어떤 멤버 변수를 초기화하는지 지명 할 수 있습니다. 
 
 다음과 같은 특징이 있습니다.
 
 1. 멤버 변수 선언과 초기화 순서가 동일해야 합니다.
-2. 특정 항목을 생략할 수 있습니다.
-3. [지명 초기화](??)에서는 [초기화 중첩](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%A4%91%EC%B2%A9)을 지원하지 않습니다.
-4. [인자의 암시적 형변환 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98-%EC%B0%A8%EB%8B%A8)와 마찬가지로 [인자](??)를 평가합니다.
+2. 특정 항목을 생략할 수 있습니다. 생략된 것은 기본 생성자로 초기화됩니다.
+3. [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)에서는 [초기화 중첩](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%A4%91%EC%B2%A9)을 지원하지 않습니다.
+4. [인자의 암시적 형변환 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98-%EC%B0%A8%EB%8B%A8)과 마찬가지로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 평가합니다.
     1. 실수에서 정수로 변환을 차단하며,
     2. `double`에서 `float` 변환은 경고 합니다. 단, 상수 표현식에서 해당 값을 저장할 수 없으면 오류이고, 해당 값을 저장할 수 있다면 허용합니다.
-    3. *`int`에서 `char` 변환도 2와 동일합니다.
+    3. *`int`에서 `char` 변환도 `double`에서 `float` 변환과 동일합니다.
     4. 포인터 타입에서 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로의 변환을 경고해 줍니다.
     5. 사용자가 [형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90) 를 작성하면 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 허용됩니다.
-5. [배열](??)은 지원하지 않습니다.
+5. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 지원하지 않습니다.
 
 ```cpp
 class A {};
@@ -618,17 +619,24 @@ int* ptr;
 
 T_20 k{.m_B = A{}}; // (△) 비권장. A->B로의 암시적 변환을 허용하면 차단되지 않습니다.
 
-int arr[3]{[1] = 1}; // (X) 컴파일 오류. 배열은 지원하지 않습니다.
+// int arr[3]{[1] = 1}; // (X) 컴파일 오류. 배열은 지원하지 않습니다.
 ```
 
-한편, C언어에서는 선언 순서와 다르게 지정할 수도 있고, 배열을 지원하고, [초기화 중첩](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%A4%91%EC%B2%A9)을 지원하며, [지명 초기화](??)와 비지명 초기화를 혼합해서 사용할 수 있습니다.(*C언어와 C++가 다른 이유는 C++에서는 멤버가 생성의 역순으로 소멸되어야 하고, 초기치는 정확한 순서를 유지해야 하고, 배열은 람다 표현식과 충돌되기 때문이랍니다.*)
+한편, C언어에서는 선언 순서와 다르게 지정할 수도 있고, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 지원하고, [초기화 중첩](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%A4%91%EC%B2%A9)을 지원하며, [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)와 비지명 초기화를 혼합해서 사용할 수 있습니다. 
+
+훨씬 자유도가 높은데요, C언어와 C++가 다른 이유는 C++에서는 멤버가 생성의 역순으로 소멸되어야 하고, 초기치는 정확한 순서를 유지해야 하기 때문에 순서 불일치나, 중첩과 혼합을 허용하지 않으며, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)과 충돌되기 때문에 허용하지 않는다고 합니다.
 
 ```cpp
-struct A { int x, y; };
-struct B { struct A a; };
+struct A { 
+    int m_X;
+    int m_Y; 
+};
+struct B { 
+    A m_A; 
+};
 
-struct A a = {.y = 1, .x = 2}; // valid C, invalid C++ (out of order)
-int arr[3] = {[1] = 5};        // valid C, invalid C++ (array)
-struct B b = {.a.x = 0};       // valid C, invalid C++ (nested)
-struct A a = {.x = 1, 2};      // valid C, invalid C++ (mixed)
+A a = {.m_Y = 1, .m_X = 2}; // valid C, invalid C++ (순서 불일치)
+B b = {.m_A.m_X = 0}; // valid C, invalid C++ (중첩)
+A a = {.m_X = 1, 2}; // valid C, invalid C++ (혼합)
+int arr[3] = {[1] = 5}; // valid C, invalid C++ (배열)
 ```
