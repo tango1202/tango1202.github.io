@@ -234,16 +234,55 @@ EXPECT_TRUE(a.IsEquivalence(b) == true); // 2 X 3 과 3 X 2 는 동등합니다.
 
 `==` 구현시 [상등 비교](??)를 할 것인지, [동등 비교](??)를 할 것인지는 전적으로 개발자의 판단에 따릅니다.
 
-
 # 비교 카테고리와 3중 비교 연산자의 리턴 타입
 
 [3중 비교 연산자](??)는 3개의 [비교 카테고리](??) 중 하나를 리턴합니다.
 
 |항목|내용|
 |--|--|
-|`strong_ordering`|정수 타입과 같이 `==`, `!=`, `<`, `>`, `<=`, `>=`개의 비교 연산을 제공합니다. 여기서 `==`은 완전히 동등함을 의미합니다.|
-|`weak_ordering`|`==`, `!=`, `<`, `>`, `<=`, `>=`개의 비교 연산을 제공합니다. 여기서 `==`은 상등(*개념적으로 동등*)함을 의미합니다. 예를들어 대소문자 구분없이 비교 할때 `A`와 `a`는 [아스키 코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%95%84%EC%8A%A4%ED%82%A4-%EC%BD%94%EB%93%9C)값이 다르므로 동등하지 않지만, 상등(*개념적으로 동등*)하게 비교해야 합니다.|
-|`partial_ordering`|실수 타입과 같이 대소 비교는 가능한데, `==`가 소수점 오차등으로 동등 비교가 애매한 경우입니다.|
+|`strong_ordering`|정수 타입과 같이 `==`, `!=`, `<`, `>`, `<=`, `>=`개의 비교 연산을 제공합니다. 여기서 `==`은 완전히 [상등](??)함을 의미합니다.|
+|`weak_ordering`|`==`, `!=`, `<`, `>`, `<=`, `>=`개의 비교 연산을 제공합니다. 여기서 `==`은 [동등](??)(*개념적으로 동일*)함을 의미합니다. 예를들어 대소문자 구분없이 비교 할때 `A`와 `a`는 [아스키 코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%95%84%EC%8A%A4%ED%82%A4-%EC%BD%94%EB%93%9C)값이 다르므로 [상등](??)하지 않지만, [동등](??)(*개념적으로 동일*)하게 비교해야 합니다.|
+|`partial_ordering`|`==`, `!=`, `<`, `>`, `<=`, `>=`개의 비교 연산을 제공합니다. 실수 타입과 같이 대소 비교는 가능한데, `==`는 소수점 오차등으로 [상등 비교](??)를 신뢰하기 애매한 경우입니다.|
+
+[비교 카테고리](??)의 포함 관계는 다음과 같습니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5e78afe1-0ac2-4b6e-a20e-5589b12f733c)
+
+
+만약 클래스의 멤버 변수가 [비교 카테고리](??)들을 혼합해서 사용한다면, [3중 비교 연산자](??)는 상기 포함 관계 따라 리턴되는 [비교 카테고리](??)를 결정합니다.
+
+```cpp
+class Strong_20 {
+    int m_Val;
+public:
+    explicit Strong_20(int val) : m_Val{val} {}
+    std::partial_ordering operator <=>(const Strong_20& other) const = default; 
+};
+class Weak_20 {
+    int m_Val;
+public:
+    explicit Weak_20(int val) : m_Val{val} {}
+    std::partial_ordering operator <=>(const Weak_20& other) const = default; 
+};
+class Partial_20 {
+    int m_Val;
+public:
+    explicit Partial_20(int val) : m_Val{val} {}
+    std::partial_ordering operator <=>(const Partial_20& other) const = default; 
+};
+
+class Mix_20 {
+    Strong_20 m_Strong;
+    Weak_20 m_Weak;
+    Partial_20 m_Partial;
+
+public:
+    explicit Mix_20(int strong, int weak, int partial) : m_Strong{strong}, m_Weak(weak), m_Partial(partial) {}
+    auto operator <=>(const Mix_20& other) const = default; // partial ordering
+};
+
+std::partial_ordering result{Mix_20{0, 0, 0} <=> Mix_20{1, 1, 1}}; // partial_ordering을 리턴합니다.
+```
 
 
 
