@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#30. [모던 C++] (C++20~) 3중 비교 연산자"
+title: "#31. [모던 C++] (C++20~) 3중 비교 연산자"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

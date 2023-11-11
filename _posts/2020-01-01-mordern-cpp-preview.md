@@ -44,9 +44,12 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
     * (O) consteval 즉시 평가 함수
     * (O) constinit 컴파일 타임에 static 변수가 초기화되도록 강제함 static 생성 순서가 명확해짐
      * (O) explicit(bool) : true인 경우만 명시적으로 동작함
-        * https://github.com/AnthonyCalandra/modern-cpp-features#explicitbool 
-        * https://en.cppreference.com/w/cpp/language/explicit
+    * (O) 탬플릿의 비타입 인수에서 클래스 사용
+        * https://github.com/AnthonyCalandra/modern-cpp-features#class-types-in-non-type-template-parameters
 
+        * https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter
+        
+        * 클래스는 operator== 구현해야 함   
 
 
 
@@ -61,12 +64,7 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
 
     * 템플릿 개선
-        * (O) 탬플릿의 비타입 인수에서 클래스 사용
-            * https://github.com/AnthonyCalandra/modern-cpp-features#class-types-in-non-type-template-parameters
-
-            * https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter
-            
-            * 클래스는 operator== 구현해야 함        
+     
         
         * (O) 축약된 기능 템플릿
             * https://en.cppreference.com/w/cpp/language/function_template#Abbreviated_function_template
@@ -253,7 +251,7 @@ boolT* 로 변환하는 것은 범위를 좁히는 것을 고려해야 합니다
 |--|--|
 |[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) (C++11~)|**(C++11~)**<br/>[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.<br/><br/>**(C++14~)**<br/>[constexpr 함수의 제약이 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)되어 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), 2개 이상의 리턴문, `if()`, `for()`, `while()` 등을 사용할 수 있습니다.<br/><br/>**(C++17~)**<br/>[if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.|
 |[static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|**(C++11~)**<br/>[static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)가 추가되어 컴파일 타임 진단이 가능해 졌습니다.<br/><br/>**(C++17~)**<br/>[static_assert()의 메시지 생략](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/#c17-static_assert%EC%9D%98-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%83%9D%EB%9E%B5)을 지원합니다.| 
-|개선된 템플릿 (C++11~)|**(C++11~)**<br/>파라메터 팩을 이용한 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)이 추가되어 코딩 자유도가 높아졌습니다.<br/>[sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)에서 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)의 인자수를 구할 수 있습니다.<br/>[extern으로 템플릿 선언](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.<br/>[템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%A5%B8%EC%AA%BD-%EA%BA%BD%EC%87%A0-%EA%B4%84%ED%98%B8) 파싱을 개선하여 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.<br/><br/>**(C++14~)**<br/>[변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 템플릿으로 만들 수 있습니다.<br/><br/>**(C++17~)**<br/>[클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.<br/>템플릿이 타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.<br/>[Fold 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#c17-fold-%ED%91%9C%ED%98%84%EC%8B%9D)을 이용하여 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)에서 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)을 재귀적으로 반복하여 전개할 수 있습니다.|
+|개선된 템플릿 (C++11~)|**(C++11~)**<br/>파라메터 팩을 이용한 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)이 추가되어 코딩 자유도가 높아졌습니다.<br/>[sizeof...()](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)에서 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)의 인자수를 구할 수 있습니다.<br/>[extern으로 템플릿 선언](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다.<br/>[템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%A5%B8%EC%AA%BD-%EA%BA%BD%EC%87%A0-%EA%B4%84%ED%98%B8) 파싱을 개선하여 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.<br/><br/>**(C++14~)**<br/>[변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 템플릿으로 만들 수 있습니다.<br/><br/>**(C++17~)**<br/>[클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.<br/>타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.<br/>[Fold 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#c17-fold-%ED%91%9C%ED%98%84%EC%8B%9D)을 이용하여 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)에서 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)을 재귀적으로 반복하여 전개할 수 있습니다.|
 
 # 코딩 계약 강화
 
