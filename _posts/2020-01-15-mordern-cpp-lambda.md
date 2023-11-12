@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [모던 C++] (C++11~) 람다 표현식, 클로저, (C++14~) 람다 캡쳐 초기화, 일반화된 람다 표현식, (C++17~) *this 람다 캡쳐, constexpr 람다 표현식, (C++20~) 람다의 템플릿 인자, 람다 기본 생성, 미평가 표현식 허용, this의 암시적 캡쳐 deprecate"
+title: "#15. [모던 C++] (C++11~) 람다 표현식, 클로저, (C++14~) 람다 캡쳐 초기화, 일반화된 람다 표현식, (C++17~) *this 람다 캡쳐, constexpr 람다 표현식, (C++20~) 람다의 템플릿 인자, 람다 표현식의 기본 생성과 복사 대입, 미평가 표현식 허용, this의 암시적 캡쳐 deprecate"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -20,7 +20,7 @@ sidebar:
 > * (C++17~) [람다 캡쳐시 *this 를 이용](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90)하여 개체 자체를 복제하여 사용합니다.
 > * (C++17~) [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)가 추가되어 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)도 컴파일 타임 함수로 만들 수 있습니다.
 > * (C++20~) [람다 표현식에서 템플릿 인자](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 지원합니다.
-> * (C++20~) [상태없는 람다 표현식의 기본 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EC%83%81%ED%83%9C%EC%97%86%EB%8A%94-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1)을 지원하여 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)등에 타입으로 전달했다면, 내부적으로 기본 생성하여 사용할 수 있습니다.
+> * (C++20~) [상태없는 람다 표현식의 기본 생성과 복사 대입](??)을 지원합니다.
 > * (C++20~) [미평가 표현식에서도 람다 표현식을 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%AF%B8%ED%8F%89%EA%B0%80-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C%EC%9D%98-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D-%ED%97%88%EC%9A%A9)하기 때문에 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)안에서 사용할 수 있습니다.
 > * (C++20~) [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)에서 `[=]` 사용시 [this의 암시적 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C-this%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%BA%A1%EC%B3%90-deprecate)가 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었으므로 명시적으로 작성해야 합니다.
  
@@ -619,7 +619,7 @@ auto f(Args&&... args){
 }
 ```
 
-# (C++20~) 람다 표현식의 기본 생성과 복사 대입
+# (C++20~) 상태없는 람다 표현식의 기본 생성과 복사 대입
 
 상태없는 람다 표현식이란, 캡쳐하는 것이 없는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 입니다.
 
@@ -680,7 +680,7 @@ for (auto i : data_11) {
 }
 ```
 
-C++20 부터는 [상태없는 람다 표현식의 기본 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EC%83%81%ED%83%9C%EC%97%86%EB%8A%94-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1)을 지원하여 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)등에 타입으로 전달했다면, 내부적으로 상태없는 람다 표현식을 [기본 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)하여 사용할 수 있습니다. 즉, 상기 예에서 `decltype(lambda_11)`로 비교하는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)의 타입을 전달했다면, 굳이 `compare` 개체를 전달할 필요가 없습니다. 
+C++20 부터는 [상태없는 람다 표현식의 기본 생성과 복사 대입](??)을 지원하여 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)등에 타입으로 전달했다면, 내부적으로 상태없는 람다 표현식을 [기본 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)하여 사용할 수 있습니다. 즉, 상기 예에서 `decltype(lambda_11)`로 비교하는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)의 타입을 전달했다면, 굳이 `compare` 개체를 전달할 필요가 없습니다. 
 
 ```cpp
 auto lambda_11{
