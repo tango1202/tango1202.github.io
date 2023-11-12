@@ -46,18 +46,18 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
     * (O) explicit(bool) : true인 경우만 명시적으로 동작함
     * 템플릿 개선
         * (O) 템플릿 인자에 타입이 아닌 개체 지원 확장
-        * (O) 축약된 기능 템플릿
+        * (O) 축약된 함수 템플릿
         * (O) initializer_list 사용시 클래스 템플릿 인수 추론
     * 람다 개선
         * (O) 람다 표현식에서 템플릿 인자
+        * (O) 람다 캡쳐에서 파라메터 팩 확장 지원 ..., &... 
+            * https://github.com/AnthonyCalandra/modern-cpp-features#lambda-capture-of-parameter-pack
 
-기본 구성 가능 및 할당 가능 상태 비저장 람다 Default constructible and assignable stateless lambdas https://en.cppreference.com/w/cpp/language/lambda
-
-
-
+        * (O) 상태없는 람다 표현식의 기본 생성
+        * (O) 미평가 표현식에서의 람다 표현식 허용
         * (O) 람다 표현식에서 this의 암시적 캡쳐 deprecate
 
-
+암시적 람다 캡쳐 단순화 Simplifying implicit lambda capture( https://wg21.link/P0588R1)
 
 
 
@@ -72,14 +72,7 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
     * (O) 모듈 : include 기법외 방법. 컴파일 시간 개선         
 
-평가되지 않은 컨텍스트의 람다(https://en.cppreference.com/w/cpp/language/lambda#Lambdas_in_unevaluated_contexts)
- 
 
-    * 람다 개선
-
-
-        * (O) 람다 캡쳐에서 파라메터 팩 확장 지원 ..., &... 
-            * https://github.com/AnthonyCalandra/modern-cpp-features#lambda-capture-of-parameter-pack
 
 
     * (O) 기능 테스트 매크로 : C++11 이상의 기능이 있는지 컴파일 타임 검사 __has_cpp_attributes
@@ -143,7 +136,7 @@ const&-멤버에 대한 한정된 포인터 const&-qualified pointers to members
 
 
 
-암시적 람다 캡쳐 단순화 Simplifying implicit lambda capture( https://wg21.link/P0588R1)
+
 
 
 
