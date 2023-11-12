@@ -120,7 +120,7 @@ int result{Factorial_11(5)};
 다만 1개의 명령문으로 구성해야 하기 때문에 구현 방법이 까다롭습니다.(*제약 조건은 점진적으로 완화되고 있습니다. [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)를 참고하세요.*)
 
 1. 1개의 리턴문을 사용합니다.
-2. 조건문 대신 [조건 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A1%B0%EA%B1%B4-%EC%97%B0%EC%82%B0%EC%9E%90)(`a ? b : c`)를 사용합니다. 
+2. 조건식 대신 [조건 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A1%B0%EA%B1%B4-%EC%97%B0%EC%82%B0%EC%9E%90)(`a ? b : c`)를 사용합니다. 
 3. 반복문은 재귀 호출을 이용하여 구현합니다.
 
 # constexpr 생성자 

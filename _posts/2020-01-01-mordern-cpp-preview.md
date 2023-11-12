@@ -43,12 +43,23 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
     * (O)지정된 초기화(Designated initalizers)
     * (O) consteval 즉시 평가 함수
     * (O) constinit 컴파일 타임에 static 변수가 초기화되도록 강제함 static 생성 순서가 명확해짐
-     * (O) explicit(bool) : true인 경우만 명시적으로 동작함
-    * (O) 템플릿 인자에 타입이 아닌 개체 지원 확장
-    * (O) 축약된 기능 템플릿
-        * (O) initializer 사용시 템플릿 인수 추론
-        cppreference(Initializer list constructors in class template argument deduction)
-    * 기존에는 initializer 사용시 안됐으나, 이제는 됨. std::vector v{ 1, 2, 3, 4, 5 };   
+    * (O) explicit(bool) : true인 경우만 명시적으로 동작함
+    * 템플릿 개선
+        * (O) 템플릿 인자에 타입이 아닌 개체 지원 확장
+        * (O) 축약된 기능 템플릿
+        * (O) initializer_list 사용시 클래스 템플릿 인수 추론
+    * 람다 개선
+        * (O) 람다 표현식에서 템플릿 인자
+
+기본 구성 가능 및 할당 가능 상태 비저장 람다 Default constructible and assignable stateless lambdas https://en.cppreference.com/w/cpp/language/lambda
+
+
+
+        * (O) 람다 표현식에서 this의 암시적 캡쳐 deprecate
+
+
+
+
 
 
 
@@ -61,36 +72,16 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
     * (O) 모듈 : include 기법외 방법. 컴파일 시간 개선         
 
-
-    * 템플릿 개선
+평가되지 않은 컨텍스트의 람다(https://en.cppreference.com/w/cpp/language/lambda#Lambdas_in_unevaluated_contexts)
  
 
     * 람다 개선
 
-        * (O)템플릿 람다 auto f = []<typename T>(std::vector<T>vector) { ...};
-            * https://github.com/AnthonyCalandra/modern-cpp-features#template-syntax-for-lambdas
 
         * (O) 람다 캡쳐에서 파라메터 팩 확장 지원 ..., &... 
             * https://github.com/AnthonyCalandra/modern-cpp-features#lambda-capture-of-parameter-pack
 
-        * (O) 람다 캡쳐시 명시적 this
-            * https://github.com/AnthonyCalandra/modern-cpp-features#deprecate-implicit-capture-of-this
-            * 람다 캡쳐에서 [=, this] 허용. 기존에는 [=] 만해도 this가 캡쳐되어 [=,this] 는 오류였음. 
-            * 암시적 this 캡쳐 중단
-                * https://en.cppreference.com/w/cpp/language/lambda#Lambda_capture
 
-
-                ```cpp
-                void S2::f(int i)
-                {
-                    [=] {};        // OK: by-copy capture default
-                    [=, &i] {};    // OK: by-copy capture, except i is captured by reference
-                    [=, *this] {}; // until C++17: Error: invalid syntax
-                                // since C++17: OK: captures the enclosing S2 by copy
-                    [=, this] {};  // until C++20: Error: this when = is the default
-                                // since C++20: OK, same as [=]
-                }
-                ```
     * (O) 기능 테스트 매크로 : C++11 이상의 기능이 있는지 컴파일 타임 검사 __has_cpp_attributes
  
     * (O) constexpr 완화
@@ -150,11 +141,11 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
 const&-멤버에 대한 한정된 포인터 const&-qualified pointers to members(https://wg21.link/P0704R1)
 
-평가되지 않은 컨텍스트의 람다(https://en.cppreference.com/w/cpp/language/lambda#Lambdas_in_unevaluated_contexts)
+
 
 암시적 람다 캡쳐 단순화 Simplifying implicit lambda capture( https://wg21.link/P0588R1)
 
-기본 구성 가능 및 할당 가능 상태 비저장 람다 Default constructible and assignable stateless lambdas https://en.cppreference.com/w/cpp/language/lambda
+
 
 const기본 복사 생성자와 불일치 const mismatch with defaulted copy constructor https://wg21.link/P0641R2
 
@@ -293,6 +284,6 @@ boolT* 로 변환하는 것은 범위를 좁히는 것을 고려해야 합니다
 |(~C++17)|[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 관련해서 [throw()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)가 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되었습니다. 이제 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)만 사용해야 합니다.<br/>`&&, &=`등이 특수기호가 없는 인코딩을 사용하는 곳을 위해 제공했던 `trigraph`가 remove되었습니다.([cppreference](https://en.cppreference.com/w/cpp/language/operator_alternative#Trigraphs_.28removed_in_C.2B.2B17.29) 참고)<br/>변수를 CPU 레지스터에 배치하도록 힌트를 주는 `register`가 deprecate 되었습니다.<br/>[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)의 증감 연산이 deprecate 되었습니다.|
 
 
-
+람다 표현식에서 this의 암시적 캡쳐 deprecate
 
 

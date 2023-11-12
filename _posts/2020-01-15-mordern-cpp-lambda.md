@@ -19,6 +19,10 @@ sidebar:
 > * (C++14~) [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받아 마치 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 동작하는 [일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)가 추가되었습니다.
 > * (C++17~) [람다 캡쳐시 *this 를 이용](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90)하여 개체 자체를 복제하여 사용합니다.
 > * (C++17~) [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)가 추가되어 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)도 컴파일 타임 함수로 만들 수 있습니다.
+> * (C++20~) [람다 표현식에서 템플릿 인자](??)를 지원합니다.
+> * (C++20~) [상태없는 람다 표현식의 기본 생성](??)을 지원하여 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)등에 타입으로 전달했다면, 내부적으로 기본 생성하여 사용할 수 있습니다.
+> * (C++20~) [미평가 표현식에서도 람다 표현식을 허용](??)하기 때문에 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)안에서 사용할 수 있습니다.
+> * (C++20~) [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)에서 `[=]` 사용시 [this의 암시적 캡쳐](??)가 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었으므로 명시적으로 작성해야 합니다.
  
 # 개요
 기존에는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 이용하여 함수를 개체화 했는데요,
@@ -98,7 +102,7 @@ int f(int a, int b) {
 |항목|내용|
 |--|--|
 |`[]` (C++11~)|아무것도 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)하지 않습니다.|
-|`[=]` (C++11~)|외부의 모든 변수를 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)형 값으로 가져옵니다.|
+|`[=]` (C++11~)|외부의 모든 변수를 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)형 값으로 가져옵니다.<br/>암시적으로 `this`도 캡쳐합니다.<br/>(C++20~) `this`의 암시적 캡쳐가 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었습니다.|
 |`[&]` (C++11~)|외부의 모든 변수의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 가져옵니다.|
 |`[=, &x, &y]` (C++11~)|외부의 모든 변수를 값으로 가져오되 `x`, `y` 만 참조로 가져옵니다.|
 |`[&, x, y]` (C++11~)|외부의 모든 변수의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 가져오되 `x`, `y` 만 값으로 가져옵니다.|
@@ -176,7 +180,7 @@ EXPECT_TRUE( a == 1 && b == 20 && c == 3);
 개체의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 내에서 사용할 때에는 [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)시 [this 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)가 복제되어 개체의 내부 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정할 수 있습니다.
 
 ```cpp
-class T {
+class T_11 {
     int m_Member{1};
 public:
     int GetMember() const {return m_Member;}
@@ -185,7 +189,6 @@ public:
 
         auto f_11{
             [=]() -> int {
-                // this->m_Member = 10; 
                 m_Member = 10; // this->m_Member = 10; 과 동일. 멤버 변수의 값을 수정합니다.
                 return m_Member + local;
             }
@@ -195,10 +198,12 @@ public:
     }
 };
 
-T t;
+T_11 t;
 EXPECT_TRUE(t.Func() == 12);
 EXPECT_TRUE(t.GetMember() == 10); // 멤버 변수가 수정되어 있습니다.
 ```
+
+> *(C++20~) [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)에서 `[=]` 사용시 [this의 암시적 캡쳐](??)가 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었으므로 명시적으로 작성해야 합니다.*
 
 # 참조 캡쳐
 
@@ -478,7 +483,7 @@ EXPECT_TRUE(add_14(1, 2) == 3);
 EXPECT_TRUE(add_14(std::string{"hello"}, std::string{"world"}) == "helloworld");
 ```
 
-마치 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)과 유사하죠.
+마치 다음의 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)과 유사합니다.(*`add_14(T a, T b)`가 아닌 `add_14(T a, U b)`인 것을 주목하세요.*)
 
 ```cpp
 template<typename T, typename U> 
@@ -491,7 +496,21 @@ EXPECT_TRUE(add_14(1, 2) == 3);
 EXPECT_TRUE(add_14(std::string{"hello"}, std::string{"world"}) == "helloworld");
 ```
 
-하지만 템플릿 표현이 아니다 보니 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 위한 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0) 구문을 사용하기 어렵습니다.
+[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)가 전달된 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 따로 따로 추론하다보니 `a`, `b`가 같은 타입인지 보장할 수 없는데요, [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)을 이용하면, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 부터 타입을 결정할 수 있으므로, `a`, `b`를 같은 타입으로 보장할 수 있습니다.
+
+```cpp
+auto add_14{
+    // b는 a와 같은 타입입니다.
+    [](auto a, decltype(a) b) {return a + b;}
+}; 
+
+EXPECT_TRUE(add_14(1, 2) == 3);
+EXPECT_TRUE(add_14(std::string{"hello"}, std::string{"world"}) == "helloworld");
+```
+
+[decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)은 [일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)의 또다른 곳에서도 좋은 궁합을 보입니다.
+
+[일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)은 템플릿 표현이 아니다 보니 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 위한 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0) 구문을 사용하기 어렵습니다.
 
 ```cpp
 int f_11(int&) {return 1;}
@@ -541,7 +560,7 @@ EXPECT_TRUE(Forwarding_14(std::move(val)) == 2); // 전달 참조에서 우측�
 
 # (C++17~) constexpr 람다 표현식
 
-C++17 부터 [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 요구사항이 충족되면 암시적으로 컴파일 타임 함수로 만들어지고, [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr) 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.
+C++17 부터 [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 요구사항이 충족되면 자동으로 암시적 컴파일 타임 함수로 만들어집니다. 또한, [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr) 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.
 
 ```cpp
 // 명시적 constexpr 람다 표현식 입니다.
@@ -561,8 +580,149 @@ constexpr int a_11{1};
 constexpr int b_11{2};
 static_assert(add_17(a_11, b_11) == 3);
 
-// 인자로 전달한 c, d는 변수이기 때문에 요구사항이 맞지 않아 런타임 람다  표현식 입니다.
+// 인자로 전달한 c, d는 런타임 변수이기 때문에 요구사항이 맞지 않아 런타임 람다 표현식 입니다.
 int c{1};
 int d{2};
 EXPECT_TRUE(add_17(c, d) == 3);
 ```
+
+# (C++20~) 람다 표현식에서 템플릿 인자
+
+C++14에 도입된 [일반화된 람다 표현식](??)은 [템플릿 인자](??)를 지원하지 않았는데요,
+
+C++20 부터는 [람다 표현식에서 템플릿 인자](??)를 지원합니다.
+
+```cpp
+auto add_11 {
+    [](int a, int b) {return a +b;} // 람다 표현식
+};
+auto add_14{
+    [](auto a, decltype(a) b) {return a + b;} // 일반화된 람다 표현식
+}; 
+auto add_20{
+    []<typename T>(T a, T b) {return a + b;} // 람다 표현식에서 템플릿 인자 지원
+};
+
+EXPECT_TRUE(add_11(1, 2) == 3);
+EXPECT_TRUE(add_14(1, 2) == 3);
+EXPECT_TRUE(add_20(1, 2) == 3);
+```
+
+# (C++20~) 상태없는 람다 표현식의 기본 생성
+
+[상태없는 람다 표현식](??)이란, `[]`와 같이 사용하여 캡쳐하는 것이 없는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 입니다.
+
+기존에는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)등에서 사용할때 `Compare`의 타입과 개체를 같이 전달해야 했습니다. 따라서 `set`의 생성자에 `Compare`개체를 전달하기 위해 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)
+를 사용할 수 없었는데요,(*[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용하면 우선 순위에 의해 다른 생성자를 사용할 수 없죠. [기존 생성자와 initializer_list 생성자와의 충돌](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EA%B8%B0%EC%A1%B4-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-initializer_list-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%EC%9D%98-%EC%B6%A9%EB%8F%8C) 참고*) 
+
+```cpp
+auto lambda_11{
+    [](int left, int right) {return left > right;} // 큰수에서 작은 수로 정렬합니다.
+};
+
+std::set<int, decltype(lambda_11)> data_11(lambda_11); // compare 개체를 전달해야 합니다.
+// std::set<int, decltype(lambda_11)> data_11{1, 2, 3}; // (X) 컴파일 오류. compare개체가 전달되지 않았습니다.
+
+data_11.insert(1); 
+data_11.insert(2);
+data_11.insert(3);
+for (auto i : data_11) {
+    std::cout << "set : " << i << std::endl; // 3 2 1 의 순서로 출력합니다.
+}
+```
+
+C++20 부터는 [상태없는 람다 표현식의 기본 생성](??)을 지원하여 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)등에 타입으로 전달했다면, 내부적으로 기본 생성하여 사용할 수 있습니다. 즉, 상기 예에서 `decltype(lambda_11)`로 비교하는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)의 타입을 전달했다면, 굳이 `compare` 개체를 전달할 필요가 없습니다. 
+
+```cpp
+auto lambda_11{
+    [](int left, int right) {return left > right;} 
+};
+
+std::set<int, decltype(lambda_11)> data_20; // 상태없는 람다 표현식은 기본 생성하므로 compare 개체를 전달할 필요가 없습니다.
+data_20.insert(1);
+data_20.insert(2);
+data_20.insert(3);
+for (auto i : data_20) {
+    std::cout << "set : " << i << std::endl;
+}
+```
+
+따라서 다음과 같이 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 이용하여 간편하게 초기화 할 수 있습니다. 
+
+```cpp
+auto lambda_11{
+    [](int left, int right) {return left > right;} 
+};
+
+std::set<int, decltype(lambda_11)> data_20{1, 2, 3}; // initializer_list로 초기화 할 수 있습니다.
+for (auto i : data_20) {
+    std::cout << "set : " << i << std::endl;
+}
+```
+
+# (C++20~) 미평가 표현식에서의 람다 표현식 허용
+
+미평가 표현식은 정의없이 선언만으로도 사용할 수 있는 표현식을 말합니다. [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)을 이용 처럼요.
+
+다음 예에서 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)은 `AddDeclare()`의 타입만 필요로 하기 때문에 `AddDeclare()`의 선언만 있어도 됩니다.
+```cpp
+extern int AddDeclare(int, int); // 함수 선언
+int AddDefine(int a, int b) {return a + b;} // 함수 정의
+
+decltype(*AddDeclare) AddFunc_11{AddDefine}; // AddDeclare함수 선언으로부터 변수 AddFunc_11을 정의하고 
+                                             // AddDefine으로 초기화합니다. 
+EXPECT_TRUE(AddFunc_11(10, 20) == 30); // 함수 실행    
+```
+
+C++20 부터는 [미평가 표현식에서도 람다 표현식을 허용](??)하기 때문에 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)안에서 사용할 수 있습니다.
+
+즉, 다음과 같이 `set`의 `Compare`를 정의할 수 있습니다.
+
+```cpp
+std::set<
+    int, 
+    decltype(
+        [](int left, int right) {return left > right;} // 미평가 표현식에서 람다 표현식을 사용할 수 있습니다.
+    )
+> data_20{1, 2, 3}; 
+for (auto i : data_20) {
+    std::cout << "set : " << i << std::endl; // 3 2 1 의 순서로 출력합니다.
+}  
+```
+
+# (C++20~) 람다 표현식에서 this의 암시적 캡쳐 deprecate
+
+[람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)시 `[=]`는 `this`도 암시적으로 캡쳐했습니다. 하지만 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이나 [클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/)처럼 암시적인건 언제나 좋지 않습니다. 항상 예상치 못한 곳에서 사이드 이펙트가 발생하니까요.
+
+C++20 부터는 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)에서 `[=]` 사용시 [this의 암시적 캡쳐](??)가 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었으므로 명시적으로 작성해야 합니다.
+
+```cpp
+class T_11 {
+    int m_Member{1};
+public:
+    int GetMember() const {return m_Member;}
+    int Func() {
+        int local{2};
+
+        auto f_11{
+#if 202002L <= __cplusplus // C++20~ 
+                // C++20 부터는 this를 명시적으로 작성합니다.
+                [=, this]() -> int { 
+#else
+                // 기존에는 암시적으로 this가 캡쳐되었습니다.
+                [=]() -> int {
+#endif
+                m_Member = 10; // this->m_Member = 10; 과 동일. 멤버 변수의 값을 수정합니다.
+                return m_Member + local;
+            }
+        };  
+
+        return f_11();
+    }
+};
+
+T_11 t;
+EXPECT_TRUE(t.Func() == 12);
+EXPECT_TRUE(t.GetMember() == 10); // 멤버 변수가 수정되어 있습니다.
+```
+

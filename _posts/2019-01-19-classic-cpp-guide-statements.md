@@ -29,7 +29,7 @@ sidebar:
 |`switch(조건) {`<br/>`case 상수1:`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`break;`<br>`case 상수2:`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`break;`<br/>`default:`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`break;`<br/>`}`|조건과 매칭되는 `case` 문 으로 분기.<br/>* 조건 : 정수 또는 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)<br/>* `break` : 해당 `case` 표현식을 실행하고 `switch`문 탈출<br/>* `default` : 매칭되는 `case`문이 없는 경우 실행|
 |`while (조건) {표현식;}`|조건이 참이면 표현식 반복 실행|
 |`do {표현식;} while(조건);`|표현식 실행후 조건 검사 하여, 조건이 참이면 표현식 반복 실행|
-|`for (초기식; 조건문; 표현식2;) {표현식1;}`|`초기식;`<br/>`while (조건문) {`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식1;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식2;`<br/>`}`<br/> 의 순서로 반복
+|`for (초기식; 조건식; 표현식2;) {표현식1;}`|`초기식;`<br/>`while (조건식) {`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식1;`<br/>&nbsp; &nbsp; &nbsp; &nbsp;`표현식2;`<br/>`}`<br/> 의 순서로 반복
 |`continue;`|반복문의 범위 끝으로 이동하여 다음 조건 검사|
 |`break;`|반복문 탈출|
 |`return;`|함수 종료|

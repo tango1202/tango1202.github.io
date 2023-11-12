@@ -9,11 +9,11 @@ sidebar:
 ---
 
 > * (C++20~) [3중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
-> * (C++20~) [3중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)를 `default`로 정의할 수 있습니다.
+> * (C++20~) [3중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)를 [default](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)로 정의할 수 있습니다.
 
 # 개요
 
-기존에는 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 구현하기 위해서 `==`, `!=`, `<`, `>`, `<=`, `>=` 개의 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 각각 구현해야 했습니다.(*[대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4) 참고*)
+기존에는 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 구현하기 위해서 `==`, `!=`, `<`, `>`, `<=`, `>=` 6개의 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 각각 구현해야 했습니다.(*[대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4) 참고*)
 
 ```cpp
 class T {
@@ -173,7 +173,7 @@ EXPECT_TRUE(10 < T_20{20}); // int op T_20. T_20 > 10으로 변경후 int를 암
 
 # 3중 비교 연산자 default 정의
 
-[3중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)를 `default`로 정의할 수 있습니다. 이때에는 `==`도 컴파일러가 같이 정의해 줍니다. 
+[3중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)를 [default](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)로 정의할 수 있습니다. 이때에는 `==`도 컴파일러가 같이 정의해 줍니다. 
 
 컴파일러는 각 멤버 변수의 선언 순서대로 비교합니다. 이때 컴파일러에 따라 비교 속도 최적화를 위해 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같은 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)는 각 요소의 대소 비교 전에 크기에 대한 비교를 선행할 수 있습니다.  
 
