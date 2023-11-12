@@ -50,9 +50,7 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
         * (O) initializer_list 사용시 클래스 템플릿 인수 추론
     * 람다 개선
         * (O) 람다 표현식에서 템플릿 인자
-        * (O) 람다 캡쳐에서 파라메터 팩 확장 지원 ..., &... 
-            * https://github.com/AnthonyCalandra/modern-cpp-features#lambda-capture-of-parameter-pack
-
+        * (O) 람다 캡쳐에서 파라메터 팩 확장 지원
         * (O) 상태없는 람다 표현식의 기본 생성과 복사 대입
         * (O) 미평가 표현식에서의 람다 표현식 허용
         * (O) 람다 표현식에서 this의 암시적 캡쳐 deprecate

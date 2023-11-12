@@ -20,6 +20,7 @@ sidebar:
 > * (C++17~) [람다 캡쳐시 *this 를 이용](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%BA%A1%EC%B3%90)하여 개체 자체를 복제하여 사용합니다.
 > * (C++17~) [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)가 추가되어 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)도 컴파일 타임 함수로 만들 수 있습니다.
 > * (C++20~) [람다 표현식에서 템플릿 인자](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 지원합니다.
+> * (C++20~) [람다 캡쳐에서 파라메터 팩](??)을 사용할 수 있습니다.
 > * (C++20~) [상태없는 람다 표현식의 기본 생성과 복사 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EC%83%81%ED%83%9C%EC%97%86%EB%8A%94-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EA%B3%BC-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85)을 지원합니다.
 > * (C++20~) [미평가 표현식에서도 람다 표현식을 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%AF%B8%ED%8F%89%EA%B0%80-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C%EC%9D%98-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D-%ED%97%88%EC%9A%A9)하기 때문에 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)안에서 사용할 수 있습니다.
 > * (C++20~) [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)에서 `[=]` 사용시 [this의 암시적 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C-this%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%BA%A1%EC%B3%90-deprecate)가 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었으므로 명시적으로 작성해야 합니다.
@@ -607,9 +608,9 @@ EXPECT_TRUE(add_11(1, 2) == 3);
 EXPECT_TRUE(add_14(1, 2) == 3);
 EXPECT_TRUE(add_20(1, 2) == 3);
 ```
-# (C++20~) 람다 표현식에서 파라메터 팩
+# (C++20~) 람다 캡쳐에서 파라메터 팩
 
-C++20 부터는 [람다 표현식에서 파라메터 팩](??)을 사용할 수 있습니다.
+C++20 부터는 [람다 캡쳐에서 파라메터 팩](??)을 사용할 수 있습니다.
 
 다음은 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)로 받은 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)을 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에서 [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)하여 `Sum()`함수에 포워딩하는 예입니다.
 
@@ -631,12 +632,63 @@ auto Sum_20(Params&&... params) { // 전달 참조입니다. 정수형 상수는
         // forward<Params>로 사용하면, forward<int&&>이므로 상수성 계약 위반입니다.
         // 따라서 forward<const Params>으로 전달해야 합니다.
         return Sum(std::forward<const Params>(lambdaParams)...); 
-                                                                    
-                                                                    
     }(); // 클로저를 실행합니다.
 }
 
 EXPECT_TRUE(Sum_20(1, 2, 3) == 1 + 2 + 3);
+```
+
+다음은 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)로 받은 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)을 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에서 [참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)하여 `Add()`함수에 포워딩하는 예입니다. `Add()`함수에서 `result`의 값을 수정하며, 호출한 곳에서 수정된 값을 확인할 수 있습니다.
+
+[참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)는 자기가 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 덧붙입니다. 따라서, `[&...lambdaParams = std::forward<Params>(params)]`와 같이 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90) 하면 타입이 맞지 않아 컴파일 오류가 발생합니다. 따라서, 억지로 `[std::forward<Params&>(params)]` 와 같이 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)함수시 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 더하고, 다시 `[std::forward<Params>(params)]`를 이용하여 원복합니다. 자세한 원리는 [forward() 원리](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%9B%90%EB%A6%AC)를 참고하세요.
+
+```cpp
+void Add(int& result, int a, int b, int c) {result += a + b + c;}
+
+template <typename... Params>
+void Add_20(Params&&... params) { // 전달 참조입니다. 이름이 있는 좌측값은 int&, 정수형 상수는 int&& 로 전달받습니다.
+
+    // 참조 캡쳐이기 때문에 참조성이 더해집니다.
+    // 즉 params[1] == int& 일때, lambdaParams[1] == int& + & == int&& 입니다.
+    // 따라서, int& 를 int&&에 바인딩할 수 없다는 컴파일 오류가 발생합니다.
+    // [&...lambdaParams = std::forward<Params>(params)] { // (X) 컴파일 오류.
+
+    // 참조 캡쳐에서 참조성을 더해서 대입받는 문제를 우회하기 위해
+    // forward의 T에 Params& 로 참조성을 억지로 추가하여 형변환 합니다.
+    // ** 사례 분석 : params[1]이 int& 인 경우 **
+    //    1. lambdaParams[1] == int& + 참조 캡쳐에 의한 & == int&& 입니다.
+    //    2. params[1]은 좌측값 참조이므로, 좌측값 참조를 인자로 받는 forward() 함수가 호출됩니다. 
+    //    3. forward 함수에 전달되는 템플릿 인자는 T == params[1] + & == int& + & == int&& 가 전달되어 전개됩니다.
+    //    4. forward 함수는 static_cast<T&&>를 리턴하므로 static_cast<int&& &&> 를 리턴하므로 참조 축약에 의해 int&&을 리턴합니다.
+    //    5. lambdaParam[1] 은 int&&을 참조하는 좌측값이 입니다.
+    // ** 사례 분석 : params[2]가 int&& 인 경우 **
+    //    1. lambdaParams[2] == int&& + 참조 캡쳐에 의한 & == int& 입니다.
+    //    2. params[1]은 int&&를 참조하지만, 이름을 부여받았으므로 좌측값 참조를 인자로 받는 forward() 함수가 호출됩니다. 
+    //    3. forward 함수에 전달되는 템플릿 인자는 T == params[2] + & == int&& + & == int& 가 전달되어 전개됩니다.
+    //    4. forward 함수는 static_cast<T&&>를 리턴하므로 static_cast<int& &&> 를 리턴하므로 참조 축약에 의해 int&을 리턴합니다.
+    //    5. lambdaParams[2] 는 int&인 좌측값 참조입니다.
+    // 즉, 좌측값 참조와 우측값 참조가 바뀝니다.
+    [&...lambdaParams = std::forward<Params&>(params)] { 
+
+        // 애초에 캡쳐할때의 Params로 forward()를 호출합니다.
+        // ** 사례 분석 : params[1]이 int& 이고 lambdaParams[1]이 int&&인 경우 **
+        //    1. lambdaParams[1]이 int&&를 참조하지만, 이름을 부여받았으므로, 좌측값 참조를 인자로 받는 forward() 함수가 호출됩니다. 
+        //    2. forward 함수에 전달되는 템플릿 인자는 T == params[1] == int& 가 전달되어 전개됩니다.
+        //    3. forward 함수는 static_cast<T&&>를 리턴하므로 static_cast<int& &&> 를 리턴하므로 참조 축약에 의해 int&을 리턴합니다.
+        //    4. Add() 함수에 int&로 전달합니다.
+        // ** 사례 분석 : params[2]가 int&& 이고 lambdaParams[2]가 int& 인 경우 **
+        //    1. lambdaParams[1]은 좌측값 참조이므로, 좌측값 참조를 인자로 받는 forward() 함수가 호출됩니다.
+        //    2. forward 함수에 전달되는 템플릿 인자는 T == params[2] == int&& 가 전달되어 전개됩니다.
+        //    3. forward 함수는 static_cast<T&&>를 리턴하므로 static_cast<int&& &&> 를 리턴하므로 참조 축약에 의해 int&&을 리턴합니다.
+        //    4. Add() 함수에 int&&로 전달합니다.
+        // 즉, lambdaParams가 좌측값 참조와 우측값 참조를 바꿔서 저장하고, 다시 Add() 함수에 원복해서 전달합니다.
+        Add(std::forward<Params>(lambdaParams)...); 
+    }(); // 클로저를 실행합니다
+}
+
+int result = 10;
+Add_20(result, 1, 2, 3);
+EXPECT_TRUE(result == 10 + 1 + 2 + 3); // result 값이 잘 수정되어 있습니다.
 ```
 
 # (C++20~) 상태없는 람다 표현식의 기본 생성과 복사 대입
