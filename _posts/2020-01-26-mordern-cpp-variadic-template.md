@@ -145,36 +145,36 @@ C++17 부터는 [Fold 표현식](https://tango1202.github.io/mordern-cpp/mordern
 ```cpp
 template<typename... Params>
 int UnaryRightFold_17(Params... params) {
-    // (param[1] + (나머지 전개)) 
-    // (param[1] + (param[2] + (나머지 전개)))
-    // (param[1] + (param[2] + (param[3] + (나머지 전개))))
-    // 즉, (param[1] op (... op (param[N-1] op param[N]))) 으로 전개 됩니다.        
+    // (params[1] + (나머지 전개)) 
+    // (params[1] + (params[2] + (나머지 전개)))
+    // (params[1] + (params[2] + (params[3] + (나머지 전개))))
+    // 즉, (params[1] op (... op (params[N-1] op params[N]))) 으로 전개 됩니다.        
     return (params +...); 
 }  
 // UnaryRightFold_17 과 동일하게 전개되나 마지막에 init 을 추가합니다.
 template<typename... Params>
 int BinaryRightFold_17(int init, Params... params) {
-    // (param[1] + (나머지 전개 + val)) 
-    // (param[1] + (param[2] + (나머지 전개 + val)))
-    // (param[1] + (param[2] + (param[3] + (나머지 전개))))
-    // 즉, (param[1] op (... op (param[N] op init))) 으로 전개 됩니다.        
+    // (params[1] + (나머지 전개 + val)) 
+    // (params[1] + (params[2] + (나머지 전개 + val)))
+    // (params[1] + (params[2] + (params[3] + (나머지 전개))))
+    // 즉, (params[1] op (... op (params[N] op init))) 으로 전개 됩니다.        
     return (params +...+ init); 
 } 
 template<typename... Params>
 int UnaryLeftFold_17(Params... params) {
-    // ((나머지 전개) + param[N]) 
-    // (((나머지 전개) + param[N-1]) + param[N]) 
-    // ((((나머지 전개) + param[N-2]) + param[N-1]) + param[N])         
-    // 즉, (((param[1] op param[2]) op ...) op param[N]) 으로 전개 됩니다.        
+    // ((나머지 전개) + params[N]) 
+    // (((나머지 전개) + params[N-1]) + params[N]) 
+    // ((((나머지 전개) + params[N-2]) + params[N-1]) + params[N])         
+    // 즉, (((params[1] op params[2]) op ...) op params[N]) 으로 전개 됩니다.        
     return (...+ params); 
 }   
 // UnaryLeftFold_17 과 동일하게 전개되나 마지막에 init 을 추가합니다.
 template<typename... Params>
 int BinaryLeftFold_17(int init, Params... params) {
-    // ((나머지 전개) + param[N]) 
-    // (((나머지 전개) + param[N-1]) + param[N]) 
-    // ((((나머지 전개) + param[N-2]) + param[N-1]) + param[N])         
-    // 즉, (((init op param[1]) op ...) op param[N]) 으로 전개 됩니다.        
+    // ((나머지 전개) + params[N]) 
+    // (((나머지 전개) + params[N-1]) + params[N]) 
+    // ((((나머지 전개) + params[N-2]) + params[N-1]) + params[N])         
+    // 즉, (((init op params[1]) op ...) op params[N]) 으로 전개 됩니다.        
     return (init +...+ params); 
 }
 
