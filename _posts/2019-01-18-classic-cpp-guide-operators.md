@@ -18,7 +18,7 @@ sidebar:
 > * (C++11~) [멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.
 > * (C++11~) [type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/)는 [type_info](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)의 래퍼로서 [type_info](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)를 컨테이너에서 관리할 수 있게 합니다.
 > * (C++11~) [addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#addressof)는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.
-> * (C++20~) [삼중 비교 연산자](??)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
+> * (C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
 
 # 복사 대입 연산자
 
@@ -111,7 +111,7 @@ NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 평가합니다.
 |이하|`a <= b`|O|`bool T::operator <=(const T2& b) const;`|`bool operator <=(const T& a, const T2& b);`|
 |이상|`a >= b`|O|`bool T::operator >=(const T2& b) const;`|`bool operator >=(const T& a, const T2& b);`|
 
-> *(C++20~) [삼중 비교 연산자](??)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.*
+> *(C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.*
 
 # 대소 비교의 논리 조건
 
@@ -667,7 +667,7 @@ public:
 };
 ```
 
-> *(C++20~) [삼중 비교 연산자](??)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.*
+> *(C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.*
 
 **열거형 연산자 오버로딩**
 

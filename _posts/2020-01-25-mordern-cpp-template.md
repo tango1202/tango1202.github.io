@@ -14,7 +14,7 @@ sidebar:
 > * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.
 > * (C++17~) 타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.
 > * (C++20~) [축약된 함수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%EC%B6%95%EC%95%BD%EB%90%9C-%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 제공되어 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다.
-> * (C++20~) [템플릿 인자에 타입이 아닌 개체가 확장](??)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
+> * (C++20~) [템플릿 인자에 타입이 아닌 개체가 확장](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%97%90-%ED%83%80%EC%9E%85%EC%9D%B4-%EC%95%84%EB%8B%8C-%EA%B0%9C%EC%B2%B4-%ED%99%95%EC%9E%A5)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
 > * (C++20~) [initializer_list 사용시 클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-initializer_list-%EC%82%AC%EC%9A%A9%EC%8B%9C-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 지원하여, [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 명시하지 않아도 됩니다.
 
 # extern 템플릿
@@ -265,7 +265,7 @@ C<&g_MyClass> c; // 전역, 정적 개체의 포인터
 D<g_MyClass> d; // 전역, 정적 개체의 참조자
 ```
 
-C++20 부터는 [템플릿 인자에 타입이 아닌 개체가 확장](??)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
+C++20 부터는 [템플릿 인자에 타입이 아닌 개체가 확장](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%97%90-%ED%83%80%EC%9E%85%EC%9D%B4-%EC%95%84%EB%8B%8C-%EA%B0%9C%EC%B2%B4-%ED%99%95%EC%9E%A5)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
 
 단,  [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)은 모든 멤버 변수가 `public`이고, [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)이 아니고, [constexpr 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)가 있어야 합니다. 
 
