@@ -39,13 +39,13 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
 4. C++20
 
-    * (O) 3중 비교 연산자
+    * (O) 삼중 비교 연산자
     * (O)지정된 초기화(Designated initalizers)
     * (O) consteval 즉시 평가 함수
     * (O) constinit 컴파일 타임에 static 변수가 초기화되도록 강제함 static 생성 순서가 명확해짐
     * (O) explicit(bool) : true인 경우만 명시적으로 동작함
     * 템플릿 개선
-        * (O) 템플릿 인자에 타입이 아닌 개체 지원 확장
+        * (O) 템플릿 인자에 타입이 아닌 개체 확장
         * (O) 축약된 함수 템플릿
         * (O) initializer_list 사용시 클래스 템플릿 인수 추론
     * 람다 개선

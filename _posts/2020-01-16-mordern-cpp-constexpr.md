@@ -16,7 +16,6 @@ sidebar:
 > * (C++20~) [consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다.
 > * (C++20~) [constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)가 추가되어 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 컴파일 타임에 초기화되도록 강제할 수 있습니다.
 
-
 # 개요
 
 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 언급한 것처럼 컴파일 타임에 여러가지 프로그래밍이 가능합니다. 하지만, 템플릿으로 우회하며 작성하다보니 상당히 난해했는데요, 
@@ -74,7 +73,7 @@ constexpr int size_11{a}; // (X) 컴파일 오류. 상수를 대입해야 합니
 
 # constexpr 함수
 
-기존에는 컴파일 타임 함수가 없었고, 함수처럼 동작하도록 다음처럼 템플릿을 활용했는데요([템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 참고),
+기존에는 컴파일 타임 함수가 없었고, 함수처럼 동작하도록 다음처럼 템플릿을 활용했는데요(*[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 참고*),
 
 ```cpp
 // Factorial n -1 을 재귀 호출합니다.
@@ -101,6 +100,8 @@ C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-
 1. 컴파일 타임 상수를 전달하면 컴파일 타임 함수로 동작하고,
 2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작합니다.
 
+    > *(C++20~) [consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다.*
+
 ```cpp
 constexpr int Factorial_11(int val) {
     // 마지막으로 1에 도달하면 재귀호출 안함
@@ -115,6 +116,7 @@ EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 1 * 2 * 3 * 4 * 5);
 int val{5};
 int result{Factorial_11(5)};
 ```
+
 런타임에 했던 작업을 최대한 컴파일 타임으로 전환하여 런타임 성능을 향상시킬 수 있는 획기적인 기능이지만 함수 구현에 제약이 좀 많습니다.
 
 다만 1개의 명령문으로 구성해야 하기 때문에 구현 방법이 까다롭습니다.(*제약 조건은 점진적으로 완화되고 있습니다. [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)를 참고하세요.*)

@@ -16,6 +16,7 @@ sidebar:
 > * (C++11~) [export 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF)은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 remove 되었습니다.
 > * (C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 템플릿으로 만들 수 있습니다.
 > * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.
+> * (C++20~) [축약된 함수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%EC%B6%95%EC%95%BD%EB%90%9C-%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 제공되어 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다.
 
 # 템플릿
 
@@ -112,6 +113,8 @@ EXPECT_TRUE(Plus('a', static_cast<char>(1)) == 'b'); // (O) 인수로부터 char
 ```
 
 템플릿 인수 추론의 좀더 상세한 내용은 [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 참고하시기 바랍니다.
+
+> *(C++20~) [축약된 함수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%EC%B6%95%EC%95%BD%EB%90%9C-%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 제공되어 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다.*
 
 # 템플릿 멤버 함수와 템플릿 중첩 클래스
 

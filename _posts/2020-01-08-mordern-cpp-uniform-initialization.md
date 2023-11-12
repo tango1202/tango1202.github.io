@@ -18,7 +18,7 @@ sidebar:
 > * (C++11~) [중괄호 초기화시 인자의 암시적 형변환을 일부 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98-%EC%B0%A8%EB%8B%A8)하여, 코딩 계약이 개선되었습니다.
 > * (C++11~) [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 가 추가되어 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)등 컨테이너 요소 추가가 간편해 졌습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)등이 표준화 되었습니다.
-> * (C++20~) [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)를 추가하여, [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하여, 어떤 멤버 변수를 초기화하는지 지명 할 수 있습니다. 
+> * (C++20~) [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하는 [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 어떤 멤버 변수를 초기화하는지 지명할 수 있습니다. 
 
 # 개요
 
@@ -263,7 +263,7 @@ T a_11{10};
 
 # 중괄호 집합 초기화
 
-[집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 경우에는 기존에도 `= {}` 표현을 지원했는데요,([배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 와 [구조체 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B5%AC%EC%A1%B0%EC%B2%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)
+[집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 경우에는 기존에도 `= {}` 표현을 지원했는데요,(*[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 와 [구조체 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B5%AC%EC%A1%B0%EC%B2%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고)*
 
 C++11 부터는 `{}` 도 지원합니다.
 
@@ -281,6 +281,7 @@ C++11 부터는 `{}` 도 지원합니다.
     int arr_11[3]{0, 1,}; // 초기값이 모자르면 0으로 채움
     EXPECT_TRUE(arr[2] == 0 && arr_11[2] == 0);
     ```       
+> *(C++20~) [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하는 [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 어떤 멤버 변수를 초기화하는지 지명할 수 있습니다.* 
 
 # 인자의 암시적 형변환 차단
 
@@ -560,7 +561,7 @@ public:
 T_11 obj{1, 2, 3, 4, 5}; // 갯수가 많아지면 어느값이 어느 멤버 변수를 초기화 하는지 헷갈립니다.
 ```
 
-C++20 부터는 [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)를 추가하여, [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하여, 어떤 멤버 변수를 초기화하는지 지명 할 수 있습니다. 
+C++20 부터는 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하는 [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 어떤 멤버 변수를 초기화하는지 지명할 수 있습니다. 
 
 다음과 같은 특징이 있습니다.
 
