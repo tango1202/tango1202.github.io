@@ -515,7 +515,9 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
         T_11(std::initializer_list<int>, int, int) {}
     };
     T_11 a{1, 2, 3, 4, 5}; // T_11(std::initializer_list<int>)
-    T_11 b{{1, 2, 3}, 4, 5}; // T_11(std::initializer_list<int>, int, int)
+    T_11 b{ 
+        {1, 2, 3}, 4, 5 // T_11(std::initializer_list<int>, int, int)
+    }; 
     ```
 
 # 기존 생성자와 initializer_list 생성자와의 충돌
