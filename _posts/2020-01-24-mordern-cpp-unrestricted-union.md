@@ -26,7 +26,7 @@ class A {
     int m_X;
     int m_Y;
 public:
-    A(int x, int y) : m_X(x), m_Y(y) {
+    A(int x, int y) : m_X{x}, m_Y{y} {
         std::cout << "A : Constructor" << std::endl;
     }
     ~A() {

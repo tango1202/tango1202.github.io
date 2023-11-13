@@ -41,7 +41,13 @@ C++버전에 따라 다음의 표준 속성이 제공됩니다.
 
 # [[noreturn]]
 
-컴파일러에게 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 없다는 최적화 힌트를 줍니다.
+컴파일러에게 리턴하지 않는다는 최적화 힌트를 줍니다.
+
+"리턴하지 않는다"가 좀 오해가 있는 표현인데요, 
+
+`void f() {}`는 `void`를 리턴하므로, 리턴하는 함수입니다.
+
+리턴하지 않는 함수는 무작정 예외를 발생시키거나 `abort()` 하여 프로그램을 종료하는 함수를 말합니다. 
 
 ```cpp
 // 함수가 항상 예외를 throw하거나 종료합니다. 
@@ -49,7 +55,8 @@ C++버전에 따라 다음의 표준 속성이 제공됩니다.
 [[noreturn]] void f_11() {throw "error";}
 
 // 실제로는 리턴하므로 컴파일러는 경고를 발생합니다.
-[[noreturn]] int g_11() {return 0;} // 경고. function declared 'noreturn' has a 'return' statement
+[[noreturn]] int g_11() {return 0;} // (X) 컴파일 경고. function declared 'noreturn' has a 'return' statement
+[[noreturn]] void g_11() {} // (X) 컴파일 경고. 'noreturn' function does return
 ```
 
 # [[carries_dependency]]
@@ -198,6 +205,23 @@ case 0: break;
 
 아무 멤버 변수가 없는 개체의 크기를 최적화합니다.
 
+[빈 클래스와 자식 개체의 크기](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EB%B9%88-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80-%EC%9E%90%EC%8B%9D-%EA%B0%9C%EC%B2%B4%EC%9D%98-%ED%81%AC%EA%B8%B0)에서 빈 클래스는 1byte이고, 다른 개체에 포함될 경우 해당 크기가 유지된다고 말씀드렸는데요,(*단 상속받으면, 0byte입니다.*)
 
+[[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address)를 사용하면, 빈 클래스인 경우 메모리를 차지하지 않도록 해줍니다.
 
-[빈 클래스와 자식 개체의 크기](??)
+```cpp
+class Empty {}; // 빈 클래스는 강제로 1byte
+EXPECT_TRUE(sizeof(Empty) == 1);
+
+class Composite {
+    int m_X;
+    Empty m_Empty; // 1byte 이지만 3byte 패딩됨
+};
+EXPECT_TRUE(sizeof(Composite) == sizeof(int) + sizeof(int));
+
+class Composite_20 {
+    int m_X;
+    [[no_unique_address]] Empty m_Empty; // 0byte
+};
+EXPECT_TRUE(sizeof(Composite_20) == sizeof(int)); 
+```

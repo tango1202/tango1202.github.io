@@ -295,6 +295,8 @@ EXPECT_TRUE(sizeof(Empty) == 1);
 `Empty`는 1byte이지만 다른 개체에 포함될 경우 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)에 따라 공간을 차지합니다.
 
 ```cpp
+class Empty {}; // 빈 클래스는 강제로 1byte
+EXPECT_TRUE(sizeof(Empty) == 1);
 class Composite {
     int m_X;
     Empty m_Empty; // 1byte 이지만 3byte 패딩됨

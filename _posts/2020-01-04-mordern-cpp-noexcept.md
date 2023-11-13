@@ -103,7 +103,7 @@ C++11 부터는 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-
 다음처럼 `noexcept(false)`을 사용하여 억지로 예외를 방출할 수는 있지만, 하지 마세요. [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서는 예외를 방출하지 않아야 합니다.
 
 ```cpp
-class T_11{
+class T_11 {
 public:
     ~T_11() noexcept(false) {} // 예외를 방출할 수 있습니다.
 };
@@ -120,7 +120,7 @@ void f() {
 void f_11() noexcept {
 }
 EXPECT_TRUE(noexcept(f()) == false);   
-EXPECT_TRUE(noexcept(g()) == true); 
+EXPECT_TRUE(noexcept(f_11()) == true); 
 ```
 
 # (C++17~) noexcept 함수 유형 포함 

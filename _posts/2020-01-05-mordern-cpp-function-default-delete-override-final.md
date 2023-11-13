@@ -90,14 +90,14 @@ C++11 부터는 명시적으로 [override](https://tango1202.github.io/mordern-c
 ```cpp
 class Base {
 public:
-    virtual void Func1_11() {};
-    virtual void Func2_11() {};
+    virtual void Func1() {};
+    virtual void Func2() {};
 };
-class Derived : public Base {
-    virtual void Func1_11() override {}; // (O)
-    virtual void Func2_11() override {}; // (O)
-    virtual void Func_2_11() override {}; // (X) 컴파일 오류. 부모 개체에 해당 멤버 없음
-};
+class Derived_11 : public Base {
+    virtual void Func1() override {}; // (O)
+    virtual void Func2() override {}; // (O)
+    virtual void Func_2() override {}; // (X) 컴파일 오류. 부모 개체에 해당 멤버 없음
+};       
 ```
 
 # final
@@ -109,24 +109,24 @@ C++11 부터는 다음처럼 [final](https://tango1202.github.io/mordern-cpp/mor
 ```cpp
 class Base_11 final {
 };
-// (X) 컴파일 오류. Base는 상속할 수 없습니다.
-class Derived : public Base_11 {
+// (X) 컴파일 오류. Base_11은 상속할 수 없습니다.
+class Derived_11 : public Base_11 {
 };
 ```
 
 또한, 멤버 함수의 [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)도 막을 수 있습니다.
 
 ```cpp
-class Base {
+class Base_11 {
 public:
-    virtual void Func1_11() {};
-    virtual void Func2_11() final {};
+    virtual void Func1() {};
+    virtual void Func2() final {};
 };
-class Derived1 : public Base {
-    virtual void Func1_11() override final {}; // (O) Base를 오버라이드하고, 자식 개체에서는 오버라이드 못하게 합니다.
-    virtual void Func2_11() override {}; // (X) 컴파일 오류. Func2_11은 오버라이드 할 수 없습니다.
+class Derived1_11 : public Base_11 {
+    virtual void Func1() override final {}; // (O) Base를 오버라이드하고, 자식 개체에서는 오버라이드 못하게 합니다.
+    virtual void Func2() override {}; // (X) 컴파일 오류. Func2는 오버라이드 할 수 없습니다.
 }; 
-class Derived2 : public Derived1 {
-    virtual void Func1_11() override final {}; // (X) 컴파일 오류. Func1_11은 오버라이드 할 수 없습니다.
+class Derived2_11 : public Derived1_11 {
+    virtual void Func1() override final {}; // (X) 컴파일 오류. Func1은 오버라이드 할 수 없습니다.
 }; 
 ```

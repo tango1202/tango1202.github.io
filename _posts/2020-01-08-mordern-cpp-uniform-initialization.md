@@ -364,7 +364,7 @@ class A {
     int m_X;
     int m_Y;
 public:
-    A(int x, int y) : m_X(x), m_Y(y) {}
+    A(int x, int y) : m_X{x}, m_Y{y} {}
 };
 
 A arr_11[]{
@@ -389,13 +389,13 @@ class A {
     int m_X;
     int m_Y;
 public:
-    A(int x, int y) : m_X(x), m_Y(y) {}
+    A(int x, int y) : m_X{x}, m_Y{y} {}
 };
 class B {
     int m_Val;
     A m_A;
 public:
-    B(int val, A a) : m_Val(val), m_A(a){}
+    B(int val, A a) : m_Val{val}, m_A{a} {}
 };
 
 B b_11{1, {2, 3}}; // B b_11{1, A{2, 3}};와 동일
@@ -515,7 +515,7 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
         T_11(std::initializer_list<int>, int, int) {}
     };
     T_11 a{1, 2, 3, 4, 5}; // T_11(std::initializer_list<int>)
-    T_11 b{ {1, 2, 3}, 4, 5}; // T_11(std::initializer_list<int>, int, int)
+    T_11 b{{1, 2, 3}, 4, 5}; // T_11(std::initializer_list<int>, int, int)
     ```
 
 # 기존 생성자와 initializer_list 생성자와의 충돌
