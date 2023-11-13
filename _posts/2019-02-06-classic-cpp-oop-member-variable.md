@@ -283,9 +283,26 @@ EXPECT_TRUE(sizeof(T3) == sizeof(double) * 2); // 16
 
 > *(C++11~) [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof)를 이용하여 [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 표준화 했습니다.*
 
-**빈 클래스와 자식 개체의 크기**
+# 빈 클래스와 자식 개체의 크기
 
-멤버 변수가 없는 빈 클래스라도 자료형이므로 최소 1byte의 크기를 가집니다. 이를 상속한 개체에서 멤버 변수가 구현되었다면, 강제로 추가된 1byte는 빼고 크기가 계산됩니다.
+멤버 변수가 없는 빈 클래스라도 자료형이므로 최소 1byte의 크기를 가집니다. 
+
+```cpp
+class Empty {}; // 빈 클래스는 강제로 1byte
+EXPECT_TRUE(sizeof(Empty) == 1);
+```
+
+`Empty`는 1byte이지만 다른 개체에 포함될 경우 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)에 따라 공간을 차지합니다.
+
+```cpp
+class Composite {
+    int m_X;
+    Empty m_Empty; // 1byte 이지만 3byte 패딩됨
+};
+EXPECT_TRUE(sizeof(Composite) == sizeof(int) + sizeof(int));
+```
+
+하지만, 이를 상속한 개체에서 멤버 변수가 구현되었다면, 강제로 추가된 1byte는 빼고 크기가 계산됩니다.
 
 ```cpp
 class Empty {}; // 빈 클래스는 강제로 1byte

@@ -9,10 +9,10 @@ sidebar:
 ---
 
 > * (C++11~) [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.
-> * (C++14~) [[[deprecated]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#%ED%91%9C%EC%A4%80-%EC%86%8D%EC%84%B1)가 추가되었습니다.
-> * (C++17~) [[[fallthrough]], [[nodiscard]], [[maybe_unused]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#%ED%91%9C%EC%A4%80-%EC%86%8D%EC%84%B1)가 추가되었습니다.
+> * (C++14~) [[[deprecated]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c14-deprecated-deprecated%EC%9D%B4%EC%9C%A0)가 추가되었습니다.
+> * (C++17~) [[[fallthrough]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-fallthrough), [[[nodiscard]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard), [[[maybe_unused]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-maybe_unused)가 추가되었습니다.
 > * (C++17~) `[[msvc::noinline]]` 와 같이 [제조사 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)를 사용할 수 있습니다.
-> * (C++20~) [[nodiscard]]의 생성자 지원, [[[nodiscard("이유")]], [[likely]], [[unlikely]], [[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#%ED%91%9C%EC%A4%80-%EC%86%8D%EC%84%B1)가 추가되었습니다.
+> * (C++20~) [[[nodiscard]]의 생성자 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0), [[[nodiscard("이유")]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0), [[[likely]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-likely-unlikely), [[[unlikely]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-likely-unlikely), [[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address)가 추가되었습니다.
 
 # 개요
 
@@ -28,20 +28,20 @@ C++버전에 따라 다음의 표준 속성이 제공됩니다.
 
 |항목|내용|
 |--|--|
-|`noreturn` (C++11~)|함수가 항상 예외를 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하거나 프로그램을 종료합니다.|
-|`carries_dependency` (C++11~)|(작성중)|
-|`optimize_for_synchronized` (C++11~)|(작성중)|
-|`deprecated` (C++14~)<br/>`deprecated("이유")`  (C++14~)|소멸 예정인 것임을 컴파일 경고로 알립니다.|
-|`fallthrough`  (C++17~)|`case A: break;`<br/>`case B:`<br/>`case C: break;`<br/>와 같이 `case B:`가 의도적으로 `case B:`를 실행함을 알립니다.|
-|`nodiscard` (C++17~)<br/>`nodiscard("이유")` (C++20~)|속성이 지정된 개체나 반환값이 무시되면 안됩니다.(*에러 코드 리턴하는 함수에 사용하면 좋습니다.*)|
-|`maybe_unused` (C++17~)|자가 진단을 위한 임시 변수(디버깅 모드에서만 사용하고, 런타임에 사용되지 않으면, 컴파일 경고가 발생합니다.)등 사용되지 않은 개체의 경고를 막습니다.|
-|`likely` (C++20~)<br/>`unlikely` (C++20~)|`if`나 `switch`에서 자주 사용하는 코드 조각을 알려주어 최적화 힌트를 제공합니다.|
-|`no_unique_address` (C++20~)|멤버 변수를 다른 멤버변수나 부모 클래스 개체와 오버랩합니다.(*아무 멤버 변수가 없는 개체를 최적화 할 수 있습니다.*)|
+|[[[noreturn]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#noreturn) (C++11~)|함수가 항상 예외를 [throw](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하거나 프로그램을 종료합니다.|
+|[[[carries_dependency]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#carries_dependency) (C++11~)|(작성중)|
+|[[[optimize_for_synchronized]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#optimize_for_synchronized) (C++11~)|(작성중)|
+|[[[deprecated]], [[deprecated("이유")]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c14-deprecated-deprecated%EC%9D%B4%EC%9C%A0) (C++14~)|소멸 예정인 것임을 컴파일 경고로 알려줍니다.|
+|[[[fallthrough]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-fallthrough) (C++17~)|`case A: break;`<br/>`case B:`<br/>`case C: break;`<br/>와 같이 `case B:`가 의도적으로 `case C:`를 실행함을 알립니다.|
+|[[[nodiscard]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard) (C++17~)<br/>[[[nodiscard("이유")]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0) (C++20~)|개체나 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 무시되면 안됩니다.(*에러 코드 리턴하는 함수에 사용하면 좋습니다.*)|
+|[[[maybe_unused]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-maybe_unused) (C++17~)|사용되지 않은 개체의 경고를 막습니다.|
+|[[[likely]], [[unlikely]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-likely-unlikely) (C++20~)|`if()`나 `switch()`에서 자주 사용하는 코드 조각을 알려주어 최적화 힌트를 제공합니다.|
+|[[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address) (C++20~)|아무 멤버 변수가 없는 개체의 크기를 최적화합니다.|
 |`assume("표현식")` (C++23~)|특정 상황에 표현식이 `true`가 되도록 가정합니다. 컴파일러는 이 가정을 신뢰하고 이에 따른 최적화를 합니다.(*가정이 거짓일때 동작은 정의되지 않았습니다.*)|
 
 # [[noreturn]]
 
-컴파일러에게 [리턴값](??)이 없다는 최적화 힌트를 줍니다.
+컴파일러에게 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 없다는 최적화 힌트를 줍니다.
 
 ```cpp
 // 함수가 항상 예외를 throw하거나 종료합니다. 
@@ -54,7 +54,11 @@ C++버전에 따라 다음의 표준 속성이 제공됩니다.
 
 # [[carries_dependency]]
 
+(작성중)
+
 # [[optimize_for_synchronized]]
+
+(작성중)
 
 # (C++14~) [[deprecated]], [[deprecated("이유")]]
 
@@ -70,7 +74,10 @@ template<typename T>
 class [[deprecated]] A {}; // 템플릿
 using MyType [[deprecated]] = int; // using
 [[deprecated]] typedef int YourType; // typedef
-[[deprecated]] int val; // 변수    
+[[deprecated]] int val; // 변수  
+#if 201703L <= __cplusplus // C++17~
+    [[deprecated]] auto [a, b] = std::make_pair(1, 3.14); // 구조화된 바인딩 
+#endif  
 [[deprecated]] void f() {} // 함수 
 enum [[deprecated]] MyEnum {MyVal [[deprecated]]}; // 열거형, 열거자
 enum class [[deprecated]] YourEnum {YourVal [[deprecated]]}; // 범위 있는 열거형, 열거자
@@ -96,7 +103,7 @@ case 2:
 
 # (C++17~) [[nodiscard]]
 
-[리턴값](??)을 무시하면 컴파일 경고로 알려줍니다.
+[리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 무시하면 컴파일 경고로 알려줍니다.
 
 ```cpp
 enum class Error_11 {Ok, Fail};
@@ -120,9 +127,30 @@ Error_17 GetForcedError_17() {return Error_17::Ok;}
 // GetForcedError_17(); // (X) 컴파일 경고. Error_17 타입이 리턴되면 무시하면 안됩니다.
 Error_17 error = GetForcedError_17();
 ```
-> *(C++20~) [[[nodiscard]]의 생성자 지원](??)이 추가되었습니다.*
+> *(C++20~) [[[nodiscard]]의 생성자 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard)이 추가되었습니다.*
 
 # (C++17~) [[maybe_unused]]
+
+디버그 모드에서만 사용하는 개체라면, 릴리즈 모드에서는 사용되지 않는 개체여서 컴파일러가 경고로 알려주는데, 이 경고를 무시합니다.
+
+[[[deprecated]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c14-deprecated-deprecated%EC%9D%B4%EC%9C%A0)와 동일하게 사용하며, 네임스페이스는 지원하지 않습니다.
+
+```cpp
+// namespace [[maybe_unused]] MyLib {} // (X) 컴파일 경고. 네임스페이스는 지원하지 않습니다.
+class [[maybe_unused]] MyClass { // 클래스, 구조체, 공용체
+    [[deprecated]] int m_Val; // 멤버 변수
+    [[deprecated]] void f() {} // 멤버 함수
+}; 
+template<typename T>
+class [[maybe_unused]] A {}; // 템플릿
+using MyType [[maybe_unused]] = int; // using
+[[maybe_unused]] typedef int YourType; // typedef
+[[maybe_unused]] int val; // 변수    
+[[maybe_unused]] auto [a, b] = std::make_pair(1, 3.14); // 구조화된 바인딩     
+[[maybe_unused]] void f() {} // 함수 
+enum [[maybe_unused]] MyEnum {MyVal [[maybe_unused]]}; // 열거형, 열거자
+enum class [[maybe_unused]] YourEnum {YourVal [[maybe_unused]]}; // 범위 있는 열거형, 열거자
+```
 
 # (C++17~) 네임스페이스
 
@@ -130,7 +158,7 @@ C++17 부터는 `[[msvc::noinline]]` 와 같이 [제조사 네임스페이스](h
 
 # (C++20~) [[nodiscard]]의 생성자 지원, [[nodiscard("이유")]]
 
-기존에는 [[[nodiscard]]](??)가 생성자를 지원하지 않았지만, C++20 부터는 생성자를 지원합니다. 생성된 개체가 사용되지 않으면 컴파일 경고로 알려줍니다.
+기존에는 [[[nodiscard]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard)가 생성자를 지원하지 않았지만, C++20 부터는 생성자를 지원합니다. 생성된 개체가 사용되지 않으면 컴파일 경고로 알려줍니다.
 
 ```cpp
 class T_20 {
@@ -147,10 +175,29 @@ a = T_20{10, 'a'}; // a 변수에서 사용
 T_20::f(T_20{10, 'a'}); // f 함수에 인자로 전달해서 사용
 ```
 
-또한 [[[nodiscard("이유")]]](??)를 이용하여 설명을 추가할 수 있습니다.
+또한 [[[nodiscard("이유")]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0)를 이용하여 설명을 추가할 수 있습니다.
 
 # (C++20~) [[likely]], [[unlikely]]
+
+`if()`나 `switch()`에서 자주 사용하는 코드 조각을 알려주어 컴파일러에게 최적화 힌트를 제공합니다.
+
+```cpp
+int val{0};
+if (val < 0) [[likely]] {} // if가 참일때가 자주 실행되니 최적화를 해주세요.
+else {}
+
+switch(val) {
+case 0: break;
+[[likely]] case 1: break; // case 1인 경우가 자주 실행되니 최적화를 해주세요.
+[[unlikely]]case 2: break; // case 2인 경우는 드물게 실행되니 최적화를 해주세요.   
+}
+```
 
 # (C++20~) [[no_unique_address]]
 
 
+아무 멤버 변수가 없는 개체의 크기를 최적화합니다.
+
+
+
+[빈 클래스와 자식 개체의 크기](??)
