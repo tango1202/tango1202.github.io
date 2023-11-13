@@ -51,7 +51,7 @@ public:
 };
 
 T_11 t;
-bool status = false; // (X) 컴파일 오류.
+bool status = t; // (X) 컴파일 오류. explicit이므로 암시적 형변환이 되지 않습니다.
 
 if (t) { // if 문에서는 bool로 형변환 됩니다. 개체 유효성 평가에 유용합니다.
     EXPECT_TRUE(true);

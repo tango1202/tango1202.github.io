@@ -222,7 +222,7 @@ A&& ref_11 = std::move(ref); // A&&는 우측값만 받을 수 있습니다.
     // A&& c_11 = val; // (X) 컴파일 오류. 타입 추론을 안하므로 전달 참조가 아닙니다. &&은 우측값만 받을 수 있습니다.
 
     template<typename T>
-    void f(T&& val) {} // 전달 참조입니다. val 타입으로 추론합니다.
+    void f_11(T&& val) {} // 전달 참조입니다. val 타입으로 추론합니다.
     ```
 
 2. 반드시 타입 추론이 되야 합니다.
@@ -235,20 +235,20 @@ A&& ref_11 = std::move(ref); // A&&는 우측값만 받을 수 있습니다.
     template<typename T> 
     class A {
     public:
-        void f(T&& val) {} // 전달 참조가 아닙니다. A<int> val; 와 같이 인스턴스화 된 뒤에는 f(int&& val)로 구체화될 수 있기 때문에 val 타입으로 추론된다고 확신할 수 없습니다. 
+        void f_11(T&& val) {} // 전달 참조가 아닙니다. A<int> val; 와 같이 인스턴스화 된 뒤에는 f(int&& val)로 구체화될 수 있기 때문에 val 타입으로 추론된다고 확신할 수 없습니다. 
 
         template<typename U> 
-        void g(U&& val) {} // 전달 참조 입니다. val 타입으로 추론합니다.
+        void g_11(U&& val) {} // 전달 참조 입니다. val 타입으로 추론합니다.
     }; 
     ```
     또한 다음과 같이 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들이 여러개인 경우 `T&&`로 표현하면 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)가 아닙니다. `param1`, `param2`중 어느 하나가 추론된 뒤에는 나머지는 추론된 것으로 부터 구체화 될 수 있기 때문입니다. 따라서, `typename T, typename U`와 같이 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 독립적으로 만들어야 합니다.
 
     ```cpp
     template<typename T>
-    void f(T&& param1, T&& param2) {} // 전달 참조가 아닙니다. param1, param2중 어느 하나가 추론된 뒤에는 나머지는 추론된 것으로 부터 구체화 될 수 있기 때문입니다. 
+    void f_11(T&& param1, T&& param2) {} // 전달 참조가 아닙니다. param1, param2중 어느 하나가 추론된 뒤에는 나머지는 추론된 것으로 부터 구체화 될 수 있기 때문입니다. 
 
     template<typename T, typename U>
-    void f(T&& param1, U&& param2) {} // param1, param2 모두 전달 참조입니다.
+    void f_11(T&& param1, U&& param2) {} // param1, param2 모두 전달 참조입니다.
     ```
 
 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)는 
@@ -306,8 +306,8 @@ A&& ref_11 = std::move(ref); // A&&는 우측값만 받을 수 있습니다.
 
 ```cpp
 template<typename T>
-typename remove_reference<T>::type&& move(T&& param) {
-    using ReturnType = typename remove_reference<T>::type&&; // 참조성을 뗀 뒤 &&을 더합니다.
+typename std::remove_reference<T>::type&& move(T&& param) {
+    using ReturnType = typename std::remove_reference<T>::type&&; // 참조성을 뗀 뒤 &&을 더합니다.
 
     return static_cast<ReturnType>(param);
 }
@@ -323,17 +323,17 @@ typename remove_reference<T>::type&& move(T&& param) {
 
     ```cpp
     template<typename T>
-    struct remove_reference { 
+    struct remove_reference_11 { 
         using type = T; 
     };
     // 좌측값 참조인 경우 템플릿 부분 특수화. 좌측값 참조를 제거한 T를 type으로 사용합니다.
     template<typename T>
-    struct remove_reference<T&> { 
+    struct remove_reference_11<T&> { 
         using type = T; 
     };
     // 우측값 참조인 경우 탬플릿 부분 특수화. 우측값 참조를 제거한 T를 type으로 사용합니다.
     template<typename T>
-    struct remove_reference<T&&> { 
+    struct remove_reference_11<T&&> { 
         using type = T; 
     };
     ```
@@ -652,8 +652,8 @@ T&& forward(typename remove_reference<T>::type&& param) {
 
 ```cpp
 class A {};
-void f_11(A param) {}
-void g_11(A& param) {}
+void f(A param) {}
+void g(A& param) {}
 void h_11(A&& param) {}
 
 template<typename U, typename V, typename W>
@@ -667,7 +667,7 @@ void Forwarding_11(U&& param1, V&& param2, W&& param3) {
     //    return static_cast<A& + &&>(param);
     // }
     // 즉, A&를 A&로 형변환 합니다.
-    f_11(std::forward<U>(param1));
+    f(std::forward<U>(param1));
 
     // 전달 참조는 좌측값 참조 타입을 좌측값 참조로 받습니다.
     // 따라서, V == A&, param1 == A& 이며,
@@ -677,7 +677,7 @@ void Forwarding_11(U&& param1, V&& param2, W&& param3) {
     //    return static_cast<A& + &&>(param);
     // }
     // 즉, A&를 A&로 형변환 합니다.
-    g_11(std::forward<V>(param2));
+    g(std::forward<V>(param2));
 
     // 전달 참조는 우측값 참조 타입을 우측값 참조로 받습니다.
     // 또는 이름이 없는 값 타입인 임시 개체도 우측값 참조로 받습니다.
@@ -742,7 +742,7 @@ void Forwarding2_11(A param) { // param을 복사 생성하고
 예를 들어 `string`개체를 세팅하는 함수는 다음의 3가지 버전이 필요합니다.
 
 ```cpp
-class A {
+class A_11 {
     std::string m_String;
 public:
     void SetString(const std::string& str) {m_String = str;} // lvalue 로 세팅
@@ -754,7 +754,7 @@ public:
 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)를 이용하면 다음 한개의 함수로 구현할 수 있습니다. 코드량을 현저히 줄일 수 있죠.
 
 ```cpp
-class A {
+class A_11 {
     std::string m_String;
 public:
     template<typename T>
@@ -766,7 +766,7 @@ public:
     }
 }; 
 
-A a;
+A_11 a;
 
 std::string str = "Hello";
 a.SetString_11(str); // 값타입으로 전달. string&로 전달합니다.
@@ -779,14 +779,14 @@ a.SetString_11("World"); // (const char*)& 로 전달
 다음 코드를 보면, `short`, `char`등 `int`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)되는 타입들도 `Func_11(int)`이 아닌 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0) 버전을 호출하는데요,
 
 ```cpp
-class A {
+class A_11 {
 public:
     template<typename T>
     int Func_11(T&& param) {return 1;} // 어지간 하면, 다 전달 참조 버전이 호출됩니다.
     int Func_11(int) {return 2;}
 }; 
 
-A a;
+A_11 a;
 
 EXPECT_TRUE(a.Func_11(1) == 2);
 EXPECT_TRUE(a.Func_11((short)1) == 1); // (△) 비권장. 전달 참조 버전이 호출됩니다.
@@ -802,7 +802,7 @@ EXPECT_TRUE(a.Func_11((char)'a') == 1); // (△) 비권장. 전달 참조 버전
 다음은 기본적으로 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)버전을 호출한뒤 함수내에서 정수 계열인지 아닌지 검사하여 `FuncInternal_11(T&&, false_type)`와 `FuncInternal_11(T&&, true_type)`으로 분기합니다.(*`is_integral`, `true_type`, `false_type`은 [타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/)를 참고하시기 바랍니다.*)
 
 ```cpp
-class A {
+class A_11 {
 public:
     template<typename T>
     int Func_11(T&& param) {
@@ -818,7 +818,7 @@ public:
     int FuncInternal_11(int, std::true_type) {return 2;} // 정수 계열이 호출합니다.
 }; 
 
-A a;
+A_11 a;
 
 EXPECT_TRUE(a.Func_11(1) == 2); // (O) 정수 계열은 FuncInternal_11(int, true_type) 이 호출됩니다.
 EXPECT_TRUE(a.Func_11((short)1) == 2); // (O) 정수 계열은 FuncInternal_11(int, true_type) 이 호출됩니다.
@@ -934,7 +934,7 @@ EXPECT_TRUE(f_11(v_11) == 3); // initializer_list로 암시적으로 vector를 �
 
 
 ```cpp
-class A {
+class A_11 {
     std::string m_String;
 public:
     template<typename T>
@@ -944,17 +944,16 @@ public:
     }
 }; 
 
-A a;
+A_11 a;
 
 std::string str = "Hello";
-a.SetString_11(str);
+a.SetString_11(str); // str은 이동 연산되어 무효화됩니다.
 
-std::string str2 = str; // 이동 연산되어 str의 값은 무효화되었습니다.
+std::string str2 = str; // 이동 연산되어 무효화된 값으로 str2를 초기화했습니다.
 EXPECT_TRUE(str2.empty() == true); 
 ```
 
 따라서, 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 그냥 전달하는 것인지, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 하는 것인지 잘 구분해서 적용해야 합니다.
-
 
 # 값 타입 리턴에서 move()의 비효율성
 
@@ -977,8 +976,9 @@ public:
 ```cpp
 A_11 f() {
     A_11 result; // 지역 변수를 정의합니다.
-    return result; // 리턴하면서 임시 개체를 생성합니다.
+    return result; 
 }
+A_11 a = f(); // 리턴하면서 a 개체를 복사 생성합니다.
 ``` 
 
  `f()`에서 `result`를 생성하면서 1회, `f()`에서 리턴한 값으로 `a`를 생성하면서 2회 생성될 것 같지만, [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)에 의해 리턴할 개체 `result`를 그냥 `a`로 사용하게 하여 1회만 생성됩니다. 
@@ -992,8 +992,9 @@ A_11 : Default Constructor
 ```cpp
 A_11 f_11() {
     A_11 result; // 지역 변수를 정의합니다.
-    return std::move(result); // 리턴하면서 임시 개체를 이동합니다.
-}  
+    return std::move(result); // 리턴하면서 개체를 이동합니다.
+} 
+A_11 a = f_11(); // f() 가 리턴한 임시 개체로 a를 생성합니다 
 ```
 
 다음과 같이 [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)는 동작하지 않고, [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90) 1회와 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90) 1회가 호출됩니다.

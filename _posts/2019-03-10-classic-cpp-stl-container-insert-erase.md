@@ -57,6 +57,8 @@ EXPECT_TRUE(v.size() == 2); // 요소 갯수 2개
 EXPECT_TRUE(*result == 1); // 삭제한 요소의 다음 요소를 리턴함
 ```
 
+> *(C++11~) [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)가 추가되어 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)등 컨테이너 요소 추가가 간편해 졌습니다.*
+
 # list 의 삽입과 삭제
 
 `list`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 달리 이터레이터가 렌덤 접근되지 않습니다. 따라서 이터레이터의 `++` 연산자를 이용하여 접근합니다. 그외 `push_back()`, `insert()`, `erase()`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 동일합니다. 

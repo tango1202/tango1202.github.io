@@ -16,7 +16,7 @@ sidebar:
 
 # 개요
 
-컴파일러에게 최적화 힌트나 경고 처리 힌트등 문법적으로 전달하기 어려운 정보를 컴파일러에 전달할때 기존에는 컴파일러 마다 자체적인 방식을 사용했습니다.(`__attribute__()`, `__declspec()` 등) 
+컴파일러에게 최적화 힌트나 경고 처리 힌트등 문법적으로 전달하기 어려운 정보를 컴파일러에 전달할때 기존에는 컴파일러 마다 자체적인 방식을 사용했습니다.(*`__attribute__()`, `__declspec()` 등*) 
 
 C++11 부터는 [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 추가되어 부가 정보 전달을 표준화 했습니다.
 
@@ -122,10 +122,9 @@ enum class Error_11 {Ok, Fail};
 Error_11 error = GetLastError_17(); 
 ```
 
-또한 특정 타입에 [[nodiscard]] 속성을 주어 해당 타입이 무시되지않게 경고로 알려줍니다.
+또한 특정 타입에 [[[nodiscard]]](??) 속성을 주어 해당 타입이 무시되지않게 경고로 알려줍니다.
 
 ```cpp
-
 // Error_17 타입이 리턴되면 무시하면 안됩니다.
 enum class [[nodiscard]] Error_17 {Ok, Fail};
 
@@ -134,7 +133,7 @@ Error_17 GetForcedError_17() {return Error_17::Ok;}
 // GetForcedError_17(); // (X) 컴파일 경고. Error_17 타입이 리턴되면 무시하면 안됩니다.
 Error_17 error = GetForcedError_17();
 ```
-> *(C++20~) [[[nodiscard]]의 생성자 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard)이 추가되었습니다.*
+> *(C++20~) [[[nodiscard]]의 생성자 지원, [[nodiscard("이유")]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard)가 추가되었습니다.*
 
 # (C++17~) [[maybe_unused]]
 

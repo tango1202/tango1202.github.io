@@ -160,8 +160,8 @@ EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 2 * 5);
 
 ```cpp
 int x = 10;
-// constexpr Area_11 area(x, 5); // (X) 컴파일 오류. x는 컴파일 타임 상수가 아닙니다.
-Area_11 area(x, 5); // 런타임 함수로 동작합니다.
+// constexpr Area_11 area{x, 5}; // (X) 컴파일 오류. x는 컴파일 타임 상수가 아닙니다.
+Area_11 area{x, 5}; // 런타임 함수로 동작합니다.
 ```
 
 `GetVal_11()`와 같은 `Setter` 계열 함수들은 다음 제약 조건 때문에 만들기 어렵습니다.(*제약 조건은 점진적으로 완화되고 있습니다. [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)를 참고하세요.*)
@@ -181,8 +181,8 @@ private:
     int m_Y;
 public:
     constexpr Area_11(int x, int y) : // 컴파일 타임 상수로 사용 가능
-        m_X(x),
-        m_Y(y) {} 
+        m_X{x},
+        m_Y{y} {} 
     constexpr int GetVal_11() const {return m_X * m_Y;}
              
     constexpr void SetX_14(int val) {m_X = val;}
@@ -229,8 +229,8 @@ constexpr int Factorial_14(int val) {
 } 
 
 // 컴파일 타임에 계산된 120이 Val에 대입됩니다.
-enum class MyEnum {Val = Factorial_14(5)};
-EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 1 * 2 * 3 * 4 * 5);       
+enum class MyEnum_11 {Val = Factorial_14(5)};
+EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 1 * 2 * 3 * 4 * 5);       
 ```
 
 # (C++17~) if constexpr 
@@ -339,8 +339,6 @@ delete ptr;
 
 C++20 부터는 [consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다. 이렇게 컴파일 타임에만 동작하는 함수를 즉시 함수(*immediate function*)라고 합니다.
 
-[consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)도 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)와 같이 제약이 있으며, [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)를 참고하시기 바랍니다.
-
 ```cpp
 constexpr int Add_14(int a, int b) {return a + b;}
 consteval int Add_20(int a, int b) {return a + b;}
@@ -356,6 +354,8 @@ int b{20};
 EXPECT_TRUE(Add_14(a, b) == 30); // 런타임 함수로 사용
 EXPECT_TRUE(Add_20(a, b) == 30); // (X) 컴파일 오류. 런타임 함수로 사용할 수 없습니다.
 ```
+
+[consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)도 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)와 같이 제약이 있으며, [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)를 참고하시기 바랍니다.
 
 # (C++20~) constinit 변수
 
@@ -377,7 +377,7 @@ int g_B = g_A; // (△) 비권장. 컴파일 단계에선 일단 0으로 초기�
 
 int main() {
     std::cout << "g_A : " << g_A << std::endl;
-    std::cout << "g_B : " << g_B << std::endl;
+    std::cout << "g_B : " << g_B << std::endl; // (△) 비권장. 0이 나올 수도 있고, 10이 나올 수도 있습니다.
 
     return 0;
 }
@@ -402,7 +402,7 @@ int g_B_20 = g_A_20; // 컴파일 타임에 초기화 됩니다.
 
 int main() {
     std::cout << "g_A_20 : " << g_A_20 << std::endl;
-    std::cout << "g_B_20 : " << g_B_20 << std::endl;
+    std::cout << "g_B_20 : " << g_B_20 << std::endl; // 항상 10이 나옵니다.
 
     return 0;
 }

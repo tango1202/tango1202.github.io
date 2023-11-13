@@ -26,6 +26,8 @@ int* ptr3_11{nullptr}; // C++11
 
 `0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 오버로딩 함수 호출시 `int` 타입이 호출됩니다.
 
+다음은 `ptr1`, `ptr2`, `ptr3`가 모두 `int*`여서 `f(int*)`가 호출되는데요,
+
 ```cpp
 int f(int) {return 1;} // #1
 int f(int*) {return 2;} // #2
@@ -39,7 +41,7 @@ EXPECT_TRUE(f(ptr2) == 2); // int* 이므로 f(int*) 호출
 EXPECT_TRUE(f(ptr3_11) == 2); // int* 이므로 f(int*) 호출
 ```
 
-또한 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용한다면 다음처럼 초기값에 따라 `int`와 같은 정수형으로 추론되는 문제가 있습니다. 그러니 앞으로는 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)을 사용하시기 바랍니다.
+[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용한다면 `0`과 `NULL`은 다음처럼 초기값에 따라 `int`와 같은 정수형으로 추론되어, `f(int)`가 호출됩니다. 그러니 앞으로는 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)을 사용하시기 바랍니다.
 
 ```cpp
 // auto를 사용하면
@@ -55,9 +57,9 @@ EXPECT_TRUE(f(ptr3_11) == 2); // f(int*) 호출
 또한 다음과 같은 구문을 만났을때 좀더 명확한 분석이 가능합니다.
 
 ```cpp
-auto result = Func();
-if (result == 0) {} // (△) 비권장. result가 정수인지 포인터인지 불명확 합니다.
-if (result == nullptr) {} // result는 포인터라는 것이 좀더 명확합니다.
+auto result_11 = Func();
+if (result_11 == 0) {} // (△) 비권장. result_11이 정수인지 포인터인지 불명확 합니다.
+if (result_11 == nullptr) {} // result_11은 포인터라는 것이 좀더 명확합니다.
 ```
 
 # nullptr_t

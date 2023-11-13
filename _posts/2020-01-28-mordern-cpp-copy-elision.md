@@ -92,11 +92,11 @@ C++17 부터 [임시 개체](https://tango1202.github.io/classic-cpp-guide/class
 4. [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)에서 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 초기화할때
 
     ```cpp
-    class T {
+    class T_11 {
     public:
-        explicit T(std::initializer_list<int>) {}
+        explicit T_11(std::initializer_list<int>) {}
     };
-    T t({1, 2, 3}); // {1, 2, 3} 은 initializer_list로 임시 구체화됩니다.
+    T_11 t({1, 2, 3}); // {1, 2, 3} 은 initializer_list로 임시 구체화됩니다.
     ```
 5. [typeid()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)와 `sizeof()`에서 사용할때
 
@@ -130,5 +130,5 @@ public:
     A_17& operator =(A_17&& other) = delete;           
 }; 
 
-A_17 a{A_17{}}; // (O) 문법적으로 이동 생성자를 사용하지 않습니다. 
+A_17 a{A_17{}}; // (O) 문법적으로 복사 생성자와 이동 생성자를 사용하지 않습니다. 
 ```

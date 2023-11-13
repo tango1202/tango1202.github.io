@@ -18,7 +18,7 @@ sidebar:
 C++11 부터는 이를 완화하였습니다.
 대신 멤버들의 생성자와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 호출되지 않으므로, 이를 수동으로 제어해야 합니다.
 
-다음에서 `MyUnion_11`은 non-trivial 타입인 `A`와 `B`, `Derived`를 멤버로 사용하고. 크기가 가장 큰 개체의 크기 만큼 메모리를 할당합니다.
+다음에서 `MyUnion_11`은 non-trivial 타입인 `A`와 `B`, `Derived`를 멤버로 사용하고, 크기가 가장 큰 개체의 크기만큼 메모리를 할당합니다.
 
 ```cpp
 // 생성자와 소멸자가 있어서 non-trivial 타입입니다.
@@ -44,7 +44,7 @@ class B {
     std::string m_Str;
 public:
     
-    explicit B(const char* str) : m_Str(str) {
+    explicit B(const char* str) : m_Str{str} {
         std::cout << "B : Constructor" << std::endl;    
     }
     ~B() {
@@ -102,7 +102,9 @@ MyUnion_11 : Constructor
 MyUnion_11 : Destructor
 ```
 
-`MyUnion`의 사용을 위해선 다음처럼 각 멤버의 
+이러면 개체 소멸이 되지 않아 문제죠. 
+
+따라서, `MyUnion`의 사용을 위해선 다음처럼 각 멤버의 
 
 1. [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)를 이용하여 생성자를 호출하고, 
 2. [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출해야 합니다.
@@ -142,3 +144,5 @@ MyUnion_11 : Destructor
 ```
 
 수동으로 생성자와 소멸자를 제어해야 해서 많이 불편하지만, 서로 다른 개체 타입을 관리해야 하고, 상황에 따라 여러개 중에 1개만 활성화해서 관리해야 할때 메모리를 알뜰하게 사용할 수 있습니다.
+
+> *(C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.*

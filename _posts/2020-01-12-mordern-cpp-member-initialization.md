@@ -64,7 +64,9 @@ public:
 
 // (X) ~C++14 컴파일 오류. no matching function for call to 'main()::A::A(<brace-enclosed initializer list>)'
 // (O C++14~
-A a_14{0, 1}; // 생성자를 호출하는 중괄호 직접 초기화가 아니라 중괄호 집합 초기화 입니다.
+A a_14{0, 1}; // A 에는 생성자가 없습니다.
+              // 따라서 생성자를 호출하는 중괄호 직접 초기화가 아니라 
+              // 중괄호 집합 초기화 입니다.
 EXPECT_TRUE(a_14.m_X_11 == 0 && a_14.m_Y_11 == 1);   
 ```
 

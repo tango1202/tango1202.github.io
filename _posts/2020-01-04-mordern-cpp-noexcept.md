@@ -18,7 +18,8 @@ sidebar:
 > * (C++17~) [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 관련해서 [throw()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)가 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되었습니다. 이제 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)만 사용해야 합니다. 
 
 # 개요 
-기존에는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 이용하여 함수가 방출하는 예외를 나열했는데요, 사실 명시한 예외 이외에는 `unexpected_handler` 로 분기하므로 사용하지 않는게 낫다고 말씀드렸습니다. 
+
+기존에는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 이용하여 함수가 방출하는 예외를 나열했는데요,(*[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고*) 사실 명시한 예외 이외에는 `unexpected_handler` 로 분기하므로 사용하지 않는게 낫다고 말씀드렸습니다. 
 
 ```cpp
 // bad_alloc, range_error 이외에는 unexpected_handler로 분기합니다.
@@ -96,7 +97,7 @@ f_11(); // noexcept 함수 내에서 사용하는 함수 f()가 예외를 발생
 
 # 소멸자 예외
 
-기존에는 예외 안정을 위해 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서는 예외를 방출하지 않아야 한다고 말씀 드렸는데요(*[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 와 [소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고*), 
+기존에는 예외 안정을 위해 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서는 예외를 방출하지 않아야 한다고 말씀 드렸는데요,(*[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 와 [소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고*)
 
 C++11 부터는 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) 가 생략되었더라도 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작하여 코딩 계약이 좀더 단단해 졌습니다.
 
@@ -125,7 +126,7 @@ EXPECT_TRUE(noexcept(f_11()) == true);
 
 # (C++17~) noexcept 함수 유형 포함 
 
-기존에는 함수 유형에 noexcept가 포함되지 않았습니다.
+기존에는 함수 유형에 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 포함되지 않았습니다.
 
 따라서, [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 유형 정의를 할때 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 포함할 수 없었습니다.
 

@@ -91,7 +91,7 @@ U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 
 생성자를 호출하고, 초기값을 전달합니다.
 
-1. 기존에는 생성자 호출시 `T()`와 같이 `()`을 사용했는데, `{}`를 사용합니다. 특히 기본 생성자 호출이 함수 선언으로 인식되는 [초기화 파싱 오류](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)가 말끔히 해결됐습니다.
+1. 기존에는 생성자 호출시 `T()`와 같이 괄호(`()`)를 사용했는데, 중괄호(`{}`)를 사용합니다. 특히 기본 생성자 호출이 함수 선언으로 인식되는 [초기화 파싱 오류](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)가 말끔히 해결됐습니다.
 
     ```cpp
     class T {
@@ -525,10 +525,12 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 [중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 3번에 따라 다음처럼 해석됩니다.
 
 ```cpp
-vector<int> v{}; // 기본 생성자 호출
-vector<int> v{
-    {} // 빈 initializer_list로 생성
-}; 
+// std::vector<int> v1(); // 함수 선언
+std::vector<int> v1_11{}; // 기본 생성자
+
+std::vector<int> v2_11{
+    {} // 빈 initializer_list로 vector 생성
+};
 ```
 
 상기는 별로 심각하지 않을 수 있지만, [중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 4번인 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용한 버전이 비교적 우선적으로 선택되는 부분은 심각합니다. 
@@ -646,8 +648,8 @@ struct B {
     A m_A; 
 };
 
-A a = {.m_Y = 1, .m_X = 2}; // valid C, invalid C++ (순서 불일치)
-B b = {.m_A.m_X = 0}; // valid C, invalid C++ (중첩)
-A a = {.m_X = 1, 2}; // valid C, invalid C++ (혼합)
-int arr[3] = {[1] = 5}; // valid C, invalid C++ (배열)
+A a_20 = {.m_Y = 1, .m_X = 2}; // valid C, invalid C++ (순서 불일치)
+B b_20 = {.m_A.m_X = 0}; // valid C, invalid C++ (중첩)
+A a_20 = {.m_X = 1, 2}; // valid C, invalid C++ (혼합)
+int arr_20[3] = {[1] = 5}; // valid C, invalid C++ (배열)   
 ```

@@ -48,7 +48,7 @@ auto d_11 = v.begin(); // std::vector<int>::iterator
 하지만, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정의시에는 사용할 수 없습니다.(*[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 쓰면 오버로딩 결정이 좀 애매해 질 수 있거든요. [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
 
 ```cpp
-// (X) 컴파일 오류
+// (X) 컴파일 오류. auto는 함수 인자로 사용할 수 없습니다.
 double Func_11(int a, auto b) {
     return a + b;   
 }
@@ -84,21 +84,11 @@ double Func_11(int a, auto b) {
     int a = 0;
     const int b = 0;
 
-    auto c_11 = a; // int
-
-    // 배열은 포인터로 추론됩니다.
-    int arr[] = {1, 2, 3};
-    auto d_11 = arr; // int*
-
-    // 최상위 const는 무시됩니다.
-    auto e_11 = b; // int
-    e_11 = 10; // const가 아니여서 값을 대입받을 수 있습니다.  
-
     // 참조성은 제거됩니다.
     int x = 10;
     int& ref = x;
-    auto f_11 = ref; // int. 참조성이 제거됩니다.
-    auto& g_11 = ref; // auto&을 이용하여 억지로 참조자로 받을 수 있습니다.
+    auto a_11 = ref; // int. 참조성이 제거됩니다.
+    auto& b_11 = ref; // auto&을 이용하여 억지로 참조자로 받을 수 있습니다.
     ```
 
 # auto의 중괄호 초기화 특수 추론 규칙
@@ -130,7 +120,7 @@ auto d_11 = {1, 2}; // d는 initializer_list<int>
 
     ```cpp
     int a; // 쓰레기값으로 생성합니다.
-    auto a; // (X) 컴파일 오류. 초기값이 없어 타입을 추론하지 못해 컴파일 오류가 납니다.
+    auto a_11; // (X) 컴파일 오류. 초기값이 없어 타입을 추론하지 못해 컴파일 오류가 납니다.
     ```
 
 2. 기나긴 타입명을 간단하게 표현합니다.
@@ -139,8 +129,8 @@ auto d_11 = {1, 2}; // d는 initializer_list<int>
     std::vector<int>::iterator itr = v.begin();
     std::vector<int>::iterator endItr = v.end();  
 
-    auto itr = v.begin(); // 템플릿 사용에 따른 긴 타입명을 간소하게 표현합니다.
-    auto endItr = v.end();
+    auto itr_11 = v.begin(); // 템플릿 사용에 따른 긴 타입명을 간소하게 표현합니다.
+    auto endItr_11 = v.end();
     ```
 
 3. 타입 종속적으로 표현되므로 리팩토링이 편합니다.
@@ -149,7 +139,7 @@ auto d_11 = {1, 2}; // d는 initializer_list<int>
     int f() {...}
 
     int a = f(); // (△) 비권장. f()함수의 리턴 타입이 long으로 변경되면 수정해야 합니다.
-    auto a = f(); // (O) f()함수의 리턴 타입이 long으로 변경되더라도 수정할 필요가 없습니다.
+    auto a_11 = f(); // (O) f()함수의 리턴 타입이 long으로 변경되더라도 수정할 필요가 없습니다.
     ```
 
 4. 의도치 않은 타입 불일치로 발생하는 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단합니다.
@@ -158,7 +148,7 @@ auto d_11 = {1, 2}; // d는 initializer_list<int>
     int f() {...}
 
     long a = f(); // (△) 비권장. int가 long으로 암시젹 형변환됩니다.
-    auto a = f(); // (O) 형변환 되지 않습니다.
+    auto a_11 = f(); // (O) 형변환 되지 않습니다.
     ```
 
 # 암시적 형변환과 auto
@@ -201,7 +191,7 @@ int& ref = val; // (△) 비권장. int&로 변환될 수 있습니다.
 auto val_11 = MyInt(11); // MyInt입니다.
 int& ref = val_11; // (X) 컴파일 오류. MyInt는 int&로 변환될 수 없습니다.
 
-auto val_11 = static_cast<int>(MyInt(11)); // 명시적으로 int 입니다.
+auto val_11 = static_cast<int>(MyInt(11)); // (△) 비권장. 명시적으로 형변환하여 int 입니다.
 int& ref = val_11; // (△) 비권장. int&로 변환될 수 있습니다.
 ```
 
@@ -401,7 +391,7 @@ decltype(auto) d_14 = Func(10, 20); // C++14
 
 # (C++14~) 리턴 타입 추론
 
-C++14부터 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)을 이용한 리턴 타입 추론이 가능하며, [후행 리턴 타입 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85) 은 생략될 수 있습니다.
+C++14부터 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)을 이용한 리턴 타입 추론이 가능하여, [후행 리턴 타입 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85) 을 대체합니다.
 
 1. 만약 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 만 사용했다면, [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따릅니다.
 2. [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto) 사용시 
@@ -479,15 +469,25 @@ C++17 부터 [auto의 중괄호 초기화 특수 추론 규칙](https://tango120
 
 전체적으로 다음과 같은 규칙으로 추론됩니다.
 
-* `auto val{}` : [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입으로 추론되고, 여러개면 컴파일 오류를 발생합니다.
-* `auto val = {}` : [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들의 타입이 동일하면 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론됩니다.
+* [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t) `auto val{}` : [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입으로 추론되고, 여러개면 컴파일 오류를 발생합니다.
+* [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-) `auto val = {}` : [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들의 타입이 동일하면 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론됩니다.
 
 ```cpp
-int a_17{1}; // a는 int
-auto b_17{1}; // b는 int. 기존에는 initializer_list<int> 일 수 있었음
+// 중괄호 직접 초기화
+auto a_11{1}; //(△) a는 initializer_list<int> 또는 int
+auto b_11{1, 2}; // (X) 컴파일 오류. auto에서는 단일 개체 대입 필요  
+
+// 중괄호 복사 초기화
+auto c_11 = {1}; // c는 initializer_list<int>
+auto d_11 = {1, 2}; // d는 initializer_list<int>
+
+// 중괄호 직접 초기화
+auto a_17{1}; // b는 int. 기존에는 initializer_list<int> 일 수 있었음
+auto b_17{1, 2}; // (X) 컴파일 오류. auto에서는 단일 개체 대입 필요  
+
+// 중괄호 복사 초기화
 auto c_17 = {1}; // c는 initializer_list<int>
 auto d_17 = {1, 2}; // d는 initializer_list<int>  
-// auto e_17{1, 2}; // (X) 컴파일 오류. auto에서는 단일 개체 대입 필요  
 ```
 
 

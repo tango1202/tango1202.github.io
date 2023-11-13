@@ -36,8 +36,8 @@ std::vector<int> v_11{1, 2, 3};
 
 int sum{0};
 
-for (int val_11 : v_11) { // 혹은 for (auto val_11 : v_11)
-    sum += val_11;
+for (int val : v_11) { // 혹은 for (auto val : v_11)
+    sum += val;
 }
 
 EXPECT_TRUE(sum == 1 + 2 + 3);
@@ -48,8 +48,8 @@ EXPECT_TRUE(sum == 1 + 2 + 3);
 ```cpp
 std::vector<int> v_11{1, 2, 3};
 
-for (int& val_11 : v_11) { // 혹은 for (auto& val : v_11)
-    ++val_11; // 벡터의 요소가 수정됩니다.
+for (int& val : v_11) { // 혹은 for (auto& val : v_11)
+    ++val; // 벡터의 요소가 수정됩니다.
 }
 
 EXPECT_TRUE(v_11[0] == 2 && v_11[1] == 3 && v_11[2] == 4);
@@ -69,19 +69,19 @@ if (result != nullptr) { // 조건 평가
 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 만약 스마트 포인터라면 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 짧게하기 위해 다음과 같이 중괄호를 이용했었습니다.
 
 ```cpp
-{ 
+{ // 유효 범위를 짧게 하기 위해 중괄호를 사용했습니다. 
     // result는 중괄호가 끝나면 소멸됩니다.
     std::shared_ptr<int> result{Func()};
     if (result != nullptr) {
         // Todo
     }
-}
+} // 여기서 result가 소멸됩니다.
 ```
 
 C++17 부터는 `if()` 와 `switch()`에서 초기식을 실행후 조건식을 평가할 수 있어, 다음처럼 코드를 간결하게 작성할 수 있습니다. 초기식에 작성된 변수의 유효 범위는 `if()` 나 `switch()`의 끝입니다.
 
 ```cpp
-// result는 if 문 이 끝나면 소멸됩니다.
+// result_17은 if 문 이 끝나면 소멸됩니다.
 if (std::shared_ptr<int> result_17{Func()}; result_17 != nullptr) {
     // Todo
 }

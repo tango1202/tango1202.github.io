@@ -63,7 +63,7 @@ EXPECT_TRUE(alignof(C_11) == 4 && sizeof(C_11) == 4 * 5);
 
 ```cpp
 
-#define MY_SUM(count, ...) T::Sum(count, __VA_ARGS__)
+#define MY_SUM_11(count, ...) T::Sum(count, __VA_ARGS__)
 
 class T {
 public:
@@ -80,7 +80,7 @@ public:
 };
 // 가변 인자에 인수가 있는 경우
 EXPECT_TRUE(T::Sum(3, 1, 2, 3) == 1 + 2 + 3);
-EXPECT_TRUE(MY_SUM(3, 1, 2, 3) == 1 + 2 + 3);
+EXPECT_TRUE(MY_SUM_11(3, 1, 2, 3) == 1 + 2 + 3);
 ```
 
 하지만, 인수가 없는 경우에는 `T::Sum(count, )`로 치환되어 컴파일 오류가 납니다.
@@ -88,14 +88,14 @@ EXPECT_TRUE(MY_SUM(3, 1, 2, 3) == 1 + 2 + 3);
 ```cpp
 // 가변 인자에 인수가 없는 경우
 EXPECT_TRUE(T::Sum(0) == 0);
-EXPECT_TRUE(MY_SUM(0) == 0); // (X) 컴파일 오류. T::Sum(count, ) 로 치환됩니다.
+EXPECT_TRUE(MY_SUM_11(0) == 0); // (X) 컴파일 오류. T::Sum(count, ) 로 치환됩니다.
 ```
 
 이러한 문제 때문에 `##__VA_ARGS__` 가 제공되며, 앞의 `,`를 없애줍니다.
 
 ```cpp
 #define MY_SUM(count, ...) T::Sum(count, __VA_ARGS__)
-#define MY_SUM2(count, ...) T::Sum(count, ##__VA_ARGS__)
+#define MY_SUM2_11(count, ...) T::Sum(count, ##__VA_ARGS__)
 
 // 가변 인자에 인수가 없는 경우
 EXPECT_TRUE(T::Sum(0) == 0);

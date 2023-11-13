@@ -59,7 +59,7 @@ f((params + 1)...); // f((params#1 + 1), (params#2 + 1), (params#3 + 3)) 로 전
 f(&params...); // f(&params#1, &params#2, &params#3) 로 전개되어 배포됩니다.
 f(vector[params]...); // f((vector[params#1], vector[params#2] vector[params#3]) 로 전개됩니다.
 f(g(params)...); // f(g(params#1), g(&params#2), g(&params#3)) 로 전개되어 배포됩니다.
-f (g(params...)  + params...); // f(g(params#1, params#2, params#3) + params#1, f(g(params#1, params#2, params#3) + param2, f(g(params#1, params#2, params#3) + params#3) 로 전개되어 배포됩니다. 
+f(g(params...)  + params...); // f(g(params#1, params#2, params#3) + params#1, f(g(params#1, params#2, params#3) + param2, f(g(params#1, params#2, params#3) + params#3) 로 전개되어 배포됩니다. 
 ```
 
 다음은 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)을 확장하여 배포한 예입니다. `Func_11()` 함수는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받은 `params`를 전개할 때 `(params + 1)`을 하여 1씩 더해서 배포합니다.
@@ -78,7 +78,7 @@ EXPECT_TRUE(Func_11(1, 2, 3) == 2 + 3 + 4);
 
 # 가변 템플릿을 이용한 포워딩 함수
 
-또한, 다음처럼 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)와 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)를 이용하면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 갯수나 타입이 불특정한 포워딩 함수도 손쉽게 만들 수 있습니다.
+또한, 다음처럼 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)와 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)를 이용하면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 갯수나 타입이 불특정한 포워딩 함수도 손쉽게 만들 수 있습니다.(*[forward() 원리](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%9B%90%EB%A6%AC) 참고*)
 
 ```cpp
 // func(params...) 를 호출합니다.

@@ -287,7 +287,7 @@ public:
 };
 template<MyClass_11 myClass> 
 class B_20 {};
-B_20<MyClass_11{1}> b; // 리터럴 타입
+B_20<MyClass_11{1}> b; // 멤버 변수는 public이고, mutable이 없는 constexpr 생성자가 있는 리터럴 타입
 ```
 
 # (C++20~) 클래스 템플릿 인수 추론시 initializer_list 개선 

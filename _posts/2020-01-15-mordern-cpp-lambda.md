@@ -341,35 +341,35 @@ f_14();
 
 [참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)를 이용하는게 좋습니다.
 
-다음 `T`클래스는 생성자와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출을 탐지하기 위한 테스트 클래스입니다.
+다음 `T_11`클래스는 생성자와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 호출을 탐지하기 위한 테스트 클래스입니다.
 
 ```cpp
-class T {
+class T_11 {
 public: 
-    T() {std::cout << "T::Default Constructor" << std::endl;}
-    T(const T&) {std::cout << "T::Copy Constructor" << std::endl;}
-    T(T&&) {std::cout << "T::Move Constructor" << std::endl;}
-    ~T() {std::cout << "T::Destructor" << std::endl;}
-    void operator =(const T&) {std::cout << "T::operator =()" << std::endl;}
+    T_11() {std::cout << "T_11::Default Constructor" << std::endl;}
+    T_11(const T_11&) {std::cout << "T_11::Copy Constructor" << std::endl;}
+    T_11(T_11&&) {std::cout << "T_11::Move Constructor" << std::endl;}
+    ~T_11() {std::cout << "T_11::Destructor" << std::endl;}
+    void operator =(const T_11&) {std::cout << "T_11::operator =()" << std::endl;}
 };
 ```
 
 1. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)던, [참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)던, 해당 개체를 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에서 사용하지 않으면 복사하지 않습니다.
 
     ```cpp
-    T t;
+    T_11 t;
     [=]() {std::cout << "Run Lambda" << std::endl;}(); // t를 사용하지 않았습니다.
     ```
     ```cpp
-    T::Default Constructor
+    T_11::Default Constructor
     Run Lambda
-    T::Destructor
+    T_11::Destructor
     ```
 
 2. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용하면, 대상 개체가 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에 사용될때, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출하여, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 복제본을 만듭니다.
 
     ```cpp
-    T t;
+    T_11 t;
     [=]() {
         t; // t;로 사용합니다. 람다 캡쳐시 복사 부하가 있습니다.      
         std::cout << "Run Lambda" << std::endl;
@@ -377,17 +377,17 @@ public:
     ```
 
     ```cpp
-    T::Default Constructor
-    T::Copy Constructor // 람다 캡쳐시 복사 생성자를 호출하여 const 복제본을 만듭니다.
+    T_11::Default Constructor
+    T_11::Copy Constructor // 람다 캡쳐시 복사 생성자를 호출하여 const 복제본을 만듭니다.
     Run Lambda
-    T::Destructor // 복제본을 삭제합니다.
-    T::Destructor    
+    T_11::Destructor // 복제본을 삭제합니다.
+    T_11::Destructor    
     ```
 
 3. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용하고, [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure)를 변수에 저장하고 호출하는 것은 추가의 복사 부하가 없습니다. 즉, 2와 동일합니다.
 
     ```cpp
-    T t;
+    T_11 t;
     auto f_11{
             [=]() { // 변수에 저장하고, 호출합니다.   
             t; 
@@ -397,17 +397,17 @@ public:
     f_11();
     ```
     ```cpp
-    T::Default Constructor
-    T::Copy Constructor // 추가 복사 부하가 없습니다.
+    T_11::Default Constructor
+    T_11::Copy Constructor // 추가 복사 부하가 없습니다.
     Run Lambda
-    T::Destructor
-    T::Destructor
+    T_11::Destructor
+    T_11::Destructor
     ```
 
 4. [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)를 사용할때 [클로저](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%ED%81%B4%EB%A1%9C%EC%A0%80closure) 끼리 복제하면 추가의 복사 부하가 발생합니다.
 
     ```cpp
-    T t;
+    T_11 t;
     auto f1_11{
         [=]() {
             t; 
@@ -420,20 +420,20 @@ public:
     ```
 
     ```cpp
-    T::Default Constructor
-    T::Copy Constructor // 람다 캡쳐시 복사 생성자를 호출하여 const 복제본을 만듭니다.
-    T::Copy Constructor // f2{f1}시 클로저 복제본을 만듭니다. 추가 복사 부하가 있습니다.
+    T_11::Default Constructor
+    T_11::Copy Constructor // 람다 캡쳐시 복사 생성자를 호출하여 const 복제본을 만듭니다.
+    T_11::Copy Constructor // f2{f1}시 클로저 복제본을 만듭니다. 추가 복사 부하가 있습니다.
     Run Lambda
     Run Lambda
-    T::Destructor
-    T::Destructor
-    T::Destructor
+    T_11::Destructor
+    T_11::Destructor
+    T_11::Destructor
     ```
 
 5. [참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)를 사용하면 복사 부하가 없습니다.
 
     ```cpp
-    T t;
+    T_11 t;
     auto f1_11{
         [&]() { // 람다 캡쳐시 복사 부하가 없습니다.
         t; 
@@ -445,10 +445,10 @@ public:
     f2_11();      
     ```
     ```cpp   
-    T::Default Constructor
+    T_11::Default Constructor
     Run Lambda
     Run Lambda
-    T::Destructor
+    T_11::Destructor
     ```
 
 # (C++14~) 람다 캡쳐 초기화
@@ -642,7 +642,7 @@ EXPECT_TRUE(Sum_20(1, 2, 3) == 1 + 2 + 3);
 
 다음은 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)로 받은 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)을 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에서 [참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)하여 `Add()`함수에 포워딩하는 예입니다. `Add()`함수에서 `result`의 값을 수정하며, 호출한 곳에서 수정된 값을 확인할 수 있습니다.
 
-[참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)는 자기가 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 덧붙입니다. 따라서, `[&...lambdaParams = std::forward<Params>(params)]`와 같이 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90) 하면 타입이 맞지 않아 컴파일 오류가 발생합니다. 따라서, 억지로 `[std::forward<Params&>(params)]` 와 같이 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)함수시 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 더하고, 다시 `[std::forward<Params>(params)]`를 이용하여 원복합니다. 자세한 원리는 [forward() 원리](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%9B%90%EB%A6%AC)를 참고하세요.
+[참조 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EC%B0%B8%EC%A1%B0-%EC%BA%A1%EC%B3%90)는 자기가 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 덧붙입니다. 따라서, `[&...lambdaParams = std::forward<Params>(params)]`와 같이 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90) 하면 타입이 맞지 않아 컴파일 오류가 발생합니다.(*예를 들어 `int&`를 전달하면, `int&& lambdaParam = static_cast<int&>(param)이 됩니다.`*) 따라서, 억지로 `[std::forward<Params&>(params)]` 와 같이 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)함수시 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 더하고, 다시 `[std::forward<Params>(params)]`를 이용하여 원복합니다. 자세한 원리는 [forward() 원리](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%9B%90%EB%A6%AC)를 참고하세요.
 
 ```cpp
 void Add(int& result, int a, int b, int c) {result += a + b + c;}
