@@ -15,7 +15,7 @@ sidebar:
 > * (C++11~) [템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%A5%B8%EC%AA%BD-%EA%BA%BD%EC%87%A0-%EA%B4%84%ED%98%B8) 파싱을 개선하여 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.
 > * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.
 > * (C++17~) 타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.
-> * (C++20~) [템플릿 인자에 타입이 아닌 개체가 확장](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%97%90-%ED%83%80%EC%9E%85%EC%9D%B4-%EC%95%84%EB%8B%8C-%EA%B0%9C%EC%B2%B4-%ED%99%95%EC%9E%A5)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
+> * (C++20~) [비타입 템플릿 인자 규칙이 완화](??)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
 
 # 템플릿 인자
 
@@ -56,7 +56,7 @@ A<int, char> a;
     EXPECT_TRUE(a.f('a') == static_cast<int>('a'));
     ```
 
-2. 타입이 아닌 개체 : 템플릿 개체
+2. 비타입 : 타입이 아니고 템플릿 인자로 전달된 타입의 개체
 
     `T`에 종속적인 `T val`을 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)로 사용할 수 있습니다.
 
@@ -71,7 +71,7 @@ A<int, char> a;
     EXPECT_TRUE(a.f() == 10);
     ```
 
-3. 타입이 아닌 개체 : 비 템플릿 개체
+3. 비타입 : 타입이 아닌 일반 개체
 
     `int val`과 같이 `T`와 무관한 타입을 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)로 사용할 수 있습니다.
 
@@ -92,7 +92,7 @@ A<int, char> a;
     ```
 
     > *(C++17~) 타입이 아닌 개체를 [템플릿 인자로 사용할때 auto를 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-auto-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)할 수 있습니다.*<br/>
-    > *(C++20~) [템플릿 인자에 타입이 아닌 개체가 확장](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%97%90-%ED%83%80%EC%9E%85%EC%9D%B4-%EC%95%84%EB%8B%8C-%EA%B0%9C%EC%B2%B4-%ED%99%95%EC%9E%A5)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.*
+    > *(C++20~) [비타입 템플릿 인자 규칙이 완화](??)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.*
 
 4. 템플릿 템플릿 인자
 

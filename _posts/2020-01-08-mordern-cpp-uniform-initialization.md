@@ -18,7 +18,7 @@ sidebar:
 > * (C++11~) [중괄호 초기화시 인자의 암시적 형변환을 일부 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98-%EC%B0%A8%EB%8B%A8)하여, 코딩 계약이 개선되었습니다.
 > * (C++11~) [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 가 추가되어 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)등 컨테이너 요소 추가가 간편해 졌습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)등이 표준화 되었습니다.
-> * (C++20~) [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하는 [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 어떤 멤버 변수를 초기화하는지 지명할 수 있습니다. 
+> * (C++20~) [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)시 변수명을 지명하여 값을 초기화 할 수 있습니다.
 
 # 개요
 
@@ -281,7 +281,7 @@ C++11 부터는 `{}` 도 지원합니다.
     int arr_11[3]{0, 1,}; // 초기값이 모자르면 0으로 채움
     EXPECT_TRUE(arr[2] == 0 && arr_11[2] == 0);
     ```       
-> *(C++20~) [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하는 [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 어떤 멤버 변수를 초기화하는지 지명할 수 있습니다.* 
+> *(C++20~) [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)시 변수명을 지명하여 값을 초기화 할 수 있습니다.* 
 
 # 인자의 암시적 형변환 차단
 
@@ -561,7 +561,7 @@ public:
 T_11 obj{1, 2, 3, 4, 5}; // 갯수가 많아지면 어느값이 어느 멤버 변수를 초기화 하는지 헷갈립니다.
 ```
 
-C++20 부터는 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 멤버 변수명과 값을 쌍으로 초기화하는 [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 어떤 멤버 변수를 초기화하는지 지명할 수 있습니다. 
+C++20 부터는 [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)시 변수명을 지명하여 값을 초기화 할 수 있습니다.
 
 다음과 같은 특징이 있습니다.
 
@@ -574,6 +574,7 @@ C++20 부터는 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-
     3. *`int`에서 `char` 변환도 `double`에서 `float` 변환과 동일합니다.
     4. 포인터 타입에서 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로의 변환을 경고해 줍니다.
     5. 사용자가 [형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90) 를 작성하면 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 허용됩니다.
+5. [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)만 지원합니다.
 5. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 지원하지 않습니다.
 
 ```cpp
@@ -581,15 +582,15 @@ class A {};
 class B {
 public:
     B(A) {} // explicit가 없는 형변환 생성자. A로 암시적으로 생성됩니다.
-};  
+};
 class Inner {
 public:
     int m_Val1;
     int m_Val2;
 };
 
-class T_20 {
-public: 
+class T {
+public:
     int m_X{1};
     int m_Y{2};
     float m_Z{3}; // float 입니다.
@@ -599,28 +600,35 @@ public:
     B m_B{A{}}; // A 기본 생성자로 생성합니다.
 };
 
-T_20 a{.m_X = 10, .m_Y = 20, .m_Z = 30.F};
-// T_20 b{.m_X = 10, .m_Z = 30.F, .m_Y = 20}; // (X) 컴파일 오류. 멤버 변수 선언 순서와 같아야 합니다.
-T_20 c{.m_X = 10, .m_Z = 30.F}; // 특정 항목을 생략할 수 있습니다.
-EXPECT_TRUE(c.m_Y == 2); // 생략한 멤버는 멤버 선언부 초기화 값이 유지됩니다.
+T a_20{.m_X = 10, .m_Y = 20, .m_Z = 30.F};
+// T b_20{.m_X = 10, .m_Z = 30.F, .m_Y = 20}; // (X) 컴파일 오류. 멤버 변수 선언 순서와 같아야 합니다.
+T c_20{.m_X = 10, .m_Z = 30.F}; // 특정 항목을 생략할 수 있습니다.
+EXPECT_TRUE(c_20.m_Y == 2); // 생략한 멤버는 멤버 선언부 초기화 값이 유지됩니다.
 
 // 중첩 초기화
-T_20 d{10, 20, 30.F, {1, 2}}; // {1, 2}는 Inner 개체를 초기화 합니다.     
-// T_20 e{.m_X = 10, .m_Y = 20, .m_Z = 30.F, m_Inner = Inner{1, 2}}; // (X) 컴파일 오류. 지명 초기화는 초기화 중첩을 지원하지 않습니다.
+T d_20{10, 20, 30.F, {1, 2}}; // {1, 2}는 Inner 개체를 초기화 합니다.
+// T e_20{.m_X = 10, .m_Y = 20, .m_Z = 30.F, m_Inner = Inner{1, 2}}; // (X) 컴파일 오류. 지명 초기화는 초기화 중첩을 지원하지 않습니다.
 
 // 인자의 암시적 형변환 차단 확인
-// T_20 f{.m_X = 1.5}; // (X) 컴파일 오류. 실수를 정수로 변환시 컴파일 오류가 발생합니다.
+// T f_20{.m_X = 1.5}; // (X) 컴파일 오류. 실수를 정수로 변환시 컴파일 오류가 발생합니다.
 
-T_20 g{.m_Z = 3.14}; // 상수값을 저장할 수 있다면 허용합니다. 
+T g_20{.m_Z = 3.14}; // 상수값을 저장할 수 있다면 허용합니다.
 double h{3.14};
-// T_20 i{.m_Z = d}; // (X) 컴파일 경고. double을 float으로 변환하는건 경고합니다.
+// T i_20{.m_Z = h}; // (X) 컴파일 경고. double을 float으로 변환하는건 경고합니다.
 
 int* ptr;
-// T_20 j{.m_Bool = ptr}; // (X) 컴파일 경고. 포인터 타입에서 bool 변환하는건 경고합니다.
+// T j_20{.m_Bool = ptr}; // (X) 컴파일 경고. 포인터 타입에서 bool 변환하는건 경고합니다.
 
-T_20 k{.m_B = A{}}; // (△) 비권장. A->B로의 암시적 변환을 허용하면 차단되지 않습니다.
+T k_20{.m_B = A{}}; // (△) 비권장. A->B로의 암시적 변환을 허용하면 차단되지 않습니다.
 
-// int arr[3]{[1] = 1}; // (X) 컴파일 오류. 배열은 지원하지 않습니다.
+class U {
+public:
+    int m_Val;
+    U() {}; // 생성자가 있어서 집합 타입이 아닙니다.
+};
+// U l_20{.m_Val = 0}; // (X) 컴파일 오류. 집합 타입이 아니면 지원하지 않습니다.
+
+// int arr_20[3]{[1] = 1}; // (X) 컴파일 오류. 배열은 지원하지 않습니다.
 ```
 
 한편, C언어에서는 선언 순서와 다르게 지정할 수도 있고, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 지원하고, [초기화 중첩](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%A4%91%EC%B2%A9)을 지원하며, [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)와 비지명 초기화를 혼합해서 사용할 수 있습니다. 

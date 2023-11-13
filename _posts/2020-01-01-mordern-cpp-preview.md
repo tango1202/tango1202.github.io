@@ -45,7 +45,7 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
     * (O) constinit 컴파일 타임에 static 변수가 초기화되도록 강제함 static 생성 순서가 명확해짐
     * (O) explicit(bool) : true인 경우만 명시적으로 동작함
     * 템플릿 개선
-        * (O) 템플릿 인자에 타입이 아닌 개체 확장
+        * (O) 비타입 템플릿 인자 규칙 완화
         * (O) 축약된 함수 템플릿
         * (O) initializer_list 사용시 클래스 템플릿 인수 추론
     * 람다 개선
@@ -54,13 +54,8 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
         * (O) 상태없는 람다 표현식의 기본 생성과 복사 대입
         * (O) 미평가 표현식에서의 람다 표현식 허용
         * (O) 람다 표현식에서 this의 암시적 캡쳐 deprecate
-
-암시적 람다 캡쳐 단순화 Simplifying implicit lambda capture( https://wg21.link/P0588R1)
-
-
-
-
-
+    (O) 어트리뷰트 : likly, unlikely, no_unique_address, nodiscard(reason), 
+        * https://github.com/AnthonyCalandra/modern-cpp-features#likely-and-unlikely-attributes
 
     * (O) Concept : 공통된 성질끼리 묶는기능. 제약조건(?)
         * https://github.com/AnthonyCalandra/modern-cpp-features#concepts
@@ -80,11 +75,6 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
         * (O) constexpr에서 런타임에서 동작시 try - catch 허용, throw는 안됨
         * (O) constexpr 함수에서 asm : 런타임만 가능
    
-
-
-
-
-
     * (O) Ranged for 에서 초기화 문
         * https://github.com/AnthonyCalandra/modern-cpp-features#range-based-for-loop-with-initializer
 
@@ -126,17 +116,10 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
     * (O) 컴파일 타임 상수식에서 dynamic_cast와 typeid 사용(https://wg21.link/P1327R1)
         * 상수 표현식 의 Dynamic_cast 및 다형성 typeid
 
-    (O) 어트리뷰트 : likly, unlikely, no_unique_address, nodiscard(reason), 
-        * https://github.com/AnthonyCalandra/modern-cpp-features#likely-and-unlikely-attributes
+
 
 
 const&-멤버에 대한 한정된 포인터 const&-qualified pointers to members(https://wg21.link/P0704R1)
-
-
-
-
-
-
 
 const기본 복사 생성자와 불일치 const mismatch with defaulted copy constructor https://wg21.link/P0641R2
 
