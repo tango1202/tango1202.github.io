@@ -14,7 +14,7 @@ sidebar:
 
 클래스/구조체/[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 다른 언어와 데이터가 호환 될 수도 있고, [C스타일 문자열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)인 `memcpy()`등으로 쉽게 복사가 가능할 수도 있습니다. 단, [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)에 따라서요. 
 
-C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입의 범주를 규정하고 해당 범주에 속하는지 확인 할 수 있는 `is_trivial<>`, `is_standard_layout<>`, `is_pod<>`를 제공합니다.([타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp/mordern-cpp-type_traits/) 참고)
+C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입의 카테고리를 규정하고 해당 카테고리에 속하는지 확인 할 수 있는 `is_trivial<>`, `is_standard_layout<>`, `is_pod<>`를 제공합니다.(*[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp/mordern-cpp-type_traits/) 참고*)
 
 # 스칼라 타입
 

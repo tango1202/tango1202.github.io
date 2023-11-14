@@ -158,3 +158,4 @@ line feed로 줄을 바꾸고, carriage return으로 줄의 제일 앞으로 이
 
 현재는 대부분이 `\n`으로 CR-LF를 지원하기 때문에 별 문제는 없습니다만, 혹시나 예전 OS와의 호환성이 필요하다면 `\r\n`을 함께 사용해야 될 수도 있습니다.
 
+> *(C++11~) [R"()"리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행이나 [이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)를 좀더 편하게 입력할 수 있습니다.*

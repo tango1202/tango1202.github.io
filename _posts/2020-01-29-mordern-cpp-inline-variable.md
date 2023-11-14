@@ -12,7 +12,7 @@ sidebar:
 
 # 개요
 
-기존에는 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)만 있었는데요, C++17 부터는 [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)를 제공합니다.
+기존에는 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)만 있었는데요(*[인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/) 참고*), C++17 부터는 [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)를 제공합니다.
 
 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)는 
 
@@ -54,7 +54,7 @@ EXPECT_TRUE(g_Val_17 == 12);
 
 # 인라인 변수를 이용한 클래스 정적 멤버 변수 정의
 
-[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 와 [멤버 변수, 초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에서 선언과 정의의 분리가 필요하기 때문에 선언 외부에서 초기값을 세팅해야 한다고 언급하였습니다.
+[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 선언과 정의의 분리가 필요하기 때문에 선언 외부에서 초기값을 세팅해야 한다고 언급했는데요(*[멤버 변수, 초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 참고*),
 
 ```cpp
 class T {

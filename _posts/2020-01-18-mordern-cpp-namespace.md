@@ -34,7 +34,7 @@ EXPECT_TRUE(MyLib::f() == 2); // MyLib에 없으면 inline 사용
 
 # (C++17~) 단순한 중첩 네임스페이스
 
-기존의 [중첩 네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#%EC%A4%91%EC%B2%A9-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4) 는 다음과 같이 정의했는데요,
+기존의 [중첩 네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#%EC%A4%91%EC%B2%A9-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4) 는 다음과 같이 정의했는데요(*[중첩 네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#%EC%A4%91%EC%B2%A9-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4) 참고*),
 
 ```cpp
 namespace MyLib {

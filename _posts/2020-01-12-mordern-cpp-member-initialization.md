@@ -13,7 +13,7 @@ sidebar:
 
 # 개요
 
-기존에는 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)에서만 멤버 변수를 초기화 할 수 있었는데요, 
+기존에는 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)에서만 멤버 변수를 초기화 할 수 있었는데요(*[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고*), 
 
 C++11 부터는 멤버 변수 선언시에도 초기화 할 수 있습니다.
 단, [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 기존과 동일하게 별도 정의부에서 초기화해야 합니다.
@@ -56,18 +56,18 @@ EXPECT_TRUE(a.m_X == 0 && a.m_Y == 1);
 하지만, C++14 이전 버전은 [멤버 선언부에 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/)와 함께 사용하면 컴파일 오류가 발생했는데요, C++14 부터는 이를 완화하여 비정적 멤버 변수를 [멤버 선언부에 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-initialization/)하더라도 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 사용할 수 있습니다.
 
 ```cpp
-class A {
+class A_11 {
 public:
-    int m_X_11{0}; // 비정적 멤버 변수 초기화
-    int m_Y_11{1};
+    int m_X{0}; // 비정적 멤버 변수 초기화
+    int m_Y{1};
 };
 
-// (X) ~C++14 컴파일 오류. no matching function for call to 'main()::A::A(<brace-enclosed initializer list>)'
-// (O C++14~
-A a_14{0, 1}; // A 에는 생성자가 없습니다.
-              // 따라서 생성자를 호출하는 중괄호 직접 초기화가 아니라 
-              // 중괄호 집합 초기화 입니다.
-EXPECT_TRUE(a_14.m_X_11 == 0 && a_14.m_Y_11 == 1);   
+// (X) ~C++14 컴파일 오류. no matching function for call to 'A_11::A_11(<brace-enclosed initializer list>)'
+// (O) C++14~
+A_11 a_14{0, 1}; // A_11 에는 생성자가 없습니다.
+                 // 따라서 생성자를 호출하는 중괄호 직접 초기화가 아니라 
+                 // 중괄호 집합 초기화 입니다.
+EXPECT_TRUE(a_14.m_X == 0 && a_14.m_Y == 1);   
 ```
 
 

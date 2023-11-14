@@ -70,7 +70,7 @@ Func_11('a'); // (X) 컴파일 오류. delete된 함수입니다.
 
 # override
 
-기존에는 부모 개체의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 상속할 때 아무런 조치 없이 상속했는데요,(*[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고*) 가끔 오타인지, 새로운 가상 함수 정의인지 헷갈릴 때가 있습니다. 하기와 같은 실수를 찾아내는게 상당히 어려웠죠.
+기존에는 부모 개체의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 상속할 때 아무런 조치 없이 상속했는데요(*[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고*), 가끔 오타인지, 새로운 가상 함수 정의인지 헷갈릴 때가 있습니다. 하기와 같은 실수를 찾아내는게 상당히 어려웠죠.
 
 ```cpp
 class Base {
@@ -102,7 +102,7 @@ class Derived_11 : public Base {
 
 # final
 
-기존에는 상속을 막기 위해 생성자를 `private`로 만들어 가시성을 제한 하거나, [public Non-Virtual 소멸자](??)로 만들고 상속하지 않도록 서로간에 정하자 라고 했었는데요,(*[상속 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C) 참고*)
+기존에는 상속을 막기 위해 생성자를 `private`로 만들어 가시성을 제한 하거나, [public Non-Virtual 소멸자](??)로 만들고 상속하지 않도록 서로간에 정하자 라고 했었는데요(*[상속 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C) 참고*),
 
 C++11 부터는 다음처럼 [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)로 상속을 제한할 수 있습니다.
 

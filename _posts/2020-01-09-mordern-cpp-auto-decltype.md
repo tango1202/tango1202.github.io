@@ -112,6 +112,8 @@ auto d_11 = {1, 2}; // d는 initializer_list<int>
 상기에서 `auto a_11{1};`를 `initializer_list<int>` 또는 `int`라고 했는데요,
 원래 C++11에서는 `initializer_list<int>`로 추론됩니다. 그런데, 2014년에 [auto의 중괄호 초기화 특수 추론 규칙 개선](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c17-auto%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8A%B9%EC%88%98-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99-%EA%B0%9C%EC%84%A0)인 [N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)가 받아들여졌고, 일부 컴파일러에서(*제 경우엔 GCC version 8.1.0 이상에서*) C++11 환경에서도 `int`로 추론됩니다.
 
+> *(C++17~) [auto의 중괄호 초기화 특수 추론 규칙 개선](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c17-auto%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8A%B9%EC%88%98-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99-%EA%B0%9C%EC%84%A0)이 적용되어, [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list) 로 추론되는 오류가 개선되었습니다.*
+
 # auto의 장점
 
 타입을 명시적으로 선언하기 보다는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 사용하는게 [생성 후 대입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1-%ED%9B%84-%EB%8C%80%EC%9E%85--%ED%95%98%EC%A7%80-%EB%A7%88%EB%9D%BC)을 방지하고, 코딩량도 줄어들고, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)도 차단하여 훨씬 좋습니다.
@@ -465,7 +467,7 @@ auto b = FuncAuto_14(); // (X) 컴파일 오류.
 
 C++17 부터 [auto의 중괄호 초기화 특수 추론 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8A%B9%EC%88%98-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99)에서 언급한 [auto의 중괄호 초기화 특수 추론 규칙 개선](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c17-auto%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8A%B9%EC%88%98-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99-%EA%B0%9C%EC%84%A0)인 [N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)이 공식적으로 적용되었습니다.(*[N3922](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922.html)과 [N3681](https://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3681.html) 참고*)
 
-기존에는 `auto x{10};`는 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론되었으나, C++17 부터는 `int`로 추론됩니다.
+기존에는 `auto x{10};`는 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)로 추론되었으나(*[auto의 중괄호 초기화 특수 추론 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8A%B9%EC%88%98-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99) 참고*), C++17 부터는 `int`로 추론됩니다.
 
 전체적으로 다음과 같은 규칙으로 추론됩니다.
 

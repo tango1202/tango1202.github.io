@@ -165,6 +165,8 @@ MAKE_FUNCTION(g_, Func, 10); // g_Func 이름의 함수를 정의함
 EXPECT_TRUE(g_Func() == 10); // g_Func 호출
 ```
 
+> *(C++11~) [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.*
+
 # #undef
 
 기존에 정의된 [#define](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)을 제거합니다.

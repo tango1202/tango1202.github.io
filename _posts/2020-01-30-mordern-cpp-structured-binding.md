@@ -12,7 +12,9 @@ sidebar:
 
 # 개요
 
-기존의 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)등은 내부 요소에 접근하는게 좀 까다로웠는데요, C++11 부터는 [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 이용하여 개체의 하위 요소에 쉽게 접근할 수 있게 해줍니다.
+기존의 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)등은 내부 요소에 접근하는게 좀 까다로웠는데요(*[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 참고*), 
+
+C++17 부터는 [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 이용하여 개체의 하위 요소에 쉽게 접근할 수 있게 해줍니다.
 
 |항목|내용|
 |--|--|

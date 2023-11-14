@@ -15,6 +15,8 @@ sidebar:
 > * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.
 > * (C++20~) [consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다.
 > * (C++20~) [constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)가 추가되어 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 컴파일 타임에 초기화할 수 있습니다.
+> * (C++20~) [constexpr 함수 제약이 완화](??)되어 초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), [try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/), `asm` 등을 사용할 수 있습니다.
+> * (C++20~) [constexpr 함수에서 공용체 활성 멤버 변수 전환이 허용](??)됩니다.
 
 # 개요
 
@@ -185,6 +187,7 @@ public:
         m_Y{y} {} 
     constexpr int GetVal_11() const {return m_X * m_Y;}
              
+    // C++14 부터는 constexpr개체에서도 멤버 변수의 값을 수정할 수 있습니다. 
     constexpr void SetX_14(int val) {m_X = val;}
     constexpr void SetY_14(int val) {m_Y = val;}           
 }; 
@@ -202,14 +205,20 @@ C++11 에서는 [지역 변수](https://tango1202.github.io/classic-cpp-guide/cl
 |[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 외의 리턴|X|X|X|X|
 |[조건 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A1%B0%EA%B1%B4-%EC%97%B0%EC%82%B0%EC%9E%90)|O|O|O|O|
 |[static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|O|O|O|O|
+|typedef, using|O|O|O|O|
 |[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 호출|O|O|O|O|
 |초기화된 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 정의|X|O|O|O|
+|초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 정의|X|X|X|O|
+|1의 리턴문|O|O|O|O|
 |2개 이상의 리턴문|X|O|O|O|
 |`if`, `for`, `while`|X|O|O|O|
-|`try`|X|X|X|O|
-|가상 함수|X|X|X|O|
+|`goto`, `switch`|X|X|X|X|
 |[void 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)|X|O|O|O|
 |[const 자유도](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)|X|O|O|O|O|
+|[try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)|X|X|X|O|
+|`throw`|X|X|X|X|
+|가상 함수|X|X|X|O|
+|`asm`|X|X|X|O|
 
 다음은 C++14 기준에 맞춰서 좀더 일반적인 형태로 `Factorial_14()`를 구현한 예입니다. [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), 2개 이상의 리턴문, `if()`, `for()`등을 사용할 수 있어서 코딩 자유도가 높아졌습니다.
 
@@ -232,6 +241,8 @@ constexpr int Factorial_14(int val) {
 enum class MyEnum_11 {Val = Factorial_14(5)};
 EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 1 * 2 * 3 * 4 * 5);       
 ```
+
+> *(C++20~) [constexpr 함수 제약이 완화](??)되어 초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), [try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/), `asm` 등을 사용할 수 있습니다.*
 
 # (C++17~) if constexpr 
 
@@ -335,7 +346,7 @@ delete ptr;
 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 
 
 1. 컴파일 타임 상수를 전달하면 컴파일 타임 함수로 동작하고,
-2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작했는데요,
+2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작했는데요(*[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 참고*),
 
 C++20 부터는 [consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다. 이렇게 컴파일 타임에만 동작하는 함수를 즉시 함수(*immediate function*)라고 합니다.
 
@@ -432,4 +443,63 @@ public:
     // C++17 부터 인라인 변수를 이용하여 정적 멤버 변수를 멤버 선언부에서 초기화할 수 있습니다.
     constinit static inline int s_m_Val_20 = g_Val_20; // constinit여서 컴파일 타임에 초기화 되어야 합니다.
 };
+```
+
+# (C++20~) constexpr 함수 제약 완화
+
+기존에는 `constexpr virtual`와 같이 `constexpr`과 `virtual`을 함께 사용하면 컴파일 오류가 발생했으나(*[(C++14~) constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94) 참고*), C+20 부터는 허용됩니다. 
+
+다음예에서 가상 함수를 오버라이딩한 `Func` 함수를 컴파일 타임 상수로 사용할 수 있고, 이를 `Base*`를 통해 가상 함수를 호출하면, 런타임에 동작하는 걸 확인 할 수 있습니다.
+
+```cpp
+class Base {
+public:
+    virtual int Func() const {return 0;}
+};
+class Derived_20 : public Base {
+public:
+    constexpr virtual int Func() const override {return 1;} // C++17 이하에서는 컴파일 오류가 발생했습니다.
+};
+
+constexpr Derived_20 a_20;
+enum class MyEnum_11 {Val = a_20.Func()}; // 컴파일 타임 상수
+
+const Base* ptr = &a_20;
+EXPECT_TRUE(ptr->Func() == 1); // 부모 개체의 포인터로 런타임에 가상 함수를 호출할 수 있습니다.
+// enum class MyEnum_11 {Val = ptr->Func()}; // (X) 컴파일 오류. 컴파일 타임 상수가 아닙니다.
+```
+
+그외에 초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 정의, [try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/), `asm`(*인라인 어셈블리*)이 허용됩니다.
+
+```cpp
+constexpr void Func_20() {
+    int a; // 초기화되지 않은 지역 변수
+
+    try {}
+    catch(...) {}
+}
+```
+
+# (C++20~) constexpr 함수에서 공용체 활성 멤버 변수 전환 허용
+
+기존에는 [constexpr 함수](??)에서 [공용체](??)의 활성 멤버 변수의 전환을 허용하지 않았는데요, C++20 부터는 [constexpr 함수에서 공용체 활성 멤버 변수 전환이 허용](??)됩니다.
+
+```cpp
+union MyUnion {
+    int i;
+    float f;
+};
+constexpr int Func_20() {
+    MyUnion myUnion{};
+    myUnion.i = 3;
+
+    // (X) ~C++20 컴파일 오류. change of the active member of a union from 'MyUnion::i' to 'MyUnion::f'
+    // (O) C++2O~
+#if 202002L <= __cplusplus // C++20~          
+    myUnion.f = 1.2f; // 활성 멤버로의 전환을 허용합니다.
+#endif         
+    return 1;
+}
+
+enum class MyEnum_11 {Val = Func_20()}; 
 ```

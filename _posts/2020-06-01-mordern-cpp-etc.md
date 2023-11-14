@@ -12,10 +12,12 @@ sidebar:
 > * (C++11~) 파라메터 팩을 이용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.
 > * (C++11~) [멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.
 > * (C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하기 전에 파일이 존재하는지 확인할 수 있습니다.
+> * (C++20~) [volatile의 일부가 deprecate](??)되었습니다.
+
 
 # (C++11~) alignas(), alignof()
 
-기존에는 `#pragma pack`을 이용하여 비표준 방식으로[메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 했는데요([개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고),
+기존에는 `#pragma pack`을 이용하여 비표준 방식으로[메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 했는데요(*[개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고*),
 
 C++11 부터는 [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof) 로 이를 표준화하였습니다.
 
@@ -57,7 +59,7 @@ EXPECT_TRUE(alignof(C_11) == 4 && sizeof(C_11) == 4 * 5);
 
 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)는 C99 에 도입되었으며, C와의 호환성을 위해 C++11에 추가되었습니다.
 
-[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 사용하는 함수를 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)로 호출할 때 사용합니다.
+[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 사용하는 함수를 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)로 호출할 때 사용합니다.
 
 다음 코드에서처럼 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98) 정의시에 `...`을 사용하고, `__VA_ARGS__`를 이용하여 전달할 수 있습니다.
 
@@ -127,3 +129,52 @@ EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
 #  include <optional>
 #endif
 ```
+
+# (C++20~) volatile 일부 deprecate
+
+다음 4가지 경우에 대해 `volatile` 사용이  [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었습니다.
+
+* 복합 대입
+
+    ```cpp
+    int a, b;
+    volatile int volatile_val;
+
+    // 복합 대입 deprecate
+    volatile_val = a; // (O)
+    b = volatile_val; // (O)
+
+    b = volatile_val = a; // (X) volatile_val에 한번 접근하는지 두번 접근하는지 모호
+    ```
+
+* 산술형 대입 연산
+
+    ```cpp
+    volatile int volatile_val;
+
+    // 산술형 대입 연산자, 증감 연산자 deprecate
+    volatile_val = volatile_val + 1; // (O)
+    volatile_val += 1; // (X) volatile_val에 한번 접근하는지 두번 접근하는지 모호
+    ```
+
+* 함수 인자와 리턴값
+
+    ```cpp
+    // 함수 인자와 리턴값 deprecate
+    volatile int f(); // (X)
+    void g(volatile int); // (X)
+    ```
+
+* 구조적 바인딩
+
+    ```cpp
+    // 구조적 바인딩 deprecate
+    sturct A {
+        volatile int x;
+        volatile int y;
+    };
+    A a;
+    auto [x_17, y_17]{a}; // (X)    
+    ```
+
+
