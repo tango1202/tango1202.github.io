@@ -893,7 +893,7 @@ A_11 c(val); // 전달 참조 버전이 호출됩니다.
 
 # 전달 참조와 중괄호 초기화
 
-[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/)는 대입하는 타입에 맞게 초기값을 추론하다 보니 
+[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)는 대입하는 타입에 맞게 초기값을 추론하다 보니 
 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)와는 궁합이 맞지 않습니다.
 
 다음과 같이 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)가 아니라면, [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)는 `const vector<int>& v`로 전달하기 위해 암시적으로 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성하여 전달합니다.

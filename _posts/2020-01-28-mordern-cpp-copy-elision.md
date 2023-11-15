@@ -89,7 +89,7 @@ C++17 부터 [임시 개체](https://tango1202.github.io/classic-cpp-guide/class
 
 3. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 포인터로 변환하거나 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 첨자 연산(`[]`)을 할때
 
-4. [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/)에서 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)를 초기화할때
+4. [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)에서 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)를 초기화할때
 
     ```cpp
     class T_11 {
