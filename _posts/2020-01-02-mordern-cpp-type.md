@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [모던 C++] (C++11~) 개선된 타입과 리터럴, 타입 카테고리(스칼라 타입, Trivial 타입, 표준 레이아웃 타입, POD 타입, 리터럴 타입, 집합 타입), long long, 유니코드 문자(char16_t, char32_t) 유니코드 리터럴(u8/u/U), R 리터럴, (C++20~) char8_t"
+title: "#2. [모던 C++] (C++11~) 개선된 타입과 리터럴, 타입 카테고리(스칼라 타입, Trivial 타입, 표준 레이아웃 타입, POD 타입, 리터럴 타입, 집합 타입), using을 이용한 타입 별칭, long long, 유니코드 문자(char16_t, char32_t) 유니코드 리터럴(u8/u/U), R 리터럴, (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴, (C++20~) char8_t"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,22 +8,20 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [타입 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/)를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.
+> * [MEC++#9] typedef 보다 별칭 선언을 선호하라.([클래스 템플릿 별칭 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD))
+
+> * (C++11~) [타입 카테고리](??)를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.
+> * (C++11~) [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)이 추가되어 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.
 > * (C++11~) 최소 8byte 크기를 보장하는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long) 타입이 추가되었습니다.
 > * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long)용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)이 추가되었습니다.
 > * (C++11~) (C++11~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)이 추가되었습니다.
 > * (C++11~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다. 
 > * (C++11~) [R"()"리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행이나 [이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)를 좀더 편하게 입력할 수 있습니다.
+> * (C++14~) [이진 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%9D%B4%EC%A7%84-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 `0b`, `0B` 접두어로 이진수 상수를 표현할 수 있습니다.
+> * (C++14~) 가독성을 위한 [숫자 구분자](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c14-%EC%88%AB%EC%9E%90-%EA%B5%AC%EB%B6%84%EC%9E%90)가 추가되어 `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.
+> * (C++17~) `0xA.9p11`과 같은 [16진수 부동 소수점 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c17-16%EC%A7%84%EC%88%98-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 제공합니다.
 > * (C++17~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
 > * (C++20~) [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte 크기의 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되었습니다.
-
-
-
-
-
-> * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
-
-
 
 # 타입 카테고리
 
@@ -97,6 +95,50 @@ https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%
   * 부모 클래스가 없음
   * 가상 함수 없음
 
+# using을 이용한 타입 별칭
+
+기존에는 타입 별칭을 위해 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)를 사용했었는데요(*[타입 별칭](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 참고*),
+
+C++11 부터는 [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)이 추가되었습니다.
+
+[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)은 다음과 같이 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)와 별칭의 순서가 다릅니다만, 좀 더 직관적입니다.
+
+```cpp
+typedef unsigned long ulong;
+using ulong_11 = unsigned long; // typedef와 순서가 반대입니다.
+```
+
+[함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)인 경우는 훨씬 더 직관적입니다.
+
+```cpp
+typedef void (*Func)(int); 
+using Func_11 = void (*)(int);
+```
+
+# 클래스 템플릿 별칭
+
+[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)은 [클래스 템플릿 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD)도 지원합니다.
+
+[typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)를 사용하여 별칭을 작성하면, 템플릿의 경우 구체화된 타입으로만 별칭이 작성되어 향후 다른 타입으로 변경할 수 없지만,
+
+```cpp
+// typedef는 템플릿의 구체화된 타입만 지원합니다.
+typedef std::vector<int> MyVector;
+
+MyVector v; // std::vector<int> 타입입니다. int 외 다른 타입으로 정의할 수 없습니다.
+```
+
+`using`을 사용하면 템플릿 별칭을 이용해서도 여러가지 타입으로 템플릿 인스턴스화를 할 수 있습니다.
+
+```cpp
+// using은 템플릿을 지원합니다.
+template<typename T>
+using MyVector_11 = std::vector<T>; 
+
+MyVector_11<int> v1; // std::vector<int> 타입입니다.
+MyVector_11<char> v2 : // std::vector<char> 타입입니다.
+```
+
 # long long
 
 기존 `long`은 시스템 비트수에 따라 변하는데요(*[기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고*),
@@ -113,6 +155,8 @@ unsigned long long val_11{18446744073709550592ull};
 ```
 
 # char16_t 와 char32_t
+
+[유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 전 세계의 모든 문자에 고유 숫자를 부여한 코드 체계 입니다. 자세한 내용은 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 참고하시기 바라고요,
 
 기존 `wchar_t`는 시스템에 따라 2byte 또는 4byte로 가변적이어서(*[기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고*), [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 처리가 어려웠습니다.
 
@@ -187,6 +231,65 @@ std::cout << str_11 << std::endl;
 ```cpp
 abc"()"
 def
+```
+
+# (C++14~) 이진 리터럴
+
+`0b`, `0B` 접두어를 이용하여 이진수 상수를 표현할 수 있습니다.
+
+```cpp
+int val1_14 = 0b11;
+int val2_14 = 0b1111;
+int val3_14 = 0B11111111;
+
+EXPECT_TRUE(val1_14 == 0x03);
+EXPECT_TRUE(val2_14 == 0x0F);
+EXPECT_TRUE(val3_14 == 0xFF);
+```
+
+# (C++14~) 숫자 구분자
+
+작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있습니다.
+
+큰 숫자인 경우 가독성이 좋아집니다.
+
+```cpp
+int val = 1000000=;
+int val_14 = 1'000'000;
+
+EXPECT_TRUE(val == val_14);
+```
+
+# (C++17~) 16진수 부동 소수점 리터럴
+
+기존에는 16진수 정수 [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)만 제공했는데요, 
+
+```cpp
+int val = 0x1a; // 16진수. x 또는 X. a~f 또는 A~F
+```
+
+C++17 부터는 [16진수 부동 소수점 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c17-16%EC%A7%84%EC%88%98-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%EB%A6%AC%ED%84%B0%EB%9F%B4)도 제공합니다.
+
+`0x[소수점 이상 16진수값].[소수점 이하 16진수값]p[십진수 지수]`
+
+가수 `p`또는 `P`는 10진수 `2`입니다.
+
+예를들어 `0xA.9p11`은,
+
+1. `A` : `10진수 10`
+2. `9` : `1/16 * 9 = 0.5625` 
+3. `p11` : `2의 11승 == 2048`
+
+이어서 
+
+`10.5625 * 2 ^ 11 =  21632`
+
+입니다.
+
+```cpp
+// A(10진수 10), 9(1/16 * 9 = 0.5625), (p11은 2의 11승 == 2048)
+// 즉, 10.5625 * 2 ^ 11 =  21632
+float floatVal_17 = 0xA.9p11; // 21632 
 ```
 
 # (C++20~) char8_t
