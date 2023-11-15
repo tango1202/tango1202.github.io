@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [모던 C++] (C++11~) 타입 카테고리(스칼라 타입, Trivial 타입, 표준 레이아웃 타입, POD 타입, 리터럴 타입, 집합 타입), long long"
+title: "#2. [모던 C++] (C++11~) 개선된 타입과 리터럴, 타입 카테고리(스칼라 타입, Trivial 타입, 표준 레이아웃 타입, POD 타입, 리터럴 타입, 집합 타입), long long, 유니코드 문자(char16_t, char32_t) 유니코드 리터럴(u8/u/U), R 리터럴, (C++20~) char8_t"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -9,8 +9,23 @@ sidebar:
 ---
 
 > * (C++11~) [타입 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/)를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.
+> * (C++11~) 최소 8byte 크기를 보장하는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long) 타입이 추가되었습니다.
+> * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long)용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)이 추가되었습니다.
+> * (C++11~) (C++11~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)이 추가되었습니다.
+> * (C++11~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다. 
+> * (C++11~) [R"()"리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행이나 [이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)를 좀더 편하게 입력할 수 있습니다.
+> * (C++17~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
+> * (C++20~) [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte 크기의 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되었습니다.
 
-# 개요
+
+
+
+
+> * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
+
+
+
+# 타입 카테고리
 
 클래스/구조체/[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 다른 언어와 데이터가 호환 될 수도 있고, [C스타일 문자열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)인 `memcpy()`등으로 쉽게 복사가 가능할 수도 있습니다. 단, [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)에 따라서요. 
 
@@ -82,21 +97,120 @@ https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%
   * 부모 클래스가 없음
   * 가상 함수 없음
 
-
-> * (C++11~) 최소 8byte 크기를 보장하는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) 타입이 추가되었습니다.
-> * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)이 추가되었습니다.
-
 # long long
 
 기존 `long`은 시스템 비트수에 따라 변하는데요(*[기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고*),
 
-C++11 부터는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)을 제공하며 최소 8byte를 보장합니다.
+C++11 부터는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long)을 제공하며 최소 8byte를 보장합니다.
 
 |항목|내용|용량|
 |--|--|--|
 |`long`|`int`보다 크거나 같은 정수|16bit : 4byte,<br/>32bit : 4byte,<br/>64bit : 8byte|
-|[long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) (C++11~)|`long`보다 크거나 같은 정수|최소 8byte|
+|[long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long) (C++11~)|`long`보다 크거나 같은 정수|최소 8byte|
 
 ```cpp
 unsigned long long val_11{18446744073709550592ull}; 
+```
+
+# char16_t 와 char32_t
+
+기존 `wchar_t`는 시스템에 따라 2byte 또는 4byte로 가변적이어서(*[기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고*), [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 처리가 어려웠습니다.
+
+C++11 부터는 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 지원을 위해 2byte 고정 크기인 `char16_t`와 4byte 고정 크기인 `char32_t`가 추가되었습니다.
+
+|항목|내용|용량|
+|--|--|--|
+|`char`|[1byte 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)|1byte|
+|`wchar_t`|[와이드 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)|시스템의 비트수에 따라 다르며, 대부분 2byte 또는 4byte.<br/>Windows는 2byte|
+|`char16_t` (C++11~)|[UTF-16 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자|`16bit`(2byte) 보다 크거나 같음|
+|`char32_t` (C++11~)|[UTF-32 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자|`32bit`(4byte) 보다 크거나 같음|
+
+# 유니코드 리터럴
+
+기존에는 [바이트 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)과 [와이드 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)만 지원했는데요(*[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 참고*),
+
+ C++11 부터는 [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9), [UTF-16 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9), [UTF-32 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9)의 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 문자 및 문자열을 지원합니다.(*[UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열은 C++11에 추가됐지만, [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자는 C++17에 추가되었습니다.*) 
+
+|항목|내용|
+|--|--|
+|[1byte 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)|"abc"|
+|[와이드 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)|L"abc한글"|
+|[UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열 (C++11~)|`u8"abc한글"`|
+|[UTF-16 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열 (C++11~)|`u"abc한글"`|
+|[UTF-32 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열 (C++11~)|`U"abc한글"`|
+|[UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자 (C++17~)|`u8'한'`|
+|[UTF-16 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자 (C++11~)|`u'한'`|
+|[UTF-32 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자 (C++11~)|`U'한'`|
+
+```cpp
+char16_t ch_11 = u'한';
+const char16_t* str_11 = u"abc한글";
+```
+
+# Raw String 리터럴
+
+기존 문자열은 개행을 하기 위해 다음처럼 이스케이프 문자(`\r\n`)를 추가해야 했는데요(*[이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90) 참고*),
+
+```cpp
+const char* str = "abc\r\ndef";
+std::cout << str << std::endl;
+```
+
+```cpp
+abc
+def
+```
+
+C++11 부터는 `R"()"`은 `()`안에 표기된 그대로를 문자열로 처리해 줍니다. 이스케이프 문자도 그대로 출력합니다.
+
+```cpp
+// 이스케이프 문자와 개행을 소스코드에 기재된 그대로 출력합니다.
+const char* str_11 = R"(abc\r\n
+def)";     
+std::cout << str_11 << std::endl;
+```
+
+```cpp
+abc\r\n
+def
+```
+
+`"()"` 자체를 출력할 때에는 파싱 오류가 날 수 있으므로, 다음 예의 `aaa`처럼 임의 구분자를 지정하여 사용할 수 있습니다.
+
+```cpp
+// 임의 구분자 aaa 사용
+const char* str_11 = R"aaa(abc"()"
+def)aaa";     
+std::cout << str_11 << std::endl;
+```
+
+```cpp
+abc"()"
+def
+```
+
+# (C++20~) char8_t
+
+C++20 부터는 [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte 크기의 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되었습니다.
+
+표준에 따르면 `char`는 적어도 1byte 이기 때문에 바이트 수가 변경될 수 있지만(*[기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고)*, [char8_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)은 1byte로 고정되어 있습니다.
+
+그런데, [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)에서 영문자는 1byte 이지만, 한글등 다국어 문자는 여러 바이트를 사용할 수도 있죠. 예를 들어 한글 `가`는 `0xEA`, `0xB0`, `0x80`의 3개의 byte가 필요합니다.(*[UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 참고*)
+
+따라서 [char8_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)은 영문자는 저장할 수 있지만, 한글등 다국어 문자는 저장할 수 없습니다. 
+
+```cpp
+// UTF-8 에서 영문 1글자는 1byte 입니다.
+char8_t en_20 = u8'a';
+
+// UTF-8에서 한글 1글자는 3byte입니다. 
+// 따라서 문자 1개를 1byte로는 저장할 수 없습니다.
+char8_t kr_20 = u8'가'; // (X) 컴파일 오류
+```
+
+그래서, 안타깝지만, 다국어 문자를 저장하려면 다음과 같이 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 저장해야 합니다.
+
+```cpp
+char8_t arr_20[] = u8"가"; // 한글 1글자는 UTF-8로 3byte입니다.
+EXPECT_TRUE(sizeof(arr_20) == 4); // 널문자 포함하여 4byte입니다.
 ```
