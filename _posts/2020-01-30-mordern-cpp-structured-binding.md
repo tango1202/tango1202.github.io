@@ -113,7 +113,7 @@ if (result.second != true) {
 
 **C++11 스타일**
 
-[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/), 
+[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/), 
 [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for), [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 로 단순화 됐습니다.
 ```cpp
 // 초기 데이터 입력 - 중괄호 초기화로 단순화 됐습니다.

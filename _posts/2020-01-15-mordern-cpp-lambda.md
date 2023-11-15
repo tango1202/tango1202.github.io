@@ -735,8 +735,8 @@ a_20 = lambda_11; // (X) 컴파일 오류. 복사 대입은 불가능합니다.
 
 [상태없는 람다 표현식의 기본 생성과 복사 대입을 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EC%83%81%ED%83%9C%EC%97%86%EB%8A%94-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EA%B3%BC-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%A7%80%EC%9B%90)함으로서 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)등에서 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)의 사용이 편해졌습니다.
 
-예를 들어 `set`에서는 기본적으로 `std::less<_Key>`를 이용하여 요소들을 비교하는데요, 이를 사용자 정의하려면, `Compare`의 타입과 개체를 같이 전달해야 했습니다. 이렇게 `set`의 생성자에 `Compare`개체를 전달하기 때문에, 생성자에서 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)
-를 사용할 수 없었습니다.(*[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 사용하면 우선 순위에 의해 다른 생성자를 사용할 수 없죠. [기존 생성자와 initializer_list 생성자와의 충돌](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EA%B8%B0%EC%A1%B4-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-initializer_list-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%EC%9D%98-%EC%B6%A9%EB%8F%8C) 참고*) 
+예를 들어 `set`에서는 기본적으로 `std::less<_Key>`를 이용하여 요소들을 비교하는데요, 이를 사용자 정의하려면, `Compare`의 타입과 개체를 같이 전달해야 했습니다. 이렇게 `set`의 생성자에 `Compare`개체를 전달하기 때문에, 생성자에서 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)
+를 사용할 수 없었습니다.(*[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)를 사용하면 우선 순위에 의해 다른 생성자를 사용할 수 없죠. [기존 생성자와 initializer_list 생성자와의 충돌](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EA%B8%B0%EC%A1%B4-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-initializer_list-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%EC%9D%98-%EC%B6%A9%EB%8F%8C) 참고*) 
 
 ```cpp
 auto lambda_11{
@@ -770,7 +770,7 @@ for (auto i : data_20) {
 }
 ```
 
-따라서 다음과 같이 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 이용하여 간편하게 초기화 할 수 있습니다. 
+따라서 다음과 같이 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)를 이용하여 간편하게 초기화 할 수 있습니다. 
 
 ```cpp
 auto lambda_11{

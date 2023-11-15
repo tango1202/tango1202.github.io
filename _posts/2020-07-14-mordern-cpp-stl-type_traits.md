@@ -64,7 +64,7 @@ ThreeType three;
 |`is_rvalue_reference` (C++11~)|[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0) 타입인지 검사합니다.|
 |`is_member_object_pointer` (C++11~)|개체 멤버 변수의 포인터 타입인지 검사합니다.|
 |`is_member_function_pointer` (C++11~)|개체 멤버 함수의 포인터 타입인지 검사합니다.|
-|`is_null_pointer` (C++14~)|[nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/#nullptr_t) 타입인지 검사합니다.|
+|`is_null_pointer` (C++14~)|[nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr_t) 타입인지 검사합니다.|
 
 # 복합 타입 카테고리
 
@@ -73,7 +73,7 @@ ThreeType three;
 |항목|내용|
 |--|--|
 |`is_arithmetic` (C++11~)|정수, 실수 타입인지 검사합니다.|
-|`is_fundamental` (C++11~)|정수, 실수, `void`, [nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/#nullptr_t) 타입인지 검사합니다.|
+|`is_fundamental` (C++11~)|정수, 실수, `void`, [nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr_t) 타입인지 검사합니다.|
 |`is_scalar` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)인지 검사합니다.|
 |`is_object` (C++11~)|좌측값과 포인터 타입인지 검사합니다.|
 |`is_reference` (C++11~)|참조 타입([좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)와 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0))인지 검사합니다.|

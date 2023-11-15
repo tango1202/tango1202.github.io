@@ -57,7 +57,7 @@ EXPECT_TRUE(*c == 1 && d == nullptr);
 
 |항목|내용|
 |--|--|
-|`constexpr unique_ptr() noexcept;` (C++11~)<br/><br/>`explicit unique_ptr(T* p) noexcept;` (C++11~)<br/>`unique_ptr(T* p, deleter) noexcept;` (C++11~)<br/><br>`constexpr unique_ptr(nullptr_t) noexcept;` (C++11~)<br/><br/>`unique_ptr(auto_ptr&&) noexcept;` (C++11~C++17)|[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)이나 `p`를 관리합니다. 이때 사용자 정의 `deleter`를 사용할 수 있습니다.|
+|`constexpr unique_ptr() noexcept;` (C++11~)<br/><br/>`explicit unique_ptr(T* p) noexcept;` (C++11~)<br/>`unique_ptr(T* p, deleter) noexcept;` (C++11~)<br/><br>`constexpr unique_ptr(nullptr_t) noexcept;` (C++11~)<br/><br/>`unique_ptr(auto_ptr&&) noexcept;` (C++11~C++17)|[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)이나 `p`를 관리합니다. 이때 사용자 정의 `deleter`를 사용할 수 있습니다.|
 |`unique_ptr(const unique_ptr&) = delete;` (C++11~)|[복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 사용할 수 없습니다.|
 |`unique_ptr(unique_ptr&& other) noexcept;` (C++11~)|[이동 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
 |`~unique_ptr()` (C++11~)|관리하는 개체를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 또는 [delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)합니다.|
@@ -66,7 +66,7 @@ EXPECT_TRUE(*c == 1 && d == nullptr);
 |`operator *() const noexcept;` (C++11~)|관리하는 개체의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.|
 |`operator ->() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
 |`operator [](size_t) const;` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 관리하는 경우 각 요소 개체의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.|
-|`explicit operator bool() const noexcept;` (C++11~)|[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로 형변환시 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 이면 `false`를 리턴합니다.|
+|`explicit operator bool() const noexcept;` (C++11~)|[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로 형변환시 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr) 이면 `false`를 리턴합니다.|
 |`get() const noexcept;` (C++11~)|관리하는 개체의 포인터를 리턴합니다.|
 |`swap(unique_ptr& other) noexcept;` (C++11~)|관리하는 개체를 `other`와 바꿔치기 합니다.|
 |`reset(T* p) noexcept;` (C++11~)|기존에 관리하던 개체를 해제하고 `p`를 관리합니다.|

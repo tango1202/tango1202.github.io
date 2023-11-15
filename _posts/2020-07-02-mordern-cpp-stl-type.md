@@ -14,7 +14,7 @@ sidebar:
 |--|--|
 |`size_t`|`unsigned int` 으로서 크기나 갯수를 나타냅니다.|
 |`ptrdiff_t`|`signed int` 으로서 포인터간의 차를 나타냅니다.|
-|[nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) (C++11~)|[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)을 저장하는 타입입니다.|
+|[nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr) (C++11~)|[nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)을 저장하는 타입입니다.|
 |NULL|널포인터의 값이며, `#define NULL 0` 입니다.|
 `max_align_t` (C++11~)|(작성중)|
 |`offsetof()`|(작성중)|

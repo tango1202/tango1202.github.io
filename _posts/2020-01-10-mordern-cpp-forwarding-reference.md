@@ -893,10 +893,10 @@ A_11 c(val); // 전달 참조 버전이 호출됩니다.
 
 # 전달 참조와 중괄호 초기화
 
-[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/)는 대입하는 타입에 맞게 초기값을 추론하다 보니 
+[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/)는 대입하는 타입에 맞게 초기값을 추론하다 보니 
 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)와는 궁합이 맞지 않습니다.
 
-다음과 같이 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)가 아니라면, [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)는 `const vector<int>& v`로 전달하기 위해 암시적으로 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성하여 전달합니다.
+다음과 같이 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)가 아니라면, [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)는 `const vector<int>& v`로 전달하기 위해 암시적으로 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)를 생성하여 전달합니다.
 
 ```cpp
 int f(const std::vector<int>& v) {return v.size();}
@@ -904,7 +904,7 @@ int f(const std::vector<int>& v) {return v.size();}
 EXPECT_TRUE(f({1, 2, 3}) == 3); // {1, 2, 3}는 암시적으로 vector<int> 입니다.  
 ```
 
-하지만 `f()`함수를 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)로 바꾸면,  [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)는 어떤 타입으로 생성해야 할지 모르므로, 컴파일 오류가 발생합니다.
+하지만 `f()`함수를 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)로 바꾸면,  [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)는 어떤 타입으로 생성해야 할지 모르므로, 컴파일 오류가 발생합니다.
 
 ```cpp
 template<typename T>
@@ -912,7 +912,7 @@ int f_11(T&& param) {return param.size();}
 
 EXPECT_TRUE(f_11({1, 2, 3}) == 3); // (X) 컴파일 오류. 중괄호 초기화를 무슨 타입으로 생성할지 모릅니다.
 ```
-따라서 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)를 사용할 경우에는 다음과 같은 방법을 이용합니다.
+따라서 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)를 사용할 경우에는 다음과 같은 방법을 이용합니다.
 
 1. 명시적으로 `vector<int>`개체를 전달합니다.
 

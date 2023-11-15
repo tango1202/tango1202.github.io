@@ -28,7 +28,7 @@ C++17 부터는 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cp
 |[visit()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/#visit) (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) 가 관리하는 값으로 함수자를 호출합니다.|
 |`holds_alternative()` (C++17~)|주어진 타입이 관리되고 있는지 검사합니다.|
 |`get()` (C++17~)|주어진 인덱스나 타입의 값을 리턴합니다. 값이 없으면, `bad_variant_access` 예외를 발생합니다.|
-|`get_if()` (C++17~)|주어진 타입의 값을 리턴합니다. 값이 없으면, [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 예외를 발생합니다.|
+|`get_if()` (C++17~)|주어진 타입의 값을 리턴합니다. 값이 없으면, [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr) 예외를 발생합니다.|
 |[monostate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/#monostate) (C++17~)|초기값 없이 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)를 생성합니다.|
 |`bad_variant_access` (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)에서 주어진 타입이 없을때 예외를 발생합니다.|
 |`variant_size, variant_size_t` (C++17~)|(작성중)|
@@ -41,7 +41,7 @@ C++17 부터는 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cp
 2. `holds_alternative()`으로 주어진 타입이 관리되고 있는지 검사합니다.
 3. `index()` 로 현재 관리되는 타입의 인덱스를 알 수 있습니다.
 4. `get<인덱스>()` 와 `get<타입>()`으로 값에 접근할 수 있습니다. 만약 해당 값이 없으면 `bad_variant_access` 예외를 발생합니다.
-5. `get_if()`는 값이 없으면 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)을 리턴합니다.
+5. `get_if()`는 값이 없으면 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)을 리턴합니다.
 
 ```cpp
 // 기본 생성하면 0번째 타입의 기본 생성값으로 초기화 합니다.
