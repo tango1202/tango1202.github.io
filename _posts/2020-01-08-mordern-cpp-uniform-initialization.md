@@ -263,7 +263,7 @@ T a_11{10};
 
 # 중괄호 집합 초기화
 
-[집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 경우에는 기존에도 `= {}` 표현을 지원했는데요(*[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 와 [구조체 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B5%AC%EC%A1%B0%EC%B2%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고*),
+[집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)의 경우에는 기존에도 `= {}` 표현을 지원했는데요(*[배열 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EB%B0%B0%EC%97%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 와 [구조체 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B5%AC%EC%A1%B0%EC%B2%B4-%EC%B4%88%EA%B8%B0%ED%99%94) 참고*),
 
 C++11 부터는 `{}` 도 지원합니다.
 
@@ -401,7 +401,7 @@ public:
 B b_11{1, {2, 3}}; // B b_11{1, A{2, 3}};와 동일
 ```
 
-멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이라면, [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)가 없어도 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)이나 구조체처럼 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)로 초기화할 수 있습니다.
+멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이라면, [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)가 없어도 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)이나 구조체처럼 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)로 초기화할 수 있습니다.
 
 ```cpp
 class A {
@@ -578,7 +578,7 @@ C++20 부터는 [지명 초기화](https://tango1202.github.io/mordern-cpp/morde
     3. *`int`에서 `char` 변환도 `double`에서 `float` 변환과 동일합니다.
     4. 포인터 타입에서 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로의 변환을 경고해 줍니다.
     5. 사용자가 [형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90) 를 작성하면 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 허용됩니다.
-5. [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)만 지원합니다.
+5. [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)만 지원합니다.
 5. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 지원하지 않습니다.
 
 ```cpp
@@ -604,7 +604,7 @@ public:
     B m_B{A{}}; // A 기본 생성자로 생성합니다.
 };
 
-T a_20{.m_X = 10, .m_Y = 20, .m_Z = 30.F};
+T a_20{.m_X = 10, .m_Y{20}, .m_Z = {30.F}}; // = 또는 {} 또는 ={}로 초기값을 대입합니다.
 // T b_20{.m_X = 10, .m_Z = 30.F, .m_Y = 20}; // (X) 컴파일 오류. 멤버 변수 선언 순서와 같아야 합니다.
 T c_20{.m_X = 10, .m_Z = 30.F}; // 특정 항목을 생략할 수 있습니다.
 EXPECT_TRUE(c_20.m_Y == 2); // 생략한 멤버는 멤버 선언부 초기화 값이 유지됩니다.

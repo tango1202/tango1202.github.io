@@ -15,8 +15,7 @@ sidebar:
 > * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)을 이용하면 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.
 > * (C++20~) [consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다.
 > * (C++20~) [constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)가 추가되어 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 컴파일 타임에 초기화할 수 있습니다.
-> * (C++20~) [constexpr 함수 제약이 완화](??)되어 초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), [try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/), `asm` 등을 사용할 수 있습니다.
-> * (C++20~) [constexpr 함수에서 공용체 활성 멤버 변수 전환이 허용](??)됩니다.
+> * (C++20~) [constexpr 함수 졔약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)가 한차례 더 보강되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), 초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/), [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버 변수 활성 전환, `asm`등을 사용할 수 있습니다.
 
 # 개요
 
@@ -129,11 +128,11 @@ int result{Factorial_11(5)};
 
 # constexpr 생성자 
 
-[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)은 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 사용할 수 있는데요, 그러다 보니, 구조체/클래스는 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없으며 모든 멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)인 경우에만 사용할 수 있습니다.
+[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)은 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 사용할 수 있는데요, 그러다 보니, 구조체/클래스는 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없으며 모든 멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)인 경우에만 사용할 수 있습니다.
 
-하지만, [constexpr 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)인 구조체/클래스를 직접 만들 수 있습니다.
+하지만, [constexpr 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)인 구조체/클래스를 직접 만들 수 있습니다.
 
-다음 `Area_11` 클래스는 `private` 멤버 변수와 생성자를 갖고 있지만, [constexpr 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)으로 동작합니다.
+다음 `Area_11` 클래스는 `private` 멤버 변수와 생성자를 갖고 있지만, [constexpr 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하여 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)으로 동작합니다.
 
 1. `Area_11(int x, int y)`에 컴파일 상수를 전달하면, `Area_11`도 컴파일 상수로 동작합니다.
 
@@ -169,7 +168,7 @@ Area_11 area{x, 5}; // 런타임 함수로 동작합니다.
 `GetVal_11()`와 같은 `Setter` 계열 함수들은 다음 제약 조건 때문에 만들기 어렵습니다.(*제약 조건은 점진적으로 완화되고 있습니다. [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)를 참고하세요.*)
 
 1. [constexpr 함수](
-https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 리턴합니다. 그런데 `void`가 리터럴이 아닙니다.(C++14 부터는 `void`도 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)이 되어 가능합니다.)
+https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 리턴합니다. 그런데 `void`가 리터럴이 아닙니다.(C++14 부터는 `void`도 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)이 되어 가능합니다.)
 
 2. [constexpr 함수](
 https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 암묵적으로 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이고 `operator =`등이 아예 허용되지 않습니다. [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)도 못씁니다. 
@@ -196,28 +195,29 @@ public:
 
 # (C++14~) constexpr 함수 제약 완화
 
-[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 기본적으로 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 리턴할 수 있고, 그외 스펙들은 조금씩 개선되고 있습니다. 
+[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 기본적으로 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)만 리턴할 수 있고, 그외 스펙들은 조금씩 개선되고 있습니다. 
 
 C++11 에서는 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)나 제어문도 사용할 수 없어서 상당히 제한적이었으나, 점점 개선되고 있습니다. 자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/language/constexpr)을 참고하시기 바랍니다.
 
 |항목|C++11|C++14|C++17|C++20|
 |--|--|--|--|--|
-|[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 외의 리턴|X|X|X|X|
+|[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 외의 리턴|X|X|X|X|
 |[조건 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A1%B0%EA%B1%B4-%EC%97%B0%EC%82%B0%EC%9E%90)|O|O|O|O|
 |[static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|O|O|O|O|
-|typedef, using|O|O|O|O|
+|[typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD), [using](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)|O|O|O|O|
 |[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 호출|O|O|O|O|
 |초기화된 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 정의|X|O|O|O|
 |초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 정의|X|X|X|O|
-|1의 리턴문|O|O|O|O|
+|1개의 리턴문|O|O|O|O|
 |2개 이상의 리턴문|X|O|O|O|
 |`if`, `for`, `while`|X|O|O|O|
 |`goto`, `switch`|X|X|X|X|
 |[void 사용](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)|X|O|O|O|
-|[const 자유도](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)|X|O|O|O|O|
+|[const 자유도](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)|X|O|O|O|
 |[try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)|X|X|X|O|
 |`throw`|X|X|X|X|
-|가상 함수|X|X|X|O|
+|[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)|X|X|X|O|
+|[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버 변수의 활성 전환|X|X|X|O|
 |`asm`|X|X|X|O|
 
 다음은 C++14 기준에 맞춰서 좀더 일반적인 형태로 `Factorial_14()`를 구현한 예입니다. [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), 2개 이상의 리턴문, `if()`, `for()`등을 사용할 수 있어서 코딩 자유도가 높아졌습니다.
@@ -242,7 +242,7 @@ enum class MyEnum_11 {Val = Factorial_14(5)};
 EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 1 * 2 * 3 * 4 * 5);       
 ```
 
-> *(C++20~) [constexpr 함수 제약이 완화](??)되어 초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), [try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/), `asm` 등을 사용할 수 있습니다.*
+> *(C++20~) [constexpr 함수 졔약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)가 한차례 더 보강되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), 초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/), [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버 변수 활성 전환, `asm`등을 사용할 수 있습니다.*
 
 # (C++17~) if constexpr 
 
@@ -447,9 +447,11 @@ public:
 
 # (C++20~) constexpr 함수 제약 완화
 
-기존에는 `constexpr virtual`와 같이 `constexpr`과 `virtual`을 함께 사용하면 컴파일 오류가 발생했으나(*[(C++14~) constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94) 참고*), C+20 부터는 허용됩니다. 
+C++14 에서 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)의 제약이 완화되었으나(*[(C++14~) constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c14-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94) 참고*), 
 
-다음예에서 가상 함수를 오버라이딩한 `Func` 함수를 컴파일 타임 상수로 사용할 수 있고, 이를 `Base*`를 통해 가상 함수를 호출하면, 런타임에 동작하는 걸 확인 할 수 있습니다.
+C++20 에서는 [constexpr 함수 졔약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)가 한차례 더 보강되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), 초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/), 공용체 멤버 변수 활성 전환, `asm`등을 사용할 수 있습니다.
+
+다음예에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 오버라이딩한 `Func` 함수를 컴파일 타임 상수로 사용할 수 있고, 이를 `Base*`를 통해 가상 함수를 호출하면, 런타임에 동작하는 걸 확인 할 수 있습니다.
 
 ```cpp
 class Base {
@@ -480,9 +482,9 @@ constexpr void Func_20() {
 }
 ```
 
-# (C++20~) constexpr 함수에서 공용체 활성 멤버 변수 전환 허용
+또한 [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버 변수의 활성 전환이 허용됩니다.
 
-기존에는 [constexpr 함수](??)에서 [공용체](??)의 활성 멤버 변수의 전환을 허용하지 않았는데요, C++20 부터는 [constexpr 함수에서 공용체 활성 멤버 변수 전환이 허용](??)됩니다.
+기존에는 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)에서 [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버 변수를 활성을 전환하면 컴파일 오류가 있었는데요, C++20 부터는 허용합니다.
 
 ```cpp
 union MyUnion {
@@ -491,12 +493,12 @@ union MyUnion {
 };
 constexpr int Func_20() {
     MyUnion myUnion{};
-    myUnion.i = 3;
 
+    myUnion.i = 3;
+#if 202002L <= __cplusplus // C++20~   
     // (X) ~C++20 컴파일 오류. change of the active member of a union from 'MyUnion::i' to 'MyUnion::f'
-    // (O) C++2O~
-#if 202002L <= __cplusplus // C++20~          
-    myUnion.f = 1.2f; // 활성 멤버로의 전환을 허용합니다.
+    // (O) C++2O~       
+    myUnion.f = 1.2f; // 멤버 변수 활성 전환을 허용합니다.
 #endif         
     return 1;
 }

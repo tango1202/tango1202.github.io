@@ -102,7 +102,7 @@ class Derived_11 : public Base {
 
 # final
 
-기존에는 상속을 막기 위해 생성자를 `private`로 만들어 가시성을 제한 하거나, [public Non-Virtual 소멸자](??)로 만들고 상속하지 않도록 서로간에 정하자 라고 했었는데요(*[상속 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C) 참고*),
+기존에는 상속을 막기 위해 생성자를 `private`로 만들어 가시성을 제한 하거나, [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들고 상속하지 않도록 서로간에 정하자 라고 했었는데요(*[상속 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C) 참고*),
 
 C++11 부터는 다음처럼 [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)로 상속을 제한할 수 있습니다.
 

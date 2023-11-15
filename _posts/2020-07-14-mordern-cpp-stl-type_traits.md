@@ -74,7 +74,7 @@ ThreeType three;
 |--|--|
 |`is_arithmetic` (C++11~)|정수, 실수 타입인지 검사합니다.|
 |`is_fundamental` (C++11~)|정수, 실수, `void`, [nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/#nullptr_t) 타입인지 검사합니다.|
-|`is_scalar` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)인지 검사합니다.|
+|`is_scalar` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)인지 검사합니다.|
 |`is_object` (C++11~)|좌측값과 포인터 타입인지 검사합니다.|
 |`is_reference` (C++11~)|참조 타입([좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)와 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0))인지 검사합니다.|
 |`is_compound` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), 함수, 개체 포인터, 함수 포인터, 멤버 변수 포인터, [멤버 함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0), 참조자, 구조체/클래스, [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4), [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)인지 검사합니다. `int`와 같은 기본 타입은 `false` 입니다.|
@@ -86,11 +86,11 @@ ThreeType three;
 |--|--|
 |`is_const` (C++11~)|[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 타입인지 검사합니다.|
 |`is_volatile` (C++11~)|[volatile](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%B5%9C%EC%A0%81%ED%99%94-%EC%A0%9C%ED%95%9C-%ED%95%9C%EC%A0%95%EC%9E%90volatile) 타입인지 검사합니다.|
-|`is_trivial` (C++11~)|[Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85) 인지 검사합니다.|
-|`is_trivially_copyable` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85) 이나 [Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85) 처럼 간단하게 복사 가능한지 검사합니다.|
-|`is_standard_layout` (C++11~)|[표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 인지 검사합니다.|
-|`is_pod`(C++11~C++20)|[POD 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#pod-%ED%83%80%EC%9E%85plan-old-data) 인지 검사합니다.||
-|`is_literal_type`(C++11~C++17)|[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 인지 검사합니다.|
+|`is_trivial` (C++11~)|[Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85) 인지 검사합니다.|
+|`is_trivially_copyable` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85) 이나 [Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85) 처럼 간단하게 복사 가능한지 검사합니다.|
+|`is_standard_layout` (C++11~)|[표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 인지 검사합니다.|
+|`is_pod`(C++11~C++20)|[POD 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#pod-%ED%83%80%EC%9E%85plan-old-data) 인지 검사합니다.||
+|`is_literal_type`(C++11~C++17)|[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 인지 검사합니다.|
 |`is_empty` (C++11~)|멤버 변수, 가상 함수, 비어있지 않은 부모 개체가 없는 빈 개체인지 검사합니다.|
 |`is_polymorphic` (C++11~)|가상 함수가 있거나, 가상 함수를 상속한 다형성 타입인지 검사합니다.|
 |`is_abstract` (C++11~)|적어도 1개 이상의 순가상 함수가 있는 추상 클래스 타입인지 검사합니다.|
@@ -135,7 +135,7 @@ ThreeType three;
 |`is_base_of` (C++11~)|`Base`가 `Derived`의 부모인지 검사합니다.([CloneTraits 구현](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/#clonetraits-%EA%B5%AC%ED%98%84) 의 `IsDerivedFrom` 참고)|
 |`is_convertible` (C++11~)<br/>`is_nothrow_convertible` (C++20~)|`From` 타입이 `To`로 변환 가능한지 검사합니다.|
 |`is_invocable` (C++17~)<br/>`is_invocable_r` (C++17~)<br/>`is_nothrow_invocable` (C++17~)<br/>`is_nothrow_invocable_r` (C++17~)|(작성중)|
-|`is_layout_compatible` (C++20~)|[표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 등 메모리 레이아웃이 호환되는지 검사합니다.|
+|`is_layout_compatible` (C++20~)|[표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 등 메모리 레이아웃이 호환되는지 검사합니다.|
 |`is_pointer_interconvertible_base_of` (C++20~)|(작성중)|
 
 # const-volatile

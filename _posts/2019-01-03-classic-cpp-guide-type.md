@@ -20,17 +20,18 @@ sidebar:
 
 # 개요
 
-C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은 `char`, `short`, `float`, `double` 밖에 없습니다. 대부분 OS에 따라, 컴파일러에 따라, 시스템 비트수에 따라 달라지므로 크기에 의존해서 코딩하면 안됩니다.(*특히 `int`와 `wchar_t`요.*)
+C++에는 하기의 기본 타입들이 있습니다. 크기가 고정된 것은 `float`, `double` 밖에 없습니다. 표준에 의하면 `char`마저 ***적어도 1byte***입니다. 그냥 1byte가 아닙니다. 대부분 OS에 따라, 컴파일러에 따라, 시스템 비트수에 따라 달라지므로 크기에 의존해서 코딩하면 안됩니다.(*특히 `int`와 `wchar_t`요.*)
+
 
 |항목|내용|용량|
 |--|--|--|
 |[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)|`true` 또는 <br/>`false`|`1 <= sizeof (bool) <= sizeof(long)`|
-|`char`|1byte 문자|1byte|
-|`wchar_t`|와이드 문자|시스템의 처리 방식에 따라 다르며, 2byte 또는 4byte.<br/>Windows는 2byte |
-|`short`|2byte 정수| 2byte|
-|`int`|기본 연산 단위 크기의 정수|16bit : 2byte,<br/>32bit : 4byte,<br/>64bit : 4byte|
+|`char`|적어도 1byte 문자|대부분 1byte|
+|`wchar_t`|적어도 2byte 와이드 문자|시스템의 처리 방식에 따라 다르며, 2byte 또는 4byte.<br/>Windows는 2byte |
+|`short`|적어도 2byte 정수| 대부분 2byte|
+|`int`|적어도 2byte인 기본 연산 단위 크기의 정수|16bit : 2byte,<br/>32bit : 4byte,<br/>64bit : 4byte|
 |`unsigned`|부호 없는 `int`|`int` 와 동일|
-|`long`|`int`보다 크거나 같은 정수|16bit : 4byte,<br/>32bit : 4byte,<br/>64bit : 8byte|
+|`long`|적어도 4byte인 `int`보다 크거나 같은 정수|16bit : 4byte,<br/>32bit : 4byte,<br/>64bit : 8byte|
 |`float`|단정밀도 부동 소수점 실수|4byte|
 |`double`|배정밀도 부동 소수점 실수|8byte|
 |`long double`|확장 정밀도 부동소수점 실수|16byte 또는 10byte 또는 8byte. 단, Visual C++ 은 `double` 과 동일|

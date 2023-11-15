@@ -97,7 +97,9 @@ _back() 등*)
 
 # 컨테이너 라이브러리
 
-각 컨테이너에 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 이용한 초기화가 추가되었으며, [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용한 `emplace()` 계열 함수들(*요소 개체를 생성해서 전달하는 것이 아니라, 요소 개체의 생성자 인수들을 전달하면 컨테이너 내에서 요소 개체를 직접 생성함*)이 추가되었습니다.
+(C++11~) 각 컨테이너에 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#initializer_list)를 이용한 초기화가 추가되었으며, [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용한 `emplace()` 계열 함수들(*요소 개체를 생성해서 전달하는 것이 아니라, 요소 개체의 생성자 인수들을 전달하면 컨테이너 내에서 요소 개체를 직접 생성함*)이 추가되었습니다.
+
+(C++20~) 대부분의 멤버 함수들이 [constexpr 함수](??)로 개선되었습니다.
 
 |항목|내용|
 |--|--|

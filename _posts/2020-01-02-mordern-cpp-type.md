@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [모던 C++] (C++11~) 타입 형식(스칼라 타입, Trivial 타입, 표준 레이아웃 타입, POD 타입, 리터럴 타입, 집합 타입)"
+title: "#2. [모던 C++] (C++11~) 타입 카테고리(스칼라 타입, Trivial 타입, 표준 레이아웃 타입, POD 타입, 리터럴 타입, 집합 타입), long long"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) 타입 형식 체계를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.
+> * (C++11~) [타입 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/)를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.
 
 # 개요
 
@@ -81,3 +81,22 @@ https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%
   * 모든 멤버 변수가 `public`
   * 부모 클래스가 없음
   * 가상 함수 없음
+
+
+> * (C++11~) 최소 8byte 크기를 보장하는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) 타입이 추가되었습니다.
+> * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)이 추가되었습니다.
+
+# long long
+
+기존 `long`은 시스템 비트수에 따라 변하는데요(*[기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고*),
+
+C++11 부터는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/)을 제공하며 최소 8byte를 보장합니다.
+
+|항목|내용|용량|
+|--|--|--|
+|`long`|`int`보다 크거나 같은 정수|16bit : 4byte,<br/>32bit : 4byte,<br/>64bit : 8byte|
+|[long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-longlong/) (C++11~)|`long`보다 크거나 같은 정수|최소 8byte|
+
+```cpp
+unsigned long long val_11{18446744073709550592ull}; 
+```

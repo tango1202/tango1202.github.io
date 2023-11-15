@@ -12,7 +12,7 @@ sidebar:
 > * (C++11~) [R"()"리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행이나 [이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)를 좀더 편하게 입력할 수 있습니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++17~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
-> * (C++20~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t)이 추가되었습니다.
+> * (C++20~) [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte 크기의 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t)이 추가되었습니다.
 
 # 개요
 
@@ -97,4 +97,26 @@ def
 
 # (C++20~) char8_t
 
-C++20 부터는 [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 관리할 수 있도록 `char8_t`가 추가되었습니다.
+C++20 부터는 [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte 크기의 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t)이 추가되었습니다.
+
+표준에 따르면 `char`는 적어도 1byte 이기 때문에 바이트 수가 변경될 수 있지만(*[기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고)*, [char8_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t)은 1byte로 고정되어 있습니다.
+
+그런데, [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)에서 영문자는 1byte 이지만, 한글등 다국어 문자는 여러 바이트를 사용할 수도 있죠. 예를 들어 한글 `가`는 `0xEA`, `0xB0`, `0x80`의 3개의 byte가 필요합니다.(*[UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 참고*)
+
+따라서 [char8_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-string/#c20-char8_t)은 영문자는 저장할 수 있지만, 한글등 다국어 문자는 저장할 수 없습니다. 
+
+```cpp
+// UTF-8 에서 영문 1글자는 1byte 입니다.
+char8_t en_20 = u8'a';
+
+// UTF-8에서 한글 1글자는 3byte입니다. 
+// 따라서 문자 1개를 1byte로는 저장할 수 없습니다.
+char8_t kr_20 = u8'가'; // (X) 컴파일 오류
+```
+
+그래서, 안타깝지만, 다국어 문자를 저장하려면 다음과 같이 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)로 저장해야 합니다.
+
+```cpp
+char8_t arr_20[] = u8"가"; // 한글 1글자는 UTF-8로 3byte입니다.
+EXPECT_TRUE(sizeof(arr_20) == 4); // 널문자 포함하여 4byte입니다.
+```

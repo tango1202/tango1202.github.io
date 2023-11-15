@@ -57,40 +57,18 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
     * (O) 어트리뷰트 : likly, unlikely, no_unique_address, nodiscard(reason), 
     * (O) volatile 일부 deprecate 
     * (O) 범위 기반 for()에서 초기식
-    * (O) constexpr 완화
+    * (O) constexpr 함수 완화
         * (O) constexpr 함수에서 가상 함수 지원virtual https://github.com/AnthonyCalandra/modern-cpp-features#constexpr-virtual-functions
         * (O) constexpr 함수에서 런타임에서 동작시 try - catch 허용, throw는 안됨
         * (O) constexpr 함수에서 asm : 런타임만 가능
-        * (O) 공용체 활성 멤버 변수 전환 허용
-
-상수 평가를 위해 constexpr 함수 정의가 필요한 시기 지정 Specify when constexpr function definitions are needed for constant evaluation https://wg21.link/P0859R0
-
-
-constexpr컨테이너 운영 https://wg21.link/P0784R7
-constexpr함수 의 사소한 기본 초기화 https://wg21.link/P1331R2
-
-    * (O) Concept : 공통된 성질끼리 묶는기능. 제약조건(?)
-        * https://github.com/AnthonyCalandra/modern-cpp-features#concepts
-
-    * (O) 코루틴 : 함수를 yield 위치에서 일시 정지후 재진행
-        * https://github.com/AnthonyCalandra/modern-cpp-features#coroutines       
-
-    * (O) 모듈 : include 기법외 방법. 컴파일 시간 개선         
-
-
+        * (O) 공용체 멤버 변수 활성 전환 허용
+    * (O) char8_t
+    * (O) using enum : 열거형 이름을 생략하고 사용.
+    * (O) 비트 필드 선언부 초기화
 
 
     * (O) 기능 테스트 매크로 : C++11 이상의 기능이 있는지 컴파일 타임 검사 __has_cpp_attributes
  
-  
-
-
-    * (O) using enum : 열거형 이름을 생략하고 사용.
-        * https://github.com/AnthonyCalandra/modern-cpp-features#using-enum
-
-    * (O) char8_t
-        * https://github.com/AnthonyCalandra/modern-cpp-features#char8_t
-
     * (O) 부호있는 정수의 표현범위 변경 2의 보수로 저장
         * 기존 보장 범위 1의 보수 -2^(n-1) - 1 ~ 2^(n-1) - 1(-127~127)
         * 2의 보수 -2^(n-1) ~ 2^(n-1) - 1 (-128~127)
@@ -111,9 +89,6 @@ constexpr함수 의 사소한 기본 초기화 https://wg21.link/P1331R2
         ```
 
 
-    * (O) 비트 필드 생성자에서 초기화
-        * https://en.cppreference.com/w/cpp/language/bit_field#Cpp20_Default_member_initializers_for_bit_fields
-
     * (O) inline 네임스페이스 중첩 : namespace A::inline B {}
 
     * (O) Bitwise shift operators unified behavior 
@@ -122,6 +97,28 @@ constexpr함수 의 사소한 기본 초기화 https://wg21.link/P1331R2
 
     * (O) 컴파일 타임 상수식에서 dynamic_cast와 typeid 사용(https://wg21.link/P1327R1)
         * 상수 표현식 의 Dynamic_cast 및 다형성 typeid
+
+cppreference
+Removed the requirement to use to disambiguate types in many contexts typename
+
+
+
+
+
+
+
+    * (O) Concept : 공통된 성질끼리 묶는기능. 제약조건(?)
+        * https://github.com/AnthonyCalandra/modern-cpp-features#concepts
+
+    * (O) 코루틴 : 함수를 yield 위치에서 일시 정지후 재진행
+        * https://github.com/AnthonyCalandra/modern-cpp-features#coroutines       
+
+    * (O) 모듈 : include 기법외 방법. 컴파일 시간 개선         
+
+
+
+
+
 
 
 
@@ -220,7 +217,7 @@ boolT* 로 변환하는 것은 범위를 좁히는 것을 고려해야 합니다
 
 |항목|내용|
 |--|--|
-|[타입 형식](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/) (C++11~)|**(C++11~)**<br/>[타입 형식](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/) 체계를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.|
+|[타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/) (C++11~)|**(C++11~)**<br/>[타입 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/)를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.|
 |[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) (C++11~)|**(C++11~)**<br/>[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 이용하여 함수의 예외 방출 여부를 보증합니다.<br/>소멸자는 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다.<br/>[noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 이용하여 해당 함수가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인지 컴파일 타임에 검사할 수 있습니다.<br/><br/>**(C++17~)**<br/>[noexcept가 함수 유형에 포함](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/#c17-noexcept-%ED%95%A8%EC%88%98-%EC%9C%A0%ED%98%95-%ED%8F%AC%ED%95%A8)되어 예외 처리에 대한 코딩 계약을 좀더 단단하게 할 수 있습니다.|
 |[명시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/) (C++11~)|**(C++11~)**<br/>[explicit 형변환 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)가 추가되어 [명시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 할 수 있습니다.|
 |[속성](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/) (C++11~)|**(C++11~)**<br/>[attribute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.<br/><br/>**(C++14~)**<br/>[[[deprecated]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c14-deprecated-deprecated%EC%9D%B4%EC%9C%A0)가 추가되어 소멸 예정인 것을 컴파일 경고로 알려줍니다.<br/><br/>**(C++17~)**<br/>[[[fallthrough]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-fallthrough)가 추가되어 `switch()`에서 `break`를 생략하면 다음 `case`로 제어가 이동할때 발생하는 컴파일 경고를 차단할 수 있습니다.<br/>[[[nodiscard]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard)가 추가되어 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 무시하지 않도록 컴파일 경고를 해줍니다.<br/>[[[maybe_unused]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-maybe_unused)가 추가되어 사용되지 않은 개체의 컴파일 경고를 막습니다.<br/>`[[msvc::noinline]]` 와 같이 [제조사 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)를 사용할 수 있습니다.|

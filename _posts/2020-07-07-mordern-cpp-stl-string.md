@@ -43,7 +43,7 @@ std::u16string str1_11{u"abc가나다"};
 std::u32string str2_11{U"abc가나다"};
 
 // C++20
-// std::u8string str3_20{u8"abc가나다"};
+std::u8string str3_20{u8"abc가나다"};
 
 EXPECT_TRUE(str1_11.size() == 6);
 EXPECT_TRUE(str1_11[3] == u'가'); 
@@ -52,8 +52,10 @@ EXPECT_TRUE(str2_11.size() == 6);
 EXPECT_TRUE(str2_11[3] == U'가');
 
 // C++20
-// EXPECT_TRUE(str3_20.size() == 6);
-// EXPECT_TRUE(str3_20[3] == U'가');
+EXPECT_TRUE(str3_20.size() == 12); // abc : 3byte, 가 : 3byte, 나 : 3byte, 다 : 3byte
+EXPECT_TRUE(str3_20[3] == 0xEA); // 한글 '가'는 UTF-8에서 3byte. 0xEA, 0xB0, 0x80
+EXPECT_TRUE(str3_20[4] == 0xB0);
+EXPECT_TRUE(str3_20[5] == 0x80);
 ```
 
 자세한 사용 방법은 [문자열](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)을 참고하기 바랍니다.

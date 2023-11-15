@@ -207,14 +207,14 @@ EXPECT_TRUE(str2[2] == L'c');
 EXPECT_TRUE(str2[3] == L'\0'); // 널문자가 추가됨
 ```
 
-> *(C++11~) [중괄호 집합 초기화](??) 가 개선되어 `=` 없이 사용 가능합니다.*<br/>
+> *(C++11~) [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94) 가 개선되어 `=` 없이 사용 가능합니다.*<br/>
 > *(C++20~) [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)시 변수명을 지명하여 값을 초기화 할 수 있습니다.* 
 
 # 구조체 초기화
 
 구조체는 별도로 [값 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94)를 위한 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현하지 않더라도 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 사용하여 초기화 할 수 있습니다.
 
-단, 모든 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)가 `public`이어야 하며, 선언된 순서와 초기화 순서가 일치하여야 합니다.(*더 세부적인 제약 조건은 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type-category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)을 참고 하세요.*)
+단, 모든 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)가 `public`이어야 하며, 선언된 순서와 초기화 순서가 일치하여야 합니다.(*더 세부적인 제약 조건은 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)을 참고 하세요.*)
 
 ```cpp
 struct T {int x; int y;}; // 멤버 변수가 public 입니다.
@@ -223,7 +223,7 @@ T t = {10, 20}; // (O) 중괄호로 초기화. 선언된 순서와 일치해야 
 EXPECT_TRUE(t.x == 10 && t.y == 20);
 ```
 
-> *(C++11~) [중괄호 집합 초기화](??) 가 개선되어 `=` 없이 사용 가능합니다.*<br/>
+> *(C++11~) [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94) 가 개선되어 `=` 없이 사용 가능합니다.*<br/>
 > *(C++20~) [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-uniform-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)시 변수명을 지명하여 값을 초기화 할 수 있습니다.* 
 
 # 자동 제로 초기화
