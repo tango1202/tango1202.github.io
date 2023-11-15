@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [모던 C++] (C++11~) 개선된 타입과 리터럴, 타입 카테고리(스칼라 타입, Trivial 타입, 표준 레이아웃 타입, POD 타입, 리터럴 타입, 집합 타입), using을 이용한 타입 별칭, long long, 유니코드 문자(char16_t, char32_t) 유니코드 리터럴(u8/u/U), R 리터럴, (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴, (C++20~) char8_t"
+title: "#2. [모던 C++] (C++11~) 개선된 타입과 리터럴, 타입 카테고리(스칼라 타입, Trivial 타입, 표준 레이아웃 타입, POD 타입, 리터럴 타입, 집합 타입), using을 이용한 타입 별칭, nullptr, nullptr_t, long long, 유니코드 문자(char16_t, char32_t) 유니코드 리터럴(u8/u/U), R 리터럴, (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴, (C++20~) char8_t"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,10 +8,12 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#9] typedef 보다 별칭 선언을 선호하라.([클래스 템플릿 별칭 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD))
+> * [MEC++#8] 0과 NULL 보단 nullptr를 선호하라.(오버로딩 함수 호출, auto 추론)
+> * [MEC++#9] typedef 보다 별칭 선언을 선호하라.([클래스 템플릿 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD))
 
 > * (C++11~) [타입 카테고리](??)를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.
-> * (C++11~) [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)이 추가되어 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.
+> * (C++11~) [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)이 추가되어 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.
+* (C++11~) [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.
 > * (C++11~) 최소 8byte 크기를 보장하는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long) 타입이 추가되었습니다.
 > * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long)용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)이 추가되었습니다.
 > * (C++11~) (C++11~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)이 추가되었습니다.
@@ -99,9 +101,9 @@ https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%
 
 기존에는 타입 별칭을 위해 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)를 사용했었는데요(*[타입 별칭](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 참고*),
 
-C++11 부터는 [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)이 추가되었습니다.
+C++11 부터는 [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)이 추가되었습니다.
 
-[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)은 다음과 같이 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)와 별칭의 순서가 다릅니다만, 좀 더 직관적입니다.
+[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)은 다음과 같이 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)와 별칭의 순서가 다릅니다만, 좀 더 직관적입니다.
 
 ```cpp
 typedef unsigned long ulong;
@@ -117,7 +119,7 @@ using Func_11 = void (*)(int);
 
 # 클래스 템플릿 별칭
 
-[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)은 [클래스 템플릿 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD)도 지원합니다.
+[using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)은 [클래스 템플릿 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD)도 지원합니다.
 
 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)를 사용하여 별칭을 작성하면, 템플릿의 경우 구체화된 타입으로만 별칭이 작성되어 향후 다른 타입으로 변경할 수 없지만,
 
@@ -137,6 +139,64 @@ using MyVector_11 = std::vector<T>;
 
 MyVector_11<int> v1; // std::vector<int> 타입입니다.
 MyVector_11<char> v2 : // std::vector<char> 타입입니다.
+```
+
+# nullptr
+
+기존에는 [널 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EB%84%90-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 표현하기 위해 `0`이나 `NULL`(`#define NULL 0`)을 사용했는데요(*[널 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EB%84%90-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고*),
+
+C++11 부터는 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/) 리터럴이 제공됩니다.
+
+```cpp
+int* ptr1 = 0;
+int* ptr2 = NULL;
+int* ptr3_11 = nullptr; // C++11
+```
+
+`0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 오버로딩 함수 호출시 `int` 타입이 호출됩니다.
+
+다음은 `ptr1`, `ptr2`, `ptr3`가 모두 `int*`여서 `f(int*)`가 호출되는데요,
+
+```cpp
+int f(int) {return 1;} // #1
+int f(int*) {return 2;} // #2
+
+int* ptr1 = 0;
+int* ptr2 = NULL;
+int* ptr3_11 = nullptr;
+
+EXPECT_TRUE(f(ptr1) == 2); // int* 이므로 f(int*) 호출
+EXPECT_TRUE(f(ptr2) == 2); // int* 이므로 f(int*) 호출
+EXPECT_TRUE(f(ptr3_11) == 2); // int* 이므로 f(int*) 호출
+```
+
+[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용한다면 `0`과 `NULL`은 다음처럼 초기값에 따라 `int`와 같은 정수형으로 추론되어(*[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 참고*), `f(int)`가 호출됩니다. 그러니 앞으로는 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)을 사용하시기 바랍니다.
+
+```cpp
+// auto를 사용하면
+auto ptr1 = 0; // (△) 비권장. int
+auto ptr2 = NULL; // (△) 비권장. long long
+auto ptr3_11 = nullptr; // nullptr_t
+
+EXPECT_TRUE(f(ptr1) == 1); // f(int) 호출  
+EXPECT_TRUE(f(ptr2) == 1); // f(int) 호출
+EXPECT_TRUE(f(ptr3_11) == 2); // f(int*) 호출
+```
+
+또한 다음과 같은 구문을 만났을때 좀더 명확한 분석이 가능합니다.
+
+```cpp
+auto result_11 = Func();
+if (result_11 == 0) {} // (△) 비권장. result_11이 정수인지 포인터인지 불명확 합니다.
+if (result_11 == nullptr) {} // result_11은 포인터라는 것이 좀더 명확합니다.
+```
+
+# nullptr_t
+
+[nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/#nullptr_t)는 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-nullptr/)을 저장할 수 있는 타입이며, 어떠한 포인터로도 암시적으로 변환될 수 있는 타입입니다. 크기는 `sizeof(void*)`와 동일합니다.(*[decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)참고*)
+
+```cpp
+using nullptr_t = decltype(nullptr);
 ```
 
 # long long

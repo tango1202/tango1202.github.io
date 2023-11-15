@@ -204,7 +204,7 @@ C++11 에서는 [지역 변수](https://tango1202.github.io/classic-cpp-guide/cl
 |[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 외의 리턴|X|X|X|X|
 |[조건 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A1%B0%EA%B1%B4-%EC%97%B0%EC%82%B0%EC%9E%90)|O|O|O|O|
 |[static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)|O|O|O|O|
-|[typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD), [using](https://tango1202.github.io/mordern-cpp/mordern-cpp-using/)|O|O|O|O|
+|[typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD), [using](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)|O|O|O|O|
 |[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 호출|O|O|O|O|
 |초기화된 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 정의|X|O|O|O|
 |초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 정의|X|X|X|O|
