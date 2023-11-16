@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#22. [모던 C++] (C++17~) 인라인 변수"
+title: "#23. [모던 C++] (C++17~) 인라인 변수"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
