@@ -491,11 +491,13 @@ union MyUnion {
     int i;
     float f;
 };
+
 constexpr int Func_20() {
+ #if 202002L <= __cplusplus // C++20~     
     MyUnion myUnion{};
 
     myUnion.i = 3;
-#if 202002L <= __cplusplus // C++20~   
+ 
     // (X) ~C++20 컴파일 오류. change of the active member of a union from 'MyUnion::i' to 'MyUnion::f'
     // (O) C++2O~       
     myUnion.f = 1.2f; // 멤버 변수 활성 전환을 허용합니다.

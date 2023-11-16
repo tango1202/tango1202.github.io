@@ -65,47 +65,21 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
     * (O) char8_t
     * (O) using enum : 열거형 이름을 생략하고 사용.
     * (O) 비트 필드 선언부 초기화
+    * (O) 정수에서 2의 보수 표현
+    * (O) new[] 연산자의 배열 크기 추론
+    * (O) (C++20~)  [비트 쉬프트 연산자의 기본 비트가 표준화](??)되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
+    * (O) inline 네임스페이스 중첩 : namespace A::inline B {}
+    * (O) __VA_OPT__ 가변 인수가 있을 경우에는 x로 치환되고, 없을 경우에는 그냥 빈 토큰으로 처리됩니다.    
+
+
 
 
     * (O) 기능 테스트 매크로 : C++11 이상의 기능이 있는지 컴파일 타임 검사 __has_cpp_attributes
  
-    * (O) 부호있는 정수의 표현범위 변경 2의 보수로 저장
-        * 기존 보장 범위 1의 보수 -2^(n-1) - 1 ~ 2^(n-1) - 1(-127~127)
-        * 2의 보수 -2^(n-1) ~ 2^(n-1) - 1 (-128~127)
-
-    * (O) new 연산자의 배열 크기 추론
-      
-        * double* p1 = new double[]{ 1, 2, 3 }; // new double[3]과 동치
-
-    * () 크기가 정해진 배열 포인터를 크기가 알수없는 배열 포인터로 변환(경계를 알 수 없는 배열로의 허용)
-        * https://wg21.link/P0388R4
-
-        ```cpp
-        void f(int(&)[]);
-        int arr[1];
-
-        f(arr);
-        int(&r)[] = arr;
-        ```
-
-
-    * (O) inline 네임스페이스 중첩 : namespace A::inline B {}
-
-    * (O) Bitwise shift operators unified behavior 
-
-    * (O) __VA_OPT__ 가변 인수가 있을 경우에는 x로 치환되고, 없을 경우에는 그냥 빈 토큰으로 처리됩니다.     
-
-    * (O) 컴파일 타임 상수식에서 dynamic_cast와 typeid 사용(https://wg21.link/P1327R1)
-        * 상수 표현식 의 Dynamic_cast 및 다형성 typeid
-
-cppreference
-Removed the requirement to use to disambiguate types in many contexts typename
 
 
 
-
-
-
+ 
 
     * (O) Concept : 공통된 성질끼리 묶는기능. 제약조건(?)
         * https://github.com/AnthonyCalandra/modern-cpp-features#concepts

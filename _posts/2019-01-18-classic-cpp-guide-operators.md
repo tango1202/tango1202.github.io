@@ -18,7 +18,8 @@ sidebar:
 > * (C++11~) [멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.
 > * (C++11~) [type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_index/)는 [type_info](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)의 래퍼로서 [type_info](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)를 컨테이너에서 관리할 수 있게 합니다.
 > * (C++11~) [addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#addressof)는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.
-> * (C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
+> * (C++20~) [삼중 비교 연산자](??)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
+> * (C++20~) [비트 쉬프트 연산자의 기본 비트가 표준화](??)되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
 
 # 복사 대입 연산자
 
@@ -57,6 +58,44 @@ sidebar:
 |비트 XOR|`a ^ b`|O|`T T::operator ^(const T2 &b) const;`|`T operator ^(const T &a, const T2 &b);`|
 |비트 Left Shift|`a << b`|O|`T T::operator <<(const T2 &b) const;`|`T operator <<(const T &a, const T2 &b);`|
 |비트 Right Shift|`a >> b`|O|`T T::operator >>(const T2 &b) const;`|`T operator >>(const T &a, const T2 &b);`|
+
+# 비트 쉬프트 연산자
+
+`<<`은 비트를 왼쪽으로 이동시킵니다. 왼쪽으로 이동하면서 비워지는 비트는 ***표준에 정의되진 않았으나*** `0`으로 채워집니다.(*2를 곱하는 것과 동일합니다.*)
+
+```cpp
+char ch = 0x20; // 0010 0000는 십진수 32
+EXPECT_TRUE(ch == 32);
+
+ch = ch << 1; // 0100 0000는 십진수 64. << 1은 곱하기 2의 효과
+EXPECT_TRUE(ch == 64);
+
+ch = ch << 1; // 1000 0000은 음수 십진수 -128.
+EXPECT_TRUE(ch == -128);
+
+ch = ch << 1; // 0000 0000은 0. 부호 비트를 이동시키면 결과가 정의되지 않았으나, 대부분 0으로 채웁니다.
+EXPECT_TRUE(ch == 0);
+```
+
+`>>`은 비트를 오른쪽으로 이동시킵니다. 오른쪽으로 이동하면서 비워지는 비트는 ***표준에 정의되진 않았으나*** 양수이면 `0`으로 채워지고, 음수이면 `1`로 채워집니다.(*2를 나누는 것과 동일합니다.*)
+
+```cpp
+char ch = 0x20; // 0010 0000는 십진수 32 
+EXPECT_TRUE(ch == 32);
+
+ch = ch >> 1; // 0001 0000는 십진수 16. >> 1은 나누기 2의 효과
+EXPECT_TRUE(ch == 16);
+
+ch = 0x80; // 1000 0000 최상위 비트가 1인 음수
+EXPECT_TRUE(ch == -128);
+
+ch = ch >> 1; // 1100 0000는 십진수 -64
+std::cout << (int)ch << std::endl;
+EXPECT_TRUE(ch == -64);
+```
+
+> *(C++20~) [비트 쉬프트 연산자의 기본 비트가 표준화](??)되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.*
+
 
 # 증감 연산자
 
@@ -111,7 +150,7 @@ NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 평가합니다.
 |이하|`a <= b`|O|`bool T::operator <=(const T2& b) const;`|`bool operator <=(const T& a, const T2& b);`|
 |이상|`a >= b`|O|`bool T::operator >=(const T2& b) const;`|`bool operator >=(const T& a, const T2& b);`|
 
-> *(C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.*
+> *(C++20~) [삼중 비교 연산자](??)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.*
 
 # 대소 비교의 논리 조건
 
@@ -667,7 +706,7 @@ public:
 };
 ```
 
-> *(C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.*
+> *(C++20~) [삼중 비교 연산자](??)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.*
 
 **열거형 연산자 오버로딩**
 

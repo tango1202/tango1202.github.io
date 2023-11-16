@@ -17,6 +17,7 @@ sidebar:
 > * (C++11~) 최소 8byte 크기를 보장하는 [long long 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long)이 추가되었습니다.
 > * (C++11~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)이 추가되었습니다.
 > * (C++20~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되었습니다.
+> * (C++20~) [정수에서 2의 보수 범위를 보장](??)합니다.
 
 # 개요
 
@@ -136,4 +137,5 @@ b += 1.0;
 b -= 1.0;
 EXPECT_TRUE(Equals(a, b)); 
 ```
+
 

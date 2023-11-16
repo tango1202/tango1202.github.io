@@ -155,17 +155,15 @@ auto d_11 = {1, 2}; // d는 initializer_list<int>
 
 # 암시적 형변환과 auto
 
-[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)와는 궁합이 맞지 않습니다. 
+ [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)은 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 궁합이 맞지 않습니다. 
 
-다음은 정수의 최대/최소를 0 ~ 10 으로 한정하는 `MyInt` 클래스 입니다. `int`로의 변환을 쉽게 하기 위해 `operator int()`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 했다고 합시다.(*나쁜 설계죠. 최대/최소를 0 ~ 10 으로 한정한 클래스를 만들고, `int` 복제본을 리턴받아 마음껏 수정할 수 있게 하니까요. `const int&`를 리턴하는게 좋은 설계입니다.*)
+다음은 정수의 최대/최소를 0 ~ 10 으로 한정하는 `MyInt` 클래스 입니다. `int`로의 변환을 쉽게 하기 위해 `operator int()`로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 했다고 합시다.(*사실 나쁜 설계죠. 최대/최소를 0 ~ 10 으로 한정한 클래스를 만들고, `int` 복제본을 리턴받아 마음껏 수정할 수 있게 하니까요. `const int&`를 리턴하는 `Getter`를 구현하는게 좋은 설계입니다.*)
 
 `int val = MyInt(11);`와 같이 `int`타입에 대입할때는 별다른 문제없이 대입됩니다.
 
-하지만, `auto val_11 = MyInt(11);`와 같이 표현하면, `val_11`은 `MyInt`타입입니다. 따라서, `int&`로 변환할 수 없습니다. 이덕에 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 있다는 걸 감지하고, `MyInt` 클래스의 미세한 헛점을 파악할 수 있겠네요.
+하지만, `auto val_11 = MyInt(11);`와 같이 표현하면, `val_11`은 `MyInt`타입입니다. 따라서, `val_11`를 `int&`로 변환할 수 없습니다. 이덕에 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 있다는 걸 감지하고, `MyInt` 클래스의 미세한 헛점을 파악할 수 있겠네요.
 
-물론 억지로 `int`로 바꿀 수는 있습니다. [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)를 사용하지 않고 `int`로 명시하던지, `static_cast<int>`로 명시적으로 변환하던지 해야 합니다. 
-
-하지만, [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)에서 말씀드렸듯, 근본적으로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 사용하지 마세요.
+물론 억지로 `static_cast<int>`로 명시적으로 변환할 수는 있습니다. 하지만, [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)에서 말씀드렸듯, 근본적으로 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이던 [명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이던 최선을 다하여 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)하지 마세요.
 
 ```cpp
 class MyInt {
@@ -227,14 +225,14 @@ decltype((t->m_Val)) b_11 = 10; // 괄호를 추가하면 좌측값 표현식으
 
 # decltype()과 값 카테고리
 
-`xvalue`, `lvalue`, `prvalue` 인지에 따라 다음과 같이 타입이 결정됩니다.
+[값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC)에 따라 다음과 같이 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)의 타입이 결정됩니다.(*[값 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EA%B0%92-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 참고*)
 
 |항목|내용|
 |--|--|
-|`decltype(xvalue)`|`T&&`, [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)등으로 변환된 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4). `rvalue`|
-|`decltype(lvalue)`|`T&`, 이름이 부여된 개체|
-|`decltype((lvalue))`|`T&`, 괄호가 추가되면 표현식으로 평가됨|
-|`decltype(prvalue)`|`T`, 이름 없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)|
+|`decltype(xvalue)`|`T&&`<br/>[move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)등으로 변환된 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4). `rvalue`|
+|`decltype(lvalue)`|`T&`<br/>이름이 부여된 개체|
+|`decltype((lvalue))`|`T&`<br/>괄호가 추가되면 표현식으로 평가됨|
+|`decltype(prvalue)`|`T`<br/>이름 없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)|
 
 # auto 와 decltype()의 차이점
 
@@ -363,7 +361,9 @@ decltype(auto) d_14 = Func(10, 20); // C++14
 
 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)의 경우 [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 규칙을 따르기 때문에 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 포인터로 추론하고, 최상위 `const` 는 무시하고, [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)은 제거되지만, `decltype(auto)`는 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype) 처럼 괄호안의 개체를 정의된 그대로 추론합니다.
 
-다만, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 경우는 [배열끼리의 대입이 허용되지 않으므로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EB%8C%80%EC%9E%85), `decltype(auto) d_14 = {1, 2, 3};`와 같은 표현은 컴파일 오류가 발생합니다.
+다음은 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)과 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)의 타입 추론을 비교한 예입니다.
+
+[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 경우 `decltype(auto) d_14 = {1, 2, 3};`은 [중괄호 복사 초기화](??)로 배열 요소의 타입까지는 추론하지 못해 컴파일 오류가 발생합니다.
 
 ```cpp
 // 배열

@@ -20,7 +20,8 @@ sidebar:
 > * (C++11~) 비정적 멤버 변수도 [멤버 선언부에서 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EB%A9%A4%EB%B2%84-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94)를 할 수 있어 초기화 작성이 쉬워졌습니다.
 > * (C++14~) 비정적 멤버 변수의 [멤버 선언부 초기화를 했더라도 집합 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#c14-%EB%B9%84%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EB%A9%A4%EB%B2%84-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94%EC%8B%9C-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)합니다. 기존에는 컴파일 오류였습니다.
 > * (C++20~) [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)시 변수명을 지명하여 값을 초기화 할 수 있습니다.
-> * (C++20~) [비트 필트 선언부 초기화](??)가 추가되었습니다.
+> * (C++20~) [비트 필드 선언부 초기화](??)가 추가되었습니다.
+> * (C++20~) [new[]에서 중괄호 집합 초기화로 배열 크기 추론](??)이 추가되어 배열 크기를 명시하지 않아도 됩니다.
 
 # 개요
 
@@ -271,10 +272,16 @@ C++11 부터는 `{}` 도 지원합니다.
 
 1. 요소 갯수 유추
  
+    초기화 갯수 만큼 배열 크기를 유추합니다. 단, `new[]`로 생성하는 경우에는 유추하지 못하므로 배열 크기를 명시해야 합니다.
+
     ```cpp
     int arr[] = {0, 1, 2}; // 초기화 갯수 만큼 배열 할당
-    int arr_11[]{0, 1, 2}; // 초기화 갯수 만큼 배열 할당   
+    int arr_11[]{0, 1, 2}; // 초기화 갯수 만큼 배열 할당 
+    int* ptr_11 = new int[3]{1, 2, 3}; // new[]로 생성하는 경우에는 배열 크기를 명시해야 합니다.
+    delete ptr_11;  
     ```
+    
+    > *(C++20~) [new[]에서 중괄호 집합 초기화로 배열 크기 추론](??)이 추가되어 배열 크기를 명시하지 않아도 됩니다.*
 
 2. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94) 
 
@@ -582,6 +589,9 @@ class T {
     // static int m_H_11 = 0; // (X) 컴파일 오류. 기존과 동일하게 정적 멤버 변수는 별도 초기화해야 함 
 };  
 ```
+
+> *(C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, [클래스 정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98) 정의 및 초기화가 쉬워졌습니다.*
+
 # (C++14~) 비정적 멤버 변수의 멤버 선언부 초기화시 집합 초기화
 
 C++11의 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)를 이용하면, 다음과 같이 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern--category/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)에 대해 초기화를 할 수 있습니다. 
@@ -613,19 +623,6 @@ A_11 a_14{0, 1}; // A_11 에는 생성자가 없습니다.
                  // 중괄호 집합 초기화 입니다.
 EXPECT_TRUE(a_14.m_X == 0 && a_14.m_Y == 1);   
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # (C++20~) 지명 초기화
 
@@ -729,9 +726,9 @@ A a_20 = {.m_X = 1, 2}; // valid C, invalid C++ (혼합)
 int arr_20[3] = {[1] = 5}; // valid C, invalid C++ (배열)   
 ```
 
-# (C++20~) 비트 필트 선언부 초기화
+# (C++20~) 비트 필드 선언부 초기화
 
-C++20 부터는 [비트 필트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EB%B9%84%ED%8A%B8-%ED%95%84%EB%93%9C)를 선언부에서 초기화할 수 있습니다.
+C++20 부터는 [비트 필드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EB%B9%84%ED%8A%B8-%ED%95%84%EB%93%9C)를 선언부에서 초기화할 수 있습니다.
 
 ```cpp
 class Flag_20 {
@@ -745,4 +742,25 @@ EXPECT_TRUE(sizeof(flag) == sizeof(unsigned char));
 
 EXPECT_TRUE(flag.m_Val1 == 3); // 3 저장
 EXPECT_TRUE(flag.m_Val2 == 7); // 7 저장
+```
+
+# (C++20~) new[]에서 중괄호 집합 초기화로 배열 크기 추론
+
+기존에 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)는 배열 크기를 추론했습니다.
+
+```cpp
+int arr[]{1, 2, 3}; // 중괄호 집합 초기화로 배열 크기를 추론합니다.
+```
+
+하지만 `new[]`에서는 배열 크기를 추론하지 않고 컴파일 오류를 발생시켰는데요(*[중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94) 참고*), 
+
+```cpp
+//int* arr_11 = new int[]{1, 2, 3}; // (X) 컴파일 오류. new[]에서 중괄호 집합 초기화로 배열 크기를 추론하지 못합니다.
+int* arr_11 = new int[3]{1, 2, 3}; // 배열 크기를 명시해야 합니다.
+```
+
+C++20 부터는 [new[]에서 중괄호 집합 초기화로 배열 크기 추론](??)이 추가되어 배열 크기를 명시하지 않아도 됩니다.
+
+```cpp
+int* arr_20 = new int[]{1, 2, 3}; // new[]를 사용해도 중괄호 집합 초기화로 배열 크기를 추론합니다.
 ```

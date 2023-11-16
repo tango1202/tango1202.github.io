@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [모던 C++] (C++11~) 개선된 타입과 리터럴(타입 카테고리, using을 이용한 타입 별칭, nullptr, long long, 유니코드 지원, R 리터럴), (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴, (C++20~) char8_t"
+title: "#2. [모던 C++] (C++11~) 개선된 타입과 리터럴(타입 카테고리, using을 이용한 타입 별칭, nullptr, long long, 유니코드 지원, R 리터럴), (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴, (C++20~) char8_t, 정수에서 2의 보수 표현"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -24,6 +24,7 @@ sidebar:
 > * (C++17~) `0xA.9p11`과 같은 [16진수 부동 소수점 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c17-16%EC%A7%84%EC%88%98-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 제공합니다.
 > * (C++17~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
 > * (C++20~) [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte 크기의 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되었습니다.
+> * (C++20~) [정수에서 2의 보수 범위를 보장](??)합니다.
 
 # 타입 카테고리
 
@@ -377,3 +378,16 @@ char8_t kr_20 = u8'가'; // (X) 컴파일 오류
 char8_t arr_20[] = u8"가"; // 한글 1글자는 UTF-8로 3byte입니다.
 EXPECT_TRUE(sizeof(arr_20) == 4); // 널문자 포함하여 4byte입니다.
 ```
+
+# (C++20~) 정수에서 2의 보수 범위 보장
+
+기존에는 부호있는 정수의 표현 범위를 1의 보수를 보장하였으나, 실제로는 모든 컴파일러가 2의 보수를 표현하였습니다.
+
+C++20 부터는 [정수에서 2의 보수 범위를 보장](??)합니다.
+
+|항목|내용|
+|--|--|
+|1의 보수|1byte로 -127 ~ 127 표현|
+|2의 보수|1byte로 -128 ~ 127 표현|
+
+
