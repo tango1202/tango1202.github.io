@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++] (C++11~) 범위 기반 for(), (C++17~) 초기식을 포함하는 if(), switch(), (C++20~) 범위 기반 for()에서 초기식"
+title: "#6. [모던 C++] (C++11~) 개선된 제어문(범위 기반 for()), (C++17~) 초기식을 포함하는 if(), switch(), (C++20~) 범위 기반 for()에서 초기식"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -22,10 +22,10 @@ std::vector<int> v_11{1, 2, 3};
 int sum{0};
 
 // 컨테이너 요소를 탐색 합니다.
-auto itr_11{v_11.begin()};
-auto endItr_11{v_11.end()};
-for (;itr_11 != endItr_11; ++itr_11) {
-    sum += *itr_11;
+std::vector<int>::iterator itr{v_11.begin()};
+std::vector<int>::iterator endItr{v_11.end()};
+for (;itr != endItr; ++itr) {
+    sum += *itr;
 }
 EXPECT_TRUE(sum == 1 + 2 + 3);
 ```

@@ -173,7 +173,7 @@ EXPECT_TRUE(10 < T_20{20}); // int op T_20. T_20 > 10으로 변경후 int를 암
 
 # 삼중 비교 연산자 default 정의
 
-[삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)를 [default](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)로 정의할 수 있습니다. 이때에는 `==`도 컴파일러가 같이 정의해 줍니다. 
+[삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/)를 [default](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete)로 정의할 수 있습니다. 이때에는 `==`도 컴파일러가 같이 정의해 줍니다. 
 
 컴파일러는 각 멤버 변수의 선언 순서대로 비교합니다. 이때 컴파일러에 따라 비교 속도 최적화를 위해 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같은 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)는 각 요소의 대소 비교 전에 크기에 대한 비교를 선행할 수 있습니다.  
 

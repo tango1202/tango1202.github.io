@@ -16,8 +16,8 @@ sidebar:
 > * Setter 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/)인 경우 값 복사로, 클래스 타입인 경우 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 작성하라.
 
 > **모던 C++**
-> * (C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.
-> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.
+> * (C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.
+> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.
 > * (C++11~) [멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.
  
 **개요**
@@ -181,7 +181,7 @@ EXPECT_TRUE(d.v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 1. 부모 개체에서 `virtual` 함수로 선언해야 합니다.
 1. 자식 개체에서 함수명/[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입/[상수 멤버 함수의 const](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)/[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)이 동일해야 합니다. 만일 다르다면, 오버라이딩 되지 않습니다. 컴파일러가 오류를 잘 감지하지 못하니 주의하시기 바랍니다.
 
-> *(C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다. 또한, [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.*
+> *(C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다. 또한, [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.*
 
 **리턴값 변경**
  

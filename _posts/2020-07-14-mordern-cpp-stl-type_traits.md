@@ -96,7 +96,7 @@ ThreeType three;
 |`is_abstract` (C++11~)|적어도 1개 이상의 순가상 함수가 있는 추상 클래스 타입인지 검사합니다.|
 |`is_signed` (C++11~)|양수/음수 처리를 지원하는 타입인지 검사합니다.|
 |`is_unsigned` (C++11~)|양수/음수 처리를 지원하는 않는 타입인지 검사합니다.|
-|`is_final` (C++14~)|[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final) 클래스 타입인지 검사합니다.|
+|`is_final` (C++14~)|[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final) 클래스 타입인지 검사합니다.|
 |`has_unique_object_representations` (C++17~)|(작성중)|
 |`is_aggregate` (C++17~)|(작성중)|
 |`is_bounded_array` (C++20~)|(작성중)|
