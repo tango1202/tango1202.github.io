@@ -363,7 +363,7 @@ decltype(auto) d_14 = Func(10, 20); // C++14
 
 다음은 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)과 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)의 타입 추론을 비교한 예입니다.
 
-[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 경우 `decltype(auto) d_14 = {1, 2, 3};`은 [중괄호 복사 초기화](??)로 배열 요소의 타입까지는 추론하지 못해 컴파일 오류가 발생합니다.
+[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 경우 `decltype(auto) d_14 = {1, 2, 3};`은 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)로 배열 요소의 타입까지는 추론하지 못해 컴파일 오류가 발생합니다.
 
 ```cpp
 // 배열

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [모던 C++] (C++11~) 범위 있는 열거형, (C++17~) 열거형의 중괄호 직접 초기화 허용"
+title: "#14. [모던 C++] (C++11~) 범위 있는 열거형, (C++17~) 열거형의 중괄호 직접 초기화 허용, (C++20~) using enum"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -13,7 +13,7 @@ sidebar:
 > * (C++11~) 이름 범위를 한정하는 [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)이 추가되어 이름 충돌 회피가 쉬워졌고, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하며, [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)도 지원합니다.
 > * (C++11~) [열거형의 기반 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EA%B8%B0%EB%B0%98-%ED%83%80%EC%9E%85)을 지정할 수 있습니다.
 > * (C++17~) [열거형의 중괄호 직접 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c17-%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%97%88%EC%9A%A9)하여 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하는 사용자 정의 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)의 사용이 좀더 쉬워졌습니다.
-> * (C++20~) [using enum](??)이 추가되어 [범위 있는 열거형]((https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/))의 이름 없이 열거자를 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)내에서 사용할 수 있습니다.
+> * (C++20~) [using enum](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c20-using-enum)이 추가되어 [범위 있는 열거형]((https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/))의 이름 없이 열거자를 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)내에서 사용할 수 있습니다.
 
 
 # 개요
@@ -172,7 +172,7 @@ case Week_11::Saturday: break;
 }
 ```
 
-C++20 부터는 [using enum](??)이 추가되어 [범위 있는 열거형]((https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/))의 이름 없이 열거자를 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)내에서 사용할 수 있습니다.
+C++20 부터는 [using enum](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#c20-using-enum)이 추가되어 [범위 있는 열거형]((https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/))의 이름 없이 열거자를 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)내에서 사용할 수 있습니다.
 
 ```cpp
 enum class Week_11 {

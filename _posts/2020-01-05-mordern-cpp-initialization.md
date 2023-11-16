@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [모던 C++] (C++11~) 개선된 초기화(중괄호 초기화, initializer_list, 멤버 선언부 초기화), (C++20~) 지명 초기화"
+title: "#5. [모던 C++] (C++11~) 개선된 초기화(중괄호 초기화, initializer_list, 멤버 선언부 초기화), (C++20~) 지명 초기화, 비트 필드 선언부 초기화, new[]에서 중괄호 집합 초기화로 배열 크기 추론"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -20,8 +20,8 @@ sidebar:
 > * (C++11~) 비정적 멤버 변수도 [멤버 선언부에서 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EB%A9%A4%EB%B2%84-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94)를 할 수 있어 초기화 작성이 쉬워졌습니다.
 > * (C++14~) 비정적 멤버 변수의 [멤버 선언부 초기화를 했더라도 집합 초기화를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#c14-%EB%B9%84%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EC%9D%98-%EB%A9%A4%EB%B2%84-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94%EC%8B%9C-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)합니다. 기존에는 컴파일 오류였습니다.
 > * (C++20~) [지명 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#c20-%EC%A7%80%EB%AA%85-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)시 변수명을 지명하여 값을 초기화 할 수 있습니다.
-> * (C++20~) [비트 필드 선언부 초기화](??)가 추가되었습니다.
-> * (C++20~) [new[]에서 중괄호 집합 초기화로 배열 크기 추론](??)이 추가되어 배열 크기를 명시하지 않아도 됩니다.
+> * (C++20~) [비트 필드 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#c20-%EB%B9%84%ED%8A%B8-%ED%95%84%EB%93%9C-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되었습니다.
+> * (C++20~) [new[]에서 중괄호 집합 초기화로 배열 크기 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#c20-new%EC%97%90%EC%84%9C-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94%EB%A1%9C-%EB%B0%B0%EC%97%B4-%ED%81%AC%EA%B8%B0-%EC%B6%94%EB%A1%A0)이 추가되어 배열 크기를 명시하지 않아도 됩니다.
 
 # 개요
 
@@ -281,7 +281,7 @@ C++11 부터는 `{}` 도 지원합니다.
     delete ptr_11;  
     ```
     
-    > *(C++20~) [new[]에서 중괄호 집합 초기화로 배열 크기 추론](??)이 추가되어 배열 크기를 명시하지 않아도 됩니다.*
+    > *(C++20~) [new[]에서 중괄호 집합 초기화로 배열 크기 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#c20-new%EC%97%90%EC%84%9C-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94%EB%A1%9C-%EB%B0%B0%EC%97%B4-%ED%81%AC%EA%B8%B0-%EC%B6%94%EB%A1%A0)이 추가되어 배열 크기를 명시하지 않아도 됩니다.*
 
 2. [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94) 
 
@@ -759,7 +759,7 @@ int arr[]{1, 2, 3}; // 중괄호 집합 초기화로 배열 크기를 추론합�
 int* arr_11 = new int[3]{1, 2, 3}; // 배열 크기를 명시해야 합니다.
 ```
 
-C++20 부터는 [new[]에서 중괄호 집합 초기화로 배열 크기 추론](??)이 추가되어 배열 크기를 명시하지 않아도 됩니다.
+C++20 부터는 [new[]에서 중괄호 집합 초기화로 배열 크기 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#c20-new%EC%97%90%EC%84%9C-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94%EB%A1%9C-%EB%B0%B0%EC%97%B4-%ED%81%AC%EA%B8%B0-%EC%B6%94%EB%A1%A0)이 추가되어 배열 크기를 명시하지 않아도 됩니다.
 
 ```cpp
 int* arr_20 = new int[]{1, 2, 3}; // new[]를 사용해도 중괄호 집합 초기화로 배열 크기를 추론합니다.

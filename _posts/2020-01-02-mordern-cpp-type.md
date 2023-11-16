@@ -11,7 +11,7 @@ sidebar:
 > * [MEC++#8] 0과 NULL 보단 nullptr를 선호하라.(오버로딩 함수 호출, auto 추론)
 > * [MEC++#9] typedef 보다 별칭 선언을 선호하라.([클래스 템플릿 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD))
 
-> * (C++11~) [타입 카테고리](??)를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.
+> * (C++11~) [타입 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%83%80%EC%9E%85-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC)를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.
 > * (C++11~) [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)이 추가되어 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.
 * (C++11~) [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr) 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.
 > * (C++11~) 최소 8byte 크기를 보장하는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long) 타입이 추가되었습니다.
@@ -24,7 +24,7 @@ sidebar:
 > * (C++17~) `0xA.9p11`과 같은 [16진수 부동 소수점 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c17-16%EC%A7%84%EC%88%98-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 제공합니다.
 > * (C++17~) [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되었습니다.
 > * (C++20~) [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte 크기의 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되었습니다.
-> * (C++20~) [정수에서 2의 보수 범위를 보장](??)합니다.
+> * (C++20~) [정수에서 2의 보수 범위를 보장](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-%EC%A0%95%EC%88%98%EC%97%90%EC%84%9C-2%EC%9D%98-%EB%B3%B4%EC%88%98-%EB%B2%94%EC%9C%84-%EB%B3%B4%EC%9E%A5)합니다.
 
 # 타입 카테고리
 
@@ -383,7 +383,7 @@ EXPECT_TRUE(sizeof(arr_20) == 4); // 널문자 포함하여 4byte입니다.
 
 기존에는 부호있는 정수의 표현 범위를 1의 보수를 보장하였으나, 실제로는 모든 컴파일러가 2의 보수를 표현하였습니다.
 
-C++20 부터는 [정수에서 2의 보수 범위를 보장](??)합니다.
+C++20 부터는 [정수에서 2의 보수 범위를 보장](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-%EC%A0%95%EC%88%98%EC%97%90%EC%84%9C-2%EC%9D%98-%EB%B3%B4%EC%88%98-%EB%B2%94%EC%9C%84-%EB%B3%B4%EC%9E%A5)합니다.
 
 |항목|내용|
 |--|--|
