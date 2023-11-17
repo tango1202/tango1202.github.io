@@ -759,7 +759,7 @@ int arr[]{1, 2, 3}; // 중괄호 집합 초기화로 배열 크기를 추론합�
 int* arr_11 = new int[3]{1, 2, 3}; // 배열 크기를 명시해야 합니다.
 ```
 
-C++20 부터는 [new[]](??)에서 [중괄호 집합 초기화](??)로 배열 크기 추론이 추가되어 배열 크기를 명시하지 않아도 됩니다.
+C++20 부터는 [new[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)에서 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)로 배열 크기 추론이 추가되어 배열 크기를 명시하지 않아도 됩니다.
 
 ```cpp
 int* arr_20 = new int[]{1, 2, 3}; // new[]를 사용해도 중괄호 집합 초기화로 배열 크기를 추론합니다.

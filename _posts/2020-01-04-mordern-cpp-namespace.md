@@ -67,7 +67,7 @@ MyLib_17::File::Load();
 
 # (C++20~) 인라인 네임스페이스와 단순한 중첩 네임스페이스 결합
 
-C++20부터는 [인라인 네임스페이스](??)와 [단순한 중첩 네임스페이스](??)가 결합하여 표시할 수 있습니다.
+C++20부터는 [인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#%EC%9D%B8%EB%9D%BC%EC%9D%B8-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)와 [단순한 중첩 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#c17-%EB%8B%A8%EC%88%9C%ED%95%9C-%EC%A4%91%EC%B2%A9-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)가 결합하여 표시할 수 있습니다.
 
 ```cpp
 namespace A_20 {

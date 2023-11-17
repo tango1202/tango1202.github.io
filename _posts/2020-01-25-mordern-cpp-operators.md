@@ -320,6 +320,6 @@ std::partial_ordering result{Mix_20{0, 0, 0} <=> Mix_20{1, 1, 1}}; // partial_or
 
 기존에 [비트 쉬프트 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)는 비록 표준에 정의되지는 않았으나, 양수던 음수이던, `<< 1`은 곱하기 2의 효과가 있고, `>> 1`은 나누기 2의 효과가 있었는데요(*[비트 쉬프트 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)* 참고), 
 
-C++20부터는 [비트 쉬프트 연산자](??)의 기본 비트가 표준화되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
+C++20부터는 [비트 쉬프트 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)의 기본 비트가 표준화되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
 
 

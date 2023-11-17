@@ -242,7 +242,7 @@ void i_20(T param1, auto param2) {} // 템플릿 내에서 혼합해서 사용�
 i_20(10, 3.14);
 ```
 
-[auto](??)와 [가변 인자](??)를 함께 사용할 수도 있습니다.
+[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)나 [decltype(auto)](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-decltypeauto)와 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 함께 사용할 수도 있습니다.
 
 ```cpp
 int Sum_20(auto count, ...) { // 가변 인자를 사용하는 함수입니다.
@@ -286,7 +286,7 @@ C<&g_MyClass> c; // 전역, 정적 개체의 포인터
 D<g_MyClass> d; // 전역, 정적 개체의 참조자
 ```
 
-C++20 부터는 [비타입 템플릿 인자](??) 규칙이 완화되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
+C++20 부터는 [비타입 템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 규칙이 완화되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
 
 단,  [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)은 모든 멤버 변수가 `public`이고, [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)이 아니고, [constexpr 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%EC%83%9D%EC%84%B1%EC%9E%90)가 있어야 합니다. 
 
