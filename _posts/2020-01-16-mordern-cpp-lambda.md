@@ -21,6 +21,7 @@ sidebar:
 > * (C++17~) [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)도 컴파일 타임 함수로 만들 수 있습니다.
 > * (C++20~) [람다 표현식에서 템플릿 인자를 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90-%EC%A7%80%EC%9B%90)합니다.
 > * (C++20~) [람다 캡쳐에서 파라메터 팩을 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90%EC%97%90%EC%84%9C-%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EC%A7%80%EC%9B%90)합니다.
+> * (C++20~) [람다 캡쳐에서 구조화된 바인딩을 지원](??)합니다.
 > * (C++20~) [상태없는 람다 표현식의 기본 생성과 복사 대입을 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EC%83%81%ED%83%9C%EC%97%86%EB%8A%94-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EA%B3%BC-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%A7%80%EC%9B%90)합니다.
 > * (C++20~) [미평가 표현식에서도 람다 표현식을 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%AF%B8%ED%8F%89%EA%B0%80-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C%EC%9D%98-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D-%ED%97%88%EC%9A%A9)하기 때문에 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)안에서 사용할 수 있습니다.
 > * (C++20~) [람다 캡쳐에서 [=] 사용시 this의 암시적 캡쳐가 deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C--%EC%82%AC%EC%9A%A9%EC%8B%9C-this%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%BA%A1%EC%B3%90-deprecate)되었으므로 명시적으로 작성해야 합니다.
@@ -593,7 +594,7 @@ EXPECT_TRUE(add_17(c, d) == 3);
 
 C++14에 도입된 [일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)은 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 지원하지 않았는데요(*[일반화된 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c14-%EC%9D%BC%EB%B0%98%ED%99%94%EB%90%9C-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 참고*),
 
-C++20 부터는 [람다 표현식에서 템플릿 인자를 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90-%EC%A7%80%EC%9B%90)합니다.
+C++20 부터는 [람다 표현식](??)에서 [템플릿 인자](??)를 지원합니다.
 
 ```cpp
 auto add_11 {
@@ -612,7 +613,7 @@ EXPECT_TRUE(add_20(1, 2) == 3);
 ```
 # (C++20~) 람다 캡쳐에서 파라메터 팩 지원
 
-C++20 부터는 [람다 캡쳐에서 파라메터 팩을 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90%EC%97%90%EC%84%9C-%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EC%A7%80%EC%9B%90)합니다.
+C++20 부터는 [람다 캡쳐](??)에서 [파라메터 팩](??)을 지원합니다.
 
 다음은 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)로 받은 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)을 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에서 [값 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EA%B0%92-%EC%BA%A1%EC%B3%90)하여 `Sum()`함수에 포워딩하는 예입니다.
 
@@ -693,6 +694,25 @@ Add_20(result, 1, 2, 3);
 EXPECT_TRUE(result == 10 + 1 + 2 + 3); // result 값이 잘 수정되어 있습니다.
 ```
 
+# (C++20~) 람다 캡쳐에서 구조화된 바인딩 지원
+
+C++20 부터는 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)에서 [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 지원합니다.
+
+```cpp
+class A_11 {
+public:
+    int m_X{1};
+    int m_Y{2};
+};
+
+const auto& [x_17, y_17]{A_11{}}; // const auto&로 받아서 임시 개체인 A_11의 수명이 연장됩니다.
+
+auto lambda_20{
+    [x_17, y_17] {return x_17 + y_17;} // 구조화된 바인딩을 람다 캡쳐합니다.
+};
+EXPECT_TRUE(lambda_20() == 1 + 2);
+```
+
 # (C++20~) 상태없는 람다 표현식의 기본 생성과 복사 대입 지원
 
 [상태없는 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EC%83%81%ED%83%9C%EC%97%86%EB%8A%94-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EA%B3%BC-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%A7%80%EC%9B%90)이란, 캡쳐하는 것이 없는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D) 입니다.
@@ -709,7 +729,7 @@ decltype(lambda_11) b_11; // (X) 컴파일 오류. 기본 생성은 불가능합
 a_11 = lambda_11; // (X) 컴파일 오류. 복사 대입은 불가능합니다.
 ```
 
-C++20 부터는 [상태없는 람다 표현식의 기본 생성과 복사 대입을 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EC%83%81%ED%83%9C%EC%97%86%EB%8A%94-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EA%B3%BC-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%A7%80%EC%9B%90)합니다.
+C++20 부터는 [상태없는 람다 표현식](??)의 [기본 생성](??)과 [복사 대입](??)을 지원합니다.
 
 ```cpp
 auto lambda_11{
@@ -797,7 +817,7 @@ decltype(*AddDeclare) AddFunc_11{AddDefine}; // AddDeclare함수 선언으로부
 EXPECT_TRUE(AddFunc_11(10, 20) == 30); // 함수 실행    
 ```
 
-C++20 부터는 [미평가 표현식에서도 람다 표현식을 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%AF%B8%ED%8F%89%EA%B0%80-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C%EC%9D%98-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D-%ED%97%88%EC%9A%A9)하기 때문에 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)안에서 사용할 수 있습니다.
+C++20 부터는 미평가 표현식에서도 [람다 표현식](??)을 허용하기 때문에 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)안에서 사용할 수 있습니다.
 
 즉, 다음과 같이 `set`의 `Compare`를 정의할 수 있습니다.
 
@@ -817,7 +837,7 @@ for (auto i : data_20) {
 
 [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)시 `[=]`는 `this`도 암시적으로 캡쳐했습니다. 하지만 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이나 [클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/)처럼 암시적인건 언제나 좋지 않습니다. 항상 예상치 못한 곳에서 사이드 이펙트가 발생하니까요.
 
-C++20 부터는 [람다 캡쳐에서 [=] 사용시 this의 암시적 캡쳐가 deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c20-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D%EC%97%90%EC%84%9C--%EC%82%AC%EC%9A%A9%EC%8B%9C-this%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%BA%A1%EC%B3%90-deprecate)되었으므로 명시적으로 작성해야 합니다.
+C++20 부터는 [람다 캡쳐](??)에서 `[=]` 사용시 [this](??)의 암시적 캡쳐가 [deprecate](??)되었으므로 명시적으로 작성해야 합니다.
 
 ```cpp
 class T_11 {

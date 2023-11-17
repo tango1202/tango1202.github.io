@@ -94,7 +94,7 @@ if (std::shared_ptr<int> result_17{Func()}; result_17 != nullptr) {
 
 기존의 [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)에서는 초기식을 제공하지 않았는데요([범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for) 참고),
 
-C++20 부터는 [범위 기반 for()에서 초기식](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c20-%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for%EC%97%90%EC%84%9C-%EC%B4%88%EA%B8%B0%EC%8B%9D)을 사용할 수 있습니다.
+C++20 부터는 [범위 기반 for()](??)에서 초기식을 사용할 수 있습니다.
 
 ```cpp
 int sum{0};

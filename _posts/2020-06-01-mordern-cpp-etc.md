@@ -14,7 +14,8 @@ sidebar:
 > * (C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하기 전에 파일이 존재하는지 확인할 수 있습니다.
 > * (C++20~) [volatile의 일부가 deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-volatile-%EC%9D%BC%EB%B6%80-deprecate)되었습니다.
 > * (C++20~) [__VA_OPT__](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
-
+> * (C++20~) [__has_cpp_attribute() 매크로 함수](??)가 추가되어 C++11부터 추가된 [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 지원되는지 확인 할 수 있습니다.
+> * (C++20~) [언어 기능 지원](??) 매크로를 이용하여 컴파일러가 C++11부터 추가된 언어 기능을 지원하는지 테스트 할 수 있습니다.
 
 # (C++11~) alignas(), alignof()
 
@@ -148,7 +149,7 @@ EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
     b = volatile_val = a; // (X) volatile_val에 한번 접근하는지 두번 접근하는지 모호
     ```
 
-* 산술형 대입 연산
+* 산술형 대입 연산, 증감 연산
 
     ```cpp
     volatile int volatile_val;
@@ -177,7 +178,7 @@ EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
     A a;
     auto [x_17, y_17]{a}; // (X)    
     ```
-    
+
 # (C++20~) __VA_OPT__
 
  [__VA_OPT__](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
@@ -188,4 +189,32 @@ int Sum(int a) {return a;}
 #define MY_FUNC_20(...) Sum(10 __VA_OPT__(,) __VA_ARGS__) // 가변 인수가 있다면 ,를 넣습니다.
 EXPECT_TRUE(MY_FUNC_20(1, 2, 3) == 10 + 1 + 2 + 3); // f(10, 1, 2, 3) 가변 인수가 있다면 , 를 넣습니다.
 EXPECT_TRUE(MY_FUNC_20() == 10); // f(10) 가변 인수가 없다면 ,를 넣지 않습니다.
+```
+
+# __has_cpp_attribute() 매크로 함수
+
+C++20 부터는 [__has_cpp_attribute() 매크로 함수](??)가 추가되어 C++11부터 추가된 [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 지원되는지 확인 할 수 있습니다.
+
+테스트할 수 있는 [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)는 [https://en.cppreference.com/w/cpp/feature_test](https://en.cppreference.com/w/cpp/feature_test)를 참고하시기 바랍니다.
+
+```cpp
+#if __has_cpp_attribute(deprecated)
+    std::cout << "Support deprecated" << std::endl; // deprecated를 지원합니다.
+#else 
+    std::cout << "No Support deprecated" << std::endl;
+#endif
+```
+
+# 언어 지원 테스트
+
+C++20 부터는 [언어 기능 지원](??) 매크로를 이용하여 컴파일러가 C++11부터 추가된 언어 기능을 지원하는지 테스트 할 수 있습니다.
+
+테스트할 수 있는 항목은 [https://en.cppreference.com/w/cpp/feature_test](https://en.cppreference.com/w/cpp/feature_test)를 참고하시기 바랍니다.
+
+```cpp
+#if __cpp_char8_t
+    std::cout << "Support char8_t" << std::endl; // char8_t를 지원합니다.
+#else 
+    std::cout << "No Support char8_t" << std::endl;
+#endif  
 ```

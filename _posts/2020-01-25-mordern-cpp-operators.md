@@ -56,6 +56,9 @@ EXPECT_TRUE(T_20{20} > T_20{10});
 EXPECT_TRUE(T_20{10} <= T_20{20} && T_20{10} <= T_20{10}); 
 EXPECT_TRUE(T_20{20} >= T_20{10} && T_20{10} >= T_20{10}); 
 ```
+
+STL에서는 대부분 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)로 구현하고, `==`, `!=`, `<`, `>`, `<=`, `>=` 6개의 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)을 deprecate 했습니다.(*[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)등 참고*)
+
 # 삼중 비교 연산자 비교
 
 `<=>` 연산자를 정의하면, 기존 `==`, `!=`, `<`, `>`, `<=`, `>=` 로 비교할 수 있을 뿐만 아니라, `<=>`로 직접 비교할 수 있습니다. 
@@ -317,6 +320,6 @@ std::partial_ordering result{Mix_20{0, 0, 0} <=> Mix_20{1, 1, 1}}; // partial_or
 
 기존에 [비트 쉬프트 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)는 비록 표준에 정의되지는 않았으나, 양수던 음수이던, `<< 1`은 곱하기 2의 효과가 있고, `>> 1`은 나누기 2의 효과가 있었는데요(*[비트 쉬프트 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)* 참고), 
 
-C++20부터는 [비트 쉬프트 연산자의 기본 비트가 표준화](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EB%B9%84%ED%8A%B8-%ED%91%9C%EC%A4%80%ED%99%94)되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
+C++20부터는 [비트 쉬프트 연산자](??)의 기본 비트가 표준화되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
 
 

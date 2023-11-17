@@ -20,7 +20,7 @@ C++17 부터는 [구조화된 바인딩](https://tango1202.github.io/mordern-cpp
 |--|--|
 |`auto [변수 목록]`|해당 개체의 복제본을 만들어 내부 요소를 참조합니다. 수정시 복제본이 수정됩니다.|
 |`auto& [변수 목록]`|해당 개체의 내부 요소에 참조합니다. 내부 요소 수정이 가능합니다.|
-|`const auto& [변수 목록]`|해당 개체의 내부 요소에 참조합니다. 내부 요소 수정이 불가능합니다.|
+|`const auto& [변수 목록]`|해당 개체의 내부 요소에 참조합니다. 내부 요소 수정이 불가능합니다.<br/>[임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 경우 `const auto&`로 받으면 수명이 연장됩니다.(*[임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 참고*)|
 |`auto&& [변수 목록]`|해당 개체의 내부 요소를 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)합니다.|
 
 다음과 같이 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/), 클래스등에 대해 적용할 수 있습니다. 
@@ -81,6 +81,12 @@ data_11.m_Id_11 = 20;
 
 EXPECT_TRUE(id_17 == 10 && name_17 == "John");
 EXPECT_TRUE(idRef_17 == 20 && nameRef_17 == "John");
+
+// 임시 개체의 수명 연장
+const auto& [id_17, name_17]{
+    T{30, "Sam"}  // 임시 개체를 생성했지만 const auto&로 받아 수명이 연장됩니다.
+};
+EXPECT_TRUE(id_17 == 30 && name_17 == "Sam");
 ```
 
 # 컨테이너 활용

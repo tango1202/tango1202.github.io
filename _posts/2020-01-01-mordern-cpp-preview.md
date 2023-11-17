@@ -76,6 +76,32 @@ STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mo
 
     * (O) 기능 테스트 매크로 : C++11 이상의 기능이 있는지 컴파일 타임 검사 __has_cpp_attributes
  
+생성자, 복사 생성자, 대입연산자, 이동 생성자, 이동 대입연산자 사용 조건
+A default constructor is eligible if
+
+it is not deleted, and
+its associated constraints, if any, are satisfied, and
+no default constructor is more constrained than it.
+
+: delete 안함
+: 제약 조건 충족
+requires (C++20)
+co_await (C++20) operator co_await
+co_return (C++20)
+co_yield (C++20)
+import
+module
+구조화된 바인딩은 컨셉 지원 안함(https://en.cppreference.com/w/cpp/language/structured_binding)
+template<class T>
+concept C = true;
+ 
+C auto [x, y] = std::pair{1, 2}; // error: constrained
+
+
+
+C++20의미 변경
+export (3)
+private (3) : https://en.cppreference.com/w/cpp/language/modules#Private_module_fragment
 
 
 
