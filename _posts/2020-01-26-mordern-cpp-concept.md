@@ -8,6 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
+> * (C++20~) [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [requires(요구사항)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)이 추가되어, [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.
 
 # 개요
 
@@ -59,15 +60,15 @@ no matching function for call to 'Add_11(std::string, std::string)'
 no type named 'type' in 'struct std::enable_if<false, void>'
 ```
 
-C++20 부터는 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [requires(요구사항)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어, [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.
+C++20 부터는 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [requires(요구사항)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)이 추가되어, [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.
 
 |항목|내용|
 |--|--|
-|[제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)|타입이 준수해야할 조건이나 표현.|
-|[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)|타입의 의미 체계에 관한 모델링. [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)들로 구성함.|
-|[requires(요구사항)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)|[템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)가 준수해야할 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)들|
+|[제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)|타입이 준수해야할 조건이나 표현.|
+|[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)|타입의 의미 체계에 관한 모델링. [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)들로 구성함.|
+|[requires(요구사항)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)|[템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)가 준수해야할 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)들|
 
-다음은 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)을 이용한 예입니다. `std::integral<T>`과 `std::floating_point<T>` [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) `T`의 [요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)으로 정의했습니다. [요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)의 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 만족하지 않으면, 컴파일 오류가 발생합니다.(*`std::integral<T>` 와 `std::floating_point<T>`은 STL에서 기본으로 제공하는 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)입니다. 자세한 내용은 [concepts](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/)를 참고하세요.*)
+다음은 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [requires](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)를 이용한 예입니다. `std::integral<T>`과 `std::floating_point<T>` [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) `T`의 [요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)으로 정의했습니다. [요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)의 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 만족하지 않으면, 컴파일 오류가 발생합니다.(*`std::integral<T>` 와 `std::floating_point<T>`은 STL에서 기본으로 제공하는 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)입니다. 자세한 내용은 [concepts](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/)를 참고하세요.*)
 
 ```cpp
 template<typename T>
@@ -81,7 +82,7 @@ EXPECT_TRUE(Add_20(1.0, 2.0) == 3.0);
 EXPECT_TRUE(Add_20(std::string("Hello"), std::string("World")) == std::string("HelloWorld")); // (X) 컴파일 오류. std::is_integral<T>::value 가 true 인 것만 가능합니다.
 ```
 
-컴파일 오류 메시지는 다음과 같습니다. 좀더 직관적으로 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 만족하지 않는다고 표시됩니다.
+컴파일 오류 메시지는 다음과 같습니다. 좀더 직관적으로 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 만족하지 않는다고 표시됩니다.
 
 ```cpp
 no matching function for call to 'Add_20(std::string, std::string)'
@@ -92,27 +93,27 @@ In substitution of 'template<class T>  requires (integral<T>) || (floating_point
 
 # concept(컨셉)과 제약 조건
 
-[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 컴파일 타임에 평가할 수 있는 표현식으로서 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)할때 감지되며, [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 만족하는 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)와 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)만 허용합니다. 만족하지 않는 타입은 컴파일 오류를 발생시키죠. 
+[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 컴파일 타임에 평가할 수 있는 표현식으로서 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)할때 감지되며, [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 만족하는 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)와 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)만 허용합니다. 만족하지 않는 타입은 컴파일 오류를 발생시키죠. 
 
-[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 다음과 같이 정의 할 수 있습니다.
+[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 다음과 같이 정의 할 수 있습니다.
 
 ```cpp
 template<템플릿 인자>
 concept 컨셉명 = 제약 조건;
 ```
 
-또한, 여러 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)들을 합성해서 만들 수도 있습니다.
+또한, 여러 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)들을 합성해서 만들 수도 있습니다.
 
 ```cpp
 template<typename T>
 concept Number_20 = std::integral<T> || std::floating_point<T>; // T는 정수 타입이나 실수 타입이어야 합니다.
 ```
 
-[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)의 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 여러가지 방법을 이용하여 만들 수 있습니다.
+[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)의 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 여러가지 방법을 이용하여 만들 수 있습니다.
 
 1. [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)을 리턴하는 컴파일 타임 상수식
 
-    [컴파일 타임 타입 특성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)을 보면, 컴파일 타임에 사용할 수 있는 다양한 [타입 특성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)이 제공됩니다. `integral` [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)도 사실은 [is_integral](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) [타입 특성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)으로 구현되어 있습니다. 
+    [컴파일 타임 타입 특성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)을 보면, 컴파일 타임에 사용할 수 있는 다양한 [타입 특성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)이 제공됩니다. `integral` [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)도 사실은 [is_integral](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) [타입 특성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)으로 구현되어 있습니다. 
 
     ```cpp
     template<typename T>
@@ -178,7 +179,7 @@ concept Number_20 = std::integral<T> || std::floating_point<T>; // T는 정수 �
 
 # concept(컨셉) 설계
 
-[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 작은 단위의 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)으로 작성하고, 잘 설계된 이름을 부여한 뒤, 이를 [논리 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%85%BC%EB%A6%AC-%EC%97%B0%EC%82%B0%EC%9E%90)로 합성하여 사용합니다. [단일 책임 원칙(Single Responsibility Principle)](https://tango1202.github.io/principle/principle-single-responsibility/)과 [인터페이스 분리 원칙(Interface Segregation Principle)](https://tango1202.github.io/principle/principle-interface-segregation/)에 따라서요. 잘 작성하면 전달되는 타입에 의미 체계를 부여한 모델링이 가능합니다.  
+[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 작은 단위의 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)으로 작성하고, 잘 설계된 이름을 부여한 뒤, 이를 [논리 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%85%BC%EB%A6%AC-%EC%97%B0%EC%82%B0%EC%9E%90)로 합성하여 사용합니다. [단일 책임 원칙(Single Responsibility Principle)](https://tango1202.github.io/principle/principle-single-responsibility/)과 [인터페이스 분리 원칙(Interface Segregation Principle)](https://tango1202.github.io/principle/principle-interface-segregation/)에 따라서요. 잘 작성하면 전달되는 타입에 의미 체계를 부여한 모델링이 가능합니다.  
 
 앞서 예시했듯이 수치 타입을 더하는 함수를 다시 살펴 봅시다.
 
@@ -198,7 +199,7 @@ T Add_20(T a, T b) {
 2. [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 자동 소멸 되어야 하고,
 3. `+`연산자로 더할 수 있어야 합니다.
 
-따라서 Add_20의 [요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)을 좀더 고도화하여 `NumberAddable_20`을 다음과 같이 작성 할 수 있습니다. `T`에 대한 모델링이 좀더 정교화되었습니다.
+따라서 Add_20의 [요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)을 좀더 고도화하여 `NumberAddable_20`을 다음과 같이 작성 할 수 있습니다. `T`에 대한 모델링이 좀더 정교화되었습니다.
 
 ```cpp
 template<typename T>
@@ -226,7 +227,7 @@ EXPECT_TRUE(Add_20(1.0, 2.0) == 3.0);
 EXPECT_TRUE(Add_20(std::string("Hello"), std::string("World")) == std::string("HelloWorld")); // (X) 컴파일 오류. std::is_integral<T>::value 가 true 인 것만 가능합니다.
 ```
 
-또한 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)에 의한 코딩 계약을 만들 수 있습니다. 마치 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 이용한 코딩 계약처럼요.
+또한 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)에 의한 코딩 계약을 만들 수 있습니다. 마치 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 이용한 코딩 계약처럼요.
 
 기존 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4) 방식은 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)을 통해 다음처럼 구현합니다. `IDrawable_11`인터페이스를 구체화한 `Rectangle_11`과 `Circle_11`을 `Draw()`함수에서 사용할 수 있죠.
 
@@ -272,7 +273,7 @@ Draw(rect);
 Draw(circle);
 ```
 
-[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 이용하면 다음처럼 구현됩니다. `IDrawable_11` [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)가 생략되었고, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출도 없어졌습니다. 단지 해당 개체에 `Draw()` 멤버 함수가 호출 가능한지만 컴파일 타임에 검사하죠. [가상 함수 테이블(Virtual Function Table, vTable)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)을 위한 추가 공간도 필요 없어지고, 런타임 호출 부하도 적어져 미세하겠지만 성능 향상이 되겠네요.
+[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 이용하면 다음처럼 구현됩니다. `IDrawable_11` [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)가 생략되었고, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출도 없어졌습니다. 단지 해당 개체에 `Draw()` 멤버 함수가 호출 가능한지만 컴파일 타임에 검사하죠. [가상 함수 테이블(Virtual Function Table, vTable)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)을 위한 추가 공간도 필요 없어지고, 런타임 호출 부하도 적어져 미세하겠지만 성능 향상이 되겠네요.
 
 ```cpp
 template<typename T>
@@ -310,159 +311,140 @@ Draw_20(circle);
 
 # requires(요구사항)
 
-[요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)은 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 목록 끝이나 [함수 선언]의 끝에 작성합니다.
+[requires](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)는 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 적용합니다.
 
-
-[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 합성하여 요구사항 작성
-
-```cpp
-template<typeanme T>
-requires std::integral<T> || std::floating_point<T>
-class A_20 {};
-
-A_20<int> a;
-A_20<double> b;
-A_20<std::string> c; // (X) 컴파일 오류
-```
-
-요구사항으로 컨셉을 지정하거나, 템플릿 인자나 auto에 컨셉을 지정함
-
-1. `requires` 로 컨셉 적용(템플릿 인자에 적용)
-
-    ```cpp
-    template<typename T> 
-    requires std::integral<T> // integral은 is_integral_v인 컨셉입니다.
-    auto Add_20(T a, T b) {
-        return a + b;
-    }
-    ```
-
-2. 후행 `requires`로 컨셉 적용(템플릿 인자에 적용)
-
-    ```cpp
-    template<typename T> 
-    auto Add_20(T a, T b) requires std::integral<T> {
-        return a + b;
-    }
-    ```
-
-
-3. 템플릿 인자에 컨셉 적용(템플릿 인자에 적용)
-
-    ```cpp
-    template<std::integral T> 
-    auto Add_20(T a, T b) {
-        return a + b;
-    }  
-
-    // 비타입
-    template<std::integral auto v>
-    auto Func_20 () {
-        return v;
-    }  
-    ```
-
-4. 리턴값과 함수 인자에 컨셉 적용(함수 인자에 적용)
-
-    ```cpp
-    std::integral auto Add_20(std::integral auto a, std::integral auto b) {
-        return a + b;
-    }
-    ```
-   
-5. 타입 추론에 적용
-    ```cpp
-    std::integral auto val_20 = Func();
-    ```
-
-
-람다 표현식은 다음과 같음
-
-7. 람다 표현식의 템플릿 인자에 적용
-    ```cpp
-    auto val = [] <std::integral T> (T a, T b) {
-        return a + b;
-    }  
-    auto val = [] <typename T> requires std::integral<T> (T a, T b) {
-        return a + b;
-    }  
-    auto val = [] <typename T> Add_20(T a, T b) requires std::integral<T> {
-        return a + b;
-    }     
-    ```
-8. 람다 표현식의 비타입 템플릿 인자에 적용
-    ```cpp
-    auto val = [] <std::integral auto v> () {
-        return v;
-    } 
-    ```
-9. 람다 표현식의 함수 인자에 적용
-    ```cpp
-    auto val = [] (std::integral auto a, std::integral auto b) {
-        return a + b;
-    }  
-
-    ```
-
-# concept(컨셉) 활용
-
-클래스 템플릿에 적용
-
-```cpp
-template<std::integral T> 
-class A_20 {};
-
-A_20<int> a;
-A_20<double> b; // (X) 컴파일 오류
-```
-
-멤버 함수에 적용
+ [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)의 목록 끝이나 [함수 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%84%A0%EC%96%B8)의 끝에 작성하며, [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 [논리 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%85%BC%EB%A6%AC-%EC%97%B0%EC%82%B0%EC%9E%90)로 합성하여 작성할 수도 있습니다.
 
 ```cpp
 template<typename T>
-class A_20 {
+requires std::integral<T> || std::floating_point<T> // 논리 연산자로 합성합니다.
+auto Func_20(T val) {
+    return val;
+}
+
+Func_20(1); // int;
+Func_20(1.0); // double
+Func_20(std::string("Hello")); // (X) 컴파일 오류.
+```
+
+다음과 같이 [요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)을 적용할 수 있습니다.
+
+```cpp
+// requires로 템플릿 인자에 적용
+template<typename T> 
+requires std::integral<T> 
+auto Func1_20(T val) {
+    return val;
+}
+
+// 후행 requires로 함수 선언의 끝에 템플릿 인자에 적용
+template<typename T> 
+auto Func2_20(T val) requires std::integral<T> {
+    return val;
+}
+
+// 템플릿 인자에 적용
+template<std::integral T> 
+auto Func3_20(T val) {
+    return val;
+}  
+
+// 비타입 템플릿 인자에 적용
+template<std::integral auto v>
+auto Func4_20 () {
+    return v;
+}  
+
+// 리턴값과 함수 인자에 적용
+std::integral auto Add_20(std::integral auto val) {
+    return val;
+}
+   
+// 타입 추론에 적용
+int Func() {return 1;}
+std::integral auto val_20 = Func();
+```
+
+[람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)에도 사용할 수 있습니다.
+
+```cpp
+// 람다 표현식의 템플릿 인자에 적용
+auto val1_20 = [] <std::integral T> (T val) {
+    return val;
+};  
+auto val2_20 = [] <typename T> requires std::integral<T> (T val) {
+    return val;
+};  
+auto val3_20 = [] <typename T> (T val) requires std::integral<T> {
+    return val;
+};     
+
+// 람다 표현식의 비타입 템플릿 인자에 적용
+auto val4_20 = [] <std::integral auto v> () {
+    return v;
+}; 
+
+// 람다 표현식의 함수 인자에 적용
+auto val5_20 = [] (std::integral auto val) {
+    return val;
+};  
+```
+
+# concept(컨셉) 활용
+
+[concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)
+은 함수외에도 [클래스 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF), [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98), [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%83%AC%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94), [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)에도 사용할 수 있습니다.
+
+
+```cpp
+// 클래스 템플릿
+template<std::integral T> 
+class A_20 {};
+
+A_20<int> a1;
+A_20<double> a2; // (X) 컴파일 오류
+
+// 멤버 함수
+template<typename T>
+class B_20 {
 public:
     void Func(T other) requires std::integral<T> {} 
 };
 
-A_20<int> a;
-a.Func(10);
+B_20<int> b1;
+b1.Func(10);
 
-A_20<double> b;
-b.Func(10.0); // (X) 컴파일 오류.
-```
-템플릿 특수화
+B_20<double> b2;
+b2.Func(10.0); // (X) 컴파일 오류
 
-```cpp
+
+// 템플릿 특수화
 template<typename T>
-class A_20 {
+class C_20 {
  public:
     int Func() {return 1;}    
 };
 
 template<std::integral T>
-class A_20 {
+class C_20<T> {
  public:
     int Func() {return 2;}    
 };
 
-EXPECT_TRUE(A_20<int>{}.Func() == 1);
-EXPECT_TRUE(A_20<double>{}.Func() == 2);
-```
+EXPECT_TRUE(C_20<double>{}.Func() == 1);
+EXPECT_TRUE(C_20<int>{}.Func() == 2);
 
-오버로딩
-
-```cpp
+// 오버로딩
 int Func_20(auto val) {
     return 1;
 }
 int Func_20(std::integral auto val) {
     return 2;
 }
-double Func_20(std::floating_point auto val) {
+int Func_20(std::floating_point auto val) {
     return 3;
 }
-double Func_20(long val) {
+int Func_20(long val) {
     return 4;
 }
 
@@ -472,24 +454,22 @@ EXPECT_TRUE(Func_20(1.0) == 3);
 EXPECT_TRUE(Func_20(1L) == 4);
 ```
 
-
-
 # 익명 concept(컨셉)
 
-익명 컨셉은 재활용이 되지 않으므로 사용하지 않는게 좋음.
+[제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4) 은 `requires {}`로 작성되고, [요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD) 적용은 `requires 제약 조건`이므로 익명 [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4) 적용은 `requires requires {}`의 형태로 작성됩니다. 모양도 이상할 뿐더러 재활용도 되지 않으므로 사용하지 않는게 좋습니다. 
 
 ```cpp
-template<Typename T>
-requires requires(T a, T b) {
-    a + b; // T는 + 가 제공되어야 합니다.
+template<typename T>
+requires requires(T a, T b) { // requires(T a, T b) {}은 익명 컨셉입니다.
+    a + b; 
 }
-T Add_20(T a, T b) {return a + b};
+T Add_20(T a, T b) {return a + b;}
 
-Add_20(1, 2); 
+Add_20(1, 2); // + 가 제공되어 사용 가능합니다.
 
-class A{}; // +가 제공되지 않습니다.
-T a, b;
-Add_20(a, b); // (X) 컴파일 오류. +가 제공되지 않습니다.
+class A {}; // + 가 제공되지 않습니다.
+A a, b;
+Add_20(a, b); // (X) 컴파일 오류. + 가 제공되지 않습니다.
 ```
 
 
