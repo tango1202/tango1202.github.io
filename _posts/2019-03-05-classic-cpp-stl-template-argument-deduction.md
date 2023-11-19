@@ -295,7 +295,7 @@ const int* p;
 // #2 : T == const int 이면 f(const int*) 
 // #3 : T == int 이면 f(const int*) 
 // 더 특수화된 버전으로 선택함.    
-EXPECT_TRUE(f(p) == 3);
+EXPECT_TRUE(f(p) == 3); 
 ```
 
 특수화된 버전 선택시 [인자의 기본값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)는 무시하고 오버로딩 버전을 결정합니다.
@@ -598,4 +598,10 @@ EXPECT_TRUE(f<A>(10) == 1);
 EXPECT_TRUE(f<A>('a') == 2); // (X) 컴파일 오류. ResultType이 없습니다.
 ```
 
+# 함수 템플릿 인수 추론 확인
 
+실제 [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 결과를 보는 유틸리티 사이트가 있습니다.
+
+[https://cppinsights.io/](https://cppinsights.io/)에서 코드를 입력하고 "Run C++ Insights" 버튼을 클릭하면 됩니다. 
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/daa75bf8-c261-498b-818f-8004d4e3fe91)

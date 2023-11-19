@@ -13,7 +13,7 @@ sidebar:
 > * (C++17~) [[[fallthrough]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-fallthrough)가 추가되어 `switch()`에서 `break`를 생략하면 다음 `case`로 제어가 이동할때 발생하는 컴파일 경고를 차단할 수 있습니다.
 > * (C++17~) [[[nodiscard]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard)가 추가되어 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 무시하지 않도록 컴파일 경고를 해줍니다. 
 > * (C++17~) [[[maybe_unused]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-maybe_unused)가 추가되어 사용되지 않은 개체의 컴파일 경고를 막습니다.
-> * (C++17~) `[[msvc::noinline]]` 와 같이 [제조사 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)를 사용할 수 있습니다.
+> * (C++17~) [제조사 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)가 추가되어 `[[msvc::noinline]]` 와 같이 사용할 수 있습니다.
 > * (C++20~) [[[nodiscard]]의 생성자 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0), [[[nodiscard("이유")]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0)가 추가되었습니다.
 > * (C++20~) [[[likely]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-likely-unlikely), [[[unlikely]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-likely-unlikely)가 추가되어 컴파일러에게 최적화 힌트를 줄 수 있습니다.
 > * (C++20~) [[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address)가 추가되어 아무 멤버 변수가 없는 개체의 크기를 최적화합니다.
@@ -171,7 +171,7 @@ enum class [[maybe_unused]] YourEnum {YourVal [[maybe_unused]]}; // 범위 있�
 
 # (C++17~) 네임스페이스
 
-C++17 부터는 `[[msvc::noinline]]` 와 같이 [제조사 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)를 사용할 수 있습니다.
+C++17 부터는 [제조사 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)가 추가되어 `[[msvc::noinline]]` 와 같이 사용할 수 있습니다.
 
 # (C++20~) [[nodiscard]]의 생성자 지원, [[nodiscard("이유")]]
 
