@@ -181,6 +181,52 @@ EXPECT_TRUE(a_17.Func(1, 2) == 3);
 
 > *(C++20~) [클래스 템플릿 인수 추론시 initializer_list인 경우가 개선](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0%EC%8B%9C-initializer_list-%EA%B0%9C%EC%84%A0)되어 `std::vector v_20{1, 2, 3};`처럼 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 명시하지 않아도 됩니다.*
 
+# (C++17~) 클래스 템플릿 인수 추론 사용자 정의 가이드
+
+[클래스 템플릿 인수 추론 사용자 정의 가이드](??)가 추가되어 [클래스 템플릿 인수 추론](??)시 컴파일러에게 가이드를 줄 수 있습니다.
+
+예를들어 다음의 클래스 `A`는 타입이 `T`로 동일한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) `x`와 `y`를 전달받습니다.
+따라서, `A a_17{1, 2};` 는 `A<int>`로 추론하여 사용할 수 있는데요, `A b_17{1, 1.5};`는 컴파일 오류가 발생합니다. `A<int, double>`로 추론되어 `T`의 타입이 `int`와 `double`로 서로 다르니까요.
+`
+```cpp
+template<typename T>
+class A {
+public:
+    A(T x, T y) {}
+};  
+
+A a_17{1, 2}; //  A<int>. 인수로부터 인자를 추론합니다.
+// A b_17{1, 1.5}; // (X) 컴파일 오류. A<int, double>은 안됩니다.
+A<double> c{1, 1.5}; // 명시적으로 A<double>을 사용합니다.
+```
+
+이럴때 [클래스 템플릿 인수 추론](??)시 컴파일러에게 가이드를 줄 수 있습니다.
+
+사용자 정의 가이드 형식은 다음과 같습니다.
+
+```cpp
+template<템플릿 인자>
+템플릿명(생성자 인자) -> 템플릿명<인스턴스화할 타입>; 
+```
+
+다음 예는 상기 예에서 그냥 2번째 인자 타입으로 [템플릿 인수 추론](??)을 하도록 가이드한 예입니다.
+
+```cpp
+template<typename T>
+class A {
+public:
+    A(T x, T y) {}
+};  
+
+// 클래스 템플릿 인수 추론 사용자 정의 가이드
+template<typename T, typename U>
+A(T x, U y) -> A<U>; // T와 U가 타입이 다르다면 U 타입으로 추론하세요. 
+ 
+A a_17{1, 2}; 
+A b_17{1, 1.5}; // (O) 클래스 템플릿 인수 추론 사용자 정의 가이드에 의해. A<double>로 추론합니다.
+A<double> c{1, 1.5}; 
+```
+
 # (C++17~) 비타입 템플릿 인자의 auto 허용
 
 C++17 부터는 [비타입 템플릿 인자에서 auto를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%EB%B9%84%ED%83%80%EC%9E%85-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%9D%98-auto-%ED%97%88%EC%9A%A9)합니다.

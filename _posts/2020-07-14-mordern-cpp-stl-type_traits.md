@@ -235,7 +235,7 @@ EXPECT_TRUE(Add(10, 20) == 30); // 정수 합
 EXPECT_TRUE(Add(std::string("Hello"), std::string("World")) == std::string("HelloWorld")); // (X) 컴파일 오류. 정수 타입이 아니어서 enable_if<>::type이 정의되지 않고, SFINIE에 의해 오버로딩된 함수 후보 목록에서 제외됩니다. 따라서 함수가 없습니다. 
 ```       
 
-> *(C++20~) [concept](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [requires(요구사항)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#requires%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#concept%EC%BB%A8%EC%85%89%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.*
+> *(C++20~) [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.*
 
 # (C++17~) traits 에서의 연산
 
