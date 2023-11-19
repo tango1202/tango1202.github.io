@@ -11,6 +11,9 @@ sidebar:
 > * 헤더 파일에서 다른 헤더 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하는 것은 최소화 하라.
 > * 선언과 정의 분리, [전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)으로 컴파일 종속성을 최소화 하라.
 
+> **모던 C++**
+> * (C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하기 전에 파일이 존재하는지 확인할 수 있습니다.
+
 # 선언과 정의 분리
 
 C++에서는 일반적으로 클래스 선언부는 헤더 파일에 작성하고, 클래스 멤버 함수 정의부는 cpp 파일에 작성 합니다. 이때 선언부를 포함하기 위해 cpp 파일에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)를 사용합니다.

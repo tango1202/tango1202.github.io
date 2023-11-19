@@ -13,7 +13,7 @@ sidebar:
 > * (C++11~) [멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.
 > * (C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하기 전에 파일이 존재하는지 확인할 수 있습니다.
 > * (C++20~) [volatile의 일부가 deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-volatile-%EC%9D%BC%EB%B6%80-deprecate)되었습니다.
-> * (C++20~) [__VA_OPT__](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
+> * (C++20~) [`__VA_OPT__`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
 > * (C++20~) [__has_cpp_attribute() 매크로 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#__has_cpp_attribute-%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)가 추가되어 C++11부터 추가된 [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 지원되는지 확인 할 수 있습니다.
 > * (C++20~) [언어 지원 테스트](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#%EC%96%B8%EC%96%B4-%EC%A7%80%EC%9B%90-%ED%85%8C%EC%8A%A4%ED%8A%B8) 매크로가 추가되어 컴파일러가 C++11부터 추가된 언어 기능을 지원하는지 테스트 할 수 있습니다.
 
@@ -181,7 +181,7 @@ EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
 
 # (C++20~) __VA_OPT__
 
- [__VA_OPT__](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
+ [`__VA_OPT__`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
 
  ```cpp
 int Sum(int a, int b, int c, int d) {return a + b + c + d;}
