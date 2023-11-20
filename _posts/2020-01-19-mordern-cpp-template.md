@@ -188,7 +188,7 @@ C++17 에서는 [클래스 템플릿 인수 추론 사용자 정의 가이드](h
 
 예를들어 다음의 클래스 `A`는 타입이 `T`로 동일한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) `x`와 `y`를 전달받습니다.
 따라서, `A a_17{1, 2};` 는 `A<int>`로 추론하여 사용할 수 있는데요, `A b_17{1, 1.5};`는 컴파일 오류가 발생합니다. `A<int, double>`로 추론되어 `T`의 타입이 `int`와 `double`로 서로 다르니까요.
-`
+
 ```cpp
 template<typename T>
 class A {

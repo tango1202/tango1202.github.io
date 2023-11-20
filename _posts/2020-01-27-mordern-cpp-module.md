@@ -44,15 +44,15 @@ C++ 는 다음의 [전처리](https://tango1202.github.io/classic-cpp-guide/clas
 
     결과는 놀랍게도 943kbyte나 됩니다. 대략 1000배가 늘었습니다. 이를 다 일일이 기계어로 번역하다 보니 별것 아닌 코드이지만 컴파일 시간이 좀 걸리게 됩니다.
 
-    아마도 `iostream`이 또다른 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하고, 또다른 곳에서 또 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하다 보니 벌어진 일이겠죠. [파일 구성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/)에서 말씀드린 것처럼, 헤더 파일에서 다른 헤더 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하는 것은 최소화 하더라도 한계가 있습니다.
+    아마도 `iostream`이 또다른 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하고, 또다른 곳에서 또 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하다 보니 벌어진 일이겠죠. [파일 구성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/)에서 말씀드린 것처럼, 헤더 파일에서 다른 헤더 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하는 것은 최소화 하면 되겠지만, 아무래도 한계가 있습니다.
 
 2. [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제
 
-     [#define](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)이나 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 는 해당 위치에 소스 코드를 대체하는 것이기 때문에, 어떤것을 먼저 대체했는지에 따라 다른 결과가 나올 수 있습니다. 또한 [정적 변수의 초기화 순서](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%B3%80%EC%88%98%EC%9D%98-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%88%9C%EC%84%9C)와 같은 문제가 있을 수도 있습니다.
+     [#define](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)이나 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)는 해당 위치에 소스 코드를 대체하는 것이기 때문에, 어떤 것을 먼저 대체했는지에 따라 다른 결과가 나올 수 있습니다. 또한 [정적 변수의 초기화 순서](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%B3%80%EC%88%98%EC%9D%98-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%88%9C%EC%84%9C)와 같은 문제가 있을 수도 있습니다.
 
 3. [선언과 정의를 분리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC)하는 [파일 구성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/)의 불편함
     
-    컴파일 속도 향상을 위해 [선언과 정의를 분리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC)하는데요, 소스 코드 관리가 상당히 번거롭습니다.
+    컴파일 속도 향상을 위해 [선언과 정의를 분리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC)하는데요, 소스 코드 관리가 상당히 번거롭습니다. 컴파일 속도와 구현 코드의 은닉이 더 중요하니 어쩔 수 없이 참고 사용하죠.
 
  4. 기호 충돌
 
@@ -113,7 +113,7 @@ F:\Data\language_test\test\module>g++ -std=c++20 -fmodules-ts MyModule.cpp main.
 
 # export(모듈 내보내기) 와 import(모듈 가져오기)
 
-모듈 선언인 `export module Module_20;` 이하에 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)로 내보낼 항목을 작성합니다. 개별로 내보낼 수도 있고, `export {}`로 그룹지어 내보낼 수도 있으며, [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 내보낼 수도 있습니다.
+모듈 선언인 `export module Module_20;` 이하에 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)로 내보낼 항목을 작성합니다. 개별로 내보낼 수도 있고, `export {}`로 그룹지어 내보낼 수도 있으며, [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 통째로 내보낼 수도 있습니다.
 
 ```cpp
 // ----
@@ -187,7 +187,7 @@ int main() {
 
 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)로 외부로 내보낼때 인터페이스와 구현을 분리할 수 있습니다.
 
-다음에서 `Test_Interface.cpp`에서 `Func()`함수의 선언만 내보내고, 
+다음의 `Test_Interface.cpp`에서 `Func()`함수의 선언만 내보내고, 
 
 ```cpp
 // ----
@@ -203,9 +203,6 @@ export void Func(); // 인터페이스 부분은 함수 선언만 합니다.
 // ----
 // Test_Implement.cpp 파일에서
 // ----
-module;
-#include <iostream> // 모듈에서 사용하는 헤더 파일
-
 module MyModule_20; // export를 붙이지 않았습니다.
 void Func() {} // export를 붙이지 않습니다.
 ```
@@ -270,7 +267,7 @@ int main() {
 
 하나의 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)을 여러개로 나누어 관리할 수 있습니다.
 
-다음예는 `MyModule_20`을 `Part1`과 `Part2`, `Part3`으로 나누어 관리하는 예입니다. `Part1`과 `Part2`는 외부에서도 사용하고, `Part3`은 `MyModule_20` 내부에서만 사용합니다.
+다음예는 `MyModule_20`을 `Part1`, `Part2`, `Part3`으로 나누어 관리하는 예입니다. `Part1`과 `Part2`는 외부에서도 사용하고, `Part3`은 `MyModule_20` 내부에서만 사용합니다.
 
 `Test_Part.cpp`는 모듈의 인터페이스로서 `Part1`과 `Part2`를 [import](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)한뒤 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)합니다. 다른 파트를 표현할때 `:Part1;`와 같이 모듈명 없이 작성합니다.
 
@@ -305,7 +302,7 @@ export module MyModule_20:Part2;
 export void Part2() {}
 ```
 
-모듈의 각 파트간에는 서로 사용할 수 있기 때문에 굳이 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)를 하지 않아도 됩니다. 따라서, `Part3`은 외부에 내보내지 않고 `MyModule_20`내애서만 사용하는 것이므로, `module MyModule_20:Part3;`와 같이 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)없이 작성합니다.
+`Part3`은 외부에 내보내지 않고 `MyModule_20`내애서만 사용할 건데요, 모듈의 각 파트간에는 서로 사용할 수 있기 때문에 굳이 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)를 하지 않아도 됩니다. 따라서,  `module MyModule_20:Part3;`와 같이 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)없이 작성합니다.
 
 ```cpp
 // ----
@@ -338,9 +335,9 @@ F:\Data\language_test\test\module>g++ -std=c++20 -fmodules-ts Test_Part3.cpp Tes
 
 # 하위 모듈
 
-[모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)의 이름에는 `.`을 사용할 수 있는데요, 이를 이용해서 관용적으로 [하위 모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%ED%95%98%EC%9C%84-%EB%AA%A8%EB%93%88)처럼 관리할 수 있습니다. `MyModule_20.Sub1`, `MyModule_20.Sub2`, `MyModule_20.Sub3`처럼요. 
+[모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)의 이름에는 `.`을 사용할 수 있는데요, 이를 이용해서 관용적으로 [하위 모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%ED%95%98%EC%9C%84-%EB%AA%A8%EB%93%88)처럼 관리할 수 있습니다. `MyModule_20.Sub1`, `MyModule_20.Sub2`, `MyModule_20.Sub3`처럼요. 하지만 그냥 이름이 다른 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)들일 뿐입니다.
 
-다음은 [모듈 분할](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EB%AA%A8%EB%93%88-%EB%B6%84%ED%95%A0)에서의 예제를 [하위 모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%ED%95%98%EC%9C%84-%EB%AA%A8%EB%93%88)로 변경한 예입니다. 서로간에 사용하려면 `export`되어야 하기 때문에, `MyModule_20.Sub3`도 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0) 되었으며, 이에 따라 `main()`에서도 `MyModule_20.Sub3` [import](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0) 하여 사용할 수 있습니다. 은닉성을 위해 [모듈 분할](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EB%AA%A8%EB%93%88-%EB%B6%84%ED%95%A0)을 사용하는게 더 좋습니다.
+다음은 [모듈 분할](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EB%AA%A8%EB%93%88-%EB%B6%84%ED%95%A0)에서의 예제를 [하위 모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%ED%95%98%EC%9C%84-%EB%AA%A8%EB%93%88)로 변경한 예입니다. 서로 다른 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)간에 사용하려면 `export`되어야 하기 때문에, `MyModule_20.Sub3`도 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0) 되었으며, 이에 따라 `main()`에서도 `MyModule_20.Sub3` [import](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)을 하여 사용할 수 있습니다. 은닉성을 위해 [모듈 분할](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EB%AA%A8%EB%93%88-%EB%B6%84%ED%95%A0)을 사용하는게 더 좋습니다.
 
 ```cpp
 // ----

@@ -15,7 +15,7 @@ sidebar:
 > **모던 C++**
 > * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.
 > * (C++17~) [클래스 템플릿 인수 추론 사용자 정의 가이드](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EA%B0%80%EC%9D%B4%EB%93%9C)가 추가되어 [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)시 컴파일러에게 가이드를 줄 수 있습니다.
-> * (C++20~) [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.
+> * (C++20~) [컨셉(concept)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.
 
 # 개요
 
@@ -496,7 +496,7 @@ EXPECT_TRUE(f(i, p) == 2);
 
 # SFINAE(Substitution failure is not an error)
 
-[SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)는 ***[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 과정에서 발생할 수 있는 대체 실패는 컴파일 오류가 아니다***라는 뜻입니다.
+[SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)는 ***[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 과정에서 발생할 수 있는 대체 실패는 컴파일 오류가 아니다***라는 뜻입니다. 대체 실패가 발생하면 그냥 오버로딩 함수 후보군에서 제외할 뿐 오류를 발생시키지 않는다는 뜻입니다.
 
 다음 `A`클래스를 보면, `Int`와 `Char`라는 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)을 가지고 있고, `f()` 함수는 이를 사용하고 있습니다.
 
@@ -529,9 +529,7 @@ A::Int f(A::Int param); // typename T::Int f(typename T::Int param)
 A::Char f(A::Char param); // typename T::Char f(typename T::Char param)
 ```
 
-다음 `B`클래스는, [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85) 이 `Int`만 있고, `Char`는 없습니다.
-
-`f<B>()`를 사용한다면, 
+다음 `B`클래스는, [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85) 이 `Int`만 있고, `Char`는 없는데요, `f<B>('a')`는 `char`를 전달했는데, `int`버전이 호출됩니다. 아무런 컴파일 오류도 발생시키지 않고요.
 
 ```cpp
 class B {
@@ -540,14 +538,16 @@ public:
 };
 
 EXPECT_TRUE(f<B>(10) == 1);
-EXPECT_TRUE(f<B>('a') == 1);  
+EXPECT_TRUE(f<B>('a') == 1); // char를 전달했는데 int 버전이 호출됩니다. 
 ```
 
-다음과 같은 오버로딩 함수 후보 목록이 생깁니다.
+[SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error) 때문에 컴파일 오류가 발생하지 않고, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 때문에 `char`가 `int`로 변환되어 호출된 겁니다.
+
+우선, 다음과 같은 오버로딩 함수 후보 목록이 생깁니다.
 
 ```cpp
 B::Int f(B::Int param); // typename T::Int f(typename T::Int param)
-B::Char f(B::Char param); // typename T::Char f(typename T::Char param)
+B::Char f(B::Char param); // typename T::Char f(typename T::Char param) -> B에는 Char 종속 타입이 없으니 대체 실패합니다.
 ```
 
 하지만, `B`에는 `Char` [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)이 없으니 `B::Char f(B::Char param);` 는 대체 실패를 합니다. 이러한 실패는 컴파일 오류가 아니며, 그냥 오버로딩 함수 후보 목록에서 제외합니다. 이걸 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error) 라고 합니다. 
@@ -601,7 +601,7 @@ EXPECT_TRUE(f<A>(10) == 1);
 EXPECT_TRUE(f<A>('a') == 2); // (X) 컴파일 오류. ResultType이 없습니다.
 ```
 
-> *(C++20~) [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.*
+> *(C++20~) [컨셉(concept)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.*
 
 # 함수 템플릿 인수 추론 확인
 

@@ -22,6 +22,10 @@ sidebar:
 
 # 개요
 
+C++ 는 다음의 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/), 컴파일, 링크의 3가지 과정을 거쳐서 프로그램을 빌드합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b118642c-af31-42bb-be77-bb1888a41a16)
+
 [전처리기](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)는 컴파일되기 전에 소스 코드에서 식별자 부분을 대체 목록으로 치환시켜 주거나, 특정 조건에 맞게 코드 블록을 포함시켜 줍니다.
 
 하지만, [전처리기](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)는 뜻하지 않게 타입 안전성을 해칠 수 있고, 이름 충돌로 인한 오류 발생 확률도 높기 때문에 사용하지 않는게 좋습니다. 특히, [#define 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%EC%83%81%EC%88%98)나 [#define() 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#define-%ED%95%A8%EC%88%98)는 [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4), [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/), [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/), [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 로 사용하시는게 좋습니다.
