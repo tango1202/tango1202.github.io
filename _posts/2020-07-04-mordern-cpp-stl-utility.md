@@ -33,7 +33,7 @@ sidebar:
 |[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)|`first`와 `second`로 2개의 요소를 관리합니다. `make_pair()`를 이용하여 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 쉽게 생성할 수 있습니다.|
 |[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) (C++11~)|다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.|
 |[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/) (C++17~)|값이 있을 수도 있고, 없을 수도 있는 데이터를 처리할 수 있어, 미확정 상태, 값을 처리하기 부적절한 상태, 함수 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 성공 여부 처리를 좀더 단순하게 할 수 있습니다.|
-|[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/)|타입의 변동 가능성이 있는 데이터를 비교적 안전하게 사용할 수 있습니다.|
+|[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) (C++17~)|타입의 변동 가능성이 있는 데이터를 비교적 안전하게 사용할 수 있습니다.|
 |[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) (C++17~)|타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.|
 
 

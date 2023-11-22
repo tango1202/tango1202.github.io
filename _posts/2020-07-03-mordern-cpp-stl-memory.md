@@ -1,12 +1,19 @@
 ---
 layout: single
-title: "#3. [모던 C++ STL] (C++11~) 동적 메모리 관리"
+title: "#3. [모던 C++ STL] 동적 메모리 관리"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
+
+> * (C++11~) [pointer_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-pointer_traits)는 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.
+> * (C++11~) [addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-addressof)는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.
+> * (C++11~) [align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-align)된 포인터를 구합니다.
+> * (C++17~) [launder()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%A0%80%EC%88%98%EC%A4%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)는 [위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)으로 생성된 개체의 합법적인 포인터를 얻습니다.
+> * (C++17~) [polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/)는 런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 메모리 풀을 손쉽게 만들 수 있습니다.
+> * (C++17~) [uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85) 함수를 추가하여 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)의 새로운 방법을 제공합니다.
 
 # C스타일 메모리 관리
 
@@ -32,7 +39,15 @@ sidebar:
 |[new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)|[new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)에서 예외 발생시 호출되는 함수 입니다.|
 |[nothrow](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#newnothrow-%EC%99%80-%EB%AC%B4%EC%9D%98%EB%AF%B8%ED%95%9C-%EB%84%90%EA%B2%80%EC%82%AC)|예외 발생 대신 널을 리턴하는 [new(nothrow)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#newnothrow-%EC%99%80-%EB%AC%B4%EC%9D%98%EB%AF%B8%ED%95%9C-%EB%84%90%EA%B2%80%EC%82%AC)에서 사용합니다.|
 |`destroying_delete` (C++20~)|(작성중)|
-|`launder()` (C++17~)|[위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)으로 생성된 개체의 합법적인 포인터를 얻습니다.|
+|[launder()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%A0%80%EC%88%98%EC%A4%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC) (C++17~)|[위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)으로 생성된 개체의 합법적인 포인터를 얻습니다.|
+
+[launder()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%A0%80%EC%88%98%EC%A4%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)는 [위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)으로 생성한 개체의 포인터를 다룰때 합법적인 방법을 제공합니다.
+
+다음예에서 `ptr`과 `newPtr`은 [위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)을 이용하여 동일한 메모리 공간에 만들어 집니다. 그래서, `ptr`로 접근하던, `newPtr`로 접근하던 동일한 데이터여야 합니다. 하지만 이전 이름인 `ptr`로 다루는 것이 찜찜하기도 한데요,
+
+그냥 찜찜할 뿐만 아니라 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)인 경우는 컴파일러 최적화에 의해 이전 값인 `1`이 될 수도 있습니다. 그래서 보통 사용하지 않는데요,
+
+[launder()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%A0%80%EC%88%98%EC%A4%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)를 사용하면, `newPtr`로 [위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)을 했더라도 이전 이름인 `ptr`로 접근할 수 있습니다. 따라서 `std::launder(ptr)->m_X == 3`와 같이 이전 개체 이름인 `ptr`로 `newPtr`이 생성한 값에 합법적으로 접근할 수 있습니다. 
 
 ```cpp
 class A {
@@ -52,7 +67,7 @@ EXPECT_TRUE(newPtr->m_X == 3 && newPtr->m_Y == 4);
 // 이전 포인터인 ptr로 다루려면, launder를 사용합니다.
 EXPECT_TRUE((ptr->m_X == 1 || ptr->m_X == 3)); // (△) 비권장. 컴파일러 최적화에 의해 const 변수는 이전값 1을 가질 수도 있습니다.
 EXPECT_TRUE(ptr->m_Y == 4); // (△) 비권장. 불법입니다만, 잘 동작합니다.
-EXPECT_TRUE(std::launder(ptr)->m_X); // launder를 이용하여 합법적으로 사용할 수 있습니다.
+EXPECT_TRUE(std::launder(ptr)->m_X == 3); // launder를 이용하여 합법적으로 사용할 수 있습니다.
 
 delete std::launder(ptr);
 ```
@@ -123,7 +138,7 @@ C++17 부터는 [uninitialized_move(), uninitialized_default_construct(), uninit
 |`destroy_at()` (C++17~)|주어진 메모리 영역 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출합니다.| 
 |`construct_at()` (C++20~)|주어진 메모리 영역 개체의 생성자를 호출합니다.| 
 
-다음 예는 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 `data` 버퍼을 생성하고 3개의 `T` 개체를 생성하고 소멸시키는 예입니다.
+다음과 같은 `T`개체가 있다고 할때,
 
 ```cpp
 class T {
@@ -142,7 +157,32 @@ public:
     int GetX() const {return m_X;}
     int GetY() const {return m_Y;}
 };
+```
+다음은 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 버퍼를 생성하고, 3개의 `T` 개체를 생성하고 소멸시키는 예입니다.
 
+[위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 방식을 사용하면 다음과 같고,
+
+```cpp
+unsigned char buffer[sizeof(T) * 3]; // T 개체 3개를 저장할 수 있는 스택 영역을 확보합니다.
+
+// 3개의 생성자 호출
+T* t1 = new(static_cast<void*>(buffer + sizeof(T) * 0)) T;
+T* t2 = new(static_cast<void*>(buffer + sizeof(T) * 1)) T;
+T* t3 = new(static_cast<void*>(buffer + sizeof(T) * 2)) T;
+
+EXPECT_TRUE(t1->GetX() == 10 && t1->GetY() == 20);
+EXPECT_TRUE(t2->GetX() == 10 && t2->GetY() == 20);
+EXPECT_TRUE(t3->GetX() == 10 && t3->GetY() == 20);
+
+// 3개의 소멸자 호출
+t1->~T();
+t2->~T();
+t3->~T();
+```
+
+[uninitialized_default_construct()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85) 와 [destroy()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85)를 사용한 방식은 다음과 같습니다.  
+
+```cpp
 unsigned char data[sizeof(T) * 3]; // T 개체 3개를 저장할 수 있는 스택 영역을 확보합니다.
 
 auto begin{reinterpret_cast<T*>(data)};
@@ -158,7 +198,7 @@ EXPECT_TRUE((begin + 2)->GetX() == 10 && (begin + 2)->GetY() == 20);
 std::destroy(begin, end);
 ```
 
-실행 결과를 보면 생성자 3회, [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 3회 호출된 것을 알 수 있습니다.
+실행 결과를 보면 두 경우 모두 생성자 3회, [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 3회 호출된 것을 알 수 있습니다.
 
 ```cpp
 T : Constructor

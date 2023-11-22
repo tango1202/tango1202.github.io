@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#29. [모던 C++ STL] (C++11~) 비동기(future, promise, async())"
+title: "#28. [모던 C++ STL] (C++11~) 비동기(future, promise, async())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

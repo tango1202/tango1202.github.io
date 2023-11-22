@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#17. [모던 C++ STL] (C++11~) 소유권 이전 스마트 포인터(unique_ptr), (C++14~) make_unique()"
+title: "#16. [모던 C++ STL] (C++11~) 소유권 이전 스마트 포인터(unique_ptr), (C++14~) make_unique()"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
