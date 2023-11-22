@@ -12,6 +12,13 @@ sidebar:
 > * (C++11~) [forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.
 > * (C++11~) [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 컨테이너로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
 
+
+
+
+
+
+> * (C++14~) [연관 컨테이너의 이종 탐색](??)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다. 
+
 # 시퀀스 컨테이너
 
 요소들을 순차 저장합니다.
@@ -148,6 +155,77 @@ v.emplace_back(1, 2); // (O) A개체 생성을 위한 데이터를 전달합니�
 // v.emplace_back({1, 2}); // (X) 컴파일 오류. A는 {1, 2} 를 전달받는 생성자가 없습니다.
 ```
 
+# (C++14~) 연관 컨테이너의 이종 탐색
 
+기존에는 `map`과 `set`등의 [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)에서 **Key**와 동일한 타입으로만 탐색이 가능했습니다.
 
+다음 예에서는 `Lee`의 데이터를 탐색하고 싶어 `Data{"Lee", 10}`와 같이 **Key**와 동일한 `Data` 타입 개체를 만들어 `find()`함수를 호출합니다. 
 
+```cpp
+class Data {
+public:
+    std::string m_Name;
+    int m_Val;
+    bool operator <(const Data& other) const {
+        if (m_Val < other.m_Val) return true;
+        if (other.m_Val < m_Val) return false;
+
+        return m_Name < other.m_Name;
+    }
+};
+
+std::set<Data> dataSet{
+    Data{"Lee", 10},
+    Data{"Park", 20}
+};
+auto result{
+    dataSet.find(
+        Data{"Lee", 10} // 같은 타입만 탐색이 가능하므로 "Lee"를 탐색하고 싶어도 Data 개체를 동일하게 만들어 탐색해야 합니다.
+    )
+}; 
+EXPECT_TRUE((*result).m_Name == "Lee" && (*result).m_Val == 10);
+```
+
+이때 탐색할 `"Lee"`만 알고 있고, `10`은 모르고 있다면, 그냥 요소들을 다 뒤저서 값비교를 해야 합니다. [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 장점을 살리지 못하니, 이럴게 사용할 바엔 차라리 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 낫죠. 
+
+C++14 부터는 [연관 컨테이너의 이종 탐색](??)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.
+
+1. 이종 타입에 대해 비교할 수 있게 정적 비교 함수를 제공합니다.
+2. 컨테이너 선언시 `find()` 에서 **Key** 타입외에 다른 것을 사용하려면 `less<>`를 사용합니다.
+3. `find()` 함수에 탐색하고 싶은 이종 타입의 개체를 전달합니다.
+
+다음 예에서는 `Data` 개체를 생성하지 않고 `"Lee"`로 검색합니다.
+
+```cpp
+class Data {
+public:
+    std::string m_Name;
+    int m_Val;
+    bool operator <(const Data& other) const {
+        if (m_Val < other.m_Val) return true;
+        if (other.m_Val < m_Val) return false;
+
+        return m_Name < other.m_Name;
+    }
+};
+// 이종 타입에 대해 비교할 수 있게 정적 비교 함수를 제공합니다.
+bool operator <(const Data& left, const char* right) {
+    return left.m_Name < right;
+}
+bool operator <(const char* left, const Data& right) {
+    return left < right.m_Name;
+}
+
+// find() 에서 키 타입외에 다른 것을 사용하려면 std::less<>를 사용합니다.
+std::set<Data, std::less<>> dataSet{
+    Data{"Lee", 10},
+    Data{"Park", 20}
+};
+auto result{
+    dataSet.find(
+        "Lee" // find() 함수에 탐색하고 싶은 이종 타입의 개체를 전달합니다.
+    )
+}; 
+
+EXPECT_TRUE((*result).m_Name == "Lee" && (*result).m_Val == 10);
+```
