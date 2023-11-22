@@ -660,7 +660,68 @@ C++11의 컴파일러는 기존 복사 연산을 가능하면 [이동 연산](ht
 
     그래서, 컴파일러는 ***[이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)이 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 선언되어 예외를 방출하지 않는 경우에만 복사 연산을  [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)으로 대체***합니다.
 
-   따라서, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)을 위한 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)와 [이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 최대한 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 만드는게 좋습니다. 그리고, [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 도요.(*궁극적으로 모든 함수가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)면 어떨까... 상상만 해봅니다.*)
+
+    다음 예에서 `A_11`은 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 아니고, `B_11`은 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)입니다.
+
+    이를 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에 `push_back()`을 했을때 복사와 이동이 어떻게 되는지 확인해 봅시다.
+
+    ```cpp
+    class A_11 {
+    public:
+        A_11(int x, int y) {std::cout << "A_11::Value Constructor" << std::endl;}
+        A_11(const A_11& other) {std::cout << "A_11::Copy Constructor" << std::endl;}
+        // noexcept가 아닙니다.
+        A_11(A_11&& other) {std::cout << "A_11::Move Constructor" << std::endl;}
+
+        A_11& operator =(const A_11& other) = delete;
+        A_11& operator =(A_11&& other) = delete;
+    };
+
+    class B_11 {
+    public:
+        B_11(int x, int y) {std::cout << "B_11::Value Constructor" << std::endl;}
+        B_11(const B_11& other) {std::cout << "B_11::Copy Constructor" << std::endl;}
+        // noexcept입니다.
+        B_11(B_11&& other) noexcept {std::cout << "B_11::Move Constructor" << std::endl;}
+
+        B_11& operator =(const B_11& other) = delete;
+        B_11& operator =(B_11&& other) = delete;
+    };
+
+    A_11 a1{1, 2}, a2{3, 4};
+    std::vector<A_11> v1;
+    v1.push_back(a1);
+    EXPECT_TRUE(v1.capacity() == 1);
+
+    v1.push_back(a2); // 새로운 영역을 할당하고 a1을 복사한뒤 a2를 삽입합니다.
+    
+    B_11 b1{1, 2}, b2{3, 4};
+    std::vector<B_11> v2;
+    v2.push_back(b1);
+    EXPECT_TRUE(v2.capacity() == 1);
+
+    v2.push_back(b2); // 새로운 영역을 할당하고 b1을 이동한뒤 b2를 삽입합니다.
+    ```
+    
+    실행결과는 다음과 같습니다.
+    
+    ```cpp
+    A_11::Value Constructor // a1 생성
+    A_11::Value Constructor // a2 생성
+    A_11::Copy Constructor // push_back(a1)에 의해 복제본 생성
+    A_11::Copy Constructor // 새로운 메모리 영역을 할당하고 push_back(a2)에 의해 복제본 생성
+    A_11::Copy Constructor // 새로운 메모리 영역에 a1 복사
+
+    B_11::Value Constructor // b1 생성
+    B_11::Value Constructor // b2 생성
+    B_11::Copy Constructor // push_back(b1)에 의해 복제본 생성
+    B_11::Copy Constructor // 새로운 메모리 영역을 할당하고 push_back(b2)에 의해 복제본 생성
+    B_11::Move Constructor // 새로운 메모리 영역에 b1 이동
+    ```
+    
+    즉, [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)경우만 기존 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)합니다.
+
+    따라서, [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)을 위한 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)와 [이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 최대한 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 만드는게 좋습니다. 그리고, [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94) 도요.(*궁극적으로 모든 함수가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)면 어떨까... 상상만 해봅니다.*)
 
 # 이동 연산을 이용한 리팩토링
 

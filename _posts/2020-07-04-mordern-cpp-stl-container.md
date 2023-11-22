@@ -39,6 +39,53 @@ sidebar:
 |`multiset`|`set`과 동일합니다.<br/>중복 **Key**허용합니다.|`<` 구현|
 |[unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) (C++11~)|정렬되지 않은 컨테이너로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.|`==` 구현<br/>[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)|
 
+# (C++11~) const_iterator 지원
+
+기존의 컨터이너에서 [const_iterator](??)를 지원했습니다만, 다른 함수에서 지원하지 않았기에 사용성이 좀 떨어졌습니다.
+
+예를들어 [vector](??)의 `insert()`함수는 다음처럼 `iterator`를 전달받습니다.
+
+```cpp
+iterator insert(iterator position, const value_type& x);
+```
+
+따라서, 다음처럼 `find()`한 [const_iterator](??)를 `insert()`함수에 전달할 수 없습니다.
+
+```cpp
+std::vector<int> v;
+v.push_back(1);
+v.push_back(2);
+
+std::vector<int>::const_iterator const_itr = std::find(v.begin(), v.end(), 1); // v를 수정하지 않으므로 const_iterator로 받습니다.
+v.insert(const_itr, 0); // (X) 컴파일 오류. const_itr 앞에 0을 삽입하려고 했지만 iterator를 전달해야 합니다.
+```
+
+그래서 어쩔수 없이 그냥 `iterator`를 사용할 수 밖에 없었습니다.
+
+```cpp
+std::vector<int> v;
+v.push_back(1);
+v.push_back(2);
+
+std::vector<int>::iterator itr = std::find(v.begin(), v.end(), 1); // (△) 비권장. v를 수정하지 않아 const_iterator로 받고 싶지만, insert 함수에서 사용하기 위해 iterator로 받습니다.
+v.insert(itr, 0); // (△) 비권장. insert() 함수가 const_iterator가 아닌 iterator를 사용하므로, 어쩔수 없이 iterator를 전달합니다.
+```
+
+C++11 부터는 [const_iterator](??) 지원이 강화되어 [cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#vector-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 추가되었고, `insert()`, `erase()`등의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에서 사용할 수 있습니다.
+
+따라서 상기 코드를 다음과 같이 [cbegin(), cend()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#vector-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)과 `insert()`를 이용하여 구현할 수 있습니다.
+
+```cpp
+std::vector<int> v;
+v.push_back(1);
+v.push_back(2);
+
+std::vector<int>::const_iterator const_itr = std::find(v.cbegin(), v.cend(), 1); // v를 수정하지 않으므로 const_iterator로 받습니다.
+v.insert(const_itr, 0); // const_itr 앞에 0을 삽입합니다.
+
+EXPECT_TRUE(v[0] == 0 && v[1] == 1 && v[2] == 2);
+```
+
 # (C++11~) 컨테이너의 initializer_list 초기화
 
 기존에는 컨터이너에 요소들을 추가할때 일일이 추가해야 했습니다.(*[컨테이너 요소 삽입/삭제](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/) 참고*)
@@ -56,7 +103,7 @@ C++11 부터는 컨테이너의 [initializer_list](https://tango1202.github.io/m
 std::vector<int> v{1, 2, 3}; // C++11. 중괄호 초기화로 초기값을 넣을 수 있습니다.
 ```
 
-단, [기존 생성자와 initializer_list 생성자와의 충돌](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EA%B8%B0%EC%A1%B4-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-initializer_list-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%EC%9D%98-%EC%B6%A9%EB%8F%8C)에서 말씀드린 것처럼  [initializer_list](initializer_list)를 사용한 버전이 비교적 우선적으로 선택되기 때문에 [중괄호 초기화](??)시 기존 버전 초기화를 사용할때는 `()`버전을 사용해야 합니다.
+단, [기존 생성자와 initializer_list 생성자와의 충돌](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EA%B8%B0%EC%A1%B4-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-initializer_list-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%EC%9D%98-%EC%B6%A9%EB%8F%8C)에서 말씀드린 것처럼  [initializer_list](initializer_list)를 사용한 버전이 비교적 우선적으로 선택되기 때문에 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)시 기존 버전 초기화를 사용할때는 `()`버전을 사용해야 합니다.
 
 ```cpp
 std::vector<int> v1(2); // 요소 갯수가 2개인 vector 생성
@@ -68,13 +115,13 @@ EXPECT_TRUE(v2.size() == 1 && v2[0] == 2);
 
 # (C++11~) emplace(), emplace_back(), emplace_front(), emplace_hint() 삽입
 
-기존에는 [컨테이너](??) 바깥에서 개체를 생성해서 `push_back()`등으로 컨테이너에 삽입했는데요, 이때 [컨테이너](??)는 삽입된 개체의 복제본을 저장했습니다.
+기존에는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 바깥에서 개체를 생성해서 `push_back()`등으로 컨테이너에 삽입했는데요, 이때 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)는 삽입된 개체의 복제본을 저장했습니다.(*[컨테이너의 원본 관리](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-%EC%9B%90%EB%B3%B8-%EA%B4%80%EB%A6%AC) 참고*)
 
-C++11 부터 [emplace()](??) 계열 함수들이 추가되어 요소 삽입시 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용하여 [컨테이너](??) 내에서 요소 개체를 직접 생성할 수 있으며, 불필요한 복제본을 생성하지 않습니다.
+C++11 부터 [emplace()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85) 계열 함수들이 추가되어 요소 삽입시 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용하여 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 내에서 요소 개체를 직접 생성할 수 있으며, 불필요한 복제본을 생성하지 않습니다.
 
-요소 개체를 [컨테이너](??) 밖에서 생성하던, [컨테이너](??) 안에서 생성하던 생성하는건 똑같다라고 생각하실 수도 있는데요, [컨테이너](??)는 요소 개체의 복제본을 내부에서 관리하므로 다릅니다.
+요소 개체를 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 밖에서 생성하던, [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 안에서 생성하던 생성하는건 똑같다라고 생각하실 수도 있는데요, [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)는 요소 개체의 복제본을 내부에서 관리하므로 다릅니다.
 
-예를들어 다음과 같은 `A`개체를 관리하는 `vector<V>`는 `push_back()`에 전달된 개체의 복제본을 관리하기 때문에 [복사 생성](??)이나 [이동 생성](??)을 합니다. 하지만, `emplace_back()`의 경우는 전달된 [인자](??)로 생성한 개체를 직접 관리하기 때문에 [복사 생성](??)이나 [이동 생성](??)을 하지 않습니다.
+예를 들어 다음과 같은 `A`개체를 관리하는 `vector<V>`는 `push_back()`에 전달된 개체의 복제본을 관리하기 때문에 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)이나 [이동 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)을 합니다. 하지만, `emplace_back()`의 경우는 전달된 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 생성한 개체를 직접 관리하기 때문에 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)이나 [이동 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)을 하지 않습니다.
 
 ```cpp
 class A {
@@ -95,10 +142,12 @@ v.reserve(10); // push_back이나 emplace_back 중 재할당이 없게끔 공간
 A a{1, 2}; 
 v.push_back(a); // (△) 비권장. 복제본을 생성하면서 좌측값이므로 복사 생성 1회.
 v.push_back(A{1, 2}); // (△) 비권장. 복제본을 생성하면서 임시개체인 우측값이므로 이동 생성 1회.
-v.push_back({1, 2}); // (△) 비권장. v.push_back(A{1, 2}); 과 동일
+v.push_back({1, 2}); // (△) 비권장. 중괄호 복사 초기화로 v.push_back(A{1, 2}); 과 동일
 
 v.emplace_back(1, 2); // (O) A개체 생성을 위한 데이터를 전달합니다. 개체 생성 1회
 // v.emplace_back({1, 2}); // (X) 컴파일 오류. A는 {1, 2} 를 전달받는 생성자가 없습니다.
 ```
+
+
 
 
