@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#18. [모던 C++ STL] (C++11~) 동적 메모리 관리"
+title: "#3. [모던 C++ STL] (C++11~) 동적 메모리 관리"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -57,7 +57,7 @@ EXPECT_TRUE(std::launder(ptr)->m_X); // launder를 이용하여 합법적으로 
 delete std::launder(ptr);
 ```
 
-# pointer_traits
+# (C++11~) pointer_traits
 
 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.
 
@@ -69,7 +69,7 @@ delete std::launder(ptr);
 |`template<typename U> using rebind` (C++11~)|`U`에 바인딩되는 타입입니다.|
 |`pointer pointer_to(element_type& r);` (C++11~)|`element_type`을 `pointer` 타입으로 변환합니다.|
 
-# addressof()
+# (C++11~) addressof()
 
 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.
 
@@ -78,7 +78,7 @@ template<typename T>
 T* addressof(T& arg) noexcept;
 ```
 
-# align()
+# (C++11~) align()
 
 `space` 크기의 버퍼 공간에 `size`크기의 개체를 `alignment` 로 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)했을때의 연속된 메모리 포인터인 `ptr`을 구합니다.
 
@@ -102,7 +102,7 @@ void* align(
 |`allocator_arg` (C++11~)|(작성중)|
 |`uses_allocator` (C++11~)|(작성중)|
 |`scoped_allocator_adaptor` (C++11~)|(작성중)|
-|[polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/) (C++17~)|런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 메모리 풀을 손쉽게 만들 수 있습니다.|
+|[polymorphic_allocator](??) (C++17~)|런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 메모리 풀을 손쉽게 만들 수 있습니다.|
 |`uses_allocator_construction_args` (C++20~)|(작성중)|
 |`make_obj_using_allocator` (C++20~)|(작성중)|
 |`uninitialized_construct_using_allocator` (C++20~)|(작성중)|
@@ -124,6 +124,7 @@ C++17 부터는 [uninitialized_move(), uninitialized_default_construct(), uninit
 |`construct_at()` (C++20~)|주어진 메모리 영역 개체의 생성자를 호출합니다.| 
 
 다음 예는 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 `data` 버퍼을 생성하고 3개의 `T` 개체를 생성하고 소멸시키는 예입니다.
+
 ```cpp
 class T {
 private:
@@ -167,7 +168,7 @@ T : Destructor
 T : Destructor
 T : Destructor
 ```
-# 가비지 컬렉터 지원
+# (C++11~) 가비지 컬렉터 지원
 
 |항목|내용|
 |--|--|
@@ -186,21 +187,21 @@ T : Destructor
 |`get_temporary_buffer` (~C++17)|(작성중)|
 |`return_temporary_buffer` (~C++17)|(작성중)|
 
-# 메모리 관리
+# (C++20~) 메모리 관리
 
 |항목|내용|
 |--|--|
 |`to_address()` (C++20~)|(작성중)|
-|`assume_aligned()` (C++20)|(작성중)|
+|`assume_aligned()` (C++20~)|(작성중)|
 
-# 스마트 포인트 어뎁터
+# (C++23~) 스마트 포인트 어뎁터
 
 |항목|내용|
 |--|--|
 |`out_ptr_t`(C++23~)<br>`out_ptr()` (C++23~)|(작성중)|
 |`inout_ptr_t`(C++23~)<br>`inout_ptr()` (C++23~)|(작성중)|
 
-# 명시적 수명 관리
+# (C++23~) 명시적 수명 관리
 
 |항목|내용|
 |--|--|

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [모던 C++ STL] 이터레이터"
+title: "#6. [모던 C++ STL] 이터레이터"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.
+> * (C++11~) [next()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)와 [prev()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
 
 # 이터레이터 기본 요소
 
@@ -32,7 +33,7 @@ sidebar:
 |`front_inserter()`|`front_insert_iterator`를 생성합니다.|
 |`insert_iterator`|컨테이너에 삽입합니다.|
 |`inserter()`|`insert_iterator`를 생성합니다.|
-|`move_iterator` (C++11~)|이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.|
+|[move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%95%84%EB%8B%B5%ED%84%B0) (C++11~)|이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.|
 |`make_move_iterator()` (C++11~)|`move_iterator`를 생성합니다.|
 |`basic_const_iterator` (C++23~)|(작성중)|
 |`const_iterator` (C++23~)|(작성중)|
@@ -44,7 +45,7 @@ sidebar:
 |`counted_iterator` (C++20~)|(작성중)|
 |`unreachable_sentinel_t` (C++20~)|(작성중)|
 
-다음은 `move_iterator` 사용 예입니다. `move_iterater` 를 통해 `v2`를 생성하면, 요소가 이동되는 것을 알 수 있습니다.
+다음은 [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%95%84%EB%8B%B5%ED%84%B0) 사용 예입니다. [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%95%84%EB%8B%B5%ED%84%B0) 를 통해 `v2`를 생성하면, 요소가 이동되는 것을 알 수 있습니다.
 
 ```cpp
 std::vector<std::string> v{"a", "b", "c"};
@@ -55,6 +56,7 @@ EXPECT_TRUE(v[0] == "a" && v[1] == "b" && v[2] == "c"); // 요소가 복사됩�
 std::vector<std::string> v2{std::make_move_iterator(v.begin()), std::make_move_iterator(v.end())};
 EXPECT_TRUE(v[0].empty() && v[1].empty() && v[2].empty()); // 요소가 이동되어 비었습니다.
 ```
+
 # 스트림 이터레이터
 
 |항목|내용|
@@ -70,12 +72,12 @@ EXPECT_TRUE(v[0].empty() && v[1].empty() && v[2].empty()); // 요소가 이동�
 |--|--|
 |`advance()`|이터레이터를 이동시킵니다.|
 |`distance()`|이터레이터간 거리를 구합니다.|
-|`next()` (C++11~)|뒤로 이동된 이터레이터를 리턴합니다.|
-|`prev()` (C++11~)|앞으로 이동된 이터레이터를 리턴합니다.|
+|[next()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0) (C++11~)|뒤로 이동된 이터레이터를 리턴합니다.|
+|[prev()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0) (C++11~)|앞으로 이동된 이터레이터를 리턴합니다.|
 
-다음 예제는 `advance()`와 `next()`, `prev()` 의 차이를 보여줍니다.
+다음 예제는 `advance()`와 [next()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0), [prev()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)의 차이를 보여줍니다.
 
-`advance()` 은 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달한 이터레이터를 직접 수정하지만, `next()`와 `prev()`는 수정하지 않습니다.
+`advance()` 은 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달한 이터레이터를 직접 수정하지만, [next()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)와 [prev()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)는 수정하지 않습니다.
 
 ```cpp
 std::vector<int> v{1, 2, 3, 4};
@@ -88,7 +90,7 @@ EXPECT_TRUE(*std::next(itr, 2) == 3 && *itr == 1); // 뒤로 2번 이동. itr은
 EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. itr은 수정되지 않음
 ```
 
-# 범위 접근
+# (C++11~) 범위 접근
 
 |항목|내용|
 |--|--|
@@ -100,14 +102,14 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 |`empty()` (C++17~)|컨테이너가 비었는지 검사합니다.|
 |`data()` (C++17~)|컨테이너가 관리하는 메모리 블록을 리턴합니다.|
 
-# 이터레이터 사용자 정의
+# (C++20~) 이터레이터 사용자 정의
 
 |항목|내용|
 |--|--|
 |`iter_move()` (C++20~)|(작성중)|
 |`iter_swap()` (C++20~)|(작성중)|
 
-# 이터레이터 컨셉 
+# (C++20~) 이터레이터 컨셉 
 
 |항목|내용|
 |--|--|
@@ -125,7 +127,7 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 |`random_access_iterator` (C++20~)|(작성중)| 
 |`contiguous_iterator` (C++20~)|(작성중)|  
 
-# 이터레이터 연관 타입
+# (C++20~) 이터레이터 연관 타입
 
 |항목|내용|
 |--|--|
@@ -133,7 +135,7 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 |`iter_value_t` (C++20~)<br/>`iter_reference_t` (C++20~)<br/>`iter_const_reference_t` (C++23~)<br/>`iter_difference_t` (C++20~)<br/>`iter_rvalue_reference_t` (C++20~)<br/>`iter_common_reference_t` (C++20~)<br/>|(작성중)|
 
  
-# 알고리즘 컨셉 및 유틸리티
+# (C++20~) 알고리즘 컨셉 및 유틸리티
 
 |항목|내용|
 |--|--|

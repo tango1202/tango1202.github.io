@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [모던 C++ STL] 문자열, (C++11~) u16string, u32string, (C++17~) string_view, 숫자/문자열 변환(to_chars(), from_chars())"
+title: "#9. [모던 C++ STL] 문자열, (C++11~) u16string, u32string, (C++17~) string_view, 숫자/문자열 변환(to_chars(), from_chars())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -299,7 +299,7 @@ static const size_type npos = -1;
 |`copy()`|O|`string`에서 하위 문자열을 문자 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|
 |`getline()`|O|IO 스트림으로부터 데이터를 읽습니다.|
 
-# 숫자 변환
+# (C++11~) 숫자 변환
 
 |항목|내용|
 |--|--|

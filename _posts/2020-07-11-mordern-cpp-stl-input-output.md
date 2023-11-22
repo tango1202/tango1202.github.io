@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [모던 C++ STL] 입출력"
+title: "#11. [모던 C++ STL] 입출력"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -101,7 +101,7 @@ sidebar:
 |`ostrstream` (~C++98)|(작성중)|
 |`strstream` (~C++98)|(작성중)|
 
-# 동기화 출력
+# (C++20~) 동기화 출력
 
 |항목|내용|
 |--|--|
@@ -199,14 +199,14 @@ sidebar:
 |`streamsize`|(작성중)|
 |`fpos`|스트림이나 파일에서의 절대 위치를 나타냅니다.<br/>* `streampos` : `fpos<char_traits<char>::state_type>`<br/>* `wstreampos` : `fpos<char_traits<wchar_t>::state_type>`<br/>* `u8streampos` (C++20~) : `fpos<char_traits<char8_t>::state_type>`<br/>* `u16streampos` (C++11~) : `fpos<char_traits<char16_t>::state_type>`<br/>* `u32streampos` (C++11~) : `fpos<char_traits<char32_t>::state_type>`|
 
-# 예외
+# (C++11~) 예외
 
 |항목|내용|
 |--|--|
 |`io_errc` (C++11~)|(작성중)|
 |`iostream_category` (C++11~)|(작성중)|
 
-# 프린트 함수
+# (C++23~) 프린트 함수
 
 |항목|내용|
 |--|--|

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [모던 C++ STL] 함수자"
+title: "#8. [모던 C++ STL] 함수자"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -87,7 +87,7 @@ EXPECT_TRUE(IsDifferent(1, 1, 1) == false); // 인자가 여러개여도 됩니�
 |`copyable_function` (C++26~)|(작성중)|
 |`function_ref` (C++26~)|(작성중)|
 
-# 참조 래퍼
+# (C++11~) 참조 래퍼
 
 |항목|내용|
 |--|--|
@@ -126,7 +126,7 @@ if (itr != data.end()) {
 }
 ```
 
-# Identity
+# (C++23~) Identity
 
 |항목|내용|
 |--|--|

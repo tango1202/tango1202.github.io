@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [모던 C++ STL] 컨테이너"
+title: "#5. [모던 C++ STL] 컨테이너"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -11,13 +11,11 @@ sidebar:
 > * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.
 > * (C++11~) [forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.
 > * (C++11~) [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 컨테이너로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
-
-
-
-
-
-
-> * (C++14~) [연관 컨테이너의 이종 탐색](??)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다. 
+> * (C++11~) [const_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90) 지원이 강화되어 [cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#vector-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 추가되었고, `insert()`, `erase()`등의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에서 사용할 수 있습니다.
+> * (C++11~) [컨테이너의 initializer_list 초기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-initializer_list-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 초기값 입력이 간편해 졌습니다. 
+> * (C++11~) [emplace() 계열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)들이 추가되어 요소 삽입시 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용하여 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 내에서 요소 개체를 직접 생성할 수 있으며, 불필요한 복제본을 생성하지 않습니다.
+> * (C++14~) [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c14-%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-%EC%9D%B4%EC%A2%85-%ED%83%90%EC%83%89)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다. 
+> * (C++20~) 대부분의 멤버 함수들이 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 개선되었습니다.
 
 # 시퀀스 컨테이너
 
@@ -48,15 +46,15 @@ sidebar:
 
 # (C++11~) const_iterator 지원
 
-기존의 컨터이너에서 [const_iterator](??)를 지원했습니다만, 다른 함수에서 지원하지 않았기에 사용성이 좀 떨어졌습니다.
+기존의 컨테이너에서 [const_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90)를 지원했습니다만, 다른 함수에서 지원하지 않았기에 사용성이 좀 떨어졌습니다.
 
-예를들어 [vector](??)의 `insert()`함수는 다음처럼 `iterator`를 전달받습니다.
+예를들어 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 `insert()`함수는 다음처럼 `iterator`를 전달받습니다.
 
 ```cpp
 iterator insert(iterator position, const value_type& x);
 ```
 
-따라서, 다음처럼 `find()`한 [const_iterator](??)를 `insert()`함수에 전달할 수 없습니다.
+따라서, 다음처럼 `find()`한 [const_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90)를 `insert()`함수에 전달할 수 없습니다.
 
 ```cpp
 std::vector<int> v;
@@ -78,7 +76,7 @@ std::vector<int>::iterator itr = std::find(v.begin(), v.end(), 1); // (△) 비�
 v.insert(itr, 0); // (△) 비권장. insert() 함수가 const_iterator가 아닌 iterator를 사용하므로, 어쩔수 없이 iterator를 전달합니다.
 ```
 
-C++11 부터는 [const_iterator](??) 지원이 강화되어 [cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#vector-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 추가되었고, `insert()`, `erase()`등의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에서 사용할 수 있습니다.
+C++11 부터는 [const_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90) 지원이 강화되어 [cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#vector-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 추가되었고, `insert()`, `erase()`등의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에서 사용할 수 있습니다.
 
 따라서 상기 코드를 다음과 같이 [cbegin(), cend()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#vector-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)과 `insert()`를 이용하여 구현할 수 있습니다.
 
@@ -124,7 +122,7 @@ EXPECT_TRUE(v2.size() == 1 && v2[0] == 2);
 
 기존에는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 바깥에서 개체를 생성해서 `push_back()`등으로 컨테이너에 삽입했는데요, 이때 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)는 삽입된 개체의 복제본을 저장했습니다.(*[컨테이너의 원본 관리](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-%EC%9B%90%EB%B3%B8-%EA%B4%80%EB%A6%AC) 참고*)
 
-C++11 부터 [emplace()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85) 계열 함수들이 추가되어 요소 삽입시 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용하여 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 내에서 요소 개체를 직접 생성할 수 있으며, 불필요한 복제본을 생성하지 않습니다.
+C++11 부터는 [emplace() 계열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)들이 추가되어 요소 삽입시 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용하여 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 내에서 요소 개체를 직접 생성할 수 있으며, 불필요한 복제본을 생성하지 않습니다.
 
 요소 개체를 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 밖에서 생성하던, [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 안에서 생성하던 생성하는건 똑같다라고 생각하실 수도 있는데요, [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)는 요소 개체의 복제본을 내부에서 관리하므로 다릅니다.
 
@@ -188,7 +186,7 @@ EXPECT_TRUE((*result).m_Name == "Lee" && (*result).m_Val == 10);
 
 이때 탐색할 `"Lee"`만 알고 있고, `10`은 모르고 있다면, 그냥 요소들을 다 뒤저서 값비교를 해야 합니다. [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 장점을 살리지 못하니, 이럴게 사용할 바엔 차라리 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 낫죠. 
 
-C++14 부터는 [연관 컨테이너의 이종 탐색](??)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.
+C++14 부터는 [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c14-%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-%EC%9D%B4%EC%A2%85-%ED%83%90%EC%83%89)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.
 
 1. 이종 타입에 대해 비교할 수 있게 정적 비교 함수를 제공합니다.
 2. 컨테이너 선언시 `find()` 에서 **Key** 타입외에 다른 것을 사용하려면 `less<>`를 사용합니다.
@@ -229,3 +227,8 @@ auto result{
 
 EXPECT_TRUE((*result).m_Name == "Lee" && (*result).m_Val == 10);
 ```
+
+# (C++20~) 컨테이너 멤버 함수의 constexpr 개선
+
+대부분의 멤버 함수들이 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 개선되었습니다.
+(작성중)

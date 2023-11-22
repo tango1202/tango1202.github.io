@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++ STL] 숫자"
+title: "#10. [모던 C++ STL] 숫자"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -124,7 +124,7 @@ sidebar:
 |`acosh(), acoshf(), acoshl()` (C++11~)|(작성중)|
 |`atanh(), atanhf(), atanhl()` (C++11~)|(작성중)|
 
-**에러 및 감마 함수**
+**(C++11~) 에러 및 감마 함수**
 
 |항목|내용|
 |--|--|
@@ -152,7 +152,7 @@ sidebar:
 |`nextafter(), nextafterf(), nextafterl(),nexttoward(), nexttowardf(), nexttowardl()` (C++11~)|(작성중)| 
 |`copysign(), copysignf(), copysignl()` (C++11~)|(작성중)|
 
-**분류 및 비교 함수**
+**(C++11~) 분류 및 비교 함수**
 
 |항목|내용|
 |--|--|
@@ -169,7 +169,7 @@ sidebar:
 |`isunordered()` (C++11~)|(작성중)| 
 |`islessgreater()` (C++11~)|(작성중)|
 
-**매크로 상수**
+**(C++11~) 매크로 상수**
 
 |항목|내용|
 |--|--|
@@ -179,7 +179,7 @@ sidebar:
 |`math_errhandling, MATH_ERRNO, MATH_ERREXCEPT` (C++11~)|(작성중)|
 |`FP_NORMAL, FP_SUBNORMAL, FP_ZERO, FP_INFINITE, FP_NAN` (C++11~)|(작성중)|
 
-# 부동 소수점 환경
+# (C++11~) 부동 소수점 환경
 
 |항목|내용|
 |--|--|
@@ -193,7 +193,7 @@ sidebar:
 |`FE_DOWNWARD, FE_TONEAREST, FE_TOWARDZERO, FE_UPWARD` (C++11~)|(작성중)|
 |`FE_DFL_ENV` (C++11~)|(작성중)|
 
-# 특수 수학 함수
+# (C++17~) 특수 수학 함수
 
 |항목|내용|
 |--|--|
@@ -219,7 +219,7 @@ sidebar:
 |`sph_legendre(), sph_legendref(), sph_legendrel()` (C++17~)|(작성중)|
 |`sph_neumann(), sph_neumannf(), sph_neumannl()` (C++17~)|(작성중)|
 
-# 수학 상수
+# (C++20~) 수학 상수
 
 |항목|내용|
 |--|--|
@@ -237,7 +237,7 @@ sidebar:
 |`egamma_v` (C++20~)|(작성중)|
 |`phi_v` (C++20~)|(작성중)|
 
-# 비트 조작
+# (C++20~) 비트 조작
 
 |항목|내용|
 |--|--|
@@ -264,7 +264,7 @@ sidebar:
 |`srand()`|(작성중)|
 |`RAND_MAX`|(작성중)|
 
-# 난수 생성기
+# (C++11~) 난수 생성기
 
 |항목|내용|
 |--|--|

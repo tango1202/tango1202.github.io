@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [모던 C++ STL] 현지화"
+title: "#13. [모던 C++ STL] 현지화"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -85,7 +85,7 @@ sidebar:
 |`toupper()`|(작성중)|
 |`tolower()`|(작성중)|
 
-# 문자열 현지화 변환
+# (C++11~) 문자열 현지화 변환
 
 |항목|내용|
 |--|--|

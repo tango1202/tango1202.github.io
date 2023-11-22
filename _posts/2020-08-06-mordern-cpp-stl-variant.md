@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#37. [모던 C++ STL] (C++17~) variant"
+title: "#36. [모던 C++ STL] (C++17~) variant"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

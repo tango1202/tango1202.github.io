@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#39. [모던 C++ STL] (C++17~) polymorphic_allocator 와 메모리 리소스"
+title: "#38. [모던 C++ STL] (C++17~) polymorphic_allocator 와 메모리 리소스"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/)는 런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 메모리 풀을 손쉽게 만들 수 있습니다.
+> * (C++17~) [polymorphic_allocator](??)는 런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 메모리 풀을 손쉽게 만들 수 있습니다.
 
 # 개요
 
-[polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/)는 런타임 다형성을 지원하는 할당자로서 [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 이용합니다.
+[polymorphic_allocator](??)는 런타임 다형성을 지원하는 할당자로서 [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 이용합니다.
 
 `<memory_resource>` 헤더 파일을 포함해야 하며, `std::pmr` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 사용합니다.
 

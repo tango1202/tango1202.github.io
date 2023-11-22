@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++ STL] (C++17~) 파일 시스템"
+title: "#12. [모던 C++ STL] (C++17~) 파일 시스템"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -14,7 +14,7 @@ C++17 부터는 경로, 파일, 디렉토리를 조작하는 [파일 시스템 �
 
 `<filesystem>` 헤더 파일을 포함해야 하며, `std::filesystem` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 사용합니다.
 
-# 경로 문자열
+# (C++17~) 경로 문자열
 
 |항목|내용|
 |--|--|
@@ -24,7 +24,7 @@ C++17 부터는 경로, 파일, 디렉토리를 조작하는 [파일 시스템 �
 |`relative(path, base)` (C++17~)|`path`가 `base`의 하위 경로라면, `base`의 상대 경로를 리턴합니다.|
 |`proximate(path, base)` (C++17~)|(작성중)| 
 
-# 경로 탐색
+# (C++17~) 경로 탐색
 
 |항목|내용|
 |--|--|
@@ -36,7 +36,7 @@ C++17 부터는 경로, 파일, 디렉토리를 조작하는 [파일 시스템 �
 |`recursive_directory_iterator` (C++17~)|하위 디렉토리까지 디렉토리내의 파일들을 열거합니다.|
 |`directory_options` (C++17~)|`directory_iterator`에 사용되는 옵션입니다.|  
 
-# 파일 정보
+# (C++17~) 파일 정보
 
 |항목|내용|
 |--|--|
@@ -53,7 +53,7 @@ C++17 부터는 경로, 파일, 디렉토리를 조작하는 [파일 시스템 �
 |`perm_options` (C++17~)|` permissions()`함수 실행에 사용되는 옵션입니다.|
 |`directory_entry` (C++17~)|디렉토리의 추가 정보를 제공합니다.|
 
-# 파일 복사/수정/삭제
+# (C++17~) 파일 복사/수정/삭제
 
 |항목|내용|
 |--|--|
@@ -71,13 +71,13 @@ C++17 부터는 경로, 파일, 디렉토리를 조작하는 [파일 시스템 �
 |`rename(old, new)` (C++17~)|파일의 이름을 변경합니다.|
 |`resize_file(path, new_size)` (C++17~)|파일의 크기를 변경합니다.|
 
-# 예외
+# (C++17~) 예외
 
 |항목|내용|
 |--|--|
 |`filesystem_error` (C++17~)|파일 시스템 처리에서 오류가 발생했습니다.|
 
-# 파일 타입
+# (C++17~) 파일 타입
 
 |항목|내용|
 |--|--|

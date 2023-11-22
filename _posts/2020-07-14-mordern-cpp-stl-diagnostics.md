@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++ STL] 진단"
+title: "#14. [모던 C++ STL] 진단"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -103,7 +103,7 @@ sidebar:
 |`throw_with_nested()` (C++11~)|(작성중)|  
 |`rethrow_if_nested()` (C++11~)|(작성중)|  
 
-# 시스템 오류
+# (C++11~) 시스템 오류
 
 |항목|내용|
 |--|--|
@@ -115,7 +115,7 @@ sidebar:
 |`error_code` (C++11~)|(작성중)| 
 |`system_error` (C++11~)|(작성중)|
 
-# Stacktrace
+# (C++23~) Stacktrace
 
 |항목|내용|
 |--|--|
