@@ -90,7 +90,7 @@ sidebar:
 |--|--|
 |`errorno`|오류 번호 입니다. [strerror()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#strerror)를 이용하여 오류 메시지를 확인할 수 있습니다. POSIX와 호환되며 `<cerrono>` 에 [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)로 정의되어 있습니다.<br/>자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/error/errno_macros)을 참고하기 바랍니다.|
 
-# 예외 캡쳐 및 저장
+# (C++11~) 예외 캡쳐 및 저장
 
 |항목|내용|
 |--|--|

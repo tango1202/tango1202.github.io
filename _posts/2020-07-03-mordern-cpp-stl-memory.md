@@ -102,7 +102,7 @@ void* align(
 |`allocator_arg` (C++11~)|(작성중)|
 |`uses_allocator` (C++11~)|(작성중)|
 |`scoped_allocator_adaptor` (C++11~)|(작성중)|
-|[polymorphic_allocator](??) (C++17~)|런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 메모리 풀을 손쉽게 만들 수 있습니다.|
+|[polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/) (C++17~)|런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 메모리 풀을 손쉽게 만들 수 있습니다.|
 |`uses_allocator_construction_args` (C++20~)|(작성중)|
 |`make_obj_using_allocator` (C++20~)|(작성중)|
 |`uninitialized_construct_using_allocator` (C++20~)|(작성중)|
