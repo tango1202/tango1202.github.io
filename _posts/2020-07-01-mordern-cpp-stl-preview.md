@@ -230,9 +230,9 @@ _back() 등*)
 |[예외 처리 실패](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%88%EC%99%B8-%EC%B2%98%EB%A6%AC-%EC%8B%A4%ED%8C%A8)|예외를 `catch()`하지 않았을때 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출하여 `terminate_handler`를 호출합니다.|
 |[동적 예외 사양 실패](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91-%EC%8B%A4%ED%8C%A8)|동적 예외 사양에서 명시한 예외 이외의 예외가 발생할때 [unexpected()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)를 호출하여 `unexpected_handler`를 호출합니다.<br/><br/>**(C++11~)**<br/>[deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.|
 |[오류 번호](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8)|`<cerrono>` 에 [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)로 정의되어 있습니다.<br/>자세한 내용은 [cppreference.com](https://en.cppreference.com/w/cpp/error/errno_macros)을 참고하기 바랍니다.|
-|[예외 캡쳐 및 저장](??) (C++11~)|(작성중)|
+|[예외 캡쳐 및 저장](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#c11-%EC%98%88%EC%99%B8-%EC%BA%A1%EC%B3%90-%EB%B0%8F-%EC%A0%80%EC%9E%A5) (C++11~)|(작성중)|
 |[시스템 오류](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98)(C++11~)|(작성중)|
-|[Stacktrace](??) (C++23~)|(작성중)|
+|[Stacktrace](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#c23-stacktrace) (C++23~)|(작성중)|
 
 # deprecate/remove
 
