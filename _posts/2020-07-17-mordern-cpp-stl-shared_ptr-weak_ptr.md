@@ -790,3 +790,7 @@ std::unique_ptr<int[]> ptr{new int[3]{0, 1, 2}}; // 배열 개체. delete[] 를 
 EXPECT_TRUE(ptr[0] == 0 && ptr[1] == 1 && ptr[2] == 2);
 ```
 
+# (C++17~) weak_from_this
+
+enable_shared_from_this의 멤버 함수 추가
+(작성중)
