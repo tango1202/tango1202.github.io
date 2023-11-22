@@ -179,7 +179,7 @@ EXPECT_TRUE(10 < T_20{20}); // int op T_20. T_20 > 10으로 변경후 int를 암
 
 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 [default](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete)로 정의할 수 있습니다. 이때에는 `==`도 컴파일러가 같이 정의해 줍니다. 
 
-컴파일러는 각 멤버 변수의 선언 순서대로 비교합니다. 이때 컴파일러에 따라 비교 속도 최적화를 위해 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같은 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)는 각 요소의 대소 비교 전에 크기에 대한 비교를 선행할 수 있습니다.  
+컴파일러는 각 멤버 변수의 선언 순서대로 비교합니다. 이때 컴파일러에 따라 비교 속도 최적화를 위해 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같은 [컨테이너](??)는 각 요소의 대소 비교 전에 크기에 대한 비교를 선행할 수 있습니다.  
 
 리턴 타입은 3개의 [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)(*`strong_ordering`, `weak_ordering`, `partial_ordering`*) 중 하나입니다. 컴파일러 판단을 그대로 따르기 위해 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용하기도 합니다.(*(C++14~) [리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0)이 가능하여 [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85) 참고*)
 

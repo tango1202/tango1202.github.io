@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++ STL] 입출력"
+title: "#10. [모던 C++ STL] 입출력"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

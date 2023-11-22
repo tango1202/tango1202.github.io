@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [모던 C++ STL] 함수자"
+title: "#7. [모던 C++ STL] 함수자"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

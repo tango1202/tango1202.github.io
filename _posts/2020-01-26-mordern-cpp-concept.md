@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#26. [모던 C++] (C++20~) concept, requires"
+title: "#26. [모던 C++] (C++20~) 컨셉(concept), 요구사항(requires)"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

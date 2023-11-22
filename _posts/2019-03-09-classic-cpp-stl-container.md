@@ -67,12 +67,12 @@ class Node {
 
 |항목|내용|
 |--|--|
-|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)|타입이 동일한 요소를 연속적인 메모리 공간에 관리<br/>[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)과 유사<br/>요소 삽입/삭제에 비효율적임<br/>랜덤 접근 지원|
-|`list`|타입이 동일한 요소를 연결된 리스트로 관리<br/>요소 삽입/삭제에 최적화<br/>양방향 순차 접근 지원, 랜덤 접근 불가|
-|`queue`|타입이 동일한 요소를 선입선출 방식으로 관리<br/>`front()`시 선입된 요소 반환<br/>내부적으론 `deque`으로 구현됨|
-|`stack`|타입이 동일한 요소를 후입선출 방식으로 관리|
-|`deque`|양방향에서 입출력이 가능한 `queue`. 앞과 뒤에서 요소를 넣거나 뺄 수 있음<br/>양쪽 입력/삭제가 `list`와 같은 효율<br/>랜덤 접근은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같은 효율<br/>중간 입출력은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같이 비효율적임|
-|`priority_queue`|우선 순위에 따라 정렬된 `queue`<br/>`top()`시 가장 큰 요소 반환<br/>내부적으론 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)로 구현됨|
+|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)|타입이 동일한 요소를 연속적인 메모리 공간에 관리합니다.<br/>[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)과 유사하며, 요소 삽입/삭제에 비효율적이고, 랜덤 접근을  지원합니다.|
+|`list`|타입이 동일한 요소를 연결된 리스트로 관리합니다.<br/>요소 삽입/삭제에 최적화되어 있으며, 양방향 순차 접근 지원하고, 랜덤 접근은 불가능합니다.|
+|`queue`|타입이 동일한 요소를 선입선출 방식으로 관리합니다.<br/>`front()`시 선입된 요소 반환합니다.<br/>내부적으론 `deque`으로 구현됩니다.|
+|`stack`|타입이 동일한 요소를 후입선출 방식으로 관리합니다.|
+|`deque`|양방향에서 입출력이 가능한 `queue`입니다. 앞과 뒤에서 요소를 넣거나 뺄 수 있습니다.<br/>양쪽 입력/삭제가 `list`와 효율이 같으며 랜덤 접근은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 효율이 같습니다.<br/>중간 입출력은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같이 비효율적입니다.|
+|`priority_queue`|우선 순위에 따라 정렬된 `queue`입니다.<br/>`top()`시 가장 큰 요소 반환하며 내부적으론 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)로 구현됩니다.|
 
 # 연관 컨테이너
 
@@ -80,10 +80,10 @@ class Node {
 
 |항목|내용|**Key** 조건|
 |--|--|--|
-|`map`|**Key** - **Value** 쌍으로 관리하며,  [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 사용함.([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 참고)<br/>이진 트리 탐색으로 요소 탐색(O(logN))<br/>요소 삽입시 `<`에 의해 정렬됨<br/>삽입되는 **Key**는 유일함<br/>첨자 연산 지원|`<` 구현|
-|`multimap`|`map`과 동일하며 중복 **Key**허용<br/>첨자 연산 지원 안함|`<` 구현|
-|`set`|**Key**만 요소로 삽입됨<br/>이진 트리 탐색으로 요소 탐색(O(logN))<br/>요소 삽입시 `<`에 의해 정렬됨<br/>삽입되는 **Key**는 유일함|`<` 구현|
-|`multiset`|`set`과 동일하며 중복 **Key**허용|`<` 구현|
+|`map`|**Key** - **Value** 쌍으로 관리하며, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 요소로 사용합니다.(*[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 참고*)<br/>이진 트리 탐색으로 요소를 탐색(O(logN))하며 요소 삽입시 `<`에 의해 정렬됩니다. 삽입되는 **Key**는 유일하며, 첨자 연산이 지원됩니다.|`<` 구현|
+|`multimap`|`map`과 동일합니다.<br/>중복 **Key**를 허용하며, 첨자 연산은 지원하지 않습니다.|`<` 구현|
+|`set`|**Key**만 요소로 사용합니다.<br/>이진 트리 탐색으로 요소 탐색(O(logN))하며, 요소 삽입시 `<`에 의해 정렬됩니다. 삽입되는 **Key**는 유일합니다.|`<` 구현|
+|`multiset`|`set`과 동일합니다.<br/>중복 **Key**허용합니다.|`<` 구현|
 
 
 > *(C++14~) [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-heterogeneous-lookup/)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.*

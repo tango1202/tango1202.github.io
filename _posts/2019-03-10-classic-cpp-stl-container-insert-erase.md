@@ -123,3 +123,33 @@ EXPECT_TRUE((*(m.begin())).first == 1 && (*(m.begin())).second == "data1");
 EXPECT_TRUE(m.size() == 1); // 요소 갯수 1개
 EXPECT_TRUE((*eraseResult).first == 1); // 삭제한 요소의 다음 요소를 리턴함
 ```
+
+# 컨테이너의 원본 관리
+
+컨테이너는 삽입된 요소의 복제본을 관리합니다. 만약 원본 개체를 관리하고 싶다면, 포인터로 만들어야 합니다. 그러면 요소가 복제본을 만들더라도 원본 개체 포인터의 복제본이며, 어짜피 동일한 원본 개체를 가리키니까요.
+
+```cpp
+class A {
+    int m_Val;
+public:
+    explicit A(int val) : m_Val(val) {}
+    int GetVal() const {return m_Val;}
+    void SetVal(int val) {m_Val = val;}
+};
+
+std::vector<A> v;
+A a(1);
+
+v.push_back(a);
+EXPECT_TRUE(a.GetVal() == v[0].GetVal());
+
+a.SetVal(2);
+EXPECT_TRUE(a.GetVal() != v[0].GetVal()); // vector는 복제본을 저장했기 때문에 a를 수정했다고 값이 변하지는 않습니다.
+
+std::vector<A*> ptrVactor; // 포인터를 관리합니다.
+ptrVector.push_back(&a);
+EXPECT_TRUE(a.GetVal() == v[0]->GetVal());
+
+a.SetVal(3);
+EXPECT_TRUE(a.GetVal() == v[0]->GetVal()); // vector는 포인터의 복제본을 저장했기 때문에 동일한 a를 가리킵니다.
+```
