@@ -15,7 +15,7 @@ sidebar:
 > * (C++11~) `allocator_traits`, `allocator_arg`, `uses_allocator`, `scoped_allocator_adaptor`가 추가되었습니다. 
 > * (C++11~) `uninitialized_copy_n`이 추가되었습니다. 
 > * (C++11~) [가비지 컬렉터 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-%EA%B0%80%EB%B9%84%EC%A7%80-%EC%BB%AC%EB%A0%89%ED%84%B0-%EC%A7%80%EC%9B%90)이 추가되었습니다. 
-> * (C++17~) `aligned_alloc()`이 추가되었습니다.
+> * (C++17~) `aligned_alloc()`은 정렬된 메모리를 할당합니다.
 > * (C++17~) `align_val_t`가 추가되었습니다.
 > * (C++17~) [launder()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%A0%80%EC%88%98%EC%A4%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)는 [위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)으로 생성된 개체의 합법적인 포인터를 얻습니다.
 > * (C++17~) [polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/)는 런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 메모리 풀을 손쉽게 만들 수 있습니다.

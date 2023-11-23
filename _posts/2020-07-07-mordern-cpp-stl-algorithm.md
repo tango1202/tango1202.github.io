@@ -8,13 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) `all_of()`, `any_of()`, `none_of()`가 추가되었습니다.
+> * (C++11~) `all_of()`, `any_of()`, `none_of()`, `find_if_not()`이 추가되었습니다.
 > * (C++11~) `minmax()`, `minmax_element()`가 추가되었습니다.
 > * (C++11~) `is_heap()`, `is_heap_until()`이 추가되었습니다.
 > * (C++11~) `iota()`가 추가되었습니다.
-> * (C++11~) `find_if_not()`가 추가되었습니다.
-> * (C++11~) `copy_if(), copy_n()`이 추가되었습니다.
-> * (C++11~) `shuffle()`이 추가되었습니다.
+> * (C++11~) `copy_if(), copy_n()`, `shuffle()`이 추가되었습니다.
 > * (C++11~) `move()`, `move_backward()`가 추가되었습니다.
 > * (C++11~) `is_partitioned()`, `partition_copy()`, `partition_point()`가 추가되었습니다.
 > * (C++11~) `is_sorted()`, `is_sorted_until()`이 추가되었습니다.
