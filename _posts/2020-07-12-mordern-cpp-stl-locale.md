@@ -8,6 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
+> * (C++11~) `isblank()`가 추가되었습니다.
+> * (C++11~C++17) [문자열 현지화 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#c11-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%98%84%EC%A7%80%ED%99%94-%EB%B3%80%ED%99%98)(`wstring_convert`, `wbuffer_convert`, `codecvt_utf8`, `codecvt_utf16`, `codecvt_utf8_utf16`, `codecvt_mode`)이 기존 구현이 정상적으로 되었는지 확인되지 않아 deprecate 되었습니다.
+
 # C스타일 Locale
 
 |항목|내용|

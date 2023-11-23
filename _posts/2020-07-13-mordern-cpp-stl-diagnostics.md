@@ -8,6 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
+> * (C++11~) [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 이 deprecate 되면서 [unexpected()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)도 함께 deprecate 되었습니다.
+> * (C++11~) `future_error`, `regex_error`, `system_error`, `ios_base::failure`, [bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr), [bad_function_call](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bad_function_call), `bad_array_new_length`가 추가되었습니다.
+> * (C++11~) `get_terminate()`가 추가되었습니다.
+> * (C++11~) [예외 캡쳐 및 저장](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#c11-%EC%98%88%EC%99%B8-%EC%BA%A1%EC%B3%90-%EB%B0%8F-%EC%A0%80%EC%9E%A5)이 추가되었습니다.
+> * (C++11~) [시스템 오류](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98)가 추가되었습니다.
+> * (C++17~) [filesystem_error](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EC%98%88%EC%99%B8), [bad_any_cast](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/), [bad_optional_access](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/), [bad_variant_access](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되었습니다.
+
 # 진단
 
 |항목|내용|

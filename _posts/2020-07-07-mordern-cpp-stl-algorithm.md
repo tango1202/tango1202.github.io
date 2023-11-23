@@ -8,6 +8,27 @@ sidebar:
     nav: "docs"
 ---
 
+> * (C++11~) `all_of()`, `any_of()`, `none_of()`가 추가되었습니다.
+> * (C++11~) `minmax()`, `minmax_element()`가 추가되었습니다.
+> * (C++11~) `is_heap()`, `is_heap_until()`이 추가되었습니다.
+> * (C++11~) `iota()`가 추가되었습니다.
+> * (C++11~) `find_if_not()`가 추가되었습니다.
+> * (C++11~) `copy_if(), copy_n()`이 추가되었습니다.
+> * (C++11~) `shuffle()`이 추가되었습니다.
+> * (C++11~) `move()`, `move_backward()`가 추가되었습니다.
+> * (C++11~) `is_partitioned()`, `partition_copy()`, `partition_point()`가 추가되었습니다.
+> * (C++11~) `is_sorted()`, `is_sorted_until()`이 추가되었습니다.
+> * (C++11~) `is_permutation()`이 추가되었습니다.
+> * (C++17~) `sample()`은 시퀀스에서 요소를 랜덤으로 추출합니다.
+> * (C++17~) `clamp()`는 주어진 값을 최대/최소 범위로 조정된 값으로 리턴합니다.
+> * (C++17~) `for_each_n()`이 추가되었습니다.
+> * (C++17~) `gcd()`는 `m`과 `n`의 최대 공약수를 계산합니다.
+> * (C++17~) `lcm()`은 `m`과 `n`의 최소 공배수를 계산합니다.
+> * (C++17~) [reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)는 임의의 순서로 [accumulate()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)를 처리합니다.
+> * (C++17~) [transform_reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)은 [inner_product()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)를 병렬로 적용합니다.
+> * (C++17~) [inclusive_scan(), exclusive_scan(), transform_inclusive_scan(), transform_exclusive_scan()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)은 `partial_sum()`을 병렬로 적용합니다.
+> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 오버로딩 버전이 추가되었고, [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
+
 # C스타일 알고리즘 함수
 
 |항목|내용|
@@ -153,8 +174,8 @@ EXPECT_TRUE(std::reduce(v.begin(), v.end(), init) == init + v[3] + v[2] + v[0] +
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/80a6815c-bb8b-4c40-a468-c669a2ef90f8)
 
-순서를 지키지 않는 `reduce()`는 병렬화할 여지가 있습니다.
+순서를 지키지 않는 `reduce()`는 병렬화할 여지가 있습니다. `3`과 `7`은 동시에 수행해도 결과에 영향이 없으니까요.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bd1f572d-e27c-4a11-b656-3d3bce062153)
 
-
+C++17 부터는 [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 오버로딩 버전이 추가되었고, [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
