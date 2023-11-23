@@ -8,12 +8,16 @@ sidebar:
     nav: "docs"
 ---
 
-> * `string`은 [바이트 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)을 지원합니다.
-> * `wstring`은 [와이드 문자열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 지원합니다.
 > * (C++11~)  [UTF-16 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
 > * (C++11~) [UTF-32 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+> * (C++11~) `isblank()`가 추가되었습니다.
+> * (C++11~) `atoll()`, `strtoll()`, `strtoull()`, `strtoimax()`, `strtoumax()`가 추가되었습니다.
+> * (C++11~) `c8rtomb()`, `mbrtoc16()`, `mbrtoc32()`, `c32rtomb()`가 추가되었습니다.
+> * (C++11~) `__STDC_UTF_16__`, `__STDC_UTF_32__`가 추가되었습니다.
+> * (C++11~) [숫자 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c11-%EC%88%AB%EC%9E%90-%EB%B3%80%ED%99%98)이 추가되었습니다.
 > * (C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 제공되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 문자열, 날짜 / 시간, 복소수 관련 표현이 쉬워졌습니다.
 > * (C++17~) 숫자와 문자열간의 변환을 위한 [to_char(), from_char()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) 함수가 제공되며, 기존 C스타일([atoi(), strtol()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98 )등) 보다 안전합니다.
+> * (C++17~) `chars_format`이 추가되었습니다.
 > * (C++20~) [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c20u8string)이 추가되었습니다.
 
 # 개요

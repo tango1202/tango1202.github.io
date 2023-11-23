@@ -8,9 +8,15 @@ sidebar:
     nav: "docs"
 ---
 
+> * (C++11~) `get_new_handler()`가 추가되었습니다.
 > * (C++11~) [pointer_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-pointer_traits)는 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.
 > * (C++11~) [addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-addressof)는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.
 > * (C++11~) [align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-align)된 포인터를 구합니다.
+> * (C++11~) `allocator_traits`, `allocator_arg`, `uses_allocator`, `scoped_allocator_adaptor`가 추가되었습니다. 
+> * (C++11~) `uninitialized_copy_n`이 추가되었습니다. 
+> * (C++11~) [가비지 컬렉터 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-%EA%B0%80%EB%B9%84%EC%A7%80-%EC%BB%AC%EB%A0%89%ED%84%B0-%EC%A7%80%EC%9B%90)이 추가되었습니다. 
+> * (C++17~) `aligned_alloc()`이 추가되었습니다.
+> * (C++17~) `align_val_t`가 추가되었습니다.
 > * (C++17~) [launder()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%A0%80%EC%88%98%EC%A4%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)는 [위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)으로 생성된 개체의 합법적인 포인터를 얻습니다.
 > * (C++17~) [polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/)는 런타임 다형성을 지원하는 할당자입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 메모리 풀을 손쉽게 만들 수 있습니다.
 > * (C++17~) [uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85) 함수를 추가하여 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)의 새로운 방법을 제공합니다.
