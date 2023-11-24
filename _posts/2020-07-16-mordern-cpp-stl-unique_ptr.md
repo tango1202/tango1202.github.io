@@ -168,7 +168,7 @@ class T {
 public:
     T(int x, int y);
     T(const T& other); // 복사 생성자입니다.
-    T(T&& other) = default; // 복사 생성자를 정의했기 때문에 이동 생성자가 암시적으로 정의되지 않습니다. 따라서, 명시적으로 정의합니다.
+    T(T&& other) noexcept = default; // 복사 생성자를 정의했기 때문에 이동 생성자가 암시적으로 정의되지 않습니다. 따라서, 명시적으로 정의합니다.
 
     bool IsValid() const;
     int GetX() const;

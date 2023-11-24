@@ -964,10 +964,10 @@ class A_11 {
 public:
     A_11() {std::cout << "A_11 : Default Constructor" << std::endl;}    
     A_11(const A_11&) {std::cout << "A_11 : Copy Constructor" << std::endl;}  
-    A_11(A_11&&) {std::cout << "A_11 : Move Constructor" << std::endl;}  
+    A_11(A_11&&) noexcept {std::cout << "A_11 : Move Constructor" << std::endl;}  
     
     A_11& operator =(const A_11& other) = delete;
-    A_11& operator =(A_11&& other) = delete;
+    A_11& operator =(A_11&& other) noexcept = delete;
 };
 ```
 

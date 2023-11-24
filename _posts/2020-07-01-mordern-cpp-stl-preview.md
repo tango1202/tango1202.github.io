@@ -30,6 +30,92 @@ sidebar:
 
     [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)개선([apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply), [make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple)), 문자열 유틸리티([문자열 검색기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#c17-searcher), [숫자/문자열 변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98)), 알고리즘 개선([gcd(), lcm(), reduce() 등 수학 작업](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85), [sample()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85), [clamp()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%B5%9C%EB%8C%80%EC%B5%9C%EC%86%8C-%EC%9E%91%EC%97%85), [특수 수학 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c17-%ED%8A%B9%EC%88%98-%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98)), 동기화 개선([shared_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex), [scoped_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c17-scoped_lock)), 함수 래퍼 및 함수자([invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke), [not_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)), 기본타입([byte](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85)), 타입 변환([as_const()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c11-%ED%83%80%EC%9E%85-%EB%B3%80%ED%99%98)), 새로운 타입 특성([bool_constant, is_aggregate, is_swappable 등](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)), 연관 컨테이너 함수([insert_or_assign(), try_emplace(), extract(), merge()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#unordered_map-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)), 범위 접근([size(), empty(), data()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)), [chrono 라이브러리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/) 개체 함수([floor(), ceil(), round(), abs()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point))등이 추가 되었습니다.
 
+# C++20
+
+* Concept 라이브러리 https://en.cppreference.com/w/cpp/concepts
+* coroutine 라이브러리
+* Synchronized buffered outputstream 
+    * https://en.cppreference.com/w/cpp/header/syncstream
+    * https://en.cppreference.com/w/cpp/io/basic_osyncstream
+* range 라이브러리 https://en.cppreference.com/w/cpp/header/ranges
+    * 구간 합성 | 로 합성
+    * 알고리즘에 반복자 없이 구간을 전달하면 되도록 구간 버전이 추가됨
+    * 지연 평가(iota : 무한 값을 가진 view이지만 지연 평가)
+    * view_interface 로 view 정의
+* u8string
+* std::span https://en.cppreference.com/w/cpp/header/span https://en.cppreference.com/w/cpp/container/span
+    * 연속적인 개체를 참조함(C스타일 배열, 포인터 + 갯수, array, vector, string)
+    * 정적 길이(자동 추론함)일 수 있고, 동적 길이일 수 있음
+* 컨테이너
+    * vector와 string에 constexpr 이 적용됨
+    * 일관된 삭제 지원(erase-remove_if() 관용구). erase, erase_if  
+    * 연관 컨테이너에서 요소 검사. contains
+* constexpr
+    * 알고리즘 100개 이상
+    * utility
+    * compex
+        
+* Bit Operations 비트 조작등
+    * endian https://en.cppreference.com/w/cpp/types/endian
+    * bit_cast<> https://en.cppreference.com/w/cpp/numeric/bit_cast
+    * has_single_bit
+    * bit_ceil
+    * popcount
+* Math constants
+* is_constant_evaluated
+* make_shared 배열 지원
+* string 에서 starts_with, ends_with(접두사, 접미사 검사)
+* mid_point
+* lerp : 선형 보간
+* to_array 기존 배열로 부터 array 생성
+* 안전한 정수 비교 : 부호 있는 정수와 부호 없는 정수 비교를 할때 unsigned로 변경해서 함.(double과 unsigned int는 unsigned int를 double로 승격함)
+* 수학 상수. e. log2e 등
+* tOfDay, hh_mm_ss
+* year_month_day등의 형식. calender, https://en.cppreference.com/w/cpp/chrono#Calendar
+    * year(1940)/month(6)/day(30) 표현
+    * 날짜 유효성 점검
+    * 요일 조회
+    * 서수 날짜 계산
+* timezone : Unix 시간대. UTC https://en.cppreference.com/w/cpp/chrono#Time_zone
+* utc_clockk tai_clock, gps_clock, file_clock, local_t
+* 서식화 입출력 chrono formatter 특수화
+* format, format_to, format_to_n(https://en.cppreference.com/w/cpp/header/format, https://en.cppreference.com/w/cpp/utility/format)
+    * {}
+    * : 과 서식 명세 : 채움 문자 지정, 정렬 지정(<, >, ^), 부호, 너비와 정밀도, 데이터 형식(이진수등) 
+* bind_front() : bind시 placeholder 불필요 https://en.cppreference.com/w/cpp/utility/functional/bind_front
+* source_location : __FILE__, __LINE__ 매크로 대체 https://en.cppreference.com/w/cpp/utility/source_location
+* 삼중 비교 : three_way_comparable 등
+* version https://en.cppreference.com/w/cpp/header/version
+* remove_cvref https://en.cppreference.com/w/cpp/types/remove_cvref
+* barrier
+* latch https://en.cppreference.com/w/cpp/header/latch
+* semaphore https://en.cppreference.com/w/cpp/header/semaphore https://en.cppreference.com/w/cpp/thread/counting_semaphore
+* https://en.cppreference.com/w/cpp/thread/counting_semaphore 
+* stop_token https://en.cppreference.com/w/cpp/header/stop_token
+* stop_source https://en.cppreference.com/w/cpp/thread/stop_source
+* stop_callback https://en.cppreference.com/w/cpp/thread/stop_callback
+
+* Library feature-test macros https://en.cppreference.com/w/cpp/utility/feature_test
+* to_address
+* Floating-point atomics, https://en.cppreference.com/w/cpp/atomic/atomic#Specializations_for_floating-point_types
+* jthread
+* 쓰레드 취소 https://en.cppreference.com/w/cpp/thread#Thread_cancellation
+* assume_aligned https://en.cppreference.com/w/cpp/memory/assume_aligned
+
+* c8rtomb https://en.cppreference.com/w/cpp/string/multibyte/c8rtomb
+
+* mbrtoc8  https://en.cppreference.com/w/cpp/string/multibyte/mbrtoc8
+
+* polymorphic_allocator 에서 byte 타입 멤버 함수
+
+* unseq https://en.cppreference.com/w/cpp/algorithm/execution_policy_tag
+
+* ssize
+
+* std::is_bounded_array, std::is_unbounded_array
+
+
+
 # 언어 지원 라이브러리
 
 |항목|내용|

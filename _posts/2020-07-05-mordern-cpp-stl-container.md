@@ -149,7 +149,7 @@ public:
     A(A&& other) noexcept {std::cout << "A::Move Constructor" << std::endl;}
 
     A& operator =(const A& other) = delete;
-    A& operator =(A&& other) = delete;
+    A& operator =(A&& other) noexcept = delete;
 };
 
 std::vector<A> v;

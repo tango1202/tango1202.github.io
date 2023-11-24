@@ -237,11 +237,11 @@ class A_11 {
 public:
     A_11() {}
     A_11(const A_11& other) = delete;
-    A_11(A_11&& other) {
+    A_11(A_11&& other) noexcept {
         std::cout << "A : Lambda Move" << std::endl;
     }
     A_11& operator =(const A_11& other) = delete;
-    A_11& operator =(A_11&& other) = delete; 
+    A_11& operator =(A_11&& other) noexcept = delete; 
 };
 ```
 
@@ -349,9 +349,9 @@ class T_11 {
 public: 
     T_11() {std::cout << "T_11::Default Constructor" << std::endl;}
     T_11(const T_11&) {std::cout << "T_11::Copy Constructor" << std::endl;}
-    T_11(T_11&&) {std::cout << "T_11::Move Constructor" << std::endl;}
+    T_11(T_11&&) noexcept {std::cout << "T_11::Move Constructor" << std::endl;}
     ~T_11() {std::cout << "T_11::Destructor" << std::endl;}
-    void operator =(const T_11&) {std::cout << "T_11::operator =()" << std::endl;}
+    void operator =(const T_11&) noexcept {std::cout << "T_11::operator =()" << std::endl;}
 };
 ```
 

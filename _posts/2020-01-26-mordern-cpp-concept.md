@@ -236,9 +236,9 @@ class IDrawable_11 {
 public:
     // 인터페이스이므로 사용 못하게 막음.
     IDrawable_11(const IDrawable_11&) = delete; 
-    IDrawable_11(IDrawable_11&&) = delete;
+    IDrawable_11(IDrawable_11&&) noexcept = delete;
     IDrawable_11& operator =(const IDrawable_11&) = delete;
-    IDrawable_11& operator =(IDrawable_11&&) = delete;
+    IDrawable_11& operator =(IDrawable_11&&) noexcept = delete;
 protected:
     // 인터페이스여서 상속한 개체에서만 사용할 수 있게 함
     IDrawable_11() = default;
