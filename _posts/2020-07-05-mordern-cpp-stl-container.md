@@ -11,9 +11,9 @@ sidebar:
 > * [MEC++#13] iterator 보다 const_iterator를 선호하라.( cbegin(), cend(), crbegin(), crend()이 추가되고 insert, erase 등의 멤버 함수에서 const_iterator를 지원함)
 > * [MEC++#42] 삽입 대신 생성 삽입을 고려하라.(*emplace_back() 등*)
 
-> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.
+> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.
 > * (C++11~) [forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.
-> * (C++11~) [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 컨테이너로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
+> * (C++11~) [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
 > * (C++11~) [const_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90) 지원이 강화되어 [cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#vector-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 추가되었고, `insert()`, `erase()`등의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/)에서 사용할 수 있습니다.
 > * (C++11~) [컨테이너의 initializer_list 초기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-initializer_list-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 초기값 입력이 간편해 졌습니다. 
 > * (C++11~) [emplace() 계열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)들이 추가되어 요소 삽입시 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용하여 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 내에서 요소 개체를 직접 생성할 수 있으며, 불필요한 복제본을 생성하지 않습니다.
@@ -32,7 +32,7 @@ sidebar:
 |`stack`|타입이 동일한 요소를 후입선출 방식으로 관리합니다.|
 |`deque`|양방향에서 입출력이 가능한 `queue`입니다. 앞과 뒤에서 요소를 넣거나 뺄 수 있습니다.<br/>양쪽 입력/삭제가 `list`와 효율이 같으며 랜덤 접근은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 효율이 같습니다.<br/>중간 입출력은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같이 비효율적입니다.|
 |`priority_queue`|우선 순위에 따라 정렬된 `queue`입니다.<br/>`top()`시 가장 큰 요소 반환하며 내부적으론 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)로 구현됩니다.|
-|[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/) (C++11~)|기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.|
+|[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/) (C++11~)|기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.|
 |[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/) (C++11~)|단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.|
 
 # 연관 컨테이너
@@ -45,11 +45,11 @@ sidebar:
 |`multimap`|`map`과 동일합니다.<br/>중복 **Key**를 허용하며, 첨자 연산은 지원하지 않습니다.|`<` 구현|
 |`set`|**Key**만 요소로 사용합니다.<br/>이진 트리 탐색으로 요소 탐색(O(logN))하며, 요소 삽입시 `<`에 의해 정렬됩니다. 삽입되는 **Key**는 유일합니다.|`<` 구현|
 |`multiset`|`set`과 동일합니다.<br/>중복 **Key**허용합니다.|`<` 구현|
-|[unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) (C++11~)|정렬되지 않은 컨테이너로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.|`==` 구현<br/>[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)|
+|[unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) (C++11~)|정렬되지 않은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.|`==` 구현<br/>[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)|
 
 # (C++11~) const_iterator 지원
 
-기존의 컨테이너에서 [const_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90)를 지원했습니다만, 다른 함수에서 지원하지 않았기에 사용성이 좀 떨어졌습니다.
+기존의 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)에서 [const_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90)를 지원했습니다만, 다른 함수에서 지원하지 않았기에 사용성이 좀 떨어졌습니다.
 
 예를들어 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 `insert()`함수는 다음처럼 `iterator`를 전달받습니다.
 
@@ -96,7 +96,7 @@ EXPECT_TRUE(v[0] == 0 && v[1] == 1 && v[2] == 2);
 
 # (C++11~) 컨테이너의 initializer_list 초기화
 
-기존에는 컨터이너에 요소들을 추가할때 일일이 추가해야 했습니다.(*[컨테이너 요소 삽입/삭제](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/) 참고*)
+기존에는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)에 요소들을 추가할때 일일이 추가해야 했습니다.(*[컨테이너 요소 삽입/삭제](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/) 참고*)
 
 ```cpp
 std::vector<int> v;
@@ -105,7 +105,7 @@ v.push_back(2);
 v.push_back(3);
 ```
 
-C++11 부터는 컨테이너의 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list) 초기화가 추가되어 초기값 입력이 간편해 졌습니다. 
+C++11 부터는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list) 초기화가 추가되어 초기값 입력이 간편해 졌습니다. 
 
 ```cpp
 std::vector<int> v{1, 2, 3}; // C++11. 중괄호 초기화로 초기값을 넣을 수 있습니다.
@@ -166,7 +166,7 @@ v.emplace_back(1, 2); // (O) A개체 생성을 위한 데이터를 전달합니�
 
 # (C++14~) 연관 컨테이너의 이종 탐색
 
-기존에는 `map`과 `set`등의 [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)에서 **Key**와 동일한 타입으로만 탐색이 가능했습니다.
+기존에는 `map`과 `set`등의 [연관 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)에서 **Key**와 동일한 타입으로만 탐색이 가능했습니다.
 
 다음 예에서는 `Lee`의 데이터를 탐색하고 싶어 `Data{"Lee", 10}`와 같이 **Key**와 동일한 `Data` 타입 개체를 만들어 `find()`함수를 호출합니다. 
 
@@ -195,12 +195,12 @@ auto result{
 EXPECT_TRUE((*result).m_Name == "Lee" && (*result).m_Val == 10);
 ```
 
-이때 탐색할 `"Lee"`만 알고 있고, `10`은 모르고 있다면, 그냥 요소들을 다 뒤져서 값비교를 해야 합니다. [연관 컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 장점을 살리지 못하니, 이럴게 사용할 바엔 차라리 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 낫죠. 
+이때 탐색할 `"Lee"`만 알고 있고, `10`은 모르고 있다면, 그냥 요소들을 다 뒤져서 값비교를 해야 합니다. [연관 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 장점을 살리지 못하니, 이럴게 사용할 바엔 차라리 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 낫죠. 
 
 C++14 부터는 [연관 컨테이너의 이종 탐색](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c14-%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-%EC%9D%B4%EC%A2%85-%ED%83%90%EC%83%89)을 지원하여 **Key**와 다른 타입이더라도 탐색이 가능합니다.
 
 1. 이종 타입에 대해 비교할 수 있게 정적 비교 함수를 제공합니다.
-2. 컨테이너 선언시 `find()` 에서 **Key** 타입외에 다른 것을 사용하려면 `less<>`를 사용합니다.
+2. [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 선언시 `find()` 에서 **Key** 타입외에 다른 것을 사용하려면 `less<>`를 사용합니다.
 3. `find()` 함수에 탐색하고 싶은 이종 타입의 개체를 전달합니다.
 
 다음 예에서는 `Data` 개체를 생성하지 않고 `"Lee"`로 검색합니다.

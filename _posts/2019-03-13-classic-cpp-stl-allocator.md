@@ -13,7 +13,7 @@ sidebar:
 
 # 개요
 
-컨테이너의 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 보면 `Allocator`를 사용하는 버전이 있습니다.
+[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 보면 `Allocator`를 사용하는 버전이 있습니다.
 
 ```cpp
 template<typename T, typename Allocator = allocator<T>>
@@ -22,7 +22,7 @@ class vector {
 };
 ```
 
-할당자(`Allocator`)는 컨테이너의 메모리 할당을 직접 제어하여 성능을 향상시키는 도구입니다.([개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/) 참고)
+할당자(`Allocator`)는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 메모리 할당을 직접 제어하여 성능을 향상시키는 도구입니다.([개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/) 참고)
 
 
 # 구현 방법
@@ -35,7 +35,7 @@ class vector {
 |`deallocate()`|`allocate()`에서 할당한 메모리를 해제합니다.|
 |`construct()`|지정한 메모리 위치에 요소 개체의 생성자를 호출합니다. ([위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고)|
 |`destroy()`|지정한 메모리 위치에 요소 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출합니다.([위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고)|
-|`rebind`|요소 타입에 대한 할당자를 이용하여 다른 타입용 컨테이너를 할당할 수 있게 합니다.|
+|`rebind`|요소 타입에 대한 할당자를 이용하여 다른 타입용 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)를 할당할 수 있게 합니다.|
 
 다음은 간단한 `Allocator` 구현 예입니다.
 

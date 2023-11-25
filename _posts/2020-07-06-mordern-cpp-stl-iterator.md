@@ -32,11 +32,11 @@ sidebar:
 |--|--|
 |[reverse_iterator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)|역방향으로 이터레이트 합니다.|
 |`make_reverse_iterator()` (C++14~)|(작성중)|
-|`back_insert_iterator`|컨테이너 끝에 삽입합니다.([삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0) 참고)|
+|`back_insert_iterator`|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 끝에 삽입합니다.([삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0) 참고)|
 |`back_inserter()`|`back_insert_iterator`를 생성합니다.|
-|`front_insert_iterator`|컨테이너 앞에 삽입합니다.|
+|`front_insert_iterator`|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 앞에 삽입합니다.|
 |`front_inserter()`|`front_insert_iterator`를 생성합니다.|
-|`insert_iterator`|컨테이너에 삽입합니다.|
+|`insert_iterator`|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)에 삽입합니다.|
 |`inserter()`|`insert_iterator`를 생성합니다.|
 |[move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%95%84%EB%8B%B5%ED%84%B0) (C++11~)|이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.|
 |`make_move_iterator()` (C++11~)|`move_iterator`를 생성합니다.|
@@ -103,9 +103,9 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 |`rbegin(), rend()` (C++14~)|역방향 이터레이터를 리턴합니다.|
 |`cbegin(), cend()` (C++14~)|순방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`crbegin(), crend()` (C++14~)|역방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
-|`size()` (C++17~)<br/>`ssize()` (C++20~)|컨테이너의 크기를 구합니다.|
-|`empty()` (C++17~)|컨테이너가 비었는지 검사합니다.|
-|`data()` (C++17~)|컨테이너가 관리하는 메모리 블록을 리턴합니다.|
+|`size()` (C++17~)<br/>`ssize()` (C++20~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 크기를 구합니다.|
+|`empty()` (C++17~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 비었는지 검사합니다.|
+|`data()` (C++17~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 관리하는 메모리 블록을 리턴합니다.|
 
 # (C++20~) 이터레이터 사용자 정의
 

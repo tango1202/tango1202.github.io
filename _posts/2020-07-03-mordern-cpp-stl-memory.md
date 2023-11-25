@@ -118,7 +118,7 @@ void* align(
 
 |항목|내용|
 |--|--|
-|[allocator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/)|컨테이너 등 STL에서 개체 할당에 사용합니다.|
+|[allocator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 등 STL에서 개체 할당에 사용합니다.|
 |`allocator_traits` (C++11~)|(작성중)|
 |`allocator_arg` (C++11~)|(작성중)|
 |`uses_allocator` (C++11~)|(작성중)|

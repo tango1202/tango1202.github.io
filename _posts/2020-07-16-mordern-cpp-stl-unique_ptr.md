@@ -114,7 +114,7 @@ v.push_back(b); // (X) 컴파일 오류. unique_ptr은 복사 생성자가 없�
 다음처럼 
 
 1. [move()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move)를 이용하여 이동 시키거나,
-2. `emplace_back()`을 이용하여 내부에서 개체를 생성합니다.(*`emplace()`계열의 함수는 컨테이너 요소 개체 생성을 위한 인수를 전달받아, 컨테이너 내에서 요소 개체를 생성한 뒤 삽입합니다. [emplace() 계열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)를 참고하세요.*)
+2. `emplace_back()`을 이용하여 내부에서 개체를 생성합니다.(*`emplace()`계열의 함수는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 요소 개체 생성을 위한 인수를 전달받아, [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 내에서 요소 개체를 생성한 뒤 삽입합니다. [emplace() 계열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)를 참고하세요.*)
 
 ```cpp
 std::vector<std::unique_ptr<int>> v;

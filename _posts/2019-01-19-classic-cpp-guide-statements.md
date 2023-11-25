@@ -13,7 +13,7 @@ sidebar:
 > * `goto`는 코드 분석을 방해하니 사용하지 마라.
 
 > **모던 C++**
-> * (C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.
+> * (C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 요소의 탐색 처리가 쉬워졌습니다.
 > * (C++17~) [초기식을 포함하는 if(), switch()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c17-%EC%B4%88%EA%B8%B0%EC%8B%9D%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-if-switch)가 추가되어 함수 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 평가하고 소멸하는 코드가 단순해 졌습니다.
 > * (C++20~) [범위 기반 for()에서 초기식](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#c20-%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for%EC%97%90%EC%84%9C-%EC%B4%88%EA%B8%B0%EC%8B%9D)이 추가되었습니다.
 

@@ -28,7 +28,7 @@ sidebar:
 
 # 타입 카테고리
 
-클래스/구조체/[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 다른 언어와 데이터가 호환 될 수도 있고, [C스타일 문자열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)인 `memcpy()`등으로 쉽게 복사가 가능할 수도 있습니다. 단, [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)에 따라서요. 
+클래스/구조체/[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 다른 언어와 데이터가 호환 될 수도 있고, [memcpy()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)등으로 쉽게 복사가 가능할 수도 있습니다. 단, [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)에 따라서요. 
 
 C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입의 카테고리를 규정하고 해당 카테고리에 속하는지 확인 할 수 있는 `is_trivial<>`, `is_standard_layout<>`, `is_pod<>`를 제공합니다.(*[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp/mordern-cpp-type_traits/) 참고*)
 
@@ -44,7 +44,7 @@ C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입
 
 # Trivial 타입(간단한 타입)
 
-인접한 메모리 영역에 멤버들이 할당되며, `memcpy()`로 복사 가능한 타입입니다. 멤버들은 `public`, `protected`, `private`로 [접근 지정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)될 수 있습니다.
+인접한 메모리 영역에 멤버들이 할당되며, [memcpy()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)로 복사 가능한 타입입니다. 멤버들은 `public`, `protected`, `private`로 [접근 지정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)될 수 있습니다.
 
 * [스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)
 * Trivial 클래스
@@ -57,7 +57,7 @@ C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입
 
 # 표준 레이아웃 타입
 
-다른 언어와 통신하는데 유용한 타입으로서, 인접한 메모리 영역에 멤버들이 할당되며, `memcpy()`로 복사 가능한 타입입니다. 멤버들은 `public`, `protected`, `private` 중 모두 동일한 것으로 [접근 지정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)되어야 합니다.
+다른 언어와 통신하는데 유용한 타입으로서, 인접한 메모리 영역에 멤버들이 할당되며, [memcpy()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)로 복사 가능한 타입입니다. 멤버들은 `public`, `protected`, `private` 중 모두 동일한 것으로 [접근 지정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)되어야 합니다.
 
 * [스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)
 * 표준 레이아웃 클래스
@@ -222,14 +222,14 @@ unsigned long long val_11{18446744073709550592ull};
 
 기존 `wchar_t`는 시스템에 따라 2byte 또는 4byte로 가변적이어서(*[기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/) 참고*), [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 처리가 어려웠습니다.
 
-C++11 부터는 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 지원을 위해 2byte 고정 크기인 `char16_t`와 4byte 고정 크기인 `char32_t`가 추가되었습니다.
+C++11 부터는 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 지원을 위해 2byte 고정 크기인 [char16_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)와 4byte 고정 크기인 [char32_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)가 추가되었습니다.
 
 |항목|내용|용량|
 |--|--|--|
 |`char`|[1byte 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)|1byte|
 |`wchar_t`|[와이드 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)|시스템의 비트수에 따라 다르며, 대부분 2byte 또는 4byte.<br/>Windows는 2byte|
-|`char16_t` (C++11~)|[UTF-16 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자|`16bit`(2byte) 보다 크거나 같음|
-|`char32_t` (C++11~)|[UTF-32 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자|`32bit`(4byte) 보다 크거나 같음|
+|[char16_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t) (C++11~)|[UTF-16 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자|`16bit`(2byte) 보다 크거나 같음|
+|[char32_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t) (C++11~)|[UTF-32 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자|`32bit`(4byte) 보다 크거나 같음|
 
 > *(C++20~) [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte의 고정 크기 문자를 제공합니다.*
 
@@ -257,7 +257,7 @@ const char16_t* str_11 = u"abc한글";
 
 # Raw String 리터럴
 
-기존 문자열은 개행을 하기 위해 다음처럼 이스케이프 문자(`\r\n`)를 추가해야 했는데요(*[이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90) 참고*),
+기존 문자열은 개행을 하기 위해 다음처럼 [이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)(`\r\n`)를 추가해야 했는데요(*[이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90) 참고*),
 
 ```cpp
 const char* str = "abc\r\ndef";
@@ -269,7 +269,7 @@ abc
 def
 ```
 
-C++11 부터는 `R"()"`은 `()`안에 표기된 그대로를 문자열로 처리해 줍니다. 이스케이프 문자도 그대로 출력합니다.
+C++11 부터는 `R"()"`은 `()`안에 표기된 그대로를 문자열로 처리해 줍니다. [이스케이프 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)도 그대로 출력합니다.
 
 ```cpp
 // 이스케이프 문자와 개행을 소스코드에 기재된 그대로 출력합니다.

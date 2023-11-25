@@ -13,7 +13,7 @@ sidebar:
 
 # 개요
 
-알고리즘은 컨테이너의 요소를 처리하는 표준화된 방법입니다. 만약 컨테이너 멤버 버전이 있다면, 멤버 버전이 효율이 더 좋습니다.
+알고리즘은 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 요소를 처리하는 표준화된 방법입니다. 만약 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/) 멤버 버전이 있다면, 멤버 버전이 효율이 더 좋습니다.
 
 다음은 시퀀스 안의 요소들에 대해 `f()`를 실행하는 `for_each()` 함수입니다.(사용하는 STL 라이브러리에 따라 다르겠지만, 대략 다음과 같이 정의되어 있습니다.)
 

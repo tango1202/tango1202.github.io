@@ -57,7 +57,7 @@ sidebar:
 |`fill()`<br/>`fill_n()`|모든 요소에 `value`값을 대입합니다.|
 |`transform(InputIt first1, InputIt last1, OutputIt d_first, UnaryOperation unary_op)`|시퀀스 안의 각 요소들(`first1~last1`)에 대해 `op()`를 실행후 `*d_first~`에 대입합니다.|
 |`generate()`<br/>`generate_n()`|모든 요소에 `gen()`값을 대입합니다.|
-|`remove()`<br/>`remove_if()`<br/>`remove_copy()`<br/>`remove_copy_if()`|시퀀스에서 주어진 값인 요소를 삭제합니다.(컨테이너 버전이 효율적)|
+|`remove()`<br/>`remove_if()`<br/>`remove_copy()`<br/>`remove_copy_if()`|시퀀스에서 주어진 값인 요소를 삭제합니다.(*[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 버전이 효율적입니다.*)|
 |`replace()`<br/>`replace_if()`<br/>`replace_copy()`<br/>`replace_copy_if()`|주어진 값을 가진 요소를 다른 값으로 대체합니다.|
 |`swap()`<br/>`iter_swap()`<br/>`swap_ranges()`|두 요소나 시퀀스의 각 요소들을 바꿔치기 합니다.|
 |`reverse()`<br/>`reverse_copy()`|요소들의 순서를 뒤집습니다.|

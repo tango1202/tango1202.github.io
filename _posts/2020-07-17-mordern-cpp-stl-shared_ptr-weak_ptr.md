@@ -622,7 +622,7 @@ EXPECT_TRUE(derived.use_count() == 2 && base.use_count() == 2);
 
 # 상호 참조
 
-트리의 노드를 구현해 봅시다. 보통 `Node`는 부모로 이동할 수 있는 포인터와 자식들을 관리하는 컨테이너로 구성됩니다.
+트리의 노드를 구현해 봅시다. 보통 `Node`는 부모로 이동할 수 있는 포인터와 자식들을 관리하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로 구성됩니다.
 
 다음 코드에서는,
 

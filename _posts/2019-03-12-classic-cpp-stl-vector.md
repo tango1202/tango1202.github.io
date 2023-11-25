@@ -12,16 +12,16 @@ sidebar:
 > * `vector<bool>`은 사용하지 마라.
 
 > **모던 C++**
-> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.
+> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.
 
 # 개요
 
-[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 타입이 동일한 요소를 연속적인 메모리 공간에 관리하는 컨테이너입니다. 
+[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 타입이 동일한 요소를 연속적인 메모리 공간에 관리하는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)입니다. 
 
 1. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)과 유사합니다.([배열과 vector](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4%EA%B3%BC-vector) 참고)
 2. 랜덤 접근을 지원합니다.
 3. 요소 삽입/삭제시 연속적인 메모리 공간에 관리하기 위해 나머지 요소들을 재배치합니다. 이에 따라 선형 시간이 필요하며, 비효율적입니다.(요소 삽입/삭제가 빈번하면 `list`가 유리합니다.)
-4. 요소가 추가되어 컨테이너의 용량을 늘려야 하는 경우, 재할당이 수행됩니다. 재할당 시에는 모든 요소가 새롭게 할당된 공간에 이동되어야 하므로 속도 부하가 있고, 요소의 참조나 이터레이터가 무효화됩니다. 따라서 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 재할당 시도를 최소화 하기 위해, 재할당시 실제 추가/삭제되는 크기가 아니라 좀 넉넉한 크기로 재할당합니다.
+4. 요소가 추가되어 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 용량을 늘려야 하는 경우, 재할당이 수행됩니다. 재할당 시에는 모든 요소가 새롭게 할당된 공간에 이동되어야 하므로 속도 부하가 있고, 요소의 참조나 이터레이터가 무효화됩니다. 따라서 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 재할당 시도를 최소화 하기 위해, 재할당시 실제 추가/삭제되는 크기가 아니라 좀 넉넉한 크기로 재할당합니다.
 
 # vector 멤버 함수
 
@@ -45,13 +45,13 @@ sidebar:
 |`=` (C++11~)|`vector& operator =(const vector&& other) notexcept;`|[이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.|
 |`assign()`|`void assign(size_type count, const Type& value)`<br/>`template<typename InputIterator>`<br/>`void assign(InputIterator first, InputIterator last)`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기존 요소를 지우고 `value`를 `count` 만큼 복사합니다.<br/>[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 기존 요소를 지우고 `first`부터 `last`직전까지 복사합니다.|
 |`resize()`|`void resize(size_type new_size)`<br/>`void resize(size_type new_size, Type value)`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 새 크기를 지정하며, 기존 요소 갯수보다 크다면 `value`로 채웁니다. `value`가 없는 경우 요소의 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다.|
-|`size()`|`size_type size() const;`|컨테이너의 요소 갯수를 리턴합니다.|
-|`empty()`|`bool empty() const;`|컨테이너가 비었는지 확인합니다.|
+|`size()`|`size_type size() const;`|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 요소 갯수를 리턴합니다.|
+|`empty()`|`bool empty() const;`|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)가 비었는지 확인합니다.|
 |`capacity()`|`size_type capacity() const;`|메모리를 더 할당하지 않고 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에 저장할 수 있는 요소 갯수를 리턴합니다.([vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 메모리 할당이 빈번히 발생하지 않도록 실제 요소 갯수보다 큰 크기를 할당하기도 하고, 삽입/삭제에 따라 실제 요소 갯수보다 더 많은 메모리를 관리할 수 있습니다.)|
 |`shrink_to_fit()`||(작성중)|
 |`reserve()`|`void reserve(size_type count);`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 메모리 공간을 최소한 `count` 갯수 만큼의 요소를 저장할 수 있도록 예약합니다.|
-|`max_size()`|`size_type max_size() const;`|컨테이너가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
-|`swap()`|`void swap(vector<Type, Allocator>& other);`|두 컨테이너의 내부 데이터를 바꿔치기 합니다.|
+|`max_size()`|`size_type max_size() const;`|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
+|`swap()`|`void swap(vector<Type, Allocator>& other);`|두 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 내부 데이터를 바꿔치기 합니다.|
 |`==`<br/>`!=` (~C++20)|(작성중)|
 |`<, <=, >, >=` (~C++20)<br/>`<=>` (C++20~)|(작성중)|
 |`<<, >>`(C++20~)|출력 스트림에 출력하거나, 입력 스트림에서 문자열을 추출합니다.|
@@ -70,7 +70,7 @@ sidebar:
 |`cend()` (C++11~)|`const_iterator cend() const;`|마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
 |`crbegin()` (C++11~)|`const_reverse_iterator crbegin() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
 |`crend()` (C++11~)|`const_reverse_iterator crend() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
-|`data()`|`pointer data();`<br/>`const_pointer data() const;`|컨테이너가 관리하는 메모리 블록을 리턴합니다.(첫번째 요소의 포인터를 리턴합니다.)|
+|`data()`|`pointer data();`<br/>`const_pointer data() const;`|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)가 관리하는 메모리 블록을 리턴합니다.(첫번째 요소의 포인터를 리턴합니다.)|
 |`front()`|`reference front();`<br/>`const_reference front() const;`|첫번째 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`back()`|`reference back();`<br/>`const_reference back() const;`|마지막 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 
@@ -104,7 +104,7 @@ EXPECT_TRUE(*(&v[0]) == 10);
 EXPECT_TRUE(*((&v[0]) + 1) == 20); // 연속된 메모리여서 포인터 연산으로도 접근 가능합니다.
 ```
 
-> *(C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 컨테이너 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.*
+> *(C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.*
 
 # [] 과 at()
 
@@ -211,11 +211,11 @@ EXPECT_TRUE(v.capacity() == 0); // 크기가 0인 vector와 바꿔치기 했습�
 
 # vector<bool>
 
-[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/) 특수화 버전은, [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)타입을 저장하는 컨테이너가 아니라, 용량 최적화를 위해 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/) 8개를 1byte에 저장하여 사용하는 특수 개체입니다. `[]`는 특정 항목에 접근하는 프록시로 구현되어 있고, `&v[0]`과 같은 포인터 연산이나 컨테이너를 위한 일부 알고리즘들과 호환되지 않습니다.(*실제 사용보다는 프록시를 활용한 컨테이너 구현 실험차 만들었다는 설도 있습니다.*) 
+[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/) 특수화 버전은, [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)타입을 저장하는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)가 아니라, 용량 최적화를 위해 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/) 8개를 1byte에 저장하여 사용하는 특수 개체입니다. `[]`는 특정 항목에 접근하는 프록시로 구현되어 있고, `&v[0]`과 같은 포인터 연산이나 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)를 위한 일부 알고리즘들과 호환되지 않습니다.(*실제 사용보다는 프록시를 활용한 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/) 구현 실험차 만들었다는 설도 있습니다.*) 
 
 따라서,
  
-1. [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)을 컨테이너로 사용하고 싶다면, `deque<bool>`을 사용하고,
+1. [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)을 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)로 사용하고 싶다면, `deque<bool>`을 사용하고,
 2. 비트 단위로 처리하고 싶다면, `bitset`을 사용하는게 좋습니다. 
 
 ```cpp

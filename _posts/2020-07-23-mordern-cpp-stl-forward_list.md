@@ -20,7 +20,7 @@ sidebar:
 
 1. 역방향 이터레이터가 없으며(`rbegin()`, `rend()`, `crbegin()`, `crend()`),
 2. [forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)에서 마지막에 입력된 요소 제어를 위해 `before_begin()`이 제공되며,
-3. 컨테이너의 끝에 추가하거나 마지막 요소에 접근하는 기능이 없으며(`back()`, `push_back()`, `emplace_back()`, `pop_back()`),
+3. [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 끝에 추가하거나 마지막 요소에 접근하는 기능이 없으며(`back()`, `push_back()`, `emplace_back()`, `pop_back()`),
 4. 요소 추가 방향과 이터레이터 방향이 달라, 요소 삭제, 삽입, 이동시 별도의 `_after` 버전을 제공합니다.(`erase_after()`, `insert_after()`, `emplace_after()`, `splice_after()`)
 
 |항목|공통|`forward_list`|`list`|

@@ -8,14 +8,14 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 컨테이너로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
+> * (C++11~) [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
 > * (C++17~) [insert_or_assign(), try_emplace(), extract(), merge()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#unordered_map-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 함수가 추가되었습니다.
   
 # 개요
 
 기존의 [map, multimap, set, multiset](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)은 이진 트리 탐색을 하다보니 정렬등이 자동으로 이루어 졌는데요,
 
-[unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 컨테이너로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
+[unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
 
 |항목|내용|**Key** 조건|
 |--|--|--|
@@ -53,7 +53,7 @@ sidebar:
 
 # 해시 컨테이너
 
-[해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 이용해서 요소를 관리하는 컨테이너입니다. 요소를 저장하는 공간을 버킷(Bucket)이라 합니다.
+[해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 이용해서 요소를 관리하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)입니다. 요소를 저장하는 공간을 버킷(Bucket)이라 합니다.
 
 속도 성능을 보면,
 
@@ -61,7 +61,7 @@ sidebar:
 2. `set`이나 `map` 등은 이진 트리 탐색을 하기 때문에 O(logN)이 걸리고,
 3. [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 인덱스로 해서 찾으면 되므로 O(1)의 시간이 걸립니다. 
 
-다만, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 그대로 컨테이너의 키값으로 사용하면, [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 버킷(Bucket)은 모든 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 저장할 수 있을 정도로 아주 아주 많아야 하기 때문에(C++에서는 `numeric_limits<std::size_t>::max()`), 
+다만, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 그대로 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 키값으로 사용하면, [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 버킷(Bucket)은 모든 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 저장할 수 있을 정도로 아주 아주 많아야 하기 때문에(C++에서는 `numeric_limits<std::size_t>::max()`), 
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2b14ccb1-dd32-40b7-9474-685cdeaa82c8)
 
@@ -71,7 +71,7 @@ sidebar:
 해시 키값 = 해시값 % 컨테이너 버킷(Bucket) 갯수
 ```
 
-컨테이너의 버킷(Bucket)이 적다면 해시 키값이 동일해질 확률이 높아집니다. 극단적으로 버킷(Bucket)이 2개 밖에 없다면, 해시 키값은 0 ~ 1 사이의 값이 되고, 대부분의 데이터가 같은 버킷(Bucket)내에 위치하게 됩니다.
+[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 버킷(Bucket)이 적다면 해시 키값이 동일해질 확률이 높아집니다. 극단적으로 버킷(Bucket)이 2개 밖에 없다면, 해시 키값은 0 ~ 1 사이의 값이 되고, 대부분의 데이터가 같은 버킷(Bucket)내에 위치하게 됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d6eda121-11d5-461a-946f-a936fd237175)
 
@@ -91,19 +91,19 @@ sidebar:
 |`at()` (C++11~)|주어진 Key의 Value를 구합니다.|
 |`contains()` (C++20~)|(작성중)|
 |`begin(), end()` (C++11~)<br/>`cbegin(), cend()` (C++11~)|이터레이터<br/>`map`은 `rbegin()`, `rend()`, `crbegin()`, `crend()`를 추가로 제공합니다.|
-|`empty()` (C++11~)|컨테이너가 비었는지 확인합니다.|
-|`size()` (C++11~)|컨테이너의 요소 갯수를 리턴합니다.|
-|`max_size()` (C++11~)|컨테이너가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
+|`empty()` (C++11~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 비었는지 확인합니다.|
+|`size()` (C++11~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 요소 갯수를 리턴합니다.|
+|`max_size()` (C++11~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
 |`clear()` (C++11~)|모든 요소를 지웁니다.|
 |`erase()` (C++11~)|주어진 위치의 요소를 삭제합니다.|
 |`erase_if()` (C++20~)|(작성중)|
-|`swap()` (C++11~)|두 컨테이너의 내부 데이터를 바꿔치기 합니다.|
+|`swap()` (C++11~)|두 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 내부 데이터를 바꿔치기 합니다.|
 |`insert()` (C++11~)|주어진 위치 앞에 요소를 추가합니다.|
 |`insert_range()` (C++23~)|(작성중)|
 |`insert_or_assign()` (C++17~)|Key가 없다면 추가하고 있다면 대입합니다.|
-|`emplace()` (C++11~), `emplace_hint()` (C++11~)|요소 개체 생성을 위한 인수(`Key`, `Value`)를 전달하여 컨테이너 내에서 요소 개체(`pair<Key, Value>`)를 생성한 뒤 삽입합니다.|
+|`emplace()` (C++11~), `emplace_hint()` (C++11~)|요소 개체 생성을 위한 인수(`Key`, `Value`)를 전달하여 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 내에서 요소 개체(`pair<Key, Value>`)를 생성한 뒤 삽입합니다.|
 |`try_emplace()` (C++17~)|Key없다면 삽입하고, 있다면 아무 작업 안합니다.|
-|`extract()` (C++17~)|요소를 추출합니다. 컨테이너 갯수는 1 감소합니다.|
+|`extract()` (C++17~)|요소를 추출합니다. [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 갯수는 1 감소합니다.|
 |`merge(source)` (C++17~)|`source`에서 [this](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 없는 요소(Key만 비교합니다.)는 추출하여 [this](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#this-%ED%8F%AC%EC%9D%B8%ED%84%B0)에 추가합니다. `source`의 요소는 추출된 만큼 감소합니다.|
 |`count()` (C++11~)|주어진 Key인 요소 갯수를 리턴합니다.|
 |`find()` (C++11~)|주어진 Key인 요소를 리턴합니다.| 

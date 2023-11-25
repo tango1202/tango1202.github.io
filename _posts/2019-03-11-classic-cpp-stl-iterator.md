@@ -12,7 +12,7 @@ sidebar:
 > * for를 이용하여 이터레이터를 순차 탐색 할때 `itr < endItr`보다는 `itr != endItr`을 사용하라.
 
 > **모던 C++**
-> * (C++11~) (C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.
+> * (C++11~) (C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 요소의 탐색 처리가 쉬워졌습니다.
 > * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.
 > * (C++11~) [begin(), end()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)가 추가되었습니다.
 > * (C++14~) [rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)가 추가되었습니다.
@@ -22,7 +22,7 @@ sidebar:
 
 # 개요
 
-이터레이터(반복자)는 컨테이너에서 지금 가리키는 요소나 다음 요소를 찾아가는 방법을 제공합니다.
+이터레이터(반복자)는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에서 지금 가리키는 요소나 다음 요소를 찾아가는 방법을 제공합니다.
 
 # 반개방구조
 
@@ -32,7 +32,7 @@ sidebar:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/06a41744-f5a9-4dfa-b50d-05df31b812ba)
 
-이에 따라, 다음과 같이 컨테이너에 요소가 있는지 없는지 확인할 수 있습니다.
+이에 따라, 다음과 같이 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에 요소가 있는지 없는지 확인할 수 있습니다.
 
 ```cpp
 // 컨테이너가 텅 비었습니다.
@@ -79,13 +79,13 @@ EXPECT_TRUE(v[0] == 0 && v[1] == 1 && v[2] == 2 && v[3] == 3 && v[4] == 4);
 EXPECT_TRUE(v[1] == 10); 
 ```
 
-> *(C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 컨테이너 요소의 탐색 처리가 쉬워졌습니다.*
+> *(C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 요소의 탐색 처리가 쉬워졌습니다.*
 
 # 이터레이터 카테고리
 
-이터레이터는 그 특성에 따라 5가지 카테고리로 분류됩니다. 컨테이너는 요소 처리 특성에 맞게 이터레이터를 사용합니다.
+이터레이터는 그 특성에 따라 5가지 카테고리로 분류됩니다. [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)는 요소 처리 특성에 맞게 이터레이터를 사용합니다.
 
-|항목|내용|컨테이너|
+|항목|내용|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)|
 |--|--|--|
 |`input`|읽기 전용<br/>`++`, `*`, `->`, `=`, `==`, `!=`, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)||
 |`output`|쓰기 전용<br/>`++`, `*`, `=`, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)||
@@ -159,14 +159,14 @@ Fill(v.begin(), 5, 7); // (X) 예외 발생. v가 5개 할당되지 않았다면
 
 `Fill()` 함수에서는 이터레이터를 반복하면서 `*first = value;` 로 실제 요소에 값을 대입하기 때문에, 벡터에 요소가 없어 예외를 발생하게 됩니다.
 
-이런 경우 값을 대입하지 않고, 컨테이너에 `push_back()` 하도록 연산자를 재정의한 것을 삽입 이터레이터라고 합니다.
+이런 경우 값을 대입하지 않고, [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에 `push_back()` 하도록 연산자를 재정의한 것을 삽입 이터레이터라고 합니다.
 
 구현 방법은 다음과 같습니다.
 
 1. 값 생성자에서는 Container를 전달받습니다.
-2. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)에서는 컨테이너 참조자를 복사합니다.
+2. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)에서는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/) 참조자를 복사합니다.
 3. [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 사용하지 않으므로 `private`로 정의합니다.
-4. [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)중 컨테이너 값 타입을 전달하면, `push_back()`을 하여 추가합니다.
+4. [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)중 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/) 값 타입을 전달하면, `push_back()`을 하여 추가합니다.
 5. 무조건 끝에 추가하는 것이므로, `++`은 아무 동작 안하게 합니다.
 6. `*` 시 자기 자신을 리턴하여 `*first = value;`시 #4가 호출되게 합니다.
 
