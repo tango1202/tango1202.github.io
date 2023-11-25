@@ -35,8 +35,8 @@ typedef basic_string<wchar_t> wstring;
 
 
 1. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 유사하게 연속된 메모리를 사용하며,
-2. [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)와 같이 이터레이터와 `operator []`를 지원합니다.
-3. [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)이므로 상속하여 재구현 하면 안됩니다. 이는 흔히, 그리고 많이 사용하는 자료형이여서 가상 함수 테이블의 포인터를 저장하기 아깝기 때문입니다.([가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable) 참고)
+2. [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)와 같이 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)와 `operator []`를 지원합니다.
+3. [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)이므로 상속하여 재구현 하면 안됩니다. 이는 흔히, 그리고 많이 사용하는 자료형이여서 [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)의 포인터를 저장하기 아깝기 때문입니다.([가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable) 참고)
 4. [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 복제하여 관리합니다. 따라서, 수정될 필요가 없는 문자열 데이터는 `const char*` 나 `const wchar_t*`로 관리하는게 좋습니다.([문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 참고)
 5. `string`은 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/) 기반이 아니라 값 기반으로 관리되므로, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), `=`, `==`, `!=`, `+`, `+=`, 대소 비교, `assign()`, `append()` 등이 메모리 부하나 속도 부하가 있습니다.
 

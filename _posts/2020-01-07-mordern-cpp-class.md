@@ -12,17 +12,17 @@ sidebar:
 > * [MEC++#12] 재정의 함수들을 override로 선언하라(오버라이드가 안되는 사용자 실수를 감지해준다.)
 >   * 멤버 함수 참조 한정자로 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value), 좌측값을 구분해서 함수 호출 가능
 
-> * (C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.
-> * (C++11~)  [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.
-> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.
-> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 강제적으로 상속을 제한할 수 있습니다.
-> * (C++11~) [생성자 위임](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9C%84%EC%9E%84)이 추가되어 생성자의 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 코드가 좀더 간결해 졌습니다.
-> * (C++11~) [생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D)이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.
+> * (C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)가 추가되어 [암시적으로 생성되는 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/)의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.
+> * (C++11~)  [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)가 추가되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 오버라이딩의 코딩 규약이 좀더 단단해졌습니다.
+> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 더이상 오버라이딩 못하게 할 수 있습니다.
+> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)이 추가되어 강제적으로 [상속을 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C)할 수 있습니다.
+> * (C++11~) [생성자 위임](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9C%84%EC%9E%84)이 추가되어 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 코드가 좀더 간결해 졌습니다.
+> * (C++11~) [생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D)이 추가되어 부모 개체의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)도 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)받아 사용할 수 있어 자식 개체의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 재정의 코드가 좀더 간결해 졌습니다.
 > * (C++20~) [삼중 비교 연산자를 default로 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90-default-%EC%A0%95%EC%9D%98)할 수 있습니다.
 
 # default와 delete
 
-기존에는 암시적으로 정의되는 멤버 함수들은 `private`를 이용하여 억지로 가시성을 조정하여 사용 여부를 제어했는데요(*[클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고*), 
+기존에는 [암시적으로 정의되는 멤버 함수들]((https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/))은 `private`를 이용하여 억지로 가시성을 조정하여 사용 여부를 제어했는데요(*[클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고*), 
 
 C++11 부터는  [default나 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)로 사용 여부를 결정합니다.
 
@@ -57,7 +57,7 @@ t.Func_11('a'); // (X) 컴파일 오류. delete된 함수입니다.
 
 또한 특정 타입의 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)를 차단할 수 있습니다. 
 
-다음 예에서는 `char`타입의 함수 템플릿 특수화를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 하여 `char`타입의 인스턴스화를 차단합니다.
+다음 예에서는 `char`타입의 함수 [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%83%AC%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 하여 `char`타입의 [인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)를 차단합니다.
 
 ```cpp
 template<typename T> 
@@ -72,7 +72,7 @@ Func_11('a'); // (X) 컴파일 오류. delete된 함수입니다.
 
 # override
 
-기존에는 부모 개체의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 상속할 때 아무런 조치 없이 상속했는데요(*[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고*), 가끔 오타인지, 새로운 가상 함수 정의인지 헷갈릴 때가 있습니다. 하기와 같은 실수를 찾아내는게 상당히 어려웠죠.
+기존에는 부모 개체의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 오버라이딩할 때 아무런 조치 없이 오버라이딩했는데요(*[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고*), 가끔 오타인지, 새로운 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 정의인지 헷갈릴 때가 있습니다. 하기와 같은 실수를 찾아내는게 상당히 어려웠죠.
 
 ```cpp
 class Base {
@@ -104,9 +104,9 @@ class Derived_11 : public Base {
 
 # final
 
-기존에는 상속을 막기 위해 생성자를 `private`로 만들어 가시성을 제한 하거나, [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들고 상속하지 않도록 서로간에 정하자 라고 했었는데요(*[상속 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C) 참고*),
+기존에는 [상속을 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C)하기 위해 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 `private`로 만들어 가시성을 제한 하거나, [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들고 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)하지 않도록 서로간에 정하자 라고 했었는데요(*[상속 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C) 참고*),
 
-C++11 부터는 다음처럼 [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)로 상속을 제한할 수 있습니다.
+C++11 부터는 다음처럼 [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#final)로 [상속을 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C)할 수 있습니다.
 
 ```cpp
 class Base_11 final {
@@ -135,7 +135,7 @@ class Derived2_11 : public Derived1_11 {
 
 # 생성자 위임
 
-기존에는 다양한 버전의 생성자를 만들고자 할때 각각의 생성자에서 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)를 사용하여 멤버 변수를 초기화 했는데요(*[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고*),
+기존에는 다양한 버전의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 만들고자 할때 각각의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)에서 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8)를 사용하여 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 초기화 했는데요(*[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고*),
 
 ```cpp
 class T {
@@ -150,7 +150,7 @@ public:
 };
 ```
 
-C++11 부터는 다른 [생성자에 위임](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9C%84%EC%9E%84)할 수 있어 좀더 간결하게 생성자 코드를 만들 수 있습니다.
+C++11 부터는 다른 [생성자에 위임](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9C%84%EC%9E%84)할 수 있어 좀더 간결하게 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 코드를 만들 수 있습니다.
 
 ```cpp
 class T_11 {
@@ -167,7 +167,7 @@ public:
 
 # 생성자 상속
 
-기존에는 자식 개체 생성자에서 부모 개체의 생성자를 명시적으로 호출해야 했는데요(*[자식 개체의 생성자 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%9E%90%EC%8B%9D-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고*),
+기존에는 자식 개체 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)에서 부모 개체의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 명시적으로 호출해야 했는데요(*[자식 개체의 생성자 재정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%9E%90%EC%8B%9D-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9E%AC%EC%A0%95%EC%9D%98) 참고*),
 
 ```cpp
 class Base {
@@ -186,7 +186,7 @@ public:
 Derived d(10, 20);
 ```
 
-C++11 부터는 [using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)의 형태로 부모 개체의 생성자를 그대로 상속받아 사용할 수 있습니다.
+C++11 부터는 [using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)의 형태로 부모 개체의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 그대로 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)받아 사용할 수 있습니다.
 
 ```cpp
 class Base {

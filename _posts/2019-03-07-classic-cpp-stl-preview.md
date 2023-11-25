@@ -15,7 +15,7 @@ Standard Template Library(STL) 의 주요 구성 요소는 하기와 같습니�
 |항목|내용|
 |--|--|
 |[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)|타입이 같은 여러개의 요소롤 저장하고 관리합니다.|
-|이터레이터|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/) 내의 요소를 탐색합니다.|
+|[이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/) 내의 요소를 탐색합니다.|
 |알고리즘|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/) 내의 요소들의 제어 방식을 제공합니다.|
 |메모리 할당자|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 메모리를 할당합니다.|
 |함수자|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/) 내의 요소들에 특정 함수를 적용합니다.|

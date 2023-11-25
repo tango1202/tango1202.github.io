@@ -238,7 +238,7 @@ EXPECT_TRUE(*itr == 4);
 |`not1()`|단항 조건자의 반환값을 부정합니다.|
 |`not2()`|이항 조건자의 반환값을 부정합니다.|
 
-보통 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/) 요소들의 특정 함수를 호출해야 하는 경우 다음과 같이 이터레이터를 통해 멤버 함수를 호출하지만,
+보통 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/) 요소들의 특정 함수를 호출해야 하는 경우 다음과 같이 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 통해 멤버 함수를 호출하지만,
 
 ```cpp
 class A {

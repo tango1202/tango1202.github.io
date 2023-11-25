@@ -139,7 +139,7 @@ U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 
 `T t = {};` 표현은 `T t = T{};`와 유사한 축약형입니다. 암시적으로 [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t)인 `T{}`로 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 생성하고, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 `t`을 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)하는 표현입니다.
 
-암시적으로 생성하는 것이므로 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)로 정의하면 컴파일 오류가 발생합니다. 
+암시적으로 생성하는 것이므로 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)로 정의하면 `T t = {};` 표현은 컴파일 오류가 발생합니다. 
 
 또한 기존에는 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개만 있을때에만 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하기 위해 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용했었는데요, 이제는 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 `= {}` 표현을 차단하기 위해 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 여러개 있더라도 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용합니다.(*[생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개만 있을때에는 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 되므로 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)가 필수이지만, 여러개인 것은 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 `= {}` 표현을 차단하기 위해 선택적으로 사용하시면 됩니다.*)
 
@@ -164,11 +164,11 @@ public:
 // (X) 컴파일 오류. explicit 생성자여서 암시적으로 생성자를 호출할 수 없습니다.
 // U d_11 = {1};         
 // U e_11 = {1, 2};
-U f_11 = U{1, 2}; // 명시적으로 생성할 있습니다. 중괄호 직접 초기화인 U{1, 2}을 e_11에 복사 생성하는 표현입니다.
+U f_11 = U{1, 2}; // 명시적으로 생성할 있습니다. 중괄호 직접 초기화인 U{1, 2}을 f_11에 복사 생성하는 표현입니다.
 
 ```
 
-[explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)뺏다고 할지라도, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)가 없다면, `T a_11{}`은 되나 `T b_11 = {}`는 안됩니다. `=`하나 차이로요.
+[explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 뺏다고 할지라도, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)가 없다면, `T a_11{}`은 되나 `T b_11 = {}`는 안됩니다. `=`하나 차이로요.
 
 ```cpp
 class T {
@@ -659,9 +659,6 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
 
 # 기존 생성자와 initializer_list 생성자와의 충돌
 
-[중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 4번에 따라 기존 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 충돌할 수 있습니다.
-
-
 다음 코드는 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 축약형처럼 보이지만 사실은 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)를 암시적으로 생성합니다.(*[initializer_list의 암시적 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%83%9D%EC%84%B1) 참고*)
 
 ```cpp
@@ -702,7 +699,7 @@ T_11 t{
 T::Default Constructor
 ```
 
-또한 우선 순위 4에 의해 기존 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 가리는 심각한 문제가 발생합니다.
+또한 [중괄호 초기화 우선 순위](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%9A%B0%EC%84%A0-%EC%88%9C%EC%9C%84) 4번에 따라 기존 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 가리는 심각한 문제가 발생합니다.
 
 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에서의 경우를 살펴보죠.
 

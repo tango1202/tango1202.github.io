@@ -30,8 +30,8 @@ sidebar:
 
 1. `push_back()`을 통해 뒤에 추가할 수 있으며,
 2. `insert()`로 특정 위치에 삽입할 수 있고,
-3. 이터레이터가 랜덤 접근되어 `v.begin() + 1`로 삽입 위치를 지정할 수 있으며,
-4. 이터레이터나 `[]`을 통해 인덱스를 지정하여 요소의 값에 접근 할 수 있고,
+3. 이[이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)가 랜덤 접근되어 `v.begin() + 1`로 삽입 위치를 지정할 수 있으며,
+4. [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)나 `[]`을 통해 인덱스를 지정하여 요소의 값에 접근 할 수 있고,
 5. `erase()`를 통해 요소를 삭제 할 수 있습니다.
 
 ```cpp
@@ -62,7 +62,7 @@ EXPECT_TRUE(*result == 1); // 삭제한 요소의 다음 요소를 리턴함
 
 # vector의 erase와 remove_if
 (작성중)
-`remove_if()`를 해도 지워진게 아님. 삭제 대상을 이터레이터의 끝으로 옮길뿐임.
+`remove_if()`를 해도 지워진게 아님. 삭제 대상을 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)의 끝으로 옮길뿐임.
 
 # vector에서 swap을 메모리 영역 제거
 
@@ -72,7 +72,7 @@ erase를 해도 capacity()는 그대로임. 즉 메모리를 차지하고 있음
 
 # list 의 삽입과 삭제
 
-`list`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 달리 이터레이터가 렌덤 접근되지 않습니다. 따라서 이터레이터의 `++` 연산자를 이용하여 접근합니다. 그외 `push_back()`, `insert()`, `erase()`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 동일합니다. 
+`list`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 달리 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)가 렌덤 접근되지 않습니다. 따라서 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)의 `++` 연산자를 이용하여 접근합니다. 그외 `push_back()`, `insert()`, `erase()`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 동일합니다. 
 
 ```cpp
 std::list<int> l;

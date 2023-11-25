@@ -11,13 +11,13 @@ sidebar:
 > * 멤버 변수를 수정하지 않으면, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성하라.
 > * [정적 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 `obj.f()` 가 아닌 `T::f()` 와 같이 호출하라.
 > * 자식 개체에서 부모 개체의 비 가상 함수를 재정의 하지 마라.
-> * 가상 함수를 정의하면 가상 함수 테이블을 위한 추가 공간이 필요하니 꼭 필요한 경우만 사용하라.
+> * [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 정의하면 [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)을 위한 추가 공간이 필요하니 꼭 필요한 경우만 사용하라.
 > * Getter 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 기본 자료형인 경우 값 복사로, 클래스 타입인 경우 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 작성하라.
 > * Setter 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 [기본 타입](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/)인 경우 값 복사로, 클래스 타입인 경우 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 작성하라.
 
 > **모던 C++**
-> * (C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다.
-> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.
+> * (C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#override)가 추가되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 오버라이딩의 코딩 규약이 좀더 단단해졌습니다.
+> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 더이상 오버라이딩 못하게 할 수 있습니다.
 > * (C++11~) [멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 추가되어 멤버 함수에 `&`, `&&` 로 좌측값에서 호출될때와 [우측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)에서 호출될 때를 구분하여 오버로딩 할 수 있습니다.
  
 **개요**
@@ -32,8 +32,8 @@ sidebar:
 |`U f() {}`|멤버 함수|
 |`U f() const {}`|[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|
 |`static U f() {}`|[정적 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|
-|`virtual U f() {}`|가상 함수|
-|`virtual U f() = 0;`|순가상 함수|
+|`virtual U f() {}`|[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)|
+|`virtual U f() = 0;`|[순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)|
 
 # 멤버 함수
 
@@ -144,13 +144,13 @@ EXPECT_TRUE(obj.f() == 10); // (△) 비권장. T의 정적 멤버 함수 호출
 
 # 가상 함수
 
-`virtual`을 붙이면 가상 함수가 되며, 부모 개체의 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 자식 개체에서 재구현한 함수(*이를 오버라이딩(overriding)이라 합니다.*)에 접근할 수 있습니다. 
+`virtual`을 붙이면 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 되며, 부모 개체의 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)로 자식 개체에서 재구현한 함수(*이를 오버라이딩(overriding)이라 합니다.*)에 접근할 수 있습니다. 
 
-다음 코드에서 일반 함수인 `f()`와 가상 함수인 `v()`를 `Derived`에서 재구현 했을때, 어떻게 동작하는지 나타내었습니다.
+다음 코드에서 일반 함수인 `f()`와 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)인 `v()`를 `Derived`에서 재구현 했을때, 어떻게 동작하는지 나타내었습니다.
 
 동일한 개체를 `Base` 포인터로 일반 함수인 `f()`를 호출하면, `Base::f()`가 호출되고, 자식 개체 포인터에서는 `Derived::f()` 가 호출됩니다. 일관성이 없으므로 사용하지 말아야 합니다.
 
-가상 함수인 경우는 `Base` 포인터 이던 `Derived` 포인터 이던, `Derived::v()`가 정상적으로 호출됩니다.
+[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)인 경우는 `Base` 포인터 이던 `Derived` 포인터 이던, `Derived::v()`가 정상적으로 호출됩니다.
 
 ```cpp
 class Base {
@@ -181,11 +181,11 @@ EXPECT_TRUE(d.v() == 20); // (O) 가상 함수여서 Derived::v() 가 호출됨
 1. 부모 개체에서 `virtual` 함수로 선언해야 합니다.
 1. 자식 개체에서 함수명/[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입/[상수 멤버 함수의 const](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)/[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)이 동일해야 합니다. 만일 다르다면, 오버라이딩 되지 않습니다. 컴파일러가 오류를 잘 감지하지 못하니 주의하시기 바랍니다.
 
-> *(C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#override)가 추가되어 가상 함수 상속의 코딩 규약이 좀더 단단해졌습니다. 또한, [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있습니다.*
+> *(C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#override)가 추가되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 오버라이딩의 코딩 규약이 좀더 단단해졌습니다. 또한, [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 더이상 오버라이딩 못하게 할 수 있습니다.*
 
 **리턴값 변경**
  
-자식 개체에서 가상 함수 재구현시 리턴 타입은 바뀔 수도 있습니다. 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다.
+자식 개체에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 재구현시 리턴 타입은 바뀔 수도 있습니다. 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다.
 
 ```cpp
 class Base {
@@ -202,7 +202,7 @@ public:
 
 # 가상 함수 테이블(Virtual Function Table, vTable)
 
-부모 클래스에 가상 함수가 있다면, 내부적으로 해당 개체의 시작 주소에 가상 함수 테이블(*가상 함수 포인터에 대한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)*)을 생성합니다. 컴파일러에 따라 다를 수도 있으나 대부분 8byte 입니다. 가상 함수 호출시에는 가상 함수 테이블을 참조하여 호출하게 됩니다.
+부모 클래스에 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있다면, 내부적으로 해당 개체의 시작 주소에 [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)(*[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 포인터에 대한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)*)을 생성합니다. 컴파일러에 따라 다를 수도 있으나 대부분 8byte 입니다. [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출시에는 [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)을 참조하여 호출하게 됩니다.
 
 ```cpp
 class Base {
@@ -218,11 +218,11 @@ class Derived : public Base {
 };
 ```
 
-상기와 같이 `v2()`, `v3()`를 오버라이딩 했다면, 가상 함수 테이블은 다음과 같이 구성됩니다.
+상기와 같이 `v2()`, `v3()`를 오버라이딩 했다면, [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)은 다음과 같이 구성됩니다.
 
-1. `f()`는 가상 함수가 아니므로 가상 함수 테이블에 포함되지 않습니다.
-2. `v1()`은 오버라이딩 하지 않았으므로, `Derived`의 가상 함수 테이블에 `Base::v1()`의 주소가 저장됩니다.
-3. `v2()`, `v3()`은 오버라이딩 되었으므로, `Derived`의 가상 함수 테이블에 `Derived::v2()`, `Derived::v3()`의 주소가 저장됩니다.
+1. `f()`는 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 아니므로 [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)에 포함되지 않습니다.
+2. `v1()`은 오버라이딩 하지 않았으므로, `Derived`의 [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)에 `Base::v1()`의 주소가 저장됩니다.
+3. `v2()`, `v3()`은 오버라이딩 되었으므로, `Derived`의 [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)에 `Derived::v2()`, `Derived::v3()`의 주소가 저장됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/80878e38-22ff-4799-b3ad-ddc5e33829d8)
 
@@ -234,15 +234,15 @@ Base* b = &d;
 b->v3();
 ```
 
-와 같이 `Base` 포인터로 가상 함수인 `v3()`을 호출하면, 다음 경로에 따라 `Derived::v3()` 이 호출됩니다.
+와 같이 `Base` 포인터로 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)인 `v3()`을 호출하면, 다음 경로에 따라 `Derived::v3()` 이 호출됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bab05099-af07-4661-bf93-6d348353367f)
 
-가상 함수가 정의된 개체는 가상 함수 테이블의 추가 공간을 필요로 하므로, 불필요하게 가상 함수를 정의하지 마세요. 인터페이스를 정의가 필요하거나, 다형적 동작이 필요한 경우만 사용하시기 바랍니다.
+[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 정의된 개체는 [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)의 추가 공간을 필요로 하므로, 불필요하게 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 정의하지 마세요. 인터페이스를 정의가 필요하거나, 다형적 동작이 필요한 경우만 사용하시기 바랍니다.
 
 # 순가상 함수
 
-순가상 함수는 실제 구현없이 함수 규약만 정의할때 사용합니다. 순가상 함수가 있는 클래스는 인스턴스화 할 수 없으며, 반드시 상속해서 자식 개체에서 구현해야 합니다.
+[순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)는 실제 구현없이 함수 규약만 정의할때 사용합니다. [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 클래스는 인스턴스화 할 수 없으며, 반드시 상속해서 자식 개체에서 구현해야 합니다.
 
 ```cpp
 class IEatable {

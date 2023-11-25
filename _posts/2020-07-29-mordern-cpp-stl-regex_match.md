@@ -10,7 +10,7 @@ sidebar:
 
 > * (C++11~) [regex_match()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_match)는 문자열의 전체가 정규 표현식과 일치하는지 검사합니다.
 > * (C++11~) [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search)는 문자열의 일부가 정규 표현식과 일치하는지 검사합니다.
-> * (C++11~) [regex_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_iterator)는 문자열 전체에 대해 [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) 한 결과의 이터레이터입니다.
+> * (C++11~) [regex_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_iterator)는 문자열 전체에 대해 [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) 한 결과의 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)입니다.
 > * (C++11~) [regex_replace()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_replace)는 문자열에서 정규 표현식과 일치하는 부분을 수정합니다.
 
 # 개요
@@ -25,7 +25,7 @@ C++11 부터 STL 에서는 정규 표현식 관련 개체와 유틸리티가 제
 |[regex_match()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_match) (C++11~)|문자열의 전체가 정규 표현식과 일치하는지 검사합니다.|
 |[regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) (C++11~)|문자열의 일부가 정규 표현식과 일치하는지 검사합니다.|
 |[regex_replace()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_replace) (C++11~)|문자열에서 정규 표현식과 일치하는 부분을 수정합니다.|
-|[regex_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_iterator) (C++11~)|문자열 전체에 대해 [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) 한 결과의 이터레이터입니다.<br/>* `cregex_iterator` : `regex_iterator<const char*>` 입니다.<br/>* `wcregex_iterator` : `regex_iterator<const wchar_t*>` 입니다.<br/>* `sregex_iterator` : `regex_iterator<string::const_iterator>` 입니다.<br/>* `wsregex_iterator` : `regex_iterator<wstring::const_iterator>` 입니다.|
+|[regex_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_iterator) (C++11~)|문자열 전체에 대해 [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) 한 결과의 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)입니다.<br/>* `cregex_iterator` : `regex_iterator<const char*>` 입니다.<br/>* `wcregex_iterator` : `regex_iterator<const wchar_t*>` 입니다.<br/>* `sregex_iterator` : `regex_iterator<string::const_iterator>` 입니다.<br/>* `wsregex_iterator` : `regex_iterator<wstring::const_iterator>` 입니다.|
 |`regex_token_iterator` (C++11~)|(작성중)|
 |`regex_error` (C++11~)|(작성중)|
 |`regex_traits` (C++11~)|(작성중)|
@@ -112,7 +112,7 @@ EXPECT_TRUE(result.size() == 2 && result[0] == "010-1234-5678" && result[1] == "
 
 # regex_iterator
 
-문자열 전체에 대해 [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) 한 결과의 이터레이터입니다. 상기 예제에서는 `while()`과 `suffix()` 를 사용했지만, 이터레이터를 이용하여 다음과 같이 간소화 할 수 있습니다.
+문자열 전체에 대해 [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) 한 결과의 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)입니다. 상기 예제에서는 `while()`과 `suffix()` 를 사용했지만, [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 이용하여 다음과 같이 간소화 할 수 있습니다.
 
 ```cpp
 std::string str{

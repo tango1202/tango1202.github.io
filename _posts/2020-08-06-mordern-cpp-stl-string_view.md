@@ -103,10 +103,10 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |--|--|
 |`[]` (C++17~)|요소에 접근합니다.|
 |`at()` (C++17~)|`position`위치의 요소 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
-|`begin(), end()` (C++17~)|순방향 이터레이터를 리턴합니다.|
-|`rbegin(), rend()` (C++17~)|역방향 이터레이터를 리턴합니다.|
-|`cbegin(), cend()` (C++17~)|방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
-|`crbegin() crend()` (C++17~)|역방향 이터레이터를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
+|`begin(), end()` (C++17~)|순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다.|
+|`rbegin(), rend()` (C++17~)|[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
+|`cbegin(), cend()` (C++17~)|순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
+|`crbegin() crend()` (C++17~)|[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`data()` (C++17~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 관리하는 메모리 블록을 리턴합니다. 끝에 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 없을 수도 있습니다.|
 |`front()` (C++17~)|첫번째 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`back()` (C++17~)|마지막 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|

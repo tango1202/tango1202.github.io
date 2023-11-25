@@ -8,12 +8,12 @@ sidebar:
     nav: "docs"
 ---
 
-> * 이터레이터는 전위 증가 연산자를 사용하라.
-> * for를 이용하여 이터레이터를 순차 탐색 할때 `itr < endItr`보다는 `itr != endItr`을 사용하라.
+> * [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)는 전위 증가 연산자를 사용하라.
+> * for를 이용하여 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 순차 탐색 할때 `itr < endItr`보다는 `itr != endItr`을 사용하라.
 
 > **모던 C++**
 > * (C++11~) (C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 요소의 탐색 처리가 쉬워졌습니다.
-> * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 이터레이터가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.
+> * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 아답터는 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.
 > * (C++11~) [begin(), end()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)가 추가되었습니다.
 > * (C++14~) [rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC)가 추가되었습니다.
 > * (C++17~) [size(), empty(), data()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EB%B2%94%EC%9C%84-%EC%A0%91%EA%B7%BC) 가 추가되었습니다.
@@ -22,11 +22,11 @@ sidebar:
 
 # 개요
 
-이터레이터(반복자)는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에서 지금 가리키는 요소나 다음 요소를 찾아가는 방법을 제공합니다.
+[이터레이터(반복자)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에서 지금 가리키는 요소나 다음 요소를 찾아가는 방법을 제공합니다.
 
 # 반개방구조
 
-이터레이터의 시작(`begin()`)과 끝(`end()`)은 다음 그림과 같이 반개방 구조(`[begin - end)` 로 표기합니다.)를 가집니다.
+[이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)의 시작(*`begin()`*)과 끝(*`end()`*)은 다음 그림과 같이 반개방 구조(*`[begin - end)` 로 표기합니다.*)를 가집니다.
 
 `begin()`은 요소의 시작 항목을 가리키고, `end()`는 마지막 요소의 다음 위치를 가리킵니다.
 
@@ -44,16 +44,16 @@ container.begin() != container.end();
 
 # 이터레이터를 이용한 요소 접근
 
-이터레이터는 다음의 연산자를 통해 요소에 접근합니다.
+[이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)는 다음의 연산자를 통해 요소에 접근합니다.
 
 |항목|내용|
 |--|--|
-|`*`, `->`|이터레이터가 가리키는 요소|
-|`++`|다음 요소를 가리키는 이터레이터|
+|`*`, `->`|[이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)가 가리키는 요소|
+|`++`|다음 요소를 가리키는 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)|
 
-`++`를 이용하여 이터레이터를 사용하는 경우에는 꼭 전위형을 사용해야 합니다. 후위형을 사용하면, 증가 시키기 전의 값을 복제해서 리턴하기 때문에 불필요한 복사 부하가 생깁니다.([증감 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A6%9D%EA%B0%90-%EC%97%B0%EC%82%B0%EC%9E%90)와 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고)
+`++`를 이용하여 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 사용하는 경우에는 꼭 전위형을 사용해야 합니다. 후위형을 사용하면, 증가 시키기 전의 값을 복제해서 리턴하기 때문에 불필요한 복사 부하가 생깁니다.([증감 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A6%9D%EA%B0%90-%EC%97%B0%EC%82%B0%EC%9E%90)와 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고)
 
-또한, `for` 문의 조건식에서 `itr < endItr`이 아니라 `itr != endItr`을 사용합니다. 이는 랜덤 접근이 가능한 이터레이터만 `<`이 가능하기 때문입니다. 향후 다른 컨테이너로 변경하더라도 수정을 최소화하기 위해 관습적으로 `<` 보다는 `!=` 사용하는게 좋습니다.
+또한, `for` 문의 조건식에서 `itr < endItr`이 아니라 `itr != endItr`을 사용합니다. 이는 랜덤 접근이 가능한 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)만 `<`이 가능하기 때문입니다. 향후 다른 컨테이너로 변경하더라도 수정을 최소화하기 위해 관습적으로 `<` 보다는 `!=` 사용하는게 좋습니다.
 
 
 ```cpp
@@ -83,7 +83,7 @@ EXPECT_TRUE(v[1] == 10);
 
 # 이터레이터 카테고리
 
-이터레이터는 그 특성에 따라 5가지 카테고리로 분류됩니다. [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)는 요소 처리 특성에 맞게 이터레이터를 사용합니다.
+[이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)는 그 특성에 따라 5가지 카테고리로 분류됩니다. [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)는 요소 처리 특성에 맞게 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 사용합니다.
 
 |항목|내용|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)|
 |--|--|--|
@@ -97,7 +97,7 @@ EXPECT_TRUE(v[1] == 10);
 
 # 역방향 이터레이터
 
-역방향 이터레이터는 `++`시 요소의 끝에서 처음으로 이동하는 이터레이터 입니다.
+[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)는 `++`시 요소의 끝에서 처음으로 이동하는 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/) 입니다.
 
 ```cpp
 std::vector<int> v(5); 
@@ -157,9 +157,9 @@ std::vector<int> v; // 빈 벡터
 Fill(v.begin(), 5, 7); // (X) 예외 발생. v가 5개 할당되지 않았다면 예외 발생 
 ```
 
-`Fill()` 함수에서는 이터레이터를 반복하면서 `*first = value;` 로 실제 요소에 값을 대입하기 때문에, 벡터에 요소가 없어 예외를 발생하게 됩니다.
+`Fill()` 함수에서는 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 반복하면서 `*first = value;` 로 실제 요소에 값을 대입하기 때문에, 벡터에 요소가 없어 예외를 발생하게 됩니다.
 
-이런 경우 값을 대입하지 않고, [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에 `push_back()` 하도록 연산자를 재정의한 것을 삽입 이터레이터라고 합니다.
+이런 경우 값을 대입하지 않고, [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에 `push_back()` 하도록 연산자를 재정의한 것을 [삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)라고 합니다.
 
 구현 방법은 다음과 같습니다.
 
@@ -214,7 +214,7 @@ Fill(BackInsertIterator<std::vector<int>>(v), 5, 7); // 현 컨테이너 뒤 5 �
 EXPECT_TRUE(v[0] == 7 && v[1] == 7 && v[2] == 7 && v[3] == 7 && v[4] == 7);
 ```
 
-표준에서는 `back_inserter()` 유틸리티 함수로 삽입 이터레이터를 생성해 줍니다.
+표준에서는 `back_inserter()` 유틸리티 함수로 [삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 생성해 줍니다.
 
 ```cpp
 std::vector<int> v; 
@@ -225,7 +225,7 @@ EXPECT_TRUE(v[0] == 7 && v[1] == 7 && v[2] == 7 && v[3] == 7 && v[4] == 7);
 
 # 이터레이터 아답터
 
-역방향 이터레이터나 삽입 이터레이터와 같이 이터레이터의 고유 기능인 `*`, `->`, `++`을 재구현하여 다르게 동작하는 이터레이터들입니다. 자세한 사항은 모던 C++ STL의 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 를 참고하기 바랍니다.
+[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)나 [삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)와 같이 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)의 고유 기능인 `*`, `->`, `++`을 재구현하여 다르게 동작하는 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)들입니다. 자세한 사항은 모던 C++ STL의 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 를 참고하기 바랍니다.
 
 
 

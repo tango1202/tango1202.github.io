@@ -59,7 +59,7 @@ class Node {
 
 **이터레이터**
 
-이터레이터를 통해 요소 접근을 일반화 합니다.
+[이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 통해 요소 접근을 일반화 합니다.
 
 # 시퀀스 컨테이너
 

@@ -18,7 +18,7 @@ sidebar:
 
 # 개요 
 
-기존에는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 이용하여 함수가 방출하는 예외를 나열했는데요(*[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고*), 사실 명시한 예외 이외에는 `unexpected_handler` 로 분기하므로 사용하지 않는게 낫다고 말씀드렸습니다. 
+기존에는 [동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)을 이용하여 함수가 방출하는 예외를 나열했는데요(*[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고*), 사실 명시한 예외 이외에는 [unexpected_handler](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 로 분기하므로 사용하지 않는게 낫다고 말씀드렸습니다. 
 
 ```cpp
 // bad_alloc, range_error 이외에는 unexpected_handler로 분기합니다.
@@ -72,7 +72,7 @@ void f_11() noexcept {
 f_11(); // noexcept 함수 내에서 사용하는 함수 f()가 예외를 발생시켜 terminate()를 호출합니다.
 ```
 
-[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)이 ***상수는 상수만 접근한다*** 이듯이, [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)만 접근한다는 계약이 있으면 컴파일 단계에서 감지되어 참 좋을텐데 말이죠. 왜 이런가 봤더니 기존 C스타일 함수는 `noexcept`를 지정할 수 없으니, 호출의 호환성을 유지하기 위해 이렇게 느슨하게 했다는군요.(*아쉽지만, 개발자에게 충분한 자유도를 주는 표준화 위원들의 의견도 존중합니다.*)
+[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)이 ***상수는 상수만 접근한다*** 이듯이, [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)만 접근한다는 계약이 있으면 컴파일 단계에서 감지되어 참 좋을텐데 말이죠. 왜 이런가 봤더니 기존 C스타일 함수는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 지정할 수 없으니, 호출의 호환성을 유지하기 위해 이렇게 느슨하게 했다는군요.(*아쉽지만, 개발자에게 충분한 자유도를 주는 표준화 위원들의 의견도 존중합니다.*)
 
 아무튼 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)는 컴파일 오류 감지가 안되기에 가볍게 넣거나 뺄 수 있는 코딩 계약이 아닙니다. [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)처럼 컴파일 오류로 감지할 수 있으면, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 무조건 들이댄 것처럼 쉽게 적용할 수 있지만, 마구잡이로 적용했다가 예외 발생 상황이 되면, 이를 수습하느라 인생을 낭비하게 될 수 있습니다. 
 
@@ -87,7 +87,7 @@ f_11(); // noexcept 함수 내에서 사용하는 함수 f()가 예외를 발생
 
 하지만 그럼에도 불구하고 다음은 꼭 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 고려하십시요.
 
-1. 복사 연산을 안전하게 이동 연산으로 변환할 수 있는 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90), [이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)
+1. 복사 연산을 안전하게 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)으로 변환할 수 있는 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90), [이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)
 (*[암시적 이동 연산 변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0-%EB%B3%80%ED%99%98) 참고*)
 
 2. 예외에 안전한 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)을 위한 [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)

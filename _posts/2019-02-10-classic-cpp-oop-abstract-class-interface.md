@@ -12,7 +12,7 @@ sidebar:
 > * 기능 스펙과 어느 정도의 공통 기능을 제공하려면 추상 클래스로 정의하라.
 
 > **모던 C++**
-> * (C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete)가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.
+> * (C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)가 추가되어 [암시적으로 생성되는 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/)의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.
 
 # 추상 클래스
 
@@ -22,7 +22,7 @@ sidebar:
 * 추상 클래스는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하지 못하도록 `private`로 막던지, 상속해서만 사용할 수 있도록 `protected`로 만들고, 자식 개체에서 [가상 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현합니다.
 * 추상 클래스는 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 `private`로 막습니다.([부모 개체의 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
 * 다형 소멸을 하려면 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용합니다.
-* 추상 클래스는 1개 이상의 순가상 함수가 있어야 합니다.
+* 추상 클래스는 1개 이상의 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있어야 합니다.
 
 ```cpp
 class Shape {
@@ -71,13 +71,13 @@ for(int i = 0; i < 2; ++i) {
     delete shapes[i]; // 다형 소멸 합니다. Shape*로 Rectangle, Ellipse을 소멸합니다.
 } 
 ```
-> *(C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete)가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.*
+> *(C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)가 추가되어 [암시적으로 생성되는 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/)의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.*
 
 **마땅한 순가상 함수가 없는 추상 클래스**
 
-드문 경우지만, 순가상 함수로 정의할게 마땅히 없는데 추상 클래스로 만들어야 한다면, [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 이용하면 됩니다.
+드문 경우지만, [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)로 정의할게 마땅히 없는데 추상 클래스로 만들어야 한다면, [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 이용하면 됩니다.
 
-추상 클래스는 다형적으로 사용될 수도 있기 때문에 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 작성될 필요도 있는데요, 하지만 다음처럼, 순가상 함수가 하나도 없다면 추상 클래스가 인스턴스화 될 수 있습니다.
+추상 클래스는 다형적으로 사용될 수도 있기 때문에 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 작성될 필요도 있는데요, 하지만 다음처럼, [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 하나도 없다면 추상 클래스가 인스턴스화 될 수 있습니다.
 
 ```cpp
 class Abstract {
@@ -101,7 +101,7 @@ public:
 Abstract abstract; // (X) 정상 코딩 계약. 추상 클래스를 인스턴스화 하지 못합니다.
 ```
 
-이방법 보다는 순가상 함수가 있는 추상 클래스라는 의미가 강하도록, [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만드는게 좋습니다.
+이방법 보다는 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 추상 클래스라는 의미가 강하도록, [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만드는게 좋습니다.
 
 ```cpp
 class Abstract {
@@ -124,14 +124,14 @@ Concrete concrete; // (O) 상속하면 인스턴스화 가능
 * 일반적으로 인터페이스는 구체 구현이 없으므로 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 `private`로 막습니다. 특히 [부모 개체의 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 꼭 막아두는게 좋습니다.
 * 일반적으로 인터페이스는 기능 스펙만 제공하고, 다형 소멸을 제공하지 않습니다. 다형 소멸을 제공하는건 그냥 추상 클래스라고 보시는게 좋습니다.
 * 다형 소멸을 하지 않으므로 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용합니다.
-* 인터페이스는 모두 순가상 함수로 구성됩니다. 단, [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들면, 정의를 따로 해야하므로, 그냥 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 정의합니다.
+* 인터페이스는 모두 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)로 구성됩니다. 단, [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들면, 정의를 따로 해야하므로, 그냥 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 정의합니다.
 
 다음은 `IDrawable` 인터페이스로 `Shape` 클래스를 구현한 예입니다. 
 
 1. `IDrawable` 은 * [상속 강제](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EA%B0%95%EC%A0%9C)를 해야 하므로 `protected` [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용합니다.
 2. `IDrawable` 은 인터페이스여서 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 외부에서 사용하지 못하도록 `private`을 사용합니다.
 3. `IDrawable` 은 인터페이스 여서 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용합니다.
-4. `IDrawable`에 `Draw()` 순가상 함수를 선언합니다.
+4. `IDrawable`에 `Draw()` [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 선언합니다.
 5. `Shape`은 `IDrawable`을 상속하고, 다형 소멸을 할 것이므로 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용합니다. (*상속한 `IDrawable`의 `Draw()`함수가 구체화 되지 않았으므로 여전히 추상 클래스입니다.*)
 
 ```cpp
@@ -196,7 +196,7 @@ for(int i = 0; i < 2; ++i) {
 } 
 ```
 
-> *(C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete)가 추가되어 암시적으로 생성되는 멤버 함수의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.*
+> *(C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)가 추가되어 [암시적으로 생성되는 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/)의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.*
 
 `Draw()` 함수는 `IDrawable`의 함수 이므로 다음과 같이 `IDrawble` 인터페이스로 실행할 수 있습니다.
 

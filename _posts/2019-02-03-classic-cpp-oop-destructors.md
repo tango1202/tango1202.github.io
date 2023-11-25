@@ -249,9 +249,9 @@ delete p; // (X) 컴파일 오류. Base의 소멸자가 protected
 
 # 가상 함수가 없는 경우의 다형성
     
-보통 다형적 동작을 하는 개체들은 부모 클래스에 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있습니다. 하지만, 가상 함수가 아예 없는 경우도 있을 수 있는데요, 이럴때 억지로 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 추가하고 싶으면 [가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 로 만들면 됩니다.
+보통 다형적 동작을 하는 개체들은 부모 클래스에 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있습니다. 하지만, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 아예 없는 경우도 있을 수 있는데요, 이럴때 억지로 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 추가하고 싶으면 [가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 로 만들면 됩니다.
 
-다음은 부모 개체를 상속받아 자식 개체에서 타입명만 다르게 하여 사용한 한 예입니다. `Error`에서는 자식 개체에서 필요로하는 모든 함수를 제공하고 있어 별도의 가상 함수 정의가 필요없고, 다형 소멸을 위해 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)만 제공하고 있습니다.
+다음은 부모 개체를 상속받아 자식 개체에서 타입명만 다르게 하여 사용한 한 예입니다. `Error`에서는 자식 개체에서 필요로하는 모든 함수를 제공하고 있어 별도의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 정의가 필요없고, 다형 소멸을 위해 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)만 제공하고 있습니다.
 
 ```cpp
 class Error {
@@ -305,7 +305,7 @@ T::~T() {} // 실제 구현 정의가 있어야 함
 
     이 경우는 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하는게 좋습니다. [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)_는 정의를 따로 만들어야 하기 때문에 번거롭습니다.(*특히 [함수 내부의 로컬 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%ED%95%A8%EC%88%98-%EB%82%B4%EB%B6%80%EC%9D%98-%EB%A1%9C%EC%BB%AC-%ED%81%B4%EB%9E%98%EC%8A%A4)로 정의한 경우, [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 구현 정의를 할 방법이 없습니다.*)
 
-3. 마땅한 순가상 함수가 없는 추상 클래스
+3. 마땅한 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 추상 클래스
    
    이경우에는 [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용해야 합니다. [추상 클래스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)를 참고하세요. 
 

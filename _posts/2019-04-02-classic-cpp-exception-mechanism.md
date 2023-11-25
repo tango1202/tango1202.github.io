@@ -205,7 +205,7 @@ void h() {
 
 # 동적 예외 사양
 
-함수 정의시 [throw()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)를 사용하여 방출하는 예외를 명세화 할 수 있는데요, 명시한 예외 이외의 예외가 발생하면, `unexpected()` 함수를 호출하며, `unexpected()` 함수에서는 `unexpected_handler` 를 호출합니다. 즉, 명시한 예외 이외에는 `unexpected_handler` 로 분기하므로 사용하지 않는게 낫습니다.
+함수 정의시 [throw()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)를 사용하여 방출하는 예외를 명세화 할 수 있는데요, 명시한 예외 이외의 예외가 발생하면, `unexpected()` 함수를 호출하며, `unexpected()` 함수에서는 [unexpected_handler](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 를 호출합니다. 즉, 명시한 예외 이외에는 [unexpected_handler](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 로 분기하므로 사용하지 않는게 낫습니다.
 
 ```cpp
 void f() throw(error1, error2) 

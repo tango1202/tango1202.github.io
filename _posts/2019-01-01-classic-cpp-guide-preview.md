@@ -100,7 +100,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 
 5. [STL : 이터레이터(반복자)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)
 
-    [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 요소 탐색을 위해 이터레이터(반복자)를 제공합니다.
+    [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 요소 탐색을 위해 [이터레이터(반복자)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 제공합니다.
 
     ```cpp
     std::vector<int> datas;

@@ -13,7 +13,7 @@ sidebar:
 
 # 개요
 
-기존에는 [암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 되는 문제점이 있으니 형변환 연산자를 정의하지 말라고 했는데요(*[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)와 [안전하지 않은 bool 형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%80-bool-%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고*), 
+기존에는 [암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 되는 문제점이 있으니 [형변환 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)를 정의하지 말라고 했는데요(*[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)와 [안전하지 않은 bool 형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%80-bool-%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고*), 
 
 C++11 부터는 [explicit 형변환 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/)를 추가하여 명시적으로만 형변환 할 수 있게 했습니다.
 
@@ -42,7 +42,7 @@ bool val3{static_cast<bool>(t_11)}; // 명시적으로 변환해야 사용할 �
 
 [안전하지 않은 bool 형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%80-bool-%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)에서, [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)은 암시적으로 `int`로 형변환되면서 뜻하지 않은 동작을 할 수 있으니, [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/) 형변환을 정의하지 말라고 했는데요, [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit) 를 이용하여 이러한 문제를 차단할 수 있습니다.
 
-단, `if`의 조건식에서는 암시적으로 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로 변환되어 개체 유효성 평가에 유용합니다.
+단, [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용하더라도 `if`의 조건식에서는 암시적으로 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로 변환되어 개체 유효성 평가에 사용할 수 있습니다.
 
 ```cpp
 class T_11 {

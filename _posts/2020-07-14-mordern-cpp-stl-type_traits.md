@@ -91,9 +91,9 @@ ThreeType three;
 |`is_standard_layout` (C++11~)|[표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 인지 검사합니다.|
 |`is_pod`(C++11~C++20)|[POD 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#pod-%ED%83%80%EC%9E%85plan-old-data) 인지 검사합니다.||
 |`is_literal_type`(C++11~C++17)|[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 인지 검사합니다.|
-|`is_empty` (C++11~)|멤버 변수, 가상 함수, 비어있지 않은 부모 개체가 없는 빈 개체인지 검사합니다.|
-|`is_polymorphic` (C++11~)|가상 함수가 있거나, 가상 함수를 상속한 다형성 타입인지 검사합니다.|
-|`is_abstract` (C++11~)|적어도 1개 이상의 순가상 함수가 있는 추상 클래스 타입인지 검사합니다.|
+|`is_empty` (C++11~)|멤버 변수, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), 비어있지 않은 부모 개체가 없는 빈 개체인지 검사합니다.|
+|`is_polymorphic` (C++11~)|[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있거나, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 상속한 다형성 타입인지 검사합니다.|
+|`is_abstract` (C++11~)|적어도 1개 이상의 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 추상 클래스 타입인지 검사합니다.|
 |`is_signed` (C++11~)|양수/음수 처리를 지원하는 타입인지 검사합니다.|
 |`is_unsigned` (C++11~)|양수/음수 처리를 지원하는 않는 타입인지 검사합니다.|
 |`is_final` (C++14~)|[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final) 클래스 타입인지 검사합니다.|

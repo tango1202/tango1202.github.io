@@ -453,7 +453,7 @@ C++14 에서 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-
 
 C++20 에서는 [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)가 한차례 더 보강되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), [dynamic_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98), [typeid()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90), 초기화되지 않은 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [try-catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/), 공용체 멤버 변수 활성 전환, `asm`등을 사용할 수 있습니다.
 
-다음예에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 오버라이딩한 `Func` 함수를 컴파일 타임 상수로 사용할 수 있고, 이를 `Base*`를 통해 가상 함수를 호출하면, 런타임에 동작하는 걸 확인 할 수 있습니다.
+다음예에서 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 오버라이딩한 `Func` 함수를 컴파일 타임 상수로 사용할 수 있고, 이를 `Base*`를 통해 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하면, 런타임에 동작하는 걸 확인 할 수 있습니다.
 
 ```cpp
 class Base {

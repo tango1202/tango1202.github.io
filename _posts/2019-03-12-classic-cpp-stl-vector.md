@@ -21,7 +21,7 @@ sidebar:
 1. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)과 유사합니다.([배열과 vector](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4%EA%B3%BC-vector) 참고)
 2. 랜덤 접근을 지원합니다.
 3. 요소 삽입/삭제시 연속적인 메모리 공간에 관리하기 위해 나머지 요소들을 재배치합니다. 이에 따라 선형 시간이 필요하며, 비효율적입니다.(요소 삽입/삭제가 빈번하면 `list`가 유리합니다.)
-4. 요소가 추가되어 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 용량을 늘려야 하는 경우, 재할당이 수행됩니다. 재할당 시에는 모든 요소가 새롭게 할당된 공간에 이동되어야 하므로 속도 부하가 있고, 요소의 참조나 이터레이터가 무효화됩니다. 따라서 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 재할당 시도를 최소화 하기 위해, 재할당시 실제 추가/삭제되는 크기가 아니라 좀 넉넉한 크기로 재할당합니다.
+4. 요소가 추가되어 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 용량을 늘려야 하는 경우, 재할당이 수행됩니다. 재할당 시에는 모든 요소가 새롭게 할당된 공간에 이동되어야 하므로 속도 부하가 있고, 요소의 참조나 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)가 무효화됩니다. 따라서 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 재할당 시도를 최소화 하기 위해, 재할당시 실제 추가/삭제되는 크기가 아니라 좀 넉넉한 크기로 재할당합니다.
 
 # vector 멤버 함수
 
@@ -62,14 +62,14 @@ sidebar:
 |--|--|--|
 |`[]`|`reference operator [](size_type position)`|`position`위치의 요소 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `position`이 잘못된 위치라면 아무 생각없이 실행되어 오동작 합니다.|
 |`at()`|`reference at(size_type position);`<br/>`const_reference at(size_type position) const;`|`position`위치의 요소 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
-|`begin()`|`iterator begin();`<br/>`const_iterator begin() const;`|첫번째 요소의 이터레이터를 리턴합니다.|
-|`end()`|`iterator end();`<br/>`const_iterator end() const;`|마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
-|`rbegin()`|`reverse_iterator rbegin();`<br/>`const_reverse_iterator rbegin() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
-|`rend()`|`reverse_iterator rend();`<br/>`const_reverse_iterator rend() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
-|`cbegin()` (C++11~)|`const_iterator cbegin() const;`|첫번째 요소의 이터레이터를 리턴합니다.|
-|`cend()` (C++11~)|`const_iterator cend() const;`|마지막 요소의 다음 위치의 이터레이터를 리턴합니다.|
-|`crbegin()` (C++11~)|`const_reverse_iterator crbegin() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 첫번째 요소의 역방향 이터레이터를 리턴합니다.|
-|`crend()` (C++11~)|`const_reverse_iterator crend() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 마지막 요소의 다음 위치의 역방향 이터레이터를 리턴합니다.|
+|`begin()`|`iterator begin();`<br/>`const_iterator begin() const;`|첫번째 요소의 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 리턴합니다.|
+|`end()`|`iterator end();`<br/>`const_iterator end() const;`|마지막 요소의 다음 위치의 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 리턴합니다.|
+|`rbegin()`|`reverse_iterator rbegin();`<br/>`const_reverse_iterator rbegin() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 첫번째 요소의 [역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
+|`rend()`|`reverse_iterator rend();`<br/>`const_reverse_iterator rend() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 마지막 요소의 다음 위치의 [역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
+|`cbegin()` (C++11~)|`const_iterator cbegin() const;`|첫번째 요소의 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 리턴합니다.|
+|`cend()` (C++11~)|`const_iterator cend() const;`|마지막 요소의 다음 위치의 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 리턴합니다.|
+|`crbegin()` (C++11~)|`const_reverse_iterator crbegin() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 첫번째 요소의 [역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
+|`crend()` (C++11~)|`const_reverse_iterator crend() const;`|반전된 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 마지막 요소의 다음 위치의 [역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
 |`data()`|`pointer data();`<br/>`const_pointer data() const;`|[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)가 관리하는 메모리 블록을 리턴합니다.(첫번째 요소의 포인터를 리턴합니다.)|
 |`front()`|`reference front();`<br/>`const_reference front() const;`|첫번째 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`back()`|`reference back();`<br/>`const_reference back() const;`|마지막 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 비었다면 아무 생각없이 실행되어 오동작 합니다.|

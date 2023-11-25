@@ -17,14 +17,14 @@ sidebar:
 > > * `is-a`관계에서는 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하라.([가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)가 아니면 메모리 릭이 발생한다.)
 > > * `has-a`관계에서는 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용하라.
 > * 부모 개체의 기본 구현을 자식 개체에서 재정의해야 한다면, 유틸리티로 제공하라.
-> * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하거나 순가상 함수를 포함하라.(`is-a` 관계에서 순가상 함수가 없는 경우, [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용한다.)
-> * 상속을 제한하고 싶은 경우, [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 사용으로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
+> * 상속을 강제하고 싶은 경우, `protected` 생성자를 사용하거나 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 포함하라.(`is-a` 관계에서 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 경우, [순가상 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%88%9C%EA%B0%80%EC%83%81-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용한다.)
+> * [상속을 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C)하고 싶은 경우, [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 사용으로 규약을 정하고, 준수하라.(**코딩 계약** 을 맺기엔 부담이 크다.)
 > * 상속 관계에서는 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)자 대신 [가상 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하라.
 > * [부모 개체의 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 오동작할 소지가 있으니 막아라.
 
 > **모던 C++**
-> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있고, 강제적으로 상속을 제한할 수 있습니다.
-> * (C++11~) [생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D)이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.
+> * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 더이상 오버라이딩 못하게 할 수 있고, 강제적으로 [상속을 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C)할 수 있습니다.
+> * (C++11~) [생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D)이 추가되어 부모 개체의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)도 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)받아 사용할 수 있어 자식 개체의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 재정의 코드가 좀더 간결해 졌습니다.
 
 # 개요
 
@@ -142,7 +142,7 @@ obj3.m_Public; // (O)
 
 # 부모 개체 항목 이름 충돌과 멤버 접근
 
-일반적으로 부모 개체의 멤버는 그냥 접근할 수 있으나, 이름이 동일한 경우 자식 개체에서는 부모 개체의 이름을 가립니다. 가상 함수 오버라이딩 할게 아니라면 다른 이름으로 정의하셔야 합니다.
+일반적으로 부모 개체의 멤버는 그냥 접근할 수 있으나, 이름이 동일한 경우 자식 개체에서는 부모 개체의 이름을 가립니다.[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 오버라이딩 할게 아니라면 다른 이름으로 정의하셔야 합니다.
 
 특별히 `::`(범위 확인 연산자)로 명시적으로 부모 개체의 멤버에 접근할 수 있으나, 다형성을 해칠 수 있으니 사용하지 않는게 좋습니다.
 
@@ -195,7 +195,7 @@ EXPECT_TRUE(d.Base::f() == 10);
 
 # 부모 개체의 가상 함수 오버라이딩
 
-부모 개체의 가상 함수를 오버라이딩(함수명과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 동일하며 자식 개체에서 재구현)하여 다형적으로 동작하게 할 수 있습니다. 단, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입은 동일해야 하며, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다.([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)
+부모 개체의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 오버라이딩(함수명과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 동일하며 자식 개체에서 재구현)하여 다형적으로 동작하게 할 수 있습니다. 단, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입은 동일해야 하며, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다.([가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고)
 
 ```cpp
 class Base {
@@ -237,7 +237,7 @@ public:
 };
 ```
 
-> *(C++11~) [생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D)이 추가되어 부모 개체의 생성자도 상속받아 사용할 수 있어 자식 개체의 생성자 재정의 코드가 좀더 간결해 졌습니다.*
+> *(C++11~) [생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D)이 추가되어 부모 개체의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)도 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)받아 사용할 수 있어 자식 개체의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 재정의 코드가 좀더 간결해 졌습니다.*
 
 # 복사 손실
 
@@ -462,7 +462,7 @@ Ellipse e(5, 10, 10, 20);
 
 **단위 전략 인터페이스**
 
-단위 전략 인터페이스는 개체의 기능 스펙이라 할 수 있습니다. 작은 단위의 기능 스펙을 순가상 함수로 제공하며, [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 지원하지 않습니다.
+단위 전략 인터페이스는 개체의 기능 스펙이라 할 수 있습니다. 작은 단위의 기능 스펙을 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)로 제공하며, [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 지원하지 않습니다.
 
 ```cpp
 class IEatable {
@@ -497,7 +497,7 @@ delete* p; // (X) 컴파일 오류. IEatable의 소멸자가 protected
 
 # 나쁜 상속 - 부모 개체의 기본 구현
 
-부모 개체 정의시 마땅히 할게 없으면 순가상 함수로 정의하는게 낫습니다. 괜히 대충 기본 작업을 작성하지 마세요.
+부모 개체 정의시 마땅히 할게 없으면 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)로 정의하는게 낫습니다. 괜히 대충 기본 작업을 작성하지 마세요.
 
 ```cpp
 class Base {
@@ -514,7 +514,7 @@ public:
 };
 ```
 
-의 경우에는, 순가상 함수를 사용하여
+의 경우에는, [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 사용하여
 
 ```cpp
 class Base {
@@ -597,11 +597,11 @@ public:
 
 1. 생성자를 `protected` 로 만들면 됩니다.([상속 전용 기반 클래스 - protected 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%81%EC%86%8D-%EC%A0%84%EC%9A%A9-%EA%B8%B0%EB%B0%98-%ED%81%B4%EB%9E%98%EC%8A%A4---protected-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
-2. 순가상 함수가 있으면 됩니다.
+2. [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있으면 됩니다.
    
 3. `has-a` 관계이면 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만들면 됩니다.
    
-4. 1, 2, 3으로 할 수 없는 경우는 `is-a` 관계에서 다형 소멸이 필요하여 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 써야 하는데, 순가상 함수가 없는 경우입니다. `protected` 생성자로 할 수 없고, 순가상 함수가 없으므로 다음처럼 인스턴스화 할 수 있습니다.
+4. 1, 2, 3으로 할 수 없는 경우는 `is-a` 관계에서 다형 소멸이 필요하여 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 써야 하는데, [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 경우입니다. `protected` 생성자로 할 수 없고, [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없으므로 다음처럼 인스턴스화 할 수 있습니다.
  
     ```cpp
     class T {
@@ -630,7 +630,7 @@ public:
 
 부모 개체로 사용하지 않을 것이라면, [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 정의합니다. 다만, 아무런 **코딩 계약**이 되어 있지 않아, 상속할 수도 있습니다.([public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 참고)
 
-강제로 상속을 제한하려면, 생성자를 `private`로 만들면 되는데요, 이 경우 해당 클래스를 생성하려면 `Create()` 함수를 별도로 만들어야 합니다.([생성자 접근 차단 - private 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A0%91%EA%B7%BC-%EC%B0%A8%EB%8B%A8---private-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
+강제로 [상속을 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C)하려면, 생성자를 `private`로 만들면 되는데요, 이 경우 해당 클래스를 생성하려면 `Create()` 함수를 별도로 만들어야 합니다.([생성자 접근 차단 - private 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A0%91%EA%B7%BC-%EC%B0%A8%EB%8B%A8---private-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
 ```cpp
 class T {
@@ -654,13 +654,13 @@ delete p;
 
 그냥 [public Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)라면, 상속하지 말라는 뜻이니, 절대 상속하지 마세요. 혹시나 상속이 필요하다면, 그때 [public Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#public-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)나, [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 리팩토링 하시기 바랍니다.
 
-> *(C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 가상 함수를 더이상 오버라이딩 못하게 할 수 있고, 강제적으로 상속을 제한할 수 있습니다.*
+> *(C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 더이상 오버라이딩 못하게 할 수 있고, 강제적으로 [상속을 제한](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C)할 수 있습니다.*
 
 # Runtime Type Info(RTTI)와 형변환
 
 런타임에 개체의 타입 정보를 얻어내고, [dynamic_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 로 형변환 할 수 있습니다.
 
-다만, 가상 함수가 있어야 구체적인 자식 개체(구현 개체)를 알 수 있습니다.([명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 [typeid 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
+다만, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있어야 구체적인 자식 개체(구현 개체)를 알 수 있습니다.([명시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)과 [typeid 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90) 참고)
 
 다음 코드는 `ISinger` 와 `IDancer`의 인터페이스를 상속한 `Idol` 클래스가 있는 경우, 
 
@@ -741,11 +741,11 @@ Shape shape(rect); // (X) 오동작. shape은 Rectangle을 알지 못해 복사 
 따라서,
 
 1. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하지 못하도록 `private`로 막던지, 
-2. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 `protected`로 만들고, 자식 개체에서 자기 자신을 복제하는 가상 함수인 `Clone()` 함수를 구현하던지,
+2. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 `protected`로 만들고, 자식 개체에서 자기 자신을 복제하는 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)인 `Clone()` 함수를 구현하던지,
 
 해야 합니다.
 
-[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에 언급했듯, 가상 함수 오버라이딩시 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다. 따라서, 다음처럼 자식 개체의 타입을 리턴하는 `Clone()`을 만들 수 있습니다.
+[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)에 언급했듯, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 오버라이딩시 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 부모 개체의 것과 같거나 상속 관계(공변, covariant)이면 됩니다. 따라서, 다음처럼 자식 개체의 타입을 리턴하는 `Clone()`을 만들 수 있습니다.
 
 ```cpp
 class Shape {

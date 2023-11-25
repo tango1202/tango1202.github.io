@@ -18,23 +18,23 @@ sidebar:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c411bb39-a809-4321-80e5-7ad00250a337)
 
-1. 역방향 이터레이터가 없으며(`rbegin()`, `rend()`, `crbegin()`, `crend()`),
+1. [역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)가 없으며(`rbegin()`, `rend()`, `crbegin()`, `crend()`),
 2. [forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)에서 마지막에 입력된 요소 제어를 위해 `before_begin()`이 제공되며,
 3. [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 끝에 추가하거나 마지막 요소에 접근하는 기능이 없으며(`back()`, `push_back()`, `emplace_back()`, `pop_back()`),
-4. 요소 추가 방향과 이터레이터 방향이 달라, 요소 삭제, 삽입, 이동시 별도의 `_after` 버전을 제공합니다.(`erase_after()`, `insert_after()`, `emplace_after()`, `splice_after()`)
+4. 요소 추가 방향과 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 방향이 달라, 요소 삭제, 삽입, 이동시 별도의 `_after` 버전을 제공합니다.(`erase_after()`, `insert_after()`, `emplace_after()`, `splice_after()`)
 
 |항목|공통|`forward_list`|`list`|
 |--|--|--|--|
 |첫번째 요소|`front()`|O|O|
 |마지막 요소|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향이어서 제공 안합니다.|X|`back()`|
-|순방향 이터레이터|`begin()`, `end()`<br/>`cbegin()`, `cend()`<br/>[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)에서는 마지막에 입력된 요소가 `begin()`이고, `list`에서는 처음 입력된 요소가 `begin()`입니다.|O|O|
-|역방향 이터레이터|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향이어서 제공 안합니다.|X|`rbegin()`, `rend()`<br/>`crbegin()`, `crend()`|
-|`begin()`의 앞 이터레이터|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)에서 마지막에 입력된 요소 제어를 위해 제공합니다.|`before_begin()`|X|
+|순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)|`begin()`, `end()`<br/>`cbegin()`, `cend()`<br/>[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)에서는 마지막에 입력된 요소가 `begin()`이고, `list`에서는 처음 입력된 요소가 `begin()`입니다.|O|O|
+|[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향이어서 제공 안합니다.|X|`rbegin()`, `rend()`<br/>`crbegin()`, `crend()`|
+|`begin()`의 앞 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)에서 마지막에 입력된 요소 제어를 위해 제공합니다.|`before_begin()`|X|
 |리스트가 비었는지 검사|`empty()`|O|O|
 |요소 갯수|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)에서는 제공하지 않습니다.|X|`size()`|
 |리스트의 최대 요소 갯수|`max_size()`|O|O|
 |모든 요소 삭제|`clear()`|O|O|
-|이터레이터로 요소 삭제|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 주어진 위치 뒤의 요소를 삭제하고, `list`는 주어진 위치의 요소를 삭제함|`erase_after()`|`erase()`|
+|[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)로 요소 삭제|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 주어진 위치 뒤의 요소를 삭제하고, `list`는 주어진 위치의 요소를 삭제함|`erase_after()`|`erase()`|
 |값으로 요소 삭제|`remove()`<br/>`removeif()`|O|O|
 |삽입|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 주어진 위치 뒤에 삽입하고, `list`는 앞에 삽입합니다.|`insert_after()`<br/>`emplace_after()`|`insert()`<br/>`emplace()`|
 |앞에 추가/삭제|`push_front()`<br/>`emplace_front()`<br/>`pop_front()`|O|O|
