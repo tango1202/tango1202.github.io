@@ -13,15 +13,15 @@ sidebar:
 
 **개요**
 
-기존의 [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)에서는 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 [trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85)만 [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)의 멤버가 될 수 있었는데요(*[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 참고*), 
+기존의 [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)에서는 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 [Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85)만 [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)의 멤버가 될 수 있었는데요(*[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 참고*), 
 
 C++11 부터는 이를 완화하였습니다.
 대신 멤버들의 생성자와 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 호출되지 않으므로, 이를 수동으로 제어해야 합니다.
 
-다음에서 `MyUnion_11`은 non-trivial 타입인 `A`와 `B`, `Derived`를 멤버로 사용하고, 크기가 가장 큰 개체의 크기만큼 메모리를 할당합니다.
+다음에서 `MyUnion_11`은 non-Trivial 타입인 `A`와 `B`, `Derived`를 멤버로 사용하고, 크기가 가장 큰 개체의 크기만큼 메모리를 할당합니다.
 
 ```cpp
-// 생성자와 소멸자가 있어서 non-trivial 타입입니다.
+// 생성자와 소멸자가 있어서 non-Trivial 타입입니다.
 class A {
     int m_X;
     int m_Y;
@@ -39,7 +39,7 @@ public:
     void SetY(int y) {m_Y = y;}
 };
 
-// 생성자와 소멸자가 있어서 non-trivial 타입입니다.
+// 생성자와 소멸자가 있어서 non-Trivial 타입입니다.
 class B {
     std::string m_Str;
 public:
@@ -58,7 +58,7 @@ public:
     virtual int Func() {return 1;} // #1
 };
 
-// 생성자와 소멸자, 가상 함수가 있어서 non-trivial 타입입니다.
+// 생성자와 소멸자, 가상 함수가 있어서 non-Trivial 타입입니다.
 class Derived : public Base {
 public:
     Derived() {
@@ -72,9 +72,9 @@ public:
 };
 
 union MyUnion_11 {
-    A m_A; // non-trivial 타입입니다.
-    B m_B; // non-trivial 타입입니다.
-    Derived m_Derived; // non-trivial 타입입니다.
+    A m_A; // non-Trivial 타입입니다.
+    B m_B; // non-Trivial 타입입니다.
+    Derived m_Derived; // non-Trivial 타입입니다.
     MyUnion_11() {
         std::cout << "MyUnion_11 : Constructor" << std::endl;  
     }

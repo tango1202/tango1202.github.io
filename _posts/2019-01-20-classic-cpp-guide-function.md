@@ -474,7 +474,7 @@ void f(int a, int b) {
 }
 ```
 
-다음은 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명이 없어 컴파일러 최적화의 여지는 있으나, 어떤 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 필요한 건지 가독성이 좀 떨어집니다.
+다음은 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명이 없어 컴파일러 최적화의 여지는 있으나, 어떤 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 필요한 건지 가독성이 좀 떨어집니다.(*함수 오버로딩 동작 테스트 코드에서는 유용하죠. 괜히 억지로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명을 적으면 눈만 어지럽게 만드니까요.*)
 
 ```cpp
 void f(int, int) {
@@ -501,11 +501,13 @@ void f(); // (O)
 void f(void); // (O)
 ```
 
-`void`를 다른 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와 함께 섞어 쓰거나, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)와 함께 쓰는건 컴파일 오류가 납니다.(*`void*`는 포인터형이기에 `const void*`는 괜찮습니다.*)
+`void`를 다른 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와 함께 섞어 쓰거나, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)와 함께 쓰는건 컴파일 오류가 납니다.(*`void*`는 포인터형이기에 `void*`나 `const void*`는 괜찮습니다.*)
 
 ```cpp
 int f(void, int); // (X) 컴파일 오류
 int f(const void); // (X) 컴파일 오류
+int f(void*); // (O)
+int f(const void*); // (O)
 ```
 
 > *(C++20~) [축약된 함수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%EC%B6%95%EC%95%BD%EB%90%9C-%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다. 사실상 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)의 간략한 표현입니다.*
@@ -756,7 +758,7 @@ EXPECT_TRUE(constVal.f() == 2);
 
 **리턴 타입 무시**
 
-리턴 타입은 오버로딩 함수를 결정하는데 사용하지 않습니다.
+리턴 타입은 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)를 결정하는데 사용하지 않습니다.
 
 ```cpp
 int f(int) {return 1;}
@@ -842,7 +844,7 @@ Argument-dependent lookup(*ADL*) 또는 Koenig 검색이라고 합니다.
 
 # 오버로딩 함수 탐색 규칙
 
-오버로딩 함수의 후보군은 하기 단계에 따라 수집되고 선정됩니다.
+[오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)의 후보군은 하기 단계에 따라 수집되고 선정됩니다.
  
 1. 자신의 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)에서 탐색
    
@@ -852,7 +854,18 @@ Argument-dependent lookup(*ADL*) 또는 Koenig 검색이라고 합니다.
    
    1. 타입 완전 일치
    2. 경미한 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)
-   3. 승격 일치(*[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)을 `int`로, `char`를 `int`로*) 
+   3. [승격 변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)(*[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)을 `int`로, `char`를 `int`로, `int`를 `double`로 변환 등*)
+
+        ```cpp
+        int f(int a) {return 1;}
+        int g(int a) {return 2;}
+        int h(double a) {return 3;}
+
+        EXPECT_TRUE(f((bool)true) == 1); // bool은 int로 승격
+        EXPECT_TRUE(g((char)'a') == 2); // char는 int로 승격
+        EXPECT_TRUE(h((int)1) == 3); // int는 double로 승격    
+        ```
+
    4. 표준 변환(*자식 개체 포인터를 부모 개체 포인터로, `T*`를 `void*`로, `int`를 `double`로, `double`을 `int`로*) 
    5. 사용자 정의 형변환(*[형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 참고*)
 

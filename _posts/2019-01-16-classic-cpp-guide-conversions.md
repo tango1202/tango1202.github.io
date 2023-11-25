@@ -102,6 +102,8 @@ C++언어는
 }
 ```
 
+[암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)중 더 큰 데이터를 저장할 수 있는 타입으로 변환하는 것을 특별히 [승격 변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)(*[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)을 `int`로, `char`를 `int`로, `int`를 `double`로 변환 등*)이라고 합니다.
+
 # 명시적 형변환
 
 **C언어 스타일 형변환-`()`**

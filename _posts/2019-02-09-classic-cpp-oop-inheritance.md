@@ -169,7 +169,7 @@ EXPECT_TRUE(d.Base::f() == 10); // 부모 개체에 명시적으로 접근합니
 
 # 부모 개체의 멤버 함수 오버로딩
 
-부모 개체의 멤버 함수를 오버로딩(함수명이 동일하고 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입이 다름)하면 부모 개체의 것을 가려 오버로딩 함수의 후보군에 포함되지 않습니다.([오버로딩 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99) 참고) 
+부모 개체의 멤버 함수를 오버로딩(함수명이 동일하고 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입이 다름)하면 부모 개체의 것을 가려 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)의 후보군에 포함되지 않습니다.([오버로딩 함수 탐색 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%ED%95%A8%EC%88%98-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99) 참고) 
 
 ```cpp
 class Base {

@@ -8,12 +8,12 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#8] 0과 NULL 보단 nullptr를 선호하라.(오버로딩 함수 호출, auto 추론)
+> * [MEC++#8] 0과 NULL 보단 nullptr를 선호하라.([오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 호출, auto 추론)
 > * [MEC++#9] typedef 보다 별칭 선언을 선호하라.([클래스 템플릿 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD))
 
 > * (C++11~) [타입 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%83%80%EC%9E%85-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC)를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.
 > * (C++11~) [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)이 추가되어 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.
-* (C++11~) [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr) 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.
+> * (C++11~) [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr) 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.
 > * (C++11~) 최소 8byte 크기를 보장하는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long) 타입이 추가되었습니다.
 > * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long)용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)이 추가되었습니다.
 > * (C++11~) (C++11~) [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)이 추가되어 [유니코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 2byte와 4byte의 고정 크기 문자를 제공합니다.
@@ -44,59 +44,59 @@ C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입
 
 # Trivial 타입(간단한 타입)
 
-인접한 메모리 영역에 멤버들이 할당되며, `memcpy()`로 복사 가능한 타입입니다. 멤버들은 `public`, `protected`, `private`로 접근 지정될 수 있습니다.
+인접한 메모리 영역에 멤버들이 할당되며, `memcpy()`로 복사 가능한 타입입니다. 멤버들은 `public`, `protected`, `private`로 [접근 지정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)될 수 있습니다.
 
-* 스칼라 타입
-* trivial 클래스
-   * 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 없음
-   * 서로 다른 접근 지정이 가능함
-   * 가상 함수 없음
+* [스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)
+* Trivial 클래스
+   * 사용자 정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/) 없음
+   * 서로 다른 [접근 지정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)이 가능함
+   * [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 없음
    * 부모 클래스 없음
-   * trivial이 아닌 멤버 변수가 없음
-* trivial 타입의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
+   * Trivial이 아닌 멤버 변수가 없음
+* [Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85)의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 
 # 표준 레이아웃 타입
 
-다른 언어와 통신하는데 유용한 타입으로서, 인접한 메모리 영역에 멤버들이 할당되며, `memcpy()`로 복사 가능한 타입입니다. 멤버들은 `public`, `protected`, `private` 중 모두 동일한 것으로 접근 지정되어야 합니다.
+다른 언어와 통신하는데 유용한 타입으로서, 인접한 메모리 영역에 멤버들이 할당되며, `memcpy()`로 복사 가능한 타입입니다. 멤버들은 `public`, `protected`, `private` 중 모두 동일한 것으로 [접근 지정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)되어야 합니다.
 
-* 스칼라 타입
+* [스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)
 * 표준 레이아웃 클래스
-  * 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 있어도 됨
-  * 동일한 접근 지정이어야 함
-  * 가상 함수 없음
+  * 사용자 정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 있어도 됨
+  * 동일한 [접근 지정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)이어야 함
+  * [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 없음
   * 부모 클래스 없음
-  * 모든 멤버는 표준 레이아웃 이어야 함
-* 표준 레이아웃 타입의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
+  * 모든 멤버는 [표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 이어야 함
+* [표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85)의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 
 # POD 타입(Plan Old Data)
 
-travial 이면서 표준 레이아웃인 타입입니다. 메모리 레이아웃은 연속적이며, C언어와 데이터를 직접 교환하여 사용할 수 있습니다.
+[Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85)이면서 [표준 레이아웃인 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85)입니다. 메모리 레이아웃은 연속적이며, C언어와 데이터를 직접 교환하여 사용할 수 있습니다.
 
 # 리터럴 타입
 
-**리터럴 타입**은 컴파일 타임에 상수로 사용될 수 있는 타입입니다.
+[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)은 컴파일 타임에 상수로 사용될 수 있는 타입입니다.
 
-* 스칼라 타입
-* 참조자
-* 리터럴 타입의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
-* 람다 표현식
-* 집합 타입
-  * 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없으며 모든 멤버 변수가 `public`인 구조체나 클래스
+* [스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)
+* [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)
+* [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
+* [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)
+* [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)
+  * 사용자 정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없으며 모든 멤버 변수가 `public`인 구조체나 클래스
 * (C++14~) `void`
-  * C++14 이상부터 void도 리터럴 타입이어서 [constexpr 함수](
+  * C++14 이상부터 `void`도 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)이어서 [constexpr 함수](
 https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)가 `void`를 리턴할 수 있습니다.
 
 # 집합 타입
 
-**집합 타입**은 타입이 같거나 다른 여러 데이터를 저장하는 개체입니다.
+[집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)은 여러 데이터를 저장하는 개체입니다.
 
 * [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
-* 구조체/클래스/공용체
-  * 사용자 정의 생성자, 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없음
+* 구조체/클래스/[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)
+  * 사용자 정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없음
     * 멤버 변수 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 없음
   * 모든 멤버 변수가 `public`
   * 부모 클래스가 없음
-  * 가상 함수 없음
+  * [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 없음
 
 # using을 이용한 타입 별칭
 
@@ -128,10 +128,11 @@ using Func_11 = void (*)(int);
 // typedef는 템플릿의 구체화된 타입만 지원합니다.
 typedef std::vector<int> MyVector;
 
-MyVector v; // std::vector<int> 타입입니다. int 외 다른 타입으로 정의할 수 없습니다.
+MyVector v; // std::vector<int> 타입입니다. 
+MyVector<char> v2; // (X) 컴파일 오류. 다른 타입으로 정의할 수 없습니다.
 ```
 
-`using`을 사용하면 템플릿 별칭을 이용해서도 여러가지 타입으로 템플릿 인스턴스화를 할 수 있습니다.
+[using](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)을 사용하면 템플릿 별칭을 이용해서 여러가지 타입으로 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)를 할 수 있습니다.
 
 ```cpp
 // using은 템플릿을 지원합니다.
@@ -139,7 +140,7 @@ template<typename T>
 using MyVector_11 = std::vector<T>; 
 
 MyVector_11<int> v1; // std::vector<int> 타입입니다.
-MyVector_11<char> v2 : // std::vector<char> 타입입니다.
+MyVector_11<char> v2; // std::vector<char> 타입입니다.
 ```
 
 # nullptr
@@ -154,9 +155,9 @@ int* ptr2 = NULL;
 int* ptr3_11 = nullptr; // C++11
 ```
 
-`0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 오버로딩 함수 호출시 `int` 타입이 호출됩니다.
+`0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 호출시 `int` 타입이 호출됩니다.
 
-다음은 `ptr1`, `ptr2`, `ptr3`가 모두 `int*`여서 `f(int*)`가 호출되는데요,
+다음의 `ptr1`, `ptr2`, `ptr3`는 모두 `int*`여서 `f(int*)`가 호출되는데요,
 
 ```cpp
 int f(int) {return 1;} // #1
@@ -171,7 +172,7 @@ EXPECT_TRUE(f(ptr2) == 2); // int* 이므로 f(int*) 호출
 EXPECT_TRUE(f(ptr3_11) == 2); // int* 이므로 f(int*) 호출
 ```
 
-[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용한다면 `0`과 `NULL`은 다음처럼 초기값에 따라 `int`와 같은 정수형으로 추론되어(*[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 참고*), `f(int)`가 호출됩니다. 그러니 앞으로는 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)을 사용하시기 바랍니다.
+[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용한다면 `0`과 `NULL`은 다음처럼 초기값에 따라 `int`와 같은 정수형으로 추론되어(*[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 참고*), `f(int)`가 호출되는 문제가 있습니다. 그러니 앞으로는 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)을 사용하시기 바랍니다.
 
 ```cpp
 // auto를 사용하면
@@ -179,12 +180,12 @@ auto ptr1 = 0; // (△) 비권장. int
 auto ptr2 = NULL; // (△) 비권장. long long
 auto ptr3_11 = nullptr; // nullptr_t
 
-EXPECT_TRUE(f(ptr1) == 1); // f(int) 호출  
-EXPECT_TRUE(f(ptr2) == 1); // f(int) 호출
+EXPECT_TRUE(f(ptr1) == 1); // (△) 비권장. f(int) 호출  
+EXPECT_TRUE(f(ptr2) == 1); // (△) 비권장. f(int) 호출
 EXPECT_TRUE(f(ptr3_11) == 2); // f(int*) 호출
 ```
 
-또한 다음과 같은 구문을 만났을때 좀더 명확한 분석이 가능합니다.
+또한 다음과 같은 구문을 만났을때 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)을 사용하는게 가독성이 좋습니다.
 
 ```cpp
 auto result_11 = Func();
@@ -229,6 +230,8 @@ C++11 부터는 [유니코드](https://tango1202.github.io/classic-cpp-guide/cla
 |`wchar_t`|[와이드 문자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)|시스템의 비트수에 따라 다르며, 대부분 2byte 또는 4byte.<br/>Windows는 2byte|
 |`char16_t` (C++11~)|[UTF-16 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자|`16bit`(2byte) 보다 크거나 같음|
 |`char32_t` (C++11~)|[UTF-32 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자|`32bit`(4byte) 보다 크거나 같음|
+
+> *(C++20~) [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte의 고정 크기 문자를 제공합니다.*
 
 # 유니코드 리터럴
 
@@ -351,6 +354,7 @@ C++17 부터는 [16진수 부동 소수점 리터럴](https://tango1202.github.i
 // A(10진수 10), 9(1/16 * 9 = 0.5625), (p11은 2의 11승 == 2048)
 // 즉, 10.5625 * 2 ^ 11 =  21632
 float floatVal_17 = 0xA.9p11; // 21632 
+EXPECT_TRUE(floatVal_17 == 21632.0);
 ```
 
 # (C++20~) char8_t

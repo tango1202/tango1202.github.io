@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 오버로딩 시에는 `T`보다는 `T*` 보다는 `const T*`가 선택된다.
-> * 연산자 오버로딩 함수는 비멤버 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)으로 작성하라.
+> * 연산자 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)는 비멤버 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)으로 작성하라.
 > * 함수 템플릿 인수 추론시 `T&`는 `T`로 추론된다.
 
 > **모던 C++**
@@ -496,7 +496,7 @@ EXPECT_TRUE(f(i, p) == 2);
 
 # SFINAE(Substitution failure is not an error)
 
-[SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)는 ***[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 과정에서 발생할 수 있는 대체 실패는 컴파일 오류가 아니다***라는 뜻입니다. 대체 실패가 발생하면 그냥 오버로딩 함수 후보군에서 제외할 뿐 오류를 발생시키지 않는다는 뜻입니다.
+[SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)는 ***[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 과정에서 발생할 수 있는 대체 실패는 컴파일 오류가 아니다***라는 뜻입니다. 대체 실패가 발생하면 그냥 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보군에서 제외할 뿐 오류를 발생시키지 않는다는 뜻입니다.
 
 다음 `A`클래스를 보면, `Int`와 `Char`라는 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)을 가지고 있고, `f()` 함수는 이를 사용하고 있습니다.
 
@@ -522,7 +522,7 @@ EXPECT_TRUE(f<A>(10) == 1);
 EXPECT_TRUE(f<A>('a') == 2);
 ```
 
-전달한 인수에 부합하는 함수를 호출하기 위해, [함수 템플릿 오버로딩 결정 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 다음 오버로딩 함수 후보군이 만들어지고, [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 가장 적합한 함수가 호출됩니다.
+전달한 인수에 부합하는 함수를 호출하기 위해, [함수 템플릿 오버로딩 결정 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 다음 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보군이 만들어지고, [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 가장 적합한 함수가 호출됩니다.
 
 ```cpp
 A::Int f(A::Int param); // typename T::Int f(typename T::Int param)
@@ -543,16 +543,16 @@ EXPECT_TRUE(f<B>('a') == 1); // char를 전달했는데 int 버전이 호출됩�
 
 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error) 때문에 컴파일 오류가 발생하지 않고, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 때문에 `char`가 `int`로 변환되어 호출된 겁니다.
 
-우선, 다음과 같은 오버로딩 함수 후보 목록이 생깁니다.
+우선, 다음과 같은 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록이 생깁니다.
 
 ```cpp
 B::Int f(B::Int param); // typename T::Int f(typename T::Int param)
 B::Char f(B::Char param); // typename T::Char f(typename T::Char param) -> B에는 Char 종속 타입이 없으니 대체 실패합니다.
 ```
 
-하지만, `B`에는 `Char` [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)이 없으니 `B::Char f(B::Char param);` 는 대체 실패를 합니다. 이러한 실패는 컴파일 오류가 아니며, 그냥 오버로딩 함수 후보 목록에서 제외합니다. 이걸 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error) 라고 합니다. 
+하지만, `B`에는 `Char` [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)이 없으니 `B::Char f(B::Char param);` 는 대체 실패를 합니다. 이러한 실패는 컴파일 오류가 아니며, 그냥 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록에서 제외합니다. 이걸 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error) 라고 합니다. 
 
-따라서 오버로딩 함수 후보 목록은 다음 하나밖에 없으며,
+따라서 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록은 다음 하나밖에 없으며,
 
 ```cpp
 B::Int f(B::Int param); // typename T::Int f(typename T::Int param)
@@ -587,7 +587,7 @@ typename T::Char f(typename T::Char param) {
 };
 ```
 
-다음과 같은 2개의 오버로딩 함수 후보 목록을 만드는데요,
+다음과 같은 2개의 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록을 만드는데요,
 
 ```cpp
 A::Int f(A::Int param); // typename T::Int f(typename T::Int param)

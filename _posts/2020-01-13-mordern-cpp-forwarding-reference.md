@@ -856,7 +856,7 @@ EXPECT_TRUE(c.m_Val == 2);
 
 [enable_if](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#enable_if)를 이용하면 되는데요,
 
-1. `typename = enable_if<조건>::type`으로 조건이 거짓이면 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)에 의해 오버로딩 함수 후보 목록에서 제외되게 합니다.
+1. `typename = enable_if<조건>::type`으로 조건이 거짓이면 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)에 의해 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록에서 제외되게 합니다.
 2. [is_integral](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) 로 `T`가 정수 타입인지 검사합니다.
 3. [decay](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EA%B8%B0%ED%83%80-%EB%B3%80%ED%99%98)를 이용하여 `T`의 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 제거하고 검사합니다.
 

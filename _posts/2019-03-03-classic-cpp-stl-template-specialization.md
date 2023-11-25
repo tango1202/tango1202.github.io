@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * 다형적 동작을 위해 템플릿 특수화, 함수 템플릿 특수화, 템플릿 부분 특수화, 함수 템플릿 오버로딩을 이용하라.
-> * [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)을 정의할때 오버로딩 함수와 특수화 함수의 순서를 지켜라.
+> * [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)을 정의할때 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)와 특수화 함수의 순서를 지켜라.
 
 # 개요
 
