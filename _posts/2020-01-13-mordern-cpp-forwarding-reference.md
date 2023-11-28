@@ -329,7 +329,7 @@ typename std::remove_reference<T>::type&& move(T&& param) {
     struct remove_reference_11<T&> { 
         using type = T; 
     };
-    // 우측값 참조인 경우 탬플릿 부분 특수화. 우측값 참조를 제거한 T를 type으로 사용합니다.
+    // 우측값 참조인 경우 템플릿 부분 특수화. 우측값 참조를 제거한 T를 type으로 사용합니다.
     template<typename T>
     struct remove_reference_11<T&&> { 
         using type = T; 
