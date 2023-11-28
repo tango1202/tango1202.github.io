@@ -15,7 +15,7 @@ sidebar:
 > * (C++11~) [type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.
 > * (C++11~) [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.
 > * (C++14~) [integer_sequence](https://tango1202.github.io/mordern-cpp-stl/) 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.
-> * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)이 추가되어 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.
+> * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)이 추가되어 조건에 맞는 부분만 컴파일하고, 그렇지 않은 부분은 컴파일에서 제외할 수 있습니다.
 
 
 # 개요
@@ -344,7 +344,7 @@ public:
 
 이제 `CloneTraits`에서 `IsDerivedFrom<>::Val`에 따라 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 `Clone()`함수를 호출해 주면 됩니다. 
 
-이때 일반적인 프로그래밍 방식대로 `if()`문을 이용하면, 코드내에 언급한 것처럼 `Shape`의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 `protected` 여서 사용할 수 없으므로 컴파일 오류가 납니다.
+이때 일반적인 프로그래밍 방식대로 `if()`문을 이용하면, 코드내에 언급한 것처럼 `Shape`의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)는 `protected` 여서 사용할 수 없으므로 컴파일 오류가 납니다. 
 
 ```cpp
 template<typename T>
@@ -374,7 +374,11 @@ EXPECT_TRUE(typeid(*shape).name() == typeid(Rectangle).name());
 delete shape;
 ```
 
-컴파일 오류를 해결하겠다고 `Shape`의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심 성의껏 `protected`로 만든 것이니까요.(또한, `CloneTraits<int>::Clone()` 으로 기본 타입으로 사용한다면, `ptr->Clone()`이 없으므로 컴파일 오류가 납니다.) 
+`사실 Shape`은 `else`문에 있는 `ptr->Clone()`만 호출하면 되는데, 사소한 것 때문에 컴파일 오류가 나왔네요. 그냥 `public`로 바꿔버리면 될까요?
+
+컴파일 오류를 해결하겠다고 `Shape`의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 `public`으로 바꿔선 안됩니다. 부모 개체인 `Shape`은 추상 클래스로서 인스턴스화 되면 안되기에 외부에서 사용 못하도록 성심 성의껏 `protected`로 만든 것이니까요. (*또한, `CloneTraits<int>::Clone(new int)` 와 같이 기본 타입인 `int`를 사용한다면, 이번엔 `ptr->Clone()`이 없다며 컴파일 오류가 발생합니다.*) 
+
+본 문제 발생의 원인은 `new T(*ptr)`과 `ptr->Clone()`을 같은 함수안에서 처리한다는 점입니다. 타입에 따라 복제하는 방식이 다르니 호출하는 함수도 다른 함수로 만들어 줘야 합니다. 
 
 이 문제는 함수 오버로딩을 통해 해결할 수 있습니다. 하나의 함수에서 `if()`를 통해 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 `Clone()`함수를 호출하는게 아니라, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하는 함수와 `Clone()`을 사용하는 함수를 각각 구현하고, 개체에 따라 해당 함수를 호출하게 하면 됩니다.
 
@@ -565,4 +569,4 @@ my_smart_ptr<int> sp4(sp3.Clone());
 EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name());  
 ```
 
-> *(C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)이 추가되어 조건에 맞는 부분만 컴파일하고, 그렇지 않으면 컴파일 하지 않습니다.*
+> *(C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)이 추가되어 조건에 맞는 부분만 컴파일하고, 그렇지 않은 부분은 컴파일에서 제외할 수 있습니다.*
