@@ -104,7 +104,7 @@ EXPECT_TRUE(charContainer.GetAt(5) == 'c');
 
 이럴 경우 타입에 기반한 일반화 프로그래밍 방법을 사용하면, 중복 코드를 해결할 수 있습니다.
 
-C++언어에서는 개체 타입만 변경하여 클래스나 함수를 생성하는 틀로서 템플릿을 제공하며, 상기 코드는 다음과 같이 템플릿으로 대체될 수 있습니다. 
+C++언어에서는 개체 타입만 변경하여 클래스나 함수를 생성하는 틀로서 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)을 제공하며, 상기 코드는 다음과 같이 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)으로 대체될 수 있습니다. 
 
 클래스 정의 위에 `template<typename T>`가 기재되었고, 기존 `int`, `char`등 타입명이 `T`로 대체되었습니다.
 
@@ -142,7 +142,7 @@ EXPECT_TRUE(charContainer.GetAt(5) == 'c');
 |항목|내용|
 |--|--|
 |[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)|타입과 이를 처리하는 일반화된 코드를 작성<br>알고리즘을 인수로 전달하여 데이터와 처리방식 분리하고 의존성 주입([의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고)|
-|[추상화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)|일반화된 주 템플릿 사용<br/>문제 해결을 위한 알고리즘 일반화(공통의 상황/처리방식에 대한 일반화)|
+|[추상화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)|일반화된 주 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 사용<br/>문제 해결을 위한 알고리즘 일반화(공통의 상황/처리방식에 대한 일반화)|
 |[상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)|기존 개체의 재활용을 통한 확장|
-|[다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)|일반적인 타입은 주 템플릿을 사용하고, 일반적이지 않은 타입은 [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/)를 통해 다형 동작|
+|[다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)|일반적인 타입은 주 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)을 사용하고, 일반적이지 않은 타입은 [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/)를 통해 다형 동작|
 

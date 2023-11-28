@@ -122,7 +122,7 @@ using Func_11 = void (*)(int);
 
 [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)은 [클래스 템플릿 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD)도 지원합니다.
 
-[typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)를 사용하여 별칭을 작성하면, 템플릿의 경우 구체화된 타입으로만 별칭이 작성되어 향후 다른 타입으로 변경할 수 없지만,
+[typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)를 사용하여 별칭을 작성하면, [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)의 경우 구체화된 타입으로만 별칭이 작성되어 향후 다른 타입으로 변경할 수 없지만,
 
 ```cpp
 // typedef는 템플릿의 구체화된 타입만 지원합니다.
@@ -132,7 +132,7 @@ MyVector v; // std::vector<int> 타입입니다.
 MyVector<char> v2; // (X) 컴파일 오류. 다른 타입으로 정의할 수 없습니다.
 ```
 
-[using](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)을 사용하면 템플릿 별칭을 이용해서 여러가지 타입으로 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)를 할 수 있습니다.
+[using](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)을 사용하면 [클래스 템플릿 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD)을 이용해서 여러가지 타입으로 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)를 할 수 있습니다.
 
 ```cpp
 // using은 템플릿을 지원합니다.

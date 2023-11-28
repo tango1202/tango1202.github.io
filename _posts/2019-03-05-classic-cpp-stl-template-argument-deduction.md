@@ -13,16 +13,16 @@ sidebar:
 > * [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)시 `T&`는 `T`로 추론된다.
 
 > **모던 C++**
-> * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.
+> * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 하려는 타입을 생략할 수 있습니다.
 > * (C++17~) [클래스 템플릿 인수 추론 사용자 정의 가이드](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EA%B0%80%EC%9D%B4%EB%93%9C)가 추가되어 [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)시 컴파일러에게 가이드를 줄 수 있습니다.
 > * (C++20~) [컨셉(concept)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.
 
 # 개요
 
-함수 템플릿의 인스턴스화는 다음 2가지 과정을 거칩니다.
+[함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)의 인스턴스화는 다음 2가지 과정을 거칩니다.
 
 1. [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) : 전달된 타입을 어떤 타입으로 사용할지 추론
-2. [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 결정 : 인수 추론 후 일반 함수와 여러개의 함수 템플릿중 적합한 것을 결정
+2. [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 결정 : [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)) 후 일반 함수와 여러개의 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)중 적합한 것을 결정
 
 # 함수 템플릿 인수 추론
 
@@ -204,7 +204,7 @@ f(a); // (X) 컴파일 오류. A<int>와 A<short>는 서로 다른 타입이기�
 // Parameter : A<10>
 f<10>(a); // 명시적으로 10을 전달하여 A<10> 타입이 됨. 같은 타입이어서 함수 호출됨   
 ```
-> *(C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.*<br/>
+> *(C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 하려는 타입을 생략할 수 있습니다.*<br/>
 > *(C++17~) [클래스 템플릿 인수 추론 사용자 정의 가이드](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EA%B0%80%EC%9D%B4%EB%93%9C)가 추가되어 [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)시 컴파일러에게 가이드를 줄 수 있습니다.*
 
 # 함수 템플릿 오버로딩 결정 규칙
@@ -212,7 +212,7 @@ f<10>(a); // 명시적으로 10을 전달하여 A<10> 타입이 됨. 같은 타�
 서로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다른 함수들은 오버로딩 후보군에서 가장 적합한 것으로 결정됩니다.(*[오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
 
 
-하지만 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)의 경우는 정의시에는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다르지만, 인스턴스화 과정에서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 오버로딩 버전(**좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.)을 선택하게 됩니다.
+하지만 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)의 경우는 정의시에는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다르지만, 인스턴스화 과정에서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전(**좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.)을 선택하게 됩니다.
 
 
 예를 들면,
@@ -232,7 +232,7 @@ EXPECT_TRUE(f(&a) == 2);
 
 상기 코드는 다음 단계에 따라 특수화된 버전을 선택합니다.
 
-1. 함수 템플릿 후보 생성  
+1. [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94) 후보 생성  
    
     ```cpp
     int f(int*) // #1. 로부터 T == int* 인 경우
@@ -243,7 +243,7 @@ EXPECT_TRUE(f(&a) == 2);
     
     `f(T)`와 `f(T*)`에서 포인터만 처리하는(*좀 더 적은 타입을 허용하는*) #2 선택
 
-3. 템플릿이 아닌 일반 함수와 오버로딩 규칙 적용. 이때 일반 함수가 우선 순위가 높음
+3. [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)이 아닌 일반 함수와 [오버로딩 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 적용. 이때 일반 함수가 우선 순위가 높음
 
 # 오버로딩 사례
 
@@ -301,7 +301,7 @@ const int* p;
 EXPECT_TRUE(f(p) == 3); 
 ```
 
-특수화된 버전 선택시 [인자의 기본값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)는 무시하고 오버로딩 버전을 결정합니다.
+특수화된 버전 선택시 [인자의 기본값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)는 무시하고 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전을 결정합니다.
 
 ```cpp
 template<typename T>
@@ -319,7 +319,7 @@ EXPECT_TRUE(f(p) == 2);
 
 **특수화된 인자**
 
-[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 템플릿 타입을 이용하여 좀 더 적합하게 특수화(*좀 더 적은 타입을 허용*) 되었다면, 해당 특수화된 버전을 선택합니다.
+[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 타입을 이용하여 좀 더 적합하게 특수화(*좀 더 적은 타입을 허용*) 되었다면, 해당 특수화된 버전을 선택합니다.
 
 ```cpp
 template<typename T>
@@ -363,7 +363,7 @@ EXPECT_TRUE(f(0) == 2);
 
 **연산자 오버로딩 함수 템플릿**
 
-일반적으로 연산자 오버로딩 시에는 멤버 버전과 비멤버 버전중 멤버 버전이 선택됩니다.
+일반적으로 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 시에는 멤버 버전과 비멤버 버전중 멤버 버전이 선택됩니다.
 
 ```cpp
 template<typename T>
@@ -383,7 +383,7 @@ A<int> a;
 EXPECT_TRUE( a + 10 == 1);
 ```
 
-하지만 멤버 버전이 함수 템플릿이라면, 비멤버 버전으로 임시 생성하고 오버로딩을 평가하기 때문에, 모호성 문제가 발생하며, 그냥 대충 비멤버 버전을 호출합니다.(경고가 나오긴 합니다.) 
+하지만 멤버 버전이 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이라면, 비멤버 버전으로 임시 생성하고 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)을 평가하기 때문에, 모호성 문제가 발생하며, 그냥 대충 비멤버 버전을 호출합니다.(*경고가 나오긴 합니다.*) 
 
 ```cpp
 template<typename T>
@@ -405,7 +405,7 @@ A<int> a;
 EXPECT_TRUE( a + 10 == 2);
 ```
 
-따라서 연산자 오버로딩을 템플릿으로 구현해야 한다면, 아예 비멤버 버전으로 작성하는게 좋습니다.
+따라서 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)을 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)으로 구현해야 한다면, 아예 비멤버 버전으로 작성하는게 좋습니다.
 
 ```cpp
 template<typename T>
@@ -430,7 +430,7 @@ EXPECT_TRUE( a + 10 == 1);
 
 **동등한 함수 템플릿**
 
-동등한 템플릿이면 모호하여 컴파일 오류가 발생합니다. 다음의 경우는 `T`와 `const T`로 다릅니다만, [최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)는 제거되어 결국 동등해집니다.
+동등한 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)이면 모호하여 컴파일 오류가 발생합니다. 다음의 경우는 `T`와 `const T`로 다릅니다만, [최상위 const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)는 제거되어 결국 동등해집니다.
 
 ```cpp
 template<typename T>

@@ -180,7 +180,7 @@ ThreeType three;
 |`aligned_storage`(C++11~C++23)|(작성중)|
 |`aligned_union`(C++11~C++23)|(작성중)|
 |`decay` (C++11~)|[참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90), `const`, `volatile`등의 속성을 떼고, 타입으로 만듭니다. 즉 `const int&`이던 `int&&`이던 모두 `int`가 됩니다. 또한 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)은 포인터로 만듭니다. <br/>이와는 반대로 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)을 붙여서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달하는 것은 [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)를 참고하세요.|
-|[enable_if](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#enable_if) (C++11~)|지정한 조건이 참인 경우만 템플릿을 활성화 합니다.|
+|[enable_if](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#enable_if) (C++11~)|지정한 조건이 참인 경우만 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)을 활성화 합니다.|
 |`conditional` (C++11~)|(작성중)|
 |`common_type` (C++11~)|(작성중)|
 |`underlying_type` (C++11~)|(작성중)|

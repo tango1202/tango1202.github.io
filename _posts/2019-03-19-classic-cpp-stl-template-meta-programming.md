@@ -20,11 +20,11 @@ sidebar:
 
 # 개요
 
-템플릿들은 인스턴스화 되면서 코드를 생성하다 보니 컴파일 타임에 여러가지 프로그래밍이 가능하다는게 발견되었고, 이를 템플릿 메타 프로그래밍이라 합니다. 런타임에 수행되던 내용을 컴파일 타임에 가져옴으로서 실행 속도도 많이 향상됩니다.
+[템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)들은 [인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 되면서 코드를 생성하다 보니 컴파일 타임에 여러가지 프로그래밍이 가능하다는게 발견되었고, 이를 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)이라 합니다. 런타임에 수행되던 내용을 컴파일 타임에 가져옴으로서 실행 속도도 많이 향상됩니다.
 
 |항목|내용|
 |--|--|
-|조건 분기|템플릿과 템플릿 특수화나 함수 오버로딩으로 구현|
+|조건 분기|[템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)과 [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)나 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)으로 구현|
 |반복|재귀 호출로 구현|
 |변수|[열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)으로 구현|
 
@@ -127,7 +127,7 @@ EXPECT_TRUE(typeid(*sp2.GetPtr()).name() == typeid(Rectangle).name());
 
 **1. 템플릿 특수화를 이용하는 방법**
 
-`my_smart_ptr`의 일반 버전은 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하고, `Clone`을 제공하는 개체는 `Clone()`함수를 이용하여 특수화 할 수 있습니다. 하지만 이 방법은 템플릿 코드들이 중복되어 권장하지 않습니다.
+`my_smart_ptr`의 일반 버전은 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하고, `Clone`을 제공하는 개체는 `Clone()`함수를 이용하여 특수화 할 수 있습니다. 하지만 이 방법은 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 코드들이 중복되어 권장하지 않습니다.
 
 ```cpp
 template<typename T>
@@ -215,7 +215,7 @@ EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name());
 
 **2. Traits를 이용하는 방법**
 
-[타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/)를 이용하여 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 만들면 코드가 다른 부분만 템플릿 특수화를 할 수 있습니다. 다음 코드에서는 `my_smart_ptr`에서 복제시 타입에 따라 다른 `CloneTraits`를 사용하고 있습니다. 템플릿 전체를 특수화할 필요가 없어 훨씬 낫습니다. 
+[타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/)를 이용하여 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 만들면 코드가 다른 부분만 [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)를 할 수 있습니다. 다음 코드에서는 `my_smart_ptr`에서 복제시 타입에 따라 다른 `CloneTraits`를 사용하고 있습니다. [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 전체를 특수화할 필요가 없어 훨씬 낫습니다. 
 
 하지만 `Clone()`을 사용하는 개체가 있다면 잊지 않고 `CloneTraits` 특수화를 해야 한다는 점이 좀 부담스럽습니다.
 
@@ -319,7 +319,7 @@ public:
 };
 ```
 
-다음의 `IsDerivedFrom` 템플릿은 `D`가 `B`를 상속했는지 검사합니다.
+다음의 `IsDerivedFrom` [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)은 `D`가 `B`를 상속했는지 검사합니다.
 
 1. `Yes`는 `No`는 `Test()`함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)으로 사용되며, 어떤 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)가 호출되었는지 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 `sizeof()`로 확인할 수 있습니다.
 2. `Test()` 함수는 2개의 오버로딩 버전을 제공합니다. `D*` 가 `B*`로 변환되면 `Yes` 개체를 리턴하고, 그렇지 않으면 `No` 개체를 리턴합니다. 즉, `D`가 `B`를 상속했다면 `Yes`를 리턴합니다.
