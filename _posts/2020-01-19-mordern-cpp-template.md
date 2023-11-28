@@ -8,9 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) `[extern으로 템플릿 선언](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 할 수 있으며, 템플릿 인스턴스 중복 생성을 없앨 수 있습니다. 
+> * (C++11~) [extern으로 템플릿 선언](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 할 수 있으며, [템플릿 인스턴스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 중복 생성을 없앨 수 있습니다. 
 > * (C++11~) [템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%A5%B8%EC%AA%BD-%EA%BA%BD%EC%87%A0-%EA%B4%84%ED%98%B8) 파싱을 개선하여 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.
-> * (C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 템플릿으로 만들 수 있습니다.
+> * (C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)으로 만들 수 있습니다.
 > * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.
 > * (C++17~) [클래스 템플릿 인수 추론 사용자 정의 가이드](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EA%B0%80%EC%9D%B4%EB%93%9C)가 추가되어 [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)시 컴파일러에게 가이드를 줄 수 있습니다.
 > * (C++17~) [비타입 템플릿 인자에서 auto를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%EB%B9%84%ED%83%80%EC%9E%85-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%9D%98-auto-%ED%97%88%EC%9A%A9)합니다.
@@ -20,7 +20,7 @@ sidebar:
 
 # extern 템플릿
 
-기존에는 템플릿을 헤더 파일에 정의해 두고, 여러 cpp 파일에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 했었는데요, 이러면 템플릿 정의가 중복 정의되어 코드 크기가 커집니다.(*[템플릿 인스턴스 중복 생성](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%A4%91%EB%B3%B5-%EC%83%9D%EC%84%B1) 참고*)
+기존에는 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)을 헤더 파일에 정의해 두고, 여러 cpp 파일에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 했었는데요, 이러면 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 정의가 중복 정의되어 코드 크기가 커집니다.(*[템플릿 인스턴스 중복 생성](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%A4%91%EB%B3%B5-%EC%83%9D%EC%84%B1) 참고*)
 
 ```cpp
 // ----
@@ -56,7 +56,9 @@ TEST(TestMordern, ExternTemplate2) {
 }
 ```
 
-C++11 부터는 [extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 추가하여 템플릿 선언만 할 수 있으며, 불필요한 코드 크기를 최소화 할 수 있습니다. 
+[export 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF)이 있기는 했지만, 제대로 구현한 컴파일러도 드물고 의견도 일치하지 않아 C++11 부터 완전히 [remove](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었고,
+
+C++11 부터는 [extern 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 추가하여 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 선언만 할 수 있으며, 불필요한 코드 크기를 최소화 할 수 있습니다. 
 
 ```cpp
 // ----
@@ -85,7 +87,7 @@ TEST(TestMordern, ExternTemplate1) {
 // ----
 #include "Test_MordernCpp_ExternTemplate.h"
 
-// 이전에 정의된 템플릿을 사용합니다.
+// 템플릿 선언만 합니다. 이전에 정의된 템플릿을 사용합니다.
 extern template int ExternTemplate::Add<int>(int, int); // C++11
 
 TEST(TestMordern, ExternTemplate2) {
@@ -97,7 +99,7 @@ TEST(TestMordern, ExternTemplate2) {
 
 # 템플릿 오른쪽 꺽쇠 괄호
 
-[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 템플릿 개체로 인스턴스화 하면 `>`이 중첩됩니다.
+[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 개체로 인스턴스화 하면 `>`이 중첩됩니다.
 
 기존에는 이게 비트 Right Shift 연산자 `>>` 로 파싱되어 컴파일 되지 않았습니다. 따라서, `vector<A<int> >`와 같이 억지로 띄어쓰기를 했는데요(*[템플릿 파싱 오류](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98) 참고*), 
 
@@ -113,7 +115,7 @@ std::vector<A<int>> b_11; // C++11
 
 # (C++14~) 변수 템플릿
 
-기존의 템플릿은 클래스와 함수만 지원했는데요(*[템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 참고*),
+기존의 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)은 [클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/)와 함수만 지원했는데요(*[템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 참고*),
 
 C++14 부터는 [변수도 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)으로 만들 수 있습니다.
 
@@ -136,7 +138,7 @@ pi_14<float> : 3.141592741 // double 보다 정밀도가 낮습니다.
 pi_14<int> : 3
 ```
 
-또한, 템플릿 특수화를 이용하여 템플릿 메타 프로그래밍에 활용할 수 있습니다. 
+또한, 템플릿 특수화를 이용하여 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)에 활용할 수 있습니다. 
 
 다음은 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)에서 소개한 `Factorial` 을 [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)으로 구현한 예입니다.
 
@@ -154,7 +156,7 @@ EXPECT_TRUE(factorial_14<5> == 5 * 4 * 3 * 2 * 1);
 
 # (C++17~) 클래스 템플릿 인수 추론
 
-기존에는 함수 템플릿만 인수를 추론하고 클래스 템플릿은 인수를 추론하지 않았는데요(*[함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 참고*),
+기존에는 [함수 템플릿만 인수를 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)하고 클래스 템플릿은 인수를 추론하지 않았는데요(*[함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 참고*),
 
 ```cpp
 template<typename T>

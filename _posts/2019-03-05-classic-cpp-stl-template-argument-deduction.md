@@ -10,7 +10,7 @@ sidebar:
 
 > * 오버로딩 시에는 `T`보다는 `T*` 보다는 `const T*`가 선택된다.
 > * 연산자 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)는 비멤버 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)으로 작성하라.
-> * 함수 템플릿 인수 추론시 `T&`는 `T`로 추론된다.
+> * [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)시 `T&`는 `T`로 추론된다.
 
 > **모던 C++**
 > * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 타입을 생략할 수 있습니다.
@@ -21,8 +21,8 @@ sidebar:
 
 함수 템플릿의 인스턴스화는 다음 2가지 과정을 거칩니다.
 
-1. 함수 템플릿 인수 추론 : 전달된 타입을 어떤 타입으로 사용할지 추론
-2. 함수 템플릿 오버로딩 결정 : 인수 추론 후 일반 함수와 여러개의 함수 템플릿중 적합한 것을 결정
+1. [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) : 전달된 타입을 어떤 타입으로 사용할지 추론
+2. [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 결정 : 인수 추론 후 일반 함수와 여러개의 함수 템플릿중 적합한 것을 결정
 
 # 함수 템플릿 인수 추론
 

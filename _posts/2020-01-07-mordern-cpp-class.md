@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [모던 C++] (C++11~) 개선된 클래스(함수 default, 함수 delete, override, final, 생성자 위임, 생성자 상속)"
+title: "#7. [모던 C++] (C++11~) 개선된 클래스(함수 default, 함수 delete, override, final, 생성자 위임, 생성자 상속)"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

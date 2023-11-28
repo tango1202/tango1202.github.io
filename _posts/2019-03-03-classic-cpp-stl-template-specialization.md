@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 다형적 동작을 위해 템플릿 특수화, 함수 템플릿 특수화, 템플릿 부분 특수화, 함수 템플릿 오버로딩을 이용하라.
+> * 다형적 동작을 위해 [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%83%AC%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94), [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94), 템플릿 부분 특수화, [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)을 이용하라.
 > * [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)을 정의할때 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)와 특수화 함수의 순서를 지켜라.
 
 # 개요
@@ -97,7 +97,7 @@ EXPECT_TRUE(b.f('a') == 1);
 EXPECT_TRUE(b.f(10) == 2); // int에 특수화된 버전 호출
 ```
 
-# 탬플릿 부분 특수화
+# 템플릿 부분 특수화
 
 템플릿 부분 특수화는 기존 타입에서 일부분을 특수화한 경우입니다.
 
@@ -223,11 +223,11 @@ EXPECT_TRUE(f(&a) == 2); // 템플릿 오버로딩 버전이 실행됩니다. T 
 함수 템플릿의 오버로딩의 모양이 템플릿 부분 특수화와 유사하나 굳이 구별하여 오버로딩이라고 하는 건, 함수 선택 과정에서 차이가 있기 때문입니다.
 
 1. 템플릿 특수화와 부분 특수화 : 특수화된 목록에서 좀 더 특수화된 항목 선택
-2. 함수 템플릿 오버로딩 : 함수 템플릿 오버로딩 목록에서 좀더 특수화된 항목 선택후, 선택된 함수 템플릿의 좀더 특수화된 항목 선택
+2. [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) : [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 목록에서 좀더 특수화된 항목 선택후, 선택된 함수 템플릿의 좀더 특수화된 항목 선택
 
-상기의 방식 차이 때문에 오버로딩과 함수 템플릿 특수화가 혼용되면, 순서에 주의해야 합니다. 
+상기의 방식 차이 때문에 오버로딩과 [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)가 혼용되면, 순서에 주의해야 합니다. 
 
-다음 코드에서 함수 템플릿 특수화 버전인 #3을 #1과 #2 사이에 기재 했습니다. #3 입장에서는 함수 템플릿이 #1 밖에 없으므로, #3은 #1의 특수화 버전입니다.
+다음 코드에서 [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94) 버전인 #3을 #1과 #2 사이에 기재 했습니다. #3 입장에서는 함수 템플릿이 #1 밖에 없으므로, #3은 #1의 특수화 버전입니다.
 
 `f(&a)` 호출시 #1, #3, #2은 각각 다음처럼 인스턴스화 후보로 만들어 집니다.
 
@@ -235,7 +235,7 @@ EXPECT_TRUE(f(&a) == 2); // 템플릿 오버로딩 버전이 실행됩니다. T 
 2. #3 : #1의 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 채택되었을때, `T == int*` 라면 호출됩니다.
 3. #2 : `T == int` 라면, `f<int>(int*)` 로 호출 가능합니다.
 
-`f(&a)` 호출시 가장 적합한 것은 특수화 버전인 #3인 것 같지만, #3은 #1의 함수 템플릿 특수화 버전이고, #1과 #2중 좀더 특수화된 함수 템플릿은 #2이므로, `int f(T*)` 가 호출됩니다.
+`f(&a)` 호출시 가장 적합한 것은 특수화 버전인 #3인 것 같지만, #3은 #1의 [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94) 버전이고, #1과 #2중 좀더 특수화된 함수 템플릿은 #2이므로, `int f(T*)` 가 호출됩니다.
 
 ```cpp
 template<typename T> 
@@ -259,7 +259,7 @@ EXPECT_TRUE(f<int*>(&a) == 3); // #1 함수 템플릿이 선택되고, 이중 �
 EXPECT_TRUE(f<int>(&a) == 2); // #2 함수 템플릿이 호출됩니다.
 ```
 
-이번에는 함수 템플릿 특수화 버전인 #3 의 순서를 바꿔, #2 다음에 정의하면 결과가 바뀝니다. #3은 #1과 #2중 좀더 적합한 #2의 특수화 버전이 되며, 다음처럼 인스턴스화 후보가 만들어 집니다.
+이번에는 [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94) 버전인 #3 의 순서를 바꿔, #2 다음에 정의하면 결과가 바뀝니다. #3은 #1과 #2중 좀더 적합한 #2의 특수화 버전이 되며, 다음처럼 인스턴스화 후보가 만들어 집니다.
 
 1. #1 : `T == int*` 라면, `f<int*>(int*)` 로 호출 가능합니다.
 2. #2 : `T == int` 라면, `f<int>(int*)` 로 호출 가능합니다.

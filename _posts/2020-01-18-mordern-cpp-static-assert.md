@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C__11~) [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)가 추가되어 컴파일 타임 진단이 가능해 졌습니다.
+> * (C++11~) [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)가 추가되어 컴파일 타임 진단이 가능해 졌습니다.
 > * (C++17~) [static_assert()의 메시지 생략](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/#c17-static_assert%EC%9D%98-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%83%9D%EB%9E%B5)을 지원합니다.
 
 # 개요
@@ -29,13 +29,13 @@ void Func_11(T t) {
 }
 
 int a{20};
-Func_11(&a);
+Func_11(&a); // (O) 포인터여서 문제없습니다.
 Func_11(a); // (X) 컴파일 오류. error: static assertion failed: only pointer
 ```
 
 # (C++17~) static_assert()의 메시지 생략
 
-C++17 부터는 [static_assert()의 메시지 생략](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/#c17-static_assert%EC%9D%98-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%83%9D%EB%9E%B5)을 지원합니다.
+기존에는 [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/) 사용시 항상 메시지를 작성해야 했으나, C++17 부터는 [static_assert()의 메시지를 생략](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/#c17-static_assert%EC%9D%98-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%83%9D%EB%9E%B5)해도 됩니다.
 
 ```cpp
 template<typename T>

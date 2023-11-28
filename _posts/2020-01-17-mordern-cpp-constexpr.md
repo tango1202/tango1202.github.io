@@ -29,7 +29,7 @@ C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-
 
 컴파일 타임 상수는 읽기 전용 메모리인 [코드 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)에 할당되므로 예외에 안전합니다. 할 수 있다면 최대한 컴파일 타임 상수로 만드는게 좋습니다.
 
-컴파일 타임 상수는 다음과 같이 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)의 값지정이나 비 템플릿 개체 인수 전달을 통해 확인 할 수 있습니다.
+컴파일 타임 상수는 다음과 같이 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)의 값지정이나 [비타입 템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 전달을 통해 확인 할 수 있습니다.
 
 `const int` 를 사용하면 컴파일 타임 상수로 취급되는되요,
 
@@ -302,7 +302,7 @@ int* ptr{CloneTraits<int>::Clone(&val)}; // (X) 컴파일 오류. int에 Clone()
 delete ptr;
 ```
 
-따라서, `CloneTraits`를 구현할때 컴파일 타임 프로그래밍을 위해 `if()`문을 사용하지 말고, `CloneTag`를 이용하여 오버로딩하라 소개했는데요,(*[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)의 [CloneTraits 구현](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/#clonetraits-%EA%B5%AC%ED%98%84)에서 템플릿 메타 프로그래밍을 이용하는 방법 참고*)
+따라서, `CloneTraits`를 구현할때 컴파일 타임 프로그래밍을 위해 `if()`문을 사용하지 말고, `CloneTag`를 이용하여 오버로딩하라 소개했는데요,(*[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)의 [CloneTraits 구현](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/#clonetraits-%EA%B5%AC%ED%98%84)에서 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)을 이용하는 방법 참고*)
 
 C++17 부터는 [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)이 추가되어 조건에 맞는 부분만 컴파일하고, 그렇지 않은 부분은 컴파일에서 제외할 수 있습니다. 
 
