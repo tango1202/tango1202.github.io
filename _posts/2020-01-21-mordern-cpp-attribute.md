@@ -10,7 +10,7 @@ sidebar:
 
 > * (C++11~) [특성(attirbute)](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)이 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.
 > * (C++14~) [[[deprecated]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c14-deprecated-deprecated%EC%9D%B4%EC%9C%A0)가 추가되어 소멸 예정인 것을 컴파일 경고로 알려줍니다.
-> * (C++17~) [[[fallthrough]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-fallthrough)가 추가되어 `switch()`에서 `break`를 생략하면 다음 `case`로 제어가 이동할때 발생하는 컴파일 경고를 차단할 수 있습니다.
+> * (C++17~) [[[fallthrough]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-fallthrough)가 추가되어 `switch()`에서 의도적으로 `break`를 생략하여 다음 `case`로 제어를 이동시킬때 발생하는 컴파일 경고를 차단할 수 있습니다.
 > * (C++17~) [[[nodiscard]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard)가 추가되어 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 무시하지 않도록 컴파일 경고를 해줍니다. 
 > * (C++17~) [[[maybe_unused]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-maybe_unused)가 추가되어 사용되지 않은 개체의 컴파일 경고를 막습니다.
 > * (C++17~) [특성 네임스페이스](??)가 추가되어 `[[msvc::noinline]]` 와 같이 사용할 수 있습니다.

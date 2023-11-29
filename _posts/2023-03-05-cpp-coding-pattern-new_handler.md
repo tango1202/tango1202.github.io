@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [C++ 코딩 패턴] NewHandler - new의 예외 처리"
+title: "#5. [C++ 코딩 패턴] NewHandler - new의 예외 처리"
 categories: "cpp-coding-pattern"
 tag: ["cpp"]
 author_profile: false

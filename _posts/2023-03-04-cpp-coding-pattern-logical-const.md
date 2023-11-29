@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [C++ 코딩 패턴] 논리적 상수성(지연 생성, 캐쉬)"
+title: "#4. [C++ 코딩 패턴] 논리적 상수성(지연 생성, 캐쉬)"
 categories: "cpp-coding-pattern"
 tag: ["cpp"]
 author_profile: false

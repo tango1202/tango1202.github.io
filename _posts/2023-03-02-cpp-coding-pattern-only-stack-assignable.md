@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [C++ 코딩 패턴] OnlyStackAssignable - 스택 또는 힙에만 생성할 수 있는 개체"
+title: "#2. [C++ 코딩 패턴] OnlyStackAssignable - 스택 또는 힙에만 생성할 수 있는 개체(작성중)"
 categories: "cpp-coding-pattern"
 tag: ["cpp"]
 author_profile: false
