@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [모던 C++] (C++11~) 속성"
+title: "#21. [모던 C++] (C++11~) 특성"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,12 +8,12 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.
+> * (C++11~) [특성(attirbute)](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)이 추가되어 컴파일러에게 부가 정보를 전달하는 방식을 표준화 했습니다.
 > * (C++14~) [[[deprecated]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c14-deprecated-deprecated%EC%9D%B4%EC%9C%A0)가 추가되어 소멸 예정인 것을 컴파일 경고로 알려줍니다.
 > * (C++17~) [[[fallthrough]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-fallthrough)가 추가되어 `switch()`에서 `break`를 생략하면 다음 `case`로 제어가 이동할때 발생하는 컴파일 경고를 차단할 수 있습니다.
 > * (C++17~) [[[nodiscard]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard)가 추가되어 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 무시하지 않도록 컴파일 경고를 해줍니다. 
 > * (C++17~) [[[maybe_unused]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-maybe_unused)가 추가되어 사용되지 않은 개체의 컴파일 경고를 막습니다.
-> * (C++17~) [속성 네임스페이스](??)가 추가되어 `[[msvc::noinline]]` 와 같이 사용할 수 있습니다.
+> * (C++17~) [특성 네임스페이스](??)가 추가되어 `[[msvc::noinline]]` 와 같이 사용할 수 있습니다.
 > * (C++20~) [[[nodiscard]]의 생성자 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0), [[[nodiscard("이유")]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0)가 추가되었습니다.
 > * (C++20~) [[[likely]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-likely-unlikely), [[[unlikely]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-likely-unlikely)가 추가되어 컴파일러에게 최적화 힌트를 줄 수 있습니다.
 > * (C++20~) [[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address)가 추가되어 아무 멤버 변수가 없는 개체의 크기를 최적화합니다.
@@ -22,13 +22,13 @@ sidebar:
 
 컴파일러에게 최적화 힌트나 경고 처리 힌트등 문법적으로 전달하기 어려운 정보를 컴파일러에 전달할때 기존에는 컴파일러 마다 자체적인 방식을 사용했습니다.(*`__attribute__()`, `__declspec()` 등*) 
 
-C++11 부터는 [attirbute](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)가 추가되어 부가 정보 전달을 표준화 했습니다.
+C++11 부터는 [특성(attirbute)](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)이 추가되어 부가 정보 전달을 표준화 했습니다.
 
-`[[`속성명`]]`와 같이 `[[]]`사이에 사용할 속성을 기재하면 됩니다.
+`[[`특성명`]]`와 같이 `[[]]`사이에 사용할 특성을 기재하면 됩니다.
 
-# 표준 속성
+# 표준 특성
 
-C++버전에 따라 다음의 표준 속성이 제공됩니다. 
+C++버전에 따라 다음의 표준 특성이 제공됩니다. 
 
 |항목|내용|
 |--|--|
@@ -128,7 +128,7 @@ enum class Error_11 {Ok, Fail};
 Error_11 error = GetLastError_17(); 
 ```
 
-또한 특정 타입에 [[[nodiscard]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard) 속성을 주어 해당 타입이 무시되지않게 경고로 알려줍니다.
+또한 특정 타입에 [[[nodiscard]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard)를 주어 해당 타입이 무시되지않게 경고로 알려줍니다.
 
 ```cpp
 // Error_17 타입이 리턴되면 무시하면 안됩니다.
@@ -169,9 +169,9 @@ enum [[maybe_unused]] MyEnum {MyVal [[maybe_unused]]}; // 열거형, 열거자
 enum class [[maybe_unused]] YourEnum {YourVal [[maybe_unused]]}; // 범위 있는 열거형, 열거자
 ```
 
-# (C++17~) 속성 네임스페이스
+# (C++17~) 특성 네임스페이스
 
-C++17 부터는 [속성 네임스페이스](??)가 추가되어 `[[msvc::noinline]]` 와 같이 사용할 수 있습니다.
+C++17 부터는 [특성 네임스페이스](??)가 추가되어 `[[msvc::noinline]]` 와 같이 사용할 수 있습니다.
 
 # (C++20~) [[nodiscard]]의 생성자 지원, [[nodiscard("이유")]]
 
