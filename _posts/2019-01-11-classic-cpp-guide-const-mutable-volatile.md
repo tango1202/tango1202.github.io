@@ -18,7 +18,7 @@ sidebar:
 
 # 개요
 
-[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)인 개체나 함수를 사용하면, 메모리의 수정이 없으므로 예외를 발생하지 않습니다. 예외에 안전한 프로그램을 위해, ***할 수 있는 한 최대한 많이 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)로 작성***하는 것이 좋습니다.
+[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)인 개체나 함수를 사용하면, 메모리의 수정이 없으므로 예외를 발생하지 않습니다. [예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)한 프로그램을 위해, ***할 수 있는 한 최대한 많이 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)로 작성***하는 것이 좋습니다.
 
 또한, **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 을 준수하세요. 계약 위반시 대부분 컴파일 오류가 발생하니, 계약을 지키기 까다롭지도 않습니다.
 
@@ -160,7 +160,7 @@ int* GetX5() {return &m_X;}
 
 # 인자(함수 선언에 작성된 Parameter)의 상수성
 
-인수가 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 복사된다면, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 무의미 하므로 사용할 필요가 없습니다.(*`void f(const int x);`에서 `x`는 인수를 복사하므로, `const`는 무의미합니다. 또한 [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)을 참고하면, 오버로딩 결정시 `f(const int x)` 는 `f(int x)`로 취급되는걸 알 수 있습니다.*)
+인수가 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 복사된다면, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 무의미 하므로 사용할 필요가 없습니다.(*`void f(const int x);`에서 `x`는 인수를 복사하므로, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)는 무의미합니다. 또한 [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)을 참고하면, 오버로딩 결정시 `f(const int x)` 는 `f(int x)`로 취급되는걸 알 수 있습니다.*)
 
 ```cpp
 void f(int x); // (O) 인수를 x에 복사해서 사용함.

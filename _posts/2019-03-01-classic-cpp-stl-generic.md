@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 일반화 프로그래밍이 적합한 코드 구조를 억지로 인터페이스화 하지 마라. 
+> * 일반화 프로그래밍이 적합한 코드 구조를 억지로 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)화 하지 마라. 
 
 # 개체 지향 프로그래밍
 
@@ -29,7 +29,7 @@ sidebar:
 우선, 데이터를 저장하는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)를 개체 지향스럽게 만들어 봅시다.
 
 1. 캡슐화를 위해 멤버 변수와 멤버 함수를 응집하고,
-2. 데이터 조회/설정을 추상화 하여 `IContainer` 인터페이스를 만들고,
+2. 데이터 조회/설정을 추상화 하여 `IContainer` [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 만들고,
 3. 이를 상속하여 실제 저장할 타입에 맞춰 `IntContainer`와 `CharContainer`를 만들면,
 4. `int`와 `char`에 따라 다르게 다형적으로 동작하게 됩니다.
 
@@ -72,7 +72,7 @@ EXPECT_TRUE(*charContainer.GetAt(5) == 'c');
 4. 내부적으로 `void*` 여서 지저분하게 [static_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)를 사용합니다.
 5. 사용할때도 포인터라서 `&`, `*`을 사용해야 하고, 예제에는 없지만, 사실은 널검사도 해야 합니다.
 
-다형적으로 동작할 수 없는 코드 구조를 억지로 인터페이스화 해서 만들어진 일입니다. 이러지 마세요. 과도한 설계입니다. 차라리 추상화하지 말고 다음처럼 구현하는게 차라리 낫습니다.
+다형적으로 동작할 수 없는 코드 구조를 억지로 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)화 해서 만들어진 일입니다. 이러지 마세요. 과도한 설계입니다. 차라리 추상화하지 말고 다음처럼 구현하는게 차라리 낫습니다.
 
 ```cpp
 // (△) 비권장. 훨씬 낫습니다. 그러나, 로직은 중복됩니다.
@@ -134,7 +134,7 @@ EXPECT_TRUE(charContainer.GetAt(5) == 'c');
 
 |항목|내용|
 |--|--|
-|개체 지향 프로그래밍|캡슐화를 통해 데이터와 처리 방식을 응집하고, 추상화를 통해 공통의 인터페이스 규약을 만든 뒤 이를 상속하여 다형적으로 만듭니다.|
+|개체 지향 프로그래밍|캡슐화를 통해 데이터와 처리 방식을 응집하고, 추상화를 통해 공통의 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4) 규약을 만든 뒤 이를 상속하여 다형적으로 만듭니다.|
 |일반화 프로그래밍|모든 타입에 적용 가능한 일반화된 코드를 개발하고, 타입에 따라 동작이 다르거나, 성능의 문제가 있다면, [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/)를 통해 다형적으로 동작하게 만듭니다.|
 
 개체 지향 특성들은 일반화 프로그래밍에서 다음처럼 구현됩니다. 

@@ -303,7 +303,7 @@ EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name());
 
 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)을 이용한다면, 컴파일 타임에 `CloneTraits`가 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출할지, `Clone()` 함수를 호출할지 스스로 판단하여 분기하게 할 수 있습니다.
 
-먼저, 다음과 같이 단위 인터페이스인 `ICloneable`을 정의합니다. 추후 `CloneTraits`에서 `ICloneable` 을 상속한 개체는 `Clone()`을 이용하여 복제할 예정입니다.
+먼저, 다음과 같이 [단위 인터페이스](??)인 `ICloneable`을 정의합니다. 추후 `CloneTraits`에서 `ICloneable` 을 상속한 개체는 `Clone()`을 이용하여 복제할 예정입니다.
 
 ```cpp
 // Clone() 을 제공하는 단위 인터페이스

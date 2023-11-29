@@ -40,7 +40,7 @@ have a, use a 관계로 재사용
 
 추상화된 동작 정의
 클래스간 연관을 느슨하게. 단일 개념을 구현하라(단위 전략)
-흔히 우리가 말하는 인터페이스
+흔히 우리가 말하는 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)
 
 # 노드
 
@@ -75,6 +75,6 @@ auto_ptr 같은 데이터 객체 관리자.
 
 # 거대 클래스
 
-여러가지 기능들이 혼합된 클래스. 여러 인터페이스가 공존하며, 모든
+여러가지 기능들이 혼합된 클래스. 여러 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)가 공존하며, 모든
 기능이 서비스 되나, 원하는 서비스
 를 쉽게 찾을 수 없다.

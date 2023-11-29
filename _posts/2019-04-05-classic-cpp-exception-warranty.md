@@ -8,14 +8,14 @@ sidebar:
     nav: "docs"
 ---
 
-> * 예외에 안전하도록 기본 보증과 강한 보증을 하라.
+> * [예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)하도록 기본 보증과 강한 보증을 하라.
 > * 기본 보증이 되도록 스마트 포인터나 `Holder`를 사용하라.
 > * 강한 보증이 되도록 클래스를 설계하라.(*[예외 안전에 좋은 클래스 설계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%98%88%EC%99%B8-%EC%95%88%EC%A0%84%EC%97%90-%EC%A2%8B%EC%9D%80-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%84%A4%EA%B3%84) 참고*)
 > * 모듈의 경계에서 예외가 방출되지 않도록 예외를 `catch()` 한뒤 오류 코드로 변환하라.
 
 # 예외 보증 종류
 
-예외에 안전(예외가 발생해도 안전하게 복원되고 계속 동작해도 무방하게 만드는 코드)하려면 다음의 보증이 이루어져야 합니다.
+[예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)(*예외가 발생해도 안전하게 복원되고 계속 동작해도 무방하게 만드는 코드*)하려면 다음의 보증이 이루어져야 합니다.
 
 |항목|내용|
 |--|--|
@@ -136,7 +136,7 @@ catch (...) {
 }
 ```
 
-따라서, 예외에 안전하게 하려면 스마트 포인터나 `Holder` 개체를 활용해야 합니다. 다음 코드는 스마트 포인터인 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 사용하며, `A`에서 예외 발생시 이미 생성된 `B` 개체도 잘 소멸됩니다.
+따라서, [예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)하게 하려면 스마트 포인터나 `Holder` 개체를 활용해야 합니다. 다음 코드는 스마트 포인터인 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 사용하며, `A`에서 예외 발생시 이미 생성된 `B` 개체도 잘 소멸됩니다.
 
 ```cpp
 class A {

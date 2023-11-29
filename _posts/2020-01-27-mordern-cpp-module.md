@@ -268,7 +268,7 @@ int main() {
 
 다음예는 `MyModule_20`을 `Part1`, `Part2`, `Part3`으로 나누어 관리하는 예입니다. `Part1`과 `Part2`는 외부에서도 사용하고, `Part3`은 `MyModule_20` 내부에서만 사용합니다.
 
-`Test_Part.cpp`는 모듈의 인터페이스로서 `Part1`과 `Part2`를 [import](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)한뒤 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)합니다. 다른 파트를 표현할때 `:Part1;`와 같이 모듈명 없이 작성합니다.
+`Test_Part.cpp`는 [모듈의 인터페이스](??)로서 `Part1`과 `Part2`를 [import](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)한뒤 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)합니다. 다른 파트를 표현할때 `:Part1;`와 같이 모듈명 없이 작성합니다.
 
 ```cpp
 // ----

@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 예외 안전(safe) 코드는 예외가 발생하지 않는 코드가 아니라, 예외가 발생해도 안전하게 복원되고 계속 동작해도 무방하게 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)하는 코드다.
+> * [예외 안전(safe) 코드](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)는 예외가 발생하지 않는 코드가 아니라, 예외가 발생해도 안전하게 복원되고 계속 동작해도 무방하게 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)하는 코드다.
 > * 예외 상황을 사전에 예측하고 프로그래밍 하라.
 > * 모든 함수는 실패할 수 있다고 가정하고 프로그래밍 해라.
 > * 예외가 발생했을때 메모리 릭이나 리소스 릭이 없게 하라.
@@ -17,9 +17,9 @@ sidebar:
 
 # 개요
 
-예외 안전(safe) 코드는 예외가 발생하지 않는 코드가 아니라(*이건 사실 불가능합니다. 메모리가 부족할 수도 있고, 갑자기 랜선이 차단될 수도 있고*), 예외가 발생해도 안전하게 복원되고, 계속 동작해도 무방하게 만드는 코드입니다.
+[예외 안전(safe) 코드](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)는 예외가 발생하지 않는 코드가 아니라(*이건 사실 불가능합니다. 메모리가 부족할 수도 있고, 갑자기 랜선이 차단될 수도 있고*), 예외가 발생해도 안전하게 복원되고, 계속 동작해도 무방하게 만드는 코드입니다.
 
-예외에 안전하려면 다음을 준수하여야 합니다.
+[예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)하려면 다음을 준수하여야 합니다.
 
 1. 예외 상황을 사전에 예측하고 프로그래밍 해야 합니다. 모든 함수는 실패할 수 있다고 가정하세요.([자가 진단과 진단 최소화](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/) 참고)
 2. 예외가 발생했을때 메모리 릭이나 리소스 릭은 없어야 합니다.([기본 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 참고)

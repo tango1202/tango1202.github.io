@@ -27,7 +27,7 @@ C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-
 
 컴파일 타임 상수로 지정합니다. 
 
-컴파일 타임 상수는 읽기 전용 메모리인 [코드 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)에 할당되므로 예외에 안전합니다. 할 수 있다면 최대한 컴파일 타임 상수로 만드는게 좋습니다.
+컴파일 타임 상수는 읽기 전용 메모리인 [코드 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)에 할당되므로 [예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)합니다. 할 수 있다면 최대한 컴파일 타임 상수로 만드는게 좋습니다.
 
 컴파일 타임 상수는 다음과 같이 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)의 값지정이나 [비타입 템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 전달을 통해 확인 할 수 있습니다.
 

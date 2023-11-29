@@ -30,7 +30,7 @@ sidebar:
 
 1. 코드 가독성
 2. 코드 분석 용이성
-3. 예외 안전성
+3. [예외 안전성](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)
 4. 기능 수정 및 추가 등 유연성
 5. 유지보수시 복잡성(응집력 강화, 결합도 및 의존성 저하)
 6. 계약 준수에 따른 사용성, 구현 편의성, 신뢰성, 안정성
