@@ -101,7 +101,7 @@ EXPECT_TRUE(IsDifferent(1, 1, 1) == false); // 인자가 여러개여도 됩니�
 |`pointer_to_unary_function` (~C++11)|(작성중)|
 |`pointer_to_binary_function` (~C++11)|(작성중)|
 |[mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn) (C++11~)|[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 있는 멤버 함수도 호출하는 함수자를 만들어 줍니다.|
-|[invoke(Func, params...)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke) (C++17~)|[invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다. 일반 함수인 경우 `Func(params...)`를 호출하고, 멤버 함수인 경우 `params#1.Func(params#2...)`을 호출합니다.|
+|[invoke(Func, params...)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke) (C++17~)|[invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다. 일반 함수인 경우 `Func(params...)`를 호출하고, 멤버 함수인 경우 `params[1].Func(params[2]...)`을 호출합니다.|
 |`invoke_r()` (C++20~)|(작성중)|
 |`move_only_function` (C++23~)|(작성중)|
 |`copyable_function` (C++26~)|(작성중)|

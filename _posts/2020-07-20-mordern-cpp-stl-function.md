@@ -314,7 +314,7 @@ EXPECT_TRUE(IsPlaceholder(func2) == false);
 
 # (c++17~) invoke()
 
-C++17 부터는 [invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다. 일반 함수인 경우 `Func(params...)`를 호출하고, 멤버 함수인 경우 `params#1.Func(params#2...)`을 호출합니다.
+C++17 부터는 [invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 멤버 함수를 동일한 방식으로 호출할 수 있게 합니다. 일반 함수인 경우 `Func(params...)`를 호출하고, 멤버 함수인 경우 `params[1].Func(params[2]...)`을 호출합니다.
 
 ```cpp
 class T {
