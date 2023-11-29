@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [C++ 코딩 패턴] 타입에 기반한 코딩 계약"
+title: "#12. [C++ 코딩 패턴] 타입에 기반한 코딩 계약(작성중)"
 categories: "cpp-coding-pattern"
 tag: ["cpp"]
 author_profile: false

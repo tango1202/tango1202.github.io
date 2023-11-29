@@ -599,7 +599,7 @@ EXPECT_TRUE(t.GetVal() == 12);
 
 **비교 연산자**
 
-비교 연산자는 일관된 논리 결과값을 구하기 위해 `<` 만 구현하고, `==`, `!=`, `<`, `>`, `<=`, `>=`는 `<`로 부터 구현하는게 좋습니다.(*[대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4) 참고*)
+비교 연산자는 일관된 논리 결과값을 구하기 위해 `<` 과 `==`만 구현하고, `!=`, `<`, `>`, `<=`, `>=`는 `==`과 `<`로부터 구현하는게 좋습니다.(*[대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4) 참고*)
 
 각각 구현하다보면, `a < b` 와 `b < c` 인데, `c < a` 가 되버리는 논리적 결함이 생길 수도 있거든요.
 
@@ -616,7 +616,7 @@ public:
     } 
 
     bool operator ==(const T& other) const {
-        return !(*this < other || other < *this);
+        return m_Val == other.m_Val; // < 로부터 구현하면, !(*this < other || other < *this)로 할 수 있습니다. 단 < 을 2회 하므로 비효율적입니다.
     }
     bool operator !=(const T& other) const {
         return !(*this == other);

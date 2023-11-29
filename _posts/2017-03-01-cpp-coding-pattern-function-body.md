@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [C++ 코딩 패턴] 함수 본문"
+title: "#12. [C++ 코딩 패턴] 함수 본문(작성중)"
 categories: "cpp-coding-pattern"
 tag: ["cpp"]
 author_profile: false

@@ -14,11 +14,9 @@ sidebar:
 
 C++ 는 다음의 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/), 컴파일, 링크의 3가지 과정을 거쳐서 프로그램을 빌드합니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b118642c-af31-42bb-be77-bb1888a41a16)
-
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6485d571-ea5d-47a8-b1f1-662a39a39413)
 
 이중 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 과정은 다음의 문제점이 있습니다.
-
 
 1. 용량 비대화에 따른 컴파일 속도 문제
 
@@ -34,7 +32,7 @@ C++ 는 다음의 [전처리](https://tango1202.github.io/classic-cpp-guide/clas
     }
     ```
 
-    상기 코드에는 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)가 필요한게 `#include <iostream>` 하나 있는데요, 
+    상기 코드에는 `cout`과 `endl`이 있어서 `#include <iostream>` 이 필요합니다. 이에 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)를 해야 하는데요,
 
     다음과 같이 `-E` 옵션으로 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 결과를 출력할 수 있고, 해당 내용을 `-o` 옵션으로 파일에 저장할 수 있습니다.
 
@@ -42,9 +40,9 @@ C++ 는 다음의 [전처리](https://tango1202.github.io/classic-cpp-guide/clas
     F:\Data\language_test\test\module>g++ -E helloworld.cpp -o helloworld.out
     ```
 
-    결과는 놀랍게도 943kbyte나 됩니다. 대략 1000배가 늘었습니다. 이를 다 일일이 기계어로 번역하다 보니 별것 아닌 코드이지만 컴파일 시간이 좀 걸리게 됩니다.
+    `helloworld.out` 파일의 결과는 놀랍게도 943kbyte나 됩니다. 대략 1000배가 늘었습니다. 이를 다 일일이 기계어로 번역하다 보니, 단순히 `Hello World`만 출력하는 별것 아닌 코드이지만 컴파일 시간이 좀 걸리게 됩니다.
 
-    아마도 `iostream`이 또다른 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하고, 또다른 곳에서 또 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하다 보니 벌어진 일이겠죠. [파일 구성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/)에서 말씀드린 것처럼, 헤더 파일에서 다른 헤더 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하는 것은 최소화 하면 되겠지만, 아무래도 한계가 있습니다.
+    아마도 `iostream`이 또다른 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하고, [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)한 파일에서 또 다른 파일들을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하다 보니 벌어진 일이겠죠. [파일 구성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/)에서 말씀드린 것처럼, 헤더 파일에서 다른 헤더 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하는 것을 최소화 해서 해결하면 되겠지만, 아무래도 한계가 있습니다.
 
 2. [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제
 
@@ -227,7 +225,8 @@ int main() {
 
 [개인 모듈 조각](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EC%A0%84%EC%97%AD-%EB%AA%A8%EB%93%88-%EC%A1%B0%EA%B0%81%EA%B3%BC-%EA%B0%9C%EC%9D%B8-%EB%AA%A8%EB%93%88-%EC%A1%B0%EA%B0%81)은 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)의 하단에 `module : private;`로 표시하며, [모듈 인터페이스와 구현](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EB%AA%A8%EB%93%88-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%99%80-%EA%B5%AC%ED%98%84-%EB%B6%84%EB%A6%AC)을 하나의 파일에 작성할 수 있게 해줍니다. 즉, 함수 선언에는 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)를 작성하고, `module : private;`에 실제 구현을 합니다.
 
-(*GCC 12.3.0 에서 `module : private;` 은 아직 구현되지 않았다는 컴파일 오류가 발생합니다.*)
+
+전체적인 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/) 파일 레이아웃은 다음과 같습니다.(*GCC 12.3.0 에서 `module : private;` 은 아직 구현되지 않았다는 컴파일 오류가 발생합니다.*)
 
 ```cpp
 // ----

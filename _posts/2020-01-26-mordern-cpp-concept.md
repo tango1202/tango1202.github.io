@@ -29,7 +29,7 @@ EXPECT_TRUE(Add(1.0, 2.0) == 3.0);
 의도치 않게 `+`연산자를 지원하는 다른 타입도 실행됩니다.
 
 ```cpp
-EXPECT_TRUE(Add(std::string("Hello"), std::string("World")) == std::string("HelloWorld")); // (△) 비권장. 의도하지 않았는데, 되네요.
+EXPECT_TRUE(Add(std::string{"Hello"}, std::string{"World"}) == std::string{"HelloWorld"}); // (△) 비권장. 의도하지 않았는데, 되네요.
 ```
 
 저절로 된다고 좋아할 수 있으나, ***의도치 않은 동작은 모두 잠재적으로 사이드 이펙트를 유발하는 코드 결함***입니다. 최선을 다해서 막아야 하는데요,
@@ -39,7 +39,7 @@ EXPECT_TRUE(Add(std::string("Hello"), std::string("World")) == std::string("Hell
 ```cpp
 template<
     typename T, 
-    typename U = typename std::enable_if< typename = typename std::enable_if<
+    typename U = typename std::enable_if< 
         std::is_integral<T>::value || // T가 정수 타입이면 true 입니다.
         std::is_floating_point<T>::value // T가 실수 타입이면 true 입니다.
     >::type // 조건이 true인 경우에만 enable_if<>::type이 정의됩니다. 따라서 조건이 false면 템플릿 인스턴스화가 되지 않습니다.
@@ -50,10 +50,10 @@ T Add_11(T a, T b) {
 
 EXPECT_TRUE(Add_11(1, 2) == 3);
 EXPECT_TRUE(Add_11(1.0, 2.0) == 3.0);
-EXPECT_TRUE(Add_11(std::string("Hello"), std::string("World")) == std::string("HelloWorld")); // (X) 컴파일 오류. std::is_integral<T>::value 가 true 인 것만 가능합니다.
+EXPECT_TRUE(Add_11(std::string{"Hello"}, std::string{"World"}) == std::string{"HelloWorld"}); // (X) 컴파일 오류. std::is_integral<T>::value나 std::is_floating_point<T>::value가 true 인 것만 가능합니다.
 ```
 
-컴파일 오류 메시지는 다음과 같습니다. `Add_11(std::string, std::string)`로 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)하면 [enable_if](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#enable_if)에 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)으로 `type`이 없어 컴파일 오류가 발생하게 되죠.
+`Add_11(std::string, std::string)`로 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)하면 [enable_if](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#enable_if)에 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)으로 `type`이 없어 컴파일 오류가 발생하게 되죠. 컴파일 오류 메시지는 다음과 같습니다. 
 
 ```cpp
 no matching function for call to 'Add_11(std::string, std::string)'
@@ -79,10 +79,10 @@ T Add_20(T a, T b) {
 
 EXPECT_TRUE(Add_20(1, 2) == 3);
 EXPECT_TRUE(Add_20(1.0, 2.0) == 3.0);
-EXPECT_TRUE(Add_20(std::string("Hello"), std::string("World")) == std::string("HelloWorld")); // (X) 컴파일 오류. std::is_integral<T>::value 가 true 인 것만 가능합니다.
+EXPECT_TRUE(Add_20(std::string{"Hello"}, std::string{"World"}) == std::string{"HelloWorld"}); // (X) 컴파일 오류. std::integral 이거나 std::floating_point인 것만 가능합니다.
 ```
 
-컴파일 오류 메시지는 다음과 같습니다. 좀더 직관적으로 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 만족하지 않는다고 표시됩니다.
+컴파일 오류 메시지는 다음과 같습니다. [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 만족하지 않는다고 좀더 직관적으로 표시됩니다.
 
 ```cpp
 no matching function for call to 'Add_20(std::string, std::string)'
@@ -147,7 +147,7 @@ concept Number_20 = std::integral<T> || std::floating_point<T>; // T는 정수 �
 
 4. 복합 제약 조건
 
-    `{표현식} [noexcept] 후행 리턴 타입;`의 형태로 표현식의 결과 타입을 정의합니다. `[noexcept]`는 생략 가능합니다.
+    `{표현식} [noexcept] 후행 리턴 타입;`의 형태로 표현식의 결과 타입을 정의합니다. `[noexcept]`는 옵션입니다.
 
     ```cpp
     template<typename T>
@@ -171,7 +171,7 @@ concept Number_20 = std::integral<T> || std::floating_point<T>; // T는 정수 �
     concept AddableEqual_20 = requires(T a, T b) {
         
         {a == b} -> std::convertible_to<bool>; // T 는 ==을 제공하고 결과는 bool로 변환되어야 합니다.
-        {a != b} -> std::convertible_to<bool>; // T 는 ==을 제공하고 결과는 bool로 변환되어야 합니다.
+        {a != b} -> std::convertible_to<bool>; // T 는 !=을 제공하고 결과는 bool로 변환되어야 합니다.
         
         requires Addable_20<T>; // requires 로 추가 제약 조건을 작성합니다.
     };  
@@ -224,7 +224,7 @@ T Add_20(T a, T b) {
 
 EXPECT_TRUE(Add_20(1, 2) == 3);
 EXPECT_TRUE(Add_20(1.0, 2.0) == 3.0);
-EXPECT_TRUE(Add_20(std::string("Hello"), std::string("World")) == std::string("HelloWorld")); // (X) 컴파일 오류. std::is_integral<T>::value 가 true 인 것만 가능합니다.
+EXPECT_TRUE(Add_20(std::string{"Hello"}, std::string{"World"}) == std::string{"HelloWorld"}); // (X) 컴파일 오류. NumberAddable_20인 것만 가능합니다.
 ```
 
 또한 [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)에 의한 코딩 계약을 만들 수 있습니다. 마치 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 이용한 코딩 계약처럼요.
@@ -273,7 +273,7 @@ Draw(rect);
 Draw(circle);
 ```
 
-[컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 이용하면 다음처럼 구현됩니다. `IDrawable_11` [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)가 생략되었고, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출도 없어졌습니다. 단지 `Drawable_20` [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)으로 해당 개체에 `Draw()` 멤버 함수가 호출 가능한지만 컴파일 타임에 검사합니다. [가상 함수 테이블(Virtual Function Table, vTable)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)을 위한 추가 공간도 필요 없어지고, 런타임 호출 부하도 적어집니다. 미세하겠지만 성능 향상이 되겠네요.
+[컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 이용하면 다음처럼 구현됩니다. `IDrawable_11` [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)가 생략되었고, [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)도 없어졌으며, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 호출도 없어졌습니다. 단지 `Drawable_20` [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)으로 해당 개체에 `Draw()` 멤버 함수가 호출 가능한지만 컴파일 타임에 검사합니다. [가상 함수 테이블(Virtual Function Table, vTable)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)을 위한 추가 공간도 필요 없어지고, 런타임 호출 부하도 적어집니다. 미세하겠지만 성능 향상이 되겠네요.
 
 ```cpp
 template<typename T>
@@ -456,7 +456,7 @@ EXPECT_TRUE(Func_20(1L) == 4); // long 버전
 
 # 익명 컨셉
 
-[제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4) 은 `requires {}`로 작성되고, [요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires) 적용은 `requires 제약 조건`이므로 [익명 컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9D%B5%EB%AA%85-%EC%BB%A8%EC%85%89) 적용은 `requires requires {}`의 형태로 작성됩니다. 모양도 이상할 뿐더러 재활용도 되지 않으므로 사용하지 않는게 좋습니다. 
+[요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires) 적용은 `requires 제약 조건`이고, [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4) 은 `requires {}`로 작성되므로, [익명 컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9D%B5%EB%AA%85-%EC%BB%A8%EC%85%89) 적용은 `requires requires {}`의 형태로 작성됩니다. 모양도 이상할 뿐더러 재활용도 되지 않으므로 사용하지 않는게 좋습니다. 
 
 ```cpp
 template<typename T>

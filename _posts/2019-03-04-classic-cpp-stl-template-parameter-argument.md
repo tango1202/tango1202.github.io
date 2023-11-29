@@ -215,13 +215,13 @@ class B {};
 
 **템플릿 인자 끝 `>` 중첩**
 
-[템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 끝 `>`가 중첩되어 `>>`가 되면 비트 Right Shift 연산자로 파싱되어 컴파일 오류가 납니다. 따라서 `> >`와 같이 공백을 추가해야 합니다.
+[템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 끝 `>`가 중첩되어 `>>`가 되면 [오른쪽 비트 쉬프트 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)(>>)로 파싱되어 컴파일 오류가 납니다. 따라서 `> >`와 같이 공백을 추가해야 합니다.
 
 ```cpp
 template<typename T>
 class A {};
 
-std::vector<A<int>> a; // (X) 컴파일 오류. >> 는 비트 Right Shift 연산자로 파싱됩니다.
+std::vector<A<int>> a; // (X) 컴파일 오류. >> 는 오른쪽 비트 쉬프트 연산자로 파싱됩니다.
 std::vector<A<int> > b; // (O) 공백을 추가해야 합니다.
 ```
 

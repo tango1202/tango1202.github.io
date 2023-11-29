@@ -330,9 +330,9 @@ EXPECT_TRUE(c == 1);
 
 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)은 암시적으로 `int`로 형변환되면서 뜻하지 않은 동작을 할 수 있습니다. 타입에 기반한 **코딩 계약** 을 위반하니, [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/) 형변환을 정의하지 마세요.
 
-다음은 `T`를 `bool`로 형변환하는 [형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 예인데요,
+다음은 `T`를 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로 형변환하는 [형변환 연산자 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98) 예인데요,
 
-`if (0 < t)` 와 같이 정수 비교를 하는데도 `t`가 `bool`로 형변환되고, `bool`이 `int`로 형변환되면서, 아무런 컴파일 오류없이 사용됩니다. 의도한 코드라도 이러지 마세요. 암시적인 상황을 활용해서 복잡하게 의도하는건 코드 분석이나 **코딩 계약**에 좋지 않습니다.
+`if (0 < t)` 와 같이 정수 비교를 하는데도 `t`가 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로 형변환되고, [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)이 `int`로 형변환되면서, 아무런 컴파일 오류없이 사용됩니다. 의도한 코드라도 이러지 마세요. 암시적인 상황을 활용해서 복잡하게 의도하는건 코드 분석이나 **코딩 계약**에 좋지 않습니다.
 
 ```cpp
 class T {

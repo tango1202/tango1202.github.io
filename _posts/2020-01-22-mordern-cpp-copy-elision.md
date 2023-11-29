@@ -16,13 +16,13 @@ sidebar:
 
 1. [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94)
    
-   [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 그냥 `lvalue`(*[임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 전달받는 변수*)로 사용합니다.(*[생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94) 와 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-) 참고*)
+   [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 그냥 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 저장할 변수로 사용합니다.(*[생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94) 와 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-) 참고*)
 
 2. [리턴값 최적화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)
 
     리턴할 개체를 그냥 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 저장할 변수로 사용합니다.
 
-컴파일러 종류에 따라 다르겠지만, gcc에서는 상기 최적화를 수행하여 불필요한 [이동 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)을 생략하고, 생성된 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 그냥 사용합니다.
+컴파일러 종류에 따라 다르겠지만, GCC에서는 상기 최적화를 수행하여 불필요한 [이동 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)을 생략하고, 생성된 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 그냥 사용합니다.
 
 ```cpp
 class A {};
@@ -49,7 +49,8 @@ public:
     A_11& operator =(A_11&& other) noexcept = delete;         
 };
 
-A_11 a{A_11{}}; // (X) 컴파일 오류. 이동 생성자가 없음    
+// (X) ~C++17 컴파일 오류. 이동 생성자가 없습니다.
+A_11 a{A_11{}};  
 ```
 
 그래서 억지로 다음처럼 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용했었습니다.
@@ -66,30 +67,53 @@ A_11 a{A_11{}}; // (X) 컴파일 오류. 이동 생성자가 없음
         A_11& operator =(A_11&& other) noexcept = delete;         
     };
 
-A_11 a{A_11{}}; // 컴파일러 최적화로 이동 생성자를 사용하지 않지만, 컴파일을 위해 문법적으로는 이동 생성자가 필요합니다.
+// 컴파일러 최적화로 이동 생성자를 사용하지 않지만, 컴파일을 위해 문법적으로는 이동 생성자가 필요합니다.
+A_11 a{A_11{}}; 
 ```
 
-하지만, C++17 부터는 [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 불필요하게 복사나 이동되지 않음을 문법적으로 보증해 줍니다. 그덕에 상기 경우에 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)를 억지로 사용하지 않아도 컴파일 오류없이 잘 동작하게 됐습니다.
+하지만, C++17 부터는 [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 불필요하게 복사나 이동되지 않음을 문법적으로 보증해 줍니다. 그덕에 상기 경우에 [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)를 억지로 사용하지 않아도 컴파일 오류없이 잘 동작합니다.
 
 # 임시 구체화(Temporary materialization)
 
-C++17 부터 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 `prvalue`는 다른 개체를 초기화 하는데에만 사용되며, 다음의 경우만 [임시적으로 구체화](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/#%EC%9E%84%EC%8B%9C-%EA%B5%AC%EC%B2%B4%ED%99%94temporary-materialization)되는 것으로 한정했습니다.
+C++17 부터 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)는 다른 개체를 초기화 하는데에만 사용되며, 특별히 다음의 경우에도 [임시적으로 구체화](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/#%EC%9E%84%EC%8B%9C-%EA%B5%AC%EC%B2%B4%ED%99%94temporary-materialization)되는 것으로 한정했습니다.
 
-1. `prvalue`를 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 바인딩할때
+1. [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)형 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 바인딩할때(*[임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 참고*)
 
     ```cpp
-    T& t = T{}; // T{}는 임시 구체화 됩니다.
+    class T {};
+
+    // T& a = T{}; // (X) 컴파일 오류. 임시 개체를 T&로 참조할 수 없습니다.
+    const T& b = T{}; // (O) T{}는 임시 구체화 됩니다.
     ```
     
-2. `prvalue` 개체 멤버에 접근할때
+2. [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 멤버에 접근할때
 
     ```cpp
+    class T {
+    public:
+        int m_Val;    
+    };
+
     int val = T{}.m_Val; // T{} 는 임시 구체화 됩니다.
     ```
 
-3. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 포인터로 변환하거나 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 첨자 연산(`[]`)을 할때
+3. 임시 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)을 포인터로 변환할때
 
-4. [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)에서 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)를 초기화할때
+    ```cpp
+    const int* ptr = (const int[]){1, 2, 3}; // 임시 배열을 const int* 로 변환해서 저장합니다. 임시 배열은 임시 구체화 됩니다.
+    EXPECT_TRUE(*(ptr + 0) == 1);
+    EXPECT_TRUE(*(ptr + 1) == 2);
+    EXPECT_TRUE(*(ptr + 2) == 3);
+    ```
+
+4.  임시 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 첨자 연산(`[]`)을 할때
+
+    ```cpp
+    int val = (int[]){1, 2, 3}[1]; // 임시 배열의 [1]요소에 접근합니다. 임시 배열은 임시 구체화 됩니다.
+    EXPECT_TRUE(val == 2);
+    ```
+
+5. [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)에서 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)를 초기화할때(*[initializer_list의 암시적 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%EC%83%9D%EC%84%B1) 참고*)
 
     ```cpp
     class T_11 {
@@ -98,11 +122,11 @@ C++17 부터 [임시 개체](https://tango1202.github.io/classic-cpp-guide/class
     };
     T_11 t({1, 2, 3}); // {1, 2, 3} 은 initializer_list로 임시 구체화됩니다.
     ```
-5. [typeid()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)와 `sizeof()`에서 사용할때
+6. [typeid()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)와 [sizeof()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)에서 사용할때
 
 # 복사 생략(Copy elision)
 
-C++17 부터 `prvalue`는 [임시 구체화](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/#%EC%9E%84%EC%8B%9C-%EA%B5%AC%EC%B2%B4%ED%99%94temporary-materialization) 기준에 따라 최대한 구체화를 하지 않으며, 최종 대상의 저장소에 직접 구현됩니다.
+C++17 부터 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)는 [임시 구체화](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/#%EC%9E%84%EC%8B%9C-%EA%B5%AC%EC%B2%B4%ED%99%94temporary-materialization) 기준에 따라 최대한 구체화를 하지 않으며, 최종 대상의 메모리 위치에 직접 구현됩니다.
 
 ```cpp
 A a{A{}}; // A{}는 a에 구현됩니다.
@@ -124,11 +148,13 @@ public:
     int m_Val;
 public:
     A_17() = default;
-    A_17(const A_17& other) = delete;
+    A_17(const A_17& other) = delete; // 복사 생성자 사용 안함
     A_17(A_17&& other) noexcept = delete; // 이동 생성자 사용 안함
-    A_17& operator =(const A_17& other) = delete; 
-    A_17& operator =(A_17&& other) noexcept = delete;           
+    A_17& operator =(const A_17& other) = delete; // 복사 대입 연산자 사용 안함
+    A_17& operator =(A_17&& other) noexcept = delete; // 이동 대입 연산자 사용 안함
 }; 
 
-A_17 a{A_17{}}; // (O) 문법적으로 복사 생성자와 이동 생성자를 사용하지 않습니다. 
+// (O) 문법적으로 복사 생성자와 이동 생성자를 사용하지 않습니다. 
+// 임시 개체인 A_17{}을 그냥 a 변수로 사용합니다.
+A_17 a{A_17{}}; 
 ```
