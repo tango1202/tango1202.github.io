@@ -16,7 +16,7 @@ sidebar:
 2. 다른 `new_handler`를 설치하여 처리를 위임하거나
 3. `new_handler`를 제거하거나(제거되면 `bad_alloc()` 발생)
 4. `bad_alloc()` 또는 이로부터 파생된 예외를 발생시켜 처리를 포기하거나
-5. `abort()`을 하여 프로그램을 종료합니다.
+5. [abort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90)을 하여 프로그램을 종료합니다.
 
 # NewHandler의 필요성
 

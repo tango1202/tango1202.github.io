@@ -261,9 +261,9 @@ void g() {
 
 # terminate()
 
-예외를 `catch()`하지 않으면 최종적으로 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 함수를 호출하며, [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 함수에서는 `terminate_handler` 를 호출하고, 기본 `terminate_handler` 에서는 `abort()`를 호출하여 프로그램을 강제 종료합니다. 
+예외를 `catch()`하지 않으면 최종적으로 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 함수를 호출하며, [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 함수에서는 `terminate_handler` 를 호출하고, 기본 `terminate_handler` 에서는 [abort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90)를 호출하여 프로그램을 강제 종료합니다. 
 
-[terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 핸들러는 `set_terminate()` 함수로 사용자 정의 할 수 있으며, `abort()`등의 프로그램 종료 코드가 포함되어야 합니다.
+[terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 핸들러는 `set_terminate()` 함수로 사용자 정의 할 수 있으며, [abort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90)등의 프로그램 종료 코드가 포함되어야 합니다.
 
 ```cpp
 #include <iostream>

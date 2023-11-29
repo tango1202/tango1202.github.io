@@ -78,7 +78,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`abort()`|프로그램을 비정상 종료 시킵니다. [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 참고|
+|[abort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90)|프로그램을 비정상 종료 시킵니다. [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate) 참고|
 |`exit()`|프로그램을 정상 종료 시킵니다.|
 |`quick_exit()` (C++11~)|(작성중)|
 |`_Exit()` (C++11~)|(작성중)|
