@@ -19,14 +19,14 @@ sidebar:
 
 # (C++11~) alignas(), alignof()
 
-기존에는 `#pragma pack`을 이용하여 비표준 방식으로[메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 했는데요(*[개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고*),
+기존에는 `#pragma pack`을 이용하여 비표준 방식으로 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 했는데요(*[개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고*),
 
 C++11 부터는 [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof) 로 이를 표준화하였습니다.
 
 |항목|내용|
 |--|--|
 |`alignof()` (C++11~)|주어진 타입의 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 크기를 구합니다.|
-|`alignas()` (C++11~)|주어진 값으로 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 합니다. 단, 2, 4, 8, 16... 단위로 정렬하며, 내부 멤버중 제일 큰 값보다 작으면 무시됩니다.|
+|`alignas()` (C++11~)|주어진 값으로 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 합니다. 단, 2, 4, 8, 16... 단위로 정렬하며, 내부 멤버중 제일 큰 값보다 작으면 무시합니다.|
 
 ```cpp
 // 4byte 단위로 정렬합니다.
@@ -41,7 +41,7 @@ class alignas(8) B_11 {
     int m_B; 
 };
 
-// int 보다 적은값이므로 무시되고 alignof(int) 크기로 정렬됩니다.
+// 2는 내부 멤버중 제일 큰 값인 int 보다 적은값이므로 무시되고 alignof(int) 크기로 정렬됩니다.
 class alignas(2) C_11 {
     char m_A[13];
     int m_B; 
@@ -66,7 +66,6 @@ EXPECT_TRUE(alignof(C_11) == 4 && sizeof(C_11) == 4 * 5);
 다음 코드에서처럼 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98) 정의시에 `...`을 사용하고, `__VA_ARGS__`를 이용하여 전달할 수 있습니다.
 
 ```cpp
-
 #define MY_SUM_11(count, ...) T::Sum(count, __VA_ARGS__)
 
 class T {
@@ -104,7 +103,7 @@ EXPECT_TRUE(MY_SUM_11(0) == 0); // (X) 컴파일 오류. T::Sum(count, ) 로 치
 // 가변 인자에 인수가 없는 경우
 EXPECT_TRUE(T::Sum(0) == 0);
 EXPECT_TRUE(MY_SUM(0) == 0); // (X) 컴파일 오류. T::Sum(count, ) 로 치환됩니다.
-EXPECT_TRUE(MY_SUM2(0) == 0); // (O) 
+EXPECT_TRUE(MY_SUM2_11(0) == 0); // (O)  
 ```
 
 # (C++11~) 멤버 sizeof() 연산자
@@ -117,8 +116,8 @@ public:
     int m_X;
 };
 
-// C++03 에서는 컴파일 오류
-// C++11 부터 허용
+// (X) C++03 에서는 컴파일 오류
+// (O) C++11 부터 허용
 EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
 ```
 
@@ -134,7 +133,7 @@ EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
 
 # (C++20~) volatile 일부 deprecate
 
-다음 4가지 경우에 대해 `volatile` 사용이  [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었습니다.
+다음 4가지 경우에 대해 [volatile](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%B5%9C%EC%A0%81%ED%99%94-%EC%A0%9C%ED%95%9C-%ED%95%9C%EC%A0%95%EC%9E%90volatile) 사용이  [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었습니다.
 
 * 복합 대입
 
@@ -184,8 +183,8 @@ EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
  [`__VA_OPT__`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
 
  ```cpp
-int Sum(int a, int b, int c, int d) {return a + b + c + d;}
-int Sum(int a) {return a;}
+int Sum(int init, int a, int b, int c) {return init + a + b + c;}
+int Sum(int init) {return init;}
 #define MY_FUNC_20(...) Sum(10 __VA_OPT__(,) __VA_ARGS__) // 가변 인수가 있다면 ,를 넣습니다.
 EXPECT_TRUE(MY_FUNC_20(1, 2, 3) == 10 + 1 + 2 + 3); // f(10, 1, 2, 3) 가변 인수가 있다면 , 를 넣습니다.
 EXPECT_TRUE(MY_FUNC_20() == 10); // f(10) 가변 인수가 없다면 ,를 넣지 않습니다.
