@@ -63,7 +63,7 @@ ThreeType three;
 |`is_lvalue_reference` (C++11~)|[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입인지 검사합니다.|
 |`is_rvalue_reference` (C++11~)|[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0) 타입인지 검사합니다.|
 |`is_member_object_pointer` (C++11~)|개체 [멤버 변수의 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EC%82%AC%EC%9A%A9%EB%B2%95) 타입인지 검사합니다.|
-|`is_member_function_pointer` (C++11~)|개체 [멤버 함수의 포인터](??) 타입인지 검사합니다.|
+|`is_member_function_pointer` (C++11~)|개체 [멤버 함수의 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 타입인지 검사합니다.|
 |`is_null_pointer` (C++14~)|[nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr_t) 타입인지 검사합니다.|
 
 # 복합 타입 카테고리
@@ -192,7 +192,7 @@ ThreeType three;
 
 # enable_if
 
-주어진 조건이 참인 경우만 템플릿을 활성화 시킵니다. 내부적으로 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)를 이용합니다. 즉, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), 리턴 타입, [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)등에 사용하여 조건이 참이어서 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 `type`이 정의되어 있으면 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보군으로 활성화 시키고, 정의되어 있지 않으면 비활성 시킵니다.
+주어진 조건이 참인 경우만 템플릿을 활성화 시킵니다. 내부적으로 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)를 이용합니다. 즉, [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), 리턴 타입, [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)등에 사용하여 조건이 참이어서 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 `type`이 정의되어 있으면 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보군으로 활성화 시키고, 정의되어 있지 않으면 비활성 시킵니다.
 
 ```cpp
 template<bool B, class T = void>
@@ -216,7 +216,7 @@ EXPECT_TRUE(Add(std::string("Hello"), std::string("World")) == std::string("Hell
 
 다음처럼 정수 타입만 실행되게 수정할 수 있습니다.
 
-1. `typename U = enable_if<조건>::type`으로 조건이 거짓이면 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)에 의해 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록에서 제외되게 합니다.(*이때 `U`는 사용되지 않으므로, `typename = enable_if<조건>::type` 와 같이 생략하는게 좋습니다.*)
+1. `typename U = enable_if<조건>::type`으로 조건이 거짓이면 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)에 의해 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록에서 제외되게 합니다.(*이때 `U`는 사용되지 않으므로, `typename = enable_if<조건>::type` 와 같이 생략하는게 좋습니다.*)
 
 2. `std::is_integral<T>::value` 로 `T`가 정수 타입인지 검사합니다.
 

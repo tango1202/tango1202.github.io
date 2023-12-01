@@ -225,7 +225,6 @@ int main() {
 
 [개인 모듈 조각](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EC%A0%84%EC%97%AD-%EB%AA%A8%EB%93%88-%EC%A1%B0%EA%B0%81%EA%B3%BC-%EA%B0%9C%EC%9D%B8-%EB%AA%A8%EB%93%88-%EC%A1%B0%EA%B0%81)은 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)의 하단에 `module : private;`로 표시하며, [모듈 인터페이스와 구현](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EB%AA%A8%EB%93%88-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%99%80-%EA%B5%AC%ED%98%84-%EB%B6%84%EB%A6%AC)을 하나의 파일에 작성할 수 있게 해줍니다. 즉, 함수 선언에는 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)를 작성하고, `module : private;`에 실제 구현을 합니다.
 
-
 전체적인 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/) 파일 레이아웃은 다음과 같습니다.(*GCC 12.3.0 에서 `module : private;` 은 아직 구현되지 않았다는 컴파일 오류가 발생합니다.*)
 
 ```cpp
@@ -268,7 +267,7 @@ int main() {
 
 다음예는 `MyModule_20`을 `Part1`, `Part2`, `Part3`으로 나누어 관리하는 예입니다. `Part1`과 `Part2`는 외부에서도 사용하고, `Part3`은 `MyModule_20` 내부에서만 사용합니다.
 
-`Test_Part.cpp`는 [모듈의 인터페이스](??)로서 `Part1`과 `Part2`를 [import](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)한뒤 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)합니다. 다른 파트를 표현할때 `:Part1;`와 같이 모듈명 없이 작성합니다.
+`Test_Part.cpp`는 [모듈의 인터페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EB%AA%A8%EB%93%88-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%99%80-%EA%B5%AC%ED%98%84-%EB%B6%84%EB%A6%AC)로서 `Part1`과 `Part2`를 [import](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)한뒤 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)합니다. 다른 파트를 표현할때 `:Part1;`와 같이 모듈명 없이 작성합니다.
 
 ```cpp
 // ----

@@ -111,7 +111,7 @@ EXPECT_TRUE(AddFloor(d1, d2) == 2); // 내림
 
 1. `CeilTag`, `FoorTag`와 같은 더미 클래스를 만들고, 
 2. `A`, `B`, `C`, `D`에 올림을 할지 내림을 할지 `AddTag`로 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)하고,
-3. `Add()` 함수에서 `typename T::AddTag addTag;` 와 같이 오버로딩할 수 있게 더미 개체를 만들고,
+3. `Add()` 함수에서 `typename T::AddTag addTag;` 와 같이 [오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)할 수 있게 더미 개체를 만들고,
 4. `AddInternal()` 함수를 호출하여 올림과 내림을 수행할 수 있습니다.
 
 이제 `A`, `B`, `C`, `D` 클래스 설계자가 지정한대로 올림과 내림이 호출되므로 사용자는 마음 편히 `Add()` 함수만 호출하면 됩니다.
@@ -182,7 +182,7 @@ EXPECT_TRUE(Add(d1, d2) == 2); // 내림
 
 1. `AddTraits` 클래스를 만들고 일반적인 것들은 올림이 되도록 `AddTag`로 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)하고,
 2. `C`, `D` 는 내림이 되도록 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)합니다.
-3. `Add()` 함수에서 `typename AddTraits<T>::AddTag addTag;` 와 같이 `AddTraits`를 통해 오버로딩할 수 있게 더미 개체를 만듭니다.
+3. `Add()` 함수에서 `typename AddTraits<T>::AddTag addTag;` 와 같이 `AddTraits`를 통해 [오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)할 수 있게 더미 개체를 만듭니다.
    
 ```cpp
 // 템플릿 특수화 컴파일을 위한 전방 선언

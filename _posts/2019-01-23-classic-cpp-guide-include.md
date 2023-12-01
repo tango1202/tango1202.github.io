@@ -17,7 +17,7 @@ sidebar:
 
 # 선언과 정의 분리
 
-C++에서는 일반적으로 클래스 선언부는 헤더 파일에 작성하고, 클래스 멤버 함수 정의부는 cpp 파일에 작성 합니다. 이때 선언부를 포함하기 위해 cpp 파일에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)를 사용합니다.
+C++에서는 일반적으로 클래스 선언부는 헤더 파일에 작성하고, 클래스 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 정의부는 cpp 파일에 작성 합니다. 이때 선언부를 포함하기 위해 cpp 파일에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)를 사용합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7912cb35-8fe3-4961-8157-0092b078b85d)
 

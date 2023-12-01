@@ -63,7 +63,7 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |`file_clock` (C++20~)|(작성중)|
 |`local_t` (C++20~)|(작성중)|
 
-[system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)은 다음의 멤버 함수가 있습니다.
+[system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)은 다음의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 있습니다.
 
 |항목|내용|
 |--|--|
@@ -81,7 +81,7 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |`clock_time_conversion` (C++11~)|(작성중)|
 |`clock_cast` (C++11~)|(작성중)|
 
-[time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)는 다음의 멤버 함수가 있습니다.
+[time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)는 다음의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 있습니다.
 
 |항목|내용|
 |--|--|
@@ -106,7 +106,7 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |--|--|
 |[duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) (C++11~)|기간입니다. 두 Time Point의 차입니다.|
 
-[duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 은 다음의 멤버 함수가 있습니다.
+[duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 은 다음의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 있습니다.
 
 |항목|내용|
 |--|--|

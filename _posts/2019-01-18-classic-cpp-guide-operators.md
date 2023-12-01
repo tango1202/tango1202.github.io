@@ -10,14 +10,14 @@ sidebar:
 
 > * [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되지 않도록 이항 산술 연산자(*`a = a + b`*)보다는 산술형 대입 연산자(*`a += b`*)를 사용하라.
 > * [후위형 증감 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%A6%9D%EA%B0%90-%EC%97%B0%EC%82%B0%EC%9E%90)는 헷갈리고, 쓸데없는 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)가 생성되니 사용하지 마라. 
-> * 비교 연산 오버로딩은 [`<`을 활용](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)해서 구현하라.
+> * [비교 연산 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)은 [`<`을 활용](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)해서 구현하라.
 
 > **모던 C++**
 > * (C++11~) [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 `int operator ""_km(long double val);`와 같이 사용자가 정의해서 사용할 수 있으며, 단위계 처리가 쉬워졌습니다.
 > * (C++11~) [sizeof...() 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)에서 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)의 인자수를 구할 수 있습니다.
 > * (C++11~) [멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.
 > * (C++11~) [type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#%EB%9F%B0%ED%83%80%EC%9E%84-%ED%83%80%EC%9E%85)는 [type_info](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)의 래퍼로서 [type_info](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)를 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)에서 관리할 수 있게 합니다.
-> * (C++11~) [addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-addressof)는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.
+> * (C++11~) [addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-addressof)는 `operator &()`가 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 되었어도 실제 주소를 리턴합니다.
 > * (C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
 > * (C++20~) [비트 쉬프트 연산자의 기본 비트가 표준화](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EB%B9%84%ED%8A%B8-%ED%91%9C%EC%A4%80%ED%99%94)되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
 
@@ -25,7 +25,7 @@ sidebar:
 
 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 `=` 와 같은 기본 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)와 산술 연산이나 비트 연산의 결과값을 대입하는 산술형 대입 연산자가 있습니다.(*`a += b` 는 `a = a + b` 와 결과가 같습니다.*) 
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |[복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)|`a = b`|O|`T& T::operator =(const T2& b);`|X|
 |추가 대입|`a += b`|O|`T& T::operator +=(const T2& b);`|`T& operator +=(T& a, const T2& b);`|
@@ -43,7 +43,7 @@ sidebar:
 
 산술 연산의 결과를 계산합니다. 
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |단항 양수|`+a`|O|`T T::operator +() const;`|`T operator +(const T &a);`|
 |단항 음수|`-a`|O|`T T::operator -() const;`|`T operator -(const T &a);`|
@@ -103,7 +103,7 @@ EXPECT_TRUE(ch == -64);
 
 후위형의 이러한 특징은 불필요한 복사 부하가 생길 뿐만아니라, 분석을 헷갈리게 할 수 있기 때문에(*의도인지, 실수인지*), 후위형 보다는 전위형 증감 연산자를 사용하는게 좋습니다.
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |전위 증가|`++a`|O|`T& T::operator ++();`|`T& operator ++(T& a);`|
 |전위 감소|`--a`|O|`T& T::operator --();`|`T& operator --(T& a);`|
@@ -131,7 +131,7 @@ EXPECT_TRUE(ch == -64);
 
 NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 평가합니다.
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |NOT|`!a`|O|`bool T::operator !() const;`|`bool operator !(const T &a);`|
 |AND|`a && b`|O|`bool T::operator &&(const T2 &b) const;`|`bool operator &&(const T &a, const T2 &b);`|
@@ -141,7 +141,7 @@ NOT, AND, OR 논리 조건에 맞춰 `true`, `false`를 평가합니다.
 
 대소 비교를 합니다. 실수 비교 연산의 경우는 오차 범위를 고려해야 합니다.(*[실수 비교](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%EC%8B%A4%EC%88%98-%EB%B9%84%EA%B5%90) 참고*) 
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |같다|`a == b`|O|`bool T::operator ==(const T2& b) const;`|`bool operator ==(const T& a, const T2& b);`|
 |같지 않다.|`a != b`|O|`bool T::operator !=(const T2& b) const;`|`bool operator !=(const T& a, const T2& b);`|
@@ -201,7 +201,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 
 형변환은 최대한 안하는 것이 좋습니다. 형변환의 자세한 내용은 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 을 참고하세요.
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |C언어 스타일|`(T)a`|O|`operator T() const;`|X|
 |[상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)만 변환|[const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|X|X|X|
@@ -211,7 +211,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 
 # 접근 연산자
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 요소|`a[b]`|O|`R& T::operator [](S b);`<br/>`const R& T::operator [](S b) const;`|X|
 |포인터 실제값|`*a`|O|`R& T::operator *();`<br/>`const R& T::operator *() const;`|`R& operator *(T a);`|
@@ -229,7 +229,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 
 괄호 표현식으로 사용할 수 있는 특수한 표현식입니다. 표준 템플릿 라이브러리(*Standard Template Library, STL*)의 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 처럼 사용할 수 있습니다.
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |함수 호출 연산자|`a(a1, a2)`|O|`R T::operator ()(Param1 &a1, Param2 &a2, ...);`|X|
 
@@ -248,7 +248,7 @@ EXPECT_TRUE(t.operator ()(10, 20) == 30); // t(10, 20) 호출과 동일. operato
 
 `a`표현식을 평가하고, `b`표현식을 평가합니다. (*`a, b, c, d`와 같이 나열할 수 있습니다.*) 코드 분석이 어려워 권장하지 않습니다.
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |콤마 연산자|`a, b`|O|`T2& T::operator ,(T2 &b);`|`T2& operator ,(const T &a, T2 &b);`|
 
@@ -270,7 +270,7 @@ EXPECT_TRUE(T::f((++i, arr[i])) == 2);
 
 `a`가 참인 경우 `b`, 거짓인 경우 `c`를 평가합니다.
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |조건 연산자|`a ? b : c`|X|X|X|
 
@@ -295,7 +295,7 @@ EXPECT_TRUE(result == 10);
 로 구성되어 있습니다. 좀더 자세한 내용은 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
 
 
-|항목|내용|사용예|오버로딩|개체 멤버 정의|전역 정의|
+|항목|내용|사용예|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|전역 정의|
 |--|--|--|:--:|:--:|:--:|
 |[operator new(std::size_t)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체 생성|`T* p = new T;`|O|`void* operator new(std::size_t sz);`|`void* operator new(std::size_t sz);`|
 |[operator delete(void*)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체 소멸|`delete p;`|O|`void operator delete(void* ptr, std::size_t sz)`|`void operator delete(void* ptr, std::size_t sz)`|
@@ -395,7 +395,7 @@ class Derived2 : public Base2 {};
 ```
 # 스트림 연산자
 
-|항목|내용|오버로딩|개체 멤버 정의|개체 비멤버 정의|
+|항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|
 |출력|`cout << a;`|O|X|`ostream& operator <<(ostream& os, const T& a)`|
 |입력|`cin >> a;`|O|X|`istream& operator >>(istream& is, T& a)`|
@@ -425,11 +425,11 @@ class Derived2 : public Base2 {};
 
 # 연산자 오버로딩
 
-클래스나 구조체에서 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 연산자를 오버로딩할 수 있습니다. 
+클래스나 구조체에서 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 [연산자를 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)할 수 있습니다. 
 
 **복사 대입 연산자**
 
-하기는 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)(`=`) 연산자를 오버로딩한 예입니다. `T&` 와 같이 자기 자신의 참조를 리턴하는데요, 이는 `t1 = t2 = t2;`과 같이 연달아 대입하는 경우를 지원하고, 복사 부하를 줄이기 위함입니다.(*[예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)할 수 있도록 보증하는 방법은 [swap을 이용한 예외 보증 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EB%B3%B4%EC%A6%9D-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 참고하세요.*)
+하기는 [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)(`=`) [연산자를 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)한 예입니다. `T&` 와 같이 자기 자신의 참조를 리턴하는데요, 이는 `t1 = t2 = t2;`과 같이 연달아 대입하는 경우를 지원하고, 복사 부하를 줄이기 위함입니다.(*[예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)할 수 있도록 보증하는 방법은 [swap을 이용한 예외 보증 복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#swap%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%88%EC%99%B8-%EB%B3%B4%EC%A6%9D-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)를 참고하세요.*)
 
 ```cpp
 class T {
@@ -449,7 +449,7 @@ t1 = t2 = t3; // t2 = t3의 결과 t2의 참조자를 리턴하고, t1에 대입
 
 **`+=` 연산자**
 
-하기는 `+=` 연산자를 오버로딩한 예입니다. `int`형도 지원하기 위해 `T& operator +=(int val)` 도 구현 하였습니다.
+하기는 `+=` [연산자를 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)한 예입니다. `int`형도 지원하기 위해 `T& operator +=(int val)` 도 구현 하였습니다.
 
 ```cpp
 class T {
@@ -482,7 +482,7 @@ EXPECT_TRUE(t1.GetVal() == 40);
 
 **`+` 연산자**
 
-하기는 이항 연산자인 `+`연산자를 오버로딩한 예입니다. 
+하기는 이항 연산자인 `+`[연산자를 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)한 예입니다. 
 
 ```cpp
 class T {
@@ -559,7 +559,7 @@ inline T operator +(int left, const T& right) {
 
 **증감 연산자**
 
-증감 연산자는 오버로딩시 전위형과 후위형을 구분하기 위해, 후위형의 경우 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 `int`를 dummy로 넣습니다. 
+증감 연산자는 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)시 전위형과 후위형을 구분하기 위해, 후위형의 경우 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 `int`를 dummy로 넣습니다. 
 
 또한 후위형은 
 
@@ -710,7 +710,7 @@ public:
 
 **열거형 연산자 오버로딩**
 
-[열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)도 연산자 오버로딩을 할 수 있습니다.
+[열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)도 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)을 할 수 있습니다.
 
 ```cpp
 

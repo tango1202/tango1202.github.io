@@ -229,9 +229,9 @@ std::vector<A<int> > b; // (O) 공백을 추가해야 합니다.
 
 **템플릿 명시**
 
-[템플릿 정의](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 개체의 멤버 함수에 접근할 때 `template` 을 명시하는 경우가 있습니다.
+[템플릿 정의](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 개체의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에 접근할 때 `template` 을 명시하는 경우가 있습니다.
 
-다음 코드에서 `Run()` 함수는 `T`타입의 개체 `m_Obj`의 `f()`함수를 호출합니다. 공교롭게도 `f()` 함수는 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 멤버 함수이고, 잘 동작합니다.
+다음 코드에서 `Run()` 함수는 `T`타입의 개체 `m_Obj`의 `f()`함수를 호출합니다. 공교롭게도 `f()` 함수는 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)인 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이고, 잘 동작합니다.
 
 ```cpp
 template<typename T> 

@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#8] 0과 NULL 보단 nullptr를 선호하라.([오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 호출, auto 추론)
+> * [MEC++#8] 0과 NULL 보단 nullptr를 선호하라.([함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 호출, auto 추론)
 > * [MEC++#9] typedef 보다 별칭 선언을 선호하라.([클래스 템플릿 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B3%84%EC%B9%AD))
 
 > * (C++11~) [타입 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%83%80%EC%9E%85-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC)를 수립하여 컴파일 타임 프로그래밍이나 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)시의 코딩 계약을 강화할 수 있습니다.
@@ -144,7 +144,7 @@ MyVector_11<char> v2; // std::vector<char> 타입입니다.
 
 # nullptr
 
-기존에는 [널 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EB%84%90-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 표현하기 위해 `0`이나 `NULL`(`#define NULL 0`)을 사용했는데요(*[널 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EB%84%90-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고*),
+기존에는 [널 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EB%84%90-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 표현하기 위해 `0`이나 `NULL`(*`#define NULL 0`*)을 사용했는데요(*[널 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EB%84%90-%ED%8F%AC%EC%9D%B8%ED%84%B0) 참고*),
 
 C++11 부터는 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr) 리터럴이 제공됩니다.
 
@@ -154,7 +154,7 @@ int* ptr2 = NULL;
 int* ptr3_11 = nullptr; // C++11
 ```
 
-`0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 호출시 `int` 타입이 호출됩니다.
+`0`이나 `NULL`은 사실 포인터가 아니라 정수이기 때문에 [오버로딩된 함수 결정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)시 `int` 타입이 선택됩니다.
 
 다음의 `ptr1`, `ptr2`, `ptr3`는 모두 `int*`여서 `f(int*)`가 호출되는데요,
 

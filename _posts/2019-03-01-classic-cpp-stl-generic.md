@@ -28,7 +28,7 @@ sidebar:
 
 우선, 데이터를 저장하는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)를 개체 지향스럽게 만들어 봅시다.
 
-1. 캡슐화를 위해 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 멤버 함수를 응집하고,
+1. 캡슐화를 위해 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)와 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 응집하고,
 2. 데이터 조회/설정을 추상화 하여 `IContainer` [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 만들고,
 3. 이를 상속하여 실제 저장할 타입에 맞춰 `IntContainer`와 `CharContainer`를 만들면,
 4. `int`와 `char`에 따라 다르게 다형적으로 동작하게 됩니다.

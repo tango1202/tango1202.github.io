@@ -131,7 +131,7 @@ u1 = u2; //(O) 소유권을 u1으로 이전합니다.
 1. 생성시 `ptr`을 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 저장합니다.
 2. 소멸시 `m_Ptr`을 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)합니다.
 3. [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)과 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 연산시 기존 포인터는 삭제하고, 신규 포인터를 저장 관리합니다. 이때 `other`가 관리하는 포인터는 `NULL`로 초기화하여 더이상 관리하지 않습니다.
-4. `->`, `*`연산자를 오버로딩하여 관리하는 포인터에 접근할 수 있게 합니다.
+4. `->`, `*`[연산자를 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)하여 관리하는 포인터에 접근할 수 있게 합니다.
 
 ```cpp
 template<typename T>
@@ -190,7 +190,7 @@ EXPECT_TRUE(b.get() == NULL); // 더이상 포인터를 관리하지 않음
 
 신중하게 결정해야 복사 부하를 줄이고, 타입에 기반한 코딩 계약 을 수립할 수 있다고 언급하였고,
 
-[Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)와 [Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#setter-%ED%95%A8%EC%88%98) 에서 멤버 함수의 바람직한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와 리턴값 설계를 예시하였습니다.
+[Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)와 [Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#setter-%ED%95%A8%EC%88%98) 에서 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)의 바람직한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)와 리턴값 설계를 예시하였습니다.
 
 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)을 활용하면, 
 

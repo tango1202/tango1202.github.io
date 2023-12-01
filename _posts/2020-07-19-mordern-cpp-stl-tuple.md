@@ -162,7 +162,7 @@ std::pair<A, B> data{
 
 와 같이 만들텐데요, 
 
-[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)를 사용한 오버로딩 버전을 실행하면, `A` 개체를 생성할때 사용할 인수들과 `B`개체를 생성할때 사용할 인수들을 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)로 전달해서, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 내부에서 `A`, `B`를 생성하도록 할 수 있습니다.
+[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)를 사용한 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전을 실행하면, `A` 개체를 생성할때 사용할 인수들과 `B`개체를 생성할때 사용할 인수들을 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)로 전달해서, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 내부에서 `A`, `B`를 생성하도록 할 수 있습니다.
 
 ```cpp
 class A {

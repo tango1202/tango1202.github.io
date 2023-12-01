@@ -44,7 +44,7 @@ STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공
 
 [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 `notify_one()` 이나 `notify_all()`로 활성화 시켜 주는 개체입니다. 
 
-[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable) 의 멤버 함수는 다음과 같습니다. 
+[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 다음과 같습니다. 
 
 |항목|내용|
 |--|--|

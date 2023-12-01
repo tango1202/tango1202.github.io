@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * 오버로딩 시에는 `T`보다는 `T*` 보다는 `const T*`가 선택된다.
-> * 연산자 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)는 비멤버 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)으로 작성하라.
+> * [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)시에는 `T`보다는 `T*` 보다는 `const T*`가 선택된다.
+> * [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)은 비멤버 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)으로 작성하라.
 > * [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)시 `T&`는 `T`로 추론된다.
 
 > **모던 C++**
@@ -22,7 +22,7 @@ sidebar:
 [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)의 인스턴스화는 다음 2가지 과정을 거칩니다.
 
 1. [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) : 전달된 타입을 어떤 타입으로 사용할지 추론
-2. [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 결정 : [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 후 일반 함수와 여러개의 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)중 적합한 것을 결정
+2. [함수 템플릿 오버로딩 결정](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) : [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 후 일반 함수와 여러개의 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)중 적합한 것을 결정
 
 # 함수 템플릿 인수 추론
 
@@ -209,11 +209,9 @@ f<10>(a); // 명시적으로 10을 전달하여 A<10> 타입이 됨. 같은 타�
 
 # 함수 템플릿 오버로딩 결정 규칙
 
-서로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다른 함수들은 오버로딩 후보군에서 가장 적합한 것으로 결정됩니다.(*[오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
+서로 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다른 함수들은 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보군에서 가장 적합한 것으로 결정됩니다.(*[오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 참고*)
 
-
-하지만 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)의 경우는 정의시에는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다르지만, 인스턴스화 과정에서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전(**좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.)을 선택하게 됩니다.
-
+하지만 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)의 경우는 정의시에는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 다르지만, 인스턴스화 과정에서 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같아질 수 있습니다. 이런 경우 **Partial Ordering**을 통해 좀더 특수화된 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전(*좀 더 특수화된 버전은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.*)을 선택하게 됩니다.
 
 예를 들면,
 
@@ -245,7 +243,7 @@ EXPECT_TRUE(f(&a) == 2);
 
 3. [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)이 아닌 일반 함수와 [오버로딩 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99) 적용. 이때 일반 함수가 우선 순위가 높음
 
-# 오버로딩 사례
+# 함수 템플릿 오버로딩 사례
 
 **함수 템플릿보다는 일반 함수**
 
@@ -265,7 +263,7 @@ EXPECT_TRUE(f(1) == 1);
 
 **`T` 보다는 `T*` 보다는 `const T*`**
 
-`T` 보다는 `T*` 가 특수화된 버전이므로, 선택됩니다.
+`T` 보다는 `T*` 가 특수화된 버전이므로 선택됩니다.
 
 ```cpp
 template<typename T>
@@ -281,7 +279,7 @@ int* p;
 EXPECT_TRUE(f(p) == 2);
 ```
 
-`T*` 보다는 `const T*` 가 특수화된 버전이므로, 선택됩니다.
+`T*` 보다는 `const T*` 가 특수화된 버전이므로 선택됩니다.
 
 ```cpp
 template<typename T>
@@ -301,7 +299,7 @@ const int* p;
 EXPECT_TRUE(f(p) == 3); 
 ```
 
-특수화된 버전 선택시 [인자의 기본값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)는 무시하고 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전을 결정합니다.
+특수화된 버전 선택시 [인자의 기본값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90)은 무시하고 [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전을 결정합니다.
 
 ```cpp
 template<typename T>
@@ -383,7 +381,7 @@ A<int> a;
 EXPECT_TRUE( a + 10 == 1);
 ```
 
-하지만 멤버 버전이 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이라면, 비멤버 버전으로 임시 생성하고 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)을 평가하기 때문에, 모호성 문제가 발생하며, 그냥 대충 비멤버 버전을 호출합니다.(*경고가 나오긴 합니다.*) 
+하지만 멤버 버전이 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이라면, 비멤버 버전으로 임시 생성하고 [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)을 평가하기 때문에, 모호성 문제가 발생하며, 그냥 대충 비멤버 버전을 호출합니다.(*경고가 나오긴 합니다.*) 
 
 ```cpp
 template<typename T>
@@ -426,7 +424,7 @@ A<int> a;
 EXPECT_TRUE( a + 10 == 1);
 ```
 
-# 오버로딩 실패 사례
+# 함수 템플릿 오버로딩 실패 사례
 
 **동등한 함수 템플릿**
 
@@ -496,7 +494,7 @@ EXPECT_TRUE(f(i, p) == 2);
 
 # SFINAE(Substitution failure is not an error)
 
-[SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)는 ***[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 과정에서 발생할 수 있는 대체 실패는 컴파일 오류가 아니다***라는 뜻입니다. 대체 실패가 발생하면 그냥 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보군에서 제외할 뿐 오류를 발생시키지 않는다는 뜻입니다.
+[SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error)는 ***[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 과정에서 발생할 수 있는 대체 실패는 컴파일 오류가 아니다***라는 뜻입니다. 대체 실패가 발생하면 그냥 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보군에서 제외할 뿐 오류를 발생시키지 않는다는 뜻입니다.
 
 다음 `A`클래스를 보면, `Int`와 `Char`라는 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)을 가지고 있고, `f()` 함수는 이를 사용하고 있습니다.
 
@@ -522,7 +520,7 @@ EXPECT_TRUE(f<A>(10) == 1);
 EXPECT_TRUE(f<A>('a') == 2);
 ```
 
-전달한 인수에 부합하는 함수를 호출하기 위해, [함수 템플릿 오버로딩 결정 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 다음 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보군이 만들어지고, [오버로딩된 함수 결정 규칙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%EB%90%9C-%ED%95%A8%EC%88%98-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 가장 적합한 함수가 호출됩니다.
+전달한 인수에 부합하는 함수를 호출하기 위해, [함수 템플릿 오버로딩 결정 규칙](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9-%EA%B2%B0%EC%A0%95-%EA%B7%9C%EC%B9%99)에 따라 다음 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보군이 만들어지고, 가장 적합한 함수가 호출됩니다.
 
 ```cpp
 A::Int f(A::Int param); // typename T::Int f(typename T::Int param)
@@ -543,16 +541,16 @@ EXPECT_TRUE(f<B>('a') == 1); // char를 전달했는데 int 버전이 호출됩�
 
 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error) 때문에 컴파일 오류가 발생하지 않고, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 때문에 `char`가 `int`로 변환되어 호출된 겁니다.
 
-우선, 다음과 같은 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록이 생깁니다.
+우선, 다음과 같은 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록이 생깁니다.
 
 ```cpp
 B::Int f(B::Int param); // typename T::Int f(typename T::Int param)
 B::Char f(B::Char param); // typename T::Char f(typename T::Char param) -> B에는 Char 종속 타입이 없으니 대체 실패합니다.
 ```
 
-하지만, `B`에는 `Char` [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)이 없으니 `B::Char f(B::Char param);` 는 대체 실패를 합니다. 이러한 실패는 컴파일 오류가 아니며, 그냥 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록에서 제외합니다. 이걸 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error) 라고 합니다. 
+하지만, `B`에는 `Char` [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)이 없으니 `B::Char f(B::Char param);` 는 대체 실패를 합니다. 이러한 실패는 컴파일 오류가 아니며, 그냥 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록에서 제외합니다. 이걸 [SFINAE](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#sfinaesubstitution-failure-is-not-an-error) 라고 합니다. 
 
-따라서 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록은 다음 하나밖에 없으며,
+따라서 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록은 다음 하나밖에 없으며,
 
 ```cpp
 B::Int f(B::Int param); // typename T::Int f(typename T::Int param)
@@ -587,7 +585,7 @@ typename T::Char f(typename T::Char param) {
 };
 ```
 
-다음과 같은 2개의 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록을 만드는데요,
+다음과 같은 2개의 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 후보 목록을 만드는데요,
 
 ```cpp
 A::Int f(A::Int param); // typename T::Int f(typename T::Int param)

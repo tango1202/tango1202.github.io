@@ -89,7 +89,7 @@ EXPECT_TRUE((T_20{20} <=> T_20{10}) == 0 || (T_20{10} <=> T_20{10}) >= 0); // le
 
 또한 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)는 이종 타입과의 비교를 지원합니다.
 
-이전에는 이종 타입과의 비교를 위해 케이스마다 함수 구현을 해야 했습니다. 다음 `T`는 `int`와 비교하기 위해 무려 12개의 멤버 함수를 구현해야 하며, `int < T`와 같이 `int`가 왼쪽에 오는 경우도 지원하려면, 비멤버 버전 6개를 추가로 만들어야 했습니다.(*[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)의 `+` 연산자 비멤버 버전 참고*) 도합 18개의 함수 구현이 필요하죠.
+이전에는 이종 타입과의 비교를 위해 케이스마다 함수 구현을 해야 했습니다. 다음 `T`는 `int`와 비교하기 위해 무려 12개의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 구현해야 하며, `int < T`와 같이 `int`가 왼쪽에 오는 경우도 지원하려면, 비멤버 버전 6개를 추가로 만들어야 했습니다.(*[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)의 `+` 연산자 비멤버 버전 참고*) 도합 18개의 함수 구현이 필요하죠.
 
 ```cpp
 class T {

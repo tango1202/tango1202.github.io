@@ -25,7 +25,7 @@ C++17 부터는 경로, 파일, 디렉토리를 조작하는 [파일 시스템 �
 
 |항목|내용|
 |--|--|
-|`path` (C++17~)|경로에서 `root_name()`, `root_directory()`, `root_path()`, `relative_path()`, `parent_path()`, `filename()`, `extension()`을 분해하거나 수정합니다.<br/> `/`의 오버로딩을 제공하여 하위 경로를 연결할 수 있습니다.<br/>`std::filesystem path = std::filesystem::current_path() / "MyData";`|
+|`path` (C++17~)|경로에서 `root_name()`, `root_directory()`, `root_path()`, `relative_path()`, `parent_path()`, `filename()`, `extension()`을 분해하거나 수정합니다.<br/> `/`의 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)을 제공하여 하위 경로를 연결할 수 있습니다.<br/>`std::filesystem path = std::filesystem::current_path() / "MyData";`|
 |`absolute(path)` (C++17~)|현재 경로와 `path`를 결합한 절대 경로를 리턴합니다.| 
 |`canonical(path), weakly_canonical(path)` (C++17~)|주어진 `path`의 정규화된 절대 경로를 리턴합니다.| 
 |`relative(path, base)` (C++17~)|`path`가 `base`의 하위 경로라면, `base`의 상대 경로를 리턴합니다.|

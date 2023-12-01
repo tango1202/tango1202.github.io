@@ -792,5 +792,5 @@ EXPECT_TRUE(ptr[0] == 0 && ptr[1] == 1 && ptr[2] == 2);
 
 # (C++17~) weak_from_this
 
-enable_shared_from_this의 멤버 함수 추가
+enable_shared_from_this의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 추가
 (작성중)

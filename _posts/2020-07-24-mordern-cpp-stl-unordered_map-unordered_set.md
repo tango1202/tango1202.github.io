@@ -83,7 +83,7 @@ sidebar:
 
 # unordered_map 멤버 함수
 
-다음 멤버 함수들은 `map`과 동일합니다.
+다음 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)들은 `map`과 동일합니다.
 
 |항목|내용|
 |--|--|
@@ -110,7 +110,7 @@ sidebar:
 |`equal_range()` (C++11~)|주어진 Key인 요소들을 리턴합니다.<br/>`map`은 `lower_bound()`, `upper_bound()`를 추가로 제공합니다.|
 |`==` (C++11~)<br/>`!=` (C++11~C++20)|(작성중)|
 
-[해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 다음 멤버 함수를 추가로 제공합니다.
+[해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)는 다음 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 추가로 제공합니다.
 
 |항목|내용|
 |--|--|

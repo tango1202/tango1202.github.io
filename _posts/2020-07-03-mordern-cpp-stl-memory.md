@@ -10,7 +10,7 @@ sidebar:
 
 > * (C++11~) `get_new_handler()`가 추가되었습니다.
 > * (C++11~) [pointer_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-pointer_traits)는 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.
-> * (C++11~) [addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-addressof)는 `operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.
+> * (C++11~) [addressof()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-addressof)는 `operator &()`가 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 되었어도 실제 주소를 리턴합니다.
 > * (C++11~) [align()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-align)된 포인터를 구합니다.
 > * (C++11~) `allocator_traits`, `allocator_arg`, `uses_allocator`, `scoped_allocator_adaptor`가 추가되었습니다. 
 > * (C++11~) `uninitialized_copy_n`이 추가되었습니다. 
@@ -92,7 +92,7 @@ delete std::launder(ptr);
 
 # (C++11~) addressof()
 
-`operator &()`가 오버로딩 되었어도 실제 주소를 리턴합니다.
+`operator &()`가 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 되었어도 실제 주소를 리턴합니다.
 
 ```cpp
 template<typename T>

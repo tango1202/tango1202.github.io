@@ -116,7 +116,7 @@ class Derived_11 : public Base_11 {
 };
 ```
 
-또한, 멤버 함수의 [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)도 막을 수 있습니다.
+또한, [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)의 [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#override)도 막을 수 있습니다.
 
 ```cpp
 class Base_11 {

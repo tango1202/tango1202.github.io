@@ -215,7 +215,7 @@ inline Degree operator -(const Degree& left, float right) {
 }
 ```
 
-`Degree` 클래스 내에서 0~360 로 값을 보정하므로(여러 연산자를 오버로딩하여 믿고 쓸 수 있습니다), `Shape` 클래스는 `Degree`로 좀더 간단하게 구현할 수 있습니다. `Rotate()`함수의 불필요한 주석과 `assert`가 사라졌습니다.
+`Degree` 클래스 내에서 0~360 로 값을 보정하므로(*여러 [연산자를 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)하여 믿고 쓸 수 있습니다*), `Shape` 클래스는 `Degree`로 좀더 간단하게 구현할 수 있습니다. `Rotate()`함수의 불필요한 주석과 `assert`가 사라졌습니다.
 
 ```cpp
 class Shape {

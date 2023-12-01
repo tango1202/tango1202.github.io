@@ -239,7 +239,7 @@ delete ptr; // (△) 비권장. ~T() 호출. ~U()가 호출되지 않습니다.
 
 # protected Non-Virtual 소멸자
 
-[has-a 관계](??)는 [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 하지 않는 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/) 관계입니다. 자식 개체가 부모 개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)나 멤버 함수의 기능을 포함하고 제공하는 관계라고 할 수 있습니다.([has-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#has-a-%EA%B4%80%EA%B3%84) 참고)
+[has-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#has-a-%EA%B4%80%EA%B3%84)는 [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 하지 않는 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/) 관계입니다. 자식 개체가 부모 개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)나 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)의 기능을 포함하고 제공하는 관계라고 할 수 있습니다.(*[has-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#has-a-%EA%B4%80%EA%B3%84) 참고*)
 
 1. 외부에서 부모 클래스로 직접 생성/소멸하지 않고, 자식 개체를 통해 생성/소멸하므로 `protected`이어야 하겠고,
 2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 하지 않으니 Non-Virtual로 정의합니다.

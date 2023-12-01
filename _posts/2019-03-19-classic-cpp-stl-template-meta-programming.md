@@ -302,7 +302,7 @@ EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name());
 
 [템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)을 이용한다면, 컴파일 타임에 `CloneTraits`가 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출할지, `Clone()` 함수를 호출할지 스스로 판단하여 분기하게 할 수 있습니다.
 
-먼저, 다음과 같이 [단위 인터페이스](??)인 `ICloneable`을 정의합니다. 추후 `CloneTraits`에서 `ICloneable` 을 상속한 개체는 `Clone()`을 이용하여 복제할 예정입니다.
+먼저, 다음과 같이 [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%8B%A8%EC%9C%84-%EC%A0%84%EB%9E%B5-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)인 `ICloneable`을 정의합니다. 추후 `CloneTraits`에서 `ICloneable` 을 상속한 개체는 `Clone()`을 이용하여 복제할 예정입니다.
 
 ```cpp
 // Clone() 을 제공하는 단위 인터페이스
@@ -320,8 +320,8 @@ public:
 
 다음의 `IsDerivedFrom` [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)은 `D`가 `B`를 상속했는지 검사합니다.
 
-1. `Yes`는 `No`는 `Test()`함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)으로 사용되며, 어떤 [오버로딩 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)가 호출되었는지 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 `sizeof()`로 확인할 수 있습니다.
-2. `Test()` 함수는 2개의 오버로딩 버전을 제공합니다. `D*` 가 `B*`로 변환되면 `Yes` 개체를 리턴하고, 그렇지 않으면 `No` 개체를 리턴합니다. 즉, `D`가 `B`를 상속했다면 `Yes`를 리턴합니다.
+1. `Yes`는 `No`는 `Test()`함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)으로 사용되며, 어떤 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 호출되었는지 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 `sizeof()`로 확인할 수 있습니다.
+2. `Test()` 함수는 2개의 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전을 제공합니다. `D*` 가 `B*`로 변환되면 `Yes` 개체를 리턴하고, 그렇지 않으면 `No` 개체를 리턴합니다. 즉, `D`가 `B`를 상속했다면 `Yes`를 리턴합니다.
 3. `D`가 `B`를 상속했다면 열거값 `Val`에 `true`를 세팅하고, 그렇지 않으면 `false`를 세팅합니다.
 
 
@@ -379,10 +379,10 @@ delete shape;
 
 본 문제 발생의 원인은 `new T(*ptr)`과 `ptr->Clone()`을 같은 함수안에서 처리한다는 점입니다. 타입에 따라 복제하는 방식이 다르니 호출하는 함수도 다른 함수로 만들어 줘야 합니다. 
 
-이 문제는 함수 오버로딩을 통해 해결할 수 있습니다. 하나의 함수에서 `if()`를 통해 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 `Clone()`함수를 호출하는게 아니라, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하는 함수와 `Clone()`을 사용하는 함수를 각각 구현하고, 개체에 따라 해당 함수를 호출하게 하면 됩니다.
+이 문제는 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)을 통해 해결할 수 있습니다. 하나의 함수에서 `if()`를 통해 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 `Clone()`함수를 호출하는게 아니라, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하는 함수와 `Clone()`을 사용하는 함수를 각각 구현하고, 개체에 따라 해당 함수를 호출하게 하면 됩니다.
 
-1. `Clone()`함수를 오버로딩 하기 위해 `CloneTag<true>`와 `CloneTag<false>`타입을 만듭니다.
-2. `IsDerivedFrom<>::Val`에 따라 오버로딩된 `Clone()`함수를 호출합니다.
+1. `Clone()`함수를 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 하기 위해 `CloneTag<true>`와 `CloneTag<false>`타입을 만듭니다.
+2. `IsDerivedFrom<>::Val`에 따라 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)된 `Clone()`함수를 호출합니다.
 
 ```cpp
 // CloneTag<true>와 CloneTag<false> 타입을 만듭니다.

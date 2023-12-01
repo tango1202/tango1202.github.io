@@ -22,7 +22,7 @@ class Date {
 자열로 만든다.
 
 Date의 멤버를 get하는 함수가 있다
-면 굳이 toString을 멤버 함수로 만
+면 굳이 toString을 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 만
 들 필요는 없다. 이미 있는 public 함수로 구현할 수
 있는 유틸리티 함수군을 분리하여
 클래스를 간결히 유지하라.
