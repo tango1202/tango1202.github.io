@@ -41,9 +41,9 @@ sidebar:
 
 |항목|내용|**Key** 조건|
 |--|--|--|
-|`map`|**Key** - **Value** 쌍으로 관리하며, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 요소로 사용합니다.(*[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 참고*)<br/>이진 트리 탐색으로 요소를 탐색(O(logN))하며 요소 삽입시 `<`에 의해 정렬됩니다. 삽입되는 **Key**는 유일하며, 첨자 연산이 지원됩니다.|`<` 구현|
+|`map`|**Key** - **Value** 쌍으로 관리하며, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 요소로 사용합니다.(*[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 참고*)<br/>이진 트리 탐색으로 요소를 탐색(*O(logN)*)하며 요소 삽입시 `<`에 의해 정렬됩니다. 삽입되는 **Key**는 유일하며, 첨자 연산이 지원됩니다.|`<` 구현|
 |`multimap`|`map`과 동일합니다.<br/>중복 **Key**를 허용하며, 첨자 연산은 지원하지 않습니다.|`<` 구현|
-|`set`|**Key**만 요소로 사용합니다.<br/>이진 트리 탐색으로 요소 탐색(O(logN))하며, 요소 삽입시 `<`에 의해 정렬됩니다. 삽입되는 **Key**는 유일합니다.|`<` 구현|
+|`set`|**Key**만 요소로 사용합니다.<br/>이진 트리 탐색으로 요소 탐색(*O(logN)*)하며, 요소 삽입시 `<`에 의해 정렬됩니다. 삽입되는 **Key**는 유일합니다.|`<` 구현|
 |`multiset`|`set`과 동일합니다.<br/>중복 **Key**허용합니다.|`<` 구현|
 |[unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) (C++11~)|정렬되지 않은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.|`==` 구현<br/>[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)|
 

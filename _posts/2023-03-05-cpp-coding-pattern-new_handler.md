@@ -8,38 +8,38 @@ sidebar:
     nav: "docs"
 ---
 
-[new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)시 오류 발생시 처리하는 `new_handler`를 만들 수 있습니다.
+[new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)시 오류 발생시 처리하는 [new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)를 만들 수 있습니다.
 
-`new_handler` 는 다음 처리를 해주어야 합니다.([`set_new_handler()`](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler) 참고)
+[new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC) 는 다음 처리를 해주어야 합니다.(*[set_new_handler()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC) 참고*)
 
 1. 미리 예약된 공간을 해제하여 메모리를 추가 확보해 주거나
-2. 다른 `new_handler`를 설치하여 처리를 위임하거나
-3. `new_handler`를 제거하거나(제거되면 `bad_alloc()` 발생)
-4. `bad_alloc()` 또는 이로부터 파생된 예외를 발생시켜 처리를 포기하거나
+2. 다른 [new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)를 설치하여 처리를 위임하거나
+3. [new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)를 제거하거나(제거되면 [bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 발생)
+4. [bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 또는 이로부터 파생된 예외를 발생시켜 처리를 포기하거나
 5. [abort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90)을 하여 프로그램을 종료합니다.
 
 # NewHandler의 필요성
 
-`operator new`를 활용할때 코드를 단순하게 유지할 수 있습니다.
+[operator new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)를 활용할때 코드를 단순하게 유지할 수 있습니다.
 
 # 활용 코딩 패턴
 
 1. [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)과 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 연산을 막기 위해 [`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/)을 사용하고, 
 2. 지역 변수(자동 변수)로만 생성되도록 [`OnlyStackAssignable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)을 사용합니다.
 3. 테스트를 위해 생성된 포인터를 삭제하기 위해 [`Holder`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)를 사용합니다.
-4. `set_new_handler()`로 설정한 값을 복원하기 위해 [`Restorer`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/#restorer---holder%EC%9D%98-%EC%9D%91%EC%9A%A9)를 응용합니다.
+4. [set_new_handler()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)로 설정한 값을 복원하기 위해 [`Restorer`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/#restorer---holder%EC%9D%98-%EC%9D%91%EC%9A%A9)를 응용합니다.
 
 5. `NewHandler`를 전역적으로 처리하기 위해 [`Singleton`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-singleton/)으로 구현합니다.
 
 # NewHandler의 사양
 
-1. `Restorer`를 제공하여, `set_new_handler()` 설정 및 복원을 합니다.
+1. `Restorer`를 제공하여, [set_new_handler()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC) 설정 및 복원을 합니다.
 2. `Reserved` 를 통해 미리 예약된 공간을 만들고, `Reset()`할 수 있습니다. `ResetReserved(0)`하여 예약된 공간을 초기화할 수 있습니다.
 3. `GetHandler()`에서 `m_Mode`에 따라 다른 핸들러를 리턴합니다.
 4. `UsingReservedHandler()` 는 예약된 메모리 공간을 해제하고 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 재시도 할 수 있게 해줍니다.
 5. `AnotherHandler()` 에서 다른 처리 방법을 사용자 정의하여 구현 할 수 있습니다.
 6. `RemoveHandler()` 는 기존 핸들러를 제거합니다.
-7. `BadAllocHandler()`은 별다른 처리없이 `bad_alloc()`을 발생시킵니다.(`RemoveHandler()` 와 동일합니다.)
+7. `BadAllocHandler()`은 별다른 처리없이 [bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)을 발생시킵니다.(`RemoveHandler()` 와 동일합니다.)
 8. `AbortHandler()`는 프로그램을 종료합니다.
 
 다음과 같이 구현합니다.

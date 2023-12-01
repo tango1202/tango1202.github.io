@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * `swap`을 이용하여 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 할당한 영역을 해제할 수 있다.
+> * `swap()`을 이용하여 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 할당한 영역을 해제할 수 있다.
 > * `vector<bool>`은 사용하지 마라.
 
 > **모던 C++**

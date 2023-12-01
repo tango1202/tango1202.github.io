@@ -28,7 +28,7 @@ sidebar:
 
 # 배열 요소의 갯수
 
-배열 요소의 갯수는 [sizeof()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하여 다음처럼 구할 수 있습니다.
+[배열 요소의 갯수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EC%9D%98-%EA%B0%AF%EC%88%98)는 [sizeof()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하여 다음처럼 구할 수 있습니다.
 
 ```cpp
 int arr[3];

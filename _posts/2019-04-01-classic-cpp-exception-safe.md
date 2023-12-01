@@ -31,7 +31,7 @@ sidebar:
 
 일반적으로는 특별히 할 수 있는게 없습니만, 안전하게 프로그램을 종료 시킬 수 있도록 몇가지 추가 작업을 할 수 있습니다.
 
-1. `new_handler`를 이용하여 미리 할당한 예약 영역을 해제하고, 프로그램의 정상 종료를 위해 뭔가 시도해 볼 수 있습니다.([NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/) 참고)
+1. [new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)를 이용하여 미리 할당한 예약 영역을 해제하고, 프로그램의 정상 종료를 위해 뭔가 시도해 볼 수 있습니다.([NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/) 참고)
 2. 100,000,000 G 와 같이 엄청난 크기를 할당 요청을 하는 바람에 실패했다면, 메시지로 메모리 부족을 알리고 요청전의 상태로 복원할 수 있습니다.
    
 **컨테이너에서 잘못 참조된 인덱스**
@@ -79,7 +79,7 @@ sidebar:
 |오류 코드를 리턴합니다.|리턴된 오류는 대부분 무시될 수 있습니다. 엔진 안쪽의 하위 개체들이라면 예외를 발생시키고, 이를 처리할 수 있는 곳까지 방출하여, 상위 개체에서 처리할 수 있도록 해줘야 합니다.([예외 레이어링](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81) 참고)|
 |전역 오류 코드를 세팅합니다.|호출한 곳에서 오류를 확인할 확률은 0.00001% 입니다. 함수 호출 후 `GetLastError()`를 다시 검사하는 경우는 거의 없잖아요?|
 |자가 진단 후 현 함수를 정상 종료 시킵니다.|`if (condition) return;` 와 같이 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 검사하고 그냥 종료 시키면, 잘못된 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 대한 처리가 수행되지 않습니다. 시스템이 정말 계속 안전하게 돌아갈지 의문이고, 이게 나중에 알 수 없는 버그의 원인이 되기도 합니다.|
-|오류가 발생할 경우 호출할 함수를 호출합니다.|`new_handler`가 이런 구조인데요, 사실 이런 구조는 사용법이 좀 어렵습니다.|
+|오류가 발생할 경우 호출할 함수를 호출합니다.|[new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)가 이런 구조인데요, 사실 이런 구조는 사용법이 좀 어렵습니다.|
 
 
 # 예외 상황의 올바른 대처

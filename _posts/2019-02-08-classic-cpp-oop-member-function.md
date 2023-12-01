@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 멤버 변수를 수정하지 않으면, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성하라.
+> * [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하지 않으면, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성하라.
 > * [정적 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 `obj.f()` 가 아닌 `T::f()` 와 같이 호출하라.
 > * 자식 개체에서 부모 개체의 비 가상 함수를 재정의 하지 마라.
 > * [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 정의하면 [가상 함수 테이블](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94virtual-function-table-vtable)을 위한 추가 공간이 필요하니 꼭 필요한 경우만 사용하라.
@@ -37,7 +37,7 @@ sidebar:
 
 # 멤버 함수
 
-클래스는 데이터(멤버 변수)와 이를 처리하는 함수(멤버 함수)를 응집하여, [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 가능하게 합니다.
+클래스는 데이터(*[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)*)와 이를 처리하는 함수(멤버 함수)를 응집하여, [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 가능하게 합니다.
 
 ```cpp
 class Date {
@@ -73,7 +73,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
 
 멤버 함수의 뒤에 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 붙여 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 만들 수 있습니다. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD) 에 따라 다음을 준수합니다.
 
-1. 멤버 변수를 수정하지 않습니다.
+1. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하지 않습니다.
     
     ```cpp
     class T {
@@ -83,7 +83,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
     };
     ```
 
-2. 멤버 변수를 몰래 수정할 수 있는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 리턴하지 않습니다.
+2. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 몰래 수정할 수 있는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 리턴하지 않습니다.
    
     ```cpp
     class T {
@@ -260,12 +260,12 @@ Dog dog; // (O)
 
 # Getter 함수
 
-개체의 멤버 변수를 리턴하는 함수를 특별히 Getter 함수라고 합니다. 다음 규칙에 맞춰 리턴문을 작성하는게 좋습니다.
+개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 리턴하는 함수를 특별히 Getter 함수라고 합니다. 다음 규칙에 맞춰 리턴문을 작성하는게 좋습니다.
 
 1. `int` 등 기본 자료형의 경우는 복사 부하가 참조 부하보다 적기 때문에 값을 리턴하는게 좋습니다. 
 2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴하는게 좋습니다.
-3. 멤버 변수는 널이 되는 경우가 없기 때문에 포인터보다는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 리턴하는게 좋습니다.
-4. 멤버 변수를 수정하지 않는다면 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성합니다.
+3. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)는 널이 되는 경우가 없기 때문에 포인터보다는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 리턴하는게 좋습니다.
+4. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하지 않는다면 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성합니다.
 5. 값 타입을 리턴하는 경우는 어짜피 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 복제되므로, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)에 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 굳이 붙일 필요가 없습니다. 
 
 ```cpp
@@ -313,11 +313,11 @@ public:
 
 # Setter 함수
 
-개체의 멤버 변수를 설정하는 함수를 특별히 Setter 함수라고 합니다. 다음 규칙에 맞춰 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 작성하는게 좋습니다.
+개체의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 설정하는 함수를 특별히 Setter 함수라고 합니다. 다음 규칙에 맞춰 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 작성하는게 좋습니다.
 
 1. int 등 기본 자료형의 경우는 복사 부하가 참조 부하보다 적기 때문에 값을 전달하는게 좋습니다. 
 2. 클래스 등 복사 부하가 참조 부하보다 큰 개체는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 전달하는게 좋습니다.
-3. 멤버 변수를 수정하는 것이지 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 수정하는게 아니기 때문에 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 상수여야 합니다.
+3. [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하는 것이지 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 수정하는게 아니기 때문에 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 상수여야 합니다.
 4. 널검사가 최소화 될 수 있도록, 널이 되지 않는 경우라면 포인터보다는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 전달하는게 좋습니다.
 5. 값 타입을 전달하는 경우는 어짜피 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 복제되므로, 굳이 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 붙일 필요가 없습니다. 
 

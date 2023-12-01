@@ -13,7 +13,7 @@ sidebar:
 조금 풀어 쓰면,
 
 1. 배우(호출자)가 연락처(Listener)를 남기면, 영화사(프레임워크)가 연락을 주듯이,
-2. 하위 수준 모듈(프레임워크)이 상위 수준 모듈(호출자)에게 연락할 방법(Listener 인터페이스 혹은 [Template Method 패턴](https://tango1202.github.io/pattern/pattern-template-method/))을 만들어라.
+2. 하위 수준 모듈(프레임워크)이 상위 수준 모듈(호출자)에게 연락할 방법(*Listener 인터페이스 혹은 [Template Method 패턴](https://tango1202.github.io/pattern/pattern-template-method/)*)을 만들어라.
 
 라는 뜻입니다.
 

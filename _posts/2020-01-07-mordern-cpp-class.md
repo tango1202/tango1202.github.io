@@ -22,7 +22,7 @@ sidebar:
 
 # default와 delete
 
-기존에는 [암시적으로 정의되는 멤버 함수들]((https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/))은 `private`를 이용하여 억지로 가시성을 조정하여 사용 여부를 제어했는데요(*[클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고*), 
+기존에는 [암시적으로 정의되는 멤버 함수들](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/)은 `private`를 이용하여 억지로 가시성을 조정하여 사용 여부를 제어했는데요(*[클래스의 암시적 정의](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-implicit-definition/) 참고*), 
 
 C++11 부터는  [default나 delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-function-default-delete-override-final/#default%EC%99%80-delete)로 사용 여부를 결정합니다.
 

@@ -12,7 +12,7 @@ sidebar:
 >   * 중괄호는 [인자의 암시적 형변환 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98-%EC%B0%A8%EB%8B%A8)해준다.
 >   * 괄호는 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90) 호출 지원한다.([기존 생성자와 initializer_list 생성자와의 충돌](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EA%B8%B0%EC%A1%B4-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-initializer_list-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%EC%9D%98-%EC%B6%A9%EB%8F%8C) 참고)
 
-> * (C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)를 제공하여 클래스인지, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)인지, 구조체의 구분없이 중괄호(`{}`)를 이용하여 일관성 있게 초기화 할 수 있으며, [초기화 파싱 오류](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)도 해결했습니다.
+> * (C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)를 제공하여 클래스인지, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)인지, 구조체인지 구분없이 중괄호(`{}`)를 이용하여 일관성 있게 초기화 할 수 있으며, [초기화 파싱 오류](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)도 해결했습니다.
 > * (C++11~) [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.
 > * (C++11) [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 `= {}` 표현을 차단하기 위해 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 여러개 있더라도 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용합니다.
 > * (C++11~) [중괄호 초기화시 인자의 암시적 형변환을 일부 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98-%EC%B0%A8%EB%8B%A8)하여, 코딩 계약이 개선되었습니다.
@@ -65,7 +65,7 @@ struct U {
 U objs = {10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 ```
 
-C++11 부터는 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)를 제공하여 클래스인지, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)인지, 구조체의 구분없이 중괄호(`{}`)를 이용하여 일관성 있게 초기화 할 수 있으며, [초기화 파싱 오류](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)도 해결했습니다.
+C++11 부터는 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)를 제공하여 클래스인지, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)인지, 구조체인지 구분없이 중괄호(`{}`)를 이용하여 일관성 있게 초기화 할 수 있으며, [초기화 파싱 오류](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)도 해결했습니다.
 
 ```cpp
 class T {
@@ -266,7 +266,7 @@ C++11 부터는 `{}` 도 지원합니다.
 
 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)는 [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t)와는 달리 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)가 없어도 초기화할 수 있으며, 요소 갯수를 유추나 [자동 제로 초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)의 특수한 기능도 수행합니다.
 
-1. 모든 멤버 변수가 `public`이고, 생성자가 없는 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)
+1. 모든 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 `public`이고, 생성자가 없는 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)
 
     ```cpp
     class T {
@@ -292,7 +292,7 @@ C++11 부터는 `{}` 도 지원합니다.
 
 2. 요소 갯수 유추
  
-    초기화 갯수 만큼 배열 크기를 유추합니다. 단, `new[]`로 생성하는 경우에는 유추하지 못하므로 배열 크기를 명시해야 합니다.
+    초기화 갯수 만큼 배열 크기를 유추합니다. 단, [new[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)로 생성하는 경우에는 유추하지 못하므로 배열 크기를 명시해야 합니다.
 
     ```cpp
     int arr[] = {0, 1, 2}; // 초기화 갯수 만큼 배열 할당
@@ -484,7 +484,7 @@ A arr_11[]{
 
 **내부 개체**
 
-또한 내부 멤버 변수 개체를 초기화 할때에도 축약 표현을 사용할 수 있습니다.
+또한 내부 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 개체를 초기화 할때에도 축약 표현을 사용할 수 있습니다.
 
 ```cpp
 class A {
@@ -505,7 +505,7 @@ B b_11{1, {2, 3}}; // B b_11{1, A{2, 3}};와 동일
 
 **집합 타입**
 
-멤버 변수가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이라면, [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)가 없어도 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)이나 구조체처럼 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)로 초기화할 수 있습니다.
+[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 `public`인 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이라면, [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)가 없어도 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)이나 구조체처럼 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94)로 초기화할 수 있습니다.
 
 ```cpp
 class A {
@@ -622,7 +622,7 @@ EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2);
     EXPECT_TRUE(b.m_X == 10 && b.m_Y == 20);   
     ```
 
-    만약 멤버 변수가 `private`라면 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이 아니므로 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 호출합니다.
+    만약 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 `private`라면 [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)이 아니므로 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 호출합니다.
 
     ```cpp
     class T {
@@ -991,7 +991,7 @@ EXPECT_TRUE(flag.m_Val2 == 7); // 7 저장
 int arr[]{1, 2, 3}; // 중괄호 집합 초기화로 배열 크기를 추론합니다.
 ```
 
-하지만 `new[]`에서는 배열 크기를 추론하지 않고 컴파일 오류를 발생시켰는데요(*[중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94) 참고*), 
+하지만 [new[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)에서는 배열 크기를 추론하지 않고 컴파일 오류를 발생시켰는데요(*[중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94) 참고*), 
 
 ```cpp
 //int* arr_11 = new int[]{1, 2, 3}; // (X) 컴파일 오류. new[]에서 중괄호 집합 초기화로 배열 크기를 추론하지 못합니다.

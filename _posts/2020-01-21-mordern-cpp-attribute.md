@@ -16,7 +16,7 @@ sidebar:
 > * (C++17~) [특성 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-%ED%8A%B9%EC%84%B1-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)가 추가되어 `[[msvc::noinline]]` 와 같이 사용할 수 있습니다.
 > * (C++20~) [[[nodiscard]]의 생성자 지원](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0), [[[nodiscard("이유")]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0)가 추가되었습니다.
 > * (C++20~) [[[likely]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-likely-unlikely), [[[unlikely]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-likely-unlikely)가 추가되어 컴파일러에게 최적화 힌트를 줄 수 있습니다.
-> * (C++20~) [[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address)가 추가되어 아무 멤버 변수가 없는 개체의 크기를 최적화합니다.
+> * (C++20~) [[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address)가 추가되어 아무 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 없는 개체의 크기를 최적화합니다.
 
 # 개요
 
@@ -40,7 +40,7 @@ C++버전에 따라 다음의 [표준 특성](https://tango1202.github.io/morder
 |[[[nodiscard]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-nodiscard) (C++17~)<br/>[[[nodiscard("이유")]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-nodiscard%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A7%80%EC%9B%90-nodiscard%EC%9D%B4%EC%9C%A0) (C++20~)|개체나 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 무시되면 안됩니다.(*에러 코드 리턴하는 함수에 사용하면 좋습니다.*)|
 |[[[maybe_unused]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c17-maybe_unused) (C++17~)|사용되지 않은 개체의 컴파일 경고를 막습니다.|
 |[[[likely]], [[unlikely]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-likely-unlikely) (C++20~)|`if()`나 `switch()`에서 자주 사용하는 코드 조각을 알려주어 최적화 힌트를 제공합니다.|
-|[[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address) (C++20~)|아무 멤버 변수가 없는 개체의 크기를 최적화합니다.|
+|[[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address) (C++20~)|아무 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 없는 개체의 크기를 최적화합니다.|
 |`assume("표현식")` (C++23~)|특정 상황에 표현식이 `true`가 되도록 가정합니다. 컴파일러는 이 가정을 신뢰하고 이에 따른 최적화를 합니다.(*가정이 거짓일때 동작은 정의되지 않았습니다.*)|
 
 # [[noreturn]]
@@ -214,7 +214,7 @@ case 0: break;
 
 기존에는 빈 클래스는 1byte이고, 다른 개체에 포함될 경우 해당 크기가 유지된다고 말씀드렸는데요(*[빈 클래스와 자식 개체의 크기](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EB%B9%88-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80-%EC%9E%90%EC%8B%9D-%EA%B0%9C%EC%B2%B4%EC%9D%98-%ED%81%AC%EA%B8%B0) 참고*),
 
-C++20 부터는 [[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address)가 추가되어 아무 멤버 변수가 없는 개체의 크기를 최적화합니다.
+C++20 부터는 [[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address)가 추가되어 아무 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 없는 개체의 크기를 최적화합니다.
 
 [[[no_unique_address]]](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/#c20-no_unique_address)를 사용하면, 빈 클래스인 경우 메모리를 차지하지 않도록 해줍니다.
 

@@ -333,7 +333,7 @@ TEST(TestPrinciple, LiskovSubstitution) {
 
 한가지 아쉬운 점은 `Rectangle`과 `Ellipse`구현시 `m_Width`, `m_Height` 구현에 코드 중복이 있다는 것입니다. [스스로 반복하지 마라](https://tango1202.github.io/principle/principle-dont-repeat-yourself/)를 위배했습니다.
 
-이는 인터페이스를 분리([인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/))한 뒤, 상속(**has-a 관계** )하여 개선할 수 있습니다.
+이는 인터페이스를 분리*(*[인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)*)한 뒤, 상속(**has-a 관계** )하여 개선할 수 있습니다.
 
 먼저 `m_Width`와 `m_Height`를 제공하는 `IResizeable`인터페이스를 만듭니다.
 

@@ -62,8 +62,7 @@ https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%
 
 상속관계에 있는 개체들을 관리할때 부모 개체의 포인터를 이용해서 관리하는데요, 관리중 이를 복제하려면 자식 개체를 복제해야 하므로 `Clone()`함수를 이용합니다.([가상 복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
-만약 스마트 포인터를 이용한다면, 부모 클래스의 포인터를 멤버 변수로 관리하고, 부모 클래스의 `Clone()`함수를 호출하여 복제해야 합니다.
-
+만약 스마트 포인터를 이용한다면, 부모 클래스의 포인터를 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 관리하고, 부모 클래스의 `Clone()`함수를 호출하여 복제해야 합니다.
 
 다음 코드에서는 스마트 포인터인 `my_smart_ptr`에서 추상 클래스인 `Shape`을 포인터로 관리하고, `Clone()`을 이용하여 구체화된 `Rectangle` 개체를 생성하고 있습니다.
 

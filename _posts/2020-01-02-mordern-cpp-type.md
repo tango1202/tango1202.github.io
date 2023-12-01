@@ -52,7 +52,7 @@ C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입
    * 서로 다른 [접근 지정](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)이 가능함
    * [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 없음
    * 부모 클래스 없음
-   * Trivial이 아닌 멤버 변수가 없음
+   * Trivial이 아닌 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 없음
 * [Trivial 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#trivial-%ED%83%80%EC%9E%85%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%83%80%EC%9E%85)의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 
 # 표준 레이아웃 타입
@@ -81,7 +81,7 @@ C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입
 * [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)의 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 * [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)
 * [집합 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%A7%91%ED%95%A9-%ED%83%80%EC%9E%85)
-  * 사용자 정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없으며 모든 멤버 변수가 `public`인 구조체나 클래스
+  * 사용자 정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없으며 모든 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 `public`인 구조체나 클래스
 * (C++14~) `void`
   * C++14 이상부터 `void`도 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)이어서 [constexpr 함수](
 https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)가 `void`를 리턴할 수 있습니다.
@@ -92,9 +92,8 @@ https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%
 
 * [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)
 * 구조체/클래스/[공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)
-  * 사용자 정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없음
-    * 멤버 변수 [초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 없음
-  * 모든 멤버 변수가 `public`
+  * 사용자 정의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/), 사용자 정의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)가 없음(*[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 없음*)
+  * 모든 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 `public`
   * 부모 클래스가 없음
   * [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 없음
 

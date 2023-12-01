@@ -25,10 +25,10 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[malloc()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|메모리를 할당합니다.|
+|[malloc()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)|메모리를 할당합니다.|
 |`calloc()`|(작성중)|
 |`realloc()`|(작성중)|
-|[free()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|메모리를 해제합니다.|
+|[free()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)|메모리를 해제합니다.|
 |`aligned_alloc()` (C++17~)|정렬된 메모리를 할당합니다.|
 
 # 저수준 메모리 관리
@@ -38,7 +38,7 @@ sidebar:
 |[operator new, operator new[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체나 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 메모리를 할당합니다.|
 |[operator delete, operator delete[]](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체나 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)의 메모리를 해제합니다.|
 |`get_new_handler()` (C++11~)|(작성중)|
-|[set_new_handler()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)|[new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)에서 예외 발생시 호출되는 함수 입니다.|
+|[set_new_handler()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)에서 예외 발생시 호출되는 함수 입니다.|
 |[bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|메모리 할당에 실패했을때 발생합니다.|
 |`bad_array_new_length`|(작성중)|
 |`align_val_t` (C++17~)|(작성중)|

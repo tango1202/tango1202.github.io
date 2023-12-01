@@ -340,7 +340,7 @@ EXPECT_TRUE(a.use_count() == 2);
 
 다음 코드는,
 
-1. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 멤버 변수로 사용합니다.
+1. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 사용합니다.
 2. [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)로 생성된 `Data`를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달받기 위해 생성자에서 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)을 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용합니다.
 3. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)에서 `other`개체의 각 멤버의 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 호출합니다.
 4. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 에서 참조 카운트가 0이 되면 소멸시킬 것이므로 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서는 별다른 작업을 하지 않습니다.
@@ -487,7 +487,7 @@ std::shared_ptr<T> data{new T{}};
 
 와 같이 생성하면, `T` 개체의 소유권에 대해 참조 카운팅을 하고, `*`, `->`등으로 `T`개체에 접근하는데요, [별칭 생성자(Aliasing Constructor)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%EB%B3%84%EC%B9%AD-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성하면, 서로 다른 개체에 대해 참조 카운팅과 접근을 할 수 있습니다.
 
-선언은 다음과 같은데요, `other`개체에 참조 카운팅을 하고, `p` 개체를 접근합니다. 따라서, `p`의 수명 주기가 전적으로 `other`에 종속적일 때만 안전하게 사용 가능합니다. 예를 들어 `p`가 `other`의 멤버 변수 일때 처럼요.
+선언은 다음과 같은데요, `other`개체에 참조 카운팅을 하고, `p` 개체를 접근합니다. 따라서, `p`의 수명 주기가 전적으로 `other`에 종속적일 때만 안전하게 사용 가능합니다. 예를 들어 `p`가 `other`의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 일때 처럼요.
 
 ```cpp
 shared_ptr(const shared_ptr& other, element_type* p) noexcept;
@@ -495,7 +495,7 @@ shared_ptr(const shared_ptr& other, element_type* p) noexcept;
 
 다음 코드는 [별칭 생성자(Aliasing Constructor)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%EB%B3%84%EC%B9%AD-%EC%83%9D%EC%84%B1%EC%9E%90)의 사용 예입니다.
 
-1. `MainData`에서 멤버 변수로 `m_SubData`를 가지고 있으며,
+1. `MainData`에서 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 `m_SubData`를 가지고 있으며,
 2. [별칭 생성자(Aliasing Constructor)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%EB%B3%84%EC%B9%AD-%EC%83%9D%EC%84%B1%EC%9E%90)로 `shared_ptr<SubData> subData` 개체를 만듭니다.
 3. `mainData1`, `mainData2`, `subData` 가 참조 카운트를 공유하며,
 4. `subData`의 개체 접근을 통해 `mainData1`의 `m_SubData`를 수정합니다.

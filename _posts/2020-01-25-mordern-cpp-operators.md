@@ -63,7 +63,7 @@ STL에서는 대부분 [삼중 비교 연산자](https://tango1202.github.io/mor
 
 `<=>` 연산자를 정의하면, 기존 `==`, `!=`, `<`, `>`, `<=`, `>=` 로 비교할 수 있을 뿐만 아니라, `<=>`로 직접 비교할 수 있습니다. 
 
-이때 [strcmp()]((https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98))와 유사하게 다음과 같이 비교합니다.
+이때 [strcmp()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)와 유사하게 다음과 같이 비교합니다.
 
 * 작음 : `(left <=> right) < 0`
 * 같음 : `(left <=> right) == 0`

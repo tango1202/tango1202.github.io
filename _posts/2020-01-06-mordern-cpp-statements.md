@@ -69,7 +69,7 @@ if (result != nullptr) { // 조건 평가
 }
 ```
 
-[리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 만약 스마트 포인터((*[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등*))라면 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 짧게하기 위해 다음과 같이 중괄호를 이용했었습니다.
+[리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 만약 스마트 포인터(*[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 등*)라면 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 짧게하기 위해 다음과 같이 중괄호를 이용했었습니다.
 
 ```cpp
 { // 유효 범위를 짧게 하기 위해 중괄호를 사용했습니다. 

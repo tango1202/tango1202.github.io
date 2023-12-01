@@ -62,8 +62,8 @@ ThreeType three;
 |`is_pointer` (C++11~)|포인터 타입인지 검사합니다.|
 |`is_lvalue_reference` (C++11~)|[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입인지 검사합니다.|
 |`is_rvalue_reference` (C++11~)|[우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0) 타입인지 검사합니다.|
-|`is_member_object_pointer` (C++11~)|개체 멤버 변수의 포인터 타입인지 검사합니다.|
-|`is_member_function_pointer` (C++11~)|개체 멤버 함수의 포인터 타입인지 검사합니다.|
+|`is_member_object_pointer` (C++11~)|개체 [멤버 변수의 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EC%82%AC%EC%9A%A9%EB%B2%95) 타입인지 검사합니다.|
+|`is_member_function_pointer` (C++11~)|개체 [멤버 함수의 포인터](??) 타입인지 검사합니다.|
 |`is_null_pointer` (C++14~)|[nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr_t) 타입인지 검사합니다.|
 
 # 복합 타입 카테고리
@@ -76,9 +76,9 @@ ThreeType three;
 |`is_fundamental` (C++11~)|정수, 실수, `void`, [nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr_t) 타입인지 검사합니다.|
 |`is_scalar` (C++11~)|[스칼라 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%83%80%EC%9E%85)인지 검사합니다.|
 |`is_object` (C++11~)|좌측값과 포인터 타입인지 검사합니다.|
-|`is_reference` (C++11~)|참조 타입([좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)와 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0))인지 검사합니다.|
-|`is_compound` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), 함수, 개체 포인터, 함수 포인터, 멤버 변수 포인터, [멤버 함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0), 참조자, 구조체/클래스, [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4), [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)인지 검사합니다. `int`와 같은 기본 타입은 `false` 입니다.|
-|`is_member_pointer` (C++11~)|멤버 변수 포인터, [멤버 함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 인지 검사합니다.|
+|`is_reference` (C++11~)|참조 타입(*[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)와 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)*)인지 검사합니다.|
+|`is_compound` (C++11~)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), 함수, 개체 포인터, [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0), [멤버 변수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EC%82%AC%EC%9A%A9%EB%B2%95), [멤버 함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0), 참조자, 구조체/클래스, [공용체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4), [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)인지 검사합니다. `int`와 같은 기본 타입은 `false` 입니다.|
+|`is_member_pointer` (C++11~)|[멤버 변수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%ED%8F%AC%EC%9D%B8%ED%84%B0-%EC%82%AC%EC%9A%A9%EB%B2%95), [멤버 함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0) 인지 검사합니다.|
 
 # 타입 특성
 
@@ -91,7 +91,7 @@ ThreeType three;
 |`is_standard_layout` (C++11~)|[표준 레이아웃 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%ED%91%9C%EC%A4%80-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%ED%83%80%EC%9E%85) 인지 검사합니다.|
 |`is_pod`(C++11~C++20)|[POD 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#pod-%ED%83%80%EC%9E%85plan-old-data) 인지 검사합니다.||
 |`is_literal_type`(C++11~C++17)|[리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85) 인지 검사합니다.|
-|`is_empty` (C++11~)|멤버 변수, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), 비어있지 않은 부모 개체가 없는 빈 개체인지 검사합니다.|
+|`is_empty` (C++11~)|[멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/), [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), 비어있지 않은 부모 개체가 없는 빈 개체인지 검사합니다.|
 |`is_polymorphic` (C++11~)|[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있거나, [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 상속한 다형성 타입인지 검사합니다.|
 |`is_abstract` (C++11~)|적어도 1개 이상의 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 추상 클래스 타입인지 검사합니다.|
 |`is_signed` (C++11~)|양수/음수 처리를 지원하는 타입인지 검사합니다.|

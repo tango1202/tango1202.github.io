@@ -311,7 +311,7 @@ f_14();
     EXPECT_TRUE(f_11(10, 20) == 30);
     ```
 
-2. 함수 포인터(*단, [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)를 지원하지 않습니다.*)
+2. [함수 포인터](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)(*단, [람다 캡쳐](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%EC%BA%A1%EC%B3%90)를 지원하지 않습니다.*)
    
     ```cpp
     typedef int (*Func)(int, int); // 함수 포인터 typedef

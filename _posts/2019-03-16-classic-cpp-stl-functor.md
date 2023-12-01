@@ -60,7 +60,7 @@ EXPECT_TRUE(v[0] == 20 && v[1] == 20 && v[2] == 20);
 
 # 함수자에서 상태 활용
 
-함수자는 개체이므로 상태를 멤버 변수로 저장하여 활용할 수 있습니다.
+함수자는 개체이므로 상태를 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 저장하여 활용할 수 있습니다.
 
 ```cpp
 // 각 요소에 지정한 값을 추가합니다.

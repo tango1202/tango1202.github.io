@@ -33,10 +33,10 @@ sidebar:
 
 # 예외와 생성자
 
-다음처럼 일부 멤버 변수만 초기화 하고, 나중에 별도 함수를 호출하여 초기화를 마무리하면, 사용자가 실수로 빼먹을 수도 있고, [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)에도 좋지 않습니다. 불완전하게 생성된 개체에 별도 Setter를 호출하여 완전하게 만드는 중에 예외가 발생하면, [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 처리를 위해 소멸시켜야 하는데, 혹시나 이미 이 개체를 참조하는 곳이 있다면, 찾기도 힘들고, 찾았더라도 처리를 어찌해야 할지 난감해 지니까요.([예외와 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8%EC%99%80-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
+다음처럼 일부 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)만 초기화 하고, 나중에 별도 함수를 호출하여 초기화를 마무리하면, 사용자가 실수로 빼먹을 수도 있고, [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)에도 좋지 않습니다. 불완전하게 생성된 개체에 별도 Setter를 호출하여 완전하게 만드는 중에 예외가 발생하면, [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 처리를 위해 소멸시켜야 하는데, 혹시나 이미 이 개체를 참조하는 곳이 있다면, 찾기도 힘들고, 찾았더라도 처리를 어찌해야 할지 난감해 지니까요.([예외와 생성자](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8%EC%99%80-%EC%83%9D%EC%84%B1%EC%9E%90) 참고)
 
 
-생성자에서 예외 상황이 발생하면 생성한 멤버 변수를 소멸하고 예외를 발생시키면 됩니다.
+생성자에서 예외 상황이 발생하면 생성한 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 소멸하고 예외를 발생시키면 됩니다.
 
 하지만, 불완전하게 생성된 개체에 별도 Setter를 호출하여 완전하게 만들도록 개체를 설계했다면, 이미 생성된 개체를 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 처리를 위해 소멸시켜야 하는데, 혹시나 이미 이 개체를 참조하는 곳이 있다면, 찾기도 힘들고, 찾았더라도 처리를 어찌해야 할지 난감해 집니다.
 

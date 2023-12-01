@@ -144,7 +144,7 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a854029a-5976-4c0f-b8df-2604d35ab850)
 
-3. 혹은 `CMakeLists.txt`가 없다고 표시될 수도 있는데, 그냥 `Enter`하여 나타나는 `열기`대화상자를 그냥 닫고, 다시 `CMake:Quick Start` 를 실행합니다.(이러한 경우 아마도 `CMake:Reset` 이 필요할 수 있습니다. [CMake 초기화(Reset)](https://tango1202.github.io/dev-setting/dev-vscode-cmake/#cmake-%EC%B4%88%EA%B8%B0%ED%99%94reset))
+3. 혹은 `CMakeLists.txt`가 없다고 표시될 수도 있는데, 그냥 `Enter`하여 나타나는 `열기`대화상자를 그냥 닫고, 다시 `CMake:Quick Start` 를 실행합니다.(*이러한 경우 아마도 `CMake:Reset` 이 필요할 수 있습니다. [CMake 초기화(Reset)](https://tango1202.github.io/dev-setting/dev-vscode-cmake/#cmake-%EC%B4%88%EA%B8%B0%ED%99%94reset)*)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/61f39640-4001-48d4-bfef-a930662c832c)
 

@@ -128,7 +128,7 @@ u1 = u2; //(O) 소유권을 u1으로 이전합니다.
 
 [auto_ptr](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)은 다음처럼 구현됩니다.
 
-1. 생성시 `ptr`을 멤버 변수로 저장합니다.
+1. 생성시 `ptr`을 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)로 저장합니다.
 2. 소멸시 `m_Ptr`을 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)합니다.
 3. [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)과 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 연산시 기존 포인터는 삭제하고, 신규 포인터를 저장 관리합니다. 이때 `other`가 관리하는 포인터는 `NULL`로 초기화하여 더이상 관리하지 않습니다.
 4. `->`, `*`연산자를 오버로딩하여 관리하는 포인터에 접근할 수 있게 합니다.

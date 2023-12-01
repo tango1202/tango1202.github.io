@@ -284,12 +284,12 @@ EXPECT_TRUE(result == 10);
 개체 생성시 사용하는 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는 하기 단계를 수행합니다.
 
 1. 전역 [operator new(std::size_t)]((https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98))로 메모리 공간 할당
-2. 구조체이거나 클래스이면 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 인 `operator new(void*)`를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
+2. 구조체이거나 클래스이면 [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 인 [operator new(size_t, void*)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)를 실행하여 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/) 호출
 3. 메모리 주소를 해당 타입으로 형변환하여 리턴
 
 즉 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)는  
 
-* [operator new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) : C언어의 [malloc()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)과 유사
+* [operator new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) : C언어의 [malloc()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)과 유사
 * [위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) : 생성자 호출
 
 로 구성되어 있습니다. 좀더 자세한 내용은 [개체 생성과 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/)을 참고하세요.
@@ -301,7 +301,7 @@ EXPECT_TRUE(result == 10);
 |[operator delete(void*)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)|개체 소멸|`delete p;`|O|`void operator delete(void* ptr, std::size_t sz)`|`void operator delete(void* ptr, std::size_t sz)`|
 |[operator new[](std::size_t)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98-1)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 생성시 사용|`T* arr = new T[10];`|O|`void* operator new[](std::size_t sz);`|`void* operator new[](std::size_t sz);`|
 |[operator delete[](void*)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98-1)|[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/) 소멸시 사용|`delete[] arr;`|O|`void operator delete[](void* ptr);`|`void operator delete[](void* ptr);`|
-|[operator new(void*)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)|[위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1). 특정 메모리 위치에 개체 생성자 호출|`T* p = new(buf) T;`|X|X|X|
+|[operator new(size_t, void*)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)|[위치 지정 생성(Placement New)](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1). 특정 메모리 위치에 개체 생성자 호출|`T* p = new(buf) T;`|X|X|X|
 
 # sizeof 연산자
 
@@ -665,7 +665,7 @@ T t2(10);
 EXPECT_TRUE(t1 >= t2);   
 ```
 
-비교 연산은 `true`던 `false`던, 결과값이 판단되면 재빠르게 리턴하는게 좋습니다. 특히, 멤버 변수가 많은 경우 연산을 많이 하게 되니 다음과 같이 작성하는게 좋습니다.
+비교 연산은 `true`던 `false`던, 결과값이 판단되면 재빠르게 리턴하는게 좋습니다. 특히, [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 많은 경우 연산을 많이 하게 되니 다음과 같이 작성하는게 좋습니다.
 
 ```cpp
 class T {
