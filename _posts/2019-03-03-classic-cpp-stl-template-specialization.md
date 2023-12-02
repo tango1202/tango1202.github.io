@@ -9,13 +9,13 @@ sidebar:
 ---
 
 > * [다형적](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/) 동작을 위해 [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94), [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94), [템플릿 부분 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B6%80%EB%B6%84-%ED%8A%B9%EC%88%98%ED%99%94), [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)을 이용하라.
-> * [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)을 정의할때 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)과 특수화 함수의 순서를 지켜라.
+> * [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)을 정의할때 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)과 [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)의 순서를 지켜라.
 
 # 개요
 
 C++ [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)은 특정 타입에 대한 버전을 재정의 하여 타입에 대한 [다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)을 지원합니다. 
 
-인스턴스화시 일반화된 주 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 버전과 여러 특수화 버전 중에서 **좀 더 특수화된 버전** 을 선택해서 실행합니다.(**좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.)
+[템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 일반화된 주 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) 버전과 여러 특수화 버전 중에서 **좀 더 특수화된 버전** 을 선택해서 실행합니다.(***좀 더 특수화된 버전** 은 **좀 더 적은 타입을 허용**한다고 생각하시면 됩니다.*)
  
 # 템플릿 특수화
 
@@ -61,7 +61,7 @@ EXPECT_TRUE(Func('a') == 1);
 EXPECT_TRUE(Func(10) == 2); // int에 특수화된 버전 호출
 ```
 
-# 템플릿 멤버 함수 및 템플릿 중첩 클래스 특수화
+# 멤버 함수 템플릿 및 중첩 클래스 템플릿 특수화
 
 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)의 경우도 `template<>`을 이용하여 정의합니다. 단, [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 특수화 하면, 상위 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)도 특수화 하여야 합니다.
 
