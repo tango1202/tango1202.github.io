@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-캡슐화는 **개체 사용자가 개체의 내부 상태의 구현 원리를 알 필요 없게 하라** 라는 원칙입니다.
+[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)는 **개체 사용자가 개체의 내부 상태의 구현 원리를 알 필요 없게 하라** 라는 원칙입니다.
 
 조금 풀어 쓰면,
 
@@ -278,7 +278,7 @@ TEST(TestPrinciple, Encapsulation) {
 * 단위 기능을 응집하고, 결합도는 낮춘뒤,
 * 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현하라는
 
-캡슐화의 철학이 필요합니다.
+[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)의 철학이 필요합니다.
 
 [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/) 이라며 무조건 함수를 작은 단위로 쪼개지 말고, 코드 중복이 발생하는 시점에 다음 내용을 고민하여 함수를 쪼갤지 고민하는게 좋습니다.
 

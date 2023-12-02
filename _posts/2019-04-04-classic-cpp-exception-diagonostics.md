@@ -116,7 +116,7 @@ int f(int a, int b, int* c) {
     }
     ```
 
-2. 데이터를 추상화하여 코딩 계약을 좀더 단단하게 만듭니다.
+2. 데이터를 [추상화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)하여 코딩 계약을 좀더 단단하게 만듭니다.
 
     ```cpp
     void f(int angle) {
@@ -134,7 +134,7 @@ int f(int a, int b, int* c) {
     }                                          
     ```
 
-    보다는, 인수가 유효한 값임을 보증할 수 있도록 캡슐화 하여,
+    보다는, 인수가 유효한 값임을 보증할 수 있도록 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 하여,
 
     ```cpp
     void f(const Degree& angle) {

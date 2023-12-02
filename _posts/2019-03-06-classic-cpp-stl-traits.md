@@ -17,7 +17,7 @@ sidebar:
 
 # 개요
 
-[타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/)를 이용하여 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)(Traits)는 타입을 기반으로 하는 일반화 프로그래밍을 위한 프로그래밍 방법입니다. [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)와 어떻게 코딩 계약을 맺을지, 타입을 어떻게 처리할지를 제공합니다.
+[타입 특성 클래스](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-traits/)를 이용하여 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)(Traits)는 타입을 기반으로 하는 [일반화 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-generic/)을 위한 프로그래밍 방법입니다. [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)와 어떻게 코딩 계약을 맺을지, 타입을 어떻게 처리할지를 제공합니다.
 
 # 템플릿 인자 코딩 계약
 
