@@ -118,7 +118,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
 
 # 비 상수 멤버 함수의 비 상수성 전파
 
-[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 될 수 있음에도 [비 상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%B9%84-%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98%EC%9D%98-%EB%B9%84-%EC%83%81%EC%88%98%EC%84%B1-%EC%A0%84%ED%8C%8C)로 작성한다면, 이를 사용하는 모든 함수나 개체들이 비 상수로 만들어져야 합니다. 비 상수성은 전파되니 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 될 수 있다면 꼭 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 만드세요.
+[상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 될 수 있음에도 [비 상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%B9%84-%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98%EC%9D%98-%EB%B9%84-%EC%83%81%EC%88%98%EC%84%B1-%EC%A0%84%ED%8C%8C)로 작성한다면, 이를 사용하는 모든 함수나 개체들이 비 상수로 만들어져야 합니다. 비 상수성은 바이러스처럼 전파되니 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 될 수 있다면 꼭 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 만드세요.
 
 ```cpp
 class T {
@@ -130,7 +130,9 @@ public:
 class U {
     T m_T;
 public:
-    int GetInnerVal() const {return m_T.GetVal();} // (X) 컴파일 오류. m_T.GetVal()은 비 상수 멤버 함수여서 상수 멤버 함수인 GetInnerVal() 이 호출할 수 없습니다.
+    // m_T.GetVal()은 비 상수 멤버 함수여서 상수 멤버 함수인 GetInnerVal()에서 호출할 수 없습니다.
+    // 어쩔 수 없이 GetInnerVal()을 비 상수로 만들어야 컴파일 할 수 있습니다.
+    int GetInnerVal() const {return m_T.GetVal();} // (X) 컴파일 오류. 
 };
 ```
 

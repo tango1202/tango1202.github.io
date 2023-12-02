@@ -146,7 +146,7 @@ obj3.m_Public; // (O) 외부에서 사용할 수 있습니다.
 
 다음 예에서는 부모와 자식이 모두 `f()`함수를 정의하고 있는데요, 동일한 개체를 부모 개체로 접근하느냐, 자식 개체로 접근하느냐에 따라 다른 함수가 호출됩니다. 
 
-특별히 범위 확인 연산자(`::`)로 명시적으로 부모 개체의 멤버에 접근할 수 있으나, 다형성을 해칠 수 있으니 사용하지 않는게 좋습니다. [가상 함수 오버라이딩](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9) 할게 아니라면 다른 이름으로 정의하세요.
+특별히 범위 확인 연산자(`::`)로 명시적으로 부모 개체의 멤버에 접근할 수 있으나, [다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)을 해칠 수 있으니 사용하지 않는게 좋습니다. [가상 함수 오버라이딩](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9) 할게 아니라면 다른 이름으로 정의하세요.
 
 ```cpp
 class Base {
@@ -199,7 +199,11 @@ EXPECT_TRUE(d.f(1) == 20);
 
 # 부모 개체의 가상 함수 오버라이딩
 
-부모 개체의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 [오버라이딩](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)(*함수명과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 동일하며 자식 개체에서 재구현*)하여 다형적으로 동작하게 할 수 있습니다. 단, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입은 동일해야 하며, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 부모 개체의 것과 같거나 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/) 관계(*공변, covariant*)이어야 합니다.(*[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고*)
+부모 개체의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 [오버라이딩](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)(*함수명과 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 동일하며 자식 개체에서 재구현*)하여 다형적으로 동작하게 할 수 있습니다. 
+
+[오버라이딩](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)하려면, 함수명/[인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 타입/[상수 멤버 함수의 const](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)/[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 동일해야 하며, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)은 부모 개체의 것과 같거나 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/) 관계(*공변, covariant*)이어야 합니다.(*[가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 참고*)
+
+다음 예를 보면 부모 개체로 접근(`b->f()`)하던 자식 개체로 접근(`d.f()`)하던 모두 동일하게 자식 개체의 `f()`가 호출됩니다.
 
 ```cpp
 class Base {
@@ -209,7 +213,7 @@ public:
 
 class Derived : public Base {
 public:
-    virtual int f() {return 20;} // (O) 다형적으로 동작합니다.
+    virtual int f() {return 20;} // (O) 오버라이딩. 함수명/인자 타입/상수 멤버 함수의 const/동적 예외 사양은 동일해야 합니다.
 };
 Derived d;
 Base* b = &d;
@@ -479,29 +483,32 @@ Ellipse e(5, 10, 10, 20);
 
 [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%8B%A8%EC%9C%84-%EC%A0%84%EB%9E%B5-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)도 [has-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#has-a-%EA%B4%80%EA%B3%84)의 일종으로 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)를 사용합니다.
 
-1. 부모 개체를 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)해서만 사용하도록 [protected 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 정의하고,(*또한 [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있으므로 상속해서만 사용가능합니다.*)
-2. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 시도하지 못하도록 [protected 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 정의하고,
-3. [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 안하므로 [Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 정의합니다.
+1. #1 : [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 안하므로 [protected Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)로 만듭니다.
+    * [protected 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90) 여서 부모 개체를 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)해서만 사용할 수 있습니다.
+    * [Non-Virtual 소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#protected-non-virtual-%EC%86%8C%EB%A9%B8%EC%9E%90)여서 [다형 소멸](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EB%8B%A4%ED%98%95-%EC%86%8C%EB%A9%B8)을 할 수 없습니다.
+2. #2 : 물려받은 기능은 외부에 그대로 노출하기위해, `public` [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)을 합니다. 
+3. #3 : [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)제공합니다.
+    * [순가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 여서 부모 개체를 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)해서만 사용할 수 있습니다.
 
 ```cpp
 class IEatable {
 protected:
-    ~IEatable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
+    ~IEatable() {} // #1. 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 
 public:
-    virtual void Eat() = 0; // 기능 스펙을 순가상 함수로 제공합니다. 상속해서만 사용할 수 있습니다.
+    virtual void Eat() = 0; // #3. 기능 스펙을 순가상 함수로 제공합니다. 상속해서만 사용할 수 있습니다.
 };
 class IWalkable {
 protected:
-    ~IWalkable() {} // 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
+    ~IWalkable() {} // #1. 인터페이스여서 protected non-virtual(상속해서 사용하고, 다형 소멸 안함) 입니다.
 
 public:
-    virtual void Walk() = 0; // 기능 스펙을 순가상 함수로 제공합니다. 상속해서만 사용할 수 있습니다.
+    virtual void Walk() = 0; // #3. 기능 스펙을 순가상 함수로 제공합니다. 상속해서만 사용할 수 있습니다.
 };
 
 class Dog :
-    public IEatable,
-    public IWalkable {
+    public IEatable, // #2
+    public IWalkable { // #2
 public:        
     virtual void Eat() {}
     virtual void Walk() {}
@@ -510,7 +517,7 @@ IEatable eatable; // (X) 컴파일 오류. 소멸자가 protected. 순가상 함
 IWalkable walkable; // (X) 컴파일 오류. 소멸자가 protected. 순가상 함수가 있음.
 Dog dog; // (O)
 
-IEatable* p = new Dog():
+IEatable* p = new Dog();
 delete* p; // (X) 컴파일 오류. IEatable의 소멸자가 protected
 ```
 

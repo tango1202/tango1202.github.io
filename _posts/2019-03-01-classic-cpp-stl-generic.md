@@ -130,11 +130,11 @@ char c = 'c';
 charContainer.SetAt(c, 5);
 EXPECT_TRUE(charContainer.GetAt(5) == 'c');   
 ```
-일반화 프로그래밍은 캡슐화, 추상화, 다형성의 구현 방식의 철학이 개체 지향 방법과는 다릅니다. 상속을 통한 처리 보다는 일반화된 공통 코드와 이의 특수화로 접근합니다.
+일반화 프로그래밍은 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/), [추상화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/), [다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)의 구현 방식의 철학이 개체 지향 방법과는 다릅니다. [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)을 통한 처리 보다는 일반화된 공통 코드와 이의 특수화로 접근합니다.
 
 |항목|내용|
 |--|--|
-|개체 지향 프로그래밍|캡슐화를 통해 데이터와 처리 방식을 응집하고, 추상화를 통해 공통의 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4) 규약을 만든 뒤 이를 상속하여 다형적으로 만듭니다.|
+|개체 지향 프로그래밍|캡슐화를 통해 데이터와 처리 방식을 응집하고, 추상화를 통해 공통의 [인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4) 규약을 만든 뒤 이를 [상속](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/)하여 다형적으로 만듭니다.|
 |일반화 프로그래밍|모든 타입에 적용 가능한 일반화된 코드를 개발하고, 타입에 따라 동작이 다르거나, 성능의 문제가 있다면, [템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/)를 통해 다형적으로 동작하게 만듭니다.|
 
 개체 지향 특성들은 일반화 프로그래밍에서 다음처럼 구현됩니다. 
