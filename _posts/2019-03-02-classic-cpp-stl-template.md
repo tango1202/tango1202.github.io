@@ -135,7 +135,7 @@ EXPECT_TRUE(Plus('a', static_cast<char>(1)) == 'b'); // (O) 인수로부터 char
 
 > *(C++20~) [축약된 함수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%EC%B6%95%EC%95%BD%EB%90%9C-%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용할 수 있습니다. 사실상 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)의 간략한 표현입니다.*
 
-# 템플릿 멤버 함수와 템플릿 중첩 클래스
+# 멤버 함수 템플릿 과 중첩 클래스 템플릿
 
 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98), [중첩 클래스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)도 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)으로 만들 수 있습니다.
 
@@ -156,11 +156,11 @@ public:
     // 일반 멤버 함수
     void f() {}
 
-    // 템플릿 멤버 함수
+    // 멤버 함수 템플릿
     template<typename U> 
     U g(U left, U right) {return left + right;} 
 
-    // 템플릿 중첩 클래스
+    // 중첩 클래스 템플릿
     template<typename V> 
     class B {
     public:
@@ -171,7 +171,7 @@ public:
 int val;
 A a(val); // 템플릿 생성자 호출, 타입을 명시적으로 지정 못함
 a.f(); // 일반 함수 호출
-a.g(10, 10); // 템플릿 멤버 함수 호출 
+a.g(10, 10); // 멤버 함수 템플릿 호출 
 a.g<int>(10, 10); // 타입을 명시적으로 지정할 수 있음
 
 A::B<int> b; // 중첩 클래스 인스턴스화
@@ -189,14 +189,14 @@ public:
     void f(); // 멤버 함수 선언
 
     template<typename U>
-    U g(U val); // 템플릿 멤버 함수 선언
+    U g(U val); // 멤버 함수 템플릿 선언
 };
 
 // 클래스 템플릿의 멤버 함수 정의
 template<typename T> // 클래스 템플릿
 void A<T>::f() {} 
 
-// 클래스 템플릿의 템플릿 멤버 함수 정의 - 인자 집합 2개 필요
+// 클래스 템플릿의 멤버 함수 템플릿 정의 - 인자 집합 2개 필요
 template<typename T> // 바깥쪽 인자
 template<typename U> // 안쪽 인자
 U A<T>::g(U val) {return val + val;} 
@@ -204,7 +204,7 @@ U A<T>::g(U val) {return val + val;}
 A<int> a;
 
 a.f(); // 일반 함수 호출
-a.g<int>(10); // 템플릿 멤버 함수 호출
+a.g<int>(10); // 멤버 함수 템플릿 호출
 ```
 
 # 템플릿 인스턴스 중복 생성

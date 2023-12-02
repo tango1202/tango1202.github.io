@@ -63,7 +63,7 @@ EXPECT_TRUE(Func(10) == 2); // int에 특수화된 버전 호출
 
 # 멤버 함수 템플릿 및 중첩 클래스 템플릿 특수화
 
-[템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)의 경우도 `template<>`을 이용하여 정의합니다. 단, [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 특수화 하면, 상위 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)도 특수화 하여야 합니다.
+[멤버 함수 템플릿](??)의 경우도 `template<>`을 이용하여 정의합니다. 단, [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/) [멤버 함수 템플릿](??)을 특수화 하면, 상위 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)도 특수화 하여야 합니다.
 
 ```cpp
 template<typename T>
@@ -78,11 +78,11 @@ public:
 };
 
 template<> // 바깥쪽 주 템플릿도 특수화
-template<> // 안쪽 중첩 클래스 특수화
-template<> // 템플릿 멤버 함수 특수화
+template<> // 안쪽 중첩 클래스 템플릿 특수화
+template<> // 멤버 함수 템플릿 특수화
 int A<int>::B<int>::f<int>(int val) {return 2;} // #2
 
-// (X) 컴파일 오류. 템플릿 멤버 함수를 특수화 하면, 상위 템플릿도 특수화 해야 합니다.
+// (X) 컴파일 오류. 멤버 함수 템플릿을 특수화 하면, 상위 템플릿도 특수화 해야 합니다.
 // template<typename T> 
 // template<typename U> 
 // template<> 
@@ -199,7 +199,7 @@ EXPECT_TRUE(c.f() == 2); // 템플릿 부분 특수화 버전
 
 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)은 [템플릿 부분 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B6%80%EB%B6%84-%ED%8A%B9%EC%88%98%ED%99%94)를 지원하지 않으며, 대신 [함수 템플릿 오버로딩](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)을 지원합니다. 모양은 마치 [템플릿 부분 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B6%80%EB%B6%84-%ED%8A%B9%EC%88%98%ED%99%94)와 비슷합니다.
 
-다음 코드에서 `f(&a)` 호출시 #1과 #2은 각각 다음처럼 인스턴스화 후보로 만들어 집니다.
+다음 코드에서 `f(&a)` 호출시 #1과 #2은 각각 다음처럼 [함수 템플릿 오버로딩](??) 후보로 만들어 집니다.
 
 1. #1 : `T == int*` 라면, `f<int*>(int*)` 로 호출 가능합니다.
 2. #2 : `T == int` 라면, `f<int>(int*)` 로 호출 가능합니다.
@@ -235,7 +235,7 @@ EXPECT_TRUE(f(&a) == 2); // 템플릿 오버로딩 버전이 실행됩니다. T 
 2. #3 : #1의 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 채택되었을때, `T == int*` 라면 호출됩니다.
 3. #2 : `T == int` 라면, `f<int>(int*)` 로 호출 가능합니다.
 
-`f(&a)` 호출시 가장 적합한 것은 특수화 버전인 #3인 것 같지만, #3은 #1의 [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94) 버전이고, #1과 #2중 좀더 특수화된 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)은 #2이므로, `int f(T*)` 가 호출됩니다.
+`f(&a)` 호출시 가장 적합한 것은 특수화 버전인 #3인 것 같지만, #3은 #1의 [함수 템플릿 특수화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-specialization/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94) 버전이고, #1과 #2중 좀더 특수화된 [함수 템플릿 오버로딩](??) 버전은 #2이므로, `int f(T*)` 가 호출됩니다.
 
 ```cpp
 template<typename T> 
