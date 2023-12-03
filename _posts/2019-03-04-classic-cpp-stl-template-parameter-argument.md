@@ -8,21 +8,19 @@ sidebar:
     nav: "docs"
 ---
 
-> 종속 타입인 경우 `typename`, 파싱 오류시 `template`을 작성하라.
+> [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 경우 `typename`, [템플릿 파싱 오류](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)시 `template`을 작성하라.
 
 > **모던 C++**
 > * (C++11~) [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)과 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)이 추가되어, [가변 인자(…)](
 https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)와 같이 갯수와 타입이 정해 지지 않은 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 사용할 수 있습니다.
 > * (C++11~) [템플릿 오른쪽 꺽쇠 괄호](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%98%A4%EB%A5%B8%EC%AA%BD-%EA%BA%BD%EC%87%A0-%EA%B4%84%ED%98%B8) 파싱을 개선하여 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 `>`가 중첩되어 `>>`와 같이 되더라도 공백을 추가할 필요가 없습니다.
-> * (C++17~) [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)이 추가되어 [함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)처럼 [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 타입을 생략할 수 있습니다.
-> * (C++17~) [클래스 템플릿 인수 추론 사용자 정의 가이드](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EA%B0%80%EC%9D%B4%EB%93%9C)가 추가되어 [클래스 템플릿 인수 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)시 컴파일러에게 가이드를 줄 수 있습니다.
 > * (C++17~) [비타입 템플릿 인자에서 auto를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%EB%B9%84%ED%83%80%EC%9E%85-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%9D%98-auto-%ED%97%88%EC%9A%A9)합니다.
 > * (C++20~) [컨셉(concept)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.
 > * (C++20~) [비타입 템플릿 인자 규칙이 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%EB%B9%84%ED%83%80%EC%9E%85-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90-%EA%B7%9C%EC%B9%99-%EC%99%84%ED%99%94)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.
 
 # 템플릿 인자
 
-[클래스 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF) 정의시 `<>` 사이에 [템플릿 인자(Parameter)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 집합을 정의하고, [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 전달한 인수(Argument) 집합으로 대체되어 클래스가 생성됩니다.
+[클래스 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF) 정의시 `<>` 사이에 [템플릿 인자(*Parameter*)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 집합을 정의하고, [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 전달한 인수(*Argument*) 집합으로 대체되어 클래스가 생성됩니다.
 
 ```cpp
 // T, U : 인자(Parameter) 집합
@@ -52,7 +50,7 @@ A<int, char> a;
     template<typename T, typename U>
     class A {
     public:
-        T f(U param) {return param;}
+        T f(U param) {return param;} // U를 T로 암시적으로 형변환 합니다.
     };
 
     A<int, char> a;
@@ -73,6 +71,8 @@ A<int, char> a;
     A<int, 10> a;
     EXPECT_TRUE(a.f() == 10);
     ```
+
+    > *(C++17~) [비타입 템플릿 인자에서 auto를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%EB%B9%84%ED%83%80%EC%9E%85-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%9D%98-auto-%ED%97%88%EC%9A%A9)합니다. `template<auto val>`와 같이 템플릿 인자에 종속적인 비타입 템플릿 인자를 사용할 수 있습니다.*
 
 3. 비타입 : 타입이 아닌 일반 개체
 
@@ -95,45 +95,46 @@ A<int, char> a;
     ```
 
     > *(C++17~) [비타입 템플릿 인자에서 auto를 허용](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c17-%EB%B9%84%ED%83%80%EC%9E%85-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90%EC%9D%98-auto-%ED%97%88%EC%9A%A9)합니다.*<br/>
-    > *(C++20~) [컨셉(concept)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.*<br/>
     > *(C++20~) [비타입 템플릿 인자 규칙이 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c20-%EB%B9%84%ED%83%80%EC%9E%85-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90-%EA%B7%9C%EC%B9%99-%EC%99%84%ED%99%94)되어 실수 타입과 [리터럴 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EB%A6%AC%ED%84%B0%EB%9F%B4-%ED%83%80%EC%9E%85)을 사용할 수 있습니다.*
 
 4. 템플릿 템플릿 인자
 
-    [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 되지 않은 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)을 인자로 사용할 수 있습니다.
+    [템플릿 인스턴스화](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 하지 않은 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)을 인자로 사용할 수 있습니다.
 
     ```cpp
     template<typename T> 
-    class A {
+    class A { // #1
     public:
         int m_X;
     };
 
     template<typename T> 
-    class A<T*> { // A의 템플릿 특수화 버전
+    class A<T*> { // #2. A의 템플릿 특수화 버전
     public: 
         long m_Y;
     };
 
-    // U : 템플릿 템플릿 인자. 인스턴스화된 타입이 아닌 템플릿을 전달함
+    // U : 템플릿 템플릿 인자. 인스턴스화 하지 않은 템플릿을 전달함
     template<template<typename> typename U>
     class B {
     public:
-        U<int> m_U1; // 템플릿인 U로 부터 개체 생성
-        U<int*> m_U2;
+        U<int> m_U1; // #1로 개체 정의
+        U<int*> m_U2; // #2로 개체 정의
     };
 
     B<A> b; 
     b.m_U1.m_X = 10;
-    b.m_U2.m_Y = 20; // A<T*> 버전으로 생성됩니다.
+    b.m_U2.m_Y = 20; 
 
     EXPECT_TRUE(b.m_U1.m_X == 10);
     EXPECT_TRUE(b.m_U2.m_Y == 20);
     ```
 
+> *(C++20~) [컨셉(concept)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.*
+
 **불완전한 형식의 인스턴스화**
 
-[전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)등 불완전한 형식이라도 인수로 지정할 수 있습니다.
+[전방 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)등 불완전한 형식이나, [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)도 인수로 지정할 수 있습니다.
 
 ```cpp
 class A; // 전방 선언
@@ -155,6 +156,9 @@ C<B> x3;  // (O) B는 이름 없는 클래스의 typedef
 template<typename T = char, typename U = int>
 class A {};
 
+template<typename T = char, typename U> // (X) 컴파일 오류. T가 기본값을 사용했기 때문에 U도 기본값을 사용해야 합니다.
+class B {};  
+
 A<> a; // T == char, U == int
 A<char> b; // U == int
 A<char, char> c;
@@ -162,7 +166,7 @@ A<char, char> c;
 
 # 종속 타입
 
-[템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)의 종속된 타입명은 표기 방법이 `static`개체 접근과 동일하여 컴파일러가 타입으로 인식하지 못합니다. 이러한 경우 `typename` 을 사용하여 종속된 이름임을 명시해 줍니다.
+[클래스 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF) 내에 [typedef](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)를 이용하여 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)을 정의할 수 있습니다. [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)은 표기 방법이 `static`개체 접근과 동일하여 컴파일러가 타입으로 인식하지 못합니다. 이러한 경우 `typename` 을 사용하여 종속된 이름임을 명시해 줍니다.
 
 ```cpp
 template<typename T>
@@ -231,7 +235,7 @@ std::vector<A<int> > b; // (O) 공백을 추가해야 합니다.
 
 [템플릿 정의](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94)시 개체의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에 접근할 때 `template` 을 명시하는 경우가 있습니다.
 
-다음 코드에서 `Run()` 함수는 `T`타입의 개체 `m_Obj`의 `f()`함수를 호출합니다. 공교롭게도 `f()` 함수는 [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)인 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이고, 잘 동작합니다.
+다음 코드에서 `Run()` 함수는 `T`타입의 개체 `m_Obj`의 `f()`함수를 호출합니다. `f()` 함수는 [멤버 함수 템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EA%B3%BC-%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4-%ED%85%9C%ED%94%8C%EB%A6%BF)이고, `f(10)`과 같이 호출하면, [함수 템플릿 인수 추론](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)시 `int`로 추론하여 잘 동작합니다.
 
 ```cpp
 template<typename T> 
@@ -246,12 +250,12 @@ public:
 class A {
 public:
     template<typename U>
-    int f(U val) {return 1;} // 멤버 함수 정의 입니다.
+    int f(U val) {return 1;} // 멤버 함수 템플릿입니다.
 };
 class B {
 public:
     template<typename U>
-    int f(U val) {return 2;} // 멤버 함수 정의 입니다.
+    int f(U val) {return 2;} // 멤버 함수 템플릿입니다.
 };
 
 Runner<A> a;
@@ -261,13 +265,13 @@ EXPECT_TRUE(a.Run() == 1);
 EXPECT_TRUE(b.Run() == 2); 
 ```
 
-하지만, `f()`함수를 명시적으로 하기 위해 다음과 같이 작성한다면, 
+하지만, 다음과 같이 명시적으로 인수를 전달하면, 
 
 ```cpp
 return m_Obj.f<int>(10);
 ```
 
-`<`를 대소 비교 연산자로 파싱하여 컴파일 오류가 나옵니다. 이런 경우에는 다음처럼 `template` 을 강제로 작성해야 합니다.
+`<`를 대소 비교 연산자로 파싱하여 컴파일 오류가 나옵니다. 이런 경우에는 다음처럼 `template`을 강제로 작성해야 합니다.
 
 ```cpp
 template<typename T> 
