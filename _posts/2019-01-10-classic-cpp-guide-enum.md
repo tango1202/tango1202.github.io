@@ -93,7 +93,7 @@ enum MyEnum {a, b, c};
 EXPECT_TRUE(sizeof(MyEnum) == sizeof(char) || sizeof(MyEnum) == sizeof(short) || sizeof(MyEnum) == sizeof(int));
 ```
 
-따라서, 열거자가 추가되다 보면 어느 순간 [sizeof()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 달라질 수 있습니다. 그래서, 파일 저장시에 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)의 크기만큼 오프셋을 이동하는 코드를이 있으면 호환성이 깨질 수도 있죠. 그래서 크기가 중요한 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)은 열거자중 `dummy`를 만들어 충분히 큰값을 지정하여 사용합니다.
+따라서, 열거자가 추가되다 보면 어느 순간 [sizeof()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)가 달라질 수 있습니다. 그래서, 파일 저장시에 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)의 크기만큼 오프셋을 이동하는 코드를이 있으면 호환성이 깨질 수도 있죠. 그래서 크기가 중요한 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)은 열거자중 더미(*Dummy*)를 만들어 충분히 큰값을 지정하여 사용합니다.
 
 ```cpp
 enum MyEnum {a, b, c, MyEnumMax = 0XFFFFFFFF};

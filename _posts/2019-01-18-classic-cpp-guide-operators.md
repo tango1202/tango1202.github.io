@@ -559,7 +559,7 @@ inline T operator +(int left, const T& right) {
 
 **증감 연산자**
 
-증감 연산자는 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)시 전위형과 후위형을 구분하기 위해, 후위형의 경우 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 `int`를 dummy로 넣습니다. 
+증감 연산자는 [연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)시 전위형과 후위형을 구분하기 위해, 후위형의 경우 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 `int`를 더미(*Dummy*)로 넣습니다. 
 
 또한 후위형은 
 
@@ -579,7 +579,7 @@ public:
         ++m_Val;
         return *this; // 자기 자신을 리턴합니다.
     }
-    // 후위형. 인자 int는 전위형과 구분하기 위한 dummy입니다.
+    // 후위형. 인자 int는 전위형과 구분하기 위한 더미(Dummy)입니다.
     const T operator ++(int) { // t++++가 안되도록 const T를 리턴합니다.
         T result = *this; // 복제합니다.
         ++m_Val; // this의 값을 증가시킵니다.

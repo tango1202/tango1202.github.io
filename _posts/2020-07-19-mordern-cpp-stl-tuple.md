@@ -149,7 +149,7 @@ EXPECT_TRUE(
 
 # piecewise_construct
 
-[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)는 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)의 생성자의 오버라이드 버전을 호출하기 위한 더미 개체 인데요, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)의 `first`와 `second` 개체를 생성할때, 전달된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 개체의 요소들로 초기화 해줍니다.
+[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)는 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)의 생성자의 오버라이드 버전을 호출하기 위한 더미(*Dummy*) 개체 인데요, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)의 `first`와 `second` 개체를 생성할때, 전달된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 개체의 요소들로 초기화 해줍니다.
 
 보통 `A`와 `B` 개체를 관리하는 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 만든다면, 
 

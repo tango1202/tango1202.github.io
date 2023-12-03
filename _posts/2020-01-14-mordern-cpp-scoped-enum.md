@@ -83,7 +83,7 @@ enum class MyEnum_11; // (O)
 
 # 기반 타입
 
-기존에는 [열거형의 크기](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/#%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%ED%81%AC%EA%B8%B0)를 지정하기 위하여 열거자에 강제적으로 `dummy` 값을 입력했는데요(*[열거형의 크기](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/#%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%ED%81%AC%EA%B8%B0) 참고*), 
+기존에는 [열거형의 크기](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/#%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%ED%81%AC%EA%B8%B0)를 지정하기 위하여 열거자에 강제적으로 더미(*Dummy*) 값을 입력했는데요(*[열거형의 크기](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/#%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%ED%81%AC%EA%B8%B0) 참고*), 
 
 C++11 부터는 [열거형의 기반 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EA%B8%B0%EB%B0%98-%ED%83%80%EC%9E%85)을 지정할 수 있습니다. 기본적으로는 `int`를 사용하며, 다음과 같이 명시적으로 변경할 수 있습니다.
 
