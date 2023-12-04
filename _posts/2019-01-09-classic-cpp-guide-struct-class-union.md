@@ -138,7 +138,7 @@ class T {
 
 # 클래스 선언과 정의 분리
 
-클래스/구조체는 헤더 파일과 소스 파일에 선언과 정의를 분리하여 작성할 수 있습니다. 정의시에는 범위 확인 연산자(`::`)를 사용합니다.(*자세한 내용은 [선언과 정의 분리 효과](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC-%ED%9A%A8%EA%B3%BC)를 참고하기 바랍니다.*)
+클래스/구조체는 헤더 파일과 소스 파일에 선언과 정의를 분리하여 작성할 수 있습니다. 정의시에는 범위 확인 연산자(`::`)를 사용합니다.(*자세한 내용은 [선언과 정의 분리 효과](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC-%ED%9A%A8%EA%B3%BC)를 참고하시기 바랍니다.*)
 
 ```cpp
 // ----
@@ -189,7 +189,7 @@ int T::f2() {} // inline화 안됨
 
 **using 선언을 이용한 접근 지정자 수정**
 
-[using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8) 을 사용하면 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 것을 가져올 수 있을 뿐만 아니라, 부모 클래스에서 지정한 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.(*[리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고*)
+[using 선언](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)을 사용하면 [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)의 것을 가져올 수 있을 뿐만 아니라, 부모 클래스에서 지정한 [접근 지정자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)를 강제로 변경할 수 있습니다. 하지만, 사용하지 마세요. 부모에서 설정한 행동을 임의로 바꾸는 건 좋지 않습니다.(*[리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 참고*)
 
 ```cpp
 class Base {

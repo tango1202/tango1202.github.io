@@ -301,7 +301,7 @@ namespace YourLib {
     using namespace MyLib::Windows; // Windows 버전을 사용합니다.
 
     int g() {
-        return f(); // MyLib::Windows::f() 가 호출됩니다.
+        return f(); // MyLib::Windows::f()가 호출됩니다.
     }
 };
 

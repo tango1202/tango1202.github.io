@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++] (C++11~) 가변 템플릿, 파라메터 팩, sizeof...() (C++17~) Fold 표현식"
+title: "#20. [모던 C++] (C++11~)가변 템플릿, 파라메터 팩, sizeof...() (C++17~) Fold 표현식"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -17,7 +17,7 @@ https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0
 # 개요
 
 [가변 인자(…)](
-https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 에서 `...`을 이용한 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 소개해 드렸는데요(*[가변 인자(…)](
+https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)에서 `...`을 이용한 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 소개해 드렸는데요(*[가변 인자(…)](
 https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 참고*), 
 
 C++11 부터는 [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/)과 [파라메터 팩](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/#%ED%8C%8C%EB%9D%BC%EB%A9%94%ED%84%B0-%ED%8C%A9-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%ED%99%95%EC%9E%A5)이 추가되어, [가변 인자(…)](
@@ -87,7 +87,7 @@ EXPECT_TRUE(Func_11(1, 2, 3) == 2 + 3 + 4);
 또한, 다음처럼 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)와 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)를 이용하면 [함수 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 갯수나 타입이 가변적인 포워딩 함수도 손쉽게 만들 수 있습니다.(*[forward() 원리](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%9B%90%EB%A6%AC) 참고*)
 
 ```cpp
-// func(params...) 를 호출합니다.
+// func(params...)를 호출합니다.
 template<typename Func, typename... Params>
 int Forwarding_11(Func func, Params&&... params) {
     return func(std::forward<Params>(params)...);

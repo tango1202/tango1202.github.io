@@ -106,7 +106,7 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |--|--|
 |[duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) (C++11~)|기간입니다. 두 Time Point의 차입니다.|
 
-[duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 은 다음의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 있습니다.
+[duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)은 다음의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 있습니다.
 
 |항목|내용|
 |--|--|

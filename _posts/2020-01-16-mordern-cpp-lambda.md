@@ -279,7 +279,7 @@ A_11 a; // 기본 생성과 이동 생성만 가능한 개체입니다.
 A_11 a; // 기본 생성과 이동 생성만 가능한 개체입니다.
 
 auto func_11 { // #1. bind 개체를 저장합니다. func_11() 형태로 호출할 수 있습니다.
-    std::bind( // #2. bind 개체를 생성합니다. lambda(obj) 를 호출하는 함수자를 만듭니다. 이시점에 이동 생성자가 호출됩니다. 
+    std::bind( // #2. bind 개체를 생성합니다. lambda(obj)를 호출하는 함수자를 만듭니다. 이시점에 이동 생성자가 호출됩니다. 
         [](const A_11& param) {param;}, // #3. 이동 생성자로부터 생성된 개체(#4에서 생성된 개체)를 참조합니다. 
         std::move(a) // #4. 우측값 참조. bind 내에서 이동 생성자로부터 생성된 개체가 만들어 집니다.
     )
@@ -491,7 +491,7 @@ EXPECT_TRUE(add_14(std::string{"hello"}, std::string{"world"}) == "helloworld");
 
 ```cpp
 template<typename T, typename U> 
-auto add_14(T a, U b) { // add_14(T a, T b) 가 아닙니다. 
+auto add_14(T a, U b) { // add_14(T a, T b)가 아닙니다. 
                         // auto이다 보니 a, b가 같은 타입이라는 보장이 없습니다.
     return a + b;
 } 
@@ -566,7 +566,7 @@ EXPECT_TRUE(Forwarding_14(std::move(val)) == 2); // 전달 참조에서 우측�
 
 # (C++17~) constexpr 람다 표현식
 
-C++17 부터 [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 요구사항이 충족되면 자동으로 암시적 컴파일 타임 함수로 만들어집니다. 또한, [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr) 을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.
+C++17 부터 [constexpr 람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#c17-constexpr-%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 요구사항이 충족되면 자동으로 암시적 컴파일 타임 함수로 만들어집니다. 또한, [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)을 지정하여 명시적으로 컴파일 타임 함수로 만들 수 있습니다.
 
 ```cpp
 // 명시적 constexpr 람다 표현식 입니다.

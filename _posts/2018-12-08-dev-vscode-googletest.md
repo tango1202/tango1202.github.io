@@ -235,7 +235,7 @@ GoogleTest 소스코드가 포함된 프로젝트의 빌드는 다음과 같이 
     )
     ```
 
-2. `View/Command Palette`(Ctrl+Shift+P) 에서 `CMake:Configure` 를 실행합니다. 그러면 `build` 폴더가 만들어 집니다.
+2. `View/Command Palette`(Ctrl+Shift+P)에서 `CMake:Configure` 를 실행합니다. 그러면 `build` 폴더가 만들어 집니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6e2259d9-d8b8-44da-93d5-592ca422491a)
 
@@ -324,7 +324,7 @@ CTest는 테스트케이스를 조직화 하여 표시하지 않으므로, 테�
 
 Visual Studio Code 익스텐션중 C++ TestMate를 이용하면, 테스트케이스가 트리로 조직화되어 표시되고, 테스트케이스 코드 위치로 이동할 수 있게 합니다. 또한 특정 테스트케이스만 실행할 수 있어, 필요한 테스트만 빠르게 확인할 수 있습니다.
 
-1. `Activity Bar`의 `Extensions`을 클릭하여 `C++ TestMate`를 설치합니다. 설치후 정상적인 반영을 위해 `View/Command Palette`(Ctrl+Shift+P) 에서 `Developer: Reload Window`를 합니다.
+1. `Activity Bar`의 `Extensions`을 클릭하여 `C++ TestMate`를 설치합니다. 설치후 정상적인 반영을 위해 `View/Command Palette`(Ctrl+Shift+P)에서 `Developer: Reload Window`를 합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c32e297-6834-42ba-bb12-12534a6b3cc6)
 

@@ -16,7 +16,7 @@ sidebar:
 
 기본적으로
 
-1. [아키텍처 민첩성 원칙](https://tango1202.github.io/principle/principle-architectural-agility/) 을 준수합니다.
+1. [아키텍처 민첩성 원칙](https://tango1202.github.io/principle/principle-architectural-agility/)을 준수합니다.
 2. 시스템의 가장 중요한 요소 해결을 위한 요구사항과 제약 조건을 도출하여 설계합니다.
 
 그후에,

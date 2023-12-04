@@ -56,7 +56,7 @@ void Dialog::DoModal() {
             ::PostQuitMessage(0); // WM_QUIT 를 주 쓰레드로 전송
             break;
         }
-        // EndDialog() 가 호출될 때 아마도 이 함수가 FALSE 가 리턴되도록 플래그 설정을 해야 한다.
+        // EndDialog()가 호출될 때 아마도 이 함수가 FALSE 가 리턴되도록 플래그 설정을 해야 한다.
         if (!IsContinue()) {  
 
             break;
@@ -95,7 +95,7 @@ while (1) {
             goto ExitLoop; // 중첩된 루프 탈출
         }
 
-        // EndDialog() 가 호출될 때 아마도 이 함수가 FALSE 가 리턴되도록 플래그 설정을 해야 한다.
+        // EndDialog()가 호출될 때 아마도 이 함수가 FALSE 가 리턴되도록 플래그 설정을 해야 한다.
         if (!IsContinue()) {  
 
             goto ExitLoop; // 중첩된 루프 탈출

@@ -17,7 +17,7 @@ sidebar:
 *(아쉽게도 제 환경에서는 단일 쓰레드로 동작하네요. MinGW-w64(GCC 12.3.0)의 문제일지 다른 문제일지는 좀더 확인해 봐야 할 듯합니다.)*
 
 > **확인 필요사항**
-> * GCC 옵션 : [gcc.gnu.org](https://gcc.gnu.org/onlinedocs/libstdc++/manual/parallel_mode_using.html) 에서 `-fopenmp`, `-march=native`, `D_GLIBCXX_PARALLEL`에 대한 언급이 있는데, 이게 C++17 병렬 알고리즘을 활성화 하는 옵션인지는 잘 모르겠습니다. 어쨌던, 사용해도 단일 쓰레드로 동작합니다.
+> * GCC 옵션 : [gcc.gnu.org](https://gcc.gnu.org/onlinedocs/libstdc++/manual/parallel_mode_using.html)에서 `-fopenmp`, `-march=native`, `D_GLIBCXX_PARALLEL`에 대한 언급이 있는데, 이게 C++17 병렬 알고리즘을 활성화 하는 옵션인지는 잘 모르겠습니다. 어쨌던, 사용해도 단일 쓰레드로 동작합니다.
 > * STL 구현 : STL 실제 구현이 안되어 있을 수도 있습니다. GCC에서 병렬 알고리즘 함수의 세부 구현 목록을 찾아봐야 합니다.(샘플로 `for_each()`, [reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85), `sort()`를 해봤습니다만 모두 단일 쓰레드로 동작합니다.)
 > * 다른 STL 사용 : [https://cukic.co/2018/03/29/cxx17-and-parallel-algorithms-in-stl/](https://cukic.co/2018/03/29/cxx17-and-parallel-algorithms-in-stl/)에서 Intel과 HP STL 사용 예가 있습니다. 
 

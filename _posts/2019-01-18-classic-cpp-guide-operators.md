@@ -199,7 +199,7 @@ EXPECT_TRUE(!(x < y)); // x >= y
 
 # 형변환 연산자
 
-형변환은 최대한 안하는 것이 좋습니다. 형변환의 자세한 내용은 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/) 을 참고하세요.
+형변환은 최대한 안하는 것이 좋습니다. 형변환의 자세한 내용은 [형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/)을 참고하세요.
 
 |항목|내용|[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)|개체 멤버 정의|개체 비멤버 정의|
 |--|--|:--:|:--:|:--:|

@@ -225,7 +225,7 @@ bool operator <(const char* left, const Data& right) {
     return left < right.m_Name;
 }
 
-// find() 에서 키 타입외에 다른 것을 사용하려면 std::less<>를 사용합니다.
+// find()에서 키 타입외에 다른 것을 사용하려면 std::less<>를 사용합니다.
 std::set<Data, std::less<>> dataSet{
     Data{"Lee", 10},
     Data{"Park", 20}

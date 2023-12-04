@@ -114,7 +114,7 @@ void* align(
 
 # 할당자
 
-기존에는 `allocator`만 있었으나([할당자(Allocator)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 참고), 좀더 많은 내용이 보강되었습니다.
+기존에는 `allocator`만 있었으나([할당자(*Allocator*)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/) 참고), 좀더 많은 내용이 보강되었습니다.
 
 |항목|내용|
 |--|--|
@@ -214,7 +214,7 @@ T : Destructor
 T : Destructor
 T : Destructor
 ```
-# (C++11~) 가비지 컬렉터 지원
+# (C++11~)가비지 컬렉터 지원
 
 |항목|내용|
 |--|--|

@@ -13,7 +13,7 @@ sidebar:
 
 
 > * (C++11~) [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다. 따라서 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
-> * (C++11~) [memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order) 는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)입니다.
+> * (C++11~) [memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order)는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)입니다.
 
 # 개요
 
@@ -27,7 +27,7 @@ sidebar:
 
 여러 명령 단위로 쪼개져 구성되어 있기 때문에, 여러 쓰레드에서 사용하는 값이 서로 달라질 수 있으므로, [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)에 `lock()`을 걸어 한개의 쓰레드만 접근 가능하게 해야 한다고 말씀드렸습니다.
 
-C++11 STL 에서는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 을 사용하여 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위(더이상 쪼개지지 않는 단위, 원자 단위)로 구성할 수 있습니다. 따라서 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) 없이 [쓰레드 경쟁 상태 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex---%EA%B2%BD%EC%9F%81-%EC%83%81%ED%83%9Crace-condition-%ED%95%B4%EA%B2%B0)할 수 있습니다.
+C++11 STL 에서는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)을 사용하여 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위(더이상 쪼개지지 않는 단위, 원자 단위)로 구성할 수 있습니다. 따라서 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) 없이 [쓰레드 경쟁 상태 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex---%EA%B2%BD%EC%9F%81-%EC%83%81%ED%83%9Crace-condition-%ED%95%B4%EA%B2%B0)할 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e34af791-1282-4f5f-92d3-9150d29464ba)
 
@@ -218,7 +218,7 @@ consumer.join();
 |`atomic_char` (C++11~)|`atomic<char>`|
 |`atomic_schar` (C++11~)|`atomic<signed char>`|
 
-그외 다른 별칭들은 [cppreference](https://en.cppreference.com/w/cpp/atomic/atomic)를 참고하기 바랍니다.
+그외 다른 별칭들은 [cppreference](https://en.cppreference.com/w/cpp/atomic/atomic)를 참고하시기 바랍니다.
 
 다음의 특수 목적 별칭이 있습니다.
 

@@ -95,7 +95,7 @@ void App::SaveDoc() {
 
 **준수 방법 : Template Method 패턴**
 
-하기 그림과 같이 [Template Method 패턴](https://tango1202.github.io/pattern/pattern-template-method/) 을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
+하기 그림과 같이 [Template Method 패턴](https://tango1202.github.io/pattern/pattern-template-method/)을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/237506b6-090d-4a7a-8bc4-31438116b97c)
 

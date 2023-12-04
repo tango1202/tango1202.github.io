@@ -19,7 +19,7 @@ sidebar:
 
 # 개요
 
-[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 언급한 것처럼 컴파일 타임에 여러가지 프로그래밍이 가능합니다. 하지만, [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)으로 우회하며 작성하다보니 상당히 난해했는데요, 
+[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)에서 언급한 것처럼 컴파일 타임에 여러가지 프로그래밍이 가능합니다. 하지만, [템플릿](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template/)으로 우회하며 작성하다보니 상당히 난해했는데요, 
 
 C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr) 이용해 **컴파일 타임 상수 표현식**을 지정할 수 있어 컴파일 타임 프로그래밍 환경이 좀더 쉬워졌습니다.
 
@@ -253,7 +253,7 @@ EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 1 * 2 * 3 * 4 * 5);
 
 조건식에 따라 컴파일하거나 컴파일하지 않습니다.
 
-[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/) 에서 소개된 다음 코드는 `if()`을 통해 `new T(*ptr);`와 `ptr->Clone();`을 호출하기 때문에, 이 두가지가 모두 가능한 것만 컴파일할 수 있었습니다.
+[템플릿 메타 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-meta-programming/)에서 소개된 다음 코드는 `if()`을 통해 `new T(*ptr);`와 `ptr->Clone();`을 호출하기 때문에, 이 두가지가 모두 가능한 것만 컴파일할 수 있었습니다.
 
 ```cpp
 class ICloneable {

@@ -14,7 +14,7 @@ sidebar:
 > * (C++11~) [noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 추가되어 해당 함수가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인지 컴파일 타임에 검사할 수 있습니다.
 > * (C++11~) [type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.
 > * (C++11~) [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(정수와 분수) 연산을 지원합니다.
-> * (C++14~) [integer_sequence](https://tango1202.github.io/mordern-cpp-stl/) 는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.
+> * (C++14~) [integer_sequence](https://tango1202.github.io/mordern-cpp-stl/)는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.
 > * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)이 추가되어 조건에 맞는 부분만 컴파일하고, 그렇지 않은 부분은 컴파일에서 제외할 수 있습니다.
 
 
@@ -28,7 +28,7 @@ sidebar:
 |반복|재귀 호출로 구현|
 |변수|[열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)으로 구현|
 
-다음은 컴파일 타임에 팩토리얼(1~N 까지의 곱) 을 구하는 예입니다.
+다음은 컴파일 타임에 팩토리얼(1~N 까지의 곱)을 구하는 예입니다.
 
 다음 코드를 보면,
 
@@ -305,7 +305,7 @@ EXPECT_TRUE(typeid(*sp4.GetPtr()).name() == typeid(int).name());
 먼저, 다음과 같이 [단위 전략 인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#%EB%8B%A8%EC%9C%84-%EC%A0%84%EB%9E%B5-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)인 `ICloneable`을 정의합니다. 추후 `CloneTraits`에서 `ICloneable` 을 상속한 개체는 `Clone()`을 이용하여 복제할 예정입니다.
 
 ```cpp
-// Clone() 을 제공하는 단위 인터페이스
+// Clone()을 제공하는 단위 인터페이스
 class ICloneable {
 private:
     ICloneable(const ICloneable& other) {} // 인터페이스여서 외부에서 사용 못하게 복사 생성자 막음
@@ -433,7 +433,7 @@ static T* Clone(const T* ptr, CloneTag<true>) {
 
 ```cpp
 static Shape* Clone(const Shape* ptr, CloneTag<true>) {
-    return ptr->Clone(); // (X) Shape::Clone() 이 ICloneable*을 리턴하면 ICloneable*이 Shape* 으로 변환될 수 없으므로 컴파일 오류가 발생합니다.
+    return ptr->Clone(); // (X) Shape::Clone()이 ICloneable*을 리턴하면 ICloneable*이 Shape* 으로 변환될 수 없으므로 컴파일 오류가 발생합니다.
 }
 ```
 
@@ -451,7 +451,7 @@ virtual Shape* Clone() const {
 다음은 전체 테스트 코드 입니다.
 
 ```cpp
-// Clone() 을 제공하는 단위 인터페이스
+// Clone()을 제공하는 단위 인터페이스
 class ICloneable {
 private:
     ICloneable(const ICloneable& other) {} // 인터페이스여서 외부에서 사용 못하게 복사 생성자 막음

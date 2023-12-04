@@ -85,7 +85,7 @@ if (result1 == result2) {}
 
 `BOOL`은 `int`형이라 `TRUE(1)`와 `FALSE(0)` 외에 다른 값을 가질 수 있다는 걸 상기해 보십시요. 실제로 Windows API는 `0`과 `1`외에 다른 정수값을 리턴하는 경우가 가끔 있습니다.
 
-[Windows API 의 GetMessage()](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessage) 를 보시면 `0`과 `-1`을 리턴합니다.
+[Windows API 의 GetMessage()](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessage)를 보시면 `0`과 `-1`을 리턴합니다.
 
 `BOOL`이 `TRUE(1)`와 `FALSE(0)`만 리턴한다고 신뢰하지 마십시요.
 

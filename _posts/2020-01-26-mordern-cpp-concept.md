@@ -457,7 +457,7 @@ EXPECT_TRUE(Func_20(1L) == 4); // long 버전
 
 # 익명 컨셉
 
-[요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires) 적용은 `requires 제약 조건`이고, [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4) 은 `requires {}`로 작성되므로, [익명 컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9D%B5%EB%AA%85-%EC%BB%A8%EC%85%89) 적용은 `requires requires {}`의 형태로 작성됩니다. 모양도 이상할 뿐더러 재활용도 되지 않으므로 사용하지 않는게 좋습니다. 
+[요구사항](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires) 적용은 `requires 제약 조건`이고, [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 `requires {}`로 작성되므로, [익명 컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9D%B5%EB%AA%85-%EC%BB%A8%EC%85%89) 적용은 `requires requires {}`의 형태로 작성됩니다. 모양도 이상할 뿐더러 재활용도 되지 않으므로 사용하지 않는게 좋습니다. 
 
 ```cpp
 template<typename T>

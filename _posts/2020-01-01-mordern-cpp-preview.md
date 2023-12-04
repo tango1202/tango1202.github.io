@@ -17,7 +17,7 @@ sidebar:
 
 현대적인 언어 특성에 발맞춰 좀더 단순하게 코딩할 수 있도록 개선되었습니다.
 
-STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/)를 참고하기 바랍니다.
+STL의 변경 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/)를 참고하시기 바랍니다.
 
 1. C++11
 

@@ -61,7 +61,7 @@ s1.length() == 2; // s2.size() 와 같습니다.
 s1[0] = 'a'; // [] 로 문자에 접근할 수 있습니다.
 ```
 
-문자열의 세부 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에 대해서는 모던 C++ STL의 [문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/) 을 참고하기 바랍니다.
+문자열의 세부 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에 대해서는 모던 C++ STL의 [문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/)을 참고하시기 바랍니다.
 
 # C스타일 문자열과의 호환
 

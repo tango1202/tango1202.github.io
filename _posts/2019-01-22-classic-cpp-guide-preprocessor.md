@@ -246,7 +246,7 @@ C++ 인지 확인 하거나, C++ 버전을 확인합니다. C++ 버전별로 호
 
 # `__LINE__`, `__FILE__`, #line
 
-[`__LINE__`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#line-file-line)과 [`__FILE__`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#line-file-line) 은 줄번호와 파일명을 나타내는 미리 지정된 [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 입니다. 디버깅시 현재 라인수와 파일명을 표시할 수 있습니다.
+[`__LINE__`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#line-file-line)과 [`__FILE__`](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#line-file-line)은 줄번호와 파일명을 나타내는 미리 지정된 [매크로](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 입니다. 디버깅시 현재 라인수와 파일명을 표시할 수 있습니다.
 
 ```cpp
 // Line Number:118 Filename:C:\XXX\XXX.cpp

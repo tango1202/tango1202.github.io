@@ -13,7 +13,7 @@ sidebar:
 
 표준화 되지는 않았고, 제공되는 Editor에 따라 결과물이 다르기는 하나, wiki 작성시 유용합니다.
 
-자세한 내용은 [Markdown Guide(https://www.markdownguide.org)](https://www.markdownguide.org) 를 참고하면 됩니다.
+자세한 내용은 [Markdown Guide(https://www.markdownguide.org)](https://www.markdownguide.org)를 참고하면 됩니다.
 
 마크다운은 헤더, 코드, 특수기호, 강조와 구분선, 인용, 목록, 체크박스, 접기/펼치기, 링크, 그림, 표로 구성됩니다.
 

@@ -131,7 +131,7 @@ Git 을 설치했다면 Visual Studio Code에서 `Panel(TERMINAL)`과 UI를 통�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4f63420c-e52e-4fd2-9bcd-59c48543a589)
 
-2. `View/Command Palette`(Ctrl+Shift+P) 를 실행하고, `Git View History(git log)`를 실행합니다. 그러면, 다음과 같이 commit 목록이 표시됩니다. 목록에서 특정 commit을 선택하면, commit된 파일 목록이 나타납니다.
+2. `View/Command Palette`(Ctrl+Shift+P)를 실행하고, `Git View History(git log)`를 실행합니다. 그러면, 다음과 같이 commit 목록이 표시됩니다. 목록에서 특정 commit을 선택하면, commit된 파일 목록이 나타납니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/55f7eca5-9c7e-4647-9b91-10d3a8782d16)
 

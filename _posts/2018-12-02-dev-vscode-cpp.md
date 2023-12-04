@@ -53,7 +53,7 @@ Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
 
 3. 다운로드 받은 파일의 압축을 풀고, `mingw64` 폴더를 설치할 경로에 이동시킵니다.
 
-4. `Path` 설정을 수정하기 위해, `제어판/시스템 속성`(Windows의 `작업표시줄/찾기`에서 `sysdm.cpl` 실행) 을 실행하여 , `고급`탭의 `환경 변수` 버튼 클릭후, `환경 변수` 대화상자에서 `Path`를 선택하여 `편집` 버튼을 실행합니다. `환경 변수 편집` 대화상자에 `mingw64/bin` 폴더를 추가합니다.
+4. `Path` 설정을 수정하기 위해, `제어판/시스템 속성`(Windows의 `작업표시줄/찾기`에서 `sysdm.cpl` 실행)을 실행하여 , `고급`탭의 `환경 변수` 버튼 클릭후, `환경 변수` 대화상자에서 `Path`를 선택하여 `편집` 버튼을 실행합니다. `환경 변수 편집` 대화상자에 `mingw64/bin` 폴더를 추가합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8f9c464d-1aec-479c-b58c-81b298764fe0)
 
@@ -61,18 +61,18 @@ Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
     
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d7bae65a-8cc0-4315-8e45-4c8a7bcf319c)
 
-5. 설치 확인을 위해 `cmd` 에서 `gcc -v`를 입력하여 버전을 확인합니다.(GCC의 C++ 버전 지원 여부는 [gcc.gnu.org](https://gcc.gnu.org/projects/cxx-status.html)을 참고하기 바랍니다. 특정 버전의 C++ 을 사용하려면 `g++ main.cpp -std=c++11` 와 같이 버전을 명시해야 합니다.)
+5. 설치 확인을 위해 `cmd` 에서 `gcc -v`를 입력하여 버전을 확인합니다.(GCC의 C++ 버전 지원 여부는 [gcc.gnu.org](https://gcc.gnu.org/projects/cxx-status.html)을 참고하시기 바랍니다. 특정 버전의 C++ 을 사용하려면 `g++ main.cpp -std=c++11` 와 같이 버전을 명시해야 합니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1893d24b-2cc0-40e9-8213-5fb095543b49)
 
 # Visual Studio Code Extension 설치(C/C++ Extension Pack)
 
-1. `Activity Bar`에서 `Extensions`(Ctrl+Shift+X) 을 클릭하여 Extension을 실행합니다.
+1. `Activity Bar`에서 `Extensions`(Ctrl+Shift+X)을 클릭하여 Extension을 실행합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b8516461-6468-401d-95eb-b70d5c251c80)
 
 2. `Side Bar(EXTENSIONS)`에서 `C++`로 검색하고 `C/C++ Extension Pack`의 `install` 버튼을 클릭하여 설치합니다. 그뒤 정상적인 반영을 위해 
-`Command Palette`(Ctrl+Shift+P) 에서 `Developer: Reload Window`를 합니다.(혹은 Visual Studio Code 를 재실행 합니다.)
+`Command Palette`(Ctrl+Shift+P)에서 `Developer: Reload Window`를 합니다.(혹은 Visual Studio Code 를 재실행 합니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19a9a392-405e-4d93-b305-831f9d3269fc)
 

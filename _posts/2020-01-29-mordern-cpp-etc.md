@@ -57,7 +57,7 @@ EXPECT_TRUE(alignof(B_11) == 8 && sizeof(B_11) == 8 * 3);
 EXPECT_TRUE(alignof(C_11) == 4 && sizeof(C_11) == 4 * 5); 
 ```
 
-# (C++11~) 가변 매크로
+# (C++11~)가변 매크로
 
 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)는 C99 에 도입되었으며, C와의 호환성을 위해 C++11에 추가되었습니다.
 
@@ -186,8 +186,8 @@ EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
 int Sum(int init, int a, int b, int c) {return init + a + b + c;}
 int Sum(int init) {return init;}
 #define MY_FUNC_20(...) Sum(10 __VA_OPT__(,) __VA_ARGS__) // 가변 인수가 있다면 ,를 넣습니다.
-EXPECT_TRUE(MY_FUNC_20(1, 2, 3) == 10 + 1 + 2 + 3); // f(10, 1, 2, 3) 가변 인수가 있다면 , 를 넣습니다.
-EXPECT_TRUE(MY_FUNC_20() == 10); // f(10) 가변 인수가 없다면 ,를 넣지 않습니다.
+EXPECT_TRUE(MY_FUNC_20(1, 2, 3) == 10 + 1 + 2 + 3); // f(10, 1, 2, 3)가변 인수가 있다면 , 를 넣습니다.
+EXPECT_TRUE(MY_FUNC_20() == 10); // f(10)가변 인수가 없다면 ,를 넣지 않습니다.
 ```
 
 # __has_cpp_attribute() 매크로 함수

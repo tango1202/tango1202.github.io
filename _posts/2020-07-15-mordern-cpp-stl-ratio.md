@@ -43,7 +43,7 @@ enum class MyEnum {Val1 = Result::num, Val2 = Result::den};
 EXPECT_TRUE(static_cast<int>(MyEnum::Val1) == 1 && static_cast<int>(MyEnum::Val2) == 1);
 ```
 
-[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 는 약분값을 사용하기 때문에, `1/3`이나 `2/3`은 같은 값으로 평가됩니다.
+[ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/)는 약분값을 사용하기 때문에, `1/3`이나 `2/3`은 같은 값으로 평가됩니다.
 
 ```cpp
 using Result = std::ratio_equal<

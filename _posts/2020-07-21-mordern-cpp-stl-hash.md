@@ -45,4 +45,4 @@ EXPECT_TRUE(hashStr1 == hashStr2); // 같은 값은 해시값도 같습니다.
 EXPECT_TRUE(hashStr1 != hashStr3); // 다른값은 해시값도 다릅니다.
 ```
 
-[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)에서 사용될 수 있고요, 자세한 사용 방법은 [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set)을 참고하기 바랍니다.
+[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)에서 사용될 수 있고요, 자세한 사용 방법은 [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set)을 참고하시기 바랍니다.

@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * [컨테이너 멤버 함수 erase()와 알고리즘 remove() 함수](??)의 차이를 알아둬라.
+> * [컨테이너 멤버 함수 erase()와 알고리즘 remove() 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)의 차이를 알아둬라.
 > * [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)는 삽입한 요소의 복제본을 관리한다. [원본을 관리](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-%EC%9B%90%EB%B3%B8-%EA%B4%80%EB%A6%AC)하려면 포인터를 이용하라.
 
 > **모던 C++**
