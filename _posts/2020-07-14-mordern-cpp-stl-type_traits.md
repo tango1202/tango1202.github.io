@@ -202,7 +202,7 @@ template<class T>
 struct enable_if<true, T> { typedef T type; }; // 조건이 참이면 `T`와 동일한 종속 타입 `type`을 만듭니다.
 ```
 
-예를 들어 다음은 `int`타입이나 `double`타입이나 심지어 `string`까지 `operator +()`가 정의되었다면 모두 실행 가능한데요,
+예를 들어 다음은 `int`타입이나 `double`타입이나 심지어 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)까지 `operator +()`가 정의되었다면 모두 실행 가능한데요,
 
 ```cpp
 template<typename T> 

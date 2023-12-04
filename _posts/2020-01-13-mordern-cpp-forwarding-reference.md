@@ -732,7 +732,7 @@ void Forwarding2_11(A param) { // param을 복사 생성하고
 
 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)를 이용하면 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 갯수를 줄일 수 있습니다.
 
-예를 들어 [string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)개체를 세팅하는 함수는 다음의 3가지 버전이 필요합니다.
+예를 들어 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)개체를 세팅하는 함수는 다음의 3가지 버전이 필요합니다.
 
 ```cpp
 class A_11 {

@@ -36,7 +36,7 @@ EXPECT_TRUE(1_mm == 1); // mm는 정수형도 오버로딩 되었습니다.
 
 # 문자열 추론
 
-기존 문자열을 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)로 초기화 하면 `const char*`로 추론되는데요, [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 만들어 [string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)으로 추론되게 할 수 있습니다.
+기존 문자열을 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)로 초기화 하면 `const char*`로 추론되는데요, [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 만들어 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)으로 추론되게 할 수 있습니다.
 
 ```cpp
 // const char* 형의 문자열을 std::string으로 변환

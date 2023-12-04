@@ -12,7 +12,7 @@ sidebar:
 
 [bitset](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-bitset/)은 비트 단위의 데이터를 관리하는 개체입니다.
 
-다음과 같이 16진수나 [string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)으로 초기화 할 수 있고, `set()`, `reset()`함수로 특정 비트를 설정하며, `test()`함수로 값을 조회합니다.
+다음과 같이 16진수나 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)으로 초기화 할 수 있고, `set()`, `reset()`함수로 특정 비트를 설정하며, `test()`함수로 값을 조회합니다.
 
 ```cpp
 std::bitset<10> b1; // 10개의 비트 플래그로 구성됨. all 0 

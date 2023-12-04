@@ -35,7 +35,7 @@ C++17 부터는 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cp
 |`variant_alternative, variant_alternative_t` (C++17~)|(작성중)|
 |`variant_npos` (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) 인덱스가 잘못된 경우를 나타냅니다.`-1`입니다.| 
 
-다음 예에서는 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)를 이용하여 `int` 또는 `string`으로 개체를 관리합니다.
+다음 예에서는 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)를 이용하여 `int` 또는 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)으로 개체를 관리합니다.
 
 1. 기본 생성시에는 0번째 타입의 기본 생성값으로 초기화 합니다.
 2. `holds_alternative()`으로 주어진 타입이 관리되고 있는지 검사합니다.

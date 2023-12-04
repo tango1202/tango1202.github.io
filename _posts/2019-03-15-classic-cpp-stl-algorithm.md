@@ -121,7 +121,7 @@ EXPECT_TRUE(result == 2); // 1은 2개 입니다.
 
 # remove()
 
-[remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)는 `value`가 아닌 요소는 시퀀스의 앞으로 옮기고 삭제할 위치를 리턴합니다. 자세한 사용 방법은 [컨테이너 멤버 함수 erase()와 알고리즘 remove() 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)을 참고하세요.
+[remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)는 `value`가 아닌 요소는 시퀀스의 앞으로 옮기고 삭제할 위치를 리턴합니다. 자세한 사용 방법은 [컨테이너 멤버 함수 erase()와 알고리즘 remove() 함수](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)를 참고하세요.
 
 ```cpp
 template<class ForwardIterator, class T>

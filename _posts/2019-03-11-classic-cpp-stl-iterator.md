@@ -228,7 +228,7 @@ EXPECT_TRUE(v[0] == 7 && v[1] == 7 && v[2] == 7 && v[3] == 7 && v[4] == 7);
 
 # 이터레이터 어뎁터
 
-[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)나 [삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)와 같이 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)의 고유 기능인 `*`, `->`, `++`을 재구현하여 다르게 동작하는 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)들입니다. 자세한 사항은 모던 C++ STL의 [이터레이터 어뎁터](??)를 참고하시기 바랍니다.
+[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)나 [삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)와 같이 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)의 고유 기능인 `*`, `->`, `++`을 재구현하여 다르게 동작하는 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)들입니다. 자세한 사항은 모던 C++ STL의 [이터레이터 어뎁터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%96%B4%EB%8E%81%ED%84%B0)를 참고하시기 바랍니다.
 
 
 

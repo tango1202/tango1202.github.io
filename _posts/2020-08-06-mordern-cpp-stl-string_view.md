@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
+> * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 문자열 복제가 없도록 해줍니다.
 
 # 개요
 
-문자열에 대한 읽기만 필요한 함수가 있는 경우 `string`이나 `const char*`로 전달받을 수 있는데요, 둘다 문제가 좀 있습니다.
+문자열에 대한 읽기만 필요한 함수가 있는 경우 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)이나 `const char*`로 전달받을 수 있는데요, 둘다 문제가 좀 있습니다.
 
-1. [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 로 `string`을 사용한 경우 : 암시적으로 `string`개체가 생성됩니다.
+1. [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 로 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)을 사용한 경우 : 암시적으로 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)개체가 생성됩니다.
 
     ```cpp
     std::size_t Func(const std::string& str) {return str.length();}
@@ -44,9 +44,9 @@ sidebar:
     EXPECT_TRUE(Func(str2) == 5); // (△) 비권장. 문자열의 길이는 매번 다시 '\0'까지 카운팅해야 합니다.
     ```
 
-C++17 부터는 [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 `string`복제가 없도록 해줍니다.
+C++17 부터는 [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 문자열 복제가 없도록 해줍니다.
 
-내부적으로 `string`이나 `const char*`를 참조만 하여 메모리 낭비를 없애고, 읽기 전용 함수들만 제공하여 `string` 관련 편의 기능들을 그대로 사용할 수 있습니다.
+내부적으로 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)이나 `const char*`를 참조만 하여 메모리 낭비를 없애고, 읽기 전용 함수들만 제공하여 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 관련 편의 기능들을 그대로 사용할 수 있습니다.
 
 ```cpp
 std::size_t Func(std::string_view sv) {
@@ -122,5 +122,5 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |`starts_with()` (C++20~)|(작성중)|
 |`ends_with()` (C++20~)|(작성중)|
 |`contains()` (C++23~)|(작성중)|
-|`substr()` (C++17~)|`string`에서 하위 문자열을 추출합니다.|
-|`copy()` (C++17~)|`string`에서 하위 문자열을 문자[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|
+|`substr()` (C++17~)|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 하위 문자열을 추출합니다.|
+|`copy()` (C++17~)|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 하위 문자열을 문자[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|
