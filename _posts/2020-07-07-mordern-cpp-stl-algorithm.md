@@ -38,7 +38,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[for_each()](??)<br/>`for_each_n()` (C++17~)|시퀀스 안의 요소들에 대해 `f()`를 실행합니다.|
+|[for_each()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#for_each)<br/>`for_each_n()` (C++17~)|시퀀스 안의 요소들에 대해 `f()`를 실행합니다.|
 |`count()`<br/>`count_if()`|시퀀스에서 지정한 값인 요소의 갯수를 리턴합니다.|
 |`mismatch()`|두 시퀀스가 달라지기 시작하는 첫번째 요소를 찾습니다.|
 |`find()`<br/>[find_if()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)<br/>`find_if_not()` (C++11~)|시퀀스에서 특정값의 위치를 찾습니다.|

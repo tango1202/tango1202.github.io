@@ -68,19 +68,19 @@ EXPECT_TRUE(*result == 1); // 삭제한 요소의 다음 요소를 리턴함
 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에는 `erase()` [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 있고, [알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)에는 `remove()`가 있습니다. 둘다 삭제를 하는 함수 인데요, 사용법과 결과가 약간 다릅니다.
 
 * `erase()`는 삭제할 위치를 전달받아 해당 위치의 요소를 삭제하고, 
-* `remove()`는 삭제할 값을 전달받아 해당 값과 동일한 요소를 쉽게 삭제할 수 있도록 도와줍니다.
+* `remove()`는 삭제할 값을 전달받아 삭제하지 않을 요소들을 앞쪽에 복사해 두고 삭제해야 할 요소의 위치를 알려줍니다.
 
 |항목|정의|내용|
 |--|--|--|
 |`erase()`|`iterator erase(iterator pos)`|`pos`위치의 요소를 삭제하고 삭제한 요소의 다음 요소 위치를 리턴합니다.|
-|`remove()`|`iterator remove(const T& val)`|`val`인 요소들을 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 뒤로 옮기고 삭제할 위치를 리턴합니다.|
+|`remove()`|`iterator remove(const T& val)`|`val`이 아닌 요소는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 앞으로 옮기고 삭제할 위치를 리턴합니다.|
 
 `erase()`는 요소를 삭제합니다만, `remove()`는 삭제가 아니라 이동시킨다는 것에 주의하세요.
 
 다음은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에 6개의 요소를 넣어두고, 이중 값이 `1`인 요소만 `remove()`한 예입니다.
 
-1. #1 : `1`인 요소들은 삭제되고, 뒤에 있던 `4`, `5`가 복사되었습니다.
-2. #2 : 삭제한 요소가 옮겨졌습니다.
+1. #1 : 뒤에 있던 `4`, `5`가 복사되었습니다.
+2. #2 : 이전값이 남아 있습니다.
 3. #3 : #1에 복사된 것들이 그대로 남아 있습니다.
 
 ```cpp
@@ -97,12 +97,12 @@ EXPECT_TRUE(v.size() == 6);
 EXPECT_TRUE(v[0] == 0);
 EXPECT_TRUE(v[1] == 4); // #1
 EXPECT_TRUE(v[2] == 5); // #1
-EXPECT_TRUE(v[3] == 1); // #2. 삭제된 것은 여기로 옮겨졌습니다.
+EXPECT_TRUE(v[3] == 1); // #2. 이전값이 남아 있습니다.
 EXPECT_TRUE(v[4] == 4); // #3. 이전값이 남아 있습니다.
 EXPECT_TRUE(v[5] == 5); // #3. 이전값이 남아 있습니다. 
 ```
 
-상기 예에서와 같이 `remove()`는 삭제할 요소를 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 뒤로 옮기고 삭제할 위치를 리턴하기만 합니다. 실제로 삭제하려면 `remove()`가 리턴한 위치에서 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 끝까지 `erase()`를 호출해야 합니다.
+상기 예에서와 같이 `remove()`는 삭제하지 않을 요소를 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 앞으로 옮기고 삭제할 위치를 리턴하기만 합니다. 실제로 삭제하려면 `remove()`가 리턴한 위치에서 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 끝까지 `erase()`를 호출해야 합니다.
 
 ```cpp
 std::vector<int> v;
@@ -113,7 +113,7 @@ v.push_back(1);
 v.push_back(4); 
 v.push_back(5); 
 
-std::vector<int>::iterator result = std::remove(v.begin(), v.end(), 1); // 1인 요소를 컨테이너의 끝으로 옮기고 erase할 위치를 리턴합니다.
+std::vector<int>::iterator result = std::remove(v.begin(), v.end(), 1); // 삭제하지 않을 요소를 컨테이너의 앞으로 옮기고 erase할 위치를 리턴합니다.
 v.erase(result, v.end()); // 요소를 실제로 삭제합니다.
 
 EXPECT_TRUE(v.size() == 3); 

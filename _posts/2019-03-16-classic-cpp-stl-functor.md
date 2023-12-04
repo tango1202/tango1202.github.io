@@ -254,7 +254,7 @@ for (; itr != endItr; ++itr) {
 }
 ```
 
-다음처럼 `for_each()`와 [mem_fun_ref()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)를 이용하면, 좀 더 간결히 만들 수 있습니다.
+다음처럼 [for_each()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#for_each)와 [mem_fun_ref()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EC%95%84%EB%8B%B5%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)를 이용하면, 좀 더 간결히 만들 수 있습니다.
 
 ```cpp
 class A {
