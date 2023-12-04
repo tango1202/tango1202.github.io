@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > **모던 C++**
-> * (C++17~) [polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/)는 런타임 [다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)을 지원하는 [할당자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%ED%95%A0%EB%8B%B9%EC%9E%90)입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 메모리 풀을 손쉽게 만들 수 있습니다.
+> * (C++17~) [polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/)는 런타임 [다형성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-polymorphism/)을 지원하는 [할당자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%ED%95%A0%EB%8B%B9%EC%9E%90)입니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 [메모리 풀](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%92%80)을 손쉽게 만들 수 있습니다.
 
 # 개요
 
@@ -33,9 +33,9 @@ class vector {
 |--|--|
 |`allocate()`|`n`개 만큼 저장할 수 있는 메모리 영역을 할당합니다.|
 |`deallocate()`|`allocate()`에서 할당한 메모리를 해제합니다.|
-|`construct()`|지정한 메모리 위치에 요소 개체의 생성자를 호출합니다. ([위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고)|
-|`destroy()`|지정한 메모리 위치에 요소 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출합니다.([위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고)|
-|`rebind`|요소 타입에 대한 [할당자(*Allocator*)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/)를 이용하여 다른 타입용 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)를 할당할 수 있게 합니다.|
+|`construct()`|지정한 메모리 위치에 요소 개체의 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)를 호출합니다.(*[위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고*)|
+|`destroy()`|지정한 메모리 위치에 요소 개체의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)를 호출합니다.(*[위치 지정 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1) 참고*)|
+|`rebind` (~C++17)|요소 타입에 대한 [할당자(*Allocator*)](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-allocator/)를 이용하여 다른 타입용 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)를 할당할 수 있게 합니다.|
 
 다음은 간단한 `Allocator` 구현 예입니다.
 
@@ -88,14 +88,15 @@ public:
     // T 타입에 대한 할당자(another)를 이용하여
     // 다른 타입인 U 타입용 컨테이너를 할당할 수 있게 합니다.
     // T::rebind<U>::other(another).allocate(10, static_cast<U*>(0));
-    template<class U>
-    struct rebind {typedef MyAllocator<U> other;};
+    // C++17 부터 deprecate 되었습니다.
+    // template<class U>
+    // struct rebind {typedef MyAllocator<U> other;};
 
-    template<class U>
-    MyAllocator(const MyAllocator<U>&) {}
+    // template<class U>
+    // MyAllocator(const MyAllocator<U>&) {}
 
-    template<class U>
-    MyAllocator& operator =(const MyAllocator<U>&) {return *this;}
+    // template<class U>
+    // MyAllocator& operator =(const MyAllocator<U>&) {return *this;}
 };
 
 class A {
