@@ -50,9 +50,9 @@ STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공
 |--|--|
 |`notify_one()` (C++11~)|대기중인 한개의 쓰레드에게 알립니다.|
 |`notify_all()` (C++11~)|대기중인 모든 쓰레드에게 알립니다.|
-|`wait()` (C++11~)|Notify가 왔을때 주어진 조건자가 참이면 대기를 해제합니다.|
-|`wait_for()` (C++11~)|Notify가 왔을때 주어진 조건자가 참이거나 주어진 기간이 지나면 대기를 해제합니다.|
-|`wait_until()` (C++11~)|Notify가 왔을때 주어진 조건자가 참이거나 주어진 시간이 되면 대기를 해제합니다.|
+|`wait()` (C++11~)|Notify가 왔을때 주어진 [조건자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 참이면 대기를 해제합니다.|
+|`wait_for()` (C++11~)|Notify가 왔을때 주어진 [조건자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 참이거나 주어진 기간이 지나면 대기를 해제합니다.|
+|`wait_until()` (C++11~)|Notify가 왔을때 주어진 [조건자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 참이거나 주어진 시간이 되면 대기를 해제합니다.|
 |`native_handle()` (C++11~)|시스템에 따른 구현에 정의된 핸들을 리턴합니다.|
 
 예를 들어 다음의 `wait()`는 

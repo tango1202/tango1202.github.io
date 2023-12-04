@@ -55,7 +55,7 @@ action, command, 함수자
 # 인터페이스(TPL 1005page, 용어의
 혼동)
 
-일종의 class 아답터. 인터페이스
+일종의 class 어뎁터. 인터페이스
 충돌 해결
 
 # handle

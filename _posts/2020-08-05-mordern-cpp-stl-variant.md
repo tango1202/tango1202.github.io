@@ -25,7 +25,7 @@ C++17 부터는 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cp
 |`swap()` (C++17~)|바꿔치기 합니다.|
 |`==`, `!=` (~C++17)|관리하는 개체를 비교합니다.|
 |`<, <=, >, >=` (C++17~)<br/>`<=>` (C++20~)|관리하는 개체를 비교합니다.|
-|[visit()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/#visit) (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 관리하는 값으로 함수자를 호출합니다.|
+|[visit()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/#visit) (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 관리하는 값으로 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 호출합니다.|
 |`holds_alternative()` (C++17~)|주어진 타입이 관리되고 있는지 검사합니다.|
 |`get()` (C++17~)|주어진 인덱스나 타입의 값을 리턴합니다. 값이 없으면, `bad_variant_access` 예외를 발생합니다.|
 |`get_if()` (C++17~)|주어진 타입의 값을 리턴합니다. 값이 없으면, [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr) 예외를 발생합니다.|
@@ -119,7 +119,7 @@ EXPECT_TRUE(var.valueless_by_exception() == false);
 
 # visit()
 
-[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 관리하는 값으로 함수자를 호출합니다.
+[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 관리하는 값으로 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 호출합니다.
 
 예를들어 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)를 저장한 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 각 요소에 `Func()`을 호출하고 싶다면 다음과 같이 `holds_alternative()`로 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 주어진 타입의 값을 저장했는지 확인 후 `Func()`에 해당 값을 전달해야 합니다.
 

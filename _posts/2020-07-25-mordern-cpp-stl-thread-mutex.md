@@ -11,10 +11,10 @@ sidebar:
 > * [MEC++#16] const [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 쓰레드에 안전하게 작성하라(mutex, atomic)
 > * [MEC++#37] thread 들을 모든 경로에서 합류 불가능하게 만들어라.(join(), detach()를 사용하라.)
 
-> * (C++11~) [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 주어진 함수자를 쓰레드로 실행시킵니다. [yield(), sleep_for(), sleep_until()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-yield-sleep_for-sleep_until)등으로 실행 순서나 속도를 제어할 수 있습니다.
+> * (C++11~) [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 주어진 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 쓰레드로 실행시킵니다. [yield(), sleep_for(), sleep_until()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-yield-sleep_for-sleep_until)등으로 실행 순서나 속도를 제어할 수 있습니다.
 > * (C++11~) [mutex, timed_mutex, recusive_mutex, recusive_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) 등은 쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.
 > * (C++11~) [lock_guard, unique_lock, lock(), try_lock()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock)의 잠금 상태를 관리합니다.
-> * (C++11~) [call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag)를 이용하면 주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
+> * (C++11~) [call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag)를 이용하면 주어진 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
 > * (C++14~) [shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)와 [shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)을 이용하여 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)의 소유권을 쓰레드끼리 공유할 수 있습니다. 
 > * (C++17~) [shared_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)는 다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)입니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.
 > * (C++17~) [scoped_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c17-scoped_lock)을 추가하여, 다수의 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 사용하더라도 데드락(Dead Lock)을 방지할 수 있게 해줍니다.
@@ -27,7 +27,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) (C++11~)|주어진 함수자를 쓰레드로 실행시킵니다. [yield(), sleep_for(), sleep_until()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-yield-sleep_for-sleep_until)등으로 실행 순서나 속도를 제어할 수 있습니다.|
+|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) (C++11~)|주어진 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 쓰레드로 실행시킵니다. [yield(), sleep_for(), sleep_until()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-yield-sleep_for-sleep_until)등으로 실행 순서나 속도를 제어할 수 있습니다.|
 |`jthread` (C++20~)|(작성중)|
 
 **쓰레드 취소**
@@ -59,7 +59,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |[lock_guard](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) (C++11~)<br/>`unique_lock` (C++11~)<br/>`lock()` (C++11~)<br/>[try_lock()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#try_lock---mutex%EA%B0%80-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) (C++11~)<br/>[shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) (C++14~)<br/>[scoped_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c17-scoped_lock) (C++17~)|[mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)의 잠금 상태를 관리합니다.([lock_guard - mutex가 1개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#lock_guard---mutex%EA%B0%80-1%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0)과 [try_lock() - mutex가 여러개인 경우 데드락(Dead Lock) 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#try_lock---mutex%EA%B0%80-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%B8-%EA%B2%BD%EC%9A%B0-%EB%8D%B0%EB%93%9C%EB%9D%BDdead-lock-%ED%95%B4%EA%B2%B0) 참고)|
-|[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag) (C++11~)|주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다.|
+|[call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag) (C++11~)|주어진 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 여러 쓰레드에서 실행해도 한번만 호출합니다.|
 
 > *(C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었고, [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.*
 
@@ -101,7 +101,7 @@ sidebar:
 
 # thread
 
-[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 쓰레드를 생성한 뒤 주어진 함수(또는 함수자)를 실행시킵니다. 이후 `join()`을 이용하여 쓰레드가 종료할 때까지 대기하거나, `detach()`를 이용하여 계속 백그라운드에서 쓰레드가 실행되도록 내버려 두어야 합니다. 만약 `join()`이나 `detach()`를 하지 않으면 예외가 발생합니다.
+[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 쓰레드를 생성한 뒤 주어진 함수(또는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/))를 실행시킵니다. 이후 `join()`을 이용하여 쓰레드가 종료할 때까지 대기하거나, `detach()`를 이용하여 계속 백그라운드에서 쓰레드가 실행되도록 내버려 두어야 합니다. 만약 `join()`이나 `detach()`를 하지 않으면 예외가 발생합니다.
 
 [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 다음과 같습니다.
 
@@ -523,7 +523,7 @@ worker2.join();
 
 # call_once(), once_flag
 
-주어진 함수자를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
+주어진 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 여러 쓰레드에서 실행해도 한번만 호출합니다. 
 
 ```cpp
 class A {

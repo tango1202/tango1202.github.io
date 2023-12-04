@@ -442,7 +442,7 @@ public:
 
 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)은 관리하는 개체를 소멸시키는 `deleter`를 사용자 정의 할 수 있습니다. 
 
-다음 코드에서는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)으로 `deleter`를 전달했는데요, 함수, 함수자 모두 가능합니다.
+다음 코드에서는 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)으로 `deleter`를 전달했는데요, 함수, [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 모두 가능합니다.
 
 ```cpp
 std::shared_ptr<int> a{
@@ -573,7 +573,7 @@ EXPECT_TRUE(!(a.owner_before(c)) && !(c.owner_before(a)));
 ```
 # owner_less 
 
-[owner_before()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_before-%EB%B9%84%EA%B5%90)를 이용하여 소유권 개체의 주소로 비교하는 함수자입니다.
+[owner_before()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_before-%EB%B9%84%EA%B5%90)를 이용하여 소유권 개체의 주소로 비교하는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)입니다.
 
 # shared_ptr 형변환 
 

@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 각 타입별로 데이터의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 리턴하는 함수자 입니다.
+> * (C++11~) [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 각 타입별로 데이터의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 리턴하는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 입니다.
 
 # 개요
 
-[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 각 타입별로 데이터의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 리턴하는 함수자 입니다.
+[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)는 각 타입별로 데이터의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 리턴하는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 입니다.
 
 1. 리턴되는 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)은 `size_t` 입니다.(4byte보다 크거나 같으며, `int`와 동일한 크기입니다.)
 2. 동일한 데이터는 동일한 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)이 나와야 합니다.

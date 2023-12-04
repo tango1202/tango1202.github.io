@@ -19,10 +19,10 @@ sidebar:
 
 |항목|내용|**Key** 조건|
 |--|--|--|
-|`unordered_map` (C++11~)|**Key** - **Value** 쌍으로 관리하며, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 사용합니다.<br/>**Key**의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)으로 요소를 탐색합니다.(*O(1)*)<br/>삽입되는 **Key**는 유일합니다.<br/>첨자 연산을 지원합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 함수자 구현<br/>`==` 구현|
-|`unordered_multimap` (C++11~)|`map`과 동일하며 중복 **Key**를 허용합니다.<br/>첨자 연산을 지원 하지 않습니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 함수자 구현<br/>`==` 구현|
-|`unordered_set` (C++11~)|**Key**만 요소로 삽입됩니다.<br/>**Key**의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)으로 요소를 탐색합니다.(*O(1)*)<br/>삽입되는 **Key**는 유일합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 함수자 구현<br/>`==` 구현|
-|`unordered_multiset` (C++11~)|`set`과 동일하며 중복 **Key**를 허용합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) 함수자 구현<br/>`==` 구현|
+|`unordered_map` (C++11~)|**Key** - **Value** 쌍으로 관리하며, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 사용합니다.<br/>**Key**의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)으로 요소를 탐색합니다.(*O(1)*)<br/>삽입되는 **Key**는 유일합니다.<br/>첨자 연산을 지원합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 구현<br/>`==` 구현|
+|`unordered_multimap` (C++11~)|`map`과 동일하며 중복 **Key**를 허용합니다.<br/>첨자 연산을 지원 하지 않습니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 구현<br/>`==` 구현|
+|`unordered_set` (C++11~)|**Key**만 요소로 삽입됩니다.<br/>**Key**의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)으로 요소를 탐색합니다.(*O(1)*)<br/>삽입되는 **Key**는 유일합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 구현<br/>`==` 구현|
+|`unordered_multiset` (C++11~)|`set`과 동일하며 중복 **Key**를 허용합니다.|[hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/) [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/) 구현<br/>`==` 구현|
 
 # 해시
 
@@ -178,7 +178,7 @@ EXPECT_TRUE(m[0] == "changed data");
 1. [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 구현해야 하고, [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 불필요하며,
 2. 대소 비교를 하지 않으므로, `bool operator <(const T& other);` 구현은 필요 없고,
 3. 버킷(Bucket) 내에서 탐색하기 위해 `bool operator ==(const T& other);` 구현이 필요하고,
-4. 해당 개체의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)를 구하기 위해 [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)함수자를 구현하여 [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) 정의시 전달해야 합니다.
+4. 해당 개체의 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)를 구하기 위해 [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)[함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 구현하여 [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/) 정의시 전달해야 합니다.
 
 ```cpp
 class A {
