@@ -57,7 +57,7 @@ sidebar:
 iterator insert(iterator position, const value_type& x);
 ```
 
-따라서, 다음처럼 `find()`한 [const_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90)를 `insert()`함수에 전달할 수 없습니다.
+따라서, 다음처럼 [find()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#find)한 [const_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90)를 `insert()`함수에 전달할 수 없습니다.
 
 ```cpp
 std::vector<int> v;

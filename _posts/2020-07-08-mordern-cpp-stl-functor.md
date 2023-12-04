@@ -17,7 +17,7 @@ sidebar:
 > * (C++11~) [is_bind_expression](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_bind_expression)는  [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)로 생성한 함수인지 검사합니다.
 > * (C++11~) [is_placeholder](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_placeholder)는 자리 표시자를 사용했는지 검사합니다.
 > * (C++14~) `bit_not`이 추가되었습니다.
-> * (C++17~) [문자열 검색기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#c17-searcher)(`default_searcher`, `boyer_moore_searcher`, `boyer_moore_horspool_searcher`)가 추가되어 [search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)의 함수자로 사용할 수 있습니다.
+> * (C++17~) [문자열 검색기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#c17-searcher)(`default_searcher`, `boyer_moore_searcher`, `boyer_moore_horspool_searcher`)가 추가되어 [search()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#search)의 함수자로 사용할 수 있습니다.
 > * (C++17~) [not_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되어 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)(단항, 이항 제한이 없습니다.)로 전달한 함수자를 부정하는 함수자를 만듭니다.
 > * (C++17~) [invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 동일한 방식으로 호출할 수 있게 합니다.
 
@@ -117,7 +117,7 @@ EXPECT_TRUE(IsDifferent(1, 1, 1) == false); // 인자가 여러개여도 됩니�
 
 # (C++17~) Searcher
 
-C++17 부터는 문자열 검색기가 추가되어 [search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)의 함수자로 사용할 수 있습니다.
+C++17 부터는 문자열 검색기가 추가되어 [search()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#search)의 함수자로 사용할 수 있습니다.
 
 |항목|내용|
 |--|--|

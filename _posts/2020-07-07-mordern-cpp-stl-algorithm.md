@@ -39,14 +39,14 @@ sidebar:
 |항목|내용|
 |--|--|
 |[for_each()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#for_each)<br/>`for_each_n()` (C++17~)|시퀀스 안의 요소들에 대해 `f()`를 실행합니다.|
-|`count()`<br/>`count_if()`|시퀀스에서 지정한 값인 요소의 갯수를 리턴합니다.|
+|[count()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#count)<br/>`count_if()`|시퀀스에서 `value`인 요소의 갯수를 리턴합니다.|
 |`mismatch()`|두 시퀀스가 달라지기 시작하는 첫번째 요소를 찾습니다.|
-|`find()`<br/>[find_if()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)<br/>`find_if_not()` (C++11~)|시퀀스에서 특정값의 위치를 찾습니다.|
+|[find()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#find)<br/>[find_if()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)<br/>`find_if_not()` (C++11~)|시퀀스에서 특정값의 위치를 찾습니다.|
 |`find_end()`|시퀀스에서 특정값의 마지막 위치를 찾습니다.|
 |`find_first_of()`|지정된 요소들중 일치하는 값이 있는 첫번째 위치를 찾습니다.|
 |`find_last_of()`|지정된 요소들중 일치하는 값이 있는 마지막 위치를 찾습니다.|
 |`adjacent_find()`|중복된 요소의 위치를 찾습니다.|
-|`search()`<br/>`search_n()`|시퀀스에서 특정 부분 시퀀스의 위치를 찾습니다.|
+|[search()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#search)<br/>`search_n()`|시퀀스에서 특정 부분 시퀀스의 위치를 찾습니다.|
 |`all_of()` (C++11~)<br/>`any_of()` (C++11~)<br>`none_of()` (C++11~)|시퀀스 안의 요소들에 대해 모든 조건이 참인지, 1개 이상 참인지, 모두 거짓인지 검사합니다.|
 
 # 수정되는 시퀀스 작업
@@ -57,7 +57,7 @@ sidebar:
 |`fill()`<br/>`fill_n()`|모든 요소에 `value`값을 대입합니다.|
 |`transform(InputIt first1, InputIt last1, OutputIt d_first, UnaryOperation unary_op)`|시퀀스 안의 각 요소들(`first1~last1`)에 대해 `op()`를 실행후 `*d_first~`에 대입합니다.|
 |`generate()`<br/>`generate_n()`|모든 요소에 `gen()`값을 대입합니다.|
-|`remove()`<br/>`remove_if()`<br/>`remove_copy()`<br/>`remove_copy_if()`|시퀀스에서 주어진 값인 요소를 삭제합니다.(*[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 버전이 효율적입니다.*)|
+|[remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)<br/>`remove_if()`<br/>`remove_copy()`<br/>`remove_copy_if()`|`value`가 아닌 요소는 시퀀스의 앞으로 옮기고 삭제할 위치를 리턴합니다.(*[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 버전이 효율적입니다.*)|
 |`replace()`<br/>`replace_if()`<br/>`replace_copy()`<br/>`replace_copy_if()`|주어진 값을 가진 요소를 다른 값으로 대체합니다.|
 |`swap()`<br/>`iter_swap()`<br/>`swap_ranges()`|두 요소나 시퀀스의 각 요소들을 바꿔치기 합니다.|
 |`reverse()`<br/>`reverse_copy()`|요소들의 순서를 뒤집습니다.|

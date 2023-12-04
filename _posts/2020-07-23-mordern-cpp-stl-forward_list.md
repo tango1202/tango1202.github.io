@@ -35,7 +35,7 @@ sidebar:
 |리스트의 최대 요소 갯수|`max_size()`|O|O|
 |모든 요소 삭제|`clear()`|O|O|
 |[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)로 요소 삭제|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 주어진 위치 뒤의 요소를 삭제하고, `list`는 주어진 위치의 요소를 삭제함|`erase_after()`|`erase()`|
-|값으로 요소 삭제|`remove()`<br/>`removeif()`|O|O|
+|값으로 요소 삭제|`remove()`<br/>`remove_if()`|O|O|
 |삽입|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 주어진 위치 뒤에 삽입하고, `list`는 앞에 삽입합니다.|`insert_after()`<br/>`emplace_after()`|`insert()`<br/>`emplace()`|
 |앞에 추가/삭제|`push_front()`<br/>`emplace_front()`<br/>`pop_front()`|O|O|
 |뒤에 추가/삭제|[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향이어서 제공 안합니다.|X|`push_back()`<br/>`emplace_back()`<br/>`pop_back()`|

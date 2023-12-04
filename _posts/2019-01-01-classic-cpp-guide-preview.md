@@ -112,7 +112,7 @@ C++ 의 주요 구성 요소는 하기와 같습니다.
 
 6. [STL : 알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)
     
-    일련의 동작에 대한 표준 알고리즘을 제공합니다.(*[for_each()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#for_each), `remove()` `find()`, `count()`, `replace()`, `copy()`, `sort()` 등*)
+    일련의 동작에 대한 표준 알고리즘을 제공합니다.(*[for_each()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#for_each), [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove), [find()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#find), [count()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#count) 등*)
 
 7. [STL : 스마트 포인터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-auto_ptr/)
    
