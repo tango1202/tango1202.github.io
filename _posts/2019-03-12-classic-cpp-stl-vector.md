@@ -79,11 +79,11 @@ sidebar:
 |항목|정의|내용|
 |--|--|--|
 |[clear()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#clear%EC%99%80-swap)|`void clear();`|모든 요소를 지웁니다. 이때 메모리 영역은 그대로 입니다.|
-|`erase()`|`iterator erase(const_iterator position);`<br/>`iterator erase(const_iterator first, const_iterator last);`|`position`위치의 요소를 삭제하거나 `first`와 `last` 직전까지의 요소(*반개방 구조*)를 삭제합니다. [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)가 유효하지 않다면, 아무 생각없이 실행되어 오동작 합니다.|
+|[erase()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)|`iterator erase(const_iterator position);`<br/>`iterator erase(const_iterator first, const_iterator last);`|`position`위치의 요소를 삭제하거나 `first`와 `last` 직전까지의 요소(*반개방 구조*)를 삭제합니다. [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)가 유효하지 않다면, 아무 생각없이 실행되어 오동작 합니다.|
 |`erase_if()` (C++20~)||(작성중)|
 |`pop_back()`|`void pop_back();`|마지막 요소를 삭제합니다. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)가 비었다면 아무 동작 안합니다.|
-|`push_back()`|`void push_back(const T& value);`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 끝에 요소를 추가합니다.|
-|`insert()`|`iterator insert(const_iterator position, const Type& value);`<br/>`iterator insert(const_iterator position, Type&& value);`<br/>`void insert(const_iterator position, size_type count, const Type& value);`<br/>`template<class InputIterator>`<br/>`void insert(const_iterator position,  InputIterator first, InputIterator last);`|`position`으로 지정한 위치 앞에 요소를 삽입합니다.|
+|[push_back()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)|`void push_back(const T& value);`|[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 끝에 요소를 추가합니다.|
+|[insert()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)|`iterator insert(const_iterator position, const Type& value);`<br/>`iterator insert(const_iterator position, Type&& value);`<br/>`void insert(const_iterator position, size_type count, const Type& value);`<br/>`template<class InputIterator>`<br/>`void insert(const_iterator position,  InputIterator first, InputIterator last);`|`position`으로 지정한 위치 앞에 요소를 삽입합니다.|
 |`insert_range()` (C++23~)||(작성중)||
 |`emplace(), emplace_back()` (C++11~)||(작성중)|
 |`append_range()` (C++23~)||(작성중)|

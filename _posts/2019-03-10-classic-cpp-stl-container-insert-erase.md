@@ -31,11 +31,11 @@ sidebar:
 
 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)는 
 
-1. `push_back()`을 통해 뒤에 추가할 수 있으며,
-2. `insert()`로 특정 위치에 삽입할 수 있고,
+1. [push_back()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)을 통해 뒤에 추가할 수 있으며,
+2. [insert()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)로 특정 위치에 삽입할 수 있고,
 3. [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)가 랜덤 접근되어 `v.begin() + 1`로 삽입 위치를 지정할 수 있으며,
 4. [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)나 `[]`을 통해 인덱스를 지정하여 요소의 값에 접근 할 수 있고,
-5. `erase()`를 통해 요소를 삭제 할 수 있습니다.
+5. [erase()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)를 통해 요소를 삭제 할 수 있습니다.
 
 ```cpp
 std::vector<int> v;
@@ -65,17 +65,17 @@ EXPECT_TRUE(*result == 1); // 삭제한 요소의 다음 요소를 리턴함
 
 # 컨테이너 멤버 함수 erase()와 알고리즘 remove() 함수
 
-[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에는 `erase()` [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 있고, [알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)에는 [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)가 있습니다. 둘다 삭제를 하는 함수 인데요, 사용법과 결과가 약간 다릅니다.
+[컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에는 [erase()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98) [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 있고, [알고리즘](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/)에는 [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)가 있습니다. 둘다 삭제를 하는 함수 인데요, 사용법과 결과가 약간 다릅니다.
 
-* `erase()`는 삭제할 위치를 전달받아 해당 위치의 요소를 삭제하고, 
+* [erase()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)는 삭제할 위치를 전달받아 해당 위치의 요소를 삭제하고, 
 * [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)는 삭제할 값을 전달받아 삭제하지 않을 요소들을 앞쪽에 복사해 두고 삭제해야 할 요소의 위치를 알려줍니다.
 
 |항목|정의|내용|
 |--|--|--|
-|`erase()`|`iterator erase(iterator pos)`|`pos`위치의 요소를 삭제하고 삭제한 요소의 다음 요소 위치를 리턴합니다.|
+|[erase()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)|`iterator erase(iterator pos)`|`pos`위치의 요소를 삭제하고 삭제한 요소의 다음 요소 위치를 리턴합니다.|
 |[remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)|`iterator remove(const T& val)`|`val`이 아닌 요소는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 앞으로 옮기고 삭제할 위치를 리턴합니다.|
 
-`erase()`는 요소를 삭제합니다만, [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)는 삭제가 아니라 이동시킨다는 것에 주의하세요.
+[erase()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)는 요소를 삭제합니다만, [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)는 삭제가 아니라 이동시킨다는 것에 주의하세요.
 
 다음은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에 6개의 요소를 넣어두고, 이중 값이 `1`인 요소만 [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)한 예입니다.
 
@@ -102,7 +102,7 @@ EXPECT_TRUE(v[4] == 4); // #3. 이전값이 남아 있습니다.
 EXPECT_TRUE(v[5] == 5); // #3. 이전값이 남아 있습니다. 
 ```
 
-상기 예에서와 같이 [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)는 삭제하지 않을 요소를 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 앞으로 옮기고 삭제할 위치를 리턴하기만 합니다. 실제로 삭제하려면 [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)가 리턴한 위치에서 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 끝까지 `erase()`를 호출해야 합니다.
+상기 예에서와 같이 [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)는 삭제하지 않을 요소를 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 앞으로 옮기고 삭제할 위치를 리턴하기만 합니다. 실제로 삭제하려면 [remove()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#remove)가 리턴한 위치에서 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)의 끝까지 [erase()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)를 호출해야 합니다.
 
 ```cpp
 std::vector<int> v;
@@ -124,7 +124,7 @@ EXPECT_TRUE(v[2] == 5);
 
 # list 의 삽입과 삭제
 
-`list`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 달리 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)가 렌덤 접근되지 않습니다. 따라서 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)의 `++` 연산자를 이용하여 접근합니다. 그외 `push_back()`, `insert()`, `erase()`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 동일합니다. 
+`list`는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 달리 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)가 렌덤 접근되지 않습니다. 따라서 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)의 `++` 연산자를 이용하여 접근합니다. 그외 `push_back()`, [insert()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C), [erase()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 동일합니다. 
 
 ```cpp
 std::list<int> l;

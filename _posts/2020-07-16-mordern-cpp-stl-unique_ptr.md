@@ -100,7 +100,7 @@ void f(unique_ptr<T> p); // (O) new로 생성한 개체를 전달해야 합니�
 
 # unique_ptr을 컨테이너 요소로 사용하기
 
-[unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 복사 생성자가 없기 때문에 그냥 `push_back()`에 전달하면 컴파일 오류가 발생합니다.
+[unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 복사 생성자가 없기 때문에 그냥 [push_back()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)에 전달하면 컴파일 오류가 발생합니다.
 
 ```cpp
 std::vector<std::unique_ptr<int>> v;

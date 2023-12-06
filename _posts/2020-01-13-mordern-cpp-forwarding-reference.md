@@ -239,11 +239,11 @@ A&& ref_11 = std::move(ref); // A&&는 우측값만 받을 수 있습니다.
         void g_11(U&& val) {} // 전달 참조 입니다. val 타입으로 추론합니다.
     }; 
     ```
-    또한 다음과 같이 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들이 여러개인 경우 `T&&`로 표현하면 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)가 아닙니다. `param1`, `param2`중 어느 하나가 추론된 뒤에는 나머지는 추론된 것으로 부터 구체화 될 수 있기 때문입니다. 따라서, `typename T, typename U`와 같이 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 독립적으로 만들어야 합니다.
+    또한 다음과 같이 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들이 여러개인 경우 `T&&`로 표현하면 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)가 아닙니다. `param1`, `param2`중 어느 하나가 추론된 뒤에는 나머지는 추론된 것으로부터 구체화 될 수 있기 때문입니다. 따라서, `typename T, typename U`와 같이 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)를 독립적으로 만들어야 합니다.
 
     ```cpp
     template<typename T>
-    void f_11(T&& param1, T&& param2) {} // 전달 참조가 아닙니다. param1, param2중 어느 하나가 추론된 뒤에는 나머지는 추론된 것으로 부터 구체화 될 수 있기 때문입니다. 
+    void f_11(T&& param1, T&& param2) {} // 전달 참조가 아닙니다. param1, param2중 어느 하나가 추론된 뒤에는 나머지는 추론된 것으로부터 구체화 될 수 있기 때문입니다. 
 
     template<typename T, typename U>
     void f_11(T&& param1, U&& param2) {} // param1, param2 모두 전달 참조입니다.

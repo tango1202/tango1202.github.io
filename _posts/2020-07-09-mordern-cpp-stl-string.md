@@ -256,7 +256,7 @@ static const size_type npos = -1;
 |`empty()`||[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)이 비었는지 확인합니다.|
 |[capacity()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#size%EC%99%80-capacity)||메모리를 더 할당하지 않고 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에 저장할 수 있는 문자 갯수를 리턴합니다.([string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)은 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 동일하게 메모리 할당이 빈번히 발생하지 않도록 실제 문자 갯수보다 큰 크기를 할당하기도 하고, 삽입/삭제에 따라 실제 문자 갯수보다 더 많은 메모리를 관리할 수 있습니다.)|
 |`shrink_to_fit()`||(작성중)|
-|`reserve()`||[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)의 메모리 공간을 최소한 `count` 갯수 만큼 문자를 저장할 수 있도록 예약합니다.|
+|[reserve()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#%EC%A0%80%EC%9E%A5-%EA%B3%B5%EA%B0%84-%EC%98%88%EC%95%BD)||[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)의 메모리 공간을 최소한 `count` 갯수 만큼 문자를 저장할 수 있도록 예약합니다.|
 |`max_size()`||[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)이 저장할 수 있는 최대 문자 갯수를 리턴합니다.|
 |`swap()`||두 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)의 내부 데이터를 바꿔치기 합니다.|
 
@@ -265,7 +265,7 @@ static const size_type npos = -1;
 |항목|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 특화|내용|
 |--|--|--|
 |`[]`||요소에 접근합니다.|
-|`at()`||`position`위치의 요소 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
+|[at()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#-%EA%B3%BC-at)||`position`위치의 요소 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 예외를 발생시키며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
 |`begin(), end()`||순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다.|
 |`rbegin(), rend()`||[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
 |`cbegin(), cend()`||순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
@@ -283,12 +283,12 @@ static const size_type npos = -1;
 
 |항목|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/) 특화|내용|
 |--|--|--|
-|`clear()`||모든 요소를 지웁니다. 이때 메모리 영역은 그대로 입니다.|
-|`erase()`||`position`위치의 요소를 삭제하거나 `first`와 `last` 직전까지의 요소(반개방 구조)를 삭제합니다. [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)가 유효하지 않다면, 아무 생각없이 실행되어 오동작 합니다. |
+|[clear()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#clear%EC%99%80-swap)||모든 요소를 지웁니다. 이때 메모리 영역은 그대로 입니다.|
+|[erase()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)||`position`위치의 요소를 삭제하거나 `first`와 `last` 직전까지의 요소(반개방 구조)를 삭제합니다. [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)가 유효하지 않다면, 아무 생각없이 실행되어 오동작 합니다. |
 |`erase_if()` (C++20~)||(작성중)|
 |`pop_back()`||마지막 요소를 삭제합니다. [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)이 비었다면 아무 동작 안합니다.|
-|`push_back()`||[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)끝에 요소를 추가합니다.|
-|`insert()`||`position`으로 지정한 위치 앞에 삽입합니다.|
+|[push_back()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)||[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)끝에 요소를 추가합니다.|
+|[insert()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)||`position`으로 지정한 위치 앞에 삽입합니다.|
 |`insert_range()` (C++23~)||(작성중)|
 |`append()`|O|문자열에 문자나 문자열을 추가합니다.|
 |`append_range()` (C++23~)||(작성중)|
@@ -298,8 +298,8 @@ static const size_type npos = -1;
 |`contains()` (C++23~)|O|(작성중)|
 |`replace()`|O|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)의 요소를 지정한 문자나 다른 시퀀스로 바꿉니다.|
 |`replace_with_range()` (C++23~)|O|(작성중)|
-|`substr()`|O|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 하위 문자열을 추출합니다.|
-|`copy()`|O|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 하위 문자열을 문자 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|
+|`substr()`|O|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 부분 문자열을 복사하여 리턴합니다.|
+|`copy()`|O|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 부분 문자열을 문자 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|
 |`getline()`|O|IO 스트림으로부터 데이터를 읽습니다.|
 
 # (C++11~) 숫자 변환

@@ -122,5 +122,5 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |`starts_with()` (C++20~)|(작성중)|
 |`ends_with()` (C++20~)|(작성중)|
 |`contains()` (C++23~)|(작성중)|
-|`substr()` (C++17~)|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 하위 문자열을 추출합니다.|
-|`copy()` (C++17~)|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 하위 문자열을 문자[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|
+|`substr()` (C++17~)|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 부분 문자열을 복사하여 리턴합니다.|
+|`copy()` (C++17~)|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 부분 문자열을 문자[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|
