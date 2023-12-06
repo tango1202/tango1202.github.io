@@ -88,7 +88,7 @@ void RotateAtViewCenter(const Degree& delta) {
     RotateAt(delta, x, y);
 } 
 ```
-복잡하게 view를 다루는 코드가 함수내에 은닉되어 있으니, 좋은것 같아 보이지만, 하기 그림처럼 의존성이 상호 참조되어 **의존성 부패** 가 발생합니다.(결합도가 증가하니 이또한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위반이군요.)
+복잡하게 view를 다루는 코드가 함수내에 은닉되어 있으니, 좋은것 같아 보이지만, 하기 그림처럼 의존성이 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)되어 **의존성 부패** 가 발생합니다.(결합도가 증가하니 이또한 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위반이군요.)
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2f02246b-fd3f-4669-8f1c-0272fcdda58f)
 

@@ -92,8 +92,8 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 
 |항목|내용|
 |--|--|
-|`size()` (C++17~)<br/>`length()` (C++17~)|문자 갯수를 리턴합니다.|
-|`empty()` (C++17~)|문자열이 비었는지 확인합니다.|
+|[size()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty) (C++17~)<br/>[length()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty) (C++17~)|문자 갯수를 리턴합니다.|
+|[empty()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty) (C++17~)|문자열이 비었는지 확인합니다.|
 |`max_size()` (C++17~)|저장할 수 있는 최대 문자 갯수를 리턴합니다.|
 |`swap()` (C++17~)|두 [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string_view)의 내부 데이터를 바꿔치기 합니다.|
 
@@ -107,20 +107,20 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |`rbegin(), rend()` (C++17~)|[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
 |`cbegin(), cend()` (C++17~)|순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`crbegin() crend()` (C++17~)|[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
-|`data()` (C++17~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 관리하는 메모리 블록을 리턴합니다. 끝에 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 없을 수도 있습니다.|
+|[data()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC%EC%9D%98-%ED%98%B8%ED%99%98data-c_str) (C++17~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 관리하는 메모리 블록을 리턴합니다. 끝에 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 없을 수도 있습니다.|
 |`front()` (C++17~)|첫번째 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
 |`back()` (C++17~)|마지막 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. 문자열이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
-|`find()` (C++17~)<br/>`rfind()` (C++17~)|지정된 문자 시퀀스와 일치하는 첫번째 인덱스를 찾습니다.|
-|`find_first_of()` (C++17~)<br/>`find_first_not_of()` (C++17~)|지정된 문자들중 일치하는 문자가 있는 첫번째 인덱스를 찾습니다.|
-|`find_last_of()` (C++17~)<br/>`find_last_not_of()` (C++17~)|지정된 문자들중 일치하는 문자가 있는 마지막 인덱스를 찾습니다.|
+|[find()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%90%EC%83%89find-find_first_of-find_last_of) (C++17~)<br/>`rfind()` (C++17~)|지정된 문자 시퀀스와 일치하는 첫번째 인덱스를 찾습니다.|
+|[find_first_of()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%90%EC%83%89find-find_first_of-find_last_of) (C++17~)<br/>`find_first_not_of()` (C++17~)|지정된 문자들중 일치하는 문자가 있는 첫번째 인덱스를 찾습니다.|
+|[find_last_of()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%90%EC%83%89find-find_first_of-find_last_of) (C++17~)<br/>`find_last_not_of()` (C++17~)|지정된 문자들중 일치하는 문자가 있는 마지막 인덱스를 찾습니다.|
 
 # 요소 삽입/삭제/비교/추출
 
 |항목|내용|
 |--|--|
-|`compare()` (C++17~)|문자열을 대소 비교합니다.|
+|[compare()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A0%EB%8B%B9-%ED%95%A9%EC%84%B1-%EB%B9%84%EA%B5%90assign-append-compare) (C++17~)|문자열을 대소 비교합니다.|
 |`starts_with()` (C++20~)|(작성중)|
 |`ends_with()` (C++20~)|(작성중)|
 |`contains()` (C++23~)|(작성중)|
-|`substr()` (C++17~)|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 부분 문자열을 복사하여 리턴합니다.|
-|`copy()` (C++17~)|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 부분 문자열을 문자[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|
+|[substr()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy) (C++17~)|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 부분 문자열을 복사하여 리턴합니다.|
+|[copy()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy) (C++17~)|[string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)에서 부분 문자열을 문자[배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)에 복사합니다.|

@@ -220,7 +220,7 @@ int A::f() const {return m_MyClass->Func();} // MyClass를 사용합니다.
 
 # 전방 선언을 이용한 상호 참조 해결
 
-서로 다른 클래스/구조체가 상호 참조할 경우, 컴파일이 안될 수도 있습니다.
+서로 다른 클래스/구조체가 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)할 경우, 컴파일이 안될 수도 있습니다.
 
 ```cpp
 class MyClass {

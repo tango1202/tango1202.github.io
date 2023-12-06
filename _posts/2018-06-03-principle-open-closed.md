@@ -72,7 +72,7 @@ void SaveFile(const std::wstring& pathName) const {}
 
 개체에서 이 함수들을 호출하면, `ScaleVisitor`의 경우는 크기조정을 수행하는 코드를 구현하고, `RotateVisitor`는 회전을 수행하는 코드를 구현하면 됩니다. 
 
-이와 같이 새로운 기능 추가시, 기존 코드의 수정 없이 새로운 Visitor만 만들면 되므로, 코드가 좀더 유연해 집니다.(아쉬운 점은 `IVsitor`와 `Shape`이 상호 참조 되는 점인데, 기능 추가와 **의존성 부패** 간의 트레이드 오프가 필요해 집니다.)
+이와 같이 새로운 기능 추가시, 기존 코드의 수정 없이 새로운 Visitor만 만들면 되므로, 코드가 좀더 유연해 집니다.(아쉬운 점은 `IVsitor`와 `Shape`이 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0) 되는 점인데, 기능 추가와 **의존성 부패** 간의 트레이드 오프가 필요해 집니다.)
 
 ```cpp
 class Shape; // 상호 참조가 되어 전방 선언이 필요합니다.
