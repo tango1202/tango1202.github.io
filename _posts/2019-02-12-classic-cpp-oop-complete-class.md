@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현하라.
+> * ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현하라.
 > > * [단일 책임 원칙(Single Responsibility Principle)](https://tango1202.github.io/principle/principle-single-responsibility/)을 준수하여 사용하기 쉽게 만들어라.
 > > * [암시적 정의를 차단](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%A0%95%EC%9D%98-%EC%B0%A8%EB%8B%A8)하여 의도한 동작만 하게 하라.
 > > * [최소 public](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%B5%9C%EC%86%8C-public)으로 구현하여 사용하기 쉽게 하라.
@@ -26,7 +26,7 @@ sidebar:
 
 # 개요
 
-클래스는 [단일 책임 원칙(Single Responsibility Principle)](https://tango1202.github.io/principle/principle-single-responsibility/)에 따라 단 하나의 책임만 갖도록 설계하고, 단단한 **코딩 계약**에 의해 **잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게** 구현해야 합니다.(*[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고*)
+클래스는 [단일 책임 원칙(Single Responsibility Principle)](https://tango1202.github.io/principle/principle-single-responsibility/)에 따라 단 하나의 책임만 갖도록 설계하고, 단단한 **코딩 계약**에 의해 ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현해야 합니다.(*[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고*)
 
 # 암시적 정의 차단
 
@@ -65,7 +65,7 @@ sidebar:
 
 1. 별도로 [Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#setter-%ED%95%A8%EC%88%98)를 호출해야 하므로 사용하기 번거롭습니다.(*[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고*)
 2. 기본값으로 대충 생성후 값을 세팅하면 불필요한 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 연산 오버헤드가 발생합니다.(*[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고*)
-3. 개체 사용자는 개체 내부 구조를 완전히 파악해야만 제대로 사용할 수 있습니다. **코딩 계약** 을 투명하게 하여 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현해야 합니다.(*[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고*)
+3. 개체 사용자는 개체 내부 구조를 완전히 파악해야만 제대로 사용할 수 있습니다. **코딩 계약** 을 투명하게 하여 ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현해야 합니다.(*[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고*)
 4. 불완전하게 생성된 개체를 사용했을때 발생하는 버그는 예측하기 힘듭니다.
 5. 불완전하게 생성된 개체에 별도 [Setter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#setter-%ED%95%A8%EC%88%98)를 호출하여 완전하게 만드는 중에 예외가 발생하면, 이미 생성된 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 처리를 위해 소멸시켜야 합니다. 혹시나 이미 이 개체를 참조하는 곳이 있다면, 처리가 곤란합니다.(*[초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8) 참고*)
 
@@ -84,7 +84,7 @@ sidebar:
 
 함수 구현은 다음 사항을 준수하여야 합니다.
 
-1. [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 마찬가지로 필요한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 모두 전달하여야 합니다. **코딩 계약** 을 투명하게 하여 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현해야 합니다.(*[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고*)
+1. [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)와 마찬가지로 필요한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 모두 전달하여야 합니다. **코딩 계약** 을 투명하게 하여 ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현해야 합니다.(*[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고*)
 2. [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 전달이나 함수 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 전달시 복사 부하를 최소화 해야 합니다.
 3. [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)에 위배되지 않도록 작성해야 합니다.
 4. 함수내에서 예외가 발생하면 그동안 만들어 둔건 소멸시켜 버려야 합니다.

@@ -112,7 +112,7 @@ Big_11 big{ // 3. 이동 생성자 호출
 
 되기는 합니다만, 참 실수하기 쉽고, 타이핑도 번거롭고 [const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)는 [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)을 바꾸는 거라 싫습니다.
 
-[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)에 언급되었듯, **잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게** 구현할 필요가 있는데요, [멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 이럴때 딱 좋습니다.
+[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)에 언급되었듯, ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현할 필요가 있는데요, [멤버 함수 참조 지정자](https://tango1202.github.io/mordern-cpp/mordern-cpp-member-function-ref/)가 이럴때 딱 좋습니다.
 
 ```cpp
 class Wrapper_11 {

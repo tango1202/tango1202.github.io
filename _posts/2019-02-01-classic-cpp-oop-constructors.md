@@ -26,7 +26,7 @@ sidebar:
 
 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)는 개체가 생성될 때 제일 먼저 호출되는 특수 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)입니다. 개체가 메모리에 할당된 뒤에 호출되고, 초기값을 설정하는 역할을 합니다.
 
-좋은 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)는 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)에 언급되었듯, **잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게** 구현해야 하는데요, 그러기 위해선 [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 모두 나열하는게 좋습니다.
+좋은 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)는 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)에 언급되었듯, ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현해야 하는데요, 그러기 위해선 [명시적 의존성 원칙](https://tango1202.github.io/principle/principle-explicit-dependencies/)에 따라 필요한 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)는 모두 나열하는게 좋습니다.
 
 또한, 암시적으로 은근슬쩍 동작하는건 사용하지 않는다면 차단하고(*[암시적 정의 차단](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%95%94%EC%8B%9C%EC%A0%81-%EC%A0%95%EC%9D%98-%EC%B0%A8%EB%8B%A8) 참고*), [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)이 올바르게 작동하도록 신경써줘야 합니다.
 

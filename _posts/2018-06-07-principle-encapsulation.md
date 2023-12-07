@@ -14,7 +14,7 @@ sidebar:
 
 1. 개체의 멤버 변수나 함수는 꽁꽁 숨긴 뒤(은닉), 꼭 필요한 것만 외부에 public 으로 노출(*[최소 public](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%B5%9C%EC%86%8C-public)*)하고,
 2. 단위 기능을 응집하고, 결합도는 낮춘뒤,
-3. 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현하라.
+3. ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현하라.
 
 라는 뜻입니다. 
 
@@ -276,7 +276,7 @@ TEST(TestPrinciple, Encapsulation) {
 함수 설계에서도 
 
 * 단위 기능을 응집하고, 결합도는 낮춘뒤,
-* 잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게 구현하라는
+* ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현하라는
 
 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)의 철학이 필요합니다.
 
