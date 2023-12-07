@@ -87,7 +87,7 @@ sidebar:
 
 개발자는 현 함수에서 예측할 수 있는 모든 상황을 고려하여 코드를 작성해야 합니다. 예측할 수 없는 [예외 상황이 발생](??)한다면 대처할 수 없고, 프로그램은 오동작하다가 결국 멈춰버립니다. 
 
-그러니, 예측할 수 없는 예외 상황이 없도록 레벌업을 하시고, 함수 내부에서 예외를 처리할 수 있는지 없는지를 판단하여 예외에 대처하거나 예외를 전파해야 합니다. 이때, [예외 발생](??)의 원인이 명백한 코딩 실수라면, ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 하여 코딩 계약을 단단하게 하시고, 최후의 수단으로 [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)로 잘못된 사용을 안내하시기 바랍니다.
+그러니, 예측할 수 없는 예외 상황이 없도록 레벌업을 하시고, 함수 내부에서 예외를 처리할 수 있는지 없는지를 판단하여 예외에 대처하거나 [예외를 전파](??)해야 합니다. 이때, [예외 발생](??)의 원인이 명백한 코딩 실수라면, ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 하여 코딩 계약을 단단하게 하시고, 최후의 수단으로 [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)로 잘못된 사용을 안내하시기 바랍니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fc331259-e119-499d-8b84-8a36e32b471f)
 

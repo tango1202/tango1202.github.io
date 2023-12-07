@@ -51,7 +51,7 @@ C++버전에 따라 다음의 [표준 특성](https://tango1202.github.io/morder
 
 `void f() {}`는 `void`를 리턴하므로, 리턴하는 함수입니다.
 
-리턴하지 않는 함수는 무작정 예외를 발생시키거나 [abort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90) 하여 프로그램을 종료하는 함수를 말합니다. 
+리턴하지 않는 함수는 무작정 [예외를 발생](??)시키거나 [abort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90) 하여 프로그램을 종료하는 함수를 말합니다. 
 
 ```cpp
 // 함수가 항상 예외를 throw하거나 종료합니다. 

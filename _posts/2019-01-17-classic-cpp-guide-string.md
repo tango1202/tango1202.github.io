@@ -56,7 +56,7 @@ EXPECT_TRUE(strlen(str) == 3); // 문자열의 길이는 널문자를 제외한 
 
 # 문자열 상수 수정
 
-[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)는 rodata 영역에 할당(*[데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고*)되기 때문에 수정할 수 없습니다. 따라서 포인터를 통해서 받은 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 수정하려 하면, 예외가 발생합니다. 하지만, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)로 저장하면 복제본이므로 수정할 수 있습니다.
+[문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)는 rodata 영역에 할당(*[데이터 세그먼트](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고*)되기 때문에 수정할 수 없습니다. 따라서 포인터를 통해서 받은 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 수정하려 하면, [예외가 발생](??)합니다. 하지만, [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)로 저장하면 복제본이므로 수정할 수 있습니다.
 
 ```cpp
 const char* str1 = "abc"; // 문자열 상수

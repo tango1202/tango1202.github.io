@@ -14,8 +14,8 @@ sidebar:
 
 1. 미리 예약된 공간을 해제하여 메모리를 추가 확보해 주거나
 2. 다른 [new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)를 설치하여 처리를 위임하거나
-3. [new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)를 제거하거나(제거되면 [bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 발생)
-4. [bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 또는 이로부터 파생된 예외를 발생시켜 처리를 포기하거나
+3. [new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)를 제거하거나(제거되면 [bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) [발생](??))
+4. [bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 또는 이로부터 파생된 [예외를 발생](??)시켜 처리를 포기하거나
 5. [abort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90)을 하여 프로그램을 종료합니다.
 
 # NewHandler의 필요성
@@ -39,7 +39,7 @@ sidebar:
 4. `UsingReservedHandler()` 는 예약된 메모리 공간을 해제하고 [new](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 재시도 할 수 있게 해줍니다.
 5. `AnotherHandler()` 에서 다른 처리 방법을 사용자 정의하여 구현 할 수 있습니다.
 6. `RemoveHandler()` 는 기존 핸들러를 제거합니다.
-7. `BadAllocHandler()`은 별다른 처리없이 [bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)을 발생시킵니다.(`RemoveHandler()` 와 동일합니다.)
+7. `BadAllocHandler()`은 별다른 처리없이 [bad_alloc](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)을 [발생](??)시킵니다.(`RemoveHandler()` 와 동일합니다.)
 8. `AbortHandler()`는 프로그램을 종료합니다.
 
 다음과 같이 구현합니다.

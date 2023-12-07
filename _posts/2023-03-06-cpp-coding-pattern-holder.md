@@ -32,7 +32,7 @@ delete ptr; // (△) 비권장. 잊어버릴 수 있습니다.
 
 잊어버리고 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 안했을때 메모리 릭이 발생하며, 처음에는 눈에 띄지 않다가 사용하다가 어느 순간 메모리가 부족하여 시스템이 멈추게 됩니다.
 
-코드 검토, 짝 프로그래밍등 다양한 방법으로 이런 실수를 보강할 수도 있습니다만, 예외 발생하는 코드와 혼합되면서 복잡성이 증가합니다. 다음같은 경우에는 예외 발생시 `ptr`이 delete 되지 않습니다.
+코드 검토, 짝 프로그래밍등 다양한 방법으로 이런 실수를 보강할 수도 있습니다만, [예외 발생](??)하는 코드와 혼합되면서 복잡성이 증가합니다. 다음같은 경우에는 [예외 발생](??)시 `ptr`이 delete 되지 않습니다.
 
 ```cpp
 class T {};
@@ -67,7 +67,7 @@ catch (...) {
 delete ptr;
 ```
 
-고맙게도 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 벗어나거나 예외 발생시에는 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)에 따라 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)의 개체들이 하나씩 소멸됩니다. 이를 이용하여 포인터를 관리하는 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체를 만들면 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에서 소멸되면서 포인터를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)할 수 있습니다. 이렇게 포인터를 관리하는 개체를 `Holder` 라고 합니다.
+고맙게도 [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)를 벗어나거나 [예외 발생](??)시에는 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90)에 따라 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)의 개체들이 하나씩 소멸됩니다. 이를 이용하여 포인터를 관리하는 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체를 만들면 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에서 소멸되면서 포인터를 [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)할 수 있습니다. 이렇게 포인터를 관리하는 개체를 `Holder` 라고 합니다.
 
 # 활용 코딩 패턴
 

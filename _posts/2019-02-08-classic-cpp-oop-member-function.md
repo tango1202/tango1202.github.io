@@ -111,7 +111,7 @@ EXPECT_TRUE(date.CalcTotalMonth() == 20 * 12 + 2);
     };
     ```   
 
-4. 메모리를 수정하지 않기 때문에 예외를 발생하지 않습니다.
+4. 메모리를 수정하지 않기 때문에 [예외가 발생](??)하지 않습니다.
 
 따라서 [상수성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)을 잘 지키면, [예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)하며, [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)에 의해 안전하게 코딩할 수 있습니다. 함수가 개체를 변경시키는지
 아닌지 항상 분명하게 인지하고, 최대한 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)로 작성하세요.

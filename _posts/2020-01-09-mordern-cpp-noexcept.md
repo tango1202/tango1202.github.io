@@ -30,12 +30,12 @@ C++11 부터는 예외의 나열이 불필요함을 공감하여, 예외를 방�
 
 |항목|내용|
 |--|--|
-|nothrow()|기존 방법입니다. 나열된 예외가 없으므로 [unexpected()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 핸들러를 호출하고, 별다른 처리를 하지 않으면, [catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/) 될때까지 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 합니다.(*[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고*)|
-|[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) (C++11~)|[nothrow 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%B3%B4%EC%A6%9D-%EC%A2%85%EB%A5%98)을 합니다. 예외를 방출하지 않습니다. 만약 방출하면 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출합니다. 컴파일러 최적화에 따라 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 하거나 안합니다.|
+|nothrow()|기존 방법입니다. 나열된 예외가 없으므로 [unexpected()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 핸들러를 호출하고, 별다른 처리를 하지 않으면, [catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/) 될때까지 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90)를 합니다.(*[동적 예외 사양](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91) 참고*)|
+|[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) (C++11~)|[nothrow 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%B3%B4%EC%A6%9D-%EC%A2%85%EB%A5%98)을 합니다. 예외를 방출하지 않습니다. 만약 방출하면 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출합니다. 컴파일러 최적화에 따라 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90)를 하거나 안합니다.|
 |`noexcept(true)` (C++11~)|[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)와 동일합니다.|
 |`noexcept(false)` (C++11~)|예외를 방출합니다.|
 
-이에 따라 컴파일러는 어떤 예외를 방출하느냐 보다는 예외 방출 여부만 보고 최적화를 진행합니다. 예를 들면 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)등의 작업이요.
+이에 따라 컴파일러는 어떤 예외를 방출하느냐 보다는 예외 방출 여부만 보고 최적화를 진행합니다. 예를 들면 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90)등의 작업이요.
 
 ```cpp
 // 기존 
@@ -60,7 +60,7 @@ void f_11() noexcept {
 ```
 # 느슨한 noexcept 계약
 
-한가지 아쉬운 점은 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인 함수 내에서 사용하는 함수가 예외를 발생시키면 컴파일 경고 없이, 런타임에 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출한다는 점입니다. 
+한가지 아쉬운 점은 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인 함수 내에서 사용하는 함수가 [예외를 발생](??)시키면 컴파일 경고 없이, 런타임에 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출한다는 점입니다. 
 
 ```cpp
 void f() {
@@ -74,16 +74,16 @@ f_11(); // noexcept 함수 내에서 사용하는 함수 f()가 예외를 발생
 
 [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)이 ***상수는 상수만 접근한다*** 이듯이, [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)만 접근한다는 계약이 있으면 컴파일 단계에서 감지되어 참 좋을텐데 말이죠. 왜 이런가 봤더니 기존 C스타일 함수는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 지정할 수 없으니, 호출의 호환성을 유지하기 위해 이렇게 느슨하게 했다는군요.(*아쉽지만, 개발자에게 충분한 자유도를 주는 표준화 위원들의 의견도 존중합니다.*)
 
-아무튼 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)는 컴파일 오류 감지가 안되기에 가볍게 넣거나 뺄 수 있는 코딩 계약이 아닙니다. [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)처럼 컴파일 오류로 감지할 수 있으면, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 무조건 들이댄 것처럼 쉽게 적용할 수 있지만, 마구잡이로 적용했다가 예외 발생 상황이 되면, 이를 수습하느라 인생을 낭비하게 될 수 있습니다. 
+아무튼 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)는 컴파일 오류 감지가 안되기에 가볍게 넣거나 뺄 수 있는 코딩 계약이 아닙니다. [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)처럼 컴파일 오류로 감지할 수 있으면, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 무조건 들이댄 것처럼 쉽게 적용할 수 있지만, 마구잡이로 적용했다가 [예외 발생](??) 상황이 되면, 이를 수습하느라 인생을 낭비하게 될 수 있습니다. 
 
 내부적으로 사용하는 하위 함수와 그 함수가 향후에 어떻게 변화될 것인지 신중하게 고려하여 적용하시고, 하위 함수들도 꼭 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 작성하여 ***[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) 계약***을 만들어 두시는게 좋습니다.
 
 따라서 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) 함수를 만들때는 다음을 고려하세요.
 
 1. 사용되는 하위 함수들도 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인지 면밀히 검토하여야 합니다. 
-2. 또한, 향후 하위 함수들이 수정되어 혹여나 예외를 발생시키면, 사용되는 모든 곳의 예외 처리를 재검토 해서 수정하겠다는 ***모든 조직원의 공감대***가 형성되어야 합니다.
+2. 또한, 향후 하위 함수들이 수정되어 혹여나 [예외를 발생](??)시키면, 사용되는 모든 곳의 예외 처리를 재검토 해서 수정하겠다는 ***모든 조직원의 공감대***가 형성되어야 합니다.
 
-그렇지 않으면 오히려 안쓰는게 낫습니다. 그나마 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)의 기회조차 컴파일러 최적화에 의해 차단되니까요.
+그렇지 않으면 오히려 안쓰는게 낫습니다. 그나마 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90)의 기회조차 컴파일러 최적화에 의해 차단되니까요.
 
 하지만 그럼에도 불구하고 다음은 꼭 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 고려하십시요.
 
@@ -92,11 +92,11 @@ f_11(); // noexcept 함수 내에서 사용하는 함수 f()가 예외를 발생
 
 2. [예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)한 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)을 위한 [nothrow swap](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#nothrow-swap---%ED%8F%AC%EC%9D%B8%ED%84%B0-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-swap-%EC%B5%9C%EC%A0%81%ED%99%94)
 
-3. 정상적인 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80)를 위한 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)
+3. 정상적인 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90)를 위한 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)
 
 # 소멸자 예외
 
-기존에는 예외 안정을 위해 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서는 예외를 방출하지 않아야 한다고 말씀 드렸는데요(*[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 와 [소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고*),
+기존에는 예외 안정을 위해 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서는 예외를 방출하지 않아야 한다고 말씀 드렸는데요(*[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90) 와 [소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고*),
 
 C++11 부터는 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 생략되었더라도 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작하여 코딩 계약이 좀더 단단해 졌습니다.
 

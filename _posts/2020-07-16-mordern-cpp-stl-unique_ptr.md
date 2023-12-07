@@ -260,7 +260,7 @@ unique_ptr<T> make_unique(std::size_t size); // size 개의 배열 개체를 관
     3. `unique_ptr<T>`
     4. `unique_ptr<U>`
 
-    의 순서로 실행될 경우 `new U`에서 예외가 발생할 경우 `new T`는 소멸되지 않습니다. 따라서 [make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique)를 사용하는게 좋습니다.
+    의 순서로 실행될 경우 `new U`에서 [예외가 발생](??)할 경우 `new T`는 소멸되지 않습니다. 따라서 [make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique)를 사용하는게 좋습니다.
     ```cpp
     class T {};
     class U {};

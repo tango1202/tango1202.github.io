@@ -228,7 +228,7 @@ EXPECT_TRUE(button.Click(&Data::Preview) == 2); // data 개체로 부터 Preview
 
 함수가 리턴문을 통해 전달하는 결과값을 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이라 합니다.
 
-void, 값 타입, 포인터, const 포인터, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90), const [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴할 수 있으며, 특별히 함수의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 리턴하면 오류가 발생하니 주의하시기 바랍니다.(*[Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고*)
+void, 값 타입, 포인터, const 포인터, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90), const [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴할 수 있으며, 특별히 함수의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)를 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 리턴하면 추후 오동작을 할 수 있으니 주의하시기 바랍니다.(*[Dangling 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#dangling-%EC%B0%B8%EC%A1%B0%EC%9E%90) 참고*)
 
 ```cpp
 class T {
@@ -768,7 +768,7 @@ int f(int) {return 1;}
 // double f(int) {return 2;} // (X) 컴파일 오류. 리턴 타입은 오버로딩 함수 결정에 사용하지 않음
 ```
 
-는 리턴 타입은 다르지만, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같으니, 동일한 함수가 새롭게 정의되어 오류를 발생합니다. 
+는 리턴 타입은 다르지만, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 같으니, 동일한 함수가 새롭게 정의되어 컴파일 오류가 발생합니다. 
 
 **값 타입과 참조자간의 모호성**
 
@@ -944,7 +944,7 @@ EXPECT_TRUE(D::g() == 1); // C::MyFunc 이 채택됨
 5. `c->a->b`, 
 6. `c->b->a`
 
-의 6가지 경우의 수중 하나로 실행됩니다. 이점 유의해야 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)(*[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EA%B7%80) 참고*)과 쓰레드 프로그래밍(*[쓰레드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/) 참고*)을 할 수 있습니다. 
+의 6가지 경우의 수중 하나로 실행됩니다. 이점 유의해야 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)(*[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90) 참고*)과 쓰레드 프로그래밍(*[쓰레드](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/) 참고*)을 할 수 있습니다. 
 
 `a()` 함수는 `a_sub()`의 결과를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받으므로, `a_sub()`보다 나중에 실행됨을 보증합니다.(*예를 들어 `b->a_sub->c->a`가 될 수도 있습니다.*)
 
