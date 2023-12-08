@@ -307,8 +307,7 @@ class T {
 
 예외를 [catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하지 않으면 [전파](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)되어 최종적으로 프로그램이 종료됩니다. 따라서, 대형 프로그램을 개발하거나 라이브러리를 개발하는 경우에, 각 역할별로 모듈을 레이어링 하여 예외가 사용자 모듈로 [전파](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)되지 않도록 하는게 좋습니다.
 
-1. 라이브러리 모듈에서는 [예외를 전파](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)하고, 
-2. 모듈의 경계에서 상위 예외 처리 모듈을 두어 해당 모듈에서 예외를 [catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 한뒤 오류 코드로 변환하여, 
-3. 사용자 모듈로 더이상 [예외가 전파](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)되지 않도록 합니다.
+1. 라이브러리 모듈에서는 [예외를 전파](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)합니다. 
+2. 모듈의 경계에서 상위 예외 처리 모듈을 둡니다. 해당 모듈에서는 예외를 [catch()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 한뒤 오류 코드로 변환합니다. 따라서 사용자 모듈로 더이상 [예외가 전파](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)되지 않습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ef2063c7-1cfe-4d2d-9738-0e6ff7885682)
