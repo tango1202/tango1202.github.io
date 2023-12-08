@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * 사전 가정과 사후 가정을 진단하라.
+> * [사전 가정](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8)과 [사후 가정](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8)을 진단하라.
 > * 진단 코드가 최소화 되도록, 포인터 보다는 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용하고, 코딩 계약을 단단하게 만들어라.
 
 > **모던 C++**
@@ -16,7 +16,7 @@ sidebar:
 
 # 개요 
 
-설계한 기능이 올바르게 사용되는지 진단하기 위해 [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)를 사용할 수 있습니다. [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)는 디버그 모드가 아니면 아무런 작동을 하지 않으며, 디버그 모드에서만 작동됩니다.
+설계한 기능이 올바르게 사용되는지 진단하기 위해 [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)를 사용할 수 있습니다. [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)는 디버그 모드에서만 작동하고, 그외에는 작동하지 않습니다.
 
 ```cpp
 #ifdef NDEBUG
@@ -26,7 +26,7 @@ sidebar:
 #endif
 ```
 
-[assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)는 `condition`이 `0`(`false`) 이면 오류가 표시됩니다. 메시지를 함께 표시하고 싶으면, `&&`을 사용할 수 있습니다.
+[assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)는 `condition`이 `0`(`false`) 이면 주어진 수식이 표시됩니다. 메시지를 함께 표시하고 싶으면, `&&`을 사용할 수 있습니다.
 
 ```cpp
 int a = 10;
@@ -44,12 +44,14 @@ assert(a == 11 && "Test Message"); // 거짓 && 참은 거짓이므로 표시함
 
 특히 
 
-1. 사전 가정 : [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 전달된 인수가 유효한 값인지, 가정한 값과 같은지,
-2. 사후 가정 : 연산 결과나 수행 결과가 기대치와 맞는지
+1. [사전 가정](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8) : [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 전달된 인수가 유효한 값인지, 가정한 값과 같은지,
+2. [사후 가정](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8) : 연산 결과나 수행 결과가 기대치와 맞는지
 3. 오버 플로우, 실수 연산 가정 : 주어진 연산의 결과가 오버 플로우는 없는지, 실수 연산시 오차 범위 내인지 
 4. 인프라 가정 : 파일, 네트워크, 데이터베이스 상황이 가정과 맞는지
 
-만약 다음 `f()` 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 `a`, `b`, `c`가 특정 범위 값만 지원한다면,
+등의 진단 코드를 작성해 두는게 좋습니다.
+
+만약 다음 `f()` 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)인 `a`, `b`, `c`가 특정 범위 값만 지원한다면,
 
 ```cpp
 int f(int a, int b, int* c) {
@@ -96,7 +98,7 @@ int f(int a, int b, int* c) {
 
 가정이 최소화 되면 진단하는 부분도 줄어들며 코드의 가독성, 유지보수성, 사용 용이성은 향상됩니다.
 
-1. 불필요한 널검사가 없도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용합니다.
+1. 불필요한 널검사가 없도록 합니다. 
    
     ```cpp
     void f(T* obj) {
@@ -106,7 +108,7 @@ int f(int a, int b, int* c) {
     } 
     ```
     
-    보다는
+    보다는, [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용하는게 좋습니다.
 
     ```cpp
     void f(T& obj) {
@@ -134,7 +136,7 @@ int f(int a, int b, int* c) {
     }                                          
     ```
 
-    보다는, 인수가 유효한 값임을 보증할 수 있도록 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 하여,
+    보다는, 인수가 유효한 값임을 보증할 수 있도록 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)하는게 낫습니다.
 
     ```cpp
     void f(const Degree& angle) {
@@ -144,6 +146,4 @@ int f(int a, int b, int* c) {
         ...
     }   
     ```
-
-    가 낫습니다.
 

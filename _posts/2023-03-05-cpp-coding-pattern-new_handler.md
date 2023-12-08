@@ -24,12 +24,12 @@ sidebar:
 
 # 활용 코딩 패턴
 
-1. [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)과 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 연산을 막기 위해 [`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/)을 사용하고, 
-2. 지역 변수(자동 변수)로만 생성되도록 [`OnlyStackAssignable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)을 사용합니다.
-3. 테스트를 위해 생성된 포인터를 삭제하기 위해 [`Holder`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)를 사용합니다.
-4. [set_new_handler()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)로 설정한 값을 복원하기 위해 [`Restorer`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/#restorer---holder%EC%9D%98-%EC%9D%91%EC%9A%A9)를 응용합니다.
+1. [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)과 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 연산을 막기 위해 [Uncopyable](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/)을 사용하고, 
+2. 지역 변수(자동 변수)로만 생성되도록 [OnlyStackAssignable](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)을 사용합니다.
+3. 테스트를 위해 생성된 포인터를 삭제하기 위해 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)를 사용합니다.
+4. [set_new_handler()](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)로 설정한 값을 복원하기 위해 [Restorer](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/#restorer---holder%EC%9D%98-%EC%9D%91%EC%9A%A9)를 응용합니다.
 
-5. `NewHandler`를 전역적으로 처리하기 위해 [`Singleton`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-singleton/)으로 구현합니다.
+5. `NewHandler`를 전역적으로 처리하기 위해 [Singleton](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-singleton/)으로 구현합니다.
 
 # NewHandler의 사양
 

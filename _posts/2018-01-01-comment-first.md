@@ -40,7 +40,7 @@ sidebar:
 
 2. 이 함수에 필요한 인수가 무엇이고, 제약사항이 무엇인지 적습니다.
 
-3. 함수 수행에 필요한 사전가정, 사후가정을 적습니다.
+3. 함수 수행에 필요한 사전 가정, 사후 가정을 적습니다.
 
 4. 함수의 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 어떠한 의미를 가지는지 적습니다.
 
