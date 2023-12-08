@@ -27,10 +27,10 @@ C++17 부터는 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cp
 |`<, <=, >, >=` (C++17~)<br/>`<=>` (C++20~)|관리하는 개체를 비교합니다.|
 |[visit()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/#visit) (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 관리하는 값으로 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 호출합니다.|
 |`holds_alternative()` (C++17~)|주어진 타입이 관리되고 있는지 검사합니다.|
-|`get()` (C++17~)|주어진 인덱스나 타입의 값을 리턴합니다. 값이 없으면, `bad_variant_access` [예외를 발생](??)합니다.|
-|`get_if()` (C++17~)|주어진 타입의 값을 리턴합니다. 값이 없으면, [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr) [예외를 발생](??)합니다.|
+|`get()` (C++17~)|주어진 인덱스나 타입의 값을 리턴합니다. 값이 없으면, `bad_variant_access` [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.|
+|`get_if()` (C++17~)|주어진 타입의 값을 리턴합니다. 값이 없으면, [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)을 리턴합니다.|
 |[monostate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/#monostate) (C++17~)|초기값 없이 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)를 생성합니다.|
-|`bad_variant_access` (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)에서 주어진 타입이 없을때 [예외를 발생](??)합니다.|
+|`bad_variant_access` (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)에서 주어진 타입이 없을때 `bad_variant_access` [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.|
 |`variant_size, variant_size_t` (C++17~)|(작성중)|
 |`variant_alternative, variant_alternative_t` (C++17~)|(작성중)|
 |`variant_npos` (C++17~)|[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) 인덱스가 잘못된 경우를 나타냅니다.`-1`입니다.| 
@@ -40,7 +40,7 @@ C++17 부터는 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cp
 1. 기본 생성시에는 0번째 타입의 기본 생성값으로 초기화 합니다.
 2. `holds_alternative()`으로 주어진 타입이 관리되고 있는지 검사합니다.
 3. `index()` 로 현재 관리되는 타입의 인덱스를 알 수 있습니다.
-4. `get<인덱스>()` 와 `get<타입>()`으로 값에 접근할 수 있습니다. 만약 해당 값이 없으면 `bad_variant_access` [예외를 발생](??)합니다.
+4. `get<인덱스>()` 와 `get<타입>()`으로 값에 접근할 수 있습니다. 만약 해당 값이 없으면 `bad_variant_access` [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.
 5. `get_if()`는 값이 없으면 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)을 리턴합니다.
 
 ```cpp
@@ -86,7 +86,7 @@ var = 1; // (X) 컴파일 오류. 타입이 동일하면 사용할 수 없습니
 
 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)는 생성시에 `0`번째 타입의 개체의 [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90)로 초기화 해주고, 별도로 초기화 하는 함수도 없기 때문에, 일반적인 상황에선 항상 유효한 개체를 갖게 되는데요,
 
-생성자나 대입 과정에서 [예외가 발생](??)하면 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 유효하지 않은 상태가 됩니다. `valueless_by_exception()`는 이런 경우 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)의 유효성을 검사합니다.
+생성자나 대입 과정에서 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하면 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 유효하지 않은 상태가 됩니다. `valueless_by_exception()`는 이런 경우 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)의 유효성을 검사합니다.
 
 ```cpp
 class T {
@@ -110,7 +110,7 @@ EXPECT_TRUE(var.valueless_by_exception() == true); // 유효하지 않습니다.
 
 [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)는 기본 생성시에 0번째 타입으로 초기화 합니다. 만약 아무값도 없는 상태로 생성하려면 특별히 [monostate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/#monostate)로 생성합니다.
 
-유효한 값은 아니지만 [예외가 발생](??)한 것은 아니므로 `valueless_by_exception`은 `false` 입니다.
+유효한 값은 아니지만 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)한 것은 아니므로 `valueless_by_exception`은 `false` 입니다.
 
 ```cpp
 std::variant<std::monostate, int, std::string> var{};

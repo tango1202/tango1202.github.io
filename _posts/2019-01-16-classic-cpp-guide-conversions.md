@@ -109,7 +109,7 @@ C++언어는
 
 **C언어 스타일 형변환-`()`**
 
-[암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 되지 않는다면, 괄호(*`(`와 `)`*)로 C언어 스타일로 [명시적으로 형변환(*const_cast, static_cast, reinterpret_cast 의 순서*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 [예외가 발생](??)할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 [const_cast, static_cast, dynamic_cast, reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
+[암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 되지 않는다면, 괄호(*`(`와 `)`*)로 C언어 스타일로 [명시적으로 형변환(*const_cast, static_cast, reinterpret_cast 의 순서*)](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 할 수 있습니다. 잘못 사용하면 예기지 못한 데이터 절삭이나 변환으로 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)할 수 있습니다. 사용하지 말아야 합니다. 심지어 검색도 어렵습니다. C언어의 나쁜 잔재입니다. 형변환이 꼭 필요하다면, C++언어 형변환 스타일인 [const_cast, static_cast, dynamic_cast, reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 사용하는게 검색이라도 편리하니 차라리 낫습니다.
 
 ```cpp
 {

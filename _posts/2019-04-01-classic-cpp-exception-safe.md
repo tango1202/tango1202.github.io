@@ -8,22 +8,22 @@ sidebar:
     nav: "docs"
 ---
 
-> * [예외 안전(safe) 코드](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)는 [예외가 발생](??)하지 않는 코드가 아니라, [예외가 발생](??)해도 안전하게 [복원](??)되고 계속 동작해도 무방하게 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)하는 코드다.
+> * [예외 안전(safe) 코드](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)는 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하지 않는 코드가 아니라, [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)해도 안전하게 [복원](??)되고 계속 동작해도 무방하게 [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)하는 코드다.
 > * 예외 상황을 사전에 예측하고 프로그래밍 하라.
 > * 모든 함수는 실패할 수 있다고 가정하고 프로그래밍 해라.
-> * [예외가 발생](??)했을때 메모리 릭이나 리소스 릭이 없게 하라.(*[기본 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)*)
-> * [예외가 발생](??)했을때 [예외 발생](??) 전의 상태로 [복원](??)하라.(*[강한 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)*)
+> * [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)했을때 메모리 릭이나 리소스 릭이 없게 하라.(*[기본 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)*)
+> * [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)했을때 [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 전의 상태로 [복원](??)하라.(*[강한 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/)*)
 > * 예외를 처리 할 수 없다면 상위 개체에 보고하라.
 
 # 개요
 
-[예외 안전(safe) 코드](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)는 [예외가 발생](??)하지 않는 코드가 아니라(*이건 사실 불가능합니다. 메모리가 부족할 수도 있고, 갑자기 랜선이 차단될 수도 있고*), [예외가 발생](??)해도 안전하게 [복원](??)되고, 계속 동작해도 무방하게 만드는 코드입니다.
+[예외 안전(safe) 코드](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)는 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하지 않는 코드가 아니라(*이건 사실 불가능합니다. 메모리가 부족할 수도 있고, 갑자기 랜선이 차단될 수도 있고*), [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)해도 안전하게 [복원](??)되고, 계속 동작해도 무방하게 만드는 코드입니다.
 
 [예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)하려면 다음을 준수하여야 합니다.
 
 1. 예외 상황을 사전에 예측하고 프로그래밍 해야 합니다. 모든 함수는 실패할 수 있다고 가정하세요.(*[자가 진단과 진단 최소화](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/) 참고*)
-2. [예외가 발생](??)했을때 메모리 릭이나 리소스 릭은 없어야 합니다.(*[기본 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 참고*)
-3. [예외가 발생](??)했을때 [예외 발생](??) 전의 상태로 [복원](??)해야 합니다.(*[강한 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 참고*)
+2. [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)했을때 메모리 릭이나 리소스 릭은 없어야 합니다.(*[기본 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 참고*)
+3. [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)했을때 [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 전의 상태로 [복원](??)해야 합니다.(*[강한 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 참고*)
 
 # 일반적인 예외 상황에서 대처 방안
 
@@ -36,7 +36,7 @@ sidebar:
    
 **컨테이너에서 잘못 참조된 인덱스**
 
-[예외가 발생](??)하기 전에 사전 진단을 하여 보정하는 편이 좋습니다. 다만, 여러개의 개체가 중첩되어 호출되는 경우 이를 레이어링 하여 비교적 상위 레이어의 개체에서 진단과 보정을 하는게 좋습니다.(*[예외 레이어링](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81) 참고*)
+[예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하기 전에 사전 진단을 하여 보정하는 편이 좋습니다. 다만, 여러개의 개체가 중첩되어 호출되는 경우 이를 레이어링 하여 비교적 상위 레이어의 개체에서 진단과 보정을 하는게 좋습니다.(*[예외 레이어링](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81) 참고*)
 
 1. 비교적 상위 개체에서 사전에 잘못된 인덱스 인지 검사하고, 유효한 인덱스가 되도록 보정합니다.
 2. 비교적 상위 개체에서 메시지 박스를 표시하거나, 아무짓도 안하거나, 마지막 요소를 사용하거나, 정의된 기본 동작을 수행합니다.
@@ -63,7 +63,7 @@ sidebar:
 
 **인프라 오류**
 
-파일 IO나 네트워크등 외부 인프라가 가정한 상황과 달라 [예외가 발생](??)할 수 있습니다. 언제든 파일이 갑자기 삭제될 수 있고, 디스크의 손상된 섹터 때문에 읽지 못할 수 있고, 네트워크는 순간적으로 단절될 수 있습니다.
+파일 IO나 네트워크등 외부 인프라가 가정한 상황과 달라 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)할 수 있습니다. 언제든 파일이 갑자기 삭제될 수 있고, 디스크의 손상된 섹터 때문에 읽지 못할 수 있고, 네트워크는 순간적으로 단절될 수 있습니다.
 
 1. 현재의 오류 상태를 메시지 박스로 표시하고, 작업을 중단하거나 나중에 재시도 할 수 있게 합니다. 
 2. 중단된 작업은 사용자 선택에 의해 이어서 진행(*파일 다운로드 이어받기 등*)할 수 있게 합니다.
@@ -77,17 +77,17 @@ sidebar:
 |--|--|
 |프로그램을 종료합니다.|무책임합니다. 종료하더라도 상위 개체에서 메시지를 표시하고, 사용자 선택에 의해 종료하게 만들어야 합니다.|
 |아예 신경쓰지 않습니다.|프로그램이 죽던지, 나중에 프로그래머가 디버깅하다가 스트레스로 죽던지 하니, 신경 쓰셔야 합니다.|
-|오류 코드를 리턴합니다.|리턴된 오류는 대부분 무시될 수 있습니다. 엔진 안쪽의 하위 개체들이라면 [예외를 발생](??)시키고, 이를 처리할 수 있는 곳까지 방출하여, 상위 개체에서 처리할 수 있도록 해줘야 합니다.(*[예외 레이어링](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81) 참고*)|
+|오류 코드를 리턴합니다.|리턴된 오류는 대부분 무시될 수 있습니다. 엔진 안쪽의 하위 개체들이라면 [예외를 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키고, 이를 처리할 수 있는 곳까지 방출하여, 상위 개체에서 처리할 수 있도록 해줘야 합니다.(*[예외 레이어링](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81) 참고*)|
 |전역 오류 코드를 세팅합니다.|호출한 곳에서 오류를 확인할 확률은 0.00001% 입니다. 함수 호출 후 `GetLastError()`를 다시 검사하는 경우는 거의 없잖아요?|
 |자가 진단 후 함수를 정상 종료 시킵니다.|`if (condition) return;` 와 같이 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 검사하고 그냥 종료 시키면, 잘못된 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 대한 처리가 수행되지 않습니다. 시스템이 정말 계속 안전하게 돌아갈지 의문이고, 이게 나중에 알 수 없는 버그의 원인이 되기도 합니다.|
-|[예외가 발생](??)할 경우 호출할 함수를 호출합니다.|[new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)가 이런 구조인데요, 사실 이런 구조는 사용법이 좀 어렵습니다.|
+|[예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)할 경우 호출할 함수를 호출합니다.|[new_handler](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)가 이런 구조인데요, 사실 이런 구조는 사용법이 좀 어렵습니다.|
 
 
 # 예외 상황의 올바른 대처
 
-개발자는 현 함수에서 예측할 수 있는 모든 상황을 고려하여 코드를 작성해야 합니다. 예측할 수 없는 [예외 상황이 발생](??)한다면 대처할 수 없고, 프로그램은 오동작하다가 결국 멈춰버립니다. 
+개발자는 현 함수에서 예측할 수 있는 모든 상황을 고려하여 코드를 작성해야 합니다. 예측할 수 없는 예외 상황이 발생한다면 대처할 수 없고, 프로그램은 오동작하다가 결국 멈춰버립니다. 
 
-그러니, 예측할 수 없는 예외 상황이 없도록 레벌업을 하시고, 함수 내부에서 예외를 처리할 수 있는지 없는지를 판단하여 예외에 대처하거나 [예외를 전파](??)해야 합니다. 이때, [예외 발생](??)의 원인이 명백한 코딩 실수라면, ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 하여 코딩 계약을 단단하게 하시고, 최후의 수단으로 [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)로 잘못된 사용을 안내하시기 바랍니다.
+그러니, 예측할 수 없는 예외 상황이 없도록 레벌업을 하시고, 함수 내부에서 예외를 처리할 수 있는지 없는지를 판단하여 예외에 대처하거나 [예외를 전파](??)해야 합니다. 이때, [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)의 원인이 명백한 코딩 실수라면, ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 하여 코딩 계약을 단단하게 하시고, 최후의 수단으로 [assert()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-diagonostics/)로 잘못된 사용을 안내하시기 바랍니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fc331259-e119-499d-8b84-8a36e32b471f)
 

@@ -160,7 +160,7 @@ std::vector<int> v; // 빈 벡터
 Fill(v.begin(), 5, 7); // (X) 예외 발생. v가 5개 할당되지 않았다면 예외 발생 
 ```
 
-`Fill()` 함수에서는 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 반복하면서 `*first = value;` 로 실제 요소에 값을 대입하는데, 벡터에는 요소가 없어 [예외가 발생](??)하게 되는거죠.
+`Fill()` 함수에서는 [이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)를 반복하면서 `*first = value;` 로 실제 요소에 값을 대입하는데, 벡터에는 요소가 없어 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하게 되는거죠.
 
 이런 경우 값을 대입하지 않고, [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)에 `push_back()` 하도록 `=` 연산자를 재정의한 것을 [삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)라고 합니다. STL에서는 `back_insert_iterator`를 제공하고 있는데요, 원리를 이해하기 위해 직접 구현해 보겠습니다.
 

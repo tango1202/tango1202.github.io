@@ -60,7 +60,7 @@ void f_11() noexcept {
 ```
 # 느슨한 noexcept 계약
 
-한가지 아쉬운 점은 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인 함수 내에서 사용하는 함수가 [예외를 발생](??)시키면 컴파일 경고 없이, 런타임에 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출한다는 점입니다. 
+한가지 아쉬운 점은 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인 함수 내에서 사용하는 함수가 [예외를 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키면 컴파일 경고 없이, 런타임에 [terminate()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#terminate)를 호출한다는 점입니다. 
 
 ```cpp
 void f() {
@@ -74,14 +74,14 @@ f_11(); // noexcept 함수 내에서 사용하는 함수 f()가 예외를 발생
 
 [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)이 ***상수는 상수만 접근한다*** 이듯이, [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)만 접근한다는 계약이 있으면 컴파일 단계에서 감지되어 참 좋을텐데 말이죠. 왜 이런가 봤더니 기존 C스타일 함수는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)를 지정할 수 없으니, 호출의 호환성을 유지하기 위해 이렇게 느슨하게 했다는군요.(*아쉽지만, 개발자에게 충분한 자유도를 주는 표준화 위원들의 의견도 존중합니다.*)
 
-아무튼 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)는 컴파일 오류 감지가 안되기에 가볍게 넣거나 뺄 수 있는 코딩 계약이 아닙니다. [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)처럼 컴파일 오류로 감지할 수 있으면, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 무조건 들이댄 것처럼 쉽게 적용할 수 있지만, 마구잡이로 적용했다가 [예외 발생](??) 상황이 되면, 이를 수습하느라 인생을 낭비하게 될 수 있습니다. 
+아무튼 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)는 컴파일 오류 감지가 안되기에 가볍게 넣거나 뺄 수 있는 코딩 계약이 아닙니다. [상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)처럼 컴파일 오류로 감지할 수 있으면, [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 무조건 들이댄 것처럼 쉽게 적용할 수 있지만, 마구잡이로 적용했다가 [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 상황이 되면, 이를 수습하느라 인생을 낭비하게 될 수 있습니다. 
 
 내부적으로 사용하는 하위 함수와 그 함수가 향후에 어떻게 변화될 것인지 신중하게 고려하여 적용하시고, 하위 함수들도 꼭 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 작성하여 ***[noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) 계약***을 만들어 두시는게 좋습니다.
 
 따라서 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/) 함수를 만들때는 다음을 고려하세요.
 
 1. 사용되는 하위 함수들도 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인지 면밀히 검토하여야 합니다. 
-2. 또한, 향후 하위 함수들이 수정되어 혹여나 [예외를 발생](??)시키면, 사용되는 모든 곳의 예외 처리를 재검토 해서 수정하겠다는 ***모든 조직원의 공감대***가 형성되어야 합니다.
+2. 또한, 향후 하위 함수들이 수정되어 혹여나 [예외를 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키면, 사용되는 모든 곳의 예외 처리를 재검토 해서 수정하겠다는 ***모든 조직원의 공감대***가 형성되어야 합니다.
 
 그렇지 않으면 오히려 안쓰는게 낫습니다. 그나마 [스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90)의 기회조차 컴파일러 최적화에 의해 차단되니까요.
 

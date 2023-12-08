@@ -36,9 +36,9 @@ C++17 부터는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-st
 |`swap()` (C++17~)|바꿔치기 합니다.|
 |`has_value()` (C++17~)|내부 개체가 있는지 검사합니다.|
 |`type()` (C++17~)|(작성중)|
-|`any_cast()` (C++17~)|내부 개체 타입으로 변경하여 내부 개체를 접근합니다. 타입이 다르면, `bad_any_cast` [예외를 발생](??)합니다.|
+|`any_cast()` (C++17~)|내부 개체 타입으로 변경하여 내부 개체를 접근합니다. 타입이 다르면, `bad_any_cast` [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.|
 |`make_any()` (C++17~)|(작성중)|
-|`bad_any_cast` (C++17~)|[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 사용시 타입이 일치하지 않을때 [예외를 발생](??)합니다.|
+|`bad_any_cast` (C++17~)|[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 사용시 타입이 일치하지 않을때 `bad_any_cast` [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.|
 
 다음 예에서는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. [reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 대신 `any_cast()`를 사용하며, [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 하지 않아도 됩니다. 
 

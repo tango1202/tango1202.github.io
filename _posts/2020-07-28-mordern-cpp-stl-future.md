@@ -182,7 +182,7 @@ int Sync() {
 EXPECT_TRUE(Sync() == 11); 
 ```
 
-만약 `Async()` 함수에서 [예외를 발생](??)하면, 다음처럼 예외 핸들링이 가능합니다.
+만약 `Async()` 함수에서 [예외를 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키면, 다음처럼 예외 핸들링이 가능합니다.
 
 ```cpp
 int Async(int val) {

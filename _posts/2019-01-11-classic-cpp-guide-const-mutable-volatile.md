@@ -10,7 +10,7 @@ sidebar:
 
 > * [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/) 정확성을 지켜라.
 > * 무조건 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)를 들이대라.
-> * [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)와 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 메모리를 수정하지 않기 때문에 [예외가 발생](??)하지 않는다.
+> * [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)와 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 메모리를 수정하지 않기 때문에 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하지 않는다.
 
 > **모던 C++**
 > * (C++11~) [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
@@ -18,7 +18,7 @@ sidebar:
 
 # 개요
 
-[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)인 개체나 함수를 사용하면, 메모리의 수정이 없으므로 [예외를 발생](??)하지 않습니다. [예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)한 프로그램을 위해, ***할 수 있는 한 최대한 많이 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)로 작성***하는 것이 좋습니다.
+[const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)인 개체나 함수를 사용하면, 메모리의 수정이 없으므로 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하지 않습니다. [예외에 안전](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)한 프로그램을 위해, ***할 수 있는 한 최대한 많이 [const](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/)로 작성***하는 것이 좋습니다.
 
 또한, **[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)** 을 준수하세요. 계약 위반시 대부분 컴파일 오류가 발생하니, 계약을 지키기 까다롭지도 않습니다.
 
@@ -29,15 +29,15 @@ sidebar:
 
 # 상수성 계약
 
-[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)은 값을 변경하지 않는다는 계약입니다. 메모리를 읽기만 하고 수정하지 않는다는 것이죠. 그러다 보니 [예외를 발생](??)하지 않습니다. [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)인 경우만 빼고요.
+[상수성 계약](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)은 값을 변경하지 않는다는 계약입니다. 메모리를 읽기만 하고 수정하지 않는다는 것이죠. 그러다 보니 [예외를 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키지 않습니다. [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)인 경우만 빼고요.
 
 1. [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)는 생성과 함께 [초기화](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-initialization/) 되어야 합니다.(*컴파일 오류*)
 2. [상수 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)는 변경할 수 없습니다.(*컴파일 오류*)
 3. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하지 않습니다.(*컴파일 오류, 단 [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)로 수정 가능합니다.*)
 4. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 몰래 수정할 수 있는 [포인터나 참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/)를 리턴하지 않습니다.(*컴파일 오류. 단, [const_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)로 억지로 구현 가능하나 하지 마세요.*)
 5. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 내부 구현에서 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)만을 호출합니다.(*컴파일 오류*)
-6. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [예외가 발생](??)하지 않습니다.(*일반적으로 [발생](??)하지 않습니다만, 복잡한 연산들이 있다면, 노력해서 [예외가 발생](??)하지 않도록 구현해야 합니다.*)
-7. [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)로 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)을 구현한 경우 [예외가 발생](??)할 수 있습니다.(*이때에는 [예외 처리](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)를 해야 합니다.*)
+6. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하지 않습니다.(*일반적으로 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하지 않습니다만, 복잡한 연산들이 있다면, 노력해서 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하지 않도록 구현해야 합니다.*)
+7. [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)로 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)을 구현한 경우 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)할 수 있습니다.(*이때에는 [예외 처리](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)를 해야 합니다.*)
 
 한마디로 ***상수는 상수만 접근한다***로 생각하면 됩니다. 한편, 비 상수는 바이러스처럼 전파됩니다. [비 상수 멤버 함수의 비 상수성 전파](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%B9%84-%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98%EC%9D%98-%EB%B9%84-%EC%83%81%EC%88%98%EC%84%B1-%EC%A0%84%ED%8C%8C)를 참고하세요.
 
@@ -193,7 +193,7 @@ public:
 
 # 변경 가능 지정자(mutable)
 
-지연 생성이나 캐쉬등 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)인 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에서 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정해야 할 때 사용합니다. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [예외를 발생](??)하지 않습니다만, 이 경우엔 [예외를 발생](??)시킵니다. 따라서 꼭 [try-catch()로 예외 처리](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)를 해주시기 바랍니다.
+지연 생성이나 캐쉬등 [논리적 상수성](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical-const/)인 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에서 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정해야 할 때 사용합니다. [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 [예외를 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키지 않습니다만, 이 경우엔 [예외를 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시킵니다. 따라서 꼭 [try-catch()로 예외 처리](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/)를 해주시기 바랍니다.
 
 ```cpp
 TEST(TestClassicCpp, Mutable) {

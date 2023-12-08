@@ -101,7 +101,7 @@ sidebar:
 
 # thread
 
-[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 쓰레드를 생성한 뒤 주어진 함수(또는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/))를 실행시킵니다. 이후 `join()`을 이용하여 쓰레드가 종료할 때까지 대기하거나, `detach()`를 이용하여 계속 백그라운드에서 쓰레드가 실행되도록 내버려 두어야 합니다. 만약 `join()`이나 `detach()`를 하지 않으면 [예외가 발생](??)합니다.
+[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 쓰레드를 생성한 뒤 주어진 함수(또는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/))를 실행시킵니다. 이후 `join()`을 이용하여 쓰레드가 종료할 때까지 대기하거나, `detach()`를 이용하여 계속 백그라운드에서 쓰레드가 실행되도록 내버려 두어야 합니다. 만약 `join()`이나 `detach()`를 하지 않으면 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.
 
 [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 다음과 같습니다.
 
@@ -410,7 +410,7 @@ worker1.join();
 worker2.join(); 
 ```
 
-혹은 `unlock()`을 꼼꼼하게 했더라도, Todo에서 [예외를 발생](??)하면, `unlock`이 호출 되지 않습니다.
+혹은 `unlock()`을 꼼꼼하게 했더라도, Todo에서 [예외를 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키면, `unlock`이 호출 되지 않습니다.
 
 ```cpp
 {
