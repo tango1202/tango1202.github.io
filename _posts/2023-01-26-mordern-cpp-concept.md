@@ -473,5 +473,15 @@ A a, b;
 Add_20(a, b); // (X) 컴파일 오류. + 가 제공되지 않습니다.
 ```
 
+# 구조화된 바인딩과 컨셉
 
+구조화된 바인딩은 컨셉을 지원하지 않습니다. (https://en.cppreference.com/w/cpp/language/structured_binding)
+
+
+```cpp
+template<class T>
+concept C = true;
+ 
+C auto [x, y] = std::pair{1, 2}; // error: constrained
+```
 
