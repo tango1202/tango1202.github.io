@@ -507,7 +507,7 @@ constexpr void Func_20() {
     int a; // 초기화되지 않은 지역 변수
 
     try {} // try-catch
-    catch(...) {}
+    catch (...) {}
 }
 ```
 
