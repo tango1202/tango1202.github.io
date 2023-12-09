@@ -16,11 +16,11 @@ sidebar:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/92219be0-7d56-49a9-9c0e-86b734a8caaf)
 
-[코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)은 함수를 일시 정지(*Suspend*)하고 재개(*Resume*)할 수 있는 함수입니다. 일시 정지하고 재개를 위해 필요한 정보는 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 저장합니다.
+[코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)은 일시 정지(*Suspend*)하고 재개(*Resume*)할 수 있는 함수입니다. 일시 정지하고 재개를 위해 필요한 정보는 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 저장합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/83582e56-5ecb-4387-a2cb-910ac1c594cb)
 
-[코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)의 일시 정지를 위해서는 다음이 사용됩니다.
+[코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)는 일시 정지를 위해서 다음을 사용합니다.
 
 |항목|내용
 |--|--|
@@ -31,7 +31,7 @@ sidebar:
 
 # 코루틴 함수, 코루틴 개체, 코루틴 핸들, promise 개체
 
-함수의 경우에는 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)으로 값을 바로 호출자가 전달받을 수 있는데요, [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)은 일시 정지와 재개를 해야 하고, 일시 정지한 상태에서 값을 전달받아야 하기 때문에 여러 개체들이 협력하여 동작합니다.
+함수의 경우에는 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 호출자가 바로 전달받을 수 있는데요, [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)은 일시 정지와 재개를 해야 하고, 일시 정지한 상태에서 값을 전달받아야 하기 때문에 여러 개체들이 협력하여 동작합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/decb848f-4500-4bb3-86ec-c85261c44af1)
 
@@ -40,13 +40,13 @@ sidebar:
 |[코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)|함수 본문입니다. 함수내에서 [co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await), [co_yield](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_yield), [co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return)로 일시 정지합니다.(*함수 본문에 [co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await), [co_yield](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_yield), [co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return)을 작성하면 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)가 됩니다.*)|
 |[코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)|[코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4) 호출자와 데이터 통신을 하며, [코루틴 핸들](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)을 관리합니다.|
 |[코루틴 핸들](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)|[promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4)를 관리합니다. 주로 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)를 재개하는데 사용합니다.|
-|[promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4)|[코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 일시 정지 방법과 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)에서 [co_yield](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_yield), [co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return)시 데이터 통신을 합니다.|
+|[promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4)|[코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 일시 정지 방법을 제공하고, [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)에서 [co_yield](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_yield), [co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return)했을때 `yield_value()`나 `return_value()`로 데이터를 전달받습니다.|
 
 # co_await
 
-다음은 일시 정지 후 재개하는 기본적인 코루틴입니다.
+[co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await)는 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)를 일시 정지하고 제어권을 호출자에게 넘깁니다.
 
-[promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4), [코루틴 핸들](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)로 구성된 [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)와 이를 사용하는 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)로 구성되어 있습니다.
+다음은 일시 정지 후 재개하는 기본적인 [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)인데요, [promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4)/[코루틴 핸들](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)로 구성된 [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)와 이를 사용하는 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)로 구성되어 있습니다.
 
 1. #1 : 함수 내부에 [co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await)를 사용한 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)입니다. [co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await)를 할때마다 함수를 일시 정지하고 제어권을 호출자에게 넘깁니다.
 2. #2 : [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)입니다. #3의 [코루틴 핸들](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)을 관리하며, 일시 정지한 [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)을 `m_Handler.resume()`으로 외부에서 재개할 수 있게 합니다. 또한 명칭이 `promise_type`인 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)이 있어야 합니다.
@@ -152,7 +152,9 @@ CoroutineFunc #3 // 코루틴 함수 재개
 
 # promise 개체
 
-[코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 일시 정지 방법과 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)에서 [co_yield](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_yield), [co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return)시 데이터 통신을 합니다. 사용자가 정의해야 하는 필수 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 다음과 같습니다. (*[대기 가능 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EB%8C%80%EA%B8%B0-%EA%B0%80%EB%8A%A5-%EA%B0%9C%EC%B2%B4suspend_always-%EC%99%80-suspend_never)(*AwaitableType*)는 일시 정지 방법을 결정합니다. [대기 가능 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EB%8C%80%EA%B8%B0-%EA%B0%80%EB%8A%A5-%EA%B0%9C%EC%B2%B4suspend_always-%EC%99%80-suspend_never)(AwaitableType)를 참고하세요.*)
+[코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 일시 정지 방법을 지정하고, [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)에서 [co_yield](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_yield), [co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return)했을때 `yield_value()`나 `return_value()`로 데이터를 전달받습니다. 
+
+사용자가 정의해야 하는 필수 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 다음과 같습니다. (*[대기 가능 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EB%8C%80%EA%B8%B0-%EA%B0%80%EB%8A%A5-%EA%B0%9C%EC%B2%B4suspend_always-%EC%99%80-suspend_never)(*AwaitableType*)는 일시 정지 방법을 결정합니다. [대기 가능 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EB%8C%80%EA%B8%B0-%EA%B0%80%EB%8A%A5-%EA%B0%9C%EC%B2%B4suspend_always-%EC%99%80-suspend_never)(AwaitableType)를 참고하세요.*)
 
 |항목|내용|
 |--|--|
@@ -247,7 +249,7 @@ MyCoroutine CoroutineFunc() {
 }
 ```
 
-다음과 같이 `CoroutineFunc()`이 실행하면, #1이 실행된 다음 #2에서 일시 정지 합니다.
+다음과 같이 `CoroutineFunc()`이 실행하면, `CoroutineFunc()`의 #1이 실행된 다음 #2에서 일시 정지 합니다.
 
 ```cpp
 MyCoroutine obj = CoroutineFunc(); // CoroutineFunc #1
@@ -332,13 +334,13 @@ Call #3
 
 # 코루틴 함수의 promise 개체 제어 흐름
 
-[co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await), [co_yield](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_yield), [co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return)가 포함된 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)는 다음처럼 함수 본문을 실행하기 전에 [promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4)를 처리해 줍니다.
+[co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await), [co_yield](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_yield), [co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return)가 포함된 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)는 함수 본문을 실행하기 전에 [promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4)를 다음과 같이 처리해 줍니다.
 
 1. #1 : [promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4)를 생성합니다.
 2. #2 : [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)를 생성합니다.
 3. #3 : [promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4)의 `initial_suspend()`와 `final_suspend()` 에 따라 최초 실행시와 종료시 일시 정지를 합니다. 
 4. #4 : 함수 본문을 일시 정지/재개 하면서 실행하고, [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시 `unhandled_exception()`을 실행합니다.
-5. #5 : [co_return]을 한 경우 `return_void()`나 `return_value()`를 실행합니다.(*[co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return) 참고*)
+5. #5 : [co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return)을 한 경우 `return_void()`나 `return_value()`를 실행합니다.(*[co_return](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_return) 참고*)
 
 ```cpp
 MyPromise p; // #1. promise 개체를 생성합니다.
