@@ -12,9 +12,13 @@ sidebar:
 
 # 개요
 
-일반적인 함수는 리턴할때까지 실행되고 종료되는데요, [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)은 함수를 일시 정지(*Suspend*)하고 재개(*Resume*)할 수 있는 함수입니다. 일시 정지하고 재개를 위해 필요한 정보는 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 저장합니다.
+일반적인 함수를 호출하면, 리턴할때까지 실행되고 종료되는데요, 
 
-그림
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/92219be0-7d56-49a9-9c0e-86b734a8caaf)
+
+[코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)은 함수를 일시 정지(*Suspend*)하고 재개(*Resume*)할 수 있는 함수입니다. 일시 정지하고 재개를 위해 필요한 정보는 [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 저장합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/83582e56-5ecb-4387-a2cb-910ac1c594cb)
 
 [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)의 일시 정지를 위해서는 다음이 사용됩니다.
 
@@ -27,15 +31,9 @@ sidebar:
 
 # 코루틴 함수, 코루틴 개체, 코루틴 핸들, promise 개체
 
-함수의 경우에는 [리턴값]으로 값을 바로 호출자가 전달받을 수 있는데요, 
+함수의 경우에는 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)으로 값을 바로 호출자가 전달받을 수 있는데요, [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)은 일시 정지와 재개를 해야 하고, 일시 정지한 상태에서 값을 전달받아야 하기 때문에 여러 개체들이 협력하여 동작합니다.
 
-그림
-
-[코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)은 일시 정지와 재개를 해야 하고, 일시 정지한 상태에서 값을 전달받아야 하기 때문에 여러 개체들이 협력하여 동작합니다.
-
-그림 실행과 일시 정지
-
-그림 데이터 를 호출자로 전달하는 흐름
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/decb848f-4500-4bb3-86ec-c85261c44af1)
 
 |항목|내용|
 |--|--|
@@ -51,7 +49,7 @@ sidebar:
 [promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4), [코루틴 핸들](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)로 구성된 [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)와 이를 사용하는 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)로 구성되어 있습니다.
 
 1. #1 : 함수 내부에 [co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await)를 사용한 [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)입니다. [co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await)를 할때마다 함수를 일시 정지하고 제어권을 호출자에게 넘깁니다.
-2. #2 : [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)입니다. #3의 [코루틴 핸들](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)을 관리하며, 일시 정지한 [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)을 `m_Handler.resume()`으로 외부에서 재개할 수 있게 합니다.
+2. #2 : [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)입니다. #3의 [코루틴 핸들](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)을 관리하며, 일시 정지한 [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)을 `m_Handler.resume()`으로 외부에서 재개할 수 있게 합니다. 또한 명칭이 `promise_type`인 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)이 있어야 합니다.
 3. #3 : [코루틴 핸들](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)입니다. [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서 `destroy()`됩니다.
 4. #4 : [promise 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#promise-%EA%B0%9C%EC%B2%B4) 입니다. `get_return_object()`로 [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)를 생성합니다.
 5. #5 : [코루틴 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)를 시작할때 일시 정지를 어떻게 할 것인지 지정합니다. 본 예에서는 [suspend_always](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EB%8C%80%EA%B8%B0-%EA%B0%80%EB%8A%A5-%EA%B0%9C%EC%B2%B4suspend_always-%EC%99%80-suspend_never)를 사용하여 시작할때 일시 정지하도록 설정했습니다.
@@ -62,7 +60,7 @@ sidebar:
 class MyCoroutine {  // #2
 public:
     struct MyPromise;
-    using promise_type = MyPromise;
+    using promise_type = MyPromise; // #2. 명칭이 promise_type인 종속 타입이 있어야 합니다.
 private:
     std::coroutine_handle<promise_type> m_Handler; // #3. 코루틴 핸들
 public:

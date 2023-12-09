@@ -391,6 +391,13 @@ auto val5_20 = [] (std::integral auto val) {
 };  
 ```
 
+
+[구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)은 지원하지 않습니다.
+
+```cpp
+std::integral auto [x_17, y_17] = std::pair{1, 2}; // (X) 컴파일 오류
+```
+
 # 컨셉 활용
 
 [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)
@@ -471,17 +478,5 @@ Add_20(1, 2); // + 가 제공되어 사용 가능합니다.
 class A {}; // + 가 제공되지 않습니다.
 A a, b;
 Add_20(a, b); // (X) 컴파일 오류. + 가 제공되지 않습니다.
-```
-
-# 구조화된 바인딩과 컨셉
-
-구조화된 바인딩은 컨셉을 지원하지 않습니다. (https://en.cppreference.com/w/cpp/language/structured_binding)
-
-
-```cpp
-template<class T>
-concept C = true;
- 
-C auto [x, y] = std::pair{1, 2}; // error: constrained
 ```
 
