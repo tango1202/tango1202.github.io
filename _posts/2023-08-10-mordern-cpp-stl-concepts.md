@@ -8,6 +8,12 @@ sidebar:
     nav: "docs"
 ---
 
+> * (C++20~) [same_as, derived_from, convertible_to, integral, floating_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%ED%95%B5%EC%8B%AC-%EC%96%B8%EC%96%B4-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
+> * (C++20~) [equality_comparable, three_way_comparable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B9%84%EA%B5%90-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
+> * (C++20~) [movable, copyable, semiregular, regular](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EA%B0%9C%EC%B2%B4-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
+> * (C++20~) [invocable, predicate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%ED%95%A8%EC%88%98%EC%9E%90-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
+> * (C++20~) [forward_iterator, predicate, bidirectional_iterator, random_access_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
+
 # 핵심 언어 컨셉
 
 |항목|내용|
@@ -51,8 +57,8 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`invocable, regular_invocable` (C++20~)|(작성중)|
-|`predicate` (C++20~)|(작성중)|
+|`invocable<F, ... Args>, regular_invocable<F, ... Args>` (C++20~)|`F(Args)`로 호출할 수 있습니다.|
+|`predicate<F, ... Args>` (C++20~)|`regular_invocable<F, ... Args>`이고, `bool`을 리턴합니다.|
 |`relation` (C++20~)|(작성중)|
 |`equivalence_relation` (C++20~)|(작성중)|
 |`strict_weak_order` (C++20~)|(작성중)|
@@ -70,12 +76,12 @@ sidebar:
 |`sized_sentinel_for` (C++20~)|(작성중)|  
 |`input_iterator` (C++20~)|(작성중)|  
 |`output_iterator` (C++20~)|(작성중)| 
-|`forward_iterator` (C++20~)|(작성중)| 
-|`bidirectional_iterator` (C++20~)|(작성중)| 
-|`random_access_iterator` (C++20~)|(작성중)| 
+|`forward_iterator<I>` (C++20~)|`++`, `++`, `*`, `==`, `!=`을 할 수 있습니다.| 
+|`bidirectional_iterator<I>` (C++20~)|`forward_iterator<I>`이고, `--`을 할 수 있습니다.| 
+|`random_access_iterator<I>` (C++20~)|`bidirectional_iterator<I>`이고, `+=`, `+`, `-=`, `-`, `[]`, `<`, `<=`, `>`, `>=`을 할 수 있습니다.| 
 |`contiguous_iterator` (C++20~)|(작성중)|  
 
-# 알고리즘 컨셉 
+# 유틸리티 컨셉 
 
 |항목|내용|
 |--|--|
