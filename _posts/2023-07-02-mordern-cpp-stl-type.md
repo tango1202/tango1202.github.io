@@ -9,11 +9,11 @@ sidebar:
 ---
 
 > * (C++11~) [nullptr_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)가 추가되었습니다.
-> * (C++11~) `lldiv_t`, `lldiv_t`, `imaxdiv_t`, `float_t`, `double_t`가 추가되었습니다.
-> * (C++11~) [C스타일 최대/최소값](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%B5%9C%EB%8C%80%EC%B5%9C%EC%86%8C%EA%B0%92)에 `LLONG_MIN`, `LLONG_MAX`등이 보강되었습니다.
+> * (C++11~) [lldiv_t, lldiv_t, imaxdiv_t, float_t, double_t](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#%EC%88%98%ED%95%99-%ED%83%80%EC%9E%85)가 추가되었습니다.
+> * (C++11~) 
 > * (C++11~) [고정 너비 정수 타입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#c11-%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85)이 추가되었습니다.
-> * (C++11~) [type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#%EB%9F%B0%ED%83%80%EC%9E%84-%ED%83%80%EC%9E%85)는 [type_info](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)의 래퍼로서 [type_info](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)를 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)에서 관리할 수 있게 합니다.
-> * (C++17~) [byte](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85)는 순수한 1byte 크기를 갖는 타입입니다.(*`char`, `unsigned char`는 문자 처리 의미가 포함된 타입입니다.*)
+> * (C++11~) [type_index](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#%EB%9F%B0%ED%83%80%EC%9E%84-%ED%83%80%EC%9E%85)가 추가되어 [type_info](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)를 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)에서 관리할 수 있습니다.
+> * (C++17~) [byte](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85)가 추가되어 순수한 1byte 고정 크기를 처리할 수 있습니다.(*`char`, `unsigned char`는 문자 처리 의미가 포함된 타입입니다.*)
 > * (C++23~) [고정 너비 실수 타입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#c23-%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%8B%A4%EC%88%98-%ED%83%80%EC%9E%85)이 추가되었습니다.
 
 # 기본 타입

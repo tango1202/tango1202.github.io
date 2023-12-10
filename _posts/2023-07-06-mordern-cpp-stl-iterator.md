@@ -114,24 +114,6 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 |`iter_move()` (C++20~)|(작성중)|
 |`iter_swap()` (C++20~)|(작성중)|
 
-# (C++20~) 이터레이터 컨셉 
-
-|항목|내용|
-|--|--|
-|`indirectly_readable` (C++20~)|(작성중)|
-|`indirectly_writable` (C++20~)|(작성중)|
-|`weakly_incrementable` (C++20~)|(작성중)|
-|`incrementable` (C++20~)|(작성중)|
-|`input_or_output_iterator` (C++20~)|(작성중)|
-|`sentinel_for` (C++20~)|(작성중)|  
-|`sized_sentinel_for` (C++20~)|(작성중)|  
-|`input_iterator` (C++20~)|(작성중)|  
-|`output_iterator` (C++20~)|(작성중)| 
-|`forward_iterator` (C++20~)|(작성중)| 
-|`bidirectional_iterator` (C++20~)|(작성중)| 
-|`random_access_iterator` (C++20~)|(작성중)| 
-|`contiguous_iterator` (C++20~)|(작성중)|  
-
 # (C++20~) 이터레이터 연관 타입
 
 |항목|내용|
@@ -140,23 +122,3 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 |`iter_value_t` (C++20~)<br/>`iter_reference_t` (C++20~)<br/>`iter_const_reference_t` (C++23~)<br/>`iter_difference_t` (C++20~)<br/>`iter_rvalue_reference_t` (C++20~)<br/>`iter_common_reference_t` (C++20~)<br/>|(작성중)|
 
  
-# (C++20~) 알고리즘 컨셉 및 유틸리티
-
-|항목|내용|
-|--|--|
-|`indirectly_unary_invocable` (C++20~)<br/>`indirectly_regular_unary_invocable` (C++20~)|(작성중)|
-|`indirect_unary_predicate` (C++20~)|(작성중)|
-|`indirect_binary_predicate` (C++20~)|(작성중)|
-|`indirect_equivalence_relation` (C++20~)|(작성중)| 
-|`indirect_strict_weak_order` (C++20~)|(작성중)|
-|`indirectly_movable` (C++20~)|(작성중)|
-|`indirectly_movable_storable` (C++20~)|(작성중)|
-|`indirectly_copyable` (C++20~)|(작성중)|
-|`indirectly_copyable_storable` (C++20~)|(작성중)|
-|`indirectly_swappable` (C++20~)|(작성중)|  
-|`indirectly_comparable` (C++20~)|(작성중)|  
-|`permutable` (C++20~)|(작성중)|  
-|`mergeable` (C++20~)|(작성중)|  
-|`sortable` (C++20~)|(작성중)| 
-|`indirect_result_t` (C++20~)|(작성중)|
-|`projected` (C++20~)|(작성중)| 

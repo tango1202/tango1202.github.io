@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [모던 C++] 개요"
+title: "#1. [모던 C++] 주요 구성 요소 미리보기"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

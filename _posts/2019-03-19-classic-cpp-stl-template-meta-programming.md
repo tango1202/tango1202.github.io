@@ -12,9 +12,9 @@ sidebar:
 > * (C++11~) [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
 > * (C++11~) [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)가 추가되어 컴파일 타임 진단이 가능해 졌습니다.
 > * (C++11~) [noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 추가되어 해당 함수가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인지 컴파일 타임에 검사할 수 있습니다.
-> * (C++11~) [type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다.
-> * (C++11~) [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/) 개체는 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(*정수와 분수*) 연산을 지원합니다.
-> * (C++14~) [integer_sequence](https://tango1202.github.io/mordern-cpp-stl/)는 컴파일 타임에 정수 타입의 시퀀스를 만듭니다.
+> * (C++11~) [type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)이 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환등의 작업이 간편해 졌습니다.
+> * (C++11~) [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/)가 추가되어 소수점 오차없이 유리 분수를 표현할 수 있습니다. 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(*정수와 분수*) 연산을 지원합니다.
+> * (C++14~) [integer_sequence](https://tango1202.github.io/mordern-cpp-stl/)가 추가되어 컴파일 타임에 정수 타입의 시퀀스를 만들 수 있습니다.
 > * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)이 추가되어 조건에 맞는 부분만 컴파일하고, 그렇지 않은 부분은 컴파일에서 제외할 수 있습니다.
 > * (C++20~) [컨셉(concept)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.
 
@@ -340,7 +340,7 @@ public:
     enum {Val = sizeof(Test(static_cast<D*>(0))) == sizeof(Yes)};
 };
 ```
-> *(C++11~) [type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)는 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 합니다. [is_base_of](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%EA%B4%80%EA%B3%84)를 참고하세요.*
+> *(C++11~) [type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)이 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환등의 작업이 간편해 졌습니다. [is_base_of](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%EA%B4%80%EA%B3%84)를 참고하세요.*
 
 이제 `CloneTraits`에서 `IsDerivedFrom<>::Val`에 따라 [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)나 `Clone()`함수를 호출해 주면 됩니다. 
 

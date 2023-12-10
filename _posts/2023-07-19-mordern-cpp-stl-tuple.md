@@ -8,10 +8,12 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)은 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.
-> * (C++14~) 타입 기반 `get()`을 이용하여 타입들이 서로 다르다면 타입으로 데이터에 접근할 수 있습니다.
-> * (C++17~) [apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)는 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을 전달받아 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 호출합니다.
-> * (C++17~) [make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple) (C++17~)은 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을 전달받아 개체를 생성합니다.
+> * (C++11~) [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)이 추가되어 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 좀 더 간편하게 만들 수 있습니다.
+> * (C++11~) [make_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#make_tuple), [tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie), [forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple)이 추가되어 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 쉽게 생성할 수 있습니다.
+> * (C++11~) [tuple_cat()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_cat)이 추가되어 두개의 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 합칠 수 있습니다.
+> * (C++14~) [타입 기반 get()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c14-%ED%83%80%EC%9E%85-%EA%B8%B0%EB%B0%98-get)이 추가되어 타입들이 서로 다르다면 타입으로 데이터에 접근할 수 있습니다.
+> * (C++17~) [apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)가 추가되어 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을 전달받아 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 호출할 수 있습니다.
+> * (C++17~) [make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple)이 추가되어 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을 전달받아 개체를 생성할 수 있습니다.
 
 # 개요
 
