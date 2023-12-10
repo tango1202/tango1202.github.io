@@ -8,11 +8,27 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++20~) [same_as, derived_from, convertible_to, integral, floating_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%ED%95%B5%EC%8B%AC-%EC%96%B8%EC%96%B4-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
+> * (C++20~) [same_as, derived_from, convertible_to, integral, floating_point, assignable_from, swappable, destructible, constructible_from, default_initializable, move_constructible, copy_constructible](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%ED%95%B5%EC%8B%AC-%EC%96%B8%EC%96%B4-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
 > * (C++20~) [equality_comparable, three_way_comparable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B9%84%EA%B5%90-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
 > * (C++20~) [movable, copyable, semiregular, regular](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EA%B0%9C%EC%B2%B4-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
 > * (C++20~) [invocable, predicate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%ED%95%A8%EC%88%98%EC%9E%90-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
 > * (C++20~) [forward_iterator, predicate, bidirectional_iterator, random_access_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
+> * (C++20~) [ranges::forward_range, ranges::bidirectional_range, ranges::random_access_range](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B2%94%EC%9C%84-%EC%BB%A8%EC%85%89)등이 추가되었습니다.
+> * (C++20~) [유틸리티 컨셉](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%BB%A8%EC%85%89)이 추가되었습니다.
+
+# 개요
+
+[컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 주어 특정 타입만 사용하게 할 수 있습니다.
+
+```cpp
+template<typename T>
+requires std::integral<T> || std::floating_point<T> // T 정수 타입이나 실수 타입이어야 하합니다. 
+T Add_20(T a, T b) {
+    return a + b;
+}
+```
+
+자세한 사용법은 [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 참고하기 바라며, STL에서는 기본으로 사용할 수 있는 다양한 [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)들을 제공합니다.
 
 # 핵심 언어 컨셉
 

@@ -305,10 +305,10 @@ public:
 MyCoroutine CoroutineFunc() { 
     std::cout << "CoroutineFunc #1" << std::endl; 
     throw 1; // 억지로 예외를 발생시킵니다.
-    co_await std::suspend_always{}; // 일시 정지 합니다.
-    std::cout << "CoroutineFunc #2" << std::endl;
-    co_await std::suspend_always{}; // 일시 정지 합니다.
-    std::cout << "CoroutineFunc #3" << std::endl;
+    co_await std::suspend_always{}; // 예외가 발생하여 더이상 실행되지 않습니다.
+    std::cout << "CoroutineFunc #2" << std::endl; // 예외가 발생하여 더이상 실행되지 않습니다.
+    co_await std::suspend_always{}; // 예외가 발생하여 더이상 실행되지 않습니다.
+    std::cout << "CoroutineFunc #3" << std::endl; // 예외가 발생하여 더이상 실행되지 않습니다.
 }
 
 MyCoroutine obj = CoroutineFunc(); 
@@ -330,6 +330,65 @@ CoroutineFunc #1
 Coroutine : unhandled_exception
 Call #2
 Call #3
+```
+
+만약 호출자에서 예외를 받고 싶다면, `unhandled_exception()`에서 [throw;](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)로 [예외를 전파](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)하면 됩니다.
+
+```cpp
+// 코루틴 개체
+class MyCoroutine { 
+public:
+    // ...중략 ...
+public:
+    // ...중략 ...
+    void Resume() const { 
+        if (!m_Handler.done()) { // 예외가 발생되면 코루틴은 종료됩니다.  
+            m_Handler.resume(); // 따라서 m_Handler.resume(); 이 호출되지 않도록 합니다.
+        }
+    }     
+    // ...중략 ...
+
+    // Promise 개체
+    struct MyPromise { 
+        // ...중략 ...
+        auto initial_suspend() {return std::suspend_always{};} 
+        auto final_suspend() noexcept {return std::suspend_always{};} 
+        void unhandled_exception() {throw;} // 예외를 전파 합니다. 
+    };
+};
+
+// 코루틴 함수
+MyCoroutine CoroutineFunc() { 
+    std::cout << "CoroutineFunc #1" << std::endl; 
+    throw 1; // 억지로 예외를 발생시킵니다.
+    co_await std::suspend_always{}; // 예외가 발생하여 더이상 실행되지 않습니다.
+    std::cout << "CoroutineFunc #2" << std::endl; // 예외가 발생하여 더이상 실행되지 않습니다.
+    co_await std::suspend_always{}; // 예외가 발생하여 더이상 실행되지 않습니다.
+    std::cout << "CoroutineFunc #3" << std::endl; // 예외가 발생하여 더이상 실행되지 않습니다.
+}
+
+try {
+    MyCoroutine obj = CoroutineFunc(); 
+
+    std::cout << "Call #1" << std::endl;
+    obj.Resume(); // CoroutineFunc #1 출력 후 예외를 발생합니다.
+
+    std::cout << "Call #2" << std::endl; // 예외가 발생하여 더이상 실행되지 않습니다.
+    obj.Resume(); // 예외가 발생하여 더이상 실행되지 않습니다.
+
+    std::cout << "Call #3" << std::endl; // 예외가 발생하여 더이상 실행되지 않습니다.
+    obj.Resume(); // 예외가 발생하여 더이상 실행되지 않습니다.
+}
+catch (const int&) {
+    std::cout << "Coroutine : throw 1;" << std::endl;    
+}
+```
+
+실행 결과는 다음과 같습니다. [예외를 전파](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)한 이후로는 호출자의 함수도 실행되지 않습니다.
+
+```cpp
+CoroutineFunc #1
+Coroutine : throw 1; // 예외가 발생한 이후로는 호출자의 함수도 실행되지 않습니다.
 ```
 
 # 코루틴 함수의 promise 개체 제어 흐름
