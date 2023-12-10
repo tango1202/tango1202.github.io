@@ -8,14 +8,14 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
+> * (C++11~) [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)가 추가되어 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 정렬되지 않은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)를 제공합니다.
 > * (C++17~) [insert_or_assign(), try_emplace(), extract(), merge()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#unordered_map-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 함수가 추가되었습니다.
   
 # 개요
 
 기존의 [map, multimap, set, multiset](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)은 이진 트리 탐색을 하다보니 정렬등이 자동으로 이루어 졌는데요,
 
-[unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)은 정렬되지 않은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로서, [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 [해시 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88) 입니다.
+C++11 부터는 [unordered_map, unordered_multimap, unordered_set, unordered_multiset](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/)가 추가되어 [해시값(Digest)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 사용하는 정렬되지 않은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)를 제공합니다.
 
 |항목|내용|**Key** 조건|
 |--|--|--|

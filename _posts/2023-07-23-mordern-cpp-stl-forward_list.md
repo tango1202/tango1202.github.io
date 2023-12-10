@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.
+> * (C++11~) [forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)가 추가되어 단방향 리스트를 제공합니다. 기존 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.
 
 # 개요
 
 기존의 `list`는 양방향 리스트였습니다. 그러다 보니 단방향 리스트가 필요한 경우에는 비효울적이었습니다.
 
-[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)는 단방향 리스트여서 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다. 이에 따라 가장 마지막에 입력된 요소의 위치가 `begin()`이 됩니다.
+[forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)가 추가되어 단방향 리스트를 제공합니다. 기존 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다. 이에 따라 가장 마지막에 입력된 요소의 위치가 `begin()`이 됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c411bb39-a809-4321-80e5-7ad00250a337)
 

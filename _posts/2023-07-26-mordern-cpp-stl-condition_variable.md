@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.
+> * (C++11~) [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)이 추가되어 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시킬 수 있습니다.
 
 # 개요
 

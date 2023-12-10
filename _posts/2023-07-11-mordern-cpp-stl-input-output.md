@@ -8,10 +8,10 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) `vscanf()`, `snprintf()`, `vsnprintf()`가 추가되었습니다.
-> * (C++11~) `hexfloat()`, `defaultfloat()`, `get_money()`, `put_money()`, `get_time()`, `put_time()`이 추가되었습니다.
+> * (C++11~) [vscanf(), snprintf(), vsnprintf()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)가 추가되었습니다.
+> * (C++11~) [hexfloat(), defaultfloat(), get_money(), put_money(), get_time(), put_time()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)이 추가되었습니다.
 > * (C++11~) [예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c11-%EC%98%88%EC%99%B8)가 추가되었습니다.
-> * (C++14~) [quoted()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)는 `stringstream` 으로 입출력시에 공백, 이스케이프 등을 유지시켜 줍니다.
+> * (C++14~) [quoted()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)가 추가되어 `stringstream` 으로 입출력시에 공백, 이스케이프 등을 유지시켜 줍니다.
 
 # C스타일 입출력
 

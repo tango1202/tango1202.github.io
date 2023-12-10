@@ -15,11 +15,11 @@ sidebar:
 > * [MEC++#38] 쓰레드 핸들 소멸자들의 다양한 행동 방식을 주의하라.
 > * [MEC++#39] 단발성 사건 통신에는 void 미래 개체를 고려하라.
 
-> * (C++11~) [promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)는 비동기 처리를 위한 데이터를 저장합니다.
-> * (C++11~) [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future)는 비동기 함수가 완료될때까지 대기하고, 데이터를 추출합니다.
-> * (C++11~) [shared_future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#shared_future)는 여러곳에서 공유할 수 있는 [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future) 입니다.
-> * (C++11~) [packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task)는 [promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)를 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)하여 비동기 함수 설정만 하면 되는 유틸리티 개체 입니다.
-> * (C++11~) [async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async)는 [packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task)를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.
+> * (C++11~) [promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)가 추가되어 비동기 처리를 위한 데이터를 저장할 수 있습니다.
+> * (C++11~) [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future)가 추가되어 비동기 함수가 완료될때까지 대기하고, 데이터를 추출할 수 있습니다.
+> * (C++11~) [shared_future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#shared_future)가 추가되었습니다. 여러곳에서 공유할 수 있는 [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future) 입니다.
+> * (C++11~) [packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task)가 추가되었습니다. [promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)를 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)하여 비동기 함수 설정만 하면 되는 유틸리티 개체 입니다.
+> * (C++11~) [async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async)가 추가되었습니다. [packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task)를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.
 
 # 개요
 

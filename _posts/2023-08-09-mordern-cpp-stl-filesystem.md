@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [path, absolute(), relative()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EA%B2%BD%EB%A1%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)등으로 경로 문자열을 생성합니다.
-> * (C++17~) [current_path(), directory_iterator(), recursive_directory_iterator()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EA%B2%BD%EB%A1%9C-%ED%83%90%EC%83%89)등으로 경로를 탐색합니다.
-> * (C++17~) [space(), file_size(), status(), last_write_time(), permissions()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%ED%8C%8C%EC%9D%BC-%EC%A0%95%EB%B3%B4)등으로 파일 정보를 구합니다.
-> * (C++17~) [copy(), create_directory(), remove(), rename(), resize_file()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%ED%8C%8C%EC%9D%BC-%EB%B3%B5%EC%82%AC%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C)등으로 파일을 복사/수정/삭제합니다.
-> * (C++17~) [예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EC%98%88%EC%99%B8)가 추가되어 파일 시스템 오류 발생시 `filesystem_error` [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.
+> * (C++17~) [path, absolute(), relative()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EA%B2%BD%EB%A1%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)등이 추가되어 경로 문자열을 생성할 수 있습니다.
+> * (C++17~) [current_path(), directory_iterator(), recursive_directory_iterator()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EA%B2%BD%EB%A1%9C-%ED%83%90%EC%83%89)등이 추가되어 경로를 탐색할 수 있습니다.
+> * (C++17~) [space(), file_size(), status(), last_write_time(), permissions()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%ED%8C%8C%EC%9D%BC-%EC%A0%95%EB%B3%B4)등이 추가되어 파일 정보를 구할 수 있습니다.
+> * (C++17~) [copy(), create_directory(), remove(), rename(), resize_file()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%ED%8C%8C%EC%9D%BC-%EB%B3%B5%EC%82%AC%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C)등이 추가되어 파일을 복사/수정/삭제할 수 있습니다.
+> * (C++17~) [filesystem_error](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EC%98%88%EC%99%B8)가 추가되었습니다. 파일 시스템 오류가 있는 경우 예외를 방출합니다.
 > * (C++17~) [파일 타입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%85)이 추가되어 파일이나 디렉토리의 타입을 검사합니다.
 
 # 개요
@@ -82,7 +82,7 @@ C++17 부터는 경로, 파일, 디렉토리를 조작하는 [파일 시스템 �
 
 |항목|내용|
 |--|--|
-|`filesystem_error` (C++17~)|추가되어 파일 시스템 오류 발생시 `filesystem_error` [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.|
+|`filesystem_error` (C++17~)|파일 시스템 오류가 있습니다.|
 
 # 파일 타입
 

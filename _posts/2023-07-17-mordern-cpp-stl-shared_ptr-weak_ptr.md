@@ -13,7 +13,12 @@ sidebar:
 > * [MEC++#21] new를 직접 사용하는 것보다 std::make_unique와 std::make_shared를 선호하라(메모리 할당 횟수가 준다. [예외 보증](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-warranty/) 향상된다)
 
 
-> * (C++11~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)가 추가되어 소유권 공유용 스마트 포인터를 제공합니다.
+> * (C++11~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)이 추가되어 소유권 공유용 스마트 포인터를 제공합니다.
+> * (C++11~) [enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this)가 추가되어 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)이 관리하는 개체로부터 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 만들 수 있습니다.
+> * (C++11~) [owner_less](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_less)가 추가되어 소유권 개체의 주소로 비교할 수 있습니다.
+> * (C++11~) [bad_weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#bad_weak_ptr)이 추가되었습니다. [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)에서 포인터가 잘못된 경우 예외를 방출합니다.
+> * (C++11~) [make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared)가 추가되어 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 효율적으로 생성할 수 있습니다.
+> * (C++11~) [shared_ptr 형변환](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)(`const_pointer_cast()`, `static_pointer_cast()`, `dynamic_pointer_cast()`)가 추가되어 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)의 관리 개체를 형변환 할 수 있습니다.
 > * (C++11~) [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)가 추가되어 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)의 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0) 문제를 해결합니다.
 > * (C++17~) [shared_ptr의 배열 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#c17-%EB%B0%B0%EC%97%B4-%EC%A7%80%EC%9B%90)이 추가되었습니다.
 > * (C++17~) [reinterpret_pointer_cast()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)가 추가되었습니다.

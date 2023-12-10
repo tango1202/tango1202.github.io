@@ -8,24 +8,24 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) `all_of()`, `any_of()`, `none_of()`, `find_if_not()`이 추가되었습니다.
-> * (C++11~) `minmax()`, `minmax_element()`가 추가되었습니다.
-> * (C++11~) `is_heap()`, `is_heap_until()`이 추가되었습니다.
-> * (C++11~) `iota()`가 추가되었습니다.
-> * (C++11~) `copy_if(), copy_n()`, `shuffle()`이 추가되었습니다.
-> * (C++11~) `move()`, `move_backward()`가 추가되었습니다.
-> * (C++11~) `is_partitioned()`, `partition_copy()`, `partition_point()`가 추가되었습니다.
-> * (C++11~) `is_sorted()`, `is_sorted_until()`이 추가되었습니다.
-> * (C++11~) `is_permutation()`이 추가되었습니다.
-> * (C++17~) `sample()`은 시퀀스에서 요소를 랜덤으로 추출합니다.
-> * (C++17~) `clamp()`는 주어진 값을 최대/최소 범위로 조정된 값으로 리턴합니다.
-> * (C++17~) `for_each_n()`이 추가되었습니다.
-> * (C++17~) `gcd()`는 `m`과 `n`의 최대 공약수를 계산합니다.
-> * (C++17~) `lcm()`은 `m`과 `n`의 최소 공배수를 계산합니다.
-> * (C++17~) [reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)는 임의의 순서로 [accumulate()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)를 처리합니다.
-> * (C++17~) [transform_reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)은 [inner_product()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)를 병렬로 적용합니다.
-> * (C++17~) [inclusive_scan(), exclusive_scan(), transform_inclusive_scan(), transform_exclusive_scan()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)은 `partial_sum()`을 병렬로 적용합니다.
-> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었고, [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
+> * (C++11~) [all_of(), any_of(), none_of(), find_if_not()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)이 추가되었습니다.
+> * (C++11~) [minmax(), minmax_element()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%B5%9C%EB%8C%80%EC%B5%9C%EC%86%8C-%EC%9E%91%EC%97%85)가 추가되었습니다.
+> * (C++11~) [is_heap(), is_heap_until()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%ED%9E%99-%EC%9E%91%EC%97%85)이 추가되었습니다.
+> * (C++11~) [iota()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다.
+> * (C++11~) [copy_if(), copy_n(), shuffle()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)이 추가되었습니다.
+> * (C++11~) [move(), move_backward()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)가 추가되었습니다.
+> * (C++11~) [is_partitioned(), partition_copy(), partition_point()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EB%B6%84%ED%95%A0-%EC%9E%91%EC%97%85)가 추가되었습니다.
+> * (C++11~) [is_sorted(), is_sorted_until()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%A0%95%EB%A0%AC-%EC%9E%91%EC%97%85)이 추가되었습니다.
+> * (C++11~) [is_permutation()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%9C%EC%97%B4-%EC%9E%91%EC%97%85)이 추가되었습니다.
+> * (C++17~) [sample()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)이 추가되어 시퀀스에서 요소를 랜덤으로 추출할 수 있습니다.
+> * (C++17~) [clamp()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%B5%9C%EB%8C%80%EC%B5%9C%EC%86%8C-%EC%9E%91%EC%97%85)가 추가되어 주어진 값을 최대/최소 범위로 조정할 수 있습니다.
+> * (C++17~) [for_each_n()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)이 추가되었습니다.
+> * (C++17~) [gcd()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. `m`과 `n`의 최대 공약수를 계산합니다.
+> * (C++17~) [lcm()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)이 추가되었습니다. `m`과 `n`의 최소 공배수를 계산합니다.
+> * (C++17~) [reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. 임의의 순서로 [accumulate()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)를 처리합니다.
+> * (C++17~) [transform_reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. [inner_product()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)를 병렬로 적용합니다.
+> * (C++17~) [inclusive_scan(), exclusive_scan(), transform_inclusive_scan(), transform_exclusive_scan()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. `partial_sum()`을 병렬로 적용합니다.
+> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었습니다. [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
 
 # C스타일 알고리즘 함수
 
@@ -176,4 +176,4 @@ EXPECT_TRUE(std::reduce(v.begin(), v.end(), init) == init + v[3] + v[2] + v[0] +
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bd1f572d-e27c-4a11-b656-3d3bce062153)
 
-C++17 부터는 [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었고, [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
+C++17 부터는 [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었습니다. [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.

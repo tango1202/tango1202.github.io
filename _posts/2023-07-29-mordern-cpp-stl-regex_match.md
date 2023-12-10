@@ -8,10 +8,10 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [regex_match()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_match)는 문자열의 전체가 정규 표현식과 일치하는지 검사합니다.
-> * (C++11~) [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search)는 문자열의 일부가 정규 표현식과 일치하는지 검사합니다.
-> * (C++11~) [regex_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_iterator)는 문자열 전체에 대해 [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) 한 결과의 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)입니다.
-> * (C++11~) [regex_replace()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_replace)는 문자열에서 정규 표현식과 일치하는 부분을 수정합니다.
+> * (C++11~) [regex_match()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_match)가 추가되어 문자열의 전체가 정규 표현식과 일치하는지 검사할 수 있습니다.
+> * (C++11~) [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search)가 추가되어 문자열의 일부가 정규 표현식과 일치하는지 검사할 수 있습니다.
+> * (C++11~) [regex_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_iterator)가 추가되었습니다. 문자열 전체에 대해 [regex_search()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_search) 한 결과의 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)입니다.
+> * (C++11~) [regex_replace()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-regex_match/#regex_replace)가 추가되어 문자열에서 정규 표현식과 일치하는 부분을 수정할 수 있습니다.
 
 # 개요
 

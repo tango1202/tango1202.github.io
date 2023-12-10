@@ -12,7 +12,7 @@ sidebar:
 > * [`vector<bool>`](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#vectorbool)은 사용하지 마라.
 
 > **모던 C++**
-> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.
+> * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)가 추가되어 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)를 제공합니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.
 
 # 개요
 
@@ -104,7 +104,7 @@ EXPECT_TRUE(*(&v[0] + 0) == 10);
 EXPECT_TRUE(*(&v[0] + 1) == 20); // 연속된 메모리여서 포인터 연산으로도 접근 가능합니다.
 ```
 
-> *(C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)는 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 입니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.*
+> *(C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)가 추가되어 기존 [C스타일의 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)를 제공합니다. [C스타일 배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/) 보다 성능이 좋습니다.*
 
 # [] 과 at()
 

@@ -14,7 +14,7 @@ sidebar:
 > * (C++11~) [noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 추가되어 해당 함수가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인지 컴파일 타임에 검사할 수 있습니다.
 > * (C++11~) [type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)이 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환등의 작업이 간편해 졌습니다.
 > * (C++11~) [ratio](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-ratio/)가 추가되어 소수점 오차없이 유리 분수를 표현할 수 있습니다. 분자와 분모를 따로 저장하여 유리 분수를 표현하며, 유틸리티들을 이용하여 컴파일 타임 유리수(*정수와 분수*) 연산을 지원합니다.
-> * (C++14~) [integer_sequence](https://tango1202.github.io/mordern-cpp-stl/)가 추가되어 컴파일 타임에 정수 타입의 시퀀스를 만들 수 있습니다.
+> * (C++14~) [integer_sequence](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-integer_sequence/)가 추가되어 컴파일 타임에 정수 타입의 시퀀스를 만들 수 있습니다.
 > * (C++17~) [if constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c17-if-constexpr)이 추가되어 조건에 맞는 부분만 컴파일하고, 그렇지 않은 부분은 컴파일에서 제외할 수 있습니다.
 > * (C++20~) [컨셉(concept)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)과 [요구사항(requires)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%ADrequires)이 추가되어 [템플릿 인자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)나 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)에 [제약 조건(constraint)](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 줄 수 있습니다.
 
