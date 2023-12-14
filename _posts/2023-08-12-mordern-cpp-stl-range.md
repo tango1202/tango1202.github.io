@@ -429,7 +429,10 @@ STL에서는 다양한 [뷰(View)](??)를 미리 정의해 두었으며, `views`
     );
 }
 { // elements_view
-    std::vector<std::tuple<int, std::string>> v{{0, "Kim"}, {1, "Lee"}};
+    std::vector<std::tuple<int, std::string>> v{
+        {0, "Kim"}, 
+        {1, "Lee"}
+    };
     auto r{std::views::elements<0>(v)}; // tuple의 0번째 요소로 구성합니다.
         EXPECT_TRUE(
         r.size() == 2 && 
@@ -437,7 +440,10 @@ STL에서는 다양한 [뷰(View)](??)를 미리 정의해 두었으며, `views`
     );
 }  
 { // keys_view, values_view
-    std::map<int, std::string> m{{0, "Kim"}, {1, "Lee"}};
+    std::map<int, std::string> m{
+        {0, "Kim"}, 
+        {1, "Lee"}
+    };
     auto keys{std::views::keys(m)}; // map의 Key로 요소로 구성합니다.
     EXPECT_TRUE(
         keys.size() == 2 && 
