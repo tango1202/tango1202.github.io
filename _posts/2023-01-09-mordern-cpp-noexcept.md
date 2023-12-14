@@ -8,7 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#14] 예외를 방출하지 않을 함수는 noexcept로 선언하라.(noexcept는 최적화 여지가 크다. 이동 연산, swap, 소멸자는 noxcept로 만들어라.)
+> * [MEC++#14] 예외를 방출하지 않을 함수는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 선언하라.(*[느슨한 noexcept 계약](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/#%EB%8A%90%EC%8A%A8%ED%95%9C-noexcept-%EA%B3%84%EC%95%BD) 참고*)
+>   * [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)는 최적화 여지가 크다. [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90), [이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [swap()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/#clear%EC%99%80-swap), [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 만들어라.
 
 > * (C++11~) [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 추가되어 함수의 예외 방출 여부를 보증하며, [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다.
 > * (C++11~) [noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 추가되어 해당 함수가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인지 컴파일 타임에 검사할 수 있습니다.

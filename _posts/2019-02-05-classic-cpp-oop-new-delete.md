@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [고전 C++ 가이드] 개체 생성(new)과 소멸(delete)"
+title: "#5. [고전 C++ 개체 지향] 개체 생성(new)과 소멸(delete)"
 categories: "classic-cpp-oop"
 tag: ["cpp"]
 author_profile: false

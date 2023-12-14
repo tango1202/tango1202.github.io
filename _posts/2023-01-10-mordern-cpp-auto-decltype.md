@@ -221,7 +221,7 @@ d_11 = 10; // (X) 컴파일 오류. const int이므로 값대입 안됨
 
 |항목|내용|
 |--|--|
-|`decltype(lvalue 표현식)`|`T&`|
+|`decltype(lvalue 표현식)`|`T&`. 왼값 표현식은 T& 로 추론합니다.|
 |`decltype(prvalue 표현식)`|`T`|
 |`decltype(xvalue 표현식)`|`T&&`|
 
