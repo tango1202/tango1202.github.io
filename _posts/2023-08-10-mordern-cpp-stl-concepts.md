@@ -43,13 +43,13 @@ T Add_20(T a, T b) {
 |`signed_integral<T>` (C++20~)|`integral<T>` 이고 부호가 있습니다.| 
 |`unsigned_integral<T>` (C++20~)|`integral<T>` 이고 부호가 없습니다.|
 |`floating_point<T>` (C++20~)|`T`는 실수 타입(`float`, `double`, `long double`)입니다.|
-|`assignable_from<Left, Right>` (C++20~)|`Left` 타입에 `Right` 타입을 [복사 대입](??)이나 [이동 대입](??)할 수 있습니다.|
+|`assignable_from<Left, Right>` (C++20~)|`Left` 타입에 `Right` 타입을 [복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)이나 [이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)할 수 있습니다.|
 |`swappable<T>, swappable_with<T, U>` (C++20~)|`T`를 바꿔치기 할 수 있습니다.<br/>`T`와 `U`를 바꿔치기 할 수 있습니다.|
-|`destructible<T>` (C++20~)|`T`를 [예외 발생](??) 없이 소멸할 수 있습니다.|
-|`constructible_from<T, ... Args>` (C++20~)|`T`를 [예외 발생](??) 없이 소멸할 수 있고, `Args`로 생성할 수 있습니다.|
-|`default_initializable<T>` (C++20~)|`T`를 [예외 발생](??) 없이 소멸할 수 있고, `T{}`로 생성할 수 있습니다.|
-|`move_constructible<T>` (C++20~)|`T`를 [예외 발생](??) 없이 소멸할 수 있고, `T`를 [이동 생성](??)할 수 있습니다.|
-|`copy_constructible<T>` (C++20~)|`T`를 [예외 발생](??) 없이 소멸할 수 있고, `T`를 [이동 생성](??)할 수 있고, `T`를 [복사 생성](??)할 수 있습니다.|
+|`destructible<T>` (C++20~)|`T`를 [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 없이 소멸할 수 있습니다.|
+|`constructible_from<T, ... Args>` (C++20~)|`T`를 [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 없이 소멸할 수 있고, `Args`로 생성할 수 있습니다.|
+|`default_initializable<T>` (C++20~)|`T`를 [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 없이 소멸할 수 있고, `T{}`로 생성할 수 있습니다.|
+|`move_constructible<T>` (C++20~)|`T`를 [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 없이 소멸할 수 있고, `T`를 [이동 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)할 수 있습니다.|
+|`copy_constructible<T>` (C++20~)|`T`를 [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 없이 소멸할 수 있고, `T`를 [이동 생성](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)할 수 있고, `T`를 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)할 수 있습니다.|
 
 # 비교 컨셉
 
@@ -64,9 +64,9 @@ T Add_20(T a, T b) {
 
 |항목|내용|
 |--|--|
-|`movable<T>` (C++20~)|`swappable<T>`이고, `T`를 [예외 발생](??) 없이 소멸할 수 있고, `T`를 [이동 연산](??)할 수 있습니다.|
-|`copyable<T>` (C++20~)|`movable<T>`이고, [복사 연산](??)이 가능합니다.|
-|`semiregular<T>` (C++20~)|`copyable<T>`이고, `default_initializable<T>`입니다. 즉, [기본 생성자](??), [복사 생성자](??), [이동 생성자](??), [복사 대입 연산자](??), [이동 대입 연산자](??), [예외 발생](??) 없는 [소멸자](??)이고, `swappable<T>`입니다.|
+|`movable<T>` (C++20~)|`swappable<T>`이고, `T`를 [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 없이 소멸할 수 있고, `T`를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)할 수 있습니다.|
+|`copyable<T>` (C++20~)|`movable<T>`이고, 복사 연산이 가능합니다.|
+|`semiregular<T>` (C++20~)|`copyable<T>`이고, `default_initializable<T>`입니다. 즉, [기본 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [이동 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [예외 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw) 없는 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)이고, `swappable<T>`입니다.|
 |`regular<T>` (C++20~)|`semiregular<T>`이고, `==`, `!=` 를 할 수 있습니다.|
 
 # 함수자 컨셉
@@ -83,18 +83,18 @@ T Add_20(T a, T b) {
 
 |항목|내용|
 |--|--|
-|`indirectly_readable` (C++20~)|(작성중)|
+|[indirectly_readable<I>](??) (C++20~)|`*`을 이용하여 간접적으로 읽을 수 있습니다.|
 |`indirectly_writable` (C++20~)|(작성중)|
 |`weakly_incrementable` (C++20~)|(작성중)|
 |`incrementable` (C++20~)|(작성중)|
-|`input_or_output_iterator` (C++20~)|(작성중)|
+|[input_or_output_iterator<I>](??) (C++20~)| `++`, `*`을 할 수 있습니다.|
 |`sentinel_for` (C++20~)|(작성중)|  
-|`sized_sentinel_for` (C++20~)|(작성중)|  
-|`input_iterator` (C++20~)|(작성중)|  
+|[sized_sentinel_for](??) (C++20~)|[이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/)의 시작(*`begin()`*)과 끝(*`end()`*)의 차로 요소의 갯수를 구할 수 있습니다.|  
+|[input_iterator](??) (C++20~)|[input_or_output_iterator](??)이고, [indirectly_readable](??)입니다.|  
 |`output_iterator` (C++20~)|(작성중)| 
-|`forward_iterator<I>` (C++20~)|`++`, `++`, `*`, `==`, `!=`을 할 수 있습니다.| 
-|`bidirectional_iterator<I>` (C++20~)|`forward_iterator<I>`이고, `--`을 할 수 있습니다.| 
-|`random_access_iterator<I>` (C++20~)|`bidirectional_iterator<I>`이고, `+=`, `+`, `-=`, `-`, `[]`, `<`, `<=`, `>`, `>=`을 할 수 있습니다.| 
+|[forward_iterator<I>](??) (C++20~)|`++`, `++`, `*`, `==`, `!=`을 할 수 있습니다.| 
+|[bidirectional_iterator<I>](??) (C++20~)|[forward_iterator](??)이고, `--`을 할 수 있습니다.| 
+|`random_access_iterator<I>` (C++20~)|[bidirectional_iterator](??)이고, `+=`, `+`, `-=`, `-`, `[]`, `<`, `<=`, `>`, `>=`을 할 수 있습니다.| 
 |`contiguous_iterator` (C++20~)|(작성중)|  
 
 # 유틸리티 컨셉 
@@ -118,20 +118,20 @@ T Add_20(T a, T b) {
 |`indirect_result_t` (C++20~)|(작성중)|
 |`projected` (C++20~)|(작성중)| 
 
-# 범위 컨셉
+# 범위(Range) 컨셉
 
 |항목|내용|
 |--|--|
-|`ranges::range` (C++20~)|(작성중)|
+|[ranges::range](??) (C++20~)|[범위(Range)](??)입니다. [ranges::begin](??)과 [ranges::end](??)가 가능해야 합니다.|
 |`ranges::borrowed_range` (C++20~)|(작성중)|
-|`ranges::sized_range` (C++20~)|(작성중)|
-|`ranges::view` (C++20~)|(작성중)|
-|`ranges::input_range` (C++20~)|(작성중)| 
+|[ranges::sized_range](??) (C++20~)|상수 시간에 크기를 알 수 있는 [범위(Range)](??)입니다.|
+|[ranges::view](??) (C++20~)|[범위(Range)](??) 요소들을 재배치/수정/필터링한 일종의 [범위(Range)](??)입니다.|
+|[ranges::input_range](??) (C++20~)|[ranges::range](??)이고 [input_iterator](??)를 제공합니다.| 
 |`ranges::output_range` (C++20~)|(작성중)|
-|`ranges::forward_range` (C++20~)|(작성중)|
-|`ranges::bidirectional_range` (C++20~)|(작성중)|
-|`ranges::random_access_range` (C++20~)|(작성중)|
+|[ranges::forward_range](??) (C++20~)|[ranges::input_range](??)이고 [forward_iterator](??)를 제공합니다.|
+|[ranges::bidirectional_range](??) (C++20~)|[ranges::forward_range](??)이고, [bidirectional_iterator](??)를 제공합니다.|
+|[ranges::random_access_range](??) (C++20~)|랜덤 접근을 지원하는 [범위(Range)](??)입니다.|
 |`ranges::contiguous_range` (C++20~)|(작성중)|
-|`ranges::common_range` (C++20~)|(작성중)|
+|[ranges::common_range](??) (C++20~)|[ranges::range](??)이고, [ranges::begin](??)과 [ranges::end](??)가 같은 타입이어야 합니다.|
 |`ranges::viewable_range` (C++20~)|(작성중)|
 |`ranges::constant_range` (C++20~)|(작성중)|

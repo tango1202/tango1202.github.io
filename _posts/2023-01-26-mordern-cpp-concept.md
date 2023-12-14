@@ -177,7 +177,19 @@ concept Number_20 = std::integral<T> || std::floating_point<T>; // T는 정수 �
         requires Addable_20<T>; // requires 로 추가 제약 조건을 작성합니다.
     };  
     ```
+# 컨셉 테스트
 
+특정 타입이 [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)을 만족하는지 확인하려면 다음과 같이 [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)를 이용하면 됩니다.
+
+```cpp
+template<typename T>
+concept Integral_20 = std::is_integral<T>::value; // T는 정수 타입이어야 합니다.
+
+static_assert(Integral_20<int>); // (O)
+static_assert(Integral_20<char>); // (O)
+static_assert(Integral_20<float>); // (X) 컴파일 오류. 정수 타입이 아닙니다.
+static_assert(Integral_20<double>); // (X) 컴파일 오류. 정수 타입이 아닙니다.
+```
 # 컨셉 설계
 
 [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 작은 단위의 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)으로 작성하고, 잘 설계된 이름을 부여한 뒤, 이를 [논리 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%85%BC%EB%A6%AC-%EC%97%B0%EC%82%B0%EC%9E%90)로 합성하여 사용합니다. [단일 책임 원칙(Single Responsibility Principle)](https://tango1202.github.io/principle/principle-single-responsibility/)과 [인터페이스 분리 원칙(Interface Segregation Principle)](https://tango1202.github.io/principle/principle-interface-segregation/)에 따라서요. 잘 작성하면 의미 체계를 부여한 모델링이 가능합니다.  

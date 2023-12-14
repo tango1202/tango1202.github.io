@@ -189,7 +189,7 @@ std::set<Data> dataSet{
 };
 auto result{
     dataSet.find(
-        Data{"Lee", 10} // 같은 타입만 탐색이 가능하므로 "Lee"를 탐색하고 싶어도 Data 개체를 동일하게 만들어 탐색해야 합니다.
+        Data{"Lee", 10} // (△) 비권장. 같은 타입만 탐색이 가능하므로 "Lee"를 탐색하고 싶어도 Data 개체를 동일하게 만들어 탐색해야 합니다.
     )
 }; 
 EXPECT_TRUE((*result).m_Name == "Lee" && (*result).m_Val == 10);

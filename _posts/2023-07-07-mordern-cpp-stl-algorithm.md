@@ -142,11 +142,11 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`accumulate(InputIt first, InputIt last, T init)`|주어진 시퀀스의 값들(`first~last`)을 누적합니다.|
-|`inner_product(InputIt1 first1, InputIt1 last1, InputIt2 first2, T init)`|주어진 시퀀스의 값들(`first1~last1`) 과 다른 시퀀스(`first1~`)의 각 요소를 곱하고, `init`에 누적합니다.|
+|`accumulate(InputIt first, InputIt last, T init)`|주어진 시퀀스의 값들(`[first - last)`)을 누적합니다.|
+|`inner_product(InputIt1 first1, InputIt1 last1, InputIt2 first2, T init)`|주어진 시퀀스의 값들(`[first1 - last1)`) 과 다른 시퀀스(`first1~`)의 각 요소를 곱하고, `init`에 누적합니다.|
 |`adjacent_difference()`|(작성중)|
-|`partial_sum(InputIt first, InputIt last, OutputIt d_first)`|주어진 시퀀스의 값들(`first~last`)을 누적하여 각각 `d_first`에 저장합니다.<br/>`*(d_first + 0) = *first`<br/>`*(d_first + 1) = *first + *(first + 1)`<br/>`*(d_first + 2) = *first + *(first + 1) + *(first + 2)`|
-|`iota()` (C++11~)|(작성중)|
+|`partial_sum(InputIt first, InputIt last, OutputIt d_first)`|주어진 시퀀스의 값들(`[first - last)`)을 누적하여 각각 `d_first`에 저장합니다.<br/>`*(d_first + 0) = *first`<br/>`*(d_first + 1) = *first + *(first + 1)`<br/>`*(d_first + 2) = *first + *(first + 1) + *(first + 2)`|
+|`iota(ForwardIt first, ForwardIt last, T init)` (C++11~)|`[first ~ last)` 구간에 `init`부터 `1`씩 증가한 값을 저장합니다.|
 |`reduce()` (C++17~)|`reduce()`는 임의의 순서로 `accumulate()`를 처리합니다.(`accumulate()`를 병렬로 적용합니다.)|
 |`transform_reduce()` (C++17~)|`inner_product()`를 병렬로 적용합니다.|
 |`inclusive_scan()` (C++17~)|`partial_sum()`을 병렬로 적용합니다.|
