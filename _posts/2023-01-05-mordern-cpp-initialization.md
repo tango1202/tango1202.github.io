@@ -522,8 +522,6 @@ B b_11{1, {2, 3}}; // B b_11 = B{1, A{2, 3}};와 동일
 
 # initializer_list
 
-[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)가 추가되어 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)등 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 초기 요소 추가가 간편해 졌습니다. 
- 
  C++11의 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)는 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)를 이용하여 쉽게 초기값을 입력할 수 있도록 [initializer_list를 사용한 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EA%B8%B0%EC%A1%B4-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-initializer_list-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%EC%9D%98-%EC%B6%A9%EB%8F%8C)를 제공합니다.
 
 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)의 경우 초기 요소들을 입력할때 [push_back()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)을 일일히 사용해야 되서 코드 작성이 번거로웠는데(*[vector 의 삽입과 삭제](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C) 참고*), [initializer_list 생성자](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EA%B8%B0%EC%A1%B4-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-initializer_list-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%EC%9D%98-%EC%B6%A9%EB%8F%8C)를 이용하면 `{}`로 한번에 초기 요소들을 입력할 수 있습니다.

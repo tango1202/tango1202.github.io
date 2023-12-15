@@ -164,6 +164,34 @@ v.emplace_back(1, 2); // (O) A개체 생성을 위한 데이터를 전달합니�
 // v.emplace_back({1, 2}); // (X) 컴파일 오류. A는 {1, 2} 를 전달받는 생성자가 없습니다.
 ```
 
+또한, [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list) 보다 [emplace_back()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)을 사용하는게 효과적입니다.
+
+다음 예를 보면, [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)는 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90) 2회, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 2회를 호출하지만, [emplace_back()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)은 [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90) 2회만 호출합니다.
+
+```cpp
+class A {
+    int m_X;
+    int m_Y;
+public:
+    A(int x, int y) {std::cout << "A::Value Constructor" << std::endl;}
+    A(const A& other) {std::cout << "A::Copy Constructor" << std::endl;}
+    A(A&& other) noexcept {std::cout << "A::Move Constructor" << std::endl;}
+
+    A& operator =(const A& other) = delete;
+    A& operator =(A&& other) noexcept = delete;
+};
+
+// 값 생성자 2회 
+// initializer_list 요소로 만들기 위해 이동 생성자 2회 -> 컴파일러 최적화에 의해 생략됨
+// 복사 생성자 2회 - vector에서 복제본 관리
+std::vector<A> v1{A{1, 2}, A{3, 4}}; 
+                                        
+std::vector<A> v2;
+v2.reserve(2);
+v2.emplace_back(1, 2); // 값 생성자 1회
+v2.emplace_back(3, 4); // 값 생성자 1회
+```
+
 # (C++14~) 연관 컨테이너의 이종 탐색
 
 기존에는 `map`과 `set`등의 [연관 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)에서 **Key**와 동일한 타입으로만 탐색이 가능했습니다.
