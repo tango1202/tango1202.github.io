@@ -135,11 +135,11 @@ U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
 
 # 중괄호 복사 초기화 T t = {};, t = {};, f({}), return {}
 
-`T t = {};` 표현은 `T t = T{};`와 유사한 축약형입니다. 암시적으로 [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t)인 `T{}`로 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 생성하고, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 `t`을 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)하는 표현입니다.
+`T t = T{};`는 [중괄호 직접 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%81%EC%A0%91-%EC%B4%88%EA%B8%B0%ED%99%94-t-t)인 `T{}`로 [임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)를 생성하고, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 이용하여 `t`을 [복사 생성](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)하는 표현입니다. 만약 [형변환 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%ED%98%95%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1%EC%9E%90)가 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)가 아니라면, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 지원되어 `T t = {};`와 같이 축약하여 표현할 수 있습니다. 
 
-암시적으로 생성하는 것이므로 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)로 정의하면 `T t = {};` 표현은 컴파일 오류가 발생합니다. 
+즉, [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)로 정의하면 `T t = T{};`는 되지만, `T t = {};` 는 컴파일 오류가 발생합니다. 
 
-또한 기존에는 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개만 있을때에만 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하기 위해 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용했었는데요, 이제는 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 `= {}` 표현을 차단하기 위해 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 여러개 있더라도 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용합니다.(*[생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개만 있을때에는 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 되므로 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)가 필수이지만, 여러개인 것은 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 `= {}` 표현을 차단하기 위해 선택적으로 사용하시면 됩니다.*)
+또한 기존에는 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개만 있을때에만 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하기 위해 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용했었는데요, 이제는 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 `= {}` 표현을 차단하기 위해 [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 여러개 있더라도 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용할 수 있습니다.(*[생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 1개만 있을때에는 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)이 되므로 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)가 필수이지만, 여러개인 것은 [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)의 `= {}` 표현을 차단이 필요한 경우만 선택적으로 사용하시면 됩니다.*)
 
 ```cpp
 class T {
@@ -543,6 +543,63 @@ EXPECT_TRUE(v1_11[0] == 1 && v1_11[1] == 2);
 std::vector<int> v2_11 = {1, 2};
 EXPECT_TRUE(v2_11[0] == 1 && v2_11[1] == 2); 
 ```
+
+만약 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용하지 않은 개체라면, [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)되므로 다음처럼 축약하여 초기화 할 수 있습니다. 이때, [값 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EA%B0%92-%EC%83%9D%EC%84%B1%EC%9E%90)로 `A_11`을 생성하고, [복사 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)로 생성한 복제본을 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에서 관리합니다.
+
+```cpp
+class A_11 {
+private:
+    int m_Val;
+public:
+    A_11(int val) : m_Val{val} { // explicit가 없습니다. int가 암시적으로 A_11로 형변환됩니다.
+        std::cout << "A : Value Constructor" << std::endl;    
+    }
+    A_11(const A_11& other) : m_Val(other.m_Val) {
+        std::cout << "A : Copy Constructor" << std::endl;
+    }
+
+    int GetVal() const {return m_Val;}
+};
+
+std::vector<A_11> v1{ // Value Constructor 3회, Copy Constructor 3회 호출
+    1, 2, 3 // (O) 축약 표현. 1, 2, 3은 A_11로 암시적으로 형변환 됩니다.
+}; 
+std::vector<A_11> v2{ // Value Constructor 3회, Copy Constructor 3회 호출
+    {1}, {2}, {3} // (O) 축약 표현. 암시적 형변환이 되므로 A_11{1}, A_11{2}, A_11{3}의 축약 표현이 가능합니다.
+}; 
+std::vector<A_11> v3{ // Value Constructor 3회, Copy Constructor 3회 호출
+    A_11{1}, A_11{2}, A_11{3}
+}; 
+```
+
+만약 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용한다면, 축약 표현은 사용할 수 없습니다.
+
+```cpp
+class A_11 {
+private:
+    int m_Val;
+public:
+    explicit A_11(int val) : m_Val{val} { // explicit입니다. 암시적 형변환이 되지 않습니다.
+        std::cout << "A : Value Constructor" << std::endl;    
+    }
+    A_11(const A_11& other) : m_Val(other.m_Val) {
+        std::cout << "A : Copy Constructor" << std::endl;
+    }
+
+    int GetVal() const {return m_Val;}
+};
+
+// std::vector<A_11> v1{ 
+//     1, 2, 3 // (X) 컴파일 오류. int는 A_11로 암시적으로 형변환 되지 않습니다. 
+// }; 
+// std::vector<A_11> v2{ 
+//     {1}, {2}, {3} // (X) 컴파일 오류. 암시적 형변환이 되지 않으므로, 축약 표현은 사용할 수 없습니다.
+// }; 
+std::vector<A_11> v3{ // Value Constructor 3회, Copy Constructor 3회 호출
+    A_11{1}, A_11{2}, A_11{3}
+}; 
+```        
+
 # initializer_list 멤버 함수 
 
 |항목|내용|

@@ -27,7 +27,7 @@ void f() throw(std::bad_alloc, std::range_error) {
 }
 ```
 
-C++11 부터는 예외의 나열이 불필요함을 공감하여, 예외를 방출하냐 안하냐만 제공하도록 수정하였고, [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 추가되어 함수의 예외 방출 여부를 보증하며, [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다. 
+C++11 부터는 예외의 나열이 불필요함을 공감하여, [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 예외를 방출하냐 안하냐만 명시합니다.
 
 |항목|내용|
 |--|--|
@@ -99,7 +99,7 @@ f_11(); // noexcept 함수 내에서 사용하는 함수 f()가 예외를 발생
 
 기존에는 예외 안정을 위해 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서는 예외를 방출하지 않아야 한다고 말씀 드렸는데요(*[스택 풀기](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90) 와 [소멸자에서 예외 방출 금지](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/#%EC%86%8C%EB%A9%B8%EC%9E%90%EC%97%90%EC%84%9C-%EC%98%88%EC%99%B8-%EB%B0%A9%EC%B6%9C-%EA%B8%88%EC%A7%80) 참고*),
 
-C++11 부터는 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 생략되었더라도 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작하여 코딩 계약이 좀더 단단해 졌습니다.
+C++11 부터는 [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)는 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 생략되었더라도 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다.
 
 다음처럼 `noexcept(false)`을 사용하여 억지로 예외를 방출할 수는 있지만, 하지 마세요. [소멸자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-destructors/)에서는 예외를 방출하지 않아야 합니다.
 

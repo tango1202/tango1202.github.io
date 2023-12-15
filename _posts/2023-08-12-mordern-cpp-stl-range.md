@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#42. [모던 C++ STL] (C++20~)  범위(Range)와 뷰(View)"
+title: "#42. [모던 C++ STL] (C++20~) 범위(Range)와 뷰(View)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -11,7 +11,7 @@ sidebar:
 > * (C++20~) [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)가 추가되어 이터레이팅할 수 있는 추상적인 요소들을 처리할 수 있습니다.
 > * (C++20~) [포인트 개체](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)인 [ranges::begin, ranges::end](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)등이 추가되어 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)의 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 구할 수 있습니다.
 > * (C++20~) [범위(Range) 알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B2%94%EC%9C%84range-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)이 추가되어 대부분의 알고리즘에서 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 지원합니다.
-> * (C++20~) [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)가 추가되어 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/) 요소들을 재배치/수정/필터링한 일종의 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 제공합니다.
+> * (C++20~) [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)가 추가되어 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/) 요소들을 재배치/필터링한 일종의 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 제공합니다.
 > * (C++20~) [미리 정의된 뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%AF%B8%EB%A6%AC-%EC%A0%95%EC%9D%98%EB%90%9C-%EB%B7%B0view)인 [ranges::filter_view, ranges::transform_view, ranges::take_view, elements_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%AF%B8%EB%A6%AC-%EC%A0%95%EC%9D%98%EB%90%9C-%EB%B7%B0view)등이 추가되었습니다.
 > * (C++20~) [뷰(View) 합성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view-%ED%95%A9%EC%84%B1)이 추가되어 `|`로 간소화하여 표현할 수 있습니다.
 
@@ -242,7 +242,7 @@ concept view =
     ranges::enable_view<T>; // view_base 또는 view_interface 로부터 파생되어야 합니다.
 ```
 
-[뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)는 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/) 요소들을 재배치/수정/필터링한 일종의 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)입니다. 이때 [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string_view)와 마찬가지로 요소를 복제하지 않습니다.
+[뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)는 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/) 요소들을 재배치/필터링한 일종의 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)입니다. 이때 [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string_view)와 마찬가지로 요소를 복제하지 않으며, 수정하지도 않습니다.
 
 |항목|내용|
 |--|--|
@@ -265,7 +265,7 @@ concept view =
 |`cbegin()` (C++23~)|(작성중)|
 |`cend()` (C++23~)|(작성중)|
 
-다음은 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 전달받아 그대로 이터레이팅하는 기본적인 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다. [ranges::view_interface](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 상속하여 구현하며, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)에서 복사되지 않도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용합니다.
+다음은 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 전달받아 그대로 이터레이팅하는 기본적인 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 구현한 예입니다. [ranges::view_interface](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 상속하여 구현하며, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)에서 복사되지 않도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용합니다.
 
 ```cpp
 template<std::ranges::range R> // R은 range이어야 합니다.
