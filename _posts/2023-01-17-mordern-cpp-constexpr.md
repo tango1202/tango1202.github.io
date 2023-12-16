@@ -23,13 +23,42 @@ sidebar:
 
 C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr) 이용해 **컴파일 타임 상수 표현식**을 지정할 수 있어 컴파일 타임 프로그래밍 환경이 좀더 쉬워졌습니다.
 
-# constexpr
+# 컴파일 타임 상수
 
-컴파일 타임 상수로 지정합니다. 
+`2 + 3`과 같은 표현식은 컴파일 타임에 컴파일러가 계산해서 `5`라고 알 수 있습니다. 이렇게 컴파일 타임에 결정될 수 있는 표현식을 컴파일 타임 상수 표현식이라 합니다.
 
 컴파일 타임 상수는 읽기 전용 메모리인 [코드 세그먼트](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)에 할당되므로 [예외에 안전](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-safe/)합니다. 할 수 있다면 최대한 컴파일 타임 상수로 만드는게 좋습니다.
 
-컴파일 타임 상수는 다음과 같이 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)의 값지정이나 [비타입 템플릿 인자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 전달을 통해 확인 할 수 있습니다.
+컴파일 타임 상수는 다음과 같이 
+
+1. [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)의 값이나 
+
+2. [비타입 템플릿 인자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90) 전달이나
+
+3. [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)로 알 수 있습니다.(*[static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/) 참고*)
+
+```cpp
+template<int val>
+class T {
+public:
+    int operator ()() {return val;} 
+};
+
+const int size{20}; // 상수 입니다.
+
+// 열거형 상수
+enum class MyEnum_11 {Val = size}; // (O) size는 컴파일 타임 상수 입니다.
+
+// 비타입 템플릿 인자
+T<size> t; // (O) size는 컴파일 타임 상수 입니다.
+
+// static_assert
+static_cast(size == 20); // (O) size는 컴파일 타임 상수 입니다.
+```
+
+# constexpr
+
+[constexpr](??)는 주어진 변수를 컴파일 타임 상수로 지정합니다. 
 
 `const int` 를 사용하면 컴파일 타임 상수로 취급되는되요,
 
