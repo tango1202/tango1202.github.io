@@ -270,4 +270,4 @@ EXPECT_TRUE((*result).m_Name == "Lee" && (*result).m_Val == 10);
 # (C++20~) 컨테이너 멤버 함수의 constexpr 개선
 
 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 지원이 개선되어 대부분의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)들이 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 변경되었습니다.
-(작성중)
+
