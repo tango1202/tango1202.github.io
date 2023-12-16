@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)가 추가되어 기존 [C스타일의 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)를 제공합니다. [C스타일 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/) 보다 성능이 좋습니다.
+> * (C++20) [to_array()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/#array-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 추가되어 기존 [C스타일 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)로부터 [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)를 생성할 수 있습니다.
 
 # 개요
 
@@ -65,7 +66,7 @@ EXPECT_TRUE(b[0] == 1 && b[1] == 2 && b[2] == 3);
 |`swap()` (C++11~)|(작성중)|
 |`==` (C++11~)<br/>`!=` (C++11~C++20)|(작성중)|
 |`<, <=, >, >=` (C++11~C++20)<br/>`<=>` (C++20~)|(작성중)|
-|`to_array()` (C++20~)|(작성중)|
+|[to_array()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/#array-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) (C++20~)|기존 [C스타일 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)로부터 [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)를 생성합니다.|
 
 # 배열, array, vector 속도 비교
 

@@ -22,6 +22,7 @@ sidebar:
 > * (C++11~) [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)가 추가되어 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)의 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0) 문제를 해결합니다.
 > * (C++17~) [shared_ptr의 배열 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#c17-%EB%B0%B0%EC%97%B4-%EC%A7%80%EC%9B%90)이 추가되었습니다.
 > * (C++17~) [reinterpret_pointer_cast()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)가 추가되었습니다.
+> * (C++17~) [make_shared()의 배열 지원](??)이 추가되었습니다.
 
 # 개요
 
@@ -791,7 +792,7 @@ catch (std::bad_weak_ptr&) {
 C++17 부터는 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)에서도 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)처럼 [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)을 지원합니다.
 
 ```cpp
-std::unique_ptr<int[]> ptr{new int[3]{0, 1, 2}}; // 배열 개체. delete[] 를 호출하여 2개가 소멸됩니다.
+std::shared_ptr<int[]> ptr{new int[3]{0, 1, 2}}; // 배열 개체. delete[] 를 호출하여 3개가 소멸됩니다.
 EXPECT_TRUE(ptr[0] == 0 && ptr[1] == 1 && ptr[2] == 2);
 ```
 
@@ -799,3 +800,12 @@ EXPECT_TRUE(ptr[0] == 0 && ptr[1] == 1 && ptr[2] == 2);
 
 enable_shared_from_this의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 추가
 (작성중)
+
+# (C++20~) make_shared()의 배열 지원
+
+C++20 부터는 [make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared) 에서도 [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)을 지원합니다.
+
+```cpp
+std::shared_ptr<int[]> ptr{std::make_shared<int[]>(3)}; // 기본값으로 초기화된 3개의 int 요소를 가진 배열입니다.
+EXPECT_TRUE(ptr[0] == 0 && ptr[1] == 0 && ptr[2] == 0);
+```
