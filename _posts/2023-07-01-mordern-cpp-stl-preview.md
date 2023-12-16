@@ -36,12 +36,15 @@ sidebar:
 * coroutine 라이브러리
 * range 라이브러리 
 * std::span 
+* constexpr 확대
+    * constexpr 알고리즘
 * 컨테이너
+
     * vector와 string에 constexpr 이 적용됨
     * 일관된 삭제 지원(erase-remove_if() 관용구). erase, erase_if  
     * 연관 컨테이너에서 요소 검사. contains
 * constexpr
-    * 알고리즘 100개 이상
+
     * utility
     * compex
 
@@ -247,7 +250,7 @@ sidebar:
 |[힙 작업](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%ED%9E%99-%EC%9E%91%EC%97%85)|(작성중)<br/><br/>**(C++11~)**<br/>[is_heap(), is_heap_until()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%ED%9E%99-%EC%9E%91%EC%97%85)이 추가되었습니다.|
 |[수학 작업](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)|`accumulate()`, `inner_product()`, `partial_sum()`과 같은 수학 연산을 제공합니다.<br/><br/>**(C++11~)**<br/>[iota()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다.<br/><br/>**(C++17~)**<br/>[gcd()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. `m`과 `n`의 최대 공약수를 계산합니다.<br/>[lcm()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)이 추가되었습니다. `m`과 `n`의 최소 공배수를 계산합니다.<br/>[reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. 임의의 순서로 [accumulate()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)를 처리합니다.<br/>[transform_reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. [inner_product()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)를 병렬로 적용합니다.<br/>[inclusive_scan(), exclusive_scan(), transform_inclusive_scan(), transform_exclusive_scan()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. `partial_sum()`을 병렬로 적용합니다.|
 |[병렬 알고리즘과 실행 정책](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/) (C++17~)|**(C++17~)**<br/>[대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었습니다. [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.|
-|[constexpr 알고리즘](??) (C++20~)|**(C++20~)**<br/>[대부분의 알고리즘에서 constexpr을 지원](??)합니다.|
+|[constexpr 알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#c20-constexpr-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98) (C++20~)|**(C++20~)**<br/>[대부분의 알고리즘에서 constexpr을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#c20-constexpr-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)합니다.|
 
 # 문자열 라이브러리
 
