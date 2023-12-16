@@ -18,6 +18,7 @@ sidebar:
 > * (C++17~) 숫자와 문자열간의 변환을 위한 [to_char(), from_char()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) 함수가 제공되며, 기존 C스타일([atoi(), strtol()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98 )등) 보다 안전합니다.
 > * (C++17~) [chars_format](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98)이 추가되었습니다.
 > * (C++20~) [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열을 지원합니다.
+> * (C++20~) [starts_with(), ends_with()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)가 추가되어 접두사와 접미사를 검사할 수 있습니다.
 
 # 개요
 
@@ -293,8 +294,8 @@ static const size_type npos = -1;
 |[append()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A0%EB%8B%B9-%ED%95%A9%EC%84%B1-%EB%B9%84%EA%B5%90assign-append-compare)|O|문자열에 문자나 문자열을 추가합니다.|
 |`append_range()` (C++23~)||(작성중)|
 |[compare()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A0%EB%8B%B9-%ED%95%A9%EC%84%B1-%EB%B9%84%EA%B5%90assign-append-compare)|O|문자열을 대소 비교합니다.|
-|`starts_with()` (C++20~)|O|(작성중)|
-|`ends_with()` (C++20~)|O|(작성중)|
+|[starts_with()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string) (C++20~)|O|주어진 부분 문자열로 시작하는지 검사합니다.|
+|[ends_with()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string) (C++20~)|O|주어진 부분 문자열로 끝나는지 검사합니다.|
 |`contains()` (C++23~)|O|(작성중)|
 |[replace()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 요소를 지정한 문자나 다른 시퀀스로 바꿉니다.|
 |`replace_with_range()` (C++23~)|O|(작성중)|

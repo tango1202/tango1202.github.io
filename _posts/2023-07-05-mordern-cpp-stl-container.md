@@ -21,6 +21,7 @@ sidebar:
 > * (C++20~) [컨테이너 멤버 함수의 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c20-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)되어 대부분의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)들이 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 변경되었습니다.
 > * (C++20~) [vector와 string의 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c20-vector%EC%99%80-string%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)되어 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로 변경되었습니다.
 > * (C++20~) [erase(), erase_if()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c20-erase-erase_if)가 추가되어 값으로 요소를 삭제할 수 있습니다.
+> * (C++20~) [contains()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c20-contains)가 추가되어 [연관 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)에서 주어진 Key가 있는지 검사할 수 있습니다.
 
 # 시퀀스 컨테이너
 
@@ -312,4 +313,20 @@ EXPECT_TRUE(v.size() == 2 && v[0] == 2 && v[1] == 3);
 
 # (C++20~) contains()
 
-C++20 부터 [constains()](??)가 추가되어 주어진 Key가 있는지 검사할 수 있습니다.
+기존에는 연관 컨테이너에서 주어진 Key가 있는지 검사하려면 `find()`를 사용했어야 했습니다.
+
+```cpp
+std::set s{1, 2, 3};
+if (s.find(2) != s.end()) {
+    // s에 2가 있을때의 코드
+}
+```
+
+C++20 부터는 [contains()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c20-contains)가 추가되어 [연관 컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#%EC%97%B0%EA%B4%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)에서 주어진 Key가 있는지 검사할 수 있습니다.
+
+```cpp
+std::set s{1, 2, 3};
+if (s.contains(2)) {
+    // s에 2가 있을때의 코드   
+}
+```
