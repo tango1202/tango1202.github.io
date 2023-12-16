@@ -89,7 +89,7 @@ C++11 부터는 [unordered_map, unordered_multimap, unordered_set, unordered_mul
 |--|--|
 |`[]` (C++11~)|주어진 Key의 Value를 구합니다.|
 |`at()` (C++11~)|주어진 Key의 Value를 구합니다.|
-|`contains()` (C++20~)|(작성중)|
+|`contains()` (C++20~)|주어진 Key가 있는지 검사합니다.|
 |`begin(), end()` (C++11~)<br/>`cbegin(), cend()` (C++11~)|[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)<br/>`map`은 `rbegin()`, `rend()`, `crbegin()`, `crend()`를 추가로 제공합니다.|
 |`empty()` (C++11~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 비었는지 확인합니다.|
 |`size()` (C++11~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 요소 갯수를 리턴합니다.|

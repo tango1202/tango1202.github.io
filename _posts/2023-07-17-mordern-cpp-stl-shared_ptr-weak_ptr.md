@@ -12,7 +12,6 @@ sidebar:
 > * [MEC++#20] std::shared_ptr처럼 작동하되 대상을 잃을 수도 있는 포인터가 필요하면 std::weak_ptr를 사용하라.
 > * [MEC++#21] new를 직접 사용하는 것보다 std::make_unique와 std::make_shared를 선호하라(메모리 할당 횟수가 준다. [예외 보증](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-warranty/) 향상된다)
 
-
 > * (C++11~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)이 추가되어 소유권 공유용 스마트 포인터를 제공합니다.
 > * (C++11~) [enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this)가 추가되어 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)이 관리하는 개체로부터 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 만들 수 있습니다.
 > * (C++11~) [owner_less](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_less)가 추가되어 소유권 개체의 주소로 비교할 수 있습니다.
@@ -91,6 +90,9 @@ EXPECT_TRUE(a.use_count() == 2 && b.use_count() == 2);
 T : Constructor
 T : Destructor
 ```
+
+> *(C++17~) [shared_ptr의 배열 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#c17-%EB%B0%B0%EC%97%B4-%EC%A7%80%EC%9B%90)이 추가되었습니다.*
+
 # shared_ptr의 제어 블록(Control Block)
 
 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)은 내부적으로 [제어 블록](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr%EC%9D%98-%EC%A0%9C%EC%96%B4-%EB%B8%94%EB%A1%9Dcontrol-block)을 별도로 할당하며, 다음 정보를 관리합니다.
@@ -243,6 +245,7 @@ shared_ptr<T> make_shared(Args&&... args);
 
     Func(std::make_shared<T>(), std::make_shared<U>()); // (O) 
     ```
+> *(C++20~) [make_shared()의 배열 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#c20-make_shared%EC%9D%98-%EB%B0%B0%EC%97%B4-%EC%A7%80%EC%9B%90)이 추가되었습니다.*
 
 # make_shared() 와 initializer_list 
 
