@@ -10,9 +10,9 @@ sidebar:
 
 # 개요 
 
-[span](??)은 연속된 메모리 시퀀스의 참조를 전달받아 이터레이팅 하는 개체입니다. 
+[span](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-span/)은 연속된 메모리 시퀀스의 참조를 전달받아 이터레이팅 하는 개체입니다. 
 
-[C스타일 배열](??)의 경우 전달받을 때 포인터로 변경되어 요소의 갯수 정보가 유실되어, 요소 갯수를 같이 전달받거나, [함수 템플릿](??)을 활용해야 했는데요, [span](??)을 이용하면 요소 갯수 유실없이 전달받을 수 있습니다. 
+[C스타일 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)의 경우 전달받을 때 포인터로 변경되어 요소의 갯수 정보가 유실되어, 요소 갯수를 같이 전달받거나, [함수 템플릿](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)을 활용해야 했는데요, [span](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-span/)을 이용하면 요소 갯수 유실없이 전달받을 수 있습니다. 
 
 ```cpp
 // 배열을 포인터로 전달받습니다.
@@ -64,7 +64,7 @@ EXPECT_TRUE(Sum4(arr) == 1 + 2 + 3); // span을 사용하면, 요소 갯수를 �
 
 ```
 
-[범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 이터레이팅하는 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)와 비슷하지만, [span](??)은 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)와 달리 원본을 수정할 수 있습니다.
+[범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 이터레이팅하는 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)와 비슷하지만, [span](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-span/)은 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)와 달리 원본을 수정할 수 있습니다.
 
 ```cpp
 std::vector<int> v{1, 2, 3};   
@@ -77,7 +77,7 @@ EXPECT_TRUE(v[0] == 10); // 원본이 수정됩니다.
 
 # span 초기화
 
-[span](??)은 [C스타일 배열](??), [array](??), [vector](??), 메모리, [string](??) 등 연속된 메모리 시퀀스인 개체로 초기화 할 수 있습니다.
+[span](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-span/)은 [C스타일 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/), [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/), [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/), 메모리, [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 등 연속된 메모리 시퀀스인 개체로 초기화 할 수 있습니다.
 
 ```cpp
 int arr1[]{1, 2, 3};
