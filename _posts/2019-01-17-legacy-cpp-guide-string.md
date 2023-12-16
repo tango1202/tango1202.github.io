@@ -12,7 +12,7 @@ sidebar:
 > * [멀티 바이트 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)은 권장하지 않는다. 사용하지 마라.
 > * 소스 코드 저장시에는 다국어 처리에 적합하도록 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)로 저장하라.
 
-> **모던 C++**
+> **Mordern C++**
 > * (C++11~)  [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)용 문자 상수를 제공합니다.
 > * (C++11~) [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되어 [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열을 지원합니다.
 > * (C++11~) [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되어 [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열을 지원합니다.

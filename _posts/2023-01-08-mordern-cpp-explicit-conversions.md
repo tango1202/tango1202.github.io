@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [모던 C++] (C++11~) explicit 형변환 연산자, (C++20~) explicit(bool)"
+title: "#8. [Mordern C++] (C++11~) explicit 형변환 연산자, (C++20~) explicit(bool)"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

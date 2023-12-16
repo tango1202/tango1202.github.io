@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++] (C++11~) 전달 참조와 완벽한 전달(forward())"
+title: "#13. [Mordern C++] (C++11~) 전달 참조와 완벽한 전달(forward())"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -434,7 +434,7 @@ Forwarding_11(a, ref, std::move(b));
 
 # forward() 원리
 
-사실 [forward() 원리](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%9B%90%EB%A6%AC)를 굳이 이해해야 모던 C++을 사용할 수 있는건 아닙니다. "그냥 함수끼리 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 포워딩 할때는 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC) 함수를 써야 하는구나, [템플릿 인자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)는 `T`나 `T&`나 `T&&`를 쓰는데, 3개중에 컴파일 오류 안나는거 쓰면 되겠지 머." 라고 대충 사용하셔도 크게 문제될 일은 많이 없을 겁니다. 하지만, 이를 이해한다면, [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)와 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)에 대한 통찰력이 생겨 좀더 효율적인 코드를 만들 수 있습니다. 무지하게 난해하지만, 도전할 가치가 있다고 봅니다.
+사실 [forward() 원리](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%9B%90%EB%A6%AC)를 굳이 이해해야 Mordern C++을 사용할 수 있는건 아닙니다. "그냥 함수끼리 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 포워딩 할때는 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC) 함수를 써야 하는구나, [템플릿 인자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)는 `T`나 `T&`나 `T&&`를 쓰는데, 3개중에 컴파일 오류 안나는거 쓰면 되겠지 머." 라고 대충 사용하셔도 크게 문제될 일은 많이 없을 겁니다. 하지만, 이를 이해한다면, [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)와 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)에 대한 통찰력이 생겨 좀더 효율적인 코드를 만들 수 있습니다. 무지하게 난해하지만, 도전할 가치가 있다고 봅니다.
  
 [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC) 함수는 STL에 대략 다음처럼 구현됩니다.
 

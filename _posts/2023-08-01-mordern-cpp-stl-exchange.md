@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#31. [모던 C++ STL] (C++14~) exchange()"
+title: "#31. [Mordern C++ STL] (C++14~) exchange()"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#18. [모던 C++ STL] (C++11~) 정밀한 시간 측정(system_clock, time_point, duration)"
+title: "#18. [Mordern C++ STL] (C++11~) 정밀한 시간 측정(system_clock, time_point, duration)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

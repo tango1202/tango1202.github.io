@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++ STL] 문자열"
+title: "#9. [Mordern C++ STL] 문자열"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

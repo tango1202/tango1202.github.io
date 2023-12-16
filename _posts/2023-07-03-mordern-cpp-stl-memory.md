@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [모던 C++ STL] 동적 메모리 관리"
+title: "#3. [Mordern C++ STL] 동적 메모리 관리"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

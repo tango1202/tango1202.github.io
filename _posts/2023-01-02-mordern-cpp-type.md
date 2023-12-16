@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [모던 C++] (C++11~) 개선된 타입과 리터럴(타입 카테고리, using을 이용한 타입 별칭, nullptr, long long, 유니코드 지원, R 리터럴), (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴, (C++20~) char8_t, 정수에서 2의 보수 표현"
+title: "#2. [Mordern C++] (C++11~) 개선된 타입과 리터럴(타입 카테고리, using을 이용한 타입 별칭, nullptr, long long, 유니코드 지원, R 리터럴), (C++14~) 이진 리터럴, 숫자 구분자, (C++17~) 16진수 부동 소수점 리터럴, (C++20~) char8_t, 정수에서 2의 보수 표현"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

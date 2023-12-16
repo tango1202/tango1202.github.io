@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> **모던 C++**
+> **Mordern C++**
 > * (C++11~) [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
 > * (C++11~) [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)가 추가되어 컴파일 타임 진단이 가능해 졌습니다.
 > * (C++11~) [noexcept 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 추가되어 해당 함수가 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)인지 컴파일 타임에 검사할 수 있습니다.

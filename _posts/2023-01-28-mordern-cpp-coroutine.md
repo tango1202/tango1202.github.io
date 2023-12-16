@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#28. [모던 C++] (C++20~) 코루틴(coroutine)"
+title: "#28. [Mordern C++] (C++20~) 코루틴(coroutine)"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

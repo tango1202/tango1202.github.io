@@ -22,7 +22,7 @@ sidebar:
 > * [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/) 관계에서는 [복사 생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90) 대신 [가상 복사 생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EA%B0%80%EC%83%81-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)를 사용하라.
 > * [부모 개체의 복사 대입 연산자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)는 오동작할 소지가 있으니 막아라.
 
-> **모던 C++**
+> **Mordern C++**
 > * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 더이상 [오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9) 못하게 할 수 있고, 강제적으로 [상속을 제한](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C)할 수 있습니다.
 > * (C++11~) [생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D)이 추가되어 부모 개체의 [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)도 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)받아 사용할 수 있어 자식 개체의 [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/) 재정의 코드가 좀더 간결해 졌습니다.
 

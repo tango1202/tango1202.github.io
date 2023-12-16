@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [모던 C++ STL] 타입"
+title: "#2. [Mordern C++ STL] 타입"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

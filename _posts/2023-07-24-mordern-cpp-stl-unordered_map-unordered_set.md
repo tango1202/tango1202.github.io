@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#24. [모던 C++ STL] (C++11~) 해시 컨테이너(unordered_map, unordered_multimap, unordered_set, unordered_multiset)"
+title: "#24. [Mordern C++ STL] (C++11~) 해시 컨테이너(unordered_map, unordered_multimap, unordered_set, unordered_multiset)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

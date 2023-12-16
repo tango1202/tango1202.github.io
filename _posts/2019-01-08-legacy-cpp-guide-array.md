@@ -11,7 +11,7 @@ sidebar:
 > * 속도 성능에 영향이 없다면 유지보수시 확장성을 위하여 [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)보다는 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)를 사용하라. 동적 요소 할당을 지원하며, 여전히 엑세스는 빠르다.
 > * [new[]](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)-[delete[]](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 쌍을 준수하라.
 
-> **모던 C++**
+> **Mordern C++**
 > * (C++11~)[array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)가 추가되어 기존 [C스타일의 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)를 제공합니다. [C스타일 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/) 보다 성능이 좋습니다.
 
 # 개요

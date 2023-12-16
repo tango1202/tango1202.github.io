@@ -16,7 +16,7 @@ sidebar:
 > * [스택 풀기](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90)와 호환되도록 스마트 포인터를 사용하라.
 > * 함수 정의시 [동적 예외 사양](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 사용하지 마라.
 
-> **모던 C++**
+> **Mordern C++**
 > * (C++11~) [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 추가되어 함수의 예외 방출 여부를 보증하며, [소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)는 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다.
 > * (C++11~) [동적 예외 사양](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)은 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되었습니다. 예외를 나열하는 것보다 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept)로 예외를 방출하느냐 안하느냐만 관심을 둡니다.
 > * (C++11~) [unexpected()](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)는 [동적 예외 사양](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)이 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되면서 함께 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.

@@ -17,7 +17,7 @@ sidebar:
 > * [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)처럼 [소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)에서도 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하지 마라.
 > * [소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)에서 예외를 방출하지 마라.(*필요하다면 `Release()`함수를 구현하라.*)
 
-> **모던 C++**
+> **Mordern C++**
 > * (C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete)가 추가되어 [암시적으로 생성되는 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-implicit-definition/)의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.
 > * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 강제적으로 [상속을 제한](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EC%83%81%EC%86%8D-%EC%A0%9C%ED%95%9C)할 수 있습니다.
 > * (C++11~) [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)가 추가되어 함수의 예외 방출 여부를 보증하며, [소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)는 기본적으로 [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/)로 동작합니다.

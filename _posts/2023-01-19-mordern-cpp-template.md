@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [모던 C++] (C++11~) extern 템플릿, (C++14~) 변수 템플릿, (C++17~) 클래스 템플릿 인수 추론, 비타입 템플릿 인자의 auto 허용, (C++20~) 축약된 함수 템플릿, 비타입 템플릿 인자 규칙 완화, 클래스 템플릿 인수 추론시 initializer_list 개선"
+title: "#19. [Mordern C++] (C++11~) extern 템플릿, (C++14~) 변수 템플릿, (C++17~) 클래스 템플릿 인수 추론, 비타입 템플릿 인자의 auto 허용, (C++20~) 축약된 함수 템플릿, 비타입 템플릿 인자 규칙 완화, 클래스 템플릿 인수 추론시 initializer_list 개선"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

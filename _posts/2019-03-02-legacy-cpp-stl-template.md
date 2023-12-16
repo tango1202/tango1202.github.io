@@ -11,7 +11,7 @@ sidebar:
 > * [템플릿](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template/)은 [템플릿 인스턴스화](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 하기 전에는 코드를 생성하지 않는다.
 > * 클래스, 함수, [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98), [중첩 클래스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EC%A4%91%EC%B2%A9-%ED%81%B4%EB%9E%98%EC%8A%A4)를 [템플릿](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template/)으로 만들 수 있다.
 
-> **모던 C++**
+> **Mordern C++**
 > * (C++11~) [extern으로 템플릿 선언](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#extern-%ED%85%9C%ED%94%8C%EB%A6%BF)을 할 수 있으며, [템플릿 인스턴스](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%A0%95%EC%9D%98%EB%B6%80%EC%99%80-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94) 중복 생성을 없앨 수 있습니다.
 > * (C++11~) [export 템플릿](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template/#export-%ED%85%9C%ED%94%8C%EB%A6%BF)은 제대로 구현한 컴파일러는 드물고, 세부사항에 대한 의견이 일치하지 않아 C++11 부터 완전히 [remove](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되었습니다.
 > * (C++14~) [변수 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-template/#c14-%EB%B3%80%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF)이 추가되어 변수도 [템플릿](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template/)으로 만들 수 있습니다.

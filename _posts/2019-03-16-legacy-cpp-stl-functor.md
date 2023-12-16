@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> **모던 C++**
+> **Mordern C++**
 > * (C++11~) [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 1회용 익명 함수를 만들 수 있습니다.
 > * (C++11~) [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)이 추가되어 `()`로 호출 가능한 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 저장할 수 있습니다. 
 > * (C++11~) [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)이 추가되었습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 있는 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)도 호출하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 좀 더 간편하게 만들어 줍니다.
@@ -135,7 +135,7 @@ EXPECT_TRUE(v[0] == 11 && v[1] == 12 && v[2] == 13);
 
 # STL 기본 함수자
 
-다음과 같은 기본 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)가 제공됩니다. 전체 내용은 모던 C++의 [함수자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90)를 참고하시기 바랍니다.
+다음과 같은 기본 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)가 제공됩니다. 전체 내용은 Mordern C++의 [함수자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90)를 참고하시기 바랍니다.
 
 |항목|내용|
 |--|--|

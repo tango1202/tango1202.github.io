@@ -12,7 +12,7 @@ sidebar:
 > * [초기화](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-initialization/)되지 않은 변수를 사용하지 마라.
 > * [자동 제로 초기화](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-initialization/#%EC%9E%90%EB%8F%99-%EC%A0%9C%EB%A1%9C-%EC%B4%88%EA%B8%B0%ED%99%94)에 의존하지 마라. 낭패볼 수 있다.
 
-> **모던 C++**
+> **Mordern C++**
 > * (C++11~) [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)를 제공하여 클래스인지, [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)인지, 구조체인지 구분없이 중괄호(`{}`)를 이용하여 일관성 있게 초기화 할 수 있으며, [초기화 파싱 오류](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)도 해결했습니다.
 > * (C++11~) [멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EB%A9%A4%EB%B2%84-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 [비정적 멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 초기화가 쉬워졌습니다.
 > * (C++17~) [임시 구체화와 복사 생략 보증](https://tango1202.github.io/mordern-cpp/mordern-cpp-copy-elision/)을 통해 컴파일러 의존적이었던 [생성자 호출 및 함수 인수 전달 최적화](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-initialization/#%EC%83%9D%EC%84%B1%EC%9E%90-%ED%98%B8%EC%B6%9C-%EB%B0%8F-%ED%95%A8%EC%88%98-%EC%9D%B8%EC%88%98-%EC%A0%84%EB%8B%AC-%EC%B5%9C%EC%A0%81%ED%99%94), [리턴값 최적화](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92-%EC%B5%9C%EC%A0%81%ED%99%94return-value-optimization-rvo)등이 표준화 되었습니다.

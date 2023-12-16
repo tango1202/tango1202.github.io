@@ -11,7 +11,7 @@ sidebar:
 > * 헤더 파일에서 다른 헤더 파일을 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include)하는 것은 최소화 하라.
 > * 선언과 정의 분리, [전방 선언](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)으로 컴파일 종속성을 최소화 하라.
 
-> **모던 C++**
+> **Mordern C++**
 > * (C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 하기 전에 파일이 존재하는지 확인할 수 있습니다.
 > * (C++20~) [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)이 추가되어 [전처리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/) 사용 방식을 개선하여 컴파일 속도를 향상시키고, [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제, [선언과 정의 분리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC) 구성의 불편함, 기호 충돌 문제를 해결했습니다.
 

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [모던 C++ STL] 주요 구성 요소 미리보기"
+title: "#1. [Mordern C++ STL] 주요 구성 요소 미리보기"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-모던 C++ STL은,
+Mordern C++ STL은,
 
 1. C++11
 

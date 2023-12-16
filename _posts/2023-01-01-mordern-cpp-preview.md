@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [모던 C++] 주요 구성 요소 미리보기"
+title: "#1. [Mordern C++] 주요 구성 요소 미리보기"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-모던 C++ 은,
+Mordern C++ 은,
 
 1. [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)을 지원하여 런타임 성능을 향상시키고, 
 2. 런타임에 했던 작업을 최대한 컴파일 타임으로 전환하여 런타임 성능을 향상시키며,
@@ -17,11 +17,11 @@ sidebar:
 
 현대적인 언어 특성에 발맞춰 좀더 단순하게 코딩할 수 있도록 개선되었습니다.
 
-STL의 변경 내용은 [[모던 C++ STL] 주요 구성 요소 미리보기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/)를 참고하시기 바랍니다.
+STL의 변경 내용은 [[Mordern C++ STL] 주요 구성 요소 미리보기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/)를 참고하시기 바랍니다.
 
 1. C++11
 
-    런타임 성능 개선과 컴파일 타임 프로그래밍을 위해 많은 부분을 추가하였습니다. C++11 이전을 ***Legacy C++*** 이라 하고, 이후를 ***모던 C++*** 으로 구분할 만큼 많이 변했습니다. 특히 [우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto), [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D), [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)은 혁신적인 변화라 할 수 있습니다.
+    런타임 성능 개선과 컴파일 타임 프로그래밍을 위해 많은 부분을 추가하였습니다. C++11 이전을 ***Legacy C++*** 이라 하고, 이후를 ***Mordern C++*** 으로 구분할 만큼 많이 변했습니다. 특히 [우측값 참조(`&&`)와 이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90), [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto), [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D), [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)은 혁신적인 변화라 할 수 있습니다.
     
     그외에 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr), [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t), [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4), [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94), [멤버 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EB%A9%A4%EB%B2%84-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94), [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for), [default](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete), [delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete), [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#override), [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final), [생성자 위임](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9C%84%EC%9E%84), [생성자 상속](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#%EC%83%9D%EC%84%B1%EC%9E%90-%EC%83%81%EC%86%8D), [명시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-explicit-conversions/), [noexcept](https://tango1202.github.io/mordern-cpp/mordern-cpp-noexcept/), [decltype](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype), [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0), [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC), [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/), [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/), [static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/), [가변 템플릿](https://tango1202.github.io/mordern-cpp/mordern-cpp-variadic-template/) 등 런타임 성능 개선과 컴파일 타임 프로그래밍, 코딩 계약 강화, 코딩 편의성을 위해 많은 부분이 추가되었습니다.
 
