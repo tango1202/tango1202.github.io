@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#17. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++17~) if constexpr, (C++20~) consteval 함수, constinit 변수"
+title: "#18. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++17~) if constexpr, (C++20~) consteval 함수, constinit 변수"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -21,15 +21,15 @@ sidebar:
 
 [템플릿 메타 프로그래밍](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-meta-programming/)에서 언급한 것처럼 컴파일 타임에 여러가지 프로그래밍이 가능합니다. 하지만, [템플릿](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template/)으로 우회하며 작성하다보니 상당히 난해했는데요, 
 
-C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr) 이용해 **컴파일 타임 상수 표현식**을 지정할 수 있어 컴파일 타임 프로그래밍 환경이 좀더 쉬워졌습니다.
+C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr) 이용해 [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98) 표현식을 지정할 수 있어 컴파일 타임 프로그래밍 환경이 좀더 쉬워졌습니다.
 
 # 컴파일 타임 상수
 
-`2 + 3`과 같은 표현식은 컴파일 타임에 컴파일러가 계산해서 `5`라고 알 수 있습니다. 이렇게 컴파일 타임에 결정될 수 있는 표현식을 컴파일 타임 상수 표현식이라 합니다.
+`2 + 3`과 같은 표현식은 컴파일 타임에 컴파일러가 계산해서 `5`라고 알 수 있습니다. 이렇게 컴파일 타임에 결정될 수 있는 표현식을 [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98) 표현식이라 합니다.
 
-컴파일 타임 상수는 읽기 전용 메모리인 [코드 세그먼트](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)에 할당되므로 [예외에 안전](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-safe/)합니다. 할 수 있다면 최대한 컴파일 타임 상수로 만드는게 좋습니다.
+[컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)는 읽기 전용 메모리인 [코드 세그먼트](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%BD%94%EB%93%9C-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)에 할당되므로 [예외에 안전](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-safe/)합니다. 할 수 있다면 최대한 [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)로 만드는게 좋습니다.
 
-컴파일 타임 상수는 다음과 같이 
+[컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)는 다음과 같이 
 
 1. [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)의 값이나 
 
@@ -58,40 +58,31 @@ static_cast(size == 20); // (O) size는 컴파일 타임 상수 입니다.
 
 # constexpr
 
-[constexpr](??)는 주어진 변수를 컴파일 타임 상수로 지정합니다. 
+[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)은 주어진 변수를 [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)로 지정합니다. 
 
-`const int` 를 사용하면 컴파일 타임 상수로 취급되는되요,
+`const int` 를 사용하면 [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)로 취급되는되요,
 
 ```cpp
-template<int val>
-class T {
-public:
-    int operator ()() {return val;} 
-};
-
 const int size{20}; // 상수 입니다.
 
-enum class MyEnum_11 {Val = size}; // (O) size는 컴파일 타임 상수 입니다.
-T<size> t; // (O) size는 컴파일 타임 상수 입니다.
+static_assert(size == 20); // (O) size는 컴파일 타임 상수 입니다.
 ```
 
-하지만, 변수로부터 `const int`를 초기화 하면, 런타임 상수이지, 컴파일 타임 상수가 아니어서 컴파일 오류가 납니다.
+하지만, 변수로부터 `const int`를 초기화 하면, 런타임 상수이지, [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)가 아니어서 컴파일 오류가 납니다.
 
 ```cpp
 int a{20};
 const int size{a}; // 변수로부터 const int를 초기화 해서 런타임 상수 입니다.
 
-enum class MyEnum_11 {Val = size}; // (X) 컴파일 오류. size는 런타임 상수 입니다.
-T<size> t; // (X) 컴파일 오류. size는 런타임 상수 입니다.
+static_assert(size == 20); // (X) 컴파일 오류. size는 런타임 상수 입니다.
 ```
 
-[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)은 좀더 명시적으로 컴파일 타임 상수임을 알려 줍니다.
+[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)은 좀더 명시적으로 [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)임을 알려 줍니다.
 
 ```cpp
 constexpr int size_11{20}; // 컴파일 타임 상수 입니다.
 
-enum class MyEnum_11 {Val = size_11}; // (O)
-T<size_11> t; // (O) 
+static_assert(size_11 == 20); // (O) 
 ```
 
 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)은  `const int`와 달리 변수를 대입하면 컴파일 오류가 발생합니다.
@@ -127,7 +118,7 @@ EXPECT_TRUE(static_cast<int>(MyEnum::Val) == 1 * 2 * 3 * 4 * 5);
 
 C++11 부터는 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)을 이용하여 암시적으로 [인라인 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-inline/)인 컴파일 타임 함수를 만들 수 있습니다.
 
-1. 컴파일 타임 상수를 전달하면 컴파일 타임 함수로 동작하고,
+1. [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)를 전달하면 컴파일 타임 함수로 동작하고,
 2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작합니다.
 
     > *(C++20~) [consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다.*
@@ -169,7 +160,7 @@ int result{Factorial_11(5)};
 
 1. `Area_11(int x, int y)`에 컴파일 상수를 전달하면, `Area_11`도 컴파일 상수로 동작합니다.
 
-2. `Area_11`이 컴파일 타임 상수로 생성되었다면, `GetVal_11()`은 컴파일 타임 상수끼리의 연산이므로 컴파일 타임 함수가 될 수 있습니다.
+2. `Area_11`이 [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)로 생성되었다면, `GetVal_11()`은 [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)끼리의 연산이므로 컴파일 타임 함수가 될 수 있습니다.
 
 ```cpp
 class Area_11 {
@@ -379,7 +370,7 @@ delete ptr;
 
 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 
 
-1. 컴파일 타임 상수를 전달하면 컴파일 타임 함수로 동작하고,
+1. [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)를 전달하면 컴파일 타임 함수로 동작하고,
 2. 일반 변수를 전달하면, 일반 함수들처럼 런타임 함수로 동작했는데요(*[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 참고*),
 
 C++20 부터는 [consteval 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-consteval-%ED%95%A8%EC%88%98)가 추가되어 컴파일 타임 함수로만 동작할 수 있습니다. 이렇게 컴파일 타임에만 동작하는 함수를 즉시 함수(*immediate function*)라고 합니다.
@@ -457,7 +448,7 @@ int main() {
 
 |항목|[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr)|[constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)|
 |--|--|--|
-|의미|컴파일 타임 상수 입니다.|컴파일 타임에 초기화되어야 합니다.|
+|의미|[컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98) 입니다.|컴파일 타임에 초기화되어야 합니다.|
 |[상수성](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/)|[const](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/)입니다.|[constinit](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constinit-%EB%B3%80%EC%88%98)의 이름 때문에 오해하기 쉬운데, [const](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/)가 아닙니다. 상수로 만드려면, `constinit const int`와 같이 [const](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/)를 별도로 붙여야 합니다.|
 |[지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 적용|지원합니다.|지원하지 않습니다.<br/>[전역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 전역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98), [정적 멤버 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)에만 사용 가능합니다.|
 
@@ -485,7 +476,7 @@ C++14 에서 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-
 
 C++20 에서는 [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)가 한차례 더 보강되어 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), [dynamic_cast](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98), [typeid()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90), 초기화되지 않은 [지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [try-catch()](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/), 공용체 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/) 활성 전환, `asm`등을 사용할 수 있습니다.
 
-다음예에서 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 [오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)한 `Func` 함수를 컴파일 타임 상수로 사용할 수 있고, 이를 `Base*`를 통해 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하면, 런타임에 동작하는 걸 확인 할 수 있습니다.
+다음예에서 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 [오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)한 `Func` 함수를 [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98)로 사용할 수 있고, 이를 `Base*`를 통해 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 호출하면, 런타임에 동작하는 걸 확인 할 수 있습니다.
 
 ```cpp
 class Base {
@@ -502,7 +493,7 @@ enum class MyEnum_11 {Val = a_20.Func()}; // 컴파일 타임 상수
 
 const Base* ptr = &a_20;
 EXPECT_TRUE(ptr->Func() == 1); // 부모 개체의 포인터로 런타임에 가상 함수를 호출할 수 있습니다.
-// enum class MyEnum_11 {Val = ptr->Func()}; // (X) 컴파일 오류. 컴파일 타임 상수가 아닙니다.
+// static_assert(ptr->Func()); // (X) 컴파일 오류. 컴파일 타임 상수가 아닙니다.
 ```
 
 또한 [dynamic_cast](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)와 [typeid()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90)를 사용할 수 있습니다.
@@ -563,5 +554,5 @@ constexpr int Func_20() {
     return 1;
 }
 
-enum class MyEnum_11 {Val = Func_20()}; 
+static_assert(Func_20()); 
 ```

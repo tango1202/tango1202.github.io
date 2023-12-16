@@ -112,7 +112,7 @@ concept Number_20 = std::integral<T> || std::floating_point<T>; // T는 정수 �
 
 [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)의 [제약 조건](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)은 여러가지 방법을 이용하여 만들 수 있습니다.
 
-1. [bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/)을 리턴하는 컴파일 타임 상수식
+1. [bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/)을 리턴하는 [컴파일 타임 상수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%83%80%EC%9E%84-%EC%83%81%EC%88%98) 표현식
 
     [컴파일 타임 타입 특성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)을 보면, 컴파일 타임에 사용할 수 있는 다양한 [타입 특성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)이 제공됩니다. `integral` [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)도 사실은 [is_integral](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC) [타입 특성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)으로 구현되어 있습니다. 
 
