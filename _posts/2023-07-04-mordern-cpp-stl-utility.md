@@ -13,7 +13,6 @@ sidebar:
 > * (C++11~) [move_if_noexcept()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#move_if_noexcept)가 추가되어 [nothrow 보증](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%B3%B4%EC%A6%9D-%EC%A2%85%EB%A5%98)이 되는 경우에만 `&&`로 형변환할 수 있습니다.
 > * (C++11~) [forward()](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#forward)가 추가되어 함수가 전달받은 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 다른 함수로 [완벽하게 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)할 수 있습니다.
 > * (C++11~) [declval()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval)이 추가되어 참조 타입 표현식으로 변경할 수 있습니다.
-> * (C++11~) [chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/) 라이브러리가 추가되어 [system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock), [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point), [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 이 추가되어 좀더 다양한 정확도로 시간을 추적할 수 있습니다.
 > * (C++11~) [quick_exit(), _Exit(), at_quick_exit()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90)가 추가되었습니다.
 > * (C++11~) [va_copy](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 추가되었습니다.
 > * (C++14~) [exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/)가 추가되어 주어진 값을 바꾸는 작업이 간편해 졌습니다. 특히 [이동 생성자와 이동 대입 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 구현에 활용할 수 있습니다.
@@ -59,7 +58,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`cmp_equal()` (C++20~)<br/>`cmp_not_equal()` (C++20~)<br/>`cmp_less()` (C++20~)<br/>`cmp_greater()` (C++20~)<br/>`cmp_less_equal()` (C++20~)<br/>`cmp_greater_equal()` (C++20~)|(작성중)|
+|[cmp_equal()](??) (C++20~)<br/>[cmp_not_equal()](??) (C++20~)<br/>[cmp_less()](??) (C++20~)<br/>[cmp_greater()](??) (C++20~)<br/>[cmp_less_equal()](??) (C++20~)<br/>[cmp_greater_equal()](??) (C++20~)|(작성중)|
 |`in_range()` (C++20~)|(작성중)|
 
 # 대소 비교
@@ -157,6 +156,3 @@ sidebar:
 |`timespec_get()` (C++17~)|`timespec` 개체를 구합니다.|
 |`timespec` (C++17~)|초(`tv_sec`)와 나노초(`tv_nsec`	)로 구분합니다.|
 
-# (C++11~) chrono
-
-C++11 부터 [chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/) 라이브러리가 추가되어 정밀한 시간 측정이 강화되었습니다. 

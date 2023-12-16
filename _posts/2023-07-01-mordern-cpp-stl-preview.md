@@ -50,6 +50,19 @@ sidebar:
     * u8string
     * string 에서 starts_with, ends_with(접두사, 접미사 검사)
 
+* Bit Operations 비트 조작등
+    * endian https://en.cppreference.com/w/cpp/types/endian
+    * bit_cast<> https://en.cppreference.com/w/cpp/numeric/bit_cast
+    * has_single_bit
+    * bit_ceil
+    * popcount
+* Math constants
+* mid_point
+* lerp : 선형 보간
+* 안전한 정수 비교 : 부호 있는 정수와 부호 없는 정수 비교를 할때 unsigned로 변경해서 함.(double과 unsigned int는 unsigned int를 double로 승격함)
+* 수학 상수. e. log2e 등
+
+
 * constexpr
 
     * utility
@@ -65,18 +78,6 @@ sidebar:
     * {}
     * : 과 서식 명세 : 채움 문자 지정, 정렬 지정(<, >, ^), 부호, 너비와 정밀도, 데이터 형식(이진수등) 
 * bind_front() : bind시 placeholder 불필요 https://en.cppreference.com/w/cpp/utility/functional/bind_front
-
-* Bit Operations 비트 조작등
-    * endian https://en.cppreference.com/w/cpp/types/endian
-    * bit_cast<> https://en.cppreference.com/w/cpp/numeric/bit_cast
-    * has_single_bit
-    * bit_ceil
-    * popcount
-* Math constants
-* mid_point
-* lerp : 선형 보간
-* 안전한 정수 비교 : 부호 있는 정수와 부호 없는 정수 비교를 할때 unsigned로 변경해서 함.(double과 unsigned int는 unsigned int를 double로 승격함)
-* 수학 상수. e. log2e 등
 
 * is_constant_evaluated
 * std::is_bounded_array, std::is_unbounded_array
