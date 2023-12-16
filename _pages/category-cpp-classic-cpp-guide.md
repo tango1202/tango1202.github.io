@@ -1,5 +1,5 @@
 ---
-title: "Legacy C++ 가이드"
+title: "레거시 C++ 가이드"
 layout: archive
 permalink: categories/legacy-cpp-guide/
 author_profile: true

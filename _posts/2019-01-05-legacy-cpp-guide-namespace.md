@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [Legacy C++ 가이드] 네임스페이스(namespace)"
+title: "#5. [레거시 C++ 가이드] 네임스페이스(namespace)"
 categories: "legacy-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -11,7 +11,7 @@ sidebar:
 > * 이름 충돌을 피하기 위해 복잡한 접두어를 쓰지 말고, [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)를 사용하라.
 > * [using 선언](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8)과 [using 지시문](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8) 사용시 [유효 범위](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-scope/)가 커지지 않도록 주의하라.(*전역 공간에 `using namespace`를 사용하면 망한다.*)
 
-> **Mordern C++**
+> **모던 C++**
 > * (C++11~) [인라인 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#%EC%9D%B8%EB%9D%BC%EC%9D%B8-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)가 추가되어 API 버전 구성이 편리해 졌습니다.
 > * (C++17~) [단순한 중첩 네임스페이스](https://tango1202.github.io/mordern-cpp/mordern-cpp-namespace/#c17-%EB%8B%A8%EC%88%9C%ED%95%9C-%EC%A4%91%EC%B2%A9-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4)가 추가되어 `::` 로 표현할 수 있습니다.
 

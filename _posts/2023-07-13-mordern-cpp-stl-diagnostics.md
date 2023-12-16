@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [Mordern C++ STL] 진단"
+title: "#13. [모던 C++ STL] 진단"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

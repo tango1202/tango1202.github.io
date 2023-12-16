@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [Mordern C++ STL] 유틸리티"
+title: "#4. [모던 C++ STL] 유틸리티"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

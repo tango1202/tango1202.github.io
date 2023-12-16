@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [Legacy C++ 가이드] 유효 범위"
+title: "#4. [레거시 C++ 가이드] 유효 범위"
 categories: "legacy-cpp-guide"
 tag: ["cpp"]
 author_profile: false

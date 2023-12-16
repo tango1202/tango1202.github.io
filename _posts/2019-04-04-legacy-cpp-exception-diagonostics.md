@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [Legacy C++ 가이드] 자가 진단과 진단 최소화"
+title: "#4. [레거시 C++ 가이드] 자가 진단과 진단 최소화"
 categories: "legacy-cpp-exception"
 tag: ["cpp"]
 author_profile: false
@@ -11,7 +11,7 @@ sidebar:
 > * [사전 가정](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8)과 [사후 가정](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8)을 진단하라.
 > * 진단 코드가 최소화 되도록, 포인터 보다는 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용하고, 코딩 계약을 단단하게 만들어라.
 
-> **Mordern C++**
+> **모던 C++**
 > * (C++11~)[static_assert()](https://tango1202.github.io/mordern-cpp/mordern-cpp-static-assert/)가 추가되어 컴파일 타임 진단이 가능해 졌습니다.
 
 # 개요 

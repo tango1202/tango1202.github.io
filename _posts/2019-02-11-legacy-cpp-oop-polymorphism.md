@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [Legacy C++ 개체 지향] 다형성"
+title: "#11. [레거시 C++ 개체 지향] 다형성"
 categories: "legacy-cpp-oop"
 tag: ["cpp"]
 author_profile: false

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [Legacy C++ 가이드] 이름 짓기"
+title: "#2. [레거시 C++ 가이드] 이름 짓기"
 categories: "legacy-cpp-guide"
 tag: ["cpp"]
 author_profile: false

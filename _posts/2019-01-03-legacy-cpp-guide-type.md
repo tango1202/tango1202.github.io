@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [Legacy C++ 가이드] 기본 타입(자료형)"
+title: "#3. [레거시 C++ 가이드] 기본 타입(자료형)"
 categories: "legacy-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -11,7 +11,7 @@ sidebar:
 > * 타입 크기에 의존하여 코딩하지 마라. OS에 따라, 컴파일러에 따라, 시스템 비트수에 따라 크기가 달라질 수 있다.
 > * 대소 비교가 필요한 경우에는 정수 타입을 사용하라. [실수 비교](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/#%EC%8B%A4%EC%88%98-%EB%B9%84%EA%B5%90)는 오차가 있다.
 
-> **Mordern C++**
+> **모던 C++**
 > * (C++11~) [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)이 추가되어 값으로부터 [타입을 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99)하며, 코딩이 간편해 졌습니다.
 > * (C++11~) [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)이 추가되어 [typedef](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적인 표현이 가능해 졌습니다.
 > * (C++11~) [long long 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long)이 추가되어 최소 8byte크기를 보장합니다. 

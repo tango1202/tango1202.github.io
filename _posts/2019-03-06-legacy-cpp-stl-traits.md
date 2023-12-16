@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [Legacy C++ STL] 타입 특성 클래스(Traits)"
+title: "#6. [레거시 C++ STL] 타입 특성 클래스(Traits)"
 categories: "legacy-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -11,7 +11,7 @@ sidebar:
 > * [타입 특성 클래스](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-traits/)를 이용하여 [템플릿 인자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-parameter-argument/#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%9E%90)와 코딩 계약을 맺어라.
 > * [타입 특성 클래스](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-traits/)를 이용하여 타입 처리 방식을 응집하라.
 
-> **Mordern C++**
+> **모던 C++**
 > * (C++11~) [type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)이 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환등의 작업이 간편해 졌습니다.
 > * (C++11~) [pointer_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c11-pointer_traits)가 추가되어 포인터와 유사한 타입들을 다루는 표준화된 방법을 제공합니다.
 > * (C++20~) [컨셉 설계](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89-%EC%84%A4%EA%B3%84)를 활용하여 마치 [인터페이스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)처럼 [컨셉](https://tango1202.github.io/mordern-cpp/mordern-cpp-concept/#%EC%BB%A8%EC%85%89concept%EA%B3%BC-%EC%A0%9C%EC%95%BD-%EC%A1%B0%EA%B1%B4)에 의한 코딩 계약을 만들 수 있습니다. 

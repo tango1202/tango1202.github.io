@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#27. [Mordern C++] (C++20~) 모듈(module)"
+title: "#27. [모던 C++] (C++20~) 모듈(module)"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

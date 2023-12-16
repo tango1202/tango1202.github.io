@@ -1,5 +1,5 @@
 ---
-title: "Legacy C++ STL"
+title: "레거시 C++ STL"
 layout: archive
 permalink: categories/legacy-cpp-stl/
 author_profile: true

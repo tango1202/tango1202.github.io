@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [Mordern C++] (C++11~) 범위 기반 for(), (C++17~) 초기식을 포함하는 if(), switch(), (C++20~) 범위 기반 for()에서 초기식"
+title: "#6. [모던 C++] (C++11~) 범위 기반 for(), (C++17~) 초기식을 포함하는 if(), switch(), (C++20~) 범위 기반 for()에서 초기식"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

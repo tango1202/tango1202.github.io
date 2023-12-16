@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [Legacy C++ 가이드] 예외 안전 코드"
+title: "#1. [레거시 C++ 가이드] 예외 안전 코드"
 categories: "legacy-cpp-exception"
 tag: ["cpp"]
 author_profile: false

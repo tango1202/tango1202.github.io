@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [Legacy C++ 가이드] 예외 보증"
+title: "#5. [레거시 C++ 가이드] 예외 보증"
 categories: "legacy-cpp-exception"
 tag: ["cpp"]
 author_profile: false

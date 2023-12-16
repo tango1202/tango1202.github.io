@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [Mordern C++ STL] (C++11~) 컴파일 타임 유리수 연산(ratio)"
+title: "#15. [모던 C++ STL] (C++11~) 컴파일 타임 유리수 연산(ratio)"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

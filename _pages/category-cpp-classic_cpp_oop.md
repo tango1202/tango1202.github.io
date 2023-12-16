@@ -1,5 +1,5 @@
 ---
-title: "Legacy C++ 개체 지향 프로그래밍"
+title: "레거시 C++ 개체 지향 프로그래밍"
 layout: archive
 permalink: categories/legacy-cpp-oop/
 author_profile: true

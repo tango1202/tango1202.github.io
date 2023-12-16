@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [Legacy C++ 개체 지향] 클래스 스타일(작성중)"
+title: "#13. [레거시 C++ 개체 지향] 클래스 스타일(작성중)"
 categories: "legacy-cpp-oop"
 tag: ["cpp"]
 author_profile: false

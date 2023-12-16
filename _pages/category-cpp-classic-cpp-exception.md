@@ -1,5 +1,5 @@
 ---
-title: "Legacy C++ 예외 안전 프로그래밍"
+title: "레거시 C++ 예외 안전 프로그래밍"
 layout: archive
 permalink: categories/legacy-cpp-exception/
 author_profile: true

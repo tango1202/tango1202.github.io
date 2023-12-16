@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [Legacy C++ 가이드] 메모리 세그먼트(Memory Segment)"
+title: "#13. [레거시 C++ 가이드] 메모리 세그먼트(Memory Segment)"
 categories: "legacy-cpp-guide"
 tag: ["cpp"]
 author_profile: false

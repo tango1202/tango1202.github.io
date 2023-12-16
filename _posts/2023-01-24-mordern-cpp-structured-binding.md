@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#24. [Mordern C++] (C++17~) 구조화된 바인딩"
+title: "#24. [모던 C++] (C++17~) 구조화된 바인딩"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false
@@ -93,7 +93,7 @@ EXPECT_TRUE(id_17 == 30 && name_17 == "Sam");
 
 [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)와 함께 사용하면 코드가 간결해 집니다.
 
-**Legacy C++ 스타일**
+**레거시 C++ 스타일**
 
 `insert()` 로 데이터를 추가하고, `iterator`를 이용하며, [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)로 삽입 실패를 검사합니다.
 

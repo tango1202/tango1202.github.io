@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#29. [Mordern C++ STL] (C++11~) 정규 표현식(regex_match(), regex_search(), regex_replace())"
+title: "#29. [모던 C++ STL] (C++11~) 정규 표현식(regex_match(), regex_search(), regex_replace())"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#18. [Legacy C++ STL] auto_ptr, 함수 인자, 리턴 타입 설계"
+title: "#18. [레거시 C++ STL] auto_ptr, 함수 인자, 리턴 타입 설계"
 categories: "legacy-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -11,7 +11,7 @@ sidebar:
 > * [auto_ptr](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-auto_ptr/)은 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었으니 더이상 사용하지 마라.
 > * 복사 부하, [상수성](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/), 스마트 포인터를 이용하여 좀더 단단한 코딩 계약을 만들어라.
 
-> **Mordern C++**
+> **모던 C++**
 > * (C++11~) [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)이 추가되어 소유권 이전용 스마트 포인터를 제공합니다. 기존 [auto_ptr](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-auto_ptr/)을 대체합니다. [auto_ptr](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-auto_ptr/)은 [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)의 [delete[]](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EB%B0%B0%EC%97%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 미지원, [좌측값](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%A2%8C%EC%B8%A1%EA%B0%92lvalue-left-value%EA%B3%BC-%EC%9A%B0%EC%B8%A1%EA%B0%92rvalue-right-value)의 [복사 대입](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 연산시 이동 동작을 하는 등의 사유로 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
 > * (C++11~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)이 추가되어 소유권 공유용 스마트 포인터를 제공합니다.
 > * (C++11~) [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)가 추가되어 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)의 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0) 문제를 해결합니다.

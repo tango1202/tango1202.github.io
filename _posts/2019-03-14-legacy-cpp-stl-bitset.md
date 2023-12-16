@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#14. [Legacy C++ STL] bitset"
+title: "#14. [레거시 C++ STL] bitset"
 categories: "legacy-cpp-stl"
 tag: ["cpp"]
 author_profile: false

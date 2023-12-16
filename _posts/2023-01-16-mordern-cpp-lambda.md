@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [Mordern C++] (C++11~) 람다 표현식, 클로저, (C++14~) 람다 캡쳐 초기화, 일반화된 람다 표현식, (C++17~) *this 람다 캡쳐, constexpr 람다 표현식, (C++20~) 람다의 템플릿 인자 지원, 람다 캡쳐에서 파라메터 팩 지원, 람다 표현식의 기본 생성과 복사 대입, 미평가 표현식 허용, [=] 사용시 this의 암시적 캡쳐 deprecate"
+title: "#16. [모던 C++] (C++11~) 람다 표현식, 클로저, (C++14~) 람다 캡쳐 초기화, 일반화된 람다 표현식, (C++17~) *this 람다 캡쳐, constexpr 람다 표현식, (C++20~) 람다의 템플릿 인자 지원, 람다 캡쳐에서 파라메터 팩 지원, 람다 표현식의 기본 생성과 복사 대입, 미평가 표현식 허용, [=] 사용시 this의 암시적 캡쳐 deprecate"
 categories: "mordern-cpp"
 tag: ["cpp"]
 author_profile: false

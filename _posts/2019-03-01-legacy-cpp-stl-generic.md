@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [Legacy C++ STL] 일반화 프로그래밍"
+title: "#1. [레거시 C++ STL] 일반화 프로그래밍"
 categories: "legacy-cpp-stl"
 tag: ["cpp"]
 author_profile: false

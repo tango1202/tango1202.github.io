@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [Legacy C++ STL] 템플릿 특수화, 부분 특수화"
+title: "#3. [레거시 C++ STL] 템플릿 특수화, 부분 특수화"
 categories: "legacy-cpp-stl"
 tag: ["cpp"]
 author_profile: false

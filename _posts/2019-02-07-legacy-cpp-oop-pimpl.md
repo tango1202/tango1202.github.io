@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [Legacy C++ 개체 지향] PImpl 이디엄"
+title: "#7. [레거시 C++ 개체 지향] PImpl 이디엄"
 categories: "legacy-cpp-oop"
 tag: ["cpp"]
 author_profile: false

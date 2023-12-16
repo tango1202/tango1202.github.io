@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [Legacy C++ STL] Standard Template Library(STL) 주요 구성 요소 미리보기"
+title: "#7. [레거시 C++ STL] Standard Template Library(STL) 주요 구성 요소 미리보기"
 categories: "legacy-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -10,7 +10,7 @@ sidebar:
 
 Standard Template Library(STL) 의 주요 구성 요소는 하기와 같습니다.
 
-전체 내용은 [[Mordern C++ STL] 개요](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/)을 참고하시기 바랍니다.
+전체 내용은 [[모던 C++ STL] 개요](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/)을 참고하시기 바랍니다.
 
 |항목|내용|
 |--|--|

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [Legacy C++ 가이드] BOOL과 bool"
+title: "#6. [레거시 C++ 가이드] BOOL과 bool"
 categories: "legacy-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -10,7 +10,7 @@ sidebar:
 
 > * `BOOL`보다는 [bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/)을 사용하라.
 
-> **Mordern C++**
+> **모던 C++**
 > * (C++17~) [bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/)의 증감 연산이 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되었습니다.
 
 # 개요

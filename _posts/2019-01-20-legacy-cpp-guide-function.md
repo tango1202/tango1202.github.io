@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [Legacy C++ 가이드] 함수, 함수 포인터, 리턴, 인자(매개변수, Parameter)"
+title: "#20. [레거시 C++ 가이드] 함수, 함수 포인터, 리턴, 인자(매개변수, Parameter)"
 categories: "legacy-cpp-guide"
 tag: ["cpp"]
 author_profile: false
@@ -17,7 +17,7 @@ sidebar:
 > * [함수 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)시 [함수 인자의 유효 범위에서 탐색(Argument-dependent lookup, ADL 또는 Koenig 검색)](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%9D%B8%EC%9E%90%EC%9D%98-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%83%90%EC%83%89-%EA%B7%9C%EC%B9%99argument-dependent-lookup-adl)하는 원리를 이해하라.
 > * 함수에 전달하는 인수는 순서대로 호출되지 않는다. 컴파일러 마음이다.
 
-> **Mordern C++**
+> **모던 C++**
 > * (C++11~) [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 추가되어 [함수 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 의존하여 리턴 타입을 결정하며, 좀더 동적인 함수 설계가 가능해 졌습니다. 
 > * (C++11~) [using을 이용한 타입 별칭](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#using%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)이 추가되어 [typedef](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD) 보다 좀 더 직관적으로 [함수 포인터](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)를 표현할 수 있습니다.
 > * (C++11~) [중괄호 복사 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EB%B3%B5%EC%82%AC-%EC%B4%88%EA%B8%B0%ED%99%94-t-t---t---f-return-)로 함수 인수 전달, 리턴문 작성을 간소화할 수 있습니다.
