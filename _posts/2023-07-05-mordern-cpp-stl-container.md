@@ -289,3 +289,22 @@ constexpr int maxVal {
 };
 static_assert(maxVal == 3); // 컴파일 타임 상수입니다.
 ```
+
+# (C++20~) erase(), erase_if()
+
+각 [컨테이너](??)의 [erase()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)는 [이터레이터](??)를 전달받아 요소를 삭제하고, [알고리즘](??)의 [remove()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-algorithm/#remove)는 값을 전달받아 요소를 앞으로 옮깁니다. 따라서 주어진 값인 요소를 삭제하려면 다음과 같이 이 둘을 결합해서 사용해야 했습니다.(*[컨테이너 멤버 함수 erase()와 알고리즘 remove() 함수](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98) 참고*)
+
+```cpp
+std::vector<int> v{1, 1, 2, 1, 1, 3};
+std::vector<int>::iterator result{std::remove(v.begin(), v.end(), 1)}; // 삭제하지 않을 요소를 컨테이너의 앞으로 옮기고 erase할 위치를 리턴합니다.
+v.erase(result, v.end()); // 요소를 실제로 삭제합니다.
+EXPECT_TRUE(v.size() == 2 && v[0] == 2 && v[1] == 3);
+```
+
+C++20 부터는 [erase(), erase_if()](??)가 추가되어 값으로 요소를 삭제할 수 있습니다.
+
+```cpp
+std::vector<int> v{1, 1, 2, 1, 1, 3};
+std::erase(v, 1); // 값이 1인 요소를 삭제합니다.
+EXPECT_TRUE(v.size() == 2 && v[0] == 2 && v[1] == 3);
+```

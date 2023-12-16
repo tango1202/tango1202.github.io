@@ -22,7 +22,7 @@ sidebar:
 > * (C++11~) [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)가 추가되어 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)의 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0) 문제를 해결합니다.
 > * (C++17~) [shared_ptr의 배열 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#c17-%EB%B0%B0%EC%97%B4-%EC%A7%80%EC%9B%90)이 추가되었습니다.
 > * (C++17~) [reinterpret_pointer_cast()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%ED%98%95%EB%B3%80%ED%99%98)가 추가되었습니다.
-> * (C++17~) [make_shared()의 배열 지원](??)이 추가되었습니다.
+> * (C++20~) [make_shared()의 배열 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#c20-make_shared%EC%9D%98-%EB%B0%B0%EC%97%B4-%EC%A7%80%EC%9B%90)이 추가되었습니다.
 
 # 개요
 

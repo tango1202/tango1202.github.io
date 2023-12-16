@@ -96,7 +96,6 @@ C++11 부터는 [unordered_map, unordered_multimap, unordered_set, unordered_mul
 |`max_size()` (C++11~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 저장할 수 있는 최대 요소 갯수를 리턴합니다.|
 |`clear()` (C++11~)|모든 요소를 지웁니다.|
 |`erase()` (C++11~)|주어진 위치의 요소를 삭제합니다.|
-|`erase_if()` (C++20~)|(작성중)|
 |`swap()` (C++11~)|두 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 내부 데이터를 바꿔치기 합니다.|
 |`insert()` (C++11~)|주어진 위치 앞에 요소를 추가합니다.|
 |`insert_range()` (C++23~)|(작성중)|
