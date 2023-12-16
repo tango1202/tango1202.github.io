@@ -27,6 +27,7 @@ sidebar:
 > * (C++17~) [inclusive_scan(), exclusive_scan(), transform_inclusive_scan(), transform_exclusive_scan()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. `partial_sum()`을 병렬로 적용합니다.
 > * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었습니다. [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
 > * (C++20~) [대부분의 알고리즘에서 constexpr을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#c20-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)합니다.
+> * (C++20~) [midpoint](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되어 중간점인 `a + (b - a) / 2`를 쉽게 구할 수 있습니다.
 
 # C스타일 알고리즘 함수
 
@@ -158,7 +159,7 @@ sidebar:
 |`transform_exclusive_scan()` (C++17~)|주어진 시퀀스에 `unary_op()`를 적용한 결과를 `exclusive_scan()`합니다.|(C++20~)|
 |`gcd(m, n)` (C++17~)|`m`과 `n`의 최대 공약수를 계산합니다.|(C++17~)|
 |`lcm(m, n)` (C++17~)|`m`과 `n`의 최소 공배수를 계산합니다.|(C++17~)|
-|`midpoint()` (C++20~)|(작성중)|(C++20~)|
+|[midpoint(a, b)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85) (C++20~)|중간점인 `a + (b - a) / 2`를 계산합니다.<br/>포인터인 경우 `a` ~ `b`의 중간 위치를 가리키는 포인터를 리턴합니다.|(C++20~)|
 |`lerp()` (C++20~)|(작성중)|(C++20~)|
 
 다음은 `accumulate()`와 `reduce()`의 사용예입니다. 내부적으로 `+`연산을 사용하므로, 수행 순서와 상관없이 동일한 결과를 리턴합니다.
@@ -191,4 +192,16 @@ C++20 부터는 [대부분의 알고리즘에서 constexpr을 지원](https://ta
 constexpr int arr[]{1, 2, 3};
 constexpr int sum{std::accumulate(arr, arr + 3, 0)}; // 시퀀스의 값을 누적합니다.
 static_assert(sum == 1 + 2 + 3); // 컴파일 타임 상수로 구합니다.
+```
+
+# (C++20~) midpoint()
+
+다음은 [midpoint()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)의 사용예 입니다. 정수인 경우 중간점을 구할때 나누어 떨어지지 않으면 내림합니다.
+
+```cpp
+static_assert(std::midpoint(1.0, 2.0) == 1.5); // 실수
+
+static_assert(std::midpoint(1, 3) == 2); 
+static_assert(std::midpoint(1, 2) == 1); // 나누어 떨어지지 않으면 내림을 합니다.
+static_assert(std::midpoint(1, 4) == 2); // 나누어 떨어지지 않으면 내림을 합니다.  
 ```
