@@ -8,6 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
+> * (C++20~) [span](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-span/)이 추가되어 [C스타일 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/), [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/), [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/), 메모리, [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 등 연속된 메모리 시퀀스를 참조할 수 있습니다.
+
 # 개요 
 
 [span](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-span/)은 연속된 메모리 시퀀스의 참조를 전달받아 이터레이팅 하는 개체입니다. 
