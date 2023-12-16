@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-논리적으로는 데이터를 얻어오는 [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이나, 실질적으로는 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정하는 함수가 있습니다. 주로 지연 생성이나 캐쉬를 구현하는 경우에 필요합니다.
+논리적으로는 데이터를 얻어오는 [상수 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이나, 실질적으로는 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)를 수정하는 함수가 있습니다. 주로 지연 생성이나 캐쉬를 구현하는 경우에 필요합니다.
 
 `Date`를 문자열로 리턴하는 함수를 만든다고 해봅시다. 다음 가정을 해봅시다.
 
@@ -157,11 +157,11 @@ date.SetYear(21); // 년도를 21년으로 변경. 캐쉬가 초기화됨
 EXPECT_TRUE(date.MakeText().compare("0021-02-10") == 0); // 문자열 생성
 ```
 
-여기서 아쉬운 점은 `MakeText()`함수가 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 값을 리턴하는 [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)이지만 [비 상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%B9%84-%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98%EC%9D%98-%EB%B9%84-%EC%83%81%EC%88%98%EC%84%B1-%EC%A0%84%ED%8C%8C)라는 점입니다. 어찌되었건 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)인 `m_Cached`를 수정하니까요. 
+여기서 아쉬운 점은 `MakeText()`함수가 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 값을 리턴하는 [Getter 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)이지만 [비 상수 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%B9%84-%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98%EC%9D%98-%EB%B9%84-%EC%83%81%EC%88%98%EC%84%B1-%EC%A0%84%ED%8C%8C)라는 점입니다. 어찌되었건 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)인 `m_Cached`를 수정하니까요. 
 
 # mutable로 상수 멤버 함수를 만드는 방법
 
-이럴때 `m_Cached`를 [mutable](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)로 정의하면, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이더라도 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)를 수정할 수 있습니다. [Getter 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)의 의미처럼 보이도록 함수명도 `MakeText()`에서 `GetText()` 로 변경하였습니다. 단, [상수 멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 이지만 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)할 수 있으니, 유의해서 사용해야 합니다. 
+이럴때 `m_Cached`를 [mutable](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5-%EC%A7%80%EC%A0%95%EC%9E%90mutable)로 정의하면, [상수 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이더라도 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)를 수정할 수 있습니다. [Getter 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#getter-%ED%95%A8%EC%88%98)의 의미처럼 보이도록 함수명도 `MakeText()`에서 `GetText()` 로 변경하였습니다. 단, [상수 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98) 이지만 [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)할 수 있으니, 유의해서 사용해야 합니다. 
 
 ```cpp
 const std::string& GetText() const  

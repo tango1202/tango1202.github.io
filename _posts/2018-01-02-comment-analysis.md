@@ -37,7 +37,7 @@ void Shape::SetAngle(float angle);
 
 7. `Shape`을 회전 시켰으면, 화면 갱신도 같이 해주나요? 
 
-8. [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 `void`면 정말 항상 성공하는 함수인가요? 절대 오류가 발생하지 않나요? 
+8. [리턴값](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)이 `void`면 정말 항상 성공하는 함수인가요? 절대 오류가 발생하지 않나요? 
 
 9. 정말 예외 발생은 없는 거죠?
 
@@ -76,7 +76,7 @@ void Shape::SetAngle(float angle);
 
     더이상 `angle`이 `Degree` 인지 `Radian`인지 확인하기 위해 구현 코드를 분석할 필요가 없어지죠.
 
-    다만 단점은 있습니다. 누군가가 `SetAngle` 함수의 구현해서 `degree` [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 Radian으로 처리하게 바꿔놓고, 주석이나 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명을 수정하지 않고 그대로 `degree` 로 남겨 뒀다면, 사람들은 0~360의 값을 전달하고 오류를 경험하게 될 것입니다. 
+    다만 단점은 있습니다. 누군가가 `SetAngle` 함수의 구현해서 `degree` [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 Radian으로 처리하게 바꿔놓고, 주석이나 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)명을 수정하지 않고 그대로 `degree` 로 남겨 뒀다면, 사람들은 0~360의 값을 전달하고 오류를 경험하게 될 것입니다. 
     
     이럴때는 고친 사람을 어떻게든 찾아서, 다음부터는 소스코드를 변경하면, 주석도 같이 리팩토링 해달라고 해보세요. 잘못된 주석은 잘못된 코드보다 더 !!!위험!!!할 수 있습니다.
 

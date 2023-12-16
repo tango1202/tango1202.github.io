@@ -30,7 +30,7 @@ sidebar:
 
     * 가독성이 향상되는 경우에만 약어를 씁니다.
 
-    * [유효 범위](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-scope/)가 비교적 짧다면 약어를 씁니다. 함수의 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)나 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용되는 것인데, 함수의 라인수가 길지 않다면 써도 무방하다고 봅니다.
+    * [유효 범위](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-scope/)가 비교적 짧다면 약어를 씁니다. 함수의 [지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)나 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 사용되는 것인데, 함수의 라인수가 길지 않다면 써도 무방하다고 봅니다.
    
     * 검색하기 힘들거나 검색 정확도를 떨어뜨리는 약어는 쓰지 않습니다.
 
@@ -53,7 +53,7 @@ sidebar:
 
      `int nCount;` 요런건, 걍 `int count;` 로 하는게 좋다는 뜻입니다.
 
-    이유는요, `int`가 `long` 으로  바뀔 수도 있고요, `unsigned int` 로 바뀔 수도 있고요, `Count` 클래스 타입으로 될 수도 있기 때문입니다. 이때마다 이름을 바꿔야 하는데, 사실 이런 이름 변경에 대한 유지보수까지 신경 쓰기에는 항상 개발 일정은 타이트하죠. 더군다나 C++는 template을 통한 [일반화 프로그래밍](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-generic/)으로, 타입에 대해 독립적인 기능을 만들기 위해 언어적 차원에서 지원까지 하는데, 굳이 변수명 앞에 타입에 대한 접두어를 붙여가며, 타입 종속적으로 만들 필요가 없습니다.
+    이유는요, `int`가 `long` 으로  바뀔 수도 있고요, `unsigned int` 로 바뀔 수도 있고요, `Count` 클래스 타입으로 될 수도 있기 때문입니다. 이때마다 이름을 바꿔야 하는데, 사실 이런 이름 변경에 대한 유지보수까지 신경 쓰기에는 항상 개발 일정은 타이트하죠. 더군다나 C++는 template을 통한 [일반화 프로그래밍](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-generic/)으로, 타입에 대해 독립적인 기능을 만들기 위해 언어적 차원에서 지원까지 하는데, 굳이 변수명 앞에 타입에 대한 접두어를 붙여가며, 타입 종속적으로 만들 필요가 없습니다.
 
     코드의 유지보수, 타입에 대한 독립성 보장을 위해 헝가리안 표기법은 사라져야 하는게 맞습니다.
 
@@ -63,9 +63,9 @@ sidebar:
 
     * `nCount` 라고 쓰면 본인도 모르게 `count` 가 `int` 형이라고 가정하고 작성하게 됩니다. 하지만 이러한 가정은 언제든지 바뀔 수 있고요, 가정이 바뀌면 당신의 코드는 어떤 잉여효과를 쏟아낼지 예측하기 힘듭니다. 되도록이면 가정하지 마세요. 만약 가정한다면 `Assert`도 도배해 두고요.
 
-    또, 클래스 앞에 C 를 붙이거나 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/) 앞에 `e`를 붙이거나, [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)는 대문자로 쓰거나 하는 일반적인 C++ 언어의 관습도 사라져야 합니다. C 접두어를 써가며 이게 굳이 "클래스다"라고 인지하며 코딩하는 건 좋지 않은 습관입니다. 모든 가정을 버리셔야 좋은 코드가 작성됩니다. 사실 클래스라고해서 다르게 처리하지도 않잖아요?
+    또, 클래스 앞에 C 를 붙이거나 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/) 앞에 `e`를 붙이거나, [매크로 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)는 대문자로 쓰거나 하는 일반적인 C++ 언어의 관습도 사라져야 합니다. C 접두어를 써가며 이게 굳이 "클래스다"라고 인지하며 코딩하는 건 좋지 않은 습관입니다. 모든 가정을 버리셔야 좋은 코드가 작성됩니다. 사실 클래스라고해서 다르게 처리하지도 않잖아요?
 
-    [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)도 마찬가지입니다. 일반적으로 코딩할때 `e` 접두어가 없으면 낯설어하시는 분들이 많습니다. 이런분들은 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)을 전역적으로 정의하고 사용하시는데 익숙하신 분들입니다. 클래스 내부에 국지적으로 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)을 정의하신다면, 이름 충돌의 우려도 적을 뿐 아니라 이름도 간결해 집니다.
+    [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)도 마찬가지입니다. 일반적으로 코딩할때 `e` 접두어가 없으면 낯설어하시는 분들이 많습니다. 이런분들은 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)을 전역적으로 정의하고 사용하시는데 익숙하신 분들입니다. 클래스 내부에 국지적으로 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)을 정의하신다면, 이름 충돌의 우려도 적을 뿐 아니라 이름도 간결해 집니다.
 
     ```cpp
     class File {
@@ -79,7 +79,7 @@ sidebar:
     };
     ```
 
-    위의 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)을 전역적으로 사용하여,
+    위의 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)을 전역적으로 사용하여,
 
     
     ```cpp
@@ -92,11 +92,11 @@ sidebar:
  
     로 하는게 더 좋은 분 계신가요? 없죠?
 
-    손가락 타이핑 수도 줄이고 코드도 간결한 클래스 내부 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)을 쓰시기 바랍니다.
+    손가락 타이핑 수도 줄이고 코드도 간결한 클래스 내부 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)을 쓰시기 바랍니다.
 
-    그리고, [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98) 대문자는 이제 불필요하죠. 맞죠? [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98) 쓰지 마세요. [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)을 쓰시기 바랍니다. [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)는 개체지향프로그래밍의 사상과 철학을 해치는 "goto 문 보다 더 나쁜 코딩 습관" 입니다.
+    그리고, [매크로 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98) 대문자는 이제 불필요하죠. 맞죠? [매크로 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98) 쓰지 마세요. [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)을 쓰시기 바랍니다. [매크로 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)는 개체지향프로그래밍의 사상과 철학을 해치는 "goto 문 보다 더 나쁜 코딩 습관" 입니다.
 
-    그래도 팀 누군가가 [매크로 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)를 자꾸 쓴다고 화가 나서, 헤더 파일 아무곳에나 다음과 같이 작성하진 마시고요. 
+    그래도 팀 누군가가 [매크로 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)를 자꾸 쓴다고 화가 나서, 헤더 파일 아무곳에나 다음과 같이 작성하진 마시고요. 
 
     ```cpp
     #define public private

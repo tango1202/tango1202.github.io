@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
+> * (C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [비교 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
 > * (C++20~) [삼중 비교 연산자를 default로 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90-default-%EC%A0%95%EC%9D%98)할 수 있습니다.
 > * (C++20~) [비트 쉬프트 연산자의 기본 비트가 표준화](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EB%B9%84%ED%8A%B8-%ED%91%9C%EC%A4%80%ED%99%94)되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
 
 # (C++20~) 삼중 비교 연산자
 
-기존에는 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 구현하기 위해서 `==`, `!=`, `<`, `>`, `<=`, `>=` 6개의 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 각각 구현해야 했는데요(*[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고*),
+기존에는 [비교 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 구현하기 위해서 `==`, `!=`, `<`, `>`, `<=`, `>=` 6개의 [비교 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 각각 구현해야 했는데요(*[연산자 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고*),
 
 ```cpp
 class T {
@@ -37,7 +37,7 @@ EXPECT_TRUE(T{10} <= T{20} && T{10} <= T{10});
 EXPECT_TRUE(T{20} >= T{10} && T{10} >= T{10}); 
 ```
 
-C++20 부터는 [삼중 비교 연산자(<=>)](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 `==`과 [삼중 비교 연산자(<=>)](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)만 정의하면 6개의 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)가 컴파일러에 의해 자동으로 정의됩니다.(*`strong_ordering`은 [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)를 참고하세요.*)
+C++20 부터는 [삼중 비교 연산자(<=>)](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 `==`과 [삼중 비교 연산자(<=>)](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)만 정의하면 6개의 [비교 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)가 컴파일러에 의해 자동으로 정의됩니다.(*`strong_ordering`은 [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)를 참고하세요.*)
 
 ```cpp
 class T_20 {
@@ -57,7 +57,7 @@ EXPECT_TRUE(T_20{10} <= T_20{20} && T_20{10} <= T_20{10});
 EXPECT_TRUE(T_20{20} >= T_20{10} && T_20{10} >= T_20{10}); 
 ```
 
-STL에서는 대부분 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)로 구현하고, `==`, `!=`, `<`, `>`, `<=`, `>=` 6개의 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 deprecate 했습니다.(*[vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)등 참고*)
+STL에서는 대부분 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)로 구현하고, `==`, `!=`, `<`, `>`, `<=`, `>=` 6개의 [비교 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 deprecate 했습니다.(*[vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)등 참고*)
 
 # 삼중 비교 연산자 비교
 
@@ -89,7 +89,7 @@ EXPECT_TRUE((T_20{20} <=> T_20{10}) == 0 || (T_20{10} <=> T_20{10}) >= 0); // le
 
 또한 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)는 이종 타입과의 비교를 지원합니다.
 
-이전에는 이종 타입과의 비교를 위해 케이스마다 함수 구현을 해야 했습니다. 다음 `T`는 `int`와 비교하기 위해 무려 12개의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 구현해야 하며, `int < T`와 같이 `int`가 왼쪽에 오는 경우도 지원하려면, 비멤버 버전 6개를 추가로 만들어야 했습니다.(*[연산자 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)의 `+` 연산자 비멤버 버전 참고*) 도합 18개의 함수 구현이 필요하죠.
+이전에는 이종 타입과의 비교를 위해 케이스마다 함수 구현을 해야 했습니다. 다음 `T`는 `int`와 비교하기 위해 무려 12개의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 구현해야 하며, `int < T`와 같이 `int`가 왼쪽에 오는 경우도 지원하려면, 비멤버 버전 6개를 추가로 만들어야 했습니다.(*[연산자 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)의 `+` 연산자 비멤버 버전 참고*) 도합 18개의 함수 구현이 필요하죠.
 
 ```cpp
 class T {
@@ -128,7 +128,7 @@ EXPECT_TRUE(10 < T{20}); // int op T
 
 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)는 `(left <=> right) < 0` 이 유효하지 않다면 비교 연산자의 대칭성(*`a < b`는 `b > a` 입니다.*)을 고려하여 `(right <=> left) > 0` 로 변환하여 비교합니다. 즉, 왼쪽 인수와 오른쪽 인수를 바꿔서도 비교하므로, 비멤버 버전을 만들 필요가 없습니다. 
 
-따라서, `int`를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받는 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)와 `==` 멤버 버전만 추가하면 `T_20`과 `int`를 비교할 수 있습니다.
+따라서, `int`를 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받는 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)와 `==` 멤버 버전만 추가하면 `T_20`과 `int`를 비교할 수 있습니다.
 
 * `(T_20{10} <=> 10) < 0`와 같이 호출하면, `operator <=>(int val)` 버전을 호출합니다.
 
@@ -158,7 +158,7 @@ EXPECT_TRUE(T_20{10} < 20); // T_20 op int
 EXPECT_TRUE(10 < T_20{20}); // int op T_20. T_20 > 10으로 변경합니다.  
 ```
 
-만약 `T_20`이 [explicit](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용하지 않아 [암시적으로 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 된다면, `operator <=>(const T_20& other)` 버전만 구현해도 됩니다. 하지만 [암시적 형변환](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 나쁜 것이니 피해야 하겠죠.
+만약 `T_20`이 [explicit](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B3%80%ED%99%98-%EC%83%9D%EC%84%B1-%EC%A7%80%EC%A0%95%EC%9E%90explicit)를 사용하지 않아 [암시적으로 형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 된다면, `operator <=>(const T_20& other)` 버전만 구현해도 됩니다. 하지만 [암시적 형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)은 나쁜 것이니 피해야 하겠죠.
 
 ```cpp
 class T_20 {
@@ -184,7 +184,7 @@ EXPECT_TRUE(10 < T_20{20}); // int op T_20. T_20 > 10으로 변경후 int를 암
 
 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 [default](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete)로 정의할 수 있습니다. 이때에는 `==`도 컴파일러가 같이 정의해 줍니다. 
 
-컴파일러는 각 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)의 선언 순서대로 비교합니다. 이때 컴파일러에 따라 비교 속도 최적화를 위해 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)는 각 요소의 대소 비교 전에 요소 갯수에 대한 비교를 선행할 수 있습니다.  
+컴파일러는 각 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 선언 순서대로 비교합니다. 이때 컴파일러에 따라 비교 속도 최적화를 위해 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 같은 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)는 각 요소의 대소 비교 전에 요소 갯수에 대한 비교를 선행할 수 있습니다.  
 
 리턴 타입은 3개의 [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)(*`strong_ordering`, `weak_ordering`, `partial_ordering`*) 중 하나입니다. 컴파일러 판단을 그대로 따르기 위해 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용하기도 합니다.(*[리턴 타입 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#c14-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0) 참고*)
 
@@ -236,9 +236,9 @@ EXPECT_TRUE((T_20{10} <=> T_20{10}) == 0); //<=> 을 사용합니다.
 
 # 상등 비교와 동등 비교
 
-[삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)는 기존의 [비교 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)처럼 [bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)를 리턴하는 것이 아니라 [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)(*`strong_ordering`, `weak_ordering`, `partial_ordering`*) 중 하나를 리턴합니다. [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)를 알아보기 전에 먼저 [상등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)와 [동등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)의 개념을 알아 두어야 합니다.
+[삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)는 기존의 [비교 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)처럼 [bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/)를 리턴하는 것이 아니라 [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)(*`strong_ordering`, `weak_ordering`, `partial_ordering`*) 중 하나를 리턴합니다. [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)를 알아보기 전에 먼저 [상등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)와 [동등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)의 개념을 알아 두어야 합니다.
 
-[대소 비교의 논리 조건](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)에서 `x < y` 도 아니고 `y < x` 도 아니면, `x` 는 `y` 와 동등하다는 논리를 말씀드렸는데요, 두개의 개체가 같은지를 비교하는 건 세부적으로 [상등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)와 [동등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)로 구분할 수 있습니다.
+[대소 비교의 논리 조건](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)에서 `x < y` 도 아니고 `y < x` 도 아니면, `x` 는 `y` 와 동등하다는 논리를 말씀드렸는데요, 두개의 개체가 같은지를 비교하는 건 세부적으로 [상등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)와 [동등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)로 구분할 수 있습니다.
 
 * [상등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90) : 두 개체의 데이터가 동일합니다.
 * [동등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90) : 두 개체의 데이터가 개념적으로 동일합니다.
@@ -279,14 +279,14 @@ EXPECT_TRUE(a.IsEquivalence(b) == true); // 2 X 3 과 3 X 2 는 동등합니다.
 |항목|내용|
 |--|--|
 |`strong_ordering`|`==`, `!=`, `<`, `>`, `<=`, `>=`의 비교 연산을 제공합니다. 여기서 `==`은 [상등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)입니다. 즉 데이터들이 완전히 동일함을 의미합니다.|
-|`weak_ordering`|`==`, `!=`, `<`, `>`, `<=`, `>=`의 비교 연산을 제공합니다. 여기서 `==`은 [동등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)를 합니다. 즉, 개념적으로 동일함을 의미합니다. 예를들어 대소문자 구분없이 비교 할때 `A`와 `a`는 [아스키 코드](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EC%95%84%EC%8A%A4%ED%82%A4-%EC%BD%94%EB%93%9C)값이 다르므로 [상등](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)하지 않지만, 개념적으로 [동등](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)합니다.|
+|`weak_ordering`|`==`, `!=`, `<`, `>`, `<=`, `>=`의 비교 연산을 제공합니다. 여기서 `==`은 [동등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)를 합니다. 즉, 개념적으로 동일함을 의미합니다. 예를들어 대소문자 구분없이 비교 할때 `A`와 `a`는 [아스키 코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%95%84%EC%8A%A4%ED%82%A4-%EC%BD%94%EB%93%9C)값이 다르므로 [상등](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)하지 않지만, 개념적으로 [동등](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)합니다.|
 |`partial_ordering`|`==`, `!=`, `<`, `>`, `<=`, `>=`의 비교 연산을 제공합니다. 실수 타입과 같이 대소 비교는 가능한데, `==`는 소수점 오차등으로 [상등 비교](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%83%81%EB%93%B1-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8F%99%EB%93%B1-%EB%B9%84%EA%B5%90)를 신뢰하기 애매한 경우입니다.|
 
 [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)의 포함 관계는 다음과 같습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5e78afe1-0ac2-4b6e-a20e-5589b12f733c)
 
-만약 클래스의 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)가 [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)들을 혼합해서 사용한다면, [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)는 상기 포함 관계 따라 가장 적은 것으로 결정합니다.
+만약 클래스의 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)가 [비교 카테고리](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EB%B9%84%EA%B5%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-3%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)들을 혼합해서 사용한다면, [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)는 상기 포함 관계 따라 가장 적은 것으로 결정합니다.
 
 ```cpp
 class Strong_20 {
@@ -323,8 +323,8 @@ std::partial_ordering result{Mix_20{0, 0, 0} <=> Mix_20{1, 1, 1}}; // partial_or
 
 # (C++20~) 비트 쉬프트 연산자의 기본 비트 표준화  
 
-기존의 [비트 쉬프트 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)는 비록 표준에 정의되지는 않았으나, 양수던 음수이던, `<< 1`은 곱하기 2의 효과가 있고, `>> 1`은 나누기 2의 효과가 있었는데요(*[비트 쉬프트 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)* 참고), 
+기존의 [비트 쉬프트 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)는 비록 표준에 정의되지는 않았으나, 양수던 음수이던, `<< 1`은 곱하기 2의 효과가 있고, `>> 1`은 나누기 2의 효과가 있었는데요(*[비트 쉬프트 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)* 참고), 
 
-C++20부터는 [비트 쉬프트 연산자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)의 기본 비트가 표준화되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
+C++20부터는 [비트 쉬프트 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)의 기본 비트가 표준화되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
 
 

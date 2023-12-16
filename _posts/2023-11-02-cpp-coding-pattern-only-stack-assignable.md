@@ -19,7 +19,7 @@ private:
 };
 ```
 
-[힙](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-memory-segment/#%ED%9E%99)에만 할당 가능한 개체
+[힙](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%ED%9E%99)에만 할당 가능한 개체
 
 ```cpp
 class OnlyHeapAssignable {

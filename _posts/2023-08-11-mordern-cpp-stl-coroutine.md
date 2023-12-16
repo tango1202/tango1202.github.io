@@ -10,7 +10,7 @@ sidebar:
 
 > * (C++20~) [coroutine_handle](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-coroutine/#coroutine_handle) 이 추가되어 [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)을 재개하는 [코루틴 핸들](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)을 제공합니다.
 > * (C++20~) [suspend_always](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EB%8C%80%EA%B8%B0-%EA%B0%80%EB%8A%A5-%EA%B0%9C%EC%B2%B4suspend_always-%EC%99%80-suspend_never), [suspend_never](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EB%8C%80%EA%B8%B0-%EA%B0%80%EB%8A%A5-%EA%B0%9C%EC%B2%B4suspend_always-%EC%99%80-suspend_never)가 추가되어 [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)에서 사용하는 [대기 가능 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EB%8C%80%EA%B8%B0-%EA%B0%80%EB%8A%A5-%EA%B0%9C%EC%B2%B4suspend_always-%EC%99%80-suspend_never)를 제공합니다.
-> * (C++20~) [coroutine_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-coroutine/#coroutine_traits)가 추가되어 [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 `promise_type`을 외부에서 연결해 줄 수 있습니다.
+> * (C++20~) [coroutine_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-coroutine/#coroutine_traits)가 추가되어 [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 [종속 타입](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 `promise_type`을 외부에서 연결해 줄 수 있습니다.
 
 # 개요
 
@@ -18,7 +18,7 @@ C++20 부터 [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-cor
 
 |항목|내용|
 |--|--|
-|[coroutine_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-coroutine/#coroutine_traits) (C++20~)|[코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 `promise_type`을 외부에서 정의합니다.|
+|[coroutine_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-coroutine/#coroutine_traits) (C++20~)|[코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 [종속 타입](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 `promise_type`을 외부에서 정의합니다.|
 |[coroutine_handle](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-coroutine/#coroutine_handle) (C++20~)|[코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)을 재개하는 개체입니다.|
 |`noop_coroutine_promise` (C++20~)|(작성중)|
 |`noop_coroutine_handle` (C++20~)|`std::coroutine_handle<std::noop_coroutine_promise>`입니다.|
@@ -28,7 +28,7 @@ C++20 부터 [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-cor
 
 # coroutine_traits
 
-[co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await)에서 [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)를 만드려면 명칭이 `promise_type`인 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)이 있어야 한다고 언급했는데요,
+[co_await](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#co_await)에서 [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)를 만드려면 명칭이 `promise_type`인 [종속 타입](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)이 있어야 한다고 언급했는데요,
 
 ```cpp
 // 코루틴 개체
@@ -85,10 +85,10 @@ MyCoroutine obj = CoroutineFunc();
 obj.Resume(); // 시작하자 마자 대기한 함수 실행
 obj.Resume(); // co_await std::suspend_always{}; 이후 재개 
 ```
-[coroutine_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-coroutine/#coroutine_traits)는 [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 [종속 타입](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 `promise_type`을 외부에서 연결해 줄때 사용합니다.
+[coroutine_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-coroutine/#coroutine_traits)는 [코루틴 개체](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/#%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%A8%EC%88%98-%EC%BD%94%EB%A3%A8%ED%8B%B4-%EA%B0%9C%EC%B2%B4-%EC%BD%94%EB%A3%A8%ED%8B%B4-%ED%95%B8%EB%93%A4-promise-%EA%B0%9C%EC%B2%B4)의 [종속 타입](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-parameter-argument/#%EC%A2%85%EC%86%8D-%ED%83%80%EC%9E%85)인 `promise_type`을 외부에서 연결해 줄때 사용합니다.
 
 1. #1 : `promise_type`을 선언하지 않았습니다.
-2. #2 :  `MyCoroutine::MyPromise`를 `promise_type`으로 만듭니다. 이때 `std` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에 정의해야 합니다.
+2. #2 :  `MyCoroutine::MyPromise`를 `promise_type`으로 만듭니다. 이때 `std` [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)에 정의해야 합니다.
 
 ```cpp
 // 코루틴 개체
@@ -160,7 +160,7 @@ obj.Resume(); // co_await std::suspend_always{}; 이후 재개
 
 |항목|내용|
 |--|--|
-|`done()` (C++20~)|[코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)이 종료되었거나 [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하면 `true`를 리턴합니다.|
+|`done()` (C++20~)|[코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)이 종료되었거나 [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하면 `true`를 리턴합니다.|
 |`operator bool` (C++20~)|널검사를 합니다.|
 |`operator()` (C++20~)|`resume()`을 실행합니다.|
 |`resume()` (C++20~)|[코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)을 재개합니다.|

@@ -31,8 +31,8 @@ concept range = requires(T& t) {
 
 한마디로 [ranges::begin](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)과 [ranges::end](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)를 호출할 수 있는 개체인데요, 
 
-1. [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)와 같은 STL [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)나 
-2. [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/)이나 
+1. [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 같은 STL [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)나 
+2. [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)이나 
 3. 이터레이팅이 가능한 `begin()`함수와 `end()`함수를 멤버로 가진 개체입니다.
 
 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)인지 아닌지는 다음과 같이 [ranges::range 컨셉](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B2%94%EC%9C%84range-%EC%BB%A8%EC%85%89)을 확인하면 됩니다.
@@ -90,9 +90,9 @@ STL에서는 다양한 [미리 정의된 뷰(View)](https://tango1202.github.io/
 |항목|내용|
 |--|--|
 |[ranges::begin, ranges::end](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0) (C++20~)|순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 구합니다.|
-|`ranges::rbegin, ranges::rend` (C++20~)|[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 구합니다.|  
+|`ranges::rbegin, ranges::rend` (C++20~)|[역방향 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 구합니다.|  
 |`ranges::cbegin, ranges::cend` (C++20~)|순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 구합니다. 이때 요소를 수정할 수 없습니다.|
-|`ranges::crbegin, ranges::crend` (C++20~)|[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 구합니다. 이때 요소를 수정할 수 없습니다.|  
+|`ranges::crbegin, ranges::crend` (C++20~)|[역방향 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 구합니다. 이때 요소를 수정할 수 없습니다.|  
 |[ranges::size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0) (C++20~)|[범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)의 크기를 상수 시간에 구합니다. 즉, 임의 접근이 가능한 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)만 사용할 수 있습니다.| 
 |`ranges::ssize` (C++20~)|[범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)의 크기를 부호 있는 `signed` 타입으로 구합니다.| 
 |`ranges::empty` (C++20~)|[범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)가 비었는지 검사합니다.| 
@@ -125,7 +125,7 @@ STL에서는 다양한 [미리 정의된 뷰(View)](https://tango1202.github.io/
     EXPECT_TRUE(std::ranges::begin(u) == nullptr); // 전달받은 개체의 begin() 함수를 호출합니다.
     ```
 
-2. [포인트 개체](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)는 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)로 사용할 수 있습니다.
+2. [포인트 개체](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)로 사용할 수 있습니다.
 
     ```cpp
     // auto f{std::begin}; // (X) 컴파일 오류. 함수자로 사용할 수 없습니다.
@@ -141,9 +141,9 @@ STL에서는 다양한 [미리 정의된 뷰(View)](https://tango1202.github.io/
 |`ranges::range_difference_t` (C++20~)|[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 `-`했을때의 타입입니다.|
 |`ranges::range_size_t` (C++20~)|[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)의 크기 타입입니다.|
 |`ranges::range_value_t` (C++20~)|[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)의 값 타입입니다.|
-|`ranges::range_reference_t` (C++20~)|[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 값의 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입입니다.|
+|`ranges::range_reference_t` (C++20~)|[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 값의 [좌측값 참조](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입입니다.|
 |`ranges::range_rvalue_reference_t` (C++20~)|[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 값의 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0) 타입입니다.|
-|`ranges::range_common_reference_t` (C++20~)|[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)의 값 타입과 [좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입의 공통 참조 타입입니다.|
+|`ranges::range_common_reference_t` (C++20~)|[이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)의 값 타입과 [좌측값 참조](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90) 타입의 공통 참조 타입입니다.|
 |`ranges::const_iterator_t` (C++23~)|(작성중)|
 |`ranges::const_sentinel_t` (C++23~)|(작성중)|
 |`ranges::range_const_reference_t` (C++23~)|(작성중)|
@@ -166,7 +166,7 @@ std::sort(v.begin(), v.end()); // 기존 방식은 시작과 끝 이터레이터
 EXPECT_TRUE(v[0] == 1 && v[1] == 2 && v[2] == 3);
 ```
 
-C++20 부터는 [범위(Range) 알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B2%94%EC%9C%84range-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)이 추가되어 대부분의 알고리즘에서 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 지원합니다.(*`std::ranges` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 사용합니다.*) 
+C++20 부터는 [범위(Range) 알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B2%94%EC%9C%84range-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)이 추가되어 대부분의 알고리즘에서 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 지원합니다.(*`std::ranges` [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)를 사용합니다.*) 
 
 다음과 같이 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 전달할 필요없이 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 바로 전달하면 됩니다.
 
@@ -180,7 +180,7 @@ EXPECT_TRUE(v[0] == 1 && v[1] == 2 && v[2] == 3);
 
 [범위(Range) 알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B2%94%EC%9C%84range-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)에는 [Projection](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)이 추가되어 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/) 요소 대신 사용할 개체를 지정할 수 있습니다.
 
-에를 들어 다음과 같이 `std::pair<std::string, int>`로 이름과 점수를 관리하는 [컨테이너](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-container/)를 [sort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%A0%95%EB%A0%AC-%EC%9E%91%EC%97%85)를 사용하여 정렬하면, `std::pair<std::string, int>` 타입을 비교하여 정렬하므로, `pair::first`가 먼저 비교되어 이름 순서로 정렬됩니다.
+에를 들어 다음과 같이 `std::pair<std::string, int>`로 이름과 점수를 관리하는 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)를 [sort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%A0%95%EB%A0%AC-%EC%9E%91%EC%97%85)를 사용하여 정렬하면, `std::pair<std::string, int>` 타입을 비교하여 정렬하므로, `pair::first`가 먼저 비교되어 이름 순서로 정렬됩니다.
 
 ```cpp
 std::vector<std::pair<std::string, int>> v{
@@ -256,16 +256,16 @@ concept view =
 |항목|내용|
 |--|--|
 |`empty()` (C++20~)|[뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)가 비었는지 확인합니다.|
-|`operator bool()` (C++20~)|[bool](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-bool/)로 형변환시 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)가 비었는지 확인합니다.|
+|`operator bool()` (C++20~)|[bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/)로 형변환시 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)가 비었는지 확인합니다.|
 |`operator []()` (C++20~)|[뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)가 [random_access_range](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B2%94%EC%9C%84range-%EC%BB%A8%EC%85%89)인 경우 요소를 리턴합니다.|
 |`data()` (C++20~)|관리하는 메모리 블록을 리턴합니다.|
 |`size()` (C++20~)|의 요소 갯수를 리턴합니다. 이때 [sized_sentinel_for](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%BB%A8%EC%85%89)이어야 합니다.|
-|`front()` (C++20~)|첫번째 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [ranges::forward_range](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B2%94%EC%9C%84range-%EC%BB%A8%EC%85%89)이어야 합니다.|
-|`back()` (C++20~)|마지막 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [ranges::bidirectional_range](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B2%94%EC%9C%84range-%EC%BB%A8%EC%85%89)이어야 합니다.|
+|`front()` (C++20~)|첫번째 요소의 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [ranges::forward_range](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B2%94%EC%9C%84range-%EC%BB%A8%EC%85%89)이어야 합니다.|
+|`back()` (C++20~)|마지막 요소의 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [ranges::bidirectional_range](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B2%94%EC%9C%84range-%EC%BB%A8%EC%85%89)이어야 합니다.|
 |`cbegin()` (C++23~)|(작성중)|
 |`cend()` (C++23~)|(작성중)|
 
-다음은 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 전달받아 그대로 이터레이팅하는 기본적인 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 구현한 예입니다. [ranges::view_interface](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 상속하여 구현하며, [생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-constructors/)에서 복사되지 않도록 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용합니다.
+다음은 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)를 전달받아 그대로 이터레이팅하는 기본적인 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 구현한 예입니다. [ranges::view_interface](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 상속하여 구현하며, [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)에서 복사되지 않도록 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 사용합니다.
 
 ```cpp
 template<std::ranges::range R> // R은 range이어야 합니다.
@@ -292,7 +292,7 @@ EXPECT_TRUE(view[0] == 1 && view[1] == 2 && view[2] == 3);
 ```
 # 미리 정의된 뷰(View)
 
-STL에서는 다양한 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 미리 정의해 두었으며, `views` [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)에 각 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 생성하는 유틸리티 함수들을 제공합니다.
+STL에서는 다양한 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 미리 정의해 두었으며, `views` [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)에 각 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 생성하는 유틸리티 함수들을 제공합니다.
 
 예를들어 `std::views::empty()`는 `ranges::empty_view`를 생성합니다.
 
@@ -307,7 +307,7 @@ STL에서는 다양한 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/m
 |`ranges::single_view, views::single(val)` (C++20~)|단일 요소인 `val`만 가진 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다.|
 |`ranges::iota_view, views::iota(init)` (C++20~)|`init` 부터 `1`씩 증가한 요소를 가진 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다. 무한한 요소를 표현하며, 특별히 `Bound`를 주어 유한하게 만들 수 있습니다.(*`std::views::iota(1,5)`는 1, 2, 3, 4를 나타냅니다.*)|
 |`ranges::basic_istream_view, views::istream()` (C++20~)|(작성중)|
-|`ranges::filter_view, views::filter(range, Predicate)` (C++20~)|`range`중 [조건자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 `true`인 요소들로 구성된 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다. 상수 시간에 크기를 구할 수 없습니다.(*즉, [ranges::size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)를 구할 수 없습니다.*)|
+|`ranges::filter_view, views::filter(range, Predicate)` (C++20~)|`range`중 [조건자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 `true`인 요소들로 구성된 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다. 상수 시간에 크기를 구할 수 없습니다.(*즉, [ranges::size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)를 구할 수 없습니다.*)|
 |`ranges::transform_view, views::transform(range, Function)` (C++20~)|`range`에 `Function`을 적용한 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다.|
 |`ranges::take_view, views::take(range, N)` (C++20~)|`range`에서 처음 `N`개를 사용하는 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다.|
 |`ranges::take_while_view, views::take_while()` (C++20~)|(작성중)|
@@ -320,8 +320,8 @@ STL에서는 다양한 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/m
 |`ranges::common_view, views::common(range)` (C++20~)|`range`를 [ranges::common_range](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B2%94%EC%9C%84range-%EC%BB%A8%EC%85%89)로 변환합니다.|
 |`ranges::reverse_view, views::reverse(range)` (C++20~)|`range`를 역순으로 변경한 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다.|
 |`ranges::elements_view, views::elements<N>(range)` (C++20~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)구성된 `range`에서 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)의 `N`번째 요소로 구성된 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다.|
-|`ranges::keys_view, views::keys(range)` (C++20~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)이나 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)로 구성된 `range`에서 `0`번째 요소로 구성된 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다. `map`인 경우 **Key** 로 구성됩니다.|
-|`ranges::values_view, views::values()` (C++20~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)이나 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)로 구성된 `range`에서 `1`번째 요소로 구성된 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다. `map`인 경우 **Value** 로 구성됩니다.|
+|`ranges::keys_view, views::keys(range)` (C++20~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)이나 [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)로 구성된 `range`에서 `0`번째 요소로 구성된 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다. `map`인 경우 **Key** 로 구성됩니다.|
+|`ranges::values_view, views::values()` (C++20~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)이나 [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)로 구성된 `range`에서 `1`번째 요소로 구성된 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)입니다. `map`인 경우 **Value** 로 구성됩니다.|
 |`ranges::enumerate_view, views::enumerate()` (C++23~)|(작성중)|
 |`ranges::zip_view, views::zip()` (C++20~)|(작성중)|
 |`ranges::zip_transform_view, views::zip_transform()` (C++23~)|(작성중)|
@@ -468,7 +468,7 @@ STL에서는 다양한 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/m
 
 [뷰(View)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%B7%B0view)를 [범위(Range)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/)에 여러번 적용해서 사용할 수 있습니다.
 
-다음은 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 요소로 사용하는 [vector](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-vector/)에 대하여,
+다음은 [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)를 요소로 사용하는 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)에 대하여,
 
 1. [views::elements()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%AF%B8%EB%A6%AC-%EC%A0%95%EC%9D%98%EB%90%9C-%EB%B7%B0view)로 점수만 추출한 후,
 2. [views::filter()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%EB%AF%B8%EB%A6%AC-%EC%A0%95%EC%9D%98%EB%90%9C-%EB%B7%B0view)로 `20`이상인 것만 구성하고,

@@ -87,7 +87,7 @@ void App::SaveDoc() {
     reinterpret_cast<MyApp*>(this)->SaveMyDoc();
 }
 ``` 
-강제로 형변환하는 [reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)도 견딜 수 없지만, 자식 개체에서 부모 개체를 참조해서 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)하여 **의존성 부패** 가 되버렸습니다.
+강제로 형변환하는 [reinterpret_cast](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)도 견딜 수 없지만, 자식 개체에서 부모 개체를 참조해서 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)하여 **의존성 부패** 가 되버렸습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e19a4379-80ae-4a5b-a0c4-042b328b20cd)
 
@@ -95,7 +95,7 @@ void App::SaveDoc() {
 
 **준수 방법 : Template Method 패턴**
 
-하기 그림과 같이 [Template Method 패턴](https://tango1202.github.io/pattern/pattern-template-method/)을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
+하기 그림과 같이 [Template Method 패턴](https://tango1202.github.io/pattern/pattern-template-method/)을 사용한다면, 부모 클래스(`App`)에서 자식 클래스(`MyApp` 또는 `YourApp`)의 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)인 `SaveDoc()`을 호출하여 해결할 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/237506b6-090d-4a7a-8bc4-31438116b97c)
 

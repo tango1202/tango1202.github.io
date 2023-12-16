@@ -26,13 +26,13 @@ sidebar:
 
 # 이터레이터 어뎁터
 
-[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)나 [삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)와 같이 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)의 고유 기능인 `*``, `->``, `++`을 재구현하여 다르게 동작하는 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)들입니다.
+[역방향 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)나 [삽입 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)와 같이 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)의 고유 기능인 `*``, `->``, `++`을 재구현하여 다르게 동작하는 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)들입니다.
 
 |항목|내용|
 |--|--|
-|[reverse_iterator](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)|역방향으로 이터레이트 합니다.|
+|[reverse_iterator](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)|역방향으로 이터레이트 합니다.|
 |`make_reverse_iterator()` (C++14~)|(작성중)|
-|`back_insert_iterator`|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 끝에 삽입합니다.([삽입 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0) 참고)|
+|`back_insert_iterator`|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 끝에 삽입합니다.([삽입 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0) 참고)|
 |`back_inserter()`|`back_insert_iterator`를 생성합니다.|
 |`front_insert_iterator`|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 앞에 삽입합니다.|
 |`front_inserter()`|`front_insert_iterator`를 생성합니다.|
@@ -82,7 +82,7 @@ EXPECT_TRUE(v[0].empty() && v[1].empty() && v[2].empty()); // 요소가 이동�
 
 다음 예제는 `advance()`와 [next()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0), [prev()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)의 차이를 보여줍니다.
 
-`advance()` 은 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달한 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 직접 수정하지만, [next()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)와 [prev()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)는 수정하지 않습니다.
+`advance()` 은 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달한 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 직접 수정하지만, [next()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)와 [prev()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)는 수정하지 않습니다.
 
 ```cpp
 std::vector<int> v{1, 2, 3, 4};
@@ -100,9 +100,9 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 |항목|내용|
 |--|--|
 |`begin(), end()` (C++11~)|순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다.|
-|`rbegin(), rend()` (C++14~)|[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
+|`rbegin(), rend()` (C++14~)|[역방향 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
 |`cbegin(), cend()` (C++14~)|순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
-|`crbegin(), crend()` (C++14~)|[역방향 이터레이터](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
+|`crbegin(), crend()` (C++14~)|[역방향 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`size()` (C++17~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 크기를 구합니다.|
 |`ssize()` (C++20~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 크기를 부호 있는 `signed` 타입으로 구합니다.|
 |`empty()` (C++17~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 비었는지 검사합니다.|

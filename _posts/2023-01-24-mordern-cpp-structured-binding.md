@@ -8,22 +8,22 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)이 추가되어 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/), [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/), 클래스등의 내부 요소나 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에 쉽게 접근할 수 있습니다.
+> * (C++17~) [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)이 추가되어 [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/), [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/), [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/), 클래스등의 내부 요소나 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)에 쉽게 접근할 수 있습니다.
 
 # 개요
 
 기존의 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)등은 내부 요소에 접근하는게 좀 까다로웠는데요(*[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 참고*), 
 
-C++17 부터는 [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 이용하여 개체의 내부 요소나 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에 쉽게 접근할 수 있게 해줍니다.
+C++17 부터는 [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 이용하여 개체의 내부 요소나 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)에 쉽게 접근할 수 있게 해줍니다.
 
 |항목|내용|
 |--|--|
 |`auto [변수 목록]`|내부 요소의 복제본을 만들어 참조합니다. 수정시 복제본이 수정됩니다.|
 |`auto& [변수 목록]`|내부 요소를 참조합니다. 내부 요소 수정이 가능합니다.|
-|`const auto& [변수 목록]`|내부 요소를 참조합니다. 내부 요소 수정이 불가능합니다.<br/>[임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 경우 `const auto&`로 받으면 수명이 연장됩니다.(*[임시 개체](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 참고*)|
+|`const auto& [변수 목록]`|내부 요소를 참조합니다. 내부 요소 수정이 불가능합니다.<br/>[임시 개체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4)인 경우 `const auto&`로 받으면 수명이 연장됩니다.(*[임시 개체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%9E%84%EC%8B%9C-%EA%B0%9C%EC%B2%B4) 참고*)|
 |`auto&& [변수 목록]`|내부 요소를 [전달 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#%EC%A0%84%EB%8B%AC-%EC%B0%B8%EC%A1%B0)합니다.|
 
-다음과 같이 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/), 클래스등에 대해 적용할 수 있습니다. 
+다음과 같이 [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/), [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/), 클래스등에 대해 적용할 수 있습니다. 
 
 **배열**
 
@@ -93,9 +93,9 @@ EXPECT_TRUE(id_17 == 30 && name_17 == "Sam");
 
 [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)와 함께 사용하면 코드가 간결해 집니다.
 
-**고전 C++ 스타일**
+**Legacy C++ 스타일**
 
-`insert()` 로 데이터를 추가하고, `iterator`를 이용하며, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)로 삽입 실패를 검사합니다.
+`insert()` 로 데이터를 추가하고, `iterator`를 이용하며, [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)로 삽입 실패를 검사합니다.
 
 ```cpp
 // 초기 데이터 입력

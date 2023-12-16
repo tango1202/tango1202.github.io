@@ -14,7 +14,7 @@ sidebar:
 
 # 사용자 정의 리터럴
 
-C++11 부터는 `operator""_식별자()`를 이용하여 사용자가 [리터럴](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/)을 직접 정의할 수 있습니다. 동일한 값을 여러 단위계로 표현할 때 유용합니다.
+C++11 부터는 `operator""_식별자()`를 이용하여 사용자가 [리터럴](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/)을 직접 정의할 수 있습니다. 동일한 값을 여러 단위계로 표현할 때 유용합니다.
 
 ```cpp
 // mm 단위로 리턴
@@ -36,7 +36,7 @@ EXPECT_TRUE(1_mm == 1); // mm는 정수형도 오버로딩 되었습니다.
 
 # 문자열 추론
 
-기존 문자열을 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)로 초기화 하면 `const char*`로 추론되는데요, [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 만들어 [string](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-string/)으로 추론되게 할 수 있습니다.
+기존 문자열을 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)로 초기화 하면 `const char*`로 추론되는데요, [사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A6%AC%ED%84%B0%EB%9F%B4)을 만들어 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)으로 추론되게 할 수 있습니다.
 
 ```cpp
 // const char* 형의 문자열을 std::string으로 변환
@@ -61,7 +61,7 @@ EXPECT_TRUE("hello"_forced_string.size() == 5); // 임시 개체도 가능합니
 
 # 인자 규칙
 
-사용할 수 있는 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 형태는 다음과 같습니다.
+사용할 수 있는 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 형태는 다음과 같습니다.
 
 ```cpp
 // 정수 1_a
@@ -86,7 +86,7 @@ template<char...> ReturnType operator ""_l();
 
 문자열과 Raw 타입이 모두 `const char*`를 사용해서 헷갈리는데요, 
 
-* `"3.14"_a`와 같이 [문자열 상수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)처럼 호출하면, `int operator ""_a(const char* str, size_t size)`이 호출되고,
+* `"3.14"_a`와 같이 [문자열 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)처럼 호출하면, `int operator ""_a(const char* str, size_t size)`이 호출되고,
 * `3.14_a`와 같이 정수나 실수 형태로 사용하면 `int operator ""_a(const char* str)`가 호출됩니다.
 
 ```cpp

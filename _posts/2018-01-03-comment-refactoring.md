@@ -53,9 +53,9 @@ void Shape::Rotate(const Degree& delta, const bool repaint /*= true*/) /* throw(
 
 1. `Degree`라는 클래스를 만들어 전달할 인수가 `Degree` 형태라는 것을 명시했습니다. 아울러 클래스 이므로 0 ~ 360 범위를 넘어서면 정규화될 것이라는 믿음을 심어 주었습니다.
 
-2. `delta` 라고 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 두어 상대값이라는 것을 명시했습니다.
+2. `delta` 라고 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 두어 상대값이라는 것을 명시했습니다.
 
-3. `repaint` [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 두어 상황에 따라 화면을 갱신할 수 있다는 것을 명시했습니다.
+3. `repaint` [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 두어 상황에 따라 화면을 갱신할 수 있다는 것을 명시했습니다.
 
 4. `shape`의 각도를 저장하는 함수가 아니라, 실제로 회전시킨다는 의미로 함수명을 `Rotate`라로 변경했습니다.
 
@@ -63,7 +63,7 @@ void Shape::Rotate(const Degree& delta, const bool repaint /*= true*/) /* throw(
 
 6. `SetAngle` 함수에 `GetCenter()` 값을 전달하여 `shape`의 `Center`점을 중심으로 회전시킨다는 것을 명시했습니다.
 
-7. 예외 명세 [throw()](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)를 주석으로 적어 예외발생을 하지 않는다는 것을 명시했습니다.
+7. 예외 명세 [throw()](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)를 주석으로 적어 예외발생을 하지 않는다는 것을 명시했습니다.
 
 8. 오류 발생시 강한 보증을 하여 오류로 인한 데이터 변경이 없다는 것을 명시했습니다.
 

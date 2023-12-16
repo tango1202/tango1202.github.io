@@ -33,7 +33,7 @@ sidebar:
 
 1. 단위 기능별로 코드가 나눠져 있어 코드 가독성이 향상됩니다.
 2. 단위 기능별로 응집되어 있어 코드 분석 용이성이 향상됩니다.
-3. 단위 기능별로 예외처리가 응집되어 [예외 안전성](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-safe/)이 향상됩니다.
+3. 단위 기능별로 예외처리가 응집되어 [예외 안전성](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-safe/)이 향상됩니다.
 4. 단위 기능에 집중하므로 유지보수시 복잡성이 낮아집니다.
 5. 단위 기능으로 간소해져 구현 편의성이 향상됩니다.
 

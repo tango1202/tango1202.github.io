@@ -28,7 +28,7 @@ C++ 에서 문법적으로는 다음의 두가지 주석이 있습니다.
 
 3. 함수 주석
 
-   함수 선언 또는 정의의 선두에 위치하며, 함수의 목적, 설계 철학, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정보, 리턴 정보, 예외 정보와 사용방법, 가정등이 기재됩니다. 또는 문서화 유틸리티를 위한 메타 주석이 포함될 수 있고, 함수가 전역 변수에 미치는 영향, 알고리즘의 출처등을 적을 수도 있겠죠. 특히 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정보를 적을때에는 명칭, 의미, 허용범위, 단위등도 포함되어야 합니다.
+   함수 선언 또는 정의의 선두에 위치하며, 함수의 목적, 설계 철학, [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정보, 리턴 정보, 예외 정보와 사용방법, 가정등이 기재됩니다. 또는 문서화 유틸리티를 위한 메타 주석이 포함될 수 있고, 함수가 전역 변수에 미치는 영향, 알고리즘의 출처등을 적을 수도 있겠죠. 특히 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 정보를 적을때에는 명칭, 의미, 허용범위, 단위등도 포함되어야 합니다.
 
 4. 줄 끝 주석
 
@@ -48,13 +48,13 @@ C++ 에서 문법적으로는 다음의 두가지 주석이 있습니다.
 
 8. 데이터 선언/정의 주석
 
-   데이터 선언부나 정의부에 기재되며, 충분한 설명을 작성하여야 합니다. 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 경우와 마찬가지로 명칭, 의미, 허용범위, 단위등을 적어야 합니다.
+   데이터 선언부나 정의부에 기재되며, 충분한 설명을 작성하여야 합니다. 함수의 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 경우와 마찬가지로 명칭, 의미, 허용범위, 단위등을 적어야 합니다.
 
 하지만 의미상으로 다음과 같이 분류 할 수도 있습니다.
 
 1. 코드의 반복
 
-   코드의 내용을 그대로 주석으로 기재합니다. "a 변수에 1을 더해 b에 대입한다." 는 식이며, 눈만 어지럽히며, 코드 변경시 유지보수를 어렵게 합니다. 주로 코드 작성후 주석을 기재할 때 이런식의 주석이 작성되곤 합니다. 코드 작성전에 미리 주석을 적어서 보다 [추상화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)된 수준의 주석을 작성해야 합니다.
+   코드의 내용을 그대로 주석으로 기재합니다. "a 변수에 1을 더해 b에 대입한다." 는 식이며, 눈만 어지럽히며, 코드 변경시 유지보수를 어렵게 합니다. 주로 코드 작성후 주석을 기재할 때 이런식의 주석이 작성되곤 합니다. 코드 작성전에 미리 주석을 적어서 보다 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)된 수준의 주석을 작성해야 합니다.
 
    혹은 코드 작성전에 의미를 적었는데, 그 내용이 너무 간결하여 코드를 반복할 수 있습니다.
 
@@ -86,7 +86,7 @@ C++ 에서 문법적으로는 다음의 두가지 주석이 있습니다.
 
 4. 코드에 구체화된 주석
 
-   예를 들어 주석에 변수명을 그대로 기재하여 "m_UserInfo 를 갱신한다." 는 변수명이 m_UserData로 변경되었다면, "m_UserData를 갱신한다." 로 변경되어야 합니다. 애초에 주석의 내용을 조금 더 [추상화](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/)하여 "사용자 정보를 갱신한다."로 했다면, 코드 변경시 주석도 같이 변경할 필요가 없었겠죠.
+   예를 들어 주석에 변수명을 그대로 기재하여 "m_UserInfo 를 갱신한다." 는 변수명이 m_UserData로 변경되었다면, "m_UserData를 갱신한다." 로 변경되어야 합니다. 애초에 주석의 내용을 조금 더 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)하여 "사용자 정보를 갱신한다."로 했다면, 코드 변경시 주석도 같이 변경할 필요가 없었겠죠.
 
 5. 코드의 설명
 
@@ -163,13 +163,13 @@ C++ 에서 문법적으로는 다음의 두가지 주석이 있습니다.
 
    함수 및 클래스 사용에 어떠한 가정이 있는지 적습니다. 대부분 전달되는 인수에 따라 함수가 작동하게 되는데, 알게 모르게 여러가지 가정을 하게 됩니다. 주로 포인터를 사용할때 이 포인터는 유효하다!!! 라고 가정하고 많이 작성하죠? 아무튼, 좋은 함수는 가정이 별로 없어야 하고요, 혹시라도 가정이 있다면 `_ASSERTE()` 로 꼭 확인해야 합니다.
 
-9. [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), 데이터 선언/정의 주석, 리턴 주석
+9. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter), 데이터 선언/정의 주석, 리턴 주석
 
-   함수 선언부에 주로 적게 되는데요, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 단위, 허용 범위, 함수의 작동방식, [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 등을 작성합니다. 주로 리팩토링해서 최소화 시키는 것이 좋습니다.
+   함수 선언부에 주로 적게 되는데요, [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 단위, 허용 범위, 함수의 작동방식, [리턴값](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 등을 작성합니다. 주로 리팩토링해서 최소화 시키는 것이 좋습니다.
 
 9. 리턴 주석
 
-   [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 의미, 성공시의 값, 실패시의 값등을 적습니다. 
+   [리턴값](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)의 의미, 성공시의 값, 실패시의 값등을 적습니다. 
 
 9. 설계 이념, 클래스 설계 철학
 
@@ -203,7 +203,7 @@ C++ 에서 문법적으로는 다음의 두가지 주석이 있습니다.
 9. 사용상 유의 사항
 
    잘못 사용하기에 불가능하게 설계하셨다면 이런 주석은 필요 없을 겁니다. 하지만 언어의 제약으로 불가능 하다면 어떻게든 알려주어야 겠죠.
-   "더이상 이 클래스는 상속하지 마시오. [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 수정하면 오동작의 우려가 있습니다." 등이요.
+   "더이상 이 클래스는 상속하지 마시오. [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 수정하면 오동작의 우려가 있습니다." 등이요.
 
 9. 이메일, 주소, 전화번호
 

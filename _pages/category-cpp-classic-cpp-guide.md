@@ -1,12 +1,12 @@
 ---
-title: "고전 C++ 가이드"
+title: "Legacy C++ 가이드"
 layout: archive
-permalink: categories/classic-cpp-guide/
+permalink: categories/legacy-cpp-guide/
 author_profile: true
 sibling-post: false
 sidebar: 
     nav: "docs"
 ---
 
-{% assign posts = site.categories.classic-cpp-guide %}
+{% assign posts = site.categories.legacy-cpp-guide %}
 {% for post in (posts) reversed %} {% include archive-single.html type=page.entries_layout %} {% endfor %}

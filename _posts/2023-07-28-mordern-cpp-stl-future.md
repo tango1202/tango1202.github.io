@@ -146,7 +146,7 @@ EXPECT_TRUE(Sync() == 1);
 
 |항목|내용|
 |--|--|
-|`operator =` (C++11~)|[복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)과 [이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
+|`operator =` (C++11~)|[복사 대입](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)과 [이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
 |`get()` (C++11~)|`wait()` 한뒤 데이터를 추출합니다. 이때 데이터는 [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future)처럼 무효화되지 않습니다.|
 |`valid()` (C++11~)|데이터가 유효한지 확인합니다.|
 |`wait()` (C++11~)|[promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)에서 데이터를 설정할때까지 대기합니다.|
@@ -160,7 +160,7 @@ EXPECT_TRUE(Sync() == 1);
 다음 예제를 보면,
 
 1. `Async()` 함수는 [promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)에 설정될 데이터를 리턴합니다.
-2. [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) 생성시 `Async()` 함수의 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달합니다.
+2. [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) 생성시 `Async()` 함수의 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 전달합니다.
 
 ```cpp
 int Async(int val) {
@@ -182,7 +182,7 @@ int Sync() {
 EXPECT_TRUE(Sync() == 11); 
 ```
 
-만약 `Async()` 함수에서 [예외를 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키면, 다음처럼 예외 핸들링이 가능합니다.
+만약 `Async()` 함수에서 [예외를 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키면, 다음처럼 예외 핸들링이 가능합니다.
 
 ```cpp
 int Async(int val) {
@@ -215,7 +215,7 @@ catch(const char* err) {
 
 |항목|내용|
 |--|--|
-|`=` (C++11~)|[이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.<br/>[복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)은 `delete`되었습니다.|
+|`=` (C++11~)|[이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.<br/>[복사 대입](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)은 `delete`되었습니다.|
 |`swap()` (C++11~)|바꿔치기 합니다.|
 |`valid()` (C++11~)|데이터가 유효한지 확인합니다.|
 |`get_future()` (C++11~)|[future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future) 개체를 생성합니다.|

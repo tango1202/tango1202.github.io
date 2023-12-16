@@ -12,7 +12,7 @@ sidebar:
 
 조금 풀어 쓰면,
 
-1. 다형적 동작을 위해 상속받은 자식은 부모와 **[is-a 관계](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-inheritance/#is-a-%EA%B4%80%EA%B3%84)** 여야 하고,
+1. 다형적 동작을 위해 상속받은 자식은 부모와 **[is-a 관계](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#is-a-%EA%B4%80%EA%B3%84)** 여야 하고,
 2. 자식은 부모와 다른 행동을 하지 말고, 같은 행동을 하게 하라.
 
 라는 뜻입니다. 더군다나 !!!완전하게!!!말이죠.

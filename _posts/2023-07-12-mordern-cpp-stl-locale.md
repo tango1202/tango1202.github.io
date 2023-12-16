@@ -15,7 +15,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[setlocale()](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)|로케일 혹은 인코딩 정보를 설정합니다.|
+|[setlocale()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)|로케일 혹은 인코딩 정보를 설정합니다.|
 |`LC_ALL`<br>`LC_COLLATE`<br>`LC_CTYPE`<br>`LC_MONETARY`<br>`LC_NUMERIC`<br>`LC_TIME`|(작성중)|
 |`localeconv()`|(작성중)|
 |`lconv()`|(작성중)|

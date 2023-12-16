@@ -26,7 +26,7 @@ sidebar:
 
 |개방|폐쇄|
 |--|--|
-|* 상속을 이용한 확장<br/>* 인터페이스를 이용한 확장<br/>* [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 이용한 확장<br/>* 포함을 이용한 확장<br/>* 의존성 주입을 이용한 확장|* `private`를 이용한 가시성 폐쇄<br/>* 인터페이스를 이용한 코딩 계약으로 폐쇄<br/>* Non-Virtual로 상속 폐쇄<br/>* 단일 책임으로 변경 최소화<br/>* 문서화 안하기<br/>* 알기 힘들게 꼭꼭 숨기기<br/>* 고치기 무섭게 복잡하게 하기|
+|* 상속을 이용한 확장<br/>* 인터페이스를 이용한 확장<br/>* [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 이용한 확장<br/>* 포함을 이용한 확장<br/>* 의존성 주입을 이용한 확장|* `private`를 이용한 가시성 폐쇄<br/>* 인터페이스를 이용한 코딩 계약으로 폐쇄<br/>* Non-Virtual로 상속 폐쇄<br/>* 단일 책임으로 변경 최소화<br/>* 문서화 안하기<br/>* 알기 힘들게 꼭꼭 숨기기<br/>* 고치기 무섭게 복잡하게 하기|
 
 **준수 방법 : 유연한 함수**
 
@@ -41,7 +41,7 @@ void SaveFile() const {
 
 경로명이 함수내에 있기 때문에, 파일명이나 경로가 바뀐다면 `SaveFile()`함수를 수정해야 합니다.
 
-하지만, `pathName`을 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 요청한다면, 파일명이나 경로가 바꼈을때 `SaveFile()`함수를 수정할 필요가 없습니다. [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달하면 되니까요.
+하지만, `pathName`을 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 요청한다면, 파일명이나 경로가 바꼈을때 `SaveFile()`함수를 수정할 필요가 없습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달하면 되니까요.
 경로명 변경 확장에는 열려있고, `SaveFile()`함수 수정에는 닫혀 있게 됩니다.
 
 ```cpp
@@ -62,7 +62,7 @@ void SaveFile(const std::wstring& pathName) const {}
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ff2a24ff-2c54-4c5e-93fe-172eeb3a6947)
 
-부모 클래스인 `Shape`에 [가상 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)로 `Scale()`을 만들고 자식 클래스에서 이를 `override`하였습니다. 일반적인 방법입니다만, 부모 클래스가 뚱뚱해 질 수 있으므로(혹은, `Shape`이 외부 라이브러리라 인터페이스 수정을 못할 수 있으므로), 상황에 따라 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/)으로 부모 클래스 인터페이스 수정없이 기능들을 추가할 수 있습니다.
+부모 클래스인 `Shape`에 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)로 `Scale()`을 만들고 자식 클래스에서 이를 `override`하였습니다. 일반적인 방법입니다만, 부모 클래스가 뚱뚱해 질 수 있으므로(혹은, `Shape`이 외부 라이브러리라 인터페이스 수정을 못할 수 있으므로), 상황에 따라 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/)으로 부모 클래스 인터페이스 수정없이 기능들을 추가할 수 있습니다.
 
 `IVisitor`를 이용한 클래스 구성은 다음과 같습니다.
 

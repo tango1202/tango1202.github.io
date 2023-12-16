@@ -13,7 +13,7 @@ sidebar:
 조금 풀어 쓰면,
 
 1. 클래스 생성시 필요한 요소를 명시적으로 요청하고,
-2. 함수 호출시 전역이나 인프라 요소를 몰래 사용하지 말고, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 요청하라.
+2. 함수 호출시 전역이나 인프라 요소를 몰래 사용하지 말고, [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 요청하라.
 
 라는 뜻입니다. 
 
@@ -50,7 +50,7 @@ rect.SetHeight(10);
 
 이렇게 필요한 요소를 생성 후 일일이 세팅하는건 번거롭습니다. 또한 번거로움은 둘째치고, 사용이 어렵고, 클래스 내부 구조를 완전히 파악해야만 하는 부담이 있습니다.(내부 구조 파악을 필요로 하니 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)도 위반이군요.)
 
-다음과 같이 생성시에 필요한 값을 모두 전달하는 [완전한 생성자](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%EC%83%9D%EC%84%B1%EC%9E%90)로 해결할 수 있습니다.
+다음과 같이 생성시에 필요한 값을 모두 전달하는 [완전한 생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%EC%83%9D%EC%84%B1%EC%9E%90)로 해결할 수 있습니다.
 
 ```cpp
 class Rectangle {
@@ -102,7 +102,7 @@ class Rectangle {
 };
 ```
 
-이젠 외부에서 `view` 중심점을 구해 `RotateAt()`에 전달하여야 합니다. 함수가 필요로 하는 모든 요소를 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 제공했기 때문에([완전한 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%ED%95%A8%EC%88%98) 참고), **코딩 계약** 이 좀더 투명해 졌습니다. 
+이젠 외부에서 `view` 중심점을 구해 `RotateAt()`에 전달하여야 합니다. 함수가 필요로 하는 모든 요소를 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 제공했기 때문에([완전한 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-complete-class/#%EC%99%84%EC%A0%84%ED%95%9C-%ED%95%A8%EC%88%98) 참고), **코딩 계약** 이 좀더 투명해 졌습니다. 
 
 ```cpp
 // view 중심점을 구합니다.

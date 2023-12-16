@@ -1,13 +1,13 @@
 # main links
 main:
-- title: "고전 C++ 가이드"
-  url: /categories/classic-cpp-guide/     
-- title: "고전 C++ 개체 지향 프로그래밍"
-  url: /categories/classic-cpp-oop/  
-- title: "고전 C++ STL"
-  url: /categories/classic-cpp-stl/   
-- title: "고전 C++ 예외 안전 프로그래밍"
-  url: /categories/classic-cpp-exception/  
+- title: "Legacy C++ 가이드"
+  url: /categories/legacy-cpp-guide/     
+- title: "Legacy C++ 개체 지향 프로그래밍"
+  url: /categories/legacy-cpp-oop/  
+- title: "Legacy C++ STL"
+  url: /categories/legacy-cpp-stl/   
+- title: "Legacy C++ 예외 안전 프로그래밍"
+  url: /categories/legacy-cpp-exception/  
 - title: "모던 C++(C++11, C++14, C++17, C++20)"
   url: /categories/mordern-cpp/   
 - title: "모던 C++ STL"
@@ -34,20 +34,20 @@ main:
   url: /tags/
 
 docs:
-- title: "고전 C++과 모던 C++ 완전 정복"
+- title: "Legacy C++과 모던 C++ 완전 정복"
   children:
-  - title: "고전 C++ 가이드"
-    url: /categories/classic-cpp-guide/
-    category: "classic-cpp-guide"    
-  - title: "고전 C++ 개체 지향 프로그래밍"
-    url: /categories/classic-cpp-oop/  
-    category: "classic-cpp-oop"    
-  - title: "고전 C++ STL"
-    url: /categories/classic-cpp-stl/  
-    category: "classic-cpp-stl" 
-  - title: "고전 C++ 예외 안전 프로그래밍"
-    url: /categories/classic-cpp-exception/ 
-    category: "classic-cpp-exception"  
+  - title: "Legacy C++ 가이드"
+    url: /categories/legacy-cpp-guide/
+    category: "legacy-cpp-guide"    
+  - title: "Legacy C++ 개체 지향 프로그래밍"
+    url: /categories/legacy-cpp-oop/  
+    category: "legacy-cpp-oop"    
+  - title: "Legacy C++ STL"
+    url: /categories/legacy-cpp-stl/  
+    category: "legacy-cpp-stl" 
+  - title: "Legacy C++ 예외 안전 프로그래밍"
+    url: /categories/legacy-cpp-exception/ 
+    category: "legacy-cpp-exception"  
   - title: "모던 C++(C++11, C++14, C++17, C++20)"
     url: /categories/mordern-cpp/   
     category: "mordern-cpp"  

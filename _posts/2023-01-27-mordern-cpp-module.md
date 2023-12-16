@@ -8,19 +8,19 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++20~) [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)이 추가되어 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 사용 방식을 개선하여 컴파일 속도를 향상시키고, [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제, [선언과 정의 분리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC) 구성의 불편함, 기호 충돌 문제를 해결했습니다.
+> * (C++20~) [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)이 추가되어 [전처리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/) 사용 방식을 개선하여 컴파일 속도를 향상시키고, [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제, [선언과 정의 분리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC) 구성의 불편함, 기호 충돌 문제를 해결했습니다.
 
 # 개요
 
-C++ 는 다음의 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/), 컴파일, 링크의 3가지 과정을 거쳐서 프로그램을 빌드합니다.
+C++ 는 다음의 [전처리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/), 컴파일, 링크의 3가지 과정을 거쳐서 프로그램을 빌드합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6485d571-ea5d-47a8-b1f1-662a39a39413)
 
-이중 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 과정은 다음의 문제점이 있습니다.
+이중 [전처리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/) 과정은 다음의 문제점이 있습니다.
 
 1. 용량 비대화에 따른 컴파일 속도 문제
 
-    [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)를 하고 나면 소스 파일은 엄청 거대해집니다.
+    [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include)를 하고 나면 소스 파일은 엄청 거대해집니다.
 
     ```cpp
     // helloworld.cpp
@@ -32,9 +32,9 @@ C++ 는 다음의 [전처리](https://tango1202.github.io/classic-cpp-guide/clas
     }
     ```
 
-    상기 코드에는 `cout`과 `endl`이 있어서 `#include <iostream>` 이 필요합니다. 이에 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/)를 해야 하는데요,
+    상기 코드에는 `cout`과 `endl`이 있어서 `#include <iostream>` 이 필요합니다. 이에 [전처리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/)를 해야 하는데요,
 
-    다음과 같이 `-E` 옵션으로 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 결과를 출력할 수 있고, 해당 내용을 `-o` 옵션으로 파일에 저장할 수 있습니다.
+    다음과 같이 `-E` 옵션으로 [전처리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/) 결과를 출력할 수 있고, 해당 내용을 `-o` 옵션으로 파일에 저장할 수 있습니다.
 
     ```cpp
     F:\Data\language_test\test\module>g++ -E helloworld.cpp -o helloworld.out
@@ -42,22 +42,22 @@ C++ 는 다음의 [전처리](https://tango1202.github.io/classic-cpp-guide/clas
 
     `helloworld.out` 파일의 결과는 놀랍게도 943kbyte나 됩니다. 대략 1000배가 늘었습니다. 이를 다 일일이 기계어로 번역하다 보니, 단순히 `Hello World`만 출력하는 별것 아닌 코드이지만 컴파일 시간이 좀 걸리게 됩니다.
 
-    아마도 `iostream`이 또다른 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하고, [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)한 파일에서 또 다른 파일들을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하다 보니 벌어진 일이겠죠. [파일 구성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/)에서 말씀드린 것처럼, 헤더 파일에서 다른 헤더 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)하는 것을 최소화 해서 해결하면 되겠지만, 아무래도 한계가 있습니다.
+    아마도 `iostream`이 또다른 파일을 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 하고, [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include)한 파일에서 또 다른 파일들을 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 하다 보니 벌어진 일이겠죠. [파일 구성](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/)에서 말씀드린 것처럼, 헤더 파일에서 다른 헤더 파일을 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include)하는 것을 최소화 해서 해결하면 되겠지만, 아무래도 한계가 있습니다.
 
-2. [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제
+2. [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제
 
-     [#define](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)이나 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)는 해당 위치에 소스 코드를 대체하는 것이기 때문에, 어떤 것을 먼저 대체했는지에 따라 다른 결과가 나올 수 있습니다. 또한 [정적 변수의 초기화 순서](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%B3%80%EC%88%98%EC%9D%98-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%88%9C%EC%84%9C)와 같은 문제가 있을 수도 있습니다.
+     [#define](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)이나 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include)는 해당 위치에 소스 코드를 대체하는 것이기 때문에, 어떤 것을 먼저 대체했는지에 따라 다른 결과가 나올 수 있습니다. 또한 [정적 변수의 초기화 순서](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%B3%80%EC%88%98%EC%9D%98-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%88%9C%EC%84%9C)와 같은 문제가 있을 수도 있습니다.
 
-3. [선언과 정의를 분리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC)하는 [파일 구성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/)의 불편함
+3. [선언과 정의를 분리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC)하는 [파일 구성](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/)의 불편함
     
-    컴파일 속도 향상을 위해 [선언과 정의를 분리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC)하는데요, 소스 코드 관리가 상당히 번거롭습니다. 컴파일 속도와 구현 코드의 은닉이 더 중요하니 어쩔 수 없이 참고 사용하죠.
+    컴파일 속도 향상을 위해 [선언과 정의를 분리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC)하는데요, 소스 코드 관리가 상당히 번거롭습니다. 컴파일 속도와 구현 코드의 은닉이 더 중요하니 어쩔 수 없이 참고 사용하죠.
 
  4. 기호 충돌
 
-    정의가 중복되면 충돌이 납니다. 따라서 [전역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)를 `extern`으로 선언한다던지, [함수를 inline으로 정의](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/#%EC%97%AC%EB%9F%AC-cpp%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B8%EB%9D%BC%EC%9D%B8-%ED%95%A8%EC%88%98-%EC%A0%95%EC%9D%98)한다던지 해야 합니다. 
+    정의가 중복되면 충돌이 납니다. 따라서 [전역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)를 `extern`으로 선언한다던지, [함수를 inline으로 정의](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-inline/#%EC%97%AC%EB%9F%AC-cpp%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B8%EB%9D%BC%EC%9D%B8-%ED%95%A8%EC%88%98-%EC%A0%95%EC%9D%98)한다던지 해야 합니다. 
 
 
-C++20 부터는 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)이 추가되어 [전처리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/) 사용 방식을 개선하여 컴파일 속도를 향상시키고, [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제, [선언과 정의 분리](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC) 구성의 불편함, 기호 충돌 문제를 해결했습니다.
+C++20 부터는 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)이 추가되어 [전처리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/) 사용 방식을 개선하여 컴파일 속도를 향상시키고, [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제, [선언과 정의 분리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC) 구성의 불편함, 기호 충돌 문제를 해결했습니다.
 
 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)을 사용하는 방식은 컴파일러마다 다릅니다. 자세한 내용은 컴파일러 도움말을 참조 하세요.
 
@@ -111,7 +111,7 @@ F:\Data\language_test\test\module>g++ -std=c++20 -fmodules-ts MyModule.cpp main.
 
 # export(모듈 내보내기) 와 import(모듈 가져오기)
 
-모듈 선언인 `export module Module_20;` 이하에 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)로 내보낼 항목을 작성합니다. 개별로 내보낼 수도 있고, `export {}`로 그룹지어 내보낼 수도 있으며, [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 통째로 내보낼 수도 있습니다.
+모듈 선언인 `export module Module_20;` 이하에 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)로 내보낼 항목을 작성합니다. 개별로 내보낼 수도 있고, `export {}`로 그룹지어 내보낼 수도 있으며, [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)를 통째로 내보낼 수도 있습니다.
 
 ```cpp
 // ----
@@ -166,7 +166,7 @@ int main() {
 
 # import 헤더 파일
 
-특별히 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)를 [import](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)로 변경할 수 있습니다.
+특별히 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include)를 [import](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)로 변경할 수 있습니다.
 
 (*GCC 12.3.0 에서 컴파일되지 않습니다. 뭐가 잘못됐는지 좀더 확인해 봐야 합니다. https://build2.org/blog/build2-cxx20-modules-gcc.xhtml#header-units 참고*)
 
@@ -221,7 +221,7 @@ int main() {
 
 # 전역 모듈 조각과 개인 모듈 조각
 
-[전역 모듈 조각](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EC%A0%84%EC%97%AD-%EB%AA%A8%EB%93%88-%EC%A1%B0%EA%B0%81%EA%B3%BC-%EA%B0%9C%EC%9D%B8-%EB%AA%A8%EB%93%88-%EC%A1%B0%EA%B0%81)은 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)의 상단에 `module;`로 표시하며, [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)에서 사용하는 헤더 파일을 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include)합니다.
+[전역 모듈 조각](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EC%A0%84%EC%97%AD-%EB%AA%A8%EB%93%88-%EC%A1%B0%EA%B0%81%EA%B3%BC-%EA%B0%9C%EC%9D%B8-%EB%AA%A8%EB%93%88-%EC%A1%B0%EA%B0%81)은 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)의 상단에 `module;`로 표시하며, [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)에서 사용하는 헤더 파일을 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include)합니다.
 
 [개인 모듈 조각](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EC%A0%84%EC%97%AD-%EB%AA%A8%EB%93%88-%EC%A1%B0%EA%B0%81%EA%B3%BC-%EA%B0%9C%EC%9D%B8-%EB%AA%A8%EB%93%88-%EC%A1%B0%EA%B0%81)은 [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)의 하단에 `module : private;`로 표시하며, [모듈 인터페이스와 구현](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#%EB%AA%A8%EB%93%88-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%99%80-%EA%B5%AC%ED%98%84-%EB%B6%84%EB%A6%AC)을 하나의 파일에 작성할 수 있게 해줍니다. 즉, 함수 선언에는 [export](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/#export%EB%AA%A8%EB%93%88-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0-%EC%99%80-import%EB%AA%A8%EB%93%88-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)를 작성하고, `module : private;`에 실제 구현을 합니다.
 
@@ -413,7 +413,7 @@ int main() {
 }
 ```
 
-따라서, [네임스페이스](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-namespace/)를 사용하시는게 좋습니다.
+따라서, [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)를 사용하시는게 좋습니다.
 
 ```cpp
 // ----

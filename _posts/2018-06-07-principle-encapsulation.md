@@ -12,7 +12,7 @@ sidebar:
 
 조금 풀어 쓰면,
 
-1. 개체의 멤버 변수나 함수는 꽁꽁 숨긴 뒤(은닉), 꼭 필요한 것만 외부에 public 으로 노출(*[최소 public](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-complete-class/#%EC%B5%9C%EC%86%8C-public)*)하고,
+1. 개체의 멤버 변수나 함수는 꽁꽁 숨긴 뒤(은닉), 꼭 필요한 것만 외부에 public 으로 노출(*[최소 public](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-complete-class/#%EC%B5%9C%EC%86%8C-public)*)하고,
 2. 단위 기능을 응집하고, 결합도는 낮춘뒤,
 3. ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현하라.
 
@@ -215,7 +215,7 @@ inline Degree operator -(const Degree& left, float right) {
 }
 ```
 
-`Degree` 클래스 내에서 0~360 로 값을 보정하므로(*여러 [연산자를 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)하여 믿고 쓸 수 있습니다*), `Shape` 클래스는 `Degree`로 좀더 간단하게 구현할 수 있습니다. `Rotate()`함수의 불필요한 주석과 `assert`가 사라졌습니다.
+`Degree` 클래스 내에서 0~360 로 값을 보정하므로(*여러 [연산자를 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)하여 믿고 쓸 수 있습니다*), `Shape` 클래스는 `Degree`로 좀더 간단하게 구현할 수 있습니다. `Rotate()`함수의 불필요한 주석과 `assert`가 사라졌습니다.
 
 ```cpp
 class Shape {

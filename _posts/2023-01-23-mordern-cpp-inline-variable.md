@@ -8,22 +8,22 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, [클래스 정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 선언부에서 초기화 할 수 있습니다.
+> * (C++17~) [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)가 추가되어 헤더 파일에 정의된 변수를 여러개의 cpp에서 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 하더라도 중복 정의 없이 사용할 수 있습니다. 또한, [클래스 정적 멤버 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)를 선언부에서 초기화 할 수 있습니다.
 
 # 개요
 
-기존에는 [인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)만 있었는데요(*[인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/) 참고*), C++17 부터는 [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)를 제공합니다.
+기존에는 [인라인 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-inline/)만 있었는데요(*[인라인 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-inline/) 참고*), C++17 부터는 [인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)를 제공합니다.
 
-[인라인 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/)는 
+[인라인 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-inline/)는 
 
 1. 함수 호출을 최적화할 수 있도록 컴파일러에게 요청합니다.
-2. 여러 파일에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 한 함수가 중복 정의되지 않도록 링커에게 알려줍니다.
+2. 여러 파일에서 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 한 함수가 중복 정의되지 않도록 링커에게 알려줍니다.
 
 의 역할을 가졌는데요,
 
-[인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)는 여러 파일에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 한 변수가 중복 정의되지 않도록 링커에게 알려주는 역할만 합니다.
+[인라인 변수](https://tango1202.github.io/mordern-cpp/mordern-cpp-inline-variable/)는 여러 파일에서 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 한 변수가 중복 정의되지 않도록 링커에게 알려주는 역할만 합니다.
 
-따라서, 헤더 파일에서 [inline](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-inline/) 으로 변수를 선언해 두면, 여러 `cpp` 에서 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하여 사용할 수 있습니다.
+따라서, 헤더 파일에서 [inline](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-inline/) 으로 변수를 선언해 두면, 여러 `cpp` 에서 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 하여 사용할 수 있습니다.
 
 ```cpp
 // Test.h 헤더 파일에서,
@@ -54,7 +54,7 @@ EXPECT_TRUE(g_Val_17 == 12);
 
 # 인라인 변수를 이용한 클래스 정적 멤버 변수 정의
 
-[정적 멤버 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 선언과 정의의 분리가 필요하고 정의부에서 초기값을 세팅해야 한다고 언급했는데요(*[멤버 변수, 초기화 리스트](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/) 참고*),
+[정적 멤버 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98)는 선언과 정의의 분리가 필요하고 정의부에서 초기값을 세팅해야 한다고 언급했는데요(*[멤버 변수, 초기화 리스트](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/) 참고*),
 
 ```cpp
 class T {

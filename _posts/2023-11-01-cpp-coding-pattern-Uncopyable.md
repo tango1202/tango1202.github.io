@@ -24,7 +24,7 @@ private:
 복사 생성자는 쓰고, 복사 대입 연산자는 못쓰게 하는 개체. PImpl 구현시 사용
 
 
-[인터페이스](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)용 기반 클래스
+[인터페이스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)용 기반 클래스
 추상클래스용 기반 클래스
 
 

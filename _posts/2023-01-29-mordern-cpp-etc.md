@@ -8,25 +8,25 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++11~) [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof)가 추가되어 [메모리 정렬 방식](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 표준화 됐습니다.
+> * (C++11~) [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof)가 추가되어 [메모리 정렬 방식](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 표준화 됐습니다.
 > * (C++11~) [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.
 > * (C++11~) [멤버의 `sizeof()`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EB%A9%A4%EB%B2%84-sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)시 동작이 개선되어 개체를 인스턴스화 하지 않더라도 개체 멤버의 크기를 구할 수 있습니다.
-> * (C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 [#include](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#include) 하기 전에 파일이 존재하는지 확인할 수 있습니다.
+> * (C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 하기 전에 파일이 존재하는지 확인할 수 있습니다.
 > * (C++20~) [volatile의 일부가 deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-volatile-%EC%9D%BC%EB%B6%80-deprecate)되었습니다.
-> * (C++20~) [`__VA_OPT__`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
+> * (C++20~) [`__VA_OPT__`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
 > * (C++20~) [__has_cpp_attribute() 매크로 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#__has_cpp_attribute-%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)가 추가되어 C++11부터 추가된 [특성(attirbute)](https://tango1202.github.io/mordern-cpp/mordern-cpp-attribute/)이 지원되는지 확인 할 수 있습니다.
 > * (C++20~) [언어 지원 테스트](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#%EC%96%B8%EC%96%B4-%EC%A7%80%EC%9B%90-%ED%85%8C%EC%8A%A4%ED%8A%B8) 매크로가 추가되어 컴파일러가 C++11부터 추가된 언어 기능을 지원하는지 테스트 할 수 있습니다.
 
 # (C++11~) alignas(), alignof()
 
-기존에는 `#pragma pack`을 이용하여 비표준 방식으로 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 했는데요(*[개체 크기와 메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고*),
+기존에는 `#pragma pack`을 이용하여 비표준 방식으로 [메모리 정렬](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 했는데요(*[개체 크기와 메모리 정렬](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 참고*),
 
 C++11 부터는 [alignas() 와 alignof()](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-alignas-alignof) 로 이를 표준화하였습니다.
 
 |항목|내용|
 |--|--|
-|`alignof()` (C++11~)|주어진 타입의 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 크기를 구합니다.|
-|`alignas()` (C++11~)|주어진 값으로 [메모리 정렬](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 합니다. 단, 2, 4, 8, 16... 단위로 정렬하며, 내부 멤버중 제일 큰 값보다 작으면 무시합니다.|
+|`alignof()` (C++11~)|주어진 타입의 [메모리 정렬](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC) 크기를 구합니다.|
+|`alignas()` (C++11~)|주어진 값으로 [메모리 정렬](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)을 합니다. 단, 2, 4, 8, 16... 단위로 정렬하며, 내부 멤버중 제일 큰 값보다 작으면 무시합니다.|
 
 ```cpp
 // 4byte 단위로 정렬합니다.
@@ -61,9 +61,9 @@ EXPECT_TRUE(alignof(C_11) == 4 && sizeof(C_11) == 4 * 5);
 
 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)는 C99 에 도입되었으며, C와의 호환성을 위해 C++11에 추가되었습니다.
 
-[가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 사용하는 함수를 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)로 호출할 때 사용합니다.
+[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 사용하는 함수를 [매크로 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)로 호출할 때 사용합니다.
 
-다음 코드에서처럼 [매크로 함수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98) 정의시에 `...`을 사용하고, `__VA_ARGS__`를 이용하여 전달할 수 있습니다.
+다음 코드에서처럼 [매크로 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98) 정의시에 `...`을 사용하고, `__VA_ARGS__`를 이용하여 전달할 수 있습니다.
 
 ```cpp
 #define MY_SUM_11(count, ...) T::Sum(count, __VA_ARGS__)
@@ -133,7 +133,7 @@ EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
 
 # (C++20~) volatile 일부 deprecate
 
-다음 4가지 경우에 대해 [volatile](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-const-mutable-volatile/#%EC%B5%9C%EC%A0%81%ED%99%94-%EC%A0%9C%ED%95%9C-%ED%95%9C%EC%A0%95%EC%9E%90volatile) 사용이  [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었습니다.
+다음 4가지 경우에 대해 [volatile](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EC%B5%9C%EC%A0%81%ED%99%94-%EC%A0%9C%ED%95%9C-%ED%95%9C%EC%A0%95%EC%9E%90volatile) 사용이  [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove)되었습니다.
 
 * 복합 대입
 
@@ -180,7 +180,7 @@ EXPECT_TRUE(sizeof(T::m_X) == sizeof(int));
 
 # (C++20~) __VA_OPT__
 
- [`__VA_OPT__`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
+ [`__VA_OPT__`](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-va_opt)가 추가되어 [가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)가 있을 경우에는 괄호 안의 값으로 치환하고, 없을 경우에는 그냥 비워둡니다.  
 
  ```cpp
 int Sum(int init, int a, int b, int c) {return init + a + b + c;}

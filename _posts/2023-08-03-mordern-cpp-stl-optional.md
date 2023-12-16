@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)이 추가되어 값이 있을 수도 있고, 없을 수도 있는 데이터를 처리할 수 있어, 미확정 상태, 값을 처리하기 부적절한 상태, 함수 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 성공 여부 처리를 좀더 단순하게 할 수 있습니다.
+> * (C++17~) [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)이 추가되어 값이 있을 수도 있고, 없을 수도 있는 데이터를 처리할 수 있어, 미확정 상태, 값을 처리하기 부적절한 상태, 함수 [리턴값](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 성공 여부 처리를 좀더 단순하게 할 수 있습니다.
 
 # 개요
 
@@ -39,10 +39,10 @@ bool* option = nullptr;
  option = nullptr; // 값이 없음. 미확정 상태, 값을 표시하기 부적절한 상태
 ```
 
-아무래도 멀쩡한 값을 포인터로 처리하다 보니 사용이 불편하고, [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 해야 하는 부담이 있었습니다.
+아무래도 멀쩡한 값을 포인터로 처리하다 보니 사용이 불편하고, [delete](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 해야 하는 부담이 있었습니다.
 
 
-또한 실패할 수 있는 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 처리시에도 다음과 같이 성공시의 값과, 성공 여부를 리턴해야 하는 불편함도 있었습니다.
+또한 실패할 수 있는 [리턴값](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 처리시에도 다음과 같이 성공시의 값과, 성공 여부를 리턴해야 하는 불편함도 있었습니다.
 
 ```cpp
 std::map<int, std::string> m;
@@ -55,16 +55,16 @@ if (result.second != true) {
 } 
 ```
 
-C++17 부터는 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)이 추가되어 값이 있을 수도 있고, 없을 수도 있는 데이터를 처리할 수 있어, 미확정 상태, 값을 처리하기 부적절한 상태, 함수 [리턴값](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 성공 여부 처리를 좀더 단순하게 할 수 있습니다.
+C++17 부터는 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)이 추가되어 값이 있을 수도 있고, 없을 수도 있는 데이터를 처리할 수 있어, 미확정 상태, 값을 처리하기 부적절한 상태, 함수 [리턴값](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 성공 여부 처리를 좀더 단순하게 할 수 있습니다.
 
 |항목|내용|
 |--|--|
-|`=` (C++17~)|[복사 대입](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 또는 [이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
+|`=` (C++17~)|[복사 대입](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 또는 [이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
 |`emplace()` (C++17~)|내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 `any`내에서 내부 개체를 직접 생성합니다.|
 |`->()`, `*` (C++17~)|값에 접근합니다.|
 |`(bool)`, `has_value()` (C++17~)|값이 있는지 검사합니다.|
-|`value()` (C++17~)|값을 리턴합니다. 값이 없으면, `bad_optional_access` [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.|
-|`value_or(default)` (C++17~)|값이 있으면 값을 리턴하고, 없으면 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달한 `default`를 리턴합니다.|
+|`value()` (C++17~)|값을 리턴합니다. 값이 없으면, `bad_optional_access` [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.|
+|`value_or(default)` (C++17~)|값이 있으면 값을 리턴하고, 없으면 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달한 `default`를 리턴합니다.|
 |`emplace()` (C++17~)|내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)내에서 내부 개체를 직접 생성합니다.|
 |`reset()` (C++17~)|내부 개체를 초기화합니다.|
 |`swap()` (C++17~)|바꿔치기 합니다.|
@@ -72,13 +72,13 @@ C++17 부터는 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-c
 |`<, <=, >, >=` (C++17~)<br/>`<=>` (C++20~)|관리하는 개체를 비교합니다.|
 |`make_optional()` (C++17~)|(작성중)|
 |`nullopt_t` (C++17~)|[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)이 초기화되지 않았을때의 타입입니다.|
-|`bad_optional_access` (C++17~)|[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)에서 `value()` 사용시 값이 없을때 `bad_optional_access` [예외가 발생](https://tango1202.github.io/classic-cpp-exception/classic-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.|
+|`bad_optional_access` (C++17~)|[optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/)에서 `value()` 사용시 값이 없을때 `bad_optional_access` [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.|
 |`and_then()` (C++23~)|(작성중)|
 |`transform()` (C++23~)|(작성중)|
 |`or_else()` (C++23~)|(작성중)|
 
 
-다음 예에서는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. [reinterpret_cast](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 대신 `any_cast()`를 사용하며, [delete](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 하지 않아도 됩니다. 
+다음 예에서는 [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) 개체로 정수 타입과 `T`타입을 번갈아 가며 사용합니다. [reinterpret_cast](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 대신 `any_cast()`를 사용하며, [delete](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 하지 않아도 됩니다. 
 
 ```cpp
 std::optional<std::string> option{"Kim"};

@@ -13,33 +13,33 @@ sidebar:
 > * (C++11~) [tuple_cat()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_cat)이 추가되어 두개의 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 합칠 수 있습니다.
 > * (C++11~) [tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size)가 추가되어 컴파일 타임에 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)요소 갯수를 구할 수 있습니다.
 > * (C++11~) [tuple_element](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_element)가 추가되어 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 각 요소에 대한 타입을 구할 수 있습니다.
-> * (C++11~) [piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)가 추가되어 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)의 개체 생성시 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)의 요소들로 개체 생성자를 호출할 수 있습니다.
+> * (C++11~) [piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)가 추가되어 [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)의 개체 생성시 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)의 요소들로 개체 생성자를 호출할 수 있습니다.
 > * (C++14~) [타입 기반 get()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c14-%ED%83%80%EC%9E%85-%EA%B8%B0%EB%B0%98-get)이 추가되어 타입들이 서로 다르다면 타입으로 데이터에 접근할 수 있습니다.
-> * (C++17~) [apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)가 추가되어 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을 전달받아 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 호출할 수 있습니다.
+> * (C++17~) [apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)가 추가되어 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을 전달받아 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 호출할 수 있습니다.
 > * (C++17~) [make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple)이 추가되어 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을 전달받아 개체를 생성할 수 있습니다.
 
 # 개요
 
-기존에는 데이터를 주고받는 가벼운 개체를 만들기 위해 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 사용했는데요, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)는 `first`와 `second`로 두개의 요소만 관리할 수 있다는 아쉬움이 있었습니다.
+기존에는 데이터를 주고받는 가벼운 개체를 만들기 위해 [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)를 사용했는데요, [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)는 `first`와 `second`로 두개의 요소만 관리할 수 있다는 아쉬움이 있었습니다.
 
 C++11 부터 STL 에서는 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)이 제공되어 다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만들 수 있습니다.
 
 |항목|내용|
 |--|--|
-|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)|`first`와 `second`로 2개의 요소를 관리합니다.|
-|[make_pair()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 생성합니다.|
-[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct) (C++11~)|[pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)의 개체 생성시 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)의 요소들로 개체 생성자를 호출합니다.|
+|[pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)|`first`와 `second`로 2개의 요소를 관리합니다.|
+|[make_pair()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)|[pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)를 생성합니다.|
+[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct) (C++11~)|[pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)의 개체 생성시 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)의 요소들로 개체 생성자를 호출합니다.|
 |[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple) (C++11~)|다수의 요소를 관리할 수 있는 데이터 전달용 개체를 손쉽게 만듭니다.|
-|`get()` (C++11~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)에서 주어진 인덱스 위치에 있는 요소의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
+|`get()` (C++11~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)에서 주어진 인덱스 위치에 있는 요소의 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다.<br/>(C++14~) 타입으로 찾을 수 있도록 보강되었습니다.|
 |[make_tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#make_tuple) (C++11~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 생성합니다.|
-|[tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie) (C++11~)|[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만듭니다. |
+|[tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie) (C++11~)|[좌측값 참조](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만듭니다. |
 |[forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple) (C++11~)|함수 인수 전달에 적합하도록, [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 생성시 좌측값이나 [우측값 참조](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0)가 변형되지 않도록 합니다.|
 |[tuple_cat()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_cat) (C++11~)|두개의 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 합칩니다.|
 |[tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size) (C++11~)|컴파일 타임에 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)의 요소 갯수를 구합니다.|
 |[tuple_element](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_element) (C++11~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)의 각 요소에 대한 타입을 제공합니다.|
 |`ignore()` (C++11~)|(작성중)|
 |`interger_sequence` (C++14~)|(작성중)|
-|[apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply) (C++17~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을 전달받아 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 호출합니다.|
+|[apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply) (C++17~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을 전달받아 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 호출합니다.|
 |[make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple) (C++17~)|[tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을 전달받아 개체를 생성합니다.|
 |`basic_common_reference` (C++23~)|(작성중)|
 |`common_type` (C++23~)|(작성중)|
@@ -67,11 +67,11 @@ EXPECT_TRUE(
 );
 ```
 
-> *(C++17~) [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)이 추가되어 [배열](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-array/), [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/), [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/), 클래스등의 내부 요소나 [멤버 변수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-variable/)에 쉽게 접근할 수 있습니다.*
+> *(C++17~) [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)이 추가되어 [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/), [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/), [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/), 클래스등의 내부 요소나 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)에 쉽게 접근할 수 있습니다.*
 
 # make_tuple()
 
-`make_pair`처럼([pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 참고) [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 생성합니다.
+`make_pair`처럼([pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/) 참고) [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 생성합니다.
 
 ```cpp
 std::tuple<int, std::string, char> Func() {
@@ -81,7 +81,7 @@ std::tuple<int, std::string, char> Func() {
 
 # tie()
 
-[좌측값 참조](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만듭니다. [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)에서 `get()`함수를 이용해서 데이터를 확인하는데, 참 직관적이지 못합니다. 이럴때 다음처럼 [tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie) 함수를 이용하여 [지역 변수](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 [참조자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만들면 좀더 직관적으로 데이터를 확인할 수 있습니다.
+[좌측값 참조](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만듭니다. [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)에서 `get()`함수를 이용해서 데이터를 확인하는데, 참 직관적이지 못합니다. 이럴때 다음처럼 [tie()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tie) 함수를 이용하여 [지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)의 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)로 구성된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)을 만들면 좀더 직관적으로 데이터를 확인할 수 있습니다.
 
 ```cpp
 std::tuple<int, std::string, char> Func() {
@@ -154,9 +154,9 @@ EXPECT_TRUE(
 
 # piecewise_construct
 
-[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)는 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)의 생성자의 오버라이드 버전을 호출하기 위한 더미(*Dummy*) 개체 인데요, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)의 `first`와 `second` 개체를 생성할때, 전달된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 개체의 요소들로 초기화 해줍니다.
+[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)는 [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)의 생성자의 오버라이드 버전을 호출하기 위한 더미(*Dummy*) 개체 인데요, [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)의 `first`와 `second` 개체를 생성할때, 전달된 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 개체의 요소들로 초기화 해줍니다.
 
-보통 `A`와 `B` 개체를 관리하는 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)를 만든다면, 
+보통 `A`와 `B` 개체를 관리하는 [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)를 만든다면, 
 
 ```cpp
 std::pair<A, B> data{
@@ -167,7 +167,7 @@ std::pair<A, B> data{
 
 와 같이 만들텐데요, 
 
-[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)를 사용한 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전을 실행하면, `A` 개체를 생성할때 사용할 인수들과 `B`개체를 생성할때 사용할 인수들을 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)로 전달해서, [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/) 내부에서 `A`, `B`를 생성하도록 할 수 있습니다.
+[piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)를 사용한 [함수 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전을 실행하면, `A` 개체를 생성할때 사용할 인수들과 `B`개체를 생성할때 사용할 인수들을 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)로 전달해서, [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/) 내부에서 `A`, `B`를 생성하도록 할 수 있습니다.
 
 ```cpp
 class A {
@@ -205,9 +205,9 @@ EXPECT_TRUE(
 );
 ```
 
-상기 예에서는 인수들의 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)이 변하지 않도록 [forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple)을 사용했는데요, [make_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#make_tuple)을 사용해도 결과는 같습니다.
+상기 예에서는 인수들의 [참조성](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)이 변하지 않도록 [forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple)을 사용했는데요, [make_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#make_tuple)을 사용해도 결과는 같습니다.
 
-하지만, [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달된 개체를 사용할 때에는 [참조성](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)이 변할 수도 있으므로, [piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)를 사용할땐 [forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple)을 사용하는게 좋습니다.
+하지만, [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달된 개체를 사용할 때에는 [참조성](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)이 변할 수도 있으므로, [piecewise_construct](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#piecewise_construct)를 사용할땐 [forward_as_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#forward_as_tuple)을 사용하는게 좋습니다.
 
 # (C++14~) 타입 기반 get()
 
@@ -231,7 +231,7 @@ EXPECT_TRUE(
 
 # (C++17~) apply()
 
-[apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)는 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을([array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)나 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)도 가능합니다. `get()`과 [tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size)와 호환되면 됩니다.) 전달받아 [함수자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/)를 호출하는 유틸리티 함수 입니다.
+[apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)는 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을([array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)나 [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)도 가능합니다. `get()`과 [tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size)와 호환되면 됩니다.) 전달받아 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 호출하는 유틸리티 함수 입니다.
 
 기존에는 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/)의 데이터를 함수에 전달할때 요소의 전개가 필요했습니다.
 
@@ -261,7 +261,7 @@ EXPECT_TRUE(std::apply(Sum, data) == 1 + 2 + 3);
 
 # (C++17~) make_from_tuple
 
-[make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple)은 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을([array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)나 [pair](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-pair/)도 가능합니다. `get()`과 [tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size)와 호환되면 됩니다.) 전달받아 개체를 생성하는 유틸리티 함수 입니다. 이를 이용하면, [apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)처럼 요소의 전개를 은닉할 수 있습니다.
+[make_from_tuple()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-make_from_tuple)은 [tuple](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/) 형식을([array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)나 [pair](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-pair/)도 가능합니다. `get()`과 [tuple_size](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#tuple_size)와 호환되면 됩니다.) 전달받아 개체를 생성하는 유틸리티 함수 입니다. 이를 이용하면, [apply()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-tuple/#c17-apply)처럼 요소의 전개를 은닉할 수 있습니다.
 
 ```cpp
 class T {

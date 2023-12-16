@@ -26,7 +26,7 @@ STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공
 |[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable/#condition_variable) (C++11~)|쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 활성화 시켜 주는 개체입니다.|
 |`condition_variable_any` (C++11~)|(작성중)|
 |`notify_all_at_thread_exit()` (C++11~)|(작성중)|
-|`cv_status` (C++11~)|`no_timeout`, `timeout`이 정의된 [열거형](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-enum/)입니다.|
+|`cv_status` (C++11~)|`no_timeout`, `timeout`이 정의된 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)입니다.|
 
 # condition_variable
 
@@ -44,15 +44,15 @@ STL 에서는 쓰레드 동기화를 위해 다음과 같은 개체들이 제공
 
 [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)은 쓰레드간 동기화를 위해 쓰레드를 `wait()`시킨뒤, 특정 조건이 되었을때 `notify_one()` 이나 `notify_all()`로 활성화 시켜 주는 개체입니다. 
 
-[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)의 [멤버 함수](https://tango1202.github.io/classic-cpp-oop/classic-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 다음과 같습니다. 
+[condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 다음과 같습니다. 
 
 |항목|내용|
 |--|--|
 |`notify_one()` (C++11~)|대기중인 한개의 쓰레드에게 알립니다.|
 |`notify_all()` (C++11~)|대기중인 모든 쓰레드에게 알립니다.|
-|`wait()` (C++11~)|Notify가 왔을때 주어진 [조건자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 참이면 대기를 해제합니다.|
-|`wait_for()` (C++11~)|Notify가 왔을때 주어진 [조건자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 참이거나 주어진 기간이 지나면 대기를 해제합니다.|
-|`wait_until()` (C++11~)|Notify가 왔을때 주어진 [조건자](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 참이거나 주어진 시간이 되면 대기를 해제합니다.|
+|`wait()` (C++11~)|Notify가 왔을때 주어진 [조건자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 참이면 대기를 해제합니다.|
+|`wait_for()` (C++11~)|Notify가 왔을때 주어진 [조건자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 참이거나 주어진 기간이 지나면 대기를 해제합니다.|
+|`wait_until()` (C++11~)|Notify가 왔을때 주어진 [조건자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90%EC%99%80-%EC%A1%B0%EA%B1%B4%EC%9E%90)가 참이거나 주어진 시간이 되면 대기를 해제합니다.|
 |`native_handle()` (C++11~)|시스템에 따른 구현에 정의된 핸들을 리턴합니다.|
 
 예를 들어 다음의 `wait()`는 

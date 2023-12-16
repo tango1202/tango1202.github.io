@@ -8,17 +8,17 @@ sidebar:
     nav: "docs"
 ---
 
-> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었습니다. [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
+> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었습니다. [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
 
 # 개요
 
-[대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었습니다. [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다. 단, 여러 쓰레드를 통한 병렬 작업을 반드시 수행하지는 않고, 병렬 작업이 가능하도록 허용합니다.
+[대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [함수 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었습니다. [seq, par, par_unseq, unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다. 단, 여러 쓰레드를 통한 병렬 작업을 반드시 수행하지는 않고, 병렬 작업이 가능하도록 허용합니다.
 
 *(아쉽게도 제 환경에서는 단일 쓰레드로 동작하네요. MinGW-w64(GCC 12.3.0)의 문제일지 다른 문제일지는 좀더 확인해 봐야 할 듯합니다.)*
 
 > **확인 필요사항**
 > * GCC 옵션 : [gcc.gnu.org](https://gcc.gnu.org/onlinedocs/libstdc++/manual/parallel_mode_using.html)에서 `-fopenmp`, `-march=native`, `D_GLIBCXX_PARALLEL`에 대한 언급이 있는데, 이게 C++17 병렬 알고리즘을 활성화 하는 옵션인지는 잘 모르겠습니다. 어쨌던, 사용해도 단일 쓰레드로 동작합니다.
-> * STL 구현 : STL 실제 구현이 안되어 있을 수도 있습니다. GCC에서 병렬 알고리즘 함수의 세부 구현 목록을 찾아봐야 합니다.(샘플로 [for_each()](https://tango1202.github.io/classic-cpp-stl/classic-cpp-stl-algorithm/#for_each), [reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85), `sort()`를 해봤습니다만 모두 단일 쓰레드로 동작합니다.)
+> * STL 구현 : STL 실제 구현이 안되어 있을 수도 있습니다. GCC에서 병렬 알고리즘 함수의 세부 구현 목록을 찾아봐야 합니다.(샘플로 [for_each()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-algorithm/#for_each), [reduce()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85), `sort()`를 해봤습니다만 모두 단일 쓰레드로 동작합니다.)
 > * 다른 STL 사용 : [https://cukic.co/2018/03/29/cxx17-and-parallel-algorithms-in-stl/](https://cukic.co/2018/03/29/cxx17-and-parallel-algorithms-in-stl/)에서 Intel과 HP STL 사용 예가 있습니다. 
 
 ![image](https://www.modernescpp.com/wp-content/uploads/2021/07/allAlgorithm-1024x477.png)
@@ -31,7 +31,7 @@ sidebar:
 
 `<execution>` 헤더 파일을 포함해야 하며, `std::execution` 네임스페이스를 사용합니다.
 
-실행 정책을 지원하는 알고리즘 함수는 다음과 같이 실행 정책을 [인자](https://tango1202.github.io/classic-cpp-guide/classic-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받습니다.
+실행 정책을 지원하는 알고리즘 함수는 다음과 같이 실행 정책을 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 받습니다.
 
 ```cpp
 // 실행 정책을 인자로 받습니다.
