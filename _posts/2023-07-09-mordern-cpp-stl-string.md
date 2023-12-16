@@ -253,7 +253,7 @@ static const size_type npos = -1;
 |`assign_range()` (C++11~)||(작성중)|
 |`get_allocator()` (C++23~)||(작성중)|
 |`resize()`||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 새 크기를 지정하며, 필요에 따라 문자를 추가하거나 지웁니다.|
-|[size()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)<br/>`[length()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 문자 갯수를 리턴합니다.<br/>[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에서는 `length`를 추가로 제공합니다.|
+|[size()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)<br/>[length()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 문자 갯수를 리턴합니다.<br/>[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에서는 `length`를 추가로 제공합니다.|
 |[empty()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 비었는지 확인합니다.|
 |[capacity()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/#size%EC%99%80-capacity)||메모리를 더 할당하지 않고 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에 저장할 수 있는 문자 갯수를 리턴합니다.([string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)은 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 동일하게 메모리 할당이 빈번히 발생하지 않도록 실제 문자 갯수보다 큰 크기를 할당하기도 하고, 삽입/삭제에 따라 실제 문자 갯수보다 더 많은 메모리를 관리할 수 있습니다.)|
 |`shrink_to_fit()`||(작성중)|
@@ -350,6 +350,7 @@ char buf[10];
 }
 ```
 
-# (C++20~)u8string
+# (C++20~) u8string
 
-C++20 부터는 UTF8 을 관리할 수 있도록 `u8string`이 추가되었습니다.
+C++20 부터는 UTF8 을 관리할 수 있도록 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+

@@ -272,13 +272,13 @@ EXPECT_TRUE((*result).m_Name == "Lee" && (*result).m_Val == 10);
 
 # (C++20~) 컨테이너 멤버 함수의 constexpr 개선
 
-[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) 지원이 개선되어 대부분의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)들이 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 변경되었습니다.
+[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 멤버 함수의 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) 지원이 개선되어 대부분의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)들이 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 변경되었습니다.
 
 # (C++20~) vector와 string의 constexpr 개선
 
-C++20 부터 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로 변경되었습니다.
+[vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로 변경되었습니다.
 
-또한 대부분의 [알고리즘도 constexpr 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#c20-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)되었기 때문에 다음과 같이 컴파일 타임에 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)를 정렬하여 사용할 수 있습니다.
+또한 대부분의 [알고리즘에서 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#c20-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)되었기 때문에 다음과 같이 컴파일 타임에 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)를 정렬하여 사용할 수 있습니다.
 
 ```cpp
 constexpr int maxVal { 
@@ -294,7 +294,7 @@ static_assert(maxVal == 3); // 컴파일 타임 상수입니다.
 
 # (C++20~) erase(), erase_if()
 
-각 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 [erase()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)는 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 전달받아 요소를 삭제하고, [알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/)의 [remove()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-algorithm/#remove)는 값을 전달받아 요소를 앞으로 옮깁니다. 따라서 주어진 값인 요소를 삭제하려면 다음과 같이 이 둘을 결합해서 사용해야 했습니다.(*[컨테이너 멤버 함수 erase()와 알고리즘 remove() 함수](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98) 참고*)
+각 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 [erase()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)는 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 전달받아 요소를 삭제하고, [알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/)의 [remove()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-algorithm/#remove)는 값을 전달받아 삭제하지 않을 요소를 앞으로 옮깁니다. 따라서 값으로 요소를 삭제하려면 다음과 같이 이 둘을 결합해서 사용해야 했습니다.(*[컨테이너 멤버 함수 erase()와 알고리즘 remove() 함수](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98) 참고*)
 
 ```cpp
 std::vector<int> v{1, 1, 2, 1, 1, 3};
@@ -313,7 +313,7 @@ EXPECT_TRUE(v.size() == 2 && v[0] == 2 && v[1] == 3);
 
 # (C++20~) contains()
 
-기존에는 연관 컨테이너에서 주어진 Key가 있는지 검사하려면 `find()`를 사용했어야 했습니다.
+기존에는 연관 컨테이너에서 주어진 Key가 있는지 검사하려면 `find()`를 사용했는데요,
 
 ```cpp
 std::set s{1, 2, 3};

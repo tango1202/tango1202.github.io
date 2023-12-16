@@ -56,7 +56,7 @@ sidebar:
 
 # (C++20~) 정수 비교
 
-기존에는 `signed`와 `unsigned`를 비교하면, `signed`를 `unsigned`로 [암시적으로 형변환](??) 하기 때문에, 음의 정수와 양의 정수를 정상적으로 비교하지 못했습니다.
+기존에는 `signed`와 `unsigned`를 비교하면, `signed`를 `unsigned`로 [암시적으로 형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 하기 때문에, 음의 정수와 양의 정수를 정상적으로 비교하지 못했습니다.
 
 ```cpp
 int x{-1}; // 0xFFFF FFFF(4294967295) 
