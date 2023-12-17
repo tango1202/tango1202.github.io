@@ -227,7 +227,7 @@ catch (...) {} // 그외 모든 예외 타입
 
 ```cpp
 try {
-    std::string("abc").substr(10); // (X) 예외 발생. std::length_error
+    std::string str = std::string("abc").substr(10); // (X) 예외 발생. std::length_error
 }
 catch (const std::exception& e) {
     std::cout << e.what() << '\n';

@@ -119,8 +119,8 @@ EXPECT_TRUE(Func(str2) == 5); // (O) 불필요하게 string 개체를 생성하�
 |항목|내용|
 |--|--|
 |[compare()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A0%EB%8B%B9-%ED%95%A9%EC%84%B1-%EB%B9%84%EA%B5%90assign-append-compare) (C++17~)|문자열을 대소 비교합니다.|
-|`starts_with()` (C++20~)|(작성중)|
-|`ends_with()` (C++20~)|(작성중)|
+|`starts_with()` (C++20~)|주어진 부분 문자열로 시작하는지 검사합니다.|
+|`ends_with()` (C++20~)|주어진 부분 문자열로 끝나는지 검사합니다.|
 |`contains()` (C++23~)|(작성중)|
 |[substr()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy) (C++17~)|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에서 부분 문자열을 복사하여 리턴합니다.|
 |[copy()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy) (C++17~)|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에서 부분 문자열을 문자[배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)에 복사합니다.|

@@ -234,7 +234,7 @@ public:
         m_Val(val) {}
     // 암시적 복사 생성자의 기본 동작은 멤버별 복사 생성자 호출입니다.    
     // T(const T& other) : 
-    //     m_Val(other.m_Val) {} // !!동일한 힙 개체를 참조합니다.        
+    //     m_Val(other.m_Val) {} // (△) 비권장. 동일한 힙 개체를 참조합니다.        
     
     // 힙 개체를 메모리에서 제거 합니다.
     ~T() {delete m_Val;} 

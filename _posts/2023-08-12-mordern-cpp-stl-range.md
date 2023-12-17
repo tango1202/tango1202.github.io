@@ -223,7 +223,7 @@ std::vector<std::pair<std::string, int>> v{
 };
 std::ranges::sort(
     v, 
-    {}, // 기본 Compare를 사용합니다.
+    {}, // 기본 Compare인 std::ranges::less를 사용합니다.
     &std::pair<std::string, int>::second // 요소 타입인 std::pair<std::string, int> 대신 std::pair<std::string, int>::second를 비교하는데 사용합니다.
 );
 EXPECT_TRUE(v[0].first == "Park" && v[1].first == "Lee" && v[2].first == "Kim"); // pair.second 값으로 정렬되어 Park, Lee, Kim 순서입니다.
