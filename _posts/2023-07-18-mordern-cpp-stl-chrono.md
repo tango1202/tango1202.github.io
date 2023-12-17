@@ -9,8 +9,10 @@ sidebar:
 ---
 
 > * (C++11~) [system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock), [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point), [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 이 추가되어 좀더 다양한 정확도로 시간을 추적할 수 있습니다.
-> * (C++14~) [날짜 / 시간 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c14-%EB%82%A0%EC%A7%9C--%EC%8B%9C%EA%B0%84-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 `operator ""h`와 같이 표현할 수 있습니다.
 > * (C++17~) [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)와 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 반올림 관련 함수인 [floor(), ceil(), round(), abs()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)함수가 추가되었습니다.
+> * (C++20~) [시/분/초 서식](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-%EC%8B%9C%EB%B6%84%EC%B4%88-%EC%84%9C%EC%8B%9D)이 추가되어 12시간/24시간의 시-분-초 서식 처리가 간편해 졌습니다.
+> * (C++20~) [Calender](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-calendar)가 추가되어 년-월-일 서식 처리가 간편해 졌습니다.
+> * (C++20~) [Timezone](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone)이 추가되었습니다.
 
 # 개요
 
@@ -90,9 +92,6 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |`min()` (C++11~)|(작성중)|
 |`max()` (C++11~)|(작성중)|
 |`time_point_cast()`|(작성중)|
-|`floor()` (C++17~)|내림합니다.|
-|`ceil()` (C++17~)|올림합니다.|
-|`round()` (C++17~)|반올림합니다.|
 |`+, -` (C++11~)|(작성중)|
 |`++, --` (C++11~)<br/>|(작성중)|
 |`+=, -=` (C++11~)|(작성중)|
@@ -117,10 +116,6 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |`min()` (C++11~)|(작성중)|
 |`max()` (C++11~)|(작성중)|
 |`duration_cast()` (C++11~)|(작성중)|
-|`floor()` (C++17~)|내림합니다.|
-|`ceil()` (C++17~)|올림합니다.|
-|`round()` (C++17~)|반올림합니다.|
-|`abs()` (C++17~)|절대값을 구합니다.|
 |`from_stream()` (C++20~)|(작성중)|
 |`+, -` (C++11~)|(작성중)|
 |`++, --` (C++11~)<br/>|(작성중)|
@@ -140,7 +135,7 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |`seconds` (C++11~)|`duration<int35>`|
 |`minutes` (C++11~)|`duration<int29, std::ratio<60>>`|
 |`hours` (C++11~)|`duration<int23, std::ratio<3600>>`|
-|`days` (C++20~)|`duration<int25, std::ratio<86400>>`|
+|[days](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) (C++20~)|`duration<int25, std::ratio<86400>>`|
 |`weeks` (C++20~)|`duration<int22, std::ratio<604800>>`|
 |`month` (C++20~)|`duration<int20, std::ratio<2629746>>`|
 |`years` (C++20~)|`duration<int17, std::ratio<31556952>>`|
@@ -153,41 +148,156 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 |`treat_as_floating_point` (C++11~)|(작성중)|
 |`duration_values` (C++11~)|(작성중)|
   
+# (C++17~) floor(), ceil(), round(), abs()
 
-# (C++14~) 날짜 / 시간 리터럴
-
-C++14 부터는 [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 추가되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 [문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/), [날짜 / 시간](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/), [복소수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex) 관련 표현이 간편해 졌습니다.
+|항목|내용|
+|--|--|
+|`floor()` (C++17~)|[time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)와 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)을 내림합니다.|
+|`ceil()` (C++17~)|[time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)와 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)올림합니다.|
+|`round()` (C++17~)|[time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)와 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)반올림합니다.|
+|`abs()` (C++17~)|[duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)의 절대값을 구합니다.|
 
 # (C++20~) 시/분/초 서식
 
 |항목|내용|
 |--|--|
-|`hh_mm_ss` (C++20~)|(작성중)|
-|`is_am()` (C++20~)<br/>`is_pm()` (C++20~)<br/>`make12()` (C++20~)<br/>`make24()` (C++20~)|(작성중)|
+|`hh_mm_ss` (C++20~)|자정부터 지난 시간의 시/분/초를 구합니다.|
+|`is_am()` (C++20~)<br/>`is_pm()` (C++20~)<br/>`make12()` (C++20~)<br/>`make24()` (C++20~)|12시간/24시간 서식을 적용합니다.|
+
+다음은 [시/분/초 서식](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-%EC%8B%9C%EB%B6%84%EC%B4%88-%EC%84%9C%EC%8B%9D)의 사용예입니다. [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)을 사용하기 위해 `using namespace std::chrono`를 사용했습니다.
+
+```cpp
+using namespace std::chrono; // ""h, ""min, ""s사용을 위해 using namespace를 사용합니다. 
+constexpr std::chrono::hh_mm_ss time{12h + 72min + 3s};
+
+static_assert(time.hours() == 13h); // 12h에서 72min을 더해서 13h 12min이 되었습니다.
+static_assert(time.minutes() == 12min);
+static_assert(time.seconds() == 3s);
+
+static_assert(std::chrono::is_am(13h) == false);
+static_assert(std::chrono::is_pm(13h) == true);
+static_assert(std::chrono::make12(13h) == 1h);
+static_assert(std::chrono::make24(1h, true) == 13h); // pm 1h를 24시간 서식으로 변경하여 13h가 되었습니다. 
+```
 
 # (C++20~) Calendar
 
+`auto date{year(2023)/month(12)/day(25)};`와 같이 특정 년-월-일을 표현합니다.
+
 |항목|내용|
 |--|--|
-|`last_spec` (C++20~)|(작성중)|
-|`day` (C++20~)|(작성중)|
-|`month` (C++20~)|(작성중)|
-|`year` (C++20~)|(작성중)|
-|`weekday` (C++20~)|(작성중)|
-|`weekday_indexed` (C++20~)|(작성중)|
-|`weekday_last` (C++20~)|(작성중)|
-|`month_day` (C++20~)|(작성중)|
-|`month_day_last` (C++20~)|(작성중)|
-|`month_weekday` (C++20~)|(작성중)|
-|`month_weekday_last` (C++20~)|(작성중)|
-|`year_month` (C++20~)|(작성중)|
-|`year_month_day` (C++20~)|(작성중)|
-|`year_month_day_last` (C++20~)|(작성중)|
-|`year_month_weekday` (C++20~)|(작성중)|
-|`year_month_weekday_last` (C++20~)|(작성중)|
-|`operator /` (C++20~)|(작성중)|
+|`last_spec` (C++20~)|한달의 말일 또는 마지막 요일임을 나타냅니다. `last`가 미리 정의되어 있습니다.|
+|`day` (C++20~)|일을 나타냅니다.|
+|`month` (C++20~)|월을 나타냅니다. `January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`가 미리 정의되어 있습니다.|
+|`year` (C++20~)|년을 나타냅니다.|
+|`weekday` (C++20~)|요일을 나타냅니다. `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Satureday`가 미리 정의되어 있습니다.|
+|`weekday_indexed` (C++20~)|특정월의 N번째 요일을 나타냅니다.|
+|`weekday_last` (C++20~)|특정월의 마지막 요일을 나타냅니다.|
+|`month_day` (C++20~)|월-일을 나타냅니다. 월일, 일월의 형태로 초기화할 수 있습니다.|
+|`month_day_last` (C++20~)|월-마지막날을 나타냅니다.|
+|`month_weekday` (C++20~)|월-요일을 나타냅니다.|
+|`month_weekday_last` (C++20~)|월-마지막 요일를 나타냅니다.|
+|`year_month` (C++20~)|년-월을 나타냅니다.|
+|`year_month_day` (C++20~)|년-월-일을 나타냅니다. 년월일, 일월년, 월일년의 형태로 초기화할 수 있습니다.|
+|`year_month_day_last` (C++20~)|년-월-마지막날을 나타냅니다.|
+|`year_month_weekday` (C++20~)|년-월-요일을 나타냅니다.|
+|`year_month_weekday_last` (C++20~)|년-월-마지막 요일을 나타냅니다.|
+|`operator /` (C++20~)|년/월/일등의 형태의 표시를 지원합니다.|
+
+
+요일과 월은 다음과 같이 미리 정의되어 있습니다.
+
+```cpp
+static_assert(std::chrono::Sunday == std::chrono::weekday(0)); // 각 요일은 미리 정의되었습니다.
+static_assert(std::chrono::December == std::chrono::month(12)); // 각월은 미리 정의되었습니다.
+```
+
+다음과 같이 `month_day`나 `year_month_day`로 특정한 날을 표현할 수 있습니다.
+
+```cpp
+//월-일
+std::chrono::month_day monthDay1{std::chrono::month{12}/std::chrono::day{25}};
+std::chrono::month_day monthDay2{std::chrono::day{25}/std::chrono::month{12}};
+
+// 년-월-일
+std::chrono::year_month_day yearMonthDay1{std::chrono::year{2023}/std::chrono::month{12}/std::chrono::day{25}};
+std::chrono::year_month_day yearMonthDay2{std::chrono::day{25}/std::chrono::month{12}/std::chrono::year{2023}};
+std::chrono::year_month_day yearMonthDay3{std::chrono::month{12}/std::chrono::day{25}/std::chrono::year{2023}};
+```
+
+`last_spec`은 마지막 날이나 마지막 요일을 나타내는 타입이며, 미리 정의된 `last` 개체를 사용합니다.
+
+```cpp
+{
+    // 2023년 12월의 마지막 날
+    std::chrono::year_month_day date{std::chrono::year{2023}/std::chrono::month{12}/std::chrono::last};
+    EXPECT_TRUE(date.day() == std::chrono::day{31});
+}
+```
+
+다음 예는 `year_month_weekday_last`나 `year_month_weekday`로 생성한뒤 `year_month_day`로 변환하여 특정 요일에 해당하는 날짜를 구합니다.
+
+```cpp
+{
+    // 2023년 11월의 마지막 일요일
+    std::chrono::year_month_weekday_last date1{std::chrono::year{2023}/std::chrono::month{11}/std::chrono::Sunday[std::chrono::last]}; 
+    std::chrono::year_month_day date2{date1};
+    EXPECT_TRUE(date2.day() == std::chrono::day{26}); // 2023년 11월의 마지막 일요일은 26일입니다.
+}
+{
+    // 2023년 11월의 2번째 일요일
+    std::chrono::year_month_weekday date1{std::chrono::year{2023}/std::chrono::month{11}/std::chrono::Sunday[2]}; 
+    std::chrono::year_month_day date2{date1};
+    EXPECT_TRUE(date2.day() == std::chrono::day{12}); // 2023년 11월의 두번째 일요일은 12일입니다.
+}
+{
+    // 2번째 일요일
+    std::chrono::weekday_indexed week{std::chrono::Sunday, 2};
+
+    // 2023년 11월의 2번째 일요일
+    std::chrono::year_month_weekday date1{std::chrono::year{2023}/std::chrono::month{11}/week}; 
+    std::chrono::year_month_day date2{date1};
+    EXPECT_TRUE(date2.day() == std::chrono::day{12}); // 2023년 11월의 두번째 일요일은 12일입니다.            
+}  
+```
+
+**local_days(), sys_days() 형변환 연산자**
+
+달력 날짜인 `year_month_day`, `year_month_day_last`, `year_month_weekday`, `year_month_weekday_last`는 `local_days()`나 `local_days()` [형변환 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%ED%98%95%EB%B3%80%ED%99%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A0%95%EC%9D%98)를 이용하여 [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)로 변환할 수 있습니다.
+
+다음 예는 두개의 달력 날짜의 차이를 구하는 예입니다. 달력 날짜끼리 직접 `-`을 할 수 없기 때문에, [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)로 변환하여 차이를 구합니다. [days](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)기반 이기 때문에 `5d`가 출력됩니다.
+
+```cpp
+// 2023년 12월 25일
+std::chrono::year_month_day date1{std::chrono::year{2023}/std::chrono::month{12}/std::chrono::day{25}};
+
+// 2023년 12월 20일
+std::chrono::year_month_day date2{std::chrono::year{2023}/std::chrono::month{12}/std::chrono::day{20}};
+
+std::chrono::days duration{std::chrono::sys_days(date1) - std::chrono::sys_days(date2)}; // 두 달력 날짜의 차이를 구하기 위해 time_point로 변환합니다.
+
+std::cout << duration << std::endl; // 5d 
+```
+
+**유효성 검사**
+
+`ok()` 멤버 함수로 유효성 검사를 할 수 있습니다. 윤년이 있더라도 잘 검사해 줍니다.
+
+```cpp
+std::chrono::day day29{29};
+EXPECT_TRUE(day29.ok() == true);
+
+std::chrono::year_month_day date1{std::chrono::year{2023}/std::chrono::month{2}/day29};
+EXPECT_TRUE(date1.ok() == false); // 2023/2/30은 유효하지 않습니다. 28일까지 있습니다.
+
+std::chrono::year_month_day date2{std::chrono::year{2024}/std::chrono::month{2}/day29};
+EXPECT_TRUE(date2.ok() == true); // 2023/2/29는 유효합니다. 29일까지 있습니다.
+```
+
 
 # (C++20~) Time Zone
+
+UTC 시간대나 유닉스 시간대등을 정의합니다.
 
 |항목|내용|
 |--|--|

@@ -48,7 +48,7 @@ sidebar:
 |`int_least8_t` (C++11~)<br/>`int_least16_t` (C++11~)<br>`int_least32_t` (C++11~)<br/>`int_least64_t` (C++11~)|(작성중)|
 |`intmax_t` (C++11~)|(작성중)|
 |`intptr_t` (C++11~)|(작성중)|
-|`uint8_t` (C++11~)<br/>`uint16_t` (C++11~)<br>`uint32_t` (C++11~)<br/>`uint64_t` (C++11~)|(작성중)|
+|[uint8_t](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#c11-%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85) (C++11~)<br/>[uint16_t](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#c11-%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85) (C++11~)<br>[uint32_t](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#c11-%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85) (C++11~)<br/>[uint64_t](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#c11-%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85) (C++11~)|(작성중)|
 |`uint_fast8_t` (C++11~)<br/>`uint_fast16_t` (C++11~)<br>`uint_fast32_t` (C++11~)<br/>`uint_fast64_t` (C++11~)|(작성중)|
 |`uint_least8_t` (C++11~)<br/>`uint_least16_t` (C++11~)<br>`uint_least32_t` (C++11~)<br/>`uint_least64_t` (C++11~)|(작성중)|
 |`uintmax_t` (C++11~)|(작성중)|

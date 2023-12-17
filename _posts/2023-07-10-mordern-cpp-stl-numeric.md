@@ -13,6 +13,8 @@ sidebar:
 > * (C++11~) [부동 소수점 환경](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c11-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%ED%99%98%EA%B2%BD)이 추가되었습니다.
 > * (C++11~) [난수 생성기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c11-%EB%82%9C%EC%88%98-%EC%83%9D%EC%84%B1%EA%B8%B0)가 추가되어 다양한 형태의 난수를 만들 수 있습니다.
 > * (C++17~) [특수 수학 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c17-%ED%8A%B9%EC%88%98-%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98)가 추가되었습니다.
+> * (C++20~) [수학 상수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98)(*[e_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98), [log2e_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98), [log10e_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98), [pi_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98) 등*)가 추가되었습니다.
+> * (C++20~) [비트 조작](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EB%B9%84%ED%8A%B8-%EC%A1%B0%EC%9E%91) 관련 함수(*[has_single_bit(), bit_ceil(), bit_floor(), bit_width(), rotl(), rotr(), countl_zero(), countl_one(), countr_zero(), countr_one()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EB%B9%84%ED%8A%B8-%EC%A1%B0%EC%9E%91)등*)와 [endian](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EB%B9%84%ED%8A%B8-%EC%A1%B0%EC%9E%91)처리가 추가되었습니다.
 
 # complex
 
@@ -227,38 +229,117 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|`e_v` (C++20~)|(작성중)|
-|`log2e_v` (C++20~)|(작성중)|
-|`log10e_v` (C++20~)|(작성중)|
-|`pi_v` (C++20~)|(작성중)|
-|`inv_pi_v` (C++20~)|(작성중)|
-|`inv_sqrtpi_v` (C++20~)|(작성중)|
-|`ln2_v` (C++20~)|(작성중)|
-|`ln10_v` (C++20~)|(작성중)|
-|`sqrt2_v` (C++20~)|(작성중)|
-|`sqrt3_v` (C++20~)|(작성중)|
-|`inv_sqrt3_v` (C++20~)|(작성중)|
-|`egamma_v` (C++20~)|(작성중)|
-|`phi_v` (C++20~)|(작성중)|
+|[e_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98) (C++20~)|[오일러 수](https://en.wikipedia.org/wiki/E_(mathematical_constant))<br/><img width="245" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/90f2077e-ffea-4cd5-bd6e-e036d3a36a08">|
+|[log2e_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98) (C++20~)|<img width="43" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/1e32dbaa-d134-4e3d-9aac-1b2ccc0fcb84">|
+|[log10e_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98) (C++20~)|<img width="52" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/aa6ab086-9f26-4b2b-a218-94a880fc2680">|
+|[pi_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98) (C++20~)|[파이](https://en.wikipedia.org/wiki/Pi)<br/><img width="55" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/e3f23723-32fe-4943-a87d-ef470de616c1">|
+|`inv_pi_v` (C++20~)|<img width="18" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/ae7aef0f-ba24-4f34-b1c1-cd9137a6c630">|
+|`inv_sqrtpi_v` (C++20~)|<img width="28" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/40059883-c445-4beb-8fa2-455ed02653d3">|
+|`ln2_v` (C++20~)|<img width="31" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/cefb7d4e-34f4-4de5-9e82-8154e43ed516">|
+|`ln10_v` (C++20~)|<img width="39" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/330ebfe7-b977-4b10-97fa-9deafb18e02b">|
+|`sqrt2_v` (C++20~)|<img width="30" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/a81004ed-e999-455d-a54b-df50fdb30a51">|
+|`sqrt3_v` (C++20~)|<img width="30" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/796a3056-289e-4f03-ba37-d689e4b08e9b">|
+|`inv_sqrt3_v` (C++20~)|<img width="26" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/9fac8348-91c1-4e72-a173-156784491bba">|
+|`egamma_v` (C++20~)|[오일러 상수](https://en.wikipedia.org/wiki/Euler%27s_constant)<br/><img width="162" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/3b2da0ae-a9b3-447e-8a40-9c3c0f6c1d22">|
+|`phi_v` (C++20~)|[황금 비율](https://en.wikipedia.org/wiki/Golden_ratio)<br/><img width="210" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/bab09abb-629f-4f5c-9b51-81b19cd8cb04">|
 
 # (C++20~) 비트 조작
 
 |항목|내용|
 |--|--|
-|`bit_cast()` (C++20~)|(작성중)|
-|`byteswap()` (C++20~)|(작성중)|
-|`has_single_bit()` (C++20~)|(작성중)|
-|`bit_ceil()` (C++20~)|(작성중)|
-|`bit_floor()` (C++20~)|(작성중)| 
-|`bit_width()` (C++20~)|(작성중)|
-|`rotl()` (C++20~)|(작성중)|
-|`rotr()` (C++20~)|(작성중)|
-|`countl_zero()` (C++20~)|(작성중)| 
-|`countl_one()` (C++20~)|(작성중)|
-|`countr_zero()` (C++20~)|(작성중)| 
-|`countr_one()` (C++20~)|(작성중)|
-|`popcount()` (C++20~)|(작성중)| 
-|`endian()` (C++20~)|(작성중)|
+|`bit_cast()` (C++20~)|비트 단위로 [reinterpret_cast](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)를 합니다.|
+|`has_single_bit()` (C++20~)|2의 거듭제곱인지 검사합니다.|
+|`bit_ceil()` (C++20~)|주어진 수를 올림한 2의 거듭 제곱입니다.|
+|`bit_floor()` (C++20~)|주어진 수를 내림한 2의 거듭 제곱입니다.| 
+|`bit_width()` (C++20~)|주어진 수를 저장할 수 있는 비트 개수입니다.|
+|`rotl()` (C++20~)|비트를 왼쪽으로 회전합니다.|
+|`rotr()` (C++20~)|비트를 오른쪽으로 회전합니다.|
+|`countl_zero()` (C++20~)|왼쪽 비트에서 연속된 `0`의 갯수입니다.| 
+|`countl_one()` (C++20~)|왼쪽 비트에서 연속된 `1`의 갯수입니다.|
+|`countr_zero()` (C++20~)|오른쪽 비트에서 연속된 `0`의 갯수입니다.| 
+|`countr_one()` (C++20~)|오른쪽 비트에서 연속된 `1`의 갯수입니다.|
+|`popcount()` (C++20~)|`1`의 갯수 입니다.| 
+|`endian` (C++20~)|현 플랫폼의 바이트 저장 순서입니다.<br/>* `little` : 리틀 엔디안 입니다. 낮은 주소에 하위 바이트를 저장합니다.(*Windows*)<br/>* `big` : 빅 엔디안 입니다. 낮은 주소에 상위 바이트를 저장합니다.(*Linux 등*)<br/>* `native` : 플랫폼이 리틀 엔디안을 사용하면 `litte`이고, 빅 엔디안을 사용하면 `big`입니다.|
+|`byteswap()` (C++23~)|주어진 정수값의 바이트를 뒤집습니다.|
+
+다음은 [비트 조작](?https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EB%B9%84%ED%8A%B8-%EC%A1%B0%EC%9E%91)의 예입니다. 입력값으로 부호 없는 정수값을 사용하여야 합니다.
+
+```cpp
+// 2의 거듭 제곱인지 검사합니다. 이때 부호없는 정수를 사용해야 합니다.
+static_assert(std::has_single_bit(0u) == false);
+static_assert(std::has_single_bit(1u) == true); // 2^0
+static_assert(std::has_single_bit(2u) == true); // 2^1
+static_assert(std::has_single_bit(3u) == false); 
+static_assert(std::has_single_bit(4u) == true); // 2^2 
+
+static_assert(std::bit_ceil(3u) == 4); // 주어진 수를 올림한 2의 거듭 제곱입니다.
+static_assert(std::bit_floor(3u) == 2); // 주어진 수를 내림한 2의 거듭 제곱입니다.
+static_assert(std::bit_width(0b00000011u) == 2); // 주어진 수를 저장할 수 있는 비트 개수입니다.
+
+static_assert(std::rotl(static_cast<std::uint8_t>(0b10000110u), 2) == 0b00011010); // 비트를 왼쪽으로 회전합니다.
+static_assert(std::rotr(static_cast<std::uint8_t>(0b10000110u), 2) == 0b10100001); // 비트를 오른쪽으로 회전합니다.
+
+static_assert(std::countl_zero(static_cast<std::uint8_t>(0b00110000u)) == 2); // 왼쪽 비트에서 연속된 0의 갯수입니다.
+static_assert(std::countl_one(static_cast<std::uint8_t>(0b11110000u)) == 4); // 왼쪽 비트에서 연속된 1의 갯수입니다.
+static_assert(std::countr_zero(static_cast<std::uint8_t>(0b00110000u)) == 4); // 오른쪽 비트에서 연속된 0의 갯수입니다.
+static_assert(std::countr_one(static_cast<std::uint8_t>(0b00110011u)) == 2); // 오른쪽 비트에서 연속된 1의 갯수입니다.
+
+static_assert(std::popcount(0b00110011u) == 4); // 1의 갯수 입니다.
+```
+
+다음은 4byte인 [uint32_t](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#c11-%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85)의 [endian](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EB%B9%84%ED%8A%B8-%EC%A1%B0%EC%9E%91)에 따른 저장 방식을 확인한 예입니다. 리틀 엔디안의 경우 4byte가 반전되어 저장된 것을 확인할 수 있습니다.
+
+```cpp
+union Test {    
+    std::uint32_t byte4; // 4byte 정수
+    std::uint8_t byte[4]; // 1byte
+};
+
+Test test;
+test.byte4 = 0x48abcdef; // 4바이트로 저장시
+
+EXPECT_TRUE(test.byte4 == 0x48abcdef);
+if constexpr(std::endian::native == std::endian::little) {
+    EXPECT_TRUE(test.byte[0] == 0xef); // 낮은 주소에 4바이트중 하위 바이트를 저장합니다.
+    EXPECT_TRUE(test.byte[1] == 0xcd);
+    EXPECT_TRUE(test.byte[2] == 0xab);
+    EXPECT_TRUE(test.byte[3] == 0x48);            
+}
+else {
+    EXPECT_TRUE(test.byte[0] == 0x48); // 낮은 주소에 상위 바이트를 저장합니다.
+    EXPECT_TRUE(test.byte[1] == 0xab);
+    EXPECT_TRUE(test.byte[2] == 0xcd);
+    EXPECT_TRUE(test.byte[3] == 0xef);    
+}
+```
+
+다음은 2byte인 [uint16_t](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type/#c11-%EA%B3%A0%EC%A0%95-%EB%84%88%EB%B9%84-%EC%A0%95%EC%88%98-%ED%83%80%EC%9E%85)의 [endian](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EB%B9%84%ED%8A%B8-%EC%A1%B0%EC%9E%91)에 따른 저장 방식을 확인한 예입니다. 리틀 엔디안의 경우 2byte가 반전되어 저장된 것을 확인할 수 있습니다.
+
+```cpp
+union Test {    
+    std::uint16_t byte2[2]; // 2byte 정수
+    std::uint8_t byte[4]; // 1byte
+};
+Test test;
+test.byte2[0] = 0x48ab; // 2바이트로 저장시
+test.byte2[1] = 0xcdef;
+
+EXPECT_TRUE(test.byte2[0] == 0x48ab);
+EXPECT_TRUE(test.byte2[1] == 0xcdef);
+if constexpr(std::endian::native == std::endian::little) {
+
+    EXPECT_TRUE(test.byte[0] == 0xab); // 낮은 주소에 2바이트중 하위 바이트를 저장합니다.
+    EXPECT_TRUE(test.byte[1] == 0x48);
+    EXPECT_TRUE(test.byte[2] == 0xef); // 낮은 주소에 2바이트중 하위 바이트를 저장합니다.
+    EXPECT_TRUE(test.byte[3] == 0xcd);            
+}
+else {
+    EXPECT_TRUE(test.byte[0] == 0x48); // 낮은 주소에 상위 바이트를 저장합니다.
+    EXPECT_TRUE(test.byte[1] == 0xab);
+    EXPECT_TRUE(test.byte[2] == 0xcd);
+    EXPECT_TRUE(test.byte[3] == 0xef);    
+}  
+```
 
 # C스타일 난수 생성기
 
