@@ -52,7 +52,7 @@ T obj(); // (△) 비권장. T를 리턴하는 obj 함수 선언
 T obj1; // 기본 생성자로 T 개체 생성
 T obj2(T()); // (△) 비권장. T 타입의 기본 생성자로 생성한 것을 T obj2에 복사 생성하고 싶지만, T 타입을 리턴하고, T(*)()함수 포인터를 인자로 전달받는 함수 obj2를 선언합니다. 
 T obj3 = T(); // T obj(T());와 유사. T()로 기본 생성된 것을 T obj3에 복사 생성. 단 컴파일러 최적화로 1회만 생성될 수 있음
-T obj4(10, 'b'); // m_A == 10, m_B == `b`인 T 개체 생성
+T obj4(10, 'b'); // m_A == 10, m_B == 'b'인 T 개체 생성
 
 T arr[] = {T(), T(10, 'b')}; // T 요소 2개인 배열 생성
 
@@ -60,7 +60,7 @@ struct U {
     int m_A;
     char m_B;
 };
-U objs = {10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성
+U objs = {10, 'b'}; // m_A == 10, m_B == 'b'인 U 개체 생성
 ```
 
 C++11 부터는 [중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)를 제공하여 클래스인지, [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)인지, 구조체인지 구분없이 중괄호(`{}`)를 이용하여 일관성 있게 초기화 할 수 있으며, [초기화 파싱 오류](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-initialization/#%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98)도 해결했습니다.
@@ -77,7 +77,7 @@ public:
 T obj1_11{}; // 기본 생성자로 T 개체 생성
 T obj2_11{T{}}; // 기본 생성자인 T()로 생성한 개체를 obj2_11의 복사 생성자로 복사 생성
 T obj3_11 = T{}; // T obj2_11{T{}}와 유사. T{}로 기본 생성된 것을 T obj2_11 복사 생성. 단 컴파일러 최적화로 1회만 생성될 수 있음
-T obj4_11{10, 'b'}; // T(int a, char b) 생성자 호출. m_A == 10, m_B == `b`인 T 개체 생성
+T obj4_11{10, 'b'}; // T(int a, char b) 생성자 호출. m_A == 10, m_B == 'b'인 T 개체 생성
 
 T arr_11[]{T{}, T{10, 'b'}}; // T 요소 2개인 배열 생성
 
@@ -85,7 +85,7 @@ struct U {
     int m_A;
     char m_B;
 };
-U objs_11{10, 'b'}; // m_A == 10, m_B == `b`인 U 개체 생성    
+U objs_11{10, 'b'}; // m_A == 10, m_B == 'b'인 U 개체 생성    
 ```
 
 # 중괄호 직접 초기화 T t{};
@@ -475,8 +475,8 @@ A arr_11[]{
 
 ```cpp
 A arr_11[]{
-    {1, 2}, // A{1, 2} 와 동일
-    {2, 3} // A{2, 3} 과 동일
+    {1, 2}, // A{1, 2} 처럼 동작합니다.
+    {2, 3} // A{2, 3} 처럼 동작합니다.
 };
 ```
 
@@ -498,7 +498,7 @@ public:
     B(int val, A a) : m_Val{val}, m_A{a} {}
 };
 
-B b_11{1, {2, 3}}; // B b_11{1, A{2, 3}};와 동일
+B b_11{1, {2, 3}}; // B b_11{1, A{2, 3}}; 처럼 동작합니다.
 ```
 
 **집합 타입**
@@ -517,7 +517,7 @@ public:
     A m_A;
 };
 
-B b_11{1, {2, 3}}; // B b_11 = B{1, A{2, 3}};와 동일
+B b_11{1, {2, 3}}; // B b_11 = B{1, A{2, 3}}; 처럼 동작합니다.
 ```
 
 # initializer_list
@@ -599,6 +599,8 @@ std::vector<A_11> v3{ // Value Constructor 3회, Copy Constructor 3회 호출
 ```        
 
 # initializer_list 멤버 함수 
+
+[initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)는 요소를 탐색할 수 있는 기본적인 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)만 제공합니다.
 
 |항목|내용|
 |--|--|

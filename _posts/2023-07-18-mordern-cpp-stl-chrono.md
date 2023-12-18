@@ -15,7 +15,7 @@ sidebar:
 > * (C++20~) [Time Zone](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone)이 추가되어 특정 지역의 시간대로 시간을 구할 수 있습니다.
 > * (C++20~) [utc_clock, tai_clock, gps_clock, file_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)이 추가되었습니다.
 > * (C++20~) [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 [from_stream()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)이 추가되었습니다.
-> * (C++20~) [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 [from_stream()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)이 추가되었습니다.
+> * (C++20~) [parse](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-parse)가 추가되었습니다.
 
 # 개요
 
@@ -351,4 +351,6 @@ std::cout << "localTime : " << std::format("{:%Y/%m/%d %H:%M:%S}", seoul) << std
 # (C++20~) parse()
 
 (작성중)
+
+스트림 개체로부터 크로노 개체를 생성합니다.
 
