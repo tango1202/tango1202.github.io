@@ -40,7 +40,7 @@ sidebar:
 |`ungetc()`<br/>`ungetwc()`|(작성중)|
 |`scanf()`<br/>`fscanf()`<br/>`sscanf()`<br/>`wscanf()`<br/>`fwscanf()`<br/>`swscanf()`|(작성중)|
 |`vscanf()` (C++11~)<br/>`vfscanf()` (C++11~)<br/>`vsscanf()` (C++11~)<br/>`vswscanf()` (C++11~)<br/>`vfwscanf()` (C++11~)<br/>`vsscanf()` (C++11~)|(작성중)|
-|`printf()`<br/>`fprintf()`<br/>`sprintf()`<br/>`snprintf()` (C++11~)<br/>`wprintf()`<br/>`fwprintf()`<br/>`swprintf()`|(작성중)|
+|[printf()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)<br/>`fprintf()`<br/>`sprintf()`<br/>`snprintf()` (C++11~)<br/>`wprintf()`<br/>`fwprintf()`<br/>`swprintf()`|(작성중)|
 |`vprintf()`<br/>`vfprintf()`<br/>`vsprintf()`<br/>`vsnprintf()` (C++11~)<br/>`vwprintf()`<br/>`vfwprintf()`<br/>`vswprintf()`|(작성중)|
 |`ftell()`|(작성중)|
 |`fgetpos()`|(작성중)|
@@ -195,6 +195,25 @@ sidebar:
 |`get_time()` (C++11~)|(작성중)| 
 |`put_time()` (C++11~)|(작성중)| 
 |`quoted()` (C++14~)|`stringstream` 으로 입출력시에 공백, 이스케이프 등을 유지시켜 줍니다.|   
+
+
+
+//!! 서식화
+```cpp
+ios state(nullptr);
+
+cout << "The answer in decimal is: " << 42 << endl;
+
+state.copyfmt(cout); // save current formatting
+cout << "In hex: 0x" // now load up a bunch of formatting modifiers
+    << hex
+    << uppercase
+    << setw(8)
+    << setfill('0')
+    << 42            // the actual value we wanted to print out
+    << endl;
+cout.copyfmt(state); // restore previous formatting
+```
 
 # 타입
 

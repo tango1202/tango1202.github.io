@@ -135,3 +135,9 @@ T Add_20(T a, T b) {
 |[ranges::common_range](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B2%94%EC%9C%84range-%EC%BB%A8%EC%85%89) (C++20~)|[ranges::range](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-concepts/#%EB%B2%94%EC%9C%84range-%EC%BB%A8%EC%85%89)이고, [ranges::begin](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)과 [ranges::end](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-range/#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EA%B0%9C%EC%B2%B4point-object-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 같은 타입이어야 합니다.|
 |`ranges::viewable_range` (C++20~)|(작성중)|
 |`ranges::constant_range` (C++20~)|(작성중)|
+
+# 포맷팅 컨셉
+
+|항목|내용|
+|--|--|
+|`formattable` (C++23~)|(작성중)|

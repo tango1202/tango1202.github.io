@@ -16,14 +16,14 @@ sidebar:
 > * (C++11~) [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr) 리터럴이 추가되어 좀더 타입에 안전한 코딩 계약이 가능해 졌습니다.
 > * (C++11~) 최소 8byte 크기를 보장하는 [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long) 타입이 추가되었습니다.
 > * (C++11~) [long long](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#long-long)용 정수형 상수인 `ll`, `ull`, `LL`, `ULL` [리터럴](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/)이 추가되었습니다.
-> * (C++11~) [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)이 추가되어 [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 2byte와 4byte의 고정 크기 문자를 제공합니다.
+> * (C++11~) [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)이 추가되어[UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자와 [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 지원합니다.
 > * (C++11~)  [u8"", u"", U"", u''(문자), U''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 [char16_t, char32_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)용 문자 상수를 제공합니다. 
 > * (C++11~) [R"()"리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#raw-string-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 개행이나 [이스케이프 문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)를 좀더 편하게 입력할 수 있습니다.
 > * (C++14~) [이진 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c14-%EC%9D%B4%EC%A7%84-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 `0b`, `0B` 접두어로 이진수 상수를 표현할 수 있습니다.
 > * (C++14~) [숫자 구분자](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c14-%EC%88%AB%EC%9E%90-%EA%B5%AC%EB%B6%84%EC%9E%90)가 추가되어  `1'000'000`와 같이 작은 따옴표(`'`)를 숫자 사이에 선택적으로 넣을 수 있으며, 가독성이 좋아졌습니다.
 > * (C++17~) [16진수 부동 소수점 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c17-16%EC%A7%84%EC%88%98-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 `0xA.9p11`과 같이 16진수로 실수를 표현할 수 있습니다.
 > * (C++17~) [u8''(문자) 리터럴](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C-%EB%A6%AC%ED%84%B0%EB%9F%B4)이 추가되어 [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 지원하는 1byte 크기의 문자 상수를 제공합니다.
-> * (C++20~) [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte의 고정 크기 문자를 제공합니다.
+> * (C++20~) [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 지원합니다.
 > * (C++20~) [정수에서 2의 보수 범위를 보장](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-%EC%A0%95%EC%88%98%EC%97%90%EC%84%9C-2%EC%9D%98-%EB%B3%B4%EC%88%98-%EB%B2%94%EC%9C%84-%EB%B3%B4%EC%9E%A5)합니다.
 
 # 타입 카테고리
@@ -221,7 +221,7 @@ unsigned long long val_11{18446744073709550592ull};
 
 기존 `wchar_t`는 시스템에 따라 2byte 또는 4byte로 가변적이어서(*[기본 타입](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/) 참고*), [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 처리가 어려웠습니다.
 
-C++11 부터는 [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 지원을 위해 2byte 고정 크기인 [char16_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)와 4byte 고정 크기인 [char32_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)가 추가되었습니다.
+C++11 부터는 [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 지원을 위해 [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 저장할 수 있는 [char16_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)와 [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 저장할 수 있는 [char32_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)가 추가되었습니다.
 
 |항목|내용|용량|
 |--|--|--|
@@ -230,7 +230,7 @@ C++11 부터는 [유니코드](https://tango1202.github.io/legacy-cpp-guide/lega
 |[char16_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t) (C++11~)|[UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자|`16bit`(2byte) 보다 크거나 같음|
 |[char32_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t) (C++11~)|[UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자|`32bit`(4byte) 보다 크거나 같음|
 
-> *(C++20~) [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte의 고정 크기 문자를 제공합니다.*
+> *(C++20~) [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 지원합니다.*
 
 # 유니코드 리터럴
 
@@ -317,7 +317,7 @@ EXPECT_TRUE(val3_14 == 0xFF);
 큰 숫자인 경우 가독성이 좋아집니다.
 
 ```cpp
-int val = 1000000=;
+int val = 1000000;
 int val_14 = 1'000'000;
 
 EXPECT_TRUE(val == val_14);
@@ -358,9 +358,9 @@ EXPECT_TRUE(floatVal_17 == 21632.0);
 
 # (C++20~) char8_t
 
-C++20 부터는 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 1byte의 고정 크기 문자를 제공합니다.
+C++20 부터는 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원합니다.
 
-표준에 따르면 `char`는 적어도 1byte 이기 때문에 바이트 수가 변경될 수 있지만(*[기본 타입](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/) 참고)*, [char8_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)은 1byte로 고정되어 있습니다.
+`char`와 크기가 같고, 부호 처리도 동일하지만, [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 처리하는 별개의 타입입니다.
 
 그런데, [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)에서 영문자는 1byte 이지만, 한글등 다국어 문자는 여러 바이트를 사용할 수도 있죠. 예를 들어 한글 `가`는 `0xEA`, `0xB0`, `0x80`의 3개의 byte가 필요합니다.(*[UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 참고*)
 

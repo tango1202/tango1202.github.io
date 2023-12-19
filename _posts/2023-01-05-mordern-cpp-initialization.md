@@ -397,7 +397,7 @@ C++11 부터는 `{}` 도 지원합니다.
 
 # 중괄호 초기화 중첩
 
-[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)를 중첩해서 사용할 수 있는데요, 타입에 따라 조금씩 다릅니다.
+[중괄호 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94)를 중첩해서 사용할 수 있는데요, [기본 타입](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/)은 지원하지 않습니다.
 
 **기본 타입과 개체 타입**
 

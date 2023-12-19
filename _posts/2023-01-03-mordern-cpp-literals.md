@@ -115,7 +115,7 @@ EXPECT_TRUE(3.14_a == 3); // int operator ""_a(long double val) 버전이 호출
 
 # (C++20~) 사용자 정의 리터럴 인자 규칙 char8_t
 
-[인자 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%9D%B8%EC%9E%90-%EA%B7%9C%EC%B9%99)에 [char8_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되었습니다.
+[인자 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-literals/#%EC%9D%B8%EC%9E%90-%EA%B7%9C%EC%B9%99)에 [char8_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)가 추가되었습니다.
 
 ```cpp
 ReturnType operator ""_m(char8_t); 
