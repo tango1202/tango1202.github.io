@@ -9,7 +9,6 @@ sidebar:
 ---
 
 > * (C++11~) [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버에서 [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 사용 제한이 풀렸으며, 메모리 절약을 위한 코딩 자유도가 높아졌습니다.
-> * (C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.
 
 **개요**
 

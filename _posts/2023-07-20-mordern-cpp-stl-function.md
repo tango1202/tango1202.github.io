@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), reference_wrapper, bind()), (C++17~) invoke()"
+title: "#20. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), reference_wrapper, bind()), (C++17~) invoke()" (C++20~) bind_front()
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -21,6 +21,7 @@ sidebar:
 > > * (C++11~) [is_placeholder](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_placeholder)가 추가되어 자리 표시자를 사용했는지 검사할 수 있습니다.
 > * (C++11~) [함수자 타입 특성 클래스](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)([unary_function, binary_function](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)등), [바인더](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)([bind1st(), bind2nd()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)등), [어뎁터와 부정자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EC%96%B4%EB%8E%81%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)([mem_fun(), mem_fun_ref(), ptr_fun(), not1(), not2(), unary_negate(), binary_negate(), pointer_to_unary_function(), pointer_to_binary_function()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EC%96%B4%EB%8E%81%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)등)가 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D), [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function), [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind), [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)등으로 대체되어 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다. 
 > * (C++17~) [invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 동일한 방식으로 호출할 수 있습니다.
+> * (C++20~) [bind_front()](??)가 추가되었습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들을 순서대로 배치하므로, [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 순서 변경이 없다면 간편하게 사용할 수 있습니다.
 
 # 개요
 
@@ -180,7 +181,7 @@ EXPECT_TRUE(v[0] == 10 && v[1] == 20);
 
 기존에는 이항 함수를 단항 함수로 만들기 위해 `bind1st(op, x)`나 `bind2nd(op, y)`와 같은 [바인더](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)를 이용했는데요,
 
-C++11 부터 STL 에서는 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)함수를 추가하여, 다수의 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)(GCC의 경우 `_1`~`_29` 범위에서 지원됨)를 가진 함수도 지원합니다.
+C++11 부터 STL 에서는 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)함수를 추가하여, 다수의 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)(*GCC의 경우 `_1`~`_29` 범위에서 지원됨*)를 가진 함수도 지원합니다.
 
 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)가 추가되어 `placeholders::_1`(*GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨*)와 같은 자리 표시자와 조합하여 특정 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)만을 사용하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 생성할 수 있습니다.
 
@@ -232,6 +233,8 @@ auto func3{
 };
 EXPECT_TRUE(func3(4, 5) == 1 + 4 + 5); 
 ```
+
+> *(C++20~) [bind_front()](??)가 추가되었습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들을 순서대로 배치하므로, [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 순서 변경이 없다면 간편하게 사용할 수 있습니다.*
 
 # bind() 와 인수의 참조성 유지
 
@@ -312,7 +315,7 @@ std::function<int(int)> func2{std::bind(Sum, 1, std::placeholders::_1, 3)}; // (
 EXPECT_TRUE(IsPlaceholder(func2) == false);   
 ```
 
-# (c++17~) invoke()
+# (C++17~) invoke()
 
 C++17 부터는 [invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 동일한 방식으로 호출할 수 있습니다. 일반 함수인 경우 `Func(params...)`를 호출하고, [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)인 경우 `params[1].Func(params[2]...)`을 호출합니다.
 
@@ -328,4 +331,24 @@ T t;
 EXPECT_TRUE(std::invoke(T::Sum, t, 1, 2, 3) == 1 + 2 + 3); // 멤버 함수를 호출합니다.
 
 EXPECT_TRUE(std::invoke(Sum, 1, 2) == 1 + 2); // 일반 함수를 호출합니다.
+```
+
+# (C++20~) bind_front()
+
+C++11 부터 [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)가 추가되어 특정 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들을 재구성할 수 있었는데요, 
+
+C++20 부터는 좀더 간편한 [bind_front()](??)가 추가되었습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들을 순서대로 배치하므로, [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 순서 변경이 없다면 간편하게 사용할 수 있습니다.
+
+```cpp
+int Sum(int a, int b, int c) {return a + b + c;}
+
+auto func1{
+    std::bind(Sum, 1, std::placeholders::_1, std::placeholders::_2) // placeholders를 지정해야 합니다.
+};
+EXPECT_TRUE(func1(2, 3) == 1 + 2 + 3);
+
+auto func2{
+    std::bind_front(Sum, 1) // 앞쪽 인자부터 순서대로 적용하기 때문에 placeholders를 지정할 필요가 없습니다.
+};
+EXPECT_TRUE(func2(2, 3) == 1 + 2 + 3);
 ```

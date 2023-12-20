@@ -9,7 +9,7 @@ sidebar:
 ---
 
 > * (C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [비교 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90) 구현이 간소화 되었습니다.
-> * (C++20~) [삼중 비교 연산자를 default로 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-3way-comparison/#%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90-default-%EC%A0%95%EC%9D%98)할 수 있습니다.
+> * (C++20~) [삼중 비교 연산자를 default로 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90-default-%EC%A0%95%EC%9D%98)할 수 있습니다.
 > * (C++20~) [비트 쉬프트 연산자의 기본 비트가 표준화](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EB%B9%84%ED%8A%B8-%EC%89%AC%ED%94%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EB%B9%84%ED%8A%B8-%ED%91%9C%EC%A4%80%ED%99%94)되어 `<< 1`는 곱하기 2의 효과가 있는 비트(*즉, `0`*)로 채워지고, `>> 1`은 나누기 2의 효과가 있는 비트(*즉, 양수면 `0`, 음수면 `1`*)로 채워집니다.
 
 # (C++20~) 삼중 비교 연산자
