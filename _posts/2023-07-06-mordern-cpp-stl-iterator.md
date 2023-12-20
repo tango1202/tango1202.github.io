@@ -33,7 +33,7 @@ sidebar:
 |[reverse_iterator](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)|역방향으로 이터레이트 합니다.|
 |`make_reverse_iterator()` (C++14~)|(작성중)|
 |`back_insert_iterator`|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 끝에 삽입합니다.([삽입 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0) 참고)|
-|`back_inserter()`|`back_insert_iterator`를 생성합니다.|
+|[back_inserter()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)|`back_insert_iterator`를 생성합니다.|
 |`front_insert_iterator`|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 앞에 삽입합니다.|
 |`front_inserter()`|`front_insert_iterator`를 생성합니다.|
 |`insert_iterator`|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)에 삽입합니다.|

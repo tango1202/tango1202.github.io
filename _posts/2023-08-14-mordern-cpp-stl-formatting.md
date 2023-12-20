@@ -8,13 +8,18 @@ sidebar:
     nav: "docs"
 ---
 
+> * (C++20~) [format(), format_to(), format_to_n()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%EC%84%9C%EC%8B%9D%ED%99%94-%ED%95%A8%EC%88%98)이 추가되어 `%d, %s` 처럼 간편하고, `<<` 처럼 확장성 있는 서식화 방법을 지원합니다.
+> * (C++20~) [표준 서식 지정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%ED%91%9C%EC%A4%80-%EC%84%9C%EC%8B%9D-%EC%A7%80%EC%A0%95%EC%9E%90)가 추가되어 채움, 정렬, 부호, 너비, 정밀도를 지정할 수 있습니다.
+> * (C++20~) [chrono 서식 지정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#chrono-%EC%84%9C%EC%8B%9D-%EC%A7%80%EC%A0%95%EC%9E%90)가 추가되었습니다.
+> * (C++20~) [formatter](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter)가 추가되어 특정 타입에 대한 서식을 정의할 수 있습니다.
+
 # 개요 
 
-기존에는 개체의 내용을 서식화할때 [C스타일 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)의 [printf()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5) 계열에서 `%d, %s`등을 이용한 방법과 `<<`에서 [setprecision()](??)등 [입출력 제어](??)를 이용한 방법이 있었습니다.
+기존에는 개체의 내용을 서식화할때 [C스타일 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)의 [printf()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5) 계열에서 `%d, %s`등을 이용한 방법과 `<<`에서 [setprecision()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)등 [입출력 제어](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)를 이용한 방법이 있었습니다.
 
-하지만, `%d, %s`는 간편하지만 [기본 타입](??)만 사용할 수 있기 때문에 확장성이 낮고, `<<`은 사용자 정의 타입도 확장할 수 있지만 너무 코드가 장황해 지는 문제가 있었습니다.
+하지만, `%d, %s`는 간편하지만 [기본 타입](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/)만 사용할 수 있기 때문에 확장성이 낮고, `<<`은 사용자 정의 타입도 확장할 수 있지만 너무 코드가 장황해 지는 문제가 있었습니다.
 
-C++20 부터는 [포맷팅 라이브러리](??)가 추가되어 `%d, %s` 처럼 간편하고, `<<` 처럼 확장성 있는 방법을 지원합니다.
+C++20 부터는 [포맷팅 라이브러리](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/)가 추가되어 `%d, %s` 처럼 간편하고, `<<` 처럼 확장성 있는 방법을 지원합니다.
 
 ```cpp
 int a{1};
@@ -27,16 +32,16 @@ std::cout << std::format("a : {0}, b : {1}, add : {2:#x}", a, b, a + b) << std::
 
 # 서식화 함수
 
-[format(), format_to(), format_to_n()](??)는 서식화된 결과를 [string](??)이나 [이터레이터](??)로 제공합니다.
+[format(), format_to(), format_to_n()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%EC%84%9C%EC%8B%9D%ED%99%94-%ED%95%A8%EC%88%98)는 서식화된 결과를 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이나 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)로 제공합니다.
 
 |항목|내용|
 |--|--|
-|`format()` (C++20~)|서식화한 문자열을 [string](??)으로 리턴합니다.|
-|`format_to()` (C++20~)|서식화한 문자열을 [이터레이터](??)에 기록합니다.|
-|`format_to_n()` (C++20~)|서식화한 문자열을 N개 만큼 [이터레이터](??)에 기록합니다.|
+|`format()` (C++20~)|서식화한 문자열을 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)으로 리턴합니다.|
+|`format_to()` (C++20~)|서식화한 문자열을 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)에 기록합니다.|
+|`format_to_n()` (C++20~)|서식화한 문자열을 N개 만큼 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)에 기록합니다.|
 |`formatted_size()` (C++20~)|서식화한 문자열의 길이를 구합니다.|
 
-다음 예는 [서식화 함수](??)를 사용한 예입니다. [이터레이터](??)사용시 [back_inserter()](??)를 이용하여 [string](??)개체 뒤에 서식화한 문자열을 삽입합니다.
+다음 예는 [서식화 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#%EC%84%9C%EC%8B%9D%ED%99%94-%ED%95%A8%EC%88%98)를 사용한 예입니다. [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)사용시 [back_inserter()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 이용하여 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)개체 뒤에 서식화한 문자열을 삽입합니다.
 
 
 ```cpp
@@ -74,7 +79,7 @@ EXPECT_TRUE(result4 == "a : 10");
 
 # 서식 문자열
 
-[서식 문자열](??)은 [format(), format_to(), format_to_n()](??)에서 서식을 지정하기 위해 사용하며, 일반적인 문자열은 그대로 표시하고, `{}`인 부분은 인수로 대체되어 출력됩니다. 
+[서식 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#%EC%84%9C%EC%8B%9D-%EB%AC%B8%EC%9E%90%EC%97%B4)은 [format(), format_to(), format_to_n()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%EC%84%9C%EC%8B%9D%ED%99%94-%ED%95%A8%EC%88%98)에서 서식을 지정하기 위해 사용하며, 일반적인 문자열은 그대로 표시하고, `{}`인 부분은 인수로 대체되어 출력됩니다. 
 
 `{}`에 인수의 인덱스를 지정할 수 있으며, 모두 생략하면 순서대로 표시됩니다. 다만, 인덱스 지정과 생략을 섞어서 사용할 수는 없습니다.
 
@@ -93,7 +98,7 @@ EXPECT_TRUE(std::format("data:{0},{0},{1}", 0, 10, 20) == "data:0,0,10"); // 특
 
 # 표준 서식 지정자
 
-[서식 문자열](??)의 `{}`안에 `:`뒤에 [표준 서식 지정자](??)을 적용하여 채움, 정렬, 부호, 너비, 정밀도를 지정할 수 있습니다.
+[서식 문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#%EC%84%9C%EC%8B%9D-%EB%AC%B8%EC%9E%90%EC%97%B4)의 `{}`안에 `:`뒤에 [표준 서식 지정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%ED%91%9C%EC%A4%80-%EC%84%9C%EC%8B%9D-%EC%A7%80%EC%A0%95%EC%9E%90)을 적용하여 채움, 정렬, 부호, 너비, 정밀도를 지정할 수 있습니다.
 
 `{[인수 인덱스]:[채움과 정렬][부호][#][0][너비와 정밀도][타입]}`
 
@@ -110,11 +115,11 @@ EXPECT_TRUE(std::format("data:{0},{0},{1}", 0, 10, 20) == "data:0,0,10"); // 특
 |문자열 타입|`s`(*기본값*)|||
 |문자 타입|`c`(*기본값*)|||
 |정수 타입|* `b, B` : 이진수<br>* `d` : 십진수(*기본값*)<br/>* `o` : 8진수<br/>*`x, X` : 16진수|`std::format("{0:#x}", 2)`|`0x2`|
-|[bool](??) 타입|`s`(*기본값*)|`std::format("{0:s}", true)`|`true`|
+|[bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/) 타입|`s`(*기본값*)|`std::format("{0:s}", true)`|`true`|
 |부동 소수점 타입|* `a, A` : 16진수로 표시합니다.<br> * `e, E` : 지수로 표시합니다.<br/>* `f, F` : 고정폭 으로 표시합니다. 기본 정밀도 6입니다.(*기본값 `.8f`*)<br/>* `g, G` : 자동으로 소수점 이하가 없으면 정수로 표시하고, 상황에 따라 지수나 고정폭으로 표시합니다. 기본 정밀도는 소수점을 포함하여 6입니다.|`std::format("{0:.8f}", 123456789.123456789)`|`123456789.12345679`|
 |포인터 타입|`p`|||
 
-다음은 [표준 서식 지정자](??)를 사용한 예입니다.
+다음은 [표준 서식 지정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%ED%91%9C%EC%A4%80-%EC%84%9C%EC%8B%9D-%EC%A7%80%EC%A0%95%EC%9E%90)를 사용한 예입니다.
 
 ```cpp
 // 채움과 정렬
@@ -235,14 +240,14 @@ EXPECT_TRUE(std::format("{:%X}", time) == "14:05:03"); // 로케일의 시간 �
 
 # formatter
 
-[formatter](??)는 [템플릿 특수화](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)를 이용하여 특정 타입에 대한 서식을 정의하는 개체입니다.
+[formatter](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter)는 [템플릿 특수화](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)를 이용하여 특정 타입에 대한 서식을 정의하는 개체입니다.
 
 |항목|내용|
 |--|--|
-|[formatter](??) (C++20~)|특정 타입에 대한 서식을 정의합니다. [chrono](??)관련 개체들을은 C++20에 [템플릿 특수화](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)되어 있습니다.|
-|`basic_format_parse_context, format_parse_context, wformat_parse_context` (C++20~)|[formatter](??)의 `parse()`함수에 전달되는 정보입니다.|
-|`basic_format_context, format_context, wformat_context` (C++20~)|[formatter](??)의 `format()`함수에 전달되는 정보입니다.|
-|[format_error](??) (C++20~)|[formatter](??)의 `parse()`시 문제가 발생했습니다.|
+|[formatter](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter) (C++20~)|특정 타입에 대한 서식을 정의합니다. [chrono](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/)관련 개체들을은 C++20에 [템플릿 특수화](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94)되어 있습니다.|
+|`basic_format_parse_context, format_parse_context, wformat_parse_context` (C++20~)|[formatter](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter)의 `parse()`함수에 전달되는 정보입니다.|
+|`basic_format_context, format_context, wformat_context` (C++20~)|[formatter](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter)의 `format()`함수에 전달되는 정보입니다.|
+|[format_error](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter) (C++20~)|[formatter](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter)의 `parse()`시 문제가 발생했습니다.|
 |`vformat()` (C++20~)|(작성중)|
 |`vformat_to()` (C++20~)|(작성중)|
 |`make_format_args(), make_wformat_args()` (C++20~)|(작성중)|
@@ -253,12 +258,12 @@ EXPECT_TRUE(std::format("{:%X}", time) == "14:05:03"); // 로케일의 시간 �
 |`range_format` (C++23~)|(작성중)|
 |`format_kind` (C++23~)|(작성중)|
 
-다음은 `MyClass` 타입의 서식을 [formatter](??)를 이용하여 정의한 예입니다. 멤버 변수 출력시 `d`를 사용하면 10진수로 출력하고, `x`를 전달하면 16진수로 출력합니다.
+다음은 `MyClass` 타입의 서식을 [formatter](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter)를 이용하여 정의한 예입니다. 멤버 변수 출력시 `d`를 사용하면 10진수로 출력하고, `x`를 전달하면 16진수로 출력합니다.
 
-1. #1 : `std` [네임스페이스](??)의 [formatter](??)를 [템플릿 특수화](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94) 합니다.
-2. #2 : `parse()`함수를 구현합니다. 이때 [constexpr 함수](??)로 구현해야 합니다.
+1. #1 : `std` [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)의 [formatter](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter)를 [템플릿 특수화](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-specialization/#%ED%85%9C%ED%94%8C%EB%A6%BF-%ED%8A%B9%EC%88%98%ED%99%94) 합니다.
+2. #2 : `parse()`함수를 구현합니다. 이때 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 구현해야 합니다.
 3. #3 : `ctx`의 첫 문자만 사용합니다.
-4. #4 : 오류가 있으면, [format_error](??) [예외를 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시킵니다.
+4. #4 : 오류가 있으면, [format_error](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter) [예외를 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시킵니다.
 5. #5 : `}`의 위치를 리턴합니다.
 6. #6 : `format()`함수를 구현합니다. #3에서 저장한 문자를 분석하여 출력합니다.
 
@@ -278,9 +283,9 @@ namespace MyFormatterTest {
 template <> 
 struct std::formatter<MyFormatterTest::MyClass> { // #1
 private:
-    char m_FormatChar; // 사용자가 지정한 서식 문자열에서 {0:abcd} 중 a만 저장합니다.
+    std::string m_FormatSpec; // 사용자가 지정한 서식 문자열에서 {0:abcd} 중 a만 저장합니다.
 public:    
-    // ctx : 형식 문자열의 {인수 인덱스: 뒷부분이 전달됩니다. } 전까지 파싱하고, }위치를 리턴해야 합니다.
+    // ctx : 형식 문자열의 {인수 인덱스: 뒷부분이 전달됩니다. } 전까지 파싱하고, }위치를 리턴합니다.
     // format("{0:d}, {1:x}", a, b) 로 호출시 
     //  * 처음에는 `d}, {1:x}`가 전달되고, 
     //  * 다음번은 `x}` 가 전달됩니다.
@@ -289,7 +294,7 @@ public:
     constexpr std::format_parse_context::iterator parse(std::format_parse_context& ctx) { // #2
         auto result{std::find(ctx.begin(), ctx.end(), '}')};
         if (result != ctx.end()) {
-            m_FormatChar = *ctx.begin(); // #3. 시작 문자만 저장하고, 나머지는 무시합니다.
+            m_FormatSpec = std::string(ctx.begin(), result); // } 전까지 저장합니다.
         }
         else {
             throw std::format_error("invalid format string"); // #4. 예외를 발생시킵니다.
@@ -297,10 +302,10 @@ public:
         return result; // #5. } 위치를 리턴합니다.
     }
     
-    // 형식 문자열에서 사용자가 입력한 내용을 각 멤버 변수에 반영합니다.
+    // 형식 문자열에서 사용자가 입력한 내용을 각 멤버 변수에 반영하여 서식화 합니다.
     // template <typename FormatContext>
     std::format_context::iterator format(const MyFormatterTest::MyClass& obj, std::format_context& ctx) const { // #6
-        if (m_FormatChar == 'x') {
+        if (m_FormatSpec[0] == 'x') {
             return std::format_to(ctx.out(), "MyClass : x = {:#x} y = {:#x}", obj.GetX(), obj.GetY());
         }
         else {

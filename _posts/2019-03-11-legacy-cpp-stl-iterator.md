@@ -217,7 +217,7 @@ Fill(MyBackInsertIterator<std::vector<int>>(v), 5, 7); // 현 컨테이너 뒤 5
 EXPECT_TRUE(v[0] == 7 && v[1] == 7 && v[2] == 7 && v[3] == 7 && v[4] == 7);
 ```
 
-STL에서는 `back_inserter()` 유틸리티 함수로 `back_insert_iterator`를 생성해 주기 때문에 다음과 같이 사용할 수 있습니다.
+STL에서는 [back_inserter()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%82%BD%EC%9E%85-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0) 유틸리티 함수로 `back_insert_iterator`를 생성해 주기 때문에 다음과 같이 사용할 수 있습니다.
 
 ```cpp
 std::vector<int> v; 

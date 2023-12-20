@@ -10,7 +10,7 @@ sidebar:
 
 > * (C++11~) [system_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock), [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point), [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration) 이 추가되어 좀더 다양한 정확도로 시간을 추적할 수 있습니다.
 > * (C++17~) [floor(), ceil(), round(), abs()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c17-floor-ceil-round-abs?)가 추가되어 [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)와 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 반올림 관련 처리를 할 수 있습니다.
-> * (C++20~) [hh_mm_ss](??)가 추가되어 12시간/24시간의 시-분-초 서식 처리가 간편해 졌습니다.
+> * (C++20~) [hh_mm_ss](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-hh_mm_ss)가 추가되어 12시간/24시간의 시-분-초 서식 처리가 간편해 졌습니다.
 > * (C++20~) [Calendar](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-calendar)가 추가되어 년-월-일 서식 처리가 간편해 졌습니다.
 > * (C++20~) [Time Zone](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone)이 추가되어 특정 지역의 시간대로 시간을 구할 수 있습니다.
 > * (C++20~) [utc_clock, tai_clock, gps_clock, file_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)이 추가되었습니다.
@@ -164,10 +164,10 @@ std::cout << "MyFunc() : " << duration.count() << std::endl;
 
 |항목|내용|
 |--|--|
-|[hh_mm_ss](??) (C++20~)|자정부터 지난 시간의 시/분/초입니다.|
+|[hh_mm_ss](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-hh_mm_ss) (C++20~)|자정부터 지난 시간의 시/분/초입니다.|
 |`is_am()` (C++20~)<br/>`is_pm()` (C++20~)<br/>`make12()` (C++20~)<br/>`make24()` (C++20~)|12시간/24시간 서식을 적용합니다.|
 
-다음은 [hh_mm_ss](??)의 사용예입니다. [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)을 사용하기 위해 `using namespace std::chrono`를 사용했습니다.
+다음은 [hh_mm_ss](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-hh_mm_ss)의 사용예입니다. [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)을 사용하기 위해 `using namespace std::chrono`를 사용했습니다.
 
 ```cpp
 using namespace std::chrono; // ""h, ""min, ""s사용을 위해 using namespace를 사용합니다. 
@@ -273,7 +273,7 @@ EXPECT_TRUE(date.day() == std::chrono::day{31});
 
 **now()로부터 달력 날짜 초기화**
 
-[now()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)는 [nanoseconds](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)단위로 현재 [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)구하는데요, 이를 [floor()](??)를 이용하여 [days](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)단위로 변경하면, `year_month_day`에 저장할 수 있습니다.
+[now()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)는 [nanoseconds](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)단위로 현재 [time_point](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#time-point)구하는데요, 이를 [floor()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c17-floor-ceil-round-abs)를 이용하여 [days](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)단위로 변경하면, `year_month_day`에 저장할 수 있습니다.
 
 ```cpp
 std::chrono::time_point now{std::chrono::system_clock::now()}; // now()는 nanoseconds 단위로 timpoint를 구합니다.
@@ -335,9 +335,9 @@ EXPECT_TRUE(date2.ok() == true); // 2023/2/29는 유효합니다. 29일까지 �
 |[nonexistent_local_time](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone) (C++20~)|지역 시간대를 구할 수 없습니다.|
 |[ambiguous_local_time](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone) (C++20~)|지역 시간대가 모호합니다.|
 
-[now()](??)는 UTC 시간대로 리턴하는데요, [zoned_time](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone)를 이용하면, 특정 지역의 시간대로 변환할 수 있습니다.
+[now()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)는 UTC 시간대로 리턴하는데요, [zoned_time](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone)를 이용하면, 특정 지역의 시간대로 변환할 수 있습니다.
 
-다음은 [now()](??)를 이용하여 UTC 시간을 구한뒤, `America/New_York`, `Asia/Shanghai`, `Asia/Seoul`로 변환하여 [format()](??)으로 출력한 예입니다. 서식 지정은 [chrono 서식 지정자](??)를 참고하시기 바랍니다.(*시간대 이름은 [https://www.iana.org/time-zones](https://www.iana.org/time-zones)을 참고하시길 바랍니다.*)
+다음은 [now()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)를 이용하여 UTC 시간을 구한뒤, `America/New_York`, `Asia/Shanghai`, `Asia/Seoul`로 변환하여 [format()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%EC%84%9C%EC%8B%9D%ED%99%94-%ED%95%A8%EC%88%98)으로 출력한 예입니다. 서식 지정은 [chrono 서식 지정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#chrono-%EC%84%9C%EC%8B%9D-%EC%A7%80%EC%A0%95%EC%9E%90)를 참고하시기 바랍니다.(*시간대 이름은 [https://www.iana.org/time-zones](https://www.iana.org/time-zones)을 참고하시길 바랍니다.*)
 
 ```cpp
 auto utcTime{std::chrono::system_clock::now()};

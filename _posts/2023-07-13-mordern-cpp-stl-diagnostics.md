@@ -70,7 +70,7 @@ sidebar:
 |[bad_exception](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)|[동적 예외 사양](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)에 [bad_exception](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)이 포함되면, [unexpected_handler](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)가 호출되고, 여기서 [throw;](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시 [bad_exception](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EB%8F%99%EC%A0%81-%EC%98%88%EC%99%B8-%EC%82%AC%EC%96%91)으로 변환되어 [전파](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)됩니다.|
 |[nonexistent_local_time](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone) (C++20~)|지역 시간대를 구할 수 없습니다.|
 |[ambiguous_local_time](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone) (C++20~)|지역 시간대가 모호합니다.|
-|[format_error](??) (C++20~)|[formatter](??)의 `parse()`시 문제가 발생했습니다.|
+|[format_error](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter) (C++20~)|[formatter](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/#formatter)의 `parse()`시 문제가 발생했습니다.|
 
 # 예외 처리 실패
 
