@@ -9,9 +9,9 @@ sidebar:
 ---
 
 > * (C++11~) [vscanf(), snprintf(), vsnprintf()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)가 추가되었습니다.
-> * (C++11~) [hexfloat(), defaultfloat(), get_money(), put_money(), get_time(), put_time()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)이 추가되었습니다.
+> * (C++11~) [hexfloat(), defaultfloat(), get_money(), put_money(), get_time(), put_time()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90)이 추가되었습니다.
 > * (C++11~) [예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c11-%EC%98%88%EC%99%B8)가 추가되었습니다.
-> * (C++14~) [quoted()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)가 추가되어 `stringstream` 으로 입출력시에 공백, 이스케이프 등을 유지시켜 줍니다.
+> * (C++14~) [quoted()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90)가 추가되어 `stringstream` 으로 입출력시에 공백, 이스케이프 등을 유지시켜 줍니다.
 
 # C스타일 입출력
 
@@ -184,7 +184,7 @@ C++에서는 `<<`과 `>>`를 [연산자 오버로딩](https://tango1202.github.i
 |`dec()`<br/>`hex()`<br/>`oct()`|10진수, 8진수, 16진수로 표시합니다.|`dec`, `oct`, `hex`, `basefield`(*`dec|oct|hex`*)|
 |`showbase()`<br/>`noshowbase()`|`0`(*8진수*), `0x`(*16진수*)의 진법 접두어를 표시합니다.|`showbase`|
 |`uppercase()`<br/>`nouppercase()`|16진수나 부동 소수점의 지수 표기(`e`)에서 사용하는 알파벳을 대문자로 표시합니다.|`uppercase`| 
-|[setprecision()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)|소수점이하 정밀도 입니다.|| 
+|[setprecision()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90)|소수점이하 정밀도 입니다.|| 
 |`setw()`|최소 너비 입니다.|| 
 |`fixed()`<br/>`scientific()`<br/>`hexfloat()` (C++11~)<br/>`defaultfloat()` (C++11~)|부동 소수점을 고정폭으로 할지, 지수로 할지, 16진수로 할지 디폴트(*상황에 따라 지수나 고정폭으로 표시합니다*)로 할지 지정합니다.|`fixed`, `scientific`, `floatfield`(*`fixed|scientific`*)|
 |`skipws()`<br/>`noskipws()`|(작성중)|`skipws`| 
@@ -216,7 +216,43 @@ std::cout << 100 << std::endl; // 100을 표시합니다.
 다음은 서식화의 사용예입니다.
 
 ```cpp
+std::cout << true << std::endl; // 기본적으로 0, 1로 표시합니다.
+std::cout << std::boolalpha << true << std::endl; // true, flase로 표시합니다.
+std::cout << std::noboolalpha << true << std::endl; // 0, 1로 표시합니다.
 
+std::cout << std::showpoint << 3. << std::endl; // 3.00000 소수점을 표시합니다.
+std::cout << std::noshowpoint << 3. << std::endl; // 3 소수점을 표시하지 않습니다.
+
+std::cout << std::showpos << 100 << std::endl; // +100 으로 표시합니다.
+std::cout << std::noshowpos << 100 << std::endl; // 100 으로 표시합니다.
+
+std::cout << std::resetiosflags(std::ios_base::boolalpha | std::ios_base::showpoint | std::ios_base::showpos);
+
+std::cout << std::left << std::setfill('*') << std::setw(5) << -10 << std::endl; // -10**
+std::cout << std::right << std::setfill('*') << std::setw(5) << -10 << std::endl; // **-10
+std::cout << std::internal << std::setfill('*') << std::setw(5) << -10 << std::endl; // -**10 
+
+std::cout << std::resetiosflags(std::ios_base::adjustfield); 
+std::cout << std::setfill(' '); // fill은 서식 플래그가 없어서 초기값을 설정합니다. 
+
+// 0XAB를 표시합니다.
+std::cout 
+    << std::hex // 16진수로 표시합니다.
+    << std::showbase // `0`(*8진수*), `0x`(*16진수*)의 진법 접두어를 표시합니다.
+    << std::uppercase // 16진수나 부동 소수점의 지수 표기(`e`)에서 사용하는 알파벳을 대문자로 표시합니다.
+    << 0xab 
+<< std::endl;   
+
+std::cout << std::resetiosflags(std::ios_base::hex | std::ios_base::showbase | std::ios_base::uppercase);
+    
+// [][][]3.142을 표시합니다.(앞쪽 공백 3개)
+std::cout
+    << std::setw(8) // 최소 너비입니다.
+    << std::setprecision(4) // 소수점을 포함한 소수점 이하 자리수입니다.
+    << 3.141592
+<< std::endl; 
+
+std::cout << std::setw(0) << std::setprecision(6); // setw, setprecision은 서식 플래그가 없어서 초기값을 설정합니다. 
 ```
 
 > *(C++20~) [format(), format_to(), format_to_n()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%EC%84%9C%EC%8B%9D%ED%99%94-%ED%95%A8%EC%88%98)이 추가되어 `%d, %s` 처럼 간편하고, `<<` 처럼 확장성 있는 서식화 방법을 지원합니다.*

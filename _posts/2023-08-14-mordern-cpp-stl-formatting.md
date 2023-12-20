@@ -15,7 +15,7 @@ sidebar:
 
 # 개요 
 
-기존에는 개체의 내용을 서식화할때 [C스타일 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)의 [printf()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5) 계열에서 `%d, %s`등을 이용한 방법과 `<<`에서 [setprecision()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)등 [입출력 제어](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%9C%EC%96%B4)를 이용한 방법이 있었습니다.
+기존에는 개체의 내용을 서식화할때 [C스타일 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)의 [printf()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5) 계열에서 `%d, %s`등을 이용한 방법과 `<<`에서 [setprecision()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90)등 [서식 조정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90)를 이용한 방법이 있었습니다.(*[서식 조정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90) 참고*)
 
 하지만, `%d, %s`는 간편하지만 [기본 타입](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/)만 사용할 수 있기 때문에 확장성이 낮고, `<<`은 사용자 정의 타입도 확장할 수 있지만 너무 코드가 장황해 지는 문제가 있었습니다.
 
