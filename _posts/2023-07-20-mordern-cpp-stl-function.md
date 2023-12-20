@@ -25,7 +25,7 @@ sidebar:
 
 # 개요
 
-기존에는 함수처럼 호출하는 개체를 만들기 위해 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 이용했는데요,
+기존에는 함수처럼 호출하는 개체를 만들기 위해 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 이용했는데요, 
 
 ```cpp
 // 7보다 작은지 검사하는 함수
