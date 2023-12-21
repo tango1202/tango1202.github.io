@@ -129,9 +129,8 @@ constexpr int Factorial_11(int val) {
     return val == 1 ? val : val * Factorial_11(val - 1);
 }
 
-// 컴파일 타임에 계산된 120이 Val에 대입됩니다.
-enum class MyEnum_11 {Val = Factorial_11(5)};
-EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 1 * 2 * 3 * 4 * 5);       
+// 컴파일 타임에 계산된 120입니다.
+static_assert(Factorial_11(5) == 1 * 2 * 3 * 4 * 5);
 
 // 변수를 전달하면, 일반 함수처럼 동작합니다.
 int val{5};
@@ -262,9 +261,8 @@ constexpr int Factorial_14(int val) {
     return result;
 } 
 
-// 컴파일 타임에 계산된 120이 Val에 대입됩니다.
-enum class MyEnum_11 {Val = Factorial_14(5)};
-EXPECT_TRUE(static_cast<int>(MyEnum_11::Val) == 1 * 2 * 3 * 4 * 5);       
+// 컴파일 타임에 계산된 120입니다.
+static_assert(Factorial_14(5) == 1 * 2 * 3 * 4 * 5);
 ```
 
 > *(C++20~) [constexpr 함수 제약 완화](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#c20-constexpr-%ED%95%A8%EC%88%98-%EC%A0%9C%EC%95%BD-%EC%99%84%ED%99%94)가 한차례 더 보강되어 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98), [dynamic_cast](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98), [typeid()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#typeid-%EC%97%B0%EC%82%B0%EC%9E%90), 초기화되지 않은 [지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98), [try-catch()](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/), [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/) 활성 전환, `asm`등을 사용할 수 있습니다.*

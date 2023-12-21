@@ -19,6 +19,7 @@ sidebar:
 > * (C++11~) [가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 활용한 [가변 매크로](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c11-%EA%B0%80%EB%B3%80-%EB%A7%A4%ED%81%AC%EB%A1%9C)가 추가되어 C언어와의 호환성이 높아졌습니다.
 > * (C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 하기 전에 파일이 존재하는지 확인할 수 있습니다.
 > * (C++20~) [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)이 추가되어 [전처리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/) 사용 방식을 개선하여 컴파일 속도를 향상시키고, [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제, [선언과 정의 분리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC) 구성의 불편함, 기호 충돌 문제를 해결했습니다.
+> * (C++20~) [source_location](??)이 추가되어 파일명, 줄번호, 칼럼번호, 함수명등의 정보를 제공합니다.
 
 # 개요
 
@@ -259,6 +260,9 @@ std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl
 #line 1234 "test.cpp" 
 std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl;  // Line Number:1234 Filename:test.cpp      
 ```
+
+> *(C++20~) [source_location](??)이 추가되어 파일명, 줄번호, 칼럼번호, 함수명등의 정보를 제공합니다.*
+
 # #error, #warning
 
 [#error](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#error-warning)와 [#warning](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#error-warning)은 조건부 컴파일시 OS 환경이나 컴파일러 환경이나 라이브러리 환경을 검사하고, 컴파일을 중단(*[#error](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#error-warning)*)시키거나 계속 진행(*[#warning](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#error-warning)*)시킵니다.

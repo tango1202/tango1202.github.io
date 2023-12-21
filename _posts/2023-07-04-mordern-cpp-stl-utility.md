@@ -24,6 +24,7 @@ sidebar:
 > * (C++17~) [timespec_get(), timespec](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%8B%9C%EA%B0%84-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)이 추가되었습니다.(https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 호출할 수 있습니다.
 > * (C++20~) [cmp_equal(), cmp_not_equal(), cmp_less(), cmp_greater(), cmp_less_equal(), cmp_greater_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90)이 추가되어 음의 정수와 양의 정수를 정상적으로 비교할 수 있습니다.
 > * (C++20~) [in_range()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90)가 추가되었습니다. 주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.
+> * (C++20~) [source_location](??)이 추가되어 파일명, 줄번호, 칼럼번호, 함수명등의 정보를 제공합니다.
 
 # 일반 유틸리티
 
@@ -124,11 +125,34 @@ static_assert(std::in_range<unsigned int>(1) == true); // unsigned int 범위 �
 |`jump_buf()`|(작성중)|
 |`unreachable()` (C++23~)|도달할 수 없는 실행 지점을 마킹합니다.|
 
-# (C++20~) 소스 코드
+# (C++20~) source_location
 
-|항목|내용|
-|--|--|
-|`source_location` (C++20~)|(작성중)|
+기존에는 [`__LINE__`](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#line-file-line)과 [`__FILE__`](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#line-file-line)를 이용하여 줄번호와 파일명을 사용했는데요(*[`__LINE__`, `__FILE__`](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#line-file-line) 참고*),
+
+```cpp
+// Line Number:118 Filename:C:\XXX\XXX.cpp
+std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl; 
+```
+
+C++20 부터는 [source_location](??)이 추가되어 파일명, 줄번호, 칼럼번호, 함수명등의 정보를 제공합니다.
+
+다음의 `Log()`함수는 메시지와 [source_location](??)을 이용한 부가 정보를 출력합니다.
+
+```cpp
+void Log(std::string message, const std::source_location& location = std::source_location::current()) {
+
+    // Message.
+    // source_location : F:\Data\language_test\test\Test_MordernCpp_Utility.cpp, virtual void TestMordern_Utility_Test::TestBody()(41, 12)
+    std::cout 
+        << message << std::endl
+        << "source_location : " 
+        << location.file_name() << ", " << location.function_name()  // 파일명, 함수명
+        << "(" << location.line() << ", " << location.column() << ")"// 줄번호, 칼럼번호
+    << std::endl;
+}
+
+Log("Message.");    
+```
 
 # (C++20~) 삼중 비교
 
