@@ -11,7 +11,7 @@ sidebar:
 > * (C++11~) [type_traits](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/)가 추가되어 컴파일 타임 프로그래밍시 각 타입의 조건들을 검사하거나 타입 변환을 할 수 있습니다.
 > * (C++14~) [is_null_pointer](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC), [is_final](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1)이 추가되었습니다.
 > * (C++17~) [bool_constant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#helper), [has_unique_object_representations, is_aggregate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1), [is_swappable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EB%B3%B5%EC%82%AC%EC%9D%B4%EB%8F%99%EB%8C%80%EC%9E%85%EC%86%8C%EB%A9%B8-%EC%86%8D%EC%84%B1), [is_invocable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%EA%B4%80%EA%B3%84), [invoke_result, void_t, type_identity](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EA%B8%B0%ED%83%80-%EB%B3%80%ED%99%98),  [conjunction, disjunction, negation](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#c17-traits-%EC%97%90%EC%84%9C%EC%9D%98-%EC%97%B0%EC%82%B0)이 추가되었습니다.
-> * (C++20~) [is_constant_evaluated()](??)가 추가되어 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)가 컴파일 타임 함수인지 런타임 함수인지 검사할 수 있습니다.
+> * (C++20~) [is_constant_evaluated()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#c20-is_constant_evaluated)가 추가되어 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)가 컴파일 타임 함수인지 런타임 함수인지 검사할 수 있습니다.
 
 # 개요
 
@@ -254,14 +254,14 @@ EXPECT_TRUE(Add(std::string("Hello"), std::string("World")) == std::string("Hell
 |--|--|
 |`is_pointer_interconvertible_with_class()` (C++20~)|(작성중)|
 |`is_corresponding_member()` (C++20~)|(작성중)|
-|[is_constant_evaluated()](??) (C++20~)|컴파일 타임에 실행중인지, 런타임에 실행중인지 평가합니다.|
+|[is_constant_evaluated()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#c20-is_constant_evaluated) (C++20~)|컴파일 타임에 실행중인지, 런타임에 실행중인지 평가합니다.|
 |`is_within_lifetime()` (C++26~)|(작성중)|
 
 # (C++20~) is_constant_evaluated()
 
 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 컴파일 타임 함수나 런타임 함수로 동작할 수 있는데요, 
 
-C++20 부터는 [is_constant_evaluated()](??)가 추가되어 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)가 컴파일 타임 함수인지 런타임 함수인지 검사할 수 있습니다.
+C++20 부터는 [is_constant_evaluated()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#c20-is_constant_evaluated)가 추가되어 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)가 컴파일 타임 함수인지 런타임 함수인지 검사할 수 있습니다.
 
 다음 예의 `Factorial()`함수는 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)인데요, 런타임함수로 동작할때만 메시지를 출력합니다.
 

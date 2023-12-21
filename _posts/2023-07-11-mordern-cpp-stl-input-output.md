@@ -176,7 +176,7 @@ C++에서는 `<<`과 `>>`를 [연산자 오버로딩](https://tango1202.github.i
 |`endl()`|`\n`을 출력합니다.||
 |`resetiosflags()`|설정값을 초기화 합니다.||
 |`setiosflags()`|(작성중)||
-|`boolalpha()`<br/>`noboolalpha()`|[bool](??) 출력시 1, 0으로 출력(*기본값*)할지, `true`, `false`할지 지정합니다.|`boolalpha`|
+|`boolalpha()`<br/>`noboolalpha()`|[bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/) 출력시 1, 0으로 출력(*기본값*)할지, `true`, `false`할지 지정합니다.|`boolalpha`|
 |`showpoint()`<br/>`noshowpoint()`|소수점 이하 값이 없는 경우 소수점 이하 표시 여부입니다.|`showpoint`|
 |`showpos()`<br/>`noshowpos()`|양수인 경우 `+`의 표시 여부입니다.|`showpos`|
 |`setfill()`|빈 공간을 주어진 문자로 채웁니다.||

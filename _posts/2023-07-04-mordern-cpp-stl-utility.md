@@ -22,9 +22,9 @@ sidebar:
 > * (C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.
 > * (C++17~) [inplace](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c17-%EB%AA%A8%ED%98%B8%EC%84%B1-%ED%95%B4%EC%86%8C)등이 추가되었습니다. 내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 내부 개체를 직접 생성하라는 의미로 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/), [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/), [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) 생성자에 더미(*Dummy*) 개체로 사용됩니다.
 > * (C++17~) [timespec_get(), timespec](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%8B%9C%EA%B0%84-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)이 추가되었습니다.(https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 호출할 수 있습니다.
-> * (C++20~) [cmp_equal(), cmp_not_equal(), cmp_less(), cmp_greater(), cmp_less_equal(), cmp_greater_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90)이 추가되어 음의 정수와 양의 정수를 정상적으로 비교할 수 있습니다.
-> * (C++20~) [in_range()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90)가 추가되었습니다. 주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.
-> * (C++20~) [source_location](??)이 추가되어 파일명, 줄번호, 칼럼번호, 함수명등의 정보를 제공합니다.
+> * (C++20~) [cmp_equal(), cmp_not_equal(), cmp_less(), cmp_greater(), cmp_less_equal(), cmp_greater_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90)이 추가되어 음의 정수와 양의 정수를 정상적으로 비교할 수 있습니다.
+> * (C++20~) [in_range()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90)가 추가되었습니다. 주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.
+> * (C++20~) [source_location](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-source_location)이 추가되어 파일명, 줄번호, 칼럼번호, 함수명등의 정보를 제공합니다.
 
 # 일반 유틸리티
 
@@ -43,6 +43,42 @@ sidebar:
 |[any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/) (C++17~)|타입의 변동 가능성이 있는 데이터를 비교적 안전하게 사용할 수 있습니다.|
 |[variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) (C++17~)|타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.|
 
+# 개체 비교
+
+|항목|내용|
+|--|--|
+|`!=` (~C++20)|`==`을 활용하여 구현되어 있습니다.|
+|`>, <=, >=` (~C++20)|`<`을 활용하여 구현되어 있습니다.|
+
+음의 정수와 양의 정수를 서로 비교할 수 있는 함수들로 구성되어 있습니다.
+
+|항목|내용|
+|--|--|
+|[cmp_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_not_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_less()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_greater()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_less_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_greater_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)|음의 정수와 양의 정수를 정상적으로 비교 합니다.|
+|[`in_range<type>(value)`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)|주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.|
+
+기존에는 `signed`와 `unsigned`를 비교하면, `signed`를 `unsigned`로 [암시적으로 형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 하기 때문에, 음의 정수와 양의 정수를 정상적으로 비교하지 못했습니다.
+
+```cpp
+int x{-1}; // 0xFFFF FFFF(4294967295) 
+unsigned int y{1};
+EXPECT_TRUE(x < y); // (X) 런타임 오류. -1은 unsigned int로 형변환되어 4294967295입니다.
+```
+
+C++20 부터는 [cmp_equal(), cmp_not_equal(), cmp_less(), cmp_greater(), cmp_less_equal(), cmp_greater_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90)이 추가되어 음의 정수와 양의 정수를 정상적으로 비교할 수 있습니다.
+
+```cpp
+int x{-1}; 
+unsigned int y{1};
+EXPECT_TRUE(std::cmp_less(x, y)); // (O) 음수와 양수를 정상적으로 비교합니다.  
+```
+
+[in_range()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90)는 주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.
+
+```cpp
+static_assert(std::in_range<unsigned int>(-1) == false); // unsigned int 범위 바깥입니다.
+static_assert(std::in_range<unsigned int>(1) == true); // unsigned int 범위 입니다. 
+```
 
 # (C++11~) 타입 변환
 
@@ -55,51 +91,6 @@ sidebar:
 |[declval()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#declval) (C++11~)|주어진 타입을 참조 타입으로 변환하여, 참조 타입 표현식으로 변경해 줍니다.|
 |`as_const(T& param)` (C++17~)|[인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) `param`에 [const](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/)를 붙여 `const T&`로 변환합니다.|
 |`to_underlying()` (C++23~)|(작성중)|
-
-# (C++20~) 정수 비교
-
-|항목|내용|
-|--|--|
-|[cmp_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_not_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_less()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_greater()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_less_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_greater_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)|음의 정수와 양의 정수를 정상적으로 비교 합니다.|
-|[`in_range<type>(value)`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90) (C++20~)|주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.|
-
-기존에는 `signed`와 `unsigned`를 비교하면, `signed`를 `unsigned`로 [암시적으로 형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98) 하기 때문에, 음의 정수와 양의 정수를 정상적으로 비교하지 못했습니다.
-
-```cpp
-int x{-1}; // 0xFFFF FFFF(4294967295) 
-unsigned int y{1};
-EXPECT_TRUE(x < y); // (X) 런타임 오류. -1은 unsigned int로 형변환되어 4294967295입니다.
-```
-
-C++20 부터는 [cmp_equal(), cmp_not_equal(), cmp_less(), cmp_greater(), cmp_less_equal(), cmp_greater_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90)이 추가되어 음의 정수와 양의 정수를 정상적으로 비교할 수 있습니다.
-
-```cpp
-int x{-1}; 
-unsigned int y{1};
-EXPECT_TRUE(std::cmp_less(x, y)); // (O) 음수와 양수를 정상적으로 비교합니다.  
-```
-
-[in_range()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%A0%95%EC%88%98-%EB%B9%84%EA%B5%90)는 주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.
-
-```cpp
-static_assert(std::in_range<unsigned int>(-1) == false); // unsigned int 범위 바깥입니다.
-static_assert(std::in_range<unsigned int>(1) == true); // unsigned int 범위 입니다. 
-```
-
-
-
-# 대소 비교
-
-|항목|내용|
-|--|--|
-|`!=` (~C++20)|(작성중)|
-|`>, <=, >=` (~C++20)|(작성중)|
-  
-# (C++17~) 모호성 해소
-
-|항목|내용|
-|--|--|
-|`in_place` (C++17~)<br/>`in_place_type` (C++17~)<br/>`in_place_index` (C++17~)<br/>`in_place_t` (C++17~)<br/>`in_place_index_t` (C++17~)|내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 내부 개체를 직접 생성하라는 의미로 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/), [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/), [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) 생성자에 전달되는 더미(*Dummy*) 개체 입니다.|
 
 # 프로그램 지원
 
@@ -125,6 +116,45 @@ static_assert(std::in_range<unsigned int>(1) == true); // unsigned int 범위 �
 |`jump_buf()`|(작성중)|
 |`unreachable()` (C++23~)|도달할 수 없는 실행 지점을 마킹합니다.|
 
+# 가변 인자
+
+[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 처리하는 예는 [가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 참고하시기 바랍니다.
+
+|항목|내용|
+|--|--|
+|[va_start()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 액세스 시작 [매크로 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
+|[va_arg()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 추출 [매크로 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
+|[va_end()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 사용 종료 [매크로 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
+|[va_list](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)에 대한 [typedef](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)|
+|`va_copy` (C++11)|(작성중)|
+
+# C스타일 시간 유틸리티
+
+|항목|내용|
+|--|--|
+|`difftime()`|(작성중)|
+|`time()`|(작성중)|
+|`clock()`|(작성중)|
+|`asctime()`|(작성중)|
+|`ctime()`|(작성중)|
+|`strftime()`|(작성중)|
+|`wcsftime()`|(작성중)|
+|`gmtime()`|(작성중)|
+|`localtime()`|(작성중)|
+|`mktime()`|(작성중)|
+|`CLOCKS_PER_SEC`|(작성중)|
+|`tm`|(작성중)|
+|`time_t`|(작성중)|
+|`clock_t`|(작성중)|
+|`timespec_get()` (C++17~)|`timespec` 개체를 구합니다.|
+|`timespec` (C++17~)|초(`tv_sec`)와 나노초(`tv_nsec`	)로 구분합니다.|
+
+# (C++17~) 모호성 해소
+
+|항목|내용|
+|--|--|
+|`in_place` (C++17~)<br/>`in_place_type` (C++17~)<br/>`in_place_index` (C++17~)<br/>`in_place_t` (C++17~)<br/>`in_place_index_t` (C++17~)|내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 내부 개체를 직접 생성하라는 의미로 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/), [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/), [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) 생성자에 전달되는 더미(*Dummy*) 개체 입니다.|
+
 # (C++20~) source_location
 
 기존에는 [`__LINE__`](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#line-file-line)과 [`__FILE__`](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#line-file-line)를 이용하여 줄번호와 파일명을 사용했는데요(*[`__LINE__`, `__FILE__`](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#line-file-line) 참고*),
@@ -134,9 +164,9 @@ static_assert(std::in_range<unsigned int>(1) == true); // unsigned int 범위 �
 std::cout << "Line Number:" << __LINE__ << " Filename:" << __FILE__ << std::endl; 
 ```
 
-C++20 부터는 [source_location](??)이 추가되어 파일명, 줄번호, 칼럼번호, 함수명등의 정보를 제공합니다.
+C++20 부터는 [source_location](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-source_location)이 추가되어 파일명, 줄번호, 칼럼번호, 함수명등의 정보를 제공합니다.
 
-다음의 `Log()`함수는 메시지와 [source_location](??)을 이용한 부가 정보를 출력합니다.
+다음의 `Log()`함수는 메시지와 [source_location](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-source_location)을 이용한 부가 정보를 출력합니다.
 
 ```cpp
 void Log(std::string message, const std::source_location& location = std::source_location::current()) {
@@ -172,37 +202,3 @@ Log("Message.");
 |`compare_strong_order_fallback` (C++20~)|(작성중)|
 |`compare_weak_order_fallback` (C++20~)|(작성중)|
 |`compare_partial_order_fallback` (C++20~)|(작성중)|
-
-# 가변 인자
-
-[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 처리하는 예는 [가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)를 참고하시기 바랍니다.
-
-|항목|내용|
-|--|--|
-|[va_start()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 액세스 시작 [매크로 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
-|[va_arg()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 추출 [매크로 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
-|[va_end()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90) 사용 종료 [매크로 함수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%ED%95%A8%EC%88%98)|
-|[va_list](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)|[가변 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%9E%90)에 대한 [typedef](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)|
-|`va_copy` (C++11)|(작성중)|
-
-# C스타일 시간 유틸리티
-
-|항목|내용|
-|--|--|
-|`difftime()`|(작성중)|
-|`time()`|(작성중)|
-|`clock()`|(작성중)|
-|`asctime()`|(작성중)|
-|`ctime()`|(작성중)|
-|`strftime()`|(작성중)|
-|`wcsftime()`|(작성중)|
-|`gmtime()`|(작성중)|
-|`localtime()`|(작성중)|
-|`mktime()`|(작성중)|
-|`CLOCKS_PER_SEC`|(작성중)|
-|`tm`|(작성중)|
-|`time_t`|(작성중)|
-|`clock_t`|(작성중)|
-|`timespec_get()` (C++17~)|`timespec` 개체를 구합니다.|
-|`timespec` (C++17~)|초(`tv_sec`)와 나노초(`tv_nsec`	)로 구분합니다.|
-
