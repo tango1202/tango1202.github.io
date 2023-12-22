@@ -40,6 +40,8 @@ sidebar:
     * [알고리즘의 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#c20-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)되었습니다.
     * [컨테이너 멤버 함수의 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c20-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)   
     * [vector와 string의 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c20-vector%EC%99%80-string%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)
+    * [유틸리티의 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)   
+    * [complex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex)의 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) 지원이 개선되었습니다.
 
 * make_shared에서 배열 지원
 * 컨테이너
@@ -71,10 +73,6 @@ sidebar:
 
 * [삼중 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90)
 
-* constexpr
-
-    * utility
-    * compex
 
 * c8rtomb https://en.cppreference.com/w/cpp/string/multibyte/c8rtomb
 * mbrtoc8  https://en.cppreference.com/w/cpp/string/multibyte/mbrtoc8
@@ -187,7 +185,7 @@ sidebar:
 |[Identity](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#c23-identity) (C++20~)|(작성중)|
 |[모호성 해소](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c17-%EB%AA%A8%ED%98%B8%EC%84%B1-%ED%95%B4%EC%86%8C) (C++17~)|**(C++17~)**<br/>[inplace](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c17-%EB%AA%A8%ED%98%B8%EC%84%B1-%ED%95%B4%EC%86%8C)등이 추가되었습니다. 내부 개체를 생성해서 전달하는 것이 아니라, 내부 개체의 생성자 인수들을 전달하면 내부 개체를 직접 생성하라는 의미로 [optional](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/), [any](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/), [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/) 생성자에 더미(*Dummy*) 개체로 사용됩니다.|
 |[개체 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90)|[대소 비교의 논리 조건](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%8C%80%EC%86%8C-%EB%B9%84%EA%B5%90%EC%9D%98-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4)에 따라 [!=, >, <=, >=](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90) 연산자를 제공합니다.<br/><br/>**(C++20~)**<br/>[삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [!=, >, <=, >=](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90)는 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.<br/>[cmp_equal(), cmp_not_equal(), cmp_less(), cmp_greater(), cmp_less_equal(), cmp_greater_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90)이 추가되어 음의 정수와 양의 정수를 정상적으로 비교할 수 있습니다.<br/>[in_range()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90)가 추가되었습니다. 주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.|
-|[constexpr 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0%EC%9D%98-%EC%A0%90%EC%A7%84%EC%A0%81-constexpr-%EA%B0%9C%EC%84%A0) (C++20~)|**(C++20~)**<br/>[유틸리티의 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0%EC%9D%98-%EC%A0%90%EC%A7%84%EC%A0%81-constexpr-%EA%B0%9C%EC%84%A0)되어 `swap()`함수도 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 변경되었습니다.|
+|[constexpr 유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0) (C++20~)|**(C++20~)**<br/>[유틸리티의 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)되어 `swap()`함수도 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 변경되었습니다.|
 
 # 포맷팅 라이브러리 (C++20~)
 
@@ -273,7 +271,7 @@ sidebar:
 
 |항목|내용|
 |--|--|
-|[complex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex)|복소수를 처리하는 개체입니다.<br/><br/>**(C++11~)**<br/>[complex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex)에 `proj()`이 추가되었습니다.|
+|[complex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex)|복소수를 처리하는 개체입니다.<br/><br/>**(C++11~)**<br/>[complex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex)에 `proj()`이 추가되었습니다.<br/><br/>**(C++20~)**<br/>[complex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex)의 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) 지원이 개선되었습니다.|
 |[valarray](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#valarray)|값의 집합을 다루는 개체입니다.|
 |[공통 수학 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#%EA%B3%B5%ED%86%B5-%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98)|`abs()`, `exp()`, `sin()` 등 일반 수학 함수, 지수 함수, 거듭 제곱 함수, 삼각 함수, 에러 및 감마 함수, 부동 소수점 함수, 분류 및 비교 함수를 제공합니다.<br/><br/>**(C++11~)**<br/>[공통 수학 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#%EA%B3%B5%ED%86%B5-%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98)가 보강되었습니다.|
 |[부동 소수점 환경](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c11-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%ED%99%98%EA%B2%BD) (C++11~)|**(C++11~)**<br/>[부동 소수점 환경](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c11-%EB%B6%80%EB%8F%99-%EC%86%8C%EC%88%98%EC%A0%90-%ED%99%98%EA%B2%BD)이 추가되었습니다.|
