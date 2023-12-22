@@ -27,6 +27,7 @@ sidebar:
 > * (C++20~) [in_range()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90)가 추가되었습니다. 주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.
 > * (C++20~) [source_location](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-source_location)이 추가되어 파일명, 줄번호, 칼럼번호, 함수명등의 정보를 제공합니다.
 > * (C++20~) [삼중 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90) 관련 유틸리티들이 추가되었습니다.
+> * (C++20~) [유틸리티의 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0%EC%9D%98-%EC%A0%90%EC%A7%84%EC%A0%81-constexpr-%EA%B0%9C%EC%84%A0)되어 `swap()`함수도 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 변경되었습니다.
 
 # 일반 유틸리티
 
@@ -236,15 +237,24 @@ public:
 EXPECT_TRUE(std::compare_strong_order_fallback(T{1}, T{2}) < 0); // 삼중 비교 연산자가 없더라도, 삼중 비교를 할 수 있습니다.
 ```
 
-# (C++20~) 유틸리티의 점진적 constexpr 개선
+# (C++20~) 유틸리티의 constexpr 개선
 
-[유틸리티에서 점진적으로 constexpr 지원을 개선](??)하고 있습니다. 
+[유틸리티](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/)에서 점진적으로 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) 지원을 개선하고 있습니다. 
 
-특히 C++11 부터는 `swap()`함수도 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 변경되었습니다.
+특히 C++20 부터는 `swap()`함수도 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 변경되었습니다.
 
-따라서 다음과 같이 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)내에서 사용할 수 있습니다.
+따라서 다음과 같이 `swap()`을 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)내에서 사용할 수 있습니다.
 
 ```cpp
+constexpr std::pair<int, int> ConstSwap(int&& a, int&& b) {
+    int resultA{std::move(a)};
+    int resultB{std::move(b)};
+    
+    std::swap(resultA, resultB); // 컴파일 타임에 두 수를 바꿔치기 합니다.
+    return std::make_pair(resultA, resultB);
+}
 
+constexpr std::pair<int, int> result{ConstSwap(0, 1)};
+static_assert(result.first == 1 && result.second == 0);  
 ```
 
