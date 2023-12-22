@@ -85,7 +85,7 @@ EXPECT_TRUE(IsDifferent(1, 1, 1) == false); // 인자가 여러개여도 됩니�
 |[is_bind_expression](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_bind_expression) (C++11~)|[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)로 생성한 함수인지 검사합니다.|
 |[is_placeholder](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#is_placeholder) (C++11~)|자리 표시자를 사용했는지 검사합니다.|
 |[_1, _2, _3, _4](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind) (C++11~)|자리 표시자 입니다.|  
-|`bind_front()` (C++20~)|(작성중)|
+|[bind_front()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c20-bind_front) (C++20~)|[bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)처럼 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 생성합니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)들을 순서대로 배치하므로, [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)의 순서 변경이 없다면 간편하게 사용할 수 있습니다.|
 |`bind_back()` (C++23~)|(작성중)|
 
 

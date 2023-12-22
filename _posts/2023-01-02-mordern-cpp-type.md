@@ -28,7 +28,7 @@ sidebar:
 
 # 타입 카테고리
 
-클래스/구조체/[공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 다른 언어와 데이터가 호환 될 수도 있고, [memcpy()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)등으로 쉽게 복사가 가능할 수도 있습니다. 단, [메모리 정렬 방식](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)에 따라서요. 
+클래스/구조체/[공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 [메모리 정렬 방식](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)에 따라서 다른 언어와 데이터가 호환 될 수도 있고, [memcpy()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)등으로 쉽게 복사가 가능할 수도 있습니다.
 
 C++11 부터는 이러한 호환성의 체계를 수립하기 위해, 각 타입의 카테고리를 규정하고 해당 카테고리에 속하는지 확인 할 수 있는 `is_trivial<>`, `is_standard_layout<>`, `is_pod<>`를 제공합니다.(*[타입 특성(type_traits)](https://tango1202.github.io/mordern-cpp/mordern-cpp-type_traits/) 참고*)
 
@@ -171,7 +171,7 @@ EXPECT_TRUE(f(ptr2) == 2); // int* 이므로 f(int*) 호출
 EXPECT_TRUE(f(ptr3_11) == 2); // int* 이므로 f(int*) 호출
 ```
 
-[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용한다면 `0`과 `NULL`은 다음처럼 초기값에 따라 `int`와 같은 정수형으로 추론되어(*[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 참고*), `f(int)`가 호출되는 문제가 있습니다. 그러니 앞으로는 [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)을 사용하시기 바랍니다.
+[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 사용한다면 `0`과 `NULL`은 다음처럼 초기값에 따라 `int`와 같은 정수형으로 추론되어(*[auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto) 참고*), `f(int)`가 호출되는 문제가 있습니다. 포인터인데, 정수로 추론되니 뭔가 사이드 이펙트가 발생할 우려가 있죠. 따라서, [nullptr](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#nullptr)을 사용하시는게 좋습니다.
 
 ```cpp
 // auto를 사용하면
@@ -217,9 +217,7 @@ unsigned long long val_11{18446744073709550592ull};
 
 # char16_t 와 char32_t
 
-[유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 전 세계의 모든 문자에 고유 숫자를 부여한 코드 체계 입니다. 자세한 내용은 [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)를 참고하시기 바라고요,
-
-기존 `wchar_t`는 시스템에 따라 2byte 또는 4byte로 가변적이어서(*[기본 타입](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/) 참고*), [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 처리가 어려웠습니다.
+[유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)는 전 세계의 모든 문자에 고유 숫자를 부여한 코드 체계인데요, 기존 `wchar_t`는 시스템에 따라 2byte 또는 4byte로 가변적이어서(*[기본 타입](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/) 참고*), [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 처리가 어려웠습니다.
 
 C++11 부터는 [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C) 지원을 위해 [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 저장할 수 있는 [char16_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)와 [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 저장할 수 있는 [char32_t](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#char16_t-%EC%99%80-char32_t)가 추가되었습니다.
 
@@ -256,7 +254,7 @@ const char16_t* str_11 = u"abc한글";
 
 # Raw String 리터럴
 
-기존 문자열은 개행을 하기 위해 다음처럼 [이스케이프 문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)(`\r\n`)를 추가해야 했는데요(*[이스케이프 문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90) 참고*),
+기존 문자열은 개행을 하기 위해 다음처럼 [이스케이프 문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)(`\r\n`)를 사용해야 했는데요(*[이스케이프 문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90) 참고*),
 
 ```cpp
 const char* str = "abc\r\ndef";

@@ -168,7 +168,7 @@ sidebar:
 
 기존에는 개체의 내용을 서식화할때 [C스타일 입출력](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5)의 [printf()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5) 계열에서 `%d, %s`등을 이용한 방법이 있었는데요, 기본 타입만 지원하는 한계가 있었습니다.
 
-C++에서는 `<<`과 `>>`를 [연산자 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)하여 사용자 정의 타입을 서식화 할 수 있으며, 기본 타입은 [입출력 제어](??)를 통해 서식화 합니다.
+C++에서는 `<<`과 `>>`를 [연산자 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)하여 사용자 정의 타입을 서식화 할 수 있으며, 기본 타입은 [서식 조정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90)를 통해 서식화 합니다.
 
 |항목|내용|서식 플래그|
 |--|--|--|
