@@ -358,7 +358,7 @@ EXPECT_TRUE(floatVal_17 == 21632.0);
 
 C++20 부터는 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원합니다.
 
-`char`와 크기가 같고, 부호 처리도 동일하지만, [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 처리하는 별개의 타입입니다.
+`char`와 크기가 같고(*적어도 1byte입니다.*), 부호 처리도 동일하지만, [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 처리하는 별개의 타입입니다.
 
 그런데, [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)에서 영문자는 1byte 이지만, 한글등 다국어 문자는 여러 바이트를 사용할 수도 있죠. 예를 들어 한글 `가`는 `0xEA`, `0xB0`, `0x80`의 3개의 byte가 필요합니다.(*[UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 참고*)
 

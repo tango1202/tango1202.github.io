@@ -12,6 +12,7 @@ sidebar:
 > * (C++14~) [is_null_pointer](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC), [is_final](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1)이 추가되었습니다.
 > * (C++17~) [bool_constant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#helper), [has_unique_object_representations, is_aggregate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1), [is_swappable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EB%B3%B5%EC%82%AC%EC%9D%B4%EB%8F%99%EB%8C%80%EC%9E%85%EC%86%8C%EB%A9%B8-%EC%86%8D%EC%84%B1), [is_invocable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%EA%B4%80%EA%B3%84), [invoke_result, void_t, type_identity](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%EA%B8%B0%ED%83%80-%EB%B3%80%ED%99%98),  [conjunction, disjunction, negation](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#c17-traits-%EC%97%90%EC%84%9C%EC%9D%98-%EC%97%B0%EC%82%B0)이 추가되었습니다.
 > * (C++20~) [is_constant_evaluated()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#c20-is_constant_evaluated)가 추가되어 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)가 컴파일 타임 함수인지 런타임 함수인지 검사할 수 있습니다.
+> * (C++20~) [is_bounded_array, is_unbounded_array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1)가 추가되었습니다.
 
 # 개요
 
@@ -102,10 +103,16 @@ ThreeType three;
 |`is_final` (C++14~)|[final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final) 클래스 타입인지 검사합니다.|
 |`has_unique_object_representations` (C++17~)|(작성중)|
 |`is_aggregate` (C++17~)|(작성중)|
-|`is_bounded_array` (C++20~)|(작성중)|
-|`is_unbounded_array` (C++20~)|(작성중)|
+|`is_bounded_array` (C++20~)|요소의 갯수가 알려진 배열 타입인지 검사합니다.|
+|`is_unbounded_array` (C++20~)|요소의 갯수가 알려지지 않은 배열 타입인지 검사합니다.|
+|`is_scoped_enum` (C++23~)|(작성중)|
 |`is_implicit_lifetime` (C++23~)|(작성중)|
-|`is_scoped_enum` (C++20~)|(작성중)|
+
+다음은 사용예입니다.
+
+```cpp
+
+```
 
 # 복사/이동/대입/소멸 속성 
 

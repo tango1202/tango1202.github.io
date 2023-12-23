@@ -212,6 +212,30 @@ EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 1) == 0xA1);
 
 따라서 [소스 코드의 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%86%8C%EC%8A%A4-%EC%BD%94%EB%93%9C%EC%99%80-%EC%9D%B8%EC%BD%94%EB%94%A9)도 잘 결정해서 사용해야 하는데요, `euc-kr`이나 Windows의 `cp-949`는 [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)와의 호환성이 없기에 다국어 처리에 적합하지 않습니다. 소스 코드는 `UTF-8`로 저장하시길 추천합니다.
 
+# 인코딩과 문자열 상수
+
+[문자열 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)는 `\x`, `\u`와 같은 [이스케이프 문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EC%9D%B4%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84-%EB%AC%B8%EC%9E%90)를 이용하여 코드값을 직접 기재하여 사용할 수도 있는데요,
+
+`"abc가나다"`를 [UTF-8](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 코드값으로 기재하면 다음과 같습니다.
+
+```cpp
+"\x61\x62\x63\xEA\xB0\x80\xEB\x82\x98\xEB\x8B\xA4" // abc가나다의 UTF-8 코드값입니다.
+```
+
+또한 [유니코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)로 기재하면 다음과 같습니다.
+
+```cpp
+"\u0061\u0062\u0063\uAC00\uB098\uB2E4" // abc가나다를 유니코드로 작성했습니다.
+```
+
+따라서 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)으로 소스코드를 저장한 경우 다음과 같이 [문자열 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 비교할 수 있습니다.
+
+```cpp
+EXPECT_TRUE("abc가나다" == "\x61\x62\x63\xEA\xB0\x80\xEB\x82\x98\xEB\x8B\xA4"); // UTF-8로 저장하면, UTF-8 인코딩 데이터와 동일합니다.
+EXPECT_TRUE("abc가나다" == "\u0061\u0062\u0063\uAC00\uB098\uB2E4"); // 유니코드로 작성해도 동일합니다.  
+```
+
+
 # 바이트 문자열
 
 영문자는 0 ~ 127 까지의 7bit 만으로 표현이 충분하기 때문에 1byte만으로도 저장할 수 있습니다. 이렇게 1byte 단위로 문자를 저장하는 문자열을 [바이트 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4) 이라 합니다. 
@@ -270,7 +294,7 @@ EXPECT_TRUE(mblen(str + 6, MB_CUR_MAX) == 3); // 나 문자는 3byte 크기임
 EXPECT_TRUE(mblen(str + 9, MB_CUR_MAX) == 3); // 다 문자는 3byte 크기임
 
 wchar_t wstr[7];
-std::mbstowcs(wstr, str, 7); // UTF-8로 저장되어 있는 데이터를 디코딩하여 문자 1개씩 유니코드로 변경하여 저장합니다.
+std::mbstowcs(wstr, str, 7); // UTF-8로 저장되어 있는 멀티 바이트 문자열을 디코딩하여 문자 1개씩 유니코드로 변경하여 와이드 문자열로 저장합니다.
 
 EXPECT_TRUE(wstr[0] == 0x0061); // 0x0061. 아스키 코드 a
 EXPECT_TRUE(wstr[1] == 0x0062); // 0x0062. 아스키 코드 b

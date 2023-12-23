@@ -19,6 +19,7 @@ sidebar:
 > * (C++17~) [chars_format](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98)이 추가되었습니다.
 > * (C++20~) [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되어 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열을 지원합니다.
 > * (C++20~) [starts_with(), ends_with()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)가 추가되어 접두사와 접미사를 검사할 수 있습니다.
+> * (C++20~) [mbrtoc8(), c8rtomb()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8)가 추가되었습니다.
 
 # 개요
 
@@ -35,35 +36,55 @@ sidebar:
 |--|--|--|
 |[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)|[바이트 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)|`basic_string<char>`|
 |[wstring](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)|[와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)|`basic_string<wchar_t>`|
-|`u16string` (C++11~)|[UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열|`basic_string<char16_t>`|
-|`u32string` (C++11~)|[UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열|`basic_string<char32_t>`|
-|`u8string` (C++20~)|[UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열|`basic_string<char8_t>`|
+|[u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94) (C++11~)|[UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열|`basic_string<char16_t>`|
+|[u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94) (C++11~)|[UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열|`basic_string<char32_t>`|
+|[u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94) (C++20~)|[UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열|`basic_string<char8_t>`|
+
+C++11 부터 [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)과 [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9)을 지원하는 [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다. 각 요소당 문자 1개를 저장합니다.
 
 ```cpp
-// C++11
-std::u16string str1_11{u"abc가나다"};
-std::u32string str2_11{U"abc가나다"};
+std::u16string u16str{u"abc가나다"};
+EXPECT_TRUE(u16str == u"abc가나다");
+EXPECT_TRUE(u16str.length() == 6);
+EXPECT_TRUE(u16str[3] == u'가'); // 각 요소는 문자 1개 입니다.
 
-// C++20
-std::u8string str3_20{u8"abc가나다"};
-
-EXPECT_TRUE(str1_11.size() == 6);
-EXPECT_TRUE(str1_11[3] == u'가'); 
-
-EXPECT_TRUE(str2_11.size() == 6);
-EXPECT_TRUE(str2_11[3] == U'가');
-
-// C++20
-EXPECT_TRUE(str3_20.size() == 12); // abc : 3byte, 가 : 3byte, 나 : 3byte, 다 : 3byte
-EXPECT_TRUE(str3_20[3] == 0xEA); // 한글 '가'는 UTF-8에서 3byte. 0xEA, 0xB0, 0x80
-EXPECT_TRUE(str3_20[4] == 0xB0);
-EXPECT_TRUE(str3_20[5] == 0x80);
+std::u32string u32str{U"abc가나다"};  
+EXPECT_TRUE(u32str == U"abc가나다");
+EXPECT_TRUE(u32str.length() == 6);
+EXPECT_TRUE(u32str[3] == U'가'); // 각 요소는 문자 1개 입니다. 
 ```
 
-자세한 사용 방법은 [문자열](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)을 참고하시기 바랍니다.
+Windows의 경우 [와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)은 내부적으로 [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)으로 저장되므로(*[와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4) 참고*), 다음과 같이 [reinterpret_cast](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)로 비교가 가능합니다.
+
+```cpp
+std::wstring wstr{L"abc가나다"}; // windows에서는 와이드 문자열이 UTF-16으로 저장됩니다.
+EXPECT_TRUE(wstr == L"abc가나다");
+EXPECT_TRUE(wstr.length() == 6);
+EXPECT_TRUE(wstr[3] == L'가'); // 각 요소는 문자 1개 입니다.
+
+std::u16string wstrToU16{reinterpret_cast<const char16_t*>(wstr.c_str())}; // 강제적으로 형변환하면 UTF-16과 동일한 형태로 저장되어 있습니다.
+EXPECT_TRUE(wstrToU16 == u"abc가나다");
+```
+
+C++20 부터는 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 사용하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
+
+[wstring](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/), [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94), [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)은 요소 1개당 문자 1개를 저장하지만, [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)은 그렇지 않습니다.
+
+[UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)에서는 문자의 종류에 따라 1~4byte를 사용하며, 문자가 한글과 같이 3yte인 경우에는 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)(*적어도 1byte*)인 요소 3개로 저장합니다. 따라서 `length()`가 문자의 갯수가 아니라 byte의 갯수가 됩니다.
+
+```cpp
+std::u8string u8str{u8"abc가나다"}; 
+EXPECT_TRUE(u8str == u8"abc가나다"); 
+EXPECT_TRUE(u8str.length() == 12); // UTF8에서 영문자는 1byte, 한글은 3byte입니다. 한글 1글자를 3개로 처리합니다.
+                                   // abc : 3byte, 가 : 3byte, 나 : 3byte, 다 : 3byte
+EXPECT_TRUE(u8str[3] == 0xEA); // 한글 '가'는 UTF-8에서 3byte. 0xEA, 0xB0, 0x80
+EXPECT_TRUE(u8str[4] == 0xB0);
+EXPECT_TRUE(u8str[5] == 0x80);
+```
+
+[basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)들의 자세한 사용 방법은 [레거시 C++ STL의 문자열](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)을 참고하시기 바랍니다.
 
 > *(C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 추가되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 [문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/), [날짜 / 시간](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/), [복소수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex) 관련 표현이 간편해 졌습니다.*
-
 
 # C스타일 문자열 함수
 
@@ -164,30 +185,31 @@ EXPECT_TRUE(str3_20[5] == 0x80);
 
 # 멀티 바이트
 
+기본적으로 다국어 처리는 [와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4), [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열, [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열, [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 사용하는게 좋습니다. [멀티 바이트](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8) 관련 함수들은 구버전 호환 용도로만 사용하시기 바랍니다.(*[멀티바이트 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)을 참고*)
+
 **멀티 바이트 문자열과 와이드 문자열간 변환**
 
 |항목|내용|
 |--|--|
-|[mblen(str)](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)|`str` 주소의 문자가 몇 바이트 크기인지 구합니다.|
-|`mbtowc()`|(작성중)|
-|`wctomb()`|(작성중)|
-|[mbstowcs()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)|해당 주소의 문자들의 코드를 `wchar_t`로 변환합니다.|
-|`wcstombs()`|(작성중)|
-|`wcstombs()`|(작성중)|
+|[mblen(str)](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)|`str` 주소의 멀티 바이트 문자가 몇 바이트 크기인지 구합니다.|
+|`mbtowc()`|멀티 바이트 문자를 와이드 문자로 변환합니다.|
+|`wctomb()`|와이드 문자를 멀티 바이트 문자로 변환합니다.|
+|[mbstowcs()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)|[멀티 바이트 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)를 [와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)로 변환합니다.|
+|`wcstombs()`|[와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 [멀티 바이트 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)로 변환합니다.|
 |`mbsinit()`|(작성중)|
 |`btowc()`|(작성중)|
 |`wctob()`|(작성중)|
-|`mbrlen()`|(작성중)| 
-|`mbrtowc()`|(작성중)| 
-|`wcrtomb()`|(작성중)| 
-|`mbsrtowcs()`|(작성중)| 
-|`wcsrtombs()`|(작성중)| 
-|`mbrtoc16()` (C++11~)|(작성중)| 
-|`c16rtomb()` (C++11~)|(작성중)| 
-|`mbrtoc32()` (C++11~)|(작성중)| 
-|`c32rtomb()` (C++11~)|(작성중)| 
-|`mbrtoc8()` (C++20~)|(작성중)| 
-|`c8rtomb()` (C++20~)|(작성중)| 
+|`mbrlen()`|멀티 바이트 문자가 몇 바이트 크기인지 구합니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.|
+|`mbrtowc()`|`mbtowc()`와 같습니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.| 
+|`wcrtomb()`|`wctomb()`와 같습니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.| 
+|`mbsrtowcs()`|[mbstowcs()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)와 같습니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.| 
+|`wcsrtombs()`|`wcstombs()`와 같습니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.| 
+|`mbrtoc16()` (C++11~)|멀티 바이트 문자를 [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자로 변환합니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.| 
+|`c16rtomb()` (C++11~)|[UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 멀티 바이트 문자로 변환합니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.| 
+|`mbrtoc32()` (C++11~)|멀티 바이트 문자를 [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자로 변환합니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.| 
+|`c32rtomb()` (C++11~)|[UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 멀티 바이트 문자로 변환합니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.| 
+|`mbrtoc8()` (C++20~)|멀티 바이트 문자를 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자로 변환합니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.| 
+|`c8rtomb()` (C++20~)|[UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자를 멀티 바이트 문자로 변환합니다. 이때 `mbstate_t`를 이용하여, 멀티 바이트 문자의 변환 상태를 저장하고 사용합니다.| 
 
 **타입**
 
@@ -350,7 +372,4 @@ char buf[10];
 }
 ```
 
-# (C++20~) u8string
-
-C++20 부터는 UTF8 을 관리할 수 있도록 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
 

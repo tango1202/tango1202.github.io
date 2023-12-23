@@ -21,6 +21,8 @@ sidebar:
 > * (C++17~) [launder()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EC%A0%80%EC%88%98%EC%A4%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)가 추가되어 [위치 지정 생성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)으로 생성된 개체의 합법적인 포인터를 얻을 수 있습니다.
 > * (C++17~) [polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/)가 추가되어 할당시 런타임 [다형성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-polymorphism/)을 지원합니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 [메모리 풀](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%92%80)을 손쉽게 만들 수 있습니다.
 > * (C++17~) [uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85)가 추가되어 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)의 새로운 방법을 제공합니다.
+> * (C++20~) [to_address(), assume_aligned()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c20-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)가 추가되었습니다.
+
 
 # C스타일 메모리 관리
 
@@ -238,8 +240,19 @@ T : Destructor
 
 |항목|내용|
 |--|--|
-|`to_address()` (C++20~)|(작성중)|
-|`assume_aligned()` (C++20~)|(작성중)|
+|`to_address()` (C++20~)|일반 포인터나 스마트 포인터 구분없이 실제 관리되는 메모리 주소를 접근하는 일관된 방법을 제공합니다.|
+|`assume_aligned(ptr)` (C++20~)|`ptr`을 [메모리 정렬](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)된 포인터로 변환합니다.|
+
+`to_address()`는 실제 메모리에서 관리되는 포인터를 구하는 일관된 방법을 제공합니다.
+
+```cpp
+int* rawPtr{new int{0}};
+std::shared_ptr<int> sp{rawPtr};
+
+EXPECT_TRUE(rawPtr == std::to_address(rawPtr)); // 일반 포인터나 스마트 포인터 구분없이 실제 관리되는 메모리 주소를 접근하는 일관된 방법을 제공합니다.
+EXPECT_TRUE(rawPtr == std::to_address(sp));
+EXPECT_TRUE(rawPtr == sp.get()); 
+```
 
 # (C++23~) 스마트 포인트 어뎁터
 
