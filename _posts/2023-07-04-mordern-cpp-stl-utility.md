@@ -28,6 +28,7 @@ sidebar:
 > * (C++20~) [source_location](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-source_location)이 추가되어 파일명, 줄번호, 칼럼번호, 함수명등의 정보를 제공합니다.
 > * (C++20~) [삼중 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90) 관련 유틸리티들이 추가되었습니다.
 > * (C++20~) [유틸리티의 constexpr 지원이 개선](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0%EC%9D%98-constexpr-%EA%B0%9C%EC%84%A0)되어 `swap()`함수도 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)로 변경되었습니다.
+> * (C++20~) [STL 지원 테스트](??) 매크로가 추가되어 C++11부터 추가된 STL 기능을 지원하는지 테스트 할 수 있습니다.
 
 # 일반 유틸리티
 
@@ -258,3 +259,16 @@ constexpr std::pair<int, int> result{ConstSwap(0, 1)};
 static_assert(result.first == 1 && result.second == 0);  
 ```
 
+# STL 지원 테스트
+
+C++20 부터는 [STL 지원 테스트](??) 매크로가 추가되어 C++11부터 추가된 STL 기능을 지원하는지 테스트 할 수 있습니다.
+
+테스트할 수 있는 항목은 [https://en.cppreference.com/w/cpp/feature_test#Library_features](https://en.cppreference.com/w/cpp/feature_test#Library_features)를 참고하시기 바랍니다.
+
+```cpp
+#if __cpp_lib_string_view
+    std::cout << "Support string_view" << std::endl; // string_view를 지원합니다.
+#else 
+    std::cout << "No string_view" << std::endl;
+#endif  
+```
