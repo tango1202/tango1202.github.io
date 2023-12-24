@@ -54,23 +54,19 @@ EXPECT_TRUE(u32str.length() == 6);
 EXPECT_TRUE(u32str[3] == U'가'); // 각 요소는 문자 1개 입니다. 
 ```
 
-Windows의 경우 [와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)은 내부적으로 [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)으로 저장되므로(*[와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4) 참고*), 다음과 같이 [reinterpret_cast](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)로 비교가 가능합니다.
+Windows의 경우 [와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)은 내부적으로 [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)으로 저장되므로(*[와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4) 참고*), [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)과 동일한 코드값을 가지고 있습니다.(*Linux는 [와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)이 [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9)을 사용하므로 [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)과 같을 겁니다. 확인해 보지는 않았습니다.*)
 
 ```cpp
 std::wstring wstr{L"abc가나다"}; // windows에서는 와이드 문자열이 UTF-16으로 저장됩니다.
-EXPECT_TRUE(wstr == L"abc가나다");
-EXPECT_TRUE(wstr.length() == 6);
-EXPECT_TRUE(wstr[3] == L'가'); // 각 요소는 문자 1개 입니다.
-
-std::u16string wstrToU16{reinterpret_cast<const char16_t*>(wstr.c_str())}; // 강제적으로 형변환하면 UTF-16과 동일한 형태로 저장되어 있습니다.
-EXPECT_TRUE(wstrToU16 == u"abc가나다");
+std::u16string u16str{reinterpret_cast<const char16_t*>(wstr.c_str())}; // 강제적으로 형변환하면 UTF-16과 동일한 형태로 저장되어 있습니다.
+EXPECT_TRUE(u16str == u"abc가나다");
 ```
 
 C++20 부터는 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 사용하는 [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)이 추가되었습니다.
 
 [wstring](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/), [u16string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94), [u32string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)은 요소 1개당 문자 1개를 저장하지만, [u8string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EA%B0%9C%EC%9A%94)은 그렇지 않습니다.
 
-[UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)에서는 문자의 종류에 따라 1~4byte를 사용하며, 문자가 한글과 같이 3yte인 경우에는 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)(*적어도 1byte*)인 요소 3개로 저장합니다. 따라서 `length()`가 문자의 갯수가 아니라 byte의 갯수가 됩니다.
+[UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)에서는 문자의 종류에 따라 1 ~ 4byte를 사용하며, 문자가 한글과 같이 3yte인 경우에는 [char8_t 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-type/#c20-char8_t)(*적어도 1byte*)인 요소 3개로 저장합니다. 따라서 `length()`가 문자의 갯수가 아니라 byte의 갯수가 됩니다.
 
 ```cpp
 std::u8string u8str{u8"abc가나다"}; 
@@ -82,9 +78,102 @@ EXPECT_TRUE(u8str[4] == 0xB0);
 EXPECT_TRUE(u8str[5] == 0x80);
 ```
 
-[basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)들의 자세한 사용 방법은 [레거시 C++ STL의 문자열](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)을 참고하시기 바랍니다.
-
 > *(C++14~) [표준 사용자 정의 리터럴](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-standard-user-literal/)이 추가되어 `operator ""s`, `operator ""min`, `operator ""if`, 등 [문자열](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/), [날짜 / 시간](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/), [복소수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex) 관련 표현이 간편해 졌습니다.*
+
+# basic_string
+
+대부분 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 동일하며, [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에 필요한 기능이 추가되었습니다.(*[basic_string](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string)의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)들의 자세한 사용 방법은 [레거시 C++ STL의 문자열](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)을 참고하시기 바랍니다.*)
+
+**정적 멤버 변수**
+
+|항목|내용|
+|--|--|
+|`npos`|"찾을 수 없음"이나 "나머지 모든 문자"를 나타내는 의미로 사용합니다.|
+
+```cpp
+static const size_type npos = -1;
+```
+
+**생성자**
+
+|항목|내용|
+|--|--|
+|`basic_string()`|빈 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 개체를 생성합니다.|
+|`basic_string(const string& other)`|[복사 생성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
+|`basic_string(const value_type* ptr)`|C 언어 스타일의 문자열로부터 문자들을 복사하여 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 개체를 생성합니다.|
+|`basic_string(const string& other, size_type, offset, size_type count = npos)`<br/>`basic_string(const value_type* ptr, size_type count)`<br/>|`offset` 위치 부터 `count` 갯수만큼 문자들을 복사하여 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)개체를 생성합니다.|
+|`basic_string(size_type count, value_type char_value)`|`char_value`를 `count`만큼 채운[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)을 생성합니다.|
+|`basic_string(const_iterator first, const_iterator last)`|`first`부터 `last` 직전까지의 요소(반개방 구조)를 복사하여 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 개체를 생성합니다.|
+
+**연산자**
+
+|항목|내용|
+|--|--|
+|`operator =(const basic_stiring& other)`|`other`를 [복사 대입](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)합니다.|
+|`operator =(const basic_stiring&& other) noexcept` (C++11~)|`other`를 [이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
+|`+`|두 문자열을 연결하여 새로운 문자열을 만듭니다.|
+|`+=`|문자열에 문자나 문자열을 추가합니다.|
+|`==`<br/>`!=` (~C++20)|두 문자열이 같은지, 다른지 검사합니다. 단순히 포인터 비교하는게 아니라 실제 문자들을 비교합니다.|
+|`<, <=, >, >=` (~C++20)<br/>`<=>` (C++20~)|두 문자열을 대소 비교합니다.|
+|`<<, >>`|출력 스트림에 출력하거나, 입력 스트림에서 문자열을 추출합니다.|
+
+**할당과 문자열 관리**
+
+|항목|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 특화|내용|
+|--|--|--|
+|[assign()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A0%EB%8B%B9-%ED%95%A9%EC%84%B1-%EB%B9%84%EA%B5%90assign-append-compare)||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 기존 내용을 지우고 새로운 문자열을 복사합니다.|
+|`assign_range()` (C++11~)||(작성중)|
+|`get_allocator()` (C++23~)||(작성중)|
+|`resize()`||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 새 크기를 지정하며, 필요에 따라 문자를 추가하거나 지웁니다.|
+|[size()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)<br/>[length()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 문자 갯수를 리턴합니다.<br/>[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에서는 `length`를 추가로 제공합니다.|
+|[empty()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 비었는지 확인합니다.|
+|[capacity()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/#size%EC%99%80-capacity)||메모리를 더 할당하지 않고 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에 저장할 수 있는 문자 갯수를 리턴합니다.([string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)은 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 동일하게 메모리 할당이 빈번히 발생하지 않도록 실제 문자 갯수보다 큰 크기를 할당하기도 하고, 삽입/삭제에 따라 실제 문자 갯수보다 더 많은 메모리를 관리할 수 있습니다.)|
+|`shrink_to_fit()`||(작성중)|
+|[reserve()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/#%EC%A0%80%EC%9E%A5-%EA%B3%B5%EA%B0%84-%EC%98%88%EC%95%BD)||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 메모리 공간을 최소한 `count` 갯수 만큼 문자를 저장할 수 있도록 예약합니다.|
+|`max_size()`||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 저장할 수 있는 최대 문자 갯수를 리턴합니다.|
+|`swap()`||두 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 내부 데이터를 바꿔치기 합니다.|
+
+**문자 검색**
+
+|항목|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 특화|내용|
+|--|--|--|
+|`[]`||요소에 접근합니다.|
+|[at()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/#-%EA%B3%BC-at)||`position`위치의 요소 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
+|`begin(), end()`||순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다.|
+|`rbegin(), rend()`||[역방향 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
+|`cbegin(), cend()`||순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
+|`crbegin() crend()`||[역방향 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
+|[data()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC%EC%9D%98-%ED%98%B8%ED%99%98data-c_str)||[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 관리하는 메모리 블록을 리턴합니다. STL 구현에 따라 끝에 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 있을 수도 있지만, 표준이 아니기 때문에 [널종료 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 구할 때는 [c_str()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC%EC%9D%98-%ED%98%B8%ED%99%98data-c_str)을 이용해야 합니다.|
+|[c_str()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC%EC%9D%98-%ED%98%B8%ED%99%98data-c_str)|O|c 스타일의 [널종료 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 리턴합니다.(끝에 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 있습니다.)|
+|`front()`||첫번째 요소의 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
+|`back()`||마지막 요소의 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
+|[find()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%90%EC%83%89find-find_first_of-find_last_of)<br/>`rfind()`|O|지정된 문자 시퀀스와 일치하는 첫번째 인덱스를 찾습니다.|
+|[find_first_of()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%90%EC%83%89find-find_first_of-find_last_of)<br/>`find_first_not_of()`|O|지정된 문자들중 일치하는 문자가 있는 첫번째 인덱스를 찾습니다.|
+|[find_last_of()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%90%EC%83%89find-find_first_of-find_last_of)<br/>`find_last_not_of()`|O|지정된 문자들중 일치하는 문자가 있는 마지막 인덱스를 찾습니다.|
+|`operator basic_string_view()` (C++17~)|O|(작성중)|
+
+**요소 삽입/삭제/비교/추출**
+
+|항목|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 특화|내용|
+|--|--|--|
+|[clear()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/#clear%EC%99%80-swap)||모든 요소를 지웁니다. 이때 메모리 영역은 그대로 입니다.|
+|[erase()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)||`position`위치의 요소를 삭제하거나 `first`와 `last` 직전까지의 요소(반개방 구조)를 삭제합니다. [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)가 유효하지 않다면, 아무 생각없이 실행되어 오동작 합니다. |
+|`erase_if()` (C++20~)||(작성중)|
+|`pop_back()`||마지막 요소를 삭제합니다. [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 비었다면 아무 동작 안합니다.|
+|[push_back()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)끝에 요소를 추가합니다.|
+|[insert()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)||`position`으로 지정한 위치 앞에 삽입합니다.|
+|`insert_range()` (C++23~)||(작성중)|
+|[append()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A0%EB%8B%B9-%ED%95%A9%EC%84%B1-%EB%B9%84%EA%B5%90assign-append-compare)|O|문자열에 문자나 문자열을 추가합니다.|
+|`append_range()` (C++23~)||(작성중)|
+|[compare()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A0%EB%8B%B9-%ED%95%A9%EC%84%B1-%EB%B9%84%EA%B5%90assign-append-compare)|O|문자열을 대소 비교합니다.|
+|[starts_with()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string) (C++20~)|O|주어진 부분 문자열로 시작하는지 검사합니다.|
+|[ends_with()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string) (C++20~)|O|주어진 부분 문자열로 끝나는지 검사합니다.|
+|`contains()` (C++23~)|O|(작성중)|
+|[replace()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 요소를 지정한 문자나 다른 시퀀스로 바꿉니다.|
+|`replace_with_range()` (C++23~)|O|(작성중)|
+|[substr()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에서 부분 문자열을 복사하여 리턴합니다.|
+|[copy()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에서 부분 문자열을 문자 [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)에 복사합니다.|
+|`getline()`|O|IO 스트림으로부터 데이터를 읽습니다.|
 
 # C스타일 문자열 함수
 
@@ -185,7 +274,7 @@ EXPECT_TRUE(u8str[5] == 0x80);
 
 # 멀티 바이트
 
-기본적으로 다국어 처리는 [와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4), [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열, [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열, [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)을 사용하는게 좋습니다. [멀티 바이트](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8) 관련 함수들은 구버전 호환 용도로만 사용하시기 바랍니다.(*[멀티바이트 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)을 참고*)
+다국어 처리는 [와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4), [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열, [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열, [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9) 문자열을 사용하면 되므로 [멀티 바이트](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8)를 사용할 일은 별로 없습니다. 비권고되기도 하고요. 이제 구버전 호환 용도 정도로만 사용하면 될 듯 하네요.(*사용법은 [멀티바이트 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)을 참고하시기 바랍니다.*)
 
 **멀티 바이트 문자열과 와이드 문자열간 변환**
 
@@ -230,101 +319,6 @@ EXPECT_TRUE(u8str[5] == 0x80);
 
 [errorno](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%98%A4%EB%A5%98-%EB%B2%88%ED%98%B8)를 문자열로 출력해 줍니다.
 
-# basic_string
-
-대부분 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 동일하며, [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에 필요한 기능이 추가되었습니다. 
-
-**정적 멤버 변수**
-
-|항목|내용|
-|--|--|
-|`npos`|"찾을 수 없음"이나 "나머지 모든 문자"를 나타내는 의미로 사용합니다.|
-
-```cpp
-static const size_type npos = -1;
-```
-
-**생성자**
-
-|항목|내용|
-|--|--|
-|`basic_string()`|빈 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 개체를 생성합니다.|
-|`basic_string(const string& other)`|[복사 생성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
-|`basic_string(const value_type* ptr)`|C 언어 스타일의 문자열로부터 문자들을 복사하여 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 개체를 생성합니다.|
-|`basic_string(const string& other, size_type, offset, size_type count = npos)`<br/>`basic_string(const value_type* ptr, size_type count)`<br/>|`offset` 위치 부터 `count` 갯수만큼 문자들을 복사하여 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)개체를 생성합니다.|
-|`basic_string(size_type count, value_type char_value)`|`char_value`를 `count`만큼 채운[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)을 생성합니다.|
-|`basic_string(const_iterator first, const_iterator last)`|`first`부터 `last` 직전까지의 요소(반개방 구조)를 복사하여 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 개체를 생성합니다.|
-
-**연산자**
-
-|항목|내용|
-|--|--|
-|`operator =(const basic_stiring& other)`|`other`를 [복사 대입](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)합니다.|
-|`operator =(const basic_stiring&& other) noexcept` (C++11~)|`other`를 [이동 대입](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90)합니다.|
-|`+`|두 문자열을 연결하여 새로운 문자열을 만듭니다.|
-|`+=`|문자열에 문자나 문자열을 추가합니다.|
-|`==`<br/>`!=` (~C++20)|두 문자열이 같은지, 다른지 검사합니다. 단순히 포인터 비교하는게 아니라 실제 문자들을 비교합니다.|
-|`<, <=, >, >=` (~C++20)<br/>`<=>` (C++20~)|두 문자열을 대소 비교합니다.|
-|`<<, >>`|출력 스트림에 출력하거나, 입력 스트림에서 문자열을 추출합니다.|
-
-**할당과 문자열 관리**
-
-|항목|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 특화|내용|
-|--|--|--|
-|[assign()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A0%EB%8B%B9-%ED%95%A9%EC%84%B1-%EB%B9%84%EA%B5%90assign-append-compare)||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 기존 내용을 지우고 새로운 문자열을 복사합니다.|
-|`assign_range()` (C++11~)||(작성중)|
-|`get_allocator()` (C++23~)||(작성중)|
-|`resize()`||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 새 크기를 지정하며, 필요에 따라 문자를 추가하거나 지웁니다.|
-|[size()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)<br/>[length()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 문자 갯수를 리턴합니다.<br/>[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에서는 `length`를 추가로 제공합니다.|
-|[empty()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4size-length-empty)||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 비었는지 확인합니다.|
-|[capacity()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/#size%EC%99%80-capacity)||메모리를 더 할당하지 않고 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에 저장할 수 있는 문자 갯수를 리턴합니다.([string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)은 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)와 동일하게 메모리 할당이 빈번히 발생하지 않도록 실제 문자 갯수보다 큰 크기를 할당하기도 하고, 삽입/삭제에 따라 실제 문자 갯수보다 더 많은 메모리를 관리할 수 있습니다.)|
-|`shrink_to_fit()`||(작성중)|
-|[reserve()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/#%EC%A0%80%EC%9E%A5-%EA%B3%B5%EA%B0%84-%EC%98%88%EC%95%BD)||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 메모리 공간을 최소한 `count` 갯수 만큼 문자를 저장할 수 있도록 예약합니다.|
-|`max_size()`||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 저장할 수 있는 최대 문자 갯수를 리턴합니다.|
-|`swap()`||두 [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 내부 데이터를 바꿔치기 합니다.|
-
-**문자 검색**
-
-|항목|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 특화|내용|
-|--|--|--|
-|`[]`||요소에 접근합니다.|
-|[at()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/#-%EA%B3%BC-at)||`position`위치의 요소 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. `position`이 잘못된 위치이면 `[]` 과 달리 [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하며, 검사 코드가 추가되어 상대적으로 속도 부하가 있습니다.|
-|`begin(), end()`||순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다.|
-|`rbegin(), rend()`||[역방향 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다.|
-|`cbegin(), cend()`||순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
-|`crbegin() crend()`||[역방향 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
-|[data()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC%EC%9D%98-%ED%98%B8%ED%99%98data-c_str)||[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 관리하는 메모리 블록을 리턴합니다. STL 구현에 따라 끝에 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 있을 수도 있지만, 표준이 아니기 때문에 [널종료 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 구할 때는 [c_str()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC%EC%9D%98-%ED%98%B8%ED%99%98data-c_str)을 이용해야 합니다.|
-|[c_str()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC%EC%9D%98-%ED%98%B8%ED%99%98data-c_str)|O|c 스타일의 [널종료 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)을 리턴합니다.(끝에 [널문자(*정수 0인 문자, `'\0'`*)](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)가 있습니다.)|
-|`front()`||첫번째 요소의 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
-|`back()`||마지막 요소의 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 리턴합니다. [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 비었다면 아무 생각없이 실행되어 오동작 합니다.|
-|[find()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%90%EC%83%89find-find_first_of-find_last_of)<br/>`rfind()`|O|지정된 문자 시퀀스와 일치하는 첫번째 인덱스를 찾습니다.|
-|[find_first_of()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%90%EC%83%89find-find_first_of-find_last_of)<br/>`find_first_not_of()`|O|지정된 문자들중 일치하는 문자가 있는 첫번째 인덱스를 찾습니다.|
-|[find_last_of()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%90%EC%83%89find-find_first_of-find_last_of)<br/>`find_last_not_of()`|O|지정된 문자들중 일치하는 문자가 있는 마지막 인덱스를 찾습니다.|
-|`operator basic_string_view()` (C++17~)|O|(작성중)|
-
-**요소 삽입/삭제/비교/추출**
-
-|항목|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/) 특화|내용|
-|--|--|--|
-|[clear()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/#clear%EC%99%80-swap)||모든 요소를 지웁니다. 이때 메모리 영역은 그대로 입니다.|
-|[erase()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98-erase%EC%99%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-remove-%ED%95%A8%EC%88%98)||`position`위치의 요소를 삭제하거나 `first`와 `last` 직전까지의 요소(반개방 구조)를 삭제합니다. [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)가 유효하지 않다면, 아무 생각없이 실행되어 오동작 합니다. |
-|`erase_if()` (C++20~)||(작성중)|
-|`pop_back()`||마지막 요소를 삭제합니다. [string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)이 비었다면 아무 동작 안합니다.|
-|[push_back()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)||[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)끝에 요소를 추가합니다.|
-|[insert()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#vector-%EC%9D%98-%EC%82%BD%EC%9E%85%EA%B3%BC-%EC%82%AD%EC%A0%9C)||`position`으로 지정한 위치 앞에 삽입합니다.|
-|`insert_range()` (C++23~)||(작성중)|
-|[append()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A0%EB%8B%B9-%ED%95%A9%EC%84%B1-%EB%B9%84%EA%B5%90assign-append-compare)|O|문자열에 문자나 문자열을 추가합니다.|
-|`append_range()` (C++23~)||(작성중)|
-|[compare()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A0%EB%8B%B9-%ED%95%A9%EC%84%B1-%EB%B9%84%EA%B5%90assign-append-compare)|O|문자열을 대소 비교합니다.|
-|[starts_with()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string) (C++20~)|O|주어진 부분 문자열로 시작하는지 검사합니다.|
-|[ends_with()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#basic_string) (C++20~)|O|주어진 부분 문자열로 끝나는지 검사합니다.|
-|`contains()` (C++23~)|O|(작성중)|
-|[replace()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)의 요소를 지정한 문자나 다른 시퀀스로 바꿉니다.|
-|`replace_with_range()` (C++23~)|O|(작성중)|
-|[substr()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에서 부분 문자열을 복사하여 리턴합니다.|
-|[copy()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/#%EB%B6%80%EB%B6%84-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B2%98%EB%A6%ACreplace-substr-copy)|O|[string](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-string/)에서 부분 문자열을 문자 [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)에 복사합니다.|
-|`getline()`|O|IO 스트림으로부터 데이터를 읽습니다.|
-
 # (C++11~) 숫자 변환
 
 |항목|내용|
@@ -341,11 +335,13 @@ C++17 부터 숫자와 문자열간의 변환을 위한 [to_chars(), from_chars(
 
 |항목|내용|
 |--|--|
-|`to_chars()` (C++17~)|정수, 실수를 문자열로 변환합니다.|
+|[to_chars()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) (C++17~)|정수, 실수를 문자열로 변환합니다.|
 |`to_chars_result` (C++17~)|`to_chars()`의 [리턴값](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)입니다. 변환된 문자열을 끝 포인터(`ptr`)와 에러 코드(`ec`, [errc](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98) 타입)로 구성됩니다.|
-|`from_chars()` (C++17~)|문자열을 정수, 실수로 변환합니다.|
+|[from_chars()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98) (C++17~)|문자열을 정수, 실수로 변환합니다.|
 |`from_chars_result` (C++17~)|`from_chars()`의 [리턴값](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)입니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달된 문자열에서 숫자로 해석할 수 없는 위치(`ptr`)와 에러 코드(`ec`, [errc](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98) 타입)로 구성됩니다.|
 |`chars_format` (C++17~)|`scientific, fixed, hex, general(fixed 와 scientific)` 옵션을 제공합니다.|
+
+[to_char()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98)와 [from_char()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c17-%EC%88%AB%EC%9E%90%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B3%80%ED%99%98)는 데이터와 에러 코드를 함께 리턴하는데요, [구조화된 바인딩](https://tango1202.github.io/mordern-cpp/mordern-cpp-structured-binding/)을 사용하면 좀더 간결하게 코딩할 수 있습니다.
 
 ```cpp
 char buf[10];
@@ -368,7 +364,7 @@ char buf[10];
     if (ec == std::errc{}) {
         EXPECT_TRUE(result == 11); // 숫자 부분만 잘 변환합니다.
     }
-    EXPECT_TRUE(ptr == &str[2]); // year는 숫자가 아니므로 첫 문자 주소를 리턴합니다.
+    EXPECT_TRUE(ptr == &str[2]); // ptr은 숫자 다음 위치입니다. 즉, 'y' 위치입니다.
 }
 ```
 

@@ -41,7 +41,7 @@ size_t MyStrlen(const char * str) {
 EXPECT_TRUE(MyStrlen("abc") == 3);
 ```
 
-즉, 저장 공간은 [널문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)를 포함한 크기이며, 문자열의 길이는 [널문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)를 제외한 길이입니다.
+따라서, 저장 공간은 [널문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)를 포함한 크기이며, 문자열의 길이는 [널문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)를 제외한 길이입니다.
 
 ```cpp
 char str[] = "abc"; // (O) {'a', `b`, 'c', '\0'};
@@ -86,9 +86,9 @@ EXPECT_TRUE(str2[0] == 'd');
 
 # 확장 아스키 코드
 
-하지만 [아스키 코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%95%84%EC%8A%A4%ED%82%A4-%EC%BD%94%EB%93%9C)는 0 ~ 127(*0111 1111*) 까지만 정의되어 있어서, 다양한 국가의 다양한 문자를 표현하기엔 부족했습니다.
+[아스키 코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%95%84%EC%8A%A4%ED%82%A4-%EC%BD%94%EB%93%9C)는 0 ~ 127(*0111 1111*) 까지만 사용하기 때문에, 다양한 국가의 다양한 문자를 표현하기엔 부족합니다.
 
-그래서 [확장 아스키 코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%ED%99%95%EC%9E%A5-%EC%95%84%EC%8A%A4%ED%82%A4-%EC%BD%94%EB%93%9C)로 128 ~ 255 영역을 사용하는 방법이 도입되었는데요, 0 ~ 127 의 값이면 [아스키 코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%95%84%EC%8A%A4%ED%82%A4-%EC%BD%94%EB%93%9C)를 사용하고, 그 이상의 값이면 코드 페이지(*`437`, `ISO-8859-1`, `Windows-1250`등*)에 따라 다른 기호들을 매핑합니다. [아스키 코드(https://www.ascii-code.com/ASCII)](https://www.ascii-code.com/ASCII)를 보면, 코드 페이지에 따라 128 ~ 255 영역이 서로 다른 기호로 매핑되는걸 확인할 수 있습니다.
+그래서 [확장 아스키 코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%ED%99%95%EC%9E%A5-%EC%95%84%EC%8A%A4%ED%82%A4-%EC%BD%94%EB%93%9C)로 128 ~ 255 영역(*10000 0000 ~ 1111 1111*)을 사용하는 방법이 도입되었는데요, 0 ~ 127 의 값이면 [아스키 코드](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%95%84%EC%8A%A4%ED%82%A4-%EC%BD%94%EB%93%9C)를 사용하고, 그 이상의 값이면 코드 페이지(*`437`, `ISO-8859-1`, `Windows-1250`등*)에 따라 다른 기호들을 매핑합니다. [아스키 코드(https://www.ascii-code.com/ASCII)](https://www.ascii-code.com/ASCII)를 보면, 코드 페이지에 따라 128 ~ 255 영역이 서로 다른 기호로 매핑되는걸 확인할 수 있습니다.
 
 # 국가별 코드 테이블(조합형 한글, 완성형 한글)
 
@@ -228,7 +228,7 @@ EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 1) == 0xA1);
 "\u0061\u0062\u0063\uAC00\uB098\uB2E4" // abc가나다를 유니코드로 작성했습니다.
 ```
 
-따라서 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)으로 소스코드를 저장한 경우 다음과 같이 [문자열 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)를 비교할 수 있습니다.
+따라서 [UTF-8 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-8-%EC%9D%B8%EC%BD%94%EB%94%A9)으로 소스코드를 저장한 경우 `"abc가나다"`는 다음과 동일합니다.(*[문자열 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)의 메모리 주소가 동일합니다. [데이터 세그먼트](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8) 참고*)
 
 ```cpp
 EXPECT_TRUE("abc가나다" == "\x61\x62\x63\xEA\xB0\x80\xEB\x82\x98\xEB\x8B\xA4"); // UTF-8로 저장하면, UTF-8 인코딩 데이터와 동일합니다.
@@ -257,7 +257,7 @@ EXPECT_TRUE(*reinterpret_cast<const unsigned char*>(str + 3) == 0x00); // 널문
 
 다음은 `UTF-8`로 [인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9)된 파일에서 [멀티 바이트 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)을 사용하는 예입니다.
 
-1. `const char* str = "abc가나다";`는 `UTF-8`로 [인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 되어 `abc[0x61 0x62 0x63] 가[0xEA 0xB0 0x80] 나[0xEB 0x82 0x98] 다[0xEB 0x8B 0xA4]`이 저장되어 있습니다.
+1. `const char* str = "abc가나다";`는 `UTF-8`로 [인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 되어 `abc[0x61 0x62 0x63] 가[0xEA 0xB0 0x80] 나[0xEB 0x82 0x98] 다[0xEB 0x8B 0xA4]`가 저장되어 있습니다.
 2. [바이트 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EB%AC%B8%EC%9E%90%EC%97%B4)용 [strlen()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)함수를 사용하면 아무 생각없이 [널문자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EB%84%90%EC%A2%85%EB%A3%8C-%EB%AC%B8%EC%9E%90%EC%97%B4)까지 카운트하므로, `12`가 됩니다.
 3. [locale()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-locale/#c%EC%8A%A4%ED%83%80%EC%9D%BC-locale)함수를 호출하여 [멀티 바이트](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8) 함수 호출전에 [인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%9D%B8%EC%BD%94%EB%94%A9) 정보를 전달합니다.
 4. [mblen()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/#%EB%A9%80%ED%8B%B0-%EB%B0%94%EC%9D%B4%ED%8A%B8)함수를 이용하여 해당 주소의 문자가 몇 바이트 크기인지 구합니다.
@@ -309,7 +309,7 @@ EXPECT_TRUE(wstr[6] == 0x0000); // 널문자
 
 [와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)은 영문자이건, 다국어 문자이건 모두 `wchar_t`로 관리하는 문자열입니다. 안타깝게도 Windows 에서는 2byte이고 리눅스에서는 4byte 이기 때문에 운영체제에 따라 다르게 동작할 수 있어 주의해야 합니다.(*[기본 타입](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-type/) 참고*)
 
-문자열의 코드값은 OS에 따라 [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)이나 [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9)으로 저장됩니다.
+[와이드 문자열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#%EC%99%80%EC%9D%B4%EB%93%9C-%EB%AC%B8%EC%9E%90%EC%97%B4)의 코드값은 OS에 따라 [UTF-16 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)이나 [UTF-32 인코딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-32-%EC%9D%B8%EC%BD%94%EB%94%A9)으로 저장됩니다.
 
 |항목|`wchar_t` 크기|인코딩|
 |--|--|--|
