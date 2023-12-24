@@ -14,12 +14,13 @@ sidebar:
 
 > * (C++11~) [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)이 추가되어 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성할 수 있습니다. 따라서 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) 없이 쓰레드 경쟁 상태를 해결할 수 있습니다.
 > * (C++11~) [memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order)가 추가되었습니다. [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/) 입니다.
+* (C++20~) [atomic_ref](??)가 추가되어 참조 타입을 [atomic](??)으로 사용할 수 있습니다.
 
 # 개요
 
 [쓰레드의 경쟁 상태 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex---%EA%B2%BD%EC%9F%81-%EC%83%81%ED%83%9Crace-condition-%ED%95%B4%EA%B2%B0)을 위해 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 이용했는데요,
 
-`m_Val = m_Val + 1`(혹은 `++m_Val`) 같은 단순한 연산도 사실은 
+`m_Val = m_Val + 1`(*혹은 `++m_Val`*) 같은 단순한 연산도 사실은 
 
 1. 메모리에서 `m_Val`의 값을 읽고,
 2. 값을 수정하고,
@@ -27,7 +28,7 @@ sidebar:
 
 여러 명령 단위로 쪼개져 구성되어 있기 때문에, 여러 쓰레드에서 사용하는 값이 서로 달라질 수 있으므로, [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)에 `lock()`을 걸어 한개의 쓰레드만 접근 가능하게 해야 한다고 말씀드렸습니다.
 
-C++11 STL 에서는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)을 사용하여 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위(더이상 쪼개지지 않는 단위, 원자 단위)로 구성할 수 있습니다. 따라서 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) 없이 [쓰레드 경쟁 상태 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex---%EA%B2%BD%EC%9F%81-%EC%83%81%ED%83%9Crace-condition-%ED%95%B4%EA%B2%B0)할 수 있습니다.
+C++11 STL 에서는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)을 사용하여 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위(*더이상 쪼개지지 않는 단위, 원자 단위*)로 구성할 수 있습니다. 따라서 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) 없이 [쓰레드 경쟁 상태 해결](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex---%EA%B2%BD%EC%9F%81-%EC%83%81%ED%83%9Crace-condition-%ED%95%B4%EA%B2%B0)할 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e34af791-1282-4f5f-92d3-9150d29464ba)
 
@@ -37,7 +38,7 @@ C++11 STL 에서는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern
 |--|--|
 |[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)은 메모리에서 값을 읽고, 수정하고, 저장하는 작업을 단일 명령 단위로 구성합니다.|
 |[atomic_flag](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic_flag) (C++11~)|`atomic<bool>`의 특수한 변형입니다.|
-|`atomic_ref` (C++20~)|(작성중)|
+|[atomic_ref](??) (C++20~)|참조 타입을 [atomic](??)으로 사용할 수 있습니다.|
 |`atomic_init()` (C++11~C++20)|C언어 호환성을 유지하며 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)개체를 초기화 합니다.|
 |`ATOMIC_VAR_INIT()` (C++11~C++20)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체의 초기값을 설정합니다.|
 |`ATOMIC_FLAG_INIT` (C++11~C++20)|`atomic_flag`의 초기값입니다.|
@@ -93,14 +94,11 @@ EXPECT_TRUE(a.GetVal() == 200); // (O) 경쟁 상태에 빠지지 않고 잘 계
 |`T operator =(T desired)` (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체는 복사 가능하지 않으며, `store(desired)` 와 같습니다.|
 |`is_lock_free()` (C++11~)|잠금이 없는지(`lock-free`) 확인합니다. `lock-free`면 CPU의 지원이 안되므로 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)등의 `lock()`으로 잠금 처리 됩니다.|
 |`is_always_lock_free` (C++17~)|항상 잠금이 없는지(`lock-free`) 확인합니다.|
-|`store()` (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체에 값을 저장합니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
-|`load()` (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)개체의 값을 불러옵니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
+|[store()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체에 값을 저장합니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
+|[load()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)개체의 값을 불러옵니다.([atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고)|
 |`operator T()` (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)개체의 값타입으로 [암시적으로 형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)합니다.|
-|[exchange()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-exchange/) (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체의 값을 바꾸고, 이전 값을 가져옵니다.|
+|`exchange()` (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체의 값을 바꾸고, 이전 값을 가져옵니다.|
 |`compare_exchange_week()` (C++11~)<br/>`compare_exchange_strong()` (C++11~)|(작성중)|
-|`wait()` (C++20~)|(작성중)|
-|`notify_one()` (C++20~)|(작성중)|
-|`notify_all()` (C++20~)|(작성중)|
 |`fetch_add()` (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체의 값에 주어진 값을 더합니다.|
 |`fetch_sub()` (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체의 값에 주어진 값을 뺍니다.|
 |`fetch_and()` (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체의 값에 주어진 값을 비트 AND 합니다.|
@@ -109,6 +107,9 @@ EXPECT_TRUE(a.GetVal() == 200); // (O) 경쟁 상태에 빠지지 않고 잘 계
 |`++, --` (C++11~)|증감합니다.|
 |`+=, -=` (C++11~)|증감후 대입합니다.|
 |`&=, |=, ^=` (C++11~)|비트 AND, 비트 OR, 비트 XOR 후 대입합니다.|
+|[notify_one()](??) (C++20~)|대기중인 한개의 쓰레드에게 알립니다.|
+|[notify_all()](??) (C++20~)|대기중인 모든 쓰레드에게 알립니다.|
+|[wait(old)](??) (C++20~)|Notify가 왔을때 `old`와 값이 달라지면 대기를 해제합니다.|
 
 # 순차적 일관성(sequential consistency)
 
@@ -119,7 +120,7 @@ a = 1;
 b = 1;
 ```
 
-놀랍게도 !!알 수 없다!! 입니다. 컴파일러나 CPU 마음대로 입니다. 이는 컴파일러가 속도 향상을 위해서 명령 순서를 바꿀 수 있고, CPU가 캐쉬 상황에 따라 캐쉬된 정보를 먼저 접근할 수 있기 때문입니다.
+놀랍게도 ***알 수 없다*** 입니다. 컴파일러나 CPU 마음대로 입니다. 이는 컴파일러가 속도 향상을 위해서 명령 순서를 바꿀 수 있고, CPU가 캐쉬 상황에 따라 캐쉬된 정보를 먼저 접근할 수 있기 때문입니다.
 
 보통은 뭐가 먼저 실행되던 상관없습니다. 어쨋든 `a` 와 `b`가 모두 1이 되니까요.
 
@@ -254,5 +255,84 @@ consumer.join();
 |`atomic_flag_notify_all()` (C++11~)|(작성중)|
 
 
+# (C++20~) atomic_ref
 
+기존의 [atomic](??)은 복사가 가능한 타입만 가능했는데요, C++20 부터는 [atomic_ref](??)가 추가되어 참조 타입을 [atomic](??)으로 사용할 수 있습니다.
+
+```cpp
+class A {
+    // std::atomic<int&> m_Val; // (X) 컴파일 오류. 복사 가능해야 합니다.
+    std::atomic_ref<int> m_Val; // (O) 
+public:
+    explicit A(int& val) : m_Val{val} {}
+    int GetVal() const {return m_Val;}
+    
+    // i를 m_Val을 100번 증가시킵니다.
+    void Increase() {
+        for (int i{0}; i < 100; ++i) {
+            ++m_Val;
+            //!! 테스트 속도 때문에 임시 주석
+            std::this_thread::sleep_for(std::chrono::milliseconds{1}); 
+        }
+    }
+};
+
+int val{0};
+A a{val};
+std::thread worker1{std::mem_fn(&A::Increase), std::ref(a)};
+std::thread worker2{std::mem_fn(&A::Increase), std::ref(a)};
+
+worker1.join(); 
+worker2.join(); 
+
+EXPECT_TRUE(a.GetVal() == 200); // (O) 경쟁 상태에 빠지지 않고 잘 계산합니다.
+EXPECT_TRUE(val == 200); // (O) 참조한 값이 잘 반영되어 있습니다.    
+```
+
+# (C++20~) notify_one(), notify_all(), wait()
+
+기존에는 [store()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94)와 [load()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94)이용하여 [atomic으로 쓰레드를 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 했는데요(*[atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94)참고*),
+
+C++20 부터 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에 [notify_one(), notify_all(), wait()](??) 멤버 함수가 추가되어 [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)과 같은 인터페이스로 [쓰레드 동기화](??)를 구현할 수 있습니다.
+
+다음을 보면 [notify_one(), notify_all(), wait()](??)이 좀더 직관적입니다.
+
+```cpp
+class A {
+    int m_Val1{0};
+    int m_Val2{0};
+
+    std::atomic<bool> m_IsCompleted{false};
+public:
+    void Producer() {
+
+        m_Val1 = 1; 
+        m_Val2 = 2; 
+
+        // store-load 방식
+        // m_IsCompleted.store(true, std::memory_order_release); 
+        
+        // notify-wait 방식
+        m_IsCompleted = true;
+        m_IsCompleted.notify_all(); // 값이 수정되었음을 통지합니다.
+    }
+
+    void Consumer() {
+        // store-load 방식
+        // while(!m_IsCompleted.load(std::memory_order_acquire)) {} 
+
+        // notify-wait 방식
+        m_IsCompleted.wait(false); // 값이 false 이면 대기합니다.
+        
+        EXPECT_TRUE(m_Val1 == 1); 
+        EXPECT_TRUE(m_Val2 == 2); 
+    }
+};
+A a{};
+std::thread producer{std::mem_fn(&A::Producer), std::ref(a)};
+std::thread consumer{std::mem_fn(&A::Consumer), std::ref(a)};
+
+producer.join(); 
+consumer.join(); 
+```
 

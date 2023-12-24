@@ -17,12 +17,12 @@ sidebar:
 > * (C++11~) [call_once()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#call_once-once_flag)가 추가되어 주어진 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 여러 쓰레드에서 실행해도 한번만 호출하게 할 수 있습니다. 
 > * (C++14~) [shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)가 추가되어 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)의 소유권을 쓰레드끼리 공유할 수 있습니다.
 > * (C++14~) [shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)이 추가되어 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)의 소유권을 쓰레드끼리 공유할 수 있습니다.
-> * (C++17~) [[shared_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)가 추가되어 다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 만들 수 있습니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.
+> * (C++17~) [shared_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)가 추가되어 다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 만들 수 있습니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.
 > * (C++17~) [scoped_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c17-scoped_lock)이 추가되었습니다. 다수의 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 사용하더라도 데드락(Dead Lock)을 방지할 수 있게 해줍니다.
 
 # 개요
 
-기존에는 멀티 쓰레드 관련 기능들이 표준화 되지 않아 운영체제에 따라 다르게 구현했습니다만, C++11 STL 부터는 이를 표준화 하여 제공합니다.
+기존에는 멀티 쓰레드 관련 기능들이 표준화 되지 않아 운영체제에 따라 다르게 구현했습니다만, C++11 STL 부터는 이를 표준화하여 제공합니다.
 
 **쓰레드 실행**
 
@@ -66,7 +66,7 @@ sidebar:
 
 # 쓰레드
 
-프로세스(Process)는 프로그램이 컴퓨터 메모리에 로딩되어 실행되고 있는 인스턴스 입니다. 한마디로 실행중인 프로그램입니다.
+프로세스(Process)는 프로그램이 컴퓨터 메모리에 로딩되어 실행되고 있는 인스턴스입니다. 한마디로 실행중인 프로그램이죠.
 
 쓰레드(Thread)는 프로세스 내에서 작동중인 CPU의 실행 단위입니다. 싱글 쓰레드라면, 실행 단위가 하나여서 한가지 작업만 한다는 뜻이고, 멀티 쓰레드라면, 실행 단위가 여러개여서 여러 작업을 동시에 한다는 뜻입니다.
 
@@ -86,7 +86,7 @@ sidebar:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ce0506d4-9d71-4cf4-b416-d1803f518f13)
 
-동시에 저장하고 읽다 보니 쓰레드 B가 읽어온 데이터는 쓰레드 A가 수정하기 전의 값인지, 수정한 후의 값인지 알 수 없습니다.(이런 상태를 경쟁상태(Race Condition)라 합니다.) 이런 경우를 막으려면, 공유하는 데이터에 Lock을 걸어 한개의 쓰레드만 데이터에 접근할 수 있게 하고, 다른 쓰레드는 잠시 대기하도록 해야 합니다.
+동시에 저장하고 읽다 보니 쓰레드 B가 읽어온 데이터는 쓰레드 A가 수정하기 전의 값인지, 수정한 후의 값인지 알 수 없습니다.(*이런 상태를 경쟁상태(Race Condition)라 합니다.*) 이런 경우를 막으려면, 공유하는 데이터에 Lock을 걸어 한개의 쓰레드만 데이터에 접근할 수 있게 하고, 다른 쓰레드는 잠시 대기하도록 해야 합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7f4c7dd4-9b54-4e51-9fda-5a7b857f52a3)
 
@@ -98,25 +98,25 @@ sidebar:
 
 # 데드락(Dead Lock)
 
-만약 쓰레드 A가 Lock을 걸기만 하고 풀지 않으면 어떻게 될까요? 쓰레드 B는 무한 대기하게 됩니다.(이런 상태를 데드락(Dead Lock)이라 합니다.) 이렇게 대기하면, 원하는 작업이 끝나지 않아 프로그램은 마치 멈춘것처럼 아무 동작도 안하고, 계속 대기하게 됩니다. 결국 프로그램을 강제 종료해야 합니다.
+만약 쓰레드 A가 Lock을 걸기만 하고 풀지 않으면 어떻게 될까요? 쓰레드 B는 무한 대기하게 되는데요, 이런 상태를 데드락(Dead Lock)이라 합니다. 이렇게 대기하면, 원하는 작업이 끝나지 않아 프로그램은 마치 멈춘것처럼 아무 동작도 안하고, 계속 대기하게 됩니다. 결국 프로그램을 강제 종료해야만 하죠.
 
 # thread
 
-[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 쓰레드를 생성한 뒤 주어진 함수(또는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/))를 실행시킵니다. 이후 `join()`을 이용하여 쓰레드가 종료할 때까지 대기하거나, `detach()`를 이용하여 계속 백그라운드에서 쓰레드가 실행되도록 내버려 두어야 합니다. 만약 `join()`이나 `detach()`를 하지 않으면 [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.
+[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 쓰레드를 생성한 뒤 주어진 함수(*또는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)*)를 실행시킵니다. 이후 `join()`을 이용하여 쓰레드가 종료하고 합류할 때까지 대기하거나, `detach()`를 이용하여 계속 백그라운드에서 쓰레드가 실행되도록 내버려 두어야 합니다. 만약 `join()`이나 `detach()`를 하지 않으면 [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.
 
 [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 다음과 같습니다.
 
 |항목|내용|
 |--|--|
-|`joinable()` (C++11~)|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)가 동작중인지 확인합니다.|
+|`joinable()` (C++11~)|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)가 동작중이어서 이후에 호출한 쓰레드에 합류 가능한지 확인합니다.|
 |`get_id()` (C++11~)|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)의 아이디를 구합니다.|
 |`native_handle()` (C++11~)|시스템에 따른 구현에 정의된 쓰레드 핸들을 리턴합니다.|
 |`hardware_concurrency()` (C++11~)|시스템이 지원하는 동시 쓰레드 수를 리턴합니다.|
-|`join()` (C++11~)|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)가 종료될때까지 기다립니다.|
+|`join()` (C++11~)|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)가 종료되어 호출한 쓰레드에 합류할때까지(*끝날때까지*) 기다립니다.|
 |`detach()` (C++11~)|[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)가 실행되도록 내버려 둡니다.|
 |`swap()` (C++11~)|바꿔치기 합니다.|
 
-다음은 `Message1()` 과 `Message2()` 를 서로 다른 쓰레드로 호출한 예입니다. `join()`을 사용하여 쓰레드가 끝날때까지 기다립니다.
+다음은 `Message1()` 과 `Message2()` 를 서로 다른 쓰레드로 호출한 예입니다. `join()`을 사용하여 쓰레드가 종료하고 호출한 쓰레드에 합류할때까지(*끝날때까지*) 기다립니다.
 
 ```cpp
 void Message1() {
@@ -132,8 +132,8 @@ void Message2() {
 std::thread worker1{Message1};
 std::thread worker2{Message2};
 
-worker1.join(); // worker1이 종료될때까지 기다립니다.
-worker2.join(); // worker2가 종료될때까지 기다립니다.
+worker1.join(); // worker1이 종료되고 합류할때까지 기다립니다.
+worker2.join(); // worker2가 종료되고 합류할때까지 기다립니다.
 ```
 
 다음은 실행 결과입니다. 시스템 상황에 따라 다를 겁니다만, `Message1()` 함수의 출력과 `Message2()` 함수의 출력이 동시에 실행되다 보니 섞여서 나오는 걸 알 수 있습니다. 재밌게도, `Message1()` 함수가 `cout << "Message1 : " << i` 까지 출력하고, ` << std::endl;`를 출력하기 직전에, `Message2()의 ` `cout << "Message2 : " << i << endl;`가 호출됐네요. 
@@ -191,8 +191,8 @@ void ThreadSum(std::vector<int>::iterator itr, std::vector<int>::iterator endItr
         std::ref(result2) // 인수의 참조성 유지
     }; 
 
-    worker1.join(); // worker1이 종료될때까지 기다립니다.
-    worker2.join(); // worker2가 종료될때까지 기다립니다.
+    worker1.join(); // worker1이 종료되고 합류할때까지 기다립니다.
+    worker2.join(); // worker2가 종료되고 합류할때까지 기다립니다.
 
     // worker1, worker2 결과를 더합니다.
     result = result1 + result2;
@@ -257,7 +257,7 @@ void Sum(std::vector<int>::iterator itr, std::vector<int>::iterator endItr, int&
 }
 ```
 
-실행 결과는 다음과 같이 쓰레드 버전이 2배 정도 빠릅니다. 그래서, 시간이 많이 걸리는 작업을 쓰레드로 만들어야 합니다.
+실행 결과는 다음과 같이 쓰레드 버전이 2배 정도 빠릅니다. 그래서, 시간이 많이 걸리는 작업을 쓰레드로 만드는게 좋습니다.
 
 ```cpp
 Sum : 4950 Duration : 1595827 // 약 1.5초
@@ -266,13 +266,13 @@ ThreadSum : 4950 Duration : 784464 // 약 0.7초
 
 # 쓰레드 yield(), sleep_for(), sleep_until()
 
-현재 동작하는 쓰레드에 대하여 다음 함수를 사용할 수 있습니다.(`this_thread` [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)에 정의되어 있습니다.)
+현재 동작하는 쓰레드에 대하여 다음 함수를 사용할 수 있습니다.(*`this_thread` [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)에 정의되어 있습니다.*)
 
 |항목|내용|
 |--|--|
 |`yield()` (C++11~)|현 쓰레드를 쓰레드 대기열 뒤로 이동 시켜, 다른 쓰레드들이 먼저 실행되게 합니다.|
 |`get_id()` (C++11~)|현 쓰레드의 Id를 구합니다.|
-|`sleep_for()` (C++11~)|주어진 시간동안 쓰레드를 쉽니다.([쓰레드 속도 측정](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95) 참고)|
+|`sleep_for()` (C++11~)|주어진 시간동안 쓰레드를 쉽니다.(*[쓰레드 속도 측정](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95) 참고)*|
 |`sleep_until()` (C++11~)|주어진 시간까지 쓰레드를 쉽니다.|
 
 # mutex

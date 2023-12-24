@@ -240,10 +240,10 @@ T : Destructor
 
 |항목|내용|
 |--|--|
-|`to_address()` (C++20~)|일반 포인터나 스마트 포인터 구분없이 실제 관리되는 메모리 주소를 접근하는 일관된 방법을 제공합니다.|
+|[to_address()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c20-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC) (C++20~)|일반 포인터나 스마트 포인터 구분없이 실제 관리되는 메모리 주소를 접근하는 일관된 방법을 제공합니다.|
 |`assume_aligned(ptr)` (C++20~)|`ptr`을 [메모리 정렬](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/#%EA%B0%9C%EC%B2%B4-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%A0%AC)된 포인터로 변환합니다.|
 
-`to_address()`는 실제 메모리에서 관리되는 포인터를 구하는 일관된 방법을 제공합니다.
+[to_address()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c20-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)는 실제 메모리에서 관리되는 포인터를 구하는 일관된 방법을 제공합니다.
 
 ```cpp
 int* rawPtr{new int{0}};

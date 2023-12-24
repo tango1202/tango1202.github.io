@@ -98,5 +98,4 @@ A_20<int> b = 0; // (X) 컴파일 오류. explicit로 차단했습니다.
 
 A_20<std::string> c{"Hello"};
 A_20<std::string> d = std::string{"World"}; // (O) 정수 타입이 아니어서 암시적 형변환을 허용합니다.       
-
 ```

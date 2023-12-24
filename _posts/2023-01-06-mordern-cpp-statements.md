@@ -84,7 +84,7 @@ if (result != nullptr) { // 조건 평가
 C++17 부터는 `if()` 와 `switch()`에서 초기식을 실행후 조건식을 평가할 수 있어, 다음처럼 코드를 간결하게 작성할 수 있습니다. 초기식에 작성된 변수의 [유효 범위](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-scope/)는 `if()` 나 `switch()`의 끝입니다.
 
 ```cpp
-// result_17은 if 문 이 끝나면 소멸됩니다.
+// result_17은 if 문이 끝나면 소멸됩니다.
 if (std::shared_ptr<int> result_17{Func()}; result_17 != nullptr) {
     // Todo
 }

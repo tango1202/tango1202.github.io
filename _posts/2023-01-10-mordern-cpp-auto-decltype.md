@@ -68,7 +68,7 @@ double Func_11(int a, auto b) {
     auto a_11 = arr; // int*
     ```
 
-* [최상위 const](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)는 무시됩니다. 
+* [최상위 const](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0)는 무시되며, 
 
     ```cpp
     // 최상위 const는 무시됩니다.
@@ -77,7 +77,7 @@ double Func_11(int a, auto b) {
     a_11 = 10; // const가 아니여서 값을 대입받을 수 있습니다. 
     ```
 
-* 특히 [참조성](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)은 제거됩니다.
+* [참조성](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)은 제거됩니다.
 
     ```cpp
     // 참조성은 제거됩니다.
