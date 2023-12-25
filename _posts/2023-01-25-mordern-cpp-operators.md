@@ -59,6 +59,8 @@ EXPECT_TRUE(T_20{20} >= T_20{10} && T_20{10} >= T_20{10});
 
 STL에서는 대부분 [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)로 구현하고, `==`, `!=`, `<`, `>`, `<=`, `>=` 6개의 [비교 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)를 deprecate 했습니다.(*[vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)등 참고*)
 
+> *(C++20~) [삼중 비교](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90) 관련 유틸리티들이 추가되었습니다.*
+
 # 삼중 비교 연산자 비교
 
 `<=>` 연산자를 정의하면, 기존 `==`, `!=`, `<`, `>`, `<=`, `>=` 로 비교할 수 있을 뿐만 아니라, `<=>`로 직접 비교할 수 있습니다. 
@@ -179,6 +181,8 @@ EXPECT_TRUE(T_20{10} < T_20{20}); // T_20 op T_20
 EXPECT_TRUE(T_20{10} < 20); // int를 암시적으로 형변환.
 EXPECT_TRUE(10 < T_20{20}); // int op T_20. T_20 > 10으로 변경후 int를 암시적으로 T_20으로 형변환
 ```
+
+> *(C++20~) [삼중 비교 연산자](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#c20-%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90)가 추가되어 [!=, >, <=, >=](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90)는 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.*
 
 # 삼중 비교 연산자 default 정의
 

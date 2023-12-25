@@ -239,12 +239,12 @@ namespace My {
 
 이제 `My` [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)에 `std::swap()`보다 성능이 좋은 `swap()`함수를 만들어 보고 성능 확인을 해본다고 가정합시다.
 
-새로운 `swap()`함수를 사용하도록 리팩토링 해야 하는데요, 같은 [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)에 있는 함수라 그냥 `std::`만 삭제하면 되죠. 만약 1,000군데 사용했다면, 찾기/바꾸기로 하면 되고요. 그런데, 바꿔놓고 보니 기존의 `std::swap()`버전이 성능이 더 좋아 되돌린다면, 또다시 찾기/바꾸기를 해서 바꾸면 됩니다. 되기는 합니다만, 어딘지 좀 미련한 느낌입니다.
+새로운 `swap()`함수를 사용하도록 리팩토링 해야 하는데요, 같은 [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)에 있는 함수라 다음처럼 그냥 `std::`만 삭제하면 됩니다. 만약 1,000군데 사용했다면, 찾기/바꾸기로 하면 되고요. 그런데, 바꿔놓고 보니 기존의 `std::swap()`버전이 성능이 더 좋아 되돌린다면, 또다시 찾기/바꾸기를 해서 바꾸면 됩니다. 되기는 합니다만, 어딘지 좀 미련한 느낌입니다.
 
 ```cpp
 namespace My {
     class T {};   
-    void swap(T& left, T& right);
+    void swap(T& left, T& right); // 새로운 swap 함수입니다.
     void f() {
         T a, b;
         swap(a, b); // 같은 네임스페이스의 함수라 명시하지 않았습니다.

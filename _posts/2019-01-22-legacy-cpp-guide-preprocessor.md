@@ -243,7 +243,8 @@ C++ 인지 확인 하거나, C++ 버전을 확인합니다. C++ 버전별로 호
 |[#include <>](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include)|컴파일러에 지정된 포함 경로에서 찾음.<br/>주로 C++언어 헤더 파일 포함시 사용|
 |[#include ""](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include)|컴파일 중인 경로에서 찾고, 없으면 `<>` 경로에서 찾음.<br/>주로 사용자 헤더 파일 포함시 사용|
 
-> *(C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 하기 전에 파일이 존재하는지 확인할 수 있습니다.*
+> *(C++17~) [__has_include](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c17-__has_include)가 추가되어 [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 하기 전에 파일이 존재하는지 확인할 수 있습니다.*<br/>
+> *(C++20~) [모듈](https://tango1202.github.io/mordern-cpp/mordern-cpp-module/)이 추가되어 [전처리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/) 사용 방식을 개선하여 컴파일 속도를 향상시키고, [#include](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#include) 순서에 따른 종속성 문제, [선언과 정의 분리](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%A0%95%EC%9D%98-%EB%B6%84%EB%A6%AC) 구성의 불편함, 기호 충돌 문제를 해결했습니다.*
 
 # `__LINE__`, `__FILE__`, #line
 

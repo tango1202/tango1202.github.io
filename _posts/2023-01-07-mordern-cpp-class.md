@@ -29,6 +29,7 @@ public:
     T_11(const T_11&) = delete; // 암시적 버전의 복사 생성자 막음    
 };
 ```
+
 > *(C++20~) [삼중 비교 연산자를 default로 정의](https://tango1202.github.io/mordern-cpp/mordern-cpp-operators/#%EC%82%BC%EC%A4%91-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90-default-%EC%A0%95%EC%9D%98)할 수 있습니다.*
 
 # delete를 이용한 암시적 형변환과 템플릿 인스턴스화 차단

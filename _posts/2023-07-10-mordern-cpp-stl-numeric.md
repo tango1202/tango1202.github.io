@@ -15,7 +15,7 @@ sidebar:
 > * (C++17~) [특수 수학 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c17-%ED%8A%B9%EC%88%98-%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98)가 추가되었습니다.
 > * (C++20~) [수학 상수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98)(*[e_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98), [log2e_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98), [log10e_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98), [pi_v](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EC%88%98%ED%95%99-%EC%83%81%EC%88%98) 등*)가 추가되었습니다.
 > * (C++20~) [비트 조작](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EB%B9%84%ED%8A%B8-%EC%A1%B0%EC%9E%91) 관련 함수(*[has_single_bit(), bit_ceil(), bit_floor(), bit_width(), rotl(), rotr(), countl_zero(), countl_one(), countr_zero(), countr_one()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EB%B9%84%ED%8A%B8-%EC%A1%B0%EC%9E%91)등*)와 [endian](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#c20-%EB%B9%84%ED%8A%B8-%EC%A1%B0%EC%9E%91)처리가 추가되었습니다.
-> * (C++20~)[complex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex)의 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) 지원이 개선되었습니다.
+> * (C++20~) [complex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-numeric/#complex)의 [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/) 지원이 개선되었습니다.
 
 # complex
 

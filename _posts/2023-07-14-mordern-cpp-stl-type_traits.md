@@ -267,7 +267,7 @@ EXPECT_TRUE(Add(std::string("Hello"), std::string("World")) == std::string("Hell
 
 # (C++20~) is_constant_evaluated()
 
-[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 컴파일 타임 함수나 런타임 함수로 동작할 수 있는데요, 
+[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)는 컴파일 타임 함수나 런타임 함수로 동작할 수 있는데요(*[constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98) 참고*), 
 
 C++20 부터는 [is_constant_evaluated()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-type_traits/#c20-is_constant_evaluated)가 추가되어 [constexpr 함수](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/#constexpr-%ED%95%A8%EC%88%98)가 컴파일 타임 함수인지 런타임 함수인지 검사할 수 있습니다.
 

@@ -255,7 +255,8 @@ std::cout
 std::cout << std::setw(0) << std::setprecision(6); // setw, setprecision은 서식 플래그가 없어서 초기값을 설정합니다. 
 ```
 
-> *(C++20~) [format(), format_to(), format_to_n()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%EC%84%9C%EC%8B%9D%ED%99%94-%ED%95%A8%EC%88%98)이 추가되어 `%d, %s` 처럼 간편하고, `<<` 처럼 확장성 있는 서식화 방법을 지원합니다.*
+> *(C++20~) [format(), format_to(), format_to_n()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%EC%84%9C%EC%8B%9D%ED%99%94-%ED%95%A8%EC%88%98)이 추가되어 `%d, %s` 처럼 간편하고, `<<` 처럼 확장성 있는 서식화 방법을 지원합니다.*<br/>
+> *(C++20~) [표준 서식 지정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#%ED%91%9C%EC%A4%80-%EC%84%9C%EC%8B%9D-%EC%A7%80%EC%A0%95%EC%9E%90)가 추가되어 채움, 정렬, 부호, 너비, 정밀도를 지정할 수 있습니다.*
 
 # 타입
 

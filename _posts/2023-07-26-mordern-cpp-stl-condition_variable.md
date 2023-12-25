@@ -12,14 +12,14 @@ sidebar:
 
 # 쓰레드 동기화
 
-쓰레드를 동시에 실행시키는 것도 필요하지만, 상황에 따라서 쓰레드를 순차적으로 실행하는 [쓰레드 동기화](??)를 하는 것도 필요합니다.
+쓰레드를 동시에 실행시키는 것도 필요하지만, 상황에 따라서 쓰레드를 순차적으로 실행하는 [쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable/#%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94)를 하는 것도 필요합니다.
 
 예를 들어 
 
 1. 인터넷에서 파일을 다운로드 받는 쓰레드가 종료되었을때
 2. UI 쓰레드에서 다운로드 완료 버튼이 나와야 합니다.
 
-STL 에서는 [쓰레드 동기화](??)를 위해 [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable/#condition_variable)를 사용할 수 있습니다.
+STL 에서는 [쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable/#%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94)를 위해 [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable/#condition_variable)를 사용할 수 있습니다.
 
 |항목|내용|
 |--|--|

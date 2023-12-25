@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#25. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex), (C++14~) shared_timed_mutex, shared_lock, (C++17~) shared_mutex, scoped_lock"
+title: "#25. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex), (C++14~) shared_timed_mutex, shared_lock, (C++17~) shared_mutex, scoped_lock
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -19,6 +19,7 @@ sidebar:
 > * (C++14~) [shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)이 추가되어 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)의 소유권을 쓰레드끼리 공유할 수 있습니다.
 > * (C++17~) [shared_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)가 추가되어 다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 만들 수 있습니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.
 > * (C++17~) [scoped_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c17-scoped_lock)이 추가되었습니다. 다수의 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 사용하더라도 데드락(Dead Lock)을 방지할 수 있게 해줍니다.
+
 
 # 개요
 
@@ -50,10 +51,10 @@ sidebar:
 |항목|내용|
 |--|--|
 |[mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++11~)<br/>`timed_mutex` (C++11~)<br/>`recursive_mutex` (C++11~)<br/>`recursive_timed_mutex` (C++11~)<br/>[shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) (C++14~)<br/>[shared_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
-|`counting_semaphore` (C++ 20)|(작성중)|
-|`binary_semaphore` (C++ 20)|(작성중)|
-|`latch` (C++ 20)|(작성중)|
-|`barrier` (C++ 20)|(작성중)|
+|[counting_semaphore](??) (C++20~)|주어진 `count`만큼 자원을 동시 접근할 수 있는 동기화 개체입니다.|
+|[binary_semaphore](??) (C++20~)|[`counting_semaphore<1>`]의 별칭입니다.|
+|`latch` (C++20~)|주어진 `count`가 `0`이 될때까지 대기하는 동기화 개체입니다.|
+|`barrier` (C++20~)|(작성중)|
 
 **동기화 설정**
 
@@ -679,3 +680,4 @@ std::thread worker2{std::mem_fn(&A::Reset), std::ref(a), std::ref(myMutex), std:
 worker1.join(); 
 worker2.join(); 
 ```
+

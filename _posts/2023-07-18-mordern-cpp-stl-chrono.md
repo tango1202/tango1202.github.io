@@ -14,7 +14,7 @@ sidebar:
 > * (C++20~) [Calendar](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-calendar)가 추가되어 년-월-일 서식 처리가 간편해 졌습니다.
 > * (C++20~) [Time Zone](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone)이 추가되어 특정 지역의 시간대로 시간을 구할 수 있습니다.
 > * (C++20~) [utc_clock, tai_clock, gps_clock, file_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)이 추가되었습니다.
-> * (C++20~) [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 [from_stream()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)이 추가되었습니다.
+> * (C++20~) [from_stream()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)이 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 추가되었습니다.
 > * (C++20~) [parse](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-parse)가 추가되었습니다.
 
 # 개요
@@ -230,6 +230,8 @@ using namespace std::chrono; // 표준 사용자 정의 리터럴인 2023y, 25d�
 std::chrono::year_month_day yearMonthDay5{2023y/std::chrono::December/25d};
 ```
 
+> *(C++20~) [operator ""y, operator ""d](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string/)가 추가되어 [year](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-calendar), [day](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-calendar) 표현이 간편해 졌습니다.*
+
 `last_spec`은 마지막 날이나 마지막 요일을 나타내는 타입이며, 미리 정의된 `last` 개체를 사용합니다.
 
 ```cpp
@@ -352,6 +354,8 @@ std::cout << "localTime : " << std::format("{:%Y/%m/%d %H:%M:%S}", shanghai) << 
 std::chrono::zoned_time seoul{"Asia/Seoul", utcTime};
 std::cout << "localTime : " << std::format("{:%Y/%m/%d %H:%M:%S}", seoul) << std::endl; // 2023/12/17 22:25:45.131857000
 ```
+
+> *(C++20~) [chrono 서식 지정자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-formatting/??#chrono-%EC%84%9C%EC%8B%9D-%EC%A7%80%EC%A0%95%EC%9E%90)가 추가되었습니다.*
 
 # (C++20~) parse()
 

@@ -217,3 +217,5 @@ C++20 부터는 [언어 지원 테스트](https://tango1202.github.io/mordern-cp
     std::cout << "No Support char8_t" << std::endl;
 #endif  
 ```
+
+> *(C++20~) [STL 지원 테스트](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#c20-stl-%EC%A7%80%EC%9B%90-%ED%85%8C%EC%8A%A4%ED%8A%B8) 매크로가 추가되어 C++11부터 추가된 STL 기능을 지원하는지 테스트 할 수 있습니다.*

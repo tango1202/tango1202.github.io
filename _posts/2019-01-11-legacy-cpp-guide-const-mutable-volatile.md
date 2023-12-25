@@ -245,5 +245,7 @@ volatile unsigned int *p = 0x1234; // 컴파일러 최적화를 하지 않습니
 *p = 0x0003;
 ```
 
+> *(C++20~) [volatile의 일부가 deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-volatile-%EC%9D%BC%EB%B6%80-deprecate)되었습니다.*
+
 
 

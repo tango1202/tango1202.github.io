@@ -19,7 +19,6 @@ sidebar:
 |항목|내용|
 |--|--|
 |`operator ""if` (C++14~)<br/>`operator""i` (C++14~)<br/>`operator""il` (C++14~)|`complex` 리터럴, `std::complex<float> z = 3.0f + 4.0if`|
-
 |`operator ""h` (C++14~)|`chrono::duration`에서 시간|
 |`operator ""min` (C++14~)|`chrono::duration`에서 분|
 |`operator ""s` (C++14~)|`chrono::duration`에서 초, `0.1s`|

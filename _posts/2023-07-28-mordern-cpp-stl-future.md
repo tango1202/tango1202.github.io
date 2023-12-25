@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#28. [모던 C++ STL] (C++11~) 비동기(future, promise, async())"
+title: "#28. [모던 C++ STL] (C++11~) 동기/비동기(future, promise, async()), (C++20~) counting_semaphore, binary_semaphore""
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -20,6 +20,10 @@ sidebar:
 > * (C++11~) [shared_future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#shared_future)가 추가되었습니다. 여러곳에서 공유할 수 있는 [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future) 입니다.
 > * (C++11~) [packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task)가 추가되었습니다. [promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)를 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)하여 비동기 함수 설정만 하면 되는 유틸리티 개체 입니다.
 > * (C++11~) [async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async)가 추가되었습니다. [packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task)를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.
+> * (C++20~) [counting_semaphore, binary_semaphore](??)가 추가되었습니다. 주어진 `count`만큼 자원을 동시 접근할 수 있는 동기화 개체입니다.
+> * (C++20~) [latch](??)가 추가되었습니다. 주어진 `count`가 `0`이 될때까지 대기하는 동기화 개체입니다.
+> * (C++20~) [binary_semaphore를 이용하여 쓰레드를 동기화](??)할 수 있습니다.
+> * (C++20~) [atomic_flag를 이용하여 쓰레드를 동기화](??)할 수 있습니다.
 
 # 개요
 
@@ -100,14 +104,17 @@ int Sync() {
 EXPECT_TRUE(Sync() == 1); 
 ```
 
+> *(C++20~) [binary_semaphore를 이용하여 쓰레드를 동기화](??)할 수 있습니다.*<br/>
+> *(C++20~) [atomic_flag를 이용하여 쓰레드를 동기화](??)할 수 있습니다.*
+
+
 다음은 비동기 처리를 위한 유틸리티 개체와 함수들입니다.
 
 |항목|내용|
 |--|--|
 |[promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise) (C++11~)|비동기 처리를 위한 데이터를 저장합니다.|
 |[future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future) (C++11~)|비동기 함수가 완료될때까지 대기하고, 데이터를 추출합니다.|
-|[shared_future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#shared_future) (C++11~)|
-여러곳에서 공유할 수 있는 [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future) 입니다.|
+|[shared_future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#shared_future) (C++11~)|여러곳에서 공유할 수 있는 [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future) 입니다.|
 |[packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task) (C++11~)|[promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)를 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)하여 비동기 함수 설정만 하면 되는 유틸리티 개체 입니다.|
 |[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) (C++11~)|[packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task)를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.|
 |`launch` (C++11~)|[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) 함수에서 사용하며, 비동기 작업에 대한 정책입니다.<br/>* `async` : 새 쓰레드를 생성한뒤 실행합니다.<br/>* `deferred` : 호출된 쓰레드에서 실행합니다.|
@@ -242,4 +249,148 @@ int Sync() {
 } 
 
 EXPECT_TRUE(Sync() == 11); 
+```
+
+# (C++20~) counting_semaphore, binary_semaphore
+
+[counting_semaphore](??)는 카운트를 이용하여 동기화하는 개체입니다. 카운트가 `0`이면 대기하고 그렇지 않으면 진행합니다. 따라서, 초기 카운트 갯수에 따라 동시에 여러개의 쓰레드가 자원에 접근할 수 있습니다.
+
+|항목|내용|
+|--|--|
+|`counting_semaphore<maxCount>(initCount)` (C++20~)|최대 `maxCount`이고 초기값이 `initCount`인 [counting_semaphore](??)를 생성합니다.|
+|`release()` (C++20~)|카운트를 증가시키고 자원을 사용할 수 있게 합니다.|
+|`acquire()` (C++20~)|카운트를 감소시킵니다. 0이면 쓰레드는 대기합니다.|
+|`try_acquire()` (C++20~)|(작성중)|
+|`try_acquire_for()` (C++20~)|(작성중)|
+|`try_acquire_until()` (C++20~)|(작성중)|
+|`max` (C++20~)|카운트할 수 있는 최대값입니다.|
+
+[binary_semaphore](??)는 `counting_semaphore<1>`의 별칭입니다. 자원 사용시 1개의 쓰레드만 사용할 수 있습니다.
+
+# (C++20~) binary_semaphore를 이용한 쓰레드 동기화
+
+[binary_semaphore](??)를 이용하면 [쓰레드 동기화](??)를 구현할 수 있습니다. 
+
+다음은 [binary_semaphore](??)을 이용하여 [쓰레드 동기화](??)를 구현한 예입니다. 초기에 `count`를 `0`으로 설정하고, `m_IsCompleted.acquire()`에서 대기하고, `Async()`함수에서 `m_IsCompleted.release();`를 하면 대기를 멈추고 진행합니다.
+
+```cpp
+std::binary_semaphore g_IsCompleted{0}; // 0입니다. acquire()에서 대기합니다.
+
+void Async(int& data) {
+    data = 1; // 데이터를 설정합니다.
+
+    g_IsCompleted.release(); // 1로 증가시킵니다.
+}
+
+int Sync() {
+
+    int data{0};
+    std::thread worker{&Async, std::ref(data)};
+
+    g_IsCompleted.acquire(); // 카운트가 0보다 커질때까지 대기합니다.
+    worker.join(); 
+
+    return data; 
+}  
+
+EXPECT_TRUE(Sync() == 1);
+```
+
+# (C++20~) latch
+
+[latch](??)도 [counting_semaphore](??)처럼 카운트를 이용하여 동기화하는 개체입니다. [counting_semaphore](??)처럼 카운트가 `0`이면 대기하고 그렇지 않으면 진행합니다. 
+
+|항목|내용|
+|--|--|
+|`latch(initCount)` (C++20~)|`initCount`인 [latch](??)를 생성합니다.|
+|`wait()` (C++20~)|카운트가 `0`이 될때까지 대기합니다.|
+|`count_down()` (C++20~)|카운트를 감소시킵니다.|
+|`try_wait()` (C++20~)|(작성중)|
+|`arrive_and_wait()` (C++20~)|카운트를 감소시키고 0이 될때까지 대기합니다.|
+
+다음 예는 [latch](??)의 사용 예입니다.
+
+1. #1 : 모든 `Async()`작업에서 숫자를 감소시키고 `0`이 되기를 기다립니다.
+3. #2 : 카운트가 `0`이 되면 `End`메시지를 출력합니다.
+
+```cpp
+std::latch g_IsAsyncComplated{5}; // 최대 5개가 동시에 진행됩니다.
+std::mutex messageMutex;
+
+// std::cout 시 쓰레드 경쟁에 출력이 뒤섞이지 않도록 뮤텍스를 사용합니다.
+void SyncMessage(int i, const char* str) {
+    std::lock_guard<std::mutex> lock(messageMutex); // 유효 범위를 벗어나면 unlock을 호출합니다.
+
+    std::cout << std::format("Work {} : {}", i, str) << std::endl;
+}
+void Async(int i) {
+    SyncMessage(i, "Start");
+
+    g_IsAsyncComplated.arrive_and_wait(); // #1. 숫자를 감소시키고 0이 될때까지 대기합니다.
+
+    SyncMessage(i, "End"); // #2
+}
+
+
+std::vector<std::thread> v;
+
+for (int i{0}; i < 5; ++i) {
+    v.emplace_back(&Async, i);
+}
+
+for (auto& work : v) {
+    work.join();
+}
+```
+
+실행 결과는 다음과 같습니다. 각 쓰레드가 뒤섞여서 실행되지만, Start - End는 뒤섞이지 않은 것을 알 수 있습니다. 
+
+```cpp
+Work 0 : Start
+Work 1 : Start
+Work 3 : Start
+Work 4 : Start
+Work 2 : Start
+Work 2 : End
+Work 4 : End
+Work 1 : End
+Work 0 : End
+Work 3 : End
+```
+
+# (C++20~) atomic_flag를 이용한 쓰레드 동기화
+
+[쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable/#%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94)를 구현하기 위해 
+
+* [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)을 이용하거나(*[동기/비동기의 개요](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#%EA%B0%9C%EC%9A%94) 참고*), 
+* [atomic](??)을 이용하거나(*[atomic 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고*), 
+* [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future)-[promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)를 이용하거나(*[동기/비동기의 개요](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#%EA%B0%9C%EC%9A%94) 참고*), 
+* [packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task)를 이용하거나(*[packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task) 참고*), 
+* [async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async)를 이용하거나(*[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) 참고*),
+* [binary_semaphore](??)를 이용하는 방법이 있는데요(*[binary_semaphore를 이용한 쓰레드 동기화](??) 참고*),
+
+C++20 부터 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에 [notify_one(), notify_all(), wait()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#c20-notify_one-notify_all-wait)가 추가되어 [atomic_flag](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic_flag)를 이용한 [쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable/#%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 구현할 수 있으며, 성능도 가장 좋습니다.
+
+```cpp
+std::atomic_flag g_IsCompleted{}; // 기본 생성자는 false로 세팅됩니다.
+
+void Async(int& data) {
+    data = 1; // 데이터를 설정합니다.
+
+    g_IsCompleted.test_and_set(); // true로 설정합니다.
+    g_IsCompleted.notify_all(); // 값이 수정되었음을 통지합니다.
+}
+
+int Sync() {
+
+    int data{0};
+    std::thread worker{&Async, std::ref(data)};
+
+    g_IsCompleted.wait(false); // 값이 false 이면 대기합니다.
+    worker.join(); 
+
+    return data; 
+} 
+
+EXPECT_TRUE(Sync() == 1);
 ```
