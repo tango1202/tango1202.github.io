@@ -12,6 +12,7 @@ sidebar:
 > * (C++11~) [hexfloat(), defaultfloat(), get_money(), put_money(), get_time(), put_time()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90)이 추가되었습니다.
 > * (C++11~) [예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c11-%EC%98%88%EC%99%B8)가 추가되었습니다.
 > * (C++14~) [quoted()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90)가 추가되어 `stringstream` 으로 입출력시에 공백, 이스케이프 등을 유지시켜 줍니다.
+> * (C++20~) [basic_syncbuf, basic_osyncstream, syncbuf, wsyncbuf, osyncstream, wosyncstream](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c20-%EB%8F%99%EA%B8%B0%ED%99%94-%EC%B6%9C%EB%A0%A5)가 추가되어 쓰레드 내에서도 뒤섞이지 않도록 해줍니다. 
 
 # C스타일 입출력
 
@@ -106,13 +107,6 @@ sidebar:
 |`ostrstream` (~C++98)|(작성중)|
 |`strstream` (~C++98)|(작성중)|
 
-# (C++20~) 동기화 출력
-
-|항목|내용|
-|--|--|
-|`basic_syncbuf` (C++20~)|(작성중)|
-|`basic_osyncstream` (C++20~)|(작성중)|
-
 # 스트림 기반 타입
 
 |항목|내용|
@@ -150,10 +144,6 @@ sidebar:
 |`wospanstream` (C++23~)|`basic_ospanstream<wchar_t>`|
 |`spanstream` (C++23~)|`basic_spanstream<char>`|
 |`wspanstream` (C++23~)|`basic_spanstream<wchar_t>`|
-|`syncbuf` (C++20~)|`basic_syncbuf<char>`|
-|`wsyncbuf` (C++20~)|`basic_syncbuf<wchar_t>`|
-|`osyncstream` (C++20~)|`basic_osyncstream<char>`|
-|`wosyncstream` (C++20~)|`basic_osyncstream<wchar_t>`|
 
 # 사전 정의된 표준 스트림 개체
 
@@ -272,6 +262,67 @@ std::cout << std::setw(0) << std::setprecision(6); // setw, setprecision은 서�
 |--|--|
 |`io_errc` (C++11~)|(작성중)|
 |`iostream_category` (C++11~)|(작성중)|
+
+# (C++20~) 동기화 출력
+
+쓰레드에서 `std::cout << a << b << std::endl`와 같이 `<<`을 여러개 사용해서 출력하면, 각 쓰레드가 출력하면서 뒤섞이게 됩니다.(*[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) 참고*) 따라서, [mutex](??)를 사용해야 했는데요,
+
+C++20 부터는 [basic_syncbuf, basic_osyncstream](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c20-%EB%8F%99%EA%B8%B0%ED%99%94-%EC%B6%9C%EB%A0%A5)가 추가되어 쓰레드 내에서도 뒤섞이지 않도록 해줍니다. 
+
+|항목|내용|
+|--|--|
+|[basic_syncbuf](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c20-%EB%8F%99%EA%B8%B0%ED%99%94-%EC%B6%9C%EB%A0%A5) (C++20~)|여러개의 `<<` 출력을 단일 출력으로 변경해 줍니다.|
+|[basic_osyncstream](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c20-%EB%8F%99%EA%B8%B0%ED%99%94-%EC%B6%9C%EB%A0%A5) (C++20~)|`basic_syncbuf`에 기반하여 쓰레드에서 출력한 내용들이 뒤섞이지 않게 합니다.|
+|`syncbuf` (C++20~)|`basic_syncbuf<char>`|
+|`wsyncbuf` (C++20~)|`basic_syncbuf<wchar_t>`|
+|`osyncstream` (C++20~)|`basic_osyncstream<char>`|
+|`wosyncstream` (C++20~)|`basic_osyncstream<wchar_t>`|
+
+다음은 사용예입니다. *(아쉽게도 제 환경에서는 `osyncstream`사용시 실행되지 않는 오류가 있습니다. MinGW-w64(GCC 13.1.0)의 문제일지 다른 문제일지는 좀더 확인해 봐야 할 듯합니다.)*
+
+```cpp
+void Message() {
+    for(int i{0}; i < 10; ++i) {
+        std::this_thread::sleep_for(std::chrono::milliseconds{50}); // 50밀리초 만큼 쉽니다.
+        std::cout << "Message : " << i << std::endl;
+    }        
+}
+// std::cout 시 쓰레드 경쟁에 출력이 뒤섞이지 않도록 뮤텍스를 사용합니다.
+std::mutex messageMutex;
+void MutexMessage() {
+    std::lock_guard<std::mutex> lock(messageMutex);
+    for(int i{0}; i < 10; ++i) {
+        std::this_thread::sleep_for(std::chrono::milliseconds{50}); // 50밀리초 만큼 쉽니다.
+        std::cout << "MutexMessage : " << i << std::endl;
+    }        
+}
+
+void SyncMessage() {
+    for(int i{0}; i < 10; ++i) {
+        std::this_thread::sleep_for(std::chrono::milliseconds{50}); // 50밀리초 만큼 쉽니다.
+        // GCC 13.1.0에서 런타임 오류가 발생합니다.
+        // std::osyncstream(std::cout) << "SyncMessage : " << i << std::endl;
+    }   
+} 
+{
+    std::thread worker1{Message};
+    std::thread worker2{Message};
+    worker1.join(); 
+    worker2.join(); 
+}
+{
+    std::thread worker1{MutexMessage};
+    std::thread worker2{MutexMessage};
+    worker1.join(); 
+    worker2.join(); 
+}  
+{
+    std::thread worker1{SyncMessage};
+    std::thread worker2{SyncMessage};
+    worker1.join(); 
+    worker2.join(); 
+}      
+```
 
 # (C++23~) 프린트 함수
 

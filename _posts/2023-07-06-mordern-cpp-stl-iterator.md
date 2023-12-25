@@ -15,6 +15,7 @@ sidebar:
 > * (C++14~) [make_reverse_iterator()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%96%B4%EB%8E%81%ED%84%B0)가 추가되었습니다.
 > * (C++14~) [rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
 > * (C++17~) [size(), empty(), data()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
+> * (C++20~) [ssize()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되어 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 크기를 부호 있는 `signed` 타입으로 구할 수 있습니다.
 
 # 이터레이터 기본 요소
 
@@ -104,7 +105,7 @@ EXPECT_TRUE(*std::prev(itr, -2) == 3 && *itr == 1); // 앞으로 -2번 이동. i
 |`cbegin(), cend()` (C++14~)|순방향 [이터레이터](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`crbegin(), crend()` (C++14~)|[역방향 이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/#%EC%97%AD%EB%B0%A9%ED%96%A5-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)를 리턴합니다. 이때 요소를 수정할 수 없습니다.|
 |`size()` (C++17~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 크기를 구합니다.|
-|`ssize()` (C++20~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 크기를 부호 있는 `signed` 타입으로 구합니다.|
+|[ssize()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0) (C++20~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)의 크기를 부호 있는 `signed` 타입으로 구합니다.|
 |`empty()` (C++17~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 비었는지 검사합니다.|
 |`data()` (C++17~)|[컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)가 관리하는 메모리 블록을 리턴합니다.|
 
