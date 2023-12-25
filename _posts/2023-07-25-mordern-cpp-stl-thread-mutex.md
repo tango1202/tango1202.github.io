@@ -51,9 +51,9 @@ sidebar:
 |항목|내용|
 |--|--|
 |[mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++11~)<br/>`timed_mutex` (C++11~)<br/>`recursive_mutex` (C++11~)<br/>`recursive_timed_mutex` (C++11~)<br/>[shared_timed_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock) (C++14~)<br/>[shared_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex) (C++17~)|쓰레드간 경쟁 상태를 해결하기 위한 동기화 개체 입니다.|
-|[counting_semaphore](??) (C++20~)|주어진 `count`만큼 자원을 동시 접근할 수 있는 동기화 개체입니다.|
-|[binary_semaphore](??) (C++20~)|[`counting_semaphore<1>`]의 별칭입니다.|
-|`latch` (C++20~)|주어진 `count`가 `0`이 될때까지 대기하는 동기화 개체입니다.|
+|[counting_semaphore](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-counting_semaphore-binary_semaphore) (C++20~)|주어진 `count`만큼 자원을 동시 접근할 수 있는 동기화 개체입니다.|
+|[binary_semaphore](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-counting_semaphore-binary_semaphore) (C++20~)|[`counting_semaphore<1>`]의 별칭입니다.|
+|[latch](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-latch) (C++20~)|주어진 `count`가 `0`이 될때까지 대기하는 동기화 개체입니다.|
 |`barrier` (C++20~)|(작성중)|
 
 **동기화 설정**
