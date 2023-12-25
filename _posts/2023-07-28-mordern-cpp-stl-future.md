@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#28. [모던 C++ STL] (C++11~) 동기/비동기(future, promise, async()), (C++20~) counting_semaphore, binary_semaphore"
+title: "#28. [모던 C++ STL] (C++11~) 동기/비동기(future, promise, async()), (C++20~) counting_semaphore, binary_semaphore, latch, barrier"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -22,6 +22,7 @@ sidebar:
 > * (C++11~) [async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async)가 추가되었습니다. [packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task)를 쉽게 사용할 수 있도록 만든 유틸리티 함수입니다.
 > * (C++20~) [counting_semaphore, binary_semaphore](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-counting_semaphore-binary_semaphore)가 추가되었습니다. 주어진 `count`만큼 자원을 동시 접근할 수 있는 동기화 개체입니다.
 > * (C++20~) [latch](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-latch)가 추가되었습니다. 주어진 `count`가 `0`이 될때까지 대기하는 동기화 개체입니다.
+> * (C++20~) [barrier](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-barrier)가 추가되었습니다. 주어진 단계가 끝날때까지 대기하는 동기화 개체입니다.
 > * (C++20~) [binary_semaphore를 이용하여 쓰레드를 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-binary_semaphore%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94)할 수 있습니다.
 > * (C++20~) [atomic_flag를 이용하여 쓰레드를 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-atomic_flag%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94)할 수 있습니다.
 
@@ -361,11 +362,11 @@ Work 3 : Last
 
 # (C++20~) barrier
 
-[barrier](??)는 [latch](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-latch)와 유사하게 카운트를 이용하여 동기화하는 개체이며,[latch](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-latch)와 다르게 여러번 사용할 수 있습니다.
+[barrier](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-barrier)는 [latch](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-latch)와 유사하게 카운트를 이용하여 동기화하는 개체이며, [latch](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-latch)와 다르게 여러번 사용할 수 있습니다.
 
 |항목|내용|
 |--|--|
-|`barrier(initCount, CompletionFunction)` (C++20~)|`initCount`인 [barrier](??)를 생성합니다.|
+|`barrier(initCount, CompletionFunction)` (C++20~)|`initCount`인 [barrier](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-barrier)를 생성합니다.|
 |`wait()` (C++20~)|단계가 끝날때까지 대기합니다.|
 |`arrive()` (C++20~)|카운트를 감소시킵니다.|
 |`try_wait()` (C++20~)|(작성중)|
@@ -443,7 +444,8 @@ Work 2 : Last
 * [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future)-[promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)를 이용하거나(*[동기/비동기의 개요](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#%EA%B0%9C%EC%9A%94) 참고*), 
 * [packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task)를 이용하거나(*[packaged_task](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#packaged_task) 참고*), 
 * [async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async)를 이용하거나(*[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) 참고*),
-* [binary_semaphore](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-counting_semaphore-binary_semaphore)를 이용하는 방법이 있는데요(*[binary_semaphore를 이용한 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-binary_semaphore%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고*),
+* [binary_semaphore](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-counting_semaphore-binary_semaphore)를 이용하거나,(*[binary_semaphore를 이용한 쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-binary_semaphore%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 참고*),
+* [latch](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-latch)와 [barrier](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#c20-barrier)를 이용하는 방법이 있는데요,
 
 C++20 부터 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에 [notify_one(), notify_all(), wait()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#c20-notify_one-notify_all-wait)가 추가되어 [atomic_flag](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic_flag)를 이용한 [쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable/#%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94) 구현할 수 있으며, 성능도 가장 좋습니다.
 
