@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#25. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex), (C++14~) shared_timed_mutex, shared_lock, (C++17~) shared_mutex, scoped_lock"
+title: "#25. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex), (C++14~) shared_timed_mutex, shared_lock, (C++17~) shared_mutex, scoped_lock, (C++20~) jthread, 쓰레드 중지"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false

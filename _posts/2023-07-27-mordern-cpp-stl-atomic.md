@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#27. [모던 C++ STL] (C++11~) 원자 단위 명령(atomic, memory_order)"
+title: "#27. [모던 C++ STL] (C++11~) 원자 단위 명령(atomic, memory_order), (C++20~) atomic_ref, notify_one(), notify_all(), wait()"
 categories: "mordern-cpp-stl"
 tag: ["cpp"]
 author_profile: false
