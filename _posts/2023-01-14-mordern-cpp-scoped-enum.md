@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#10] 범위 없는 enum보다 범위 있는 enum을 선호하라.([열거형의 암시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98), [전방 선언](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8), [기반 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EA%B8%B0%EB%B0%98-%ED%83%80%EC%9E%85))
+> * [MEC++#10] 범위 없는 열거형보다 [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)을 선호하라.(*[열거형의 암시적 형변환](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EC%97%B4%EA%B1%B0%ED%98%95%EC%9D%98-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98), [전방 선언](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8), [기반 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EA%B8%B0%EB%B0%98-%ED%83%80%EC%9E%85) 참고*)
 
 > * (C++11~)  [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)이 추가되어  이름 충돌 회피가 쉬워졌고, [암시적 형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하며, [전방 선언](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)도 지원합니다.
 > * (C++11~) [열거형의 기반 타입](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/#%EA%B8%B0%EB%B0%98-%ED%83%80%EC%9E%85)을 지정할 수 있습니다.

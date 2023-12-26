@@ -8,12 +8,12 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#35] 쓰레드 기반 프로그래밍 보다 async 기반 프로그래밍을 사용하라.
+> * [MEC++#35] [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) 기반 프로그래밍 보다 [async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) 기반 프로그래밍을 사용하라.(*[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) 참고*)
 >   * 코드가 간결하다.
-> * [MEC++#36] 비동기성이 필수일 때에는 std::launch::async를 지정하라.
->   * 그렇지 않은 경우는 쓰레드가 고갈될때 wait_for()로 쓰레드 지연이 일어났는지 검사하고, wait(), get() 등으로 쓰레드를 대기해야 한다.
+> * [MEC++#36] 비동기성이 필수일 때에는 [launch::async](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async)를 지정하라.(*[async()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#async) 참고*)
+>   * 그렇지 않은 경우는 쓰레드가 고갈될때 `wait_for()`로 쓰레드 지연이 일어났는지 검사하고, `wait()`, `get()` 등으로 쓰레드를 대기해야 한다.
 > * [MEC++#38] 쓰레드 핸들 소멸자들의 다양한 행동 방식을 주의하라.
-> * [MEC++#39] 단발성 사건 통신에는 void 미래 개체를 고려하라.
+> * [MEC++#39] 단발성 사건 통신에는 void [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future) 개체를 고려하라.
 
 > * (C++11~) [promise](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#promise)가 추가되어 비동기 처리를 위한 데이터를 저장할 수 있습니다.
 > * (C++11~) [future](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-future/#future)가 추가되어 비동기 함수가 완료될때까지 대기하고, 데이터를 추출할 수 있습니다.

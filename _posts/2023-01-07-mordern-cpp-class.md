@@ -7,8 +7,9 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
-> * [MEC++#11] 정의되지 않은 비공개 함수보다 삭제된 함수를 선호하라.(*[delete를 이용한 암시적 형변환과 템플릿 인스턴스화 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#delete%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98%EA%B3%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94-%EC%B0%A8%EB%8B%A8) 참고*)
+> * [MEC++#11] 정의되지 않은 비공개 함수보다 [delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete)된 함수를 선호하라.(*[delete를 이용한 암시적 형변환과 템플릿 인스턴스화 차단](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#delete%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98%EA%B3%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94-%EC%B0%A8%EB%8B%A8) 참고*)
 > * [MEC++#12] 재정의 함수들을 [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#override)로 선언하라.(*[override](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#override) 참고*)
+
 > * (C++11~) [default, delete](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#default%EC%99%80-delete)가 추가되어 [암시적으로 생성되는 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-implicit-definition/)의 사용 여부를 좀더 명시적으로 정의할 수 있습니다.
 > * (C++11~) [override](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#override)가 추가되어 [가상 함수 오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)의 코딩 규약이 좀더 단단해졌습니다.
 > * (C++11~) [final](https://tango1202.github.io/mordern-cpp/mordern-cpp-class/#final)이 추가되어 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 더이상 [오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9) 못하게 할 수 있습니다.

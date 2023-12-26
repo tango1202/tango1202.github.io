@@ -8,9 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#19] 소유권 공유 자원의 관리에는 std::shared_ptr를 사용하라(new한 포인터를 직접 사용하지 마라.[shared_ptr 소유권 분쟁](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81))
-> * [MEC++#20] std::shared_ptr처럼 작동하되 대상을 잃을 수도 있는 포인터가 필요하면 std::weak_ptr를 사용하라.
-> * [MEC++#21] new를 직접 사용하는 것보다 std::make_unique와 std::make_shared를 선호하라(메모리 할당 횟수가 준다. [예외 보증](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-warranty/) 향상된다)
+> * [MEC++#19] 소유권 공유 자원의 관리에는 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)을 사용하라.(*[shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr) 참고*)
+>   * `new`한 포인터를 직접 사용하지 마라.(*[shared_ptr 소유권 분쟁](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr-%EC%86%8C%EC%9C%A0%EA%B6%8C-%EB%B6%84%EC%9F%81) 참고*)
+> * [MEC++#20] [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)처럼 작동하되 대상을 잃을 수도 있는 포인터가 필요하면 [weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr)를 사용하라.(*[weak_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#weak_ptr) 참고*)
+> * [MEC++#21] `new`를 직접 사용하는 것보다 [make_unique()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#c14-make_unique)와 [make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared)를 선호하라.(*[make_shared()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#make_shared) 참고*)
+>   * 메모리 할당 횟수가 줄어들고, [예외 보증](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-warranty/)이 향상된다.
 
 > * (C++11~) [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#shared_ptr)이 추가되어 소유권 공유용 스마트 포인터를 제공합니다.
 > * (C++11~) [enable_shared_from_this](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#enable_shared_from_this)가 추가되어 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)이 관리하는 개체로부터 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/)을 만들 수 있습니다.

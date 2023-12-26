@@ -8,21 +8,21 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#1] [함수 템플릿 인수 추론](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 숙지하라.
+> * [MEC++#1] [함수 템플릿 인수 추론](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 숙지하라.(*[함수 템플릿 인수 추론](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0) 참고*)
 >   * [참조성](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)은 제거된다.
->   * 최상위 const 는 무시된다.
->   * 배열은 포인터로 변경된다.
+>   * [배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)은 포인터로 붕괴된다.
 >   * 함수는 [함수 포인터](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%ED%8F%AC%EC%9D%B8%ED%84%B0)로 변경된다.
-> * [MEC++#2] auto의 추론 규칙을 숙지하라.
+>   * [최상위 const](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85%EC%8B%9C-%EC%B5%9C%EC%83%81%EC%9C%84-const-%EC%A0%9C%EA%B1%B0) 는 무시된다.
+> * [MEC++#2] [auto의 추론 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99)을 숙지하라.(*[auto 추론 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99) 참고*)
 >   * [함수 템플릿 인수 추론](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-template-argument-deduction/#%ED%95%A8%EC%88%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9D%B8%EC%88%98-%EC%B6%94%EB%A1%A0)을 사용한다.
->   * [auto의 중괄호 초기화 특수 추론 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8A%B9%EC%88%98-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99)으로 `auto val= {10};`, `auto val{10};`은 initializer_list로 추론된다.
+>   * [auto의 중괄호 초기화 특수 추론 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8A%B9%EC%88%98-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99)으로 `auto val= {10};`, `auto val{10};`은 [initializer_list](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#initializer_list)로 추론된다.
 >   * 리턴 타입에는 [auto의 중괄호 초기화 특수 추론 규칙](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto%EC%9D%98-%EC%A4%91%EA%B4%84%ED%98%B8-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%8A%B9%EC%88%98-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99)이 적용되지 않는다.
-> * [MEC++#3] decltype의 작동 방식을 숙지하라.
+> * [MEC++#3] [decltype](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)의 작동 방식을 숙지하라.(*[decltype](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype) 참고*)
 >   * 왼값 표현식에 대해 항상 T&로 추론한다.
 > * [MEC++#4] 연역된 형식을 파악하는 방법을 알아둬라.
->   * IDE, 컴파일러 진단, 실행시점 출력(typeid 부정확)등이 있다.
-> * [MEC++#5] 명시적 선언보다는 auto를 선호하라.([auto의 장점](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto%EC%9D%98-%EC%9E%A5%EC%A0%90)참고)
-> * [MEC++#6] auto가 원치 않은 형식으로 연역될 때에는 명시적 형식의 초기치를 사용하라.([암시적 형변환과 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98%EA%B3%BC-auto) 참고)
+>   * IDE, 컴파일러 진단, 실행시점 출력(*typeid는 부정확합니다*)등이 있다.
+> * [MEC++#5] 명시적 선언보다는 [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)를 선호하라.(*[auto의 장점](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto%EC%9D%98-%EC%9E%A5%EC%A0%90) 참고*)
+> * [MEC++#6] [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)가 원치 않은 형식으로 연역될 때에는 명시적 형식의 초기치를 사용하라.(*[암시적 형변환과 auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98%EA%B3%BC-auto) 참고*)
 
 > * (C++11~) [auto](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto)와 [decltype()](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#decltype)이 추가되어 값으로부터 [타입을 추론](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#auto-%EC%B6%94%EB%A1%A0-%EA%B7%9C%EC%B9%99)하며, 코딩이 간편해 졌습니다.
 > * (C++11~) [후행 리턴](https://tango1202.github.io/mordern-cpp/mordern-cpp-auto-decltype/#%ED%9B%84%ED%96%89-%EB%A6%AC%ED%84%B4-%ED%83%80%EC%9E%85)이 추가되어 [함수 인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)에 의존하여 리턴 타입을 결정하며, 좀더 동적인 함수 설계가 가능해 졌습니다.

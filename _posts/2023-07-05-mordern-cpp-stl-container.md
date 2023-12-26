@@ -8,8 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-> * [MEC++#13] iterator 보다 const_iterator를 선호하라.( cbegin(), cend(), crbegin(), crend()이 추가되고 insert, erase 등의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)에서 const_iterator를 지원함)
-> * [MEC++#42] 삽입 대신 생성 삽입을 고려하라.(*emplace_back() 등*)
+> * [MEC++#13] `iterator` 보다 [const_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90)를 선호하라.(*[const_iterator 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-const_iterator-%EC%A7%80%EC%9B%90) 참고*)
+> * [MEC++#42] 기존 `push_back()`등의 삽입 대신 [emplace_back()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)등의 삽입을 고려하라.(*[emplace(), emplace_back(), emplace_front(), emplace_hint() 삽입](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85) 참고*)
 
 > * (C++11~) [array](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-array/)가 추가되어 기존 [C스타일의 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)처럼 연속된 메모리를 사용하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)를 제공합니다. [C스타일 배열](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-array/)처럼 컴파일 타임에 크기가 결정되어 [스택](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 할당되므로, [힙](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%ED%9E%99)에 할당되는 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/) 보다 성능이 좋습니다.
 > * (C++11~) [forward_list](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-forward_list/)가 추가되어 단방향 리스트를 제공합니다. 기존 양방향 리스트인 `list`보다 요소 관리 공간을 작게 차지하며, `push_front()`로 요소의 앞쪽 방향으로 리스트를 구성합니다.
