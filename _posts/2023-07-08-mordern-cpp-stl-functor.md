@@ -20,6 +20,9 @@ sidebar:
 > * (C++17~) [문자열 검색기](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#c17-searcher)(`default_searcher`, `boyer_moore_searcher`, `boyer_moore_horspool_searcher`)가 추가되어 [search()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-algorithm/#search)의 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)로 사용할 수 있습니다.
 > * (C++17~) [not_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되었습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)(단항, 이항 제한이 없습니다.)로 전달한 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 부정하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 만듭니다.
 > * (C++17~) [invoke()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#c17-invoke)가 추가되어 일반 함수와 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 동일한 방식으로 호출할 수 있습니다.
+> * (C++20~) [invoke_r()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98-%EB%9E%98%ED%8D%BC)이 추가되었습니다.
+> * (C++20~) [unwrap_reference, unwrap_ref_decay](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#c11-%EC%B0%B8%EC%A1%B0-%EB%9E%98%ED%8D%BC)가 추가되었습니다.
+> * (C++20~) [identity](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#c20-identity)가 추가되었습니다.
 
 # 개요
 
@@ -146,7 +149,7 @@ if (itr != data.end()) {
 }
 ```
 
-# (C++23~) Identity
+# (C++20~) Identity
 
 |항목|내용|
 |--|--|

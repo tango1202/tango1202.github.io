@@ -71,7 +71,7 @@ C++20 부터는 [cmp_equal(), cmp_not_equal(), cmp_less(), cmp_greater(), cmp_le
 |항목|내용|[constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)|
 |--|--|--|
 |[cmp_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_not_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_less()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_greater()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_less_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90) (C++20~)<br/>[cmp_greater_equal()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90) (C++20~)|음의 정수와 양의 정수를 정상적으로 비교 합니다.|(C++20~)|
-|[in_range<type>(value)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90) (C++20~)|주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.|(C++20~)|
+|[`in_range<type>(value)`](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90) (C++20~)|주어진 `value`가 주어진 `type`의 값 범위 내에 있는지 검사합니다.|(C++20~)|
 
 다음은 [cmp_less()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90)를 이용하여 음의 정수와 양의 정수를 비교하는 예입니다.
 

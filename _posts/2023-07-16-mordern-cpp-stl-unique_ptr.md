@@ -270,4 +270,4 @@ unique_ptr<T> make_unique(std::size_t size); // size 개의 배열 개체를 관
     Func(std::make_unique<T>(), std::make_unique<U>()); // (O) 
     ```
     
-# (C++20~) make_unique_for_override (작성중)
+# (C++23~) make_unique_for_override (작성중)

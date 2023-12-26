@@ -9,6 +9,7 @@ sidebar:
 ---
 
 > * (C++17~) [string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string_view)가 추가되어 문자열을 읽기 전용으로 사용할 때 불필요한 문자열 복제가 없도록 해줍니다.
+> * (C++20~) [u8string_view](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-string_view/#%EA%B0%9C%EC%9A%94)가 추가되었습니다.
 
 # 개요
 

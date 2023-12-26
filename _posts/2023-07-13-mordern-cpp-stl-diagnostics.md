@@ -14,6 +14,8 @@ sidebar:
 > * (C++11~) [예외 캡쳐 및 저장](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#c11-%EC%98%88%EC%99%B8-%EC%BA%A1%EC%B3%90-%EB%B0%8F-%EC%A0%80%EC%9E%A5)이 추가되었습니다.
 > * (C++11~) [시스템 오류](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%98%A4%EB%A5%98)가 추가되었습니다.
 > * (C++17~) [filesystem_error](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EC%98%88%EC%99%B8), [bad_any_cast](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-any/), [bad_optional_access](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-optional/), [bad_variant_access](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되었습니다.
+> * (C++20~) [nonexistent_local_time, ambiguous_local_time, format_error](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-diagnostics/#%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8)가 추가되었습니다.
+
 
 # 진단
 
@@ -53,9 +55,6 @@ sidebar:
 |`system_error` (C++11~)|(작성중)|
 |`ios_base::failure` (C++11~)|(작성중)|
 |`tx_exception`|(작성중)|
-|`nonexistent_local_time` (C++20~)|(작성중)|
-|`ambiguous_local_time` (C++20~)|(작성중)|
-|`format_error` (C++20~)|(작성중)|
 |`bad_typeid`|널포인터를 역참조하여 typeid를 구할때 발생합니다.<br/>`T* p = NULL;`<br/>`typeid(*p).name();`|
 |[bad_cast](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)|[dynamic_cast](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EB%AA%85%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)가 실패했습니다.|
 |[filesystem_error](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-filesystem/#%EC%98%88%EC%99%B8) (C++17~)|파일 시스템 처리에서 오류가 발생했습니다.|

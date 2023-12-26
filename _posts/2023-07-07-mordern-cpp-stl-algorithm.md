@@ -30,6 +30,8 @@ sidebar:
 > * (C++20~) [midpoint()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. 중간점인 `a + (b - a) / 2`를 계산합니다.
 > * (C++20~) [lerp()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%ED%95%99-%EC%9E%91%EC%97%85)가 추가되었습니다. 선형 보간하여 `(a + t(b - a))`를 계산합니다.
 > * (C++20~) [unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)가 병렬 실행 정책에 추가되었습니다.
+> * [shift_left(), shift_right()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EC%88%98%EC%A0%95%EB%90%98%EB%8A%94-%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%9E%91%EC%97%85)가 추가되었습니다.
+> * [lexicographical_compare_three_way()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/#%EB%B9%84%EA%B5%90-%EC%9E%91%EC%97%85)가 추가되었습니다.
 
 # C스타일 알고리즘 함수
 

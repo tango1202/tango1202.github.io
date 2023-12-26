@@ -16,8 +16,12 @@ sidebar:
 > * (C++11~) [memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order)가 추가되었습니다. [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/) 입니다.
 > * (C++20~) [atomic_ref](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#c20-atomic_ref)가 추가되어 참조 타입을 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)으로 사용할 수 있습니다.
 > * (C++20~) [notify_one(), notify_all(), wait()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#c20-notify_one-notify_all-wait)가 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에 추가되어 [condition_variable](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable)과 같은 인터페이스로 [쓰레드 동기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-condition_variable/#%EC%93%B0%EB%A0%88%EB%93%9C-%EB%8F%99%EA%B8%B0%ED%99%94)를 구현할 수 있습니다.
+> * (C++20~) [test(), notify_one(), notify_all(), wait()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic_flag)가 [atomic_flag](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic_flag)에 추가되었습니다.
 > * (C++20~) [atomic의 shared_ptr과 weak_ptr의 템플릿 부분 특수화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#c20-atomic%EC%9D%98-shared_ptr%EA%B3%BC-weak_ptr%EC%9D%98-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B6%80%EB%B6%84-%ED%8A%B9%EC%88%98%ED%99%94) 버전이 추가되었습니다.
 > * (C++20~) [atomic 특수화가 추가](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#c20-atomic-%ED%8A%B9%EC%88%98%ED%99%94-%EC%B6%94%EA%B0%80)되었습니다.(*`float`, `double`, `long double`*)
+> * (C++20~) [atomic_signed_lock_free, atomic_unsigned_lock_free](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic-%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD)가 추가되었습니다.
+> * (C++20~) [atomic_init(), ATOMIC_VAR_INIT()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#%EA%B0%9C%EC%9A%94)가 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
+
 
 # 개요
 
@@ -44,7 +48,7 @@ C++11 STL 에서는 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern
 |[atomic_ref](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#c20-atomic_ref) (C++20~)|참조 타입을 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)으로 사용할 수 있습니다.|
 |`atomic_init()` (C++11~C++20)|C언어 호환성을 유지하며 [atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)개체를 초기화 합니다.|
 |`ATOMIC_VAR_INIT()` (C++11~C++20)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic) 개체의 초기값을 설정합니다.|
-|`ATOMIC_FLAG_INIT` (C++11~C++20)|`atomic_flag`의 초기값입니다.|
+|`ATOMIC_FLAG_INIT` (C++11~)|`atomic_flag`의 초기값입니다.|
 |[memory_order](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#memory_order) (C++11~)|[atomic](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-atomic/#atomic)에서 명령을 실행할 때 순차적 일관성 처리 방식을 지정하는 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)입니다.|
 |`kill_dependency()` (C++11~)|(작성중)|
 |`atomic_thread_fence()` (C++11~)|(작성중)|

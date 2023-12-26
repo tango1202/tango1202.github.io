@@ -19,8 +19,8 @@ sidebar:
 > * (C++14~) [shared_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c14-shared_timed_mutex-%EC%99%80-shared_lock)이 추가되어 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)의 소유권을 쓰레드끼리 공유할 수 있습니다.
 > * (C++17~) [shared_mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)가 추가되어 다른 쓰레드들과 공유할 수 있는 `lock_shared()`를 지원하는 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 만들 수 있습니다. 읽고 쓰는 쓰레드 없이, 자원을 읽기만 할때 유용합니다.
 > * (C++17~) [scoped_lock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c17-scoped_lock)이 추가되었습니다. 다수의 [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 사용하더라도 데드락(Dead Lock)을 방지할 수 있게 해줍니다.
-> * (C++20~) [jthread](??)가 추가되어 [소멸자](??)에서 자동으로 `join()`을 호출해 줍니다.
-> * (C++20~) [stop_token, stop_source, stop_callback](??)가 추가되어 쓰레드를 중지할 수 있습니다.
+> * (C++20~) [jthread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c20-jthread)가 추가되어 [소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)에서 자동으로 `join()`을 호출해 줍니다.
+> * (C++20~) [stop_token, stop_source, stop_callback](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%A4%91%EC%A7%80stop_token-stop_source-stop_callback)가 추가되어 쓰레드를 중지할 수 있습니다.
 
 # 개요
 
@@ -31,15 +31,7 @@ sidebar:
 |항목|내용|
 |--|--|
 |[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) (C++11~)|주어진 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 쓰레드로 실행시킵니다. [yield(), sleep_for(), sleep_until()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-yield-sleep_for-sleep_until)등으로 실행 순서나 속도를 제어할 수 있습니다.|
-|`jthread` (C++20~)|(작성중)|
-
-**쓰레드 취소**
-
-|항목|내용|
-|--|--|
-|`stop_token` (C++20~)|(작성중)|
-|`stop_source` (C++20~)|(작성중)|
-|`stop_callback` (C++20~)|(작성중)|
+|[jthread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c20-jthread) (C++20~)|[소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)에서 자동으로 `join()`을 호출합니다.|
 
 **캐쉬 크기**
 
@@ -107,7 +99,7 @@ sidebar:
 
 [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 쓰레드를 생성한 뒤 주어진 함수(*또는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)*)를 실행시킵니다. 이후 `join()`을 이용하여 쓰레드가 종료하고 합류할 때까지 대기하거나, `detach()`를 이용하여 계속 백그라운드에서 쓰레드가 실행되도록 내버려 두어야 합니다. 만약 `join()`이나 `detach()`를 하지 않으면 [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)합니다.
 
-> *(C++20~) [jthread](??)가 추가되어 [소멸자](??)에서 자동으로 `join()`을 호출해 줍니다.*
+> *(C++20~) [jthread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c20-jthread)가 추가되어 [소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)에서 자동으로 `join()`을 호출해 줍니다.*
 
 [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 다음과 같습니다.
 
@@ -689,7 +681,7 @@ worker2.join();
 
 기존 [thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread)는 `join()`을 이용하여 쓰레드가 종료하고 합류할 때까지 대기하거나, `detach()`를 이용하여 계속 백그라운드에서 쓰레드가 실행되도록 내버려 두어야 했는데요(*[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) 참고*), 
 
-C++20 부터는 [jthread](??)가 추가되어 [소멸자](??)에서 자동으로 `join()`을 호출해 줍니다. 따라서 굳이 `join()`을 명시적으로 호출할 필요가 없습니다.
+C++20 부터는 [jthread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#c20-jthread)가 추가되어 [소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)에서 자동으로 `join()`을 호출해 줍니다. 따라서 굳이 `join()`을 명시적으로 호출할 필요가 없습니다.
 
 ```cpp
 void Message1() {
@@ -709,21 +701,21 @@ std::jthread worker2{Message2};
 // worker2.join(); // jthread는 소멸자에서 join()을 하므로 join()을 생략해도 됩니다.
 ```
 
-또한, 다음 [멤버 함수](??)가 추가되어 [쓰레드 중지](??) 처리를 할 수 있습니다.
+또한, 다음 [[멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/)가 추가되어 [쓰레드 중지](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%A4%91%EC%A7%80stop_token-stop_source-stop_callback) 처리를 할 수 있습니다.
 
 |항목|내용|
 |--|--|
-|`get_stop_source()` (C++20~)|[stop_source](??)를 리턴합니다.|
-|`get_stop_token()` (C++20~)|[stop_token](??)을 리턴합니다.|
+|`get_stop_source()` (C++20~)|[stop_source](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%A4%91%EC%A7%80stop_token-stop_source-stop_callback)를 리턴합니다.|
+|`get_stop_token()` (C++20~)|[stop_token](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%A4%91%EC%A7%80stop_token-stop_source-stop_callback)을 리턴합니다.|
 |`request_stop()` (C++20~)|쓰레드 중지를 요청합니다.|
 
 # 쓰레드 중지(stop_token, stop_source, stop_callback)
 
-C++20 부터는 [stop_token, stop_source, stop_callback](??)가 추가되어 쓰레드를 중지할 수 있습니다.
+C++20 부터는 [stop_token, stop_source, stop_callback](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%A4%91%EC%A7%80stop_token-stop_source-stop_callback)가 추가되어 쓰레드를 중지할 수 있습니다.
 
 **stop_token**
 
-[stop_token](??)은 중지 요청 상태를 제공합니다.
+[stop_token](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%A4%91%EC%A7%80stop_token-stop_source-stop_callback)은 중지 요청 상태를 제공합니다.
 
 |항목|내용|
 |--|--|
@@ -732,11 +724,11 @@ C++20 부터는 [stop_token, stop_source, stop_callback](??)가 추가되어 쓰
 
 **stop_source**
 
-[stop_source](??)는 쓰레드 중지 정보를 제공합니다.
+[stop_source](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%A4%91%EC%A7%80stop_token-stop_source-stop_callback)는 쓰레드 중지 정보를 제공합니다.
 
 |항목|내용|
 |--|--|
-|`get_token()` (C++20~)|관리하는 [stop_token](??)을 리턴합니다.|
+|`get_token()` (C++20~)|관리하는 [stop_token](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%A4%91%EC%A7%80stop_token-stop_source-stop_callback)을 리턴합니다.|
 |`stop_possible()` (C++20~)|중지 요청이 가능하면 `true`를 리턴합니다.|
 |`stop_requested()` (C++20~)|이미 `request_stop()`으로 중지 요청을 받았으면 `true`를 리턴합니다.|
 |`request_stop()` (C++20~)|실행 중지를 요청합니다.|

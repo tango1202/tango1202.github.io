@@ -13,6 +13,8 @@ sidebar:
 > * (C++11~) [예외](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c11-%EC%98%88%EC%99%B8)가 추가되었습니다.
 > * (C++14~) [quoted()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90)가 추가되어 `stringstream` 으로 입출력시에 공백, 이스케이프 등을 유지시켜 줍니다.
 > * (C++20~) [basic_syncbuf, basic_osyncstream, syncbuf, wsyncbuf, osyncstream, wosyncstream](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c20-%EB%8F%99%EA%B8%B0%ED%99%94-%EC%B6%9C%EB%A0%A5)가 추가되어 쓰레드 내에서도 뒤섞이지 않도록 해줍니다. 
+> * (C++20~) [emit_on_flush(), noemit_on_flush()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%EC%84%9C%EC%8B%9D-%EC%A1%B0%EC%A0%95%EC%9E%90)가 추가되었습니다.
+> * (C++20~) [u8streampos](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#%ED%83%80%EC%9E%85)가 추가되었습니다.
 
 # C스타일 입출력
 
@@ -265,7 +267,7 @@ std::cout << std::setw(0) << std::setprecision(6); // setw, setprecision은 서�
 
 # (C++20~) 동기화 출력
 
-쓰레드에서 `std::cout << a << b << std::endl`와 같이 `<<`을 여러개 사용해서 출력하면, 각 쓰레드가 출력하면서 뒤섞이게 됩니다.(*[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) 참고*) 따라서, [mutex](??)를 사용해야 했는데요,
+쓰레드에서 `std::cout << a << b << std::endl`와 같이 `<<`을 여러개 사용해서 출력하면, 각 쓰레드가 출력하면서 뒤섞이게 됩니다.(*[thread](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#thread) 참고*) 따라서, [mutex](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-thread-mutex/#mutex)를 사용해야 했는데요,
 
 C++20 부터는 [basic_syncbuf, basic_osyncstream](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-input-output/#c20-%EB%8F%99%EA%B8%B0%ED%99%94-%EC%B6%9C%EB%A0%A5)가 추가되어 쓰레드 내에서도 뒤섞이지 않도록 해줍니다. 
 

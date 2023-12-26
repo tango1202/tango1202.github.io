@@ -13,8 +13,9 @@ sidebar:
 > * (C++20~) [hh_mm_ss](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-hh_mm_ss)가 추가되어 12시간/24시간의 시-분-초 서식 처리가 간편해 졌습니다.
 > * (C++20~) [Calendar](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-calendar)가 추가되어 년-월-일 서식 처리가 간편해 졌습니다.
 > * (C++20~) [Time Zone](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-time-zone)이 추가되어 특정 지역의 시간대로 시간을 구할 수 있습니다.
-> * (C++20~) [utc_clock, tai_clock, gps_clock, file_clock](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)이 추가되었습니다.
+> * (C++20~) [is_clock, utc_clock, tai_clock, gps_clock, file_clock, local_t](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#clock)가 추가되었습니다.
 > * (C++20~) [from_stream()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)이 [duration](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)에 추가되었습니다.
+> * (C++20~) [days, weeks, month, years](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#duration)가 추가되었습니다.
 > * (C++20~) [parse](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-chrono/#c20-parse)가 추가되었습니다.
 
 # 개요
