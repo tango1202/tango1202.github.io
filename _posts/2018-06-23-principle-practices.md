@@ -53,7 +53,6 @@ sidebar:
 
 통증이 발생할 것이 두려워 미리 꼼꼼하게 설계하고 힘들게 구현해봤자, 유용하기 보다는 [쓰레기 코드]((https://tango1202.github.io/cording/garbage/))가 될 가능성이 더 높습니다.
 
-
 # [좋은 코드] 당신이 어디로 가는지 아는가(Know Where You Are Going)
 
 대부분의 소프트웨어는 고객들이 원하는 것을 충족시키기 위해 동작합니다.
@@ -77,7 +76,9 @@ extreme programming의 창시자인 Kent Beck은 단순한 디자인 개발의 4
 
 가까스로 작동하는게 가장 완전한 프로그램입니다. 군더더기를 붙이지 마세요. [필요할때 구현하라(You Aren't Gonna Need It)](https://tango1202.github.io/principle/principle-you-arent-gonna-need-it/)를 따르세요.
 
-# [좋은 제품 - 아키텍처] 공통 아키텍처 비전(Common Architectural Vision)
+# [좋은 코드] 수직 슬라이스(Vertical Slices)
+
+# [좋은 코드] 공통 아키텍처 비전(Common Architectural Vision)
 
 소프트웨어를 유지보수하고, 기능을 추가하다보면 서로 다른 아키텍처로 구성될 수 있습니다. 이렇게 각자의 아키텍처로 구성되다 보면, 일관성이 없어져 전체적인 코드 품질이 떨어질 수밖에 없는데요,
 
@@ -86,10 +87,6 @@ extreme programming의 창시자인 Kent Beck은 단순한 디자인 개발의 4
 먼 미래에도 완벽한 아키텍처를 지금 당장 만들어 낼 수는 없습니다. [불완전성을 허용](https://tango1202.github.io/principle/principle-tolerance-for-imperfection/)하고, 개발 일정 - 품질 완성도 - 향후 유지보수성 - 안정성 - 기능성 - 사용성 - 속도 성능 - 요구사항 변경간의 **트레이드 오프**도 하셔야 합니다.
 
 그러니, [관심사를 분리](https://tango1202.github.io/principle/principle-separation-of-concerns/)하여 아키텍처간의 영향을 최소화하도록 작은 독립 모듈로 나누고, 각 모듈에 현 상황에 가장 합리적인 아키텍처를 적용하십시요. 그 뒤 공통의 아키텍처 비전에 맞게 작은 모듈을 단계적으로 리팩토링하십시요.
-
-# [좋은 제품 - 아키텍처] 수직 슬라이스(Vertical Slices)
-
-
 
 # [좋은 제품 - 배포] 지속적인 통합(Continuous Integration)
 
@@ -113,7 +110,13 @@ extreme programming의 창시자인 Kent Beck은 단순한 디자인 개발의 4
 
 # [좋은 제품 - 일정] 타임박싱(Timeboxing)
 
+타임박싱은 집중 근로 시간을 갖자로 이해하셔도 됩니다. 집중력을 유지할 수 있는 기간을 설정하고, 이 기간동안은 할당된 작업을 완료하는데에만 집중합니다. 일과 삶 사이에 명확한 경계를 두어 피로를 예방하여 좀더 추진력 있는 개발을 할 수 있습니다. 
+
+짧게는 몇시간일 수 있고, 길게는 스크럼의 스프린트가 될 수 있습니다.
+
 # [좋은 제품 - 일정] 계획 업데이트(Update the Plan)
+
+일정 지연이 발생할 경우 막연히 내일까지로 재정의 하지 마세요. 막연한 계획은 대부분 거짓말이 될 뿐더러 일정 준수에 대한 열정마저 사라지게 합니다. 일정 수립에 공을 들이시고 지킬 수 있는 일정으로 업데이트 하세요. 
 
 # [좋은 제품 - 상품성] 설명하는 오류 메시지(Descriptive Error Messages)
 
