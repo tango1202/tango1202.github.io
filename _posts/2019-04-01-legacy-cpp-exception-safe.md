@@ -71,7 +71,7 @@ sidebar:
 # 예외 상황의 잘못된 대처
 
 악마의 유혹으로 예외 상황에서 예외를 제대로 보고하지 않으면, 디버깅을 하느라 코딩 인생을 낭비하게 됩니다.
-처리할 수 없다면, [예외를 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키고 [전파](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)해서 좀 더 상위 개체에서 처리하게끔 미뤄두세요. 
+처리할 수 없다면, [throw](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)로 [예외를 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키고 [전파](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)해서 좀 더 상위 개체에서 [try-catch()](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)로 처리하게끔 미뤄두세요. 
 
 |흔한 예외 상황 행동|바람직한 대처|
 |--|--|
@@ -87,7 +87,19 @@ sidebar:
 
 개발자는 현 함수에서 예측할 수 있는 모든 상황을 고려하여 코드를 작성해야 합니다. 예측할 수 없는 예외 상황이 발생한다면 대처할 수 없고, 프로그램은 오동작하다가 결국 멈춰버립니다. 
 
-그러니, 예측할 수 없는 예외 상황이 없도록 레벌업을 하시고, 함수 내부에서 예외를 처리할 수 있는지 없는지를 판단하여 예외에 대처하거나 [예외를 전파](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)해야 합니다. 이때, [예외 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)의 원인이 명백한 코딩 실수라면, ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 하여 코딩 계약을 단단하게 하시고, 최후의 수단으로 [assert()](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-diagonostics/)로 잘못된 사용을 안내하시기 바랍니다.
+그러니, 예측할 수 없는 예외 상황이 없도록 레벌업을 하시기 바랍니다. 그리고 예외가 발생하지 않도록 사전에 철저히 점검하십시요.(*[공격적 자가진단](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8) 참고*)
+
+이때, [예외 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)의 원인이 명백한 코딩 실수라면, ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 하여 코딩 계약을 단단하게 하시고, 최후의 수단으로 [assert()](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-diagonostics/)로 잘못된 사용을 안내하시기 바랍니다.
+
+그럼에도 불구하고 [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)한다면, 함수 내부에서 예외를 처리할 수 있는지 없는지를 판단하여 예외에 대처하거나, [throw](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)로 [예외를 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시키고 상위 개체에 [예외를 전파](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)합니다. 그리고 예외를 처리할 수 있는 상위 개체에서 [try-catch()](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)로 [예외를 탐지](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하고요. 
+
+[탐지](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)한 예외는 다음과 같이 처리할 수 있습니다.
+
+* 작업을 중단하고 메시지 박스 표시(*현재 상태가 이러저러해서 못하니, 이렇게 해서 재시도 해보세요 등 원인과 해결방법 안내*)
+* 자원을 정돈하고 재시도(*메모리 부족등*)
+* 추후 재시도 할 수 있도록 상태 정리(*파일 다운로드등*)
+* 인수를 보정하고 재시도(*잘못된 입력값. 시스템에서 보정하거나 사용자가 보정*)
+* 정의된 기본 동작으로 재시도(*치명적이지 않은 경우 기본 동작으로 자동 실행*)
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fc331259-e119-499d-8b84-8a36e32b471f)
 
