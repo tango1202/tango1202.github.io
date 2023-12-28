@@ -55,13 +55,21 @@ sidebar:
 
 통증이 발생할 것이 두려워 미리 꼼꼼하게 설계하고 힘들게 구현해봤자, 유용하기 보다는 [쓰레기 코드](https://tango1202.github.io/cording/garbage/)가 될 가능성이 더 높습니다.
 
+# [좋은 코드] 점진적 발전과 지속적 개선(incremental progress, continuous improvement)
+
+한번에 완벽한 소프트웨어를 개발할 수는 없습니다. 시장 상황에 따라 변하고, 고객이 실제로 사용하다 보면 새로운 요구사항이나 변경 사항이 발생하기 때문입니다.
+
+따라서 고객의 피드백을 최대한 빠르게 받아야 시행착오가 줄어드는데요, 받은 피드백은 점진적, 그리고 지속적으로 개선한뒤 다시 고객에게 전달하여 피드백을 받습니다. 이러한 잦은 피드백과 잦은 실패는 소프트웨어를 점점 완벽하게 만들어 줍니다.
+
+잦은 피드백과 잦은 실패를 위해서는 제품을 빠르게 고객에게 전달해야 합니다. 따라서, [통합을 자동화](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration)하고, [배송 일정을 준수](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)해서 약속된 기일에 고객에게 제품을 전달할 수 있게 해주십시요.
+
 # [좋은 코드] 당신이 어디로 가는지 아는가(Know Where You Are Going)
 
 대부분의 소프트웨어는 고객들이 원하는 것을 충족시키기 위해 동작합니다.
 
 그런데, 고객이 진정으로 원하는 것이 뭔지도 모르는 상태로 개발하면 어떻게 될까요? 산으로 갑니다. 고객에게 중요하지도 않은 것에 집중하여 시간을 낭비하거나, 어쩌면 고객이 원하는 것과는 상관없는 시스템 구조적인 문제로 시간을 허비할 수도 있습니다.
 
-이러한 문제가 발생하지 않도록 [행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 고객과 함께 시나리오를 정의하고, 잦은 피드백과 잦은 실패를 경험하며 소프트웨어를 개선해 나아가야 합니다. 
+이러한 문제가 발생하지 않도록 [행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 고객과 함께 시나리오를 정의하고, 잦은 피드백과 잦은 실패를 경험하며 제품을 개선해 나아가야 합니다. 
 
 # [좋은 코드] 설명서 읽기(Read the Manual)
 
@@ -106,7 +114,7 @@ API를 사용시 이런 저런 테스트를 작성해서 기능을 습득하거�
 
 제품을 만들고 배포하는데 있어서 갑작스런 버그 발견으로 배포 일정이 지연되거나, 추가 요구사항을 반영하다가 배포 일정이 지연될 수 있습니다.
 
-하지만 배포의 지연은 잦은 피드백과 잦은 실패를 방해하고 [자기의 개밥](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%83%81%ED%92%88%EC%84%B1-%EC%9E%90%EA%B8%B0%EC%9D%98-%EA%B0%9C%EB%B0%A5%EC%9D%84-%EB%93%9C%EC%84%B8%EC%9A%94eating-your-own-dog-food)을 먹을 수 없게 합니다. 결국 제품 품질은 떨어지게 되죠. [불완전성을 허용](https://tango1202.github.io/principle/principle-tolerance-for-imperfection/)하시고 배포 일정을 준수하세요. 다음 배포 주기에 부족한 부분을 보강하면 됩니다.
+하지만 배포의 지연은 잦은 피드백과 잦은 실패를 이용한 제품 개선을 방해하고 [자기의 개밥](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%83%81%ED%92%88%EC%84%B1-%EC%9E%90%EA%B8%B0%EC%9D%98-%EA%B0%9C%EB%B0%A5%EC%9D%84-%EB%93%9C%EC%84%B8%EC%9A%94eating-your-own-dog-food)을 먹을 수 없게 합니다. 결국 제품 품질은 떨어지게 되죠. [불완전성을 허용](https://tango1202.github.io/principle/principle-tolerance-for-imperfection/)하시고 배포 일정을 준수하세요. 다음 배포 주기에 부족한 부분을 보강하면 됩니다.
 
 # [좋은 제품 - 일정] 타임박싱(Timeboxing)
 

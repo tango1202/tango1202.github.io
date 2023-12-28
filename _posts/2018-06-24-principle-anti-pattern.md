@@ -8,8 +8,14 @@ sidebar:
     nav: "docs"
 ---
 
-분석 마비(Analysis Paralysis)
-빈혈 모델(Anemic Model)
+# 분석 마비(Analysis Paralysis)
+
+과잉 분석으로 구현에 대한 진전이 없고 계획에 너무 많은 시간을 허비하는 것을 말합니다. 잠재적인 위험이나 단점이나 대안에 집중하다 보니 정작 중요한 의사결정이 늦어지는 문제를 겪습니다. 진전없는 회의가 반복된다면, 분석 마비에 빠진 것입니다.
+
+하루빨리 [행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 [당신이 어디로 가는지](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%B9%EC%8B%A0%EC%9D%B4-%EC%96%B4%EB%94%94%EB%A1%9C-%EA%B0%80%EB%8A%94%EC%A7%80-%EC%95%84%EB%8A%94%EA%B0%80know-where-you-are-going)를 파악한 뒤, 우선 순위를 선정하고, [불완전성을 허용](https://tango1202.github.io/principle/principle-tolerance-for-imperfection/)하여 빠르게 구조를 잡은 후, 잦은 피드백과 잦은 실패를 경험하십시요.
+
+# 빈혈 모델(Anemic Model)
+
 의미에 의한 아키텍처(Architecture by Implication)
 가정 기반 프로그래밍(Assumption Driven Programming)
 빅 디자인 업 프론트(Big Design Up Front)
