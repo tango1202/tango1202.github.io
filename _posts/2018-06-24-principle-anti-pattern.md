@@ -49,7 +49,7 @@ sidebar:
     * [상수성 계약](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD) 위반
     * [매직 상수](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%A7%A4%EC%A7%81-%EC%83%81%EC%88%98magic-constants)
 
-리팩토링으로 수정하셔야 합니다.
+가 보인다면, 리팩토링으로 수정하셔야 합니다.
 
 # [나쁜 코딩 관행] 깨진 창문(Broken Windows)
 
@@ -107,7 +107,7 @@ sidebar:
 
 # [나쁜 코딩 관행] 블롭(The Blob)
 
-[블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob) 은 1958년 스티브 맥퀸이 출연한 B급 호러 영화입니다.(*영화는 여기에 있네요. [https://www.youtube.com/watch?v=2Ti-uUsaQOc](https://www.youtube.com/watch?v=2Ti-uUsaQOc)*) 여기 나오는 끈적이 괴물이 모든 것을 흡수하고 점점 커지는데요, 이러한 괴물같은 클래스를 만들지 마세요. 공포스럽습니다.
+[블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)은 1958년 스티브 맥퀸이 출연한 B급 호러 영화입니다.(*영화는 여기에 있네요. [https://www.youtube.com/watch?v=2Ti-uUsaQOc](https://www.youtube.com/watch?v=2Ti-uUsaQOc)*) 여기 나오는 끈적이 괴물이 모든 것을 흡수하고 점점 커지는데요, 이러한 괴물같은 클래스를 만들지 마세요. 공포스럽습니다.
 
 [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)을 실천하세요.
 
@@ -128,7 +128,7 @@ sidebar:
 
 2가지 입니다.
 
-특히 좋은 설계는 다음 게임을 위한 유지보수의 편의성을 위하여
+특히, 좋은 설계는 다음 게임을 위한 유지보수의 편의성을 위하여
 
 * 가독성,
 * 유연성, 확장성, 이식성
@@ -154,7 +154,7 @@ sidebar:
 
 # [나쁜 코딩 관행] 바퀴의 재발명(Reinventing the Wheel)
 
-코드내에 [빙산 클래스](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%99%EC%82%B0-%ED%81%B4%EB%9E%98%EC%8A%A4iceberg-class)가 있어 재활용을 하지 않거나, [얼어붙은 원시인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%96%BC%EC%96%B4%EB%B6%99%EC%9D%80-%EC%9B%90%EC%8B%9C%EC%9D%B8frozen-caveman)이어서 오픈 소스나 상용 제품을 도입하지 않고, 모두 다시 재개발하는 관행입니다. 정작 필요한 핵심 기능에 집중하지 못하고 리소스가 분산되며 코드는 중복됩니다.
+코드내에 [빙산 클래스](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%99%EC%82%B0-%ED%81%B4%EB%9E%98%EC%8A%A4iceberg-class)가 있어 재활용할 요소를 찾지 못하거나, [얼어붙은 원시인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%96%BC%EC%96%B4%EB%B6%99%EC%9D%80-%EC%9B%90%EC%8B%9C%EC%9D%B8frozen-caveman)이어서 오픈 소스나 상용 제품을 도입하지 않고, 모두 다시 재개발하는 관행입니다. 정작 필요한 핵심 기능에 집중하지 못하고 리소스가 분산되며 코드는 중복됩니다.
 
 먼저 자사의 코드와 오픈 소스와 상용 제품에 활용할 것이 있는지 충분히 분석하고, 학습하는게 좋습니다.
 
@@ -178,9 +178,9 @@ sidebar:
 
 # [나쁜 설계 관행] 빠른 속도(Fast Beats Right)
 
-[앞단의 큰 디자인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%9E%EB%8B%A8%EC%9D%98-%ED%81%B0-%EB%94%94%EC%9E%90%EC%9D%B8big-design-up-front)은 과잉 분석에 따른 문제이지만, 불충분한 설계로 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)일정을 맞추기 위해 [덕트 테이프](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)로 덕지덕지 붙은 코드를 작성하면, 결국은 품질이 저하되고, 고객의 신뢰를 잃게 됩니다.
+[앞단의 큰 디자인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%9E%EB%8B%A8%EC%9D%98-%ED%81%B0-%EB%94%94%EC%9E%90%EC%9D%B8big-design-up-front)은 과잉 분석에 따른 문제가 발생합니다. 그렇지만 너무 분석을 안해도 문제입니다. 불충분한 설계로 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)일정을 맞추기 위해 [덕트 테이프](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)로 덕지덕지 붙은 코드를 작성하면, 결국은 품질이 저하되고, 고객의 신뢰를 잃게 됩니다.
 
-[단순한 디자인](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%88%9C%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8simple-design)으로 설계하고, [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 하세요.
+[단순한 디자인](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%88%9C%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8simple-design)후, [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 하세요.
 
 # [나쁜 설계 관행] 암시적인 아키텍처(Architecture by Implication)
 
@@ -191,7 +191,7 @@ sidebar:
 
 # [나쁜 설계 관행] 마녀가 만든 아키텍처(Witches Brew Architecture)
 
-[마녀가 만든 아키텍처](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%A7%88%EB%85%80%EA%B0%80-%EB%A7%8C%EB%93%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98witches-brew-architecture)는 기술, 디자인 패턴, 아키텍처, 코딩 컨벤션이 여러개가 혼재된 것을 말합니다. 일관성이 없어 가독성은 떨어지고 확장성도 떨어집니다. 주로 [암시적인 아키텍쳐](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%94%EC%8B%9C%EC%A0%81%EC%9D%B8-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98architecture-by-implication)때문에 발생할 수 있습니다. 
+[마녀가 만든 아키텍처](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%A7%88%EB%85%80%EA%B0%80-%EB%A7%8C%EB%93%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98witches-brew-architecture)는 기술, 디자인 패턴, 아키텍처, 코딩 컨벤션이 여러개가 혼재된 것을 말합니다. 일관성이 없어 가독성은 떨어지고 확장성도 떨어집니다. 주로 [암시적인 아키텍쳐](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%94%EC%8B%9C%EC%A0%81%EC%9D%B8-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98architecture-by-implication)와 [프랑켄코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%94%84%EB%9E%91%EC%BC%84%EC%BD%94%EB%93%9Cfrankencode) 때문에 발생할 수 있습니다. 
 
 코딩 컨벤션을 수립하고, [공통 아키텍처 비전](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EA%B3%B5%ED%86%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B9%84%EC%A0%84common-architectural-vision)을 수립하세요.
 
@@ -218,7 +218,7 @@ sidebar:
 [배송은 기능](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)이고, [배송 일정 준수](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)는 잦은 피드백과 잦은 실패로 제품 품질을 향상시킵니다. 하지만 지난번에는 동작했는데, 이번에 동작이 안된다면 어떻까요? 이럴땐 제품의 품질 향상을 위한 피드백이 오지 않습니다. 오히려 불신만 쌓이게 되죠. [배송 일정 준수](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)는 중요하지만, 엉망진창인 지뢰밭인 제품을 전달해선 안됩니다. 고객은 버그 테스팅을 하는게 아니라 시나리오를 경험한 후 피드백을 주는 역할을 해야 합니다.
 
 [지속적인 통합](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration)
-에서 말씀드린 것처럼 테스트를 자동화 하시고, 통과된 경우 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)하세요.
+에서 말씀드린 것처럼 테스트를 자동화 하시고, 통과된 경우에만 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)하세요.
 
 
 # [나쁜 운영 관행] 살금살금 기어오는 기능(Feature Creep)
@@ -260,15 +260,15 @@ sidebar:
 
 # [나쁜 운영 관행] 로이스 레인 계획(Lois Lane Planning)
 
-슈퍼맨의 여자 친구인 로이스 레인은 일을 저지르거나 혹은 악당들에게 잡혔다가 슈퍼맨의 도움으로 구출됩니다. 개발팀을 슈퍼맨이라고 생각하는 영업 조직은 고객에게 지킬 수 없는 약속을 하고 개발팀에 도움을 요청합니다. 아주 운이 좋게 개발팀이 구출할 수도 있지만, 개발팀은 슈퍼맨이 아니기에 지치고, 떠나고, 품질이 낮아지고, 다른 프로젝트 마저 삐걱거립니다.
+슈퍼맨의 여자 친구인 로이스 레인은 일을 저지르거나 혹은 악당들에게 잡혔다가 슈퍼맨의 도움으로 구출됩니다. 개발팀을 슈퍼맨이라고 생각하는 영업 조직은 고객에게 어마어마한 약속을 하고 개발팀에 도움을 요청합니다. 아주 운이 좋게 개발팀이 구출할 수도 있지만, 개발팀은 슈퍼맨이 아니기에 지치고, 떠나고, 품질이 낮아지고, 다른 프로젝트 마저 삐걱거리게 됩니다.
 
 [행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 서로 긴밀하게 협력하세요.
 
 # [나쁜 운영 관행] 연기와 거울(Smoke and Mirrors)
 
-고객에게 그럴싸하게 연기와 거울을 보여주고 [로이스 레인 계획](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EB%A1%9C%EC%9D%B4%EC%8A%A4-%EB%A0%88%EC%9D%B8-%EA%B3%84%ED%9A%8Dlois-lane-planning)처럼 개발팀이 해결해 주리라 기대하는 것을 말합니다. 마케팅 주도 개발이라고도 합니다. 
+고객에게 그럴싸하게 연기와 거울을 보여주고 [로이스 레인 계획](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EB%A1%9C%EC%9D%B4%EC%8A%A4-%EB%A0%88%EC%9D%B8-%EA%B3%84%ED%9A%8Dlois-lane-planning)처럼 개발팀이 해결해 주리라 기대하는 것이며, 마케팅 주도 개발이라고도 합니다. 비현실적인 기간내에 개발해야 할 때는 재앙으로 이어집니다.
 
-비현실적인 기간내에 개발해야 할 때는 재앙으로 이어집니다.
+[행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 서로 긴밀하게 협력하세요.
 
 # [나쁜 운영 관행] 버섯 관리(Mushroom Management)
 
@@ -278,7 +278,7 @@ sidebar:
 
 # [나쁜 운영 관행] 폭포수 모델(Waterfall)
 
-전통적으로 시스템 요구사항 수집->소프트웨어 요구사항 수집->분석->설계->코딩->테스팅->배포 및 운영의 순서로 개발하는 폭포수 모델의 개발 방법론을 사용했는데요, 변화하는 환경이나 요구사항 반영이 민첩하지 않습니다.
+전통적으로 폭포수 모델의 개발 방법론(*시스템 요구사항 수집->소프트웨어 요구사항 수집->분석->설계->코딩->테스팅->배포 및 운영의 순서로 개발*)을 사용했는데요, 변화하는 환경이나 요구사항 반영에 민첩해지기 힘듭니다.
 
 잦은 피드백과 잦은 실패를 경험하고 [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 하십시요. 
 

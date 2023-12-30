@@ -22,13 +22,17 @@ sidebar:
 
 일반적으로 잘못된 변수명, 짧고 비밀스러운 이름, 개인의 취향에 따른 접두어, 너무 긴 이름, 복잡한 제어문, 일관적이지 못한 코드 레이아웃(*들여쓰기, 줄바꿈, 띄어쓰기*), 흔하지 않은 구조, [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)을 따르지 않는 함수나 클래스, 코드 중복, [쓰레기 코드](https://tango1202.github.io/cording/garbage/) 등이 코드 가독성을 떨어뜨립니다.
 
+[코드에서 냄새](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BD%94%EB%93%9C-%EB%83%84%EC%83%88code-smells)가 난다면, [보이스카우트 규칙](https://tango1202.github.io/principle/principle-boy-scout-rule/)에 따라 뭐든 수정하세요.
+
 # [좋은 코드] 이름 짓기(Naming Things)
 
 좋은 이름은 [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높여 생산성을 향상시켜 줍니다. [작명 습관](https://tango1202.github.io/coding/coding-naming/)에서 작명에 좋은 방법들을 참고하세요.
 
 # [좋은 코드] 방어적 프로그래밍(Defensive Programming)
 
-모든 코드는 오류를 발생시킬 수 있습니다. 코드의 논리는 멀쩡하더라도 메모리가 없을 수도 있고, 갑자기 인터넷이 안될 수도 있죠. 그러한 오류가 발생했을때 어떻게든 비교적 안전하게 작동할 수 있도록 코드를 작성하십시요.(*[예외 안전 코드](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-safe/) 참고*)
+모든 코드는 오류를 발생시킬 수 있습니다. 코드의 논리는 멀쩡하더라도 메모리가 없을 수도 있고, 갑자기 인터넷이 안될 수도 있죠. 
+
+오류가 발생했을때 어떻게든 비교적 안전하게 작동할 수 있도록 코드를 작성하십시요.(*[예외 안전 코드](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-safe/) 참고*)
 또한 그런 오류가 발생하지 않도록 사전에 철저히 점검하십시요.(*[공격적 자가진단](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-diagonostics/#%EA%B3%B5%EA%B2%A9%EC%A0%81-%EC%9E%90%EA%B0%80%EC%A7%84%EB%8B%A8) 참고*)
 
 # [좋은 코드] 짝 프로그래밍(Pair Programming)
@@ -39,7 +43,7 @@ sidebar:
 
 이 방법을 사용하면 둘이 하나가 되어 코드에 대한 이해 수준을 맞출뿐만 아니라, 서로의 실수를 보완하고, 서로를 독려하기 때문에 코드 품질을 높일 수 있게 됩니다. 특히 두사람이 분석하고 서로 감시하기 때문에, 오류 처리를 대충 하려는 악마의 유혹을 사전에 차단하는 효과도 볼 수 있습니다. 이덕에 향후에 발생할 버그들이 사전에 차단되어 디버깅 시간을 줄일 수 있고 전체적인 개발 생산성도 향상됩니다. 
 
-또한 함께 습득한 방법으로 향후 각자의 코드를 작성하다보면 일관성도 확보됩니다. 그래서 전체적으로 코드 품질이 상향 평준화 됩니다. 
+또한 함께 습득한 방법으로 향후 각자의 코드를 작성하다보면 일관성도 확보됩니다. 그래서 전체적으로 코드 품질이 상향 평준화 될 수 있습니다. 
 
 # [좋은 코드] 러버덕 디버깅(Rubber Dock Debugging)
 
@@ -55,6 +59,8 @@ sidebar:
 
 [필요할때 구현하라](https://tango1202.github.io/principle/principle-you-arent-gonna-need-it/)의 다른 변형이고, 아키텍처의 [불완전성을 허용](https://tango1202.github.io/principle/principle-tolerance-for-imperfection/)하는 것입니다. 
 
+하지만, 너무 [빠른 속도](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B9%A0%EB%A5%B8-%EC%86%8D%EB%8F%84fast-beats-right)나 [암시적인 아키텍처](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B9%A0%EB%A5%B8-%EC%86%8D%EB%8F%84fast-beats-right)에 빠지지 않도록 해야 합니다. [단순한 디자인](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%88%9C%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8simple-design) 후 [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 하세요. 
+
 # [좋은 코드] 점진적 발전과 지속적 개선(incremental progress, continuous improvement)
 
 한번에 완벽한 소프트웨어를 개발할 수는 없습니다. 시장 상황에 따라 구현 환경이 변하고, 고객이 실제로 사용하다 보면 새로운 요구사항이나 변경 사항이 발생하기 때문입니다.
@@ -69,7 +75,9 @@ sidebar:
 
 2. 빠른 배송
     
-    잦은 피드백과 잦은 실패를 위해서 제품을 빠르게 고객에게 전달하는게 좋습니다. [통합을 자동화](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration)하고, [배송 일정을 준수](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)해서 약속된 일정에 고객에게 제품을 전달할 수 있게 해주십시요.
+    잦은 피드백과 잦은 실패를 위해서 제품을 빠르게 고객에게 전달하는게 좋습니다. [통합을 자동화](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration)하고, [배송 일정을 준수](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)해서 약속된 일정에 고객에게 제품을 전달할 수 있게 해주십시요. 
+    
+    이때 충분한 회귀 테스트가 되지 않으면, 지난번에 성공했던 기능이 이번에는 실패하는 [지뢰밭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%A7%80%EB%A2%B0%EB%B0%AD%EC%9D%84-%EA%B1%B7%EB%8B%A4walking-through-a-minefield)을 걷게 됩니다. 이런 경우 오히려 고객에게 신뢰를 잃게 되니 테스트가 성공한 경우에만 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)해야 합니다.
 
 # [좋은 코드] 당신이 어디로 가는지 아는가(Know Where You Are Going)
 
@@ -96,7 +104,7 @@ API 사용시 이런 저런 테스트를 작성해서 기능을 습득하거나,
 
 # [좋은 코드] 공통 아키텍처 비전(Common Architectural Vision)
 
-소프트웨어를 유지보수하고, 기능을 추가하다보면 서로 다른 아키텍처로 구성될 수 있습니다. 이렇게 각자의 아키텍처로 구성되다 보면, 일관성이 없어져 전체적인 코드 품질이 떨어질 수밖에 없는데요,
+소프트웨어를 유지보수하고, 기능을 추가하다보면 서로 다른 아키텍처로 구성될 수 있습니다. 이렇게 각자의 아키텍처로 구성되다 보면, [창문이 깨져](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EA%B9%A8%EC%A7%84-%EC%B0%BD%EB%AC%B8broken-windows) [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 떨어지거나, [큰 진흙 공](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%81%B0-%EC%A7%84%ED%9D%99-%EA%B3%B5big-ball-of-mud)이 만들어져 유지보수가 어렵거나, [마녀가 만든 아키텍처](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%A7%88%EB%85%80%EA%B0%80-%EB%A7%8C%EB%93%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98witches-brew-architecture)처럼 일관성이 없어져 전체적인 코드 품질이 떨어질 수밖에 없는데요,
 
 그렇다고, 동일한 아키텍처를 유지하기 위해 억지로 하나의 아키텍처만을 고수하는건 고집스럽기만할 뿐 합리적이진 못합니다.
 
@@ -122,17 +130,23 @@ API 사용시 이런 저런 테스트를 작성해서 기능을 습득하거나,
 
 제품을 만들고 배포하는데 있어서 갑작스런 버그 발견으로 배포 일정이 지연되거나, 추가 요구사항을 반영하다가 배포 일정이 지연될 수 있습니다.
 
-하지만 배포의 지연은 잦은 피드백과 잦은 실패를 이용한 제품 개선을 방해하고 [자기의 개밥](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%83%81%ED%92%88%EC%84%B1-%EC%9E%90%EA%B8%B0%EC%9D%98-%EA%B0%9C%EB%B0%A5%EC%9D%84-%EB%93%9C%EC%84%B8%EC%9A%94eating-your-own-dog-food)을 먹을 수 없게 합니다. 결국 제품 품질은 떨어지게 되죠. [불완전성을 허용](https://tango1202.github.io/principle/principle-tolerance-for-imperfection/)하시고 배포 일정을 준수하세요. 다음 배포 주기에 부족한 부분을 보강하면 됩니다.
+하지만 배포의 지연은 잦은 피드백과 잦은 실패를 이용한 제품 개선을 방해하고 [자기의 개밥](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%83%81%ED%92%88%EC%84%B1-%EC%9E%90%EA%B8%B0%EC%9D%98-%EA%B0%9C%EB%B0%A5%EC%9D%84-%EB%93%9C%EC%84%B8%EC%9A%94eating-your-own-dog-food)을 먹을 수 없게 합니다. 결국 제품 품질은 떨어지게 되죠. 
+
+[불완전성을 허용](https://tango1202.github.io/principle/principle-tolerance-for-imperfection/)하시고 배포 일정을 준수하세요. 다음 배포 주기에 부족한 부분을 보강하면 됩니다. 
+
+이때 고객이 [지뢰밭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%A7%80%EB%A2%B0%EB%B0%AD%EC%9D%84-%EA%B1%B7%EB%8B%A4walking-through-a-minefield)을 걷지 않도록 충분한 회귀 테스트를 해야 합니다. 그렇지 않은 경우 고객에게 신뢰를 잃으니까요.
 
 # [좋은 제품 - 일정] 타임박싱(Timeboxing)
 
-타임박싱은 집중 근로 시간을 갖자로 이해하셔도 됩니다. 집중력을 유지할 수 있는 기간을 설정하고, 이 기간 동안은 할당된 작업을 완료하는데에만 집중합니다. 피로를 예방할 수 있도록 일과 삶 사이에 명확한 경계를 두십시요. 좀더 추진력 있는 개발을 할 수 있습니다. 
+[타임박싱](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%9D%BC%EC%A0%95-%ED%83%80%EC%9E%84%EB%B0%95%EC%8B%B1timeboxing)은 집중 근로 시간을 갖자로 이해하셔도 됩니다. 집중력을 유지할 수 있는 기간을 설정하고, 이 기간 동안은 할당된 작업을 완료하는데에만 집중합니다. 피로를 예방할 수 있도록 일과 삶 사이에 명확한 경계를 두십시요. 좀더 추진력 있는 개발을 할 수 있습니다. 
 
 짧게는 몇시간일 수 있고, 길게는 스크럼의 스프린트가 될 수 있습니다.
 
 # [좋은 제품 - 일정] 계획 업데이트(Update the Plan)
 
-일정 지연이 발생할 경우 막연히 내일까지로 재정의 하지 마세요. 막연한 계획은 대부분 거짓말이 될 뿐더러 일정 준수에 대한 열정마저 사라지게 합니다. 일정 수립에 공을 들이시고 지킬 수 있는 일정으로 업데이트 하세요. 
+일정 지연이 발생할 경우 막연히 내일까지로 재정의 하지 마세요. 막연한 계획은 대부분 거짓말이 될 뿐더러 일정 준수에 대한 열정마저 사라지게 합니다. 
+
+일정 수립에 공을 들이시고 지킬 수 있는 일정으로 업데이트 하세요. 
 
 # [좋은 제품 - 상품성] 설명하는 오류 메시지(Descriptive Error Messages)
 
@@ -190,5 +204,5 @@ API 사용시 이런 저런 테스트를 작성해서 기능을 습득하거나,
 
 1. 사용자 스토리 : 최종 사용자 관점의 높은 수준의 설명으로서 어떤 동작을 원하는지, 그 이유는 무엇인지를 설명합니다. 이유를 이해하는데 주력합니다.
 
-2. 시나리오 : 주어진 조건(Given)인 상황에서 언제(When) 무엇을(Then) 해야 하는지 설명합니다. 무슨 동작을 하는지 이해하는데 주력합니다. 시나리오가 만들어졌다면, 꼭 테스트 자동화를 하세요. 시나리오는 필수적으로 테스트되어야 합니다. 만약 테스트되지 않고 비지니스 이해 관계자에게 전달된다면 신뢰만 떨어집니다. 
+2. 시나리오 : 주어진 조건(Given)인 상황에서 언제(When) 무엇을(Then) 해야 하는지 설명합니다. 이때 무슨 동작을 하는지 이해하는데 주력합니다. 시나리오가 만들어졌다면, 꼭 테스트를 자동화 하세요. 시나리오는 필수적으로 테스트되어야 합니다. 그렇지 않으면 비지니스 이해 관계자는 [지뢰밭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%A7%80%EB%A2%B0%EB%B0%AD%EC%9D%84-%EA%B1%B7%EB%8B%A4walking-through-a-minefield)을 걷게 되고 신뢰만 떨어집니다. 
 
