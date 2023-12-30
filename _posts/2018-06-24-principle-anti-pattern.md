@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#24. [개발 원칙] 나쁜 관행(작성중)"
+title: "#24. [개발 원칙] 나쁜 개발 관행"
 categories: "principle"
 tag: ["개발 원칙", "나쁜 관행", "안티 패턴"]
 author_profile: false
@@ -22,8 +22,8 @@ sidebar:
 
 2. 잘못된 구조
 
-    * 흔하지 않은 구조나 [캘린더 코더](??)의 중독된 구조
-    * [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/) 위배 : [Blob](??)이 되어가는 너무 거대한 함수나 클래스
+    * 흔하지 않은 구조나 [캘린더 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%BD%94%EB%8D%94calendar-coder)의 중독된 구조
+    * [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/) 위배 : [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어가는 너무 거대한 함수나 클래스
     * [리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 위배 : 자식 개체가 부모 개체를 상속하고 일부만 사용
     * [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위배 : 높은 결합도(*다른 개체와 상호작용이 빈번함, 수정시 많은 개체를 함께 수정해야 함*), 느슨한 응집(*함께 사용하는 데이터와 함수가 분리됨, 캡슐화가 필요한 개체*)
 
@@ -47,13 +47,13 @@ sidebar:
     * [전역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)
     * [다운 캐스팅](?https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98) 혹은 모든 [형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/)
     * [상수성 계약](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD) 위반
-    * [매직 상수](??)
+    * [매직 상수](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%A7%A4%EC%A7%81-%EC%83%81%EC%88%98magic-constants)
 
 리팩토링으로 수정하셔야 합니다.
 
 # [나쁜 코딩 관행] 깨진 창문(Broken Windows)
 
-[깨진 창문](??)이 있는 건물에 낙서를 하고 쓰레기를 버리는건 죄의식이 생기지 않습니다. 내버려두면 담배 꽁초, 음식물 봉지들이 금새 쌓이게 됩니다. 악취가 나는 코드도 마찬가지입니다. 내버려두면 점점 쓰레기가 쌓이고 부패하게 됩니다.
+[깨진 창문](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EA%B9%A8%EC%A7%84-%EC%B0%BD%EB%AC%B8broken-windows)이 있는 건물에 낙서를 하고 쓰레기를 버리는건 죄의식이 생기지 않습니다. 내버려두면 담배 꽁초, 음식물 봉지들이 금새 쌓이게 됩니다. 악취가 나는 코드도 마찬가지입니다. 내버려두면 점점 쓰레기가 쌓이고 부패하게 됩니다.
 
 누군가가 창문을 깨지 않도록, [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높이시고, [공통 아키텍처 비전](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EA%B3%B5%ED%86%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B9%84%EC%A0%84common-architectural-vision)을 수립하세요. 그리고, [보이스카우트 규칙](https://tango1202.github.io/principle/principle-boy-scout-rule/)에 따라 뭐든 수정해 두세요.
 
@@ -61,29 +61,29 @@ sidebar:
 
 일반적으로 시스템 내에서 사용되는 숫자를 그대로 사용하는 경우 해당 의미를 파악하기 힘듭니다.
 
-[매직 상수](??)를 그대로 사용하지 마시고, [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 위해 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)을 이용하던가 [상수 개체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)를 이용하여 이름을 부여하여 사용하세요.
+[매직 상수](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%A7%A4%EC%A7%81-%EC%83%81%EC%88%98magic-constants)를 그대로 사용하지 마시고, [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 위해 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)을 이용하던가 [상수 개체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)를 이용하여 이름을 부여하여 사용하세요.
 
-특히 [문자열 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 같은 경우 다국어 처리가 있기 때문에 더욱 더 중요합니다. [문자열 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)가 [매직 상수](??)로 코드내에서 흩어져 있으면, 문자열의 내용 수정시 일부만 수정될 확률도 높아지고, 유사한 문자열이 여러개 만들어져 코드가 파편화되기 쉽습니다.
+특히 [문자열 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98) 같은 경우 다국어 처리가 있기 때문에 더욱 더 중요합니다. [문자열 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)가 [매직 상수](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%A7%A4%EC%A7%81-%EC%83%81%EC%88%98magic-constants)로 코드내에서 흩어져 있으면, 문자열의 내용 수정시 일부만 수정될 확률도 높아지고, 유사한 문자열이 여러개 만들어져 코드가 파편화되기 쉽습니다.
 
 숫자나 [문자열 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-literals/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%81%EC%88%98)에 이름을 부여하고, 본의아니게 중복 관리되지 않도록 [스스로 반복하지 마라](https://tango1202.github.io/principle/principle-dont-repeat-yourself/) 원칙을 따르세요.
 
 # [나쁜 코딩 관행] 스파게티 코드(Spaghetti Code)
 
-[스파게티 코드](??)는 코드의 구조가 너무도 복잡하게 꼬여 읽고 이해할 수 없는 코드를 말합니다.
+[스파게티 코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%8A%A4%ED%8C%8C%EA%B2%8C%ED%8B%B0-%EC%BD%94%EB%93%9Cspaghetti-code)는 코드의 구조가 너무도 복잡하게 꼬여 읽고 이해할 수 없는 코드를 말합니다.
 
-코딩 컨벤션을 만들고, [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 준수하고 [덕트 테이프 코더](??)가 없는지 관찰해 보세요.
+코딩 컨벤션을 만들고, [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 준수하고 [덕트 테이프 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)가 없는지 관찰해 보세요.
 
 # [나쁜 코딩 관행] 빈혈 모델(Anemic Model)
 
-[개체 지향 프로그래밍](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-generic/#%EA%B0%9C%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)은 데이터와 이를 처리하는 기능을 응집하는데요, 기능들의 응집이 부족할때 [빈혈 모델](??)이라 합니다.
+[개체 지향 프로그래밍](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-generic/#%EA%B0%9C%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)은 데이터와 이를 처리하는 기능을 응집하는데요, 기능들의 응집이 부족할때 [빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)이라 합니다.
 
-[빈혈 모델](??)에서는 대부분의 개체가 데이터들의 집합일 확률이 높고, 이를 활용하는 기능들이 부족하여 데이터를 사용하기가 어려워 집니다. 혹은 내부 [컨테이너](??)의 [멤버 함수](??)가 그냥 노출되어 일일이 데이터를 직접 분석하고 가공해야 하는 어려움이 있을 수 있습니다.
+[빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)에서는 대부분의 개체가 데이터들의 집합일 확률이 높고, 이를 활용하는 기능들이 부족하여 데이터를 사용하기가 어려워 집니다. 혹은 내부 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)의 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)가 그냥 노출되어 일일이 데이터를 직접 분석하고 가공해야 하는 어려움이 있을 수 있습니다.
 
 데이터를 분석하고 가공하는 기능을 추상화해서 제공하거나, [관심사의 분리 원칙](https://tango1202.github.io/principle/principle-separation-of-concerns/)에 따라 비지니스 레이어를 만드시고, [묻지 말고 말하라 원칙](https://tango1202.github.io/principle/principle-tell-dont-ask/)에 따라 데이터를 사용하는 유용한 방법들을 제공하세요.
 
 # [나쁜 코딩 관행] 빙산 클래스(Iceberg Class)
 
-[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)한 [최소 public](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-complete-class/#%EC%B5%9C%EC%86%8C-public)을 따르겠다며 모든 것을 꽁꽁 숨겨두면, 숨겨진 곳에 많은 유용한 것들이 있는 걸 모르고 [바퀴를 재발명](??) 할 수 있습니다.
+[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)한 [최소 public](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-complete-class/#%EC%B5%9C%EC%86%8C-public)을 따르겠다며 모든 것을 꽁꽁 숨겨두면, 숨겨진 곳에 많은 유용한 것들이 있는 걸 모르고 [바퀴를 재발명](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B0%94%ED%80%B4%EC%9D%98-%EC%9E%AC%EB%B0%9C%EB%AA%85reinventing-the-wheel)할 수 있습니다.
 
 [의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/)에 따라 인터페이스화 하시고, [개방-폐쇄 원칙](https://tango1202.github.io/principle/principle-open-closed/)에 따라 유용한 것은 추출하세요. 그러면 내부적인 동작 흐름이 인터페이스화되어 재활용할 수 있는 요소들을 감지하기 쉽습니다.
 
@@ -95,25 +95,25 @@ sidebar:
 
 # [나쁜 코딩 관행] 인터넷에서 찾음(Found on Internet)
 
-인터넷에서 찾은 정보나 코드 조각을 아무런 검토없이 즉시 제품에 적용하는 관행을 말합니다. 제품의 컨벤션과 맞지 않고, [덕트 테이프](??)로 덕지덕지 붙은 코드가 되기 쉽습니다.
+인터넷에서 찾은 정보나 코드 조각을 아무런 검토없이 즉시 제품에 적용하는 관행을 말합니다. 제품의 컨벤션과 맞지 않고, [덕트 테이프](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)로 덕지덕지 붙은 코드가 되기 쉽습니다.
 
-인터넷의 정보나 코드 조각을 그냥 [복사 붙여넣기](??)하지 마시고 정제하세요.
+인터넷의 정보나 코드 조각을 그냥 [복사 붙여넣기](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B3%B5%EC%82%AC-%EB%B6%99%EC%97%AC%EB%84%A3%EA%B8%B0copy-paste-programming)하지 마시고 정제하세요.
 
 # [나쁜 코딩 관행] 큰 진흙 공(Big Ball of Mud)
 
-[큰 진흙 공](??)은 아키텍처가 없는 무질서한 코드 덩어리를 말합니다. 아키텍처의 문서화가 어렵고, 모듈의 경계를 규정하기 어렵다면, 큰 진흙 공일 확률이 높습니다. 이러한 구조는 시스템 유지보수를 포기하게 만드는 가장 큰 원인입니다.
+[큰 진흙 공](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%81%B0-%EC%A7%84%ED%9D%99-%EA%B3%B5big-ball-of-mud)은 아키텍처가 없는 무질서한 코드 덩어리를 말합니다. 아키텍처의 문서화가 어렵고, 모듈의 경계를 규정하기 어렵다면, 큰 진흙 공일 확률이 높습니다. 이러한 구조는 시스템 유지보수를 포기하게 만드는 가장 큰 원인입니다.
 
 [공통 아키텍처 비전](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EA%B3%B5%ED%86%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B9%84%EC%A0%84common-architectural-vision)을 수립하고, [관심사를 분리](https://tango1202.github.io/principle/principle-separation-of-concerns/)한뒤 개별 모듈 마다 [SOLID](https://tango1202.github.io/principle/principle-solid/)를 적용하여 하나하나 점진적으로 리팩토링 하시기 바랍니다.
 
 # [나쁜 코딩 관행] 블롭(The Blob)
 
-[블롭](??) 은 1958년 스티브 맥퀸이 출연한 B급 호러 영화입니다.(*영화는 여기에 있네요. [https://www.youtube.com/watch?v=2Ti-uUsaQOc](https://www.youtube.com/watch?v=2Ti-uUsaQOc)*) 여기 나오는 끈적이 괴물이 모든 것을 흡수하고 점점 커지는데요, 이러한 괴물같은 클래스를 만들지 마세요. 공포스럽습니다.
+[블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob) 은 1958년 스티브 맥퀸이 출연한 B급 호러 영화입니다.(*영화는 여기에 있네요. [https://www.youtube.com/watch?v=2Ti-uUsaQOc](https://www.youtube.com/watch?v=2Ti-uUsaQOc)*) 여기 나오는 끈적이 괴물이 모든 것을 흡수하고 점점 커지는데요, 이러한 괴물같은 클래스를 만들지 마세요. 공포스럽습니다.
 
 [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)을 실천하세요.
 
 # [나쁜 코딩 관행] 가정 기반 프로그래밍(Assumption Driven Programming)
 
-[가정 기반 프로그래밍](??)은 모든 사용자와 개발자가 자기와 같다고 가정하는 개발자 관행을 말합니다. 자기가 생각하는 사용 방식대로 사용자가 실행한다고 가정하는 거죠.
+[가정 기반 프로그래밍](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EA%B0%80%EC%A0%95-%EA%B8%B0%EB%B0%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dassumption-driven-programming)은 모든 사용자와 개발자가 자기와 같다고 가정하는 개발자 관행을 말합니다. 자기가 생각하는 사용 방식대로 사용자가 실행한다고 가정하는 거죠.
 
 하지만, 사용자는 설명서를 읽고 실행하지 않으며, 실행 경로는 언제나 개발자보다 창의적입니다. 
 
@@ -136,33 +136,33 @@ sidebar:
  
 가 좋아야 합니다. 
 
-[캘린더 코더](??)는 맹목적으로 좋다는 것은 모조리 가져다 쓰는 분들입니다. 위의 목표를 잊어 버린 채로 말이죠. 왜 패턴을 사용하는지 모른 채로, 패턴이 좋다니깐, 마구 패턴들을 사용하고 서로를 결합시킵니다. 결국 패턴 중독에 빠져 분석이 되지 않는 코드를 만들어 내곤 합니다. 
+[캘린더 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%BD%94%EB%8D%94calendar-coder)는 맹목적으로 좋다는 것은 모조리 가져다 쓰는 분들입니다. 위의 목표를 잊어 버린 채로 말이죠. 왜 패턴을 사용하는지 모른 채로, 패턴이 좋다니깐, 마구 패턴들을 사용하고 서로를 결합시킵니다. 결국 패턴 중독에 빠져 분석이 되지 않는 코드를 만들어 내곤 합니다. 
 
 상황에 맞게 반영하는 판단력이 필요합니다. 판단의 기준은 "유지보수의 편의성"입니다. 
 
 # [나쁜 코딩 관행] 덕트 테이프 코더(Duct Tape Coder)
 
-[덕트 테이프 코더](??)는 청테이프로 임시 땜빵을 잘하는 개발자입니다. 단기적으로는 정상적으로 작동하는 것처럼 보이지만, 다음 게임을 위한 준비를 할 수 없게 만들죠. [인터넷에서 찾은 것](??)을 [복사 붙여넣기](??)하거나, [코드 냄새](??)를 풍깁니다.
+[덕트 테이프 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)는 청테이프로 임시 땜빵을 잘하는 개발자입니다. 단기적으로는 정상적으로 작동하는 것처럼 보이지만, 다음 게임을 위한 준비를 할 수 없게 만들죠. [인터넷에서 찾은 것](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%9D%B8%ED%84%B0%EB%84%B7%EC%97%90%EC%84%9C-%EC%B0%BE%EC%9D%8Cfound-on-internet)을 [복사 붙여넣기](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B3%B5%EC%82%AC-%EB%B6%99%EC%97%AC%EB%84%A3%EA%B8%B0copy-paste-programming)하거나, [코드 냄새](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BD%94%EB%93%9C-%EB%83%84%EC%83%88code-smells)를 풍깁니다.
 
 장기적으로 생각하세요. 우리의 제품이 잠깐 반짝이고 사라질게 아니라면요.
 
 # [나쁜 코딩 관행] 프랑켄코드(Frankencode)
 
-[프랑켄코드](??) 서로 어울리지 않는 코드를 [덕트 테이프](??)로 덕지덕지 붙인 코드를 말합니다.
+[프랑켄코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%94%84%EB%9E%91%EC%BC%84%EC%BD%94%EB%93%9Cfrankencode) 서로 어울리지 않는 코드를 [덕트 테이프](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)로 덕지덕지 붙인 코드를 말합니다.
 
-서로 독립적으로 만든 모듈이더라도 함께 사용한다면 어울려 작동할 수 있도록 [아답터](??) 등을 활용해야 합니다.
+서로 독립적으로 만든 모듈이더라도 함께 사용한다면 어울려 작동할 수 있도록 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/) 등을 활용해야 합니다.
 
 # [나쁜 코딩 관행] 바퀴의 재발명(Reinventing the Wheel)
 
-코드내에 [빙산 클래스](??)가 있어 재활용을 하지 않거나, [얼어붙은 원시인](??)이어서 오픈 소스나 상용 제품을 도입하지 않고, 모두 다시 재개발하는 관행입니다. 정작 필요한 핵심 기능에 집중하지 못하고 리소스가 분산되며 코드는 중복됩니다.
+코드내에 [빙산 클래스](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%99%EC%82%B0-%ED%81%B4%EB%9E%98%EC%8A%A4iceberg-class)가 있어 재활용을 하지 않거나, [얼어붙은 원시인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%96%BC%EC%96%B4%EB%B6%99%EC%9D%80-%EC%9B%90%EC%8B%9C%EC%9D%B8frozen-caveman)이어서 오픈 소스나 상용 제품을 도입하지 않고, 모두 다시 재개발하는 관행입니다. 정작 필요한 핵심 기능에 집중하지 못하고 리소스가 분산되며 코드는 중복됩니다.
 
 먼저 자사의 코드와 오픈 소스와 상용 제품에 활용할 것이 있는지 충분히 분석하고, 학습하는게 좋습니다.
 
 # [나쁜 코딩 관행] 여기서 발명되지 않음(Not Invented Here)
 
-자사가 개발하지 않은 것은 신뢰하지 않는 관행입니다. [바퀴를 재발명](??)하느라 핵심 기능에 집중하지 못합니다. 심지어 [STL](https://tango1202.github.io/categories/mordern-cpp-stl/)도 안쓰기도 하지요.
+자사가 개발하지 않은 것은 신뢰하지 않는 관행입니다. [바퀴를 재발명](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B0%94%ED%80%B4%EC%9D%98-%EC%9E%AC%EB%B0%9C%EB%AA%85reinventing-the-wheel)하느라 핵심 기능에 집중하지 못합니다. 심지어 [STL](https://tango1202.github.io/categories/mordern-cpp-stl/)도 안쓰기도 하지요.
 
-[얼어붙은 원시인](??)이 되지 마세요.
+[얼어붙은 원시인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%96%BC%EC%96%B4%EB%B6%99%EC%9D%80-%EC%9B%90%EC%8B%9C%EC%9D%B8frozen-caveman)이 되지 마세요.
 
 # [나쁜 설계 관행] 분석 마비(Analysis Paralysis)
 
@@ -172,13 +172,13 @@ sidebar:
 
 # [나쁜 설계 관행] 앞단의 큰 디자인(Big Design Up Front)
 
-[앞단의 큰 디자인](??)은 [분석 마비](??)와 마찬가지로 과잉 분석에 따라 너무 포괄적이고 상세한 설계를 하는 것을 말합니다. 너무 포괄적이고 상세한 아키텍처는 유연성이 떨어지고, 개발 시간이 증가하며, 사용되지 않는 모듈이나 아키텍처는 종종 [쓰레기 코드](https://tango1202.github.io/cording/garbage/)가 될 수 있습니다.
+[앞단의 큰 디자인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%9E%EB%8B%A8%EC%9D%98-%ED%81%B0-%EB%94%94%EC%9E%90%EC%9D%B8big-design-up-front)은 [분석 마비](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B6%84%EC%84%9D-%EB%A7%88%EB%B9%84analysis-paralysis)와 마찬가지로 과잉 분석에 따라 너무 포괄적이고 상세한 설계를 하는 것을 말합니다. 너무 포괄적이고 상세한 아키텍처는 유연성이 떨어지고, 개발 시간이 증가하며, 사용되지 않는 모듈이나 아키텍처는 종종 [쓰레기 코드](https://tango1202.github.io/cording/garbage/)가 될 수 있습니다.
 
 [단순한 디자인](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%88%9C%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8simple-design) 후 [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 하세요.
 
 # [나쁜 설계 관행] 빠른 속도(Fast Beats Right)
 
-[앞단의 큰 디자인](??)은 과잉 분석에 따른 문제이지만, 불충분한 설계로 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)일정을 맞추기 위해 [덕트 테이프](??)로 덕지덕지 붙은 코드를 작성하면, 결국은 품질이 저하되고, 고객의 신뢰를 잃게 됩니다.
+[앞단의 큰 디자인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%9E%EB%8B%A8%EC%9D%98-%ED%81%B0-%EB%94%94%EC%9E%90%EC%9D%B8big-design-up-front)은 과잉 분석에 따른 문제이지만, 불충분한 설계로 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)일정을 맞추기 위해 [덕트 테이프](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)로 덕지덕지 붙은 코드를 작성하면, 결국은 품질이 저하되고, 고객의 신뢰를 잃게 됩니다.
 
 [단순한 디자인](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%88%9C%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8simple-design)으로 설계하고, [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 하세요.
 
@@ -191,7 +191,7 @@ sidebar:
 
 # [나쁜 설계 관행] 마녀가 만든 아키텍처(Witches Brew Architecture)
 
-[마녀가 만든 아키텍처](??)는 기술, 디자인 패턴, 아키텍처, 코딩 컨벤션이 여러개가 혼재된 것을 말합니다. 일관성이 없어 가독성은 떨어지고 확장성도 떨어집니다. 주로 [암시적인 아키텍쳐](??)때문에 발생할 수 있습니다. 
+[마녀가 만든 아키텍처](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%A7%88%EB%85%80%EA%B0%80-%EB%A7%8C%EB%93%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98witches-brew-architecture)는 기술, 디자인 패턴, 아키텍처, 코딩 컨벤션이 여러개가 혼재된 것을 말합니다. 일관성이 없어 가독성은 떨어지고 확장성도 떨어집니다. 주로 [암시적인 아키텍쳐](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%94%EC%8B%9C%EC%A0%81%EC%9D%B8-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98architecture-by-implication)때문에 발생할 수 있습니다. 
 
 코딩 컨벤션을 수립하고, [공통 아키텍처 비전](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EA%B3%B5%ED%86%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B9%84%EC%A0%84common-architectural-vision)을 수립하세요.
 
@@ -209,7 +209,7 @@ sidebar:
 
 # [나쁜 운영 관행] 죽음의 행진(Death March)
 
-모든 사람이 성공 가능성이 희박하다는 걸 알고 있고, [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)이 지연된다면, 그럼에도 불구하고, [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature) 일정을 맞추기 위해 개발팀의 헌신이 필요한 상황이라면, 이는 [죽음의 행진](??)을 하고 있는 것입니다. 개발팀은 언젠가는 지치게 되어 있고, 열정과 의욕은 사라질 수 밖에 없습니다. 이런 프로젝트는 반드시 망합니다.
+모든 사람이 성공 가능성이 희박하다는 걸 알고 있고, [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)이 지연된다면, 그럼에도 불구하고, [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature) 일정을 맞추기 위해 개발팀의 헌신이 필요한 상황이라면, 이는 [죽음의 행진](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%A3%BD%EC%9D%8C%EC%9D%98-%ED%96%89%EC%A7%84death-march)을 하고 있는 것입니다. 개발팀은 언젠가는 지치게 되어 있고, 열정과 의욕은 사라질 수 밖에 없습니다. 이런 프로젝트는 반드시 망합니다.
 
 [행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 시나리오를 다시 만드시고, [계획을 업데이트](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%9D%BC%EC%A0%95-%EA%B3%84%ED%9A%8D-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8update-the-plan)하십시요. 이때 절대 다시 낙관하지 마십시요. 프로젝트를 포기하거나, 어벤져스를 투입하는 것도 좋은 방법입니다.
 
@@ -229,19 +229,19 @@ sidebar:
 
 # [나쁜 운영 관행] 얼어붙은 원시인(Frozen Caveman)
 
-맹목적으로 가져다 쓰는 [캘린더 코더](??)도 좋지 않지만, 새로운 기술이나 방법론을 채택할 의지가 없는 [얼어붙은 원시인](??)도 문제입니다. 변화에 대한 이런 거부감은 비효율적인 프로세스로 발전할 수 있으며, 업계의 기대치에 뒤쳐질 수 있습니다.
+맹목적으로 가져다 쓰는 [캘린더 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%BD%94%EB%8D%94calendar-coder)도 좋지 않지만, 새로운 기술이나 방법론을 채택할 의지가 없는 [얼어붙은 원시인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%96%BC%EC%96%B4%EB%B6%99%EC%9D%80-%EC%9B%90%EC%8B%9C%EC%9D%B8frozen-caveman)도 문제입니다. 변화에 대한 이런 거부감은 비효율적인 프로세스로 발전할 수 있으며, 업계의 기대치에 뒤쳐질 수 있습니다.
 
-그렇다고 모든 신기술이 [황금 망치](??)나 [빛나는 장난감](??)은 아닙니다. 의심은 하되 거부하진 마십시요. 교육을 장려하고, 학습을 위한 테스트 프로젝트를 장려하는게 좋습니다. 그리고 점진적으로 신기술을 도입해 보세요. 서두르십시요. 늦어지면 나중에 할게 더욱더 많아집니다. 
+그렇다고 모든 신기술이 [황금 망치](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%ED%99%A9%EA%B8%88-%EB%A7%9D%EC%B9%98golden-hammer)나 [빛나는 장난감](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EB%B9%9B%EB%82%98%EB%8A%94-%EC%9E%A5%EB%82%9C%EA%B0%90shiny-toy)은 아닙니다. 의심은 하되 거부하진 마십시요. 교육을 장려하고, 학습을 위한 테스트 프로젝트를 장려하는게 좋습니다. 그리고 점진적으로 신기술을 도입해 보세요. 서두르십시요. 늦어지면 나중에 할게 더욱더 많아집니다. 
 
 # [나쁜 운영 관행] 황금 망치(Golden Hammer)
 
-어떤 문제를 한방에 해결하는 [황금 망치](??)는 없습니다. 그런 툴은 언제나 트레이드 오프를 필요로 합니다. 좋은 기능을 제공하는 대신 속도가 느리던지, A는 되고 B는 안되던지 하죠.
+어떤 문제를 한방에 해결하는 [황금 망치](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%ED%99%A9%EA%B8%88-%EB%A7%9D%EC%B9%98golden-hammer)는 없습니다. 그런 툴은 언제나 트레이드 오프를 필요로 합니다. 좋은 기능을 제공하는 대신 속도가 느리던지, A는 되고 B는 안되던지 하죠.
 
-맹신하지 마시고, [황금 망치](??)를 도입했을때 무얼 포기해야 할지 판단하세요.
+맹신하지 마시고, [황금 망치](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%ED%99%A9%EA%B8%88-%EB%A7%9D%EC%B9%98golden-hammer)를 도입했을때 무얼 포기해야 할지 판단하세요.
 
 # [나쁜 운영 관행] 빛나는 장난감(Shiny Toy)
 
-최첨단 도구나 기술들이 모든 문제를 해결할 수 있다고 생각하는 관행입니다. [황금 망치](??)처럼 요.
+최첨단 도구나 기술들이 모든 문제를 해결할 수 있다고 생각하는 관행입니다. [황금 망치](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%ED%99%A9%EA%B8%88-%EB%A7%9D%EC%B9%98golden-hammer)처럼요.
 
 도입하고 싶은 도구나 기술들이 있다면, 허용 범위에 맞춰 [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 하십시요. 
 
@@ -264,9 +264,15 @@ sidebar:
 
 [행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 서로 긴밀하게 협력하세요.
 
+# [나쁜 운영 관행] 연기와 거울(Smoke and Mirrors)
+
+고객에게 그럴싸하게 연기와 거울을 보여주고 [로이스 레인 계획](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EB%A1%9C%EC%9D%B4%EC%8A%A4-%EB%A0%88%EC%9D%B8-%EA%B3%84%ED%9A%8Dlois-lane-planning)처럼 개발팀이 해결해 주리라 기대하는 것을 말합니다. 마케팅 주도 개발이라고도 합니다. 
+
+비현실적인 기간내에 개발해야 할 때는 재앙으로 이어집니다.
+
 # [나쁜 운영 관행] 버섯 관리(Mushroom Management)
 
-개발팀을 어둠속에 가두고 버섯을 키우듯이 관리하지 마십시요. 고객과의 장벽을 설치하면, [가정 기반 프로그래밍](??)을 하고, 잦은 피드백과 잦은 실패를 할 수 없습니다.
+개발팀을 어둠속에 가두고 버섯을 키우듯이 관리하지 마십시요. 고객과의 장벽을 설치하면, [가정 기반 프로그래밍](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EA%B0%80%EC%A0%95-%EA%B8%B0%EB%B0%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dassumption-driven-programming)을 하고, 잦은 피드백과 잦은 실패를 할 수 없습니다.
 
 [행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 시나리오를 작성하시고, [전체 팀](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%EC%A0%84%EC%B2%B4-%ED%8C%80whole-team)을 구성하여 장벽을 없애세요.
 
