@@ -36,7 +36,7 @@ sidebar:
 
 4. 의미없는 정성
     
-    * 언젠간 유용할 것 같지만 여전히 유용하지 않은 [쓰레기 코드](https://tango1202.github.io/cording/garbage/)
+    * 언젠간 유용할 것 같지만 여전히 유용하지 않은 [쓰레기 코드](??)
     * 무의미하게 분리된 함수
     * 의미없는 함수 포워딩
     * 의미없는 관리자 개체
@@ -57,7 +57,15 @@ sidebar:
 
 누군가가 창문을 깨지 않도록, [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높이시고, [공통 아키텍처 비전](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EA%B3%B5%ED%86%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B9%84%EC%A0%84common-architectural-vision)을 수립하세요. 그리고, [보이스카우트 규칙](https://tango1202.github.io/principle/principle-boy-scout-rule/)에 따라 뭐든 수정해 두세요.
 
-# 매직 상수(Magic Constants)
+# [나쁜 코딩 관행] 쓰레기 코드(Garbage Code)
+
+언젠간 유용할것 같아 정성들였지만, 결국 그런 코드는 쓰레기가 됩니다. 동료들의 저장소를 무의미하게 차지하고, 코드 분석에 눈을 어지럽히며, 빌드 시간만 좀먹습니다. 이런 코드는 개인 Github에 잘 보관했다가 필요할때 clone하세요.
+
+* [인터넷에서 찾아서 추가](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%9D%B8%ED%84%B0%EB%84%B7%EC%97%90%EC%84%9C-%EC%B0%BE%EC%9D%8Cfound-on-internet) 하였으나 필요한 것보다 많이 복사된 코드
+* [캘린더 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%BD%94%EB%8D%94calendar-coder)가 맹목적으로 추가한 코드
+* [과잉 설계된 디자인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%9E%EB%8B%A8%EC%9D%98-%ED%81%B0-%EB%94%94%EC%9E%90%EC%9D%B8big-design-up-front)으로 추가된 코드
+
+# [나쁜 코딩 관행] 매직 상수(Magic Constants)
 
 일반적으로 시스템 내에서 사용되는 숫자를 그대로 사용하는 경우 해당 의미를 파악하기 힘듭니다.
 
@@ -172,7 +180,7 @@ sidebar:
 
 # [나쁜 설계 관행] 앞단의 큰 디자인(Big Design Up Front)
 
-[앞단의 큰 디자인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%9E%EB%8B%A8%EC%9D%98-%ED%81%B0-%EB%94%94%EC%9E%90%EC%9D%B8big-design-up-front)은 [분석 마비](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B6%84%EC%84%9D-%EB%A7%88%EB%B9%84analysis-paralysis)와 마찬가지로 과잉 분석에 따라 너무 포괄적이고 상세한 설계를 하는 것을 말합니다. 너무 포괄적이고 상세한 아키텍처는 유연성이 떨어지고, 개발 시간이 증가하며, 사용되지 않는 모듈이나 아키텍처는 종종 [쓰레기 코드](https://tango1202.github.io/cording/garbage/)가 될 수 있습니다.
+[앞단의 큰 디자인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%9E%EB%8B%A8%EC%9D%98-%ED%81%B0-%EB%94%94%EC%9E%90%EC%9D%B8big-design-up-front)은 [분석 마비](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B6%84%EC%84%9D-%EB%A7%88%EB%B9%84analysis-paralysis)와 마찬가지로 과잉 분석에 따라 너무 포괄적이고 상세한 설계를 하는 것을 말합니다. 너무 포괄적이고 상세한 아키텍처는 유연성이 떨어지고, 개발 시간이 증가하며, 사용되지 않는 모듈이나 아키텍처는 종종 [쓰레기 코드](??)가 될 수 있습니다.
 
 [단순한 디자인](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%88%9C%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8simple-design) 후 [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 하세요.
 

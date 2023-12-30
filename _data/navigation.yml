@@ -18,13 +18,13 @@ main:
   url: /categories/dev-setting/    
 - title: "디자인 패턴"
   url: /categories/pattern/
-- title: "24개의 개발 원칙"
-  url: /categories/principle/ 
 - title: "주석론"  
   url: /categories/comment/     
 - title: "코딩을 위한 좋은 습관"
   url: /categories/coding/      
 - title: "개발 방법론"
+- title: "24개의 개발 원칙"
+  url: /categories/principle/ 
   url: /categories/methodology/    
 - title: "윈도우즈 프로그래밍"
   url: /categories/win/   
@@ -62,13 +62,7 @@ docs:
   children:
   - title: "Visual Studio Code로 C++ 개발환경 구축하기"
     url: /categories/dev-setting/ 
-    category: "dev-setting"  
-  - title: "디자인 패턴"
-    url: /categories/pattern/
-    category: "pattern"      
-  - title: "24개의 개발 원칙"
-    url: /categories/principle/ 
-    category: "principle"
+    category: "dev-setting" 
   - title: "주석론"  
     url: /categories/comment/ 
     category: "comment"    
@@ -77,7 +71,13 @@ docs:
     category: "coding"     
   - title: "개발 방법론"
     url: /categories/methodology/
-    category: "methodology"     
+    category: "methodology"          
+  - title: "디자인 패턴"
+    url: /categories/pattern/
+    category: "pattern"      
+  - title: "24개의 개발 원칙"
+    url: /categories/principle/ 
+    category: "principle"
   - title: "윈도우즈 프로그래밍"
     url: /categories/win/ 
     category: "win"     

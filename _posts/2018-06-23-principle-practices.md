@@ -20,13 +20,13 @@ sidebar:
 
 각 팀이 논의하여 공통의 코드 컨벤션을 만들어 두면 일관되고 가독성 좋은 코딩 생활을 할 수 있습니다. 그럼에도 불구하고 알고리즘이 복잡하여 코드 자체가 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 떨어진다면, 최대한 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability) 있게 수정하시고, 한계가 있다면, 주석이나 문서를 잘 만들어 두시기 바랍니다.
 
-일반적으로 잘못된 변수명, 짧고 비밀스러운 이름, 개인의 취향에 따른 접두어, 너무 긴 이름, 복잡한 제어문, 일관적이지 못한 코드 레이아웃(*들여쓰기, 줄바꿈, 띄어쓰기*), 흔하지 않은 구조, [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)을 따르지 않는 함수나 클래스, 코드 중복, [쓰레기 코드](https://tango1202.github.io/cording/garbage/) 등이 코드 가독성을 떨어뜨립니다.
+일반적으로 잘못된 변수명, 짧고 비밀스러운 이름, 개인의 취향에 따른 접두어, 너무 긴 이름, 복잡한 제어문, 일관적이지 못한 코드 레이아웃(*들여쓰기, 줄바꿈, 띄어쓰기*), 흔하지 않은 구조, [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)을 따르지 않는 함수나 클래스, 코드 중복, [쓰레기 코드](??) 등이 코드 가독성을 떨어뜨립니다.
 
 [코드에서 냄새](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BD%94%EB%93%9C-%EB%83%84%EC%83%88code-smells)가 난다면, [보이스카우트 규칙](https://tango1202.github.io/principle/principle-boy-scout-rule/)에 따라 뭐든 수정하세요.
 
 # [좋은 코드] 이름 짓기(Naming Things)
 
-좋은 이름은 [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높여 생산성을 향상시켜 줍니다. [작명 습관](https://tango1202.github.io/coding/coding-naming/)에서 작명에 좋은 방법들을 참고하세요.
+좋은 이름은 [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높여 생산성을 향상시켜 줍니다. [작명은 아트 코딩의 시작점입니다. 이름을 잘 지어라.](https://tango1202.github.io/coding/coding-naming/)에서 작명에 좋은 방법들을 참고하세요.
 
 # [좋은 코드] 방어적 프로그래밍(Defensive Programming)
 
@@ -55,7 +55,7 @@ sidebar:
 
 # [좋은 코드] 통증 주도 개발(Pain Driven Development)
 
-[통증 주도 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%ED%86%B5%EC%A6%9D-%EC%A3%BC%EB%8F%84-%EA%B0%9C%EB%B0%9Cpain-driven-development)은 통증이 발생할때만 문제 해결을 시도하는 방법론입니다. 통증이 발생할 것이 두려워 미리 꼼꼼하게 설계하고 힘들게 구현해봤자, 유용하기 보다는 [쓰레기 코드](https://tango1202.github.io/cording/garbage/)가 될 가능성이 더 높습니다.
+[통증 주도 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%ED%86%B5%EC%A6%9D-%EC%A3%BC%EB%8F%84-%EA%B0%9C%EB%B0%9Cpain-driven-development)은 통증이 발생할때만 문제 해결을 시도하는 방법론입니다. 통증이 발생할 것이 두려워 미리 꼼꼼하게 설계하고 힘들게 구현해봤자, 유용하기 보다는 [쓰레기 코드](??)가 될 가능성이 더 높습니다.
 
 [필요할때 구현하라](https://tango1202.github.io/principle/principle-you-arent-gonna-need-it/)의 다른 변형이고, 아키텍처의 [불완전성을 허용](https://tango1202.github.io/principle/principle-tolerance-for-imperfection/)하는 것입니다. 
 
