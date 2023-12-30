@@ -691,7 +691,7 @@ delete p;
 다음 코드는 `ISinger` 와 `IDancer`의 [인터페이스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)한 `Idol` 클래스가 있는 경우, 
 
 1. Up casting : 부모 개체(*기반 개체*) 로 형변환
-2. Down casting : 자식 개체(*구체 개체*) 로 형변환
+2. Down casting : 자식 개체(*구체화된 개체*) 로 형변환
 3. Sibling casting : [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/) 트리 계층에서 형제 개체로 형변환
 
 하는 사례를 보여줍니다.

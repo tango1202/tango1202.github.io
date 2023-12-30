@@ -18,13 +18,13 @@ sidebar:
 
 ***어떤 바보라도 컴퓨터가 이해할 수 있는 코드를 만들 수 있다. 좋은 프로그래머는 사람이 이해하는 코드를 만든다*** 는 뜻인데요, 여기서 "humans"는 몇년 뒤의 자기 자신이 될 수도 있죠. 제 경우에도 많이 그랬습니다.
 
-코드 자체가 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 떨어진다면, 최대한 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability) 있게 수정하시고, 한계가 있다면, 주석이나 문서를 잘 만들어 두시기 바랍니다.
+각 팀이 논의하여 공통의 코드 컨벤션을 만들어 두면 일관되고 가독성 좋은 코딩 생활을 할 수 있습니다. 그럼에도 불구하고 알고리즘이 복잡하여 코드 자체가 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 떨어진다면, 최대한 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability) 있게 수정하시고, 한계가 있다면, 주석이나 문서를 잘 만들어 두시기 바랍니다.
 
 일반적으로 잘못된 변수명, 짧고 비밀스러운 이름, 개인의 취향에 따른 접두어, 너무 긴 이름, 복잡한 제어문, 일관적이지 못한 코드 레이아웃(*들여쓰기, 줄바꿈, 띄어쓰기*), 흔하지 않은 구조, [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)을 따르지 않는 함수나 클래스, 코드 중복, [쓰레기 코드](https://tango1202.github.io/cording/garbage/) 등이 코드 가독성을 떨어뜨립니다.
 
 # [좋은 코드] 이름 짓기(Naming Things)
 
-좋은 이름은 [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높여 생산성을 향상시켜 줍니다. [작명 습관](https://tango1202.github.io/coding/coding-naming/)에서 지키면 좋은 방법들을 참고하세요.
+좋은 이름은 [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높여 생산성을 향상시켜 줍니다. [작명 습관](https://tango1202.github.io/coding/coding-naming/)에서 작명에 좋은 방법들을 참고하세요.
 
 # [좋은 코드] 방어적 프로그래밍(Defensive Programming)
 
@@ -37,9 +37,9 @@ sidebar:
 
 둘이서 각자 개발하면 더 빨리 될텐데, 왜 이런 방법으로 인력을 낭비하냐 의심할 수도 있을텐데요, 
 
-이 방법을 사용하면 둘이 하나가 되어 코드에 대한 이해 수준을 맞추고, 서로의 실수를 보완하고, 서로를 독려하여 코드 품질을 높일 수 있게 됩니다. 
+이 방법을 사용하면 둘이 하나가 되어 코드에 대한 이해 수준을 맞출뿐만 아니라, 서로의 실수를 보완하고, 서로를 독려하기 때문에 코드 품질을 높일 수 있게 됩니다. 특히 두사람이 분석하고 서로 감시하기 때문에, 오류 처리를 대충 하려는 악마의 유혹을 사전에 차단하는 효과도 볼 수 있습니다. 이덕에 향후에 발생할 버그들이 사전에 차단되어 디버깅 시간을 줄일 수 있고 전체적인 개발 생산성도 향상됩니다. 
 
-또한 함께 습득한 방법으로 각자 코드를 작성하다보면, 일관성도 확보되죠. 특히 두사람이 분석하고 서로 감시하기 때문에, 오류 처리를 대충 하려는 악마의 유혹을 사전에 차단하는 효과도 볼 수 있습니다. 이덕에 향후에 발생할 버그들이 사전에 차단되어 디버깅 시간을 줄일 수 있고 전체적인 개발 생산성도 향상됩니다. 
+또한 함께 습득한 방법으로 향후 각자의 코드를 작성하다보면 일관성도 확보됩니다. 그래서 전체적으로 코드 품질이 상향 평준화 됩니다. 
 
 # [좋은 코드] 러버덕 디버깅(Rubber Dock Debugging)
 
@@ -51,21 +51,29 @@ sidebar:
 
 # [좋은 코드] 통증 주도 개발(Pain Driven Development)
 
-[통증 주도 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%ED%86%B5%EC%A6%9D-%EC%A3%BC%EB%8F%84-%EA%B0%9C%EB%B0%9Cpain-driven-development)은 통증이 발생할때만 문제 해결을 시도하자는 방법론입니다. [필요할때 구현하라](https://tango1202.github.io/principle/principle-you-arent-gonna-need-it/)의 다른 변형이고, 아키텍처의 [불완전성을 허용](https://tango1202.github.io/principle/principle-tolerance-for-imperfection/)하는 것입니다. 
+[통증 주도 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%ED%86%B5%EC%A6%9D-%EC%A3%BC%EB%8F%84-%EA%B0%9C%EB%B0%9Cpain-driven-development)은 통증이 발생할때만 문제 해결을 시도하는 방법론입니다. 통증이 발생할 것이 두려워 미리 꼼꼼하게 설계하고 힘들게 구현해봤자, 유용하기 보다는 [쓰레기 코드](https://tango1202.github.io/cording/garbage/)가 될 가능성이 더 높습니다.
 
-통증이 발생할 것이 두려워 미리 꼼꼼하게 설계하고 힘들게 구현해봤자, 유용하기 보다는 [쓰레기 코드](https://tango1202.github.io/cording/garbage/)가 될 가능성이 더 높습니다.
+[필요할때 구현하라](https://tango1202.github.io/principle/principle-you-arent-gonna-need-it/)의 다른 변형이고, 아키텍처의 [불완전성을 허용](https://tango1202.github.io/principle/principle-tolerance-for-imperfection/)하는 것입니다. 
 
 # [좋은 코드] 점진적 발전과 지속적 개선(incremental progress, continuous improvement)
 
-한번에 완벽한 소프트웨어를 개발할 수는 없습니다. 시장 상황에 따라 변하고, 고객이 실제로 사용하다 보면 새로운 요구사항이나 변경 사항이 발생하기 때문입니다.
+한번에 완벽한 소프트웨어를 개발할 수는 없습니다. 시장 상황에 따라 구현 환경이 변하고, 고객이 실제로 사용하다 보면 새로운 요구사항이나 변경 사항이 발생하기 때문입니다.
 
-따라서 고객의 피드백을 최대한 빠르게 받아야 시행착오가 줄어드는데요, 받은 피드백은 점진적, 그리고 지속적으로 개선한뒤 다시 고객에게 전달하여 피드백을 받습니다. 이러한 잦은 피드백과 잦은 실패는 소프트웨어를 점점 완벽하게 만들어 줍니다.
+따라서 고객의 피드백을 최대한 빠르게 받아야 시행착오가 줄어드는데요, 받은 피드백은 점진적, 그리고 지속적으로 개선한뒤 다시 고객에게 전달하여 피드백을 받습니다. 이러한 잦은 피드백과 잦은 실패는 소프트웨어를 조금씩 완벽하게 만들어 줍니다. 
 
-잦은 피드백과 잦은 실패를 위해서는 제품을 빠르게 고객에게 전달해야 합니다. 따라서, [통합을 자동화](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration)하고, [배송 일정을 준수](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)해서 약속된 기일에 고객에게 제품을 전달할 수 있게 해주십시요.
+다음을 준수하십시요.
+
+1. 우선 순위 선정
+
+    고객의 피드백을 무조건 반영하면 안됩니다. 우선 순위를 잘 선정하십시요. 보통 중요도와 긴급도에 따라 우선 순위를 선정할 수 있는데요, 긴급도는 사실 나중에 긴급하지 않을 수 있으니, 중요한 것부터 먼저 처리하는게 좋습니다.
+
+2. 빠른 배송
+    
+    잦은 피드백과 잦은 실패를 위해서 제품을 빠르게 고객에게 전달하는게 좋습니다. [통합을 자동화](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration)하고, [배송 일정을 준수](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)해서 약속된 일정에 고객에게 제품을 전달할 수 있게 해주십시요.
 
 # [좋은 코드] 당신이 어디로 가는지 아는가(Know Where You Are Going)
 
-대부분의 소프트웨어는 고객들이 원하는 것을 충족시키기 위해 동작합니다.
+대부분의 소프트웨어는 고객들이 원하는 것을 수행하기 위해 동작합니다.
 
 그런데, 고객이 진정으로 원하는 것이 뭔지도 모르는 상태로 개발하면 어떻게 될까요? 산으로 갑니다. 고객에게 중요하지도 않은 것에 집중하여 시간을 낭비하거나, 어쩌면 고객이 원하는 것과는 상관없는 시스템 구조적인 문제로 시간을 허비할 수도 있습니다.
 
@@ -73,18 +81,18 @@ sidebar:
 
 # [좋은 코드] 설명서 읽기(Read the Manual)
 
-API를 사용시 이런 저런 테스트를 작성해서 기능을 습득하거나, 웹 서핑을 통해 습득할 수도 있지만, 제대로된 설명서가 있다면, 보통은 더 많은 양질의 정보를 빠르게 얻을 수 있습니다. 설명서가 있으면, 먼저 읽으세요.
+API 사용시 이런 저런 테스트를 작성해서 기능을 습득하거나, 웹 서핑을 통해 습득할 수도 있지만, 제대로된 설명서가 있다면, 보통은 더 많은 양질의 정보를 빠르게 얻을 수 있습니다. 설명서가 있으면, 먼저 읽으세요.
 
 # [좋은 코드] 단순한 디자인(Simple Design)
 
-`extreme programming`의 창시자인 `Kent Beck`은 단순한 디자인 개발의 4가지 규칙을 우선 순위에 따라 정의했습니다.
+`extreme programming`의 창시자인 `Kent Beck`은 단순한 디자인으로 개발하기 위한 4가지 규칙을 우선 순위에 따라 정의했습니다.
 
 1. 최우선으로 모든 테스트를 통과해야 합니다.
 2. 작성자의 의도를 표현해야 합니다.
 3. 중복을 제거합니다.
 4. 클래스, 함수, 모듈의 수를 최소화 합니다.
 
-가까스로 작동하는게 가장 완전한 프로그램입니다. 군더더기를 붙이지 마세요. [필요할때 구현하라](https://tango1202.github.io/principle/principle-you-arent-gonna-need-it/)를 따르세요.
+가까스로 작동하는게 가장 완전한 프로그램입니다. 군더더기를 붙이지 마세요. 상기 4가지의 규칙으로 최대한 단순하게 만들고, 추가된 요구사항이 있다면, [필요할때 구현하라](https://tango1202.github.io/principle/principle-you-arent-gonna-need-it/)를 따르세요.
 
 # [좋은 코드] 공통 아키텍처 비전(Common Architectural Vision)
 
@@ -182,6 +190,5 @@ API를 사용시 이런 저런 테스트를 작성해서 기능을 습득하거�
 
 1. 사용자 스토리 : 최종 사용자 관점의 높은 수준의 설명으로서 어떤 동작을 원하는지, 그 이유는 무엇인지를 설명합니다. 이유를 이해하는데 주력합니다.
 
-2. 시나리오 : 주어진 조건(Given)인 상황에서 언제(When) 무엇을(Then) 해야 하는지 설명합니다. 무슨 동작을 하는지 이해하는데 주력합니다. 시나리오는 추후 테스트 자동화를 합니다.
-
+2. 시나리오 : 주어진 조건(Given)인 상황에서 언제(When) 무엇을(Then) 해야 하는지 설명합니다. 무슨 동작을 하는지 이해하는데 주력합니다. 시나리오가 만들어졌다면, 꼭 테스트 자동화를 하세요. 시나리오는 필수적으로 테스트되어야 합니다. 만약 테스트되지 않고 비지니스 이해 관계자에게 전달된다면 신뢰만 떨어집니다. 
 
