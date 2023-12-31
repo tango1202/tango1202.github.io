@@ -60,7 +60,7 @@ sidebar:
 
 잊지마세요!!!
 
-1. 프로젝트 시작시에 자동화된 단위 테스트 프레임워크를 구축합니다.(*[지속적인 통합](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration) 참고*)
+1. 프로젝트 시작시에 자동화된 단위 테스트 프레임워크를 구축합니다.(*[테스트 자동화](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%9E%90%EB%8F%99%ED%99%94test-automation) 참고*)
 
 2. 그리고 오로지 !!!빨강-초록-리팩토링!!!(*[테스트 주도 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%A3%BC%EB%8F%84-%EA%B0%9C%EB%B0%9Ctest-driven-development) 참고*)
 

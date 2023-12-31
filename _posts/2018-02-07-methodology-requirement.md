@@ -10,7 +10,7 @@ sidebar:
 
 우리는 보통 "무엇을 개발하라" 라는 요구사항이 떨어지면, 어떤것 부터 하게 되나요?
 
-폭포수 모델을 사랑하신다면,
+[폭포수 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%ED%8F%AD%ED%8F%AC%EC%88%98-%EB%AA%A8%EB%8D%B8waterfall)을 사랑하신다면,
 
 1. 요구사항 분석
 2. 설계
@@ -73,7 +73,11 @@ sidebar:
 
 새로운 요구사항이나 요구사항 변경을 받아들이지 못하는 구조는 잘못된 구조입니다.
 
-프로그램 세계에서 10층 아파트를 100층으로 변경하는건 상수 하나만 바꾸면 되는 거잖아요? 우리 그렇게 코드 구현을 해야 하잖아요? 우리가 미래를 볼 수는 없지만, 3수 앞을 내다보는 구현 설계를 하셔야 합니다. 혹시 못하더라도 상관 없습니다. 끊임없이 리팩토링 해서 개선하면 됩니다.
+[살금살금 기어오는 기능](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%82%B4%EA%B8%88%EC%82%B4%EA%B8%88-%EA%B8%B0%EC%96%B4%EC%98%A4%EB%8A%94-%EA%B8%B0%EB%8A%A5feature-creep)이라며 무조건 배척하지 마시고, 우선 순위를 선정해서 다음 배포 일정에 포함하는 걸 고민하는게 좋습니다.(*심지어 전혀 예상치 못한 [로이스 레인 계획](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EB%A1%9C%EC%9D%B4%EC%8A%A4-%EB%A0%88%EC%9D%B8-%EA%B3%84%ED%9A%8Dlois-lane-planning)이나 [연기와 거울](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%97%B0%EA%B8%B0%EC%99%80-%EA%B1%B0%EC%9A%B8smoke-and-mirrors)이라 하더라도요. 어떻게든 지킬 수 있는 일정만 확보되면, 세상을 구할 수 있으니까요.*)
+
+프로그램 세계에서 10층 아파트를 100층으로 변경하는건 상수 하나만 바꾸면 되는 거잖아요? 우리는 그렇게 코드 구현을 해야 하잖아요? 우리가 슈퍼맨은 아니지만, 미래를 볼 수는 없지만, 3수 앞을 내다보는 구현 설계를 하셔야 합니다. 
+
+혹시 못하더라도 상관 없습니다. 엉망진창인 [프랑켄코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%94%84%EB%9E%91%EC%BC%84%EC%BD%94%EB%93%9Cfrankencode)가 되었더라도, !!끊임없이!! 리팩토링 해서 개선하면 됩니다.(*단, 이 리팩토링 일정도 개발 일정에 꼭 확보해 두셔야 합니다. 리팩토링 일정이 확보되지 않으면, 결국 개발팀의 헌신만으로 간신히 버티는 [죽음의 행진](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%A3%BD%EC%9D%8C%EC%9D%98-%ED%96%89%EC%A7%84death-march)을 하게 되니까요.*)
 
 인터넷을 뒤져보면 좋은 요구사항명세서(SRS, Software Requirement Specification) 의 사례가 많습니다.
 
@@ -88,7 +92,7 @@ sidebar:
 |설계 제약사항|표준이나 HW 제한에 따른 제약이나 조건|
 |SW 시스템 속성|신뢰도, 사용가능성, 보안, 유지보수, 이식성등|
 
-그런데요, 실상은 거의 대부분 수정되거나 코드 구현시 정립됩니다.(그리고 놀랍게도, 정성스럽게 작성한 요구사항 명세서를 꼼꼼히 읽고 이행하는 개발자가 별로 없더라구요.)
+그런데요, 실상은 거의 대부분 수정되거나 코드 구현시 정립됩니다.(*그리고 놀랍게도, 정성스럽게 작성한 요구사항 명세서를 꼼꼼히 읽고 이행하는 개발자가 별로 없더라구요.*)
 
 |항목|내용|
 |--|--|
@@ -101,7 +105,9 @@ sidebar:
 
 요구사항은 어짜피 바뀝니다. 그리고 바뀌지 않는다면, 그 SW는 시대에 뒤떨어지고, 다양한 의견을 반영하지 못한 정체성 때문에 시장에서 외면 받습니다. 그래서 요구사항은 바껴야만 합니다.
 
-그러니 불필요하게 상세히 작성하여 시간을 낭비하지 마세요. 그렇다고 너무 대충 하시면 안됩니다. 기본적으로 무슨 목적으로 사용되고, 어떠한 기능들이 있는지는 아셔야 하니까요. 큰틀의 클래스 다이어그램과 용어사전을 작성할 정도로만 확인하고 구현을 시작하시길 추천합니다.
+그러니 불필요하게 상세히 작성하여 시간을 낭비하지 마세요. [분석 마비](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B6%84%EC%84%9D-%EB%A7%88%EB%B9%84analysis-paralysis)나 [앞단의 큰 디자인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%9E%EB%8B%A8%EC%9D%98-%ED%81%B0-%EB%94%94%EC%9E%90%EC%9D%B8big-design-up-front)만 초래하여 시간 낭비만 할 수 있고, 회의만 하다가 [계획에 의한 죽음](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EA%B3%84%ED%9A%8D%EC%97%90-%EC%9D%98%ED%95%9C-%EC%A3%BD%EC%9D%8Cdeath-by-planning)을 맞이할 수 있습니다.
+
+그렇다고 너무 대충 하시면 안됩니다. [암시적인 아키텍처](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%94%EC%8B%9C%EC%A0%81%EC%9D%B8-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98architecture-by-implication)때문에 [마녀가 만든 아키텍처](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%A7%88%EB%85%80%EA%B0%80-%EB%A7%8C%EB%93%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98witches-brew-architecture)가 될 수 있습니다. 기본적으로 무슨 목적으로 사용되고, 어떠한 기능들이 있는지는 아셔야 됩니다. 큰틀의 클래스 다이어그램과 용어사전을 작성할 정도로만 확인하고 구현을 시작하시길 추천합니다.
 
 그리고, 리팩토링 주기가 다가오기 전에 요구사항을 다시 확인하세요. 리팩토링의 방향을 알려줄 수 있습니다.
 

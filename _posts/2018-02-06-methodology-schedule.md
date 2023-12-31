@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. 성급히 일정을 말하지 마라"
+title: "#6. 성급히 일정을 말하지 마라. 묻지도 마라"
 categories: "methodology"
 tag: ["개발방법론"]
 author_profile: false
@@ -30,21 +30,22 @@ sidebar:
 
 사실 팀장들은 하는일 없는 것 같지만 무지 바쁘고 머리도 아픕니다. 참가해야 할 회의도 많고, 신기술도 습득해야 하고, 다른팀과 협업도 조율해야 하고, 팀원의 업무도 파악해야 하고, 신입사원이 사고치지 않게 교육도 시켜야 하고, 윗사람이 말도 안되는 아이디어를 진행 하라고 시키면, 하는척하거나 반대 자료를 만들어야 하고, 의기 소침해진 팀원 격려도 해야 하고, 회의 직전까지 분석했던 버그도 빨리 수정해야 하고…  
 
-팀장은 모호한 프로젝트의 일정을 대충이라도 알고 싶어 여러분에게 기간을 물을 뿐이고, 이 회의가 빨리 끝나기를 바랄 뿐입니다. 여러분보다 훨씬 더요. 하지만, 이렇게 일정에만 집중하다 보면, 빠르게 결과물을 만들어 내는게 중요한 것이라 착각하고 다음과 같은 부작용이 생깁니다.
+팀장은 모호한 프로젝트의 일정을 대충이라도 알고 싶어 여러분에게 기간을 물을 뿐이고, 이 회의가 빨리 끝나기를 바랄 뿐입니다. 여러분보다 훨씬 더요. 
 
-1. 사용자의 다양한 사용 방식을 고려하지 못하고 대충 가정하는 [가정 기반 프로그래밍](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EA%B0%80%EC%A0%95-%EA%B8%B0%EB%B0%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dassumption-driven-programming)이 만연해지고, 
+하지만, 팀장들의 이러한 질문은 [빠른 속도](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B9%A0%EB%A5%B8-%EC%86%8D%EB%8F%84fast-beats-right)를 내는게 중요하다는 착각을 하게 만듭니다. 결국 다음과 같은 부작용이 생깁니다.
+
+1. 사용자의 다양한 사용 방식을 고려하지 않고 대충 가정하는 [가정 기반 프로그래밍](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EA%B0%80%EC%A0%95-%EA%B8%B0%EB%B0%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dassumption-driven-programming)이 만연해지고, 
 2. 깊이있는 고민없이 좋다는 것은 대충 가져다 쓰는 [캘린더 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%BD%94%EB%8D%94calendar-coder)가 생기며,
 3. 대충 덕지덕지 붙여서 개발하는 [덕트 테이프 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)가 생깁니다.
 
-결국 코드는 이것저것 혼종이된 [프랑켄코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%94%84%EB%9E%91%EC%BC%84%EC%BD%94%EB%93%9Cfrankencode)가 되어 유지보수가 점점 힘들게 됩니다.
+결국 코드는 이것저것 혼종이 된 [프랑켄코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%94%84%EB%9E%91%EC%BC%84%EC%BD%94%EB%93%9Cfrankencode)가 되어 유지보수가 점점 힘들게 됩니다.
 
-왠지 3주라고 말하고 싶다구요? 그럼 이렇게 말하세요. 지금은 3주정도 걸릴것 같지만, 요구사항을 좀 더 파악해 보고 기술적 문제는 없는지 검토한 후 3~4일 내에 다시 보고하겠습니다. 라구… 팀장이 뜨끔할 것이고 갑자기 기간을 말하라고 요구하는 일도 점차 없어질 겁니다. 
-
+아직도 팀장님이 일정을 물어보시나요? 왠지 3주라고 말하고 싶다구요? 그럼 이렇게 말하세요. 지금은 3주정도 걸릴것 같지만, 요구사항을 좀 더 파악해 보고 기술적 문제는 없는지 검토한 후 3~4일 내에 다시 보고하겠습니다. 라구… 팀장이 뜨끔할 것이고 갑자기 일정을 말하라고 요구하는 일도 점차 없어질 겁니다. 
 
  잊지마세요!!!  
  
  1. 모호하게 감으로 기간을 말하지 마세요.(*[계획 업데이트](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%9D%BC%EC%A0%95-%EA%B3%84%ED%9A%8D-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8update-the-plan) 참고*)
 
- 2. 요구사항 명세를 공유하지 않고, 기간을 묻지 마세요.
+ 2. 요구사항 명세를 공유하지 않고, 일정을 묻지 마세요.
  
- 2. 요구사항을 파악한 후 피로감 없이 개발할 수 있는 기간을 산정하세요.(*[타임박싱](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%9D%BC%EC%A0%95-%ED%83%80%EC%9E%84%EB%B0%95%EC%8B%B1timeboxing) 참고*)
+ 2. 요구사항을 파악한 후 피로감 없이 개발할 수 있는 일정을 산정하세요.(*[타임박싱](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%9D%BC%EC%A0%95-%ED%83%80%EC%9E%84%EB%B0%95%EC%8B%B1timeboxing) 참고*)

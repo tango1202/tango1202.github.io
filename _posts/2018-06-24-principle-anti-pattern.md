@@ -226,7 +226,7 @@ sidebar:
 [배송은 기능](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)이고, [배송 일정 준수](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)는 잦은 피드백과 잦은 실패로 제품 품질을 향상시킵니다. 하지만 지난번에는 동작했는데, 이번에 동작이 안된다면 어떻까요? 이럴땐 제품의 품질 향상을 위한 피드백이 오지 않습니다. 오히려 불신만 쌓이게 되죠. [배송 일정 준수](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)는 중요하지만, 엉망진창인 지뢰밭인 제품을 전달해선 안됩니다. 고객은 버그 테스팅을 하는게 아니라 시나리오를 경험한 후 피드백을 주는 역할을 해야 합니다.
 
 [지속적인 통합](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration)
-에서 말씀드린 것처럼 테스트를 자동화 하시고, 통과된 경우에만 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)하세요.
+에서 말씀드린 것처럼 [테스트를 자동화](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%9E%90%EB%8F%99%ED%99%94test-automation) 하시고, 통과된 경우에만 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)하세요.
 
 
 # [나쁜 운영 관행] 살금살금 기어오는 기능(Feature Creep)
@@ -270,17 +270,17 @@ sidebar:
 
 슈퍼맨의 여자 친구인 로이스 레인은 일을 저지르거나 혹은 악당들에게 잡혔다가 슈퍼맨의 도움으로 구출됩니다. 개발팀을 슈퍼맨이라고 생각하는 영업 조직은 고객에게 어마어마한 약속을 하고 개발팀에 도움을 요청합니다. 아주 운이 좋게 개발팀이 구출할 수도 있지만, 개발팀은 슈퍼맨이 아니기에 지치고, 떠나고, 품질이 낮아지고, 다른 프로젝트 마저 삐걱거리게 됩니다.
 
-[행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 서로 긴밀하게 협력하세요.
+[행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 서로 긴밀하게 협력하고, 지킬 수 있는 일정을 협의하세요.
 
 # [나쁜 운영 관행] 연기와 거울(Smoke and Mirrors)
 
 고객에게 그럴싸하게 연기와 거울을 보여주고 [로이스 레인 계획](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EB%A1%9C%EC%9D%B4%EC%8A%A4-%EB%A0%88%EC%9D%B8-%EA%B3%84%ED%9A%8Dlois-lane-planning)처럼 개발팀이 해결해 주리라 기대하는 것이며, 마케팅 주도 개발이라고도 합니다. 비현실적인 기간내에 개발해야 할 때는 재앙으로 이어집니다.
 
-[행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 서로 긴밀하게 협력하세요.
+[행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 서로 긴밀하게 협력하고, 지킬 수 있는 일정을 협의하세요.
 
 # [나쁜 운영 관행] 버섯 관리(Mushroom Management)
 
-개발팀을 어둠속에 가두고 버섯을 키우듯이 관리하지 마십시요. 고객과의 장벽을 설치하면, [가정 기반 프로그래밍](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EA%B0%80%EC%A0%95-%EA%B8%B0%EB%B0%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dassumption-driven-programming)을 하고, 잦은 피드백과 잦은 실패를 할 수 없습니다.
+개발팀을 어둠속에 가두고 버섯을 키우듯이 관리하지 마십시요. 고객과의 장벽을 설치하면, [가정 기반 프로그래밍](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EA%B0%80%EC%A0%95-%EA%B8%B0%EB%B0%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dassumption-driven-programming)을 하고, 요구사항을 잘못 이해합니다. 특히 잦은 피드백과 잦은 실패를 할 수 없어 [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 할 수 없습니다.
 
 [행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 시나리오를 작성하시고, [전체 팀](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%EC%A0%84%EC%B2%B4-%ED%8C%80whole-team)을 구성하여 장벽을 없애세요.
 

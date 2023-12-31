@@ -26,7 +26,7 @@ sidebar:
 
 # [좋은 코드] 이름 짓기(Naming Things)
 
-좋은 이름은 [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높여 생산성을 향상시켜 줍니다. [작명하라](??)를 참고하세요.
+좋은 이름은 [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높여 생산성을 향상시켜 줍니다. [작명하라](https://tango1202.github.io/methodology/methodology-naming/)를 참고하세요.
 
 # [좋은 코드] 방어적 프로그래밍(Defensive Programming)
 
@@ -114,13 +114,13 @@ API 사용시 이런 저런 테스트를 작성해서 기능을 습득하거나,
 
 # [좋은 제품 - 배포] 테스트 자동화(test automation)
 
-어떤 코드를 작성했을때 사이드 이펙트가 있는지 없는지 꼭 확인하셔야 합니다. 본인이 작성한 부분만 확인하고 넘어가지 마세요. 논리적으로 완벽하게 작성하셨더라도 메모리를 조금더 사용함에 따라 기존에 잘 사용하던 메모리 풀이 오동작 할 수도 있거든요.
+어떤 코드를 작성했을때 사이드 이펙트가 있는지 없는지 꼭 확인하셔야 합니다. 본인이 작성한 부분만 확인하고 넘어가지 마세요. 논리적으로 완벽한 코드라도 엉뚱한 곳에서 오동작 할 수 있습니다. 메모리를 조금더 사용함에 따라 기존에 잘 사용하던 메모리 풀이 동작 안할 수도 있거든요.
 
 따라서 기존 테스트 케이스들을 항상 회귀 테스트하는게 필요합니다. 다만 이런 테스트들이 수동으로 이루어진다면, 귀찮아서 안할 수도 있기 때문에 자동으로 테스트 되도록 시스템을 구축해야 합니다.
 
 # [좋은 제품 - 배포] 지속적인 통합(Continuous Integration)
 
-[테스트 자동화](??)는 기존 코드에서의 사이드 이펙트를 감지할 수 있지만, 현재 작성중인 동료의 코드와의 충돌을 확인하려면 [지속적인 통합](??)이 필요합니다.
+[테스트 자동화](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%9E%90%EB%8F%99%ED%99%94test-automation)는 기존 코드에서의 사이드 이펙트를 감지할 수 있지만, 현재 작성중인 동료의 코드와의 충돌을 확인하려면 [지속적인 통합](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration)이 필요합니다.
 
 만약, 통합 테스트를 위한 환경 구축이 수동으로 이루어진다면, 환경 구축 자체가 부담이라 빠른 확인은 어려워지고, 시간 낭비라고 생각해 통합 테스트가 미뤄질 수 있습니다.
 
@@ -202,7 +202,7 @@ API 사용시 이런 저런 테스트를 작성해서 기능을 습득하거나,
 
 # [좋은 팀] 행동 중심 개발(Behavior Driven Development)
 
-[행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)은 개발자, 테스터, 비지니스 이해관계자가 모두 쉽게 이해할 수 있는 언어로 시스템의 동작을 협력하여 정의하고, 시나리오의 테스트를 자동화하여 개발하는 모델입니다. 
+[행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)은 개발자, 테스터, 비지니스 이해관계자가 모두 쉽게 이해할 수 있는 언어로 시스템의 동작을 협력하여 정의하고, 시나리오의 [테스트를 자동화](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%9E%90%EB%8F%99%ED%99%94test-automation)하여 개발하는 모델입니다. 
 
 여기서 이해할 수 있는 언어로 협력하는 것이 중요합니다. 알아들을 수 없는 말로 서로 협력하긴 힘들죠.
 
@@ -210,5 +210,5 @@ API 사용시 이런 저런 테스트를 작성해서 기능을 습득하거나,
 
 1. 사용자 스토리 : 최종 사용자 관점의 높은 수준의 설명으로서 어떤 동작을 원하는지, 그 이유는 무엇인지를 설명합니다. 이유를 이해하는데 주력합니다.
 
-2. 시나리오 : 주어진 조건(Given)인 상황에서 언제(When) 무엇을(Then) 해야 하는지 설명합니다. 이때 무슨 동작을 하는지 이해하는데 주력합니다. 시나리오가 만들어졌다면, 꼭 테스트를 자동화 하세요. 시나리오는 필수적으로 테스트되어야 합니다. 그렇지 않으면 비지니스 이해 관계자는 [지뢰밭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%A7%80%EB%A2%B0%EB%B0%AD%EC%9D%84-%EA%B1%B7%EB%8B%A4walking-through-a-minefield)을 걷게 되고 신뢰만 떨어집니다. 
+2. 시나리오 : 주어진 조건(Given)인 상황에서 언제(When) 무엇을(Then) 해야 하는지 설명합니다. 이때 무슨 동작을 하는지 이해하는데 주력합니다. 시나리오가 만들어졌다면, 꼭 [테스트 자동화](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%9E%90%EB%8F%99%ED%99%94test-automation)를 하세요. 시나리오는 필수적으로 테스트되어야 합니다. 그렇지 않으면 비지니스 이해 관계자는 [지뢰밭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%A7%80%EB%A2%B0%EB%B0%AD%EC%9D%84-%EA%B1%B7%EB%8B%A4walking-through-a-minefield)을 걷게 되고 신뢰만 떨어집니다. 
 
