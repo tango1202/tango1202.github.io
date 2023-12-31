@@ -107,9 +107,9 @@ sidebar:
 
 잊지마세요!!
 
- 1. 요구사항을 파악하기 위해 시간을 낭비하지 마세요. 큰틀의 클래스 다이어그램과 용어사전만 작성할 수 있으면 우선 시작하는데 충분합니다.
+ 1. 요구사항을 파악하기 위해 시간을 낭비하지 마세요. 큰틀의 클래스 다이어그램과 용어사전만 작성할 수 있으면 우선 당신이 어디로 가야 하는지 알 수 있습니다.(*[통증 주도 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%ED%86%B5%EC%A6%9D-%EC%A3%BC%EB%8F%84-%EA%B0%9C%EB%B0%9Cpain-driven-development), [당신이 어디로 가는지 아는가](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%B9%EC%8B%A0%EC%9D%B4-%EC%96%B4%EB%94%94%EB%A1%9C-%EA%B0%80%EB%8A%94%EC%A7%80-%EC%95%84%EB%8A%94%EA%B0%80know-where-you-are-going), [단순한 디자인](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%88%9C%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8simple-design), [공통 아키텍처 비전](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EA%B3%B5%ED%86%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B9%84%EC%A0%84common-architectural-vision) 참고*)
 
- 2. 요구사항을 자주 확인하고 수정하세요. 리팩토링의 방향을 알려줍니다.
+ 2. 요구사항을 자주 확인하고 수정하세요. 리팩토링의 방향을 알려줍니다.(*[점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement) 참고*)
 
- 3. 변경된 요구사항을 받아들일 수 있도록 !!!리팩토링!!! 하세요.
+ 3. 변경된 요구사항 적용하고 통합하여 고객에게 전달하여 새로운 요구사항을 받으세요.(*[점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement), [지속적인 통합](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration), [배송은 기능입니다.](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature) 참고*)
  

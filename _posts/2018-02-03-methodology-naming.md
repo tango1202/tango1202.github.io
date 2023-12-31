@@ -182,6 +182,6 @@ protected:
 
 1. Kiss - Keep It Simple, Stupid
 
-2. 작명은 가독성을 향상시키고 주석을 줄여주는 프로그래밍 기술입니다.
+2. 작명은 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 향상시키고 주석을 줄여주는 프로그래밍 기술입니다.(*[코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability), [이름 짓기](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%9D%B4%EB%A6%84-%EC%A7%93%EA%B8%B0naming-things) 참고*)
 
 3. 이름에 불필요한 장식을 하지 마세요. 손가락만 아프고, 나중에 바꾸느라 고생만 합니다.
