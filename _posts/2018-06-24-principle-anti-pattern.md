@@ -17,7 +17,7 @@ sidebar:
 1. [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability) 위배
 
     * 비밀스러운 이름
-    * 컨벤션을 무시한 코딩
+    * [코딩 컨벤션](??)을 무시한 코딩
     * 코드 중복
 
 2. 잘못된 구조
@@ -79,7 +79,7 @@ sidebar:
 
 [스파게티 코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%8A%A4%ED%8C%8C%EA%B2%8C%ED%8B%B0-%EC%BD%94%EB%93%9Cspaghetti-code)는 코드의 구조가 너무도 복잡하게 꼬여 읽고 이해할 수 없는 코드를 말합니다.
 
-코딩 컨벤션을 만들고, [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 준수하고 [덕트 테이프 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)가 없는지 관찰해 보세요.
+[코딩 컨벤션](??)을 만들고, [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 준수하고 [덕트 테이프 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)가 없는지 관찰해 보세요.
 
 # [나쁜 코딩 관행] 빈혈 모델(Anemic Model)
 
@@ -103,7 +103,7 @@ sidebar:
 
 # [나쁜 코딩 관행] 인터넷에서 찾음(Found on Internet)
 
-인터넷에서 찾은 정보나 코드 조각을 아무런 검토없이 즉시 제품에 적용하는 관행을 말합니다. 제품의 컨벤션과 맞지 않고, [덕트 테이프](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)로 덕지덕지 붙은 코드가 되기 쉽습니다.
+인터넷에서 찾은 정보나 코드 조각을 아무런 검토없이 즉시 제품에 적용하는 관행을 말합니다. 제품의 [코딩 컨벤션](??)과 맞지 않고, [덕트 테이프](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)로 덕지덕지 붙은 코드가 되기 쉽습니다.
 
 인터넷의 정보나 코드 조각을 그냥 [복사 붙여넣기](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B3%B5%EC%82%AC-%EB%B6%99%EC%97%AC%EB%84%A3%EA%B8%B0copy-paste-programming)하지 마시고 정제하세요.
 
@@ -199,9 +199,9 @@ sidebar:
 
 # [나쁜 설계 관행] 마녀가 만든 아키텍처(Witches Brew Architecture)
 
-[마녀가 만든 아키텍처](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%A7%88%EB%85%80%EA%B0%80-%EB%A7%8C%EB%93%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98witches-brew-architecture)는 기술, 디자인 패턴, 아키텍처, 코딩 컨벤션이 여러개가 혼재된 것을 말합니다. 일관성이 없어 가독성은 떨어지고 확장성도 떨어집니다. 주로 [암시적인 아키텍쳐](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%94%EC%8B%9C%EC%A0%81%EC%9D%B8-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98architecture-by-implication)와 [프랑켄코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%94%84%EB%9E%91%EC%BC%84%EC%BD%94%EB%93%9Cfrankencode) 때문에 발생할 수 있습니다. 
+[마녀가 만든 아키텍처](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%A7%88%EB%85%80%EA%B0%80-%EB%A7%8C%EB%93%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98witches-brew-architecture)는 기술, 디자인 패턴, 아키텍처, [코딩 컨벤션](??)이 여러개가 혼재된 것을 말합니다. 일관성이 없어 가독성은 떨어지고 확장성도 떨어집니다. 주로 [암시적인 아키텍쳐](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%94%EC%8B%9C%EC%A0%81%EC%9D%B8-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98architecture-by-implication)와 [프랑켄코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%94%84%EB%9E%91%EC%BC%84%EC%BD%94%EB%93%9Cfrankencode) 때문에 발생할 수 있습니다. 
 
-코딩 컨벤션을 수립하고, [공통 아키텍처 비전](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EA%B3%B5%ED%86%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B9%84%EC%A0%84common-architectural-vision)을 수립하세요.
+[코딩 컨벤션](??)을 수립하고, [공통 아키텍처 비전](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EA%B3%B5%ED%86%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B9%84%EC%A0%84common-architectural-vision)을 수립하세요.
 
 # [나쁜 운영 관행] 폴더 버전 관리 복사(Copy Folder Versioning)
 

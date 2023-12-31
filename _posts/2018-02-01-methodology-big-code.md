@@ -50,7 +50,7 @@ sidebar:
 
 차라리 그 팀원을 다른 곳에 투자하여 신규 제품을 개발하는 것이 회사에 더 이익이 되지 않을까 싶습니다.
 
-그리고 새롭게 만들때는 의존도가 최소화 되도록 프로젝트를 여러개로 나누고, 프로젝트 1개당 1 ~ 3만라인 정도로 작성될 수 있도록 !!!설계!!!하세요. !!!설계!!! 없이 막연히 개발을 시작한다면 뒤죽박죽으로 꼬인 백만라인을 다시 개발할 것입니다.
+그리고 새롭게 만들때는 의존도가 최소화 되도록 [관심사를 분리](https://tango1202.github.io/principle/principle-separation-of-concerns/)하여 프로젝트를 여러개로 나누고, 프로젝트 1개당 1 ~ 3만라인 정도로 작성될 수 있도록 [단순하게 설계](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%88%9C%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8simple-design) 하세요. !!!설계!!! 없이 막연히 개발을 시작한다면 뒤죽박죽으로 꼬인 백만라인을 다시 개발할 것입니다.
 
 잊지마세요.
 
@@ -58,8 +58,8 @@ sidebar:
 
 2. !!!설계!!!하세요.
 
-3. 프로젝트의 소스코드가 방대해 지지 않도록 !!!설계!!!하세요.
+3. 프로젝트의 소스코드가 방대해 지지 않도록 [단순하게 설계](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%88%9C%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8simple-design)하세요.
 
-4. 이미 방대해져 버렸다면 프로젝트를 분할할 수 있도록 !!!설계!!!하세요.
+4. 이미 방대해져 버렸다면 [관심사를 분리](https://tango1202.github.io/principle/principle-separation-of-concerns/)하여 프로젝트를 분할하세요.
 
 5. 설계하기 싫다면 !!!포기!!!하세요. 해봤자 망합니다.
