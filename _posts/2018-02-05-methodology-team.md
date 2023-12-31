@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. 버그를 수정하지 말고 방지하라"
+title: "#5. 버그를 수정하지 말고 방지하라"
 categories: "methodology"
 tag: ["개발방법론"]
 author_profile: false

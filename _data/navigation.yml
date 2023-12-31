@@ -22,8 +22,6 @@ main:
   url: /categories/principle/ 
 - title: "주석론"  
   url: /categories/comment/     
-- title: "코딩을 위한 좋은 습관"
-  url: /categories/coding/      
 - title: "개발 방법론"
   url: /categories/methodology/    
 - title: "윈도우즈 프로그래밍"
@@ -72,9 +70,6 @@ docs:
   - title: "주석론"  
     url: /categories/comment/ 
     category: "comment"    
-  - title: "코딩을 위한 좋은 습관"
-    url: /categories/coding/ 
-    category: "coding"     
   - title: "개발 방법론"
     url: /categories/methodology/
     category: "methodology"     

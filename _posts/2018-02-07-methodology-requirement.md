@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. 요구사항 분석은 대충 자주 하라"
+title: "#7. 요구사항 분석은 대충 자주 하라"
 categories: "methodology"
 tag: ["개발방법론", "요구사항", "SRS"]
 author_profile: false

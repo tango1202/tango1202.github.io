@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. 성급히 일정을 말하지 마라. 묻지도 마라"
+title: "#6. 성급히 일정을 말하지 마라"
 categories: "methodology"
 tag: ["개발방법론"]
 author_profile: false

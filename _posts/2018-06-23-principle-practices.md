@@ -26,7 +26,7 @@ sidebar:
 
 # [좋은 코드] 이름 짓기(Naming Things)
 
-좋은 이름은 [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높여 생산성을 향상시켜 줍니다. [작명]((https://tango1202.github.io/coding/coding-naming/))을 참고하세요.
+좋은 이름은 [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높여 생산성을 향상시켜 줍니다. [작명하라](??)를 참고하세요.
 
 # [좋은 코드] 방어적 프로그래밍(Defensive Programming)
 

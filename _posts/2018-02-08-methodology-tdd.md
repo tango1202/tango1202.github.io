@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. 테스트를 먼저 개발하라"
+title: "#8. 테스트를 먼저 개발하라"
 categories: "methodology"
 tag: ["개발방법론", "TDD"]
 author_profile: false

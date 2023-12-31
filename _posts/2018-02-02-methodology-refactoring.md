@@ -1,8 +1,8 @@
 ---
 layout: single
-title: "#2. 소스코드에도 유통기한이 있다. 리팩토링하라."
-categories: "coding"
-tag: ["코딩", "리팩토링"]
+title: "#2. 리팩토링하라"
+categories: "methodology"
+tag: ["개발방법론"]
 author_profile: false
 sidebar: 
     nav: "docs"

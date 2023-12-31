@@ -1,8 +1,8 @@
 ---
 layout: single
-title: "#1. 방대한 소스코드는 반드시 망한다. 설계하라."
-categories: "coding"
-tag: ["코딩"]
+title: "#1. 설계하라"
+categories: "methodology"
+tag: ["개발방법론"]
 author_profile: false
 sidebar: 
     nav: "docs"

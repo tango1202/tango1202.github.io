@@ -1,8 +1,8 @@
 ---
 layout: single
-title: "#3. 작명은 아트 코딩의 시작점이다. 작명하라."
-categories: "coding"
-tag: ["코딩"]
+title: "#3. 작명하라"
+categories: "methodology"
+tag: ["개발방법론"]
 author_profile: false
 sidebar: 
     nav: "docs"
