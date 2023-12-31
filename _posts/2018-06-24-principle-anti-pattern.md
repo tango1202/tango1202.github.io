@@ -36,7 +36,7 @@ sidebar:
 
 4. 의미없는 정성
     
-    * 언젠간 유용할 것 같지만 여전히 유용하지 않은 [쓰레기 코드](??)
+    * 언젠간 유용할 것 같지만 여전히 유용하지 않은 [쓰레기 코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%93%B0%EB%A0%88%EA%B8%B0-%EC%BD%94%EB%93%9Cgarbage-code)
     * 무의미하게 분리된 함수
     * 의미없는 함수 포워딩
     * 의미없는 관리자 개체
@@ -180,7 +180,7 @@ sidebar:
 
 # [나쁜 설계 관행] 앞단의 큰 디자인(Big Design Up Front)
 
-[앞단의 큰 디자인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%9E%EB%8B%A8%EC%9D%98-%ED%81%B0-%EB%94%94%EC%9E%90%EC%9D%B8big-design-up-front)은 [분석 마비](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B6%84%EC%84%9D-%EB%A7%88%EB%B9%84analysis-paralysis)와 마찬가지로 과잉 분석에 따라 너무 포괄적이고 상세한 설계를 하는 것을 말합니다. 너무 포괄적이고 상세한 아키텍처는 유연성이 떨어지고, 개발 시간이 증가하며, 사용되지 않는 모듈이나 아키텍처는 종종 [쓰레기 코드](??)가 될 수 있습니다.
+[앞단의 큰 디자인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EC%95%9E%EB%8B%A8%EC%9D%98-%ED%81%B0-%EB%94%94%EC%9E%90%EC%9D%B8big-design-up-front)은 [분석 마비](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B6%84%EC%84%9D-%EB%A7%88%EB%B9%84analysis-paralysis)와 마찬가지로 과잉 분석에 따라 너무 포괄적이고 상세한 설계를 하는 것을 말합니다. 너무 포괄적이고 상세한 아키텍처는 유연성이 떨어지고, 개발 시간이 증가하며, 사용되지 않는 모듈이나 아키텍처는 종종 [쓰레기 코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%93%B0%EB%A0%88%EA%B8%B0-%EC%BD%94%EB%93%9Cgarbage-code)가 될 수 있습니다.
 
 [단순한 디자인](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%88%9C%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8simple-design) 후 [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 하세요.
 

@@ -37,7 +37,7 @@ sidebar:
 
     [전역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)는 시스템의 시작과 끝까지 메모리를 사용합니다. 정말 그럴 필요가 있는 변수라면 어쩔 수 없지만, 정말 필요한 것인지, 코딩 실수인지 꼭 확인하세요.
 
-3. 언젠간 유용할 것 같지만 여전히 유용하지 않은 [쓰레기 코드](??)
+3. 언젠간 유용할 것 같지만 여전히 유용하지 않은 [쓰레기 코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%93%B0%EB%A0%88%EA%B8%B0-%EC%BD%94%EB%93%9Cgarbage-code)
 
     * [인터넷에서 찾아서 추가](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%9D%B8%ED%84%B0%EB%84%B7%EC%97%90%EC%84%9C-%EC%B0%BE%EC%9D%8Cfound-on-internet) 하였으나 필요한 것보다 많이 복사된 코드
     * [캘린더 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%BD%94%EB%8D%94calendar-coder)가 맹목적으로 추가한 코드

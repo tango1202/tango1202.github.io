@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. 작명은 아트 코딩의 시작점입니다. 이름을 잘 지어라."
+title: "#3. 작명은 아트 코딩의 시작점이다. 작명하라."
 categories: "coding"
 tag: ["코딩"]
 author_profile: false

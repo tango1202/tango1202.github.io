@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. 테스트는 가장 중요한 기능입니다. 테스트하라."
+title: "#4. 테스트는 가장 중요한 기능이다. 테스트하라."
 categories: "coding"
 tag: ["코딩", "TDD", "단위 테스트"]
 author_profile: false
