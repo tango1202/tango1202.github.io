@@ -176,7 +176,7 @@ sidebar:
 
 낙관적으로 일정을 축소하지 마세요. 초기의 요구사항은 실제 구축해야 하는 것의 일부일 뿐입니다. 구현하다 보면 추가로 구현해야 할 것들이 눈덩이처럼 늘어납니다. 특히 [마지막 10% 함정](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EB%A7%88%EC%A7%80%EB%A7%89-10-%ED%95%A8%EC%A0%95last-10-trap)은 더 많은 기간을 필요로 합니다.
 
-[낙관적인 예측](??)은 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)을 지연시키지만, 그렇다고 예측을 위해 너무 많은 고민을 하다보면 [분석 마비](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B6%84%EC%84%9D-%EB%A7%88%EB%B9%84analysis-paralysis)에 빠질 수 있습니다.
+[낙관적인 예측](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%82%99%EA%B4%80%EC%A0%81-%EC%98%88%EC%B8%A1)은 [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)을 지연시키지만, 그렇다고 예측을 위해 너무 많은 고민을 하다보면 [분석 마비](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%84%A4%EA%B3%84-%EA%B4%80%ED%96%89-%EB%B6%84%EC%84%9D-%EB%A7%88%EB%B9%84analysis-paralysis)에 빠질 수 있습니다.
 
 적절한 타협이 필요합니다.
 
@@ -227,7 +227,7 @@ sidebar:
 
 모든 사람이 성공 가능성이 희박하다는 걸 알고 있고, [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature)이 지연된다면, 그럼에도 불구하고, [배송](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EB%B0%B0%EC%86%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5%EC%9E%85%EB%8B%88%EB%8B%A4shipping-is-a-feature) 일정을 맞추기 위해 개발팀의 헌신이 필요한 상황이라면, 이는 [죽음의 행진](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%A3%BD%EC%9D%8C%EC%9D%98-%ED%96%89%EC%A7%84death-march)을 하고 있는 것입니다. 개발팀은 언젠가는 지치게 되어 있고, 열정과 의욕은 사라질 수 밖에 없습니다. 이런 프로젝트는 반드시 망합니다.
 
-[행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 시나리오를 다시 만드시고, [계획을 업데이트](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%9D%BC%EC%A0%95-%EA%B3%84%ED%9A%8D-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8update-the-plan)하십시요. 이때 절대 다시 [낙관적으로 예측](??)하지 마십시요. 프로젝트를 포기하거나, 어벤져스를 투입하는 것도 좋은 방법입니다.
+[행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 시나리오를 다시 만드시고, [계획을 업데이트](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EC%9D%BC%EC%A0%95-%EA%B3%84%ED%9A%8D-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8update-the-plan)하십시요. 이때 절대 다시 [낙관적으로 예측](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%82%99%EA%B4%80%EC%A0%81-%EC%98%88%EC%B8%A1)하지 마십시요. 프로젝트를 포기하거나, 어벤져스를 투입하는 것도 좋은 방법입니다.
 
 # [나쁜 운영 관행] 지뢰밭을 걷다(Walking through a Minefield)
 

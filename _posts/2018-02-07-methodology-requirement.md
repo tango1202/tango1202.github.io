@@ -41,9 +41,9 @@ sidebar:
 익스트림 프로그래밍을 사랑하신다면,
 
 1. 사용자 스토리의 우선 순위 설정
-2. 매일 통합
-3. 테스트 주도 개발
-4. 짝 프로그래밍
+2. [지속적인 통합](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%A0%9C%ED%92%88---%EB%B0%B0%ED%8F%AC-%EC%A7%80%EC%86%8D%EC%A0%81%EC%9D%B8-%ED%86%B5%ED%95%A9continuous-integration)
+3. [테스트 주도 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%A3%BC%EB%8F%84-%EA%B0%9C%EB%B0%9Ctest-driven-development)
+4. [짝 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%9D-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dpair-programming)
 
 으로 매일 매일 SW를 개선하겠고,
 

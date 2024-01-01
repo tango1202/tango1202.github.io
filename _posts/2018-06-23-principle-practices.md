@@ -32,7 +32,7 @@ sidebar:
 
 # [좋은 코드] 코딩 컨벤션(Coding Conventions)
 
-[코딩 컨벤션](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98coding-conventions)은 프로젝트에서 준수해야할 코딩 스타일입니다. [작명](??)에서부터 코드 레이아웃(*들여쓰기, 줄바꿈, 띄어쓰기*)과 언어에 따른 특정 코딩 방법들을 기술합니다.
+[코딩 컨벤션](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98coding-conventions)은 프로젝트에서 준수해야할 코딩 스타일입니다. [작명](https://tango1202.github.io/methodology/methodology-naming/)에서부터 코드 레이아웃(*들여쓰기, 줄바꿈, 띄어쓰기*)과 언어에 따른 특정 코딩 방법들을 기술합니다.
 
 모두가 동일한 형태로 코드를 작성하므로 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 향상됩니다.
 
