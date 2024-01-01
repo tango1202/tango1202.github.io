@@ -10,9 +10,9 @@ sidebar:
 
 # [좋은 코드] 집단 코드 소유권(Collective Code Ownership)
 
-내가 작성한 코드가 아니라, 우리가 작성한 코드입니다. 함께 코드를 공유하고, 함께 이해하고, 함께 [짝 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%9D-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dpair-programming)하고, 함께 [코드 리뷰](??)를 하시는게 좋습니다. 선배가 작성한 성스러운 코드가 아닙니다. 수정하는데 두려워하지 마십시요. 
+내가 작성한 코드가 아니라, 우리가 작성한 코드입니다. 함께 코드를 공유하고, 함께 이해하고, 함께 [짝 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%9D-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dpair-programming)하고, 함께 [코드 리뷰](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EB%A6%AC%EB%B7%B0code-review)를 하시는게 좋습니다. 선배가 작성한 성스러운 코드가 아닙니다. 수정하는데 두려워하지 마십시요. 
 
-혹여나 잘못된 것은 동료가 [코드 리뷰](??)하여 수정해 줄테니까요.
+혹여나 잘못된 것은 동료가 [코드 리뷰](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EB%A6%AC%EB%B7%B0code-review)하여 수정해 줄테니까요.
 
 # [좋은 코드] 코드 가독성(Code Readability)
 
@@ -20,7 +20,7 @@ sidebar:
 
 ***어떤 바보라도 컴퓨터가 이해할 수 있는 코드를 만들 수 있다. 좋은 프로그래머는 사람이 이해하는 코드를 만든다*** 는 뜻인데요, 여기서 "humans"는 몇년 뒤의 자기 자신이 될 수도 있죠. 제 경우에도 많이 그랬습니다.
 
-각 팀이 논의하여 공통의 [코딩 컨벤션](??)을 만들어 두면 일관되고 가독성 좋은 코딩 생활을 할 수 있습니다. 그럼에도 불구하고 알고리즘이 복잡하여 코드 자체가 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 떨어진다면, 최대한 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability) 있게 수정하시고, 한계가 있다면, 주석이나 문서를 잘 만들어 두시기 바랍니다.
+각 팀이 논의하여 공통의 [코딩 컨벤션](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98coding-conventions)을 만들어 두면 일관되고 가독성 좋은 코딩 생활을 할 수 있습니다. 그럼에도 불구하고 알고리즘이 복잡하여 코드 자체가 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 떨어진다면, 최대한 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability) 있게 수정하시고, 한계가 있다면, 주석이나 문서를 잘 만들어 두시기 바랍니다.
 
 일반적으로 잘못된 변수명, 짧고 비밀스러운 이름, 개인의 취향에 따른 접두어, 너무 긴 이름, 복잡한 제어문, 일관적이지 못한 코드 레이아웃(*들여쓰기, 줄바꿈, 띄어쓰기*), 흔하지 않은 구조, [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)을 따르지 않는 함수나 클래스, 코드 중복, [쓰레기 코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%93%B0%EB%A0%88%EA%B8%B0-%EC%BD%94%EB%93%9Cgarbage-code) 등이 코드 가독성을 떨어뜨립니다.
 
@@ -32,7 +32,7 @@ sidebar:
 
 # [좋은 코드] 코딩 컨벤션(Coding Conventions)
 
-[코딩 컨벤션](??)은 프로젝트에서 준수해야할 코딩 스타일입니다. [작명](??)에서부터 띄어쓰기등의 레이아웃과 언어에 따른 특정 코딩 방법들을 기술합니다.
+[코딩 컨벤션](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98coding-conventions)은 프로젝트에서 준수해야할 코딩 스타일입니다. [작명](??)에서부터 코드 레이아웃(*들여쓰기, 줄바꿈, 띄어쓰기*)과 언어에 따른 특정 코딩 방법들을 기술합니다.
 
 모두가 동일한 형태로 코드를 작성하므로 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 향상됩니다.
 
@@ -55,9 +55,9 @@ sidebar:
 
 # [좋은 코드] 코드 리뷰(Code Review)
 
-[짝 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%9D-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dpair-programming)을 하기 좀 곤란하더라도 [코드 리뷰](??)를 통해 집단 지성의 슈퍼 파워를 가질 수 있습니다.
+[짝 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%9D-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dpair-programming)을 하기 좀 곤란하더라도 [코드 리뷰](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EB%A6%AC%EB%B7%B0code-review)를 통해 집단 지성의 슈퍼 파워를 가질 수 있습니다. 동료에게 기여하고, 기여받으십시요.
 
-작은 [코딩 컨벤션](??) 하나라도 우리는 놓치지 않습니다.
+작은 [코딩 컨벤션](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98coding-conventions) 하나라도 함께라면 놓치지 않습니다.
 
 # [좋은 코드] 러버덕 디버깅(Rubber Dock Debugging)
 

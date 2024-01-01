@@ -18,11 +18,11 @@ sidebar:
 
 모든 버그에는 원인이 있습니다. 
 
-개발자의 단순한 실수일 수도 있지만, 대부분 요구사항의 잘못된 이해(*[버섯 관리](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EB%B2%84%EC%84%AF-%EA%B4%80%EB%A6%ACmushroom-management) 참고*)와 플랫폼에 대한 부족한 기술 지식에서 비롯됩니다.  
+개발자의 단순한 실수일 수도 있지만, 대부분 요구사항의 잘못된 이해(*[버섯 관리](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EB%B2%84%EC%84%AF-%EA%B4%80%EB%A6%ACmushroom-management) 참고*)와 프로젝트나 플랫폼에 대한 부족한 기술 지식에서 비롯됩니다.  
 
 특히 버그 수정시 다른 버그가 발생한다면 개발자가 현시스템이나 코드 구조에 대해 명확히 파악하지 못하고 버그를 수정하고 있다는 뜻입니다. 
 
-이건 언제, 어떠한 방식으로 터질지 모르는 폭탄과 같습니다. 늘상 [지뢰밭을 걷다](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%A7%80%EB%A2%B0%EB%B0%AD%EC%9D%84-%EA%B1%B7%EB%8B%A4walking-through-a-minefield)를 경험하는 거죠.
+이건 언제, 어떠한 방식으로 터질지 모르는 폭탄과 같습니다. 늘상 [지뢰밭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%A7%80%EB%A2%B0%EB%B0%AD%EC%9D%84-%EA%B1%B7%EB%8B%A4walking-through-a-minefield)을 걷는 셈인 거죠.
 
 더군다나 테스터들과 긴밀히 협업하지 않는다면, 뒤늦게 버그가 발생되어 어떠한 수정에 의해 발생한 버그인지 원인도 모른채 밤을 새는 낭패를 경험할 수 있습니다.  
 

@@ -12,7 +12,7 @@ sidebar:
 
 백만라인.... 대단하군요.
 
-[여기서 발명되지 않았다](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%97%AC%EA%B8%B0%EC%84%9C-%EB%B0%9C%EB%AA%85%EB%90%98%EC%A7%80-%EC%95%8A%EC%9D%8Cnot-invented-here)며, [바퀴를 재발명](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B0%94%ED%80%B4%EC%9D%98-%EC%9E%AC%EB%B0%9C%EB%AA%85reinventing-the-wheel) 한것은 아닐까요? 
+혹시, [여기서 발명되지 않았다](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%97%AC%EA%B8%B0%EC%84%9C-%EB%B0%9C%EB%AA%85%EB%90%98%EC%A7%80-%EC%95%8A%EC%9D%8Cnot-invented-here)며, [바퀴를 재발명](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B0%94%ED%80%B4%EC%9D%98-%EC%9E%AC%EB%B0%9C%EB%AA%85reinventing-the-wheel) 한것은 아닐까요? 백만라인이 되도록 왜 프로젝트를 내버려 두셨나요? 
 
 과연 팀원 중에 백만라인의 소스코드를 모두 아는 사람은 몇명이나 될까요? 그중에 얼마나 많은 보석같은 알고리즘이 있을까요? 안타깝지만, 팀원중 누구도 보석같은 알고리즘을 찾기 위해 백만라인을 뒤지지 않을 것입니다.(*[빙산 클래스](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%99%EC%82%B0-%ED%81%B4%EB%9E%98%EC%8A%A4iceberg-class) 참고*) 몇번 할 수는 있겠죠. 하지만, 그걸 찾느니 새로 개발하는게 빠르다는 생각으로 코드를 새로 작성하는 경우가 많더군요.(*고백하자면, 저의 경우에는 활용을 위해 약간의 코드 수정이 필요한 경우, 사이드 이팩트가 두려워서 새롭게 만든 경우가 좀 있었습니다.*) 
 

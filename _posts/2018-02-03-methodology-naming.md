@@ -150,7 +150,7 @@ protected:
 
 `protected:` 와 `virtual`이 상속받아 재구현 하라는 의미로 전달되므로, "상속받은 곳에서 재구현" 이라는 주석은 뺐고요, 이벤트라는 의미의 `On`도 빼버렸습니다. 선택이 내부적으로 완료된 후 발생하는 이벤트라는 의미로 `Change`나 `Changing` 이 아니라 `Changed`를 사용했습니다.
 
-좋은 이름은 생각보다 쉽게 만들 수 있습니다. 그냥 조직원과 함께 만들면 됩니다.(*[짝 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%9D-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dpair-programming), [코드 리뷰](??) 참고*) 누군가가 이게 뭐냐고 물어보거나, 설명을 위해 주석이 필요하다면, 나쁜 이름입니다. 
+좋은 이름은 생각보다 쉽게 만들 수 있습니다. 그냥 조직원과 함께 만들면 됩니다.(*[짝 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%9D-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dpair-programming), [코드 리뷰](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EB%A6%AC%EB%B7%B0code-review) 참고*) 누군가가 이게 뭐냐고 물어보거나, 설명을 위해 주석이 필요하다면, 나쁜 이름입니다. 
 
 다음을 지키세요.
 
@@ -161,6 +161,7 @@ protected:
     * 반대되는 개념의 단어쌍을 사용하세요. `Get`-`Set`, `Attach`-`Detach`은 유명한 단어쌍입니다.
     * `CRUD`는 `Create-Read-Update-Delete`입니다. 생성-읽기-갱신-삭제에 일관성을 주세요.
     * `Proxy`, `Adapter`등 디자인 패턴에서 제시한 공통된 이름을 사용하세요.
+    * 모든 팀원이 동일하게 작명할 수 있도록 [코딩 컨벤션](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98coding-conventions)에 규칙을 포함하세요. 
 
 2. 코드의 의도를 전달하는 이름을 선택하세요.
 
