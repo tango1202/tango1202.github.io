@@ -286,6 +286,12 @@ sidebar:
 
 [행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 서로 긴밀하게 협력하고, 지킬 수 있는 일정을 협의하세요.
 
+# 슈퍼스타(Superstar)
+
+프로젝트의 의사소통을 일원화하고 주인의식과 책임의식을 갖게 하기 위해 [슈퍼스타](??)를 만들 수 있습니다. [슈퍼스타](??)는 책임감을 갖고 프로젝트를 성공적으로 이끌 수 있는데요, 한 사람에만 성과가 집중되어, [집단 코드 소유권](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%91%EB%8B%A8-%EC%BD%94%EB%93%9C-%EC%86%8C%EC%9C%A0%EA%B6%8Ccollective-code-ownership)을 해칠 수 있고, [슈퍼스타](??)는 일과 삶의 균형이 무너질 수도 있습니다. 프로젝트는 성공하더라도, [슈퍼스타](??)는 떠날 확률이 높죠.
+
+잊지마세요. 우리는 코드를 공동 소유하고, 우리 모두의 책임이어야 합니다.
+
 # [나쁜 운영 관행] 버섯 관리(Mushroom Management)
 
 개발팀을 어둠속에 가두고 버섯을 키우듯이 관리하지 마십시요. 고객과의 장벽을 설치하면, [가정 기반 프로그래밍](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EA%B0%80%EC%A0%95-%EA%B8%B0%EB%B0%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dassumption-driven-programming)을 하고, 요구사항을 잘못 이해합니다. 특히 잦은 피드백과 잦은 실패를 할 수 없어 [점진적 발전과 지속적 개선](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A0%90%EC%A7%84%EC%A0%81-%EB%B0%9C%EC%A0%84%EA%B3%BC-%EC%A7%80%EC%86%8D%EC%A0%81-%EA%B0%9C%EC%84%A0incremental-progress-continuous-improvement)을 할 수 없습니다.
