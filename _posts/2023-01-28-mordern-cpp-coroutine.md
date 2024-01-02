@@ -33,7 +33,7 @@ sidebar:
 
 함수의 경우에는 [리턴값](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92)을 호출자가 바로 전달받을 수 있는데요, [코루틴](https://tango1202.github.io/mordern-cpp/mordern-cpp-coroutine/)은 일시 정지와 재개를 해야 하고, 일시 정지한 상태에서 값을 전달받아야 하기 때문에 여러 개체들이 협력하여 동작합니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/decb848f-4500-4bb3-86ec-c85261c44af1)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bfad51d1-ea5a-406a-8dee-0a94d1cc9a08)
 
 |항목|내용|
 |--|--|
