@@ -50,7 +50,7 @@ protected:
     Button() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
 private:
     Button(const Button&) = delete;
-    Button(const Button&&) = delete;
+    Button(Button&&) = delete;
     Button& operator =(const Button&) = delete;
     Button& operator =(Button&&) = delete;   
 public:
@@ -64,7 +64,7 @@ protected:
     Check() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
 private:
     Check(const Check&) = delete;
-    Check(const Check&&) = delete;
+    Check(Check&&) = delete;
     Check& operator =(const Check&) = delete;
     Check& operator =(Check&&) = delete;   
 public:
@@ -78,7 +78,7 @@ protected:
     RadioGroup() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
 private:
     RadioGroup(const RadioGroup&) = delete;
-    RadioGroup(const RadioGroup&&) = delete;
+    RadioGroup(RadioGroup&&) = delete;
     RadioGroup& operator =(const RadioGroup&) = delete;
     RadioGroup& operator =(RadioGroup&&) = delete;   
 public:
@@ -92,7 +92,7 @@ protected:
     ControlFactory() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
 private:
     ControlFactory(const ControlFactory&) = delete;
-    ControlFactory(const ControlFactory&&) = delete;
+    ControlFactory(ControlFactory&&) = delete;
     ControlFactory& operator =(const ControlFactory&) = delete;
     ControlFactory& operator =(ControlFactory&&) = delete;
 public:

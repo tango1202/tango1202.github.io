@@ -68,7 +68,7 @@ protected:
     IControlBuilder() = default; // 상속해서만 사용하도록 protected
 private:
     IControlBuilder(const IControlBuilder&) = delete;
-    IControlBuilder(const IControlBuilder&&) = delete;
+    IControlBuilder(IControlBuilder&&) = delete;
     IControlBuilder& operator =(const IControlBuilder&) = delete;
     IControlBuilder& operator =(IControlBuilder&&) = delete;
 protected:
