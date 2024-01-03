@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[Abstract Factory](??)는 특정 그룹 계열에 속한 개체들을 생성하기 위한 인터페이스를 제공합니다. 
+[Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/)는 특정 그룹 계열에 속한 개체들을 생성하기 위한 인터페이스를 제공합니다. 
 
 ![Abstract Factory](https://github.com/tango1202/tango1202.github.io/assets/133472501/67dc48ba-0896-4eff-a16d-d35bfbb89da2)
 

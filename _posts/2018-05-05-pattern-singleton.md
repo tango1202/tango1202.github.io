@@ -8,17 +8,17 @@ sidebar:
     nav: "docs"
 ---
 
-[Singleton](??)은 개체가 오직 1번만 생성된다는 것을 보장합니다.
+[Singleton](https://tango1202.github.io/pattern/pattern-singleton/)은 개체가 오직 1번만 생성된다는 것을 보장합니다.
 
 ![Slngleton](https://github.com/tango1202/tango1202.github.io/assets/133472501/bd59d0e2-05f9-481e-b6bc-e511eaac4d45)
 
 # 특징
 
-주로 리소스 관리등 전역적으로 관리되는 `Manager`개체의 경우에 사용합니다. [Singleton](??)을 이용하여 중복 생성되지 않음을 보장하고, 접근 경로를 단일화하여 접근성을 향상시킵니다.
+주로 리소스 관리등 전역적으로 관리되는 `Manager`개체의 경우에 사용합니다. [Singleton](https://tango1202.github.io/pattern/pattern-singleton/)을 이용하여 중복 생성되지 않음을 보장하고, 접근 경로를 단일화하여 접근성을 향상시킵니다.
 
 # 예제
 
-다음은 `ErrorCode`를 문자열로 제공해주는 `ErrorCodeManager`의 예입니다. [Singleton](??)으로 만들어져 전역적으로 1개만 있음을 보장합니다.
+다음은 `ErrorCode`를 문자열로 제공해주는 `ErrorCodeManager`의 예입니다. [Singleton](https://tango1202.github.io/pattern/pattern-singleton/)으로 만들어져 전역적으로 1개만 있음을 보장합니다.
 
 1. #1 : `s_ErrorCodeManager`는 [함수내 정적 지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)이므로 1회만 생성됩니다. 또한, `GetInstance()`는 [정적 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)이기 때문에 어디서든 손쉽게 접근 가능합니다. 이때 `GetInstance()`로만 개체를 참조할 수 있도록, #2와 같이 생성자를 `private`로 만듭니다.
 2. #3 : `errorCode`에 따라 메시지를 Get/Set합니다.

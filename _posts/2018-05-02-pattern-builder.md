@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[Builder](??)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 재활용을 가능케 합니다.
+[Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 재활용을 가능케 합니다.
 
 ![Builder](https://github.com/tango1202/tango1202.github.io/assets/133472501/3d674b23-54f1-457e-87cd-f8f17172154d)
 
@@ -50,7 +50,7 @@ public:
 
 `Panel`은 여러 `Control`들의 집합인데요, 이런 `Panel`을 만들어 두면, 사용자와 상호작용하는 여러 컨트롤들을 `Panel` 1개에 배치하여 만들 수 있습니다.
 
-다음은 [Builder](??)를 이용하여 아이디와 암호를 입력받는 `Panel`을 생성하는 예입니다.
+다음은 [Builder](https://tango1202.github.io/pattern/pattern-builder/)를 이용하여 아이디와 암호를 입력받는 `Panel`을 생성하는 예입니다.
 
 1. #1 : 각 컨트롤들을 생성할 수 있는 인터페이스를 제공합니다.
 2. #2 : `PanelBuilder`에서 `Panel`을 생성하고, `AddLabel(), AddEdit(), AddOk(), AddCancel()`호출시 `m_Panel`에 추가합니다.

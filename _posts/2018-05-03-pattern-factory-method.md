@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[Factory Method](??)는 생성에 대한 구체적인 정보를 자식 클래스에서 알고 있을때 부모 클래스에서 자식 클래스에게 생성을 요청하기 위해 사용합니다.
+[Factory Method](https://tango1202.github.io/pattern/pattern-factory-method/)는 생성에 대한 구체적인 정보를 자식 클래스에서 알고 있을때 부모 클래스에서 자식 클래스에게 생성을 요청하기 위해 사용합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/816315c6-084a-4f88-9355-a8d9c2dd4b0d)
 
