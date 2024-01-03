@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [생성 패턴] Factory Method"
+title: "#3. [디자인 패턴-생성 패턴] Factory Method"
 categories: "pattern"
 tag: ["디자인 패턴", "생성 패턴"]
 author_profile: false
@@ -8,9 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-# 개요
-
-생성에 대한 구체적인 정보를 자식 클래스에서 알고 있을때 부모 클래스에서 자식 클래스에게 생성 정보를 요청하기 위해 사용합니다.
+[Factory Method](??)는 생성에 대한 구체적인 정보를 자식 클래스에서 알고 있을때 부모 클래스에서 자식 클래스에게 생성을 요청하기 위해 사용합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/816315c6-084a-4f88-9355-a8d9c2dd4b0d)
 
@@ -27,7 +25,7 @@ sidebar:
 
 # 예제
 
-다음 예제는 어플리케이션 프레임워크입니다. App의 `LoadDoc(), SaveDoc()`에서 `IsDirty()`함수의 상태에 따라 추가 메시지를 표시합니다. 
+다음 예제는 어플리케이션 프레임워크입니다. App의 `LoadDoc(), SaveDoc()`에서 `IsDirty()`함수의 상태에 따라 여러 메시지를 표시합니다. 
 
 1. #1 : 프레임워크에서 제공하는 부모 클래스입니다.
 2. #2 : `CreateDoc()`이 생성하는 `Doc`은 자식 개체에서 정의한 구체화된 개체인 `MyDoc`이어야 합니다.
@@ -46,7 +44,7 @@ private:
     Doc& operator =(const Doc&) = delete; 
     Doc& operator =(Doc&&) = delete;   
 public:
-    virtual ~Doc() {} // 다형 소멸 하도록 public virtual
+    virtual ~Doc() = default; // 다형 소멸 하도록 public virtual
 
     bool IsDirty() const {return false;} // 테스트용으로 그냥 false를 리턴합니다.
     virtual void Load() = 0;
@@ -64,7 +62,7 @@ private:
     App& operator =(const App&) = delete;
     App& operator =(App&&) = delete;   
 public:
-    virtual ~App() {} // 다형 소멸 하도록 public virtual
+    virtual ~App() = default; // 다형 소멸 하도록 public virtual
 
 protected:
     // 자식 개체에서만 호출 가능하도록 protected입니다.

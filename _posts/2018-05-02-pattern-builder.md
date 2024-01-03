@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [생성 패턴] Builder"
+title: "#2. [디자인 패턴-생성 패턴] Builder"
 categories: "pattern"
 tag: ["디자인 패턴", "생성 패턴"]
 author_profile: false
@@ -8,9 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-# 개요
-
-여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 재활용을 가능케 합니다.
+[Builder](??)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 재활용을 가능케 합니다.
 
 ![Builder](https://github.com/tango1202/tango1202.github.io/assets/133472501/3d674b23-54f1-457e-87cd-f8f17172154d)
 
@@ -32,7 +30,7 @@ sidebar:
 ```cpp
 class Control {
 public:
-    virtual ~Control() {} // 다형 소멸 하도록 public virtual
+    virtual ~Control() = default; // 다형 소멸 하도록 public virtual
 };
 class Label : public Control {
 public:
@@ -72,7 +70,7 @@ private:
     IControlBuilder& operator =(const IControlBuilder&) = delete;
     IControlBuilder& operator =(IControlBuilder&&) = delete;
 protected:
-    ~IControlBuilder() {} // 다형 소멸을 하지 않으므로 protected non-virtual
+    ~IControlBuilder() = default; // 다형 소멸을 하지 않으므로 protected non-virtual
 public:
     virtual void AddLabel(const char* caption) = 0;
     virtual void AddEdit() = 0;

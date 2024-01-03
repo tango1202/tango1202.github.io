@@ -7,3 +7,122 @@ author_profile: false
 sidebar: 
     nav: "docs"
 ---
+
+[Adapter](??)는 기존 인터페이스와 서로 맞지 않은 개체(`Adpatee`)를 사용하기 위해 인터페이스를 맞춘 감싼 개체(*Wrapper*)입니다.
+
+# 클래스 Adpater와 개체 Adapter
+
+[Adapter](??)는 구현 방법에 따라 [클래스 Adpater](??)와 [개체 Adapter](??)로 구분할 수 있습니다.
+
+**클래스 Adpater**
+
+[클래스 Adpater](??)는 `private` [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 통해 `Adaptee`를 포함합니다.
+
+![Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/f65ea2d9-ef45-415b-a9ca-eba14d8170e4)
+
+**개체 Adapter**
+
+[개체 Adpater](??)는 [멤버 변수](??)로 `Adaptee`를 포함합니다. 
+
+[개체 Adapter](??)의 경우 [멤버 변수](??)를 런타임에 변경할 수 있어 다른 개체로 교체 가능하며, `Adaptee`를 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)한 개체도 사용할 수 있어 확장성이 좋습니다.
+
+![Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/7df7d2ef-ca49-4bea-868f-3ff8d9b56a40)
+
+|항목|내용|
+|--|--|
+|`Target`|현재 시스템에서 사용중인 인터페이스입니다.|
+|`Adaptee`|`Adapter`로 감싼 기존 개체입니다.|
+|`Adapter`|`Target`인터페이스로 `Adaptee`를 사용할 수 있게 하는 개체입니다.|
+|`Client`|`Target`인터페이스를 필요로하는 개체입니다.|
+
+# 예제
+
+다음 예는 `Shape` 을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)한 개체들을 출력하는 예입니다. `Shape`의 `Draw()`함수를 이용하는데요, `Circle` 개체는 `Shape`을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)하지 않은 클래스여서 #5와 같이 사용할 수 없습니다. 
+
+`Circle`이 `Shape`을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)하도록 리팩토링하면 될일입니다만, 만약 다른 프로젝트에서도 사용되는 코드라면 함부로 수정해선 안됩니다. 다른 프로젝트에 영향을 주니까요. 혹은 소스코드 없이 라이브러리로 제공되는 것이라면, 아예 수정할 수 없죠. 
+
+이럴때 [Apdater](??)를 이용하여 감싸면 `Shape`처럼 사용할 수 있습니다.
+
+1. #1 : `Shape`은 `Draw()`를 제공하는 부모 클래스입니다.
+2. #2 : `Rectangle`과 `Ellipse`는 `Shape`을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)하여 `Draw()`를 제공합니다.
+3. #3 : `Circle`은 `Shape`을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)하지 않아 `Draw()`를 제공하지는 않지만, 동일한 기능인 `Render()`를 제공합니다.
+4. #4 : [클래스 Adapter](??)와 [개체 Adapter](??)방식으로 `Circle`개체에서 `Shape`인터페이스를 제공합니다.
+5. #5 : `Circle`은 `Shape`이 아니므로 `std::vector<std::unique_ptr<Shape>>`에 추가할 수 없습니다.
+6. #6 : [Adapter](??)를 이용하여 `Circle`을 `std::vector<std::unique_ptr<Shape>>`에 추가하여 사용할 수 있습니다.
+
+```cpp
+class Shape {
+protected:
+    Shape() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+private:
+    Shape(const Shape&) = delete; 
+    Shape(Shape&&) = delete; 
+    Shape& operator =(const Shape&) = delete; 
+    Shape& operator =(Shape&&) = delete;   
+public:
+    virtual ~Shape() = default; // 다형 소멸 하도록 public virtual    
+
+    virtual void Draw() const = 0; // #1
+};
+class Rectangle : public Shape {
+public:
+    Rectangle() = default;
+
+    virtual void Draw() const override { // #2
+        std::cout << "Rectangle::Draw()" << std::endl;
+    }
+};
+class Ellipse : public Shape {
+public:
+    Ellipse() = default;
+
+    virtual void Draw() const override { // #2
+        std::cout << "Ellipse::Draw()" << std::endl;
+    }
+};
+
+class Circle { // Shape을 상속하지 않았습니다.
+public:
+    Circle() = default;
+
+    void Render() const { // #3
+        std::cout << "Circle::Render()" << std::endl;            
+    }
+};  
+
+// ----
+// 클래스 Adapter. Circle 클래스를 Shape 처럼 사용할 수 있게 해줍니다.
+// ----
+class CircleClassAdapter : public Shape, private Circle {
+public:
+    CircleClassAdapter() = default;
+
+    virtual void Draw() const override { // #4
+        Render();
+    }   
+};
+
+// ----
+// 개체 Adapter. Circle 개체를 Shape처럼 사용할 수 있게 해줍니다.
+// ----
+class CircleObjectAdapter : public Shape {
+private:
+    std::unique_ptr<Circle> m_Circle;
+public:
+    explicit CircleObjectAdapter(std::unique_ptr<Circle> circle) : m_Circle(std::move(circle)) {}
+    virtual void Draw() const override {  // #4
+        m_Circle->Render();
+    } 
+};
+
+std::vector<std::unique_ptr<Shape>> v;
+v.emplace_back(new Rectangle{}); 
+v.emplace_back(new Ellipse{});
+// v.emplace_back(new Circle{}); // (X) #5. 컴파일 오류. Circle은 Shape이 아닙니다.
+v.emplace_back(new CircleClassAdapter{}); // #6
+v.emplace_back(new CircleObjectAdapter{std::unique_ptr<Circle>{new Circle{}}}); // #6
+
+for (auto& shape : v) {
+    shape->Draw();
+}    
+```

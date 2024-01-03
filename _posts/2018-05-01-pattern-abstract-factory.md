@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [생성 패턴] Abstract Factory"
+title: "#1. [디자인 패턴-생성 패턴] Abstract Factory"
 categories: "pattern"
 tag: ["디자인 패턴", "생성 패턴"]
 author_profile: false
@@ -8,9 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-# 개요
-
-특정 그룹 계열에 속한 개체들을 생성하기 위한 인터페이스를 제공합니다. 
+[Abstract Factory](??)는 특정 그룹 계열에 속한 개체들을 생성하기 위한 인터페이스를 제공합니다. 
 
 ![Abstract Factory](https://github.com/tango1202/tango1202.github.io/assets/133472501/67dc48ba-0896-4eff-a16d-d35bfbb89da2)
 
@@ -54,7 +52,7 @@ private:
     Button& operator =(const Button&) = delete;
     Button& operator =(Button&&) = delete;   
 public:
-    virtual ~Button() {} // 다형 소멸 하도록 public virtual
+    virtual ~Button() = default; // 다형 소멸 하도록 public virtual
 
     virtual void Click() = 0; // 버튼을 클릭합니다.
 };
@@ -68,7 +66,7 @@ private:
     Check& operator =(const Check&) = delete;
     Check& operator =(Check&&) = delete;   
 public:
-    virtual ~Check() {} // 다형 소멸 하도록 public virtual
+    virtual ~Check() = default; // 다형 소멸 하도록 public virtual
 
     virtual void Toggle() = 0; // 체크 선택을 토글합니다.
 };
@@ -82,7 +80,7 @@ private:
     RadioGroup& operator =(const RadioGroup&) = delete;
     RadioGroup& operator =(RadioGroup&&) = delete;   
 public:
-    virtual ~RadioGroup() {} // 다형 소멸 하도록 public virtual
+    virtual ~RadioGroup() = default; // 다형 소멸 하도록 public virtual
 
     virtual void Select(size_t index) = 0; // 주어진 인덱스를 선택합니다.
 };
@@ -96,7 +94,7 @@ private:
     ControlFactory& operator =(const ControlFactory&) = delete;
     ControlFactory& operator =(ControlFactory&&) = delete;
 public:
-    ~ControlFactory() {} // 다형 소멸 하도록 public virtual
+    ~ControlFactory() = default; // 다형 소멸 하도록 public virtual
 public:
     virtual std::unique_ptr<Button> CreateButton() const = 0;
     virtual std::unique_ptr<Check> CreateCheck() const = 0;
