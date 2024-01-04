@@ -10,6 +10,8 @@ sidebar:
 
 [Prototype](https://tango1202.github.io/pattern/pattern-prototype/)은 미리 정의된 개체로부터 복제하여 개체를 생성할때 사용합니다.
 
+다음 그림에서 `Client`는 `m_Prototype`의 `Clone()`을 호출하여 개체를 복제 생성합니다.
+
 ![Prototype](https://github.com/tango1202/tango1202.github.io/assets/133472501/4d59eae0-3b2d-4829-bea8-d81f3ead664f)
 
 |항목|내용|
