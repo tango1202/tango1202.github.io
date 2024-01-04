@@ -10,7 +10,7 @@ sidebar:
 
 [Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 재활용을 가능케 합니다.
 
-![Builder](https://github.com/tango1202/tango1202.github.io/assets/133472501/3d674b23-54f1-457e-87cd-f8f17172154d)
+![Builder](https://github.com/tango1202/tango1202.github.io/assets/133472501/765a121f-b933-458f-be2e-5d13cdd4cef6)
 
 
 |항목|내용|
@@ -85,16 +85,16 @@ public:
     PanelBuilder() : m_Panel{new Panel{}} {}
 
     virtual void AddLabel(const char* caption) override {
-        m_Panel->Add(std::unique_ptr<Control>(new Label{caption}));
+        m_Panel->Add(std::unique_ptr<Control>{new Label{caption}});
     }
     virtual void AddEdit() override {
-        m_Panel->Add(std::unique_ptr<Control>(new Edit{}));
+        m_Panel->Add(std::unique_ptr<Control>{new Edit{}});
     }
     virtual void AddOk() override {
-        m_Panel->Add(std::unique_ptr<Control>(new Ok{}));   
+        m_Panel->Add(std::unique_ptr<Control>{new Ok{}});   
     }
     virtual void AddCancel() override {
-        m_Panel->Add(std::unique_ptr<Control>(new Cancel{}));   
+        m_Panel->Add(std::unique_ptr<Control>{new Cancel{}});   
     }  
 
     // 생성된 패널을 리턴하고 내부 멤버 변수는 초기화 합니다.

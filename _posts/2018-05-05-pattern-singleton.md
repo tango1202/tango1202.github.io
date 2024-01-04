@@ -10,7 +10,7 @@ sidebar:
 
 [Singleton](https://tango1202.github.io/pattern/pattern-singleton/)은 개체가 오직 1번만 생성된다는 것을 보장합니다.
 
-![Slngleton](https://github.com/tango1202/tango1202.github.io/assets/133472501/bd59d0e2-05f9-481e-b6bc-e511eaac4d45)
+![Slngleton](https://github.com/tango1202/tango1202.github.io/assets/133472501/b4893384-67b3-4436-8e3d-d97fcc413a9a)
 
 # 특징
 

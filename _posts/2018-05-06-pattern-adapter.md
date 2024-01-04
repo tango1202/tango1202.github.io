@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [구조 패턴]  Adapter"
+title: "#6. [디자인 패턴-구조 패턴] Adapter"
 categories: "pattern"
 tag: ["디자인 패턴", "구조 패턴"]
 author_profile: false
@@ -18,15 +18,15 @@ sidebar:
 
 [클래스 Adpater](https://tango1202.github.io/pattern/pattern-adapter/#%ED%81%B4%EB%9E%98%EC%8A%A4-adpater%EC%99%80-%EA%B0%9C%EC%B2%B4-adapter)는 `private` [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 통해 `Adaptee`를 포함합니다.
 
-![Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/f65ea2d9-ef45-415b-a9ca-eba14d8170e4)
+![Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/8f206ca3-28a7-4458-9cef-87aa241da0ee)
 
 **개체 Adapter**
 
 [개체 Adpater](https://tango1202.github.io/pattern/pattern-adapter/#%ED%81%B4%EB%9E%98%EC%8A%A4-adpater%EC%99%80-%EA%B0%9C%EC%B2%B4-adapter)는 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)로 `Adaptee`를 포함합니다. 
 
-[개체 Adapter](https://tango1202.github.io/pattern/pattern-adapter/#%ED%81%B4%EB%9E%98%EC%8A%A4-adpater%EC%99%80-%EA%B0%9C%EC%B2%B4-adapter)의 경우 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)를 런타임에 변경할 수 있어 다른 개체로 교체 가능하며, `Adaptee`를 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)한 개체도 사용할 수 있어 확장성이 좋습니다.
+[개체 Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/49143535-836d-43c3-a4af-c5c7ef44d6a9)의 경우 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)를 런타임에 변경할 수 있어 다른 개체로 교체 가능하며, `Adaptee`를 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)한 개체도 사용할 수 있어 확장성이 좋습니다.
 
-![Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/7df7d2ef-ca49-4bea-868f-3ff8d9b56a40)
+![Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/49143535-836d-43c3-a4af-c5c7ef44d6a9)
 
 |항목|내용|
 |--|--|
