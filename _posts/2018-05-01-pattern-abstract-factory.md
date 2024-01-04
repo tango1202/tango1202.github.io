@@ -34,7 +34,7 @@ sidebar:
 
 다음 예제의 #4를 보면 `CreateControlFactory()`에서 모바일인지 검사하고, 디바이스에 따라 컨트롤을 그룹화 해둔 `MobileFactory`나 `NormalFactory`를 선택해서 팩토리를 만듭니다. 각 팩토리에서 디바이스에 따른 컨트롤들을 생성하기 때문에 ***코드 여기저기서 모바일인지 아닌지에 따라 분기해서 코드를 작성할 필요가 없습니다.*** 그저 `ControlFactory`에서 생성된 컨트롤을 믿고 사용하면 됩니다.
 
-1. #1 : `Button`, `Check`, `RadioGroup`은 각 구체화된 클래스에서 상속하는 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)입니다.
+1. #1 : `Button`, `Check`, `RadioGroup`은 구체화된 클래스에서 상속해야 하는 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)입니다.
 2. #2 : `ControlFactory`는 `Button`, `Check`, `RadioGroup`을 생성하는 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)입니다.
 3. #3 : `Normal`용이나 `Mobile`용을 생성하는 `ControlFactory`의 구체 구현입니다.
 4. #4 : 일반용이 필요한지, 모바일용이 필요한지 검사하여 `ControlFactory`를 선택해서 사용합니다.
