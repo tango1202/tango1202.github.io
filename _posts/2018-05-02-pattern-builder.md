@@ -8,9 +8,9 @@ sidebar:
     nav: "docs"
 ---
 
-[Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 재활용을 가능케 합니다.
+[Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 확장성을 향상시킵니다.
 
-다음 그림에서 `Director`는 `Builder`에서 제공하는 `BuildPart1()`, `BuildPart2()`, `BuildPart3()`를 조합하여 개체를 생성합니다.
+다음 그림에서 `Director`는 `Builder`에서 제공하는 `BuildPart1()`, `BuildPart2()`, `BuildPart3()`을 조합하여 개체를 생성합니다.
 
 ![Builder](https://github.com/tango1202/tango1202.github.io/assets/133472501/765a121f-b933-458f-be2e-5d13cdd4cef6)
 
@@ -56,7 +56,7 @@ public:
 
 1. #1 : 각 컨트롤들을 생성할 수 있는 인터페이스를 제공합니다.
 2. #2 : `PanelBuilder`에서 `Panel`을 생성하고, `AddLabel(), AddEdit(), AddOk(), AddCancel()`호출시 `m_Panel`에 추가합니다.
-3. #3 : `IdPasswordDirector`에서 `IControlBuilder`를 이용하여 아이디와 암호를 입력받을 수 있는 UI를 합성합니다.
+3. #3 : `IdPasswordDirector`에서 `IControlBuilder`를 이용(*사실은 `PanelBuilder`*)하여 아이디와 암호를 입력받을 수 있는 UI를 합성합니다.
 4. #4 : 생성된 `m_Panel`을 외부에서 사용합니다.
 
 ```cpp
@@ -133,7 +133,7 @@ std::unique_ptr<Panel> panel{panelBuilder.Release()}; // #4. 생성된 panel을 
 
 아직까지는 굳이 `Director`와 `Builder`를 나눌 필요가 있을까 싶은데요, 
 
-`IControlBuilder`를 다음과 같이 `PanelWriter`처럼 구현하면, `IdPasswordDirector`를 재활용하여 아이디와 암호를 입력받는 UI을 Xml 형태로 출력하도록 만들 수 있습니다.
+`IControlBuilder`를 다음과 같이 `PanelWriter`처럼 구현하면, `IdPasswordDirector`를 이용하여 아이디와 암호를 입력받는 UI을 Xml 형태로 출력하도록 만들 수 있습니다.
 
 ```cpp
 class PanelWriter : public IControlBuilder {
@@ -163,7 +163,7 @@ IdPasswordDirector director{panelWriter};
 director.Construct(); // 생성하는 정보를 cout으로 출력합니다.
 ```
 
-또한 다음과 같이 `PanelCounter`처럼 구현하면, `IdPasswordDirector`를 재활용하여 아이디와 암호를 입력받는 UI에서 사용된 컨트롤의 갯수를 구할 수 있습니다.
+또한 다음과 같이 `PanelCounter`처럼 구현하면, `IdPasswordDirector`를 이용하여 아이디와 암호를 입력받는 UI에서 사용된 컨트롤의 갯수를 구할 수 있습니다.
 
 ```cpp
 class PanelCounter : public IControlBuilder {
