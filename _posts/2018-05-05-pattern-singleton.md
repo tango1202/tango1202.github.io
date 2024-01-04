@@ -16,7 +16,7 @@ sidebar:
 
 # 특징
 
-[Singleton](https://tango1202.github.io/pattern/pattern-singleton/)은 중복 생성되지 않음을 보장하고, 접근 경로를 단일화하여 접근성을 향상시킵니다. 따라서 주로 리소스 관리등 전역적으로 관리되는 `Manager`개체를 [Singleton](https://tango1202.github.io/pattern/pattern-singleton/)으로 만들면 좋습니다.
+주로 리소스 관리등 전역적으로 관리되는 `Manager`개체를 [Singleton](https://tango1202.github.io/pattern/pattern-singleton/)으로 만들면 좋습니다.
 
 # 예제
 
