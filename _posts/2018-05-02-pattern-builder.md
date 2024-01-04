@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 확장성을 향상시킬 수 있습니다.
+[Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 확장성을 향상시키는 패턴입니다.
 
 다음 그림에서 `Director`는 `Builder`에서 제공하는 `BuildPart1()`, `BuildPart2()`, `BuildPart3()`을 조합하여 개체를 생성합니다.
 
