@@ -39,7 +39,7 @@ sidebar:
 3. #3 : `Normal`용이나 `Mobile`용을 생성하는 `ControlFactory`의 구체 구현입니다.
 4. #4 : 일반용이 필요한지, 모바일용이 필요한지 검사하여 `ControlFactory`를 선택해서 사용합니다.
 5. #5 : `Normal`용과 `Mobile`용이 올바르게 생성되는지 테스트합니다.
-6. #6 : 전달받은 `ControlFactory`에 따라 다른 계열의 컨트롤을 생성하여 사용합니다.
+6. #6 : 전달받은 `ControlFactory`에 따라 다른 계열의 컨트롤들을 생성하여 사용합니다.
 
 ```cpp
 // ----
