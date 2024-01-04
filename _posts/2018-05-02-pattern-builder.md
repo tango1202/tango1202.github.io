@@ -10,6 +10,8 @@ sidebar:
 
 [Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 재활용을 가능케 합니다.
 
+다음 그림에서 `Director`는 `Builder`에서 제공하는 `BuildPart1()`, `BuildPart2()`, `BuildPart3()`를 조합하여 개체를 생성합니다.
+
 ![Builder](https://github.com/tango1202/tango1202.github.io/assets/133472501/765a121f-b933-458f-be2e-5d13cdd4cef6)
 
 
