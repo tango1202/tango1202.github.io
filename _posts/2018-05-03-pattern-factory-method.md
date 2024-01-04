@@ -10,7 +10,9 @@ sidebar:
 
 [Factory Method](https://tango1202.github.io/pattern/pattern-factory-method/)는 생성에 대한 구체적인 정보를 자식 클래스에서 알고 있을때 부모 클래스에서 자식 클래스에게 생성을 요청하기 위해 사용합니다.
 
-다음 그림에서 `Creator`의 `Operation()`는 구체화된 자식 개체인 `ConcreteProduct`의 생성을 필요로 하는데요, 부모 레이어에서 자식 레이어의 클래스를 직접 참조하면 종속의 방향성이 깨져 [상호 참조](??)될 수 있으므로, `FactoryMethod()`함수를 [오버라이딩](??)한 자식 클래스에서 생성할 수 있게 합니다.
+다음 그림에서 `Creator`의 `Operation()`는 구체화된 자식 개체인 `ConcreteProduct`의 생성을 필요로 하는데요, 부모 레이어에서 자식 레이어의 클래스를 직접 참조하면 종속의 방향성이 깨져 [상호 참조](??)될 수 있습니다. 
+
+따라서, `Creator`에서 직접 `ConcreteProduct`를 생성하지 않고, [Template Method](??) 처럼 `FactoryMethod()`함수를 [오버라이딩](??)한 자식 클래스에서 생성할 수 있게 합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/869a533b-ef65-4b6b-8bd1-17178c1f5deb)
 
