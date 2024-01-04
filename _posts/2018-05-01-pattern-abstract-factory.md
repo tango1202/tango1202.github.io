@@ -10,6 +10,8 @@ sidebar:
 
 [Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/)는 특정 그룹 계열에 속한 개체들을 생성하기 위한 인터페이스를 제공합니다. 
 
+다음 그림에서 `Client`는 `ConcreteFactory1`을 사용하느냐, `ConcreteFactory2`를 사용하느냐에 따라 다른 계열의 개체들을 생성하여 사용하게 됩니다.
+
 ![Abstract Factory](https://github.com/tango1202/tango1202.github.io/assets/133472501/a652e185-8de9-47fa-affe-30bbacf83cb0)
 
 |항목|내용|
