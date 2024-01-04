@@ -16,7 +16,7 @@ sidebar:
 
 복잡하게는 구현부를 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)로 만들어 다형적으로 만들수 있습니다. 이때에는 `m_Impl`을 런타임에 교체할 수도 있어 확장성이 좋아집니다.
 
-다음 그림에서 `Client`는 추상부인 `Abstration`만 이용해서 구현됩니다. `Abstration`의 `Implementor`가 내부적으로 `ConcreteImplementorA`로 변경되던 `ConcreteImplementorB`로 변경되던 `Client` 코드는 아무런 영향을 받지 않습니다.
+다음 그림에서 `Client`는 추상부인 `Abstraction`만 이용합니다.  `Client` 코드는 `Abstraction`의 `Implementor`가 내부적으로 `ConcreteImplementorA`로 변경되던 `ConcreteImplementorB`로 변경되던 아무런 영향을 받지 않습니다.
 
 ![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/7522dff5-3aae-4066-b512-1fa21dc0e461)
 
