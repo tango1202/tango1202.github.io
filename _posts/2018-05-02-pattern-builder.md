@@ -12,7 +12,7 @@ sidebar:
 
 다음 그림에서 `Director`는 `Builder`에서 제공하는 `BuildPart1()`, `BuildPart2()`, `BuildPart3()`을 조합하여 개체를 생성합니다.
 
-![Builder](https://github.com/tango1202/tango1202.github.io/assets/133472501/765a121f-b933-458f-be2e-5d13cdd4cef6)
+![Builder](https://github.com/tango1202/tango1202.github.io/assets/133472501/4ae283fa-3c49-4594-a48f-a14639e181c8)
 
 
 |항목|내용|

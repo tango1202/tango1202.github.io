@@ -45,7 +45,7 @@ sidebar:
 
     * 불필요한 `public`(*[최소 public](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-complete-class/#%EC%B5%9C%EC%86%8C-public) 참고*)
     * [전역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A0%84%EC%97%AD-%EB%B3%80%EC%88%98)
-    * [다운 캐스팅](?https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98) 혹은 모든 [형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/)
+    * [다운 캐스팅](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98) 혹은 모든 [형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/)
     * [상수성 계약](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD) 위반
     * [매직 상수](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%A7%A4%EC%A7%81-%EC%83%81%EC%88%98magic-constants)
 

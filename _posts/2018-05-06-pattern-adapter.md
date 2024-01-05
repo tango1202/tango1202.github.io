@@ -35,6 +35,10 @@ sidebar:
 |`Adapter`|`Target`인터페이스로 `Adaptee`를 사용할 수 있게 하는 개체입니다.|
 |`Client`|`Target`인터페이스를 필요로하는 개체입니다.|
 
+# 특징
+
+`Adaptee`가 다른 프로젝트에서도 사용되는 코드여서 함부로 수정하면 안되거나, 소스코드 없이 제공되는 외부 라이브러리인 경우 유용합니다.
+
 # 예제
 
 다음 예는 `Shape` 을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)한 개체들을 출력하는 예입니다. `Shape`의 `Draw()`함수를 이용하는데요, `Circle` 개체는 `Shape`을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)하지 않은 클래스여서 #5와 같이 사용할 수 없습니다. 
