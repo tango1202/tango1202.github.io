@@ -12,7 +12,7 @@ sidebar:
 
 다음 그림에서 `Creator`의 `Operation()`는 구체화된 자식 개체인 `ConcreteProduct`의 생성을 필요로 하는데요, 부모 레이어에서 자식 레이어의 클래스를 직접 참조하면 종속의 방향성이 깨져 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)될 수 있습니다. 
 
-따라서, `Creator`에서 직접 `ConcreteProduct`를 생성하지 않고, [Template Method](https://tango1202.github.io/pattern/pattern-template-method/) 처럼 `FactoryMethod()`함수를 [오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)한 자식 클래스에서 생성할 수 있게 합니다.
+따라서, `Creator`에서 직접 `ConcreteProduct`를 생성하지 않고,  `FactoryMethod()`함수를 [오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)한 자식 클래스에서 생성할 수 있게 합니다. [Template Method](https://tango1202.github.io/pattern/pattern-template-method/) 처럼요.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19d3024a-a4c7-44e8-a621-5f018b2ff355)
 
