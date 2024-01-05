@@ -131,7 +131,7 @@ director.Construct();
 std::unique_ptr<Panel> panel{panelBuilder.Release()}; // #4. 생성된 panel을 구합니다.
 ```
 
-아직까지는 굳이 `Director`와 `Builder`를 나눌 필요가 있을까 싶은데요, 
+아직까지는 굳이 `Director`와 `Builder`를 나눌 필요가 있을까 싶은데요, `ConcreteBuilder`를 다형적으로 만들어 기능을 확장할 수 있습니다.
 
 `IControlBuilder`를 다음과 같이 `PanelWriter`처럼 구현하면, `IdPasswordDirector`를 이용하여 아이디와 암호를 입력받는 UI을 Xml 형태로 출력하도록 만들 수 있습니다.
 
@@ -192,7 +192,7 @@ director.Construct();
 EXPECT_TRUE(panelCounter.GetCount() == 6); // panel 내에 사용된 control 갯수를 출력합니다.       
 ```
 
-즉, ***`ConcreteBuilder`를 다형적으로 만들어 기능을 확장***할 수 있습니다.
+
 
 
 
