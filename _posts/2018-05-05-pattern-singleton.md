@@ -10,7 +10,7 @@ sidebar:
 
 [Singleton](https://tango1202.github.io/pattern/pattern-singleton/)은 개체가 오직 1번만 생성된다는 것을 보장합니다.
 
-다음 그림과 같이 [정적 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)인 `GetInstance()`에서만 `Singleton`개체를 생성해서 리턴합니다. 만약 여러번 호출된다면 기존에 생성했던 개체를 리턴해서 오직 1회만 생성된다는 것을 보장해야 합니다. 또한 다른 생성 경로가 없도록 다른 생성자들은 `private`로 접근을 차단합니다.
+다음 그림과 같이 [정적 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)인 `GetInstance()`에서만 `Singleton`개체를 생성해서 리턴합니다. 만약 여러번 호출된다면 기존에 생성했던 개체를 리턴해서 오직 1회만 생성된다는 것을 보장해야 합니다. 또한 다른 생성 경로가 없도록 다른 생성자들은 `private`로 접근을 차단해 줍니다.
 
 ![Slngleton](https://github.com/tango1202/tango1202.github.io/assets/133472501/ecef4fee-05f2-4b70-98c7-8a11f1957ded)
 
