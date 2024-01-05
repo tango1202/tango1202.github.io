@@ -1,10 +1,194 @@
 ---
 layout: single
-title: "#9. [구조 패턴]  Decorator
-(작성중)"
+title: "#9. [디자인 패턴-구조 패턴] Decorator"
 categories: "pattern"
 tag: ["디자인 패턴", "구조 패턴"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
+
+[Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 개체에 동적으로 새로운 외형을 추가하거나 기능을 추가할 수 있게 합니다.
+
+보통은 기존 클래스에 새로운 것을 추가할 경우 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 하는데요,
+
+```cpp
+class Old {
+public:
+    void A() {}
+    void B() {}
+};
+class New : public Old {
+public:
+    void C() {} // Old에서 새로운 기능을 추가합니다.    
+};
+```
+
+[상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 통해 추가하는 것은 너무 많은 개체들이 만들어 질 우려가  있습니다.
+
+다음은 UI 컨트롤들에 테두리나 스크롤을 지원하기 위해 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 사용한 예입니다. 다음처럼 너무 많은 클래스들이 만들어 지게 됩니다.
+
+```cpp
+class Button {};
+class Radio {};
+class Check {};
+
+class BorderButton : public Button {};
+class BorderRadio : public Radio {};
+class BorderCheck : public Check {};
+
+class ScrollableButton : public Button {};
+class ScrollableRadio : public Radio {};
+class ScrollableCheck : public Check {};
+
+class ScrollableBorderButton : public Button {};
+class ScrollableBorderRadio : public Radio {};
+class ScrollableBorderCheck : public Check {};
+```
+
+이런 점이 싫어 다음과 같이 각 컨트롤에 `Border`와 `Scroll`의 기능을 구현하고 on/off 시키는 방법을 사용할 수도 있습니다.
+
+```cpp
+class Button {
+public:
+    void SetEnableBorder(bool val);
+    void SetEnableScroll(bool val);   
+};
+```
+
+하지만 이런 방법을 고수하면 개체가 많은 기능을 포함하다 보니 점점 커지게 되고, 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어 많은 기능을 구현해야 하는 괴물로 변신하게 될지도 모릅니다.
+
+[Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)이 아닌 포함을 통해 개체의 기능을 확장함으로서 이런 문제를 해결합니다.
+
+다음 그림에서 `Decorator`는 내부적으로 `m_Component`를 포함하며, `Operation()` 호출시 `AddedBehavior()`를 호출하여 추가 기능을 실행합니다.
+
+![Decorator](https://github.com/tango1202/tango1202.github.io/assets/133472501/5e40d916-c6fa-4cfb-9134-c4a849335e67)
+
+|항목|내용|
+|--|--|
+|`Component`|개체의 기본 인터페이스입니다.|
+|`ConcreteComponent`|`Component`를 구체화한 개체입니다.|
+|`Decorator`|`Operation()`실행시 추가 기능을 실행합니다.|
+
+`Decorator`를 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)로 만들어 다음과 같이 확장할 수도 있습니다.
+
+![Decorator](https://github.com/tango1202/tango1202.github.io/assets/133472501/a5c59327-dc69-401f-a7f1-ba39e942932c)
+
+# 특징
+
+ 런타임에 동적으로 새로운 외형을 추가하거나 기능을 추가할 수 있게 합니다. 
+ 
+ 또한 [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)를 중첩해서 사용할 수 있습니다.
+
+![Decorator](https://github.com/tango1202/tango1202.github.io/assets/133472501/8aa05a82-a48d-4ce6-a7db-9e6ced98a0c9)
+
+# 예제
+
+새롭게 추가된 기능의 UI에 `New` 아이콘을 추가로 출력하는 기능을 만든다고 가정해 봅시다.
+
+다음 예의 `NewIconDecorator`에서는 컨트롤을 `Draw()`할 때 `DrawNewIcon()`함수를 추가로 호출하여 `New` 아이콘을 출력합니다.
+
+1. #1 : 컨트롤 인터페이스입니다. `Draw()` 함수를 재구현해야 합니다.
+2. #2 : 개체 구현입니다. `Draw()` 함수를 재구현 하였습니다.
+3. #3 : `Decorator`입니다. `Draw()` 함수 호출시 `DrawNewIcon()`을 추가로 호출합니다. 이때 런타임에 동적으로 `NewIconDecorator`로 감쌀지 결정할 수 있습니다.
+
+```cpp
+// ----
+// #1. 컨트롤 인터페이스입니다. Draw() 함수를 재구현해야 합니다.
+// ----
+class Control {
+protected:
+    Control() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+private:
+    Control(const Control&) = delete;
+    Control(Control&&) = delete;
+    Control& operator =(const Control&) = delete;
+    Control& operator =(Control&&) = delete;          
+public:
+    virtual ~Control() = default; // 다형 소멸 하도록 public virtual
+
+    virtual void Draw() const = 0;
+};  
+// ----
+//  #2. 개체 구현입니다. Draw() 함수를 재구현 하였습니다.
+// ----    
+class Label : public Control {
+public:
+    Label() = default;
+
+        virtual void Draw() const override {
+        std::cout << "Label::Draw()" << std::endl;
+    }      
+};
+class Edit : public Control {
+public:
+    Edit() = default;
+
+    virtual void Draw() const override {
+        std::cout << "Edit::Draw()" << std::endl;
+    }  
+};
+// ----
+//  #3. Decorator입니다. Draw() 함수 호출시 DrawNewIcon()을 추가로 호출합니다.
+// ----
+class NewIconDecorator : public Control {
+    std::unique_ptr<Control> m_Control;
+public:
+    explicit NewIconDecorator(std::unique_ptr<Control> control) : m_Control{std::move(control)} {}
+
+    virtual void Draw() const override {
+        m_Control->Draw();
+        DrawNewIcon(); // #3
+    }
+private:
+    void DrawNewIcon() const {
+        std::cout << "NewBehaviorDecorator::DrawBehavior()" << std::endl; // #3
+    }
+};
+
+// Draw 호출시 NewIconDecorator인 것은 NewIcon을 추가로 출력합니다.
+std::vector<std::shared_ptr<Control>> v;
+v.emplace_back(std::unique_ptr<Control>{new Label});
+v.emplace_back(std::unique_ptr<Control>{new NewIconDecorator{std::unique_ptr<Control>{new Edit}}}); // #3. 런타임에 NewIcon을 출력할지 결정할 수 있습니다.
+
+for (auto& control : v) {
+    control->Draw();
+}
+```
+
+또한 `Decorator`는 `Control`을 상속했으므로, 다른 `Decorator`로 중첩해서 사용할 수 있습니다.
+
+다음의 `LogDecorator`는 로그를 출력합니다. 만약 `NewIconDecorator`를 전달하면, `Draw()`호출시 `New` 아이콘을 출력한 뒤 로그를 출력하게 됩니다.
+
+```cpp
+class LogDecorator : public Control {
+    std::unique_ptr<Control> m_Control;
+public:
+    explicit LogDecorator(std::unique_ptr<Control> control) : m_Control{std::move(control)} {}
+
+    virtual void Draw() const override {
+        m_Control->Draw();
+        Log();
+    }
+private:
+    void Log() const {
+        std::cout << "LogDecorator::Log()" << std::endl;
+    }
+};
+
+// Draw 호출시 로그를 기록합니다.
+std::vector<std::shared_ptr<Control>> v;
+v.emplace_back(std::unique_ptr<Control>{new LogDecorator{std::unique_ptr<Control>{new Label}}});
+v.emplace_back(
+    std::unique_ptr<Control>{new LogDecorator{ // 로그 출력
+        std::unique_ptr<Control>{new NewIconDecorator{ // NewIcon 출력
+            std::unique_ptr<Control>{new Edit}
+        }}
+    }}
+);
+
+for (auto& control : v) {
+    control->Draw();
+}      
+```
+
