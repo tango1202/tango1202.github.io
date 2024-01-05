@@ -60,9 +60,9 @@ void Draw() {
 
 ![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/2766dcb1-e756-4ffb-8fcf-d0a4edea0f7b)
 
-1. #1 : `Render` 추상부 입니다. 출력에 필요한 기본적인 함수들을 추상화하여 제공합니다.
+1. #1 : `Render` 추상부 입니다. 출력에 필요한 기본적인 함수들을 추상화합니다.
 
-2. #2 : `RenderImpl`의 컴파일 종속성을 없애기 위해 `Render`의 선언과 정의를 분리했습니다.
+2. #2 : `RenderImpl`과의 컴파일 종속성을 없애기 위해 `Render`의 선언과 정의를 분리했습니다.
 3. #3 : `RenderImpl`은 `Render`에서 필요로 하는 인터페이스 함수들을 제공합니다.
 4. #4 : `RenderImpl`을 GDI 또는 WPF로 구체화합니다.
 5. #5 : `SetImpl()`함수로 구현부를 런타임에 변경할 수 있습니다.
