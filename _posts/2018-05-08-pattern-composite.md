@@ -27,7 +27,7 @@ sidebar:
 
 # 특징
 
-하위 개체를 탐색해 주는 번거로움은 줄어들지만, `Leaf`입장에선 억지로 복합 개체용 인터페이스를 구현해야 하므로 [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)과 [제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/)을 위반합니다. 이는 하위 개체 추가시에만 [다운 캐스팅](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)하여 어느 정도 보완 할 수도 있습니다.
+하위 개체를 탐색해야 하는 번거로움은 줄어들지만, `Leaf`입장에선 억지로 복합 개체용 인터페이스를 구현해야 하므로 [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)과 [제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/)을 위반합니다. 이는 하위 개체 접근시에만 [다운 캐스팅](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)하여 어느 정도 보완 할 수도 있습니다.
 
 # 예제
 
