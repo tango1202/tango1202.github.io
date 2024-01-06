@@ -16,7 +16,7 @@ sidebar:
 
 다음 그림에서 `Composite`는 `Operation()` 호출시 자신의 하위 `m_Childeren`들의 `Operation()`을 모두 호출해 주어, `Client`가 하위 개체를 일일이 탐색하는 번거로움을 대신해 주고 있습니다. 다만, 단일 개체인 `Leaf`도 `Add(), Remove(), GetChild()`와 같은 복합 개체용 인터페이스를 구현해 주어야 합니다.
 
-![Composite](https://github.com/tango1202/tango1202.github.io/assets/133472501/bed6023a-c31b-4153-ab8b-8e43a6922b38)
+![Composite](https://github.com/tango1202/tango1202.github.io/assets/133472501/35828626-af7c-480d-a55e-1281c1ffd10e)
 
 |항목|내용|
 |--|--|

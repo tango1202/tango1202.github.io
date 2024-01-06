@@ -133,7 +133,7 @@ std::unique_ptr<Panel> panel{panelBuilder.Release()}; // #4. 생성된 panel을 
 
 아직까지는 굳이 `Director`와 `Builder`를 나눌 필요가 있을까 싶은데요, `ConcreteBuilder`를 다형적으로 만들어 기능을 확장할 수 있습니다.
 
-`IControlBuilder`를 다음과 같이 `PanelWriter`처럼 구현하면, `IdPasswordDirector`를 이용하여 아이디와 암호를 입력받는 UI을 Xml 형태로 출력하도록 만들 수 있습니다.
+`IControlBuilder`를 다음과 같이 `PanelWriter`처럼 구현하면, `IdPasswordDirector`를 이용하여 아이디와 암호를 입력받는 UI를 Xml 형태로 출력하도록 만들 수 있습니다.
 
 ```cpp
 class PanelWriter : public IControlBuilder {

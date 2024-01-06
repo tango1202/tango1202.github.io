@@ -345,8 +345,6 @@ EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 �
 |`typeid(개체명)`|개체 `type_info` 리턴|
 |`typeid(타입명)`|타입이나 클래스명, 구조체명, 공용체명의 `type_info` 리턴|
 
-`type_info`의 `name()`은 타입의 이름입니다만, 모든 타입에 대해 유일하다고 보장하지는 않습니다.(*컴파일러 제조사 마음입니다.*) 따라서, 개발이나 디버깅시의 힌트를 참고하는 정도로만 사용하시기 바랍니다. 
-
 [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 개체인지 아닌지에 따라 동작이 다릅니다.
 
 |항목|내용|
@@ -354,7 +352,15 @@ EXPECT_TRUE(sizeof(s) == sizeof(ref)); // 참조자의 크기는 참조하는 �
 |[가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 없는 경우|정의한 개체 타입을 리턴합니다.|
 |[가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있는 경우|참조하는 개체 타입을 리턴합니다.|
 
+`type_info`의 `name()`은 타입의 이름입니다만, 모든 타입에 대해 유일하다고 보장하지는 않습니다.(*컴파일러 제조사 마음입니다.*) 따라서, 개발이나 디버깅시의 힌트를 참고하는 정도로만 사용하시기 바랍니다. 
 
+다음은 `thype_info`의 멤버 함수입니다.
+
+|항목|내용|
+|--|--|
+|`==`|타입이 같은지 검사합니다.|
+|`before()`|어느 타입이 먼저 구현 정의되었는지 검사합니다. 타입의 대소 비교시 사용할 수 있습니다.|
+|`name()`|타입의 이름입니다만, 모든 타입에 대해 유일하다고 보장하지는 않습니다.|
 
 ```cpp
 // 가상 함수 없음
@@ -391,6 +397,17 @@ class Derived2 : public Base2 {};
 
     // b2Ref = d2로 b2Ref는 다형적 동작하며, 여전히 Derived2 타입임.(원래 개체의 타입 정보)
     EXPECT_TRUE(typeid(b2Ref).name() == typeid(Derived2).name());   
+}  
+// before()를 이용한 대소 비교
+{
+    Derived2 d1, d2;
+    Base2& b1 = d1;
+    Base2& b2 = d2;
+
+    const std::type_info& ti1 = typeid(b1);
+    const std::type_info& ti2 = typeid(b2);
+    EXPECT_TRUE(ti1.before(ti2) == false); // 모두 Derived2여서 ti1 < ti2는 false입니다. 
+    EXPECT_TRUE(ti2.before(ti1) == false); // 모두 Derived2여서 ti2 > ti1는 false입니다.          
 }
 ```
 # 스트림 연산자

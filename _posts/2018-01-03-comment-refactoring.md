@@ -43,7 +43,6 @@ void Shape::SetAngle(FLOAT angle) {
 // 오류 처리 : 강한 보증
 void Shape::Rotate(const Degree& delta, const bool repaint /*= true*/) /* throw() */ {
 
-    Degree angle(delta);
     SetAngle(GetAngle() + delta, this->GetCenter());
     if (repaint) Draw();
 }
@@ -69,7 +68,7 @@ void Shape::Rotate(const Degree& delta, const bool repaint /*= true*/) /* throw(
 
 9. 코드로 충분히 설명이 되는 주석들은 지웠습니다.
 
-코드가 3줄밖에 안되니 분석하는데 시간이 걸리지도 않을 것이며, 주석을 통한 설명보다 더 눈에 잘 들어 옵니다.
+코드가 2줄밖에 안되니 분석하는데 시간이 걸리지도 않을 것이며, 주석을 통한 설명보다 더 눈에 잘 들어 옵니다.
 
 기능구현 초기에 작성된 주석은 여러 단계의 리팩토링을 걸쳐 점차 사라져야 합니다. 막연히 이제 팀원들이 다 아는 사항이니까 그냥 지워야지... 하고 바로 지워버리면 안됩니다. 새로 입사한 팀원이 난감해 지겠죠?
 
