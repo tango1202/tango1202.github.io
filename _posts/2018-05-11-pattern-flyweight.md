@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[Flyweight](https://tango1202.github.io/pattern/pattern-flyweight/)는 개체를 공유하여 효율적으로 메모리를 사용하는 패턴입니다.
+[Flyweight](https://tango1202.github.io/pattern/pattern-flyweight/)는 개체를 공유하여 효율적으로 메모리를 사용하게 하는 패턴입니다.
 
 다음 그림에서 `Client`가 `FlyweightFactory::GetFlyweight()`로 개체를 요청하면, `m_FlyweightPool`에 기존 것이 없다면 새로 만들어 리턴하고, 있다면 기존 것을 리턴합니다. 
 
