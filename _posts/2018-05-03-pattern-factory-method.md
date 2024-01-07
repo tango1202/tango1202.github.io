@@ -10,7 +10,28 @@ sidebar:
 
 [Factory Method](https://tango1202.github.io/pattern/pattern-factory-method/)는 생성에 대한 구체적인 정보를 자식 클래스에서 알고 있을때 부모 클래스에서 자식 클래스에게 생성을 요청하기 위해 사용합니다.
 
-다음 그림에서 `Creator`의 `Operation()`는 구체화된 자식 개체인 `ConcreteProduct`의 생성을 필요로 하는데요, 부모 레이어에서 자식 레이어의 클래스를 직접 참조하면 종속의 방향성이 깨져 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)될 수 있습니다. 
+# 설명
+
+보통 앱 모듈은 기반 프레임워크를 상속하고 활용하여 만들어 집니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/520c9dad-f288-4478-8d2c-bd335d762e99)
+
+기반 프레임워크는 앱 모듈이 손쉽게 개발될 수 있도록 많은 것들을 대행해 주는데요, 예를들어 문서를 열때 이미 작성중인 문서가 저장되지 않았다면, 
+
+1. "문서가 저장되지 않았습니다. 문서를 저장해 주세요." 정도의 메시지를 표시해 주고 
+2. 문서를 생성한 뒤 
+3. 문서의 내용을 로딩해 주곤 합니다. 
+
+이때 생성하는 문서의 개체 타입은 앱 모듈에서 정의한 개체여야 하죠. 즉 기반 프레임워크에서 앱 모듈의 정보를 필요로 합니다. 
+
+이런 작업을 위해 기반 프레임워크는 앱 모듈과 어느정도 통신을 해야 하고, 통신을 위해 콜백 함수, 이벤트 함수, [Template Method](https://tango1202.github.io/pattern/pattern-template-method/), [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)등을 사용할 수 있습니다.
+
+[Factory Method](https://tango1202.github.io/pattern/pattern-factory-method/)는 
+[Template Method](https://tango1202.github.io/pattern/pattern-template-method/)의 한 종류로서 부모 클래스에서 자식 클래스에게 생성을 요청하는 패턴입니다.
+
+다음 그림에서 `Creator`의 `Operation()`가 구체화된 자식 개체인 `ConcreteProduct`의 생성을 필요로 한다고 생각해 봅시다. 
+
+부모 레이어에서 자식 레이어의 클래스를 직접 참조하면 종속의 방향성이 깨져 [상호 참조](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)될 수 있으므로 바람직하지 않습니다. 
 
 따라서, `Creator`에서 직접 `ConcreteProduct`를 생성하지 않고, 자식 클래스에서 [오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)한 `FactoryMethod()`함수에서 생성합니다. [Template Method](https://tango1202.github.io/pattern/pattern-template-method/) 처럼요.
 
@@ -129,6 +150,9 @@ protected:
     }
 };
 
+// ----
+// 테스트 코드
+// ----
 MyApp app;
 
 app.LoadDoc();

@@ -29,7 +29,7 @@ sidebar:
 
 개체 지향 프로그래밍에서는 이를 위해 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/), [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/), [다형성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-polymorphism/), [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)의 문법적 특징을 제공하는데요,
 
-구조체와 클래스는 이를 구현하는 근간입니다. 구조체와 클래스를 얼마나 잘 만드느냐에 따라 좋은 소프트웨어가 될 수 있고, 느리고 오류 투성이인 소프트웨어가 될 수 있습니다.
+구조체와 클래스는 이를 구현하는 근간입니다. 구조체와 클래스를 얼마나 잘 만드느냐에 따라 사용하기 쉽고 재활용이 간편한 소스코드가 될 수 있고, 느리고 오류 투성이인 소스코드가 될 수 있습니다.
 
 그래서 구조체와 클래스의 단편적인 문법보다는 왜 이런 구성 요소가 있고, 어떻게 활용하는지, 활용함으로서 어떤 효과가 있는지 아는게 좋습니다. 그러기 위해서는 개체 지향의 철학이나 원리를 어느정도 알고 접근하시는게 좋은데요, 특히 [5대 원칙(SOLID)](https://tango1202.github.io/principle/principle-solid/) 정도는 사전에 숙지하시고 구조체와 클래스를 만드시길 추천합니다.
 

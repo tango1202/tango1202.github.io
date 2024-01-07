@@ -10,6 +10,14 @@ sidebar:
 
 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)는 기존 인터페이스와 서로 맞지 않은 개체(`Adpatee`)를 사용하기 위해 인터페이스를 맞춘 감싼 개체(*Wrapper*)입니다.
 
+# 설명
+
+프로젝트를 진행하다 보면, 다른 프로젝트에서 사용했던 클래스를 재활용할 수 있고, 외부 라이브러리에서 제공한 소스코드를 사용할 수도 있습니다.
+
+이런 소스코드들이 현재 프로젝트와 인터페이스가 맞지 않다고 임의로 수정한다면, 다른 프로젝트와 충돌이 있을 수 있습니다. 그렇다고 복제해서 수정한다면, 코드가 중복될 우려도 있고, 다른쪽에서 버전업 되었을때 복제된 코드에도 일일이 반영해야 하는 문제가 있습니다.
+
+이런 경우 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)로 감싸서 인터페이스를 맞춥니다.
+
 # 클래스 Adpater와 개체 Adapter
 
 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)는 구현 방법에 따라 [클래스 Adpater](https://tango1202.github.io/pattern/pattern-adapter/#%ED%81%B4%EB%9E%98%EC%8A%A4-adpater%EC%99%80-%EA%B0%9C%EC%B2%B4-adapter)와 [개체 Adapter](https://tango1202.github.io/pattern/pattern-adapter/#%ED%81%B4%EB%9E%98%EC%8A%A4-adpater%EC%99%80-%EA%B0%9C%EC%B2%B4-adapter)로 구분할 수 있습니다.
@@ -119,6 +127,9 @@ public:
     } 
 };
 
+// ----
+// 테스트 코드
+// ----
 std::vector<std::unique_ptr<Shape>> v;
 v.emplace_back(new Rectangle{}); 
 v.emplace_back(new Ellipse{});

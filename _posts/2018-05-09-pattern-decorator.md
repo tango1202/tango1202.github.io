@@ -10,6 +10,8 @@ sidebar:
 
 [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 개체에 동적으로 새로운 외형을 추가하거나 기능을 추가할 수 있게 합니다.
 
+# 설명
+
 보통은 기존 클래스에 새로운 것을 추가할 경우 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 하는데요,
 
 ```cpp
@@ -88,13 +90,13 @@ public:
 
 다음 예의 `NewIconDecorator`에서는 컨트롤을 `Draw()`할 때 `DrawNewIcon()`함수를 추가로 호출하여 `New` 아이콘을 출력합니다.
 
-1. #1 : 컨트롤 인터페이스입니다. `Draw()` 함수를 재구현해야 합니다.
+1. #1 : `Control`은 `Component`입니다. `Draw()` 함수를 재구현해야 합니다.
 2. #2 : 개체 구현입니다. `Draw()` 함수를 재구현 하였습니다.
-3. #3 : `Decorator`입니다. `Draw()` 함수 호출시 `DrawNewIcon()`을 추가로 호출합니다. 이때 런타임에 동적으로 `NewIconDecorator`로 감쌀지 결정할 수 있습니다.
+3. #3 : `NewIconDecorator`는 `Decorator`입니다. `Draw()` 함수 호출시 `DrawNewIcon()`을 추가로 호출합니다. 이때 런타임에 동적으로 `NewIconDecorator`로 감쌀지 결정할 수 있습니다.
 
 ```cpp
 // ----
-// #1. 컨트롤 인터페이스입니다. Draw() 함수를 재구현해야 합니다.
+// #1. Component 입니다. Draw() 함수를 재구현해야 합니다.
 // ----
 class Control {
 protected:
@@ -129,7 +131,7 @@ public:
     }  
 };
 // ----
-//  #3. Decorator입니다. Draw() 함수 호출시 DrawNewIcon()을 추가로 호출합니다.
+//  #3. Decorator 입니다. Draw() 함수 호출시 DrawNewIcon()을 추가로 호출합니다.
 // ----
 class NewIconDecorator : public Control {
     std::unique_ptr<Control> m_Control;
@@ -145,6 +147,10 @@ private:
         std::cout << "NewBehaviorDecorator::DrawBehavior()" << std::endl; // #3
     }
 };
+
+// ----
+// 테스트 코드
+// ----
 
 // Draw 호출시 NewIconDecorator인 것은 NewIcon을 추가로 출력합니다.
 std::vector<std::shared_ptr<Control>> v;
@@ -175,6 +181,10 @@ private:
         std::cout << "LogDecorator::Log()" << std::endl;
     }
 };
+
+// ----
+// 테스트 코드
+// ----
 
 // Draw 호출시 로그를 기록합니다.
 std::vector<std::shared_ptr<Control>> v;

@@ -10,9 +10,11 @@ sidebar:
 
 [Facade](https://tango1202.github.io/pattern/pattern-facade/)는 서브시스템의 클래스들이 복잡하게 얽혀있고 사용이 어려운 경우, 단순하고 일관된 상위 수준의 통합 인터페이스를 제공합니다. 
 
+# 설명
+
 다음 그림에서 `Client`는 서브시스템의 클래스인 `A, B, C, D, E`를 직접 실행하지 않고, `Facade`를 통해 실행합니다.
 
-![Facade](https://github.com/tango1202/tango1202.github.io/assets/133472501/147b8a1a-b8b7-4808-b0b7-99feece4c1e9)
+![Facade](https://github.com/tango1202/tango1202.github.io/assets/133472501/a7fa4f29-a330-43a2-bdff-0b19cf10d009)
 
 
 # 특징

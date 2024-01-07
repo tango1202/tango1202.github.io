@@ -10,6 +10,12 @@ sidebar:
 
 [Bridge](https://tango1202.github.io/pattern/pattern-bridge/)는 추상과 구현을 분리하여, 종속적인 부분을 느슨하게 만들어 주거나, 구현을 다형적으로 만들 수 있게 합니다.
 
+# 설명
+
+[추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)는 공통적인 일반 개념을 만드는 작업입니다. 이를 잘 설계하면, 재활용성이 높아져 활용도가 높아지고, 특정 문제들을 해결하는데 있어서 공통된 접근을 하기 때문에 고민의 가지수가 적어집니다. 
+
+[Bridge](https://tango1202.github.io/pattern/pattern-bridge/)는 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)와 이의 구체화를 분리함으로서 코드간 종속성을 해결하고, 확장성을 제공해 줍니다. 대부분의 디자인 패턴에서의 근간이 되는 구조라고도 할 수 있겠습니다.
+
 간단하게는 [PImpl 이디엄](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-pimpl/)도 [Bridge](https://tango1202.github.io/pattern/pattern-bridge/)라 할 수 있습니다. 추상과 구현을 분리해서 코드간의 종속성이나 컴파일 종속성을 최소화 해줍니다.
 
 ![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/c9ae947f-d491-4b6d-8a49-8d2a16f68891)
@@ -61,7 +67,6 @@ void Draw() {
 ![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/2766dcb1-e756-4ffb-8fcf-d0a4edea0f7b)
 
 1. #1 : `Render` 추상부 입니다. 출력에 필요한 기본적인 함수들을 추상화합니다.
-
 2. #2 : `RenderImpl`과의 컴파일 종속성을 없애기 위해 `Render`의 선언과 정의를 분리했습니다.
 3. #3 : `RenderImpl`은 `Render`에서 필요로 하는 인터페이스 함수들을 제공합니다.
 4. #4 : `RenderImpl`을 GDI 또는 WPF로 구체화합니다.
@@ -166,6 +171,9 @@ public:
     }
 };  
 
+// ----
+// 테스트 코드
+// ----
 Render render{std::unique_ptr<RenderImpl>{new GDIRenderImpl{}}};
 Rectangle rect{0, 0, 10, 20};
 

@@ -17,7 +17,7 @@ sidebar:
 
 # 추상 클래스
 
-인스턴스화 할 수 없는 부모 클래스를 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)라고 합니다. [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)는 구체 구현한 자식 클래스들의 공통적인 일반 개념(*기능 스펙*)을 정의하는데 사용합니다.
+인스턴스화 할 수 없는 부모 클래스를 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)라고 합니다. [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)는 구체 구현한 자식 클래스들의 공통적인 일반 개념(*기능 스펙*)을 정의하는데 사용합니다. 공통적인 일반 개념을 잘 설계하면, 재활용성이 높아져 활용도가 높아지고, 특정 문제들을 해결하는데 있어서 공통된 접근을 하기 때문에 고민의 가지수가 적어집니다.
 
 * #1 : 공통적인 일반 개념(*기능 스펙*)을 정의합니다.
 * #2 : [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)는 1개 이상의 [순가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%88%9C%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)가 있어야 합니다.

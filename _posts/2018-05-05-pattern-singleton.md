@@ -10,9 +10,13 @@ sidebar:
 
 [Singleton](https://tango1202.github.io/pattern/pattern-singleton/)은 개체가 오직 1번만 생성된다는 것을 보장합니다.
 
-다음 그림과 같이 [정적 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)인 `GetInstance()`에서만 `Singleton`개체를 생성해서 리턴합니다. 만약 여러번 호출된다면 기존에 생성했던 개체를 리턴해서 오직 1회만 생성된다는 것을 보장해야 합니다. 또한 다른 생성 경로가 없도록 다른 생성자들은 `private`로 접근을 차단해 줍니다.
+# 설명
 
-![Slngleton](https://github.com/tango1202/tango1202.github.io/assets/133472501/ecef4fee-05f2-4b70-98c7-8a11f1957ded)
+리소스 관리등 전역적으로 1개의 인스턴스만 필요한 개체들이 있습니다. 이런 개체들은 실수로 여러개 생성되지 않도록 코딩 계약을 맺어두는게 좋습니다.
+
+다음 그림에서 `Singleton`은 생성자들은 `private`로 접근을 차단하고, [정적 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)인 `GetInstance()`를 통해서만 생성할 수 있게 합니다. 만약 여러번 호출된다면 `s_Instance`가 [함수내 정적 지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 이기 때문에 오직 1회만 생성한다는 것을 보장합니다.
+
+![Slngleton](https://github.com/tango1202/tango1202.github.io/assets/133472501/38d93758-4b33-4196-9bb0-74b9136c8c8e)
 
 # 특징
 
@@ -69,6 +73,9 @@ public:
     }         
 };
 
+// ----
+// 테스트 코드
+// ----
 // #4. 등록하지 않은 것들을 등록합니다.
 ErrorCodeManager::GetInstance().SetMessage(ErrorCode::InvalidArgument, "Invalid Argument");
 ErrorCodeManager::GetInstance().SetMessage(ErrorCode::OutOfRange, "Out Of Range");

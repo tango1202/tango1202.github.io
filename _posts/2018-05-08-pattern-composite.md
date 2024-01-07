@@ -8,11 +8,15 @@ sidebar:
     nav: "docs"
 ---
 
+[Composite](https://tango1202.github.io/pattern/pattern-composite/)은 단일 개체와 복합 개체를 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)하여 모두 동일한 방식으로 다루게 해줍니다. 
+
+# 설명
+
 `Tree`와 같은 개체 구조를 다룰 때 개별 개체에 접근하려면 하위 개체가 있는지 검사한 뒤, 있다면 하위 개체를 탐색해 주어야 합니다. 약간 번거롭고 코드가 지저분해질 수 있는데요,
 
 ![Composite](https://github.com/tango1202/tango1202.github.io/assets/133472501/c8d13e09-77ef-43a1-a568-59b762627a04)
 
-[Composite](https://tango1202.github.io/pattern/pattern-composite/)은 단일 개체와 복합 개체를 모두 동일하게 다루게 해주는 패턴입니다. 코드를 단순하게 유지시켜 주지만, 단일 개체에서도 복합 개체용 인터페이스들을 구현해야 하는 단점이 있습니다.
+[Composite](https://tango1202.github.io/pattern/pattern-composite/)은 단일 개체와 복합 개체를 모두 동일한 방식으로 다루게 해줍니다. 코드를 단순하게 유지시켜 주는 장점이 있지만, 단일 개체에서도 복합 개체용 인터페이스들을 구현해야 하는 단점이 있습니다.
 
 다음 그림에서 `Composite`는 `Operation()` 호출시 자신의 하위 `m_Childeren`들의 `Operation()`을 모두 호출해 주어, `Client`가 하위 개체를 일일이 탐색하는 번거로움을 대신해 주고 있습니다. 다만, 단일 개체인 `Leaf`도 `Add(), Remove(), GetChild()`와 같은 복합 개체용 인터페이스를 구현해 주어야 합니다.
 
@@ -35,13 +39,13 @@ UI 컨트롤들은 여러개의 컨트롤을 하위 개체로 사용하는 `Pane
 
 다음은 각 컨트롤들을 [Composite](https://tango1202.github.io/pattern/pattern-composite/) 패턴을 이용하여 `Panel`로 관리하는 예입니다. `Panel`은 하위에 일반 컨트롤들이나 또다른 `Panel`을 추가할 수 있으며, `Panel`에 `SetEnable()`을 호출하면, 모든 하위 컨트롤들의 `SetEnable()`이 호출됩니다.
 
-1. #1 : 단일 개체와 복합 개체용 인터페이스를 함께 정의합니다.
+1. #1 : `Control`은 `Component`입니다. 단일 개체와 복합 개체용 인터페이스를 함께 정의합니다.
 2. #2 : `Label`과 `Edit`는 단일 개체의 구현입니다. 이때 복합 개체용 인터페이스 함수들은 사용하지 못하도록 예외를 발생시킵니다.
-3. #3 : `Panel`은 개체의 구현입니다. 이때 `SetEnable()` 실행시 모든 하위 개체에도 `SetEnable()`을 호출합니다.
+3. #3 : `Panel`은 `Composite` 입니다. 이때 `SetEnable()` 실행시 모든 하위 개체에도 `SetEnable()`을 호출합니다.
 
 ```cpp
 // ----
-// #1. 컨트롤 인터페이스입니다. 단일 개체와 복합 개체용 인터페이스를 함께 정의합니다.
+// #1. Component 입니다. 단일 개체와 복합 개체용 인터페이스를 함께 정의합니다.
 // ----
 class Control {
 protected:
@@ -102,7 +106,7 @@ public:
 };
 
 // ----
-// #3. 복합 개체의 구현입니다. SetEnable() 실행시 모든 하위 개체에 적용합니다.
+// #3. 복합 개체인 Composite 입니다. SetEnable() 실행시 모든 하위 개체에 적용합니다.
 // ----
 class Panel : public Control {
     std::vector<std::shared_ptr<Control>> m_Children;
@@ -126,6 +130,9 @@ public:
     }
 };
 
+// ----
+// 테스트 코드
+// ----
 std::unique_ptr<Control> subPanel{new Panel};
 subPanel->Add(std::unique_ptr<Control>{new Label});
 subPanel->Add(std::unique_ptr<Control>{new Edit});   

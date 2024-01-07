@@ -10,6 +10,22 @@ sidebar:
 
 [Flyweight](https://tango1202.github.io/pattern/pattern-flyweight/)는 개체를 공유하여 효율적으로 메모리를 사용하게 하는 패턴입니다.
 
+# 설명
+
+보통 편집 프로그램에서 사용되는 개체는 글꼴, 테두리, 채우기 속성을 가지고 있습니다. 대부분 Look & Feel을 일관되게 유지하고자 동일한 글꼴과, 테두리와, 채우기 속성을 사용합니다. 모든 개체의 글꼴, 테두리, 채우기 속성을 다르게 하는 문서는 거의 없죠. 즉, 여러 개체에서 동일한 속성을 빈번하게 사용합니다. 
+
+이때 일일이 속성을 생성해서 사용한다면, 불필요하게 중복 생성될 수 있습니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/58fc91da-c1be-47b8-8b2a-901cb01dd832)
+
+
+따라서, 중복되는 것은 공유해서 사용하여 메모리를 알뜰하게 사용하는게 좋습니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6ab5aa06-b5e4-4a8e-86bf-1c2c6578aad2)
+
+
+이러한 경우 [Flyweight](https://tango1202.github.io/pattern/pattern-flyweight/) 패턴을 이용하여 개체를 공유할 수 있습니다.
+
 다음 그림에서 `Client`가 `FlyweightFactory::GetFlyweight()`로 개체를 요청하면, `m_FlyweightPool`에 기존 것이 없다면 새로 만들어 리턴하고, 있다면 기존 것을 리턴합니다. 
 
 또한 `Client`는 `UnsharedConcreteFlyweight`에 직접 접근하여 공유되지 않는 개체를 사용할 수도 있습니다.
@@ -190,6 +206,9 @@ public:
     }
 }; 
 
+// ----
+// 테스트 코드
+// ----
 BrushFactory factory;
 
 Rectangle rectangle{1, 1, 10, 20};

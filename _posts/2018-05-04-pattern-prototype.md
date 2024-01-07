@@ -10,6 +10,16 @@ sidebar:
 
 [Prototype](https://tango1202.github.io/pattern/pattern-prototype/)은 미리 정의된 개체로부터 복제하여 개체를 생성할때 사용합니다.
 
+# 설명
+
+다음과 같이 편집 프로그램에서 사용하는 도형 팔레트 메뉴를 생각해 봅시다.
+
+![Image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ad01b76d-74b3-454d-978b-ea18a6117e58)
+
+각 도형은 지오메트리 정보와 배경 속성, 테두리 속성을 가지고 있는데요, 메뉴를 클릭할 때마다 해당 속성을 설정해서 개체를 생성해 주어야 합니다. 이 값을 일일이 설정하는 건 번거로운 일이죠.
+
+이런 경우 [Prototype](https://tango1202.github.io/pattern/pattern-prototype/)을 이용하여 미리 정의된 개체를 메뉴에 연결해 두고, 메뉴 클릭시 개체를 복제헤서 사용하면 손쉽게 구현할 수 있습니다.
+
 다음 그림에서 `Client`는 `m_Prototype`의 `Clone()`을 호출하여 개체를 복제 생성합니다.
 
 ![Prototype](https://github.com/tango1202/tango1202.github.io/assets/133472501/4d59eae0-3b2d-4829-bea8-d81f3ead664f)
@@ -96,8 +106,9 @@ public:
         return std::unique_ptr<Shape>{new Circle(*this)};
     }
 };
-
-// 클릭하면 해당 Shape개체를 생성해줍니다.
+// ----
+// Client 입니다. 클릭하면 해당 Shape개체를 생성해줍니다.
+// ----
 class ShapeButton {
     std::unique_ptr<Shape> m_Shape; // #2. Prototype 개체입니다.
 public:
@@ -125,7 +136,7 @@ public:
     }
 };
 
-// ShapeButton
+// ShapeButton에 미리 정의된 도형들을 연결합니다.
 class ShapePalette {
     ShapeButton m_RectangleButton;
     ShapeButton m_SquareButton;
@@ -154,6 +165,9 @@ public:
     }
 };
 
+// ----
+// 테스트 코드
+// ----
 ShapePalette shapePalette;
 
 // 각 버튼에 연결된 shape을 복제해서 사용합니다.

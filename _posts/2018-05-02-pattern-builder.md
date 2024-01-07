@@ -8,9 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-[Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 확장성을 향상시키는 패턴입니다.
+[Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 확장성을 향상시킵니다.
 
-다음 그림에서 `Director`는 `Builder`에서 제공하는 `BuildPart1()`, `BuildPart2()`, `BuildPart3()`을 조합하여 개체를 생성합니다.
+# 설명
+
+다음 그림에서 `Director`는 `Builder`에서 제공하는 `BuildPart1()`, `BuildPart2()`, `BuildPart3()`을 조합하여 개체를 생성합니다. 향후 `Builder`를 교체하여 다른 기능을 수행할 수 있도록 확장할 수 있습니다.
 
 ![Builder](https://github.com/tango1202/tango1202.github.io/assets/133472501/4ae283fa-3c49-4594-a48f-a14639e181c8)
 
@@ -125,6 +127,9 @@ public:
     }    
 };  
 
+// ----
+// 테스트 코드
+// ----
 PanelBuilder panelBuilder;
 IdPasswordDirector director{panelBuilder};
 director.Construct();
@@ -158,6 +163,9 @@ public:
     } 
 };
 
+// ----
+// 테스트 코드
+// ----
 PanelWriter panelWriter;
 IdPasswordDirector director{panelWriter};
 director.Construct(); // 생성하는 정보를 cout으로 출력합니다.
@@ -186,6 +194,9 @@ public:
     size_t GetCount() const {return m_Count;}
 };
 
+// ----
+// 테스트 코드
+// ----
 PanelCounter panelCounter;
 IdPasswordDirector director{panelCounter};
 director.Construct();
