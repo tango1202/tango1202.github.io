@@ -28,7 +28,7 @@ sidebar:
 |`Subject`|`Client`에서 사용하는 개체의 인터페이스 입니다.|
 |`Proxy`|`RealSubject`를 대리합니다.|
 |`RealSubject`|`Subject`를 구체화한 개체로서 이미지등 지연 생성이 필요한 개체입니다.|
-|`Client`|`Subject`를 호출합니다.|
+|`Client`|`Subject`를 사용합니다.|
 
 # 특징
 

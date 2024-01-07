@@ -64,7 +64,7 @@ void Draw() {
 2. `RenderImpl`은 GDI 버전과 WPF 버전이 있으며, `Render::SetImpl()` 함수로 런타임에 설정할 수 있습니다. 
 3. 외부에서 GDI와 WPF를 결정해서 전달해 주므로, `Rectangle`은 GDI인지, WPF인지 고민없이 본연의 출력 로직에만 집중하여 작성하면 됩니다.
 
-![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/2766dcb1-e756-4ffb-8fcf-d0a4edea0f7b)
+![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/02165cce-a3f7-4120-b614-34ee9ea86bcd)
 
 1. #1 : `Render` 추상부 입니다. 출력에 필요한 기본적인 함수들을 추상화합니다.
 2. #2 : `RenderImpl`과의 컴파일 종속성을 없애기 위해 `Render`의 선언과 정의를 분리했습니다.
