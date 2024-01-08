@@ -42,6 +42,7 @@ UI 컨트롤들은 여러개의 컨트롤을 하위 개체로 사용하는 `Pane
 1. #1 : `Control`은 `Component`입니다. 단일 개체와 복합 개체용 인터페이스를 함께 정의합니다.
 2. #2 : `Label`과 `Edit`는 단일 개체의 구현입니다. 이때 복합 개체용 인터페이스 함수들은 사용하지 못하도록 예외를 발생시킵니다.
 3. #3 : `Panel`은 `Composite` 입니다. 이때 `SetEnable()` 실행시 모든 하위 개체에도 `SetEnable()`을 호출합니다.
+4. #4 : `rootPanel`에서 `SetEnable()`을 호출하면 모든 하위 개체들의 `SetEnable()`을 실행합니다.
 
 ```cpp
 // ----
@@ -142,6 +143,6 @@ rootPanel.Add(std::unique_ptr<Control>{new Label});
 rootPanel.Add(std::unique_ptr<Control>{new Edit});
 rootPanel.Add(std::move(subPanel)); // 하위 Panel을 추가합니다.
 
-rootPanel.SetEnable(true); // 모든 하위 개체에 적용됩니다.
+rootPanel.SetEnable(true); // #4. 모든 하위 개체들의 SetEnable()을 실행합니다.
 ```
 

@@ -155,8 +155,8 @@ protected:
 // ----
 MyApp app;
 
-app.LoadDoc();
-app.SaveDoc();
+app.LoadDoc(); // MyDoc을 사용합니다.
+app.SaveDoc(); // MyDoc을 사용합니다.
 ```
 
 

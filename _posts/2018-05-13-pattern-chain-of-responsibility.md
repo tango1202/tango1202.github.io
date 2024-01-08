@@ -8,31 +8,35 @@ sidebar:
     nav: "docs"
 ---
 
-[Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)는 요청을 여러 개체에 전달하여 여러 개체들이 함께 처리할 수 있게 해줍니다.
+[Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)는 요청을 여러 개체에 전달하여 함께 처리할 수 있게 해줍니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/042b6fec-a617-49e6-b4de-5391152ebf69)
 
 # 설명
 
-보통은 개체 내부에서 직접적으로 요청을 처리합니다. 
+보통은 개체의 함수를 호출하면 내부적으로 해당 기능을 처리합니다. 
 
-UI 컨트롤의 테두리 속성을 살펴봅시다. 컨트롤의 테두리 속성을 해당 컨트롤이 가지고 있고, 이 속성을 이용하여 테두리를 그릴 수 있습니다.
+UI 컨트롤의 테두리 속성을 살펴봅시다. 컨트롤은 테두리 속성을 가지고 있고, 이 속성을 이용하여 테두리를 그립니다.
 
 ```cpp
 class Control {
-    Border m_Border;
+    Border m_Border; // 테두리 속성
 public:
     void Draw() const {
-        DrawBodrer(left, top, width, height, m_Border); // m_Border 속성으로 그립니다.
+        DrawBorder(left, top, width, height, m_Border); // m_Border 속성으로 그립니다.
+    }
+private:
+    void DrawBorder(int l, int t, int w, int h, const Border& border) {
+        // 테두리를 그립니다.
     }
 };
 ```
 
-또다른 방법으로는 스타일링을 이용하는 방법이 있습니다. 내부적으로 `Border` 속성이 있으면 해당 속성으로 그리고, 없다면 상위 개체의 속성으로 그리는 거죠. 이 방법을 사용하면 상위 개체의 속성을 변경했을때 하위 개체의 속성이 모두 변경되는 효과를 볼 수 있고, 굳이 재정의된 속성을 사용하고 싶다면 별도로 설정하면 됩니다.
+또다른 방법으로는 스타일링을 이용하는 방법이 있습니다. 내부적으로 `Border` 속성이 있으면 해당 속성으로 그리고, 없다면 상위 개체의 속성으로 그리는 거죠. 이 방법을 사용하면 상위 개체의 속성을 변경했을때 하위 개체의 속성이 모두 변경되는 효과를 볼 수 있습니다.
 
 ```cpp
 class Control {
-    std::unique_ptr<Border> m_Border;
+    std::unique_ptr<Border> m_Border; // 테두리 속성. nullptr이면 상위 개체의 속성을 이용합니다.
     const char* m_Parent;
 public:
     void Draw() const {
@@ -40,20 +44,28 @@ public:
         if (!border) { // Border 속성이 없다면
             border = m_Parent->GetBorder(); // 상위 개체의 테두리 속성을 구합니다.
         }
-        DrawBodrer(left, top, width, height, border); // border 속성으로 그립니다.
+        DrawBorder(left, top, width, height, *border); // border 속성으로 그립니다.
     };
+    const char* GetParent() const {return m_Parent;}
+    const Border* GetBorder() const {return m_Border.get();}
+private:
+    void DrawBorder(int l, int t, int w, int h, const Border& border) {
+        // 테두리를 그립니다.
+    }    
 };
 ```
 
-하지만 `m_Parent`에도 없다면, 더 상위 개체에 속성을 요청해야 합니다. 이러한 요청을 Chain 처럼 연결하기 위해 [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)를 이용할 수 있습니다.
+하지만 `m_Parent`에도 테두리 속성이 없다면, 더 상위 개체에 테두리 속성을 요청해야 합니다. 그렇다고, `m_Parent->m_Parent->GetBorder()`라고 호출하는건 좀 그렇죠. `m_Parent->m_Parent->m_Parent->GetBorder()`와 같이 계속 상위의 상위의 상위 개체에 요청할 수는 없는 노릇이잖아요?
 
-다음 그림처럼 `Client`가 `HandleRequest()`를 호출하면, `Handler`에서 직접 처리할 것인지, 다음 개체인 `m_Successor`에 요청할 것인지 판단하여 처리하게 됩니다. 따라서 `Handler`는 요청을 처리할 다음 개체인 `m_Successor`가 세팅되어 있어야 합니다.
+[Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)는 이러한 요청을 Chain 처럼 연결하여 문제를 해결합니다.
+
+다음 그림처럼 `Handler`는 요청을 처리할 다음 개체인 `m_Successor`와 연결됩니다. 따라서, `Client`가 `HandleRequest()`를 호출하면, `Handler`에서 직접 처리할 것인지, 다음 개체인 `m_Successor`에 요청할 것인지 판단하여 처리하고, 다음 개체에서도 동일한 반복을 하게 되어 Chain으로 연결된 개체들이 함께 처리를 할 수 있도록 해줍니다.  
 
 ![Chain of Responsibility](https://github.com/tango1202/tango1202.github.io/assets/133472501/925a4c92-168a-4307-bd31-55d10b5e4dc3)
 
 |항목|내용|
 |--|--|
-|`Handler`|`HandleRequest()`시 직접 처리할 것인지, 다음 개체인 `m_Successor`에 요청할 것인지 판단하여 처리합니다.|
+|`Handler`|요청을 처리할 다음 개체인 `m_Success`를 관리합니다. `HandleRequest()`시 직접 처리할 것인지, 다음 개체인 `m_Successor`에 요청할 것인지 판단하여 처리합니다.|
 |`ConcreteHandler1, ConcreteHandler2`|`Handler`를 구체화합니다.|
 |`Client`|`Handler`의 `HandleRequest()`를 호출합니다.|
 
@@ -75,10 +87,10 @@ public:
 
 `subPanel`내의 `Label`은 굵기를 `1`로 변경했으므로 `1`굵기로 변경합니다.
 
-이를 구현하기 위해 컨트롤에서는 자신이 가지고 있는 `Border`와 상위 개체를 [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)로 연결하며, `Border`의 속성을 수집하기 위해 `MergeBorder()`를 호출합니다.
+이를 구현하기 위해 컨트롤에서는 상위 개체인 `Panel`을 [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)로 연결하며, `Border`의 속성을 수집하기 위해 `MergeBorder()`를 호출합니다.
 
 1. #1 : [Composite 패턴](https://tango1202.github.io/pattern/pattern-composite/)으로 `Control`, `Label`, `Edit`, `Panel`을 구현합니다.
-2. #2 : `StyledBorderHandler`는 `Handler` 입니다.  `MergeBorder()` 호출시 연결된 다음 개체에 요청합니다.
+2. #2 : `StyledBorderHandler`는 `Handler` 입니다. `MergeBorder()` 호출시 연결된 다음 개체에 요청합니다.
 3. #3 : `Control`이 `StyledBorderHandler`를 상속하여 `MergeBorder()`시 연결된 다음 개체에 요청할 수 있도록 합니다.
 4. #4 : `Panel`에 `Child`가 추가되면 `SetSuccessor()`를 이용하여 다음 개체를 연결합니다.
 5. #5 : `MergeBorder()` 호출시 자기의 속성과 다음 개체의 속성을 누적합니다.

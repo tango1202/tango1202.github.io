@@ -170,7 +170,7 @@ public:
 // ----
 ShapePalette shapePalette;
 
-// 각 버튼에 연결된 shape을 복제해서 사용합니다.
+// #3. 각 버튼에 연결된 shape을 복제해서 사용합니다.
 std::unique_ptr<Shape> shape1{shapePalette.GetRectangleButton().Click()};
 const Rectangle& rectangle{dynamic_cast<const Rectangle&>(*shape1)};
 EXPECT_TRUE(rectangle.GetLeft() == 1 && rectangle.GetTop() == 2 && rectangle.GetWidth() == 5 && rectangle.GetHeight() == 10);
