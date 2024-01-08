@@ -48,13 +48,13 @@ class Shape {
 protected:
     Shape() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
     Shape(const Shape&) = default; 
+public:
+    virtual ~Shape() = default; // 다형 소멸 하도록 public virtual    
 private:
     Shape(Shape&&) = delete; 
     Shape& operator =(const Shape&) = delete; 
     Shape& operator =(Shape&&) = delete;   
 public:
-    virtual ~Shape() = default; // 다형 소멸 하도록 public virtual    
-
     // #1. 복제본을 생성합니다.
     virtual std::unique_ptr<Shape> Clone() const = 0;
 };

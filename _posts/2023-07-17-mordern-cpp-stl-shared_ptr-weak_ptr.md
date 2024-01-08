@@ -586,6 +586,34 @@ EXPECT_TRUE(!(a.owner_before(c)) && !(c.owner_before(a)));
 
 [owner_before()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/#owner_before-%EB%B9%84%EA%B5%90)를 이용하여 소유권 개체의 주소로 비교하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)입니다.
 
+# shared_ptr의 다형성
+
+[unique_ptr의 다형성](??)의 경우와 마찬가지로 다형적 관계에 있는 경우 부모 클래스의 포인터로 변환됩니다.
+
+```cpp
+class Base {
+public:
+    virtual int Func() const {return 1;}
+};
+class Derived : public Base {
+public:
+    virtual int Func() const {return 2;}
+};
+
+std::shared_ptr<Base> base{new Base{}};
+EXPECT_TRUE(base->Func() == 1);
+
+std::shared_ptr<Derived> derived{new Derived{}};
+EXPECT_TRUE(derived->Func() == 2);
+
+base = derived; // shared_ptr<Derived>를 shared_ptr<Base>로 대입할 수 있습니다.
+
+EXPECT_TRUE(base->Func() == 2);
+EXPECT_TRUE(base.use_count() == 2 && derived.use_count() == 2);
+
+// derived = base; // (X) 컴파일 오류. 반대는 안됩니다.
+```
+
 # shared_ptr 형변환 
 
 [shared_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-shared_ptr-weak_ptr/) 형변환 할때

@@ -127,14 +127,14 @@ public:
 class RenderImpl {
 protected:
     RenderImpl() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected    
+public:
+    virtual ~RenderImpl() = default; // 다형 소멸 하도록 public virtual
 private:
     RenderImpl(const RenderImpl&) = delete; 
     RenderImpl(RenderImpl&&) = delete; 
     RenderImpl& operator =(const RenderImpl&) = delete; 
     RenderImpl& operator =(RenderImpl&&) = delete;   
 public:
-    virtual ~RenderImpl() = default; // 다형 소멸 하도록 public virtual
-
     virtual void DrawLineImpl(int x1, int y1, int x2, int y2) = 0;
     virtual void DrawImageImpl(int l, int t, const char* filename) = 0;
 };

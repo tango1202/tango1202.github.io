@@ -63,14 +63,14 @@ sidebar:
 class Doc {
 protected:
     Doc() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~Doc() = default; // 다형 소멸 하도록 public virtual
 private:
     Doc(const Doc&) = delete; 
     Doc(Doc&&) = delete; 
     Doc& operator =(const Doc&) = delete; 
     Doc& operator =(Doc&&) = delete;   
 public:
-    virtual ~Doc() = default; // 다형 소멸 하도록 public virtual
-
     bool IsDirty() const {return false;} // 테스트용으로 그냥 false를 리턴합니다.
     virtual void Load() = 0;
     virtual void Save() = 0;
@@ -81,19 +81,17 @@ private:
     std::unique_ptr<Doc> m_Doc;
 protected:
     App() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~App() = default; // 다형 소멸 하도록 public virtual
 private:
     App(const App&) = delete;
     App(const App&&) = delete;
     App& operator =(const App&) = delete;
     App& operator =(App&&) = delete;   
-public:
-    virtual ~App() = default; // 다형 소멸 하도록 public virtual
-
 protected:
     // 자식 개체에서만 호출 가능하도록 protected입니다.
     // #2. 자식 개체에서 어떤 Doc을 생성할지 결정합니다.
     virtual std::unique_ptr<Doc> CreateDoc() = 0;
-
 public:   
     void LoadDoc() {
         

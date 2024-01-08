@@ -54,55 +54,55 @@ sidebar:
 class Button { // #1
 protected:
     Button() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~Button() = default; // 다형 소멸 하도록 public virtual
 private:
     Button(const Button&) = delete;
     Button(Button&&) = delete;
     Button& operator =(const Button&) = delete;
     Button& operator =(Button&&) = delete;   
 public:
-    virtual ~Button() = default; // 다형 소멸 하도록 public virtual
-
     virtual void Click() = 0; // 버튼을 클릭합니다.
 };
 
 class Check { // #1
 protected:
     Check() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~Check() = default; // 다형 소멸 하도록 public virtual    
 private:
     Check(const Check&) = delete;
     Check(Check&&) = delete;
     Check& operator =(const Check&) = delete;
     Check& operator =(Check&&) = delete;   
 public:
-    virtual ~Check() = default; // 다형 소멸 하도록 public virtual
-
     virtual void Toggle() = 0; // 체크 선택을 토글합니다.
 };
 
 class RadioGroup { // #1
 protected:
     RadioGroup() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~RadioGroup() = default; // 다형 소멸 하도록 public virtual
 private:
     RadioGroup(const RadioGroup&) = delete;
     RadioGroup(RadioGroup&&) = delete;
     RadioGroup& operator =(const RadioGroup&) = delete;
     RadioGroup& operator =(RadioGroup&&) = delete;   
 public:
-    virtual ~RadioGroup() = default; // 다형 소멸 하도록 public virtual
-
     virtual void Select(size_t index) = 0; // 주어진 인덱스를 선택합니다.
 };
 
 class ControlFactory { //#2
 protected:
     ControlFactory() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~ControlFactory() = default; // 다형 소멸 하도록 public virtual
 private:
     ControlFactory(const ControlFactory&) = delete;
     ControlFactory(ControlFactory&&) = delete;
     ControlFactory& operator =(const ControlFactory&) = delete;
     ControlFactory& operator =(ControlFactory&&) = delete;
-public:
-    ~ControlFactory() = default; // 다형 소멸 하도록 public virtual
 public:
     virtual std::unique_ptr<Button> CreateButton() const = 0;
     virtual std::unique_ptr<Check> CreateCheck() const = 0;

@@ -65,7 +65,7 @@ private:
 
 |항목|내용|
 |--|--|
-|`Handler`|요청을 처리할 다음 개체인 `m_Success`를 관리합니다. `HandleRequest()`시 직접 처리할 것인지, 다음 개체인 `m_Successor`에 요청할 것인지 판단하여 처리합니다.|
+|`Handler`|요청을 처리할 다음 개체인 `m_Successor`를 관리합니다. `HandleRequest()`시 직접 처리할 것인지, 다음 개체인 `m_Successor`에 요청할 것인지 판단하여 처리합니다.|
 |`ConcreteHandler1, ConcreteHandler2`|`Handler`를 구체화합니다.|
 |`Client`|`Handler`의 `HandleRequest()`를 호출합니다.|
 
@@ -90,8 +90,8 @@ private:
 이를 구현하기 위해 컨트롤에서는 상위 개체인 `Panel`을 [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)로 연결하며, `Border`의 속성을 수집하기 위해 `MergeBorder()`를 호출합니다.
 
 1. #1 : [Composite 패턴](https://tango1202.github.io/pattern/pattern-composite/)으로 `Control`, `Label`, `Edit`, `Panel`을 구현합니다.
-2. #2 : `StyledBorderHandler`는 `Handler` 입니다. `MergeBorder()` 호출시 연결된 다음 개체에 요청합니다.
-3. #3 : `Control`이 `StyledBorderHandler`를 상속하여 `MergeBorder()`시 연결된 다음 개체에 요청할 수 있도록 합니다.
+2. #2 : `IStyledBorderHandler`는 `Handler` 입니다. `MergeBorder()` 호출시 연결된 다음 개체에 요청합니다.
+3. #3 : `Control`이 `IStyledBorderHandler`를 상속하여 `MergeBorder()`시 연결된 다음 개체에 요청할 수 있도록 합니다.
 4. #4 : `Panel`에 `Child`가 추가되면 `SetSuccessor()`를 이용하여 다음 개체를 연결합니다.
 5. #5 : `MergeBorder()` 호출시 자기의 속성과 다음 개체의 속성을 누적합니다.
 6. #6 : `Border`의 속성을 합칩니다. 
@@ -103,14 +103,13 @@ class Border {
     std::unique_ptr<unsigned int> m_Color;
 public:
     Border() = default; // 속성이 세팅되지 않은 기본 Border를 생성합니다.
+    ~Border() = default;    
 private:
     Border(const Border&) = delete; 
     Border(Border&&) = delete; 
     Border& operator =(const Border&) = delete; 
     Border& operator =(Border&&) = delete;   
 public:
-    ~Border() = default;
-
     unsigned int GetWidth() const {
         if (!m_Width) {
             return 0; // 설정되지 않으면 기본적으로 0 입니다.
@@ -145,15 +144,15 @@ public:
 // ----
 // #2. Handler 입니다. MergeBorder()를 연결된 다음 개체에 요청합니다.
 // ----
-class StyledBorderHandler {
+class IStyledBorderHandler {
 protected:
-    StyledBorderHandler() = default; // 인터페이스여서 상속한 개체에서만 생성할 수 있게함
-    ~StyledBorderHandler() = default; // 인터페이스여서 protected non-virtual 
+    IStyledBorderHandler() = default; // 인터페이스여서 상속해서만 사용하도록 protected
+    ~IStyledBorderHandler() = default; // 인터페이스여서 다형 소멸을 하지 않으므로 protected non-virtual
 private:
-    StyledBorderHandler(const StyledBorderHandler&) = delete;
-    StyledBorderHandler(StyledBorderHandler&&) = delete;
-    StyledBorderHandler& operator =(const StyledBorderHandler&) = delete;
-    StyledBorderHandler& operator =(StyledBorderHandler&&) = delete;   
+    IStyledBorderHandler(const IStyledBorderHandler&) = delete;
+    IStyledBorderHandler(IStyledBorderHandler&&) = delete;
+    IStyledBorderHandler& operator =(const IStyledBorderHandler&) = delete;
+    IStyledBorderHandler& operator =(IStyledBorderHandler&&) = delete;   
 public:
     // border에 스타일을 처리를 누적합니다.
     virtual void MergeBorder(Border& border) const = 0;
@@ -162,19 +161,19 @@ public:
 // ----
 // #1. Composite 패턴으로 Control, Label, Edit, Panel을 구현합니다.
 // ----
-class Control : public StyledBorderHandler { // #3
+class Control : public IStyledBorderHandler { // #3
     std::unique_ptr<Border> m_Border;
-    const StyledBorderHandler* m_Successor; // #4
+    const IStyledBorderHandler* m_Successor; // #4
 protected:
     Control() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~Control() = default; // 다형 소멸 하도록 public virtual
 private:
     Control(const Control&) = delete;
     Control(Control&&) = delete;
     Control& operator =(const Control&) = delete;
     Control& operator =(Control&&) = delete;          
 public:
-    virtual ~Control() = default; // 다형 소멸 하도록 public virtual
-
     void SetBorder(BorderStyle style, unsigned int val) {
         if (!m_Border) {
             m_Border = std::unique_ptr<Border>{new Border};
@@ -200,7 +199,7 @@ public:
             m_Successor->MergeBorder(border);
         }
     }
-    void SetSuccessor(const StyledBorderHandler* successor) { // #4
+    void SetSuccessor(const IStyledBorderHandler* successor) { // #4
         m_Successor = successor;
     }
 

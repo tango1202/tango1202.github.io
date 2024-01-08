@@ -67,14 +67,13 @@ public:
 // ----
 class IControlBuilder { // #1
 protected:
-    IControlBuilder() = default; // 상속해서만 사용하도록 protected
+    IControlBuilder() = default; // 인터페이스여서 상속해서만 사용하도록 protected
+    ~IControlBuilder() = default; // 인터페이스여서 다형 소멸을 하지 않으므로 protected non-virtual
 private:
     IControlBuilder(const IControlBuilder&) = delete;
     IControlBuilder(IControlBuilder&&) = delete;
     IControlBuilder& operator =(const IControlBuilder&) = delete;
     IControlBuilder& operator =(IControlBuilder&&) = delete;
-protected:
-    ~IControlBuilder() = default; // 다형 소멸을 하지 않으므로 protected non-virtual
 public:
     virtual void AddLabel(const char* caption) = 0;
     virtual void AddEdit() = 0;

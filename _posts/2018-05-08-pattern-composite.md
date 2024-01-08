@@ -37,7 +37,7 @@ sidebar:
 
 UI 컨트롤들은 여러개의 컨트롤을 하위 개체로 사용하는 `Panel`을 사용하여 관리하면 좋습니다. 이 `Panel`을 대화상자에 붙이거나, 메인 메뉴에 붙이거나, 작업창에 붙여서 동일한 UI를 손쉽게 재활용 할 수 있습니다.
 
-다음은 각 컨트롤들을 [Composite](https://tango1202.github.io/pattern/pattern-composite/) 패턴을 이용하여 `Panel`로 관리하는 예입니다. `Panel`은 하위에 일반 컨트롤들이나 또다른 `Panel`을 추가할 수 있으며, `Panel`에 `SetEnable()`을 호출하면, 모든 하위 컨트롤들의 `SetEnable()`이 호출됩니다.
+다음은 각 컨트롤들을 [Composite 패턴](https://tango1202.github.io/pattern/pattern-composite/)을 이용하여 `Panel`로 관리하는 예입니다. `Panel`은 하위에 일반 컨트롤들이나 또다른 `Panel`을 추가할 수 있으며, `Panel`에 `SetEnable()`을 호출하면, 모든 하위 컨트롤들의 `SetEnable()`이 호출됩니다.
 
 1. #1 : `Control`은 `Component`입니다. 단일 개체와 복합 개체용 인터페이스를 함께 정의합니다.
 2. #2 : `Label`과 `Edit`는 단일 개체의 구현입니다. 이때 복합 개체용 인터페이스 함수들은 사용하지 못하도록 예외를 발생시킵니다.
@@ -51,14 +51,14 @@ UI 컨트롤들은 여러개의 컨트롤을 하위 개체로 사용하는 `Pane
 class Control {
 protected:
     Control() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~Control() = default; // 다형 소멸 하도록 public virtual
 private:
     Control(const Control&) = delete;
     Control(Control&&) = delete;
     Control& operator =(const Control&) = delete;
     Control& operator =(Control&&) = delete;          
 public:
-    virtual ~Control() = default; // 다형 소멸 하도록 public virtual
-
     // #1. 단일 개체용 인터페이스입니다.
     virtual void SetEnable(bool val) = 0;
 

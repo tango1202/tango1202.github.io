@@ -24,7 +24,7 @@ sidebar:
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6ab5aa06-b5e4-4a8e-86bf-1c2c6578aad2)
 
 
-이러한 경우 [Flyweight](https://tango1202.github.io/pattern/pattern-flyweight/) 패턴을 이용하여 개체를 공유할 수 있습니다.
+이러한 경우 [Flyweight 패턴](https://tango1202.github.io/pattern/pattern-flyweight/)을 이용하여 개체를 공유할 수 있습니다.
 
 다음 그림에서 `Client`가 `FlyweightFactory::GetFlyweight()`로 개체를 요청하면, `m_FlyweightPool`에 기존 것이 없다면 새로 만들어 리턴하고, 있다면 기존 것을 리턴합니다. 
 
@@ -65,14 +65,14 @@ sidebar:
 class Brush {
 protected:
     Brush() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~Brush() = default; // 다형 소멸 하도록 public virtual    
 private:
     Brush(const Brush&) = delete;
     Brush(Brush&&) = delete;
     Brush& operator =(const Brush&) = delete;
     Brush& operator =(Brush&&) = delete;          
 public:
-    virtual ~Brush() = default; // 다형 소멸 하도록 public virtual    
-
     virtual void Draw(int x, int y, int w, int h) const = 0;    
 
     // #5. 연관 컨테이너에서 사용하기 위해 < 구현이 필요합니다.
@@ -148,14 +148,13 @@ class BrushFactory {
     std::set<std::shared_ptr<Brush>, BrushComparer> m_Pool; // #3
 public:
     BrushFactory() : m_Pool{Compare} {}
+    ~BrushFactory() = default; 
 private:
     BrushFactory(const BrushFactory&) = delete;
     BrushFactory(BrushFactory&&) = delete;
     BrushFactory& operator =(const BrushFactory&) = delete;
-    BrushFactory& operator =(BrushFactory&&) = delete;          
-public:
-    ~BrushFactory() = default; 
-
+    BrushFactory& operator =(BrushFactory&&) = delete;     
+public:    
     // #4. 주어진 브러쉬가 있으면 기존것을 사용하고, 그렇지 않으면 새롭게 추가합니다.
     std::shared_ptr<Brush> GetSolidBrush(const char* color) {
         std::shared_ptr<Brush> item{new SolidBrush{color}};

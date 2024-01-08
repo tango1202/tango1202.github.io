@@ -136,6 +136,34 @@ v.emplace_back(new int{30});
 EXPECT_TRUE(*v[0] == 10 && *v[1] == 20 && *v[2] == 30);
 ```
 
+# unique_ptr의 다형성
+
+다형적 관계에 있는 경우 부모 클래스의 포인터로 변환됩니다.
+
+다음과 같이 `base = std::move(derived);`로 하여 `std::unique_ptr<Derived>`를 `std::unique_ptr<Base>`로 `move()`할 수 있습니다.
+
+```cpp
+class Base {
+public:
+    virtual int Func() const {return 1;}
+};
+class Derived : public Base {
+public:
+    virtual int Func() const {return 2;}
+};
+
+std::unique_ptr<Base> base{new Base{}};
+EXPECT_TRUE(base->Func() == 1);
+
+std::unique_ptr<Derived> derived{new Derived{}};
+EXPECT_TRUE(derived->Func() == 2);
+
+base = std::move(derived); // unique_ptr<Derived>를 unique_ptr<Base>로 이동할 수 있습니다.
+EXPECT_TRUE(base->Func() == 2);
+
+// derived = std::move(base); // (X) 컴파일 오류. 반대는 안됩니다.
+```
+
 # default_delete 
 
 [unique_ptr](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/)은 관리하는 개체를 소멸시키는 `deleter`를 사용자 정의 할 수 있습니다. 사용자 정의하는 방법은 [shared_ptr Deleter](https://tango1202.github.io/mordern-cpp/mordern-cpp-shared_ptr-weak_ptr/#shared_ptr-deleter)를 참고하세요.

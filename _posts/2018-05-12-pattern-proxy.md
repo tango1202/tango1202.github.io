@@ -50,14 +50,14 @@ sidebar:
 class Shape {
 protected:
     Shape() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~Shape() = default; // 다형 소멸 하도록 public virtual
 private:
     Shape(const Shape&) = delete;
     Shape(Shape&&) = delete;
     Shape& operator =(const Shape&) = delete;
     Shape& operator =(Shape&&) = delete;          
 public:
-    virtual ~Shape() = default; // 다형 소멸 하도록 public virtual
-
     virtual int GetWidth() const = 0;
     virtual int GetHeight() const = 0;
 

@@ -101,14 +101,14 @@ public:
 class Control {
 protected:
     Control() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
+public:
+    virtual ~Control() = default; // 다형 소멸 하도록 public virtual
 private:
     Control(const Control&) = delete;
     Control(Control&&) = delete;
     Control& operator =(const Control&) = delete;
     Control& operator =(Control&&) = delete;          
 public:
-    virtual ~Control() = default; // 다형 소멸 하도록 public virtual
-
     virtual void Draw() const = 0;
 };  
 // ----
