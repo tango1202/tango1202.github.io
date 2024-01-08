@@ -588,7 +588,7 @@ EXPECT_TRUE(!(a.owner_before(c)) && !(c.owner_before(a)));
 
 # shared_ptr의 다형성
 
-[unique_ptr의 다형성](??)의 경우와 마찬가지로 다형적 관계에 있는 경우 부모 클래스의 포인터로 변환됩니다.
+[unique_ptr의 다형성](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#unique_ptr%EC%9D%98-%EB%8B%A4%ED%98%95%EC%84%B1)의 경우와 마찬가지로 다형적 관계에 있는 경우 부모 클래스의 포인터로 변환됩니다.
 
 ```cpp
 class Base {

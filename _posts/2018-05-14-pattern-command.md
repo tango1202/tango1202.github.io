@@ -27,13 +27,17 @@ void SaveButton::Clicked() {
 
 이러한 경우 [Command 패턴](https://tango1202.github.io/pattern/pattern-command/)을 이용하여 기능 요청부와 실행부 분리해두면, 실행부를 재활용 할 수 있습니다.
 
-다음 그림에서 `Invoker`는 버튼등으로서 기능을 요청하고, `Command`의 `Execute()`에서 실제 기능을 실행합니다. `ConcreteCommand`에서는 `Receiver`를 이용하여 기능을 수행하는 함수를 실행합니다. 이때 `m_State`에 상태값을 저장하여 `Undo`를 구현할 수도 있습니다.
+다음 그림에서 `Invoker`는 버튼등으로서 기능을 요청하고, `Command`의 `Execute()`에서 실제 기능을 실행합니다. 이때 여러개의 `Invoker`에서 동일한 `Command`를 사용할 수도 있습니다. 
 
-![Command](https://github.com/tango1202/tango1202.github.io/assets/133472501/d039f5cc-63d8-4f10-8cec-29dbdb693810)
+`ConcreteCommand`에서는 `Receiver`를 이용하여 기능을 수행하는 함수를 실행합니다. 이때 `m_State`에 상태값을 저장하여 `Undo`를 구현할 수도 있습니다.
+
+![Command](https://github.com/tango1202/tango1202.github.io/assets/133472501/94949dea-26da-46b0-b10d-ff2ae4d1042b)
 
 # 특징
 
 `Execute()`시의 상태값을 저장하여 `Undo()`를 구현할 수 있으며, [Composite 패턴](https://tango1202.github.io/pattern/pattern-composite/)을 활용하여 여러 `Command`들을 매크로처럼 실행할 수 있습니다. 또한 UI를 사용자 정의하여 UI와 매칭되는 `Command`를 직접 매칭하는 기능을 구현할 수도 있습니다.
+
+`Command`들의 갯수가 많다면, 자주 사용하는 것들만 먼저 생성하고, 자주 사용하지 않는 것들은 나중에 필요할 때 생성하여, 제품의 초기 실행 속도를 향상시킬 수도 있습니다.
 
 # 예제
 
