@@ -37,18 +37,18 @@ int val = Calc(rectangle.GetWidth(), rectangle.GetHeight(), userInputString);
 
 다음 그림에서 `AbstractExpression`은 `interpret()`함수를 통해 실행 결과를 리턴합니다. 이때 각 `AbstractExpression`은 트리처럼 배치되어 최상위 `AbstractExpression`만 실행하면, 하위의 `AbstractExpression`이 모두 실행됩니다.
 
-![interpreter](https://github.com/tango1202/tango1202.github.io/assets/133472501/df67d2ca-18c1-415d-862f-c83778a74cbe)
+![interpreter](https://github.com/tango1202/tango1202.github.io/assets/133472501/5ce2b38b-24fc-4e7d-81a2-ba8ecdda2068)
 
 예를 들어 `w * h * 4 / 2`는 각 토큰으로 분리되고, 각각 `TerminalExpression`과 `NonterminalExpression`으로 다음의 트리처럼 구성됩니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/864cb199-c77b-425a-b355-c20eba6dcd3d)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fbfeb256-1367-47b6-91bb-9734e539f805)
 
 |항목|내용|
 |--|--|
 |`Context`|인터프리터에 대한 포괄적인 정보를 제공합니다.|
 |`AbstractExpression`|각 토큰이 의미하는 바를 실행합니다.|
-|`TerminalExpression`|변수, 상수등 단독으로 실행할 수 있는 토큰입니다.|
-|`NonterminalExpression`|`*`, `/`와 같이 다른 토큰을 이용하는 토큰입니다.|
+|`TerminalExpression`|현 표현식에서 연산이 종결됩니다. 즉, 변수, 상수등 단독으로 연산할 수 있거나, 왼쪽에 있는 `AbstractExpression`을 이용합니다.|
+|`NonterminalExpression`|현 표현식에서 연산이 종결되지 않고 다음 표현식을 사용합니다. 예를 들어 `*`, `/`와 같이 오른편의 `AbstractExpression`을 이용합니다.|
 |`Client`|최상위 `AbstractExpression`을 실행합니다.|
 
 # 예제 
@@ -59,7 +59,7 @@ int val = Calc(rectangle.GetWidth(), rectangle.GetHeight(), userInputString);
 2. #2 : `Expression`의 기본 인터페이스를 제공합니다. `Interpret()`시 연산 결과값을 리턴해야 합니다.
 3. #3 : `TerminalExpression`입니다. `Context`로부터 `w`, `h` 값을 읽어와 리턴하거나 상수값을 리턴합니다.
 4. #4 : `NonterminalExpression`입니다. `*`, `/` 결과값을 리턴합니다.
-5. #5 : 전달한 문자열을 `Parse()`하여 최상위 `Expression`을 구하고, 이의 `Interpret()`를 호출하여 결과값을 구합니다.
+5. #5 : 전달한 문자열을 `Parse()`하여 `Expression`을 트리 형태로 구성하고, 최상위 `Expression`을 구한뒤, 이의 `Interpret()`를 호출하여 결과값을 구합니다.
 6. #6 : 런타임에 임의의 수식을 입력받아 `rectangle` 개체의 너비와 높이로부터 값을 구할 수 있습니다.
 
 ```cpp
@@ -141,7 +141,7 @@ public:
     virtual int Interpret(const Context& context) const override {return m_Left->Interpret(context) / m_Right->Interpret(context);} 
 };
 // ----
-// #5. 전달한 문자열을 Parse()하여 최상위 Expression을 구하고, 이의 Interpret()를 호출하여 결과값을 구합니다.
+// #5. 전달한 문자열을 Parse()하여 Expression을 트리 형태로 구성하고, 최상위 Expression을 구한뒤, 이의 Interpret()를 호출하여 결과값을 구합니다.
 // ----  
 class Interpreter {
     const Context& m_Context;
@@ -154,21 +154,21 @@ private:
     Interpreter& operator =(const Interpreter&) = delete; 
     Interpreter& operator =(Interpreter&&) = delete;
 public:
-    // context를 파싱하고 실행 결과값을 리턴합니다.
+    // #5. context를 파싱하고 실행 결과값을 리턴합니다.
     int Run() const {
-        return Parse()->Interpret(m_Context); // #5
+        return Parse()->Interpret(m_Context); 
     }
 
 private:
     // ----
     // w, h, 정수, *, / 가 공백 문자로 구분된 식을 계산합니다.
     // 예를 들어 "w * h * 4 / 2" 와 같이 식을 작성할 수 있습니다.
-    // #5. context를 파싱하여 가상의 Tree를 만들어 최상위 Expression을 리턴합니다.
+    // #5. context를 파싱하여 가상의 트리를 만들어 최상위 Expression을 리턴합니다.
     // ----
     std::unique_ptr<Expression> Parse() const {
         
         std::vector<std::string> tokens{CreateToken(m_Context.GetExp(), " ")}; // 공백 문자로 token화 합니다.
-        std::stack<std::unique_ptr<Expression>> stack; // 수식을 차례대로 쌓아 가장 마지막 Expression이 가상의 Tree의 root가 되게 합니다.
+        std::stack<std::unique_ptr<Expression>> stack; // 수식을 차례대로 쌓아 가장 마지막 Expression이 트리의 root가 되게 합니다.
 
         for (int i{0}; i < tokens.size(); ++i) {
             if (IsVariable(tokens[i])) { // w, h
