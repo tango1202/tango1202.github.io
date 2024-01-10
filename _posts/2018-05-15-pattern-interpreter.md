@@ -37,7 +37,7 @@ int val = Calc(rectangle.GetWidth(), rectangle.GetHeight(), userInputString);
 
 다음 그림에서 `AbstractExpression`은 `interpret()`함수를 통해 실행 결과를 리턴합니다. 이때 각 `AbstractExpression`은 트리처럼 배치되어 최상위 `AbstractExpression`만 실행하면, 하위의 `AbstractExpression`이 모두 실행됩니다.
 
-![interpreter](https://github.com/tango1202/tango1202.github.io/assets/133472501/5ce2b38b-24fc-4e7d-81a2-ba8ecdda2068)
+![interpreter](https://github.com/tango1202/tango1202.github.io/assets/133472501/6f29ef01-e880-410d-b3c2-01d1757175a7)
 
 예를 들어 `w * h * 4 / 2`는 각 토큰으로 분리되고, 각각 `TerminalExpression`과 `NonterminalExpression`으로 다음의 트리처럼 구성됩니다.
 
@@ -172,20 +172,20 @@ private:
 
         for (int i{0}; i < tokens.size(); ++i) {
             if (IsVariable(tokens[i])) { // w, h
-                stack.push(CreateUnaryExpression(tokens[i]));
+                stack.push(CreateTerminalExpression(tokens[i]));
             }
             else if (IsConstant(tokens[i])) { // 상수
-                stack.push(CreateUnaryExpression(tokens[i]));
+                stack.push(CreateTerminalExpression(tokens[i]));
             }
             else if (IsMul(tokens[i])) { // *
                 std::unique_ptr<Expression> left{stack.top().release()};
                 stack.pop();
-                stack.push(std::unique_ptr<Expression>{new MulExpression{std::move(left), CreateUnaryExpression(tokens[++i])}}); // 다음 토큰을 사용합니다.
+                stack.push(std::unique_ptr<Expression>{new MulExpression{std::move(left), CreateTerminalExpression(tokens[++i])}}); // 다음 토큰을 사용합니다.
             }
             else if (IsDiv(tokens[i])) { // /
                 std::unique_ptr<Expression> left{stack.top().release()};
                 stack.pop();    
-                stack.push(std::unique_ptr<Expression>{new DivExpression{std::move(left), CreateUnaryExpression(tokens[++i])}}); // 다음 토큰을 사용합니다.
+                stack.push(std::unique_ptr<Expression>{new DivExpression{std::move(left), CreateTerminalExpression(tokens[++i])}}); // 다음 토큰을 사용합니다.
             }
             else {
                 throw std::invalid_argument{"Invalid token. Need w, h, Integer, *, /."};     
@@ -212,7 +212,7 @@ private:
     }
 
     // w, h, 정수를 Expression으로 만듭니다. token이 유효하지 않으면 예외를 발생합니다.
-    static std::unique_ptr<Expression> CreateUnaryExpression(const std::string& token) {
+    static std::unique_ptr<Expression> CreateTerminalExpression(const std::string& token) {
         assert(IsVariable(token) || IsConstant(token));
 
         if (IsVariable(token)) { // w, h

@@ -18,8 +18,6 @@ sidebar:
 > * (C++14~) [rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
 > * (C++17~) [size(), empty(), data()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
 
-
-
 # 개요
 
 [이터레이터(반복자)](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)는 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)에서 지금 가리키는 요소나 다음 요소를 찾아가는 방법을 제공합니다.
@@ -54,7 +52,6 @@ container.begin() != container.end();
 `++`를 이용하여 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)를 사용하는 경우에는 꼭 전위형을 사용해야 합니다. 후위형을 사용하면, 증가 시키기 전의 값을 복제해서 리턴하기 때문에 불필요한 복사 부하가 생깁니다.(*[증감 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%A6%9D%EA%B0%90-%EC%97%B0%EC%82%B0%EC%9E%90)와 [연산자 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고*)
 
 또한, `for()` 문의 조건식에서 `itr < endItr`이 아니라 `itr != endItr`을 사용합니다. 이는 랜덤 접근이 가능한 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)만 `<`이 가능하기 때문입니다. `<`을 지원하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)라도 향후 다른 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로 변경할 수도 있기 때문에, 리팩토링시 수정을 최소화하기 위해 습관적으로 `<` 보다는 `!=` 사용하는게 좋습니다.
-
 
 ```cpp
 std::vector<int> v(5); // 5개의 요소 생성(클래스면 생성자를 호출함)

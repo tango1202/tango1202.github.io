@@ -36,7 +36,7 @@ sidebar:
 
 3. 버그 발생시 원인은 무엇인지, 어떻게 수정하는게 좋은지, 관련 코드부분은 어디인지 서로 상의합니다.(*[짝 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%9D-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dpair-programming) 참고*)
 
-4. 버그를 미연에 방지하기 위해 [방어적으로 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%B0%A9%EC%96%B4%EC%A0%81-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Ddefensive-programming) 하시고, 악마의 유횩에 빠지지 않도록 [짝 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%9D-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dpair-programming) 하세요.
+4. 버그를 미연에 방지하기 위해 [방어적으로 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%B0%A9%EC%96%B4%EC%A0%81-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Ddefensive-programming) 하시고, 악마의 유혹에 빠지지 않도록 [짝 프로그래밍](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%9D-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8Dpair-programming) 하세요.
 
 5. 옆에 있는 장난감에 주의깊게 문제를 설명해 보세요. 문제의 원인을 알 수 있습니다.(*[러버덕 디버깅](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%9F%AC%EB%B2%84%EB%8D%95-%EB%94%94%EB%B2%84%EA%B9%85rubber-dock-debugging) 참고*)
 
