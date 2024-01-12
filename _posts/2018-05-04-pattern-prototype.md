@@ -36,7 +36,7 @@ sidebar:
 
 # 예제
 
-다음 예제는 `ShapePalette`에 다양한 `ShapeButton`을 두고, `ShapeButton`을 `Click()`하면 미리 정의된 `Shape`을 복제하여 사용합니다. 또한 #4와 같이 사용자 정의한 개체를 UI에 등록하여 사용할 수 있습니다.
+다음은 `ShapePalette`에 다양한 `ShapeButton`을 두고, `ShapeButton`을 `Click()`하면 미리 정의된 `Shape`을 복제하여 사용하는 예입니다. 또한 #4와 같이 사용자 정의한 개체를 UI에 등록하여 사용할 수 있습니다.
 
 1. #1 : `Shape`, `Rectangle`, `Circle`은 `Clone()`을 제공하며, 자기 자신을 복제합니다.
 2. #2 : `ShapeButton` 생성시 사용할 `Shape`개체를 연결합니다.

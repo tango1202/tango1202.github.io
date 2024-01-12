@@ -18,6 +18,7 @@ sidebar:
 
 
 # 특징
+
 서브시스템을 쉽게 사용할 수 있으며, 서브시스템과 `Client`코드간의 결합도를 약하게 만드는 효과가 있습니다.
 
 또한, 모듈의 경계에서 [Facade](https://tango1202.github.io/pattern/pattern-facade/)를 만들어 [Facade](https://tango1202.github.io/pattern/pattern-facade/) 바깥으로 [예외가 전파](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EC%A0%84%ED%8C%8C)되지 않도록 [예외 레이어링](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-warranty/#%EC%98%88%EC%99%B8-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81)을 하면 좋습니다.

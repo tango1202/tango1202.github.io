@@ -49,7 +49,7 @@ sidebar:
 
 # 예제
 
-다음 예는 `Shape` 을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)한 개체들을 출력하는 예입니다. `Shape`의 `Draw()`함수를 이용하는데요, `Circle` 개체는 `Shape`을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)하지 않은 클래스여서 #5와 같이 사용할 수 없습니다. 
+다음은 `Shape`을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)한 개체들을 출력하는 예입니다. `Shape`의 `Draw()`함수를 이용하는데요, `Circle` 개체는 `Shape`을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)하지 않은 클래스여서 #5와 같이 사용할 수 없습니다. 
 
 `Circle`이 `Shape`을 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)하도록 리팩토링하면 될일입니다만, 만약 다른 프로젝트에서도 사용되는 코드라면 함부로 수정해선 안됩니다. 다른 프로젝트에 영향을 주니까요. 혹은 소스코드 없이 라이브러리로 제공되는 것이라면, 아예 수정할 수 없죠. 
 

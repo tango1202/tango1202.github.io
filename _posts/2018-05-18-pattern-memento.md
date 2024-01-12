@@ -48,7 +48,7 @@ rectangle.Move(oldLeft, oldTop);
 
 ![Memento](https://github.com/tango1202/tango1202.github.io/assets/133472501/77a989d4-1e71-4409-821e-ff9b02d34933)
 
-# 사용예
+# 예제
 
 다음은 [Command 패턴](https://tango1202.github.io/pattern/pattern-command/)으로 사각형을 이동시키는 예입니다. `MoveCommand`의 `Execute()`시 `Memento`를 생성하고, `Unexecute()`시 수정한 값을 복원합니다.
 
