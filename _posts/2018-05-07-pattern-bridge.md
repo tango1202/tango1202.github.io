@@ -18,13 +18,13 @@ sidebar:
 
 간단하게는 [PImpl 이디엄](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-pimpl/)도 [Bridge](https://tango1202.github.io/pattern/pattern-bridge/)라 할 수 있습니다. 추상과 구현을 분리해서 코드간의 종속성이나 컴파일 종속성을 최소화 해줍니다.
 
-![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/c9ae947f-d491-4b6d-8a49-8d2a16f68891)
+![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/67a585ac-1fe0-475c-8598-6ce74328411b)
 
 복잡하게는 구현부를 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)로 만들어 다형적으로 만들수 있습니다. 이때에는 `m_Impl`을 런타임에 교체할 수도 있어 확장성이 좋아집니다.
 
 다음 그림에서 `Client`는 추상부인 `Abstraction`만 이용합니다.  `Client` 코드는 `Abstraction`의 `Implementor`가 내부적으로 `ConcreteImplementorA`로 변경되던 `ConcreteImplementorB`로 변경되던 아무런 영향을 받지 않습니다.
 
-![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/7522dff5-3aae-4066-b512-1fa21dc0e461)
+![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/5dd4bc38-d7b2-44ad-9d2b-0387ed5e42ac)
 
 |항목|내용|
 |--|--|
@@ -64,7 +64,7 @@ void Draw() {
 2. `RenderImpl`은 GDI 버전과 WPF 버전이 있으며, `Render::SetImpl()` 함수로 런타임에 설정할 수 있습니다. 
 3. 외부에서 GDI와 WPF를 결정해서 전달해 주므로, `Rectangle`은 GDI인지, WPF인지 고민없이 본연의 출력 로직에만 집중하여 작성하면 됩니다.
 
-![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/02165cce-a3f7-4120-b614-34ee9ea86bcd)
+![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/1d8ae7f4-acac-4965-8746-b5b5fd9062a0)
 
 1. #1 : `Render` 추상부 입니다. 출력에 필요한 기본적인 함수들을 추상화합니다.
 2. #2 : `RenderImpl`과의 컴파일 종속성을 없애기 위해 `Render`의 선언과 정의를 분리했습니다.

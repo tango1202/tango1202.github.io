@@ -20,7 +20,7 @@ sidebar:
 
 다음 그림에서 `Client`는 `ConcreteFactory1`을 사용하느냐, `ConcreteFactory2`를 사용하느냐에 따라 다른 계열의 개체들을 생성하여 사용하게 됩니다.
 
-![Abstract Factory](https://github.com/tango1202/tango1202.github.io/assets/133472501/d3a501b7-67a6-44c3-a86e-1f5dd4cebcad)
+![Abstract Factory](https://github.com/tango1202/tango1202.github.io/assets/133472501/c3e00780-6eb3-4268-9984-5a69c9d6fd9c)
 
 |항목|내용|
 |--|--|

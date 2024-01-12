@@ -41,7 +41,7 @@ sidebar:
 
 다음 그림은 [Iterator 패턴](https://tango1202.github.io/pattern/pattern-iterator/)의 예입니다. 기본 구조는 [Factory Method 패턴](https://tango1202.github.io/pattern/pattern-factory-method/)과 동일합니다. `Aggregate`에서 `CreateIterator()`를 호출하면, 자식 개체인 `ConcreteAggregate`에서 실제 이터레이터인 `ConcreteIterator`를 생성해 줍니다. 
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/232fec7d-3ed2-4eb5-a7e8-e31c8d360009)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0a25ac87-c20f-413a-b4bd-3e6f1eaf9887)
 
 |항목|내용|
 |--|--|

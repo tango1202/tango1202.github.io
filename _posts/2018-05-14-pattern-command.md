@@ -31,7 +31,7 @@ void SaveButton::Clicked() {
 
 `ConcreteCommand`에서는 `Receiver`를 이용하여 기능을 수행하는 함수를 실행합니다. 이때 `m_State`에 상태값을 저장하여 `Undo`를 구현할 수도 있습니다.
 
-![Command](https://github.com/tango1202/tango1202.github.io/assets/133472501/94949dea-26da-46b0-b10d-ff2ae4d1042b)
+![Command](https://github.com/tango1202/tango1202.github.io/assets/133472501/3262fd08-c3ac-480d-afb5-7c3f517a012f)
 
 # 특징
 

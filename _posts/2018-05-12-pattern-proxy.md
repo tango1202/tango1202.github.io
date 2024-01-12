@@ -21,7 +21,7 @@ sidebar:
 
 다음 그림에서 `Client`가 `Request()`를 호출하면, `Proxy`가 이를 대리하여 처리하거나, `m_RealSubject.Request()`를 호출하여 실제 개체를 사용할 수 있습니다.
 
-![Proxy(](https://github.com/tango1202/tango1202.github.io/assets/133472501/37ec027d-96bc-4f8c-abc4-1ff6edbac4db)
+![Proxy(](https://github.com/tango1202/tango1202.github.io/assets/133472501/8a166c74-65f3-480e-9548-e4044204dea8)
 
 |항목|내용|
 |--|--|

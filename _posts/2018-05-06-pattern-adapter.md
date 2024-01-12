@@ -26,7 +26,7 @@ sidebar:
 
 [클래스 Adpater](https://tango1202.github.io/pattern/pattern-adapter/#%ED%81%B4%EB%9E%98%EC%8A%A4-adpater%EC%99%80-%EA%B0%9C%EC%B2%B4-adapter)는 `private` [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 통해 `Adaptee`를 포함합니다. [다중 상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%8B%A4%EC%A4%91-%EC%83%81%EC%86%8D)을 하며 `Request()`호출시 `Adaptee::SpecificRequest()`를 호출합니다.
 
-![Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/8f206ca3-28a7-4458-9cef-87aa241da0ee)
+![Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/3600b1da-b57c-4c25-aa4e-48000b91f76e)
 
 **개체 Adapter**
 
@@ -34,7 +34,7 @@ sidebar:
 
 [개체 Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/49143535-836d-43c3-a4af-c5c7ef44d6a9)의 경우 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)를 런타임에 변경할 수 있어 다른 개체로 교체 가능하며, `Adaptee`를 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)한 개체도 사용할 수 있어 확장성이 좋습니다.
 
-![Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/49143535-836d-43c3-a4af-c5c7ef44d6a9)
+![Adapter](https://github.com/tango1202/tango1202.github.io/assets/133472501/56c5d20b-8382-4151-bd76-0d3b6b9fb66c)
 
 |항목|내용|
 |--|--|

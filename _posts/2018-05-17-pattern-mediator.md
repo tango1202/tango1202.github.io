@@ -21,7 +21,7 @@ sidebar:
 ```cpp
 void List::SelectChanged() {
     m_NameEdit.SetText(m_List.GetCurrentData().GetName());
-    m_AddrEdit.SetText(m_List.GetCurentData().GetAddr());
+    m_AddrEdit.SetText(m_List.GetCurrentData().GetAddr());
 }
 ```
 
@@ -29,7 +29,7 @@ void List::SelectChanged() {
 
 다음 그림에서 `Colleague`에서 변경이 발생한 경우 `Mediator`의 `Changed()`를 호출하여 상호작용하는 개체들을 처리합니다. 이애 따라 상호작용하는 `ConcreteColleague1`과 `ConcreteColleague2`는 서로 직접 참조하지 않으므로 결합도가 낮아집니다.
 
-![Mediator](https://github.com/tango1202/tango1202.github.io/assets/133472501/b93a05c8-a5d4-4de6-9380-e42e66395457)
+![Mediator](https://github.com/tango1202/tango1202.github.io/assets/133472501/1f45f85e-cf0f-4d7d-99da-53853184f655)
 
 |항목|내용|
 |--|--|

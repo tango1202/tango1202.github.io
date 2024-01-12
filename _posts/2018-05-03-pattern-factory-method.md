@@ -35,7 +35,7 @@ sidebar:
 
 따라서, `Creator`에서 직접 `ConcreteProduct`를 생성하지 않고, 자식 클래스에서 [오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)한 `FactoryMethod()`함수에서 생성합니다. [Template Method](https://tango1202.github.io/pattern/pattern-template-method/) 처럼요.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19d3024a-a4c7-44e8-a621-5f018b2ff355)
+![Factroy Method](https://github.com/tango1202/tango1202.github.io/assets/133472501/9a9a0aa2-6241-45fb-b7a1-7ce2c4b8cd96)
 
 |항목|내용|
 |--|--|

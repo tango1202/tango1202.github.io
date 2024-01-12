@@ -64,7 +64,7 @@ public:
 
 다음 그림에서 `Decorator`는 내부적으로 `m_Component`를 포함하며, `Operation()` 호출시 `AddedBehavior()`를 호출하여 추가 기능을 실행합니다.
 
-![Decorator](https://github.com/tango1202/tango1202.github.io/assets/133472501/5e40d916-c6fa-4cfb-9134-c4a849335e67)
+![Decorator](https://github.com/tango1202/tango1202.github.io/assets/133472501/7d93a482-aca5-430b-89b0-ccbf3676dd29)
 
 |항목|내용|
 |--|--|
@@ -74,7 +74,7 @@ public:
 
 `Decorator`를 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)로 만들어 다음과 같이 확장할 수도 있습니다.
 
-![Decorator](https://github.com/tango1202/tango1202.github.io/assets/133472501/a5c59327-dc69-401f-a7f1-ba39e942932c)
+![Decorator](https://github.com/tango1202/tango1202.github.io/assets/133472501/a0b04b15-0dd3-45ee-9316-6082bd32048b)
 
 # 특징
 

@@ -16,7 +16,7 @@ sidebar:
 
 다음 그림에서 `Singleton`은 생성자들은 `private`로 접근을 차단하고, [정적 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)인 `GetInstance()`를 통해서만 생성할 수 있게 합니다. 만약 여러번 호출된다면 `s_Instance`가 [함수내 정적 지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 이기 때문에 오직 1회만 생성한다는 것을 보장합니다.
 
-![Slngleton](https://github.com/tango1202/tango1202.github.io/assets/133472501/38d93758-4b33-4196-9bb0-74b9136c8c8e)
+![Slngleton](https://github.com/tango1202/tango1202.github.io/assets/133472501/b86a8252-13a9-42bc-a44d-62bd731f8685)
 
 # 특징
 

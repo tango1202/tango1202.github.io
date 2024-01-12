@@ -61,7 +61,7 @@ private:
 
 다음 그림처럼 `Handler`는 요청을 처리할 다음 개체인 `m_Successor`와 연결됩니다. 따라서, `Client`가 `HandleRequest()`를 호출하면, `Handler`에서 직접 처리할 것인지, 다음 개체인 `m_Successor`에 요청할 것인지 판단하여 처리하고, 다음 개체에서도 동일한 반복을 하게 되어 Chain으로 연결된 개체들이 함께 처리를 할 수 있도록 해줍니다.  
 
-![Chain of Responsibility](https://github.com/tango1202/tango1202.github.io/assets/133472501/925a4c92-168a-4307-bd31-55d10b5e4dc3)
+![Chain of Responsibility](https://github.com/tango1202/tango1202.github.io/assets/133472501/c483fe70-d68e-49cb-b629-1d6a5663b04f)
 
 |항목|내용|
 |--|--|

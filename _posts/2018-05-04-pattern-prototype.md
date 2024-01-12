@@ -22,7 +22,7 @@ sidebar:
 
 다음 그림에서 `Client`는 `m_Prototype`의 `Clone()`을 호출하여 개체를 복제 생성합니다.
 
-![Prototype](https://github.com/tango1202/tango1202.github.io/assets/133472501/4d59eae0-3b2d-4829-bea8-d81f3ead664f)
+![Prototype](https://github.com/tango1202/tango1202.github.io/assets/133472501/758545fd-6860-4927-b26f-5bc3d1666d55)
 
 |항목|내용|
 |--|--|

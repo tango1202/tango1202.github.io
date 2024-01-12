@@ -37,7 +37,7 @@ int val = Calc(rectangle.GetWidth(), rectangle.GetHeight(), userInputString);
 
 다음 그림에서 `AbstractExpression`은 `interpret()`함수를 통해 실행 결과를 리턴합니다. 이때 각 `AbstractExpression`은 트리처럼 배치되어 최상위 `AbstractExpression`만 실행하면, 하위의 `AbstractExpression`이 모두 실행됩니다.
 
-![interpreter](https://github.com/tango1202/tango1202.github.io/assets/133472501/6f29ef01-e880-410d-b3c2-01d1757175a7)
+![interpreter](https://github.com/tango1202/tango1202.github.io/assets/133472501/384c27a8-655d-468d-a6fe-686f1dffac93)
 
 예를 들어 `w * h * 4 / 2`는 각 토큰으로 분리되고, 각각 `TerminalExpression`과 `NonterminalExpression`으로 다음의 트리처럼 구성됩니다.
 
