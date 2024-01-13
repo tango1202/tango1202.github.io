@@ -123,9 +123,9 @@ public:
     }
 };
 // ----
-// 자식 클래스입니다.
+// #2. 자식 클래스입니다. CreateDoc()이 생성하는 Doc은 자식 개체에서 정의한 구체화된 개체인 MyDoc이어야 합니다.
 // ----
-class MyDoc : public Doc { // #2
+class MyDoc : public Doc { 
 public:
     MyDoc() = default;
 

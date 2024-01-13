@@ -66,7 +66,7 @@ class Brush {
 protected:
     Brush() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
 public:
-    virtual ~Brush() = default; // 다형 소멸 하도록 public virtual    
+    virtual ~Brush() = default; // 다형 소멸 하도록 public virtual   
 private:
     Brush(const Brush&) = delete;
     Brush(Brush&&) = delete;
@@ -84,7 +84,9 @@ public:
 class SolidBrush : public Brush {
     const char* m_Color;
 public:
-    explicit SolidBrush(const char* color) : m_Color{color} {} 
+    explicit SolidBrush(const char* color) : m_Color{color} {
+        assert(m_Color);    
+    } 
     
     virtual void Draw(int x, int y, int w, int h) const override {
         std::cout << "SolidBrush : " << m_Color << std::endl;
@@ -113,7 +115,9 @@ class GradientBrush : public Brush {
 public:
     GradientBrush(const char* startColor, const char * lastColor) :
         m_StartColor{startColor}, 
-        m_LastColor{lastColor} {}
+        m_LastColor{lastColor} {
+        assert(m_StartColor && m_LastColor);
+    }
 
     virtual void Draw(int x, int y, int w, int h) const override {
         std::cout << "GradientBrush : " << m_StartColor << ", " << m_LastColor << std::endl;
@@ -134,7 +138,7 @@ private:
     // #5
     bool operator <(const GradientBrush& other) const {
         if (m_StartColor < other.m_StartColor) return true;
-        if (other.m_StartColor < m_StartColor)  return false;
+        if (other.m_StartColor < m_StartColor) return false;
 
         return m_LastColor < other.m_LastColor;
     }           
@@ -153,10 +157,12 @@ private:
     BrushFactory(const BrushFactory&) = delete;
     BrushFactory(BrushFactory&&) = delete;
     BrushFactory& operator =(const BrushFactory&) = delete;
-    BrushFactory& operator =(BrushFactory&&) = delete;     
-public:    
+    BrushFactory& operator =(BrushFactory&&) = delete;          
+public:
     // #4. 주어진 브러쉬가 있으면 기존것을 사용하고, 그렇지 않으면 새롭게 추가합니다.
     std::shared_ptr<Brush> GetSolidBrush(const char* color) {
+        assert(color);
+        
         std::shared_ptr<Brush> item{new SolidBrush{color}};
 
         auto result = m_Pool.insert(item);
@@ -165,6 +171,8 @@ public:
     }
     // #4
     std::shared_ptr<Brush> GetGradientBrush(const char* startColor, const char* lastColor) {
+        assert(startColor && lastColor);
+
         std::shared_ptr<Brush> item{new GradientBrush{startColor, lastColor}};
 
         auto result = m_Pool.insert(item);
@@ -178,6 +186,7 @@ public:
 private:
     // Brush를 대소 비교합니다.
     static bool Compare(std::shared_ptr<Brush> left, std::shared_ptr<Brush> right) {
+        assert(left && right);
         return *left < *right;
     }
 };
@@ -196,14 +205,13 @@ public:
         m_Brush = brush;
     }    
     void Draw() const { 
-        assert(m_Brush && "null brush.");
         if (!m_Brush) { // 브러쉬가 없다면 그리지 않습니다.
             return;    
         }
 
         m_Brush->Draw(m_Left, m_Top, m_Width, m_Height);
     }
-}; 
+};
 
 // ----
 // 테스트 코드

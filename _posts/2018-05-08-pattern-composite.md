@@ -121,19 +121,24 @@ public:
         }
     } 
     virtual void Add(std::unique_ptr<Control> child) override {
+        assert(child);
         m_Children.emplace_back(child.release());
     }
     virtual void Remove(int index) override {
+        assert(index < m_Children.size());
+
         m_Children.erase(m_Children.begin() + index);
     }
     virtual Control& GetChild(int index) override {
+        assert(index < m_Children.size());
+
         return *m_Children[index];
     }
 };
 
 // ----
 // 테스트 코드
-// ----
+// ----   
 std::unique_ptr<Control> subPanel{new Panel};
 subPanel->Add(std::unique_ptr<Control>{new Label});
 subPanel->Add(std::unique_ptr<Control>{new Edit});   

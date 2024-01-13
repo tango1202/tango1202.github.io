@@ -44,12 +44,15 @@ sidebar:
 4. #4 : 사용자가 정의한 `Shape`을 `ShapeButton`에 등록하여 사용할 수 있습니다.
 
 ```cpp
+// ----
+// #1. Shape, Rectangle, Circle은 Clone()을 제공하며, 자기 자신을 복제합니다.
+// ----
 class Shape {
 protected:
     Shape() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
     Shape(const Shape&) = default; 
 public:
-    virtual ~Shape() = default; // 다형 소멸 하도록 public virtual    
+    virtual ~Shape() = default; // 다형 소멸 하도록 public virtual 
 private:
     Shape(Shape&&) = delete; 
     Shape& operator =(const Shape&) = delete; 
@@ -106,11 +109,12 @@ public:
         return std::unique_ptr<Shape>{new Circle(*this)};
     }
 };
+
 // ----
-// Client 입니다. 클릭하면 해당 Shape개체를 생성해줍니다.
+// #2. Client 입니다. 클릭하면 해당 Shape개체를 생성하기 위해 Shape 개체를 연결합니다.
 // ----
 class ShapeButton {
-    std::unique_ptr<Shape> m_Shape; // #2. Prototype 개체입니다.
+    std::unique_ptr<Shape> m_Shape; // #2. Shape 개체를 연결합니다.
 public:
     explicit ShapeButton(std::unique_ptr<Shape> shape) : m_Shape{std::move(shape)} {} // #2
 private:

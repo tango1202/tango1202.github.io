@@ -128,17 +128,33 @@ class MulExpression : public Expression {
     std::unique_ptr<Expression> m_Left;
     std::unique_ptr<Expression> m_Right;
 public:
-    MulExpression(std::unique_ptr<Expression> left, std::unique_ptr<Expression> right) : m_Left{std::move(left)}, m_Right(std::move(right)) {}
+    MulExpression(std::unique_ptr<Expression> left, std::unique_ptr<Expression> right) : 
+        m_Left{std::move(left)},
+        m_Right(std::move(right)) {
+        assert(m_Left && m_Right);   
+    }
     
-    virtual int Interpret(const Context& context) const override {return m_Left->Interpret(context) * m_Right->Interpret(context);} 
+    virtual int Interpret(const Context& context) const override {
+        assert(m_Left && m_Right);
+
+        return m_Left->Interpret(context) * m_Right->Interpret(context);
+    } 
 };
 class DivExpression : public Expression {
     std::unique_ptr<Expression> m_Left;
     std::unique_ptr<Expression> m_Right;
 public:
-    DivExpression(std::unique_ptr<Expression> left, std::unique_ptr<Expression> right) : m_Left{std::move(left)}, m_Right(std::move(right)) {}
+    DivExpression(std::unique_ptr<Expression> left, std::unique_ptr<Expression> right) : 
+        m_Left{std::move(left)}, 
+        m_Right(std::move(right)) {
+        assert(m_Left && m_Right);              
+    }
     
-    virtual int Interpret(const Context& context) const override {return m_Left->Interpret(context) / m_Right->Interpret(context);} 
+    virtual int Interpret(const Context& context) const override {
+        assert(m_Left && m_Right);
+
+        return m_Left->Interpret(context) / m_Right->Interpret(context);
+    } 
 };
 // ----
 // #5. 전달한 문자열을 Parse()하여 Expression을 트리 형태로 구성하고, 최상위 Expression을 구한뒤, 이의 Interpret()를 호출하여 결과값을 구합니다.
@@ -186,7 +202,7 @@ private:
                 std::unique_ptr<Expression> left{stack.top().release()};
                 stack.pop();    
                 stack.push(std::unique_ptr<Expression>{new DivExpression{std::move(left), CreateTerminalExpression(tokens[++i])}}); // 다음 토큰을 사용합니다.
-            }
+            } 
             else {
                 throw std::invalid_argument{"Invalid token. Need w, h, Integer, *, /."};     
             }
@@ -236,6 +252,8 @@ private:
 
     // #5. str을 delimeter로 구분하여 리턴합니다.
     static std::vector<std::string> CreateToken(const std::string& str, const char* delimeter) {
+        assert(delimeter);
+        
         std::vector<std::string> result;
 
         size_t pos{0};
@@ -263,7 +281,7 @@ public:
 
     int GetWidth() const {return m_Width;}
     int GetHeight() const {return m_Height;}
-}; 
+};
 
 // ----
 // 테스트 코드

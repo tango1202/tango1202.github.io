@@ -82,7 +82,9 @@ class RenderImpl; // #2
 class Render {
     std::unique_ptr<RenderImpl> m_Impl;
 public:
-    explicit Render(std::unique_ptr<RenderImpl> impl) : m_Impl{std::move(impl)} {}
+    explicit Render(std::unique_ptr<RenderImpl> impl) : m_Impl{std::move(impl)} {
+        assert(m_Impl);
+    }
 private:
     Render(const Render&) = delete; 
     Render(Render&&) = delete; 
@@ -90,7 +92,8 @@ private:
     Render& operator =(Render&&) = delete;   
 public:
     // #5. 구현부를 변경합니다.
-    void SetImpl(std::unique_ptr<RenderImpl> impl) {
+    void SetImpl(std::unique_ptr<RenderImpl> impl) { 
+        assert(impl);
         m_Impl = std::move(impl);
     }
 
@@ -110,7 +113,7 @@ class Rectangle {
 public:
     Rectangle(int l, int t, int w, int h) : m_Left{l}, m_Top{t}, m_Width{w}, m_Height{h} {}
 
-    // #6. 어떤 렌더링 엔진을 사용하는지 고민하지 않고 본연의 드로잉 코드만 작성합니다.
+        // #6. 어떤 렌더링 엔진을 사용하는지 고민하지 않고 본연의 드로잉 코드만 작성합니다.
     void Draw(Render& render) const { 
         int right{m_Left + m_Width};
         int bottom{m_Top + m_Height};
@@ -143,9 +146,11 @@ public:
 // #2. Render 정의부입니다. RenderImpl에 컴파일 종속성이 있어 선언과 정의를 분리했습니다. 
 // ----
 void Render::DrawLine(int x1, int y1, int x2, int y2) {
+    assert(m_Impl);
     m_Impl->DrawLineImpl(x1, y1, x2, y2);
 }
 void Render::DrawImage(int l, int t, const char* filename) {
+    assert(m_Impl);
     m_Impl->DrawImageImpl(l, t, filename);
 }
 
@@ -169,11 +174,11 @@ public:
     virtual void DrawImageImpl(int l, int t, const char* filename) override {
         std::cout << "WPFRenderImpl::DrawImageImpl()" << std::endl;
     }
-};  
+};
 
 // ----
 // 테스트 코드
-// ----
+// ----        
 Render render{std::unique_ptr<RenderImpl>{new GDIRenderImpl{}}};
 Rectangle rect{0, 0, 10, 20};
 
@@ -181,6 +186,6 @@ Rectangle rect{0, 0, 10, 20};
 rect.Draw(render);
 
 // #5. 런타임에 구현부를 WPFRenderImpl로 변경하여 실행할 수 있습니다.
-render.SetImpl(std::unique_ptr<RenderImpl>{new WPFRenderImpl{}});
+render.SetImpl(std::unique_ptr<RenderImpl>{new WPFRenderImpl{}}); 
 rect.Draw(render);
 ```

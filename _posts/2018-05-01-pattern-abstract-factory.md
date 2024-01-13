@@ -49,7 +49,7 @@ sidebar:
 
 ```cpp
 // ----
-// 기본 인터페이스
+// #1. Button, Check, RadioGroup은 구체화된 클래스에서 상속해야 하는 추상 클래스입니다.
 // ----
 class Button { // #1
 protected:
@@ -69,7 +69,7 @@ class Check { // #1
 protected:
     Check() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
 public:
-    virtual ~Check() = default; // 다형 소멸 하도록 public virtual    
+    virtual ~Check() = default; // 다형 소멸 하도록 public virtual
 private:
     Check(const Check&) = delete;
     Check(Check&&) = delete;
@@ -93,7 +93,10 @@ public:
     virtual void Select(size_t index) = 0; // 주어진 인덱스를 선택합니다.
 };
 
-class ControlFactory { //#2
+// ----
+// #2. Button, Check, RadioGroup을 생성하는 추상 클래스입니다.
+// ----
+class ControlFactory { 
 protected:
     ControlFactory() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
 public:
@@ -130,7 +133,7 @@ public:
     }
 };  
 
-class NormalRadioGroup : public RadioGroup {
+    class NormalRadioGroup : public RadioGroup {
 public: 
     NormalRadioGroup() = default;
 
@@ -176,7 +179,7 @@ public:
     }
 };  
 
-class MobileRadioGroup : public RadioGroup {
+    class MobileRadioGroup : public RadioGroup {
 public: 
     MobileRadioGroup() = default;
 
@@ -195,6 +198,7 @@ public:
     }
     virtual std::unique_ptr<Check> CreateCheck() const override {
         return std::unique_ptr<Check>{new MobileCheck{}};
+
     }
     virtual std::unique_ptr<RadioGroup> CreateRadioGroup() const override {
         return std::unique_ptr<RadioGroup>{new MobileRadioGroup{}};
@@ -206,7 +210,9 @@ bool IsMobile() {
     return true; // 테스트 용으로 그냥 true를 리턴합니다.
 } 
 
-// #4. 모바일 인지 아닌지에 따라 ControlFactory를 생성합니다.
+// ----
+// #4. 일반용이 필요한지, 모바일용이 필요한지 검사하여 ControlFactory를 선택해서 사용합니다.
+// ----
 std::unique_ptr<ControlFactory> CreateControlFactory() {
     if (IsMobile()) { 
         // Mobile용 팩토리를 사용합니다.

@@ -63,11 +63,14 @@ sidebar:
 6. #6 : [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)를 이용하여 `Circle`을 `std::vector<std::unique_ptr<Shape>>`에 추가하여 사용할 수 있습니다.
 
 ```cpp
+// ----
+// #1. Draw()를 제공하는 부모 클래스입니다.
+// ----
 class Shape {
 protected:
     Shape() = default; // 다형 소멸을 제공하는 추상 클래스. 상속해서만 사용하도록 protected
 public:
-    virtual ~Shape() = default; // 다형 소멸 하도록 public virtual    
+    virtual ~Shape() = default; // 다형 소멸 하도록 public virtual   
 private:
     Shape(const Shape&) = delete; 
     Shape(Shape&&) = delete; 
@@ -76,6 +79,9 @@ private:
 public:
     virtual void Draw() const = 0; // #1
 };
+// ----
+// #2. Shape을 상속하여 Draw()를 제공합니다.
+// ----   
 class Rectangle : public Shape {
 public:
     Rectangle() = default;
@@ -92,7 +98,9 @@ public:
         std::cout << "Ellipse::Draw()" << std::endl;
     }
 };
-
+// ----
+// #3. Shape을 상속하지 않아 Draw()를 제공하지는 않지만, 동일한 기능인 Render()를 제공합니다.
+// ----  
 class Circle { // Shape을 상속하지 않았습니다.
 public:
     Circle() = default;
@@ -103,7 +111,7 @@ public:
 };  
 
 // ----
-// 클래스 Adapter. Circle 클래스를 Shape 처럼 사용할 수 있게 해줍니다.
+// #4. 클래스 Adapter. Circle 클래스를 Shape 처럼 사용할 수 있게 해줍니다.
 // ----
 class CircleClassAdapter : public Shape, private Circle {
 public:
@@ -115,14 +123,17 @@ public:
 };
 
 // ----
-// 개체 Adapter. Circle 개체를 Shape처럼 사용할 수 있게 해줍니다.
+// #4. 개체 Adapter. Circle 개체를 Shape처럼 사용할 수 있게 해줍니다.
 // ----
 class CircleObjectAdapter : public Shape {
 private:
     std::unique_ptr<Circle> m_Circle;
 public:
-    explicit CircleObjectAdapter(std::unique_ptr<Circle> circle) : m_Circle(std::move(circle)) {}
-    virtual void Draw() const override {  // #4
+    explicit CircleObjectAdapter(std::unique_ptr<Circle> circle) : m_Circle(std::move(circle)) {
+        assert(m_Circle);
+    }
+    virtual void Draw() const override { // #4
+        assert(m_Circle);
         m_Circle->Render();
     } 
 };
@@ -139,5 +150,5 @@ v.emplace_back(new CircleObjectAdapter{std::unique_ptr<Circle>{new Circle{}}}); 
 
 for (auto& shape : v) {
     shape->Draw();
-}    
+}
 ```

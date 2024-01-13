@@ -107,14 +107,20 @@ public:
     size_t GetSelectedIndex() const {return m_SelectedIndex;}
 
     void Add(const char* name, const char* addr) {
+        assert(name && addr);
+
         m_Data.emplace_back(name, addr);
     }
     // 이름-주소를 리턴합니다.
     std::pair<std::string, std::string> GetAt(int index) {
+        assert(index < m_Data.size());
+
         return m_Data[index];
     }
 
     void Select(size_t index) {
+        assert(index < m_Data.size());
+
         m_SelectedIndex = index;
         Changed();
     } 
@@ -143,6 +149,8 @@ class MyMediator : public IMediator {
 public:
     // 생성시 각 컨트롤의 Mediator를 설정합니다.
     MyMediator(List* list, Edit* nameEdit, Edit* addrEdit) : m_List{list}, m_NameEdit{nameEdit}, m_AddrEdit{addrEdit} {
+        assert(m_List && m_NameEdit && m_AddrEdit);
+
         m_List->SetMediator(this);
         m_NameEdit->SetMediator(this);
         m_AddrEdit->SetMediator(this);
@@ -150,15 +158,18 @@ public:
 
     // 컨트롤중 리스트가 변경되면 이름과 주소를 갱신합니다.
     virtual void Changed(const Control& control) override {
+        assert(m_List && m_NameEdit && m_AddrEdit);
+
         if (dynamic_cast<const List*>(&control) == m_List) {
             size_t index{m_List->GetSelectedIndex()};
             std::pair<std::string, std::string> data{m_List->GetAt(index)};
 
             m_NameEdit->SetString(data.first);
             m_AddrEdit->SetString(data.second);
-            }
+        }
     }
 };
+
 // ----
 // 테스트 코드
 // ----  

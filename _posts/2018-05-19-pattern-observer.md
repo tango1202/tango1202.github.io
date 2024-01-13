@@ -76,11 +76,20 @@ private:
     Subject& operator =(Subject&&) = delete;   
 public:
     // Observer를 등록합니다.
-    void Attach(IObserver* observer) {m_Observers.push_back(observer);}
+    void Attach(IObserver* observer) {
+        assert(observer);
+
+        m_Observers.push_back(observer);
+    }
     // Observer를 해제합니다.
     void Detach(IObserver* observer) {
+        assert(observer);
+
         std::list<IObserver*>::iterator itr{std::find(m_Observers.begin(), m_Observers.end(), observer)};
-        m_Observers.erase(itr);
+        
+        if (itr != m_Observers.end()) {
+            m_Observers.erase(itr);
+        }
     }
 
     // #2. 변경 사항이 있으면, 모든 Observer의 Update()를 호출합니다.
@@ -112,6 +121,8 @@ public:
         return std::accumulate(m_Data.begin(), m_Data.end(), 0);
     }
     int GetAver() const {
+        assert(0 < m_Data.size());
+        
         return GetSum() / m_Data.size();
     } 
 };
@@ -171,5 +182,5 @@ myDoc.Detach(&averObserver); // #2. averObserver 감시를 해제 합니다.
 myDoc.Add(10); // #5
 
 EXPECT_TRUE(sumObserver.GetVal() == 1 + 2 + 3 + 10); // sum은 계속 감시중이어서 값이 갱신됩니다.
-EXPECT_TRUE(averObserver.GetVal() == (1 + 2 + 3) / 3); // #5. aver는 감시를 해제하여 이전 값 입니다.
+EXPECT_TRUE(averObserver.GetVal() == (1 + 2 + 3) / 3); // #5. aver는 감시를 해제하여 값이 갱신되지 않습니다.
 ```

@@ -85,7 +85,7 @@ public:
 };
 
 // ----
-// #2. 집합 개체로서 CreateIterator()를 제공해야 합니다. 
+// #2. 집합 개체로서 CreateIterator()를 제공해야 합니다.   
 // ----
 class IAggregate {
 protected:
@@ -114,9 +114,17 @@ public:
     virtual std::unique_ptr<Iterator> CreateIterator() override; // 이터레이터를 생성합니다. 
     virtual size_t GetCount() const override {return m_Container.size();} // 요소의 갯수를 구합니다.
     virtual void Add(int val) override {m_Container.push_back(val);} // 요소를 추가합니다.
-    virtual void Remove(int index) override {m_Container.erase(m_Container.begin() + index);} // 요소를 삭제합니다.
+    virtual void Remove(int index) override { // 요소를 삭제합니다.
+        assert(index < m_Container.size());
 
-    int GetAt(int index) const {return m_Container[index];}
+        m_Container.erase(m_Container.begin() + index);
+    } 
+
+    int GetAt(int index) const {
+        assert(index < m_Container.size());
+
+        return m_Container[index];
+    }
 };
 // ----
 // #4. Iterator를 구체화합니다. m_CurrentIndex로 현재 요소 위치를 관리합니다.
@@ -130,7 +138,11 @@ public:
     virtual void First() override {m_CurrentIndex = 0;} // 집합 개체의 처음으로 이동합니다.
     virtual void Next() override {++m_CurrentIndex;} // 다음 위치로 이동합니다.
     virtual bool IsDone() const override {return m_CurrentIndex < m_MyAggregate.GetCount() ? false : true;} // 끝인지 검사합니다. 
-    virtual int GetCurrent() const override {return m_MyAggregate.GetAt(m_CurrentIndex);} // 현 위치의 값을 리턴합니다.
+    virtual int GetCurrent() const override { // 현 위치의 값을 리턴합니다.
+        assert(m_CurrentIndex < m_MyAggregate.GetCount());
+        
+        return m_MyAggregate.GetAt(m_CurrentIndex);
+    } 
 };
 
 std::unique_ptr<Iterator> MyAggregate::CreateIterator() {

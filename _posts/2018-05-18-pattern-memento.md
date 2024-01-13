@@ -124,6 +124,8 @@ public:
     MyApp() : m_SelectedIndex{0} {}
 
     virtual Rectangle& GetSelected() override { // 선택된 개체를 리턴합니다.
+        assert(m_SelectedIndex < m_Rectangles.size());
+
         return *m_Rectangles[m_SelectedIndex];
     }
     virtual void Move(int left, int top) {
@@ -131,9 +133,13 @@ public:
     }
 
     void Add(std::unique_ptr<Rectangle> rectangle) { // 개체를 추가합니다.
+        assert(rectangle);
+
         m_Rectangles.emplace_back(rectangle.release());
     } 
     void Select(size_t index) { // 관리중인 개체를 선택합니다.
+        assert(index < m_Rectangles.size());
+        
         m_SelectedIndex = index;
     }
 };
@@ -167,6 +173,8 @@ public:
     virtual void Execute() override {
         Rectangle& rectangle{m_Receiver.GetSelected()};
         m_Memento = rectangle.CreateMoveMemento();
+        assert(m_Memento);
+
         m_Receiver.Move(m_Left, m_Top);
     }
     virtual void Unexecute() override {

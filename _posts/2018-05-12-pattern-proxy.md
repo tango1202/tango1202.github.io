@@ -102,7 +102,9 @@ public:
     ImageProxy(int w, int h, const char* filename) :
         m_Width{w}, 
         m_Height{h}, 
-        m_Filename{filename} {}
+        m_Filename{filename} {
+        assert(filename);
+    }
 
     virtual int GetWidth() const override {
         if (!m_Image) {
@@ -157,5 +159,5 @@ EXPECT_TRUE(image.IsValid() == false);
 
 image.Draw(); // 이미지를 로딩하여 그립니다.
 
-EXPECT_TRUE(image.IsValid() == true); // #4    
+EXPECT_TRUE(image.IsValid() == true); // #4  
 ```

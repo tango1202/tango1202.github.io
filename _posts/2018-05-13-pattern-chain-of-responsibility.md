@@ -103,12 +103,12 @@ class Border {
     std::unique_ptr<unsigned int> m_Color;
 public:
     Border() = default; // 속성이 세팅되지 않은 기본 Border를 생성합니다.
-    ~Border() = default;    
+    ~Border() = default;
 private:
     Border(const Border&) = delete; 
     Border(Border&&) = delete; 
     Border& operator =(const Border&) = delete; 
-    Border& operator =(Border&&) = delete;   
+    Border& operator =(Border&&) = delete; 
 public:
     unsigned int GetWidth() const {
         if (!m_Width) {
@@ -237,10 +237,14 @@ public:
     Panel() = default;
 
     virtual void Add(std::unique_ptr<Control> child) override {
+        assert(child);
+
         child->SetSuccessor(this); // #4
         m_Children.emplace_back(child.release());
     }
     virtual Control& GetChild(int index) override {
+        assert(index < m_Children.size());
+        
         return *m_Children[index];
     }
 };

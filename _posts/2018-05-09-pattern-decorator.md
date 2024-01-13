@@ -136,9 +136,13 @@ public:
 class NewIconDecorator : public Control {
     std::unique_ptr<Control> m_Control;
 public:
-    explicit NewIconDecorator(std::unique_ptr<Control> control) : m_Control{std::move(control)} {}
+    explicit NewIconDecorator(std::unique_ptr<Control> control) : m_Control{std::move(control)} {
+        assert(m_Control);  
+    }
 
     virtual void Draw() const override {
+        assert(m_Control); 
+
         m_Control->Draw();
         DrawNewIcon(); // #3
     }
@@ -150,8 +154,7 @@ private:
 
 // ----
 // 테스트 코드
-// ----
-
+// ----           
 // Draw 호출시 NewIconDecorator인 것은 NewIcon을 추가로 출력합니다.
 std::vector<std::shared_ptr<Control>> v;
 v.emplace_back(std::unique_ptr<Control>{new Label});
@@ -170,9 +173,13 @@ for (auto& control : v) {
 class LogDecorator : public Control {
     std::unique_ptr<Control> m_Control;
 public:
-    explicit LogDecorator(std::unique_ptr<Control> control) : m_Control{std::move(control)} {}
+    explicit LogDecorator(std::unique_ptr<Control> control) : m_Control{std::move(control)} {
+        assert(m_Control); 
+    }
 
     virtual void Draw() const override {
+        assert(m_Control); 
+
         m_Control->Draw();
         Log();
     }
@@ -190,8 +197,8 @@ private:
 std::vector<std::shared_ptr<Control>> v;
 v.emplace_back(std::unique_ptr<Control>{new LogDecorator{std::unique_ptr<Control>{new Label}}});
 v.emplace_back(
-    std::unique_ptr<Control>{new LogDecorator{ // 로그 출력
-        std::unique_ptr<Control>{new NewIconDecorator{ // NewIcon 출력
+    std::unique_ptr<Control>{new LogDecorator{
+        std::unique_ptr<Control>{new NewIconDecorator{
             std::unique_ptr<Control>{new Edit}
         }}
     }}
@@ -199,6 +206,6 @@ v.emplace_back(
 
 for (auto& control : v) {
     control->Draw();
-}      
+}    
 ```
 

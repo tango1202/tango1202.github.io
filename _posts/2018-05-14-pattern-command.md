@@ -170,6 +170,7 @@ public:
         }
     }
     void Add(std::shared_ptr<Command> child) {
+        assert(child);
         m_Children.push_back(child);
     }
 };
