@@ -64,7 +64,7 @@ int val = Calc(rectangle.GetWidth(), rectangle.GetHeight(), userInputString);
 
 ```cpp
 // ----
-// #1. `w`, `h`에 사용되는 포괄적인 정보를 제공합니다.
+// #1. w, h에 사용되는 포괄적인 정보를 제공합니다.
 // ----
 class Context {
     int m_Width;
