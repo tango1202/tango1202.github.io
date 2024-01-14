@@ -168,7 +168,7 @@ sidebar:
 
 # [나쁜 코딩 관행] 여기서 발명되지 않음(Not Invented Here)
 
-자사가 개발하지 않은 것은 신뢰하지 않는 관행입니다. [바퀴를 재발명](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B0%94%ED%80%B4%EC%9D%98-%EC%9E%AC%EB%B0%9C%EB%AA%85reinventing-the-wheel)하느라 핵심 기능에 집중하지 못합니다. 심지어 [STL](https://tango1202.github.io/categories/mordern-cpp-stl/)도 안쓰기도 하지요.
+자사가 개발하지 않은 것은 신뢰하지 않는 관행입니다. [바퀴를 재발명](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B0%94%ED%80%B4%EC%9D%98-%EC%9E%AC%EB%B0%9C%EB%AA%85reinventing-the-wheel)하느라 핵심 기능에 집중하지 못합니다. 심지어 [STL](https://tango1202.github.io/categories/cpp-stl/)도 안쓰기도 하지요.
 
 [얼어붙은 원시인](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%96%BC%EC%96%B4%EB%B6%99%EC%9D%80-%EC%9B%90%EC%8B%9C%EC%9D%B8frozen-caveman)이 되지 마세요.
 

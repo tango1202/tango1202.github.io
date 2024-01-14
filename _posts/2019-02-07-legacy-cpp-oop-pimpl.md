@@ -264,7 +264,7 @@ int T::GetVal1() const {return *(m_Impl->m_Val1);}
 int T::GetVal2() const {return *(m_Impl->m_Val2);}    
 ```
 
-STL을 이용하면 좀더 간단하게 구현할 수 있습니다. 자세한 내용은 [unique_ptr을 이용한 PImpl 구현](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unique_ptr/#unique_ptr%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EA%B5%AC%ED%98%84)을 참고하세요.
+STL을 이용하면 좀더 간단하게 구현할 수 있습니다. 자세한 내용은 [unique_ptr을 이용한 PImpl 구현](https://tango1202.github.io/cpp-stl/modern-cpp-stl-unique_ptr/#unique_ptr%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-pimpl-%EA%B5%AC%ED%98%84)을 참고하세요.
 
 # PImpl 이디엄 오버헤드
 

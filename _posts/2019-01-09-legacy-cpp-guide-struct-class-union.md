@@ -13,9 +13,9 @@ sidebar:
 > * [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있으니 꼭 필요한 경우 한정적으로 사용하라.
 
 > **모던 C++**
-> * (C++11~) [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버에서 [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 사용 제한이 풀렸으며, 메모리 절약을 위한 코딩 자유도가 높아졌습니다.
-> * (C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.
-> * (C++20~) [비트 필드 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#c20-%EB%B9%84%ED%8A%B8-%ED%95%84%EB%93%9C-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되었습니다.
+> * (C++11~) [무제한 공용체](https://tango1202.github.io/cpp/modern-cpp-unrestricted-union/)가 추가되어 [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버에서 [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 사용 제한이 풀렸으며, 메모리 절약을 위한 코딩 자유도가 높아졌습니다.
+> * (C++17~) [variant](https://tango1202.github.io/cpp-stl/modern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.
+> * (C++20~) [비트 필드 선언부 초기화](https://tango1202.github.io/cpp/modern-cpp-initialization/#c20-%EB%B9%84%ED%8A%B8-%ED%95%84%EB%93%9C-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되었습니다.
 
 # 개요
 
@@ -54,14 +54,14 @@ C c(10, 20); // 클래스는 값 생성자만 가능. 중괄호 집합 초기화
 
 [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)는 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)들끼리 메모리 영역을 공유합니다. 이에 따라 플랫폼에 따라, 컴파일러에 따라, 최적화 옵션에 따라 예기치 못한 동작을 할 수도 있습니다. 따라서 꼭 필요한 경우에만 한정적으로 사용하기 바랍니다. 또한, [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)나 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위한 다양한 기능들이 제한됩니다.
 
-> *(C++11~) [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버에서 [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 사용 제한이 풀렸으며, 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*
+> *(C++11~) [무제한 공용체](https://tango1202.github.io/cpp/modern-cpp-unrestricted-union/)가 추가되어 [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버에서 [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 사용 제한이 풀렸으며, 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*
 
 다음은 구조체, 클래스, [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)의 차이점입니다.
 
 |항목|구조체|클래스|[공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4)|
 |--|--|--|--|
 |용량|[멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)들의 총합|[멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)들의 총합|[멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)들중 가장 큰값|
-|[초기화](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-initialization/)|`T t = {10, 20};` 와 같이 [중괄호 집합 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94) 지원|값 생성자|X|
+|[초기화](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-initialization/)|`T t = {10, 20};` 와 같이 [중괄호 집합 초기화](https://tango1202.github.io/cpp/modern-cpp-initialization/#%EC%A4%91%EA%B4%84%ED%98%B8-%EC%A7%91%ED%95%A9-%EC%B4%88%EA%B8%B0%ED%99%94) 지원|값 생성자|X|
 |기본 [접근 지정자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EC%A0%91%EA%B7%BC-%EC%A7%80%EC%A0%95%EC%9E%90)|`public`|`private`|`public`|
 |[멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)|O|O|O|
 |[멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)|O|O|O|
@@ -317,8 +317,8 @@ EXPECT_TRUE(u.s1.x == 20);
 EXPECT_TRUE(u.s2.x == 20);
 ```
 
->*(C++11~) [무제한 공용체](https://tango1202.github.io/mordern-cpp/mordern-cpp-unrestricted-union/)가 추가되어 [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버에서 [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 사용 제한이 풀렸으며, 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*<br/>
-> *(C++17~) [variant](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.*
+>*(C++11~) [무제한 공용체](https://tango1202.github.io/cpp/modern-cpp-unrestricted-union/)가 추가되어 [공용체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-struct-class-union/#%EA%B3%B5%EC%9A%A9%EC%B2%B4) 멤버에서 [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)/[소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)/[가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98) 사용 제한이 풀렸으며, 메모리 절약을 위한 코딩 자유도가 높아졌습니다.*<br/>
+> *(C++17~) [variant](https://tango1202.github.io/cpp-stl/modern-cpp-stl-variant/)가 추가되어 타입이 다른 여러 데이터들을 동일한 메모리 공간에서 쉽게 관리할 수 있습니다.*
 
 # this 포인터
 
@@ -487,4 +487,4 @@ unsigned char* ptr =  &flag.m_Val1; // (X) 컴파일 오류. 비트 필드는 �
 unsigned char& ref =  flag.m_Val1; // (X) 컴파일 오류. 비트 필드는 레퍼런스를 지원하지 않습니다.
 ```
 
-> *(C++20~) [비트 필드 선언부 초기화](https://tango1202.github.io/mordern-cpp/mordern-cpp-initialization/#c20-%EB%B9%84%ED%8A%B8-%ED%95%84%EB%93%9C-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되었습니다.*
+> *(C++20~) [비트 필드 선언부 초기화](https://tango1202.github.io/cpp/modern-cpp-initialization/#c20-%EB%B9%84%ED%8A%B8-%ED%95%84%EB%93%9C-%EC%84%A0%EC%96%B8%EB%B6%80-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되었습니다.*

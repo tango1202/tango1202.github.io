@@ -9,14 +9,14 @@ sidebar:
 ---
 
 > **모던 C++**
-> * (C++11~) [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 1회용 익명 함수를 만들 수 있습니다.
-> * (C++11~) [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function)이 추가되어 `()`로 호출 가능한 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 저장할 수 있습니다. 
-> * (C++11~) [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)이 추가되었습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 있는 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)도 호출하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 좀 더 간편하게 만들어 줍니다.
-> * (C++11~) [reference_wrapper](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#reference_wrapper), [ref(), cref()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#ref-cref)는 [복사 생성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)이나 [복사 대입](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)이 안되는 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 래핑합니다.
-> * (C++11~) [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)가 추가되어 `placeholders::_1`(*GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨*)와 같은 자리 표시자와 조합하여 특정 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)만을 사용하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 생성할 수 있습니다.
-> * (C++11~) 함수자 타입 특성 클래스([unary_function, binary_function](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)등), 바인더([bind1st(), bind2nd()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)등), 어뎁터와 부정자([mem_fun(), mem_fun_ref(), ptr_fun(), not1(), not2()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EC%96%B4%EB%8E%81%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)등)가 [람다 표현식](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D), [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#function), [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind), [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)등으로 대체되어 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.
-> * (C++11~) [hash()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-hash/)가 추가되어 각 타입별로 데이터의 [해시값(*Digest*)](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 구할 수 있습니다.
-> * (C++17~) [not_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되어 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)(*단항, 이항 제한이 없습니다.*)로 전달한 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 부정하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 만듭니다.
+> * (C++11~) [람다 표현식](https://tango1202.github.io/cpp/modern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 1회용 익명 함수를 만들 수 있습니다.
+> * (C++11~) [function](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/#function)이 추가되어 `()`로 호출 가능한 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 저장할 수 있습니다. 
+> * (C++11~) [mem_fn()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/#mem_fn)이 추가되었습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)가 있는 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)도 호출하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 좀 더 간편하게 만들어 줍니다.
+> * (C++11~) [reference_wrapper](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/#reference_wrapper), [ref(), cref()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/#ref-cref)는 [복사 생성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)이나 [복사 대입](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)이 안되는 [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)를 래핑합니다.
+> * (C++11~) [bind()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/#bind)가 추가되어 `placeholders::_1`(*GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨*)와 같은 자리 표시자와 조합하여 특정 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)만을 사용하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 생성할 수 있습니다.
+> * (C++11~) 함수자 타입 특성 클래스([unary_function, binary_function](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)등), 바인더([bind1st(), bind2nd()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)등), 어뎁터와 부정자([mem_fun(), mem_fun_ref(), ptr_fun(), not1(), not2()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EC%96%B4%EB%8E%81%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)등)가 [람다 표현식](https://tango1202.github.io/cpp/modern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D), [function](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/#function), [bind()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/#bind), [mem_fn()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/#mem_fn)등으로 대체되어 [deprecate](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#deprecateremove) 되었습니다.
+> * (C++11~) [hash()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-hash/)가 추가되어 각 타입별로 데이터의 [해시값(*Digest*)](https://tango1202.github.io/cpp-stl/modern-cpp-stl-unordered_map-unordered_set/#%ED%95%B4%EC%8B%9C)을 구할 수 있습니다.
+> * (C++17~) [not_fn()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되어 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)(*단항, 이항 제한이 없습니다.*)로 전달한 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 부정하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 만듭니다.
 
 
 # 함수자와 조건자
@@ -56,7 +56,7 @@ my_for_each(v.begin(), v.end(), Functor());
 EXPECT_TRUE(v[0] == 20 && v[1] == 20 && v[2] == 20); 
 ```
 
-> *(C++11~) [](https://tango1202.github.io/mordern-cpp/mordern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 1회용 익명 함수를 만들 수 있습니다.*
+> *(C++11~) [](https://tango1202.github.io/cpp/modern-cpp-lambda/#%EB%9E%8C%EB%8B%A4-%ED%91%9C%ED%98%84%EC%8B%9D)이 추가되어 1회용 익명 함수를 만들 수 있습니다.*
 
 # 함수자에서 상태 활용
 
@@ -131,11 +131,11 @@ Adder adder(init);
 std::for_each(v.begin(), v.end(), adder);
 EXPECT_TRUE(v[0] == 11 && v[1] == 12 && v[2] == 13);
 ```
-> *(C++11~) 함수자 타입 특성 클래스([unary_function, binary_function](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)등)는 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다. [function](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/)을 사용합니다.*<br/>
+> *(C++11~) 함수자 타입 특성 클래스([unary_function, binary_function](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90-%ED%83%80%EC%9E%85-%ED%8A%B9%EC%84%B1-%ED%81%B4%EB%9E%98%EC%8A%A4traits)등)는 [deprecate](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#deprecateremove) 되었습니다. [function](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/)을 사용합니다.*<br/>
 
 # STL 기본 함수자
 
-다음과 같은 기본 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)가 제공됩니다. 전체 내용은 모던 C++의 [함수자](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90)를 참고하시기 바랍니다.
+다음과 같은 기본 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)가 제공됩니다. 전체 내용은 모던 C++의 [함수자](https://tango1202.github.io/cpp-stl/modern-cpp-stl-functor/#%ED%95%A8%EC%88%98%EC%9E%90)를 참고하시기 바랍니다.
 
 |항목|내용|
 |--|--|
@@ -225,8 +225,8 @@ std::vector<int>::iterator itr = std::find_if(
 EXPECT_TRUE(*itr == 4);  
 ```
 
-> *(C++11~) 바인더([bind1st(), bind2nd()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)등)은 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.*<br/>
-> *(C++11~) [bind()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#bind)가 추가되어 `placeholders::_1`(*GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨*)와 같은 자리 표시자와 조합하여 특정 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)만을 사용하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 생성할 수 있습니다.*
+> *(C++11~) 바인더([bind1st(), bind2nd()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EB%B0%94%EC%9D%B8%EB%8D%94)등)은 [deprecate](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#deprecateremove) 되었습니다.*<br/>
+> *(C++11~) [bind()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/#bind)가 추가되어 `placeholders::_1`(*GCC의 경우 `_1`, `_2`, `_3`, ... `_29`가 정의됨*)와 같은 자리 표시자와 조합하여 특정 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)만을 사용하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 생성할 수 있습니다.*
 
 # 어뎁터와 부정자
 
@@ -272,6 +272,6 @@ std::for_each(
     std::mem_fun_ref(&A::Func) // 요소.Func()으로 호출해 주는 어뎁터입니다.
 );
 ```
-> *(C++11~) 어뎁터와 부정자([mem_fun(), mem_fun_ref(), ptr_fun(), not1(), not2()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EC%96%B4%EB%8E%81%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)등)는 [deprecate](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-preview/#deprecateremove) 되었습니다.*<br/>
-> *(C++11~) [mem_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-function/#mem_fn)을 이용하여 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 호출합니다.*<br/>
-> *(C++17~) [not_fn()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되었습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)(단항, 이항 제한이 없습니다.)로 전달한 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 부정하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 만듭니다.*
+> *(C++11~) 어뎁터와 부정자([mem_fun(), mem_fun_ref(), ptr_fun(), not1(), not2()](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/#%EC%96%B4%EB%8E%81%ED%84%B0%EC%99%80-%EB%B6%80%EC%A0%95%EC%9E%90)등)는 [deprecate](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#deprecateremove) 되었습니다.*<br/>
+> *(C++11~) [mem_fn()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-function/#mem_fn)을 이용하여 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 호출합니다.*<br/>
+> *(C++17~) [not_fn()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-functor/#%EB%B6%80%EC%A0%95%EC%9E%90)이 추가되었습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)(단항, 이항 제한이 없습니다.)로 전달한 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 부정하는 [함수자](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-functor/)를 만듭니다.*

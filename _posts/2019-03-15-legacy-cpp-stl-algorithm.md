@@ -8,20 +8,20 @@ sidebar:
     nav: "docs"
 ---
 
-> * [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)에 [알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/)의 멤버 버전이 있다면, 멤버 버전이 효율이 더 좋다.
+> * [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)에 [알고리즘](https://tango1202.github.io/cpp-stl/modern-cpp-stl-algorithm/)의 멤버 버전이 있다면, 멤버 버전이 효율이 더 좋다.
 
 > **모던 C++**
-> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었고, [seq, par, par_unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
-> * (C++20~) [unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)가 병렬 실행 정책에 추가되었습니다.
+> * (C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/cpp-stl/modern-cpp-stl-parallel-algorithm/)하는 [오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었고, [seq, par, par_unseq](https://tango1202.github.io/cpp-stl/modern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.
+> * (C++20~) [unseq](https://tango1202.github.io/cpp-stl/modern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)가 병렬 실행 정책에 추가되었습니다.
 
 # 개요
 
-[알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/)은 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)의 요소를 처리하는 표준화된 방법입니다. 만약 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)에 멤버 버전이 있다면, 멤버 버전이 효율이 더 좋습니다.
+[알고리즘](https://tango1202.github.io/cpp-stl/modern-cpp-stl-algorithm/)은 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)의 요소를 처리하는 표준화된 방법입니다. 만약 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)에 멤버 버전이 있다면, 멤버 버전이 효율이 더 좋습니다.
 
-[알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/)의 종류에 대해서는 모던 C++ STL의 [알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/)을 참고하시기 바랍니다.
+[알고리즘](https://tango1202.github.io/cpp-stl/modern-cpp-stl-algorithm/)의 종류에 대해서는 모던 C++ STL의 [알고리즘](https://tango1202.github.io/cpp-stl/modern-cpp-stl-algorithm/)을 참고하시기 바랍니다.
 
-> *(C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/)하는 [오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었고, [seq, par, par_unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.*<br/>
-> *(C++20~) [unseq](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)가 병렬 실행 정책에 추가되었습니다.*
+> *(C++17~) [대부분의 알고리즘에서 병렬 작업을 지원](https://tango1202.github.io/cpp-stl/modern-cpp-stl-parallel-algorithm/)하는 [오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 버전이 추가되었고, [seq, par, par_unseq](https://tango1202.github.io/cpp-stl/modern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)으로 병렬 실행 정책을 지정할 수 있습니다.*<br/>
+> *(C++20~) [unseq](https://tango1202.github.io/cpp-stl/modern-cpp-stl-parallel-algorithm/#%EC%8B%A4%ED%96%89-%EC%A0%95%EC%B1%85)가 병렬 실행 정책에 추가되었습니다.*
 
 # for_each()
 

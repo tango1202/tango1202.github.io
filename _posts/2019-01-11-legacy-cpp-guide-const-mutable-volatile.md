@@ -13,8 +13,8 @@ sidebar:
 > * [상수 개체](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98-%EA%B0%9C%EC%B2%B4)와 [상수 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)는 메모리를 수정하지 않기 때문에 [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하지 않는다.
 
 > **모던 C++**
-> * (C++11~) [constexpr](https://tango1202.github.io/mordern-cpp/mordern-cpp-constexpr/)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
-> * (C++20~) [volatile의 일부가 deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-volatile-%EC%9D%BC%EB%B6%80-deprecate)되었습니다.
+> * (C++11~) [constexpr](https://tango1202.github.io/cpp/modern-cpp-constexpr/)이 추가되어 컴파일 타임 프로그래밍이 강화됐습니다.
+> * (C++20~) [volatile의 일부가 deprecate](https://tango1202.github.io/cpp/modern-cpp-etc/#c20-volatile-%EC%9D%BC%EB%B6%80-deprecate)되었습니다.
 
 # 개요
 
@@ -245,7 +245,7 @@ volatile unsigned int *p = 0x1234; // 컴파일러 최적화를 하지 않습니
 *p = 0x0003;
 ```
 
-> *(C++20~) [volatile의 일부가 deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-etc/#c20-volatile-%EC%9D%BC%EB%B6%80-deprecate)되었습니다.*
+> *(C++20~) [volatile의 일부가 deprecate](https://tango1202.github.io/cpp/modern-cpp-etc/#c20-volatile-%EC%9D%BC%EB%B6%80-deprecate)되었습니다.*
 
 
 

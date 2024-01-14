@@ -52,7 +52,7 @@ sidebar:
 
 # 특징
 
-C++의 경우 다른 [STL 알고리즘](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-algorithm/)과의 호환성을 위해 STL의 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)에서 제공하는 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)를 사용하는게 좋습니다.
+C++의 경우 다른 [STL 알고리즘](https://tango1202.github.io/cpp-stl/modern-cpp-stl-algorithm/)과의 호환성을 위해 STL의 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)에서 제공하는 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)를 사용하는게 좋습니다.
 
 # 예제
 

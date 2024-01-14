@@ -12,9 +12,9 @@ sidebar:
 > * [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)는 삽입한 요소의 복제본을 관리한다. [원본을 관리](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container-insert-erase/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-%EC%9B%90%EB%B3%B8-%EA%B4%80%EB%A6%AC)하려면 포인터를 이용하라.
 
 > **모던 C++**
-> * (C++11~) [컨테이너의 initializer_list 초기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-initializer_list-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 초기값 입력이 간편해 졌습니다. 
-> * (C++11~) [emplace() 계열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)들이 추가되어 요소 삽입시 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용하여 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 내에서 요소 개체를 직접 생성할 수 있으며, 불필요한 복제본을 생성하지 않습니다.
-> * (C++20~) [erase(), erase_if()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c20-erase-erase_if)가 추가되어 값으로 요소를 삭제할 수 있습니다.
+> * (C++11~) [컨테이너의 initializer_list 초기화](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/#c11-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-initializer_list-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 초기값 입력이 간편해 졌습니다. 
+> * (C++11~) [emplace() 계열 함수](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)들이 추가되어 요소 삽입시 [완벽한 전달](https://tango1202.github.io/cpp/modern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용하여 [컨테이너](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/) 내에서 요소 개체를 직접 생성할 수 있으며, 불필요한 복제본을 생성하지 않습니다.
+> * (C++20~) [erase(), erase_if()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/#c20-erase-erase_if)가 추가되어 값으로 요소를 삭제할 수 있습니다.
 
 # 개요
 
@@ -62,7 +62,7 @@ EXPECT_TRUE(v.size() == 2); // 요소 갯수 2개
 EXPECT_TRUE(*result == 1); // 삭제한 요소의 다음 요소를 리턴함
 ```
 
-> *(C++11~) [컨테이너의 initializer_list 초기화](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-initializer_list-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 초기값 입력이 간편해 졌습니다.*
+> *(C++11~) [컨테이너의 initializer_list 초기화](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/#c11-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-initializer_list-%EC%B4%88%EA%B8%B0%ED%99%94)가 추가되어 초기값 입력이 간편해 졌습니다.*
 
 # 컨테이너 멤버 함수 erase()와 알고리즘 remove() 함수
 
@@ -123,7 +123,7 @@ EXPECT_TRUE(v[1] == 4);
 EXPECT_TRUE(v[2] == 5); 
 ```
 
-> *(C++20~) [erase(), erase_if()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c20-erase-erase_if)가 추가되어 값으로 요소를 삭제할 수 있습니다.*
+> *(C++20~) [erase(), erase_if()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/#c20-erase-erase_if)가 추가되어 값으로 요소를 삭제할 수 있습니다.*
 
 # list 의 삽입과 삭제
 
@@ -237,5 +237,5 @@ a.SetVal(3);
 EXPECT_TRUE(a.GetVal() == ptrVector[0]->GetVal()); // vector는 포인터의 복제본을 저장했기 때문에 동일한 a를 가리킵니다.
 ```
 
-> *(C++11~) [emplace() 계열 함수](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)들이 추가되어 요소 삽입시 [완벽한 전달](https://tango1202.github.io/mordern-cpp/mordern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용하여 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 내에서 요소 개체를 직접 생성할 수 있으며, 불필요한 복제본을 생성하지 않습니다.*
+> *(C++11~) [emplace() 계열 함수](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/#c11-emplace-emplace_back-emplace_front-emplace_hint-%EC%82%BD%EC%9E%85)들이 추가되어 요소 삽입시 [완벽한 전달](https://tango1202.github.io/cpp/modern-cpp-forwarding-reference/#forward-%EC%99%80-%EC%99%84%EB%B2%BD%ED%95%9C-%EC%A0%84%EB%8B%AC)을 이용하여 [컨테이너](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/) 내에서 요소 개체를 직접 생성할 수 있으며, 불필요한 복제본을 생성하지 않습니다.*
 

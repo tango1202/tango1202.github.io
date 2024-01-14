@@ -12,11 +12,11 @@ sidebar:
 > * `for()`를 이용하여 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)를 순차 탐색 할때 `itr < endItr`보다는 `itr != endItr`을 사용하라.
 
 > **모던 C++**
-> * (C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 요소의 탐색 처리가 쉬워졌습니다.
-> * (C++11~) [move_iterator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/) 어뎁터는 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)가 가리키는 요소를 [이동 연산](https://tango1202.github.io/mordern-cpp/mordern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.
-> * (C++11~) [begin(), end()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
-> * (C++14~) [rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
-> * (C++17~) [size(), empty(), data()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
+> * (C++11~) [범위 기반 for()](https://tango1202.github.io/cpp/modern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 [컨테이너](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/) 요소의 탐색 처리가 쉬워졌습니다.
+> * (C++11~) [move_iterator](https://tango1202.github.io/cpp-stl/modern-cpp-stl-iterator/) 어뎁터는 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)가 가리키는 요소를 [이동 연산](https://tango1202.github.io/cpp/modern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 합니다.
+> * (C++11~) [begin(), end()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
+> * (C++14~) [rbegin(), rend(), cbegin(), cend(), crbegin(), crend()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
+> * (C++17~) [size(), empty(), data()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-iterator/#c11-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)가 추가되었습니다.
 
 # 개요
 
@@ -51,7 +51,7 @@ container.begin() != container.end();
 
 `++`를 이용하여 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)를 사용하는 경우에는 꼭 전위형을 사용해야 합니다. 후위형을 사용하면, 증가 시키기 전의 값을 복제해서 리턴하기 때문에 불필요한 복사 부하가 생깁니다.(*[증감 연산자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%A6%9D%EA%B0%90-%EC%97%B0%EC%82%B0%EC%9E%90)와 [연산자 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9) 참고*)
 
-또한, `for()` 문의 조건식에서 `itr < endItr`이 아니라 `itr != endItr`을 사용합니다. 이는 랜덤 접근이 가능한 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)만 `<`이 가능하기 때문입니다. `<`을 지원하는 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)라도 향후 다른 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/)로 변경할 수도 있기 때문에, 리팩토링시 수정을 최소화하기 위해 습관적으로 `<` 보다는 `!=` 사용하는게 좋습니다.
+또한, `for()` 문의 조건식에서 `itr < endItr`이 아니라 `itr != endItr`을 사용합니다. 이는 랜덤 접근이 가능한 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)만 `<`이 가능하기 때문입니다. `<`을 지원하는 [컨테이너](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/)라도 향후 다른 [컨테이너](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/)로 변경할 수도 있기 때문에, 리팩토링시 수정을 최소화하기 위해 습관적으로 `<` 보다는 `!=` 사용하는게 좋습니다.
 
 ```cpp
 std::vector<int> v(5); // 5개의 요소 생성(클래스면 생성자를 호출함)
@@ -75,7 +75,7 @@ EXPECT_TRUE(v[0] == 0 && v[1] == 1 && v[2] == 2 && v[3] == 3 && v[4] == 4);
 EXPECT_TRUE(v[1] == 10); 
 ```
 
-> *(C++11~) [범위 기반 for()](https://tango1202.github.io/mordern-cpp/mordern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 [컨테이너](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-container/) 요소의 탐색 처리가 쉬워졌습니다.*
+> *(C++11~) [범위 기반 for()](https://tango1202.github.io/cpp/modern-cpp-statements/#%EB%B2%94%EC%9C%84-%EA%B8%B0%EB%B0%98-for)가 추가되어 [컨테이너](https://tango1202.github.io/cpp-stl/modern-cpp-stl-container/) 요소의 탐색 처리가 쉬워졌습니다.*
 
 # 이터레이터 카테고리
 

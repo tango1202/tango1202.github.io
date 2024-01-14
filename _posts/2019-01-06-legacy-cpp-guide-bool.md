@@ -11,7 +11,7 @@ sidebar:
 > * `BOOL`보다는 [bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/)을 사용하라.
 
 > **모던 C++**
-> * (C++17~) [bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/)의 증감 연산이 [deprecate](https://tango1202.github.io/mordern-cpp/mordern-cpp-preview/#deprecateremove) 되었습니다.
+> * (C++17~) [bool](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-bool/)의 증감 연산이 [deprecate](https://tango1202.github.io/cpp/modern-cpp-preview/#deprecateremove) 되었습니다.
 
 # 개요
 

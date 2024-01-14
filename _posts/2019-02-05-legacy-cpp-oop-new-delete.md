@@ -15,8 +15,8 @@ sidebar:
 > * [operator new](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)를 `private`로 만들어 [스택](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에만 생성되는 개체를 만들 수 있다.
 
 > **모던 C++**
-> * (C++17~) [uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85)가 추가되어 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)의 새로운 방법을 제공합니다.
-> * (C++17~) [polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/)가 추가되어 할당시 런타임 [다형성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-polymorphism/)을 지원합니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 [메모리 풀](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%92%80)을 손쉽게 만들 수 있습니다.
+> * (C++17~) [uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85)가 추가되어 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)의 새로운 방법을 제공합니다.
+> * (C++17~) [polymorphic_allocator](https://tango1202.github.io/cpp-stl/modern-cpp-stl-polymorphic_allocator/)가 추가되어 할당시 런타임 [다형성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-polymorphism/)을 지원합니다. [메모리 리소스](https://tango1202.github.io/cpp-stl/modern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 [메모리 풀](https://tango1202.github.io/cpp-stl/modern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%92%80)을 손쉽게 만들 수 있습니다.
 
 # 개요
 
@@ -235,9 +235,9 @@ catch (const char* e) {
 주로 다음을 위해 사용합니다.
 
 1. 데이터 오버런(overrun) 및 언더런(underrun) 등 잘못된  [힙](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%ED%9E%99) 사용을 탐지하기 위해 탐지용 byte를 추가로 할당하는 경우(*[진단](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-diagnostics/) 참고*)
-2. 할당 및 해제의 효율을 향상시키기 위해 **동적 메모리 오버헤드**를 줄이고 메모리 관리를 직접 수행하기 위한 [메모리 풀](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%92%80)을 만드는 경우(*[polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/) 참고*)
+2. 할당 및 해제의 효율을 향상시키기 위해 **동적 메모리 오버헤드**를 줄이고 메모리 관리를 직접 수행하기 위한 [메모리 풀](https://tango1202.github.io/cpp-stl/modern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%92%80)을 만드는 경우(*[polymorphic_allocator](https://tango1202.github.io/cpp-stl/modern-cpp-stl-polymorphic_allocator/) 참고*)
 
-    > *(C++17~) [polymorphic_allocator](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/)가 추가되어 할당시 런타임 [다형성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-polymorphism/)을 지원합니다. [메모리 리소스](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 [메모리 풀](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%92%80)을 손쉽게 만들 수 있습니다.*
+    > *(C++17~) [polymorphic_allocator](https://tango1202.github.io/cpp-stl/modern-cpp-stl-polymorphic_allocator/)가 추가되어 할당시 런타임 [다형성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-polymorphism/)을 지원합니다. [메모리 리소스](https://tango1202.github.io/cpp-stl/modern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4)를 사용하여 [메모리 풀](https://tango1202.github.io/cpp-stl/modern-cpp-stl-polymorphic_allocator/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%92%80)을 손쉽게 만들 수 있습니다.*
 3. 동적 할당 메모리의 실제 사용에 관한 통계 정보를 수집하는 경우(*[개체 수명 로그](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-object-life-log/) 참고*)
 
 **동적 메모리 오버헤드**
@@ -253,7 +253,7 @@ catch (const char* e) {
 
 **기본 재정의 방법**
 
-전역 [operator new](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) - 전역 [operator delete](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)를 이용하거나 [malloc()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC) - [free()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)를 이용할 수 있습니다. 
+전역 [operator new](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) - 전역 [operator delete](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)를 이용하거나 [malloc()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC) - [free()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)를 이용할 수 있습니다. 
 
 [operator new](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)를 재정의하려면 다음 3가지를 준수하여야 합니다.
 
@@ -275,15 +275,15 @@ public:
 };
 ```
 
-[malloc()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC) - [free()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)를 이용한다면, 
+[malloc()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC) - [free()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)를 이용한다면, 
 
 1. 최소 1byte를 할당해 주어야 하고,
-2. [malloc()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)에서는 오류 발생시 `NULL`을 리턴하므로, [new_handler](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC) 와 [bad_alloc](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 처리를 해주어야 합니다.
+2. [malloc()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)에서는 오류 발생시 `NULL`을 리턴하므로, [new_handler](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC) 와 [bad_alloc](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98) 처리를 해주어야 합니다.
 
 
 다음 코드에서,
 
-1. #1 : `static void* operator new(std::size_t sz)`에 전달되는 크기는 오버헤드 공간을 제외한 크기이며, [malloc()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)은 오버헤드 공간을 제외한 크기를 전달받아 오버헤드 공간을 포함한 영역을 할당합니다. 이후 [free()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)에서 오버헤드 공간의 정보를 이용하여 메모리를 해제합니다.
+1. #1 : `static void* operator new(std::size_t sz)`에 전달되는 크기는 오버헤드 공간을 제외한 크기이며, [malloc()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)은 오버헤드 공간을 제외한 크기를 전달받아 오버헤드 공간을 포함한 영역을 할당합니다. 이후 [free()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-memory/#c%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC)에서 오버헤드 공간의 정보를 이용하여 메모리를 해제합니다.
 
 2. #2 : [set_new_handler()](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC) 함수에 대응하는 `get_new_handler()` 함수는 없습니다. 그래서 `handler = std::set_new_handler(NULL);` 과 같이 호출하여, [new_handler](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)를 구하고, 이를 다시 복원해야 합니다.(*개체 지향스럽고, [예외 보증](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-warranty/)이 되는 방법은 [NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/)를 참고하세요.*)
 
@@ -666,7 +666,7 @@ void* buffer = T::operator new(sizeof(T));
 T* t = new(buffer) T; // (O) 위치 지정 생성을 호출합니다.      
 ```
 
-> *(C++17~) [uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85)가 추가되어 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)의 새로운 방법을 제공합니다.*
+> *(C++17~) [uninitialized_move(), uninitialized_default_construct(), uninitialized_value_construct(), destroy(), destroy_at()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-memory/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EC%9E%91%EC%97%85)가 추가되어 [위치 지정 생성자 호출과 소멸자 호출](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-newptr--placement-new%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95-%EC%83%9D%EC%84%B1)의 새로운 방법을 제공합니다.*
 
 # 스택에만 생성되는 개체
 
@@ -721,7 +721,7 @@ public:
 2. 다른 [new_handler](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)를 설치하여 처리를 위임하거나(*[NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/) 참고*)
 3. [new_handler](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#set_new_handler-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%A4%EB%A5%98-%EC%B2%98%EB%A6%AC)를 제거하거나(*[NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/) 참고*)
 4. [bad_alloc](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)이나 이로부터 파생된 [예외를 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시켜 처리를 포기하거나
-5. [abort()](https://tango1202.github.io/mordern-cpp-stl/mordern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90)를 호출하여 프로그램을 종료시킵니다.(*[NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/) 참고*)
+5. [abort()](https://tango1202.github.io/cpp-stl/modern-cpp-stl-utility/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A7%80%EC%9B%90)를 호출하여 프로그램을 종료시킵니다.(*[NewHandler](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-new_handler/) 참고*)
 
 다음 테스트 코드는 오류 발생시 [bad_alloc](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#operator-new%EC%99%80-operator-delete-%EC%9E%AC%EC%A0%95%EC%9D%98)이나 이로부터 파생된 [예외를 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시켜 처리를 포기하는 예입니다.
 

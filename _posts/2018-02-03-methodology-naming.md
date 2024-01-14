@@ -94,7 +94,7 @@ sidebar:
 
     손가락 타이핑 수도 줄이고 코드도 간결한 클래스 내부 [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)을 쓰시기 바랍니다.
 
-    > *(C++11~)  [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)이 추가되어  이름 충돌 회피가 쉬워졌고, [암시적 형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하며, [전방 선언](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)도 지원합니다. [범위 있는 열거형](https://tango1202.github.io/mordern-cpp/mordern-cpp-scoped-enum/)을 사용하는게 더 좋습니다.*
+    > *(C++11~)  [범위 있는 열거형](https://tango1202.github.io/cpp/modern-cpp-scoped-enum/)이 추가되어  이름 충돌 회피가 쉬워졌고, [암시적 형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/#%EC%95%94%EC%8B%9C%EC%A0%81-%ED%98%95%EB%B3%80%ED%99%98)을 차단하며, [전방 선언](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-include/#%EC%A0%84%EB%B0%A9-%EC%84%A0%EC%96%B8)도 지원합니다. [범위 있는 열거형](https://tango1202.github.io/cpp/modern-cpp-scoped-enum/)을 사용하는게 더 좋습니다.*
 
     그리고, [매크로 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98) 대문자는 이제 불필요하죠. 맞죠? [매크로 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98) 쓰지 마세요. [열거형](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-enum/)을 쓰시기 바랍니다. [매크로 상수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-preprocessor/#%EB%A7%A4%ED%81%AC%EB%A1%9C-%EC%83%81%EC%88%98)는 개체 지향 프로그래밍의 사상과 철학을 해치는 "goto 문 보다 더 나쁜 코딩 습관" 입니다.
 
