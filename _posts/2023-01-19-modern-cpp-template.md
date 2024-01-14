@@ -24,7 +24,7 @@ sidebar:
 
 ```cpp
 // ----
-// Test_MordernCpp_ExternTemplate.h 에서
+// Test_ModernCpp_ExternTemplate.h 에서
 // ----
 namespace ExternTemplate {
     template<typename T>
@@ -36,9 +36,9 @@ namespace ExternTemplate {
 // ----
 // test1.cpp 에서
 // ----
-#include "Test_MordernCpp_ExternTemplate.h"
+#include "Test_ModernCpp_ExternTemplate.h"
 
-TEST(TestMordern, ExternTemplate1) {
+TEST(TestModern, ExternTemplate1) {
     using namespace ExternTemplate;
 
     EXPECT_TRUE(Add(1, 2) == 3); // Add<int>()가 정의 되어 포함됩니다.
@@ -47,9 +47,9 @@ TEST(TestMordern, ExternTemplate1) {
 // ----
 // test2. cpp 에서
 // ----
-#include "Test_MordernCpp_ExternTemplate.h"
+#include "Test_ModernCpp_ExternTemplate.h"
 
-TEST(TestMordern, ExternTemplate2) {
+TEST(TestModern, ExternTemplate2) {
     using namespace ExternTemplate;
 
     EXPECT_TRUE(Add(10, 20) == 30); // Add<int>가 재정의 되어 포함됩니다.
@@ -62,7 +62,7 @@ C++11 부터는 [extern 템플릿](https://tango1202.github.io/cpp/modern-cpp-te
 
 ```cpp
 // ----
-// Test_MordernCpp_ExternTemplate.h 에서
+// Test_ModernCpp_ExternTemplate.h 에서
 // ----
 namespace ExternTemplate {
     template<typename T>
@@ -74,9 +74,9 @@ namespace ExternTemplate {
 // ----
 // test1.cpp 에서
 // ----
-#include "Test_MordernCpp_ExternTemplate.h"
+#include "Test_ModernCpp_ExternTemplate.h"
 
-TEST(TestMordern, ExternTemplate1) {
+TEST(TestModern, ExternTemplate1) {
     using namespace ExternTemplate;
 
     EXPECT_TRUE(Add(1, 2) == 3); // Add<int>()가 정의 되어 포함됩니다.
@@ -85,12 +85,12 @@ TEST(TestMordern, ExternTemplate1) {
 // ----
 // test2. cpp 에서
 // ----
-#include "Test_MordernCpp_ExternTemplate.h"
+#include "Test_ModernCpp_ExternTemplate.h"
 
 // 템플릿 선언만 합니다. 이전에 정의된 템플릿을 사용합니다.
 extern template int ExternTemplate::Add<int>(int, int); // C++11
 
-TEST(TestMordern, ExternTemplate2) {
+TEST(TestModern, ExternTemplate2) {
     using namespace ExternTemplate;
 
     EXPECT_TRUE(Add(10, 20) == 30); 

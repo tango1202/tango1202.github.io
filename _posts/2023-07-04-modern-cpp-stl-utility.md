@@ -180,7 +180,7 @@ C++20 부터는 [source_location](https://tango1202.github.io/cpp-stl/modern-cpp
 void Log(std::string message, const std::source_location& location = std::source_location::current()) {
 
     // Message.
-    // source_location : F:\Data\language_test\test\Test_MordernCpp_Utility.cpp, virtual void TestMordern_Utility_Test::TestBody()(41, 12)
+    // source_location : F:\Data\language_test\test\Test_ModernCpp_Utility.cpp, virtual void TestModern_Utility_Test::TestBody()(41, 12)
     std::cout 
         << message << std::endl
         << "source_location : " 

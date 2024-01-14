@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[State](https://tango1202.github.io/pattern/pattern-state/)는 내부 상태에 따라 동작이 달라질때 이의 동작 방법을 제공합니다. 상태를 처리하는 코드들이 응집되어 상태 처리가 비교적 단순해집니다.
+[State](https://tango1202.github.io/pattern/pattern-state/)는 내부 상태에 따라 다른 동작 방법을 제공합니다. 상태를 처리하는 코드들이 응집되어 상태 처리가 비교적 단순해집니다.
 # 설명
 
 마우스로 편집하는 개체 편집기를 생각해 봅시다. 
@@ -42,7 +42,7 @@ void LButtonUp(int x, int y) {
 }
 ```
 
-이렇게 상태 처리 부분이 이리 저리 흩어지면, 향후 새로운 상태가 추가될 때 수정해야 할 부분이 많아져 유지보수가 어려워 질 수 있습니다. 이러한 경우 [State 패턴](https://tango1202.github.io/pattern/pattern-state/)으로 상태 처리 부분을 응집하여 사용할 수 있습니다.
+이렇게 상태 처리 부분이 이리 저리 흩어지면, 향후 새로운 상태가 추가될 때 수정해야 할 부분이 많아져 유지보수가 어려워 집니다. 이러한 경우 [State 패턴](https://tango1202.github.io/pattern/pattern-state/)으로 상태 처리 부분을 응집하여 사용할 수 있습니다.
 
 다음 그림에서 `ConcreteState1`와 `ConcreteState2`는 주어진 상태에 대한 내용만 구현합니다. `Context`는 상태가 바뀔 때마다 `ConcreteState1`이나 `ConcreteState2`를 참조하게 되며, `Request()` 호출시 설정된 `State`를 실행하게 됩니다.
 
