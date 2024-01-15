@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++ STL] unique_ptr, make_unique(C++11, C++14Z)"
+title: "#16. [모던 C++ STL] unique_ptr, make_unique(C++11, C++14)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false
