@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#17. [모던 C++ STL] shared_ptr과 weak_ptr(C++11, C++17)"
+title: "#17. [모던 C++ STL] shared_ptr, weak_ptr, make_shared(C++11, C++17)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

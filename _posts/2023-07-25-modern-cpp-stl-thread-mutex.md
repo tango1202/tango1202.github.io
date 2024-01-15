@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#25. [모던 C++ STL] thread, mutex, lock_guard, jthread, stop_token, stop_source, stop_callback(C++11, C++14, C++17, C++20)"
+title: "#25. [모던 C++ STL] thread, mutex, lock_guard, shared_lock, shared_mutex, scoped_lock, jthread, stop_token, stop_source, stop_callback(C++11, C++14, C++17, C++20)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false
