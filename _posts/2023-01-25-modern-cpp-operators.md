@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#25. [모던 C++] (C++20~) 삼중 비교 연산자, 비트 쉬프트 연산자의 기본 비트 표준화"
+title: "#25. [모던 C++] 개선된 연산자(삼중 비교 연산자)(C++20)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [모던 C++] (C++11, C++14, C++17, C++20) 주요 구성 요소 미리보기"
+title: "#1. [모던 C++] 주요 구성 요소 미리보기(C++11, C++14, C++17, C++20)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

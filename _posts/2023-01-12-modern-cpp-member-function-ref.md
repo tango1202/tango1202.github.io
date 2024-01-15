@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [모던 C++] (C++11~) 멤버 함수 참조 지정자"
+title: "#12. [모던 C++] 멤버 함수 참조 지정자(C++11)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

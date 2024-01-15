@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#29. [모던 C++] (C++11~) 기타"
+title: "#29. [모던 C++] 기타(C++11, C++17, C++20)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

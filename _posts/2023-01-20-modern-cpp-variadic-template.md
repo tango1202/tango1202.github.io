@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++] (C++11~)가변 템플릿, 파라메터 팩, sizeof...() (C++17~) Fold 표현식"
+title: "#20. [모던 C++] 가변 템플릿과 파라메터 팩(C++11, C++17)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [모던 C++] (C++11~) 사용자 정의 리터럴"
+title: "#3. [모던 C++] 사용자 정의 리터럴(C++11, C++20)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

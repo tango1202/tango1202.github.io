@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#18. [모던 C++] (C++11~) constexpr, constexpr 함수, constexpr 생성자, (C++17~) if constexpr, (C++20~) consteval 함수, constinit 변수"
+title: "#18. [모던 C++] 개선된 컴파일 타임 프로그래밍(constexpr)(C++11, C++14, C++17, C++20)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

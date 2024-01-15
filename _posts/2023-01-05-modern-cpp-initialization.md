@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [모던 C++] (C++11~) 개선된 초기화(중괄호 초기화, initializer_list, 멤버 선언부 초기화), (C++20~) 지명 초기화, 비트 필드 선언부 초기화, new[]에서 중괄호 집합 초기화로 배열 크기 추론"
+title: "#5. [모던 C++] 개선된 초기화(중괄호 초기화, initializer_list)(C++11, C++14, C++20)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

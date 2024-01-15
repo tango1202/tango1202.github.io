@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [모던 C++] (C++11~) noexcept, noexcept 연산자, (C++17~) noexcept 함수 유형 포함"
+title: "#9. [모던 C++] 개선된 예외 처리(noexcept)(C++11, C++17)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

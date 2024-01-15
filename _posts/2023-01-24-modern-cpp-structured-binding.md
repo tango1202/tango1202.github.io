@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#24. [모던 C++] (C++17~) 구조화된 바인딩"
+title: "#24. [모던 C++] 구조화된 바인딩(C++17)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

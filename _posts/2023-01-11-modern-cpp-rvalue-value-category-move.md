@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [모던 C++] (C++11~) 우측값, 값 카테고리, 이동 연산, 이동 생성자, 이동 대입 연산자, move()"
+title: "#11. [모던 C++] 우측값과 이동 연산(C++11)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

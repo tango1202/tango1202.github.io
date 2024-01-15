@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#15. [모던 C++] (C++11~) 무제한 공용체(unrestricted Union)"
+title: "#15. [모던 C++] 개선된 공용체(C++11)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false
