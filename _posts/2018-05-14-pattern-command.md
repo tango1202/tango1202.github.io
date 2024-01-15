@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-[Command](https://tango1202.github.io/pattern/pattern-command/)는 기능의 요청과 실행을 분리하여, 실행 부분이 재활용될 수 있게 합니다.
+[Command](https://tango1202.github.io/pattern/pattern-command/)는 기능의 요청과 실행을 분리하여, 실행 부분이 재활용될 수 있게 합니다. 동일한 기능을 메뉴, 단축키, 매크로등 여러 방법으로 실행할 수 있을때 사용하면 좋습니다.
 
 # 설명
 
-메뉴에 있는 버튼이 클릭되었을 때 해당 이벤트 핸들러에서 주어진 기능을 실행합니다.
+보통은 메뉴에 있는 버튼이 클릭되었을 때 해당 이벤트 핸들러에서 주어진 기능을 실행합니다.
 
 ```cpp
 void OpenButton::Clicked() {
@@ -23,9 +23,9 @@ void SaveButton::Clicked() {
 }
 ```
 
-하지만 이러한 방식은 UI에 종속적이어서 UI가 변경되면 많은 수정이 필요합니다. 또한 만약 `Open()`과 관련된 UI가 메뉴, 버튼, 단축키 등 여러가지가 있을 경우 `MyApp::Open()`은 중복해서 작성되야 하죠.
+하지만 이러한 방식은 UI에 종속적이어서 UI가 변경되면 이에 따른 많은 수정이 필요하며, 만약 `Open()`을 실행하는 UI가 메뉴, 버튼, 단축키 등 여러가지가 있을 경우 `MyApp::Open()`은 중복해서 작성되야 합니다.
 
-이러한 경우 [Command 패턴](https://tango1202.github.io/pattern/pattern-command/)을 이용하여 기능 요청부와 실행부 분리해두면, 실행부를 재활용 할 수 있습니다.
+이러한 경우 [Command 패턴](https://tango1202.github.io/pattern/pattern-command/)을 이용하여 기능 요청부와 실행부를 분리해 두면, 실행부를 재활용할 수 있습니다.
 
 다음 그림에서 `Invoker`는 버튼등으로서 기능을 요청하고, `Command`의 `Execute()`에서 실제 기능을 실행합니다. 이때 여러개의 `Invoker`에서 동일한 `Command`를 사용할 수도 있습니다. 
 
@@ -35,21 +35,21 @@ void SaveButton::Clicked() {
 
 # 특징
 
-`Execute()`시의 상태값을 저장하여 `Undo()`를 구현할 수 있으며, [Composite 패턴](https://tango1202.github.io/pattern/pattern-composite/)을 활용하여 여러 `Command`들을 매크로처럼 실행할 수 있습니다. 또한 UI를 사용자 정의하여 UI와 매칭되는 `Command`를 직접 매칭하는 기능을 구현할 수도 있습니다.
+`Execute()`시의 상태값을 저장하여 `Undo()`를 구현할 수 있으며(*[Mememto](https://tango1202.github.io/pattern/pattern-memento/) 참고*), [Composite 패턴](https://tango1202.github.io/pattern/pattern-composite/)을 활용하여 여러 `Command`들을 매크로처럼 실행할 수 있고, UI와 `Command`를 직접 매칭하는 사용자 정의 기능을 구현할 수 있습니다.
 
-`Command`들의 갯수가 많다면, 자주 사용하는 것들만 먼저 생성하고, 자주 사용하지 않는 것들은 나중에 필요할 때 생성하여, 제품의 초기 실행 속도를 향상시킬 수도 있습니다.
+또한, `Command`들의 갯수가 많다면, 자주 사용하는 것들만 먼저 생성하고, 자주 사용하지 않는 것들은 나중에 필요할 때 생성하여, 제품의 초기 실행 속도를 향상시킬 수도 있습니다.
 
 # 예제
 
-다음은 어플리케이션의 기능 실행을 [Command 패턴](?https://tango1202.github.io/pattern/pattern-command/)으로 구현한 예입니다. `Button`에 `Command`를 연결하고, `Button` 클릭시 `MyApp`의 각 기능들이 실행됩니다. 
+다음은 어플리케이션의 기능 실행을 [Command 패턴](https://tango1202.github.io/pattern/pattern-command/)으로 구현한 예입니다. `Button`에 각 `Command`들을 연결하였으며, `Button` 클릭시 `MyApp`의 각 기능들을 실행합니다. 
 
-1. #1 : `Command` 입니다. `Execute()`를 제공합니다.
-2. #2 : `Invoker` 입니다. `Click()`시 연결된 `Command`를 `Execute()` 합니다.
-3. #3 : `Receiver` 입니다. `Command`의 `Execute()`시 실행할 인터페이스입니다.
-4. #4 : `MyApp`은 `Receiver` 를 구체화한 클래스 입니다.
-5. #5 : `Command` 를 구체화한 클래스들입니다.
-6. #6 : `CompositeCommand`은 여러개의 `Command` 들을 `Execute()` 합니다. 매크로 구현시 활용할 수 있습니다.
-7. #7 : `Button`과 `Command`를 연결해 두면, `Button` `Click()`시 연결된 `Command`가 실행됩니다.
+1. #1 : `Command`입니다. `Execute()`를 제공합니다.
+2. #2 : `Invoker`입니다. `Click()`시 연결된 `Command`를 `Execute()`합니다.
+3. #3 : `Receiver`입니다. `Command`의 `Execute()`시 실행할 인터페이스입니다.
+4. #4 : `MyApp`은 `Receiver`를 구체화한 클래스 입니다.
+5. #5 : `Command`를 구체화한 클래스들입니다.
+6. #6 : `CompositeCommand`는 여러개의 `Command`들을 `Execute()`합니다. 매크로 구현시 활용할 수 있습니다.
+7. #7 : `Button`과 `Command`를 연결해 두면, `Button`의 `Click()`시 연결된 `Command`가 실행됩니다.
 
 ```cpp
 // ----

@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[Composite](https://tango1202.github.io/pattern/pattern-composite/)은 단일 개체와 복합 개체를 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)하여 모두 동일한 방식으로 다루게 해줍니다. 
+[Composite](https://tango1202.github.io/pattern/pattern-composite/)은 단일 개체와 복합 개체를 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)하여 모두 동일한 방식으로 다루게 해줍니다. 둘을 서로 구분하여 처리하는 부분이 없어지기 때문에 고민할 것들이 줄어듭니다.
 
 # 설명
 

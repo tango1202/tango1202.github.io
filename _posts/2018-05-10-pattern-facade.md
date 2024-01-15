@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[Facade](https://tango1202.github.io/pattern/pattern-facade/)는 서브시스템의 클래스들이 복잡하게 얽혀있고 사용이 어려운 경우, 단순하고 일관된 상위 수준의 통합 인터페이스를 제공합니다. 
+[Facade](https://tango1202.github.io/pattern/pattern-facade/)는 서브시스템의 클래스들이 복잡하게 얽혀있고 사용이 어려운 경우, 단순하고 일관된 상위 수준의 통합 인터페이스를 제공합니다. 외부에서 내부 서브시스템을 몰라도 되므로, 사용하기 쉬워집니다.
 
 # 설명
 

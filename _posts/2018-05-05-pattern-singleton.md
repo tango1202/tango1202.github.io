@@ -12,7 +12,7 @@ sidebar:
 
 # 설명
 
-리소스 관리등 전역적으로 1개의 인스턴스만 필요한 개체들이 있습니다. 이런 개체들은 실수로 여러개 생성되지 않도록 코딩 계약을 맺어두는게 좋습니다.
+리소스 관리등 전역적으로 1개의 인스턴스만 필요한 개체들이 있습니다. 이런 개체들은 실수로 여러개 생성되지 않도록 코딩 계약을 맺어두는게 좋습니다. ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게***요.
 
 다음 그림에서 `Singleton`은 생성자들을 `private`로 접근 차단합니다. 그뒤 [정적 멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EC%A0%95%EC%A0%81-%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)인 `GetInstance()`를 통해서만 생성할 수 있게 합니다. 만약 여러번 호출된다면 `s_Instance`가 [함수내 정적 지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%ED%95%A8%EC%88%98%EB%82%B4-%EC%A0%95%EC%A0%81-%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98) 이기 때문에 오직 1회만 생성한다는 것을 보장합니다.
 

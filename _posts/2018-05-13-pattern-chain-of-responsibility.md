@@ -8,13 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-[Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)는 요청을 여러 개체에 전달하여 함께 처리할 수 있게 해줍니다.
+[Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)는 요청을 여러 개체에 전달하여 함께 처리할 수 있게 해줍니다. 한군데에서 모든 요청을 처리하지 않고 책임에 따라 여러 개체에 분산하므로, 해당 개체 구현시 고민할 것들이 줄어듭니다. 
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/042b6fec-a617-49e6-b4de-5391152ebf69)
 
 # 설명
-
-보통은 개체의 함수를 호출하면 내부적으로 해당 기능을 처리합니다. 
 
 UI 컨트롤의 테두리 속성을 살펴봅시다. 컨트롤은 테두리 속성을 가지고 있고, 이 속성을 이용하여 테두리를 그립니다.
 
@@ -85,9 +83,9 @@ private:
 
 `subPanel`에서 굵기를 `3`으로 사용했으므로 별도로 굵기를 변경하지 않는한 `subPanel`과 하위 컨트롤들은 `3` 굵기를 사용합니다.
 
-`subPanel`내의 `Label`은 굵기를 `1`로 변경했으므로 `1`굵기로 변경합니다.
+`subPanel`내의 `Label`은 굵기를 `1`로 변경했으므로 `1`굵기를 사용합니다.
 
-이를 구현하기 위해 컨트롤에서는 상위 개체인 `Panel`을 [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)로 연결하며, `Border`의 속성을 수집하기 위해 `MergeBorder()`를 호출합니다.
+이를 구현하기 위해 컨트롤에서는 상위 개체인 `Panel`을 [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)로 연결하며, `Border`의 속성을 수집하기 위해 `MergeBorder()`를 호출합니다. 실제로 그릴 때는 `MergeBorder()`한 속성을 사용하면 됩니다.
 
 1. #1 : [Composite 패턴](https://tango1202.github.io/pattern/pattern-composite/)으로 `Control`, `Label`, `Edit`, `Panel`을 구현합니다.
 2. #2 : `IStyledBorderHandler`는 `Handler` 입니다. `MergeBorder()` 호출시 연결된 다음 개체에 요청합니다.

@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-[Proxy](https://tango1202.github.io/pattern/pattern-proxy/)는 실제 개체를 대리하는 역할을 합니다.
+[Proxy](https://tango1202.github.io/pattern/pattern-proxy/)는 실제 개체의 동작을 대리해서 실행합니다. 최소한의 정보만을 이용하여 대리 실행하기 때문에, 생성이나 실행시 속도 부하가 있는 경우 속도 개선을 위해 사용합니다.
 
 # 설명
 
 편집 프로그램은 처음 파일을 열면서 몇 페이지가 될지 미리 계산을 하고, 그에 따라 스크롤바를 표시합니다. 이때 문서내에 이미지가 있더라도 이미지를 생성할 필요가 없습니다. 화면 너머에 있는 것은 그려질 필요가 없으니까요. 단지 스크롤바 계산을 위한 이미지의 크기만 알면 되죠.
 
-따라서, 이미지의 생성은 비용이 비싸므로 최대한 미뤄두고, 이미지 크기 정보만 제공하는게 좋습니다.
+따라서, 이미지의 생성은 비용이 비싸므로 최대한 미뤄두고, 이미지 크기 정보만 제공하는게 좋습니다. 미리 생성해 두지 마세요.(*[제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/) 참고*)
 
 이를 위해 [Proxy](https://tango1202.github.io/pattern/pattern-proxy/)를 이용할 수 있습니다.
 크기 정보를 요청할때는 [Proxy](https://tango1202.github.io/pattern/pattern-proxy/)가 대리해서 처리하고, 실제 `Draw()`될때만 이미지를 생성합니다. 
@@ -40,7 +40,7 @@ sidebar:
 
 1. #1 : `Shape`은 `Subject`입니다. `Draw()`와 크기의 Get/Set 인터페이스를 제공합니다.
 2. #2 : `Image`는 `RealSubject`입니다. 생성시 실제 이미지를 `Load()` 합니다.
-3. #3: `ImageProxy`는 `Draw()` 시 실제 `Image`를 생성하며, 그전에는 멤버 변수의 값을 이용하여 대리 실행합니다.
+3. #3: `ImageProxy`는 `Draw()` 시 실제 `Image`를 생성하며, 그전에 크기정보를 요청하면, 멤버 변수의 값을 이용하여 대리 실행합니다.
 4. #4 : `Draw()`한 뒤에는 `Image` 개체가 사용됩니다.
 
 ```cpp

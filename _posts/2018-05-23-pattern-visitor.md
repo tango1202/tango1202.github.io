@@ -12,7 +12,9 @@ sidebar:
 
 # 설명
 
-일반적으로 개체에 기능을 추가하고 싶은 경우 해당 개체에 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 작성하면 됩니다. 하지만, 개체가 거대해지는 것을 막기 위해 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/)을 활용할 수 있습니다.
+일반적으로 개체에 기능을 추가하고 싶은 경우 해당 개체에 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 작성하면 됩니다. 하지만, 자꾸 추가하다보면 개체가 덩치가 커지는 문제가 있습니다. [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 될 수도 있죠. 
+    
+이를 막기 위해 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/)을 활용할 수 있습니다.
 
 다음 그림에서 `Element`의 `Accept()`에 `Visitor`를 전달하면, 각 자식 개체에서 관련 함수들을 실행해 줍니다. 따라서 추가할 기능을 `ConcreteVisitor1`이나 `ConcreteVisitor2`에서 구현해 주면 됩니다.
 
@@ -27,11 +29,11 @@ sidebar:
 
 # 특징
 
-개체는 `Visitor`가 동작할 수 있는 충분한 정보를 제공해야 합니다. 이에 따라 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)가 너무 많이 `public`이 되는 경향이 있습니다.
+개체는 `Visitor`가 필요로 하는 충분한 정보를 제공해야 합니다. 이에 따라 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 Getter/Setter가 너무 많이 `public`이 되는 경향이 있습니다.
 
 # 예제
 
-다음은 `Rectangle`과 `Circle` 개체에 방문하는 `Visitor`의 구현 예입니다. `XmlWriter`와 `JsonWriter`로 방문하여 해당 개체의 내용을 저장할 수 있습니다.
+다음은 `Rectangle`과 `Circle` 개체에 방문하는 `IVisitor`의 구현 예입니다. `XmlWriter`와 `JsonWriter`로 방문하여 해당 개체의 내용을 저장할 수 있습니다.
 
 1. #1 : `IVisitor`는 개체를 방문합니다. 방문한 개체가 호출할 수 있도록 `VisitRectangle()`과 `VisitCircle()`을 제공합니다.
 2. #2 : `Shape`은 `IVisitor`가 방문할 수 있도록 `Accept()`를 제공합니다.

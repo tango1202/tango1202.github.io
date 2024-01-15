@@ -16,9 +16,9 @@ sidebar:
 
 ![Image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ad01b76d-74b3-454d-978b-ea18a6117e58)
 
-각 도형은 지오메트리 정보와 배경 속성, 테두리 속성을 가지고 있는데요, 메뉴를 클릭할 때마다 해당 속성을 설정해서 개체를 생성해 주어야 합니다. 이 값을 일일이 설정하는 건 번거로운 일이죠.
+각 도형은 지오메트리 정보와 배경 속성, 테두리 속성을 가지고 있는데요, 메뉴를 클릭할 때마다 해당 속성을 설정해서 개체를 생성해 주어야 합니다. 이 값을 코드에서 일일이 설정하는 건 번거로운 일이죠.
 
-이런 경우 [Prototype](https://tango1202.github.io/pattern/pattern-prototype/)을 이용하여 미리 정의된 개체를 메뉴에 연결해 두고, 메뉴 클릭시 개체를 복제해서 사용하면 손쉽게 구현할 수 있습니다.
+이러한 경우 [Prototype](https://tango1202.github.io/pattern/pattern-prototype/)을 이용하여 미리 정의된 개체를 메뉴에 연결해 두고, 메뉴 클릭시 개체를 복제해서 사용하면 손쉽게 구현할 수 있습니다.
 
 다음 그림에서 `Client`는 `m_Prototype`의 `Clone()`을 호출하여 개체를 복제 생성합니다.
 

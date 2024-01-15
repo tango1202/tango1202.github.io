@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-[Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 개체에 동적으로 새로운 외형을 추가하거나 기능을 추가할 수 있게 합니다.
+[Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 개체에 동적으로 새로운 외형을 추가하거나 기능을 추가할 때 포함을 통해 처리합니다. 클래스를 직접 수정하거나 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 이용하여 추가하는 것보다 코드가 간결해 집니다.
 
 # 설명
 
-보통은 기존 클래스에 새로운 것을 추가할 경우 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 하는데요,
+보통은 기존 클래스에 새로운 것을 추가할 경우 클래스를 직접 수정하던지, [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 해서 추가하는데요,
 
 ```cpp
 class Old {
@@ -26,9 +26,7 @@ public:
 };
 ```
 
-[상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 통해 추가하는 것은 너무 많은 개체들이 만들어 질 우려가  있습니다.
-
-다음은 UI 컨트롤들에 테두리나 스크롤을 지원하기 위해 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 사용한 예입니다. 다음처럼 너무 많은 클래스들이 만들어 지게 됩니다.
+다음은 UI 컨트롤들에 테두리나 스크롤을 지원하기 위해 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 사용한 예입니다. 겨우 2개 기능을 추가했는데, 너무 많은 클래스들이 만들어 지게 됩니다.
 
 ```cpp
 class Button {};
@@ -58,7 +56,7 @@ public:
 };
 ```
 
-하지만 이런 방법을 고수하면 개체가 많은 기능을 포함하다 보니 점점 커지게 되고, 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어 많은 기능을 구현해야 하는 괴물로 변신하게 될지도 모릅니다.
+하지만 이런 방법을 고수하면 개체가 많은 기능을 포함하다 보니 점점 커지게 되고, 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어 많은 기능을 구현해야 하고, 많은 개체들에게 종속된 괴물로 변신하게 될지도 모릅니다.
 
 [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)이 아닌 포함을 통해 개체의 기능을 확장함으로서 이런 문제를 해결합니다.
 

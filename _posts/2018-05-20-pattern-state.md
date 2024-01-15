@@ -9,13 +9,14 @@ sidebar:
 ---
 
 [State](https://tango1202.github.io/pattern/pattern-state/)는 내부 상태에 따라 다른 동작 방법을 제공합니다. 상태를 처리하는 코드들이 응집되어 상태 처리가 비교적 단순해집니다.
+
 # 설명
 
 마우스로 편집하는 개체 편집기를 생각해 봅시다. 
 
 빈공간을 선택하고 드래그하면 드래그한 영역의 개체가 선택되고, 개체 테두리를 드래그하면 해당 개체의 크기가 조정되며, 개체 내부를 드래그 하면 해당 개체가 이동합니다.
 
-이를 구현하면 하기와 같이 각 상태에 따라 `if()`문이 작성되어 상태 처리 부분이 이리 저리 흩어지게 됩니다.
+이를 마우스 이벤트에서 구현하면 다음과 같이 각 상태에 따라 `if()`문을 작성해야 합니다. 
 
 ```cpp
 void LButtonDown(int x, int y) {
@@ -42,9 +43,11 @@ void LButtonUp(int x, int y) {
 }
 ```
 
-이렇게 상태 처리 부분이 이리 저리 흩어지면, 향후 새로운 상태가 추가될 때 수정해야 할 부분이 많아져 유지보수가 어려워 집니다. 이러한 경우 [State 패턴](https://tango1202.github.io/pattern/pattern-state/)으로 상태 처리 부분을 응집하여 사용할 수 있습니다.
+각 이벤트에서 상태 처리 부분을 구현하기 때문에 `if()`문이 좀 많아지고, 관련 코드들이 이리저리 흩어지게 됩니다. 이렇게 상태 처리 부분이 이리 저리 흩어지면, 향후 새로운 상태가 추가될 때 수정해야 할 부분이 많아져 유지보수가 어려워 지죠.
 
-다음 그림에서 `ConcreteState1`와 `ConcreteState2`는 주어진 상태에 대한 내용만 구현합니다. `Context`는 상태가 바뀔 때마다 `ConcreteState1`이나 `ConcreteState2`를 참조하게 되며, `Request()` 호출시 설정된 `State`를 실행하게 됩니다.
+이러한 경우 [State 패턴](https://tango1202.github.io/pattern/pattern-state/)으로 상태 처리 부분을 응집하여 사용할 수 있습니다.
+
+다음 그림에서 `ConcreteState1`과 `ConcreteState2`는 주어진 상태에 대한 내용만 구현합니다. `Context`는 상태가 바뀔 때마다 `ConcreteState1`이나 `ConcreteState2`를 참조하게 되며, `Request()` 호출시 설정된 `State`를 실행하게 됩니다.
 
 ![State](https://github.com/tango1202/tango1202.github.io/assets/133472501/12899fac-02d2-47cc-a140-81ac1d1210ad)
 

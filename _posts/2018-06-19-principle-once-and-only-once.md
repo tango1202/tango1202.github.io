@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#19. [개발 원칙] 한번 단 한번만(Once and Only Once)(작성중)"
+title: "#19. [개발 원칙] 한번 단 한번만(Once and Only Once)"
 categories: "principle"
 tag: ["개발 원칙"]
 author_profile: false

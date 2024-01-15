@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-[Mediator](https://tango1202.github.io/pattern/pattern-mediator/)는 개체들끼리의 상호작용을 캡슐화합니다. 개체들끼리 서로 직접 참조하지 않도록 결합도를 낮춰 유지보수 편의성의 향상됩니다.
+[Mediator](https://tango1202.github.io/pattern/pattern-mediator/)는 개체들끼리의 상호작용을 캡슐화합니다. 개체들끼리 서로 직접 참조하지 않기 때문에 결합도가 낮아져 유지보수 편의성이 향상됩니다.
 
 # 설명
 
-다음과 같이 리스트의 선택이 변경되면, 해당 선택 항목으로 다른 컨트롤을 변경하는 UI를 생각해 봅시다.
+다음과 같이 리스트의 선택이 변경되면, 해당 선택 항목으로 다른 컨트롤의 데이터를 변경하는 UI를 생각해 봅시다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/76eb603b-736b-47fa-8b15-bc12832bb220)
 
@@ -25,9 +25,19 @@ void List::SelectChanged() {
 }
 ```
 
-하지만 이 방식은 상호작용하는 컨트롤을 직접 접근하여 결합도가 높아 향후 유지보수가 어려워질 수 있습니다. 이럴 경우 개체들끼리의 상호작용을 담당하는 [Mediator 패턴](https://tango1202.github.io/pattern/pattern-mediator/)을 사용하면 결합도를 낮출 수 있습니다.
+하지만 이 방식은 상호작용하는 컨트롤들이 많아지면 컨트롤간 결합도가 높아 향후 유지보수가 어려워질 수 있습니다. 
 
-다음 그림에서 `Colleague`에서 변경이 발생한 경우 `Mediator`의 `Changed()`를 호출하여 상호작용하는 개체들을 처리합니다. 이애 따라 상호작용하는 `ConcreteColleague1`과 `ConcreteColleague2`는 서로 직접 참조하지 않으므로 결합도가 낮아집니다.
+예를 들어 각 세부 정보가 변경되면, 목록을 갱신해야 하며, 집 전화번호는 집 주소와 지역번호는 동기화를 서로 맞춰야 하며, 비밀번호는 집 전화번호와 이름과 이메일과 유사하지 않도록 서로 변경되는걸 감시하며 같이 수정되어야 합니다.
+
+![Image](https://github.com/tango1202/tango1202.github.io/assets/133472501/47ed89b2-d1ef-4349-9898-f4cba981de7c)
+
+[Mediator 패턴](https://tango1202.github.io/pattern/pattern-mediator/)은 각 컨트롤들간의 상호작용을 한군데에서 집중 관리하여 개체간의 결합도를 제거합니다.
+
+![Image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8a58fc40-3d4f-4b84-8061-8ec414e0c50d)
+
+모든 상호작용이 한군데에 집중되어 `Mediator` 자체는 복잡할 수 있으나, 컨트롤간의 복잡한 상호작용이 흩어져 있는 것보다는 나은 선택이 될 수 있습니다.
+
+다음 그림에서 `Colleague`에서 변경이 발생한 경우 `Mediator`의 `Changed()`를 호출하여 상호작용하는 개체들을 처리합니다. 이에 따라 상호작용하는 `ConcreteColleague1`과 `ConcreteColleague2`는 서로 직접 참조하지 않으므로 결합도가 낮아집니다.
 
 ![Mediator](https://github.com/tango1202/tango1202.github.io/assets/133472501/1f45f85e-cf0f-4d7d-99da-53853184f655)
 

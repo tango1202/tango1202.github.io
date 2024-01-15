@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[Interpreter](https://tango1202.github.io/pattern/pattern-interpreter/)는 비교적 단순하게 설계된 임의의 언어를 해석하는 간단한 방법을 제공합니다.
+[Interpreter](https://tango1202.github.io/pattern/pattern-interpreter/)는 비교적 단순하게 설계된 임의의 언어를 해석하는 간단한 방법을 제공합니다. 파서를 통해 가상의 트리를 만들고 이를 이용하여 구문을 해석합니다.
 
 # 설명
 
@@ -31,17 +31,23 @@ std::string userInputString = "w * h";
 int val = Calc(rectangle.GetWidth(), rectangle.GetHeight(), userInputString);
 ```
 
-"w * h"를 계산하려면 `w`, `*`, `h`를 토큰으로 분리하고, 변수인 `w`와 `h` 대신 `rectangle.GetWidth()`와 `rectangle.GetHeight()`를 사용해야 합니다.
+"w * h"를 계산하려면 `w`, `*`, `h`를 토큰으로 분리하고, 변수인 `w`와 `h` 대신 `rectangle.GetWidth()`와 `rectangle.GetHeight()`를 사용해야 합니다. 하지만, 문자열을 파싱하고, 이를 해석하는 것은 상당히 복잡한 일입니다. 특히 문법이 복잡해 질수록 난이도와 규모는 커지죠.
 
-이러한 경우 [Interpreter 패턴](https://tango1202.github.io/pattern/pattern-interpreter/)을 이용하여 단순하게 설계된 임의의 언어를 해석하는 간단한 인터프리터를 만들 수 있습니다.
+문법이 비교적 단순하다면, [Interpreter 패턴](https://tango1202.github.io/pattern/pattern-interpreter/)을 이용하여 간단하게 인터프리터를 구현할 수 있습니다.
 
-다음 그림에서 `AbstractExpression`은 `interpret()`함수를 통해 실행 결과를 리턴합니다. 이때 각 `AbstractExpression`은 트리처럼 배치되어 최상위 `AbstractExpression`만 실행하면, 하위의 `AbstractExpression`이 모두 실행됩니다.
+다음 그림에서 `AbstractExpression`은 `interpret()`함수를 통해 실행 결과를 리턴합니다. 이때 각 `AbstractExpression`은 트리처럼 배치되어 최상위 `AbstractExpression`만 실행하면, 하위의 `AbstractExpression`이 모두 실행되는 구조입니다. 
+
+`TerminalExpression`은 현재 표현식까지 해석하는 것이고, `NonterminalExpression`는 다음 표현식까지 해석하는 것입니다. 
+
+`Context`는 각 표현식을 해석할때 사용되는 포괄적인 정보입니다. 예를 들어 `w * h`와 같이 너비와 높이에 해당하는 변수를 사용한다면, 너비와 높이에 대한 실제 값을 제공해야 합니다.
 
 ![interpreter](https://github.com/tango1202/tango1202.github.io/assets/133472501/384c27a8-655d-468d-a6fe-686f1dffac93)
 
-예를 들어 `w * h * 4 / 2`는 각 토큰으로 분리되고, 각각 `TerminalExpression`과 `NonterminalExpression`으로 다음의 트리처럼 구성됩니다.
+예를 들어 `w * h * 4 / 2`는 각 토큰으로 분리한 뒤, 다음의 트리처럼 구성하여 처리해야 합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/fbfeb256-1367-47b6-91bb-9734e539f805)
+
+상기 최상위 트리의 `AbstractExpression`을 실행하면, 하위의 `AbstractExpression`이 차례로 실행됩니다.
 
 |항목|내용|
 |--|--|
@@ -50,6 +56,10 @@ int val = Calc(rectangle.GetWidth(), rectangle.GetHeight(), userInputString);
 |`TerminalExpression`|현 표현식에서 연산이 종결됩니다. 즉, 변수, 상수등 단독으로 연산할 수 있거나, 왼쪽에 있는 `AbstractExpression`을 이용합니다.|
 |`NonterminalExpression`|현 표현식에서 연산이 종결되지 않고 다음 표현식을 사용합니다. 예를 들어 `*`, `/`와 같이 오른편의 `AbstractExpression`을 이용합니다.|
 |`Client`|최상위 `AbstractExpression`을 실행합니다.|
+
+# 특징
+
+비교적 문법이 단순한 경우에 사용 가능합니다. 문법이 복잡하다면 별도로 설계하여 인터프리터를 만드시기 바랍니다.
 
 # 예제 
 

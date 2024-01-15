@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-[Iterator](https://tango1202.github.io/pattern/pattern-iterator/)는 집합 개체에서 요소에 접근하는 방법을 제공합니다. C++의 경우 STL의 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)는 모두 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)를 제공합니다.
+[Iterator](https://tango1202.github.io/pattern/pattern-iterator/)는 집합 개체에서 요소에 접근하는 방법을 제공합니다. 집합 개체의 내부 구현을 외부에 은닉하기 때문에 집합 개체의 구현 방식을 비교적 안전하게 변경할 수 있습니다. C++의 경우 STL의 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)는 모두 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)를 제공하며, `begin()`, `end()`, `++`, `*` 등의 인터페이스를 사용합니다.
 
 # 설명
 
-[Iterator](https://tango1202.github.io/pattern/pattern-iterator/)는 집합 개체의 내부 구현 방식이 어떻게 되던 상관없이 동일한 방식으로 각 요소에 접근합니다.
+[Iterator](https://tango1202.github.io/pattern/pattern-iterator/)는 집합 개체의 내부 구현 방식을 은닉하고 각 요소에 접근하는 방법을 제공합니다. 따라서, 서로 내부 구조가 다르더라도 동일한 방식으로 요소에 접근할 수 있습니다. 
 
 다음 코드를 보면 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)의 이터레이터와 [list](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/#%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 이터레이터가 모두 동일한 방식으로 각 요소에 접근합니다.
 
@@ -37,22 +37,20 @@ sidebar:
 }
 ```
 
-`Iterator`를 이용하면, `ConcreteAggregate`의 내부적인 구현을 은닉하여 구현의 자유도를 높여줍니다.
+다음 그림은 [Iterator 패턴](https://tango1202.github.io/pattern/pattern-iterator/)의 기본 구조입니다. 기본 구조가 [Factory Method 패턴](https://tango1202.github.io/pattern/pattern-factory-method/)과 동일합니다. `Aggregate`에서 `CreateIterator()`를 호출하면, 자식 개체인 `ConcreteAggregate`에서 실제 이터레이터인 `ConcreteIterator`를 생성해 줍니다. 
 
-다음 그림은 [Iterator 패턴](https://tango1202.github.io/pattern/pattern-iterator/)의 예입니다. 기본 구조는 [Factory Method 패턴](https://tango1202.github.io/pattern/pattern-factory-method/)과 동일합니다. `Aggregate`에서 `CreateIterator()`를 호출하면, 자식 개체인 `ConcreteAggregate`에서 실제 이터레이터인 `ConcreteIterator`를 생성해 줍니다. 
-
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0a25ac87-c20f-413a-b4bd-3e6f1eaf9887)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/598b3733-3743-4793-a652-b39fbbdb9c90)
 
 |항목|내용|
 |--|--|
 |`Aggregate`|집합의 요소를 관리하는 부모 클래스입니다. 자식 개체에서 `CreateIterator()`를 구체화 해야 합니다.|
-|`Iterator`|`CreateIterator()`에서 생성하며, `Aggregate` 요소에 접근합니다.|
+|`Iterator`|`CreateIterator()`에서 생성하며, `Aggregate` 요소에 접근하는 인터페이스를 정의합니다.|
 |`ConcreteAggregate`|`Aggregate`를 구체화한 개체입니다.|
 |`ConcreteIterator`|`Iterator`를 구체화한 개체입니다.|
 
 # 특징
 
-C++의 경우 다른 [STL 알고리즘](https://tango1202.github.io/cpp-stl/modern-cpp-stl-algorithm/)과의 호환성을 위해 STL의 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)에서 제공하는 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)를 사용하는게 좋습니다.
+C++의 경우 다른 [STL 알고리즘](https://tango1202.github.io/cpp-stl/modern-cpp-stl-algorithm/)과의 호환성을 위해 STL의 [컨테이너](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/)에서 제공하는 [이터레이터](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-iterator/)와 동일한 인터페이스를 제공하는게 좋습니다.
 
 # 예제
 

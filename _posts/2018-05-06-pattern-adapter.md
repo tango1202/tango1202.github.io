@@ -8,15 +8,15 @@ sidebar:
     nav: "docs"
 ---
 
-[Adapter](https://tango1202.github.io/pattern/pattern-adapter/)는 기존 인터페이스와 서로 맞지 않은 개체(`Adpatee`)를 사용하기 위해 인터페이스를 맞춘 감싼 개체(*Wrapper*)입니다.
+[Adapter](https://tango1202.github.io/pattern/pattern-adapter/)는 임의의 개체(`Adpatee`)를 기존 인터페이스로 사용하기 위해 감쌉니다. 개체의 소스코드를 직접 수정할 수 없을때 사용합니다.
 
 # 설명
 
 프로젝트를 진행하다 보면, 다른 프로젝트에서 사용했던 클래스를 재활용할 수 있고, 외부 라이브러리에서 제공한 소스코드를 사용할 수도 있습니다.
 
-이런 소스코드들이 현재 프로젝트와 인터페이스가 맞지 않다고 임의로 수정한다면, 다른 프로젝트와 충돌이 있을 수 있습니다. 그렇다고 복제해서 수정한다면, 코드가 중복될 우려도 있고, 다른쪽에서 버전업 되었을때 복제된 코드에도 일일이 반영해야 하는 문제가 있습니다.
+이런 소스코드들이 현재 프로젝트와 인터페이스가 맞지 않다고 임의로 수정한다면, 다른 프로젝트와 충돌이 있을 수 있습니다. 그렇다고 복제해서 수정한다면, 코드가 중복될 우려도 있고, 다른쪽에서 버전업 되었을때 복제된 코드에도 일일이 반영해야 하는 문제가 발생합니다. 절대 코드를 복제하지 마세요. [복사 붙여넣기](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B3%B5%EC%82%AC-%EB%B6%99%EC%97%AC%EB%84%A3%EA%B8%B0copy-paste-programming)는 코드 중복을 만드는 악마의 유혹입니다.
 
-이런 경우 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)로 감싸서 인터페이스를 맞춥니다.
+이러한 경우 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)로 감싸서 인터페이스를 맞추는게 좋습니다.
 
 # 클래스 Adpater와 개체 Adapter
 
