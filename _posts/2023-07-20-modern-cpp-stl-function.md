@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++ STL] function, mem_fn, reference_wrapper, bindinvoke (C++11, C++17, C++20)" 
+title: "#20. [모던 C++ STL] function, mem_fn, reference_wrapper, ref, cref, bind, invoke (C++11, C++17, C++20)" 
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false
