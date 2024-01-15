@@ -8,13 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-[Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/)는 특정 그룹 계열에 속한 개체들을 생성합니다. 
+[Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/)는 특정 그룹 계열에 속한 개체들을 생성합니다. 생성할 개체들이 일련의 그룹으로 묶여있는 경우 생성 관련 로직을 간결하게 만들어 줍니다.
 
 # 설명
 
 사용하는 디바이스(*데스크탑 또는 모바일*)에 따라 달라지는 컨트롤이 있다고 해봅시다. `Button`의 경우는 큰 차이가 없지만, `Check`의 경우 모바일에서 `Switch`처럼 구현될 수 있고, `RadioGroup`은 콤보박스의 형태로 구현될 수도 있습니다. 
 
-이럴 경우 디바이스가 데스크탑인지 모바일용인지 코드 여기저기서 확인하고 분기하여 작성하는게 아니라, 한군데이서만 확인하고 처리하는게 좋습니다. 
+이럴 경우 디바이스가 데스크탑인지 모바일용인지 코드 여기저기서 확인하고 분기하여 작성하는게 아니라, 한군데에서만 확인하고 처리하는게 좋습니다. 
 
 [Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/)는 이러한 경우 팩토리에서 일련의 개체를 생성해 줍니다.
 

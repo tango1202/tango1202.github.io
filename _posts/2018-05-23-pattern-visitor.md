@@ -175,6 +175,9 @@ public:
     }
 };
 
+// ----
+// 테스트 코드
+// ---- 
 ScaleVisitor scaleVisitor; 
 rectangle.Accept(scaleVisitor);
 circle.Accept(scaleVisitor);

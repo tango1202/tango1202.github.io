@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[Prototype](https://tango1202.github.io/pattern/pattern-prototype/)은 미리 정의된 개체로부터 복제하여 개체를 생성할때 사용합니다.
+[Prototype](https://tango1202.github.io/pattern/pattern-prototype/)은 미리 정의된 개체로부터 복제하여 개체를 생성합니다. 속성까지 동일한 개체를 여러개 만들때 사용하면 좋습니다.
 
 # 설명
 
