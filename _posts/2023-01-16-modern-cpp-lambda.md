@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#16. [모던 C++] 람다 표혆식(C++11, C++14, C++17, C++20)"
+title: "#16. [모던 C++] 람다 표현식(C++11, C++14, C++17, C++20)"
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false

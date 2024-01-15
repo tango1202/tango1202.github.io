@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [모던 C++] 전달 참조와 완벽한 전달(C++11) 
+title: "#13. [모던 C++] 전달 참조와 완벽한 전달(C++11)" 
 categories: "cpp"
 tag: ["cpp"]
 author_profile: false
