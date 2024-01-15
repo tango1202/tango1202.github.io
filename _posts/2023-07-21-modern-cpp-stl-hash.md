@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#21. [모던 C++ STL] (C++11~) hash()"
+title: "#21. [모던 C++ STL] hash(C++11)" 
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

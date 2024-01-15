@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#43. [모던 C++ STL] (C++20~) span"
+title: "#43. [모던 C++ STL] span(C++20)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

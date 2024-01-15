@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#38. [모던 C++ STL] (C++17~) polymorphic_allocator 와 메모리 리소스"
+title: "#38. [모던 C++ STL] polymorphic_allocator 와 메모리 리소스(C++17)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

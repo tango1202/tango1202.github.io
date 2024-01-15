@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#41. [모던 C++ STL] (C++20~) coroutine"
+title: "#41. [모던 C++ STL] coroutine(C++20)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

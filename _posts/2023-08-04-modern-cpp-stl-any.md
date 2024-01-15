@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#34. [모던 C++ STL] (C++17~) any"
+title: "#34. [모던 C++ STL] any(C++17)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

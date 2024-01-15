@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#32. [모던 C++ STL] (C++14~) 표준 사용자 정의 리터럴"
+title: "#32. [모던 C++ STL] 표준 사용자 정의 리터럴(C++14)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

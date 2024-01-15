@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#28. [모던 C++ STL] (C++11~) 동기/비동기(future, promise, async()), (C++20~) counting_semaphore, binary_semaphore, latch, barrier"
+title: "#28. [모던 C++ STL] future, promise, async, counting_semaphore, binary_semaphore, latch, barrier(C++11, C++20)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

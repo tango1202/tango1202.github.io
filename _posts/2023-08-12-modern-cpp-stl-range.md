@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#42. [모던 C++ STL] (C++20~) 범위(Range)와 뷰(View)"
+title: "#42. [모던 C++ STL] 범위(Range)와 뷰(View)(C++20)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

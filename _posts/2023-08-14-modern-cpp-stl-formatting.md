@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#44. [모던 C++ STL] (C++20~) 포맷팅"
+title: "#44. [모던 C++ STL] 포맷팅(C++20)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

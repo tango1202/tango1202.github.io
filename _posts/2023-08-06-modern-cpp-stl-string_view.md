@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#36. [모던 C++ STL] (C++17~) string_view"
+title: "#36. [모던 C++ STL] string_view(C++17)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

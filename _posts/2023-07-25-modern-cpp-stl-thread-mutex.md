@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#25. [모던 C++ STL] (C++11~) 쓰레드(thread, mutex), (C++14~) shared_timed_mutex, shared_lock, (C++17~) shared_mutex, scoped_lock, (C++20~) jthread, 쓰레드 중지"
+title: "#25. [모던 C++ STL] thread, mutex, lock_guard, jthread, stop_token, stop_source, stop_callback(C++11, C++14, C++17, C++20)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false
@@ -703,7 +703,7 @@ std::jthread worker2{Message2};
 // worker2.join(); // jthread는 소멸자에서 join()을 하므로 join()을 생략해도 됩니다.
 ```
 
-또한, 다음 [[멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/)가 추가되어 [쓰레드 중지](https://tango1202.github.io/cpp-stl/modern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%A4%91%EC%A7%80stop_token-stop_source-stop_callback) 처리를 할 수 있습니다.
+또한, 다음 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/)가 추가되어 [쓰레드 중지](https://tango1202.github.io/cpp-stl/modern-cpp-stl-thread-mutex/#%EC%93%B0%EB%A0%88%EB%93%9C-%EC%A4%91%EC%A7%80stop_token-stop_source-stop_callback) 처리를 할 수 있습니다.
 
 |항목|내용|
 |--|--|

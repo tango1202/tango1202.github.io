@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#18. [모던 C++ STL] (C++11~) 정밀한 시간 측정(system_clock, time_point, duration), (C++20~) hh_mm_ss, Calendar, Time Zone"
+title: "#18. [모던 C++ STL] chrono(C++11, C++20)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

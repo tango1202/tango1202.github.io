@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#20. [모던 C++ STL] (C++11~) 함수자(function, bad_function_call, mem_fn(), reference_wrapper, bind()), (C++17~) invoke(), (C++20~) bind_front()" 
+title: "#20. [모던 C++ STL] function, reference_wrapper, bind, invoke(C++11, C++17, C++20)" 
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

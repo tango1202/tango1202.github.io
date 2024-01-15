@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#37. [모던 C++ STL] (C++17~) 병렬 알고리즘과 실행 정책(동작 확인중)"
+title: "#37. [모던 C++ STL] 병렬 알고리즘과 실행 정책(동작 확인중)(C++17)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

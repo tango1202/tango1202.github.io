@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#40. [모던 C++ STL] (C++20~) concepts"
+title: "#40. [모던 C++ STL] concepts(C++20)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false

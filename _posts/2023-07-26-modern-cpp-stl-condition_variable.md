@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#26. [모던 C++ STL] (C++11~) 조건 변수(condition_variable)"
+title: "#26. [모던 C++ STL] condition_variable(C++11)"
 categories: "cpp-stl"
 tag: ["cpp"]
 author_profile: false
