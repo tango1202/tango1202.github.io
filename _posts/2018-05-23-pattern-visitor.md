@@ -179,6 +179,7 @@ class ScaleVisitor : public IVisitor {
 public:
     virtual void VisitRectangle(Rectangle& rectangle) override {
         rectangle.SetWidth(rectangle.GetWidth() * 2); // 2배로 크게합니다.
+        rectangle.SetHeight(rectangle.GetHeight() * 2);
     };
     virtual void VisitCircle(Circle& rectangle) override {
         rectangle.SetDiameter(rectangle.GetDiameter() * 2); // 2배로 크게 합니다.
