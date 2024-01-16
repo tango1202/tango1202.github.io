@@ -12,13 +12,21 @@ sidebar:
 
 # 설명
 
-일반적으로 개체에 기능을 추가하고 싶은 경우 해당 개체에 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 작성하면 됩니다. 하지만, 자꾸 추가하다보면 개체가 덩치가 커지는 문제가 있습니다. 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 될 수도 있죠. 
+일반적으로 개체에 기능을 추가하고 싶은 경우 해당 개체에 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 작성하면 됩니다. 하지만, 자꾸 추가하다보면 개체의 덩치가 커지는 문제가 있습니다. 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 될 수도 있죠. 
     
-이를 막기 위해 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/)을 활용할 수 있습니다.
+이를 막기 위해 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/)을 활용할 수 있습니다. 
 
-다음 그림에서 `Element`의 `Accept()`에 `Visitor`를 전달하면, 각 자식 개체에서 관련 함수들을 실행해 줍니다. 따라서 추가할 기능을 `ConcreteVisitor1`이나 `ConcreteVisitor2`에서 구현해 주면 됩니다.
+다음은 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/)의 일반적인 구조입니다. `Element`의 `Accept()`에 `Visitor`를 전달하면, 각 자식 개체에서 관련 함수들을 실행해 줍니다. 따라서 추가할 기능을 `ConcreteVisitor1`이나 `ConcreteVisitor2`에서 구현해 주면 됩니다.
 
 ![Visitor](https://github.com/tango1202/tango1202.github.io/assets/133472501/f93b9bab-9a45-412e-8151-8274480990e6)
+
+구체적인 호출 흐름은 다음과 같습니다.
+
+1. `Visitor`는 기능을 추가할 `Element`에 `Accept(visitor)`로 방문하고, 
+2. `Element`는 `Visitor`의 함수중에 자신의 타입과 맞는 `VisitConcreteElementA(ConcreteElementA)`를 호출합니다.
+3. 이제 `Visitor`는 `ConcreteElementA`를 알 수 있으므로, `ConcreteElementA`의 Getter/Setter를 호출하여 추가 기능을 구현합니다.
+
+![Image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b99f4efd-45a9-47ef-8899-4b9fd9e85c98)
 
 |항목|내용|
 |--|--|
@@ -33,7 +41,7 @@ sidebar:
 
 # 예제
 
-다음은 `Rectangle`과 `Circle` 개체에 방문하는 `IVisitor`의 구현 예입니다. `XmlWriter`와 `JsonWriter`로 방문하여 해당 개체의 내용을 저장할 수 있습니다.
+다음은 `Rectangle`과 `Circle` 개체에 방문하는 `IVisitor`의 구현 예입니다. `XmlWriter`와 `JsonWriter`로 방문하여 해당 개체의 내용을 저장합니다.
 
 1. #1 : `IVisitor`는 개체를 방문합니다. 방문한 개체가 호출할 수 있도록 `VisitRectangle()`과 `VisitCircle()`을 제공합니다.
 2. #2 : `Shape`은 `IVisitor`가 방문할 수 있도록 `Accept()`를 제공합니다.
