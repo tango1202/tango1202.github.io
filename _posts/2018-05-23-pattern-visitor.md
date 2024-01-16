@@ -12,7 +12,7 @@ sidebar:
 
 # 설명
 
-일반적으로 개체에 기능을 추가하고 싶은 경우 해당 개체에 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 작성하면 됩니다. 하지만, 자꾸 추가하다보면 개체가 덩치가 커지는 문제가 있습니다. [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 될 수도 있죠. 
+일반적으로 개체에 기능을 추가하고 싶은 경우 해당 개체에 [멤버 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EB%A9%A4%EB%B2%84-%ED%95%A8%EC%88%98)를 작성하면 됩니다. 하지만, 자꾸 추가하다보면 개체가 덩치가 커지는 문제가 있습니다. 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 될 수도 있죠. 
     
 이를 막기 위해 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/)을 활용할 수 있습니다.
 
@@ -29,7 +29,7 @@ sidebar:
 
 # 특징
 
-개체는 `Visitor`가 필요로 하는 충분한 정보를 제공해야 합니다. 이에 따라 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 Getter/Setter가 너무 많이 `public`이 되는 경향이 있습니다.
+개체는 `Visitor`가 필요로 하는 충분한 정보를 제공해야 합니다. 이에 따라 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 Getter/Setter가 너무 많이 `public`으로 노출되어 [빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)이 되는 경향이 있습니다.
 
 # 예제
 

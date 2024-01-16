@@ -8,17 +8,17 @@ sidebar:
     nav: "docs"
 ---
 
-[Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/)는 특정 그룹 계열에 속한 개체들을 생성합니다. 생성할 개체들이 일련의 그룹으로 묶여있는 경우 생성 관련 로직을 간결하게 만들어 줍니다.
+[Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/)는 특정 그룹 계열에 속한 개체들을 생성합니다. 생성할 개체들이 일련의 그룹인 경우 생성 관련 로직을 간결하게 만들어 줍니다.
 
 # 설명
 
-사용하는 디바이스(*데스크탑 또는 모바일*)에 따라 달라지는 컨트롤이 있다고 해봅시다. `Button`의 경우는 큰 차이가 없지만, `Check`의 경우 모바일에서 `Switch`처럼 구현될 수 있고, `RadioGroup`은 콤보박스의 형태로 구현될 수도 있습니다. 
+사용하는 디바이스(*데스크탑 또는 모바일*)에 따라 달라지는 컨트롤이 있다고 해봅시다. 모바일에서 `Button`의 경우는 큰 차이가 없지만, `Check`의 경우는 `Switch`처럼 구현될 수 있고, `RadioGroup`의 경우는 콤보박스처럼 구현될 수도 있습니다. 
 
-이럴 경우 디바이스가 데스크탑인지 모바일용인지 코드 여기저기서 확인하고 분기하여 작성하는게 아니라, 한군데에서만 확인하고 처리하는게 좋습니다. 
+이러한 경우 디바이스가 데스크탑인지 모바일인지 코드 여기저기서 검사하고 처리하게 되는데요, 이렇게 되면 `if()`문이 많아져서 [코드 냄새](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BD%94%EB%93%9C-%EB%83%84%EC%83%88code-smells)가 여기저기서 나기 시작하죠.
 
-[Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/)는 이러한 경우 팩토리에서 일련의 개체를 생성해 줍니다.
+[Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/)는 팩토리에서 일련의 개체를 생성해 주기 때문에, 한군데에서만 검사하고 적합한 팩토리를 선택해 준다면, `if()`문의 사용을 현저히 줄일 수 있습니다. 
 
-다음 그림에서 `Client`는 `ConcreteFactory1`을 사용하느냐, `ConcreteFactory2`를 사용하느냐에 따라 다른 계열의 개체들을 생성하여 사용하게 됩니다.
+다음 그림에서 `Client`는 `ConcreteFactory1`을 사용하느냐, `ConcreteFactory2`를 사용하느냐에 따라 다른 계열의 개체들을 생성하여 사용하게 됩니다. 
 
 ![Abstract Factory](https://github.com/tango1202/tango1202.github.io/assets/133472501/4bf8e977-a274-44e3-be1b-fda65ad04bc2)
 
@@ -36,7 +36,7 @@ sidebar:
 
 # 예제
 
-다음은 디바이스가 데스크탑인지 모바일용인지를 확인하고 팩토리를 사용하는 예입니다.
+다음은 디바이스가 데스크탑인지 모바일인지를 확인하고 팩토리를 사용하는 예입니다.
 
 #4를 보면 `CreateControlFactory()`에서 모바일인지 검사하고, `MobileFactory`나 `NormalFactory`를 선택해서 팩토리를 만듭니다. 각 팩토리에서 디바이스에 따른 컨트롤들을 생성하기 때문에 코드 여기저기서 모바일인지 아닌지에 따라 분기해서 코드를 작성할 필요가 없습니다. 그저 `ControlFactory`에서 생성된 컨트롤을 믿고 사용하면 됩니다.
 

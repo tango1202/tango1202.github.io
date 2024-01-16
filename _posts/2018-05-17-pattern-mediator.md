@@ -14,7 +14,7 @@ sidebar:
 
 다음과 같이 리스트의 선택이 변경되면, 해당 선택 항목으로 다른 컨트롤의 데이터를 변경하는 UI를 생각해 봅시다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/76eb603b-736b-47fa-8b15-bc12832bb220)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4bcbf85f-09f5-4b16-8b62-0cb97dbb38e6)
 
 이벤트 핸들러를 이용한다면 다음과 같이 작성할 수 있습니다.
 
@@ -27,7 +27,7 @@ void List::SelectChanged() {
 
 하지만 이 방식은 상호작용하는 컨트롤들이 많아지면 컨트롤간 결합도가 높아 향후 유지보수가 어려워질 수 있습니다. 
 
-예를 들어 각 세부 정보가 변경되면, 목록을 갱신해야 하며, 집 전화번호는 집 주소와 지역번호는 동기화를 서로 맞춰야 하며, 비밀번호는 집 전화번호와 이름과 이메일과 유사하지 않도록 서로 변경되는걸 감시하며 같이 수정되어야 합니다.
+예를 들어 각 세부 정보가 변경되면, 목록을 갱신해야 하며, 집 전화번호는 집 주소와 지역번호는 동기화를 서로 맞춰야 하며, 비밀번호는 집 전화번호와 이름과 이메일과 유사하지 않도록 서로 변경되는걸 감시하며 같이 수정되어야 합니다. 자칫 잘못하면 [스파게티 코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%8A%A4%ED%8C%8C%EA%B2%8C%ED%8B%B0-%EC%BD%94%EB%93%9Cspaghetti-code)가 되버리죠.
 
 ![Image](https://github.com/tango1202/tango1202.github.io/assets/133472501/47ed89b2-d1ef-4349-9898-f4cba981de7c)
 

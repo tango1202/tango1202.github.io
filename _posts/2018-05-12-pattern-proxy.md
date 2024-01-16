@@ -19,7 +19,7 @@ sidebar:
 이를 위해 [Proxy](https://tango1202.github.io/pattern/pattern-proxy/)를 이용할 수 있습니다.
 크기 정보를 요청할때는 [Proxy](https://tango1202.github.io/pattern/pattern-proxy/)가 대리해서 처리하고, 실제 `Draw()`될때만 이미지를 생성합니다. 
 
-다음 그림에서 `Client`가 `Request()`를 호출하면, `Proxy`가 이를 대리하여 처리하거나, `m_RealSubject.Request()`를 호출하여 실제 개체를 사용할 수 있습니다.
+다음 그림에서 `Client`가 `Request()`를 호출하면, `Proxy`가 이를 대리하여 처리하거나, `m_RealSubject.Request()`를 호출하여 실제 개체를 사용합니다.
 
 ![Proxy(](https://github.com/tango1202/tango1202.github.io/assets/133472501/8a166c74-65f3-480e-9548-e4044204dea8)
 
@@ -40,7 +40,7 @@ sidebar:
 
 1. #1 : `Shape`은 `Subject`입니다. `Draw()`와 크기의 Get/Set 인터페이스를 제공합니다.
 2. #2 : `Image`는 `RealSubject`입니다. 생성시 실제 이미지를 `Load()` 합니다.
-3. #3: `ImageProxy`는 `Draw()` 시 실제 `Image`를 생성하며, 그전에 크기정보를 요청하면, 멤버 변수의 값을 이용하여 대리 실행합니다.
+3. #3: `ImageProxy`는 `Image` 생성 전에는 크기 정보 요청시 멤버 변수의 값으로 대리 실행하며, `Draw()` 시 실제 `Image`를 생성합니다.
 4. #4 : `Draw()`한 뒤에는 `Image` 개체가 사용됩니다.
 
 ```cpp
@@ -91,7 +91,7 @@ private:
     }
 };
 // ----
-// #3. Proxy입니다. Draw() 시 실제 Image를 생성하며, 그전에는 멤버 변수의 값을 이용합니다.
+// #3. Proxy입니다. Image 생성 전에는 크기 정보 요청시 멤버 변수의 값으로 대리 실행하며, Draw() 시 실제 Image를 생성합니다.
 // ----
 class ImageProxy : public Shape {
     int m_Width; // #3. m_Image가 만들어지지 않으면 사용합니다.

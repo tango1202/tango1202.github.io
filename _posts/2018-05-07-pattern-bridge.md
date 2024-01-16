@@ -12,9 +12,9 @@ sidebar:
 
 # 설명
 
-[추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)는 공통적인 일반 개념을 만드는 작업입니다. 이를 잘 설계하면, 재활용성이 높아져 활용도가 높아지고, 특정 문제들을 해결하는데 있어서 공통된 접근을 하기 때문에 고민할 것들이 줄어듭니다. 
+[추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)는 공통적인 일반 개념을 만드는 작업입니다. 이를 잘 설계하면, 재활용성이 높아지고, 특정 문제들을 해결하는데 있어서 공통된 접근을 하기 때문에 고민할 것들이 줄어듭니다. 
 
-[Bridge](https://tango1202.github.io/pattern/pattern-bridge/)는 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)와 이의 구체화를 분리하는 것인데요, 코드간 종속성을 해결하고, 구체화를 다형적으로 만들 수 있어 확장성을 제공해 줍니다. 대부분의 디자인 패턴에서의 근간이 되는 구조라고도 할 수 있겠습니다. 
+[Bridge](https://tango1202.github.io/pattern/pattern-bridge/)는 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)와 이의 구체화를 분리하는 것인데요, 코드간 종속성을 해결하고, 구체화를 다형적으로 만들 수 있어 확장성을 제공해 줍니다. 대부분의 디자인 패턴에서의 근간이 되는 구조라고도 할 수 있겠습니다.(*[Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/), [Builder](https://tango1202.github.io/pattern/pattern-builder/),  [Adapter](https://tango1202.github.io/pattern/pattern-adapter/), [Decorator](https://tango1202.github.io/pattern/pattern-decorator/), [Proxy](https://tango1202.github.io/pattern/pattern-proxy/), [State](https://tango1202.github.io/pattern/pattern-state/), [Strategy](https://tango1202.github.io/pattern/pattern-strategy/) 등*)
 
 간단하게는 [PImpl 이디엄](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-pimpl/)도 [Bridge](https://tango1202.github.io/pattern/pattern-bridge/)라 할 수 있습니다. 추상과 구현을 분리해서 코드간의 종속성이나 컴파일 종속성을 최소화 해줍니다.
 
@@ -56,7 +56,7 @@ void Draw() {
 }
 ```
 
-조건 검사 코드가 여기저기 흩어져 많이 지저분해질 수 있고, 본연의 출력 로직 개발에 방해가 될 수 있습니다.
+조건 검사 코드가 여기저기 흩어져 많이 지저분해질 수 있고, 본연의 출력 로직 개발에 방해가 될 수 있습니다. [코드 냄새](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BD%94%EB%93%9C-%EB%83%84%EC%83%88code-smells)도 나고요.
 
 이런 경우 [Bridge](https://tango1202.github.io/pattern/pattern-bridge/)를 이용하여 추상부인 `Render`와 구현부인 `RenderImpl`을 나누면 좀더 간결하게 문제를 해결할 수 있습니다.
 
@@ -67,6 +67,8 @@ void Draw() {
 3. 외부에서 GDI와 WPF를 결정해서 전달해 주므로, `Rectangle`은 GDI인지, WPF인지 고민없이 본연의 출력 로직에만 집중하여 작성하면 됩니다.
 
 ![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/1d8ae7f4-acac-4965-8746-b5b5fd9062a0)
+
+다음은 `Rectangle`을 `Draw()`하는 예입니다. `GDIRenderImpl`을 사용하던, `WPFRenderImpl`을 사용하던, `Rentangle`의 `Draw()`에서는 아무런 조건 검사가 필요 없습니다.
 
 1. #1 : `Render` 추상부 입니다. 출력에 필요한 기본적인 함수들을 추상화합니다.
 2. #2 : `RenderImpl`과의 컴파일 종속성을 없애기 위해 `Render`의 선언과 정의를 분리했습니다.

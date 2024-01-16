@@ -23,7 +23,7 @@ void SaveButton::Clicked() {
 }
 ```
 
-하지만 이러한 방식은 UI에 종속적이어서 UI가 변경되면 이에 따른 많은 수정이 필요하며, 만약 `Open()`을 실행하는 UI가 메뉴, 버튼, 단축키 등 여러가지가 있을 경우 `MyApp::Open()`은 중복해서 작성되야 합니다.
+하지만 이러한 방식은 UI에 종속적이어서 UI가 변경되면 이에 따른 많은 수정이 필요하며, 만약 `Open()`을 실행하는 UI가 메뉴, 버튼, 단축키 등 여러가지가 있을 경우 `MyApp::Open()`은 중복해서 작성되야 합니다. 코드 중복은 언제나 불쾌한 [코드 냄새](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BD%94%EB%93%9C-%EB%83%84%EC%83%88code-smells)를 유발하죠.
 
 이러한 경우 [Command 패턴](https://tango1202.github.io/pattern/pattern-command/)을 이용하여 기능 요청부와 실행부를 분리해 두면, 실행부를 재활용할 수 있습니다.
 

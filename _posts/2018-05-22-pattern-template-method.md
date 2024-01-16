@@ -8,13 +8,15 @@ sidebar:
     nav: "docs"
 ---
 
-[Template Method](https://tango1202.github.io/pattern/pattern-template-method/)는 부모 개체에서 대략의 뼈대를 구현하고, 자식 개체에서 구체적인 처리를 수행하여, 뼈대 동작을 정규화하고, 자식 개체에서는 최소의 구현만 하게 합니다. 
+[Template Method](https://tango1202.github.io/pattern/pattern-template-method/)는 부모 개체에서 대략의 뼈대를 구현하여 뼈대 동작을 정규화하고, 자식 개체에서는 최소의 구현만 하게 합니다. 
 
 # 설명
 
 특정 OS에서 기본적인 기능들은 동일한 방식으로 동작합니다. 예를 들어 Windows에서 불러오기시 기존에 수정한 내용이 아직 저장되지 않았다면, 저장할지 물어봅니다. 또한 만약 파일명이 지정되지 않았다면, 파일 대화상자를 표시하여 파일명을 입력받은 뒤 저장합니다.
 
-이러한 일련의 동작들은 모든 App에서 공통적으로 필요하므로, 부모 개체에서 대략의 뼈대 기능을 구현하고, 자식 개체에서 꼭 필요한 것만 구현하는게 좋습니다. 만약 모든 App이 그때 그때 뼈대 기능을 구현한다면, 불필요하게 코드가 중복될 뿐만 아니라, 미세한 세부 동작이 달라질 수도 있거든요.
+이러한 일련의 동작들은 모든 App에서 공통적으로 필요하므로, 부모 개체에서 대략의 뼈대 기능을 구현하고, 자식 개체에서 꼭 필요한 것만 구현하는게 좋습니다. 
+
+만약 모든 App이 그때 그때 뼈대 기능을 구현한다면, 불필요하게 코드가 중복되어 [코드 냄새](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BD%94%EB%93%9C-%EB%83%84%EC%83%88code-smells)가 날 뿐만 아니라, [복사 붙여넣기](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B3%B5%EC%82%AC-%EB%B6%99%EC%97%AC%EB%84%A3%EA%B8%B0copy-paste-programming)가 되기도 하며, 미세한 세부 동작이 달라질 수도 있거든요.
 
 다음 그림에서 `TemplateMethod()`는 `ConcreteClass`에서 구체 구현한 `PrimitiveOperation1()`과 `PrimitiveOperation2()`를 이용합니다. 이때 자식 개체의 구체 구현이 최소화 되도록 `TemplateMethod()`를 작성하는게 좋습니다.
 
@@ -31,7 +33,7 @@ sidebar:
 
 # 예제
 
-다음은 `MyApp`개체를 구현한 예입니다. `App`에서 `Load()`의 일반 기능을 구현했으며, 자식 개체인 `MyApp`에서 `Load()`시 필요한 세부 기능들을 재구현 했습니다.
+다음은 `MyApp`개체를 구현한 예입니다. `App`에서 `Load()`의 대략적인 뼈대 기능을 구현했으며, 자식 개체인 `MyApp`에서 `Load()`시 필요한 세부 기능들을 재구현 했습니다.
 
 1. #1 : `App`은 `Load()`의 뼈대를 제공합니다. 자식 개체에서 `DoSaveMessage()`, `DoPathNameMessage()`, `DoSave()`, `DoLoad()`를 구현해야 합니다.
 2. #2 : `MyApp`은 `App`을 구체 구현한 개체입니다.

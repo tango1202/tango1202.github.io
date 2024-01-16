@@ -8,15 +8,15 @@ sidebar:
     nav: "docs"
 ---
 
-[Composite](https://tango1202.github.io/pattern/pattern-composite/)은 단일 개체와 복합 개체를 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)하여 모두 동일한 방식으로 다루게 해줍니다. 둘을 서로 구분하여 처리하는 부분이 없어지기 때문에 고민할 것들이 줄어듭니다.
+[Composite](https://tango1202.github.io/pattern/pattern-composite/)은 단일 개체와 복합 개체를 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)하여 모두 동일한 방식으로 다루게 해줍니다. 둘을 서로 구분하여 처리할 필요가 없어지기 때문에 고민할 것들이 줄어듭니다.
 
 # 설명
 
-`Tree`와 같은 개체 구조를 다룰 때 개별 개체에 접근하려면 하위 개체가 있는지 검사한 뒤, 있다면 하위 개체를 탐색해 주어야 합니다. 약간 번거롭고 코드가 지저분해질 수 있는데요,
+`Tree`와 같은 개체 구조를 다룰 때 개별 개체에 접근하려면 하위 개체가 있는지 검사한 뒤, 있다면 하위 개체를 탐색해 주어야 합니다. 약간 번거롭고 빈번히 `if()`검사를 해야 해서 [코드 냄새](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BD%94%EB%93%9C-%EB%83%84%EC%83%88code-smells)가 날 수 있는데요,
 
 ![Composite](https://github.com/tango1202/tango1202.github.io/assets/133472501/c8d13e09-77ef-43a1-a568-59b762627a04)
 
-[Composite](https://tango1202.github.io/pattern/pattern-composite/)은 단일 개체와 복합 개체를 모두 동일한 방식으로 다루게 해줍니다. 코드를 단순하게 유지시켜 주는 장점이 있지만, 단일 개체에서도 복합 개체용 인터페이스들을 구현해야 하는 단점이 있습니다.
+[Composite](https://tango1202.github.io/pattern/pattern-composite/)는 단일 개체와 복합 개체를 모두 동일한 방식으로 다루게 해줍니다. 코드를 단순하게 유지시켜 주는 장점이 있지만, 단일 개체에서도 복합 개체용 인터페이스들을 구현해야 하는 단점이 있습니다. 아주 대놓고 [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)을 위반합니다.
 
 다음 그림에서 `Composite`는 `Operation()` 호출시 자신의 하위 `m_Childeren`들의 `Operation()`을 모두 호출해 주어, `Client`가 하위 개체를 일일이 탐색하는 번거로움을 대신해 주고 있습니다. 다만, 단일 개체인 `Leaf`도 `Add(), Remove(), GetChild()`와 같은 복합 개체용 인터페이스를 구현해 주어야 합니다.
 
@@ -31,7 +31,9 @@ sidebar:
 
 # 특징
 
-하위 개체를 탐색해야 하는 번거로움은 줄어들지만, `Leaf`입장에선 억지로 복합 개체용 인터페이스를 구현해야 하므로 [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)과 [제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/)을 위반합니다. 이는 하위 개체 접근시에만 [다운 캐스팅](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)하여 어느 정도 보완 할 수도 있습니다.
+하위 개체를 탐색해야 하는 번거로움은 줄어들지만, `Leaf`입장에선 억지로 복합 개체용 인터페이스를 구현해야 하므로 [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)과 [제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/)을 위반합니다. 이는 하위 개체 접근시에만 [다운 캐스팅](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98)하여 어느 정도 보완 할 수도 있습니다. 
+
+하위 개체 탐색 편의성이냐, 개체지향 원칙 준수냐 사이에서 어느 것이 유지보수에 유리한지 판단하여 결정하시기 바랍니다.(*저는 하위 개체 탐색 편의성이 코드가 간결해져 유지보수에 유리하다고 생각합니다.*)
 
 # 예제
 

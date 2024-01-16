@@ -14,7 +14,7 @@ sidebar:
 
 [Iterator](https://tango1202.github.io/pattern/pattern-iterator/)는 집합 개체의 내부 구현 방식을 은닉하고 각 요소에 접근하는 방법을 제공합니다. 따라서, 서로 내부 구조가 다르더라도 동일한 방식으로 요소에 접근할 수 있습니다. 
 
-다음 코드를 보면 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)의 이터레이터와 [list](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/#%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 이터레이터가 모두 동일한 방식으로 각 요소에 접근합니다.
+다음 코드를 보면 [vector](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-vector/)의 이터레이터와 [list](https://tango1202.github.io/legacy-cpp-stl/legacy-cpp-stl-container/#%EC%8B%9C%ED%80%80%EC%8A%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88)의 이터레이터가 모두 동일한 방식으로 각 요소에 접근하는걸 확인할 수 있습니다.
 
 ```cpp
 {
@@ -37,7 +37,7 @@ sidebar:
 }
 ```
 
-다음 그림은 [Iterator 패턴](https://tango1202.github.io/pattern/pattern-iterator/)의 기본 구조입니다. 기본 구조가 [Factory Method 패턴](https://tango1202.github.io/pattern/pattern-factory-method/)과 동일합니다. `Aggregate`에서 `CreateIterator()`를 호출하면, 자식 개체인 `ConcreteAggregate`에서 실제 이터레이터인 `ConcreteIterator`를 생성해 줍니다. 
+다음 그림은 [Iterator 패턴](https://tango1202.github.io/pattern/pattern-iterator/)의 기본 구조입니다. 기본 구조가 [Factory Method 패턴](https://tango1202.github.io/pattern/pattern-factory-method/)과 유사합니다. `Aggregate`에서 `CreateIterator()`를 호출하면, 자식 개체인 `ConcreteAggregate`에서 실제 이터레이터인 `ConcreteIterator`를 생성해 줍니다. 
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/598b3733-3743-4793-a652-b39fbbdb9c90)
 

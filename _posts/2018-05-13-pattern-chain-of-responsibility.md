@@ -10,8 +10,6 @@ sidebar:
 
 [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)는 요청을 여러 개체에 전달하여 함께 처리할 수 있게 해줍니다. 한군데에서 모든 요청을 처리하지 않고 책임에 따라 여러 개체에 분산하므로, 해당 개체 구현시 고민할 것들이 줄어듭니다. 
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/042b6fec-a617-49e6-b4de-5391152ebf69)
-
 # 설명
 
 UI 컨트롤의 테두리 속성을 살펴봅시다. 컨트롤은 테두리 속성을 가지고 있고, 이 속성을 이용하여 테두리를 그립니다.
@@ -56,6 +54,8 @@ private:
 하지만 `m_Parent`에도 테두리 속성이 없다면, 더 상위 개체에 테두리 속성을 요청해야 합니다. 그렇다고, `m_Parent->m_Parent->GetBorder()`라고 호출하는건 좀 그렇죠. `m_Parent->m_Parent->m_Parent->GetBorder()`와 같이 계속 상위의 상위의 상위 개체에 요청할 수는 없는 노릇이잖아요?
 
 [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)는 이러한 요청을 Chain 처럼 연결하여 문제를 해결합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/042b6fec-a617-49e6-b4de-5391152ebf69)
 
 다음 그림처럼 `Handler`는 요청을 처리할 다음 개체인 `m_Successor`와 연결됩니다. 따라서, `Client`가 `HandleRequest()`를 호출하면, `Handler`에서 직접 처리할 것인지, 다음 개체인 `m_Successor`에 요청할 것인지 판단하여 처리하고, 다음 개체에서도 동일한 반복을 하게 되어 Chain으로 연결된 개체들이 함께 처리를 할 수 있도록 해줍니다.  
 

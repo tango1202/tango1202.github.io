@@ -48,6 +48,7 @@ sidebar:
     * [다운 캐스팅](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#runtime-type-infortti%EC%99%80-%ED%98%95%EB%B3%80%ED%99%98) 혹은 모든 [형변환](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-conversions/)
     * [상수성 계약](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD) 위반
     * [매직 상수](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%A7%A4%EC%A7%81-%EC%83%81%EC%88%98magic-constants)
+    * [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)
 
 가 보인다면, 리팩토링으로 수정하셔야 합니다.
 
@@ -156,7 +157,7 @@ sidebar:
 
 # [나쁜 코딩 관행] 프랑켄코드(Frankencode)
 
-[프랑켄코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%94%84%EB%9E%91%EC%BC%84%EC%BD%94%EB%93%9Cfrankencode) 서로 어울리지 않는 코드를 [덕트 테이프](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)로 덕지덕지 붙인 코드를 말합니다.
+[프랑켄코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%94%84%EB%9E%91%EC%BC%84%EC%BD%94%EB%93%9Cfrankencode)는 서로 어울리지 않는 코드를 [덕트 테이프](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)로 덕지덕지 붙인 코드를 말합니다.
 
 서로 독립적으로 만든 모듈이더라도 함께 사용한다면 어울려 작동할 수 있도록 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/) 등을 활용해야 합니다.
 
@@ -286,9 +287,9 @@ sidebar:
 
 [행동 중심 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%ED%8C%80-%ED%96%89%EB%8F%99-%EC%A4%91%EC%8B%AC-%EA%B0%9C%EB%B0%9Cbehavior-driven-development)로 서로 긴밀하게 협력하고, 지킬 수 있는 일정을 협의하세요.
 
-# 슈퍼스타(Superstar)
+# [나쁜 운영 관행]슈퍼스타(Superstar)
 
-프로젝트의 의사소통을 일원화하고 주인의식과 책임의식을 갖게 하기 위해 [슈퍼스타](https://tango1202.github.io/principle/principle-anti-pattern/#%EC%8A%88%ED%8D%BC%EC%8A%A4%ED%83%80superstar)를 만들 수 있습니다. [슈퍼스타](https://tango1202.github.io/principle/principle-anti-pattern/#%EC%8A%88%ED%8D%BC%EC%8A%A4%ED%83%80superstar)는 책임감을 갖고 프로젝트를 성공적으로 이끌 수 있는데요, 한 사람에만 성과가 집중되어, [집단 코드 소유권](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%91%EB%8B%A8-%EC%BD%94%EB%93%9C-%EC%86%8C%EC%9C%A0%EA%B6%8Ccollective-code-ownership)을 해칠 수 있고, [슈퍼스타](https://tango1202.github.io/principle/principle-anti-pattern/#%EC%8A%88%ED%8D%BC%EC%8A%A4%ED%83%80superstar)는 일과 삶의 균형이 무너질 수도 있습니다. 프로젝트는 성공하더라도, [슈퍼스타](https://tango1202.github.io/principle/principle-anti-pattern/#%EC%8A%88%ED%8D%BC%EC%8A%A4%ED%83%80superstar)는 떠날 확률이 높죠.
+프로젝트의 의사소통을 일원화하고 주인의식과 책임의식을 갖게 하기 위해 [슈퍼스타](??)를 만들 수 있습니다. [슈퍼스타](??)는 책임감을 갖고 프로젝트를 성공적으로 이끌 수 있는데요, 한 사람에만 성과가 집중되어, [집단 코드 소유권](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%91%EB%8B%A8-%EC%BD%94%EB%93%9C-%EC%86%8C%EC%9C%A0%EA%B6%8Ccollective-code-ownership)을 해칠 수 있고, [슈퍼스타](??)는 일과 삶의 균형이 무너질 수도 있습니다. 프로젝트는 성공하더라도, [슈퍼스타](??)는 떠날 확률이 높죠.
 
 잊지마세요. 우리는 코드를 공동 소유하고, 우리 모두의 책임이어야 합니다.
 

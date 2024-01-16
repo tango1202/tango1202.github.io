@@ -12,7 +12,7 @@ sidebar:
 
 # 설명
 
-다음 그림에서 `Client`는 서브시스템의 클래스인 `A, B, C, D, E`를 직접 실행하지 않고, `Facade`를 통해 실행합니다.
+다음 그림에서 `Client`는 서브시스템의 클래스인 `A, B, C, D, E`를 직접 실행하지 않고, `Facade`를 통해 실행합니다. [묻지 말고 말하라 원칙](https://tango1202.github.io/principle/principle-tell-dont-ask/)의 대표적인 구현 구조라 할 수 있겠습니다.
 
 ![Facade](https://github.com/tango1202/tango1202.github.io/assets/133472501/61da2aba-bb2f-4b3b-b2e4-f51af2c19799)
 

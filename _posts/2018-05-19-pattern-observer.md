@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[Observer](https://tango1202.github.io/pattern/pattern-observer/)는 특정 개체를 감시하며, 수정 사항이 발생했을때 변경을 통지 받을때 사용하는 일반적인 구조입니다.
+[Observer](https://tango1202.github.io/pattern/pattern-observer/)는 특정 개체를 감시하며, 변경 발생을 통지 받는 일반적인 구조입니다.(*개체지향 원칙중 [헐리우드 원칙](https://tango1202.github.io/principle/principle-hollywood/)과 유사합니다.*)
 
 # 설명
 
@@ -16,7 +16,7 @@ sidebar:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5c07cfc3-bc80-4aa0-9de1-4b49c4e7c404)
 
-이러한 관계를 `Doc-View`, `Publish-Subscribe` 라고도 합니다. 이때 개체간에 직접 참조를 한다면, 상호 참조 문제가 발생할 수 있습니다. 
+이러한 관계를 `Doc-View`, `Publish-Subscribe` 라고도 합니다. 이때 개체간에 직접 참조를 한다면 상호 참조 문제가 발생할 수 있기 때문에, `Data`는 어떤 `View`가 감시하는지 모른채 통지하는게 중요합니다.
 
 이러한 경우 [Observer 패턴](https://tango1202.github.io/pattern/pattern-observer/)을 사용하여 상호 참조 문제를 해결할 수 있습니다.
 
@@ -33,7 +33,7 @@ sidebar:
 
 # 특징
 
-1개 이상의 `Observer`가 `Subject`를 감시할 수 있습니다.
+1개 이상의 `Observer`가 `Subject`를 감시할 수 있습니다. 
 
 # 예제
 

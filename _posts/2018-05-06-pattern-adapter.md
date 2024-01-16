@@ -14,9 +14,13 @@ sidebar:
 
 프로젝트를 진행하다 보면, 다른 프로젝트에서 사용했던 클래스를 재활용할 수 있고, 외부 라이브러리에서 제공한 소스코드를 사용할 수도 있습니다.
 
-이런 소스코드들이 현재 프로젝트와 인터페이스가 맞지 않다고 임의로 수정한다면, 다른 프로젝트와 충돌이 있을 수 있습니다. 그렇다고 복제해서 수정한다면, 코드가 중복될 우려도 있고, 다른쪽에서 버전업 되었을때 복제된 코드에도 일일이 반영해야 하는 문제가 발생합니다. 절대 코드를 복제하지 마세요. [복사 붙여넣기](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B3%B5%EC%82%AC-%EB%B6%99%EC%97%AC%EB%84%A3%EA%B8%B0copy-paste-programming)는 코드 중복을 만드는 악마의 유혹입니다.
+이런 소스코드들이 현재 프로젝트와 인터페이스가 맞지 않다고 임의로 수정한다면, 다른 프로젝트와 충돌이 있을 수 있습니다. 이를 맞추겠다고 창의적으로 [덕트 테이프](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%8D%95%ED%8A%B8-%ED%85%8C%EC%9D%B4%ED%94%84-%EC%BD%94%EB%8D%94duct-tape-coder)를 덕지덕지 붙여 해결해봤자 [프랑켄코드](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%ED%94%84%EB%9E%91%EC%BC%84%EC%BD%94%EB%93%9Cfrankencode)가 될 뿐입니다. 
 
-이러한 경우 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)로 감싸서 인터페이스를 맞추는게 좋습니다.
+그렇다고 복제해서 수정한다면, 코드가 중복될 우려도 있고, 버전업 되었을때 복제된 코드에도 일일이 반영해야 하는 문제가 발생합니다. 절대 코드를 복제하지 마세요. [복사 붙여넣기](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B3%B5%EC%82%AC-%EB%B6%99%EC%97%AC%EB%84%A3%EA%B8%B0copy-paste-programming)는 코드 중복을 만드는 악마의 유혹입니다. 
+
+이러한 경우의 유일한 해결 방법은 `Adaptee`를 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)로 감싸서 인터페이스를 맞추는 겁니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/08901cb5-ead6-409c-8eff-044c4f0cc5ba)
 
 # 클래스 Adpater와 개체 Adapter
 
@@ -45,7 +49,7 @@ sidebar:
 
 # 특징
 
-`Adaptee`가 다른 프로젝트에서도 사용되는 코드여서 함부로 수정하면 안되거나, 소스코드 없이 제공되는 외부 라이브러리인 경우 유용합니다.
+`Adaptee`가 다른 프로젝트에서도 사용되는 코드여서 함부로 수정하면 안되거나, 소스코드 없이 제공되는 외부 라이브러리인 경우에만 유용합니다. 수정가능한 코드인데 불필요하게 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)로 감싼다면 잘못된 설계입니다. [캘린더 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%BD%94%EB%8D%94calendar-coder) 일 수 있죠. 패턴 중독에 빠지지 마세요.
 
 # 예제
 

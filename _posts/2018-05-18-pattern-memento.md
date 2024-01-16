@@ -12,7 +12,7 @@ sidebar:
 
 # 설명
 
-개체를 이동시키는 기능을 구현하고자 할때 다음과 같이 미리 속성을 저장할 수 있습니다.
+개체를 이동시키는 기능을 구현하고자 할때 다음과 같이 미리 속성을 저장할 수 있습니다. 
 
 ```cpp
 Rectangle rectangle;
@@ -28,7 +28,7 @@ rectangle.Move(left, top);
 rectangle.Move(oldLeft, oldTop);
 ```
 
-하지만 위의 방법은 `Move()`시에 어떠한 속성이 변경되는지 일일이 알아야 하는 문제가 있습니다.
+하지만 위의 방법은 `Move()`시에 어떠한 속성이 변경되는지 일일이 알아야 하는 문제가 있습니다. 개체도 속성 정보만 노출하는 [빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)이 될 수 있고요.
 
 [Memento 패턴](https://tango1202.github.io/pattern/pattern-memento/)은 속성이 수정된 원본 개체가 직접 복원에 필요한 정보를 제공하고, 복원에 참여함으로서 이런 문제를 해결합니다.
 
@@ -50,7 +50,7 @@ rectangle.Move(oldLeft, oldTop);
 
 # 예제
 
-다음은[Command 패턴](https://tango1202.github.io/pattern/pattern-command/)으로 사각형을 이동시키고  [Memento 패턴](https://github.com/tango1202/tango1202.github.io/assets/133472501/d3d25908-d11c-4516-897b-63ff82e312cc)으로 복원하는 예입니다. `MoveCommand`의 `Execute()`시 `Memento`를 생성하고, `Unexecute()`시 수정한 값을 복원합니다.
+다음은 [Command 패턴](https://tango1202.github.io/pattern/pattern-command/)으로 사각형을 이동시키고  [Memento 패턴](https://github.com/tango1202/tango1202.github.io/assets/133472501/d3d25908-d11c-4516-897b-63ff82e312cc)으로 복원하는 예입니다. `MoveCommand`의 `Execute()`시 `Memento`를 생성하고, `Unexecute()`시 수정한 값을 복원합니다.
 
 1. #1 : `Rectangle`은 `Originator`입니다. `CreateMoveMemento()`에서 `Move()`를 복원할 할 수 있는 정보를 제공하며, `SetMemento()`에서 복원합니다.
 2. #2 : `RectangleMoveMemento`는 `Rectangle`을 `Move()`후 복원할 수 있는 정보를 저장합니다.
