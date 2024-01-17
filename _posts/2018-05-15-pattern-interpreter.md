@@ -35,7 +35,9 @@ int val = Calc(rectangle.GetWidth(), rectangle.GetHeight(), userInputString);
 
 문법이 비교적 단순하다면, [Interpreter 패턴](https://tango1202.github.io/pattern/pattern-interpreter/)을 이용하여 간단하게 인터프리터를 구현할 수 있습니다.
 
-다음 그림에서 `AbstractExpression`은 `interpret()`함수를 통해 실행 결과를 리턴합니다. 이때 각 `AbstractExpression`은 트리처럼 배치되어 최상위 `AbstractExpression`만 실행하면, 하위의 `AbstractExpression`이 모두 실행되는 구조입니다. 
+다음 그림은 [Interpreter](https://tango1202.github.io/pattern/pattern-interpreter/)의 일반적인 구조입니다. 
+
+`AbstractExpression`은 `interpret()`함수를 통해 실행 결과를 리턴합니다. 이때 각 `AbstractExpression`은 트리처럼 배치되어 최상위 `AbstractExpression`만 실행하면, 하위의 `AbstractExpression`이 모두 실행되는 구조입니다. 
 
 `TerminalExpression`은 현재 표현식까지 해석하는 것이고, `NonterminalExpression`는 다음 표현식까지 해석하는 것입니다. 
 

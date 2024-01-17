@@ -28,13 +28,15 @@ rectangle.Move(left, top);
 rectangle.Move(oldLeft, oldTop);
 ```
 
-하지만 위의 방법은 `Move()`시에 어떠한 속성이 변경되는지 일일이 알아야 하는 문제가 있습니다. 개체도 속성 정보만 노출하는 [빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)이 될 수 있고요.
+하지만 위의 방법은 `Move()`시에 어떠한 속성이 변경되는지 일일이 알아야 하는 문제가 있습니다. 기껏 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 해놨지만 무의미해 지죠. 개체도 속성 정보만 노출하는 [빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)이 될 수 있고요.
 
 [Memento 패턴](https://tango1202.github.io/pattern/pattern-memento/)은 속성이 수정된 원본 개체가 직접 복원에 필요한 정보를 제공하고, 복원에 참여함으로서 이런 문제를 해결합니다.
 
-다음 그림에서 `Caretaker`는 `Originator`의 `CreateMemento()`를 호출하여 복원 정보를 저장하고, 복원이 필요할 경우 `SetMemento()`를 호출하여 정보를 복원합니다.
+다음 그림은 [Memento](https://tango1202.github.io/pattern/pattern-memento/)의 일반적인 구조입니다. 
 
-![Memento](https://github.com/tango1202/tango1202.github.io/assets/133472501/d3d25908-d11c-4516-897b-63ff82e312cc)
+`Caretaker`는 `Originator`의 `CreateMemento()`를 호출하여 복원 정보를 저장하고, 복원이 필요할 경우 `SetMemento()`를 호출하여 정보를 복원합니다.
+
+![Memento](https://github.com/tango1202/tango1202.github.io/assets/133472501/bd5de27f-6a43-4257-a23e-d2e108ec594e)
 
 |항목|내용|
 |--|--|

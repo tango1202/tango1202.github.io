@@ -8,11 +8,13 @@ sidebar:
     nav: "docs"
 ---
 
-[Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 확장성을 향상시킵니다.
+[Builder](https://tango1202.github.io/pattern/pattern-builder/)는 여러 요소가 합성된 개체일 경우 요소를 합성하는 방법과 요소를 생성하는 방법을 분리하여 확장성을 향상시켜 줍니다.
 
 # 설명
 
-다음 그림에서 `Director`는 `Builder`에서 제공하는 `BuildPart1()`, `BuildPart2()`, `BuildPart3()`을 조합하여 개체를 생성합니다. 향후 `Builder`를 교체하여 다른 기능을 수행할 수 있도록 확장할 수 있습니다.
+다음 그림은 [Builder](https://tango1202.github.io/pattern/pattern-builder/)의 일반적인 구조입니다. 
+
+`Director`는 `Builder`에서 제공하는 `BuildPart1()`, `BuildPart2()`, `BuildPart3()`을 조합하여 개체를 생성합니다. 향후 `Builder`를 교체하여 다른 기능을 수행할 수 있도록 확장할 수 있습니다.
 
 ![Builder](https://github.com/tango1202/tango1202.github.io/assets/133472501/48a5d651-fdec-4f77-9021-deb15a9a7586)
 
@@ -29,7 +31,7 @@ sidebar:
 
 # 예제
 
-다음과 같은 컨트롤 구조가 있다고 가정합시다.
+다음과 같은 컨트롤 구조가 있다고 가정합시다. `Panel`은 여러 `Control`들의 집합인데요, 이런 `Panel`을 만들어 두면, 사용자와 상호작용하는 여러 컨트롤들을 `Panel` 1개에 배치하여 만들 수 있습니다.
 
 ```cpp
 class Control {
@@ -52,8 +54,6 @@ public:
     }
 };
 ```
-
-`Panel`은 여러 `Control`들의 집합인데요, 이런 `Panel`을 만들어 두면, 사용자와 상호작용하는 여러 컨트롤들을 `Panel` 1개에 배치하여 만들 수 있습니다.
 
 다음은 [Builder](https://tango1202.github.io/pattern/pattern-builder/)를 이용하여 아이디와 암호를 입력받는 `Panel`을 생성하는 예입니다.
 

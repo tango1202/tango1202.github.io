@@ -16,11 +16,15 @@ sidebar:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5c07cfc3-bc80-4aa0-9de1-4b49c4e7c404)
 
-이러한 관계를 `Doc-View`, `Publish-Subscribe` 라고도 합니다. 이때 개체간에 직접 참조를 한다면 상호 참조 문제가 발생할 수 있기 때문에, `Data`는 어떤 `View`가 감시하는지 모른채 통지하는게 중요합니다.
+이러한 관계를 `Doc-View`, `Publish-Subscribe` 라고도 합니다. 이렇게 데이터와 `View`를 [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/)에 따라 각 역할에 맞춰 분리하면 개체의 책임이 줄어들고, 결합도는 낮아지며, 코드 수정시의 사이드 이펙트가 발생할 확률도 낮아집니다. 
 
-이러한 경우 [Observer 패턴](https://tango1202.github.io/pattern/pattern-observer/)을 사용하여 상호 참조 문제를 해결할 수 있습니다.
+이때 개체간에 직접 참조를 한다면 [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0) 문제가 발생할 수 있기 때문에, 데이터는 어떤 `View`가 감시하는지 모른채 통지하는게 중요합니다.
 
-다음 그림에서 `ConcreteSubject`에 변경 사항이 생기면, `Notify()`를 통해 `Observer`에 변경되었음을 통지합니다. 그러면, 각 `ConcreteObserver`에서는 `GetState()`나 `SetState()`를 호출하여 `ConcreteSubject`에 접근할 수 있습니다. 
+이러한 경우 [Observer 패턴](https://tango1202.github.io/pattern/pattern-observer/)을 사용하여 [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0) 문제를 해결할 수 있습니다.
+
+다음 그림은 [Observer](https://tango1202.github.io/pattern/pattern-observer/)의 일반적인 구조입니다.
+
+`ConcreteSubject`에 변경 사항이 생기면, `Notify()`를 통해 `Observer`에 변경되었음을 통지합니다. 그러면, 각 `ConcreteObserver`에서는 변경된 내용을 처리하기 위해 `GetState()`나 `SetState()`를 호출하여 `ConcreteSubject`에 접근할 수 있습니다. 
 
 ![Observer](https://github.com/tango1202/tango1202.github.io/assets/133472501/ab07553c-d402-40aa-8ac1-a8851631624b)
 

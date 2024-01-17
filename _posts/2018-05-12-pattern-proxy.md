@@ -14,12 +14,14 @@ sidebar:
 
 편집 프로그램은 처음 파일을 열면서 몇 페이지가 될지 미리 계산을 하고, 그에 따라 스크롤바를 표시합니다. 이때 문서내에 이미지가 있더라도 이미지를 생성할 필요가 없습니다. 화면 너머에 있는 것은 그려질 필요가 없으니까요. 단지 스크롤바 계산을 위한 이미지의 크기만 알면 되죠.
 
-따라서, 이미지의 생성은 비용이 비싸므로 최대한 미뤄두고, 이미지 크기 정보만 제공하는게 좋습니다. 미리 생성해 두지 마세요.(*[제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/) 참고*)
+따라서, 이미지의 생성은 비용이 비싸므로 최대한 미뤄두고, 이미지 크기 정보만 제공하는게 좋습니다. 미리 이미지를 생성해 두지 마세요.(*[제로 오버헤드 원칙](https://tango1202.github.io/principle/principle-zero-overhead/) 참고*)
 
 이를 위해 [Proxy](https://tango1202.github.io/pattern/pattern-proxy/)를 이용할 수 있습니다.
 크기 정보를 요청할때는 [Proxy](https://tango1202.github.io/pattern/pattern-proxy/)가 대리해서 처리하고, 실제 `Draw()`될때만 이미지를 생성합니다. 
 
-다음 그림에서 `Client`가 `Request()`를 호출하면, `Proxy`가 이를 대리하여 처리하거나, `m_RealSubject.Request()`를 호출하여 실제 개체를 사용합니다.
+다음 그림은 [Proxy](https://tango1202.github.io/pattern/pattern-proxy/)의 일반적인 구조입니다. 
+
+`Client`가 `Request()`를 호출하면, `Proxy`가 이를 대리하여 처리하거나, `m_RealSubject.Request()`를 호출하여 실제 개체를 사용합니다.
 
 ![Proxy(](https://github.com/tango1202/tango1202.github.io/assets/133472501/8a166c74-65f3-480e-9548-e4044204dea8)
 

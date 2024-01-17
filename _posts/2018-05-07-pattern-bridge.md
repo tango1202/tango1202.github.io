@@ -14,7 +14,7 @@ sidebar:
 
 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)는 공통적인 일반 개념을 만드는 작업입니다. 이를 잘 설계하면, 재활용성이 높아지고, 특정 문제들을 해결하는데 있어서 공통된 접근을 하기 때문에 고민할 것들이 줄어듭니다. 
 
-[Bridge](https://tango1202.github.io/pattern/pattern-bridge/)는 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)와 이의 구체화를 분리하는 것인데요, 코드간 종속성을 해결하고, 구체화를 다형적으로 만들 수 있어 확장성을 제공해 줍니다. 대부분의 디자인 패턴에서의 근간이 되는 구조라고도 할 수 있겠습니다.(*[Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/), [Builder](https://tango1202.github.io/pattern/pattern-builder/),  [Adapter](https://tango1202.github.io/pattern/pattern-adapter/), [Decorator](https://tango1202.github.io/pattern/pattern-decorator/), [Proxy](https://tango1202.github.io/pattern/pattern-proxy/), [State](https://tango1202.github.io/pattern/pattern-state/), [Strategy](https://tango1202.github.io/pattern/pattern-strategy/) 등*)
+[Bridge](https://tango1202.github.io/pattern/pattern-bridge/)는 [추상화](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/)와 이의 구체화를 분리하는 것인데요, 코드간 종속성을 해결하고, 구체화를 다형적으로 만들 수 있어 확장성을 제공해 줍니다. 대부분의 디자인 패턴에서 근간이 되는 구조라고도 할 수 있겠습니다.(*[Abstract Factory](https://tango1202.github.io/pattern/pattern-abstract-factory/), [Builder](https://tango1202.github.io/pattern/pattern-builder/),  [Adapter](https://tango1202.github.io/pattern/pattern-adapter/), [Decorator](https://tango1202.github.io/pattern/pattern-decorator/), [Proxy](https://tango1202.github.io/pattern/pattern-proxy/), [State](https://tango1202.github.io/pattern/pattern-state/), [Strategy](https://tango1202.github.io/pattern/pattern-strategy/) 등*)
 
 간단하게는 [PImpl 이디엄](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-pimpl/)도 [Bridge](https://tango1202.github.io/pattern/pattern-bridge/)라 할 수 있습니다. 추상과 구현을 분리해서 코드간의 종속성이나 컴파일 종속성을 최소화 해줍니다.
 
@@ -22,9 +22,9 @@ sidebar:
 
 ![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/67a585ac-1fe0-475c-8598-6ce74328411b)
 
-복잡하게는 구현부를 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)로 만들어 다형적으로 만들수 있습니다. 이때에는 `m_Impl`을 런타임에 교체할 수도 있어 확장성이 좋아집니다.
+복잡하게는 구현부를 [추상 클래스](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-abstract-class-interface/#%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4)로 만들어 다형적으로 동작하게 할 수 있습니다. 이때에는 `m_Impl`을 런타임에 교체할 수도 있어 확장성이 좋아집니다.
 
-다음 그림에서 `Client`는 추상부인 `Abstraction`만 이용합니다.  `Client` 코드는 `Abstraction`의 `Implementor`가 내부적으로 `ConcreteImplementorA`로 변경되던 `ConcreteImplementorB`로 변경되던 아무런 영향을 받지 않으며, 설정된 `Implementor`에 따라 다형적으로 동작하게 됩니다.
+다음 그림에서 `Client`는 추상부인 `Abstraction`만 이용합니다. `Client` 코드는 `Abstraction`의 `Implementor`가 내부적으로 `ConcreteImplementorA`로 변경되던 `ConcreteImplementorB`로 변경되던 아무런 영향을 받지 않으며, 설정된 `Implementor`에 따라 다형적으로 동작하게 됩니다.
 
 ![Bridge](https://github.com/tango1202/tango1202.github.io/assets/133472501/5dd4bc38-d7b2-44ad-9d2b-0387ed5e42ac)
 

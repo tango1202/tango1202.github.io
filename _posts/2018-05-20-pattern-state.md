@@ -47,7 +47,9 @@ void LButtonUp(int x, int y) {
 
 이러한 경우 [State 패턴](https://tango1202.github.io/pattern/pattern-state/)으로 상태 처리 부분을 응집하여 사용할 수 있습니다.
 
-다음 그림에서 `ConcreteState1`과 `ConcreteState2`는 주어진 상태에 대한 내용만 구현합니다. `Context`는 상태가 바뀔 때마다 `ConcreteState1`이나 `ConcreteState2`를 참조하게 되며, `Request()` 호출시 설정된 `State`를 실행하게 됩니다.
+다음 그림은 [State](https://tango1202.github.io/pattern/pattern-state/)의 일반적인 구조입니다.
+
+`ConcreteState1`과 `ConcreteState2`는 주어진 상태에 대한 내용만 구현합니다. `Context`는 상태가 바뀔 때마다 `ConcreteState1`이나 `ConcreteState2`를 참조하게 되며, `Request()` 호출시 설정된 `State`를 실행하게 됩니다.
 
 ![State](https://github.com/tango1202/tango1202.github.io/assets/133472501/12899fac-02d2-47cc-a140-81ac1d1210ad)
 
@@ -59,7 +61,7 @@ void LButtonUp(int x, int y) {
 
 # 특징
 
-상태 처리 부분이 응집되어 향후 유지보수가 쉬워지며, 상태 전환 부분도 응집하여 한군데에서 처리할 수 있습니다.
+상태 처리 부분이 응집되어 향후 유지보수가 쉬워지며, 상태 전환 부분도 한군데에서 처리할 수 있습니다.
 
 # 예제
 

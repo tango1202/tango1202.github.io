@@ -49,7 +49,9 @@ sidebar:
 
 # 특징
 
-`Adaptee`가 다른 프로젝트에서도 사용되는 코드여서 함부로 수정하면 안되거나, 소스코드 없이 제공되는 외부 라이브러리인 경우에만 유용합니다. 수정가능한 코드인데 불필요하게 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)로 감싼다면 잘못된 설계입니다. [캘린더 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%BD%94%EB%8D%94calendar-coder) 일 수 있죠. 패턴 중독에 빠지지 마세요.
+`Adpater`는 소스코드를 수정할 수 없는 상황에서만 유용합니다. 예를 들면 `Adaptee`가 다른 프로젝트에서도 사용되는 코드여서 함부로 수정하면 안되거나, 소스코드 없이 제공되는 외부 라이브러리인 경우 처럼요. 
+
+만약, 수정가능한 코드인데 괜히 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)로 감싼다면 잘못된 설계입니다. [캘린더 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%BD%94%EB%8D%94calendar-coder) 일 수 있죠. 패턴 중독에 빠지지 마세요.
 
 # 예제
 

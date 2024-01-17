@@ -37,7 +37,9 @@ else if (사용자가 Json 저장을 선택했다면) {
 
 이러한 경우 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하여 런타임에 선택적으로 저장 전략을 변경할 수 있습니다.
 
-다음 그림에서 `ConcreteStrategy1`와 `ConcreteStrategy2`는 주어진 전략을 구현합니다. `Context`는 전략이 바뀔 때마다 `ConcreteStrategy1`이나 `ConcreteStrategy2`를 참조하게 되며, `ContextInterface()` 호출시 설정된 `Strategy`를 실행하게 됩니다.
+다음 그림은 [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)의 일반적인 구조입니다.
+
+`ConcreteStrategy1`와 `ConcreteStrategy2`는 주어진 전략을 구현합니다. `Context`는 전략이 바뀔 때마다 `ConcreteStrategy1`이나 `ConcreteStrategy2`를 참조하게 되며, `ContextInterface()` 호출시 설정된 `Strategy`를 실행하게 됩니다.
 
 ![Strategy](https://github.com/tango1202/tango1202.github.io/assets/133472501/629da927-a327-4ef2-8208-347813493c42)
 

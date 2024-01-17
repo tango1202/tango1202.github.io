@@ -56,15 +56,15 @@ public:
 };
 ```
 
-하지만 이 방법도 개체가 많은 기능을 포함하다보면 점점 커지게 되고, 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어 많은 개체들에게 종속된 괴물로 변신하게 됩니다.
+하지만 이 방법도 많은 기능을 포함하다 보면 개체가 점점 커지게 되고, 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어 많은 개체들에게 종속된 괴물로 변신하게 됩니다.
 
 [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)이 아닌 포함을 통해 개체의 기능을 확장함으로서 이런 문제를 해결합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c9655a19-842a-4fb1-911e-c7ec0e45ec57)
 
+다음 그림은 [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)의 일반적인 구조입니다. 
 
-
-다음 그림에서 `Decorator`는 내부적으로 `m_Component`를 포함하며, `Operation()` 호출시 `AddedBehavior()`를 호출하여 추가 기능을 실행합니다. `Operation()` 함수 내에서 살짝 덧칠해서 꾸미는 거죠.
+`Decorator`는 내부적으로 `m_Component`를 포함하며, `Operation()` 호출시 `AddedBehavior()`를 호출하여 추가 기능을 실행합니다. `Operation()` 함수 내에서 살짝 덧칠해서 꾸미는 거죠.
 
 ![Decorator](https://github.com/tango1202/tango1202.github.io/assets/133472501/7d93a482-aca5-430b-89b0-ccbf3676dd29)
 

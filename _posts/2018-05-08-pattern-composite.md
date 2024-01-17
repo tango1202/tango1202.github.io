@@ -18,7 +18,9 @@ sidebar:
 
 [Composite](https://tango1202.github.io/pattern/pattern-composite/)는 단일 개체와 복합 개체를 모두 동일한 방식으로 다루게 해줍니다. 코드를 단순하게 유지시켜 주는 장점이 있지만, 단일 개체에서도 복합 개체용 인터페이스들을 구현해야 하는 단점이 있습니다. 아주 대놓고 [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)을 위반합니다.
 
-다음 그림에서 `Composite`는 `Operation()` 호출시 자신의 하위 `m_Childeren`들의 `Operation()`을 모두 호출해 주어, `Client`가 하위 개체를 일일이 탐색하는 번거로움을 대신해 주고 있습니다. 다만, 단일 개체인 `Leaf`도 `Add(), Remove(), GetChild()`와 같은 복합 개체용 인터페이스를 구현해 주어야 합니다.
+다음 그림은 [Composite](https://tango1202.github.io/pattern/pattern-composite/)의 일반적인 구조입니다. 
+
+`Composite`는 `Operation()` 호출시 자신의 하위 `m_Childeren`들의 `Operation()`을 모두 호출해 주어, `Client`가 하위 개체를 일일이 탐색하는 번거로움을 대신해 주고 있습니다. 다만, 단일 개체인 `Leaf`도 `Add(), Remove(), GetChild()`와 같은 복합 개체용 인터페이스를 구현해 주어야 합니다.
 
 ![Composite](https://github.com/tango1202/tango1202.github.io/assets/133472501/03b8f342-1381-4bbb-a239-c7f2239d3cf9)
 

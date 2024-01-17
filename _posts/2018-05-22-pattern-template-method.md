@@ -16,9 +16,11 @@ sidebar:
 
 이러한 일련의 동작들은 모든 App에서 공통적으로 필요하므로, 부모 개체에서 대략의 뼈대 기능을 구현하고, 자식 개체에서 꼭 필요한 것만 구현하는게 좋습니다. 
 
-만약 모든 App이 그때 그때 뼈대 기능을 구현한다면, 불필요하게 코드가 중복되어 [코드 냄새](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BD%94%EB%93%9C-%EB%83%84%EC%83%88code-smells)가 날 뿐만 아니라, [복사 붙여넣기](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B3%B5%EC%82%AC-%EB%B6%99%EC%97%AC%EB%84%A3%EA%B8%B0copy-paste-programming)가 되기도 하며, 미세한 세부 동작이 달라질 수도 있거든요.
+만약 모든 App이 그때 그때 뼈대 기능을 구현한다면, 불필요하게 코드가 중복되어 [코드 냄새](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BD%94%EB%93%9C-%EB%83%84%EC%83%88code-smells)가 날 뿐만 아니라, [복사 붙여넣기](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B3%B5%EC%82%AC-%EB%B6%99%EC%97%AC%EB%84%A3%EA%B8%B0copy-paste-programming)가 되기도 하며, 미세한 세부 동작이 달라질 수도 있어 좋지 않습니다.
 
-다음 그림에서 `TemplateMethod()`는 `ConcreteClass`에서 구체 구현한 `PrimitiveOperation1()`과 `PrimitiveOperation2()`를 이용합니다. 이때 자식 개체의 구체 구현이 최소화 되도록 `TemplateMethod()`를 작성하는게 좋습니다.
+다음 그림은 [Template Method](https://tango1202.github.io/pattern/pattern-template-method/)의 일반적인 구조입니다.
+
+`TemplateMethod()`는 `ConcreteClass`에서 구체 구현한 `PrimitiveOperation1()`과 `PrimitiveOperation2()`를 이용합니다. 이때 자식 개체의 구체 구현이 최소화 되도록 `TemplateMethod()`를 작성하는게 좋습니다.
 
 ![Template Method](https://github.com/tango1202/tango1202.github.io/assets/133472501/c0237f33-94cb-4c1e-ae7d-346ee0d08a61)
 
@@ -33,7 +35,7 @@ sidebar:
 
 # 예제
 
-다음은 `MyApp`개체를 구현한 예입니다. `App`에서 `Load()`의 대략적인 뼈대 기능을 구현했으며, 자식 개체인 `MyApp`에서 `Load()`시 필요한 세부 기능들을 재구현 했습니다.
+다음은 `MyApp`개체를 구현한 예입니다. `App`에서 `Load()`의 대략적인 뼈대 기능을 구현했으며, 자식 개체인 `MyApp`에서 `Load()`시 필요한 세부 기능들을 구현 했습니다.
 
 1. #1 : `App`은 `Load()`의 뼈대를 제공합니다. 자식 개체에서 `DoSaveMessage()`, `DoPathNameMessage()`, `DoSave()`, `DoLoad()`를 구현해야 합니다.
 2. #2 : `MyApp`은 `App`을 구체 구현한 개체입니다.

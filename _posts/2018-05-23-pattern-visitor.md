@@ -16,7 +16,9 @@ sidebar:
     
 이를 막기 위해 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/)을 활용할 수 있습니다. 
 
-다음은 [Visitor 패턴](https://tango1202.github.io/pattern/pattern-visitor/)의 일반적인 구조입니다. `Element`의 `Accept()`에 `Visitor`를 전달하면, 각 자식 개체에서 관련 함수들을 실행해 줍니다. 따라서 추가할 기능을 `ConcreteVisitor1`이나 `ConcreteVisitor2`에서 구현해 주면 됩니다.
+다음 그림은 [Visitor](https://tango1202.github.io/pattern/pattern-visitor/)의 일반적인 구조입니다.
+
+`Element`의 `Accept()`에 `Visitor`를 전달하면, 각 자식 개체에서 관련 함수들을 실행해 줍니다. 따라서 추가할 기능을 `ConcreteVisitor1`이나 `ConcreteVisitor2`에서 구현해 주면 됩니다.
 
 ![Visitor](https://github.com/tango1202/tango1202.github.io/assets/133472501/f93b9bab-9a45-412e-8151-8274480990e6)
 
@@ -37,7 +39,7 @@ sidebar:
 
 # 특징
 
-개체는 `Visitor`가 필요로 하는 충분한 정보를 제공해야 합니다. 이에 따라 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 Getter/Setter가 너무 많이 `public`으로 노출되어 [빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)이 되는 경향이 있습니다.
+개체는 `Visitor`가 필요로 하는 충분한 정보를 제공해야 합니다. 이에 따라 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 Getter/Setter가 너무 많이 `public`으로 노출되어 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)가 깨지고, [빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)이 되는 경향이 있습니다.
 
 # 예제
 
