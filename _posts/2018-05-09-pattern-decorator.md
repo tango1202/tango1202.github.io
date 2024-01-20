@@ -80,7 +80,12 @@ public:
 
 # 특징
 
- 런타임에 동적으로 새로운 외형을 추가하거나 기능을 추가할 수 있게 합니다. 개체를 포함한다는 측면에서 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/), [Proxy](https://tango1202.github.io/pattern/pattern-proxy/), [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/) 와 비슷하지만 목적이 다릅니다. [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)는 인터페이스를 맞추기 위한 것이고, [Proxy](https://tango1202.github.io/pattern/pattern-proxy/)는 포함한 개체를 대리하기 위한 것이고, [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)는 요청을 전달하기 위해 사용하며, [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 기능을 추가하기 위해 사용합니다.
+ 런타임에 동적으로 새로운 외형을 추가하거나 기능을 추가할 수 있게 합니다. 개체를 포함한다는 측면에서 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/), [Proxy](https://tango1202.github.io/pattern/pattern-proxy/), [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/) 와 비슷하지만 목적이 다릅니다. 
+ 
+ * [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)는 인터페이스를 맞추기 위한 것이고, 
+ * [Proxy](https://tango1202.github.io/pattern/pattern-proxy/)는 포함한 개체를 대리하기 위한 것이고, 
+ * [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)는 요청을 전달하기 위해 사용하며, 
+ * [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 기능을 추가하기 위해 사용합니다.
  
  또한 [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 다음처럼 중첩해서 사용할 수 있기 때문에 여러 기능을 추가할 수도 있습니다.
 
