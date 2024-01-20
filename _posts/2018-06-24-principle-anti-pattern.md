@@ -289,7 +289,7 @@ sidebar:
 
 # [나쁜 운영 관행] 슈퍼스타(Superstar)
 
-프로젝트의 의사소통을 일원화하고 주인의식과 책임의식을 갖게 하기 위해 [슈퍼스타](??)를 만들 수 있습니다. [슈퍼스타](??)는 책임감을 갖고 프로젝트를 성공적으로 이끌 수 있는데요, 한 사람에만 성과가 집중되어, [집단 코드 소유권](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%91%EB%8B%A8-%EC%BD%94%EB%93%9C-%EC%86%8C%EC%9C%A0%EA%B6%8Ccollective-code-ownership)을 해칠 수 있고, [슈퍼스타](??)는 일과 삶의 균형이 무너질 수도 있습니다. 프로젝트는 성공하더라도, [슈퍼스타](??)는 떠날 확률이 높죠.
+프로젝트의 의사소통을 일원화하고 주인의식과 책임의식을 갖게 하기 위해 [슈퍼스타](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%8A%88%ED%8D%BC%EC%8A%A4%ED%83%80superstar)를 만들 수 있습니다. [슈퍼스타](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%8A%88%ED%8D%BC%EC%8A%A4%ED%83%80superstar)는 책임감을 갖고 프로젝트를 성공적으로 이끌 수 있는데요, 한 사람에만 성과가 집중되어, [집단 코드 소유권](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%91%EB%8B%A8-%EC%BD%94%EB%93%9C-%EC%86%8C%EC%9C%A0%EA%B6%8Ccollective-code-ownership)을 해칠 수 있고, [슈퍼스타](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%8A%88%ED%8D%BC%EC%8A%A4%ED%83%80superstar)는 일과 삶의 균형이 무너질 수도 있습니다. 프로젝트는 성공하더라도, [슈퍼스타](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%9A%B4%EC%98%81-%EA%B4%80%ED%96%89-%EC%8A%88%ED%8D%BC%EC%8A%A4%ED%83%80superstar)는 떠날 확률이 높죠.
 
 잊지마세요. 우리는 코드를 공동 소유하고, 우리 모두의 책임이어야 합니다.
 

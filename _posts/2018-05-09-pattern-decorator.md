@@ -26,7 +26,7 @@ public:
 };
 ```
 
-다음은 UI 컨트롤들에 테두리나 스크롤을 지원하기 위해 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 사용한 예입니다. 겨우 2개 기능을 추가했는데, 너무 많은 클래스들이 만들어 지게 됩니다.
+다음은 UI 컨트롤들에 테두리나 스크롤을 지원하기 위해 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)을 사용한 예입니다. 겨우 2개 기능을 추가했는데, 너무 많은 클래스들이 만들어 지네요.
 
 ```cpp
 class Button {};
@@ -80,9 +80,9 @@ public:
 
 # 특징
 
- 런타임에 동적으로 새로운 외형을 추가하거나 기능을 추가할 수 있게 합니다. 
+ 런타임에 동적으로 새로운 외형을 추가하거나 기능을 추가할 수 있게 합니다. 개체를 포함한다는 측면에서 [Adapter](https://tango1202.github.io/pattern/pattern-adapter/), [Proxy](https://tango1202.github.io/pattern/pattern-proxy/), [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/) 와 비슷하지만 목적이 다릅니다. [Adapter](https://tango1202.github.io/pattern/pattern-adapter/)는 인터페이스를 맞추기 위한 것이고, [Proxy](https://tango1202.github.io/pattern/pattern-proxy/)는 포함한 개체를 대리하기 위한 것이고, [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)는 요청을 전달하기 위해 사용하며, [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 기능을 추가하기 위해 사용합니다.
  
- 또한 [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)를 중첩해서 사용할 수 있습니다.
+ 또한 [Decorator](https://tango1202.github.io/pattern/pattern-decorator/)는 다음처럼 중첩해서 사용할 수 있기 때문에 여러 기능을 추가할 수도 있습니다.
 
 ![Decorator](https://github.com/tango1202/tango1202.github.io/assets/133472501/8aa05a82-a48d-4ce6-a7db-9e6ced98a0c9)
 
