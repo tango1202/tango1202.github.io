@@ -18,9 +18,9 @@ sidebar:
 
 다음 그림은 [Visitor](https://tango1202.github.io/pattern/pattern-visitor/)의 일반적인 구조입니다.
 
-`Element`의 `Accept()`에 `Visitor`를 전달하면, 각 자식 개체에서 관련 함수들을 실행해 줍니다. 따라서 추가할 기능을 `ConcreteVisitor1`이나 `ConcreteVisitor2`에서 구현해 주면 됩니다.
+`Element`의 `Accept()`에 `Visitor`를 전달하면, 각 자식 개체에서 관련 함수들을 실행해 줍니다. 따라서 추가할 기능을 `ConcreteVisitor1`이나 `ConcreteVisitor2`에서 구현해 주면 됩니다. 하지만, 아쉽게도 `Visitor`와 `Element`간에 [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)가 됩니다. 그래서 [Visitor](https://tango1202.github.io/pattern/pattern-visitor/)를 적용하실 때에는 기능 추가와 [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)에 따른 **의존성 부패** 간의 트레이드 오프가 필요하니 잘 고민해서 선택하셔야 합니다.
 
-![Visitor](https://github.com/tango1202/tango1202.github.io/assets/133472501/f93b9bab-9a45-412e-8151-8274480990e6)
+![Visitor](https://github.com/tango1202/tango1202.github.io/assets/133472501/09d62a02-0d08-435f-bc5b-362727ca0fa7)
 
 구체적인 호출 흐름은 다음과 같습니다.
 
@@ -41,9 +41,13 @@ sidebar:
 
 개체는 `Visitor`가 필요로 하는 충분한 정보를 제공해야 합니다. 이에 따라 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 Getter/Setter가 너무 많이 `public`으로 노출되어 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)가 깨지고, [빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)이 되는 경향이 있습니다.
 
+하지만, `Element`의 자식 개체들이 10개 있는 경우 새로운 기능을 추가하려면, 자식 개체 10개 모두에 인터페이스 함수를 구현해야 하지만, `Visitor`를 이용하면, `Visitor` 한개만 추가하면 되는 장점이 있습니다.
+
 # 예제
 
 다음은 `Rectangle`과 `Circle` 개체에 방문하는 `IVisitor`의 구현 예입니다. `XmlWriter`와 `JsonWriter`로 방문하여 해당 개체의 내용을 저장합니다.
+
+![Image](https://github.com/tango1202/tango1202.github.io/assets/133472501/af6ea524-f287-4cd4-b765-475f4c0264a7)
 
 1. #1 : `IVisitor`는 개체를 방문합니다. 방문한 개체가 호출할 수 있도록 `VisitRectangle()`과 `VisitCircle()`을 제공합니다.
 2. #2 : `Shape`은 `IVisitor`가 방문할 수 있도록 `Accept()`를 제공합니다.
@@ -174,17 +178,21 @@ rectangle.Accept(jsonWriter);
 circle.Accept(jsonWriter);  
 ```
 
-상기 `Rectangle`과 `Circle`의 크기를 2배로 크게하는 기능을 추가해 봅시다. 다음과 같이 `ScaleVisitor`를 만들어 방문해 주면 됩니다.
+상기 `Rectangle`과 `Circle`의 크기를 2배로 확대하는 기능을 추가해 봅시다. 보통은 `Shape`에 `Scale()` 인터페이스를 추가하여 구현하지만, 이렇게 되면, 자식 개체 모두에 인터페이스 함수를 구현해야 합니다. 하지만 `Visitor`를 사용한다면 다음과 같이 `ScaleVisitor`를 만들어 방문해서 처리 할 수 있습니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d4a87da1-db03-4603-86c4-3015fbf3ce1b)
 
 ```cpp
 class ScaleVisitor : public IVisitor {
 public:
+    ScaleVisitor() = default; 
+    
     virtual void VisitRectangle(Rectangle& rectangle) override {
-        rectangle.SetWidth(rectangle.GetWidth() * 2); // 2배로 크게합니다.
+        rectangle.SetWidth(rectangle.GetWidth() * 2); // 2배로 확대합니다.
         rectangle.SetHeight(rectangle.GetHeight() * 2);
     };
     virtual void VisitCircle(Circle& rectangle) override {
-        rectangle.SetDiameter(rectangle.GetDiameter() * 2); // 2배로 크게 합니다.
+        rectangle.SetDiameter(rectangle.GetDiameter() * 2); // 2배로 확대합니다.
     }
 };
 
