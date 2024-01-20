@@ -33,7 +33,7 @@ int val = Calc(rectangle.GetWidth(), rectangle.GetHeight(), userInputString);
 
 "w * h"를 계산하려면 `w`, `*`, `h`를 토큰으로 분리하고, 변수인 `w`와 `h` 대신 `rectangle.GetWidth()`와 `rectangle.GetHeight()`를 사용해야 합니다. 하지만, 문자열을 파싱하고, 이를 해석하는 것은 상당히 복잡한 일입니다. 특히 문법이 복잡해 질수록 난이도와 규모는 커지죠.
 
-문법이 비교적 단순하다면, [Interpreter 패턴](https://tango1202.github.io/pattern/pattern-interpreter/)을 이용하여 간단하게 인터프리터를 구현할 수 있습니다.
+하지만, 문법이 비교적 단순하다면, [Interpreter 패턴](https://tango1202.github.io/pattern/pattern-interpreter/)을 이용하여 간단하게 인터프리터를 구현할 수 있습니다.
 
 다음 그림은 [Interpreter](https://tango1202.github.io/pattern/pattern-interpreter/)의 일반적인 구조입니다. 
 

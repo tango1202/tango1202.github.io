@@ -20,9 +20,13 @@ sidebar:
 
 다음 그림은 [Template Method](https://tango1202.github.io/pattern/pattern-template-method/)의 일반적인 구조입니다.
 
-`TemplateMethod()`는 `ConcreteClass`에서 구체 구현한 `PrimitiveOperation1()`과 `PrimitiveOperation2()`를 이용합니다. 이때 자식 개체의 구체 구현이 최소화 되도록 `TemplateMethod()`를 작성하는게 좋습니다.
+`TemplateMethod()`는 `ConcreteClass`에서 구체 구현한 `PrimitiveOperation1()`과 `PrimitiveOperation2()`를 이용합니다. 
 
-![Template Method](https://github.com/tango1202/tango1202.github.io/assets/133472501/c0237f33-94cb-4c1e-ae7d-346ee0d08a61)
+* 이때 `TemplateMethod()`는 자식 개체의 구체 구현이 최소화 되도록 작성하는게 좋습니다.
+
+* 외부에서 `PrimitiveOperation1()`과 `PrimitiveOperation2()`를 임의로 사용하면 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)가 깨질 수 있습니다. 따라서 `protected`로 접근 지정하는게 좋습니다.
+
+![Template Method](https://github.com/tango1202/tango1202.github.io/assets/133472501/bbcd91d3-ee58-4f58-9ea3-dbafb1df11f0)
 
 |항목|내용|
 |--|--|

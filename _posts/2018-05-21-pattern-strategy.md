@@ -33,15 +33,19 @@ else if (사용자가 Json 저장을 선택했다면) {
 }
 ```
 
-하지만, 상기의 방식은 컴파일 타임에 `SaveXml()`과 `SaveJson()`을 모두 제공해야 하므로 `Rectangle` 개체가 덩치가 커지는 문제가 있습니다. [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 될 수도 있죠. 
+하지만, 상기의 방식은 컴파일 타임에 `SaveXml()`과 `SaveJson()`을 모두 구현해야 하므로 `Rectangle` 개체가 덩치가 커지는 문제가 있습니다. 이렇게 커지다 보면 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 될 수도 있죠. 
 
 이러한 경우 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용하여 런타임에 선택적으로 저장 전략을 변경할 수 있습니다.
 
 다음 그림은 [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)의 일반적인 구조입니다.
 
-`ConcreteStrategy1`와 `ConcreteStrategy2`는 주어진 전략을 구현합니다. `Context`는 전략이 바뀔 때마다 `ConcreteStrategy1`이나 `ConcreteStrategy2`를 참조하게 되며, `ContextInterface()` 호출시 설정된 `Strategy`를 실행하게 됩니다.
+`ConcreteStrategy1`와 `ConcreteStrategy2`는 주어진 전략을 구현합니다. `Context`는 전략이 바뀔 때마다 `ConcreteStrategy1`이나 `ConcreteStrategy2`를 참조하게 되며, `ContextInterface()` 호출시 설정된 전략을 실행하게 됩니다. 
 
 ![Strategy](https://github.com/tango1202/tango1202.github.io/assets/133472501/629da927-a327-4ef2-8208-347813493c42)
+
+상기 `Rectangle`의 경우는 다음과 같이 구성할 수 있습니다. `Rectangle`의 `Save()`함수는 어떤 전략을 사용하느냐에 따라 `XmlWriter`나 `JsonWriter`를 사용할 수 있습니다.
+
+![Strategy](https://github.com/tango1202/tango1202.github.io/assets/133472501/8c96c9c1-6813-451b-8a65-80f474406fe4)
 
 |항목|내용|
 |--|--|

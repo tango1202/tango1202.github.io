@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-[State](https://tango1202.github.io/pattern/pattern-state/)는 내부 상태에 따라 다른 동작 방법을 제공합니다. 상태를 처리하는 코드들이 응집되어 상태 처리가 비교적 단순해집니다.
+[State](https://tango1202.github.io/pattern/pattern-state/)는 내부 상태에 따라 다른 동작 방법을 제공합니다. 상태를 처리하는 코드들이 응집되어 상태 처리가 비교적 단순해 집니다.
 
 # 설명
 
@@ -65,7 +65,7 @@ void LButtonUp(int x, int y) {
 
 # 예제
 
-다음은 마우스로 개체를 편집하는 예입니다. `EditContext`에서 `LButtonDown()`시 선택 상태인지, 이동 상태인지, 크기 조정 상태인지를 구분하여 다른 상태의 `MouseEditor`를 사용합니다. 
+다음은 마우스로 개체를 편집하는 예입니다. `EditContext`에서 `LButtonDown()`시 `CreateMouseEditor()`를 이용하여 상태 전환합니다. 선택 상태인지, 이동 상태인지, 크기 조정 상태인지를 구분하여 다른 상태의 `MouseEditor`를 사용합니다.
 
 1. #1 : `Rectangle`은 편집기로 편집할 개체입니다.
 2. #2 : `HitTestStyle`은 주어진 좌표 위치를 나타냅니다. 각 위치에 따라 선택인지, 이동인지, 크기 조정 인지 상태를 결정합니다.
