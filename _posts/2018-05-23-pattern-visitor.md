@@ -18,7 +18,9 @@ sidebar:
 
 다음 그림은 [Visitor](https://tango1202.github.io/pattern/pattern-visitor/)의 일반적인 구조입니다.
 
-`Element`의 `Accept()`에 `Visitor`를 전달하면, 각 자식 개체에서 관련 함수들을 실행해 줍니다. 따라서 추가할 기능을 `ConcreteVisitor1`이나 `ConcreteVisitor2`에서 구현해 주면 됩니다. 하지만, 아쉽게도 `Visitor`와 `Element`간에 [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)가 됩니다. 그래서 [Visitor](https://tango1202.github.io/pattern/pattern-visitor/)를 적용하실 때에는 기능 추가와 [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)에 따른 **의존성 부패** 간의 트레이드 오프가 필요하니 잘 고민해서 선택하셔야 합니다.
+`Element`의 `Accept()`에 `Visitor`를 전달하면, 각 자식 개체에서 관련 함수들을 실행해 줍니다. 따라서 추가할 기능을 `ConcreteVisitor1`이나 `ConcreteVisitor2`에서 구현해 주면 됩니다. 
+
+하지만, 아쉽게도 `Visitor`와 `Element`간에 [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)가 됩니다. 그래서 [Visitor](https://tango1202.github.io/pattern/pattern-visitor/)를 적용하실 때에는 기능 추가와 [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)에 따른 **의존성 부패** 간의 트레이드 오프가 필요하니 잘 고민해서 선택하셔야 합니다.
 
 ![Visitor](https://github.com/tango1202/tango1202.github.io/assets/133472501/09d62a02-0d08-435f-bc5b-362727ca0fa7)
 
@@ -39,9 +41,9 @@ sidebar:
 
 # 특징
 
-개체는 `Visitor`가 필요로 하는 충분한 정보를 제공해야 합니다. 이에 따라 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 Getter/Setter가 너무 많이 `public`으로 노출되어 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)가 깨지고, [빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)이 되는 경향이 있습니다.
+개체는 `Visitor`가 필요로 하는 충분한 정보를 제공해야 합니다. 이에 따라 [멤버 변수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-variable/)의 Getter/Setter가 모두 `public`으로 노출되어 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)가 깨지고, [빈혈 모델](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B9%88%ED%98%88-%EB%AA%A8%EB%8D%B8anemic-model)이 되는 단점이 있습니다.
 
-하지만, `Element`의 자식 개체들이 10개 있는 경우 새로운 기능을 추가하려면, 자식 개체 10개 모두에 인터페이스 함수를 구현해야 하지만, `Visitor`를 이용하면, `Visitor` 한개만 추가하면 되는 장점이 있습니다.
+하지만 단점만 있는 것은 아닙니다. 기능 추가시 개체에 직접 인터페이스를 추가하지 않고 `Visitor`만 추가하면 됩니다. 예를들어 `Element`의 자식 개체들이 10개가 있는 경우를 살펴봅시다. 새로운 기능을 추가하려고 하면, 보통은 자식 개체 10개 모두에 인터페이스 함수를 구현해야 합니다. 하지만, `Visitor`를 이용하면 `Visitor` 한개만 추가하면 되고, 해당 기능에 대한 처리가 `Visitor`에 응집되어 있어 유지보수도 쉬워집니다.
 
 # 예제
 
