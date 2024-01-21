@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-의존성 역전 원칙은 **상위 수준 모듈은 하위 수준 모듈에 의존하지 말아야 한다** 는 원칙입니다.
+[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/)은 ***상위 수준 모듈은 하위 수준 모듈에 의존하지 말아야 한다*** 는 원칙입니다.
 
 조금 풀어 쓰면,
 
@@ -19,7 +19,7 @@ sidebar:
 
 이 원칙을 준수하면,
 
-1. **의존성 주입** 을 통해 알고리즘 변경이 용이하여 유연성이 향상됩니다.
+1. **의존성 주입** 을 통해 알고리즘 변경이 용이하여 유연성이 향상됩니다.(*[Strategy](https://tango1202.github.io/pattern/pattern-strategy/) 참고*)
 2. 구체 모듈보다는 인터페이스에 의존하므로 모듈간의 결합도와 의존성이 낮아집니다.
 3. **코딩 계약** 에 의한 코드 구현만 준수하면 되므로 구현 편의성이 향상됩니다.
 
@@ -49,15 +49,15 @@ public:
 
 상기 코드는 `Shape`과 `XmlWriter` 간의 의존관계가 성립됩니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c539828b-23c3-418e-85a5-1cb0a73b2eca)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f5bb3108-e8f8-44cc-98d9-8fab8430daba)
 
-하위 수준을 직접 참조하였으므로 의존성 역전 원칙 위반입니다.
+하위 수준을 직접 참조하였으므로 [의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 위반입니다.
 
 **준수 방법**
 
 상위 수준과 하위 수준 모두 인터페이스를 의존하도록 `IWriter`에 의존합니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/59be2919-7af3-43e8-bf49-53da663d6495)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/76242ec5-7ceb-4978-9c30-b2cf43cf1940)
 
 구현하면 하기와 같습니다.
 
@@ -93,15 +93,17 @@ public:
 };
 ```
 
-이제 상위 모듈인 `Shape`과 하위 모듈인 `XmlWriter`가 모두 인터페이스에 의존하였으므로 의존성 역전 원칙을 준수하게 되었습니다.
+이제 상위 모듈인 `Shape`과 하위 모듈인 `XmlWriter`가 모두 인터페이스에 의존하였으므로 [의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/)을 준수하게 되었습니다.
 
 **의존성 주입(Dependency Injection)**
 
-의존성 주입은 외부에서 개체가 의존할 개체를 주입하는 기술입니다. 외부에서 의존할 개체를 선택해서 전달하므로, 개체의 확장성이 좋아집니다. 특히 Fake나 Stub 개체를 전달해서 임시 테스트를 한뒤, 차후에 실제 구현한 개체를 전달하는 방식으로 코딩되므로, TDD와 궁합이 좋습니다.
+의존성 주입은 외부에서 개체가 의존할 개체를 주입하는 기술입니다. 대표적으로 [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)가 있습니다. 외부에서 의존할 개체를 선택해서 전달하므로, 개체의 확장성이 좋아지죠. 
 
-의존성 역전 원칙을 준수하여 인터페이스에만 의존하게 했다면, `Shape` 이 `Json`등 다른 포맷을 지원하려고 할 경우, **의존성 주입** 을 통해 손쉽게 확장할 수 있습니다. `IWriter` 인터페이스를 지원하는 `JsonWriter`만 개발하고 `Shape`에 전달해주면 됩니다.
+특히 Fake나 Stub 개체를 전달해서 임시 테스트를 한뒤, 차후에 실제 구현한 개체를 전달하는 방식으로 코딩되므로, [테스트 주도 개발](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%A3%BC%EB%8F%84-%EA%B0%9C%EB%B0%9Ctest-driven-development)과 궁합이 좋습니다.(*[단위 테스트하라](https://tango1202.github.io/methodology/methodology-unittest/) 참고*)
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/44a48e9b-044a-46fd-9b86-10528b9488c1)
+[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/)을 준수하여 인터페이스에만 의존하게 했다면, `Shape` 이 `Json`등 다른 포맷을 지원하려고 할 경우, **의존성 주입** 을 통해 손쉽게 확장할 수 있습니다. `IWriter` 인터페이스를 지원하는 `JsonWriter`만 개발하고 `Shape`에 전달해주면 됩니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/3af31d5b-d97e-49c6-99de-372a0b4e27cd)
 
 다음과 같이 `SetWriter()`함수를 만들어 주면, 런타임에 다양한 `Writer`를 사용할 수 있습니다.
 
@@ -141,7 +143,7 @@ TEST(TestPrinciple, DependencyInversion) {
 
 하위 수준 모듈 관점에서 의존의 방향이 기존과 달리 인터페이스 방향으로 역전되어, 의존성 역전이라고 불립니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/3ef80573-48b5-47d3-8110-573895b4d51f)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f953529b-6216-4f98-ae74-994ce6900526)
 
 
 

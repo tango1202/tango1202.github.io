@@ -55,13 +55,13 @@ else if (사용자가 Json 저장을 선택했다면) {
 
 # 특징
 
-외부에서 특정 전략을 주입(***의존성 주입***)하여 런타임에 유연하게 알고리즘이나 동작을 변경할 수 있습니다. 
+외부에서 특정 전략을 주입(***의존성 주입***)하여 런타임에 유연하게 알고리즘이나 동작을 변경할 수 있습니다.(*[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고*)
 
 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)은 [State 패턴](https://tango1202.github.io/pattern/pattern-state/)과 구조가 동일합니다. 알고리즘이나 기능을 응집하느냐, 상태를 응집하느냐에 따라 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)이냐 [State 패턴](https://tango1202.github.io/pattern/pattern-state/)이냐를 구분할 수 있습니다.
 
 # 예제
 
-다음은 `Rectangle`개체를 저장하는 예입니다. `Save()`시 어떤 전략을 설정했느냐에 따라 `XmlWriter`나 `JsonWriter`가 실행됩니다.
+다음은 `Rectangle`개체를 저장하는 예입니다. `Save()`시 어떤 전략을 설정했느냐에 따라 `XmlWriter`나 `JsonWriter`가 실행됩니다. 
 
 1. #1 : `IWriter`는 `Strategy`입니다. `WriteRectangle()` 함수로 `Rectangle` 정보를 저장합니다.
 2. #2 : `XmlWriter`, `JsonWriter`는 `IWriter`를 구체화 합니다. 각각 Xml 또는 Json으로 저장합니다.

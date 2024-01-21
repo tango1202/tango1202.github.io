@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-필요할때 구현하라는 **항상 실제로 필요할때 구현해야 하며, 나중에 필요하다고 예상하고 미리 구현하지 마라** 라는 원칙입니다.(앞글자를 따서 **YAGNI** 라고도 합니다.)
+[필요할때 구현하라](https://tango1202.github.io/principle/principle-you-arent-gonna-need-it/)는 ***항상 실제로 필요할때 구현해야 하며, 나중에 필요하다고 예상하고 미리 구현하지 마라*** 라는 원칙입니다.(*앞글자를 따서 **YAGNI** 라고도 합니다.*)
 
 일반적으로,
 
@@ -29,4 +29,4 @@ sidebar:
 1. 나중에 시간이 절약될 수 있다고 믿기 때문이거나,
 2. 지금 작성한 코드를 잊은 뒤 나중에 활용할 때, 분석하는 시간이 두렵기 때문입니다.
 
-그냥 분석하기 쉽게 지금 코드를 리팩토링 하세요.([단순하게 유지하라](https://tango1202.github.io/principle/principle-keep-it-simple/))
+그냥 분석하기 쉽게 지금 코드를 리팩토링 하세요.(*[단순하게 유지하라](https://tango1202.github.io/principle/principle-keep-it-simple/) 참고*)

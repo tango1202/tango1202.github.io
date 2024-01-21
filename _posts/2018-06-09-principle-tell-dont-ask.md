@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-묻지 말고 말하라 원칙은 **개체의 내부 정보를 자꾸 묻지 말고 그냥 원하는 작업을 시켜라** 라는 원칙입니다.
+[묻지 말고 말하라 원칙](https://tango1202.github.io/principle/principle-tell-dont-ask/)은 ***개체의 내부 정보를 자꾸 묻지 말고 그냥 원하는 작업을 시켜라*** 라는 원칙입니다.
 
 조금 풀어 쓰면,
 
@@ -19,9 +19,11 @@ sidebar:
 
 하기 그림처럼 말이죠.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/e1808b55-c5f3-4a9b-8e44-305f4fad452e)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/a48ece43-c49b-4f53-94ce-76ef2ff697e0)
 
 이렇게 개체의 정보와 행동을 결합시켜 응집력을 강화하면 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)가 좋아지고, 은닉성도 좋아집니다. 정보가 은닉되어 있으면, 리팩토링시에 수정할 범위도 적어지고, 코드 확장도 용이 합니다.
+
+복잡한 서브시스템을 가지고 있는 경우에는 [Facade](https://tango1202.github.io/pattern/pattern-facade/)로 구현하면 되고요.
 
 **위반 사례**
 

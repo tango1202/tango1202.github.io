@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-리스코프 치환 원칙은 **자식 개체는 부모 개체를 완전하게 치환할 수 있어야 한다** 는 원칙입니다. 
+[리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/)은 ***자식 개체는 부모 개체를 완전하게 치환할 수 있어야 한다*** 는 원칙입니다. 
 
 조금 풀어 쓰면,
 
@@ -19,7 +19,7 @@ sidebar:
 
 이 원칙을 준수하면,
 
-1. 코드 분석시 불필요하게 하위 개체의 구현을 신경 쓰지 않아도 되므로 코드 분석 용이성이 향상됩니다.
+1. 코드 분석시 자식 개체의 구현을 신경 쓰지 않아도 되므로 코드 분석 용이성이 향상됩니다.
 2. **코딩 계약** 에 의한 코드 구현시 신뢰성이 확보되고, 이에 따른 시스템 안정성도 확보됩니다.
 
 **위반 사례 : 부모와 다른 동작을 하는 자식**
@@ -198,18 +198,18 @@ TEST(TestPrinciple, LiskovSubstitution) {
 }
 ```
 
-그렇죠. `Square`는 `m_Width` 값을 `m_Height`에 세팅하니 당연히 테스트를 실패하겠죠. 이제 `Square`의 특성을 알았으니 주의해서 사용하면 될까요? 이런 자식 개체가 또 뭐가 있을까요? 단순하게 Circle이 있겠고요, 또 더 있을 수 있을까요? 겁이 나서 모든 자식들의 소스코드와 테스트케이스들을 확인해 봐야 할까요? 이크!!! 라이브러리라 소스코드를 못보네요? 
+그렇죠. `Square`는 `m_Width` 값을 `m_Height`에 세팅하니 당연히 테스트를 실패하겠죠. 이제 `Square`의 특성을 알았으니 주의해서 사용하면 될까요? 이런 자식 개체가 또 뭐가 있을까요? 단순하게 `Circle`이 있겠고요, 또 더 있을 수 있을까요? 겁이 나서 모든 자식들의 소스코드와 테스트케이스들을 확인해 봐야 할까요? 이크!!! 라이브러리라 소스코드를 못보네요? 
 
-이런 경우가 리스코프 치환 원칙을 위반한 것입니다. 자식이 부모와 다른 동작을 하게 되면 부모 개체를 안심하고 사용할 수 없게 됩니다. 자식 코드를 다 파악하고 있어야지만, 안심하고 사용할 수 있게 되죠.
+이런 경우가 [리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/)을 위반한 것입니다. 자식이 부모와 다른 동작을 하게 되면 부모 개체를 안심하고 사용할 수 없게 됩니다. 자식 코드를 다 파악하고 있어야지만, 안심하고 사용할 수 있게 되죠.
 
-이 경우엔 부모가 잘못한 것이라 생각합니다. 모든 `Shape`이 `m_Width`와 `m_Height`를 가진다는 잘못된 가정을 한겁니다. 그래서 자식은 어쩔수 없이 `SetWidth()`와 `SetHeight()`를 재구현할 수 밖에 없었고요.
+이 경우엔 부모가 잘못한 것이라 생각합니다. 모든 `Shape`이 `m_Width`와 `m_Height`를 가진다는 잘못된 가정을 한겁니다. 그래서 자식은 어쩔수 없이 `SetWidth()`와 `SetHeight()`를 재구현할 수 밖에 없었고요. 이러다 보니 자신이 사용하지 않는 것에 강제로 의존하게 되어 [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)을 위반했고, 이에 따라 [리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/)도 위반하게 된 것입니다.
 
 사실 정사각형은 길이 하나만 가지고 있는 편이 좋고, 원은 지름을 가지고 있는 편이 좋습니다. 직선은 시작점과 끝점을 가지고 있는 편이 좋고, 호는 반지름과 각도를 가지고 있는 편이 좋고요. 이 정보로부터 나중에 너비와 높이를 계산해 낼 수 있죠.
 즉, 부모가 쓸데없이 `m_Width`와 `m_Height`를 가진 거라 보면 됩니다. 자식들이 헷갈리게요.
 
 **준수 방법 : 부모 클래스 간소화**
 
-부모 클래스가 불필요한 인터페이스를 강제하므로, 부모를 수정하여 자식들이 억지로 불필요한 구현을 안하게 해야 합니다. 
+부모 클래스가 불필요한 인터페이스를 강제하므로, 부모를 수정하여 자식들이 억지로 불필요한 구현을 하지 않도록 해야 합니다. 
 
 먼저 `Shape`에서 `m_Width`와 `m_Height`를 뺍니다.
 
@@ -333,7 +333,7 @@ TEST(TestPrinciple, LiskovSubstitution) {
 
 한가지 아쉬운 점은 `Rectangle`과 `Ellipse`구현시 `m_Width`, `m_Height` 구현에 코드 중복이 있다는 것입니다. [스스로 반복하지 마라](https://tango1202.github.io/principle/principle-dont-repeat-yourself/)를 위배했습니다.
 
-이는 인터페이스를 분리*(*[인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)*)한 뒤, 상속(**has-a 관계** )하여 개선할 수 있습니다.
+이는 인터페이스를 분리(*[인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)*)한 뒤, 상속(***has-a 관계***)하여 개선할 수 있습니다.
 
 먼저 `m_Width`와 `m_Height`를 제공하는 `IResizeable`인터페이스를 만듭니다.
 

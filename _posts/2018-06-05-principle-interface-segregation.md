@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-인터페이스 분리 원칙은 **클라이언트는 자신이 사용하지 않는 것에 강제로 의존하지 말아야 한다** 는 원칙입니다.
+[인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)은 ***클라이언트는 자신이 사용하지 않는 것에 강제로 의존하지 말아야 한다*** 는 원칙입니다.
 
 조금 풀어 쓰면,
 
@@ -28,7 +28,7 @@ sidebar:
 
 동물에 관련된 `IAnimal` 인터페이스를 구현했다고 합시다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4d787743-47b6-4166-8ba1-4aef7e740bc9)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/10ee7355-4caf-4737-ae4c-22ab8c150697)
 
 이제 `IAnimal`을 상속받은 강아지, 고양이, 물고기, 새를 구현하고자 합니다. 그런데 각 동물들의 특성에 따라 할 수 없는 것이 있습니다.
 
@@ -45,13 +45,14 @@ public:
     virtual void Fly() override { } // 뭘하지? 특별히 하는게 없더라도 구현해 두어야 함
 };
 ```
-자식에서 쓸데없이 함수 구현을 억지로 해야 하므로, 인터페이스 분리 원칙 위반입니다. 
+
+이러한 경우 자식에서 쓸데없이 함수 구현을 억지로 해야 하므로, [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/) 위반이며, 억지스런 구현을 하다보니 부모처럼 동작하기 힘들어져 [리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/)을 위반하게 됩니다. 또한, 자식 개체들도 부모처럼 뚱뚱해 지다가 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어 많은 개체들에게 종속된 괴물로 변신하게 됩니다.
 
 **준수 방법**
 
 `IAnimal`에 동물들의 다양한 특성들을 넣어 뚱뚱한 인터페이스를 만들지 않고, 하기 그림처럼 각 특성별로 인터페이스를 분리하여 날씬하게 구성합니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/8ec9296a-1ba4-4291-886e-2b02610e1558)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7bdd75ed-9c53-4ec4-91b6-78046788351e)
 
 먼저 `IAnimal`인터페이스에서 단위 기능들을 분리합니다.
 

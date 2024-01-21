@@ -56,7 +56,7 @@ sidebar:
 
 [깨진 창문](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EA%B9%A8%EC%A7%84-%EC%B0%BD%EB%AC%B8broken-windows)이 있는 건물에 낙서를 하고 쓰레기를 버리는건 죄의식이 생기지 않습니다. 내버려두면 담배 꽁초, 음식물 봉지들이 금새 쌓이게 됩니다. 악취가 나는 코드도 마찬가지입니다. 내버려두면 점점 쓰레기가 쌓이고 부패하게 됩니다.
 
-누군가가 창문을 깨지 않도록, [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높이시고, [공통 아키텍처 비전](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EA%B3%B5%ED%86%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B9%84%EC%A0%84common-architectural-vision)을 수립하세요. 그리고, [보이스카우트 규칙](https://tango1202.github.io/principle/principle-boy-scout-rule/)에 따라 뭐든 수정해 두세요.
+누군가가 창문을 깨지 않도록, [코드 가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)을 높이시고, [공통 아키텍처 비전](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EA%B3%B5%ED%86%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B9%84%EC%A0%84common-architectural-vision)을 수립하세요. 그리고, [보이 스카우트 규칙](https://tango1202.github.io/principle/principle-boy-scout-rule/)에 따라 뭐든 수정해 두세요.
 
 # [나쁜 코딩 관행] 쓰레기 코드(Garbage Code)
 

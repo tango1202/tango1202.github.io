@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-안정적인 의존성 원칙은 **패키지 간의 의존성은 안정성의 방향이어야 한다** 라는 원칙입니다.
+[안정적인 의존성 원칙](https://tango1202.github.io/principle/principle-stable-dependencies/)은 ***패키지 간의 의존성은 안정성의 방향이어야 한다*** 라는 원칙입니다.
 
 다음과 같은 의존 관계에서는 `Module B`가 안정적이어야 한다는 뜻입니다. `Module B`가 불안정하여 자주 수정된다면, `Module A`는 덩달아 자주 변경되고, 반복해서 테스트되어야 하는 문제가 발생하니까요.
 

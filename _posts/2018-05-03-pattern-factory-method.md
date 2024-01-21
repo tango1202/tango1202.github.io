@@ -31,7 +31,7 @@ sidebar:
 
 다음 그림은 [Factory Method](https://tango1202.github.io/pattern/pattern-factory-method/)의 일반적인 구조입니다. 
 
-`Creator`의 `Operation()`이 구체화된 자식 개체인 `ConcreteProduct`의 생성을 필요로 한다고 생각해 봅시다. `Creator`가 속한 부모 레이어에서 자식 레이어의 클래스를 직접 참조하면 종속의 방향성이 깨져 [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)될 수 있으므로 바람직하지 않습니다. 따라서, `Creator`에서 직접 `ConcreteProduct`를 생성하지 않고, 자식 클래스인 `ConcreteCreator`에서 [오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)한 `FactoryMethod()`함수에서 생성합니다. [Template Method](https://tango1202.github.io/pattern/pattern-template-method/) 처럼요.
+`Creator`의 `Operation()`이 구체화된 자식 개체인 `ConcreteProduct`의 생성을 필요로 한다고 생각해 봅시다. `Creator`가 속한 부모 레이어에서 자식 레이어의 클래스를 직접 참조하면 종속의 방향성이 깨져 [상호 참조](https://tango1202.github.io/cpp-stl/modern-cpp-stl-shared_ptr-weak_ptr/#%EC%83%81%ED%98%B8-%EC%B0%B8%EC%A1%B0)될 수 있으므로 바람직하지 않습니다. [의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 위반이죠. 따라서, `Creator`에서 직접 `ConcreteProduct`를 생성하지 않고, 자식 클래스인 `ConcreteCreator`에서 [오버라이딩](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/#%EB%B6%80%EB%AA%A8-%EA%B0%9C%EC%B2%B4%EC%9D%98-%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)한 `FactoryMethod()`함수에서 생성합니다. [Template Method](https://tango1202.github.io/pattern/pattern-template-method/) 처럼요.
 
 ![Factroy Method](https://github.com/tango1202/tango1202.github.io/assets/133472501/afbecd63-0639-4734-b923-f5af086ef404)
 
