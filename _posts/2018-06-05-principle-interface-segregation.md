@@ -46,7 +46,7 @@ public:
 };
 ```
 
-이러한 경우 자식에서 쓸데없이 함수 구현을 억지로 해야 하므로, [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/) 위반이며, 억지스런 구현을 하다보니 부모처럼 동작하기 힘들어져 [리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/)을 위반하게 됩니다. 또한, 자식 개체들도 부모처럼 뚱뚱해 지다가 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어 많은 개체들에게 종속된 괴물로 변신하게 됩니다.
+이러한 경우 자식에서 쓸데없이 함수 구현을 억지로 해야 하므로, [인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)을 위반하며, 억지스런 구현을 하다보니 부모처럼 동작하기 힘들어져 [리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/)을 위반하게 됩니다. 또한, 자식 개체들도 부모처럼 뚱뚱해 지다가 결국 [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어 많은 개체들에게 종속된 괴물로 변신하게 됩니다.
 
 **준수 방법**
 

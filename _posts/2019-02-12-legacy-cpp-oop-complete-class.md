@@ -86,7 +86,7 @@ sidebar:
 
 1. [생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/)와 마찬가지로 필요한 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)를 모두 전달하여야 합니다. **코딩 계약** 을 투명하게 하여 ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현해야 합니다.(*[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 참고*)
 2. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter) 전달이나 함수 [리턴값](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EB%A6%AC%ED%84%B4%EA%B0%92) 전달시 복사 부하를 최소화 해야 합니다.
-3. [상수성 계약](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)에 위배되지 않도록 작성해야 합니다.
+3. [상수성 계약](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-const-mutable-volatile/#%EC%83%81%EC%88%98%EC%84%B1-%EA%B3%84%EC%95%BD)을 위반하지 않도록 작성해야 합니다.
 4. 함수내에서 [예외가 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하면 그동안 만들어 둔건 소멸시켜 버려야 합니다.
 
 |항목|내용|

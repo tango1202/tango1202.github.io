@@ -14,7 +14,7 @@ sidebar:
 
 주로, 
 
-1. [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability) 위배
+1. [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability) 위반
 
     * 비밀스러운 이름
     * [코딩 컨벤션](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98coding-conventions)을 무시한 코딩
@@ -23,9 +23,9 @@ sidebar:
 2. 잘못된 구조
 
     * 흔하지 않은 구조나 [캘린더 코더](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%BD%94%EB%8D%94calendar-coder)의 중독된 구조
-    * [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/) 위배 : [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어가는 너무 거대한 함수나 클래스
-    * [리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 위배 : 자식 개체가 부모 개체를 상속하고 일부만 사용
-    * [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위배 : 높은 결합도(*다른 개체와 상호작용이 빈번함, 수정시 많은 개체를 함께 수정해야 함*), 느슨한 응집(*함께 사용하는 데이터와 함수가 분리됨, 캡슐화가 필요한 개체*)
+    * [단일 책임 원칙](https://tango1202.github.io/principle/principle-single-responsibility/) 위반 : [블롭](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B8%94%EB%A1%ADthe-blob)이 되어가는 너무 거대한 함수나 클래스
+    * [리스코프 치환 원칙](https://tango1202.github.io/principle/principle-liskov-substitution/) 위반 : 자식 개체가 부모 개체를 상속하고 일부만 사용
+    * [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위반 : 높은 결합도(*다른 개체와 상호작용이 빈번함, 수정시 많은 개체를 함께 수정해야 함*), 느슨한 응집(*함께 사용하는 데이터와 함수가 분리됨, 캡슐화가 필요한 개체*)
 
 3. 어지러운 논리
 

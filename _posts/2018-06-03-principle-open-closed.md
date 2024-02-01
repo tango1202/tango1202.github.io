@@ -26,7 +26,7 @@ sidebar:
 
 |개방|폐쇄|
 |--|--|
-|* 상속을 이용한 확장<br/>* 인터페이스를 이용한 확장<br/>* [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 이용한 확장<br/>* 포함을 이용한 확장(*[Bridge](https://tango1202.github.io/pattern/pattern-bridge/), [Decorator](https://tango1202.github.io/pattern/pattern-decorator/), [State](https://tango1202.github.io/pattern/pattern-state/)*)<br/>* 의존성 주입을 이용한 확장(*[Strategy](https://tango1202.github.io/pattern/pattern-strategy/)*)<br/>* [Visitor](https://tango1202.github.io/pattern/pattern-visitor/)를 이용한 확장|* `private`를 이용한 가시성 폐쇄<br/>* 코딩 계약으로 폐쇄<br/>* Non-Virtual로 상속 폐쇄<br/>* 단일 책임으로 변경 최소화<br/>* 문서화 안하기<br/>* 알기 힘들게 꼭꼭 숨기기<br/>* 고치기 무섭게 복잡하게 하기|
+|* 상속을 이용한 확장<br/>* 인터페이스를 이용한 확장<br/>* [가상 함수](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-member-function/#%EA%B0%80%EC%83%81-%ED%95%A8%EC%88%98)를 이용한 확장<br/>* 포함을 이용한 확장(*[Bridge](https://tango1202.github.io/pattern/pattern-bridge/), [Decorator](https://tango1202.github.io/pattern/pattern-decorator/), [State](https://tango1202.github.io/pattern/pattern-state/)*)<br/>* 의존성 주입을 이용한 확장(*[Strategy](https://tango1202.github.io/pattern/pattern-strategy/)*)<br/>* [Visitor](https://tango1202.github.io/pattern/pattern-visitor/)를 이용한 확장|* `private`를 이용한 가시성으로 폐쇄<br/>* 코딩 계약으로 폐쇄<br/>* Non-Virtual로 상속 폐쇄<br/>* 단일 책임으로 변경 최소화<br/>* 문서화 안하기<br/>* 알기 힘들게 꼭꼭 숨기기<br/>* 고치기 무섭게 복잡하게 하기|
 
 **준수 방법 : 유연한 함수**
 
@@ -42,7 +42,7 @@ void SaveFile() const {
 경로명이 함수내에 있기 때문에, 파일명이나 경로가 바뀐다면 `SaveFile()`함수를 수정해야 합니다.
 
 하지만, `pathName`을 [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 요청한다면, 파일명이나 경로가 바꼈을때 `SaveFile()`함수를 수정할 필요가 없습니다. [인자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/#%EC%9D%B8%EC%9E%90%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-parameter)로 전달하면 되니까요.
-경로명 변경 확장에는 열려있고, `SaveFile()`함수 수정에는 닫혀 있게 됩니다.
+경로명을 변경하는 확장에는 열려있고, `SaveFile()`함수 수정에는 닫혀 있게 됩니다.
 
 ```cpp
 void SaveFile(const std::wstring& pathName) const {}
@@ -50,7 +50,7 @@ void SaveFile(const std::wstring& pathName) const {}
 
 **준수 방법 : 다형성을 이용한 유연한 개체**
 
-다형성을 이용하여 부모 개체로부터 다양한 자식 개체를 추가할 수 있습니다.
+[다형성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-polymorphism/)을 이용하여 부모 개체로부터 다양한 자식 개체를 추가할 수 있습니다.
 
 하기의 구조에서 새로운 도형 개체가 필요하다면, `Shape`을 상속한 자식 개체를 추가하면 됩니다.
 
@@ -66,7 +66,7 @@ void SaveFile(const std::wstring& pathName) const {}
 
 `IVisitor`를 이용한 클래스 구성은 다음과 같습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/2052c61d-e1c0-4a96-9a3d-6504cc08de94)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/37682e4e-1e87-4542-bb3f-a0355a7aa7aa)
 
 `IVisitor`는 `Shape`의 자식 개체를 방문하면서 개체 종류에 따라 `VisitRectangle()` 이나 `VisitCircle()`을 호출할 수 있게 합니다.
 
@@ -189,7 +189,7 @@ circle.Accept(rotateVisitor);
 
 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)을 이용한 **의존성 주입(*[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고*)** 을 활용하여, 원하는 알고리즘으로 손쉽게 변경할 수 있습니다.
 
-하기 그림처럼 구성하고, `Shape`의 `SetWiter()`에 어떤 Writer(*`XmlWriter` 혹은 `JsonWriter`*)를 전달하는지에 따라 다른 알고리즘을 사용할 수 있습니다.
+하기 그림처럼 구성하고, `Shape`의 `SetWriter()`에 어떤 Writer(*`XmlWriter` 혹은 `JsonWriter`*)를 전달하는지에 따라 다른 알고리즘을 사용할 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/170f83f8-8a53-44eb-b375-0a01e9494a55)
 

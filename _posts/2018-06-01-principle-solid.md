@@ -10,9 +10,9 @@ sidebar:
 
 좋은 설계는 유지보수의 편의성을 위하여
 
-* 가독성,
+* [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability),
 * 유연성, 확장성, 이식성
-* 모듈성, 캡슐화(*잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*)
+* 모듈성, [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)(*잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*)
  
 가 좋아야 합니다.
 

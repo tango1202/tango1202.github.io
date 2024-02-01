@@ -24,7 +24,7 @@ sidebar:
 
 **위반 사례 : 부모와 다른 동작을 하는 자식**
 
-우리는 개체지향의 다형성을 이용하여 부모 클래스를 상속하고 기능 확장이나 변형을 하게 됩니다.
+우리는 개체지향의 [다형성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-polymorphism/)을 이용하여 부모 클래스를 [상속](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-inheritance/)하여 기능을 확장합니다.
 
 왼쪽/상단 좌표와 크기를 입력받아 자신의 모양을 출력하는 `Shape` 개체를 생각해 봅시다. 부모 클래스인 `Shape`에서 `m_Left`, `m_Top`, `m_Width`, `m_Height` 값을 입력받고, `Draw()` 함수를 `virtual`로 작성하여 자식 클래스에서 재구현 하여 그릴 수 있게 했습니다.
 
@@ -331,9 +331,9 @@ TEST(TestPrinciple, LiskovSubstitution) {
 }
 ```
 
-한가지 아쉬운 점은 `Rectangle`과 `Ellipse`구현시 `m_Width`, `m_Height` 구현에 코드 중복이 있다는 것입니다. [스스로 반복하지 마라](https://tango1202.github.io/principle/principle-dont-repeat-yourself/)를 위배했습니다.
+한가지 아쉬운 점은 `Rectangle`과 `Ellipse`구현시 `m_Width`, `m_Height` 구현에 코드 중복이 있다는 것입니다. [스스로 반복하지 마라](https://tango1202.github.io/principle/principle-dont-repeat-yourself/)를 위반했습니다.
 
-이는 인터페이스를 분리(*[인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/)*)한 뒤, 상속(***has-a 관계***)하여 개선할 수 있습니다.
+이는 인터페이스를 분리(*[인터페이스 분리 원칙](https://tango1202.github.io/principle/principle-interface-segregation/) 참고*)한 뒤, 상속(***has-a 관계***)하여 개선할 수 있습니다.
 
 먼저 `m_Width`와 `m_Height`를 제공하는 `IResizeable`인터페이스를 만듭니다.
 

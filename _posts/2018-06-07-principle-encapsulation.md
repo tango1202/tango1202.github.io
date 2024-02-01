@@ -8,11 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)는 ***개체 사용자가 개체의 내부 상태의 구현 원리를 알 필요 없게 하라*** 라는 원칙입니다.
+[캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)는 ***개체 사용자가 개체의 내부 상태의 구현 원리를 알 필요가 없게 하라*** 라는 원칙입니다.
 
 조금 풀어 쓰면,
 
-1. 개체의 멤버 변수나 함수는 꽁꽁 숨긴 뒤(은닉), 꼭 필요한 것만 외부에 `public` 으로 노출(*[최소 public](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-complete-class/#%EC%B5%9C%EC%86%8C-public)*)하고,
+1. 개체의 멤버 변수나 함수는 꽁꽁 숨긴 뒤(*은닉*), 꼭 필요한 것만 외부에 `public` 으로 노출(*[최소 public](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-complete-class/#%EC%B5%9C%EC%86%8C-public)*)하고,
 2. 단위 기능을 응집하고, 결합도는 낮춘뒤,
 3. ***잘못 사용하기엔 어렵게, 바르게 사용하기엔 쉽게*** 구현하라.
 
@@ -106,7 +106,7 @@ shape.Rotate(delta);
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/02c2c7c7-d6d4-4660-bafb-5d474fa09b09)
 
-여전히 단위 기능의 응집도도 낮고, 결합도는 높으며, 호출자는 `Rotate()`함수가 `delta`를 처리하는 방식을 파악한 뒤, `CalcShapeRotateDelta()`를 꼭 호출해야 하기 때문에 사용하기 어렵습니다. 호출을 빼먹어서 잘못 사용하기 쉽고요. [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위반입니다. 사용하기 어려우면, 누군가가 [바퀴를 재발명](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B0%94%ED%80%B4%EC%9D%98-%EC%9E%AC%EB%B0%9C%EB%AA%85reinventing-the-wheel)하여 이걸 써야 할지, 저걸 써야 할지 더 혼란스럽게 만들 수도 있습니다.
+여전히 단위 기능의 응집도도 낮고, 결합도는 높으며, 호출자는 `Rotate()`함수가 `delta`를 처리하는 방식을 파악한 뒤, `CalcShapeRotateDelta()`를 꼭 호출해야 하기 때문에 사용하기 어렵습니다. 호출을 빼먹어서 잘못 사용하기 쉽고요. [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/) 위반입니다. 이렇게 사용하기 어려우면, 누군가가 [바퀴를 재발명](https://tango1202.github.io/principle/principle-anti-pattern/#%EB%82%98%EC%81%9C-%EC%BD%94%EB%94%A9-%EA%B4%80%ED%96%89-%EB%B0%94%ED%80%B4%EC%9D%98-%EC%9E%AC%EB%B0%9C%EB%AA%85reinventing-the-wheel)하여 이걸 써야 할지, 저걸 써야 할지 더 혼란스럽게 만들 수도 있습니다.
 
 **준수 방법**
 
@@ -215,7 +215,7 @@ inline Degree operator -(const Degree& left, float right) {
 }
 ```
 
-`Degree` 클래스 내에서 0~360 로 값을 보정하므로(*여러 [연산자를 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)하여 믿고 쓸 수 있습니다*), `Shape` 클래스는 `Degree`로 좀더 간단하게 구현할 수 있습니다. `Rotate()`함수의 불필요한 주석과 `assert`가 사라졌습니다.
+`Degree` 클래스 내에서 0~360 로 값을 보정하므로(*여러 [연산자를 오버로딩](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)하여 믿고 쓸 수 있습니다*), `Shape` 클래스는 `Degree`로 좀더 간단하게 구현할 수 있습니다. 사용이 쉬워지다 보니 `Rotate()`함수의 불필요한 주석과 `assert`가 사라졌습니다.
 
 ```cpp
 class Shape {
@@ -284,6 +284,6 @@ TEST(TestPrinciple, Encapsulation) {
 
 |너무 작은 단위로 쪼갠 경우|너무 큰 단위인 경우|
 |--|--|
-|* 함수 수정시 호출되는 곳이 많아 사이드 이팩트의 우려가 있습니다.<br/>* 함수를 분석하기 위해 여러 호출 단계를 거치기에 절차적 코드 분석에 비용이 많이 듭니다.<br/>* 코드 자체는 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 좋고, 재활용성이 향상됩니다.|* 함수 수정에 따른 사이드 이팩트가 그리 많지 않습니다.<br/>* 관련 코드가 너무 길어 힘들지만 절차적 코드 분석이 비교적 용이합니다.<br/>* 코드의 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 떨어지고, 유지보수성이나 재활용성은 낮습니다.|
+|* 함수 수정시 호출되는 곳이 많아 사이드 이팩트의 우려가 있습니다.<br/>* 함수를 분석하기 위해 여러 호출 단계를 거치기에 절차적 코드 분석에 비용이 많이 듭니다.<br/>* 코드 자체는 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 좋고, 재활용성이 향상됩니다.|* 재활용된 곳이 적어 함수 수정에 따른 사이드 이팩트가 그리 많지 않습니다.<br/>* 관련 코드가 너무 길어 힘들지만 절차적 코드 분석이 비교적 용이합니다.<br/>* 코드의 [가독성](https://tango1202.github.io/principle/principle-practices/#%EC%A2%8B%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%BD%94%EB%93%9C-%EA%B0%80%EB%8F%85%EC%84%B1code-readability)이 떨어지고, 유지보수성이나 재활용성은 낮습니다.|
 
 
