@@ -25,7 +25,9 @@ main:
 - title: "개발 방법론"
   url: /categories/methodology/    
 - title: "윈도우즈 프로그래밍"
-  url: /categories/win/   
+  url: /categories/win/
+- title: "Javascript"
+  url: /categories/javascript/     
 - title: "카테고리"
   url: /categories/
 - title: "태그"
@@ -75,7 +77,10 @@ docs:
     category: "methodology"     
   - title: "윈도우즈 프로그래밍"
     url: /categories/win/ 
-    category: "win"     
+    category: "win"   
+  - title: "Javascript"
+    url: /categories/javascript/ 
+    category: "javascript"        
 - title: "태그"
   url: /tags/
 
