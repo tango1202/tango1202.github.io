@@ -8,205 +8,80 @@ sidebar:
     nav: "docs"
 ---
 
-RAII(Resource Acquisition Is Initialization)는 **자원 획득은 초기화이다** 라는 뜻입니다.
+# 브라우저 개발자 도구 이용하기
 
-조금 풀어 쓰면,
+크롬에서 `F12`키를 눌러 개발자 도구를 표시합니다.
 
-1. 자원의 안전한 사용을 위해 개체가 쓰는 [유효 범위](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-scope/)를 벗어나면 자원을 해제하라.
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b2ca48e6-b0e2-4d89-b1c6-62455ee0a8cd)
 
-라는 뜻입니다.
+**요소**
 
-# Holder의 필요성
+`html`요소가 표시됩니다.
 
-[new](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)로 생성된 포인터의 경우를 생각해 봅시다. 다음처럼 포인터 생성후 사용하다가 [delete](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)시켜주면 됩니다. 하지만 사람이 하는 일이다 보니 잊어 버리기 쉽습니다.
+**콘솔**
 
-```cpp
-class T {};
+간단한 javascript의 결과를 확인할 수 있습니다. `console.log()` 로 출력한 정보가 표시될 뿐만 아니라, 다음처럼 `1 + 2`를 입력하여 간단한 명령문을 실행하고 결과를 확인할 수 있습니다. 여러줄 입력을 원할땐 `Shift + Enter`키를 입력하면 됩니다.
 
-T* ptr = new T;
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/721ea82c-a871-4e3c-abe4-783df53d4eca)
 
-// ptr을 사용하는 코드들
+**소스**
 
-delete ptr; // (△) 비권장. 잊어버릴 수 있습니다.
-```
+현 URL의 사이트 폴더 구조와 소스코드를 표시합니다.
 
-잊어버리고 [delete](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)를 안했을때 메모리 릭이 발생하며, 처음에는 눈에 띄지 않다가 사용하다가 어느 순간 메모리가 부족하여 시스템이 멈추게 됩니다.
+# Node.js 이용하기
 
-코드 검토, 짝 프로그래밍등 다양한 방법으로 이런 실수를 보강할 수도 있습니다만, [예외 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)하는 코드와 혼합되면서 복잡성이 증가합니다. 다음같은 경우에는 [예외 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시 `ptr`이 delete 되지 않습니다.
+Node.js는 Chrome의 V8 javascript 엔진을 이용한 런타임 환경입니다. 이를 이용하면 브라우저외 환경에서 Javascript를 실행할 수 있으며, 서버 애플리케이션등에 많이 사용됩니다.
 
-```cpp
-class T {};
+1. [Node.js(https://nodejs.org/)](https://nodejs.org/)에서 다운로드 받고 설치합니다.
 
-T* ptr = new T;
-Func1(); // 예외 발생한다면 ptr이 delete 되지 않습니다.
-Func2(); // 예외 발생한다면 ptr이 delete 되지 않습니다.
+2. 다음처럼 잘 설치되었는지 버전을 확인합니다. `npm`은 `Node.js`를 설치할때 자동으로 설치되며, 웹페이지에서 패키지를 다운로드 받아 설치하는 역할을 합니다. 
 
-delete ptr;
-```
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/27012aea-a2b0-4b46-873a-b47ab0cbdeb4)
 
-따라서 다음과 같이 작성해야 합니다만, 코드가 너무 복잡합니다.
+3. `node`를 실행하면 가상환경(*REPL(Read Eval Point Loop)*)으로 코드를 직접 실행할 수 있습니다. 종료하려면 `Ctrl+C`를 2번 누릅니다.
 
-```cpp
-class T {};
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7c1064ae-89f9-4a62-8d81-69cb6d860d78)
 
-T* ptr = new T;
+# Visual Studio Code 이용하기
 
-try {
-    Func1(); 
-}
-catch (...) {
-    delete ptr; // (△) 비권장. 잘 delete 했습니다만, 코드가 눈을 어지럽힙니다.
-}
-try {
-    Func2(); 
-}
-catch (...) {
-    delete ptr; // (△) 비권장. 잘 delete 했습니다만, 코드가 눈을 어지럽힙니다.
-}
+1. [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download) 에서 다운로드 받고 설치합니다.
 
-delete ptr;
-```
+2. `test.js` 새파일을 만들고 테스트 코드를 입력합니다.
 
-고맙게도 [유효 범위](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-scope/)를 벗어나거나 [예외 발생](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%98%88%EC%99%B8-%EB%B0%9C%EC%83%9D%EA%B3%BC-%ED%83%90%EC%A7%80try-catch-throw)시에는 [스택 풀기](https://tango1202.github.io/legacy-cpp-exception/legacy-cpp-exception-mechanism/#%EC%8A%A4%ED%83%9D-%ED%92%80%EA%B8%B0%EC%98%88%EC%99%B8-%EB%B3%B5%EC%9B%90)에 따라 [스택](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)의 개체들이 하나씩 소멸됩니다. 이를 이용하여 포인터를 관리하는 [스택](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D) 개체를 만들면 [스택](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에서 소멸되면서 포인터를 [delete](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)할 수 있습니다. 이렇게 포인터를 관리하는 개체를 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/) 라고 합니다.
-
-# 활용 코딩 패턴
-
-1. [복사 생성](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90)과 [복사 대입](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90) 연산을 막기 위해 [`Uncopyable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-uncopyable/)을 사용하고, 
-2. [지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)(자동 변수)로만 생성되도록 [`OnlyStackAssignable`](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-only-stack-assignable/)을 사용합니다.
-
-# Holder의 구현
-
-1. [new](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)한 개체를 생성자에서 전달받고, [소멸자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-destructors/)에서 [delete](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8)합니다.
-2. 보통 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)는 [기본 생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/#%EA%B8%B0%EB%B3%B8-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 생성자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-constructors/#%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90), [복사 대입 연산자](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-assignment-operator/#%EB%B3%B5%EC%82%AC-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)가 필요 없습니다.
-3. 보통 [Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)는 [new](https://tango1202.github.io/legacy-cpp-oop/legacy-cpp-oop-new-delete/#%EA%B0%9C%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%86%8C%EB%A9%B8) 로 생성되지 않고 [스택](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-memory-segment/#%EC%8A%A4%ED%83%9D)에 [지역 변수](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-static-extern-lifetime/#%EC%A7%80%EC%97%AD-%EB%B3%80%EC%88%98)(자동 변수)로만 생성됩니다.
-
-```cpp
-// 유효 범위가 지나면, T 타입의 포인터를 소멸시키는 개체
-template<typename T>
-class Holder : 
-    private Uncopyable,
-    private OnlyStackAssignable {
-    T* m_Ptr;
-public:
-    explicit Holder(T* ptr) : 
-        m_Ptr(ptr) {}
-    ~Holder() {
-        delete m_Ptr;
+    ```javascript
+    for (var i = 0; i < 3; ++i) {
+        console.log("i값 : ", i);
     }
-    bool IsValid() const {return m_Ptr != NULL ? true : false;}
-};
-```
+    ```
 
-다음과 같이 테스트합니다.
+3. 터미널에서 `node test`를 실행하여 실행 결과를 확인합니다.(*`node test.js`로 실행해도 됩니다.*)
 
-```cpp
-void Func1() {throw std::bad_alloc();} // 일부러 예외를 발생시킴
-void Func2() {}   
+<img width="690" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/f0e489f4-0818-49a9-aaf6-63d839b6208d">
 
-TEST(TestCppPattern, Holder) {
-    class T {
-    public:
-        ~T() {
-            std::cout << "delete T" << std::endl; // 화면에 표시되는 지 확인합니다.
-        }        
-    };
-    // Func1에서 예외를 발생해도 정상 동작하는지 확인
-    {
-        try {
-            T* ptr = new T;
-            Holder<T> holder(ptr);
-            Func1(); // 예외 발생
-            Func2();
-        } 
-        catch (...) {
-            // ptr의 소멸자가 호출되고 catch에 진입함
-        }
-    } // 유효 범위를 벗어나면, 예외가 발생하면 holder의 소멸자가 호출되어 ptr이 소멸됩니다.
+# Visual Studio Code 익스텐션
 
-    // 복사 생성, 복사 대입 연산, new 생성이 컴파일 안되는지 확인
-    {
-        Holder<T> holder1(new T);
-        Holder<T> holder2(new T);
-        Holder<T> holder3(holder1); // (X) 컴파일 오류. 복사 생성자를 막았습니다.
-        holder2 = holder1; // (X) 컴파일 오류. 복사 대입 연산자를 막았습니다.
-        Holder<T> *p = new Holder<T>(new T); // (X) 컴파일 오류. Holder를 new로 생성하지 못하도록 막았습니다.  
-    }
-}
-```
+**Code Runner**
 
-# Restorer - Holder의 응용
+`Code Runner`를 이용하면 `Ctrl+Alt+N`을 눌러 빠르게 실행 결과를 확인할 수 있습니다.
 
-[Holder](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-holder/)를 응용하여 어떤 상태값을 임시적으로 설정했다가 복원하는 기능도 손쉽게 만들 수 있습니다. 이렇게 속성 복원 기능이 있는 것을 `Restorer`라고 합니다.
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/72616616-780e-4846-b625-ce877698647d)
 
-1. 생성시 기존 값을 읽어와 저장한 뒤, 설정값을 변경합니다.
-2. 소멸시 기존 값으로 설정값을 변경합니다.
+**Live Server**
 
+`Live Server`를 이용하면 브라우저 실행을 좀더 편하게 할 수 있습니다.
 
-다음과 같이 구현합니다.
+1. `Activity Bar`의 `Extensions`을 클릭하여 `Live Server`를 설치합니다.
 
-```cpp
-// 유효 범위가 지나면, 설정한 속성을 복원시키는 개체
-template< typename GetterT, typename SetterT, typename ValueT>
-class Restorer : 
-    private Uncopyable,
-    private OnlyStackAssignable {
-    SetterT m_Setter;
-    ValueT m_OldValue;
-public:
-    Restorer(GetterT getter, SetterT setter, ValueT value) :
-        m_Setter(setter), 
-        m_OldValue(getter()) { // 이전값 기억
-            m_Setter(value); // value로 설정
-    }
-    ~Restorer() {
-        m_Setter(m_OldValue); // 이전값 복원
-    }
-};   
-```
+2. 그러면 상태 표시줄에 `Go Live` 버튼이 생깁니다.
 
-다음과 같이 테스트 합니다.
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4d8b20b0-471f-4ef7-9706-a35edb7b47ae)
 
-```cpp
-TEST(TestCppPattern, Restorer) {
-    // 테스트용 속성 관리자
-    class Manager {
-        int m_Val;
-    public:
-        int GetVal() const {return m_Val;}
-        void SetVal(int val) {m_Val = val;} 
-    };
+3. `index.html`과 `test.js`를 작성합니다.
 
-    // 속성값을 리턴하는 함수자
-    class ManagerGetter { 
-        const Manager& m_Manager; 
-    public:
-        explicit ManagerGetter(const Manager& manager) : 
-            m_Manager(manager) {} 
-        int operator ()() const {return m_Manager.GetVal();}
-    };
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1f172fb1-449f-480a-b15c-c0c2e8d1bae7)
 
-    // 속성값을 세팅하는 함수자
-    class ManagerSetter { 
-        Manager& m_Manager; 
-    public:
-        explicit ManagerSetter(Manager& manager) : 
-            m_Manager(manager) {} 
-        void operator ()(int val) {m_Manager.SetVal(val);}
-    }; 
+4. `Go Live` 버튼을 클릭하면, 버튼 캡션이 `Port:XXXX`와 같이 변경되며, `index.html`이 서버로 로딩되어 브라우저에 표시됩니다.
 
-    Manager manager;
-    manager.SetVal(10); 
+5. 코드 수정후 저장하면 변경 내용이 즉시 반영되어 표시됩니다.
 
-    {
-        ManagerGetter getter(manager);
-        ManagerSetter setter(manager);
-        Restorer<ManagerGetter, ManagerSetter, int> managerRestorer(
-            getter,
-            setter,
-            20
-        );
-        EXPECT_TRUE(manager.GetVal() == 20); // 20 으로 설정함
-    } // Restore가 소멸되면서 원래값 복원  
-    EXPECT_TRUE(manager.GetVal() == 10); // 원래값인 10으로 복원함
-}
-```
+6. 서버를 종료하려면 `Port:XXXX`을 클릭합니다.
