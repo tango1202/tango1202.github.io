@@ -20,7 +20,7 @@ sidebar:
 
 **콘솔**
 
-간단한 javascript의 결과를 확인할 수 있습니다. `console.log()` 로 출력한 정보가 표시될 뿐만 아니라, 다음처럼 `1 + 2`를 입력하여 간단한 명령문을 실행하고 결과를 확인할 수 있습니다. 여러줄 입력을 원할땐 `Shift + Enter`키를 입력하면 됩니다.
+간단한 자바스크립트의 결과를 확인할 수 있습니다. `console.log()` 로 출력한 정보가 표시될 뿐만 아니라, 다음처럼 `1 + 2`를 입력하여 간단한 명령문을 실행하고 결과를 확인할 수 있습니다. 여러줄 입력을 원할땐 `Shift + Enter`키를 입력하면 됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/721ea82c-a871-4e3c-abe4-783df53d4eca)
 
@@ -30,7 +30,7 @@ sidebar:
 
 # Node.js 이용하기
 
-Node.js는 Chrome의 V8 javascript 엔진을 이용한 런타임 환경입니다. 이를 이용하면 브라우저외 환경에서 Javascript를 실행할 수 있으며, 서버 애플리케이션등에 많이 사용됩니다.
+Node.js는 Chrome의 V8 자바스크립트 엔진을 이용한 런타임 환경입니다. 이를 이용하면 브라우저외 환경에서 자바스크립트를 실행할 수 있으며, 서버 애플리케이션등에 많이 사용됩니다.
 
 1. [Node.js(https://nodejs.org/)](https://nodejs.org/)에서 다운로드 받고 설치합니다.
 
