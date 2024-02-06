@@ -289,24 +289,6 @@ console.log('즉시 호출 함수', (
 })();
 ```
 
-**중첩 함수**
-
-함수내에 다른 함수를 중첩해서 선언할 수 있습니다. 
-
-* 중첩 함수는 상위 함수의 변수에 접근 가능합니다.(*상위 함수는 중첩 함수의 변수에 접근할 수 없습니다.*)
-* 외부에서는 중첩 함수에 접근할 수 없습니다.
-
-```javascript
-function f(a, b) {
-    function nestFunc(param1, param2) {
-        return param1 + param2; // 상위 함수의 변수에 접근 가능합니다.
-    }
-
-    return nestFunc(1, 2);
-}
-console.log('중첩 함수', f(1, 2)); // 3
-```
-
 **함수 호이스팅**
 
 변수 호이스팅처럼 함수도 호이스팅됩니다.
@@ -364,6 +346,49 @@ console.log("함수 속성", add.data);
 |`__proto__`|모든 개체는 `[[Prototype]]`이라는 내부 개체가 있으며 기본적으로 `Object.prototype`과 동일합니다. `__proto__`는 이에 접근하기 위한 속성입니다. `[[Prototype]]` 개체는 상속을 구현하기 위해 사용되며, 다른 개체에 공유 속성을 제공합니다.|
 |`prototype`|함수 개체만 있는 속성입니다.(*일반 개체에는 없습니다.*) 개체를 생성하는 [생성자 함수](??)로 사용될때 함수가 생성한 개체의 `__proto__` 개체를 가리킵니다.|
 
+# 중첩 함수와 클로저
+
+함수내에 다른 함수를 중첩해서 선언할 수 있습니다. 
+
+* 중첩 함수는 상위 함수의 변수에 접근 가능합니다.(*상위 함수는 중첩 함수의 변수에 접근할 수 없습니다.*)
+* 외부에서는 중첩 함수에 접근할 수 없습니다.
+
+```javascript
+function f(a, b) {
+    function nestFunc(param1, param2) {
+        return param1 + param2; // 상위 함수의 변수에 접근 가능합니다.
+    }
+
+    return nestFunc(1, 2);
+}
+console.log('중첩 함수', f(1, 2)); // 3
+```
+
+클로저는 함수와 그 함수가 호출되었을때의 환경과의 조합입니다. 상기에서는 인수 `a`, `b`와 `nestFunc()`의 조합이라고 볼 수 있겠습니다. 
+
+클로저는 외부 함수가 제거되더라도 중첩 함수를 사용할 수 있다면 소멸되지 않고 사용할 수 있습니다. 즉, 다음처럼 함수의 지역 변수인 `count`를 캡슐화하여 사용할 수 있게 됩니다.
+
+1. 외부 함수인 #1을 선언하고 즉시 실행하여 중첩된 함수인 #3함수를 리턴합니다.
+2. `count`는 #1 함수의 지역변수 입니다.
+3. 중첩된 함수인 #3을 리턴합니다.
+4. #3에서 #2를 사용하므로 #1 함수가 소멸되더라도 #2는 소멸되지 않습니다.
+5. `count` 변수가 소멸되지 않고 사용됩니다.
+
+```javascript
+var counter = (function() { // #1. 함수를 즉시 실행합니다. 중첩된 함수인 #3함수를 리턴합니다.
+    var count = 0; // #2. 함수의 지역 변수입니다.
+    return function() { // #3. 중첩된 함수입니다.
+        return ++count; // #4. count 변수는 #2입니다. #3 함수가 참조하므로 #1함수가 소멸되더라도 #2는 소멸되지 않습니다.
+    };
+})();
+
+// #5. #1 함수는 소멸되었지만, #3 함수를 counter에 전달받아 사용합니다. 
+// 이에 따라 #2 변수는 소멸되지 않고 사용됩니다. 
+console.log('1회 : ', counter()); // 1
+console.log('2회 : ', counter()); // 2
+console.log('3회 : ', counter()); // 3
+```
+
 # 개체
 
 개체는 속성의 집합이며, 속성명(*키*)으로 속성값에 접근할 수 있습니다. 대입시 얕은 복사를 합니다.
@@ -396,27 +421,6 @@ user2.getName = function() {
     return this.name;
 }; 
 alert(user2.getName() == 'Lee');
-```
-
-**생성자 함수**
-
-동일한 구조의 개체를 여러개 생성하고자 할때 매번 리터럴 방식으로 생성하면, 속성값 선언이나 메서드 선언이 중복 될 수 있습니다. 이러한 경우에는 생성자 함수를 통해 개체를 생성하는게 좋습니다.
-
-```javascript
-// 생성자 함수
-function User(name, number) {
-    this.name = name;
-    this.number = number;
-    this.getName = function() {
-        return this.name;
-    };
-}
-
-var user1 = new User('Kim', '123-4567');
-var user2 = new User('Lee','111-2222');
-
-console.log('user1.getName()', user1.getName()); // Kim
-console.log('user2.getName()', user2.getName()); // Lee
 ```
 
 **속성명**
@@ -511,6 +515,49 @@ console.log("user2.detail.addr == 'Busan'", user2.detail.addr == 'Busan');
 ```
 
 또한 `Object.freeze()`로 개체를 수정할 수 없게끔 동결시킬 수 있습니다. 하지만, `Object.assign()`처럼 하위 개체에는 적용되지 않습니다.
+
+# 개체의 생성자 함수
+
+동일한 구조의 개체를 여러개 생성하고자 할때 매번 리터럴 방식으로 생성하면, 속성값 선언이나 메서드 선언 코드가 중복 될 수 있습니다. 이러한 경우에는 생성자 함수를 통해 개체를 생성할 수 있습니다.
+
+1. 일반 함수와 구분하기 위해 Pascal 표기법을 사용합니다.
+2. `this`는 생성되는 개체를 지칭합니다.
+3. `new`로 함수를 호출합니다.
+4. 암시적으로 `this`개체를 생성하여 리턴하는 함수라고 이해하셔도 됩니다.
+
+```javascript
+// 생성자 함수
+function User(name, number) { // #1. 일반 함수와 구분하기 위해 Pascal 표기법을 사용합니다.
+    // this = {}; #4. 암시적으로 this 개체를 생성합니다.
+    this.name = name; // #2. this는 생성될 개체입니다.
+    this.number = number;
+    this.getName = function() {
+        return this.name;
+    };
+    // return this; #4. 암시적으로 this개체를 리턴합니다.
+}
+
+var user1 = new User('Kim', '123-4567'); // #3. new로 함수를 호출합니다.
+var user2 = new User('Lee','111-2222');
+
+console.log('user1.getName()', user1.getName()); // Kim
+console.log('user2.getName()', user2.getName()); // Lee
+```
+
+하지만 생성자 함수는 코딩 편의성은 주지만, 상기는 사실 다음과 유사하게 함수를 메서드로 사용할 경우 함수 개체를 중복 생성합니다. 쓸데없이 메모리를 차지하게 되니 신중히 작성해야 합니다. 
+
+```javascript
+var user1 = {
+    name: 'Kim',
+    number: '123-4567',
+    getName: function() {return this.name;} // 함수 개체가 중복됩니다.
+};
+var user2 = {
+    name: 'Lee',
+    number: '111-2222',
+    getName: function() {return this.name;} // 함수 개체가 중복됩니다.
+};
+```
 
 # 배열
 
