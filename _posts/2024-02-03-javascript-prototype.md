@@ -15,7 +15,7 @@ sidebar:
 다음과 같이 `console.dir()`을 사용하면 브라우저 개발자 도구에서 개체의 프로토타입(*`[[Prototype]]`*)을 확인할 수 있습니다.
 
 ```javascript
-var user = {
+const user = {
     name: 'Lee'
 };
 console.dir(user);
@@ -26,11 +26,11 @@ console.dir(user);
 `[[Prototype]]`은 `__proto__` 속성으로 접근할 수 있으며, 초기에는 `Object.prototype`을 가리킵니다. 
 
 ```javascript
-var user = {
+const user = {
     name: 'Lee'
 };
 
-console.log('프로토타입', user.__proto__ === Object.prototype); // true
+console.log('프로토타입 user.__proto__ === Object.prototype', user.__proto__ === Object.prototype); // true
 ```
 
 # `[[Prototype]]`과 prototype과 constructor
@@ -43,36 +43,37 @@ function User(name) {
     this.name = name;
 }
 
-var user = new User('Lee'); // 생성자 함수로 생성한 개체
+const user = new User('Lee'); // 생성자 함수로 생성한 개체
 console.log('user.__proto__', user.__proto__ === User.prototype); // 자신을 생성한 생성자 함수의 prototype과 같습니다.
 console.log('User.[[Prototype]]', User.__proto__ === Function.prototype); // 일반 개체는 Object.prototype과 일치하지만, 함수는 Function.prototype과 동일합니다.
 console.log('User.prototype', User.prototype === user.__proto__); // User.prototype은 User 함수가 생성한 개체의 `__proto__` 개체를 가리킵니다.
 ```
 
-또한, 생성자 함수로 생성한 개체는 `constuctor` 속성을 가지며, 자신을 생성한 개체를 가리킵니다.
+또한, 프로토타입 개체는 `constuctor` 속성을 가지며, 자신을 생성한 개체를 가리킵니다.
 
 ```javascript
 function User(name) {
     this.name = name;
 }
 
-var user = new User('Lee'); // 생성자 함수로 생성한 개체
+const user = new User('Lee'); // 생성자 함수로 생성한 개체
 
-console.log(user.constructor === User); // 자신을 생성한 개체와 동일합니다.
-console.log(user.__proto__.constructor == User); // user.__proto__는 User 함수에서 생성했습니다.
-console.log(User.constructor == Function);
-console.log(User.__proto__.constructor == Function);
-console.log(User.prototype.constructor == User); // user.__proto__ === User.prototype입니다.
+console.log('프로토타입 개체의 constructor', user.__proto__.constructor == User); // user.__proto__는 User 함수에서 생성했습니다.
+console.log('프로토타입 개체의 constructor', User.__proto__.constructor == Function);
+console.log('프로토타입 개체의 constructor', User.prototype.constructor == User); // user.__proto__ === User.prototype입니다.
 ```
-상기 참조 관계를 그림으로 그리면 다음과 같습니다. 복잡한데요, 요약하자면 생성자 함수인 `User`의 `prototype`과 `User`로 부터 생성된 `user`의 `__proto__`는 동일한 개체이며, 이 개체의 `constructor`는 생성자 함수인 `User`입니다.
+
+상기 참조 관계를 그림으로 그리면 다음과 같습니다. 
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/db9e498f-9d54-4c09-9565-8f8e0c5263c5)
+
+생성자 함수인 `User`의 `prototype`과 `User`로 부터 생성된 `user`의 `__proto__`는 동일한 개체이며, 이 개체의 `constructor`는 생성자 함수인 `User`입니다.
 
 이러한 참조 관계를 이용하여 개체들이 참조하는 공통 구현을 `prototype`에 작성할 수 있습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cb7c3874-6381-4158-b308-9b99aa79c8b5)
-
 # 프로토타입 체인
 
-특정 개체의 속성에 접근하려 할때 해당 속성이 없으면, 자신의 부모 역할을 하는 객체인 `__proto__` 접근하여 검색하게 됩니다. 이를 프로토타입 체인이라 합니다.
+특정 개체의 속성에 접근하려 할때 해당 속성이 없으면, 자신의 부모 역할을 하는 객체인 `__proto__` 접근하여 검색하게 됩니다. 이를 프로토타입 체인이라 합니다.(*디자인 패턴의 [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/) 와 유사합니다.*)
 
 다음 예에서는 생성자 함수인 `User`의 `prototype`에 `addr`속성을 추가하였습니다.
 
@@ -84,12 +85,12 @@ function User(name) {
 }
 User.prototype.addr = 'Seoul';
 
-var user1 = new User('Kim');
-var user2 = new User('Lee');
+const user1 = new User('Kim');
+const user2 = new User('Lee');
 
-console.log(user1.__proto__ === user2.__proto__); // 같은 생성자 함수여서 __proto__가 동일합니다.
-console.log(user1.name === 'Kim' && user1.addr === 'Seoul'); // user1.__proto__.addr 속성입니다.
-console.log(user2.name === 'Lee' && user2.addr === 'Seoul'); // user2.__proto__.addr 속성입니다.
+console.log('user1과 user2는 프로토타입이 같습니다', user1.__proto__ === user2.__proto__); // 같은 생성자 함수여서 __proto__가 동일합니다.
+console.log('addr은 프로토타입의 속성입니다', user1.name === 'Kim' && user1.addr === 'Seoul'); // user1.__proto__.addr 속성입니다.
+console.log('addr은 프로토타입의 속성입니다', user2.name === 'Lee' && user2.addr === 'Seoul'); // user2.__proto__.addr 속성입니다.
 ```
 
 상기를 그림으로 보면 다음과 같습니다.
@@ -106,8 +107,8 @@ console.log(user2.name === 'Lee' && user2.addr === 'Seoul'); // user2.__proto__.
 // User.prototype.addr = 'Pusan'; 과 동일합니다.
 user1.__proto__.addr = 'Pusan'; 
 
-console.log(user1.name === 'Kim' && user1.addr === 'Pusan'); // user1, user2는 같은 __proto__를 공유하므로 값이 함께 수정됩니다.
-console.log(user2.name === 'Lee' && user2.addr === 'Pusan'); 
+console.log('user1.addr', user1.addr); // user1, user2는 같은 __proto__를 공유하므로 Pusan 입니다.
+console.log('user2.addr', user2.addr); 
 ```
 
 하지만, 만약 `user1.addr = 'Seoul'`와 같이 값을 설정한다면, `user1.__proto__.addr`을 수정하는게 아니라 `user1`개체에 `addr`속성을 추가합니다. 따라서 `user1.addr`은 자신의 속성값을 리턴하고, `user2.addr`은 프로토타입 체인을 통해 `__proto__`의 값을 리턴하기 때문에, 서로 다른 값을 갖게 됩니다.
@@ -116,8 +117,8 @@ console.log(user2.name === 'Lee' && user2.addr === 'Pusan');
 
 ```javascript
 user1.addr = 'Seoul'; // user1에 addr 속성을 추가합니다.
-console.log(user1.name === 'Kim' && user1.addr === 'Seoul'); // user1.addr 속성입니다.
-console.log(user2.name === 'Lee' && user2.addr === 'Pusan'); // user2.__proto__.addr 속성입니다.
+console.log('user1의 addr은 Seoul 입니다', user1.addr); //  Seoul
+console.log('프로토타입의 addr은 Pusan 입니다', user2.addr); // Pusan
 ```
 
 사용자 개체 외에 기본 타입의 프로토타입도 수정할 수 있습니다.
@@ -143,8 +144,8 @@ User.prototype = { // 프로토타입을 다른 개체로 변경할 수도 있�
     addr: 'Seoul'
 };
 
-var user1 = new User('Kim');
-var user2 = new User('Lee');
+const user1 = new User('Kim');
+const user2 = new User('Lee');
 
 console.log(user1.name === 'Kim' && user1.addr === 'Seoul'); // user1.__proto__.addr 속성입니다.
 console.log(user2.name === 'Lee' && user2.addr === 'Seoul'); // user2.__proto__.addr 속성입니다.
@@ -153,6 +154,119 @@ User.prototype.addr = 'Busan'; // prototype 값을 수정하면, 생성한 모�
 console.log(user1.name === 'Kim' && user1.addr === 'Busan');
 console.log(user2.name === 'Lee' && user2.addr === 'Busan'); 
 ```
+
+# 프로토타입을 이용한 메서드 구현
+
+[개체 생성자 함수의 메서드 중복 생성](??)에서 생성자 함수를 이용하면 메서드가 중복 생성된다고 언급했었는데요,
+
+```javascript
+function User(name) {
+    this.name = name; 
+    this.getName = function() { // 생성하는 개체마다 메서드 선언이 중복됩니다.
+        return this.name; 
+    };
+}
+
+const user1 = new User('Kim'); 
+const user2 = new User('Lee');
+```
+
+프로토타입을 이용하면, 메서드가 한개만 선언되어 효율적입니다.
+
+```javascript
+function User(name) {
+    this.name = name;
+}
+User.prototype.getName = function() { // 프로토타입 개체에 1개만 선언합니다.
+    return this.name;
+};
+
+const user1 = new User('Kim');
+const user2 = new User('Lee');
+
+console.log('프로토타입 메서드 호출', user1.getName()); // Kim
+console.log('프로토타입 메서드 호출', user2.getName()); // Lee
+```
+
+# 즉시 실행 함수를 이용한 개체 생성자 함수와 개체 메서드 코딩 패턴
+
+개체의 생성자 함수와 메서드 함수를 즉시 실행 함수를 이용하여 응집하면 코드의 가독성이 좋아집니다.
+
+```javascript
+const User = (function() { // 즉시 실행 함수입니다.
+    function User(name) { // #1
+        this.name = name;
+    }
+    User.prototype.getName = function() { 
+        return this.name;
+    }; 
+    
+    return User; // #1. 생성자 함수를 리턴합니다.
+}());
+
+const user1 = new User('Kim');
+const user2 = new User('Lee');
+
+console.log('즉시 실행 함수로 응집', user1.getName()); // Kim
+console.log('즉시 실행 함수로 응집', user2.getName()); // Lee 
+```
+
+# 개체의 정적 함수
+
+C++의 정적 멤버 함수는 생성자 함수의 속성 기능을 이용하여 구현 할 수 있습니다.
+
+```javascript
+const User = (function() { 
+    function User(name) { 
+        this.name = name;
+    }
+    User.prototype.getName = function() { 
+        return this.name;
+    }; 
+
+    User.staticFunc = function(msg) { // 생성자 함수의 속성 메서드 입니다.
+        console.log(msg);
+    };
+    
+    return User; 
+}());
+
+const user1 = new User('Kim');
+const user2 = new User('Lee');
+
+console.log('개체의 메서드', user1.getName()); // Kim
+console.log('개체의 메서드', user2.getName()); // Lee
+User.staticFunc('생성자 함수의 속성 메서드입니다. 정적 함수와 유사합니다.');
+```
+
+# 클로저를 이용한 캡슐화
+
+클로저를 이용하면, C++에서 클래스의 멤버 변수를 `private`로 은닉하듯이 감출 수 있습니다.
+
+다음 예에서 `count` 변수는 함수 내부에서만 사용할 수 있는 변수이지만, 중첩 함수를 통해 내부에서만 사용할 수 있습니다.
+
+```javascript
+function Counter() {
+    let count = 0; // 외부에서 접근 할 수 없는 변수입니다. 마치 private와 유사합니다.
+
+    this.inc = function () {
+        return ++count;
+    };
+    this.dec = function() {
+        return --count;
+    }
+}
+
+const counter = new Counter();
+
+console.log('counter', counter.inc()); // 1
+console.log('counter', counter.dec()); // 0
+```
+
+# 프로토타입을 이용한 상속
+
+# 클래스를 이용한 상속
+
 
 # 함수 호출 방식에 따른 this 변경
 
@@ -238,26 +352,3 @@ console.log(myUser4.getName() === 'Kim'); // this는 myUser4입니다.
 console.log(myUser5.getName() === 'Lee'); // this는 myUser5입니다.
 ```
 
-# 클로저를 이용한 캡슐화
-
-클로저를 이용하면, 클래스의 멤버 변수를 `private`로 은닉하듯이 감출 수 있습니다.
-
-다음 예에서 `count` 변수는 함수 내부에서만 사용할 수 있는 변수이지만, 중첩 함수를 통해 내부에서만 사용할 수 있습니다.
-
-```javascript
-function Counter() {
-    var count = 0; // 외부에서 접근 할 수 없는 변수입니다. 마치 private와 유사합니다.
-
-    this.inc = function () {
-        return ++count;
-    };
-    this.dec = function() {
-        return --count;
-    }
-}
-
-var counter = new Counter();
-
-console.log('counter', counter.inc()); // 1
-console.log('counter', counter.dec()); // 0
-```
