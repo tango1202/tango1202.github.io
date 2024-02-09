@@ -97,7 +97,7 @@ console.log('user2.addr은 Pusan 입니다', user2.addr === 'Pusan');
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4cb08418-b216-4b78-9417-85e3aa56af3f)
 
-하지만, 만약 `user2.addr = 'Seoul'`와 같이 값을 설정한다면, `user2.__proto__.addr`을 수정하는게 아니라 `user2`개체에 `addr`속성을 추가합니다.(*[개체 속성 추가/삭제](??) 참고*) 따라서 `user2.addr`은 자신의 속성값을 리턴하고, `user1.addr`은 프로토타입 체인을 통해 프로토타입 개체의 값을 리턴하기 때문에, 서로 다른 값을 출력하게 됩니다.
+하지만, 만약 `user2.addr = 'Seoul'`와 같이 값을 설정한다면, `user2.__proto__.addr`을 수정하는게 아니라 `user2`개체에 `addr`속성을 추가합니다.(*[개체 속성 추가/삭제](https://tango1202.github.io/javascript/javascript-basic/#%EA%B0%9C%EC%B2%B4-%EC%86%8D%EC%84%B1-%EC%B6%94%EA%B0%80%EC%82%AD%EC%A0%9C) 참고*) 따라서 `user2.addr`은 자신의 속성값을 리턴하고, `user1.addr`은 프로토타입 체인을 통해 프로토타입 개체의 값을 리턴하기 때문에, 서로 다른 값을 출력하게 됩니다.
 
 ```javascript
 user2.addr = 'Seoul'; // user2에 addr 속성을 추가합니다.
@@ -144,7 +144,7 @@ console.log(user2.name === 'Lee' && user2.addr === 'Busan');
 
 # 프로토타입을 이용한 메서드 구현
 
-[개체의 생성자 함수](??)에서 생성자 함수를 이용하면 메서드가 중복 생성된다고 언급했었는데요,
+[개체의 생성자 함수](https://tango1202.github.io/javascript/javascript-basic/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)에서 생성자 함수를 이용하면 메서드가 중복 생성된다고 언급했었는데요,
 
 ```javascript
 function User(name) {

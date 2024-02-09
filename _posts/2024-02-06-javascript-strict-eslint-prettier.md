@@ -10,9 +10,9 @@ sidebar:
 
 # strict mode
 
-[변수](??)에서 언급했듯, 자바스크립트는 동적 타입 언어이다 보니 변수 선언이나 사용에 있어서 자유도는 높지만, 코딩 계약이 엉망진창이 되버려 오류를 찾아내기 힘들어 집니다.
+[변수](https://tango1202.github.io/javascript/javascript-basic/#%EB%B3%80%EC%88%98)에서 언급했듯, 자바스크립트는 동적 타입 언어이다 보니 변수 선언이나 사용에 있어서 자유도는 높지만, 코딩 계약이 엉망진창이 되버려 오류를 찾아내기 힘들어 집니다.
 
-이러한 문제를 해결하기위해 ECMAScript5 부터 [strict mode](??)를 제공하며, 좀더 엄격하게 코드를 점검합니다.
+이러한 문제를 해결하기위해 ECMAScript5 부터 [strict mode](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#strict-mode)를 제공하며, 좀더 엄격하게 코드를 점검합니다.
 
 ```javascript
 'use strict';
@@ -31,12 +31,12 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 
 # ESLint
 
-[ESLint](??)는 소스 코드 품질 개선 요소와 코드 스타일 개선 요소를 제안하는 정적 분석 도구입니다. [strict mode](??)보다 더 많은 부분을 제안하기 때문에 필수적으로 사용하시는게 좋습니다.
+[ESLint](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#eslint)는 소스 코드 품질 개선 요소와 코드 스타일 개선 요소를 제안하는 정적 분석 도구입니다. [strict mode](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#strict-mode)보다 더 많은 부분을 제안하기 때문에 필수적으로 사용하시는게 좋습니다.
 
-1. [개발 환경 구축](??)을 참고하여 다음을 설치합니다.
+1. [개발 환경 구축](https://tango1202.github.io/javascript/javascript-config/)을 참고하여 다음을 설치합니다.
     * [Node.js(https://nodejs.org/)](https://nodejs.org/)
     * [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
-    * [Visual Studio Code 익스텐션](??)(*Code Runner, Live Server*)
+    * [Visual Studio Code 익스텐션](https://tango1202.github.io/javascript/javascript-config/#visual-studio-code-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98)(*Code Runner, Live Server*)
 
 3. 터미널에서 다음 명령을 입력하여 `ESlint`를 설치합니다. 
 
@@ -138,17 +138,17 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 
 # Prettier
 
-[Prettier](??)는 코드 레이아웃을 일관되게 작성할 수 있도록 도와주는 도구입니다. [ESLint](??)와 함께 사용하며, 파일 저장시에 자동 포맷팅을 지원합니다.
+[Prettier](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#prettier)는 코드 레이아웃을 일관되게 작성할 수 있도록 도와주는 도구입니다. [ESLint](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#eslint)와 함께 사용하며, 파일 저장시에 자동 포맷팅을 지원합니다.
 
-다만, [ESLint](??)의 스타일 설정과 [Prettier](??)의 설정이 충돌이 날 수 있기 때문에, `eslint-config-prettier`를 함께 설치하고, `Visual Studio Code`에서 복잡한 환경 설정을 해주어야 합니다.
+다만, [ESLint](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#eslint)의 스타일 설정과 [Prettier](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#prettier)의 설정이 충돌이 날 수 있기 때문에, `eslint-config-prettier`를 함께 설치하고, `Visual Studio Code`에서 복잡한 환경 설정을 해주어야 합니다.
 
-1. [개발 환경 구축](??)을 참고하여 다음을 설치합니다.
+1. [개발 환경 구축](https://tango1202.github.io/javascript/javascript-config/)을 참고하여 다음을 설치합니다.
 
     * [Node.js(https://nodejs.org/)](https://nodejs.org/)
     * [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
-    * [Visual Studio Code 익스텐션](??)(*Code Runner, Live Server*)
+    * [Visual Studio Code 익스텐션](https://tango1202.github.io/javascript/javascript-config/#visual-studio-code-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98)(*Code Runner, Live Server*)
 
-2. [ESLint](??)를 참고하여 설치합니다.
+2. [ESLint](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#eslint)를 참고하여 설치합니다.
 
 3. 터미널에서 다음 명령을 입력하여 `prettier`와 `eslint-config-prettier`를 설치합니다. 
 
