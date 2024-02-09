@@ -169,7 +169,7 @@ const Derived = (function() {
 }());
 
 const base = new Base('base');
-base.baseMethod(); // baseMethod 입니다
+base.baseMethod(); // baseMethod 입니다 base
 
 const derived = new Derived('base from derived', 'derived'); 
 
@@ -228,7 +228,7 @@ class Derived extends Base { // #3. 상속입니다. 아마도 내부적으로 s
 };
 
 const base = new Base('base');
-base.baseMethod(); // baseMethod 입니다
+base.baseMethod(); // baseMethod 입니다 base
 
 const derived = new Derived('base from derived', 'derived'); 
 
