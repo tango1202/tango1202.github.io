@@ -20,9 +20,20 @@ sidebar:
 
 **콘솔**
 
-간단한 자바스크립트의 결과를 확인할 수 있습니다. `console.log()` 로 출력한 정보가 표시될 뿐만 아니라, 다음처럼 `1 + 2`를 입력하여 간단한 명령문을 실행하고 결과를 확인할 수 있습니다. 여러줄 입력을 원할땐 `Shift + Enter`키를 입력하면 됩니다.
+간단한 자바스크립트의 결과를 확인할 수 있습니다. `console` 로 출력한 정보가 표시될 뿐만 아니라, 다음처럼 `1 + 2`를 입력하여 간단한 명령문을 실행하고 결과를 확인할 수 있습니다. 여러줄 입력을 원할땐 `Shift + Enter`키를 입력하면 됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/721ea82c-a871-4e3c-abe4-783df53d4eca)
+
+`console`의 주요 함수는 다음과 같습니다.
+
+|항목|내용|
+|--|--|
+|`console.assert(표현식, obj1, obj2...)`|표현식이 `false`인 경우 전달된 `obj`들을 출력합니다. `true`인 경우 아무것도 하지 않습니다.|
+|`console.dir(obj)`|`obj`를 상호 작용이 가능한 트리 형태로 출력합니다.|
+|`console.log(obj1, obj2...)`|`obj`들을 출력합니다.|
+|`console.warn(obj1, obj2...)`|경고 중요도로 `obj`들을 출력합니다.|
+|`console.error(obj1, obj2...)`|에러 중요도로 `obj`들을 출력합니다.|
+|`console.trace()`|스택 추적을 출력합니다.|
 
 **소스**
 

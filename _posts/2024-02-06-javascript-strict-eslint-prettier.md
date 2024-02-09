@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [Javascript] strict mode, ESLint, Prettier"
+title: "#6. [Javascript] strict mode, ESLint, Prettier"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false
@@ -10,7 +10,7 @@ sidebar:
 
 # strict mode
 
-[변수](??)에서 언급했듯, 자바스크립트는 동적 타입 언어이다 보니 변수 선언이나 사용에 있어서 자유도가 높지만 코딩 계약이 엉망진창이 되버려 오류를 찾아내기 힘들어 집니다.
+[변수](??)에서 언급했듯, 자바스크립트는 동적 타입 언어이다 보니 변수 선언이나 사용에 있어서 자유도는 높지만, 코딩 계약이 엉망진창이 되버려 오류를 찾아내기 힘들어 집니다.
 
 이러한 문제를 해결하기위해 ECMAScript5 부터 [strict mode](??)를 제공하며, 좀더 엄격하게 코드를 점검합니다.
 
@@ -179,13 +179,13 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 
 6. `Visual Studio Code` 에서 `Activity Bar`의 `Extensions`을 클릭하여 `Prettier - Code formatter`를 설치합니다.
 
-7. 프로젝트 루트 폴더에 `.vscode`폴더를 만든뒤 `settings.json`파일을 만들고,(*Live Server나 기타 다른 세팅에 따라 이미 있을 수 있습니다.*) 다음 내용을 작성하여 파일 저장시 `prettier` 규칙으로 변경되게 합니다. (*`File/Preferences/Settings`에서 수정하면 모든 프로젝트에 반영될 수 있으니 현재 프로젝트에만 반영될 수 있도록 `.vscode`에 작성하시는걸 추천합니다.*)
+7. 프로젝트 루트 폴더에 `.vscode`폴더를 만든뒤 `settings.json`파일을 만들고,(*Live Server나 기타 다른 세팅에 따라 이미 있을 수 있습니다.*) 다음 내용을 작성하여 파일 저장시 `prettier` 규칙으로 변경되게 합니다. (*`File/Preferences/Settings`에서 수정하면 모든 프로젝트에 반영될 수 있으니 현재 프로젝트에만 반영될 수 있도록 `.vscode`폴더에 작성하시는걸 추천합니다.*)
 
     ```javascript
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
     "editor.defaultFormatter": "esbenp.prettier-vscode"    
     ```
-    
+
 8. 이제 `javascript`코드를 작성하고 저장하면 자동으로 `prettier` 규칙이 적용됩니다.
 
