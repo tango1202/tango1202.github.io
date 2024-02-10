@@ -65,9 +65,9 @@ console.log('변수 유효 범위', myFunc() == 20); // true
 console.log('변수 유효 범위', val); // 1
 ```
 
-# let과 const
+# let과 const(ECMSScript6)
 
-`var`의 유연함과 유효 범위 문제는 대규모 프로젝트를 진행할 때 찾기 힘든 오류를 유발합니다. 이를 해결하고자 ECMAScript6 부터 `let`과 `const`를 지원합니다. 이제 `var`대신 `let`과 `const`를 쓰세요.
+`var`의 유연함과 유효 범위 문제는 대규모 프로젝트를 진행할 때 찾기 힘든 오류를 유발하는데요, `let`과 `const`는 이러한 오류가 발생하지 않도록 기존 `var`를 보강합니다. 이제 `var`대신 `let`과 `const`를 쓰세요.
 
 **let**
 
@@ -124,7 +124,7 @@ console.log('변수 유효 범위', val); // 1
 
 2. `true`와 `false`로 참, 거짓을 표현합니다.
 
-3. 큰따옴표, 작은 따옴표, 백틱으로 문자열을 표현합니다. 특히 백틱을 사용하면, 문자열내에 변수를 사용할 수있습니다.
+3. 큰따옴표, 작은 따옴표, 백틱(*ECMAScript6*)으로 문자열을 표현합니다. 특히 백틱을 사용하면, 문자열내에 변수를 사용할 수있습니다.
 
     문자열은 [UTF-16](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)을 사용하며, 일반적으로 작은 따옴표를 사용합니다.
 
@@ -379,7 +379,7 @@ console.log("함수 속성", add.data);
 
 |항목|내용|
 |--|--|
-|`arguments`|전달된 인수를 나열할 수 있는 [유사 배열](https://tango1202.github.io/javascript/javascript-basic/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)입니다. 함수 외부에서는 사용할 수 없습니다. 가변 인자인 경우에 활용할 수 있습니다.|
+|`arguments`|전달된 인수를 나열할 수 있는 [유사 배열](https://tango1202.github.io/javascript/javascript-basic/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)입니다. 함수 외부에서는 사용할 수 없습니다. 가변 인자인 경우에 활용할 수 있습니다. ECMAScript6부터는 [나머지 인자](??)를 사용합니다.|
 |`caller`|자신을 호출한 함수를 가리킵니다. 브라우저에서 실행하면 `null`을 리턴합니다.|
 |`length`|선언시 사용한 인자의 갯수입니다. (*arguments.length는 함수 호출시 전달한 인수의 갯수입니다.*)|
 |`name`|함수의 이름입니다.|
@@ -432,6 +432,74 @@ const counter = (function() { // #1. 함수를 즉시 실행합니다. 중첩된
 console.log('클로저와 정보 은닉 : ', counter()); // 1
 console.log('클로저와 정보 은닉 : ', counter()); // 2
 console.log('클로저와 정보 은닉 : ', counter()); // 3
+```
+
+# 화살표 함수(ECMAScript6)
+
+화살표 함수는 함수 선언을 간략하게 표현합니다.
+
+```javascript
+const add = function (a, b) {
+    return a + b;
+};
+console.log('일반 함수', add(1, 2)); // 3
+```
+
+를
+
+```javascript
+const add = (a, b) => {
+    return a + b;
+}
+console.log('화살표 함수', add(1, 2)); // 3
+```
+
+와 같이 간소하게 표현할 수 있습니다.
+
+1줄짜리라면 `return`과 중괄호로 더 간략하게 표현할 수 있습니다.
+
+```javascript
+const add = (a, b) => a + b;
+console.log('화살표 함수', add(1, 2)); // 3
+```
+
+화살표 함수의 `this`는 일반 함수의 `this`와 다릅니다. 자세한 내용은 [함수 호출 방식에 따른 this 변경](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)을 참고하시기 바랍니다.
+
+# 기본값 인자(ECMAScript6)
+
+함수 인자에 기본값을 주면, 인수가 전달되지 않았을때 사용합니다.
+
+```javascript
+function add(a = 1, b = 2) {
+    return a + b;
+}
+console.log('인수를 전달하면, 전달한 값을 사용합니다', add(10, 20) === 30);
+console.log('인수가 없으면, 기본값을 사용합니다', add() === 3);
+```
+
+# 나머지 인자(ECMAScript6)
+
+함수 인자에 `...`을 붙여 선언하면, 전달된 인수들을 배열로 전달받습니다. 비슷한 용도로 제공되는 `arguments`는 [유사 배열](https://tango1202.github.io/javascript/javascript-basic/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)이며, 화살표 함수에서는 사용할 수 없다고 하네요. 또한 ECMAScript3부터 deprecate되었다고 합니다. 이제 나머지 인자를 사용하세요.
+
+```javascript
+function f(...params) {
+    console.log('...params는 배열입니다', Array.isArray(params));
+    params.forEach((param) => console.log('param은 배열 요소입니다', param));
+}
+f(1, 2, 3);
+```
+
+일반적인 인자와 나머지 인자를 섞어 쓰면, 일반적인 인자에 인수를 할당한뒤 남은 것만 나머지 인자에 할당합니다.
+
+다음은 전달된 인수들의 합을 구하는 예입니다. 첫번째 인수를 뺀 나머지들을 다시 재귀적으로 호출하여 값을 누적합니다. 나머지 인자의 갯수가 1이면, 재귀 호출을 하지 않고 그냥 더합니다. `sum()`함수를 재귀 호출할때 `sum(...rest)`와 같이 호출했는데요, 이는 [Spread](??)로서 배열을 다시 분리하는 역할을 합니다. 즉, `sum(rest[0], rest[1], ... , rest[N - 1])`처럼 호출합니다. 
+
+
+```javascript
+function sum(first, ...rest) {
+    return first + ((rest.length === 1) ? rest[0] : sum(...rest)); // ...rest는 배열을 다시 분리하여 나열합니다. spread 참고
+}
+
+console.log('나머지 인자를 재귀적으로 호출합니다', sum(1, 2, 3) === 1 + 2 + 3);
 ```
 
 # 개체
@@ -624,6 +692,55 @@ const user = User('Kim');
 console.log('리턴값이 없으므로 user는 undefined 입니다', user === undefined); // #1
 console.log('this는 전역 개체이므로 전역 개체에 name을 저장합니다.', name === 'Kim'); // #2
 ```
+# 속성 축약 표현(ECMAScript6)
+
+개체에 사용하는 변수가 속성명과 같은 경우 축약형태로 표현할 수 있습니다.
+
+즉,
+```javascript
+const x = 10;
+const y = 20;
+const obj = {
+    x: x, 
+    y: y
+};
+```
+을 다음과 같이 축약하여 변수만 나열하면 됩니다.
+
+```javascript
+const x = 10;
+const y = 20;
+const obj = {
+    x, // x: x 와 동일합니다.
+    y // y: y 와 동일합니다.
+};
+console.log('속성 축약 표현', obj.x === 10 && obj.y === 20);
+```
+# 속성명 동적 생성(ECMAScript6)
+
+속성명(키)을 동적으로 생성할 수 있습니다.
+
+```javascript
+const index = 10;
+const obj = {
+    [`myData-${index + 1}`]: 1 // 속성명을 myData-11로 만듭니다.
+};
+console.log('속성명 동적 생성', obj['myData-11'] === 1);
+```
+
+# 메서드 축약 표현(ECMAScript6)
+
+개체의 메서드 선언시 `function`을 생략할 수 있습니다. 
+```javascript
+const obj1 = {
+    myMethod: function() {
+    },
+};
+const obj2 = {
+    myMethod() { // 축약해서 표현합니다.
+    },
+};
+```
 
 # 배열
 
@@ -651,6 +768,42 @@ for (let i = 0; i < str.length; ++i) {
 }
 ```
 
+# 이터러블(ECMAScript6)
+(작성중)
+
+# Spread(ECMAScript6) 
+
+배열등 [이터러블](??) 개체에 `...`을 붙이면, 대상을 개별 요소로 분리합니다.
+
+```javascript
+function f(a, b, c) {
+    return a + b + c;
+}
+
+console.log('배열 [1, 2, 3]을 나열해서 전달합니다', f(...[1, 2, 3]) === 1 + 2 + 3); 
+```
+
+Spread를 이용하면 배열 처리를 좀더 단순하게 할 수 있습니다. 
+
+```javascript
+const arr = [1, 2, 3];
+
+console.log('Spread를 이용한 배열 복제(splice)', [...arr]); // [1, 2, 3]
+arr.push(...[4, 5]);
+console.log('기존 배열과 다른 배열 합성(concat)', arr); // [1, 2, 3, 4, 5]
+console.log('기존 배열에 새로운 값들을 추가한 배열', [...arr, 6, 7]); // [1, 2, 3, 4, 5, 6, 7]
+console.log('기존 배열에 새로운 배열을 추가한 배열', [...arr, [6, 7]]); // [1, 2, 3, 4, 5, [6, 7]]
+```
+
+배열뿐만 아니라 개체도 분해해서 나열할 수 있습니다.
+
+```javascript
+console.log('개체를 복제합니다', {...{ x: 1, y: 2 } }); // { x: 1, y: 2 } 
+console.log('개체를 합성하여 새 개체를 생성합니다', { x: 1, y: 2, ...{ a: 3, b: 4 } }); // {x: 1, y: 2, a: 3, b: 4 }
+console.log('두 개체를 합성하여 새로운 개체를 생성합니다. 중복된 속성값은 덮어씁니다', { ...{ x: 1, y: 2 }, ...{ y: 100, z: 3 } }); // { x: 1, y: 100, z: 3 }
+console.log('속성을 추가한 새 개체를 생성합니다', { ...{ x: 1, y: 2 }, z: 3 }); // { x: 1, y: 2, z: 3 }
+```
+
 # symbol(작성중)
 
 ES6 에 추가된 값
@@ -659,3 +812,137 @@ ES6 에 추가된 값
 
 var key = Symbol('key');
 console.log(typeof key); // symbol
+
+# 구조 분해(ECMAScript6)
+
+배열과 개체의 각 요소를 `[]`과 `{}`로 분해하여 처리할 수 있습니다. 특히 필요한 부분만 추출할 수 있습니다.
+
+```javascript
+const arr = [1, 2, 3];
+const [a, b, c] = arr;
+console.log('배열 구조 분해', a === 1 && b === 2 && c === 3);
+const obj = {
+    x: 1,
+    y: 2,
+    z: 3
+};
+
+const {x, y} = obj; // obj에서 x, y만 추출합니다.
+console.log('개체 구조 분해', obj.x === 1 && obj.y === 2);
+```
+
+# 모듈(ECMAScript6)
+
+프로젝트의 규모가 커지면, 코드를 여러개로 구분해야 합니다. 
+
+자바스크립트에서 각 파일을 동일한 목적을 가진 개체들과 함수들을 묶어 라이브러리로 만들 수 있으며 이를 모듈이라 합니다.
+
+* `export` : 모듈에서 개체나 함수를 내보냅니다.
+
+    ```javascript
+    export const plus = function (a, b) {
+        return a + b;
+    };
+    export const minus = function (a, b) {
+        return a - b;
+    };
+    ```
+
+    혹은 하나의 개체로 구성해서 한번에 내보낼 수 있습니다.
+
+    ```javascript
+    const plus = function (a, b) {
+        return a + b;
+    };
+    const minus = function (a, b) {
+        return a - b;
+    };
+    
+    export { plus, minus };
+    ```
+
+    1개만 `export`할 경우에는 `default`를 사용할 수 있습니다.
+
+    ```javascript
+    const plus = function (a, b) {
+        return a + b;
+    };
+    const minus = function (a, b) {
+        return a - b;
+    };
+
+    export default plus;
+    ```
+
+* `import` : 모듈의 개체나 함수를 가져옵니다.
+
+    ```javascript
+    import { plus, minus } from 'myModule.js'; 
+    import { plus } from 'myModule.js'; // 필요한 것만 가져옵니다.
+    import {plus as PLUS, minus as MINUS } from 'myModule.js'; // 이름을 바꿔서 가져옵니다. 
+    ```
+
+    `* as 라이브러리명`으로 해당 모듈의 모든 개체를 주어진 라이브러리명으로 가져올 수 있습니다. 
+
+    ```javascript
+    import * as M from "./myModule.js"; // M이란 라이브러리명으로 모두 가져옵니다.
+    M.plus(1, 2); // 모듈 실행시 라이브러리명을 붙입니다.
+    M.minus(1, 2);
+    ``` 
+
+    `default`로 `export`된 모듈은 `{}`없이 가져와야 합니다.
+
+    ```javascript
+    import plus from 'myModule.js';
+    ```
+
+* 모듈은 [strict mode](??)로 실행됩니다.
+* 모듈은 자신만의 유효 범위를 사용합니다. `export`되지 않은 것은 외부에서 사용할 수 없습니다.
+* 여러곳에서 모듈을 사용하더라도 최초 호출시 단 한번만 실행됩니다. 따라서 모듈을 사용하는 곳이 여러곳일때 한곳에서 수정하면, 다른 곳에서 수정된 내용을 참조할 수 있습니다.
+
+다음은 모듈을 테스트하는 코드입니다.
+모듈을 테스트하는 코드는 `<script>`에 `type=module` 속성을 주어야 합니다.
+
+```javascript
+<!DOCTYPE html>
+<html>
+    <body>
+        <script type="module" src="/module-test.js"></script>
+    </body>
+</html>
+```
+
+다음은 모듈을 구현한 `myModule.js`입니다. `privateFunc`은 내보내지 않았습니다.
+
+```javascript
+const privateFunc = function() {
+    console.log('모듈에서 사용하는 privateFunc입니다');
+};
+
+const publicFunc = function() {
+    privateFunc(); // 모듈에서만 사용하는 privateFunc을 호출합니다.
+}
+
+const plus = function (a, b) {
+    return a + b;
+};
+const minus = function (a, b) {
+    return a - b;
+};
+
+export { publicFunc, plus, minus }; // privateFunc은 내보내지 않았습니다.
+```
+
+다음은 모듈을 테스트하는 `module-test.js`입니다. `export`된 모든 개체를 `M`라이브러리 명으로 가져와 사용합니다.
+
+```javascript
+import * as M from "./myModule.js";
+// ----
+// 모듈
+// ----
+(function() {
+    M.publicFunc();
+    console.log('myModule.js의 plus 함수 입니다', M.plus(1, 2) === 3);
+    console.log('myModule.js의 minus 함수 입니다', M.minus(1, 2) === -1);
+}());
+```

@@ -116,6 +116,10 @@ String.prototype.add = function(a, b) {
 console.log('기본타입인 String에 add 함수를 추가했습니다. String.add(1, 2)', 'test'.add(1, 2)); // 3
 ```
 
+프로토타입은 여러 개체가 공통된 메서드를 사용할때 메서드의 중복 선언을 최소화 할 수 있어 좋긴 합니다만(*[생성자 함수](https://tango1202.github.io/javascript/javascript-basic/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98) 참고*), 메서드 호출 과정에 있어 해당 메서드가 있는지 개체에서 싹 뒤진뒤, 없다면 호출하는 것이기 때문에 메서드 호출 부하가 있습니다. 
+
+따라서 어지간하면, `obj.func()`형태의 메서드 호출보다는 `func(obj)`형태의 함수 호출 구문을 사용하시는게 좋습니다.
+
 # 프로토타입 변경
 
 프로토타입을 다른 개체로 변경할 수도 있습니다. 이때 `constructor`가 덮어써지므로, 생성자 함수로 설정해 줘야 합니다.
@@ -184,8 +188,12 @@ console.log('프로토타입 메서드 호출', user2.getName()); // Lee
 3. 개체 메서드 : `this`는 호출한 개체입니다.
 4. 생성자 함수 : `this`는 리턴하는 개체입니다.
 5. 중첩 함수 : `this`는 전역 개체입니다.
-6. `prototype` : `this`는 호출한 개체입니다.
+6. 화살표 함수 : 화살표 함수는 `this`가 없습니다. 상위 개체에 `this`가 있다면 이를 따릅니다. 
 
+    * 메서드를 화살표 함수로 사용하면 `this`는 상위 환경인 전역 개체입니다. 따라서 메서드는 화살표 함수로 선언하지 마세요.
+    * 메서드 내의 중첩 함수로 화살표 함수를 사용하면, `this`는 상위 환경인 메서드의 `this`입니다. 즉, 호출한 개체입니다.
+
+7. `prototype` : `this`는 호출한 개체입니다.
 
 ```javascript
 var name = 'Global'; // 전역 변수
@@ -194,16 +202,16 @@ var name = 'Global'; // 전역 변수
 function getName() {
     return this.name; // this는 전역 개체입니다. 
 }
-console.log(getName() === 'Global');  
+console.log('일반 함수에서 this는 전역 개체입니다', getName() === 'Global');  
 
 // #2. this를 다른 개체에 연결
 const obj = {
     name: 'Kim'
 };
-console.log(getName.call(obj) === 'Kim'); // getName 함수의 this를 obj에 바인딩합니다. 
-console.log(getName.apply(obj) === 'Kim'); // call()과 유사하며, 추가 인수가 배열로 전달됩니다.
+console.log('this를 다른 개체에 바인딩하여 사용할 수 있습니다', getName.call(obj) === 'Kim'); // getName 함수의 this를 obj에 바인딩합니다. 
+console.log('this를 다른 개체에 바인딩하여 사용할 수 있습니다', getName.apply(obj) === 'Kim'); // call()과 유사하며, 추가 인수로 배열을 사용합니다.
 const bindFunc = getName.bind(obj);
-console.log(bindFunc() === 'Kim');
+console.log('this를 다른 개체에 바인딩하여 사용할 수 있습니다', bindFunc() === 'Kim');
 
 // #3. 개체 메서드에서의 this
 const user1 = {
@@ -212,7 +220,7 @@ const user1 = {
         return this.name; // this는 user1입니다.
     }
 };
-console.log(user1.getName() === 'Lee'); 
+console.log('개체 메서드에서 this는 user1입니다', user1.getName() === 'Lee'); 
 
 // #4. 생성자 함수의 this
 function User(name) {
@@ -222,7 +230,7 @@ function User(name) {
     };
 }
 const user2 = new User('Kim');
-console.log(user2.getName() === 'Kim'); 
+console.log('생성자 함수의 this는 리턴하는 개체입니다', user2.getName() === 'Kim'); 
 
 // #5. 중첩 함수에서의 this
 const user3 = {
@@ -242,21 +250,44 @@ const user3 = {
     }
 };
 
-console.log(user3.getNestName() === 'Global'); 
-console.log(user3.getName() === 'Park'); 
+console.log('중첩 함수에서 this는 전역 개체입니다', user3.getNestName() === 'Global'); 
+console.log('that을 사용할 수 있습니다', user3.getName() === 'Park'); 
 
-// #6. prototype에서의 this
+// #6 화살표 함수의 this
+const user4 = {
+    name: 'Park',
+    getArrowName: () => { // 메서드를 화살표 함수로 선언했습니다.
+        return this.name; // this는 전역 개체입니다. 
+    },        
+    getNestName: function() {
+        function f() {
+            return this.name; // this는 전역 개체입니다. 
+        }
+        return f();
+    },
+    getArrowNestName: function() {
+        const arrow = () => {
+            return this.name; // 화살표 함수에서는 this가 없어 상위 환경에서 찾습니다.
+        }
+        return arrow();
+    },
+}
+console.log('메서드를 화살표 함수로 선언했습니다. this는 상위 환경인 전역 개체입니다', user4.getArrowName() === 'Global');
+console.log('중첩 함수에서의 this는 전역 개체입니다', user4.getNestName() === 'Global'); 
+console.log('화살표 함수에서의 this는 상위 환경에서 찾습니다', user4.getArrowNestName() === 'Park');
+
+// #7. prototype에서의 this
 function PrototypeUser(name) {
     this.name = name;
 }
 PrototypeUser.prototype.getName = function() {
     return this.name; // 해당 메서드를 호출한 개체입니다.
 }
-var user4 = new PrototypeUser('Kim');
-var user5 = new PrototypeUser('Lee');
+var user5 = new PrototypeUser('Kim');
+var user6 = new PrototypeUser('Lee');
 
-console.log(user4.getName() === 'Kim'); // this는 user4입니다.
-console.log(user5.getName() === 'Lee'); // this는 user5입니다.
+console.log('프로토타입 메서드에서 this는 user5입니다', user5.getName() === 'Kim'); // this는 user5입니다.
+console.log('프로토타입 메서드에서 this는 user6입니다', user6.getName() === 'Lee'); // this는 user6입니다.
 ```
 
 

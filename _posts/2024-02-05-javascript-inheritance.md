@@ -199,7 +199,7 @@ const overridingDerived = new OverridingDerived('base from derived', 'derived');
 overridingDerived.baseMethod(); // Overriding 입니다 base from derived
 ```
 
-# 클래스를 이용한 상속
+# 클래스를 이용한 상속(ECMAScript6)
 
 ECMAScript6 부터는 `class`문법이 도입되어 [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)보다 간결하게 코드를 작성할 수 있습니다. 실제로 C++같은 클래스를 제공하는 것은 아니며, [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)의 좀더 쉬운 코딩법을 제공할 뿐입니다. 
 
@@ -207,9 +207,10 @@ ECMAScript6 부터는 `class`문법이 도입되어 [프로토타입을 이용�
 2. 메서드는 알아서 프로토타입에 선언됩니다.
 3. `extends`는 상속을 표현합니다. 아마도 내부적으로 `setPrototypeOf()`를 호출할 겁니다.
 4. `super()`는 상위 생성자 함수를 호출합니다. 아마도, `Base.call()`을 호출할 겁니다.
+5. 생성자 함수처럼 `new`로 생성합니다.
 
 ```javascript
-class Base {
+class Base { // 클래스는 관습적으로 Pascal 표기를 사용합니다.
     constructor(baseProperty) { // #1. 생성자 함수
         this.baseProperty = baseProperty;
     } 
@@ -227,7 +228,7 @@ class Derived extends Base { // #3. 상속입니다. 아마도 내부적으로 s
     }
 };
 
-const base = new Base('base');
+const base = new Base('base'); // #5. 생성자 함수처럼 new 로 생성합니다.
 base.baseMethod(); // baseMethod 입니다 base
 
 const derived = new Derived('base from derived', 'derived'); 
@@ -238,5 +239,45 @@ console.log('derived는 Base로부터 생성되었습니다', derived instanceof
 
 derived.baseMethod(); // baseMethod 입니다 base from derived
 derived.derivedMethod(); // derivedMethod 입니다 derived
+```
+
+# 클래스 getter/setter/static(ECMAScript6)
+
+`get`과 `set`을 이용하여 속성처럼 사용할 수 있는 getter와 setter를 만들 수 있습니다.
+
+또한 `static`을 사용하면 [정적 함수](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A0%95%EC%A0%81-%ED%95%A8%EC%88%98)를 만들 수 있습니다.
+
+```javascript
+class MyClass { 
+    constructor(data) { 
+        this.data = data;
+    } 
+    get xVal() { // getter
+        return this.data.x;
+    }
+    set xVal(x) { // setter
+        this.data.x = x;
+    }
+
+    get yVal() {
+        return this.data.y;
+    }
+    set yVal(y) {
+        this.data.y = y;
+    }
+
+    static staticMethod() {
+        return '정적 함수 입니다';
+    }
+};
+const data = { x: 1, y: 2 };
+const myClass = new MyClass(data);
+console.log('getter를 이용하여 속성처럼 데이터를 참조할 수 있습니다', myClass.xVal === 1 && myClass.yVal === 2);
+
+myClass.xVal = 10;
+myClass.yVal = 20;
+console.log('setter를 이용하여 속성처럼 데이터를 수정할 수 있습니다', myClass.xVal === 10 && myClass.yVal === 20);
+
+console.log(MyClass.staticMethod()); // 정적 함수 입니다
 ```
 
