@@ -12,6 +12,11 @@ sidebar:
 
 구문은 `;`나 개행으로 끝납니다. 관습적으로 `;`을 선호합니다.
 
+# 주석
+
+* `//` : 한줄 주석입니다.
+* `/* */` : 블록 영역 주석입니다.
+
 # 변수
 
 자바스크립트는 동적 타입 언어입니다. 따라서 변수의 타입은 동적으로 결정되는데요, 숫자형 변수로 사용하다가 문자열형 변수로 바꿔서 사용할 수도 있습니다.
@@ -514,7 +519,7 @@ console.log('나머지 인자를 재귀적으로 호출합니다', sum(1, 2, 3) 
 ```javascript
 const empty = {}; // 빈 개체
 
-// 리터럴 방식
+// 리터럴 방식 개체 생성
 const user1 = {
     name: 'Lee',
     number: '123-4567',
@@ -697,6 +702,7 @@ console.log('this는 전역 개체이므로 전역 개체에 name을 저장합�
 개체에 사용하는 변수가 속성명과 같은 경우 축약형태로 표현할 수 있습니다.
 
 즉,
+
 ```javascript
 const x = 10;
 const y = 20;
@@ -705,6 +711,7 @@ const obj = {
     y: y
 };
 ```
+
 을 다음과 같이 축약하여 변수만 나열하면 됩니다.
 
 ```javascript
@@ -718,7 +725,7 @@ console.log('속성 축약 표현', obj.x === 10 && obj.y === 20);
 ```
 # 속성명 동적 생성(ECMAScript6)
 
-속성명(키)을 동적으로 생성할 수 있습니다.
+리터럴 방식으로 개체 생성시 속성명(*키*)을 동적으로 생성할 수 있습니다. 이때 속성명 표현식은 `[]`로 묶습니다.
 
 ```javascript
 const index = 10;
@@ -731,6 +738,7 @@ console.log('속성명 동적 생성', obj['myData-11'] === 1);
 # 메서드 축약 표현(ECMAScript6)
 
 개체의 메서드 선언시 `function`을 생략할 수 있습니다. 
+
 ```javascript
 const obj1 = {
     myMethod: function() {
@@ -746,15 +754,110 @@ const obj2 = {
 
 배열은 여러개의 값을 순차적으로 표현합니다. 대입시 얕은 복사를 합니다.
 
-1. 다른 언어와 달리 타입이 다르더라도 하나의 배열로 사용할 수 있습니다.
-2. `length`로 길이를 구할 수 있습니다.
+1. `[]`로 빈 배열을 생성합니다.
+2. `[]`에 각 요소를 쉼표로 구분하여 배열을 생성합니다. 다른 언어와 달리 타입이 다르더라도 하나의 배열로 사용할 수 있습니다.
+3. `length`로 길이를 구할 수 있습니다.
 
 ```javascript
-const arr = [1, 'Kim', 2]; // #1. 타입이 다르더라도 배열로 사용할 수 있습니다.
-for (let i = 0; i < arr.length; ++i) { // #2. length 로 길이를 구할 수 있습니다.
+const empty = []; // #1. 빈 배열입니다.
+const arr = [1, 'Kim', 2]; // #2. 타입이 다르더라도 배열로 사용할 수 있습니다.
+for (let i = 0; i < arr.length; ++i) { // #3. length 로 길이를 구할 수 있습니다.
     console.log('배열 요소', arr[i]); // 1 Kim 2 출력
 }
 ```
+
+`Array()`생성자 함수로 생성할 수 있습니다.
+
+```javascript
+const arr = new Array(2); // 요소가 2개인 배열을 생성합니다.
+console.log("Array()로 생성할 수 있습니다", arr.length === 2);
+```
+
+**배열 요소 추가/삭제**
+
+C++언어등에서는 배열의 크기가 컴파일 타임에 정적으로 결정되지만, 자바스크립트에서는 동적으로 크기가 정해지는 컨테이너입니다. 
+
+요소의 추가/삭제도 다른 언어들 보다 자유로워 순서를 유지하여 추가/삭제할 필요도 없습니다.
+
+```javascript
+const arr = []; // 빈 배열입니다.
+arr[3] = 30; // 3번 인덱스 요소가 없다면 요소를 추가하고, 20을 대입합니다. 
+console.log('배열의 3번 인덱스 요소만 추가했지만, 0, 1, 2도 없어서 추가되었습니다', arr.length === 4);
+console.log('값을 대입받지 않은 요소는 undefined입니다', arr[0] === undefined);
+
+delete arr[3]; // 3번 인덱스 요소를 삭제합니다.
+console.log('3번 인덱스를 delete 했지만 크기는 4입니다', arr.length === 4);
+console.log('3번 인덱스는 delete 되어 undefined입니다', arr[3] === undefined);
+```
+
+배열의 끝에 추가하는 방법은 `push()`를 이용하거나 `length` 위치에 직접 대입하는 방법이 있습니다. `push()`보다는 `length`를 사용하는게 성능상 좋습니다. 
+
+```javascript
+const arr = []; 
+arr.push(100); 
+console.log('배열의 끝에 추가합니다', arr.length === 1 && arr[0] === 100);
+
+arr[arr.length] = 200; // push() 보다 성능이 좋습니다.
+console.log('배열의 끝에 추가합니다', arr.length === 2 && arr[1] === 200);
+```
+
+**배열 요소 나열**
+
+다음의 4가지 방법이 있습니다. `for-in`은 속성명을 나열하는 용도입니다. 배열 요소 나열에는 성능이 떨어지니 사용하지 마세요. 
+
+```javascript
+const arr = [1, 2, 3];
+for (let i = 0; i < arr.length; ++i) {
+    console.log('for문으로 요소 나열', arr[i]);
+}
+for (const item of arr) {
+    console.log('for of 로 요소 나열', item);    
+}
+for (let prop in arr) { // 배열 요소와 추가 속성이 나열됩니다. 성능일 떨어지니 사용하지 마세요.
+    console.log('for in 으로 요소 나열', arr[prop]);
+}
+arr.forEach(
+    (item) => console.log('forEach()로 요소 나열', item)
+);
+```
+
+**배열 복제**
+
+배열은 얕은 복사를 합니다. 따라서, `const other1 = arr;`를 하면, `other1`과 `arr`은 같은 개체를 참조합니다. 요소를 복제하려면 다음과 같이 `from()`이나 `slice()`를 이용하거나, [Spread](??)를 이용합니다.
+
+```javascript
+const arr = [1, 2, 3];
+const other1 = arr;
+console.log('other1 = arr은 같은 배열 개체를 참조합니다', other1 == arr && other1 === arr);
+
+const other2 = Array.from(arr);
+console.log('other2 = Array.from(arr)은 값은 같지만 다른 배열 개체입니다', other2, other2 !== arr);
+
+const other3 = arr.slice();
+console.log('other2 = arr.slice()은 배열의 특정 부분을 잘라 복사합니다. 값은 같지만 다른 배열 개체입니다', other3, other3 !== arr);
+
+const other4 = [...arr];
+console.log('[...arr]은 arr 요소들로 새로운 배열을 만듭니다. 값은 같지만 다른 배열 개체입니다', other4, other4 !== arr);
+```
+
+**배열 속성과 메서드**
+
+|항목|내용|
+|--|--|
+|`arr.length`|`arr`의 요소 갯수입니다.|
+|`Array.isArray(arr)`|`arr`이 배열인지 검사합니다.|
+|`Array.from(arr)`|`arr`로부터 새로운 배열을 복제합니다.|
+|`Array.of(a, b, c)`|`a`, `b`, `c` 요소로 구성된 배열을 생성합니다.|
+|`arr.indexOf(a)`|값이 `a`인 요소가 처음으로 나타난 인덱스 입니다. 못찾으면 -1을 리턴합니다.|
+|`arr.includes(a)`|값이 `a`인 요소가 있는지 검사합니다.|
+|`arr1.concat(arr2)`|`arr1`과 `arr2`를 합친 배열을 리턴합니다.|
+|`arr.join(delimeter = ',')`|배열 요소를 `delimeter`로 구분하여 나열한 문자열을 리턴합니다.|
+|`arr.push(...items)`|`arr` 뒤에 요소를 추가합니다.<br/>`push()`보다는 `arr[arr.lenth] = val;`로 추가하는게 성능이 좋습니다.|
+|`arr.pop()`|배열의 마지막 요소를 제거하고 리턴합니다. 빈 배열이면 `undefined`를 리턴합니다.|
+|`arr.reverse()`|배열의 순서를 반대로 정렬합니다.|
+|`arr.shift()`|배열의 첫요소를 제거하고 리턴합니다. 빈 배열이면 `undefined`를 리턴합니다.|
+|`arr.slice(start = 0, end = this.length)`|`arr`에서 `[start ~ end)`인 요소를 배열로 만들어 리턴합니다.<br/>`start`가 음수이면 뒤에서부터의 인덱스입니다.<br/>기본값을 사용하면 원본 배열을 복제합니다.|
+|`arr.splice(start, deleteCount = this.length - start, ...items)`|`arr`에서 `start`부터 `deleteCount` 만큼 삭제합니다. 이때 `items`를 전달하면, 삭제한 위치에 추가합니다.|
 
 # 유사 배열
 
@@ -768,7 +871,7 @@ for (let i = 0; i < str.length; ++i) {
 }
 ```
 
-# 이터러블(ECMAScript6)
+# 이터러블과 for-of(ECMAScript6)
 (작성중)
 
 # Spread(ECMAScript6) 
@@ -788,11 +891,11 @@ Spread를 이용하면 배열 처리를 좀더 단순하게 할 수 있습니다
 ```javascript
 const arr = [1, 2, 3];
 
-console.log('Spread를 이용한 배열 복제(splice)', [...arr]); // [1, 2, 3]
+console.log('Spread를 이용한 배열 복제(slice)', [...arr]); // [1, 2, 3]
 arr.push(...[4, 5]);
-console.log('기존 배열과 다른 배열 합성(concat)', arr); // [1, 2, 3, 4, 5]
-console.log('기존 배열에 새로운 값들을 추가한 배열', [...arr, 6, 7]); // [1, 2, 3, 4, 5, 6, 7]
-console.log('기존 배열에 새로운 배열을 추가한 배열', [...arr, [6, 7]]); // [1, 2, 3, 4, 5, [6, 7]]
+console.log('기존 배열과 다른 배열 합성한 새로운 배열 리턴(concat)', arr); // [1, 2, 3, 4, 5]
+console.log('기존 배열에 새로운 값들을 추가한 새로운 배열 리턴', [...arr, 6, 7]); // [1, 2, 3, 4, 5, 6, 7]
+console.log('기존 배열에 새로운 배열을 추가한 새로운 배열 리턴', [...arr, [6, 7]]); // [1, 2, 3, 4, 5, [6, 7]]
 ```
 
 배열뿐만 아니라 개체도 분해해서 나열할 수 있습니다.
@@ -815,20 +918,33 @@ console.log(typeof key); // symbol
 
 # 구조 분해(ECMAScript6)
 
-배열과 개체의 각 요소를 `[]`과 `{}`로 분해하여 처리할 수 있습니다. 특히 필요한 부분만 추출할 수 있습니다.
+배열과 개체의 각 요소를 `[]`과 `{}`로 분해하여 처리할 수 있습니다. 이때 필요한 부분만 추출할 수도 있습니다.
 
 ```javascript
 const arr = [1, 2, 3];
 const [a, b, c] = arr;
 console.log('배열 구조 분해', a === 1 && b === 2 && c === 3);
+
+const [i, , k] = arr;
+console.log('배열은 순서대로 구조 분해됩니다. i, , k는 1번 인덱스를 건너뜁니다', i === 1 && k === 3);
+
 const obj = {
     x: 1,
     y: 2,
     z: 3
 };
-
 const {x, y} = obj; // obj에서 x, y만 추출합니다.
 console.log('개체 구조 분해', obj.x === 1 && obj.y === 2);
+
+const user = {
+    name: 'Kim',
+    info: {
+        addr: 'Seoul',
+        number: '123-4567'
+    }
+};
+const {name, info: {addr}} = user; // 중첩 개체도 분해합니다.
+console.log('중첩 개체도 분해해서 읽습니다', name === 'Kim' && addr === 'Seoul');
 ```
 
 # 모듈(ECMAScript6)

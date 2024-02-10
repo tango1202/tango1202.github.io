@@ -132,13 +132,13 @@ shapes.forEach(
 
 그럼에도 불구하고, 굳이 상속이 필요하다면, 다음과 같이 기반이 되는 `Base`의 프로토타입 개체의 메서드들과 `baseObj`의 속성들을 복제해서 사용할 수 있습니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/bac7d6cb-8d38-4c1f-af60-318e6cd00c12)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6866c646-778a-40f0-b4ac-76da85214fc2)
 
 1. `Derived` 생성자 함수에서 `Base.call(this, baseProperty);`를 실행합니다. 
 
     이 코드는 생성자 함수 `Base`를 `Base(baseProperty);`와 같이 일반 함수처럼 호출(*[생성자 함수] 참고*)합니다. 또한 `Base`함수의 `this`를 `Derived` 생성자 함수의 `this`(*리턴하는 개체*)로 바인딩 합니다. 즉, `Derived`가 리턴하는 개체에 `Base`의 속성을 추가하는 효과가 있습니다.
 
-2. `Object.setPrototypeOf`는 `Base.prototype`을 `Derived.prototype`에 복제합니다. 다만 `constructor`는 변경하지 않습니다.
+2. `Object.setPrototypeOf`는 `Base.prototype`을 `Derived.prototype`에 복제합니다. 다만 `constructor`는 변경하지 않습니다. 이때 `Derived.prototype.__proto__`는 `Base.prototype`을 참조하여, `Derived.prototype`에 속성/메서드가 없다면, `Base.prototype`에서 찾게 합니다.
 
 실행 결과를 보면, `derived` 객체는 `baseProperty`, 복제하여 사용하고 있고, `Derived.prototype`은 `baseMethod()`를 복제하여 사용하고 있습니다.
 
@@ -174,6 +174,7 @@ base.baseMethod(); // baseMethod 입니다 base
 const derived = new Derived('base from derived', 'derived'); 
 
 console.log('Base.prototype을 복제했지만, constructor는 Derived입니다', derived.__proto__.constructor === Derived);
+console.log('Derived.prototype.__proto__ === Base.prototype입니다', Derived.prototype.__proto__ === Base.prototype);
 console.log('derived는 Derived로부터 생성되었습니다', derived instanceof Derived);
 console.log('derived는 Base로부터 생성되었습니다', derived instanceof Base);
 
@@ -203,11 +204,12 @@ overridingDerived.baseMethod(); // Overriding 입니다 base from derived
 
 ECMAScript6 부터는 `class`문법이 도입되어 [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)보다 간결하게 코드를 작성할 수 있습니다. 실제로 C++같은 클래스를 제공하는 것은 아니며, [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)의 좀더 쉬운 코딩법을 제공할 뿐입니다. 
 
-1. 생성자 함수의 역할을 합니다.
+1. `constructor`는 생성자 함수의 역할을 합니다. 생성자 함수처럼 속성들을 초기화합니다.
 2. 메서드는 알아서 프로토타입에 선언됩니다.
 3. `extends`는 상속을 표현합니다. 아마도 내부적으로 `setPrototypeOf()`를 호출할 겁니다.
 4. `super()`는 상위 생성자 함수를 호출합니다. 아마도, `Base.call()`을 호출할 겁니다.
-5. 생성자 함수처럼 `new`로 생성합니다.
+5. `Derived`용 메서드를 추가할 수 있습니다. 또한 `Base`의 메서드와 동일한 이름으로 재정의하면 오버라이딩 됩니다.
+6. 생성자 함수처럼 `new`로 생성합니다.
 
 ```javascript
 class Base { // 클래스는 관습적으로 Pascal 표기를 사용합니다.
@@ -223,12 +225,12 @@ class Derived extends Base { // #3. 상속입니다. 아마도 내부적으로 s
         super(baseProperty); // #4. 상위 생성자 함수를 호출합니다. 아마도, Base.call()을 호출하겠죠.
         this.derivedProperty = derivedProperty;
     }
-    derivedMethod() {
+    derivedMethod() { // #5. Derived에 메서드를 추가합니다.
         console.log('derivedMethod 입니다', this.derivedProperty);   
     }
 };
 
-const base = new Base('base'); // #5. 생성자 함수처럼 new 로 생성합니다.
+const base = new Base('base'); // #6. 생성자 함수처럼 new 로 생성합니다.
 base.baseMethod(); // baseMethod 입니다 base
 
 const derived = new Derived('base from derived', 'derived'); 
@@ -245,7 +247,7 @@ derived.derivedMethod(); // derivedMethod 입니다 derived
 
 `get`과 `set`을 이용하여 속성처럼 사용할 수 있는 getter와 setter를 만들 수 있습니다.
 
-또한 `static`을 사용하면 [정적 함수](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A0%95%EC%A0%81-%ED%95%A8%EC%88%98)를 만들 수 있습니다.
+또한 `static`을 사용하면 [정적 함수](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A0%95%EC%A0%81-%ED%95%A8%EC%88%98)를 만들 수 있습니다. [정적 함수](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A0%95%EC%A0%81-%ED%95%A8%EC%88%98)는 클래스 명으로 호출합니다.
 
 ```javascript
 class MyClass { 
