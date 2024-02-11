@@ -93,7 +93,7 @@ for(int i = 0; i < 2; ++i) {
 2. 그냥 `draw()`를 호출하면 됩니다. 인터페이스로 만들 필요가 없습니다.
 
 ```javascript
-const Rectangle = (function() {  
+const Rectangle = (() => {  
     function Rectangle(l, t, w, h) { 
         this.left = l;
         this.top = t;
@@ -105,8 +105,8 @@ const Rectangle = (function() {
     }; 
     
     return Rectangle; 
-}());
-const Ellipse = (function() {  
+})();
+const Ellipse = (() => {  
     function Ellipse(l, t, w, h) { 
         this.left = l;
         this.top = t;
@@ -118,7 +118,7 @@ const Ellipse = (function() {
     }; 
     
     return Ellipse; 
-}());
+})();
 
 // #1. 배열에 아무 타입이나 들어가니 굳이 Shape으로 추상화할 필요가 없습니다.
 let shapes = [new Rectangle(1, 2, 3, 4), new Ellipse(10, 20, 30, 40)];
@@ -143,7 +143,7 @@ shapes.forEach(
 실행 결과를 보면, `derived` 객체는 `baseProperty`, 복제하여 사용하고 있고, `Derived.prototype`은 `baseMethod()`를 복제하여 사용하고 있습니다.
 
 ```javascript
-const Base = (function() {  
+const Base = (() => {  
     function Base(baseProperty) { // #1
         this.baseProperty = baseProperty;   
     }
@@ -152,9 +152,9 @@ const Base = (function() {
     }; 
     
     return Base; 
-}());
+})();
 
-const Derived = (function() {  
+const Derived = (() => {  
     function Derived(baseProperty, derivedProperty) {
         Base.call(this, baseProperty); // #1. Base 생성자 함수를 호출합니다. 리턴하려는 this개체를 Base()함수 내의 this로 바인딩합니다.(Base 속성을 this에 추가합니다.)
         this.derivedProperty = derivedProperty;   
@@ -166,7 +166,7 @@ const Derived = (function() {
         console.log('derivedMethod 입니다', this.derivedProperty);
     }; 
     return Derived;
-}());
+})();
 
 const base = new Base('base');
 base.baseMethod(); // baseMethod 입니다 base
@@ -185,7 +185,7 @@ derived.derivedMethod(); // derivedMethod 입니다 derived
 `Derived`에서 `baseMethod`를 재정의하면 오버라이딩 됩니다.
 
 ```javascript
-const OverridingDerived = (function() {  
+const OverridingDerived = (() => {  
     function OverridingDerived(baseProperty, derivedProperty) {
         Base.call(this, baseProperty); 
         this.derivedProperty = derivedProperty;   
@@ -195,7 +195,7 @@ const OverridingDerived = (function() {
         console.log('Overriding 입니다', this.baseProperty);
     }; 
     return OverridingDerived;
-}());
+})();
 const overridingDerived = new OverridingDerived('base from derived', 'derived'); 
 overridingDerived.baseMethod(); // Overriding 입니다 base from derived
 ```

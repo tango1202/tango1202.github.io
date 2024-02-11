@@ -66,7 +66,7 @@ function myFunc() {
 
     return val; 
 }
-console.log('변수 유효 범위', myFunc() == 20); // true
+console.log('변수 유효 범위', myFunc() === 20); // true
 console.log('변수 유효 범위', val); // 1
 ```
 
@@ -88,7 +88,7 @@ console.log('변수 유효 범위', val); // 1
 
         return val; // #1 을 사용합니다.
     }
-    console.log('let', myFunc() == 10); // true
+    console.log('let', myFunc() === 10); // true
     ```
 
 3. 중복 선언을 허용하지 않습니다.
@@ -165,7 +165,7 @@ const arr = [1, 'Kim', 3]; // #7. 배열
 console.log('타입과 리터럴 테스트 : 배열 표시', arr); // Array(3). 트리를 확장하여 내부 요소를 확인할 수 있음
 
 const data = 'a,b,c~d';
-const result = data.split(/,|~/); // #7. 정규 표현식을 이용하여 구분자 , ~ 로 분리
+const result = data.split(/,|~/); // #8. 정규 표현식을 이용하여 구분자 , ~ 로 분리
 for (let i = 0; i < result.length; ++i) {
     console.log('타입과 리터럴 테스트 : 배열 요소 표시', result[i]); // a b c d
 }
@@ -194,7 +194,7 @@ console.log("add(+'1', 2) 는 3", add(+'1', 2)); // 3. '1'을 숫자로 바꾸�
 `==`비교는 값이 같은지 다른지를 검사할때 적극적으로 형변환 하기 때문에 의도치 않은 결과가 나올 수도 있습니다. 따라서 형변환 없이 비교하려면 `===`을 사용해야 합니다. 
 
 ```javascript
-console.log("1 == '1' 는 true", 1 == '1'); // true
+console.log("1 == '1' 는 true", 1 === '1'); // true
 console.log("1 === '1' 는 false", 1 === '1'); // false
 ```
 
@@ -240,7 +240,7 @@ const val = 10;
 console.log('val === 10', val === 10); // true
 console.log("val.toString() === '10'", val.toString() === '10'); // true. 문자열로 바꿉니다.
 
-console.log("parseInt('1') === 1", parseInt('1') === 1); // true. 정수로 바꿉니다.
+console.log("parseInt('1', 10) === 1", parseInt('1', 10) === 1); // true. 정수로 바꿉니다.
 console.log("parseFloat('1.5') === 1.5", parseFloat('1.5') === 1.5); // true. 실수로 바꿉니다.
 ```
 
@@ -317,12 +317,16 @@ console.log('addVar2(1, 2)', addVar2(1, 2)); // 3
 
 # 즉시 실행 함수를 이용한 유효 범위 한정
 
-`function add(a, b) {return a + b;}(1, 2);`와 같이 함수 선언후 `(arg...)`을 붙이면, 선언과 동시에 호출하는 구문이 됩니다. 이때 표현식으로 인식되지 않을 수도 있으니 전체를 괄호로 감쌉니다.
+`function add(a, b) {return a + b;}(1, 2);`와 같이 함수 선언후 `(arg...)`을 붙이면, 선언과 동시에 호출하는 구문이 됩니다. 이때 표현식으로 인식되지 않을 수도 있으니 함수 선언부를 괄호로 감쌉니다.
 
 ```javascript
-console.log('즉시 실행 함수', (function(a, b) {
-    return a + b;
-    } (1, 2))); // 3
+console.log('즉시 실행 함수', 
+    ( // 함수 선언부를 괄호로 감쌉니다.
+        function(a, b) {
+            return a + b;
+        }
+    )(1, 2)
+); // 3
 ```
 
 즉시 실행 함수를 활용하면 유효 범위를 한정하고 실행할 수 있어 전역 개체를 최소화 할 뿐만 아니라, 이름 충돌을 최소화할 수 있습니다.
@@ -331,7 +335,7 @@ console.log('즉시 실행 함수', (function(a, b) {
 (function() {
     const myApp = {};
     console.log('전역 개체 최소화', myApp); // myApp은 즉시 실행되고 소멸됩니다.
-}());
+})();
 ```
 
 # 함수 호이스팅
@@ -609,7 +613,7 @@ for (let prop in arr) { // 배열 요소와 추가 속성이 나열됩니다.
 const user1 = {name: 'Lee'};
 const user2 = user1;
 user2.name = 'Kim';
-console.log("동일 개체를 참조합니다 user1.name == 'Kim'", user1.name == 'Kim'); // true. user2를 수정했지만, user1도 수정되었습니다.
+console.log("동일 개체를 참조합니다 user1.name === 'Kim'", user1.name === 'Kim'); // true. user2를 수정했지만, user1도 수정되었습니다.
 ```
 
 이러한 경우 복제를 해야하며 `Object.assign()`(*ECMAScript6*)을 이용하면 됩니다. 하지만 하위 개체는 여전히 얕은 복사를 하니 주의해야 합니다. 다음 예에서 `name`은 복제되었지만, `addr`은 하위 개체에 있기 때문에 복제되지 않고 같은 개체를 참조합니다.
@@ -625,11 +629,11 @@ const user2 = Object.assign({}, user1); // 복제합니다.
 user2.name = 'Kim';
 user2.detail.addr = 'Busan';
 
-console.log("개체 복제 user1.name == 'Lee'", user1.name == 'Lee'); // true. user2를 수정했지만, user1은 수정되지 않습니다.
-console.log("개체 복제 user2.name == 'Kim'", user2.name == 'Kim');
+console.log("개체 복제 user1.name === 'Lee'", user1.name === 'Lee'); // true. user2를 수정했지만, user1은 수정되지 않습니다.
+console.log("개체 복제 user2.name === 'Kim'", user2.name === 'Kim');
 
-console.log("하위 개체는 여전히 참조 user1.detail.addr == 'Busan'", user1.detail.addr == 'Busan'); // true. 하위 개체는 얕은 복사됩니다.
-console.log("하위 개체는 여전히 참조 user2.detail.addr == 'Busan'", user2.detail.addr == 'Busan');
+console.log("하위 개체는 여전히 참조 user1.detail.addr === 'Busan'", user1.detail.addr === 'Busan'); // true. 하위 개체는 얕은 복사됩니다.
+console.log("하위 개체는 여전히 참조 user2.detail.addr === 'Busan'", user2.detail.addr === 'Busan');
 ```
 
 또한 `Object.freeze()`로 개체를 수정할 수 없게끔 동결시킬 수 있습니다. 하지만, `Object.assign()`처럼 하위 개체에는 적용되지 않습니다.
@@ -828,7 +832,7 @@ arr.forEach(
 ```javascript
 const arr = [1, 2, 3];
 const other1 = arr;
-console.log('other1 = arr은 같은 배열 개체를 참조합니다', other1 == arr && other1 === arr);
+console.log('other1 = arr은 같은 배열 개체를 참조합니다', other1 === arr && other1 === arr);
 
 const other2 = Array.from(arr);
 console.log('other2 = Array.from(arr)은 값은 같지만 다른 배열 개체입니다', other2, other2 !== arr);
@@ -865,7 +869,7 @@ console.log('[...arr]은 arr 요소들로 새로운 배열을 만듭니다. 값�
 
 ```javascript
 const str = 'Kim';
-console.log('유사 배열', Array.isArray(str) == false); // true. 배열이 아닙니다.
+console.log('유사 배열', Array.isArray(str) === false); // true. 배열이 아닙니다.
 for (let i = 0; i < str.length; ++i) { 
     console.log('유사 배열 요소', str[i]); // K i m 출력
 }
@@ -1023,7 +1027,7 @@ console.log('중첩 개체도 분해해서 읽습니다', name === 'Kim' && addr
 <!DOCTYPE html>
 <html>
     <body>
-        <script type="module" src="/module-test.js"></script>
+        <script type="module" src="/module_-_test.js"></script>
     </body>
 </html>
 ```
@@ -1049,16 +1053,16 @@ const minus = function (a, b) {
 export { publicFunc, plus, minus }; // privateFunc은 내보내지 않았습니다.
 ```
 
-다음은 모듈을 테스트하는 `module-test.js`입니다. `export`된 모든 개체를 `M`라이브러리 명으로 가져와 사용합니다.
+다음은 모듈을 테스트하는 `module_test.js`입니다. `export`된 모든 개체를 `M`라이브러리 명으로 가져와 사용합니다.
 
 ```javascript
 import * as M from "./myModule.js";
 // ----
 // 모듈
 // ----
-(function() {
+(() => {
     M.publicFunc();
     console.log('myModule.js의 plus 함수 입니다', M.plus(1, 2) === 3);
     console.log('myModule.js의 minus 함수 입니다', M.minus(1, 2) === -1);
-}());
+})();
 ```

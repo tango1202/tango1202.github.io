@@ -35,7 +35,7 @@ const user = {
 console.log('프로토타입 user.__proto__ === Object.prototype', user.__proto__ === Object.prototype); // true
 ```
 
-# `[[Prototype]]`과 prototype과 constructor
+# `[[Prototype]]`과 __proto__와 prototype과 constructor
 
 생성자 함수로 생성한 개체와 프로토타입 개체를 체인으로 연결하기 위해 각 개체는 다음과 같이 구성됩니다.
 

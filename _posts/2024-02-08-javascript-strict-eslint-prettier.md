@@ -38,7 +38,7 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
     * [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
     * [Visual Studio Code 익스텐션](https://tango1202.github.io/javascript/javascript-config/#visual-studio-code-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98)(*Code Runner, Live Server*)
 
-3. 터미널에서 다음 명령을 입력하여 `ESlint`를 설치합니다. 
+2. 터미널에서 다음 명령을 입력하여 `ESlint`를 설치합니다. 
 
     ```
     npm install -D eslint
@@ -48,7 +48,7 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ff4d1596-668b-40dc-b0be-9255a98281e5)
 
-4. `ESlint`의 환경을 설정합니다.
+3. `ESlint`의 환경을 설정합니다.
 
     ```
     npm init @eslint/config
@@ -77,9 +77,9 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1df2b64a-517a-4cac-bfbe-ae8aaf0f2ea5)
 
-5. Visual Studio Code 에서 `Activity Bar`의 `Extensions`을 클릭하여 `ESLint`를 설치합니다.
+4. Visual Studio Code 에서 `Activity Bar`의 `Extensions`을 클릭하여 `ESLint`를 설치합니다.
 
-6. `test.js` 새파일을 만들고 테스트 코드를 입력합니다.
+5. `test.js` 새파일을 만들고 테스트 코드를 입력합니다.
 
     ```javascript
     for (var i = 0; i < 3; ++i) {
@@ -87,7 +87,7 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
     }
     ```
 
-7. 이전과 다르게 소스코드에 붉은 밑줄과 노란 밑줄이 표시됩니다.    
+6. 이전과 다르게 소스코드에 붉은 밑줄과 노란 밑줄이 표시됩니다.    
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cc10c63d-a3d6-4f9c-9155-c6a5954e9a52)
 
@@ -102,7 +102,7 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
     |Strings must use singlequote.|문자열을 `'`로 바꿉니다.|
     |Unexpected console statement.|`.eslintrc.js`의 `rules`에 `''no-console': 'off'`를 추가합니다.|
 
-    최종적으로 `.eslintrc.js`는 다음과 같습니다.
+    최종적으로 상기 예제에서의 `.eslintrc.js`는 다음과 같습니다.
 
     ```javascript
     module.exports = {
@@ -182,9 +182,11 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 7. 프로젝트 루트 폴더에 `.vscode`폴더를 만든뒤 `settings.json`파일을 만들고,(*Live Server나 기타 다른 세팅에 따라 이미 있을 수 있습니다.*) 다음 내용을 작성하여 파일 저장시 `prettier` 규칙으로 변경되게 합니다. (*`File/Preferences/Settings`에서 수정하면 모든 프로젝트에 반영될 수 있으니 현재 프로젝트에만 반영될 수 있도록 `.vscode`폴더에 작성하시는걸 추천합니다.*)
 
     ```javascript
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
-    "editor.defaultFormatter": "esbenp.prettier-vscode"    
+    {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
     ```
 
 8. 이제 `javascript`코드를 작성하고 저장하면 자동으로 `prettier` 규칙이 적용됩니다.

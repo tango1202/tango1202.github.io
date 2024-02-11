@@ -15,7 +15,7 @@ sidebar:
 다음에서 `Module`은 `publicFunc` 함수를 메서드로 가진 개체를 리턴합니다. `privateFunc`은 담지 않고요. `privateFunc`은 외부에서 접근할 방법이 없어 사용할 수 없고, `publicFunc`만 리턴된 개체를 통해 사용할 수 있습니다. 또한 `publicFunc`함수가 사용되는 한 `Module`내의 실행 환경이 소멸되지 않고 유지되므로, `publicFunc`에서는 `privateFunc`을 안심하고 사용할 수 있습니다.(*[클로저와 정보 은닉](https://tango1202.github.io/javascript/javascript-basic/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89) 참고*)
 
 ```javascript
-const Module = (function() { // 즉시 실행 함수입니다.
+const Module = (() => { // 즉시 실행 함수입니다.
     function privateFunc(a, b) { // 외부에서 접근할 방법이 없습니다.
         return a + b;
     }
@@ -27,7 +27,7 @@ const Module = (function() { // 즉시 실행 함수입니다.
     return {
         publicFunc: publicFunc // 함수가 리턴되므로 함수 실행 환경이 소멸되지 않고 유지됩니다.
     };
-}());
+})();
 
 console.log('모듈의 public 함수 호출', Module.publicFunc(1, 2)); // 3
 Module.privateFunc(a, b); // (X) 오류 발생. 접근할 수 없습니다.
@@ -38,7 +38,7 @@ Module.privateFunc(a, b); // (X) 오류 발생. 접근할 수 없습니다.
 개체의 생성자 함수와 메서드를 즉시 실행 함수를 이용하여 응집하면 코드의 가독성이 좋아집니다.
 
 ```javascript
-const User = (function() { // 즉시 실행 함수입니다.
+const User = (() => { // 즉시 실행 함수입니다.
     function User(name) { // #1
         this.name = name;
     }
@@ -47,7 +47,7 @@ const User = (function() { // 즉시 실행 함수입니다.
     }; 
     
     return User; // #1. 생성자 함수를 리턴합니다.
-}());
+})();
 
 const user1 = new User('Kim');
 const user2 = new User('Lee');
@@ -64,7 +64,7 @@ console.log('즉시 실행 함수를 이용한 개체 선언', user2.getName());
 const user1 = {name: 'Kim'};
 const user2 = {name: 'Lee'};
 
-const getNameMixIn = function(obj) {
+const getNameMixIn = (obj) => {
     obj.getName = function() {
         return this.name;
     };
@@ -74,8 +74,8 @@ const getNameMixIn = function(obj) {
 getNameMixIn(user1); 
 getNameMixIn(user2);
 
-console.log('MixIn으로 추가된 메서드', user1.getName());
-console.log('MixIn으로 추가된 메서드', user2.getName());
+console.log('MixIn으로 추가된 메서드', user1.getName()); // Kim
+console.log('MixIn으로 추가된 메서드', user2.getName()); // Lee
 ```
 
 `mixIn`들을 모아 모듈 개체로 리턴하면 주어진 `mixIn`들중에서 필요한 것만 선택해서 결합할 수 있습니다.
@@ -84,7 +84,7 @@ console.log('MixIn으로 추가된 메서드', user2.getName());
 const user1 = {name: 'Kim'};
 const user2 = {name: 'Lee'};
 
-const MixInModule = (function() {
+const MixInModule = (() => {
     function getNameMixIn(obj) {
         obj.getName = function() {
             return this.name;
@@ -101,7 +101,7 @@ const MixInModule = (function() {
         getNameMixIn: getNameMixIn,
         printNameMixIn: printNameMixIn,
     };
-}());       
+})();       
 
 // user1, user2에 추가할 메서드들을 MixInModule에서 선택적으로 결합합니다.
 MixInModule.getNameMixIn(user1); 
@@ -116,7 +116,7 @@ user2.printName(); // Lee 출력
 C++의 정적 멤버 함수는 생성자 함수의 속성 기능을 이용하여 구현 할 수 있습니다.
 
 ```javascript
-const User = (function() { 
+const User = (() => { 
     function User(name) { 
         this.name = name;
     }
@@ -129,7 +129,7 @@ const User = (function() {
     };
     
     return User; 
-}());
+})();
 
 const user1 = new User('Kim');
 const user2 = new User('Lee');
