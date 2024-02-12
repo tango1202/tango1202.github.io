@@ -28,6 +28,8 @@ main:
   url: /categories/win/
 - title: "Javascript"
   url: /categories/javascript/     
+- title: "Typescript"
+  url: /categories/typescript/    
 - title: "카테고리"
   url: /categories/
 - title: "태그"
@@ -80,7 +82,10 @@ docs:
     category: "win"   
   - title: "Javascript"
     url: /categories/javascript/ 
-    category: "javascript"        
+    category: "javascript"     
+  - title: "Typescript"
+    url: /categories/typescript/ 
+    category: "typescript"           
 - title: "태그"
   url: /tags/
 
