@@ -320,9 +320,20 @@ const user: IUser = {
 
 # 제네릭
 
-제네릭은 인스턴스화 되는 시점에 타입이 결정됩니다.
+제네릭은 인스턴스화 되는 시점에 타입이 결정되는 함수나 클래스입니다.
 
-클래스를 제네릭으로 만들 수 있습니다. 
+다음은 함수 제네릭입니다.
+
+```typescript
+function add<T>(a: T, b: T): T {
+    return a + b;
+} 
+
+console.log(add<number>(1, 2));
+console.log(add<string>('a', 'b'));
+```
+
+다음은 클래스 제네릭입니다.
 
 ```typescript
 class Queue<T> {
@@ -343,15 +354,4 @@ q.push(1);
 console.log(q.pop()?.toFixed()); // 0
 console.log(q.pop()?.toFixed()); // 1
 console.log(q.pop()?.toFixed()); // undefined
-```
-
-함수를 제네릭으로 만들 수 있습니다.
-
-```typescript
-function add<T>(a: T, b: T): T {
-    return a + b;
-} 
-
-console.log(add<number>(1, 2));
-console.log(add<string>('a', 'b'));
 ```
