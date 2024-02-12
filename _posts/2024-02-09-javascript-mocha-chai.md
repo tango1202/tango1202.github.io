@@ -8,9 +8,11 @@ sidebar:
     nav: "docs"
 ---
 
-# Mocha와 Chai 설치
+# 개요
 
 `Mocha`는 자바스크립트 단위 테스트 프레임워크입니다. `assert`를 사용하기 위해 `Chai`와 같은 Assertion 라이브러리와 함께 사용합니다. 
+
+# Mocha와 Chai 설치
 
 1. [개발 환경 구축](https://tango1202.github.io/javascript/javascript-config/)을 참고하여 다음을 설치합니다.
     * [Node.js(https://nodejs.org/)](https://nodejs.org/)
@@ -60,8 +62,8 @@ sidebar:
 2. `test`폴더를 만들고, `test_operator.js`파일을 작성합니다.
 
     ```javascript
-    import { plus, minus } from '../src/operator.js'; // 테스트할 모듈
     import { assert } from 'chai'; // chai 사용
+    import { plus, minus } from '../src/operator.js'; // 테스트할 모듈
 
     describe('테스트입니다', () => { // 테스트 범주
         it('plus() 테스트', () => { // 테스트케이스
@@ -88,6 +90,6 @@ sidebar:
     }
     ```
 
-3. `Mocha Test Explorer`를 실행하여 테스트 결과를 확인합니다.
+3. `Activity Bar`의 `Testing`을 클릭하면 `Mocha Test Explorer`가 표시됩니다. UI를 통해 각 테스트를 별개로 실행할 수 있습니다. 만약 보이지 않는다면 Visual Studio Code 를 재실행 해보세요.(*혹은 Ctrl+Shift+P 후 Reload Window를 하셔도 됩니다.*)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1774ae2f-eb62-46ff-8a35-c04347b663e4)

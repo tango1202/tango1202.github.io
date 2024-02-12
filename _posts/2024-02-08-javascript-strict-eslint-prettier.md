@@ -171,23 +171,20 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
         "endOfLine": "auto"
     }
     ```
-5. `.eslintrc.js` 에서 `extends`를 다음과 같이 바꿔, 최종적으로는 `prettier` 규칙이 적용되도록 합니다.
 
-    ```javascript
-    extends: ['airbnb-base', 'prettier'],
-    ```
+5. `Visual Studio Code` 에서 `Activity Bar`의 `Extensions`을 클릭하여 `Prettier - Code formatter`를 설치합니다.
 
-6. `Visual Studio Code` 에서 `Activity Bar`의 `Extensions`을 클릭하여 `Prettier - Code formatter`를 설치합니다.
-
-7. 프로젝트 루트 폴더에 `.vscode`폴더를 만든뒤 `settings.json`파일을 만들고,(*Live Server나 기타 다른 세팅에 따라 이미 있을 수 있습니다.*) 다음 내용을 작성하여 파일 저장시 `prettier` 규칙으로 변경되게 합니다. (*`File/Preferences/Settings`에서 수정하면 모든 프로젝트에 반영될 수 있으니 현재 프로젝트에만 반영될 수 있도록 `.vscode`폴더에 작성하시는걸 추천합니다.*)
+6. 프로젝트 루트 폴더에 `.vscode`폴더를 만든뒤 `settings.json`파일을 만들고,(*Live Server나 기타 다른 세팅에 따라 이미 있을 수 있습니다.*) 다음 내용을 작성하여 파일 저장시 `prettier` 규칙으로 변경되게 합니다. (*`File/Preferences/Settings`에서 수정하면 모든 프로젝트에 반영될 수 있으니 현재 프로젝트에만 반영될 수 있도록 `.vscode`폴더에 작성하시는걸 추천합니다.*)
 
     ```javascript
     {
         "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+        },
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
     ```
 
-8. 이제 `javascript`코드를 작성하고 저장하면 자동으로 `prettier` 규칙이 적용됩니다.
+7. 이제 `javascript`코드를 작성하고 저장하면 자동으로 `prettier` 규칙이 적용됩니다.
 
