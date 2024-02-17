@@ -90,3 +90,45 @@ sidebar:
 2. `Activity Bar`의 `Testing`을 클릭하면 `Jest`가 표시됩니다. UI를 통해 각 테스트를 별개로 실행할 수 있습니다. 만약 보이지 않는다면 Visual Studio Code 를 재실행 해보세요.(*혹은 Ctrl+Shift+P 후 Reload Window를 하셔도 됩니다.*)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/074da04b-24a0-4d76-92a1-6f88b360df9b)
+
+# Jest(Visual Studio Code Extensions) 사용하기
+
+파일을 저장하면 모든 테스트가 실행되어 오히려 번거로울 수 있습니다.
+
+이런 경우 저장하는 파일만 테스트할 수 있도록 수정할 수 있습니다.
+
+1. `Test Explorer`에서 `Configure Test Profiles`를 선택합니다.
+
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/369398b6-ee38-42c9-a736-30f9ddd281ab)
+
+2. `run Jest Test Provider`를 선택합니다.
+
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ea32a954-d8dc-4c5a-b3e3-6faa230a6577)
+
+
+3. `on-save`의 편집 아이콘을 클릭합니다.
+
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/df91546e-0a49-4b63-bcd8-d43d6094f5f4)
+
+    그러면 다음과 같이 `runMode.json` 파일이 작성됩니다.
+
+    ```json
+    // close without saving to cancel the change.
+    // RunMode reference: https://github.com/jest-community/vscode-jest#runmode
+    {
+        "$schema": "file:///c%3A/Users/USER/.vscode/extensions/orta.vscode-jest-6.2.1/syntaxes/ExtSettingsSchema.json",
+        "jest.runMode": {
+            "type": "on-save"
+        }
+    }
+    ```
+
+4. 그뒤 `accept`버튼을 클릭합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cd31038f-91d8-46d0-80b8-9d418cc00f49)
+
+5. 이제 저장하는 테스트 파일만 자동 테스트를 수행합니다.
+
+
+
+
