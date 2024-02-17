@@ -116,7 +116,7 @@ const user = new User('Kim');
 user.getName();
 ```
 
-타입스크립트는 클래스에 속성을 사전에 선언해야 합니다.
+타입스크립트는 클래스의 속성을 사전에 선언해야 합니다.
 
 ```typescript
 // typescript

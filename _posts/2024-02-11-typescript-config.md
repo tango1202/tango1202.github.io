@@ -230,57 +230,57 @@ sidebar:
 
 3. 프로젝트 루트에 생성된 `.eslintrc`파일을 확인하면 다음과 같습니다.
 
-```json
-module.exports = {
-    'env': {
-        'browser': true,
-        'es2021': true
-    },
-    'extends': [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended'
-    ],
-    'overrides': [
-        {
-            'env': {
-                'node': true
-            },
-            'files': [
-                '.eslintrc.{js,cjs}'
-            ],
-            'parserOptions': {
-                'sourceType': 'script'
+    ```json
+    module.exports = {
+        'env': {
+            'browser': true,
+            'es2021': true
+        },
+        'extends': [
+            'eslint:recommended',
+            'plugin:@typescript-eslint/recommended'
+        ],
+        'overrides': [
+            {
+                'env': {
+                    'node': true
+                },
+                'files': [
+                    '.eslintrc.{js,cjs}'
+                ],
+                'parserOptions': {
+                    'sourceType': 'script'
+                }
             }
+        ],
+        'parser': '@typescript-eslint/parser',
+        'parserOptions': {
+            'ecmaVersion': 'latest',
+            'sourceType': 'module'
+        },
+        'plugins': [
+            '@typescript-eslint'
+        ],
+        'rules': {
+            'indent': [
+                'error',
+                4
+            ],
+            'linebreak-style': [
+                'error',
+                'windows'
+            ],
+            'quotes': [
+                'error',
+                'single'
+            ],
+            'semi': [
+                'error',
+                'always'
+            ]
         }
-    ],
-    'parser': '@typescript-eslint/parser',
-    'parserOptions': {
-        'ecmaVersion': 'latest',
-        'sourceType': 'module'
-    },
-    'plugins': [
-        '@typescript-eslint'
-    ],
-    'rules': {
-        'indent': [
-            'error',
-            4
-        ],
-        'linebreak-style': [
-            'error',
-            'windows'
-        ],
-        'quotes': [
-            'error',
-            'single'
-        ],
-        'semi': [
-            'error',
-            'always'
-        ]
-    }
-};
-```
+    };
+    ```
 
 4. Visual Studio Code 에서 `Activity Bar`의 `Extensions`을 클릭하여 `ESLint`를 설치합니다.
 
