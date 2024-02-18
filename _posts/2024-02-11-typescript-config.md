@@ -193,7 +193,7 @@ sidebar:
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4e77f646-381a-4385-b2ec-cd3594d88927)
 
-# ESLint와 Prettier 설치
+# ESLint 설치
 
 타입스크립트에서는 예전에 `TSLint`를 사용했는데, 이제는 deprecate되었고 `ESLint`를 사용한다고 합니다.
 
@@ -330,13 +330,13 @@ sidebar:
 
 # Jest 설치
 
-3. 터미널에서 다음 명령을 입력하여 `Jest`를 설치합니다. `import`등 ECMAScript를 사용하려면 `@babel/core`, `@babel/preset-env`, `babel-jest`, `@babel/preset-typescript`도 함께 설치되어야 합니다. 
+1. 터미널에서 다음 명령을 입력하여 `Jest`를 설치합니다. `import`등 ECMAScript를 사용하려면 `@babel/core`, `@babel/preset-env`, `babel-jest`, `@babel/preset-typescript`도 함께 설치되어야 합니다. 
 
     ```
     npm install -D jest @babel/core @babel/preset-env babel-jest @babel/preset-typescript
     ```
 
-4. `package.json`에서 `scripts`의 `test`를 다음과 같이 `jest`로 수정합니다.
+2. `package.json`에서 `scripts`의 `test`를 다음과 같이 `jest`로 수정합니다.
 
     ```json
     "scripts": {
@@ -346,7 +346,7 @@ sidebar:
     },
     ```
 
-5. 프로젝트 루트에 `.babelrc`파일을 생성하고 다음을 입력합니다.
+3. 타입스크립트로 작성된 테스트를 자바스크립트로 변환할 수 있도록 프로젝트 루트에 `.babelrc`파일을 생성하고 다음을 입력합니다.
 
     ```json
     {
@@ -359,9 +359,9 @@ sidebar:
 
 # 테스트 하기
 
-1. `test`폴더를 만들고, `operator.test.js`파일을 작성합니다. `Jest`는 테스트 파일이 꼭 `test.js`로 끝나야 합니다. 또한 `@jest/globals`를 `import`해야 합니다.
+1. `test`폴더를 만들고, `operator.test.ts`파일을 작성합니다. `Jest`는 타입스크립트의 경우 테스트 파일이 꼭 `test.ts`로 끝나야 합니다.(*자바스크립트는 `test.js`*) 또한 `@jest/globals`를 `import`해야 합니다.
 
-    ```javascript
+    ```typescript
     import { describe, expect, it } from '@jest/globals'; // Jest 모듈
     import { plus, minus } from '../src/operator'; // 테스트할 모듈. 확장자를 안붙여도 됩니다.
 

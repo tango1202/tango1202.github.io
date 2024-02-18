@@ -30,6 +30,8 @@ main:
   url: /categories/javascript/     
 - title: "Typescript"
   url: /categories/typescript/    
+- title: "React"
+  url: /categories/react/   
 - title: "카테고리"
   url: /categories/
 - title: "태그"
@@ -85,7 +87,10 @@ docs:
     category: "javascript"     
   - title: "Typescript"
     url: /categories/typescript/ 
-    category: "typescript"           
+    category: "typescript"    
+  - title: "React"
+    url: /categories/react/ 
+    category: "react"              
 - title: "태그"
   url: /tags/
 
