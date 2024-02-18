@@ -14,7 +14,7 @@ sidebar:
 
 # create-react-app을 이용한 타입스크립트용 리액트 프로젝트 생성
 
- `create-react-app`은 기본적인 툴들을 설치하고 설정하는 툴 체인입니다. 이를 활용하면 손쉽게 리액트 프로젝트를 세팅할 수 있습니다.
+ `create-react-app`은 기본적인 툴들을 설치하고 설정하는 툴 체인입니다. 이를 활용하면 손쉽게 리액트 프로젝트를 세팅할 수 있습니다. 리액트, 타입스크립트, `ESLint`, `Jest`가 한번에 설치됩니다.
 
 1. [개발 환경 구축](https://tango1202.github.io/javascript/javascript-config/)을 참고하여 다음을 설치합니다.
     * [Node.js(https://nodejs.org/)](https://nodejs.org/)
@@ -91,7 +91,7 @@ sidebar:
 
 3. `src/index.tsx`파일을 엽니다. `root`로 되어 있는 요소를 찾아 `<App>`컴포넌트를 표시하는 역할을 합니다.
 
-    ```typescript
+    ```tsx
     import React from 'react';
     import ReactDOM from 'react-dom/client';
     import './index.css';
@@ -114,7 +114,7 @@ sidebar:
     ```
 4. `App.tsx`파일을 엽니다. `logo`를 표시하고 간단한 메시지와 `Learn React`라는 링크를 표시하고 있습니다.
 
-    ```typescript
+    ```tsx
     import React from 'react';
     import logo from './logo.svg';
     import './App.css';
@@ -206,7 +206,7 @@ sidebar:
     2. `screen.getByText()`함수로 `<App>`컴포넌트에서 대소문자 구분없이(*`//i`는 정규표현식입니다.*) `learn react`가 있는 요소를 찾습니다. 
     3. 그리고 찾아낸 요소가 문서내에 있는지 확인합니다. 
 
-    ```typescript
+    ```tsx
     import React from 'react';
     import { render, screen } from '@testing-library/react';
     import App from './App';
@@ -324,7 +324,7 @@ npm install -D prettier-eslint
         "singleQuote": true,
         "semi": true,
         "useTabs": false,
-        "tabWidth": 4,
+        "tabWidth": 2,
         "trailingComma": "all",
         "printWidth": 80,
         "bracketSpacing": true,
@@ -337,7 +337,7 @@ npm install -D prettier-eslint
 
 4. 프로젝트 루트 폴더에 `.vscode`폴더를 만든뒤 `settings.json`파일을 만들고,(*Live Server나 기타 다른 세팅에 따라 이미 있을 수 있습니다.*) 다음 내용을 작성하여 파일 저장시 `prettier` 규칙으로 변경되게 합니다. (*`File/Preferences/Settings`에서 수정하면 모든 프로젝트에 반영될 수 있으니 현재 프로젝트에만 반영될 수 있도록 `.vscode`폴더에 작성하시는걸 추천합니다.*)
 
-    ```javascript
+    ```json
     {
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
