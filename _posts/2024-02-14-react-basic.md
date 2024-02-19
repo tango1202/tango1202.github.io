@@ -37,7 +37,7 @@ sidebar:
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <p>안녕하세요.반가워욘</p>
+            <p>안녕하세요.반가워요</p>
             <a
               className="App-link"
               href="https://reactjs.org"
@@ -217,6 +217,7 @@ import { useState } from 'react'; // #1
 const MyState = () => {
 
   const [stateCount, setStateCount] = useState(0); // #2
+  // const [stateCount, setStateCount] = useState<number>(0); // useState<타입>으로 타입을 명시할 수 있습니다.
   let count = 0;
   console.log('MyState 이 호출되었습니다.');
   function onClick() {
@@ -237,6 +238,39 @@ const MyState = () => {
   );
 };
 export default MyState;
+```
+
+`setter`로 수정할 때는 복제본을 사용해야 합니다. 특히 개체나 배열을 사용할 경우, 복제된 개체나 배열을 사용해야 합니다.
+
+다음 예는 `state`로 배열을 사용한 예입니다.
+
+1. #1 : `arr[0]`을 수정하고 `setArr(arr)`을 하면 렌더링을 다시 하지 않습니다.
+
+1. #2 : 배열의 복제본을 만들어 `setArr()`을 호출하면 렌더링을 다시 합니다. 
+
+```tsx
+import { useState } from 'react'; 
+
+const MyArrayState = () => {
+  const [arr, setArr] = useState([1, 2, 3]); 
+  function onElementClick() {
+    arr[0] = 10;
+    setArr(arr); // #1. 렌더링을 다시 하지 않습니다.
+  }
+  function onArrayClick() {
+    setArr([20, arr[1], arr[2]]); // #2. 렌더링을 다시 합니다.
+  }
+  return (
+    <div>
+      <button onClick={onElementClick}>각 요소값을 변경합니다.</button>
+      <button onClick={onArrayClick}>array를 변경합니다.</button>
+      <p>
+        arr[0] = {arr[0]} arr[1] = {arr[1]} arr[2] = {arr[2]}
+      </p>
+    </div>
+  );
+};
+export default MyArrayState;
 ```
 
 # 속성
