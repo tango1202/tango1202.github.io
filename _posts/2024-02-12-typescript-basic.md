@@ -33,7 +33,7 @@ const user: string = 'Kim'; // typescript
 |`array`|배열|
 |`tuple`|데이터 집합인 고정 크기 배열|
 |`enum`|열거형|
-|`any`|어떤 타입도 할당 가능|
+|`any`|어떤 타입도 할당 가능합니다. 이걸 사용하면, 타입스크립트를 사용하는 의미가 퇴색하므로, 최대한 사용안하시는게 좋습니다.|
 |`void`|반환값이 없음|
 |`never`|결코 발생하지 않는값. 예를 들어 무조건 예외를 발생시키는 함수의 리턴값등|
 
@@ -63,6 +63,16 @@ expect(arr2[2]).toBe(3);
 expect(tuple[0]).toBe('Kim');
 expect(tuple[1]).toBe(10);
 expect(color).toBe(Color.Red);
+```
+
+# 여러 타입 지원
+
+`|`을 이용하여 여러 타입을 지원할 수 있습니다. 예를 들어 다음처럼 `string`또는 `null`을 저장할 수 있습니다.
+
+```typescript
+let name: string | null = null;
+name = 'Kim';
+expect(name).toBe('Kim');
 ```
 
 # 함수 선언
@@ -189,9 +199,9 @@ expect(Derived.staticMethod()).toBe(10);
 // expect(derived.staticMethod()).toBe(10); // (X) 컴파일 오류. 클래스명으로 접근해야 합니다.
 ```
 
-# 타입 캐스팅
+# 형변환
 
-`as`나 `<>`로 형변환할 수 있습니다.
+`as`나 `<>`로 형변환할 수 있습니다. 형변환은 타입에 기반한 코딩 계약 을 위반하기 때문에 사용하지 않는 것이 좋습니다.
 
 ```typescript
 class Base {
@@ -274,7 +284,9 @@ interface IUser {
 const user: IUser = {
     id: 1,
     name: 'Kim',
-    getName: function () {
+    
+    // this 사용시에는 화살표 함수를 사용하지 않습니다.
+    getName: function () { 
         return this.name;
     },
 };
@@ -311,7 +323,7 @@ interface IAdd {
     (a: number, b: number): number; // 숫자 2개를 전달받아 숫자를 리턴하는 함수
 }
 
-const addFunc: IAdd = function (a: number, b: number): number {
+const addFunc: IAdd = (a: number, b: number): number => {
     return a + b;
 };
 
@@ -488,4 +500,71 @@ const q2 = new Queue<string>();
 q2.push('a');
 q2.push('b');
 expect(q2.pop()).toBe('a');
+```
+
+# 제네릭 타입 제약
+
+다음과 같이 제네릭 타입에서 타입의 세부 속성을 사용하는 경우, 해당 속성이 없다며 컴파일 오류가 납니다.
+
+```typescript
+// T 타입의 .length를 리턴합니다.
+function getLength<T>(params: T): number {
+    return params.length; // (X) 컴파일 오류. T에 length가 없다며 컴파일 오류가 납니다.
+}
+expect(getLength<number[]>([1, 2])).toBe(2);
+```
+
+이러한 경우 해당 타입을 `extends`를 이용하여 한정할 수 있습니다.
+
+```typescript
+// length를 제공합니다.
+interface ICanLength {
+    length: number;
+}
+
+// extends로 T를 한정할 수 있습니다.
+function getLength<T extends ICanLength>(params: T): number {
+    return params.length; 
+}
+
+// 함수 인스턴스화시 타입이 결정됩니다.
+expect(getLength<number[]>([1, 2])).toBe(2);
+expect(getLength<string[]>(['a', 'b'])).toBe(2);
+
+// 추론 가능하면 <>을 생략할 수 있습니다.
+expect(getLength([1, 2])).toBe(2);
+expect(getLength(['a', 'b'])).toBe(2);
+```
+
+# 제네릭에서 여러 타입 지원
+
+`|`을 이용하여 여러 타입을 지원할 수 있습니다.
+
+```typescript
+interface IUser {
+    id: number;
+    name: string;
+}
+interface IProduct {
+    id: number;
+    price: number;
+}
+
+// | 로 여러개 타입을 사용할 수 있습니다.
+// IUser와 IProduct를 모두 지원합니다.
+function getId<T extends IUser | IProduct>(params: T): number {
+    return params.id;
+}
+
+const user: IUser = {
+    id: 0,
+    name: 'Kim',
+};
+const product: IProduct = {
+    id: 1,
+    price: 1000,
+};
+
+expect(getId(user)).toBe(0);
+expect(getId(product)).toBe(1);
 ```

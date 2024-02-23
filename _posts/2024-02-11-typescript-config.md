@@ -12,7 +12,7 @@ sidebar:
 
 자바스크립트는 동적 타입 언어이다보니 타입이 유연하다는 장점은 있지만 타입에 따른 코딩 계약을 맺기가 쉽지 않아 큰 프로젝트에서는 디버깅을 하기가 좀 어렵습니다. 
 
-타입스크립트는 이런 단점을 보완하여, 변수에 타입을 지정한뒤 컴파일 과정을 거쳐 자바스크립트 파일을 만들어 냅니다. 이에 따라 관련 오류를 사전에 감지할 수 있습니다.
+타입스크립트는 이런 단점을 보완하였습니다. 변수에 타입을 지정한뒤 컴파일 과정을 거쳐 자바스크립트 파일을 만들어 내므로 관련 오류를 사전에 감지할 수 있습니다.
 
 타입스크립트로 작성된 코드는 `*.ts`파일로 저장되며, 트랜스파일러를 통해 자바스크립트인 `*.js`로 컴파일됩니다.(*ESScript5 기반입니다.*)
 
@@ -44,7 +44,7 @@ sidebar:
     npm install -D ts-node
     ```
 
-3. 프로젝트 루트에 `tsconfig.json`파일을 생성하고 다음을 입력합니다.(*`include`폴더에 파일이 없다며 계속 오류가 나올 수 있습니다. 실제로는 파일이 있어도 말이죠. 이럴때 VS Code를 재실행하면 되더라구요.*) 
+3. 프로젝트 루트에 `tsconfig.json`파일을 생성하고 다음을 입력합니다.(*`include`폴더에 파일이 없다며 오류가 나오면, VS Code를 재실행하세요.*) 
 
     ```json
     {
@@ -98,7 +98,7 @@ sidebar:
     * dist/operator.js
 
         ```javascript
-            "use strict";
+        "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         exports.minus = exports.plus = void 0;
         function plus(a, b) {
@@ -163,7 +163,7 @@ sidebar:
 
     <img width="427" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/82a44402-9aeb-4b96-b2ff-820adbfa8824">
 
-    다만 실행 결과가 안보이기 때문에, 저는 `tsc -w`보다는 `nodemon`을 이용하여 파일 저장시 실행 결과까지 보이는 걸 선호합니다.
+    다만 실행까지 시켜주지는 않습니다. 실행까지 하려면 `nodemon`을 이용하여야 합니다.
 
 # nodemon 파일 저장시 실시간 실행
 
@@ -195,7 +195,7 @@ sidebar:
 
 # ESLint 설치
 
-타입스크립트에서는 예전에 `TSLint`를 사용했는데, 이제는 deprecate되었고 `ESLint`를 사용한다고 합니다.
+타입스크립트에서는 예전에 `TSLint`를 사용했는데, 이제는 deprecate되어, `ESLint`를 사용합니다.
 
 1. `ESLint`를 설치합니다.
 

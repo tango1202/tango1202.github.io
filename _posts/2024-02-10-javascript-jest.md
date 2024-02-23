@@ -101,12 +101,16 @@ sidebar:
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/369398b6-ee38-42c9-a736-30f9ddd281ab)
 
+
 2. `run Jest Test Provider`를 선택합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ea32a954-d8dc-4c5a-b3e3-6faa230a6577)
 
+3. 혹은 다음과 같이 테스트 루트에 마우스 OVer한 뒤 `Change Run Mode`를 실행해도 됩니다.
 
-3. `on-save`의 편집 아이콘을 클릭합니다.
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ee041f7e-ab9c-45b8-bc70-c4493ae36c02)
+
+4. `on-save`의 편집 아이콘을 클릭합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/df91546e-0a49-4b63-bcd8-d43d6094f5f4)
 
@@ -123,11 +127,11 @@ sidebar:
     }
     ```
 
-4. 그뒤 `accept`버튼을 클릭합니다.
+5. 그뒤 `accept`버튼을 클릭합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cd31038f-91d8-46d0-80b8-9d418cc00f49)
 
-5. 이제 저장하는 테스트 파일만 자동 테스트를 수행합니다.
+6. 이제 저장하는 테스트 파일만 자동 테스트를 수행합니다.
 
 
 
