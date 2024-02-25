@@ -28,7 +28,7 @@ sidebar:
     npx create-react-app react_test --template typescript
     ```
 
-    그러면 다음과 같이 샘플 프로젝트가 생성됩니다.
+    그러면 다음과 같이 샘플 프로젝트가 생성되며 `npm start`로 실행할 수 있다는 안내 메시지가 표시됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d0fba9ab-f0eb-41fd-8fd7-9ceefcd99c5b)
 
@@ -244,7 +244,7 @@ sidebar:
 
 2. `Ctrl+C`를 눌러 종료합니다.
 
-3. `src`하위에 `test`폴더를 만들고 `operator.test.ts`파일을 작성하고 저장합니다.(*`src`폴더 하위에 만들어야 테스트파일이 인식됩니다. 좀더 알아봐야 할것 같습니다.*)
+3. `src`하위에 `test`폴더를 만들고 `operator.test.ts`파일을 작성하고 저장합니다.(*`src`폴더 하위에 만들어야 테스트 파일이 인식됩니다. `src`와 `test`를 분리해서 관리하고 싶은데, 잘 안되더군요. 좀더 알아봐야 할것 같습니다.*)
 
     이때 타입스크립트에서 에러가 발생할 수 있으므로 파일 하단에 `export {};`를 추가합니다.
 
@@ -313,9 +313,9 @@ sidebar:
 
 1. `prettier-eslint`를 설치합니다.
 
-```
-npm install -D prettier-eslint
-```
+    ```
+    npm install -D prettier-eslint
+    ```
 
 2. 프로젝트 root에 `.prettierrc` 파일을 생성하고 다음과 같이 코드 레이아웃 규칙을 작성합니다.
 

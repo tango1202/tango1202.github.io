@@ -81,7 +81,13 @@ sidebar:
 
 # JSX
 
-컴포넌트가 리턴하는 마크업을 JSX라고 합니다.
+리액트에서 화면을 수정하고 갱신하는 것은 결국은 HTML DOM을 수정하는 것입니다. DOM이 수정되면 브라우저가 알아서 다시 렌더링 하니까요.
+
+하지만, HTML DOM을 수정하는 것은 전체 페이지 레이아웃을 다시 계산해야 하기 때문에 부하가 큰 작업입니다. 리액트는 이를 최소화 하기 위해 HTML DOM을 직접 수정하지 않고, 가상의 DOM을 만든뒤, HTML DOM에서 변경해야할 최소 요소만 추출하여 수정합니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/179647ee-a2af-4d52-90a8-bb24658cf8e3)
+
+가상의 DOM은 컴포넌트가 리턴하는 마크업으로 구성되며 JSX라고 합니다. 형태는 HTML과 유사하며, 내부적으로 `{}`을 이용하여 코드 표현식을 사용할 수 있습니다.
 
   1. HTML 보다 엄격하게 닫는 태그를 검사합니다.
   2. 마크업 내부에 `{}`을 사용하여 코드 표현식을 사용할 수 있습니다.
@@ -130,7 +136,7 @@ sidebar:
       ```tsx
       return ( 
         <>
-          <div/> /
+          <div/> 
           <div/>
         </>
       );
@@ -173,7 +179,7 @@ const MyButton = () => {
 export default MyButton;
 ```
 
-# 상태
+# State
 
 다음 예에서 `onClick()`이벤트 핸들러는 `++count;`로 `count`변수값을 증가시킵니다. 
 
@@ -204,24 +210,27 @@ const MyState = () => {
 export default MyState;
 ```
 
-이런 경우 `state`사용합니다. `state`는 컴포넌트에서 사용하는 내부 데이터로서, 값이 수정되면 수정된 값으로 JSX를 다시 렌더링 합니다. [Observer 패턴](https://tango1202.github.io/pattern/pattern-observer/)과 유사하죠. 
+이렇게 수정된 값을 JSX에 반영하고 다시 렌더링하기 위해서는 [State](??)라는 특별한 데이터를 사용합니다. [State](??)는 컴포넌트에서 사용하는 내부 데이터로서, 값이 수정되면 수정된 값으로 JSX를 다시 렌더링하는 역할을 합니다. [Observer 패턴](https://tango1202.github.io/pattern/pattern-observer/)과 유사하죠. 
 
-1. #1 : `state`를 사용하기 위해 `useState`를 가져옵니다.
-2. #2 : `stateCount` 상태 변수를 선언하고, `setStateCount()` 함수를 선언합니다. 이때 초기값은 `0`을 사용합니다.
-3. #3 : 상태 변수를 수정할때는 항상 `setStateCount`와 같이 `setter`를 이용해서 수정해야만 랜더링을 다시 합니다.
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/378c1024-541c-4ee8-a158-f90744551aaa)
+
+1. #1 : `State`를 사용하기 위해 `useState`를 가져옵니다.
+2. #2 : `stateCount` 라는 이름으로 초기값이 `0`인 `State`를 만듭니다. 이때 `setStateCount()`라는 setter도 함께 만들어 집니다.
+3. #3 : `stateCount`를 수정할 때는 항상 `setStateCount()`를 이용해서 수정해야 랜더링을 다시 합니다.
 4. #4 : `count`는 변하지 않고, `stateCount`는 변합니다.
 
 ```tsx
 import { useState } from 'react'; // #1
 
 const MyState = () => {
-
+  let count = 0; // 일반 변수 입니다. 수정해도 JSX에 반영되지 않습니다.
+    
   const [stateCount, setStateCount] = useState(0); // #2
   // const [stateCount, setStateCount] = useState<number>(0); // useState<타입>으로 타입을 명시할 수 있습니다.
-  let count = 0;
+
   console.log('MyState 이 호출되었습니다.');
   function onClick() {
-    ++count;
+    ++count; // 수정해도 JSX에 반영되지 않습니다.
     // ++stateCount; // #3. state는 setter를 이용해서 수정해야만 랜더링을 다시 합니다.
     setStateCount(stateCount + 1);
     alert(`버튼을 ${count}회 클릭했습니다.`);
@@ -240,32 +249,49 @@ const MyState = () => {
 export default MyState;
 ```
 
-`setter`로 수정할 때는 복제본을 사용해야 합니다. 특히 개체나 배열을 사용할 경우, 복제된 개체나 배열을 사용해야 합니다.
+# 개체/배열 State
 
-다음 예는 `state`로 배열을 사용한 예입니다.
+`setter`로 수정할 때는 복제본을 사용해야 합니다. `number`와 같은 기본 타입인 경우 대입시 알아서 복제본이 사용됩니다만, 개체나 배열을 사용할 경우, 명시적으로 복제본을 사용해야 합니다.
 
-1. #1 : `arr[0]`을 수정하고 `setArr(arr)`을 하면 렌더링을 다시 하지 않습니다.
+다음은 `State`로 배열을 사용한 예입니다. 배열의 복제본을 사용해야 다시 랜더링 하는 것을 확인할 수 있습니다.
 
-1. #2 : 배열의 복제본을 만들어 `setArr()`을 호출하면 렌더링을 다시 합니다. 
+1. #1 : `arr[0]`요소의 `x`를 직접 수정하면 렌더링을 다시 하지 않습니다.
+2. #2 : `arr[0]`을 수정하고 `setArr(arr)`을 하더라도 렌더링을 다시 하지 않습니다.
+3. #3 : 배열을 복제합니다. 이때 [Spread](https://tango1202.github.io/javascript/javascript-basic/#spreadecmascript6)를 이용하여 얕은 복사 합니다.
+  
+    <img width="268" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/0985674e-28c5-4c82-895a-5b314cfeaa96">
+
+4. #4 : 배열의 복제본을 만들어 `setArr()`을 호출하면 렌더링을 다시 합니다. 
 
 ```tsx
-import { useState } from 'react'; 
+import { useState } from 'react';
 
 const MyArrayState = () => {
-  const [arr, setArr] = useState([1, 2, 3]); 
-  function onElementClick() {
-    arr[0] = 10;
+  const [arr, setArr] = useState([
+    { x: 1, y: 2 },
+    { x: 10, y: 20 },
+  ]);
+  function onXClick() {
+    arr[0].x = 100; 
     setArr(arr); // #1. 렌더링을 다시 하지 않습니다.
   }
-  function onArrayClick() {
-    setArr([20, arr[1], arr[2]]); // #2. 렌더링을 다시 합니다.
+  function onElementClick() {
+    arr[0] = { x: 100, y: 2 };
+    setArr(arr); // #2. 렌더링을 다시 하지 않습니다.
+  }
+  0function onArrayClick() {
+    const clone = [...arr];
+    clone[0].x = 100; // #3. 복제본을 수정합니다.
+    console.log(arr[0].x === clone[0].x); // #3. 배열의 각 요소는 앝은 복사됩니다.
+    setArr(clone); // #4. 렌더링을 다시 합니다.
   }
   return (
     <div>
-      <button onClick={onElementClick}>각 요소값을 변경합니다.</button>
-      <button onClick={onArrayClick}>array를 변경합니다.</button>
+      <button onClick={onXClick}>x 값을 변경합니다.</button>
+      <button onClick={onElementClick}>arr[0]을 변경합니다.</button>
+      <button onClick={onArrayClick}>arr을 변경합니다.</button>
       <p>
-        arr[0] = {arr[0]} arr[1] = {arr[1]} arr[2] = {arr[2]}
+        {`arr[0] : ${arr[0].x}, ${arr[0].y} arr[1] : ${arr[1].x}, ${arr[1].y}}`}
       </p>
     </div>
   );
@@ -273,15 +299,20 @@ const MyArrayState = () => {
 export default MyArrayState;
 ```
 
-# 속성
+# Props
 
-컴포넌트 개체는 속성을 사용할 수 있으며, 외부에서 개체나 함수를 전달 받을 수 있습니다. 속성이 변경되면, 컴포넌트는 다시 렌더링합니다.
+컴포넌트 개체는 HTML의 attribute와 유사한 형태로 외부에서 데이터(*개체나 함수*)를 전달 받을 수 있습니다. 이를 `Props`라고 하는데요, `Props`가 변경되면, 컴포넌트는 다시 렌더링됩니다.
 
-1. #1 : 컴포넌트 속성의 인터페이스를 선언합니다.
-2. #2 : 속성은 인자로 전달받습니다. 관습적으로 `props`라는 이름으로 전달받습니다.
-3. #3 : `props`는 관습적으로 [구조 분해](https://tango1202.github.io/javascript/javascript-basic/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)해서 사용합니다.
-4. #4 : 속성은 수정할 수 있으나, 컴포넌트 내부에서 수정하지 마세요. 컴포넌트는 전달된 속성으로 랜더링하는 [단일 책임]((https://tango1202.github.io/principle/principle-single-responsibility/))만 있습니다. 내부에서 속성을 수정하면, 외부에서 동일한 [속성](??)을 전달했을때 다르게 렌더링 될 수 있습니다. 내부에서 수정할 값이 있다면 [상태](??)를 사용하시기 바랍니다.
-5. #5 : `props`가 있는 컴포넌트는 사용시 꼭 값을 전달해야 합니다.
+1. #1 : 컴포넌트 `Props`의 인터페이스를 선언합니다.
+2. #2 : `Props`는 인자로 전달받습니다. 관습적으로 `props`라는 이름을 사용합니다.
+3. #3 : `Props`는 관습적으로 [구조 분해](https://tango1202.github.io/javascript/javascript-basic/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)해서 사용합니다.
+4. #4 : `Props`는 수정할 수 있으나, 컴포넌트 내부에서 수정하는건 좋지 않습니다. 
+
+    컴포넌트는 전달된 `Props`로 단지 랜더링만 하는 [단일 책임]((https://tango1202.github.io/principle/principle-single-responsibility/))만 갖는게 좋습니다. 만약 내부에서 `Props`를 수정하면, 외부에서 동일한 데이터를 전달했을때 다르게 렌더링 될 수 있습니다. 이렇게 되면, 리액트에서 가상 DOM으로 부터 HTML DOM을 생성할때 최적화가 제대로 되지 않아 쓸데없는 화면 갱신이 빈번해 질 수 있습니다.
+
+    수정이 필요한 데이터가 있다면 [State](??)를 사용하시기 바랍니다.
+
+5. #5 : `Props`가 있는 컴포넌트는 해당 값을 전달해야 합니다. 만약 선택적으로 전달하고 싶다면, `name?`와 같이 [선택적 속성](https://tango1202.github.io/typescript/typescript-basic/#%EC%84%A0%ED%83%9D%EC%A0%81-%EC%86%8D%EC%84%B1)으로 선언해야 합니다.
 
 ```tsx
 // #1. 속성의 인터페이스 입니다.
@@ -328,18 +359,17 @@ const User = ({id, name = 'Kim'}: IProps) => {
 <User id={0}/>
 ```
 
-[Spread](??)로 속성을 전달할 수 있습니다.
-
+[Spread](??)로 [Props](??)을 손쉽게 포워딩할 수 있습니다.
 
 ```tsx
-const Pareant = (props) {
+const Pareant = (props: IProps) {
   return <Child {...props} />;
 }
 ```
 
 # 상위 - 하위 컴포넌트간 데이터 공유
 
-리액트는 [속성](??)을 이용하여 상위 컴포넌트에서 하위 컴포넌트로 데이터가 이동하며, [속성](??)번경에 따라 컴포넌트가 갱신됩니다. 하지만, 이벤트를 이용한다면 역방향으로 정보 전달을 할 수도 있습니다.
+리액트는 [Props](??)를 이용하여 기본적으로 상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달합니다. 하지만, 이벤트를 이용한다면 역방향으로 데이터를 전달할 수도 있습니다.
 
 다음과 같이 숫자를 세는 컨트롤을 생각해 봅시다.
 
@@ -347,23 +377,29 @@ const Pareant = (props) {
 
 `-`, `+` 버튼을 누를때마다 값이 변경되어 출력되어야 합니다. 
 
-이러한 경우 다음과 같은 구조로 상위 개체에서 `value`를 `state`로 만들고 관리하는게 좋습니다.
+이러한 경우 다음과 같은 구조로 상위 개체에서 `value`를 [State](??)로 만들고 관리하는게 좋습니다.
 
-하위 개체에서 버튼이 클릭될 때마다 상위 개체에서 이벤트를 수신받고 `value`를 수정한뒤, 이를 표시할 개체에 속성으로 전달합니다. 이때 하위 개체의 이벤트를 수신하기 위해 개체의 속성에 콜백 함수(*이벤트 핸들러*)를 전달합니다.
+하위 개체에서 버튼이 클릭될 때마다 상위 개체에서 이벤트를 수신받고 `value`를 수정한뒤, 이를 표시할 개체에 [Props](??)로 전달합니다. 이때 하위 개체의 이벤트를 수신하기 위해 개체의 [Props](??)에 콜백 함수(*이벤트 핸들러*)를 전달합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0c0d700f-e98c-4dfa-85b5-dbac9f85f337)
 
 
+1. #1 : 버튼은 `caption`과 `onClick()` [Props](??)를 사용합니다.
+2. #2 : `button`의 이벤트 핸들러로 [Props](??)로 전달된 `onClick()`을 이용합니다. 
+3. #3 : 하위 개체인 `MyButton`의 [Props](??)에 콜백 함수를 전달합니다.
+4. #4 : 콜백 함수 입니다. 함수 인자를 통해 하위 개체로부터 데이터를 전달받을 수 있습니다.
+
 ```jsx
 import { useState } from 'react';
 
-// 버튼은 caption과 onClick 이벤트 핸들러를 사용합니다.
+// #1. 버튼은 caption과 onClick() Props를 사용합니다.
 interface IMyButtonProps {
   caption: string;
   onClick(): void;
 }
 const MyButton = (props: IMyButtonProps) => {
   const { caption, onClick } = props;
+  // #2. button의 이벤트 핸들러로 Props로 전달된 onClick()을 이용합니다. 
   return <button onClick={onClick}>{caption}</button>;
 };
 
@@ -380,6 +416,7 @@ const MyValue = (props: IMyValueProps) => {
 const MyCounter = () => {
   const [value, setValue] = useState(0);
 
+  // #4. 콜백 함수 입니다. 함수 인자를 통해 하위 개체로부터 데이터를 전달받을 수 있습니다.
   function onMinusClick() {
     setValue(value - 1);
   }
@@ -387,6 +424,7 @@ const MyCounter = () => {
     setValue(value + 1);
   }
 
+  // #3. Props에 콜백 함수를 전달합니다.
   return (
     <>
       <MyButton caption={'-'} onClick={onMinusClick} />
@@ -398,3 +436,24 @@ const MyCounter = () => {
 export default MyCounter;
 ```
 
+# 주요 개념 정리
+
+* 리액트는 렌더링 컴포넌트를 트리 형태로 구성합니다.
+
+* 동일한 [Props](??)나 [State](??)에서는 동일한 결과가 리턴되어야 합니다. 이를 `Pure Function`이라고 하며, 동일한 [Props](??)나 [State](??)일때 동일한 JSX를 리턴한다고 가정하고 성능 최적화를 합니다. 따라서 구현시 꼭 준수해야 합니다.
+
+* 렌더링은 [Props](??)나 [State](??)변경에 따라 재시도 되고, 가상 DOM을 이용하여 동적으로 렌더링 요소들을 구성한뒤 변경된 것만 갱신합니다.
+
+* [Props](??)를 이용하여 상위 컴포넌트에서 하위 컴포넌트로 데이터가 전달됩니다. 단, [Props](??)에 콜백 함수를 전달하여 역방향 흐름으로 만들 수 있습니다.
+
+* [State](??)를 만들어 컴포넌트의 정보를 관리할 수 있습니다. 
+
+# 렌더링 최적화
+
+컴포넌트는 다음 두가지 상황일때 렌더링됩니다.
+
+1. 처음 호출되었을때 루트 컴포넌트 렌더링을 호출하고 하위 컴포넌트 렌더링을 호출합니다.
+
+2. [Props](??)나 [State](??)가 변경되었을때 해당 컴포넌트 렌더링을 호출하고 하위 컴포넌트 렌더링을 호출합니다.
+
+    [Props](??)나 [State](??)가 변경되면, 렌더링이 대기열에 추가되며, 번경된 것들을 계산하여 가상 DOM을 수정합니다. 이때 최신 렌더링 출력과 일치하도록 최소한의 필수 렌더링만 수행합니다.
