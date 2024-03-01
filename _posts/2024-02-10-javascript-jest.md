@@ -11,7 +11,7 @@ sidebar:
 
 # 개요
 
-`Jest`는 자바스크립트 단위 테스트 프레임워크입니다. [Mocha](??)같은 경우는 [Chai](??)와 같은 Assertion 라이브러리가 필요한데, `Jest`는 단독으로 사용할 수 있어서 최근에는 더 많이 사용되는 것 같습니다.
+`Jest`는 자바스크립트 단위 테스트 프레임워크입니다. [Mocha](https://tango1202.github.io/javascript/javascript-mocha-chai/)같은 경우는 [Chai](https://tango1202.github.io/javascript/javascript-mocha-chai/)와 같은 Assertion 라이브러리가 필요한데, `Jest`는 단독으로 사용할 수 있어서 최근에는 더 많이 사용되는 것 같습니다.
 
 # Jest 설치
 

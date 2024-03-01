@@ -27,7 +27,7 @@ sidebar:
 4. 동적 타입 언어 이기 때문에 선언한 타입과 다른 타입을 바꿔서 할당할 수 있습니다.
 5. 아예 선언하지 않고 사용할 수 있습니다. 이 경우 전역 개체의 변수로 선언됩니다.
 
-엄청 유연합니다만, 코딩 계약이 엉망진창이 되버려 대규모 프로젝트에서는 오류를 찾아내기 힘들어 집니다. 따라서 [타입스크립트](??)를 사용하시길 추천드립니다.
+엄청 유연합니다만, 코딩 계약이 엉망진창이 되버려 대규모 프로젝트에서는 오류를 찾아내기 힘들어 집니다. 따라서 [타입스크립트](https://tango1202.github.io/categories/typescript/)를 사용하시길 추천드립니다.
 
 ```javascript
 var x; // #1. 선언
@@ -388,7 +388,7 @@ console.log("함수 속성", add.data);
 
 |항목|내용|
 |--|--|
-|`arguments`|전달된 인수를 나열할 수 있는 [유사 배열](https://tango1202.github.io/javascript/javascript-basic/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)입니다. 함수 외부에서는 사용할 수 없습니다. 가변 인자인 경우에 활용할 수 있습니다. ECMAScript6부터는 [나머지 인자](??)를 사용합니다.|
+|`arguments`|전달된 인수를 나열할 수 있는 [유사 배열](https://tango1202.github.io/javascript/javascript-basic/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)입니다. 함수 외부에서는 사용할 수 없습니다. 가변 인자인 경우에 활용할 수 있습니다. ECMAScript6부터는 [나머지 인자](https://tango1202.github.io/javascript/javascript-basic/#%EB%82%98%EB%A8%B8%EC%A7%80-%EC%9D%B8%EC%9E%90ecmascript6)를 사용합니다.|
 |`caller`|자신을 호출한 함수를 가리킵니다. 브라우저에서 실행하면 `null`을 리턴합니다.|
 |`length`|선언시 사용한 인자의 갯수입니다. (*arguments.length는 함수 호출시 전달한 인수의 갯수입니다.*)|
 |`name`|함수의 이름입니다.|
@@ -500,7 +500,7 @@ f(1, 2, 3);
 
 일반적인 인자와 나머지 인자를 섞어 쓰면, 일반적인 인자에 인수를 할당한뒤 남은 것만 나머지 인자에 할당합니다.
 
-다음은 전달된 인수들의 합을 구하는 예입니다. 첫번째 인수를 뺀 나머지들을 다시 재귀적으로 호출하여 값을 누적합니다. 나머지 인자의 갯수가 1이면, 재귀 호출을 하지 않고 그냥 더합니다. `sum()`함수를 재귀 호출할때 `sum(...rest)`와 같이 호출했는데요, 이는 [Spread](??)로서 배열을 다시 분리하는 역할을 합니다. 즉, `sum(rest[0], rest[1], ... , rest[N - 1])`처럼 호출합니다. 
+다음은 전달된 인수들의 합을 구하는 예입니다. 첫번째 인수를 뺀 나머지들을 다시 재귀적으로 호출하여 값을 누적합니다. 나머지 인자의 갯수가 1이면, 재귀 호출을 하지 않고 그냥 더합니다. `sum()`함수를 재귀 호출할때 `sum(...rest)`와 같이 호출했는데요, 이는 [Spread](https://tango1202.github.io/javascript/javascript-basic/#spreadecmascript6)로서 배열을 다시 분리하는 역할을 합니다. 즉, `sum(rest[0], rest[1], ... , rest[N - 1])`처럼 호출합니다. 
 
 
 ```javascript
@@ -827,7 +827,7 @@ arr.forEach(
 
 **배열 복제**
 
-배열은 얕은 복사를 합니다. 따라서, `const other1 = arr;`를 하면, `other1`과 `arr`은 같은 개체를 참조합니다. 요소를 복제하려면 다음과 같이 `from()`이나 `slice()`를 이용하거나, [Spread](??)를 이용합니다.
+배열은 얕은 복사를 합니다. 따라서, `const other1 = arr;`를 하면, `other1`과 `arr`은 같은 개체를 참조합니다. 요소를 복제하려면 다음과 같이 `from()`이나 `slice()`를 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-basic/#spreadecmascript6)를 이용합니다.
 
 ```javascript
 const arr = [1, 2, 3];
@@ -880,7 +880,7 @@ for (let i = 0; i < str.length; ++i) {
 
 # Spread(ECMAScript6) 
 
-배열등 [이터러블](??) 개체에 `...`을 붙이면, 대상을 개별 요소로 분리합니다.
+배열등 [이터러블](https://tango1202.github.io/javascript/javascript-basic/#%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94%EA%B3%BC-for-ofecmascript6) 개체에 `...`을 붙이면, 대상을 개별 요소로 분리합니다.
 
 ```javascript
 function f(a, b, c) {
@@ -1016,7 +1016,7 @@ console.log('중첩 개체도 분해해서 읽습니다', name === 'Kim' && addr
     import plus from 'myModule.js';
     ```
 
-* 모듈은 [strict mode](??)로 실행됩니다.
+* 모듈은 [strict mode](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#strict-mode)로 실행됩니다.
 * 모듈은 자신만의 유효 범위를 사용합니다. `export`되지 않은 것은 외부에서 사용할 수 없습니다.
 * 여러곳에서 모듈을 사용하더라도 최초 호출시 단 한번만 실행됩니다. 따라서 모듈을 사용하는 곳이 여러곳일때 한곳에서 수정하면, 다른 곳에서 수정된 내용을 참조할 수 있습니다.
 
