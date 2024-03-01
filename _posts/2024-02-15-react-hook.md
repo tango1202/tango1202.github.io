@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [React] 리액트 훅"
+title: "#3. [React] 리액트 Hook"
 categories: "react"
 tag: ["react"]
 author_profile: false
@@ -85,7 +85,7 @@ export default MySnapshot;
 |[useCallback()](https://tango1202.github.io/react/react-hook/#usecallback)|이전에 사용한 함수를 새로 만들지 않고 메모리에 기억했다가 재사용합니다.|
 |[useRef()](https://tango1202.github.io/react/react-hook/#useref)|컴포넌트를 다시 렌더링하지 않는 변수를 관리하거나, JSX의 특정 DOM을 참조합니다.|
 |[useContext()](??)|여러 컴포넌트에서 접근 가능한 전역적인 [State](https://tango1202.github.io/react/react-basic/#state)입니다.|
-|[useReducer()](??)|[State](https://tango1202.github.io/react/react-basic/#state) 수정을 컴포넌트에서 분래해서 관리하게 합니다.|
+|[useReducer()](??)|[State](https://tango1202.github.io/react/react-basic/#state) 수정을 컴포넌트에서 분리할 수 있게 합니다.|
 
 # useEffect()
 
@@ -389,7 +389,7 @@ export default MyUseRefFocus;
 3. #3 : `forwardRef()`를 이용해서 외부에서 `ref` 속성을 사용할 수 있게 합니다.
 4. #4 : 외부에서 실행할 함수입니다. `setValue()`를 이용하여 [State](??)를 수정합니다.
 5. #5 : `useImperativeHandle()`을 이용하여 외부에 노출할 함수들을 모아 개체로 리턴합니다.
-6. #7 : `ref`를 이용하여 `MyCounter`개체의 메서드를 호출합니다.
+6. #6 : `ref`를 이용하여 `MyCounter`개체의 메서드를 호출합니다.
 
 ```tsx
 import { useState, useRef, forwardRef, useImperativeHandle } from 'react';
@@ -448,9 +448,241 @@ const MyCounter = forwardRef<IMyCounterRef>((props, ref) => {
 export default MyUseRefCustom;
 ```
 
-# useContext() - 작성중
+# useContext()
 
-# useReducer() - 작성중
+리액트는 [Props](https://tango1202.github.io/react/react-basic/#props)를 이용하여 상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달합니다. 이러다 보니 계층이 깊은 경우 서로 데이터를 전달하기 위해서는 불필요하게 [Props](https://tango1202.github.io/react/react-basic/#props)를 포워딩하는 과정이 필요합니다.
+
+[useContext()](??)는 공통적으로 사용할 수 있는 [State](??)를 만들어 여러 컴포넌트에서 공유할 수 있게 해줍니다.(*[Redux](??)도 동일한 용도로 사용하며, 좀더 많은 기능을 제공합니다.*)
+
+다음은 `isDark`값에 따라 컴포넌트의 스킨을 변경하는 예입니다. 각 컴포넌트가 [useContext()](??)를 사용하여 값을 공유하므로, 불필요하게 [Props](https://tango1202.github.io/react/react-basic/#props)를 포워딩할 필요가 없습니다.
+
+1. #1 : 공유해서 사용할 저장소 인터페이스 입니다.
+2. #2 : `createContext()`로 저장소를 생성합니다. 
+3. #3 : JSX에서 저장소를 공유할 컴포넌트의 최상위에 `<MyThemeContext.Provider>`를 작성합니다. 이때 #3-1의 [State](??)와 연결합니다.
+4. #4 : [useContext()](??)를 이용하여 저장소를 이용할 수 있습니다.
+5. #5 : 저장소에서 읽은 `MyThemeContext` 값에 따라 스타일을 바꿉니다.
+6. #6 : #3-1인 [State](??)를 수정하던, `MyThemeContext`의 `setIsDark()`를 사용하던 모두 동일한 값을 수정합니다.
+
+```tsx
+import { useState, createContext, useContext } from 'react';
+
+interface IMyThemeContext { // #1. 공유해서 사용할 저장소 인터페이스 입니다. 
+  isDark: boolean;
+  setIsDark?(isDark: boolean): void;
+}
+const MyThemeContext = createContext<IMyThemeContext>({ isDark: false}); // #2. 저장소를 생성합니다. 기본값을 전달합니다.
+
+const MyUseContext = () => {
+  const [isDark, setIsDark] = useState(false); // #3-1
+  const onClick = () => { 
+    setIsDark(!isDark); // #6. MyThemeContext의 값을 수정합니다.
+  };
+  return (
+    <div>
+      <button onClick={onClick}>{'다크 모드 토글'}</button>
+      <MyThemeContext.Provider value={{ isDark: isDark, setIsDark: setIsDark }}> {/* #3. Provider 하위의 모든 개체에 전달할 값을 설정합니다. */}
+        <MyToolbar />
+      </MyThemeContext.Provider>
+    </div>
+  );
+};
+
+const MyToolbar = () => {
+  const { isDark, setIsDark } = useContext<IMyThemeContext>(MyThemeContext); // #4. MyThemeContext의 값을 사용합니다.
+
+  const onClick = () => {
+    if (setIsDark !== undefined) {
+      setIsDark(!isDark); // #6. MyThemeContext의 값을 수정합니다.
+    }
+  };
+  return (
+    <div
+      style={{ // #5. MyThemeContext 값에 따라 스타일을 바꿉니다.
+        backgroundColor: isDark ? 'black' : 'white',
+      }}
+    >
+      <span
+        style={{ // #5. MyThemeContext 값에 따라 스타일을 바꿉니다.
+          backgroundColor: isDark ? 'black' : 'white',
+          color: isDark ? 'white' : 'black',
+        }}
+      >
+        {'툴바 :'}
+      </span>
+      <MyButton caption={'버튼1'} />
+      <MyButton caption={'하위 컴포넌트에서 다크 모드 토글'} onClick={onClick} />
+      <MyButton caption={'버튼1'} />
+    </div>
+  );
+};
+
+interface IProps {
+  caption: string;
+  onClick?(): void;
+}
+const MyButton = (props: IProps) => {
+  const { isDark } = useContext<IMyThemeContext>(MyThemeContext); // #4. MyThemeContext의 값을 사용합니다.
+  return (
+    <button
+      onClick={props.onClick}
+      style={{ // #5. MyThemeContext 값에 따라 스타일을 바꿉니다.
+        backgroundColor: isDark ? 'black' : 'white',
+        color: isDark ? 'white' : 'black',
+      }}
+    >
+      {props.caption}
+    </button>
+  );
+};
+
+export default MyUseContext;
+```
+
+# useReducer()
+
+[State](??)의 관리는 해당 상태를 관리하는 각 컴포넌트에서 해야 합니다. 이러다 보면, 상태 수정 관련 로직이 흩어져 관리가 어려울 수 있는데요, 리액트에서는 [useReducer()](??) 를 이용하여 이를 응집해서 관리할 수 있습니다.
+
+* `action` : [State](??)를 수정하는 기능입니다.
+* `reducer()` : `action`들의 집합입니다. 
+* `dispatch()` : `reducer()`를 호출하여 `action`을 실행합니다.
+
+[useReducer()](??)는 `reducer()`를 인자로 전달받아 [State](??)와 `dispatch()`를 리턴합니다. [State](??)로 데이터에 접근할 수 있으며, `dispatch()`로 [State](??)를 수정할 수 있습니다.
+
+다음은 UI를 이용하여 `name`, `age`인 `data` 정보를 `Create`, `Update`, `Delete`하는 예입니다.
+
+1. #1 : `reducer()`에서 사용할 데이터 정보입니다.
+2. #2 : `reducer()`의 초기값입니다. 빈 배열입니다.
+3. #3 : `reducer()`에서 사용할 액션 정보입니다. 액션 타입에 따라 동작을 구분합니다.
+4. #4 : `reducer()`입니다. `(state: IState, action: IAction)` 와 같이 인자로 [State](??)와 액션이 전달됩니다. `ActionType`에 따라 동작을 실행하면 되며, [State](??)의 경우와 마찬가지로 복제본을 리턴해야 다시 렌더링 됩니다. [State](??)를 수정하는 기능들이 한곳에 응집되어 관리가 용이해 집니다.
+5. #5 : `MyUseReducer`에서 사용자 정보를 입력받는 `MyToolbar`와 해당 내용을 출력하는 `MyList`를 표시합니다. #5-2와 같이 이벤트가 발생하면 `dispatch()`를 이용하여 액션을 실행합니다.
+6. #6 : `MyToolbar`에서 UI를 이용하여 정보를 읽고 액션 개체를 만들어 상위 개체에 전달합니다. 이때 6-1과 같이 [useCallback()](??)을 이용하여 불필요한 함수 생성을 최소화하였습니다.
+7. #7 : `MyList`에서 [State](??)의 `datas`를 출력합니다.
+
+```tsx
+import { useRef, useCallback, useReducer } from 'react';
+
+// #1. reducer에서 사용할 데이터 정보입니다.
+interface IData {
+  name: string;
+  age: number;
+}
+interface IState {
+  datas: IData[];
+}
+
+// #2. reducer의 초기값입니다. 빈 배열입니다.
+const initialState: IState = {
+  datas: [],
+};
+
+// #3. reducer에서 사용할 액션 정보입니다. 액션 타입에 따라 동작을 구분합니다.
+enum ActionType {
+  Create,
+  Update,
+  Delete,
+}
+interface IAction {
+  type: ActionType;
+  data: IData; // #3-1. 액션 타입에 따라 전달된 data를 이용하여 state를 수정합니다.
+}
+
+// #4. ActionType에 따라 state의 값을 수정합니다. 이때, State의 경우와 마찬가지로 복제본을 리턴해야 다시 렌더링 됩니다. 
+// State를 수정하는 기능들이 한곳에 응집되어 관리가 용이해 집니다.
+const reducer = (state: IState, action: IAction): IState => {
+  switch (action.type) {
+    case ActionType.Create: // datas 뒤에 새로운 action.data를 추가하여 리턴합니다.
+      return {
+        ...state,
+        datas: [...state.datas, action.data],
+      };
+    case ActionType.Update: // datas에서 이름이 동일한 항목을 수정하여 리턴합니다.
+      return {
+        ...state,
+        datas: state.datas.map((data) => (data.name !== action.data.name ? data : action.data)),
+      };
+    case ActionType.Delete: // datas에서 이름이 동일한 항목을 삭제합니다.
+      return {
+        ...state,
+        datas: state.datas.filter((data) => data.name !== action.data.name),
+      };
+    default:
+      return state;
+  }
+};
+
+// 5. 사용자 정보를 입력받는 Toolbar와 해당 내용을 출력하는 List를 표시합니다.
+const MyUseReducer = () => {
+  const [state, dispatch] = useReducer(reducer, initialState); // #5-1. reducer를 생성합니다.
+
+  const onAction = (action: IAction) => {
+    dispatch(action); // #5-2. reducer를 실행합니다.
+  };
+  return (
+    <div>
+      <MyToolbar datas={state.datas} onAction={onAction} />
+      <MyList datas={state.datas} />
+    </div>
+  );
+};
+
+interface IMyToolbarProps {
+  datas: IData[];
+  onAction(action: IAction): void;
+}
+// 6. UI를 이용하여 정보를 읽고 Action개체를 만들어 상위 개체에 전달합니다.
+const MyToolbar = (props: IMyToolbarProps) => {
+  const nameRef = useRef<HTMLInputElement>(null);
+  const ageRef = useRef<HTMLInputElement>(null);
+
+  // #6-1. 불필요한 함수 생성을 최소화하도록 useCallback을 사용합니다.
+  const createAction = useCallback((type: ActionType, name: string, age: number): IAction => {
+    return {
+      type,
+      data: { name, age },
+    };
+  }, []);
+  // #6-2. 입력 개체의 정보를 바탕으로 Action을 만든뒤 상위 개체에 전달합니다.
+  const onCreate = () => {
+    props.onAction(createAction(ActionType.Create, nameRef.current ? nameRef.current.value : '', ageRef.current ? Number(ageRef.current.value) : 0));
+  };
+  const onUpdate = () => {
+    props.onAction(createAction(ActionType.Update, nameRef.current ? nameRef.current.value : '', ageRef.current ? Number(ageRef.current.value) : 0));
+  };
+  const onDelete = () => {
+    props.onAction(createAction(ActionType.Delete, nameRef.current ? nameRef.current.value : '', ageRef.current ? Number(ageRef.current.value) : 0));
+  };
+  return (
+    <div>
+      <span>{'이름'}</span>
+      <input ref={nameRef} />
+      <span>{'나이'}</span>
+      <input ref={ageRef} />
+      <button onClick={onCreate}>{'Create'}</button>
+      <button onClick={onUpdate}>{'Update'}</button>
+      <button onClick={onDelete}>{'Delete'}</button>
+    </div>
+  );
+};
+
+interface IMyListProps {
+  datas: IData[];
+}
+// #7. datas를 출력합니다.
+const MyList = (props: IMyListProps) => {
+  const { datas } = props;
+  return (
+    <ol>
+      {datas.map((data) => (
+        <li key={data.name}> {/* #7-1. 목록형으로 출력하므로 key를 사용합니다. */}
+          {data.name} {', '} {data.age}
+        </li>
+      ))}
+    </ol>
+  );
+};
+
+export default MyUseReducer;
+```
 
 # 커스텀 Hook
 
