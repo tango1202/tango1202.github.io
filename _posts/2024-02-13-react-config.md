@@ -311,7 +311,7 @@ sidebar:
 
 # Prettier 설치
 
-1. `prettier-eslint`를 설치합니다.
+1. `prettier-eslint`를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
     ```
     npm install -D prettier-eslint

@@ -25,7 +25,7 @@ sidebar:
     npm init
     ```
 
-3. 터미널에서 다음 명령을 입력하여 `Jest`를 설치합니다. `import`등 ECMAScript를 사용하려면 `@babel/core`, `@babel/preset-env`, `babel-jest`도 함께 설치되어야 합니다. 
+3. 터미널에서 다음 명령을 입력하여 `Jest`를 설치합니다. `import`등 ECMAScript를 사용하려면 `@babel/core`, `@babel/preset-env`, `babel-jest`도 함께 설치되어야 합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*)  
 
     ```
     npm install -D jest @babel/core @babel/preset-env babel-jest 

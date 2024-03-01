@@ -38,7 +38,7 @@ sidebar:
     npm install typescript
     ```
 
-2. 타입스크립트를 컴파일하지 않고 node에서 실행해주는 `ts-node`를 실행합니다.
+2. 타입스크립트를 컴파일하지 않고 node에서 실행해주는 `ts-node`를 실행합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
     ```
     npm install -D ts-node
@@ -169,7 +169,7 @@ sidebar:
 
 `nodemon`은 파일 저장을 실시간으로 감지하고 실행해주는 툴입니다. 이를 이용하면, 개발이 좀더 편리해 집니다.
 
-1. `nodemon`을 설치합니다.
+1. `nodemon`을 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
     ```
     npm install -D nodemon
@@ -197,7 +197,7 @@ sidebar:
 
 타입스크립트에서는 예전에 `TSLint`를 사용했는데, 이제는 deprecate되어, `ESLint`를 사용합니다.
 
-1. `ESLint`를 설치합니다.
+1. `ESLint`를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
     ```
     npm install -D eslint
@@ -291,7 +291,7 @@ sidebar:
 
 # Prettier 설치
 
-1. `prettier`, `eslint-config-prettier`, `eslint-plugin-prettier`를 설치합니다.
+1. `prettier`, `eslint-config-prettier`, `eslint-plugin-prettier`를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
     ```
     npm install -D prettier eslint-config-prettier eslint-plugin-prettier
@@ -330,7 +330,7 @@ sidebar:
 
 # Jest 설치
 
-1. 터미널에서 다음 명령을 입력하여 `Jest`를 설치합니다. `import`등 ECMAScript를 사용하려면 `@babel/core`, `@babel/preset-env`, `babel-jest`, `@babel/preset-typescript`도 함께 설치되어야 합니다. 
+1. 터미널에서 다음 명령을 입력하여 `Jest`를 설치합니다. `import`등 ECMAScript를 사용하려면 `@babel/core`, `@babel/preset-env`, `babel-jest`, `@babel/preset-typescript`도 함께 설치되어야 합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*)  
 
     ```
     npm install -D jest @babel/core @babel/preset-env babel-jest @babel/preset-typescript

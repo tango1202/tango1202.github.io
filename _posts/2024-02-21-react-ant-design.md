@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [React] 코딩 패턴(작성중)"
+title: "#10. [React] ant design(작성중)"
 categories: "react"
 tag: ["react"]
 author_profile: false

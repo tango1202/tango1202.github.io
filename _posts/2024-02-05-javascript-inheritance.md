@@ -12,14 +12,16 @@ sidebar:
 
 자바스크립트는 C++와 같은 상속을 지원하지 않습니다. 하지만, 프로토타입을 이용하여 상속한 것처럼 만들 수는 있는데요, 억지로 상속한 것처럼 만들다 보니 쓸데없이 부모 개체의 속성을 복제하는 등 비효율적입니다.
 
-상속보다는 프로토타입 체인을 이용하여 실행을 위임하는 것으로 논리를 만드시는게 좋습니다.
+공통된 기능은 상속보다는 [즉시 실행 함수를 이용한 모듈 개체](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%93%88%ED%99%94)를 통해 위임을 하도록 논리를 만드는게 좋습니다. [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)처럼요. 
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c222deb6-23e9-4250-bd7d-b1b1d8426a49)
+혹은 프로토타입 체인을 이용할 수도 있습니다.
 
 C++에서는 `Base`로부터 상속한 `Derived` 클래스로 개체를 인스턴스화 하면, 속성과 메서드를 물려받게 됩니다.
-따라서 각 개체는 `baseProperty, derivedProperty`를 갖게 되고, `baseMethed(), derivedMethod()`를 제공합니다. 메서드 정의는 `Base` 클래스와 `Derived` 클래스에서 제공하고요.
+따라서 각 개체는 각각 `baseProperty, derivedProperty`를 갖게 되고, `baseMethed(), derivedMethod()`를 제공합니다. 메서드 정의는 `Base` 클래스와 `Derived` 클래스에서 제공하고요.
 
-자바스크립트는 상속이 없으며, 재활용하고 싶은 개체가 있으면, 프로토타입 개체에 위임하여 처리할 수 있습니다.
+다음은 C++의 상속과 자바스크립트의 프로토타입 체인의 비교 그림입니다. C++은 `baseProperty`가 각각 정의되는데, 자바스크립트는 `Obj1`과 `Obj2`가 동일한 `baseProperty`와 `baseMethod()`를 참조합니다. 근본 개념부터 다른 겁니다. 
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c222deb6-23e9-4250-bd7d-b1b1d8426a49)
 
 우리가 상속을 하려는 경우는 다음과 같습니다.
 

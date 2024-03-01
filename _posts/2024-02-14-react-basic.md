@@ -170,9 +170,9 @@ sidebar:
 
 ```tsx
 const MyButton = () => {
-  function onClick() {
+  const onClick = () => {
     alert('버튼을 클릭했습니다.');
-  }
+  };
 
   return <button onClick={onClick}>클릭해 주세요.</button>;
 };
@@ -191,11 +191,11 @@ export default MyButton;
 const MyState = () => {
   let count = 0;
   console.log('MyState 이 호출되었습니다.');
-  function onClick() {
+  const onClick = () => {
     ++count;
     // 증가한 값을 잘 표시합니다.
     alert(`버튼을 ${count}회 클릭했습니다.`);
-  }
+  };
 
   return (
     <div>
@@ -224,24 +224,24 @@ import { useState } from 'react'; // #1
 
 const MyState = () => {
   let count = 0; // 일반 변수 입니다. 수정해도 JSX에 반영되지 않습니다.
-    
+
   const [stateCount, setStateCount] = useState(0); // #2
   // const [stateCount, setStateCount] = useState<number>(0); // useState<타입>으로 타입을 명시할 수 있습니다.
 
   console.log('MyState 이 호출되었습니다.');
-  function onClick() {
+  const onClick = () => {
     ++count; // 수정해도 JSX에 반영되지 않습니다.
     // ++stateCount; // #3. state는 setter를 이용해서 수정해야만 랜더링을 다시 합니다.
     setStateCount(stateCount + 1);
     alert(`버튼을 ${count}회 클릭했습니다.`);
-  }
+  };
 
   return (
     <div>
       <button onClick={onClick}>카운트합니다.</button>
       <p>
         {/* #4. count는 변하지 않고, stateCount는 변합니다. */}
-        count = {count} stateCount = {stateCount} 
+        count = {count} stateCount = {stateCount}
       </p>
     </div>
   );
@@ -271,28 +271,26 @@ const MyArrayState = () => {
     { x: 1, y: 2 },
     { x: 10, y: 20 },
   ]);
-  function onXClick() {
-    arr[0].x = 100; 
+  const onXClick = () => {
+    arr[0].x = 100;
     setArr(arr); // #1. 렌더링을 다시 하지 않습니다.
-  }
-  function onElementClick() {
+  };
+  const onElementClick = () => {
     arr[0] = { x: 100, y: 2 };
     setArr(arr); // #2. 렌더링을 다시 하지 않습니다.
-  }
-  0function onArrayClick() {
+  };
+  const onArrayClick = () => {
     const clone = [...arr];
     clone[0].x = 100; // #3. 복제본을 수정합니다.
     console.log(arr[0].x === clone[0].x); // #3. 배열의 각 요소는 앝은 복사됩니다.
     setArr(clone); // #4. 렌더링을 다시 합니다.
-  }
+  };
   return (
     <div>
       <button onClick={onXClick}>x 값을 변경합니다.</button>
       <button onClick={onElementClick}>arr[0]을 변경합니다.</button>
       <button onClick={onArrayClick}>arr을 변경합니다.</button>
-      <p>
-        {`arr[0] : ${arr[0].x}, ${arr[0].y} arr[1] : ${arr[1].x}, ${arr[1].y}}`}
-      </p>
+      <p>{`arr[0] : ${arr[0].x}, ${arr[0].y} arr[1] : ${arr[1].x}, ${arr[1].y}}`}</p>
     </div>
   );
 };
@@ -389,7 +387,7 @@ const Pareant = (props: IProps) {
 3. #3 : 하위 개체인 `MyButton`의 [Props](??)에 콜백 함수를 전달합니다.
 4. #4 : 콜백 함수 입니다. 함수 인자를 통해 하위 개체로부터 데이터를 전달받을 수 있습니다.
 
-```jsx
+```tsx
 import { useState } from 'react';
 
 // #1. 버튼은 caption과 onClick() Props를 사용합니다.
@@ -399,7 +397,7 @@ interface IMyButtonProps {
 }
 const MyButton = (props: IMyButtonProps) => {
   const { caption, onClick } = props;
-  // #2. button의 이벤트 핸들러로 Props로 전달된 onClick()을 이용합니다. 
+  // #2. button의 이벤트 핸들러로 Props로 전달된 onClick()을 이용합니다.
   return <button onClick={onClick}>{caption}</button>;
 };
 
@@ -417,12 +415,12 @@ const MyCounter = () => {
   const [value, setValue] = useState(0);
 
   // #4. 콜백 함수 입니다. 함수 인자를 통해 하위 개체로부터 데이터를 전달받을 수 있습니다.
-  function onMinusClick() {
+  const onMinusClick = () => {
     setValue(value - 1);
-  }
-  function onPlusClick() {
+  };
+  const onPlusClick = () => {
     setValue(value + 1);
-  }
+  };
 
   // #3. Props에 콜백 함수를 전달합니다.
   return (
@@ -440,7 +438,7 @@ export default MyCounter;
 
 * 리액트는 렌더링 컴포넌트를 트리 형태로 구성합니다.
 
-* 동일한 [Props](??)나 [State](??)에서는 동일한 결과가 리턴되어야 합니다. 이를 `Pure Function`이라고 하며, 동일한 [Props](??)나 [State](??)일때 동일한 JSX를 리턴한다고 가정하고 성능 최적화를 합니다. 따라서 구현시 꼭 준수해야 합니다.
+* 동일한 [Props](??)나 [State](??)에서는 동일한 결과가 리턴되어야 합니다. 이와 같이 입력값에 대해 동일한 결과를 리턴하는 함수를 `Pure Function`이라고 합니다. 리액트는 동일한 [Props](??)나 [State](??)일때 동일한 JSX를 리턴한다고 가정하고 성능 최적화하기 때문에, 꼭 준수해야 합니다. 준수하지 않으면, 뜻하지 않게 화면이 쉼없이 재 렌더링 되거나, 아예 렌더링을 안할 수 있습니다.
 
 * 렌더링은 [Props](??)나 [State](??)변경에 따라 재시도 되고, 가상 DOM을 이용하여 동적으로 렌더링 요소들을 구성한뒤 변경된 것만 갱신합니다.
 

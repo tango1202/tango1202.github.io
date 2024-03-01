@@ -38,7 +38,7 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
     * [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
     * [Visual Studio Code 익스텐션](https://tango1202.github.io/javascript/javascript-config/#visual-studio-code-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98)(*Code Runner, Live Server*)
 
-2. 터미널에서 다음 명령을 입력하여 `ESlint`를 설치합니다. 
+2. 터미널에서 다음 명령을 입력하여 `ESlint`를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
     ```
     npm install -D eslint
@@ -150,7 +150,7 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 
 2. [ESLint](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#eslint)를 참고하여 설치합니다.
 
-3. 터미널에서 다음 명령을 입력하여 `prettier`와 `eslint-config-prettier`를 설치합니다. 
+3. 터미널에서 다음 명령을 입력하여 `prettier`와 `eslint-config-prettier`를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
     ```
     npm install -D prettier eslint-config-prettier
