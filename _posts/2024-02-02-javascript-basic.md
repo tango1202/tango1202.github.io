@@ -459,13 +459,13 @@ console.log('일반 함수', add(1, 2)); // 3
 ```javascript
 const add = (a, b) => {
     return a + b;
-}
+};
 console.log('화살표 함수', add(1, 2)); // 3
 ```
 
 와 같이 간소하게 표현할 수 있습니다.
 
-1줄짜리라면 `return`과 중괄호로 더 간략하게 표현할 수 있습니다.
+1줄짜리라면 `return`과 중괄호를 생략하여 더 간략하게 표현할 수 있습니다.
 
 ```javascript
 const add = (a, b) => a + b;
