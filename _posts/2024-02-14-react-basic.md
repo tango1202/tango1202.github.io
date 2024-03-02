@@ -121,12 +121,31 @@ sidebar:
       };
       export default MyUserList;
       ```
-
-  3. JSX는 단일 태그를 리턴해야 합니다.
-
+  3. `return`이 한줄에 있지 않으면 `()`로 감쌉니다.
       ```tsx
       return ( 
-        <div/> // 단일 태그가 아닙니다.
+        <div/> 
+          <div/>
+        <div/>
+      );
+      ```  
+
+  4. 주석도 `{}` 안에 작성합니다.
+      ```tsx
+      return ( 
+        <div/> 
+          {/* 주석입니다. */}
+          <div/>
+        <div/>
+      );
+      ```
+
+  5. JSX는 단일 태그를 리턴해야 합니다.
+
+      ```tsx
+      // (X) 컴파일 오류. 단일 태그가 아닙니다.
+      return ( 
+        <div/> 
         <div/>
       );
       ```
@@ -141,9 +160,8 @@ sidebar:
         </>
       );
       ```
-  4. `return`이 한줄에 있지 않으면 `()`로 감쌉니다.
 
-  5. `HTML`에서 대시를 포함하는 이름이나 `class`와 같은 예약어는 다른 이름으로 대체됩니다. 다음에서 `className`은 `HTML`의 `class` 입니다. 자세한 내용은 [Common components(https://react.dev/reference/react-dom/components/common)](https://react.dev/reference/react-dom/components/common)를 참고하세요.
+  6. `HTML`에서 대시를 포함하는 이름이나 `class`와 같은 예약어는 다른 이름으로 대체됩니다. 다음에서 `className`은 `HTML`의 `class` 입니다. 자세한 내용은 [Common components(https://react.dev/reference/react-dom/components/common)](https://react.dev/reference/react-dom/components/common)를 참고하세요.
 
       ```tsx
       <img 
@@ -153,9 +171,15 @@ sidebar:
       />
       ```
 
-  6. `null`을 리턴하여 무시할 수 있습니다.
+  7. `null`을 리턴하여 무시할 수 있습니다.
 
-  7. 삼항 연산자나 `&&`을 이용하여 조건부 작성을 할 수 있습니다.
+      ```tsx
+      <div>
+        {toggle ? <MyDiv /> : null}
+      </div>
+      ```
+
+  8. 삼항 연산자나 `&&`을 이용하여 조건부 작성을 할 수 있습니다.
 
       ```tsx
       <div> 
@@ -215,9 +239,9 @@ export default MyState;
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/378c1024-541c-4ee8-a158-f90744551aaa)
 
 1. #1 : `State`를 사용하기 위해 `useState`를 가져옵니다.
-2. #2 : `stateCount` 라는 이름으로 초기값이 `0`인 `State`를 만듭니다. 이때 `setStateCount()`라는 setter도 함께 만들어 집니다.
-3. #3 : `stateCount`를 수정할 때는 항상 `setStateCount()`를 이용해서 수정해야 렌더링을 다시 합니다.
-4. #4 : `count`는 변하지 않고, `stateCount`는 변합니다.
+2. #2 : `countState` 라는 이름으로 초기값이 `0`인 `State`를 만듭니다. 이때 `setCountState()`라는 setter도 함께 만들어 집니다.
+3. #3 : `countState`를 수정할 때는 항상 `setCountState()`를 이용해서 수정해야 렌더링을 다시 합니다.
+4. #4 : `count`는 변하지 않고, `countState`는 변합니다.
 
 ```tsx
 import { useState } from 'react'; // #1
@@ -225,14 +249,14 @@ import { useState } from 'react'; // #1
 const MyState = () => {
   let count = 0; // 일반 변수 입니다. 수정해도 JSX에 반영되지 않습니다.
 
-  const [stateCount, setStateCount] = useState(0); // #2
-  // const [stateCount, setStateCount] = useState<number>(0); // useState<타입>으로 타입을 명시할 수 있습니다.
+  const [countState, setCountState] = useState(0); // #2
+  // const [countState, setCountState] = useState<number>(0); // useState<타입>으로 타입을 명시할 수 있습니다.
 
   console.log('MyState 이 호출되었습니다.');
   const onClick = () => {
     ++count; // 수정해도 JSX에 반영되지 않습니다.
-    // ++stateCount; // #3. state는 setter를 이용해서 수정해야만 렌더링을 다시 합니다.
-    setStateCount(stateCount + 1);
+    // ++countState; // #3. state는 setter를 이용해서 수정해야만 렌더링을 다시 합니다.
+    setCountState(countState + 1);
     alert(`버튼을 ${count}회 클릭했습니다.`);
   };
 
@@ -240,8 +264,8 @@ const MyState = () => {
     <div>
       <button onClick={onClick}>카운트합니다.</button>
       <p>
-        {/* #4. count는 변하지 않고, stateCount는 변합니다. */}
-        count = {count} stateCount = {stateCount}
+        {/* #4. count는 변하지 않고, countState는 변합니다. */}
+        count = {count} countState = {countState}
       </p>
     </div>
   );
@@ -373,7 +397,7 @@ const Pareant = (props: IProps) {
 
 외부에서 초기값을 전달하고, 컴포넌트 내에서 값을 수정하려고 합니다.
 
-초기값은 [Props](https://tango1202.github.io/react/react-basic/#props)로 전달하면 됩니다. 그런데 `+`, `-` 버튼 클릭시 수정이 필요하고 [Props](https://tango1202.github.io/react/react-basic/#props)는 수정하면 안되므로, ***[Props](https://tango1202.github.io/react/react-basic/#props)를 [State](https://tango1202.github.io/react/react-basic/#state)에 복제***하고, `+`, `-` 버튼 클릭시 [State](https://tango1202.github.io/react/react-basic/#state)를 수정했습니다.
+초기값은 [Props](https://tango1202.github.io/react/react-basic/#props)로 전달하면 됩니다. 그런데 `+`, `-` 버튼 클릭시 수정이 필요하고 [Props](https://tango1202.github.io/react/react-basic/#props)는 수정하면 안되므로, ***[Props](https://tango1202.github.io/react/react-basic/#props)를 [State](https://tango1202.github.io/react/react-basic/#state)에 복제***하고, `+`, `-` 버튼 클릭시 [State](https://tango1202.github.io/react/react-basic/#state)를 수정해 보았습니다.
 
 `+`, `-`버튼 클릭시 잘 동작하는 것처럼 보입니다.
 
