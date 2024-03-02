@@ -103,3 +103,30 @@ const MyCssModuleStyle = () => {
 ```
 
 # styled 컴포넌트
+
+기존에는 `Javascript`, `HTML`, `CSS`를 분할했었는데, 리액트 컴포넌트가 모듈 단위로 제공되다 보니, 이들을 결합하는 구조로 만들 수도 있습니다. 
+
+이렇게 결합할 경우 [styled 컴포넌트](??)가 많이 사용됩니다.
+
+1. 터미널에서 다음 명령을 입력하여 [styled 컴포넌트](??)를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
+
+    ```
+    npm install -D styled-components
+    ```
+2. 다음과 같이 `import` 하고, HTML 엘레먼트에 따라 스타일을 적용한 후 사용할 수 있습니다.
+
+    ```tsx
+    import styled from "styled-components"; 
+
+    // HTML 엘리먼트에 스타일 적용
+    const MyDiv = styled.div`
+      background-color: brown;
+    `;
+
+    const MyStyled = () => {
+      return (
+        <MyDiv>
+          {'styled를 사용 했습니다.'}
+        </MyDiv>
+      );
+    };
