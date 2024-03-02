@@ -487,7 +487,9 @@ const MyUseContext = () => {
   return (
     <div>
       <button onClick={onClick}>{'다크 모드 토글'}</button>
-      <MyThemeContext.Provider value={{ isDark: isDark, setIsDark: setIsDark }}> {/* #3. Provider 하위의 모든 개체에 전달할 값을 설정합니다. */}
+      <MyThemeContext.Provider value={ // #3. Provider 하위의 모든 개체에 전달할 값을 설정합니다. 
+          { isDark: isDark, setIsDark: setIsDark }
+        }> 
         <MyToolbar />
       </MyThemeContext.Provider>
     </div>
@@ -504,15 +506,19 @@ const MyToolbar = () => {
   };
   return (
     <div
-      style={{ // #5. MyThemeContext 값에 따라 스타일을 바꿉니다.
-        backgroundColor: isDark ? 'black' : 'white',
-      }}
+      style={
+        { // #5. MyThemeContext 값에 따라 스타일을 바꿉니다.
+          backgroundColor: isDark ? 'black' : 'white',
+        }
+      }
     >
       <span
-        style={{ // #5. MyThemeContext 값에 따라 스타일을 바꿉니다.
-          backgroundColor: isDark ? 'black' : 'white',
-          color: isDark ? 'white' : 'black',
-        }}
+        style={
+          { // #5. MyThemeContext 값에 따라 스타일을 바꿉니다.
+            backgroundColor: isDark ? 'black' : 'white',
+            color: isDark ? 'white' : 'black',
+          }
+        }
       >
         {'툴바 :'}
       </span>
@@ -532,10 +538,12 @@ const MyButton = (props: IProps) => {
   return (
     <button
       onClick={props.onClick}
-      style={{ // #5. MyThemeContext 값에 따라 스타일을 바꿉니다.
-        backgroundColor: isDark ? 'black' : 'white',
-        color: isDark ? 'white' : 'black',
-      }}
+      style={
+        { // #5. MyThemeContext 값에 따라 스타일을 바꿉니다.
+          backgroundColor: isDark ? 'black' : 'white',
+          color: isDark ? 'white' : 'black',
+        }
+      }
     >
       {props.caption}
     </button>
