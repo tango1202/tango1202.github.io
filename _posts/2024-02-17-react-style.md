@@ -72,6 +72,13 @@ const MyCssStyle = () => {
 
 `css` 파일의 확장자를 `module.css`로 작성하면, 모듈 형태로 `import`할 수 있어 이름 충돌을 회피할 수 있습니다. 
 
+```css
+/* MyStyle.module.css 파일에서 */
+.my-style {
+    background-color: cyan;
+}
+```
+
 ```tsx
 import styles from './MyStyle.module.css'; // #1. 모듈 형태로 import 합니다.
 
