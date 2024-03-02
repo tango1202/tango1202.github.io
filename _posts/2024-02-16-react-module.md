@@ -75,7 +75,7 @@ function App() {
 
 # 절대 경로
 
-프로젝트 루트 폴더의 `tsconfig.json`으로 절대 경로를 사용할 수 있습니다. 다음과 같이 `baseUrl`을 설정해 줍니다.
+프로젝트 루트 폴더의 `tsconfig.json`으로 절대 경로를 사용할 수 있습니다. 다음과 같이 `baseUrl`과 `include`를 설정해 줍니다. 
 
 ```json
 {
@@ -100,7 +100,7 @@ import { IMyData } from 'myModule/comonent/lib/MyData';
 
 `import` 경로 지정시 파일이 아닌 특정 폴더만 명시하면, 해당 폴더의 `index.ts` 파일에서 가져옵니다.
 
-따라서 `myModule` 폴더에 `index.ts` 파일을 작성하고, 내보내려는 개체나 타입을 취합하여 내보낼 수 있습니다. 이렇게 다른 파일에 있는 개체를 `export`하는 경우 `interface`나 `type`은 `type {}`을 사용해서 내보냅니다. 
+따라서 `myModule` 폴더에 `index.ts` 파일을 작성하고, `export`하려는 개체나 타입을 취합할 수 있습니다. 이렇게 다른 파일에 있는 개체를 `export`하는 경우 `interface`나 `type`은 `type {}`을 사용해서 내보냅니다. 
 
 ```ts
 // src/myModule/index.ts 에서

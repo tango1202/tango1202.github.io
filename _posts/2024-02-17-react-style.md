@@ -10,7 +10,7 @@ sidebar:
 
 # 인라인 스타일
 
-JSX 에 스타일을 적용하려면 `React.CssProperties` 타입의 개체를 사용해야 하는데요, `css` 속성명을 camel 표기법으로 바꿔서 사용하면 됩니다.(*예를들어 `background-color`는 `backgroundColor`입니다.*)
+JSX 에 스타일을 적용하려면 [React.CssProperties](https://use-form.netlify.app/interfaces/_node_modules__types_react_index_d_.react.cssproperties) 타입의 개체를 사용해야 하는데요, `css` 속성명을 camel 표기법으로 바꿔서 사용하면 됩니다.(*예를들어 `background-color`는 `backgroundColor`입니다.*)
 
 ```tsx
 const MyInlineStyle = () => {
@@ -113,7 +113,7 @@ const MyCssModuleStyle = () => {
     ```
     npm install -D styled-components
     ```
-2. 다음과 같이 `import` 하고, HTML 엘레먼트에 따라 스타일을 적용한 후 사용할 수 있습니다.
+2. 다음과 같이 `import` 하고, HTML 엘레먼트에 따라 스타일을 적용한 후 사용할 수 있습니다. 그외 자세한 내용은 [https://styled-components.com/](https://styled-components.com/)을 참고하세요.
 
     ```tsx
     import styled from "styled-components"; 
@@ -130,3 +130,4 @@ const MyCssModuleStyle = () => {
         </MyDiv>
       );
     };
+    ```
