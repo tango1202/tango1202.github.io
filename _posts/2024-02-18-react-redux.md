@@ -325,8 +325,7 @@ const MyList = () => {
             }
           }
         >
-          {' '}
-          {name}{' '}
+          {name}
         </li>
       ))}
     </ol>
@@ -475,8 +474,7 @@ const MyList = () => {
             }
           }
         >
-          {' '}
-          {name}{' '}
+          {name}
         </li>
       ))}
     </ol>
