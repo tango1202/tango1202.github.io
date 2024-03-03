@@ -165,9 +165,330 @@ const MyList = () => {
 export default MyRedux;
 ```
 
-# createSlice()와 combineReducers()
+# combineReducers()
+
+개별적으로 리듀서를 작성하고 이를 합쳐서 사용할 수 있습니다. 
+
+다음은 사용자 이름을 저장하는 리듀서와 뭔가 값이 변경되었을때 dirty 플래그를 저장하는 리듀서를 함께 사용하는 예입니다. 이름이 추가되면 dirty 플래그를 `true`로 설정하고 붉은색 배경으로 표시하며, 저장하면 dirty 플래그를 `false`로 설정하고 파란색 배경으로 표시합니다. 
+
+1. #1 : `namesReducer`는 사용자 이름을 관리하는 리듀서입니다.
+2. #2 : `dirtyReducer`는 데이터가 수정되었는지 여부를 관리하는 리듀서 입니다.
+3. #3 : 두개의 리듀서가 사용하는 [State](??)가 리덕스에 저장되는 형태입니다.
+4. #4 : `combineReducers()`로 두개의 리듀서를 합칩니다. 이때 `IStore` 속성에 맞게 동일한 이름을 사용합니다.
+5. #5-1, #5-2 : 이벤트에 맞춰 이름을 추가하거나, dirty 플래그를 설정합니다.
+6. #6 : `useSelector()`를 이용하여 리덕스의 정보를 읽어옵니다.
+7. #7 : `dirty`상태에 따라 빨간색 혹은 파란색으로 표시합니다.
+
+```tsx
+import { useRef } from 'react';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { Action, combineReducers } from 'redux';
+
+// ----
+// #1. 사용자 이름을 관리하는 리듀서 입니다.
+// ----
+interface INamesState {
+  names: string[];
+}
+
+const namesInitialState: INamesState = {
+  names: ['홍길동', '성춘향'],
+};
+
+type NamesActionType = 'Add' | 'Save';
+interface INamesAction extends Action<NamesActionType> {
+  name: string;
+}
+const namesReducer = (state: INamesState = namesInitialState, action: INamesAction): INamesState => {
+  switch (action.type) {
+    case 'Add': // #1-1. names 뒤에 새로운 action.names를 추가하여 리턴합니다.
+      return {
+        ...state,
+        names: [...state.names, action.name],
+      };
+    case 'Save': // #1-2. 무언가를 저장합니다.
+      console.log('이름들을 저장합니다.');
+      return state;
+    default:
+      return state;
+  }
+};
+
+// ----
+// #2. 데이터가 수정되었는지 여부를 관리하는 리듀서 입니다.
+// ----
+interface IDirtyState {
+  dirty: boolean;
+}
+const dirtyInitialState: IDirtyState = {
+  dirty: false,
+};
+
+type DirtyActionType = 'SetDirty';
+interface IDirtyAction extends Action<DirtyActionType> {
+  dirty: boolean;
+}
+
+const dirtyReducer = (state: IDirtyState = dirtyInitialState, action: IDirtyAction): IDirtyState => {
+  switch (action.type) {
+    case 'SetDirty':
+      return {
+        ...state,
+        dirty: action.dirty,
+      };
+    default:
+      return state;
+  }
+};
+
+// ----
+// #3. 리덕스에 저장되는 형태입니다.
+// ----
+interface IStore {
+  namesState: INamesState;
+  dirtyState: IDirtyState;
+}
+
+const MyCombineReducer = () => {
+  // #4. 두개의 리듀서를 합칩니다.
+  // 이때 각 리듀서는 IStore 속성에 맞춰 저장할 수 있도록 동일한 이름을 사용합니다.
+  const rootReducer = combineReducers({
+    namesState: namesReducer,
+    dirtyState: dirtyReducer,
+  });
+
+  const store = configureStore({
+    reducer: rootReducer,
+  });
+
+  return (
+    <div>
+      <Provider store={store}>
+        <MyToolbar />
+        <MyList />
+      </Provider>
+    </div>
+  );
+};
+
+const MyToolbar = () => {
+  const nameRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
+
+  // #5-1. 이름을 추가하고, dirty를 true로 설정합니다.
+  const onAdd = () => {
+    dispatch({
+      type: 'Add',
+      name: nameRef.current ? nameRef.current.value : '',
+    });
+    dispatch({
+      type: 'SetDirty',
+      dirty: true,
+    });
+  };
+  // #5-2. dirty를 false로 설정합니다.
+  const onSave = () => {
+    dispatch({
+      type: 'Save',
+      name: '', // name 정보는 사용하지 않습니다.
+    });
+    dispatch({
+      type: 'SetDirty',
+      dirty: false,
+    });
+  };
+  return (
+    <div>
+      <span>{'이름'}</span>
+      <input ref={nameRef} />
+      <button onClick={onAdd}>{'추가'}</button>
+      <button onClick={onSave}>{'저장'}</button>
+    </div>
+  );
+};
+
+const MyList = () => {
+  // #6. useSelector()를 이용하여 store에 있는 값을 읽어옵니다.
+  const names = useSelector((store: IStore) => store.namesState.names);
+  const dirty = useSelector((store: IStore) => store.dirtyState.dirty);
+
+  return (
+    //#7. dirty 상태에 따라 빨간색 혹은 파란색으로 표시합니다.
+    <ol>
+      {names.map((name) => (
+        <li
+          key={name}
+          style={
+            {
+              backgroundColor: dirty ? 'red' : 'blue',
+            }
+          }
+        >
+          {' '}
+          {name}{' '}
+        </li>
+      ))}
+    </ol>
+  );
+};
+
+export default MyCombineReducer;
+```
+
+# createSlice()
+
+`Slice`는 여러개의 리듀서를 사용할 경우 이름, 초기값, 액션, 리듀서를 응집해 줍니다. 
+
+특히, 
+
+* 액션 타입으로 액션을 구분하지 않고 함수화하며, 
+* 인자로 전달된 `state`를 직접 수정할 수 있어 [State](??) 수정 관련 로직이 좀더 간결해 집니다.
+
+다음은 [combineReducers()](??)의 예를 [createSlice()](??)를 이용하여 리팩토링한 예입니다.
+
+1. #1 : `createSlice()`로 이름, 초기값, 액션, 리듀서를 응집합니다.
+2. #2 : 액션이 함수화 되어 있습니다. 이때 `PayloadAction`을 사용하며 `action.payload`에 실제 데이터가 전달됩니다.
+3. #3 : 인자로 전달된 `state`를 직접 수정합니다. 다만, 하위 개체나 배열은 복제본을 사용해야 합니다.
+4. #4 : `configureStore()`에서 `combineReducers()`처럼 리듀서를 합칩니다.
+5. #5 : `add()`, `setDirty()`등 함수화된 액션을 호출합니다. 이때 액션으로 전달될 `payload` 값을 전달합니다.
+
+
+```tsx
+import { useRef } from 'react';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+// ----
+// 사용자 이름을 관리하는 Slice 입니다.
+// ----
+interface INamesState {
+  names: string[];
+}
+
+const namesInitialState: INamesState = {
+  names: ['홍길동', '성춘향'],
+};
+
+// #1. createSlice()로 이름, 초기값, 액션, 리듀서를 응집합니다.
+const namesSlice = createSlice({
+  name: 'namesState',
+  initialState: namesInitialState,
+  // #2. 액션이 함수화 되어 있습니다.
+  // 이때 PayloadAction을 사용합니다. action.payload에 실제 데이터가 전달됩니다.
+  reducers: {
+    add: (state: INamesState, action: PayloadAction<string>) => {
+      // #3. 인자로 전달된 state를 직접 수정합니다.
+      state.names = [...state.names, action.payload];
+    },
+    save: (state: INamesState, action: PayloadAction<string>) => {
+      console.log('이름들을 저장합니다.');
+    },
+  },
+});
+
+// ----
+// 데이터가 수정되었는지 여부를 관리하는 Slice 입니다.
+// ----
+interface IDirtyState {
+  dirty: boolean;
+}
+const dirtyInitialState: IDirtyState = {
+  dirty: false,
+};
+
+// #1. createSlice()로 이름, 초기값, 액션, 리듀서를 응집합니다.
+const dirtySlice = createSlice({
+  name: 'dirtyState',
+  initialState: dirtyInitialState,
+  reducers: {
+    setDirty: (state: IDirtyState, action: PayloadAction<boolean>) => {
+      state.dirty = action.payload;
+    },
+  },
+});
+
+// ----
+// 리덕스에 저장되는 형태입니다.
+// ----
+interface IStore {
+  namesState: INamesState;
+  dirtyState: IDirtyState;
+}
+
+const MySlice = () => {
+  // #4. configureStore()에서 combineReducers()처럼 리듀서를 합칩니다.
+  const store = configureStore({
+    reducer: {
+      namesState: namesSlice.reducer,
+      dirtyState: dirtySlice.reducer,
+    },
+  });
+
+  return (
+    <div>
+      <Provider store={store}>
+        <MyToolbar />
+        <MyList />
+      </Provider>
+    </div>
+  );
+};
+
+const MyToolbar = () => {
+  const nameRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
+
+  const onAdd = () => {
+    // #5. add(), setDirty()등 함수화된 액션을 호출합니다.
+    // 이때 액션으로 전달될 payload 값을 전달합니다.
+    const payload = nameRef.current ? nameRef.current.value : '';
+    dispatch(namesSlice.actions.add(payload));
+    dispatch(dirtySlice.actions.setDirty(true));
+  };
+  const onSave = () => {
+    dispatch(namesSlice.actions.save(''));
+    dispatch(dirtySlice.actions.setDirty(false));
+  };
+  return (
+    <div>
+      <span>{'이름'}</span>
+      <input ref={nameRef} />
+      <button onClick={onAdd}>{'추가'}</button>
+      <button onClick={onSave}>{'저장'}</button>
+    </div>
+  );
+};
+
+const MyList = () => {
+  const names = useSelector((store: IStore) => store.namesState.names);
+  const dirty = useSelector((store: IStore) => store.dirtyState.dirty);
+
+  return (
+    <ol>
+      {names.map((name) => (
+        <li
+          key={name}
+          style={
+            {
+              backgroundColor: dirty ? 'red' : 'blue',
+            }
+          }
+        >
+          {' '}
+          {name}{' '}
+        </li>
+      ))}
+    </ol>
+  );
+};
+
+export default MySlice;
+```
 
 # immer
+
+# 리덕스 개발자 도구
 
 
 
