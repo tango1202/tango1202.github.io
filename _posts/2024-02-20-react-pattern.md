@@ -16,7 +16,7 @@ sidebar:
 
 # 리액트에서 Command 패턴 적용
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cb5a3cc2-d131-40f5-993a-6216214e73ce)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/56f3c162-4c4a-433e-ae8c-c33f2551a489)
 
 
 

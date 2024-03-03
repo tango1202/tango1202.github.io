@@ -113,6 +113,7 @@ const MyCssModuleStyle = () => {
     ```
     npm install -D styled-components
     ```
+    
 2. 다음과 같이 `import` 하고, HTML 엘레먼트에 따라 스타일을 적용한 후 사용할 수 있습니다. 그외 자세한 내용은 [https://styled-components.com/](https://styled-components.com/)을 참고하세요.
 
     ```tsx
