@@ -10,7 +10,7 @@ sidebar:
 
 # 인라인 스타일
 
-JSX 에 스타일을 적용하려면 [React.CssProperties](https://use-form.netlify.app/interfaces/_node_modules__types_react_index_d_.react.cssproperties) 타입의 개체를 사용해야 하는데요, `css` 속성명을 camel 표기법으로 바꿔서 사용하면 됩니다.(*예를들어 `background-color`는 `backgroundColor`입니다.*)
+JSX 에 스타일을 적용하려면 [React.CSSProperties](https://use-form.netlify.app/interfaces/_node_modules__types_react_index_d_.react.cssproperties) 타입의 개체를 사용해야 하는데요, `css` 속성명을 camel 표기법으로 바꿔서 사용하면 됩니다.(*예를들어 `background-color`는 `backgroundColor`입니다.*)
 
 ```tsx
 const MyInlineStyle = () => {
@@ -70,7 +70,7 @@ const MyCssStyle = () => {
 
 # css 모듈
 
-`css` 파일의 확장자를 `module.css`로 작성하면, 모듈 형태로 `import`할 수 있어 이름 충돌을 회피할 수 있습니다. 
+`css` 파일을 `파일명.module.css`로 작성하면, 모듈 형태로 `import`할 수 있어 이름 충돌을 회피할 수 있습니다. 
 
 ```css
 /* MyStyle.module.css 파일에서 */
@@ -104,16 +104,14 @@ const MyCssModuleStyle = () => {
 
 # styled 컴포넌트
 
-기존에는 `Javascript`, `HTML`, `CSS`를 분할했었는데, 리액트 컴포넌트가 모듈 단위로 제공되다 보니, 이들을 결합하는 구조로 만들 수도 있습니다. 
-
-이렇게 결합할 경우 [styled 컴포넌트](https://tango1202.github.io/react/react-style/#styled-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8)가 많이 사용됩니다.
+기존에는 `Javascript`, `HTML`, `CSS`를 분할했었는데, 리액트 컴포넌트가 모듈 단위로 제공되다 보니, 이들을 결합한 구조로 사용하기도 하는데요, 이렇게 결합할 경우 [styled 컴포넌트](https://tango1202.github.io/react/react-style/#styled-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8)가 많이 사용됩니다.
 
 1. 터미널에서 다음 명령을 입력하여 [styled 컴포넌트](https://tango1202.github.io/react/react-style/#styled-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8)를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
     ```
     npm install -D styled-components
     ```
-    
+
 2. 다음과 같이 `import` 하고, HTML 엘레먼트에 따라 스타일을 적용한 후 사용할 수 있습니다. 그외 자세한 내용은 [https://styled-components.com/](https://styled-components.com/)을 참고하세요.
 
     ```tsx

@@ -65,6 +65,8 @@ export default MySnapshot;
 
 클래스 형태로 만들때 다음과 같은 생명 주기에 맞춰 해당 이벤트에서 성능 최적화를 할 수 있었습니다. 컴포넌트가 최초 실행하면 `componentDidMount()`가 호출되고, 화면 갱신시 `componentDidUpdate()`가 호출되고, 컴포넌트가 제거되면 `componentWillUnmount()`가 호출됩니다.
 
+함수형 컴포넌트는 이러한 생명 주기 함수 대신 [Hook](https://tango1202.github.io/react/react-hook/#hook%EC%9D%B4%EB%9E%80)을 사용합니다.
+
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f306f507-06cc-4b80-8c4a-abbac671f49d)
 
 # Hook이란?
@@ -74,13 +76,13 @@ export default MySnapshot;
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1474566a-9b93-46b3-b627-75a9d1dce6a9)
 
 
-`Hook`은 함수형 컴포넌트에서 리액트의 [Props](https://tango1202.github.io/react/react-basic/#props), [State](https://tango1202.github.io/react/react-basic/#state)와 [컴포넌트 생명 주기](https://tango1202.github.io/react/react-hook/#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%83%9D%EB%AA%85-%EC%A3%BC%EA%B8%B0)를 연동하는 함수입니다.(*아마도 [Props](https://tango1202.github.io/react/react-basic/#props), [State](https://tango1202.github.io/react/react-basic/#state)의 변경을 Hooking하고 있어서, 이름을 `Hook`이라고 한듯 합니다.*)
+[Hook](https://tango1202.github.io/react/react-hook/#hook%EC%9D%B4%EB%9E%80)은 함수형 컴포넌트에서 리액트의 [Props](https://tango1202.github.io/react/react-basic/#props), [State](https://tango1202.github.io/react/react-basic/#state)와 [컴포넌트 생명 주기](https://tango1202.github.io/react/react-hook/#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%83%9D%EB%AA%85-%EC%A3%BC%EA%B8%B0)를 연동하는 함수입니다.(*아마도 [Props](https://tango1202.github.io/react/react-basic/#props), [State](https://tango1202.github.io/react/react-basic/#state)의 변경을 Hooking하고 있어서, 이름을 [Hook](https://tango1202.github.io/react/react-hook/#hook%EC%9D%B4%EB%9E%80)이라고 한듯 합니다.*)
 
-1. `Hook` 함수명은 반드시 `use`로 시작합니다.
+1. [Hook](https://tango1202.github.io/react/react-hook/#hook%EC%9D%B4%EB%9E%80) 함수명은 반드시 `use`로 시작합니다.
 2. 반복문, 조건문, 중첩된 함수내에서 사용할 수 없습니다.(*동일한 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)에서는 동일한 결과가 리턴되는 `Pure Function`임을 보장하기 위함입니다. [주요 개념 정리](https://tango1202.github.io/react/react-basic/#%EC%A3%BC%EC%9A%94-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC) 참고*)
 3. 일반적인 코드 내에서 사용할 수 없고, 리액트 함수형 컴포넌트 내에서 호출 순서가 보장된 상태로 작성해야 합니다.(*주로 함수형 컴포넌트 상단에 작성합니다.*)
 
-기본적으로 제공하는 `Hook`은 다음과 같습니다.
+기본적으로 제공하는 [Hook](https://tango1202.github.io/react/react-hook/#hook%EC%9D%B4%EB%9E%80) 함수는 다음과 같습니다.
 
 |항목|내용|
 |--|--|
@@ -207,7 +209,7 @@ export default MyUseEffectUnmount;
 
 # useMemo()
 
-[useMemo()](https://tango1202.github.io/react/react-hook/#usememo)는 성능 개선을 위한 `Hook`으로서 첫번째 인자로 전달된 함수의 리턴값을 저장하고 있다가 재사용합니다. 두번째 인자는 [useEffect()](https://tango1202.github.io/react/react-hook/#useeffect)처럼 의존성 배열이 전달되며, 전달된 배열 요소의 값이 변경되면, 함수를 다시 호출합니다. 이를 이용하면 렌더링시 불필요한 연산을 최소화 할 수 있습니다.
+[useMemo()](https://tango1202.github.io/react/react-hook/#usememo)는 성능 개선을 위한 [Hook](https://tango1202.github.io/react/react-hook/#hook%EC%9D%B4%EB%9E%80)으로서 첫번째 인자로 전달된 함수의 리턴값을 저장하고 있다가 재사용합니다. 두번째 인자는 [useEffect()](https://tango1202.github.io/react/react-hook/#useeffect)처럼 의존성 배열이 전달되며, 전달된 배열 요소의 값이 변경되면, 함수를 다시 호출합니다. 이를 이용하면 렌더링시 불필요한 연산을 최소화 할 수 있습니다.
 
 1. #1 : `a`와 `b`를 더하여 리턴하는 함수입니다. 매 렌더링시에 호출됩니다.
 2. #2 : 버튼 클릭시 `a`와 `b`를 `1`증가시켜 렌더링을 다시합니다.
@@ -254,7 +256,7 @@ export default MyUseMemo;
 
 # useCallback()
 
-[useCallback()](https://tango1202.github.io/react/react-hook/#usecallback)도 [useMemo()](https://tango1202.github.io/react/react-hook/#usememo)처럼 성능 개선을 위한 `Hook`으로서 첫번째 인자로 전달된 함수를 저장하고 있다가 재사용합니다. 두번째 인자는 [useEffect()](https://tango1202.github.io/react/react-hook/#useeffect)처럼 의존성 배열이 전달되며, 전달된 배열 요소의 값이 변경되면, 함수를 다시 생성합니다. 이를 이용하면 렌더링시 불필요한 함수 생성을 최소화 할 수 있습니다.
+[useCallback()](https://tango1202.github.io/react/react-hook/#usecallback)도 [useMemo()](https://tango1202.github.io/react/react-hook/#usememo)처럼 성능 개선을 위한 [Hook](https://tango1202.github.io/react/react-hook/#hook%EC%9D%B4%EB%9E%80)으로서 첫번째 인자로 전달된 함수를 저장하고 있다가 재사용합니다. 두번째 인자는 [useEffect()](https://tango1202.github.io/react/react-hook/#useeffect)처럼 의존성 배열이 전달되며, 전달된 배열 요소의 값이 변경되면, 함수를 다시 생성합니다. 이를 이용하면 렌더링시 불필요한 함수 생성을 최소화 할 수 있습니다.
 
 1. #1 : [State](https://tango1202.github.io/react/react-basic/#state)인 `a`와 `b`를 더한 값을 `result`에 저장하는 함수입니다. 
 2. #2 : 버튼 클릭시 `a`와 `b`를 `1`증가시켜 렌더링을 다시 합니다. 이때 `result`는 변경되지 않으므로 이전값이 표시됩니다.
@@ -770,9 +772,9 @@ const MyTopDownCounter = () => {
 export default MyUseCounter;
 ```
 
-어떤 값을 [State](https://tango1202.github.io/react/react-basic/#state)로 관리하고, `1`씩 증감 시키는게 동일하니 이부분을 분리하는게 좋은데요, 이러한 로직의 분리를 커스텀 `Hook`을 이용하여 만들 수 있습니다.
+어떤 값을 [State](https://tango1202.github.io/react/react-basic/#state)로 관리하고, `1`씩 증감 시키는게 동일하니 이부분을 분리하는게 좋은데요, 이러한 로직의 분리를 커스텀 [Hook](https://tango1202.github.io/react/react-hook/#hook%EC%9D%B4%EB%9E%80)을 이용하여 만들 수 있습니다.
 
-1. #1 : `useCounter()` 커스텀 `Hook`을 만듭니다. 이름은 반드시 `use`로 시작하여야 하며, 로직을 구현한 [State](https://tango1202.github.io/react/react-basic/#state)나 함수를 개체로 묶어 리턴합니다.
+1. #1 : `useCounter()` 커스텀 [Hook](https://tango1202.github.io/react/react-hook/#hook%EC%9D%B4%EB%9E%80)을 만듭니다. 이름은 반드시 `use`로 시작하여야 하며, 로직을 구현한 [State](https://tango1202.github.io/react/react-basic/#state)나 함수를 개체로 묶어 리턴합니다.
 2. #2 : `useCounter()`내에서 [useState()](https://tango1202.github.io/react/react-basic/#state)를 사용합니다. 이렇게 하면, `useCounter()`를 사용하는 각각의 컴포넌트가 다른 [State](https://tango1202.github.io/react/react-basic/#state)를 사용할 수 있습니다. 즉, `MyLeftRightCounter`와 `MyTopDownCounter`는 각각 카운팅합니다. 
 
     하지만, 만약 [useContext()](https://tango1202.github.io/react/react-hook/#usecontext)나 [Redux](https://tango1202.github.io/react/react-redux/)를 사용한다면, [State](https://tango1202.github.io/react/react-basic/#state)를 공유할 수 있습니다. 즉, `MyLeftRightCounter`와 `MyTopDownCounter`가 동일한 값을 표시하고 증감시킵니다.
