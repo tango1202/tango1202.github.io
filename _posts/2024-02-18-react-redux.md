@@ -35,7 +35,7 @@ npm install -D redux react-redux @reduxjs/toolkit
 3. #6 : 리덕스의 `store` 개체를 생성합니다. `preloadedState`를 통해 초기값을 전달할 수 있습니다. 생성한 `store`는 #6-1와 같이 `Provider`에 전달합니다.
 4. #7, #8 : 각 컴포넌트에서 리덕스를 이용하므로 [Props](https://tango1202.github.io/react/react-basic/#props)를 사용할 필요가 없습니다.
 5. #7-1 : 리덕스 액션을 실행하기 위해 `dispatch`를 구합니다.
-6. #7-3 : `dispatch`로 `reducer()`를 호출하여 액션을 실행합니다.
+6. #7-3 : `dispatch`로 `datasReducer()`를 호출하여 액션을 실행합니다.
 7. #8-1 : `useSelector()`를 이용하여 `store`에 있는 값을 읽어옵니다.
 
 ```tsx
@@ -68,7 +68,7 @@ interface IAction extends Action<ActionType> {
 // #4. ActionType에 따라 state의 값을 수정합니다. 이때, State의 경우와 마찬가지로 복제본을 리턴해야 다시 렌더링 됩니다.
 // State를 수정하는 기능들이 한곳에 응집되어 관리가 용이해 집니다.
 // useReducer() 와의 차이점 : state 기본값 인자로 초기값을 전달해야 합니다.
-const reducer = (state: IState = initialState, action: IAction): IState => {
+const datasReducer = (state: IState = initialState, action: IAction): IState => {
   switch (action.type) {
     case 'Create': // datas 뒤에 새로운 action.data를 추가하여 리턴합니다.
       return {
@@ -94,7 +94,7 @@ const reducer = (state: IState = initialState, action: IAction): IState => {
 const MyRedux = () => {
   // #6. redux의 store 개체를 생성합니다. reducer 속성을 설정합니다. 
   const store = configureStore({ 
-    reducer: reducer, 
+    reducer: datasReducer, 
     preloadedState : initialState
   });
 
@@ -123,7 +123,7 @@ const MyToolbar = () => {
       data: { name, age },
     };
   }, []);
-  // #7-3. 입력 개체의 정보를 바탕으로 Action을 만든뒤 reducer()를 호출하여 액션을 실행합니다.
+  // #7-3. 입력 개체의 정보를 바탕으로 Action을 만든뒤 datasReducer()를 호출하여 액션을 실행합니다.
   const onCreate = () => {
     dispatch(createAction('Create', nameRef.current ? nameRef.current.value : '', ageRef.current ? Number(ageRef.current.value) : 0));
   };
