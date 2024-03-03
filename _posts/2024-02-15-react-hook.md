@@ -712,7 +712,7 @@ export default MyUseReducer;
 
 다음은 좌우에 `+`, `-` 버튼이 있는 `MyLeftRightCounter`와 상하에 `+`, `-` 버튼이 있는 `MyTopDownCounter`를 구현한 예입니다.
 
-비록 한줄씩이지만, `useState()`를 사용하는 부분과 증감시키기 위해 `setValue()`를 호출하는 부분이 중복됩니다. 
+비록 한줄씩이지만, [useState()](https://tango1202.github.io/react/react-basic/#state)를 사용하는 부분과 증감시키기 위해 `setValue()`를 호출하는 부분이 중복됩니다. 
 
 ```tsx
 import { useState } from 'react';
@@ -773,8 +773,12 @@ export default MyUseCounter;
 어떤 값을 [State](https://tango1202.github.io/react/react-basic/#state)로 관리하고, `1`씩 증감 시키는게 동일하니 이부분을 분리하는게 좋은데요, 이러한 로직의 분리를 커스텀 `Hook`을 이용하여 만들 수 있습니다.
 
 1. #1 : `useCounter()` 커스텀 `Hook`을 만듭니다. 이름은 반드시 `use`로 시작하여야 하며, 로직을 구현한 [State](https://tango1202.github.io/react/react-basic/#state)나 함수를 개체로 묶어 리턴합니다.
-2. #2 : `useCounter()`를 호출하여 값을 증감시키는 로직을 전달받습니다.
-3. #3 : `inc`/`dec`를 바로 이벤트 핸들러로 등록하여 사용할 수 있습니다.
+2. #2 : `useCounter()`내에서 [useState()](https://tango1202.github.io/react/react-basic/#state)를 사용합니다. 이렇게 하면, `useCounter()`를 사용하는 각각의 컴포넌트가 다른 [State](https://tango1202.github.io/react/react-basic/#state)를 사용할 수 있습니다. 즉, `MyLeftRightCounter`와 `MyTopDownCounter`는 각각 카운팅합니다. 
+
+    하지만, 만약 [useContext()](https://tango1202.github.io/react/react-hook/#usecontext)나 [Redux](https://tango1202.github.io/react/react-redux/)를 사용한다면, [State](https://tango1202.github.io/react/react-basic/#state)를 공유할 수 있습니다. 즉, `MyLeftRightCounter`와 `MyTopDownCounter`가 동일한 값을 표시하고 증감시킵니다.
+
+3. #3 : `useCounter()`를 호출하여 값을 증감시키는 로직을 전달받습니다.
+4. #4 : `inc`/`dec`를 바로 이벤트 핸들러로 등록하여 사용할 수 있습니다.
 
 ```tsx
 import { useState } from 'react';
@@ -790,7 +794,7 @@ const MyUseCounter = () => {
 
 // #1. 커스텀 Hook입니다. 값을 수정할 수 있는 inc(), dec()를 리턴합니다.
 const useCounter = (init:number) => {
-  const [value, setValue] = useState(init);
+  const [value, setValue] = useState(init); // #2
   const inc = () => {
     setValue(value + 1);
   };  
@@ -801,18 +805,18 @@ const useCounter = (init:number) => {
 };
 
 const MyLeftRightCounter = () => {
-  const {value, inc, dec} = useCounter(0); // #2
+  const {value, inc, dec} = useCounter(0); // #3
 
   return (
     <>
-      <button onClick={dec}>{'-'}</button> {/* #3. inc/dec를 바로 이벤트 핸들러로 등록하였습니다. */}
+      <button onClick={dec}>{'-'}</button> {/* #4. inc/dec를 바로 이벤트 핸들러로 등록하였습니다. */}
       <span>{value}</span> 
-      <button onClick={inc}>{'+'}</button> {/* #3. inc/dec를 바로 이벤트 핸들러로 등록하였습니다. */} 
+      <button onClick={inc}>{'+'}</button> {/* #4. inc/dec를 바로 이벤트 핸들러로 등록하였습니다. */} 
     </>
   );
 };
 const MyTopDownCounter = () => {
-  const {value, inc, dec} = useCounter(0); // #2
+  const {value, inc, dec} = useCounter(0); // #3
 
   return (
     <>
