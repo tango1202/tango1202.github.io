@@ -557,7 +557,7 @@ export default MyUseContext;
 
 # useReducer()
 
-[State](https://tango1202.github.io/react/react-basic/#state)의 관리는 해당 상태를 관리하는 각 컴포넌트에서 해야 합니다. 이러다 보면, 상태 수정 관련 로직이 흩어져 관리가 어려울 수 있는데요, 리액트에서는 [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer) 를 이용하여 이를 응집해서 관리할 수 있습니다.(*[Redux](https://tango1202.github.io/react/react-redux/)도 동일한 용도로 사용하며, 좀더 많은 기능을 제공합니다.*)
+[State](https://tango1202.github.io/react/react-basic/#state)의 관리는 해당 상태를 관리하는 각 컴포넌트에서 해야 합니다. 이러다 보면, [State](https://tango1202.github.io/react/react-basic/#state) 수정 관련 로직이 흩어져 관리가 어려울 수 있는데요, 리액트에서는 [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer) 를 이용하여 이를 응집해서 관리할 수 있습니다.(*[Redux](https://tango1202.github.io/react/react-redux/)도 동일한 용도로 사용하며, 좀더 많은 기능을 제공합니다.*)
 
 [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer)는 다음 개체들이 상호 작용하면서 작동합니다.
 
@@ -636,7 +636,7 @@ const reducer = (state: IState, action: IAction): IState => {
   }
 };
 
-// 5. 사용자 정보를 입력받는 Toolbar와 해당 내용을 출력하는 List를 표시합니다.
+// #5. 사용자 정보를 입력받는 Toolbar와 해당 내용을 출력하는 List를 표시합니다.
 const MyUseReducer = () => {
   const [state, dispatch] = useReducer(reducer, initialState); // #5-1. reducer를 생성합니다.
 
@@ -655,7 +655,7 @@ interface IMyToolbarProps {
   datas: IData[];
   onAction(action: IAction): void;
 }
-// 6. UI를 이용하여 정보를 읽고 Action개체를 만들어 상위 개체에 전달합니다.
+// #6. UI를 이용하여 정보를 읽고 Action개체를 만들어 상위 개체에 전달합니다.
 const MyToolbar = (props: IMyToolbarProps) => {
   const nameRef = useRef<HTMLInputElement>(null);
   const ageRef = useRef<HTMLInputElement>(null);
