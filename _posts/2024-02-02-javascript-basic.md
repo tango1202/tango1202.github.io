@@ -70,7 +70,7 @@ console.log('변수 유효 범위', myFunc() === 20); // true
 console.log('변수 유효 범위', val); // 1
 ```
 
-# let과 const(ECMSScript6)
+# let과 const(ECMAScript6)
 
 `var`의 유연함과 유효 범위 문제는 대규모 프로젝트를 진행할 때 찾기 힘든 오류를 유발하는데요, `let`과 `const`는 이러한 오류가 발생하지 않도록 기존 `var`를 보강합니다. 이제 `var`대신 `let`과 `const`를 쓰세요.
 
