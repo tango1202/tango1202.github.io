@@ -658,7 +658,7 @@ const user2 = {
 이러한 경우에는 생성자 함수를 통해 개체를 생성할 수 있습니다.
 
 1. 일반 함수와 구분하기 위해 관습적으로 Pascal 표기법을 사용합니다.
-2. `this`는 생성되는 개체를 지칭합니다.
+2. `this`는 생성해서 리턴되는 개체를 지칭합니다.
 3. `new`로 함수를 호출합니다.
 4. 암시적으로 `this`개체를 생성하여 리턴하는 함수라고 이해하셔도 됩니다.
 
@@ -679,7 +679,7 @@ console.log('user1.getName()', user1.getName()); // Kim
 console.log('user2.getName()', user2.getName()); // Lee
 ```
 
-코드 중복은 해결되지만, 생성된 메서드는 여전히 메모리에 중복됩니다.
+`name`이나 `number`같은 데이터는 당연히 개체마다 따로 존재해야 하지만, 메서드까지 따로 존재합니다. 코드 중복은 해결되지만, 메모리에 중복 생성되는 거죠.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/62b04234-9868-4a15-ac4d-6ef78230347d)
 
@@ -687,7 +687,7 @@ console.log('user2.getName()', user2.getName()); // Lee
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d3cdbd51-a101-45a3-aa1f-36db27feb44f)
 
-만약 생성자 함수를 호출할때 `new`를 사용하지 않는다면, 일반 함수처럼 호출되니 주의해야 합니다.
+또한, 생성자 함수를 호출할때 `new`를 사용하지 않는다면, 일반 함수처럼 호출되니 주의해야 합니다.
 
 1. 함수내에서 직접적인 `return`이 없으므로 `user`는 `undefined`입니다.
 2. `this`는 전역 개체이므로 전역 개체에 `name`속성을 추가합니다.

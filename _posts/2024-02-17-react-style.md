@@ -26,7 +26,7 @@ const MyInlineStyle = () => {
 };
 ```
 
-만약 런타임에 동적으로 변경되지 않는다면, [useMemo()](??)를 사용하여 최적화 할 수 있습니다.
+만약 런타임에 동적으로 변경되지 않는다면, [useMemo()](https://tango1202.github.io/react/react-hook/#usememo)를 사용하여 최적화 할 수 있습니다.
 
 ```tsx
 import { useMemo } from 'react';
@@ -106,9 +106,9 @@ const MyCssModuleStyle = () => {
 
 기존에는 `Javascript`, `HTML`, `CSS`를 분할했었는데, 리액트 컴포넌트가 모듈 단위로 제공되다 보니, 이들을 결합하는 구조로 만들 수도 있습니다. 
 
-이렇게 결합할 경우 [styled 컴포넌트](??)가 많이 사용됩니다.
+이렇게 결합할 경우 [styled 컴포넌트](https://tango1202.github.io/react/react-style/#styled-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8)가 많이 사용됩니다.
 
-1. 터미널에서 다음 명령을 입력하여 [styled 컴포넌트](??)를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
+1. 터미널에서 다음 명령을 입력하여 [styled 컴포넌트](https://tango1202.github.io/react/react-style/#styled-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8)를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
     ```
     npm install -D styled-components

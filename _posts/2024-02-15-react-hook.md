@@ -22,7 +22,7 @@ sidebar:
 
 3. #3 : [State](https://tango1202.github.io/react/react-basic/#state)를 변경하는 함수를 등록합니다. 기존값에 `+ 1`을 하는 것을 3회 반복하므로, 3이 증가됩니다.
 
-따라서, [State](https://tango1202.github.io/react/react-basic/#state)가 복잡하게 얽혀 있고 기존 [State](https://tango1202.github.io/react/react-basic/#state)로부터 수정이 필요한 경우에는 #3과 같이 [State](??)를 변경하는 함수를 사용하는 편이 좋습니다. 
+따라서, [State](https://tango1202.github.io/react/react-basic/#state)가 복잡하게 얽혀 있고 기존 [State](https://tango1202.github.io/react/react-basic/#state)로부터 수정이 필요한 경우에는 #3과 같이 [State](https://tango1202.github.io/react/react-basic/#state)를 변경하는 함수를 사용하는 편이 좋습니다. 
 
 ```tsx
 import { useState } from 'react';
@@ -89,8 +89,8 @@ export default MySnapshot;
 |[useMemo()](https://tango1202.github.io/react/react-hook/#usememo)|이전에 저장된 정보를 메모리에 기억했다가 재사용합니다.|
 |[useCallback()](https://tango1202.github.io/react/react-hook/#usecallback)|이전에 사용한 함수를 새로 만들지 않고 메모리에 기억했다가 재사용합니다.|
 |[useRef()](https://tango1202.github.io/react/react-hook/#useref)|컴포넌트를 다시 렌더링하지 않는 변수를 관리하거나, JSX의 특정 DOM을 참조합니다.|
-|[useContext()](??)|여러 컴포넌트에서 접근 가능한 전역적인 [State](https://tango1202.github.io/react/react-basic/#state)입니다.|
-|[useReducer()](??)|[State](https://tango1202.github.io/react/react-basic/#state) 수정을 컴포넌트에서 분리할 수 있게 합니다.|
+|[useContext()](https://tango1202.github.io/react/react-hook/#usecontext)|여러 컴포넌트에서 접근 가능한 전역적인 [State](https://tango1202.github.io/react/react-basic/#state)입니다.|
+|[useReducer()](https://tango1202.github.io/react/react-hook/#usereducer)|[State](https://tango1202.github.io/react/react-basic/#state) 수정을 컴포넌트에서 분리할 수 있게 합니다.|
 
 # useEffect()
 
@@ -207,7 +207,7 @@ export default MyUseEffectUnmount;
 
 # useMemo()
 
-[useMemo](??)는 성능 개선을 위한 `Hook`으로서 첫번째 인자로 전달된 함수의 리턴값을 저장하고 있다가 재사용합니다. 두번째 인자는 [useEffect()](https://tango1202.github.io/react/react-hook/#useeffect)처럼 의존성 배열이 전달되며, 전달된 배열 요소의 값이 변경되면, 함수를 다시 호출합니다. 이를 이용하면 렌더링시 불필요한 연산을 최소화 할 수 있습니다.
+[useMemo()](https://tango1202.github.io/react/react-hook/#usememo)는 성능 개선을 위한 `Hook`으로서 첫번째 인자로 전달된 함수의 리턴값을 저장하고 있다가 재사용합니다. 두번째 인자는 [useEffect()](https://tango1202.github.io/react/react-hook/#useeffect)처럼 의존성 배열이 전달되며, 전달된 배열 요소의 값이 변경되면, 함수를 다시 호출합니다. 이를 이용하면 렌더링시 불필요한 연산을 최소화 할 수 있습니다.
 
 1. #1 : `a`와 `b`를 더하여 리턴하는 함수입니다. 매 렌더링시에 호출됩니다.
 2. #2 : 버튼 클릭시 `a`와 `b`를 `1`증가시켜 렌더링을 다시합니다.
@@ -254,7 +254,7 @@ export default MyUseMemo;
 
 # useCallback()
 
-[useCallback](??)도 [useMemo()](https://tango1202.github.io/react/react-hook/#usememo)처럼 성능 개선을 위한 `Hook`으로서 첫번째 인자로 전달된 함수를 저장하고 있다가 재사용합니다. 두번째 인자는 [useEffect()](https://tango1202.github.io/react/react-hook/#useeffect)처럼 의존성 배열이 전달되며, 전달된 배열 요소의 값이 변경되면, 함수를 다시 생성합니다. 이를 이용하면 렌더링시 불필요한 함수 생성을 최소화 할 수 있습니다.
+[useCallback()](https://tango1202.github.io/react/react-hook/#usecallback)도 [useMemo()](https://tango1202.github.io/react/react-hook/#usememo)처럼 성능 개선을 위한 `Hook`으로서 첫번째 인자로 전달된 함수를 저장하고 있다가 재사용합니다. 두번째 인자는 [useEffect()](https://tango1202.github.io/react/react-hook/#useeffect)처럼 의존성 배열이 전달되며, 전달된 배열 요소의 값이 변경되면, 함수를 다시 생성합니다. 이를 이용하면 렌더링시 불필요한 함수 생성을 최소화 할 수 있습니다.
 
 1. #1 : [State](https://tango1202.github.io/react/react-basic/#state)인 `a`와 `b`를 더한 값을 `result`에 저장하는 함수입니다. 
 2. #2 : 버튼 클릭시 `a`와 `b`를 `1`증가시켜 렌더링을 다시 합니다. 이때 `result`는 변경되지 않으므로 이전값이 표시됩니다.
@@ -390,7 +390,7 @@ export default MyUseRefFocus;
 1. #1 : [useRef()](https://tango1202.github.io/react/react-hook/#useref)로 개체를 생성합니다. 이 개체는 #1-1 과 같이 `ref={myCounterRef}`하여 초기화 합니다.
 2. #2 : `MyCounter`개체 `ref`의 인터페이스 입니다.
 3. #3 : `forwardRef()`를 이용해서 외부에서 `ref` 속성을 사용할 수 있게 합니다.
-4. #4 : 외부에서 실행할 함수입니다. `setValue()`를 이용하여 [State](??)를 수정합니다.
+4. #4 : 외부에서 실행할 함수입니다. `setValue()`를 이용하여 [State](https://tango1202.github.io/react/react-basic/#state)를 수정합니다.
 5. #5 : `useImperativeHandle()`을 이용하여 외부에 노출할 함수들을 모아 개체로 리턴합니다.
 6. #6 : `ref`를 이용하여 `MyCounter`개체의 메서드를 호출합니다.
 
@@ -457,18 +457,18 @@ export default MyUseRefCustom;
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/be520bb3-15b6-4a68-942b-9e76bf4ab935)
 
-[useContext()](??)는 공용으로 사용할 수 있는 [State](??)를 만들어 여러 컴포넌트에서 공유할 수 있게 해줍니다.(*[Redux](??)도 동일한 용도로 사용하며, 좀더 많은 기능을 제공합니다.*)
+[useContext()](https://tango1202.github.io/react/react-hook/#usecontext)는 공용으로 사용할 수 있는 [State](https://tango1202.github.io/react/react-basic/#state)를 만들어 여러 컴포넌트에서 공유할 수 있게 해줍니다.(*[Redux](https://tango1202.github.io/react/react-redux/)도 동일한 용도로 사용하며, 좀더 많은 기능을 제공합니다.*)
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/12374dd2-bc72-4213-ae79-3706a5a3f202)
 
-다음은 `isDark`값에 따라 컴포넌트의 스킨을 변경하는 예입니다. 각 컴포넌트가 [useContext()](??)를 사용하여 값을 공유하므로, 불필요하게 [Props](https://tango1202.github.io/react/react-basic/#props)를 포워딩할 필요가 없습니다.
+다음은 `isDark`값에 따라 컴포넌트의 스킨을 변경하는 예입니다. 각 컴포넌트가 [useContext()](https://tango1202.github.io/react/react-hook/#usecontext)를 사용하여 값을 공유하므로, 불필요하게 [Props](https://tango1202.github.io/react/react-basic/#props)를 포워딩할 필요가 없습니다.
 
 1. #1 : 공유해서 사용할 저장소 인터페이스 입니다.
 2. #2 : `createContext()`로 저장소를 생성합니다. 
-3. #3 : JSX에서 저장소를 공유할 컴포넌트의 최상위에 `<MyThemeContext.Provider>`를 작성합니다. 이때 #3-1의 [State](??)와 연결합니다.
-4. #4 : [useContext()](??)를 이용하여 저장소를 이용할 수 있습니다.
+3. #3 : JSX에서 저장소를 공유할 컴포넌트의 최상위에 `<MyThemeContext.Provider>`를 작성합니다. 이때 #3-1의 [State](https://tango1202.github.io/react/react-basic/#state)와 연결합니다.
+4. #4 : [useContext()](https://tango1202.github.io/react/react-hook/#usecontext)를 이용하여 저장소를 이용할 수 있습니다.
 5. #5 : 저장소에서 읽은 `MyThemeContext` 값에 따라 스타일을 바꿉니다.
-6. #6 : #3-1인 [State](??)를 수정하던, `MyThemeContext`의 `setIsDark()`를 사용하던 모두 동일한 값을 수정합니다.
+6. #6 : #3-1인 [State](https://tango1202.github.io/react/react-basic/#state)를 수정하던, `MyThemeContext`의 `setIsDark()`를 사용하던 모두 동일한 값을 수정합니다.
 
 ```tsx
 import { useState, createContext, useContext } from 'react';
@@ -555,32 +555,32 @@ export default MyUseContext;
 
 # useReducer()
 
-[State](??)의 관리는 해당 상태를 관리하는 각 컴포넌트에서 해야 합니다. 이러다 보면, 상태 수정 관련 로직이 흩어져 관리가 어려울 수 있는데요, 리액트에서는 [useReducer()](??) 를 이용하여 이를 응집해서 관리할 수 있습니다.(*[Redux](??)도 동일한 용도로 사용하며, 좀더 많은 기능을 제공합니다.*)
+[State](https://tango1202.github.io/react/react-basic/#state)의 관리는 해당 상태를 관리하는 각 컴포넌트에서 해야 합니다. 이러다 보면, 상태 수정 관련 로직이 흩어져 관리가 어려울 수 있는데요, 리액트에서는 [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer) 를 이용하여 이를 응집해서 관리할 수 있습니다.(*[Redux](https://tango1202.github.io/react/react-redux/)도 동일한 용도로 사용하며, 좀더 많은 기능을 제공합니다.*)
 
-[useReducer()](??)는 다음 개체들이 상호 작용하면서 작동합니다.
+[useReducer()](https://tango1202.github.io/react/react-hook/#usereducer)는 다음 개체들이 상호 작용하면서 작동합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/83c158f8-bb4d-42e2-8571-c047255a80b0)
 
-* `action` : [State](??)를 수정하는 기능입니다.
+* `action` : [State](https://tango1202.github.io/react/react-basic/#state)를 수정하는 기능입니다.
 * `reducer()` : `action`들의 집합입니다. 
 * `dispatch()` : `reducer()`를 호출하여 `action`을 실행합니다.
 
-[useReducer()](??)는 `reducer()`를 인자로 전달받아 [State](??)와 `dispatch()`를 리턴합니다. [State](??)로 데이터에 접근할 수 있으며, `dispatch()`로 [State](??)를 수정할 수 있습니다.
+[useReducer()](https://tango1202.github.io/react/react-hook/#usereducer)는 `reducer()`를 인자로 전달받아 [State](https://tango1202.github.io/react/react-basic/#state)와 `dispatch()`를 리턴합니다. [State](https://tango1202.github.io/react/react-basic/#state)로 데이터에 접근할 수 있으며, `dispatch()`로 [State](https://tango1202.github.io/react/react-basic/#state)를 수정할 수 있습니다.
 
 다음은 UI를 이용하여 `data` 정보(*`name`과 `age`입니다*)를 `CRUD`(*`Create`, `Read`, `Update`, `Delete`*)하는 예입니다.
 
 1. #1 : `reducer()`에서 사용할 데이터 정보입니다.
 2. #2 : `reducer()`의 초기값입니다. 빈 배열입니다.
 3. #3 : `reducer()`에서 사용할 액션 정보입니다. 액션 타입에 따라 동작을 구분합니다.
-4. #4 : `reducer()`입니다. `(state: IState, action: IAction)` 와 같이 인자로 [State](??)와 액션이 전달됩니다. 이처럼 [State](??)를 수정하는 액션들이 한곳에 응집되기 때문에 관리가 용이해 집니다.
+4. #4 : `reducer()`입니다. `(state: IState, action: IAction)` 와 같이 인자로 [State](https://tango1202.github.io/react/react-basic/#state)와 액션이 전달됩니다. 이처럼 [State](https://tango1202.github.io/react/react-basic/#state)를 수정하는 액션들이 한곳에 응집되기 때문에 관리가 용이해 집니다.
 
     액션의 타입은 제공되지 없으며, 조건문으로 분기해서 실행될 수 있도록 본인이 설계해서 작성해야 합니다. 본 예에서는 `ActionType`에 따라 실행하도록 만들었습니다.
 
-    `reducer()`가 리턴하는 값은 [State](??)의 경우와 마찬가지로 복제본이어야 합니다. 그래야 다시 렌더링 됩니다. 
+    `reducer()`가 리턴하는 값은 [State](https://tango1202.github.io/react/react-basic/#state)의 경우와 마찬가지로 복제본이어야 합니다. 그래야 다시 렌더링 됩니다. 
 
 5. #5 : `MyUseReducer`에서 사용자 정보를 입력받는 `MyToolbar`와 해당 내용을 출력하는 `MyList`를 표시합니다. #5-2와 같이 이벤트가 발생하면 `dispatch()`를 이용하여 액션을 실행합니다.
-6. #6 : `MyToolbar`에서 UI를 이용하여 정보를 읽고 액션 개체를 만들어 상위 개체에 전달합니다. 이때 6-1과 같이 [useCallback()](??)을 이용하여 불필요한 함수 생성을 최소화하였습니다.
-7. #7 : `MyList`에서 [State](??)의 `datas`를 출력합니다.
+6. #6 : `MyToolbar`에서 UI를 이용하여 정보를 읽고 액션 개체를 만들어 상위 개체에 전달합니다. 이때 6-1과 같이 [useCallback()](https://tango1202.github.io/react/react-hook/#usecallback)을 이용하여 불필요한 함수 생성을 최소화하였습니다.
+7. #7 : `MyList`에서 [State](https://tango1202.github.io/react/react-basic/#state)의 `datas`를 출력합니다.
 
 ```tsx
 import { useRef, useCallback, useReducer } from 'react';
@@ -770,9 +770,9 @@ const MyTopDownCounter = () => {
 export default MyUseCounter;
 ```
 
-어떤 값을 [State](??)로 관리하고, `1`씩 증감 시키는게 동일하니 이부분을 분리하는게 좋은데요, 이러한 로직의 분리를 커스텀 `Hook`을 이용하여 만들 수 있습니다.
+어떤 값을 [State](https://tango1202.github.io/react/react-basic/#state)로 관리하고, `1`씩 증감 시키는게 동일하니 이부분을 분리하는게 좋은데요, 이러한 로직의 분리를 커스텀 `Hook`을 이용하여 만들 수 있습니다.
 
-1. #1 : `useCounter()` 커스텀 `Hook`을 만듭니다. 이름은 반드시 `use`로 시작하여야 하며, 로직을 구현한 [State](??)나 함수를 개체로 묶어 리턴합니다.
+1. #1 : `useCounter()` 커스텀 `Hook`을 만듭니다. 이름은 반드시 `use`로 시작하여야 하며, 로직을 구현한 [State](https://tango1202.github.io/react/react-basic/#state)나 함수를 개체로 묶어 리턴합니다.
 2. #2 : `useCounter()`를 호출하여 값을 증감시키는 로직을 전달받습니다.
 3. #3 : `inc`/`dec`를 바로 이벤트 핸들러로 등록하여 사용할 수 있습니다.
 

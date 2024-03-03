@@ -453,7 +453,7 @@ export default MyPropsState;
 
 # 상위 - 하위 컴포넌트간 데이터 공유
 
-[Props을 복사한 State](??) 에서 예시한 `MyCount`를 리액트스럽게 수정해 보도록 하겠습니다.
+[Props을 복사한 State](https://tango1202.github.io/react/react-basic/#props%EC%9D%84-%EB%B3%B5%EC%82%AC%ED%95%9C-state) 에서 예시한 `MyCount`를 리액트스럽게 수정해 보도록 하겠습니다.
 
 리액트는 [Props](https://tango1202.github.io/react/react-basic/#props)를 이용하여 기본적으로 상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달합니다. 하지만, 이벤트를 이용한다면 역방향으로 데이터를 전달할 수도 있습니다.
 
@@ -467,7 +467,7 @@ export default MyPropsState;
 1. #1 : `MyCounter`는 `value`와 `onMinusClick()`, `onPlusClick()`을  [Props](https://tango1202.github.io/react/react-basic/#props)으로 사용합니다.
 2. #2 : [Props](https://tango1202.github.io/react/react-basic/#props)로 전달된 `value`를 표시합니다.
 2. #3 : `button`의 이벤트 핸들러로 [Props](https://tango1202.github.io/react/react-basic/#props)로 전달된 `onMinusClick()`, `onPlusClick()`을 이용합니다. 
-4. #4 : 콜백 함수가 호출되면, [State](??)인 `value`를 수정합니다. 그러면, 이값이 `MyCounter`의 [Props](https://tango1202.github.io/react/react-basic/#props)로 전달되어 화면이 다시 렌더링됩니다.
+4. #4 : 콜백 함수가 호출되면, [State](https://tango1202.github.io/react/react-basic/#state)인 `value`를 수정합니다. 그러면, 이값이 `MyCounter`의 [Props](https://tango1202.github.io/react/react-basic/#props)로 전달되어 화면이 다시 렌더링됩니다.
 5. #5 : `value`를 `0`으로 리셋합니다. 그러면, 이값이 `MyCounter`의 [Props](https://tango1202.github.io/react/react-basic/#props)로 전달되어 화면이 다시 렌더링됩니다.
 
 ```tsx
