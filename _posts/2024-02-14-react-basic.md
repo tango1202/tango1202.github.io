@@ -275,7 +275,17 @@ export default MyState;
 
 # 개체/배열 State
 
-`setter`로 수정할 때는 복제본을 사용해야 합니다. `number`와 같은 기본 타입인 경우 대입시 알아서 복제본이 사용됩니다만, 개체나 배열을 사용할 경우, 명시적으로 복제본을 사용해야 합니다.
+`setter`로 수정할 때는 복제본을 사용해야 합니다. 그래야 `State`가 원본에서 변경된 것을 알 수 있습니다. `number`와 같은 기본 타입인 경우 대입시 알아서 복제본이 사용됩니다만, 개체나 배열을 사용할 경우, 명시적으로 복제본을 사용해야 합니다.
+
+만약 개체나 배열을 다음과 같이 `const arr2 = arr1;`로 단순 대입하여 같은 개체를 참조하게 한 후 `arr2`를 `push()`하여 수정해 봈자 여전히 `arr1 === arr2`입니다. `State`가 원본에서 변경된 것을 감지 하지 못하기 때문에 다시 렌더링하지 못합니다. 
+
+```typescript
+const arr1 = [1, 2, 3];
+const arr2 = arr1;
+arr2.push(4);
+
+console.log(arr1 === arr2); // true입니다.
+```
 
 다음은 `State`로 배열을 사용한 예입니다. 배열의 복제본을 사용해야 다시 렌더링 하는 것을 확인할 수 있습니다.
 
@@ -283,7 +293,7 @@ export default MyState;
 2. #2 : `arr[0]`을 수정하고 `setArr(arr)`을 하더라도 렌더링을 다시 하지 않습니다.
 3. #3 : 배열을 복제합니다. 이때 [Spread](https://tango1202.github.io/javascript/javascript-basic/#spreadecmascript6)를 이용하여 얕은 복사 합니다.
   
-    <img width="268" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/0985674e-28c5-4c82-895a-5b314cfeaa96">
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0985674e-28c5-4c82-895a-5b314cfeaa96)
 
 4. #4 : 배열의 복제본을 만들어 `setArr()`을 호출하면 렌더링을 다시 합니다. 
 
@@ -319,6 +329,24 @@ const MyArrayState = () => {
   );
 };
 export default MyArrayState;
+```
+
+정리하면 배열은 다음처럼 복제본을 사용합니다.
+
+```typescript
+setArr(arr.concat(item)); // item을 추가한 새로운 배열
+setArr([...arr, item]); // item을 추가한 새로운 배열
+
+setArr(arr.map(user) => user.id === id ? user.name = changedName : user); // user.id === id 인 항목의 name을 changedName으로 변경한 새로운 배열
+
+setArr(arr.filter(user => user.id !== id)); // user.id !== id로 구성된 새로운 배열. 즉, id인 것만 삭제된 배열
+```
+
+개체의 경우는 다음처럼 복제본을 사용합니다.
+
+```typescript
+setObj({x: 1, y: 2}); // 새로운 개체값으로 변경
+setObj({...obj, y: 2}); // 개체의 기존값을 그대로 사용하되 y만 2로 변경
 ```
 
 # Props

@@ -300,7 +300,7 @@ const MyToolbar = () => {
   };
   return (
     <div>
-      <span>{'이름'}</span>
+      <span>{'(combineReducer 테스트) 이름'}</span>
       <input ref={nameRef} />
       <button onClick={onAdd}>{'추가'}</button>
       <button onClick={onSave}>{'저장'}</button>
@@ -343,15 +343,15 @@ export default MyCombineReducer;
 
 * 액션 타입으로 액션을 구분하지 않고 함수화하며, 
 * 인자로 전달된 `state`를 직접 수정할 수 있어 [State](??) 수정 관련 로직이 좀더 간결해 집니다.
+* `state`를 수정하기 위해 복제본을 사용하지 않아도 됩니다.(*[개체/배열 State](https://tango1202.github.io/react/react-basic/#%EA%B0%9C%EC%B2%B4%EB%B0%B0%EC%97%B4-state) 참고*)
 
 다음은 [combineReducers()](??)의 예를 [createSlice()](??)를 이용하여 리팩토링한 예입니다.
 
 1. #1 : `createSlice()`로 이름, 초기값, 액션, 리듀서를 응집합니다.
-2. #2 : 액션이 함수화 되어 있습니다. 이때 `PayloadAction`을 사용하며 `action.payload`에 실제 데이터가 전달됩니다.
-3. #3 : 인자로 전달된 `state`를 직접 수정합니다. 다만, 하위 개체나 배열은 복제본을 사용해야 합니다.
+2. #2 : 액션이 함수화 되어 있습니다. 이때 `PayloadAction`을 사용하며 `action.payload`에 실제 데이터가 전달됩니다.(*`payload`는 네트워크등 데이터 전송에서 사용하는 용어인데요, 전송에 필요한 부가적인 정보(헤더나 메타 데이터)를 제외한 실제 데이터 부분만을 `payload`라고 합니다.*)
+3. #3 : 인자로 전달된 `state`를 직접 수정합니다. 
 4. #4 : `configureStore()`에서 `combineReducers()`처럼 리듀서를 합칩니다.
 5. #5 : `add()`, `setDirty()`등 함수화된 액션을 호출합니다. 이때 액션으로 전달될 `payload` 값을 전달합니다.
-
 
 ```tsx
 import { useRef } from 'react';
@@ -378,7 +378,7 @@ const namesSlice = createSlice({
   reducers: {
     add: (state: INamesState, action: PayloadAction<string>) => {
       // #3. 인자로 전달된 state를 직접 수정합니다.
-      state.names = [...state.names, action.payload];
+      state.names.push(action.payload);
     },
     save: (state: INamesState, action: PayloadAction<string>) => {
       console.log('이름들을 저장합니다.');
@@ -451,7 +451,7 @@ const MyToolbar = () => {
   };
   return (
     <div>
-      <span>{'이름'}</span>
+      <span>{'(Slice 테스트) 이름'}</span>
       <input ref={nameRef} />
       <button onClick={onAdd}>{'추가'}</button>
       <button onClick={onSave}>{'저장'}</button>
@@ -485,6 +485,236 @@ export default MySlice;
 ```
 
 # immer
+
+리덕스나 [State](??)를 수정할때 복제본을 사용해야 하는데요(*[개체/배열 State](https://tango1202.github.io/react/react-basic/#%EA%B0%9C%EC%B2%B4%EB%B0%B0%EC%97%B4-state) 참고*), [createSlice()](??)를 사용하면, 인자로 전달된 `state`를 직접 수정해도 되므로, 코드를 좀더 직관적으로 작성할 수 있었습니다.
+
+유사하게 [immer](??)를 사용할 수도 있습니다.
+
+다음은 [combineReducers()](??)의 예를 [immer](??)를 이용하여 리팩토링한 예입니다.
+
+1. #1 : 혹시 [immer](??)가 설치되지 않았다면, `npm install -D immer` 를 하면 됩니다.
+2. #2 : `produce()`함수를 이용하여 `state`를 수정하는 함수를 사용합니다.
+
+```tsx
+import {produce, Draft} from 'immer'; // #1. 혹시 설치되지 않았다면, npm install -D immer 를 하면 됩니다.
+
+const namesReducer = (state: INamesState = namesInitialState, action: INamesAction): INamesState => {
+  // #2. produce() 를 이용하여 state를 수정하는 함수를 사용합니다.
+  // 첫번째 인자 state : 수정하려는 개체
+  // 두번째 인자 : state를 변경하는 함수
+  return produce(state, (draft: Draft<INamesState>) => {
+    switch (action.type) {
+      case 'Add': 
+        draft.names.push(action.name);
+        break;
+      case 'Save': 
+        console.log('이름들을 저장합니다.');
+        break;
+      default:
+        break;
+    }
+  });
+};
+```
+
+# redux-actions
+
+[combineReducers()](??)의 예를 보면 액션을 호출할때 다음과 같이 액션 개체를 생성후 `dipatch()`를 호출하는데요, 
+
+```tsx
+dispatch({
+  type: 'Add',
+  name: nameRef.current ? nameRef.current.value : '',
+});
+```
+
+[redux-actions](??)을 사용하면 액션을 함수화하여 호출할 수 있으며, 좀더 구조적으로 카테고리화하여 액션을 관리할 수 있습니다. 다만 타입스크립트와는 궁합이 좀 안맞는 부분이 있어서, 좀 억지스럽게 `any`를 사용할 수도 있습니다.
+
+터미널에서 다음 명령을 입력하여 `redux-actions`를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
+
+```
+npm install -D redux-actions @types/redux-actions
+```
+
+다음은 [immer](??)의 예를 [redux-actions](??)으로 적용한 예입니다.
+
+1. #1 : `redux-actions`의 `Action`을 사용합니다.
+
+    다음과 같이 `type`은 무조건 문자열로 되어 있고, `payload`라는 속성에 액션 데이터가 저장됩니다.
+
+    ```tsx
+    export interface BaseAction {
+      type: string;
+    }
+    export interface Action<Payload> extends BaseAction {
+      payload: Payload;
+      error?: boolean | undefined;
+    }
+    ```
+
+2. #2 : 액션 타입입니다. 아무 문자열이나 됩니다. 구조적 관리를 위해 카테고리/기능명의 형식으로 작성해 봤습니다.
+
+3. #3 : `createAction()`을 이용하여 지정한 액션 타입으로 액션 함수를 만듭니다.
+
+4. #4 : 각 액션 타입에 따른 액션 함수가 정의된 `reducerMap`을 정의합니다. 이전엔 `switch()` 로 분기했지만, `redux-actions`에서는 맵의 속성을 key로 하여 분기 합니다. 이때 #4-1과 같이 `Action`은 전달되는 데이터 타입으로 구체화해서 사용합니다.
+
+5. #5 : `handleActions()`를 이용하여 `reducerMap`으로부터 `reducer`를 생성합니다.
+
+6. #6 : `dispatch()`를 이용하여 액션을 호출합니다.다만, `Action`은 전달되는 데이터 타입으로 구체화해서 사용해야 합니다.
+
+    `name`은 `string`이고, `dirty`는 `boolean`이므로 두가지 타입을 모두 허용했습니다. 다음처럼 `|`로 나열할 수도 있지만, 실무에선 보다 다양한 형식이 사용되기 때문에, 편의상 그냥 `any`를 사용하게 될 수도 있습니다.
+
+```tsx
+import { useRef } from 'react';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { createAction, handleActions, Action } from 'redux-actions'; // #1. redux-actions의 Action을 사용합니다.
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, Dispatch } from 'redux';
+import { produce, Draft } from 'immer'; 
+
+interface INamesState {
+  names: string[];
+}
+
+const namesInitialState: INamesState = {
+  names: ['홍길동', '성춘향'],
+};
+
+// #2. 액션 타입입니다. 아무 문자열이나 됩니다. 구조적 관리를 위해 카테고리/기능명의 형식으로 작성해 봤습니다.
+const ADD_USERS: string = 'users/ADD_USERS'; 
+const SAVE_USERS: string = 'users/SAVE_USERS';
+
+// #3. 지정한 액션 타입으로 액션 함수를 만듭니다. 
+const addUsersAction = createAction(ADD_USERS);
+const saveUsersAction = createAction(SAVE_USERS);
+
+// #4. 각 액션 타입에 따른 액션 함수가 정의된 reducerMap을 정의합니다. 
+// 이전엔 switch() 로 분기했지만, 맵의 속성을 key로 하여 분기 합니다.
+const userActions = {
+  // #4-1. Action은 전달되는 데이터 타입으로 구체화해서 사용합니다.
+  [ADD_USERS]: (state: INamesState, action: Action<string>): INamesState => {
+    return produce(state, (draft: Draft<INamesState>) => {
+      console.dir(action);
+      draft.names.push(action.payload);
+    });
+  },
+  [SAVE_USERS]: (state: INamesState, action: Action<string>): INamesState => {
+    return produce(state, (draft: Draft<INamesState>) => {
+      console.log('이름들을 저장합니다.');
+    });
+  },
+};
+
+// #5. reducerMap으로부터 reducer를 생성합니다.
+const namesReducer = handleActions(
+  {
+    ...userActions,
+    // 여러 카테고리를 각각 관리하는 경우, Spread 문법을 이용하여 통합할 수 있습니다.
+    // 예를 들면, 다음처럼요.
+    // ...filesActions,
+    // ...editActions,
+    // ...viewActions,
+    // ...helpActions
+  },
+  namesInitialState,
+);
+
+interface IDirtyState {
+  dirty: boolean;
+}
+const dirtyInitialState: IDirtyState = {
+  dirty: false,
+};
+const SET_DIRTY: string = 'doc/SET_DIRTY';
+const setDirtyAction = createAction(SET_DIRTY);
+
+const docActions = {
+  [SET_DIRTY]: (state: IDirtyState, action: any): IDirtyState => {
+    return produce(state, (draft: Draft<IDirtyState>) => {
+      draft.dirty = action.payload;
+    });
+  },
+};
+
+const dirtyReducer = handleActions(
+  {
+    ...docActions,
+  },
+  dirtyInitialState,
+);
+
+interface IStore {
+  namesState: INamesState;
+  dirtyState: IDirtyState;
+}
+
+const MyReduxActions = () => {
+  const rootReducer = combineReducers({
+    namesState: namesReducer,
+    dirtyState: dirtyReducer,
+  });
+
+  const store = configureStore({
+    reducer: rootReducer,
+  });
+
+  return (
+    <div>
+      <Provider store={store}>
+        <MyToolbar />
+        <MyList />
+      </Provider>
+    </div>
+  );
+};
+
+const MyToolbar = () => {
+  const nameRef = useRef<HTMLInputElement>(null);
+  // #6 : dispatch()를 이용하여 액션을 호출합니다.다만, Action은 전달되는 데이터 타입으로 구체화해서 사용해야 합니다.
+  // 이름은 string이고, dirty는 boolean이므로 두가지 타입을 모두 허용했습니다. 
+  // 다음처럼 '|'로 나열할 수도 있지만, 실무에선 보다 다양한 형식이 사용되기 때문에, 편의상 그냥 'any'를 사용하게 될 수도 있습니다.
+  const dispatch = useDispatch<Dispatch<Action<string | boolean>>>();
+
+  const onAdd = () => {
+    dispatch(addUsersAction(nameRef.current ? nameRef.current.value : ''));
+    dispatch(setDirtyAction(true));
+  };
+  const onSave = () => {
+    dispatch(saveUsersAction());
+    dispatch(setDirtyAction(false));
+  };
+  return (
+    <div>
+      <span>{'(redux-actions 테스트) 이름'}</span>
+      <input ref={nameRef} />
+      <button onClick={onAdd}>{'추가'}</button>
+      <button onClick={onSave}>{'저장'}</button>
+    </div>
+  );
+};
+
+const MyList = () => {
+  const names = useSelector((store: IStore) => store.namesState.names);
+  const dirty = useSelector((store: IStore) => store.dirtyState.dirty);
+
+  return (
+    <ol>
+      {names.map((name) => (
+        <li
+          key={name}
+          style={{
+            backgroundColor: dirty ? 'red' : 'blue',
+          }}
+        >
+          {name}
+        </li>
+      ))}
+    </ol>
+  );
+};
+
+export default MyReduxActions;
+```
 
 # 리덕스 개발자 도구
 
