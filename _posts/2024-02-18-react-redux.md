@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [React] Redux"
+title: "#7. [React] Redux, immer, redux-actions"
 categories: "react"
 tag: ["react"]
 author_profile: false
@@ -10,7 +10,7 @@ sidebar:
 
 # 개요
 
-리덕스는 [useContext()](https://tango1202.github.io/react/react-hook/#usecontext)처럼 공용으로 사용할 수 있는 [State](https://tango1202.github.io/react/react-basic/#state)를 제공하며, [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer) 처럼 [State](https://tango1202.github.io/react/react-basic/#state) 수정 관련 로직을 응집해서 관리해 줍니다.
+리덕스는 [useContext()](https://tango1202.github.io/react/react-hook/#usecontext)처럼 공용으로 사용할 수 있는 (를 제공하며, [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer) 처럼 [State](https://tango1202.github.io/react/react-basic/#state) 수정 관련 로직을 응집해서 관리해 줍니다.
 
 이런 이유로 [useContext()](https://tango1202.github.io/react/react-hook/#usecontext)나 [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer)를 각각 사용하지 않고, 그냥 리덕스를 사용합니다.
 
@@ -173,8 +173,8 @@ export default MyRedux;
 
 1. #1 : `namesReducer`는 사용자 이름을 관리하는 리듀서입니다.
 2. #2 : `dirtyReducer`는 데이터가 수정되었는지 여부를 관리하는 리듀서 입니다.
-3. #3 : 두개의 리듀서가 사용하는 [State](??)가 리덕스에 저장되는 형태입니다.
-4. #4 : `combineReducers()`로 두개의 리듀서를 합칩니다. 이때 `IStore` 속성에 맞게 동일한 이름을 사용합니다.
+3. #3 : 두개의 리듀서가 사용하는 [State](https://tango1202.github.io/react/react-basic/#state)가 리덕스에 저장되는 형태입니다.
+4. #4 : [combineReducers()](https://tango1202.github.io/react/react-redux/#combinereducers)로 두개의 리듀서를 합칩니다. 이때 `IStore` 속성에 맞게 동일한 이름을 사용합니다.
 5. #5-1, #5-2 : 이벤트에 맞춰 이름을 추가하거나, dirty 플래그를 설정합니다.
 6. #6 : `useSelector()`를 이용하여 리덕스의 정보를 읽어옵니다.
 7. #7 : `dirty`상태에 따라 빨간색 혹은 파란색으로 표시합니다.
@@ -342,15 +342,15 @@ export default MyCombineReducer;
 특히, 
 
 * 액션 타입으로 액션을 구분하지 않고 함수화하며, 
-* 인자로 전달된 `state`를 직접 수정할 수 있어 [State](??) 수정 관련 로직이 좀더 간결해 집니다.
+* 인자로 전달된 `state`를 직접 수정할 수 있어 [State](https://tango1202.github.io/react/react-basic/#state) 수정 관련 로직이 좀더 간결해 집니다.
 * `state`를 수정하기 위해 복제본을 사용하지 않아도 됩니다.(*[개체/배열 State](https://tango1202.github.io/react/react-basic/#%EA%B0%9C%EC%B2%B4%EB%B0%B0%EC%97%B4-state) 참고*)
 
-다음은 [combineReducers()](??)의 예를 [createSlice()](??)를 이용하여 리팩토링한 예입니다.
+다음은 [combineReducers()](https://tango1202.github.io/react/react-redux/#combinereducers)의 예를 [createSlice()](https://tango1202.github.io/react/react-redux/#createslice)를 이용하여 리팩토링한 예입니다.
 
-1. #1 : `createSlice()`로 이름, 초기값, 액션, 리듀서를 응집합니다.
+1. #1 : [createSlice()](https://tango1202.github.io/react/react-redux/#createslice)로 이름, 초기값, 액션, 리듀서를 응집합니다.
 2. #2 : 액션이 함수화 되어 있습니다. 이때 `PayloadAction`을 사용하며 `action.payload`에 실제 데이터가 전달됩니다.(*`payload`는 네트워크등 데이터 전송에서 사용하는 용어인데요, 전송에 필요한 부가적인 정보(헤더나 메타 데이터)를 제외한 실제 데이터 부분만을 `payload`라고 합니다.*)
 3. #3 : 인자로 전달된 `state`를 직접 수정합니다. 
-4. #4 : `configureStore()`에서 `combineReducers()`처럼 리듀서를 합칩니다.
+4. #4 : `configureStore()`에서 [combineReducers()](https://tango1202.github.io/react/react-redux/#combinereducers)처럼 리듀서를 합칩니다.
 5. #5 : `add()`, `setDirty()`등 함수화된 액션을 호출합니다. 이때 액션으로 전달될 `payload` 값을 전달합니다.
 
 ```tsx
@@ -486,13 +486,13 @@ export default MySlice;
 
 # immer
 
-리덕스나 [State](??)를 수정할때 복제본을 사용해야 하는데요(*[개체/배열 State](https://tango1202.github.io/react/react-basic/#%EA%B0%9C%EC%B2%B4%EB%B0%B0%EC%97%B4-state) 참고*), [createSlice()](??)를 사용하면, 인자로 전달된 `state`를 직접 수정해도 되므로, 코드를 좀더 직관적으로 작성할 수 있었습니다.
+리덕스나 [State](https://tango1202.github.io/react/react-basic/#state)를 수정할때 복제본을 사용해야 하는데요(*[개체/배열 State](https://tango1202.github.io/react/react-basic/#%EA%B0%9C%EC%B2%B4%EB%B0%B0%EC%97%B4-state) 참고*), [createSlice()](https://tango1202.github.io/react/react-redux/#createslice)를 사용하면, 인자로 전달된 `state`를 직접 수정해도 되므로, 코드를 좀더 직관적으로 작성할 수 있었습니다.
 
-유사하게 [immer](??)를 사용할 수도 있습니다.
+유사하게 [immer](https://tango1202.github.io/react/react-redux/#immer)를 사용할 수도 있습니다.
 
-다음은 [combineReducers()](??)의 예를 [immer](??)를 이용하여 리팩토링한 예입니다.
+다음은 [combineReducers()](https://tango1202.github.io/react/react-redux/#combinereducers)의 예를 [immer](https://tango1202.github.io/react/react-redux/#immer)를 이용하여 리팩토링한 예입니다.
 
-1. #1 : 혹시 [immer](??)가 설치되지 않았다면, `npm install -D immer` 를 하면 됩니다.
+1. #1 : 혹시 [immer](https://tango1202.github.io/react/react-redux/#immer)가 설치되지 않았다면, `npm install -D immer` 를 하면 됩니다.
 2. #2 : `produce()`함수를 이용하여 `state`를 수정하는 함수를 사용합니다.
 
 ```tsx
@@ -519,7 +519,7 @@ const namesReducer = (state: INamesState = namesInitialState, action: INamesActi
 
 # redux-actions
 
-[combineReducers()](??)의 예를 보면 액션을 호출할때 다음과 같이 액션 개체를 생성후 `dipatch()`를 호출하는데요, 
+[combineReducers()](https://tango1202.github.io/react/react-redux/#combinereducers)의 예를 보면 액션을 호출할때 다음과 같이 액션 개체를 생성후 `dipatch()`를 호출하는데요, 
 
 ```tsx
 dispatch({
@@ -528,17 +528,17 @@ dispatch({
 });
 ```
 
-[redux-actions](??)을 사용하면 액션을 함수화하여 호출할 수 있으며, 좀더 구조적으로 카테고리화하여 액션을 관리할 수 있습니다. 다만 타입스크립트와는 궁합이 좀 안맞는 부분이 있어서, 좀 억지스럽게 `any`를 사용할 수도 있습니다.
+[redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)을 사용하면 액션을 함수화하여 호출할 수 있으며, 좀더 구조적으로 카테고리화하여 액션을 관리할 수 있습니다. 다만 타입스크립트와는 궁합이 좀 안맞는 부분이 있어서, 좀 억지스럽게 `any`를 사용할 수도 있습니다.
 
-터미널에서 다음 명령을 입력하여 `redux-actions`를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
+터미널에서 다음 명령을 입력하여 [redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
 ```
 npm install -D redux-actions @types/redux-actions
 ```
 
-다음은 [immer](??)의 예를 [redux-actions](??)으로 적용한 예입니다.
+다음은 [immer](https://tango1202.github.io/react/react-redux/#immer)의 예를 [redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)으로 적용한 예입니다.
 
-1. #1 : `redux-actions`의 `Action`을 사용합니다.
+1. #1 : [redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)의 `Action`을 사용합니다.
 
     다음과 같이 `type`은 무조건 문자열로 되어 있고, `payload`라는 속성에 액션 데이터가 저장됩니다.
 
@@ -556,7 +556,7 @@ npm install -D redux-actions @types/redux-actions
 
 3. #3 : `createAction()`을 이용하여 지정한 액션 타입으로 액션 함수를 만듭니다.
 
-4. #4 : 각 액션 타입에 따른 액션 함수가 정의된 `reducerMap`을 정의합니다. 이전엔 `switch()` 로 분기했지만, `redux-actions`에서는 맵의 속성을 key로 하여 분기 합니다. 이때 #4-1과 같이 `Action`은 전달되는 데이터 타입으로 구체화해서 사용합니다.
+4. #4 : 각 액션 타입에 따른 액션 함수가 정의된 `reducerMap`을 정의합니다. 이전엔 `switch()` 로 분기했지만, [redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)에서는 맵의 속성을 key로 하여 분기 합니다. 이때 #4-1과 같이 `Action`은 전달되는 데이터 타입으로 구체화해서 사용합니다.
 
 5. #5 : `handleActions()`를 이용하여 `reducerMap`으로부터 `reducer`를 생성합니다.
 
