@@ -738,7 +738,7 @@ export default MyReduxActions;
     |크롬|[https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd](https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)|
     |엣지|[https://microsoftedge.microsoft.com/addons/detail/redux-devtools/nnkgneoiohoecpdiaponcejilbhhikei](https://microsoftedge.microsoft.com/addons/detail/redux-devtools/nnkgneoiohoecpdiaponcejilbhhikei)|
 
-2. `F12`를 눌러 개발자 도구를 표시한뒤 메뉴 우측의 탭 더보기를 클릭하여 `Redux`를 선택합니다.
+2. 리액트를 사용하는 페이지를 연후 `F12`를 눌러 개발자 도구를 표시한뒤 메뉴 우측의 탭 더보기를 클릭하여 `Redux`를 선택합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ee78ee7e-6c67-47d8-9b85-4951e5529af0)
 
