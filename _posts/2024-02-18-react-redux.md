@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [React] Redux, immer, redux-actions"
+title: "#7. [React] Redux, immer, redux-actions, Redux DevTools"
 categories: "react"
 tag: ["react"]
 author_profile: false
@@ -10,7 +10,7 @@ sidebar:
 
 # 개요
 
-리덕스는 [useContext()](https://tango1202.github.io/react/react-hook/#usecontext)처럼 공용으로 사용할 수 있는 (를 제공하며, [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer) 처럼 [State](https://tango1202.github.io/react/react-basic/#state) 수정 관련 로직을 응집해서 관리해 줍니다.
+리덕스는 [useContext()](https://tango1202.github.io/react/react-hook/#usecontext)처럼 공용으로 사용할 수 있는 [State](https://tango1202.github.io/react/react-basic/#state)를 제공하며, [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer) 처럼 [State](https://tango1202.github.io/react/react-basic/#state) 수정 관련 로직을 응집해서 관리해 줍니다.
 
 이런 이유로 [useContext()](https://tango1202.github.io/react/react-hook/#usecontext)나 [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer)를 각각 사용하지 않고, 그냥 리덕스를 사용합니다.
 
@@ -26,11 +26,18 @@ npm install -D redux react-redux @reduxjs/toolkit
 
 [useReducer()](https://tango1202.github.io/react/react-hook/#usereducer) 에서 UI를 이용하여 `data` 정보(*`name`과 `age`입니다*)를 `CRUD`(*`Create`, `Read`, `Update`, `Delete`*)하는 예를 소개했습니다.
 
-상위 개체에서 데이터를 [State](https://tango1202.github.io/react/react-basic/#state)로 만들고, 하위 개체에 전달해서 사용했는데요, 이를 리덕스를 이용해서 리팩토링 했습니다.
+상위 개체에서 데이터를 [State](https://tango1202.github.io/react/react-basic/#state)로 만들고, 하위 개체에 전달해서 사용했는데요, 다음은 이를 리덕스를 이용해서 리팩토링한 예입니다.
 
 전체적인 구조는 동일하며, 다른 부분만 말씀드리자면,
 
-1. #3 : `IAction`을 리덕스의 `Action`을 이용하여 선언합니다. 이때 `type`은 문자열만 가능합니다.
+1. #3 : `IAction`을 리덕스의 `Action`을 이용하여 선언합니다. 이때 `type`은 다음처럼 선언되어 있기 때문에 문자열 계열만 가능합니다.
+
+    ```typescript
+    type Action<T extends string = string> = {
+      type: T;
+    };
+    ```
+
 2. #4 : `state`의 기본값 인자로 초기값을 전달해야 합니다. 전달하지 않으면 `configureStore()`시 타입 오류가 발생합니다.
 3. #6 : 리덕스의 `store` 개체를 생성합니다. `preloadedState`를 통해 초기값을 전달할 수 있습니다. 생성한 `store`는 #6-1와 같이 `Provider`에 전달합니다.
 4. #7, #8 : 각 컴포넌트에서 리덕스를 이용하므로 [Props](https://tango1202.github.io/react/react-basic/#props)를 사용할 필요가 없습니다.
@@ -488,11 +495,11 @@ export default MySlice;
 
 리덕스나 [State](https://tango1202.github.io/react/react-basic/#state)를 수정할때 복제본을 사용해야 하는데요(*[개체/배열 State](https://tango1202.github.io/react/react-basic/#%EA%B0%9C%EC%B2%B4%EB%B0%B0%EC%97%B4-state) 참고*), [createSlice()](https://tango1202.github.io/react/react-redux/#createslice)를 사용하면, 인자로 전달된 `state`를 직접 수정해도 되므로, 코드를 좀더 직관적으로 작성할 수 있었습니다.
 
-유사하게 [immer](https://tango1202.github.io/react/react-redux/#immer)를 사용할 수도 있습니다.
+유사하게 [immer](https://tango1202.github.io/react/react-redux/#immer)를 사용하는 방법도 있습니다.
 
 다음은 [combineReducers()](https://tango1202.github.io/react/react-redux/#combinereducers)의 예를 [immer](https://tango1202.github.io/react/react-redux/#immer)를 이용하여 리팩토링한 예입니다.
 
-1. #1 : 혹시 [immer](https://tango1202.github.io/react/react-redux/#immer)가 설치되지 않았다면, `npm install -D immer` 를 하면 됩니다.
+1. #1 : [리덕스 설치](??)를 하면 [immer](https://tango1202.github.io/react/react-redux/#immer)도 같이 설치되는 데요, 혹시 설치되지 않았다면, `npm install -D immer` 를 하면 됩니다.
 2. #2 : `produce()`함수를 이용하여 `state`를 수정하는 함수를 사용합니다.
 
 ```tsx
@@ -528,13 +535,17 @@ dispatch({
 });
 ```
 
-[redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)을 사용하면 액션을 함수화하여 호출할 수 있으며, 좀더 구조적으로 카테고리화하여 액션을 관리할 수 있습니다. 다만 타입스크립트와는 궁합이 좀 안맞는 부분이 있어서, 좀 억지스럽게 `any`를 사용할 수도 있습니다.
+[redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)을 사용하면 [createSlice()](??)처럼 액션을 함수화하여 호출할 수 있으며, 좀더 구조적으로 카테고리화하여 액션을 관리할 수 있습니다. 다만 타입스크립트와는 궁합이 좀 안맞는 부분이 있어서, 좀 억지스럽게 `any`를 사용할 수도 있습니다.
+
+**설치**
 
 터미널에서 다음 명령을 입력하여 [redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
 ```
 npm install -D redux-actions @types/redux-actions
 ```
+
+**사용예**
 
 다음은 [immer](https://tango1202.github.io/react/react-redux/#immer)의 예를 [redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)으로 적용한 예입니다.
 
@@ -716,7 +727,34 @@ const MyList = () => {
 export default MyReduxActions;
 ```
 
-# 리덕스 개발자 도구
+# Redux DevTools
 
+[Redux DevTools](??)를 이용하면 브라우저 개발자 도구에서 액션 실행에 따른 리덕스의 상태 변화를 쉽게 확인 할 수 있습니다.
 
+1. 각 브라우저 스토어에서 [Redux DevTools](??)를 설치합니다.
 
+    |항목|내용|
+    |--|--|
+    |크롬|[https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd](https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)|
+    |엣지|[https://microsoftedge.microsoft.com/addons/detail/redux-devtools/nnkgneoiohoecpdiaponcejilbhhikei](https://microsoftedge.microsoft.com/addons/detail/redux-devtools/nnkgneoiohoecpdiaponcejilbhhikei)|
+
+2. `F12`를 눌러 개발자 도구를 표시한뒤 메뉴 우측의 탭 더보기를 클릭하여 `Redux`를 선택합니다.
+
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ee78ee7e-6c67-47d8-9b85-4951e5529af0)
+
+3. 그러면 다음과 같이 [Redux DevTools](??)가 표시됩니다.
+ 
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/78810159-b096-420a-b5cf-0e0eda90a283)
+
+ 
+4. [redux-actions](??)에서 작성한 예제에 `이몽룡`을 입력하고 `추가`버튼을 클릭하면, 실행된 액션이 목록으로 표시되고, `diff`탭에 변화된 상태값이 표시됩니다.
+
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/72b8e0e7-cba3-488b-bac6-b982f9b497a8)
+
+5. 특정 액션을 클릭하면, 해당 액션 실행시의 변화된 상태값을 확인 할 수 있습니다.
+
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d07024b4-d248-4cfb-bc65-10d2bbbf9f6c)
+
+6. `State`탭을 클릭하면, 전체 상태값을 확인할 수 있습니다.
+
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/21a8e29d-d525-4b64-88e8-9a3b938f7c18)
