@@ -38,6 +38,13 @@ figure.highlight {
       color: $base04;
       border-right: 1px solid $base04;
       text-align: right;
+      // 코드 라인 복사 방지
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;      
     }
 
     /* code */
