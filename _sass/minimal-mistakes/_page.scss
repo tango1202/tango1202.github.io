@@ -142,7 +142,8 @@ body {
   :not(pre) > code {
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
-    vertical-align: top;
+    margin-top: -0.2rem;
+    margin-bottom: 0.2rem;
     font-size: $type-size-5;
     background: $code-background-color;
     border-radius: $border-radius;
