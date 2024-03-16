@@ -66,7 +66,7 @@ sidebar:
     export default MyDiv; // 내보내기 합니다.
     ```
 
-3. `test`폴더 하위에 `MyDiv.test.tsx` 파일을 만들어 다음과 같이 테스트 할 수 있습니다.(*리액트 컴포넌트 테스트를 할 경우 확장자를 `tsx`로 해야 합니다. `ts`로 할 경우 단순한 타입스크립트로 판단하기 때문에 오동작할 수 있습니다.*)
+3. `test`폴더 하위에 `MyDiv.test.tsx` 파일을 만들어 다음과 같이 테스트 할 수 있습니다.(*리액트 컴포넌트 테스트를 할 경우 확장자를 `tsx`로 해야 합니다. `ts`로 할 경우 단순한 타입스크립트로 판단합니다.*)
 
     ```tsx
     import { render, screen } from '@testing-library/react';
@@ -85,7 +85,7 @@ sidebar:
 
 하지만, HTML DOM을 수정하는 것은 전체 페이지 레이아웃을 다시 계산해야 하기 때문에 부하가 큰 작업입니다. 리액트는 이를 최소화 하기 위해 HTML DOM을 직접 수정하지 않고, 가상의 DOM을 만든뒤, HTML DOM에서 변경해야할 최소 요소만 추출하여 수정합니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/179647ee-a2af-4d52-90a8-bb24658cf8e3)
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/37be1129-f935-419b-925b-2ce7e3290195)
 
 가상의 DOM은 컴포넌트가 리턴하는 마크업으로 구성되며 JSX라고 합니다. 형태는 HTML과 유사하며, 내부적으로 `{}`을 이용하여 코드 표현식을 사용할 수 있습니다.
 
@@ -150,7 +150,7 @@ sidebar:
       );
       ```
 
-      이럴 경우 다음과 같이 `<>`(*Framement*) 로 묶으면 됩니다.
+      다음과 같이 `<>`(*Fragment*) 로 묶어서 단일 태그 형태로 만들 수 있습니다.
 
       ```tsx
       return ( 
@@ -161,13 +161,18 @@ sidebar:
       );
       ```
 
-  6. `HTML`에서 대시를 포함하는 이름이나 `class`와 같은 예약어는 다른 이름으로 대체됩니다. 다음에서 `className`은 `HTML`의 `class` 입니다. 자세한 내용은 [Common components(https://react.dev/reference/react-dom/components/common)](https://react.dev/reference/react-dom/components/common)를 참고하세요.
+  6. `HTML`에서 `-`(*대시*)를 포함하는 이름이나 `class`와 같은 예약어는 다른 이름(*camel 표기법 형태*)으로 대체됩니다. 다음에서 `className`은 `HTML`의 `class` 입니다. 자세한 내용은 [Common components(https://react.dev/reference/react-dom/components/common)](https://react.dev/reference/react-dom/components/common)를 참고하세요.
 
       ```tsx
       <img 
         src="https://i.imgur.com/yXOvdOSs.jpg" 
         alt="Hedy Lamarr" 
         className="photo"
+        style = {
+          { // background-color는 backgroundColor로 대체됩니다.
+            backgroundColor: 'red'
+          }
+        }
       />
       ```
 
@@ -239,9 +244,12 @@ export default MyState;
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/378c1024-541c-4ee8-a158-f90744551aaa)
 
 1. #1 : [State](https://tango1202.github.io/react/react-basic/#state)를 사용하기 위해 `useState`를 가져옵니다.
-2. #2 : `countState` 라는 이름으로 초기값이 `0`인 [State](https://tango1202.github.io/react/react-basic/#state)를 만듭니다. 이때 `setCountState()`라는 setter도 함께 만들어 집니다.
+2. #2 : `countState` 라는 이름으로 초기값이 `0`인 [State](https://tango1202.github.io/react/react-basic/#state)를 만듭니다. 이때 `setCountState()`라는 setter도 함께 만들어 집니다. 
+
+    이때 배열이 리턴되는데, `[변수명, set변수명]`의 형태로 관습적으로 [구조 분해](https://tango1202.github.io/javascript/javascript-basic/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)해서 받아 옵니다.
+
 3. #3 : `countState`를 수정할 때는 항상 `setCountState()`를 이용해서 수정해야 렌더링을 다시 합니다.
-4. #4 : `count`는 변하지 않고, `countState`는 변합니다.
+4. #4 : 일반 변수인 `count`는 초기값이 계속 출력되고, [State](https://tango1202.github.io/react/react-basic/#state)인 `countState`는 수정된 값이 출력됩니다.
 
 ```tsx
 import { useState } from 'react'; // #1
@@ -316,7 +324,9 @@ const MyArrayState = () => {
   const onArrayClick = () => {
     const clone = [...arr];
     clone[0].x = 100; // #3. 복제본을 수정합니다.
-    console.log(arr[0].x === clone[0].x); // #3. 배열의 각 요소는 앝은 복사됩니다.
+    console.log(arr !== clone); // #3-1. 배열은 복제했으므로 다른 개체입니다.
+    console.log(arr[0].x === clone[0].x); // #3-2. 배열의 각 요소는 앝은 복사됩니다.
+
     setArr(clone); // #4. 렌더링을 다시 합니다.
   };
   return (
@@ -351,18 +361,18 @@ setObj({...obj, y: 2}); // 개체의 기존값을 그대로 사용하되 y만 2�
 
 # Props
 
-컴포넌트 개체는 HTML의 attribute와 유사한 형태로 외부에서 데이터(*개체나 함수*)를 전달 받을 수 있습니다. 이를 `Props`라고 하는데요, `Props`가 변경되면, 컴포넌트는 다시 렌더링됩니다.
+컴포넌트 개체는 HTML의 attribute와 유사한 형태로 외부에서 데이터(*개체나 함수*)를 전달 받을 수 있습니다. 이를 [Props](https://tango1202.github.io/react/react-basic/#props)라고 하는데요, [Props](https://tango1202.github.io/react/react-basic/#props)가 변경되면, 컴포넌트는 다시 렌더링됩니다.
 
-1. #1 : 컴포넌트 `Props`의 인터페이스를 선언합니다.
-2. #2 : `Props`는 인자로 전달받습니다. 관습적으로 `props`라는 이름을 사용합니다.
-3. #3 : `Props`는 관습적으로 [구조 분해](https://tango1202.github.io/javascript/javascript-basic/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)해서 사용합니다.
-4. #4 : `Props`는 수정할 수 있으나, 컴포넌트 내부에서 수정하는건 좋지 않습니다. 
+1. #1 : 컴포넌트 [Props](https://tango1202.github.io/react/react-basic/#props)의 인터페이스를 선언합니다.
+2. #2 : [Props](https://tango1202.github.io/react/react-basic/#props)는 인자로 전달받습니다. 관습적으로 `props`라는 이름을 사용합니다.
+3. #3 : [Props](https://tango1202.github.io/react/react-basic/#props)는 관습적으로 [구조 분해](https://tango1202.github.io/javascript/javascript-basic/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)해서 사용합니다.
+4. #4 : [Props](https://tango1202.github.io/react/react-basic/#props)는 수정할 수 있으나, 컴포넌트 내부에서 수정하는건 좋지 않습니다. 
 
-    컴포넌트는 전달된 `Props`로 단지 렌더링만 하는 [단일 책임]((https://tango1202.github.io/principle/principle-single-responsibility/))만 갖는게 좋습니다. 만약 내부에서 `Props`를 수정하면, 외부에서 동일한 데이터를 전달했을때 다르게 렌더링 될 수 있습니다. 이렇게 되면, 리액트에서 가상 DOM으로 부터 HTML DOM을 생성할때 최적화가 제대로 되지 않아 쓸데없는 화면 갱신이 빈번해 질 수 있습니다.
+    컴포넌트는 전달된 [Props](https://tango1202.github.io/react/react-basic/#props)로 단지 렌더링만 하는 [단일 책임]((https://tango1202.github.io/principle/principle-single-responsibility/))만 갖는게 좋습니다. 만약 내부에서 [Props](https://tango1202.github.io/react/react-basic/#props)를 수정하면, 외부에서 동일한 데이터를 전달했을때 다르게 렌더링 될 수 있습니다. 이렇게 되면, 리액트에서 가상 DOM으로 부터 HTML DOM을 생성할때 최적화가 제대로 되지 않아 쓸데없는 화면 갱신이 빈번해 질 수 있습니다.(*[주요 개념 정리](https://tango1202.github.io/react/react-basic/#%EC%A3%BC%EC%9A%94-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC) 참고*)
 
     수정이 필요한 데이터가 있다면 [State](https://tango1202.github.io/react/react-basic/#state)를 사용하시기 바랍니다.
 
-5. #5 : `Props`가 있는 컴포넌트는 해당 값을 전달해야 합니다. 만약 선택적으로 전달하고 싶다면, `name?`와 같이 [선택적 속성](https://tango1202.github.io/typescript/typescript-basic/#%EC%84%A0%ED%83%9D%EC%A0%81-%EC%86%8D%EC%84%B1)으로 선언해야 합니다.
+5. #5 : [Props](https://tango1202.github.io/react/react-basic/#props)가 있는 컴포넌트는 해당 값을 전달해야 합니다. 만약 선택적으로 전달하고 싶다면, `name?`와 같이 [선택적 속성](https://tango1202.github.io/typescript/typescript-basic/#%EC%84%A0%ED%83%9D%EC%A0%81-%EC%86%8D%EC%84%B1)으로 선언해야 합니다.
 
 ```tsx
 // #1. 속성의 인터페이스 입니다.
@@ -425,16 +435,16 @@ const Pareant = (props: IProps) {
 
 외부에서 초기값을 전달하고, 컴포넌트 내에서 값을 수정하려고 합니다.
 
-초기값은 [Props](https://tango1202.github.io/react/react-basic/#props)로 전달하면 됩니다. 그런데 `+`, `-` 버튼 클릭시 수정이 필요하고 [Props](https://tango1202.github.io/react/react-basic/#props)는 수정하면 안되므로, ***[Props](https://tango1202.github.io/react/react-basic/#props)를 [State](https://tango1202.github.io/react/react-basic/#state)에 복제***하고, `+`, `-` 버튼 클릭시 [State](https://tango1202.github.io/react/react-basic/#state)를 수정해 보았습니다.
+초기값은 [Props](https://tango1202.github.io/react/react-basic/#props)로 전달하면 됩니다. 그런데 `+`, `-` 버튼 클릭시 수정이 필요하고 [Props](https://tango1202.github.io/react/react-basic/#props)는 수정하면 안되므로(*[Props](https://tango1202.github.io/react/react-basic/#props) 참고*), ***[Props](https://tango1202.github.io/react/react-basic/#props)를 [State](https://tango1202.github.io/react/react-basic/#state)의 초기값으로 사용***하고, `+`, `-` 버튼 클릭시 [State](https://tango1202.github.io/react/react-basic/#state)를 수정해 보았습니다.
 
 `+`, `-`버튼 클릭시 잘 동작하는 것처럼 보입니다.
 
-하지만, `OnResetClick`에서 `MyCounter`에 전달한 초기값을 다시 `0`으로 바꾸고 [Props](https://tango1202.github.io/react/react-basic/#props)를 전달했을때 값이 반영되지 않습니다. 이는 [Props](https://tango1202.github.io/react/react-basic/#props)를 복제해서 사용했기 때문입니다.
+하지만, `OnResetClick`에서 `MyCounter`에 전달한 초기값을 다시 `0`으로 바꾸고 [Props](https://tango1202.github.io/react/react-basic/#props)를 전달했을때 값이 반영되지 않습니다. 이는 [State](https://tango1202.github.io/react/react-basic/#state)의 초기값은 함수를 처음 실행할 때만 적용되기 때문입니다.
 
-1. #1: [Props](https://tango1202.github.io/react/react-basic/#props)를 [State](https://tango1202.github.io/react/react-basic/#state)에 복제합니다.
+1. #1: [Props](https://tango1202.github.io/react/react-basic/#props)를 [State](https://tango1202.github.io/react/react-basic/#state)의 초기값으로 사용합니다.
 2. #2 : 버튼 클릭시 [State](https://tango1202.github.io/react/react-basic/#state)를 수정합니다.
 3. #3 : [State](https://tango1202.github.io/react/react-basic/#state) 인 `value`를 표시합니다.
-4. #4 : 외부에서 [Props](https://tango1202.github.io/react/react-basic/#props)를 변경하더라도 #1에서 초기에 전달한 값을 복제했기 때문에 반영되지 않습니다.
+4. #4 : 외부에서 [Props](https://tango1202.github.io/react/react-basic/#props)를 변경하더라도 [State](https://tango1202.github.io/react/react-basic/#state)의 초기값이 재반영되지 않습니다.
 
 ```tsx
 import { useState } from 'react';
@@ -445,7 +455,7 @@ interface IProps {
 
 const MyCounter = (props: IProps) => {
   const { init } = props;
-  const [value, setValue] = useState(init); // #1. Props를 State에 복제합니다.
+  const [value, setValue] = useState(init); // #1. Props를 State의 초기값으로 사용합니다.
 
   const onMinusClick = () => {
     setValue(value - 1); // #2. State를 수정합니다.
@@ -466,12 +476,12 @@ const MyPropsState = () => {
   const [value, setValue] = useState(0);
 
   const onResetClick = () => {
-    setValue(0); // #4. MyCounter의 0으로 리셋하고 다시 렌더링합니다. 하지만, MyCounter가 초기에 전달한 값을 복제해서 사용하는 바람에 0으로 리셋이 안됩니다.
+    setValue(0); // #4. MyCounter의 0으로 리셋하고 다시 렌더링합니다. 하지만, State의 초기값은 함수를 처음 실행할 때만 적용됩니다.
   };
 
   return (
     <div>
-      <button onClick={onResetClick}>{'MyCounter가 초기에 전달한 값을 복제해서 사용하는 바람에 0으로 리셋이 안됩니다.'}</button>
+      <button onClick={onResetClick}>{'MyCounter의 State는 0으로 리셋이 안됩니다.'}</button>
       <MyCounter init={value} />
     </div>
   );
@@ -485,7 +495,7 @@ export default MyPropsState;
 
 리액트는 [Props](https://tango1202.github.io/react/react-basic/#props)를 이용하여 기본적으로 상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달합니다. 하지만, 이벤트를 이용한다면 역방향으로 데이터를 전달할 수도 있습니다.
 
-다음과 같은 구조로 상위 개체에서 `value`를 [State](https://tango1202.github.io/react/react-basic/#state)로 생성하고, 수정하도록 관리하고, 하위 개체는 출력만 담당하는게 좋습니다.
+다음과 같은 구조로 상위 개체에서 `value`를 [State](https://tango1202.github.io/react/react-basic/#state)로 관리하도록 하고, 하위 개체는 출력만 담당하는게 좋습니다.
 
 하위 개체에서 버튼이 클릭될 때마다 상위 개체에서 이벤트를 수신받고 `value`를 수정한뒤, 이를 출력할 개체에 [Props](https://tango1202.github.io/react/react-basic/#props)로 전달합니다. 이때 하위 개체의 이벤트를 수신하기 위해 개체의 [Props](https://tango1202.github.io/react/react-basic/#props)에 콜백 함수(*이벤트 핸들러*)를 전달합니다.
 
@@ -545,11 +555,13 @@ export default MyCounterCallback;
 
 * 리액트는 렌더링 컴포넌트를 트리 형태로 구성합니다.
 
-* 동일한 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)에서는 동일한 결과가 리턴되어야 합니다. 이와 같이 입력값에 대해 동일한 결과를 리턴하는 함수를 `Pure Function`이라고 합니다. 리액트는 동일한 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)일때 동일한 JSX를 리턴한다고 가정하고 성능 최적화하기 때문에, 꼭 준수해야 합니다. 준수하지 않으면, 뜻하지 않게 화면이 쉼없이 재 렌더링 되거나, 아예 렌더링을 안할 수 있습니다.
+* 순수함(*Pure*) : 동일한 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)에서는 동일한 결과가 리턴되어야 합니다. 
 
-* 렌더링은 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)변경에 따라 재시도 되고, 가상 DOM을 이용하여 동적으로 렌더링 요소들을 구성한뒤 변경된 것만 갱신합니다.
+    이와 같이 입력값에 대해 동일한 결과를 리턴하는 함수를 `Pure Function`이라고 합니다. 리액트는 동일한 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)일때 동일한 JSX를 리턴한다고 가정하고 성능 최적화하기 때문에, 꼭 준수해야 합니다. 준수하지 않으면, 뜻하지 않게 화면이 쉼없이 재 렌더링 되거나, 아예 렌더링을 안할 수 있습니다.
 
-* [Props](https://tango1202.github.io/react/react-basic/#props)를 이용하여 상위 컴포넌트에서 하위 컴포넌트로 데이터가 전달됩니다. 단, [Props](https://tango1202.github.io/react/react-basic/#props)에 콜백 함수를 전달하여 역방향 흐름으로 만들 수 있습니다.
+* 데이터 기반 렌더링 : 렌더링은 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)변경에 따라 재시도 되고, 가상 DOM을 이용하여 동적으로 렌더링 요소들을 구성한뒤 변경된 것만 갱신합니다.
+
+* 데이터 공유 : [Props](https://tango1202.github.io/react/react-basic/#props)를 이용하여 상위 컴포넌트에서 하위 컴포넌트로 데이터가 전달됩니다. 단, [Props](https://tango1202.github.io/react/react-basic/#props)에 콜백 함수를 전달하여 역방향 흐름으로 만들 수 있습니다.
 
 * [State](https://tango1202.github.io/react/react-basic/#state)를 만들어 컴포넌트의 정보를 관리할 수 있습니다. 
 
@@ -561,4 +573,4 @@ export default MyCounterCallback;
 
 2. [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)가 변경되었을때 해당 컴포넌트 렌더링을 호출하고 하위 컴포넌트 렌더링을 호출합니다.
 
-    [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)가 변경되면, 렌더링이 대기열에 추가되며, 번경된 것들을 계산하여 가상 DOM을 수정합니다. 이때 최신 렌더링 출력과 일치하도록 최소한의 필수 렌더링만 수행합니다.
+    [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)가 변경되면, 렌더링이 대기열에 추가되며, 변경된 것들을 계산하여 가상 DOM을 수정합니다. 이때 최신 렌더링 출력과 일치하도록 최소한의 필수 렌더링만 수행합니다.

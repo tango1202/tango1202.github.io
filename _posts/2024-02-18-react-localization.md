@@ -24,7 +24,7 @@ npm install -D react-i18next i18next
 
 # 다국어 문자열 파일 구성
 
-1. `src/locales/kr/string.json` 에 번역할 한국어 파일을 작성합니다.
+1. `src/locales/ko/string.json` 에 번역할 한국어 파일을 작성합니다.
 
     이때 `file`과 같이 계층적으로 관리할 수도 있습니다.
 
@@ -52,20 +52,21 @@ npm install -D react-i18next i18next
     }
     ```
 
-3. `src/locales/i18n.ts` 파일을 다음과 같이 작성하여 #1과 같이 한국어일때는 `kr`, 영어일때는 `en`으로 관리합니다.
+3. `src/locales/i18n.ts` 파일을 다음과 같이 작성하여 #1과 같이 한국어일때는 `ko`, 영어일때는 `en`으로 관리합니다.
 
     ```typescript
     import i18n from 'i18next';
     import { initReactI18next } from 'react-i18next';
-    import kr from './kr/string.json'; // 한국어 사전
+
     import en from './en/string.json'; // 영어 사전
+    import ko from './ko/string.json'; // 한국어 사전
 
     i18n.use(initReactI18next).init({
       resources: {
         en: { translation: en }, // #1. 영어 일때는 ./en/string.json 사용
-        kr: { translation: kr }, // #1. 한국어 일때는 ./kr/string.json 사용
+        ko: { translation: ko }, // #1. 한국어 일때는 ./ko/string.json 사용
       },
-      lng: 'kr', // 기본 언어는 kr을 사용합니다.
+      lng: 'ko', // 기본 언어는 ko을 사용합니다.
       fallbackLng: 'en', // 언어 사전이 없는 경우 en을 사용합니다.
       interpolation: { escapeValue: false }, // HTML 태그를 지원합니다.
     });
@@ -92,11 +93,11 @@ import i18n from './locales/i18n'; // #2. 만약 i18n을 사용하지 않는다�
 
 const MyString = () => {
   const { t } = useTranslation(); // #3
-  const [isKr, setIsKr] = useState(true); // #4
+  const [isKo, setIsKo] = useState(true); // #4
 
   const onToggle = () => {
-    i18n.changeLanguage(isKr ? 'en' : 'kr'); // #4. 한국어 이면 영어로, 영어이면 한국어로 바꿉니다.
-    setIsKr(!isKr);
+    i18n.changeLanguage(isKo ? 'en' : 'ko'); // #4. 한국어 이면 영어로, 영어이면 한국어로 바꿉니다.
+    setIsKo(!isKo);
   };
   return (
     <>
