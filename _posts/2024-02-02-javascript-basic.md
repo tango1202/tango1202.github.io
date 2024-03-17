@@ -21,6 +21,8 @@ sidebar:
 
 자바스크립트는 동적 타입 언어입니다. 따라서 변수의 타입은 동적으로 결정되는데요, 숫자형 변수로 사용하다가 문자열형 변수로 바꿔서 사용할 수도 있습니다.
 
+변수명은 관습적으로 카멜 표기법을 따르며, 문자, 숫자, `$`, `_`로 구성할 수 있고, 숫자의 경우 첫글자로 사용할 수 없습니다.
+
 1. `var`로 변수를 선언할 수 있습니다.
 2. 선언과 동시에 할당할 수 있습니다.
 3. 선언한 것을 다시 재선언 할 수 있습니다.
@@ -127,6 +129,12 @@ console.log('변수 유효 범위', val); // 1
     console.log('const 개체의 속성은 수정할 수 있습니다.', obj1.x === obj2.x, obj1.y === obj2.y);
     ```
 
+5. 특별한 상수값에 이름을 부여하여 사용할 수 있으며, 관례적으로 대문자로 작성합니다.
+
+    ```javascript
+    const PI = 3.14;
+    ```
+
 # 타입과 리터럴
 
 `number, boolean, string, null, undefined, symbol`의 기본 타입이 있으며, 개체와 배열을 사용할 수 있습니다.
@@ -194,6 +202,17 @@ for (let i = 0; i < result.length; ++i) {
 }
 ```
 
+# BigInt(ECMAScript11)
+
+(-2<sup>53</sup> - 1) ~ (2<sup>53</sup> - 1)범위보다 큰 정수를 저장합니다. 리터럴 끝에 `n`을 붙이면 됩니다.
+
+```javascript
+const bigInt = 1234567890123456789012345678901234567890n;
+bigInt += 1n;
+
+console.log('bigInt : ', bigInt);
+```
+
 # 연산자
 
 산술 연산자중 `+`는 숫자를 더할 뿐만 아니라 문자열도 더할 수 있습니다.
@@ -242,16 +261,17 @@ console.log('isNaN(nan)', isNaN(nan) === true); // isNaN()으로 검사해야 �
 |--|--|
 |산술 연산자|`+, -, *, /, %`, `**`(*지수*)|
 |할당 연산자|`=, +=, -=, *=, /=, %=`|
-|증감 연산자|`++, --`<br/>* 전위형 : 값을 증감시킨뒤 리턴<br/>* 후위형 : 값을 증감시기키 전의 값을 리턴|
+|증감 연산자|`++, --`<br/>* 전위형 : 값을 증감시킨뒤 리턴합니다.<br/>* 후위형 : 값을 증감시기키 전의 값을 리턴합니다.|
 |부호 연산자|`+, -`|
 |비교 연산자|`==, !=, <, >, <=, >=`|
 |일치 연산자|`===, !==`|
 |논리 연산자|`||, &&, !`<br/>* 논리 연산자는 단축 평가 됩니다. 예를 들어 `A || B` 시 `A`가 `true`이면 어짜피 논리 연산의 결과는 `true`이기 때문에 `B`는 실행되지 않습니다.|
-|삼항 연산자|`조건식 ? 표현식1 : 표현식2`<br/>* 표현식1 : 조건식이 `true`인 경우 실행<br/>* 표현식2 : 조건식이 `false`인 경우 실행|
-|쉼표 연산자|왼쪽부터 차례로 표현식을 실행하고, 마지막에 가장 오른쪽 표현식을 리턴함|
-|괄호|괄호안의 연산 우선순위를 최우선으로 높임|
-|`typeof`|피 연산자의 타입을 문자열(*`number, string, boolean,undefined, symbol, object, fuction`*)로 리턴함. `null`과 배열은 모두 `object`로 리턴됨|
+|삼항 연산자|`조건식 ? 표현식1 : 표현식2`<br/>* 표현식1 : 조건식이 `true`인 경우 실행합니다.<br/>* 표현식2 : 조건식이 `false`인 경우 실행|
+|쉼표 연산자|왼쪽부터 차례로 표현식을 실행하고, 마지막에 가장 오른쪽 표현식을 리턴합니다.|
+|괄호|괄호안의 연산 우선순위를 최우선으로 높입니다.|
+|`typeof`|피 연산자의 타입을 문자열(*`number, string, boolean, undefined, symbol, object, fuction`*)로 리턴합니다. `null`과 배열은 모두 `object`로 리턴됩니다.|
 |`instanceof`|주어진 개체가 프로토타입 체인중 일치하는 타입이 있는지 검사합니다.|
+|`in`|`'x' in obj`와 같이 사용시 `obj`개체안에 `x`속성이 있는지 검사합니다.|
 
 # 형변환
 
@@ -330,12 +350,86 @@ MY_Label for () {
 continue; // 현지점에서 진행을 중단하고, 다시 조건식 부터 재실행
 ```
 
+# nullish(ECMAScript11)
+
+주어진 개체의 값이 유효한 경우와 유효하지 않은 경우를 분기하여 실행 시키려면, 다음과 같이 작성할 수 있습니다.
+
+예를 들어 어떤 개체의 `color`값이 유효하지 않다면, `parant`의 `color`값을 이용한다고 해봅시다. 
+
+대략, 다음과 같이 작성할 수 있는데요,
+
+```javascript
+
+function getColor1(obj) {
+    if (obj.color !== null && obj.color !== undefined) {
+        return obj.color;
+    }
+    else {
+        return obj.parent.color;
+    }
+}
+```
+
+혹은 다음과 같이 삼중 연산자를 이용할 수도 있습니다.
+
+```javascript
+function getColor2(obj) {
+    return (obj.color !== null && obj.color !== undefined) ? obj.color : obj.parent.color;
+}
+```
+
+`null`과 `undefined`가 `boolean`으로 형변환하면 `false`이니 다음과 같이 간소화시킬 수도 있는데요,
+
+```javascript
+function getColor3(obj) {
+    return obj.color || obj.parent.color; // (X) 오동작. obj.color가 true로 형변환 되면, obj.color를 사용하고, 그렇지 않으면, obj.parent.color를 사용합니다. obj.color === 0 이면, obj.parent.color를 사용합니다.
+}
+```
+
+하지만 `getColor3()`은 `obj.color === 0`인 경우 검은색 그대로 사용해야 하는데, `false`로 형변환되어 오동작을 하게 됩니다. 
+
+```javascript
+const parent = {
+    color: 0xFF0000,
+}
+const nullObj = {
+    parent: parent,
+    color: null // null 입니다. parent 색상을 사용해야 합니다.
+};
+const blackObj = {
+    parent: parent,
+    color: 0x000000 // 색상값이 있습니다. 자신의 색상을 이용해야 합니다.
+};
+
+console.log('parent의 color를 사용합니다.', getColor1(nullObj) === 0xFF0000, getColor2(nullObj) === 0xFF0000, getColor3(nullObj) === 0xFF0000);
+console.log('자기 자신의 color를 사용합니다.', 
+    getColor1(blackObj) === 0x000000,
+    getColor2(blackObj) === 0x000000, 
+    getColor3(blackObj) === 0xFF0000 // getColor3()가 parent.color를 사용합니다.
+); 
+```
+
+이러한 경우 `??` 연산자를 사용할 수 있습니다.
+
+`a ?? b`는 `a`가 `null` 도 아니고, `undefined`도 아니면, `a`를 사용하고, 그렇지 않으면, `b`를 사용합니다.
+
+```javascript
+function getColor4(obj) {
+    return obj.color ?? obj.parent.color; 
+}  
+console.log('자기 자신의 color를 사용합니다.', 
+    getColor1(blackObj) === 0x000000, 
+    getColor2(blackObj) === 0x000000, 
+    getColor4(blackObj) === 0x000000
+); 
+```
+
 # 함수
 
-함수는 #1의 함수 선언 방식과, #2의 함수 표현식 방식이 있습니다. 함수 표현식일 때는 관례적으로 함수명을 생략해서 사용합니다. 
+함수는 #1의 함수 선언 방식과, #2의 함수 표현식 방식이 있습니다. 함수 표현식일 때는 관례적으로 함수명을 생략해서 사용합니다.(*함수명도 변수처럼 관습적으로 카멜 표기법을 사용합니다.*)
 
-어느 방식으로 사용하던 함수 호출 방식은 동일하지만, [함수 호이스팅](https://tango1202.github.io/javascript/javascript-basic/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이 되지 않고, [타입스크립트](https://tango1202.github.io/categories/typescript/)와 함께 사용할때, 리턴값에 
-함수 [인터페이스](https://tango1202.github.io/typescript/typescript-basic/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 지정할 수 있어서 #2의 형태가 선호됩니다.
+어느 방식으로 사용하던 함수 호출 방식은 동일합니다. 가독성 측면에서는 #1이 좋지만, 저는 #2는 [함수 호이스팅](https://tango1202.github.io/javascript/javascript-basic/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이 되지 않고, [타입스크립트](https://tango1202.github.io/categories/typescript/)와 함께 사용할때, 리턴값에 
+함수 [인터페이스](https://tango1202.github.io/typescript/typescript-basic/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 지정할 수 있는 장점이 있어, #2를 선호합니다.
 
 #3과 같이 변수에 대입하여 호출할 수도 있습니다. 
 
@@ -518,6 +612,12 @@ console.log('화살표 함수', add(1, 2)); // 3
 
 화살표 함수의 `this`는 일반 함수의 `this`와 다릅니다. 자세한 내용은 [함수 호출 방식에 따른 this 변경](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)을 참고하시기 바랍니다.
 
+인자가 1개라면, 인자를 감싸는 괄호도 생략할 수 있습니다.
+
+```javascript
+const inc = a => a + 1;
+```
+
 # 기본값 인자(ECMAScript6)
 
 함수 인자에 기본값을 주면, 인수가 전달되지 않았을때 사용합니다.
@@ -609,6 +709,21 @@ const onButtonClick = (e) => {
 };
 ```
 
+# alert(), confirm(), prompt() 
+
+브라우저 환경에서 사용자 상호작용을 위한 메시지 대화상자입니다.
+
+```javascript
+alert('안녕하세요.'); // 메시지를 표시합니다.
+
+const result1 = confirm('제목입니다.', '메시지 입니다.');
+alert(result1); // 확인시 true, 취소시 false 입니다.
+
+const result2 = prompt('제목입니다.', '내용을 입력하세요.'); // input을 통해 내용을 입력받습니다.
+alert(result2); // 확인 클릭시 입력받은 내용입니다. 취소시 null 입니다.
+```
+
+
 # 개체
 
 개체는 속성의 집합이며, 속성명(*키*)으로 속성값에 접근할 수 있습니다. 자바스크립트의 모든 것들은 개체입니다. 심지어 함수도 개체입니다. 개체는 대입시 얕은 복사를 합니다.
@@ -645,7 +760,9 @@ console.log('개체 메서드 호출 user2.getName()', user2.getName()); // Lee
 
 # 개체 속성 접근
 
-속성명은 변수명에서 사용할 수 없는 숫자나 `-`, 공백 문자를 사용할 수 있으며, 마침표나 `[]`로 접근할 수 있습니다.
+속성명은 변수명에서 사용할 수 없는 숫자나 `-`, 공백 문자를 사용할 수 있으며, 마침표나 `[]`로 접근할 수 있습니다. 
+
+심지어, `for`, `let`과 같은 예약어를 사용할 수 있으며, `__proto__`만 사용할 수 없습니다.
 
 ```javascript
 const user = {
@@ -735,6 +852,26 @@ console.log("하위 개체는 여전히 참조 user2.detail.addr === 'Busan'", u
 ```
 
 또한 `Object.freeze()`로 개체를 수정할 수 없게끔 동결시킬 수 있습니다. 하지만, `Object.assign()`처럼 하위 개체에는 적용되지 않습니다.
+
+# JSON
+
+`JSON`을 이용하면, `stringify()`함수로 개체를 문자열로 만들고, `parse()`함수로 문자열을 개체로 만들 수 있습니다.
+
+```javascript
+const obj = {
+    x: 10,
+    y: 20,
+    value: '문자열',
+    datas: [1, 2, 3]
+};
+
+const str = JSON.stringify(obj);
+console.log('JSON으로 만든 문자열', str === '{"x":10,"y":20,"value":"문자열","datas":[1,2,3]}');  
+
+const result = JSON.parse(str);
+console.log('JSON 문자열로부터 개체 생성', result.x === 10 && result.y === 20 && result.value === '문자열' && result.datas[0] === 1 && result.datas[1] === 2 && result.datas[2] === 3);
+```
+
 
 # 개체의 생성자 함수
 
@@ -981,7 +1118,7 @@ const result = arr.map((item) => item * 10);
 console.log('map으로 각 요소에 10을 곱함', result[0] === 10 && result[1] === 20 && result[2] === 30);
 ```
 
-`filter()`와 함께 결합하여 사용할 수도 있습니다. 다음은 `data`의 `value`가 `10`이상인 것들의 `id` 배열을 리턴한 예입니다.
+`filter()`와 함께 결합하여 사용할 수도 있습니다. 다음은 `data`의 `value`가 `10`이상인 것들의 `id`들로 구성된 배열을 리턴한 예입니다.
 
 ```javascript
 const datas = [{id: 10, value: 5}, {id: 11, value: 15}, {id: 12, value: 20}];
