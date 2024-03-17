@@ -100,7 +100,7 @@ import { IMyData } from 'myModule/comonent/lib/MyData';
 
 `import` 경로 지정시 파일이 아닌 특정 폴더만 명시하면, 해당 폴더의 `index.ts` 파일에서 가져옵니다.
 
-따라서 `myModule` 폴더에 `index.ts` 파일을 작성하고, `export`하려는 개체나 타입을 취합할 수 있습니다. 이렇게 다른 파일에 있는 개체를 `export`하는 경우 `interface`나 `type`은 `type {}`을 사용해서 내보냅니다. 
+따라서 `myModule` 폴더에 `index.ts` 파일을 작성하고, `export`하려는 개체나 타입을 취합할 수 있습니다. 이렇게 다른 파일에 있는 개체를 다시 `export`하는 경우 `interface`나 `type`은 `type {}`을 사용해서 내보냅니다. 
 
 ```ts
 // src/myModule/index.ts 에서
@@ -109,7 +109,7 @@ export {MyComponent2} from './comonent/lib/MyComponent2';
 export type { IMyData } from './comonent/lib/MyData'; // interface나 type은 type {} 을 사용합니다.
 ```
 
-또한 `MyComponent1`, `MyComponent`가 모두 `export default`로 되어 있기 때문에 `index.ts`에서 모두 `default`로 내보낼 수 없습니다. 따라서 `export default MyComponent1;` 와 같이 `export` 한 개체를 `export {MyComponent1};` 와 같이 수정해야 합니다.
+또한 `MyComponent1`, `MyComponent`가 모두 `export default`로 되어 있기 때문에 `index.ts`에서 모두 `default`로 내보낼 수 없습니다. 따라서 `default` 설정을 수정해야 합니다.
 
 ```tsx
 // export default MyComponent1;
@@ -119,7 +119,7 @@ export {MyComponent1};
 export {MyComponent2};
 ```
 
-그러면 `App`에서 다음과 같이 한번에 `import`할 수 있습니다.
+`index.ts`에 취합하면, `App`에서 다음과 같이 한번에 `import`할 수 있어, 좀더 간결하게 사용할 수 있습니다.
 
 ```tsx
 import {MyComponent1, MyComponent2, IMyData} from 'myModule';

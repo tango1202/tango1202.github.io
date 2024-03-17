@@ -67,7 +67,7 @@ Node.js는 Chrome의 V8 자바스크립트 엔진을 이용한 런타임 환경�
 
 3. 터미널에서 `node test`를 실행하여 실행 결과를 확인합니다.(*`node test.js`로 실행해도 됩니다.*)
 
-<img width="690" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/f0e489f4-0818-49a9-aaf6-63d839b6208d">
+    <img width="690" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/f0e489f4-0818-49a9-aaf6-63d839b6208d">
 
 # Visual Studio Code 익스텐션
 

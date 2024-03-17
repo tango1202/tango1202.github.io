@@ -109,7 +109,23 @@ console.log('변수 유효 범위', val); // 1
 
 1. `let`과 동일하나 변하지 않는 값을 선언합니다.
 2. `let`과 달리 선언과 동시에 초기화해야 합니다.
+
+    ```javascript
+    // const val; // (X) 오류 발생. 선언과 동시에 초기화해야 합니다.
+    const val = 0; 
+    ```
+
 3. 상수는 예외 발생 확률이 낮으므로 최대한 `const`로 사용하는게 좋습니다.
+4. `const` 개체 자체는 수정할 수 없지만, 개체의 속성은 수정할 수 있습니다.
+
+    ```javascript
+    const obj1 = {x: 1, y: 2};
+    const obj2 = {x: 10, y: 20};
+    // obj1 = obj2; // (X) 오류 발생. const에 값을 할당할 수는 없습니다.
+    obj1.x = obj2.x;
+    obj1.y = obj2.y;
+    console.log('const 개체의 속성은 수정할 수 있습니다.', obj1.x === obj2.x, obj1.y === obj2.y);
+    ```
 
 # 타입과 리터럴
 
@@ -129,9 +145,11 @@ console.log('변수 유효 범위', val); // 1
 
 2. `true`와 `false`로 참, 거짓을 표현합니다.
 
-3. 큰따옴표, 작은 따옴표, 백틱(*ECMAScript6*)으로 문자열을 표현합니다. 특히 백틱을 사용하면, 문자열내에 변수를 사용할 수있습니다.
+3. 큰따옴표, 작은 따옴표, 백틱(*ECMAScript6*)으로 문자열을 표현합니다. 특히 백틱은 **템플릿 리터럴**입니다. 문자열내에서 다른 변수를 사용하여 합성할 수 있으며, 여러줄의 문자열을 `\n`없이 직관적으로 표현할 수 있습니다.
 
-    문자열은 [UTF-16](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)을 사용하며, 일반적으로 작은 따옴표를 사용합니다.
+    * 문자열은 [UTF-16](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)을 사용하며, 일반적으로 작은 따옴표를 사용합니다.
+
+    * 문자열 내에 문자열 기호를 사용하고 싶은 경우에는 `'문자열 기호는 ""과 \'\' 입니다.'` 와 같이 `''`와 `""`쌍을 교차하여 사용하거나 `\`로 이스케이프 문자를 사용하면 됩니다. 
 
 4. `null`은 값이 할당되지 않았다는 의미로 개발자가 의도적으로 설정한 값입니다.
 5. `undefined`는 값이 할당되지 않아 자바스크립트에서 미리 초기화 한 값입니다. 다른 언어에서는 쓰레기값 이라고도 하죠. `var a = undefined;`와 같이 `undefined`를 사용하는건 권장되지 않습니다. `null`을 사용하세요.
@@ -154,6 +172,11 @@ const str1 = "Hello"; // #3. 문자열
 const str2 = 'Kim';
 const str3 = `Hello ${str2}`; // ${variable}을 이용하여 변수값과 합성하여 출력 
 console.log('타입과 리터럴 테스트 : 백틱 합성', str3); //. Hello Kim
+
+console.log('이스케이프 문자를 이용한 개행 : ', '첫번째 줄\n두번째줄');
+console.log('백틱 문자열에서의 개행 : ', `첫번째 줄
+두번째줄`);
+console.log('문자열 기호는 ""과 \'\'입니다.');
 
 const a = null; // #4. 값이 없음
 let b; // #5. undefined. 값이 할당되지 않아 자바스크립트에서 초기화 한 값
@@ -207,11 +230,19 @@ console.log('undefinedVal === null은 false', undefinedVal === null); // false
 console.log('undefinedVal == null은 true가 되버립니다.', undefinedVal == null); // true. undefined인데, true 입니다.
 ```
 
+또한, 연산 불가를 뜻하는 `NaN`의 경우는 `===` 로 검사할 수 없으며, `isNaN()`함수를 사용해야 합니다.
+
+```javascript
+let nan = NaN;
+console.log('nan === NaN', (nan === NaN) === false); // NaN 이지만, === 으로 비교하면 false 입니다.
+console.log('isNaN(nan)', isNaN(nan) === true); // isNaN()으로 검사해야 합니다.
+```
+
 |항목|내용|
 |--|--|
-|산술 연산자|`+, -, *, /, %`|
+|산술 연산자|`+, -, *, /, %`, `**`(*지수*)|
 |할당 연산자|`=, +=, -=, *=, /=, %=`|
-|증감 연산자|`++, --`<br/>* 전위형 : 값을 증감시킨뒤 리턴<br/>*후위형 : 값을 증감시기키 전의 값을 리턴|
+|증감 연산자|`++, --`<br/>* 전위형 : 값을 증감시킨뒤 리턴<br/>* 후위형 : 값을 증감시기키 전의 값을 리턴|
 |부호 연산자|`+, -`|
 |비교 연산자|`==, !=, <, >, <=, >=`|
 |일치 연산자|`===, !==`|
@@ -226,14 +257,24 @@ console.log('undefinedVal == null은 true가 되버립니다.', undefinedVal == 
 
 자바스크립트는 값을 비교할때 적극적으로 형변환하기 때문에 뜻하지 않은 곳에서 오동작을 할 수 있습니다. 형변환은 타입에 기반한 **코딩 계약** 을 위반하기 때문에 형변환 하는건 언제나 좋지 않습니다. 최선을 다해서 형변환 하지 마세요.
 
-* `null` : `0`으로 변환됩니다.
-* `undefined` : `NaN`으로 변환됩니다.
-* `0`, 빈 문자열, `null`, `undefined`, `NaN` : `false`로 변환됩니다.
-* `'0'` : 빈 문자열이 아니므로 `true`로 변환됩니다.
+|항목|Number|Boolean|string|
+|--|--|--|--|
+|`null`|`0`|`false`|`'null'`|
+|`undefined`|`NaN`|`false`|`'undefined'`|
+|문자열 `'0'`|`0`|`true`|`'0'`|
+|숫자 `0`|`0`|`false`|`'0'`|
+|`NaN`|`NaN`|`false`|`'NaN'`|
+
 
 명시적으로 형변환 하고 싶은 경우에는 `Number()`, `String()`, `toString()`, `parseInt()`, `parseFloat()`등을 사용합니다.
 
 ```javascript
+console.log('null 형변환', Number(null) === 0, (!!null) === false, String(null) === 'null');
+console.log('undefined 형변환', isNaN(Number(undefined)), (!!undefined) === false, String(undefined) === 'undefined');
+console.log("문자열 '0' 형변환", Number('0') === 0, (!!'0') === true, String('0') === '0');
+console.log("숫자 0 형변환", Number(0) === 0, (!!0) === false, String(0) === '0');
+console.log("NaN 형변환", isNaN(Number(NaN)), (!!NaN) === false, String(NaN) === 'NaN');
+
 console.log("Number('1') === 1", Number('1') === 1); // true. Number(), String()등을 이용하여 명시적으로 형변환 할 수 있습니다. 
 
 const val = 10;
@@ -261,8 +302,9 @@ switch (표현식) {
     case Label1: // 표현식 === Label1이 일치할때 실행
     break;
     case Label2: // 표현식 === Label2가 일치할때 실행
+    break;
     default: // 일치하는 항목이 없을 때 실행
-
+    break;
 }
 
 for (초기식; 조건식; 증감식) { // 조건식이 참인 경우 표현식 실행후 증감식 실행 반복
@@ -292,7 +334,10 @@ continue; // 현지점에서 진행을 중단하고, 다시 조건식 부터 재
 
 함수는 #1의 함수 선언 방식과, #2의 함수 표현식 방식이 있습니다. 함수 표현식일 때는 관례적으로 함수명을 생략해서 사용합니다. 
 
-어느 방식으로 사용하던 함수 호출 방식은 동일하며, #3과 같이 변수에 대입하여 호출할 수도 있습니다.
+어느 방식으로 사용하던 함수 호출 방식은 동일하지만, [함수 호이스팅](https://tango1202.github.io/javascript/javascript-basic/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이 되지 않고, [타입스크립트](https://tango1202.github.io/categories/typescript/)와 함께 사용할때, 리턴값에 
+함수 [인터페이스](https://tango1202.github.io/typescript/typescript-basic/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 지정할 수 있어서 #2의 형태가 선호됩니다.
+
+#3과 같이 변수에 대입하여 호출할 수도 있습니다. 
 
 ```javascript
 // #1. 함수 선언
@@ -417,8 +462,7 @@ console.log('중첩 함수', outer(1, 2)); // 3
 
 클로저는 함수와 그 함수가 호출되었을때의 환경과의 조합입니다. 이 환경은 함수가 사용중이라면 소멸되지 않고 사용할 수 있습니다.
 
-이 특징을 이용하면, 중첩 함수를 이용하여 특정 정보를 은닉하는 캡슐화를 할 수 있습니다.(*[클로저를 이용한 캡슐화](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%ED%81%B4%EB%A1%9C%EC%A0%80%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%BA%A1%EC%8A%90%ED%99%94) 참고*)
-
+이 특징을 이용하면, 중첩 함수를 이용하여 특정 정보를 은닉하는 캡슐화를 할 수 있습니다.(*[클로저를 이용한 캡슐화](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%ED%81%B4%EB%A1%9C%EC%A0%80%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%BA%A1%EC%8A%90%ED%99%94) 참고*) 또한 [모듈화](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%93%88%ED%99%94)에서도 사용하는 개념이니 만큼 잘 알아 두셔야 합니다.
 
 다음 예에서 함수의 지역 변수인 `count`를 은닉하고, 중첩 함수를 이용하여 `count`에 접근합니다.
 
@@ -511,11 +555,65 @@ function sum(first, ...rest) {
 console.log('나머지 인자를 재귀적으로 호출합니다', sum(1, 2, 3) === 1 + 2 + 3);
 ```
 
+# 이벤트 핸들러
+
+HTML DOM 엘리먼트의 이벤트가 발생했을때, [이벤트 핸들러](??)를 통해 이벤트를 전달받을 수 있습니다.
+
+다음은 HTML DOM 엘리먼트의 이벤트를 전달받는 예입니다.
+
+1. #1 : 문서 로딩이 끝나면 이벤트를 연결할 수 있도록 `DOMContentLoaded`에 이벤트 핸들러를 연결하여 실행합니다.
+
+2. #2 : `querySelector()`를 이용하여 문서에서 `button`과 `div` 엘리먼트를 찾습니다.
+
+3. #3 : `button`과 `div` 클릭시 `onButtonClick()`과 `onDivClick()`이 호출되도록 이벤트 핸들러를 연결합니다.
+
+```html
+<!doctype html>
+<html>
+    <body>
+        <script>
+            // #4
+            const onDivClick = (e) => {
+                alert('div를 클릭했습니다.');
+            }; 
+            // #4          
+            const onButtonClick = (e) => {
+                alert('버튼을 클릭했습니다.');
+            };
+            // #1. HTML 문서 로딩이 끝나면 호출됩니다.
+            document.addEventListener("DOMContentLoaded", () => {
+                // #2. 문서에서 button과 div 엘리먼트를 찾습니다.
+                const button = document.querySelector("button");
+                const div = document.querySelector("div");
+
+                // #3. 버튼 클릭시 onButtonClick을 호출합니다.
+                button.addEventListener("click", onButtonClick);
+
+                // #3. div 클릭시 onDivClick을 호출합니다.
+                div.addEventListener("click", onDivClick);
+            });
+        </script>    
+        <div style = 'padding:10px;background-color: red'>
+            <button>버튼</button>
+        </div>
+    </body>
+</html>
+```
+
+상기 예를 실행하면, `div`클릭시에는 `onDivClick()`이 잘 호출되지만, `button`클릭시에는 `onButtonClick()`과 `onDivClick()`이 같이 호출됩니다. 이는 `onButtonClick()`후 이벤트가 상위 개체인 `div`로 전파되기 때문입니다. 이를 ***이벤트 버블링***이라고 하는데요, 다음과 같이 `stopPropagation()`을 호출하면 ***이벤트 버블링***을 막기 때문에 `onButtonClick`만 호출됩니다.
+
+```javascript
+const onButtonClick = (e) => {
+    alert('버튼을 클릭했습니다.');
+    e.stopPropagation();
+};
+```
+
 # 개체
 
 개체는 속성의 집합이며, 속성명(*키*)으로 속성값에 접근할 수 있습니다. 자바스크립트의 모든 것들은 개체입니다. 심지어 함수도 개체입니다. 개체는 대입시 얕은 복사를 합니다.
 
-1. 함수를 속성으로 사용할 수 있으며, 특별히 메서드라고 합니다.
+1. 함수를 속성으로 사용할 수 있으며, 개체의 속성으로 사용되는 함수를 특별히 메서드라고 합니다.
 2. `this`를 사용하여 개체 자신을 나타낼 수 있습니다.
 3. `alert()`를 사용하면 `object Object`로 출력되고, `console.log()`를 사용하면 트리를 확장하여 개체의 속성명과 속성값을 확인할 수 있습니다.
 4. `new Object()`를 이용하여 생성한뒤 뒤늦게 개체의 속성들을 설정하는 방식도 있으나 코딩 계약에 좋지 않아 잘 사용하지 않습니다.
@@ -758,9 +856,11 @@ const obj2 = {
 
 배열은 여러개의 값을 순차적으로 표현합니다. 대입시 얕은 복사를 합니다.
 
-1. `[]`로 빈 배열을 생성합니다.
-2. `[]`에 각 요소를 쉼표로 구분하여 배열을 생성합니다. 다른 언어와 달리 타입이 다르더라도 하나의 배열로 사용할 수 있습니다.
-3. `length`로 길이를 구할 수 있습니다.
+1. #1 : `[]`로 빈 배열을 생성합니다.
+2. #2 : `[]`에 각 요소를 쉼표로 구분하여 배열을 생성합니다. 다른 언어와 달리 타입이 다르더라도 하나의 배열로 사용할 수 있습니다.
+3. #3 : `length`로 길이를 구할 수 있습니다.
+4. #4 : `[]`로 각 요소에 접근하여 값을 수정할 수 있습니다.
+5. #5 : `[[], []]`로 다차원 배열을 생성하고 `[][]`로 접근할 수 있습니다.
 
 ```javascript
 const empty = []; // #1. 빈 배열입니다.
@@ -768,6 +868,17 @@ const arr = [1, 'Kim', 2]; // #2. 타입이 다르더라도 배열로 사용할 
 for (let i = 0; i < arr.length; ++i) { // #3. length 로 길이를 구할 수 있습니다.
     console.log('배열 요소', arr[i]); // 1 Kim 2 출력
 }
+
+for (let i = 0; i < arr.length; ++i) { 
+   arr[i] = i * 10; // #4
+}
+console.log('수정된 배열값', arr[0] === 0 && arr[1] === 10 && arr[2] === 20);
+
+const multiArr = [[1, 2, 3], [10, 20, 30]]; // #5
+console.log('다차원 배열', 
+    multiArr[0][0] === 1 && multiArr[0][1] === 2 && multiArr[0][2] === 3,
+    multiArr[1][0] === 10 && multiArr[1][1] === 20 && multiArr[1][2] === 30
+); 
 ```
 
 `Array()`생성자 함수로 생성할 수 있습니다.
@@ -781,28 +892,63 @@ console.log("Array()로 생성할 수 있습니다", arr.length === 2);
 
 C++언어등에서는 배열의 크기가 컴파일 타임에 정적으로 결정되지만, 자바스크립트에서는 동적으로 크기가 정해지는 컨테이너입니다. 
 
-요소의 추가/삭제도 다른 언어들 보다 자유로워 순서를 유지하여 추가/삭제할 필요도 없습니다.
+또한 C++언어등에서는 배열 크기가 확정된 후 배열 크기 내에서 요소를 수정했는데요, 자바스크립트에서는 요소 추가에 따라 배열 크기가 결정됩니다.
+
+1. #1 : 주어진 인덱스 요소가 없다면 추가합니다. 이때 #1-1과 같이 배열 크기가 조정되며, #1-2와 같이 나머지 요소는 `undefined`로 추가됩니다.
+
+2. #2 : `delete`로 삭제할 수는 있으나, 배열 요소 크기는 변경하지 않고, `undefineed`로 만들어 줍니다.
 
 ```javascript
 const arr = []; // 빈 배열입니다.
-arr[3] = 30; // 3번 인덱스 요소가 없다면 요소를 추가하고, 20을 대입합니다. 
-console.log('배열의 3번 인덱스 요소만 추가했지만, 0, 1, 2도 없어서 추가되었습니다', arr.length === 4);
-console.log('값을 대입받지 않은 요소는 undefined입니다', arr[0] === undefined);
+arr[3] = 30; // #1. 3번 인덱스 요소가 없다면 요소를 추가하고, 30을 대입합니다. 
+console.log('배열의 3번 인덱스 요소만 추가했지만, 0, 1, 2도 없어서 추가되었습니다', arr.length === 4); // #1-1
+console.log('값을 대입받지 않은 요소는 undefined입니다', arr[0] === undefined); // #1-2
 
-delete arr[3]; // 3번 인덱스 요소를 삭제합니다.
+delete arr[3]; // #2. 3번 인덱스 요소를 삭제합니다.
 console.log('3번 인덱스를 delete 했지만 크기는 4입니다', arr.length === 4);
 console.log('3번 인덱스는 delete 되어 undefined입니다', arr[3] === undefined);
 ```
 
-배열의 끝에 추가하는 방법은 `push()`를 이용하거나 `length` 위치에 직접 대입하는 방법이 있습니다. `push()`보다는 `length`를 사용하는게 성능상 좋습니다. 
+배열의 끝에 추가하는 방법은 `push()`를 이용하거나 `length` 위치에 직접 대입하는 방법이 있습니다. `push()`보다는 `length`를 사용하는게 성능상 좋습니다. 배열의 마지막 요소는 `pop()`을 이용하여 삭제할 수 있습니다.
 
 ```javascript
 const arr = []; 
-arr.push(100); 
-console.log('배열의 끝에 추가합니다', arr.length === 1 && arr[0] === 100);
+const length = arr.push(100); 
+console.log('배열의 끝에 추가합니다', arr.length === 1 && arr[0] === 100, arr.length === length);
 
 arr[arr.length] = 200; // push() 보다 성능이 좋습니다.
 console.log('배열의 끝에 추가합니다', arr.length === 2 && arr[1] === 200);
+
+const removed = arr.pop();
+console.log('배열의 마지막 요소를 제거합니다.', arr.length === 1 && removed == 200);
+```
+
+`unshift()`와 `shift()`를 이용하면 배열의 앞에 추가/삭제할 수 있습니다.
+
+```javascript
+const arr = [0, 1, 2, 3]; 
+const length = arr.unshift(100); 
+console.log('uhshift로 추가합니다.', arr.length === 5 && arr[0] === 100, arr.length === length);
+const removed = arr.shift(); 
+console.log('uhshift로 제거합니다.', arr.length === 4 && arr[0] === 0 && removed === 100);
+```
+
+`splice()`를 이용하면 배열의 중간에 추가와 삭제를 할 수 있습니다. 삭제된 요소들로 구성된 배열을 리턴합니다.
+
+```javascript
+const arr = [0, 1, 2, 3]; 
+let removed = arr.splice(1, 2); // 1번 index부터 2개 요소를 지웁니다. 
+console.log('splice로 제거합니다.', arr.length === 2 && arr[0] === 0 && arr[1] === 3, removed[0] === 1 && removed[1] === 2);
+removed = arr.splice(1, 0, 10, 20); // 1번 index 부터 0개 요소를 지운뒤 10, 20을 추가한 배열을 리턴합니다.
+console.log('splice로 추가합니다.', arr.length === 4 && arr[0] === 0 && arr[1] === 10 && arr[2] === 20 && arr[3] === 3, removed.length === 0);
+```
+
+`filter()`를 이용해서 주어진 조건에 맞는 요소로 구성된 배열을 구할 수 있습니다. 즉, 조건에 맞지 않은 배열 요소는 삭제한 효과를 볼 수 있습니다.
+
+```javascript
+const arr = [0, 1, 2, 3]; 
+const filtered = arr.filter((data) => data < 2); // 요소값이 2보다 작은 것만 필터링합니다. 즉, 2이상인 것은 삭제합니다.
+console.log('filter로 2보다 작은 것만 필터링합니다.', filtered.length === 2 && filtered[0] === 0 && filtered[1] === 1);
 ```
 
 **배열 요소 나열**
@@ -823,6 +969,24 @@ for (let prop in arr) { // 배열 요소와 추가 속성이 나열됩니다. �
 arr.forEach(
     (item) => console.log('forEach()로 요소 나열', item)
 );
+```
+
+**배열 변형**
+
+`map()`을 이용하면, 배열에 각 요소에 함수를 적용하고, 함수의 결과값으로 구성된 배열을 얻을 수 있습니다.
+
+```javascript
+const arr = [1, 2, 3];
+const result = arr.map((item) => item * 10);
+console.log('map으로 각 요소에 10을 곱함', result[0] === 10 && result[1] === 20 && result[2] === 30);
+```
+
+`filter()`와 함께 결합하여 사용할 수도 있습니다. 다음은 `data`의 `value`가 `10`이상인 것들의 `id` 배열을 리턴한 예입니다.
+
+```javascript
+const datas = [{id: 10, value: 5}, {id: 11, value: 15}, {id: 12, value: 20}];
+const result = datas.filter((data) => data.value > 10).map((data) => data.id); 
+console.log('filter후 map을 적용', result[0] === 11 && result[1] === 12);
 ```
 
 **배열 복제**
@@ -856,12 +1020,17 @@ console.log('[...arr]은 arr 요소들로 새로운 배열을 만듭니다. 값�
 |`arr.includes(a)`|값이 `a`인 요소가 있는지 검사합니다.|
 |`arr1.concat(arr2)`|`arr1`과 `arr2`를 합친 배열을 리턴합니다.|
 |`arr.join(delimeter = ',')`|배열 요소를 `delimeter`로 구분하여 나열한 문자열을 리턴합니다.|
-|`arr.push(...items)`|`arr` 뒤에 요소를 추가합니다.<br/>`push()`보다는 `arr[arr.lenth] = val;`로 추가하는게 성능이 좋습니다.|
-|`arr.pop()`|배열의 마지막 요소를 제거하고 리턴합니다. 빈 배열이면 `undefined`를 리턴합니다.|
+|`arr.toString()`|배열 요소를 `,`로 구분하여 나열한 문자열을 리턴합니다. `join(',')`와 동일합니다.|
+|`arr.push(...items)`|`arr` 뒤에 요소를 추가하고 배열 갯수를 리턴합니다.<br/>`push()`보다는 `arr[arr.lenth] = val;`로 추가하는게 성능이 좋습니다.|
+|`arr.pop()`|배열의 마지막 요소를 제거하고, 제거한 요소를 리턴합니다. 빈 배열이면 `undefined`를 리턴합니다.|
+|`arr.unshift()`|배열의 첫요소를 추가하고, 배열 갯수를 리턴합니다.|
+|`arr.shift()`|배열의 첫요소를 제거하고, 제거한 요소를 리턴합니다. 빈 배열이면 `undefined`를 리턴합니다.|
 |`arr.reverse()`|배열의 순서를 반대로 정렬합니다.|
-|`arr.shift()`|배열의 첫요소를 제거하고 리턴합니다. 빈 배열이면 `undefined`를 리턴합니다.|
 |`arr.slice(start = 0, end = this.length)`|`arr`에서 `[start ~ end)`인 요소를 배열로 만들어 리턴합니다.<br/>`start`가 음수이면 뒤에서부터의 인덱스입니다.<br/>기본값을 사용하면 원본 배열을 복제합니다.|
-|`arr.splice(start, deleteCount = this.length - start, ...items)`|`arr`에서 `start`부터 `deleteCount` 만큼 삭제합니다. 이때 `items`를 전달하면, 삭제한 위치에 추가합니다.|
+|`arr.splice(start, deleteCount = this.length - start, ...items)`|`arr`에서 `start`부터 `deleteCount` 만큼 삭제하고, 삭제한 요소들로 구성된 배열을 리턴합니다. 이때 `items`를 전달하면, 삭제한 위치에 추가합니다.|
+|`forEach(func)`|배열 요소를 순회하여 `func(value[, index[, array]])`을 호출합니다. `func()`함수는 배열 요소, 배열 인덱스, 원본 배열이 전달되며, 주로 `func(value)`와 같이 배열 요소만 사용합니다.|
+|`filter(func)`|배열 요소가 `func(value[, index[, array]]) === true`인 항목으로 구성된 배열을 리턴합니다. `func()`함수는 배열 요소, 배열 인덱스, 원본 배열이 전달되며, 주로 `func(value)`와 같이 배열 요소만 사용합니다.|
+|`map(func)`|배열 요소에 `func(value[, index[, array]])`을 실행한 결과로 구성된 배열을 리턴합니다. `func()`함수는 배열 요소, 배열 인덱스, 원본 배열이 전달되며, 주로 `func(value)`와 같이 배열 요소만 사용합니다.|
 
 # 유사 배열
 
@@ -873,6 +1042,57 @@ console.log('유사 배열', Array.isArray(str) === false); // true. 배열이 �
 for (let i = 0; i < str.length; ++i) { 
     console.log('유사 배열 요소', str[i]); // K i m 출력
 }
+```
+
+# 문자열
+
+문자열은 `length`와 `[]`을 제공하는 [유사 배열](??)이어서 배열과 관련한 함수들을 이용할 수 있습니다.
+
+주요 함수들은 다음과 같습니다.
+
+|항목|내용|
+|--|--|
+|`str.length`|`str`의 요소 갯수입니다.|
+|`str.indexOf(subStr)`|`subStr`인 요소가 처음으로 나타난 인덱스 입니다. 못찾으면 -1을 리턴합니다.|
+|`str.includes(subStr)`|값이 `subStr`인 요소가 있는지 검사합니다.|
+|`str1.concat(str2)`|`str1`과 `str2`를 합친 문자열 리턴합니다.|
+|`str.slice(start = 0, end = this.length)`|`str`에서 `[start ~ end)`인 문자열을 리턴합니다. `str1 + str2`와 동일합니다.|
+|`str.replace(searchValue, replaceValue)`|`searchValue`인 문자열을 `replaceValue`로 변경한 문자열을 리턴합니다.|
+|`str.toUpperCase(), str.toLowerCase()`|대문자, 소문자로 변경합니다.|
+|`str.split(delimeter)`|주어진 `delimeter`로 문자열을 분해합니다. 이때 `//`사이에 정규표현식을 사용할 수 있습니다.|
+
+```javascript
+const str = 'abcde';
+console.log('문자열 길이', str.length === 5);
+console.log('하위 문자열 탐색', str.indexOf('cde') === 2);
+console.log('하위 문자열 유무', str.includes('cde') === true);
+console.log('문자열 합성', str.concat('fg') === 'abcdefg', str === 'abcde');
+console.log('하위 문자열 지정한 위치까지 추출', str.slice(2, 5) === 'cde', str === 'abcde');
+console.log('하위 문자열 마지막까지 추출', str.slice(2) === 'cde', str === 'abcde');  
+console.log('하위 문자열 변경', str.replace('cde', 'CDE') === 'abCDE', str === 'abcde');  
+
+str.toUpperCase();
+console.log('대문자로 변경', str.toUpperCase() === 'ABCDE');
+str.toLowerCase();
+console.log('소문자로 변경', str.toLowerCase() === 'abcde');
+```
+
+다음은 `split()` 사용 예입니다. 각 데이터를 `,`로 구분했는데요, 테스트를 위해 의도적으로 공백 문자를 넣어 봤습니다.
+
+1. #1 : 단순히 `,` 로만 구분하면, 데이터에 공백 문자가 남아 있습니다.
+2. #2 : 정규표현식으로 `,`와 ` `로 구분하면 불필요한 빈 문자열이 데이터 요소로 추가됩니다.
+3. #3 : `filter()`함수로 불필요한 요소를 제거하면, 필요한 데이터로만 구성할 수 있습니다.
+
+```javascript
+const datas = '홍길동, 성춘향, 이몽룡'; // 콤마 뒤에 공백 문자를 넣어 봤습니다.
+const result1 = datas.split(','); // 쉼표로 구분합니다.
+console.log(', 로 파싱', result1[0] === '홍길동' && result1[1] === ' 성춘향' && result1[2] === ' 이몽룡'); // #1. 데이터에 공백 문자가 남아 있습니다.
+
+const result2 = datas.split(/,| /); // 쉼표 또는 공백 문자로 구분합니다.
+console.log(', 또는 공백 문자로 파싱', result2[0] === '홍길동' && result2[1] === '' && result2[2] === '성춘향' && result2[3] === '' && result2[4] === '이몽룡'); // #2. 빈문자열이 추가되어 있습니다.
+
+const result3 = datas.split(/,| /).filter((data) => data != '');
+console.log('파싱 후 필터링', result3[0] === '홍길동' && result3[1] === '성춘향' && result3[2] === '이몽룡'); // #3
 ```
 
 # 이터러블과 for-of(ECMAScript6)
