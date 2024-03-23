@@ -850,7 +850,7 @@ console.log("하위 개체는 여전히 참조 user1.detail.addr === 'Busan'", u
 console.log("하위 개체는 여전히 참조 user2.detail.addr === 'Busan'", user2.detail.addr === 'Busan');
 ```
 
-하위 개체까지 복제하고 싶으면 `JSON`을 이용하여 복제할 수 있습니다.
+하위 개체까지 복제하고 싶으면 [JSON](https://tango1202.github.io/javascript/javascript-basic/#json)을 이용하여 복제할 수 있습니다.
 
 ```javascript
 const user1 = {
