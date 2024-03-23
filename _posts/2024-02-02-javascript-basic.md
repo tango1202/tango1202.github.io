@@ -428,7 +428,7 @@ console.log('자기 자신의 color를 사용합니다.',
 
 함수는 #1의 함수 선언 방식과, #2의 함수 표현식 방식이 있습니다. 함수 표현식일 때는 관례적으로 함수명을 생략해서 사용합니다.(*함수명도 변수처럼 관습적으로 카멜 표기법을 사용합니다.*)
 
-어느 방식으로 사용하던 함수 호출 방식은 동일합니다. 가독성 측면에서는 #1이 좋지만, 저는 #2는 [함수 호이스팅](https://tango1202.github.io/javascript/javascript-basic/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이 되지 않고, [타입스크립트](https://tango1202.github.io/categories/typescript/)와 함께 사용할때, 리턴값에 
+어느 방식으로 사용하던 함수 호출 방식은 동일합니다. 가독성 측면에서는 #1이 좋지만, 저는 #2는 [함수 호이스팅](https://tango1202.github.io/javascript/javascript-basic/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이 되지 않고, [타입스크립트](https://tango1202.github.io/categories/typescript/)와 함께 사용할때 리턴값에 
 함수 [인터페이스](https://tango1202.github.io/typescript/typescript-basic/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 지정할 수 있는 장점이 있어, #2를 선호합니다.
 
 #3과 같이 변수에 대입하여 호출할 수도 있습니다. 
@@ -479,8 +479,7 @@ console.log('즉시 실행 함수',
 
 # 함수 호이스팅
 
-변수 호이스팅처럼 함수도 호이스팅됩니다.
-따라서 함수 선언 전에 사용하더라도 사용할 수 있습니다.
+변수 호이스팅처럼 함수도 호이스팅됩니다. 따라서 함수 선언 전에 사용할 수 있습니다.
 
 ```javascript
 console.log("함수 호이스팅", myHoisting(1, 2)); // 3. 함수 선언 전에 사용할 수 있습니다.
@@ -831,7 +830,7 @@ user2.name = 'Kim';
 console.log("동일 개체를 참조합니다 user1.name === 'Kim'", user1.name === 'Kim'); // true. user2를 수정했지만, user1도 수정되었습니다.
 ```
 
-이러한 경우 복제를 해야하며 `Object.assign()`(*ECMAScript6*)을 이용하면 됩니다. 하지만 하위 개체는 여전히 얕은 복사를 하니 주의해야 합니다. 다음 예에서 `name`은 복제되었지만, `addr`은 하위 개체에 있기 때문에 복제되지 않고 같은 개체를 참조합니다.
+이러한 경우 복제를 해야하며 `Object.assign()`(*ECMAScript6*)을 이용하면 됩니다.(*또한 [Spread](https://tango1202.github.io/javascript/javascript-basic/#spreadecmascript6)를 이용하여 개체 속성을 복제할 수도 있습니다.*) 하지만 하위 개체는 여전히 얕은 복사를 하니 주의해야 합니다. 다음 예에서 `name`은 복제되었지만, `addr`은 하위 개체에 있기 때문에 복제되지 않고 같은 개체를 참조합니다.
 
 ```javascript
 const user1 = {
@@ -851,7 +850,42 @@ console.log("하위 개체는 여전히 참조 user1.detail.addr === 'Busan'", u
 console.log("하위 개체는 여전히 참조 user2.detail.addr === 'Busan'", user2.detail.addr === 'Busan');
 ```
 
-또한 `Object.freeze()`로 개체를 수정할 수 없게끔 동결시킬 수 있습니다. 하지만, `Object.assign()`처럼 하위 개체에는 적용되지 않습니다.
+하위 개체까지 복제하고 싶으면 `JSON`을 이용하여 복제할 수 있습니다.
+
+```javascript
+const user1 = {
+    name: 'Lee',
+    detail: {
+        addr: 'Seoul'
+    }
+};
+const user2 = JSON.parse(JSON.stringify(user1)); // 하위 개체의 속성까지 복제합니다.
+user2.name = 'Kim';
+user2.detail.addr = 'Busan';
+
+console.log("개체 복제 user1.name === 'Lee'", user1.name === 'Lee'); 
+console.log("개체 복제 user2.name === 'Kim'", user2.name === 'Kim');
+
+console.log("하위 개체도 복제 user1.detail.addr === 'Seoul'", user1.detail.addr === 'Seoul'); // 하위 개체도 복제됩니다.
+console.log("하위 개체도 복제 user2.detail.addr === 'Busan'", user2.detail.addr === 'Busan');    
+```
+
+`assign()`이나 [Spread](https://tango1202.github.io/javascript/javascript-basic/#spreadecmascript6)는 [prototype](https://tango1202.github.io/javascript/javascript-prototype/)을 복사하지 않습니다. [prototype](https://tango1202.github.io/javascript/javascript-prototype/)도 복사하려면, `Object.create()`를 함께 이용해야 합니다.(*[prototype](https://tango1202.github.io/javascript/javascript-prototype/) 참고*)
+
+```javascript
+function User(name) { // 생성자 함수
+    this.name = name;
+}
+const user1 = new User('Lee'); 
+const user2 = Object.assign(Object.create(User.prototype), user1); // 동일한 prototype을 사용할 수 있도록 Object.create()를 이용합니다.
+const user3 = {...user1}; 
+
+console.log('생성자 함수 User로 생성했습니다.', user1 instanceof User);
+console.log('create()와 assign()으로 복제했습니다.', user2 instanceof User);
+console.log('spread로 개체 속성을 복제한 개체입니다.', user3 instanceof User === false);
+```
+
+`Object.freeze()`로 개체를 수정할 수 없게끔 동결시킬 수 있습니다. 하지만, `Object.assign()`처럼 하위 개체에는 적용되지 않습니다.
 
 # JSON
 
@@ -1262,7 +1296,7 @@ console.log('기존 배열에 새로운 배열을 추가한 새로운 배열 리
 배열뿐만 아니라 개체도 분해해서 나열할 수 있습니다.
 
 ```javascript
-console.log('개체를 복제합니다', {...{ x: 1, y: 2 } }); // { x: 1, y: 2 } 
+console.log('개체를 복제하지만, prototype은 복제되지 않습니다', {...{ x: 1, y: 2 } }); // { x: 1, y: 2 } 
 console.log('개체를 합성하여 새 개체를 생성합니다', { x: 1, y: 2, ...{ a: 3, b: 4 } }); // {x: 1, y: 2, a: 3, b: 4 }
 console.log('두 개체를 합성하여 새로운 개체를 생성합니다. 중복된 속성값은 덮어씁니다', { ...{ x: 1, y: 2 }, ...{ y: 100, z: 3 } }); // { x: 1, y: 100, z: 3 }
 console.log('속성을 추가한 새 개체를 생성합니다', { ...{ x: 1, y: 2 }, z: 3 }); // { x: 1, y: 2, z: 3 }
