@@ -88,3 +88,66 @@ function myFunc() {
 console.log('변수 유효 범위', myFunc() === 20); // true
 console.log('변수 유효 범위', val); // 1
 ```
+
+# let과 const(ECMAScript6)
+
+`var`의 유연함과 유효 범위 문제는 대규모 프로젝트를 진행할 때 찾기 힘든 오류를 유발합니다. 이러한 문제를 보완하도록 EMAScript6 부터 `let`과 `const`가 보강되었습니다. 이제 `var`대신 `let`과 `const`를 쓰세요.
+
+**let**
+
+1. 변수를 선언합니다.
+2. 함수 레벨이 아닌 블록 레벨에서 유효합니다.
+
+    ```javascript
+    function myFunc() {
+        let val= 10; // #1.
+        {
+            let val = 20; // #2. // 블록에서만 유효합니다.
+        }
+
+        return val; // #1 을 사용합니다.
+    }
+    console.log('let', myFunc() === 10); // true
+    ```
+
+3. 중복 선언을 허용하지 않습니다.
+
+    ```javascript
+    let val = 10;
+    let val = 20; // (X) 오류 발생
+    ```
+
+4. 변수 호이스팅시 오류가 발생합니다.
+
+    ```javascript
+    console.log(val); // (X) 오류 발생
+    let val = 0;
+    ```
+
+**const**
+
+1. `let`과 동일하나 변하지 않는 값을 선언합니다.
+2. `let`과 달리 선언과 동시에 초기화해야 합니다.
+
+    ```javascript
+    // const val; // (X) 오류 발생. 선언과 동시에 초기화해야 합니다.
+    const val = 0; 
+    ```
+
+3. 상수는 예외 발생 확률이 낮으므로 최대한 `const`로 사용하는게 좋습니다.
+4. `const` 개체 자체는 수정할 수 없지만, 개체의 속성은 수정할 수 있습니다.
+
+    ```javascript
+    const obj1 = {x: 1, y: 2};
+    const obj2 = {x: 10, y: 20};
+    // obj1 = obj2; // (X) 오류 발생. const에 값을 할당할 수는 없습니다.
+    obj1.x = obj2.x;
+    obj1.y = obj2.y;
+    console.log('const 개체의 속성은 수정할 수 있습니다.', obj1.x === obj2.x, obj1.y === obj2.y);
+    ```
+
+5. 특별한 상수값에 이름을 부여하여 사용할 수 있으며, 관례적으로 대문자로 작성합니다.
+
+    ```javascript
+    const PI = 3.14;
+    ```
