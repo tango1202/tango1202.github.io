@@ -122,10 +122,10 @@ const Ellipse = (() => {
     return Ellipse; 
 })();
 
-// 💡#1. 배열에 아무 타입이나 들어가니 굳이 Shape으로 추상화할 필요가 없습니다.
+// #1. 배열에 아무 타입이나 들어가니 굳이 Shape으로 추상화할 필요가 없습니다.
 let shapes = [new Rectangle(1, 2, 3, 4), new Ellipse(10, 20, 30, 40)];
 shapes.forEach(
-    // 💡#2. 그냥 draw를 호출하면 됩니다. 인터페이스로 만들 필요가 없습니다.
+    // #2. 그냥 draw를 호출하면 됩니다. 인터페이스로 만들 필요가 없습니다.
     (shape) => shape.draw()
 );
 ```
@@ -146,7 +146,7 @@ shapes.forEach(
 
 ```javascript
 const Base = (() => {  
-    function Base(baseProperty) { // 💡#1
+    function Base(baseProperty) { // #1
         this.baseProperty = baseProperty;   
     }
     Base.prototype.baseMethod = function() { 
@@ -158,11 +158,11 @@ const Base = (() => {
 
 const Derived = (() => {  
     function Derived(baseProperty, derivedProperty) {
-        Base.call(this, baseProperty); // 💡#1. Base 생성자 함수를 호출합니다. 리턴하려는 this개체를 Base()함수 내의 this로 바인딩합니다.(Base 속성을 this에 추가합니다.)
+        Base.call(this, baseProperty); // #1. Base 생성자 함수를 호출합니다. 리턴하려는 this개체를 Base()함수 내의 this로 바인딩합니다.(Base 속성을 this에 추가합니다.)
         this.derivedProperty = derivedProperty;   
     }
 
-    Object.setPrototypeOf(Derived.prototype, Base.prototype); // 💡#2. Base.prototype의 속성들을 복제합니다.
+    Object.setPrototypeOf(Derived.prototype, Base.prototype); // #2. Base.prototype의 속성들을 복제합니다.
 
     Derived.prototype.derivedMethod = function() { 
         console.log('derivedMethod 입니다', this.derivedProperty);
@@ -215,24 +215,24 @@ ECMAScript6 부터는 `class`문법이 도입되어 [프로토타입을 이용�
 
 ```javascript
 class Base { // 클래스는 관습적으로 Pascal 표기를 사용합니다.
-    constructor(baseProperty) { // 💡#1. 생성자 함수
+    constructor(baseProperty) { // #1. 생성자 함수
         this.baseProperty = baseProperty;
     } 
-    baseMethod() { // 💡#2. 메서드는 알아서 프로토타입에 선언됩니다.
+    baseMethod() { // #2. 메서드는 알아서 프로토타입에 선언됩니다.
         console.log('baseMethod 입니다', this.baseProperty);
     } 
 };
-class Derived extends Base { // 💡#3. 상속입니다. 아마도 내부적으로 setPrototypeOf()를 하겠죠.
+class Derived extends Base { // #3. 상속입니다. 아마도 내부적으로 setPrototypeOf()를 하겠죠.
     constructor(baseProperty, derivedProperty) { 
-        super(baseProperty); // 💡#4. 상위 생성자 함수를 호출합니다. 아마도, Base.call()을 호출하겠죠.
+        super(baseProperty); // #4. 상위 생성자 함수를 호출합니다. 아마도, Base.call()을 호출하겠죠.
         this.derivedProperty = derivedProperty;
     }
-    derivedMethod() { // 💡#5. Derived에 메서드를 추가합니다.
+    derivedMethod() { // #5. Derived에 메서드를 추가합니다.
         console.log('derivedMethod 입니다', this.derivedProperty);   
     }
 };
 
-const base = new Base('base'); // 💡#6. 생성자 함수처럼 new 로 생성합니다.
+const base = new Base('base'); // #6. 생성자 함수처럼 new 로 생성합니다.
 base.baseMethod(); // baseMethod 입니다 base
 
 const derived = new Derived('base from derived', 'derived'); 

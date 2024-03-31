@@ -39,14 +39,14 @@ Module.privateFunc(a, b); // (X) 오류 발생. 접근할 수 없습니다.
 
 ```javascript
 const User = (() => { // 즉시 실행 함수입니다.
-    function User(name) { // 💡#1
+    function User(name) { // #1
         this.name = name;
     }
     User.prototype.getName = function() { // 메서드는 프로토타입에 선언합니다.
         return this.name;
     }; 
     
-    return User; // 💡#1. 생성자 함수를 리턴합니다.
+    return User; // #1. 생성자 함수를 리턴합니다.
 })();
 
 const user1 = new User('Kim');
