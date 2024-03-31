@@ -151,3 +151,76 @@ console.log('변수 유효 범위', val); // 1
     ```javascript
     const PI = 3.14;
     ```
+
+# 타입과 리터럴
+
+`number, boolean, string, null, undefined, bigint, symbol`의 기본 타입(*Primitive Type*)이 있으며, 개체와 배열을 사용할 수 있습니다.
+
+1. 숫자형은 정수와 실수를 표현합니다.
+
+    (-2<sup>53</sup> - 1) ~ (2<sup>53</sup> - 1)를 표현합니다.
+    
+    정수끼리 나눴을때 실수가 나올 수 있으며, 연산결과에 따라 다음 값을 가질 수 있습니다.
+    
+    |항목|내용|
+    |--|--|
+    |`infinity`|양의 무한대|
+    |`-infinity`|음의 무한대|   
+    |`NaN`|연산 불가|
+
+2. `true`와 `false`로 참, 거짓을 표현합니다.
+
+3. 큰따옴표, 작은 따옴표, 백틱(*ECMAScript6*)으로 문자열을 표현합니다. 특히 백틱은 **템플릿 리터럴**인데요, 문자열내에서 다른 변수를 사용하여 합성할 수 있으며, 여러줄의 문자열을 `\n`없이 직관적으로 표현할 수 있습니다.
+
+    * 문자열은 [UTF-16](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)을 사용하며, 일반적으로 작은 따옴표를 사용합니다.
+
+    * 문자열 내에 문자열 기호를 사용하고 싶은 경우에는 `'문자열 기호는 ""과 \'\' 입니다.'` 와 같이 `''`와 `""`쌍을 교차하여 사용하거나 `\`로 이스케이프 문자(*[https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String) 참고*)를 사용하면 됩니다. 
+
+4. `null`은 값이 할당되지 않았다는 의미로 개발자가 의도적으로 설정한 값입니다.
+5. `undefined`는 값이 할당되지 않아 자바스크립트에서 미리 초기화 한 값입니다. 다른 언어에서는 쓰레기값 이라고도 하죠. `var a = undefined;`와 같이 `undefined`를 사용하는건 권장되지 않습니다. `null`을 사용하세요.
+6. `{}` 안에 속성명을 주어 개체를 선언합니다.
+7. `[]` 안에 값을 나열하여 배열을 선언합니다. 이때 타입이 서로 다를 수도 있습니다.
+8. `//`사이에 정규표현식을 사용할 수 있습니다.
+9. 래퍼 개체를 이용하여 기본 타입의 속성이나 메서드를 호출할 수 있습니다.
+
+```javascript
+const num1 = 10.5; // #1. 실수
+let num2 = 10; // #1. 정수
+num2 = 0x0a; // 16진수
+num2 = 0o10; // 8진수
+num2 = 0b101; // 2진수
+num2 = 1e3; // 1과 3개의 0
+console.log('1e3', 1e3 === 1000);
+console.log('타입과 리터럴 테스트 : 3 / 2', 3 / 2); // #1. 1.5. 정수끼리 나눴을때 실수가 나올 수 있습니다.
+
+const b1 = true; // #2. bool
+const b2 = false;
+
+const str1 = "Hello"; // #3. 문자열
+const str2 = 'Kim';
+const str3 = `Hello ${str2}`; // ${variable}을 이용하여 변수값과 합성하여 출력 
+console.log('타입과 리터럴 테스트 : 백틱 합성', str3); //. Hello Kim
+
+console.log('이스케이프 문자를 이용한 개행 : ', '첫번째 줄\n두번째줄');
+console.log('백틱 문자열에서의 개행 : ', `첫번째 줄
+두번째줄`);
+console.log('문자열 기호는 ""과 \'\'입니다.');
+
+const a = null; // #4. 값이 없음
+let b; // #5. undefined. 값이 할당되지 않아 자바스크립트에서 초기화 한 값
+
+const obj = {name: 'Lee', number: '123-4567'}; // #6. 개체
+console.log('타입과 리터럴 테스트 : 개체 표시', obj); // Object. 트리를 확장하여 내부 속성값을 확인할 수 있음
+
+const arr = [1, 'Kim', 3]; // #7. 배열
+console.log('타입과 리터럴 테스트 : 배열 표시', arr); // Array(3). 트리를 확장하여 내부 요소를 확인할 수 있음
+
+const data = 'a,b,c~d';
+const result = data.split(/,|~/); // #8. 정규 표현식을 이용하여 구분자 , ~ 로 분리
+for (let i = 0; i < result.length; ++i) {
+    console.log('타입과 리터럴 테스트 : 배열 요소 표시', result[i]); // a b c d
+}
+
+const wrapper = 'Lee'; // #9. 래퍼 개체
+console.log('기본 타입에 .을 찍고 wrapper 개체의 속성이나 메서드를 호출할 수 있습니다.', wrapper.length === 3);
+```
