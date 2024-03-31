@@ -198,13 +198,13 @@ console.log('프로토타입 메서드 호출', user2.getName()); // Lee
 ```javascript
 var name = 'Global'; // 전역 변수
 
-// #1. 일반 함수에서의 this
+// 💡#1. 일반 함수에서의 this
 function getName() {
     return this.name; // this는 전역 개체입니다. 
 }
 console.log('일반 함수에서 this는 전역 개체입니다', getName() === 'Global');  
 
-// #2. this를 다른 개체에 연결
+// 💡#2. this를 다른 개체에 연결
 const obj = {
     name: 'Kim'
 };
@@ -213,7 +213,7 @@ console.log('this를 다른 개체에 바인딩하여 사용할 수 있습니다
 const bindFunc = getName.bind(obj);
 console.log('this를 다른 개체에 바인딩하여 사용할 수 있습니다', bindFunc() === 'Kim');
 
-// #3. 개체 메서드에서의 this
+// 💡#3. 개체 메서드에서의 this
 const user1 = {
     name: 'Lee',
     getName: function() {
@@ -222,7 +222,7 @@ const user1 = {
 };
 console.log('개체 메서드에서 this는 user1입니다', user1.getName() === 'Lee'); 
 
-// #4. 생성자 함수의 this
+// 💡#4. 생성자 함수의 this
 function User(name) {
     this.name = name;
     this.getName = function() {
@@ -232,7 +232,7 @@ function User(name) {
 const user2 = new User('Kim');
 console.log('생성자 함수의 this는 리턴하는 개체입니다', user2.getName() === 'Kim'); 
 
-// #5. 중첩 함수에서의 this
+// 💡#5. 중첩 함수에서의 this
 const user3 = {
     name: 'Park',
     getNestName: function() {
@@ -253,7 +253,7 @@ const user3 = {
 console.log('중첩 함수에서 this는 전역 개체입니다', user3.getNestName() === 'Global'); 
 console.log('that을 사용할 수 있습니다', user3.getName() === 'Park'); 
 
-// #6 화살표 함수의 this
+// 💡#6 화살표 함수의 this
 const user4 = {
     name: 'Park',
     getArrowName: () => { // 메서드를 화살표 함수로 선언했습니다.
@@ -276,7 +276,7 @@ console.log('메서드를 화살표 함수로 선언했습니다. this는 상위
 console.log('중첩 함수에서의 this는 전역 개체입니다', user4.getNestName() === 'Global'); 
 console.log('화살표 함수에서의 this는 상위 환경에서 찾습니다', user4.getArrowNestName() === 'Park');
 
-// #7. prototype에서의 this
+// 💡#7. prototype에서의 this
 function PrototypeUser(name) {
     this.name = name;
 }
