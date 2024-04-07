@@ -212,7 +212,7 @@ export default MyButton;
 
 다음 예에서 `onClick()`이벤트 핸들러는 `++count;`로 `count`변수값을 증가시킵니다. 
 
-이때 `onClick()`이벤트 핸들러는 [클로저](https://tango1202.github.io/javascript/javascript-basic/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89)이기 때문에 외부의 `count`변수에 접근하고 사용할 수 있습니다. 그래서 증가된 값을 잘 표시하죠.
+이때 `onClick()`이벤트 핸들러는 [클로저](??)이기 때문에 외부의 `count`변수에 접근하고 사용할 수 있습니다. 그래서 증가된 값을 잘 표시하죠.
 
 하지만 JSX의 `<p>`가 표시하는 것은 초기에 전달한 `0`입니다. 또한 버튼을 클릭했을때 다시 렌더링하지도 않고요.
 
@@ -246,7 +246,7 @@ export default MyState;
 1. #1 : [State](https://tango1202.github.io/react/react-basic/#state)를 사용하기 위해 `useState`를 가져옵니다.
 2. #2 : `countState` 라는 이름으로 초기값이 `0`인 [State](https://tango1202.github.io/react/react-basic/#state)를 만듭니다. 이때 `setCountState()`라는 setter도 함께 만들어 집니다. 
 
-    이때 배열이 리턴되는데, `[변수명, set변수명]`의 형태로 관습적으로 [구조 분해](https://tango1202.github.io/javascript/javascript-basic/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)해서 받아 옵니다.
+    이때 배열이 리턴되는데, `[변수명, set변수명]`의 형태로 관습적으로 [구조 분해](??)해서 받아 옵니다.
 
 3. #3 : `countState`를 수정할 때는 항상 `setCountState()`를 이용해서 수정해야 렌더링을 다시 합니다.
 4. #4 : 일반 변수인 `count`는 초기값이 계속 출력되고, [State](https://tango1202.github.io/react/react-basic/#state)인 `countState`는 수정된 값이 출력됩니다.
@@ -299,7 +299,7 @@ console.log(arr1 === arr2); // true입니다.
 
 1. #1 : `arr[0]`요소의 `x`를 직접 수정하면 렌더링을 다시 하지 않습니다.
 2. #2 : `arr[0]`을 수정하고 `setArr(arr)`을 하더라도 렌더링을 다시 하지 않습니다.
-3. #3 : 배열을 복제합니다. 이때 [Spread](https://tango1202.github.io/javascript/javascript-basic/#spreadecmascript6)를 이용하여 얕은 복사 합니다.
+3. #3 : 배열을 복제합니다. 이때 [Spread](??)를 이용하여 얕은 복사 합니다.
   
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0985674e-28c5-4c82-895a-5b314cfeaa96)
 
@@ -365,7 +365,7 @@ setObj({...obj, y: 2}); // 개체의 기존값을 그대로 사용하되 y만 2�
 
 1. #1 : 컴포넌트 [Props](https://tango1202.github.io/react/react-basic/#props)의 인터페이스를 선언합니다.
 2. #2 : [Props](https://tango1202.github.io/react/react-basic/#props)는 인자로 전달받습니다. 관습적으로 `props`라는 이름을 사용합니다.
-3. #3 : [Props](https://tango1202.github.io/react/react-basic/#props)는 관습적으로 [구조 분해](https://tango1202.github.io/javascript/javascript-basic/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)해서 사용합니다.
+3. #3 : [Props](https://tango1202.github.io/react/react-basic/#props)는 관습적으로 [구조 분해](??)해서 사용합니다.
 4. #4 : [Props](https://tango1202.github.io/react/react-basic/#props)는 수정할 수 있으나, 컴포넌트 내부에서 수정하는건 좋지 않습니다. 
 
     컴포넌트는 전달된 [Props](https://tango1202.github.io/react/react-basic/#props)로 단지 렌더링만 하는 [단일 책임]((https://tango1202.github.io/principle/principle-single-responsibility/))만 갖는게 좋습니다. 만약 내부에서 [Props](https://tango1202.github.io/react/react-basic/#props)를 수정하면, 외부에서 동일한 데이터를 전달했을때 다르게 렌더링 될 수 있습니다. 이렇게 되면, 리액트에서 가상 DOM으로 부터 HTML DOM을 생성할때 최적화가 제대로 되지 않아 쓸데없는 화면 갱신이 빈번해 질 수 있습니다.(*[주요 개념 정리](https://tango1202.github.io/react/react-basic/#%EC%A3%BC%EC%9A%94-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC) 참고*)
@@ -419,7 +419,7 @@ const User = ({id, name = 'Kim'}: IProps) => {
 <User id={0}/>
 ```
 
-[Spread](https://tango1202.github.io/javascript/javascript-basic/#spreadecmascript6)로 [Props](https://tango1202.github.io/react/react-basic/#props)을 손쉽게 포워딩할 수 있습니다.
+[Spread](??)로 [Props](https://tango1202.github.io/react/react-basic/#props)을 손쉽게 포워딩할 수 있습니다.
 
 ```tsx
 const Pareant = (props: IProps) {

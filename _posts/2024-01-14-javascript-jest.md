@@ -1,13 +1,12 @@
 ---
 layout: single
-title: "#10. [Javascript] 자바스크립트 단위 테스트 구축(Jest)"
+title: "#14. [Javascript] 자바스크립트 단위 테스트 구축(Jest)"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
-
 
 # 개요
 

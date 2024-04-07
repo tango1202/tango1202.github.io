@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [Javascript] 상속"
+title: "#9. [Javascript] 상속"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false
