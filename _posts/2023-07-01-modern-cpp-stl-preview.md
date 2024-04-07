@@ -8,10 +8,8 @@ sidebar:
     nav: "docs"
 ---
 
-모던 C++ STL은 모던 C++의 변경에 맞춰 다음의 라이브러리들이 모두 개선되고 추가되었습니다.
-
-모던 C++은 
-[[모던 C++] 주요 구성 요소 미리보기(C++11, C++14, C++17, C++20)](https://tango1202.github.io/cpp/modern-cpp-preview/)를 참고하시기 바랍니다.
+모던 C++ STL은 모던 C++의 변경에 맞춰 다음의 라이브러리들이 모두 개선되고 추가되었습니다.(*모던 C++의 변경 내용은  
+[[모던 C++] 주요 구성 요소 미리보기(C++11, C++14, C++17, C++20)](https://tango1202.github.io/cpp/modern-cpp-preview/)를 참고하시기 바랍니다.*)
 
 [언어 지원 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%EC%96%B8%EC%96%B4-%EC%A7%80%EC%9B%90-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC),  [메모리 관리 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC), [유틸리티 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC),  [컨테이너 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC), [이터레이터 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC), [알고리즘 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC), [문자열 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC), [숫자 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%EC%88%AB%EC%9E%90-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC), [입출력 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC),  [현지화 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%ED%98%84%EC%A7%80%ED%99%94-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC), [진단 라이브러리](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/#%EC%A7%84%EB%8B%A8-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC) 등이 모두 개선되었고,
 

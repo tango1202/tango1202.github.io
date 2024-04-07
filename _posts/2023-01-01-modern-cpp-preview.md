@@ -8,16 +8,12 @@ sidebar:
     nav: "docs"
 ---
 
-모던 C++ 은, 
+모던 C++ 은 현대적인 언어 특성에 발맞춰 좀더 단순하게 코딩할 수 있도록 개선되었습니다.(*모던 C++ STL의 변경 내용은 [[모던 C++ STL] 주요 구성 요소 미리보기](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/)를 참고하시기 바랍니다.*)
 
 1. [이동 연산](https://tango1202.github.io/cpp/modern-cpp-rvalue-value-category-move/#%EC%9D%B4%EB%8F%99-%EC%97%B0%EC%82%B0%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85--%EC%9A%B0%EC%B8%A1%EA%B0%92-%EC%B0%B8%EC%A1%B0-%EC%9D%B4%EB%8F%99-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%9D%B4%EB%8F%99-%EB%8C%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90)을 지원하여 런타임 성능을 향상시키고, 
 2. 런타임에 했던 작업을 최대한 컴파일 타임으로 전환하여 런타임 성능을 향상시키며,
 3. 느슨했던 코딩 규약을 좀더 강화하고,
-4. 좀더 쉽게 코딩할 수 있도록 코딩 편의 기능들을 추가하여
-
-현대적인 언어 특성에 발맞춰 좀더 단순하게 코딩할 수 있도록 개선되었습니다.
-
-STL의 변경 내용은 [[모던 C++ STL] 주요 구성 요소 미리보기](https://tango1202.github.io/cpp-stl/modern-cpp-stl-preview/)를 참고하시기 바랍니다.
+4. 좀더 쉽게 코딩할 수 있도록 코딩 편의 기능들을 추가하였습니다.
 
 1. C++11
 
