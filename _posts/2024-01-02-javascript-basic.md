@@ -496,7 +496,7 @@ console.log('person 속성은 지원하지 않습니다.', getName({person: 'lee
 console.log('null로부터 이름을 구합니다.', getName(null) === undefined);
 ```
 
-이런 경우 [옵셔널 체이닝](??)을 이용하면 코드를 좀더 간결하게 작성할 수 있습니다. `?.`는 평가 대상이 `null` 도 아니고 `undefined`도 아니면 다음 속성을 평가하고, 그렇지 않으면 `undefined`를 반환합니다.
+이런 경우 [옵셔널 체이닝](https://tango1202.github.io/javascript/javascript-basic/#%EC%98%B5%EC%85%94%EB%84%90-%EC%B2%B4%EC%9D%B4%EB%8B%9Decmascript11)을 이용하면 코드를 좀더 간결하게 작성할 수 있습니다. `?.`는 평가 대상이 `null` 도 아니고 `undefined`도 아니면 다음 속성을 평가하고, 그렇지 않으면 `undefined`를 반환합니다.
 
 ```javascript
 function getName(obj) {

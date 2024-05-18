@@ -162,7 +162,7 @@ console.log('filter후 map을 적용', result[0] === 11 && result[1] === 12);
 
 # 배열 복제
 
-배열은 얕은 복사를 합니다. 따라서, `const other1 = arr;`를 하면, `other1`과 `arr`은 같은 개체를 참조합니다. 요소를 복제하려면 다음과 같이 `from()`이나 `slice()`를 이용하거나, [Spread](??)를 이용합니다.
+배열은 얕은 복사를 합니다. 따라서, `const other1 = arr;`를 하면, `other1`과 `arr`은 같은 개체를 참조합니다. 요소를 복제하려면 다음과 같이 `from()`이나 `slice()`를 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용합니다.
 
 ```javascript
 const arr = [1, 2, 3];
@@ -206,6 +206,28 @@ console.log('[...arr]은 arr 요소들로 새로운 배열을 만듭니다. 값�
 |`sort(func)`|배열 요소를 정렬합니다.|
 |`reduce(func)`|배열의 요소를 순회하고, `func(accumulator, item, index, array)`를 호출합니다. 이때, `func()`의 결과는 다음 호출시 `accumulator`에 전달됩니다.|
 
+# 개체와 배열간 변환
+
+`Object.entries()`와 `Object.fromEntries()`를 이용하면 개체와 배열간 변환을 손쉽게 할 수 있습니다.
+
+|항목|내용|
+|--|--|
+|`Object.keys()`|개체의 속성명을 배열로 만듭니다.|
+|`Object.values()`|개체의 값을 배열로 만듭니다.|
+|`Object.entries()`|개체의 속성명-값 쌍을 배열로 만듭니다.|
+|`Object.fromEntries()`|개체의 속성명-값 쌍 배열로 부터 개체를 만듭니다.|
+
+```javascript
+const obj = {
+    name: 'Kim',
+    addr: 'Seoul'
+};
+console.log('속성명으로 구성된 배열입니다.', Object.keys(obj)); // ['name', 'addr']
+console.log('값으로 구성된 배열입니다.', Object.values(obj)); // ['Kim', 'Seoul']
+console.log('속성명-값 쌍으로 구성된 배열입니다.', Object.entries(obj)); // [['name', 'Kim'], ['addr', 'Seoul']]
+console.log('fromEntries()로 개체를 만듭니다.', Object.fromEntries([['name', 'Kim'], ['addr', 'Seoul']])); // {name: 'Kim', addr: 'Seoul'}     
+```
+
 # 유사 배열
 
 배열은 아니지만 배열처럼 `length`와 `[]`을 사용할 수 있는 개체를 유사 배열이라고 합니다. 대표적으로는 문자열이 있습니다.
@@ -220,7 +242,7 @@ for (let i = 0; i < str.length; ++i) {
 
 # 문자열
 
-문자열은 `length`와 `[]`을 제공하는 [유사 배열](??)이어서 배열과 관련한 함수들을 이용할 수 있으며 `for of`를 이용하여 나열할 수 있습니다.
+문자열은 `length`와 `[]`을 제공하는 [유사 배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)이어서 배열과 관련한 함수들을 이용할 수 있으며 `for of`를 이용하여 나열할 수 있습니다.
 
 주요 함수들은 다음과 같습니다.
 
@@ -276,7 +298,7 @@ const result3 = datas.split(/,| /).filter((data) => data != '');
 console.log('파싱 후 필터링', result3[0] === '홍길동' && result3[1] === '성춘향' && result3[2] === '이몽룡'); // #3
 ```
 
-문자열에서 특정 위치의 문자를 `[]`로 접근하여 수정할 수 없습니다. 다음처럼 [Spread](??)를 이용하여 문자 배열로 만든 후 수정하고, 이를 다시 `join()`을 이용하여 문자열로 만들어야 합니다.
+문자열에서 특정 위치의 문자를 `[]`로 접근하여 수정할 수 없습니다. 다음처럼 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 문자 배열로 만든 후 수정하고, 이를 다시 `join()`을 이용하여 문자열로 만들어야 합니다.
 
 ```javascript
 const str = 'abc';
@@ -326,7 +348,7 @@ console.log('속성을 추가한 새 개체를 생성합니다', { ...{ x: 1, y:
 
 # Symbol(ECMAScript6)
 
-[Symbol](??)은 ECMAScript6에 추가된 타입으로서 유일한 Id로 사용될 값을 생성할때 사용합니다. 서로 다른 값임을 보장하며, 문자열로 변환시에는 그냥 `Symbol()`로 변환되기 때문에 서로 다른 값인지 확인할 수 없습니다. 또한 `Symbol('my')`와 같이 특정 설명을 주어 주어진 설명에 대해 유일한 값을 생성할 수 있습니다.
+[Symbol](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#symbolecmascript6)은 ECMAScript6에 추가된 타입으로서 유일한 Id로 사용될 값을 생성할때 사용합니다. 서로 다른 값임을 보장하며, 문자열로 변환시에는 그냥 `Symbol()`로 변환되기 때문에 서로 다른 값인지 확인할 수 없습니다. 또한 `Symbol('my')`와 같이 특정 설명을 주어 주어진 설명에 대해 유일한 값을 생성할 수 있습니다.
 
 ```javascript
 const val1 = Symbol();
@@ -352,7 +374,7 @@ globalObj[myDataId] = 'Lee';
 console.log('유일키로 데이터에 접근합니다.', globalObj[myDataId] === 'Lee'); 
 ```
 
-개체에 `Symbol.toPrimitive`속성으로 메서드를 추가하면, [형변환](??)에 따른 변환값을 제어할 수 있습니다. `hint`는 `string`, `number`, `default`(*형변환할 자료형이 확실하지 않은 경우입니다.*)중 하나로서 어떤식으로 형변환할지의 정보가 전달됩니다. 
+개체에 `Symbol.toPrimitive`속성으로 메서드를 추가하면, [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)에 따른 변환값을 제어할 수 있습니다. `hint`는 `string`, `number`, `default`(*형변환할 자료형이 확실하지 않은 경우입니다.*)중 하나로서 어떤식으로 형변환할지의 정보가 전달됩니다. 
 
 ```javascript
 const user = {
@@ -422,6 +444,70 @@ const arr = Array.from(myData);
 console.log('Array.from()으로 배열로 만들 수 있습니다.', Array.isArray(arr), arr.toString());
 ```
 
+# Map(ECMAScript6)
+
+Map은 키와 값을 쌍으로 관리하는 자료구조 입니다. `set()`으로 값을 저장하고, `get()`으로 값을 구합니다. 개체를 키로 사용할 수도 있으며, `forEach()`로 나열할 수 있습니다.
+
+```javascript
+const map = new Map();
+map.set(1, 'Kim');
+console.log('set()으로 값을 설정하고, get으로 구합니다.', map.get(1) === 'Kim');
+
+map.set(1, 'Lee');
+console.log('동일 키값을 값을 수정합니다.', map.get(1) === 'Lee');
+
+const key = {data: 'myKey'};
+map.set(key, 'Park');
+console.log('개체를 키로 사용할 수 있습니다.', map.get(key) === 'Park');
+console.log('값이 동일한 다른 개체로는 참조할 수 없습니다. undefined입니다.', map.get({data: 'myKey'}) === undefined);  
+
+map.forEach((value, key) => console.log('Map을 forEach로 나열합니다.', key, value));
+```
+
+`Object.entries()`를 이용하면, 개체를 Map으로 바꿀 수 있으며, `Object.fromEntries()`를 이용하여 Map을 개체로 변경할 수 있습니다.
+
+```javascript
+const obj = {
+    name: 'Kim',
+    addr: 'Seoul'
+};
+
+const map = new Map(Object.entries(obj));
+console.log('entries()로 개체를 Map으로 변환합니다.', map.get('name') === 'Kim' &&  map.get('addr') === 'Seoul');
+
+const obj2 = Object.fromEntries(map);
+console.log('fromEntries()로 Map을 개체로 변환합니다.', obj2.name === 'Kim' && obj2.addr === 'Seoul');
+```
+
+|항목|내용|
+|--|--|
+|`size`|요소 갯수를 리턴합니다.|
+|`set(key, value)`|`key`인 `value`를 저장하고, Map 자신을 리턴합니다.|
+|`get(key)`|`key`인 값을 리턴합니다. 없으면 `undefined`를 리턴합니다.|
+|`has(key)`|주어진 `key`가 있는지 검사합니다.|
+|`delete(key)`|`key`이 값을 삭제합니다.|
+|`clear()`|모든 요소를 삭제합니다.|
+|`forEach()`|Map을 나열합니다.|
+|`keys()`|`key`로 구성된 이터러블 개체를 리턴합니다.|
+|`values()`|`value`로 구성된 이터러블 개체를 리턴합니다.|
+|`entries()`|`[key, value]`쌍으로 구성된 이터러블 개체를 리턴합니다.|
+
+# Set(ECMAScript6)
+
+Set은 중복되지 않는 값을 관리하는 자료구조 입니다. `add()`으로 값을 추가하고, `delete()`으로 값을 삭제합니다. `forEach(), keys(), values(), entries()`가 제공되며, Map과의 호환성을 위해, `key`대신 `value`가 전달됩니다.
+
+|항목|내용|
+|--|--|
+|`size`|요소 갯수를 리턴합니다.|
+|`add(value)`|`value`를 저장하고, Set 자신을 리턴합니다.|
+|`has(value)`|주어진 `value`가 있는지 검사합니다.|
+|`delete(value)`|`value`를 삭제합니다.|
+|`clear()`|모든 요소를 삭제합니다.|
+|`forEach()`|Set을 나열합니다.|
+|`keys()`|`value`로 구성된 이터러블 개체를 리턴합니다.|
+|`values()`|`keys()`와 동일합니다. `value`로 구성된 이터러블 개체를 리턴합니다.|
+|`entries()`|`[value, value]`쌍으로 구성된 이터러블 개체를 리턴합니다.|
+
 # 구조 분해(ECMAScript6)
 
 배열과 개체의 각 요소를 `[]`과 `{}`로 분해하여 처리할 수 있습니다. 이때 필요한 부분만 추출할 수도 있습니다.
@@ -452,3 +538,92 @@ const user = {
 const {name, info: {addr}} = user; // 중첩 개체도 분해합니다.
 console.log('중첩 개체도 분해해서 읽습니다', name === 'Kim' && addr === 'Seoul');
 ```
+
+**기본값**
+
+구조 분해시 기본값을 설정할 수 있습니다.
+
+```javascript
+const obj = {
+    x: 1,
+};
+const {x, y = 2} = obj;
+console.log('obj에 y가 없으므로 기본값 0이 할당됩니다.', x === 1 && y === 2);
+```
+
+**이름 변경**
+
+구조 분해한 속성의 이름을 변경할 수 있습니다.
+
+```javascript
+const obj = {
+    x: 1,
+    y: 2
+};
+const {x: left, y: top} = obj;
+console.log('obj.x를 left에, obj.y를 top에 저장합니다.', left === 1 && top === 2);
+```
+
+**함수 인자**
+
+함수의 인자에 구조 분해를 사용할 수 있습니다. 이럴 경우 기본값 설정의 자유도가 높아지고, 함수 호출 부에서는 인수의 순서가 아닌 속성명으로 인자를 매칭하기 때문에 가독성이 높아집니다.
+
+```javascript
+// 함수에서는 기본값을 설정하면, 다음에 선언된 모든 인자에 기본값을 주어야 하지만,
+// 구조 분해를 이용하면, 어떠한 위치에 있던 원하는 것에 기본값을 줄 수 있습니다.
+const func = ({x = 0, y, z = 2}) => { 
+    return x + y + z;
+};
+
+console.log('x, z는 전달하지 않았으므로 기본값이 사용됩니다.', func({ y:1 }) === 0 + 1 + 2); 
+console.log('인수 전달시 이름으로 매칭되기 때문에 순서를 준수할 필요는 없습니다.', func({ y: 20, x: 10}) === 10 + 20 + 2); 
+```
+
+**나머지 인자**
+
+[나머지 인자](https://tango1202.github.io/javascript/javascript-function/#%EB%82%98%EB%A8%B8%EC%A7%80-%EC%9D%B8%EC%9E%90ecmascript6)를 사용하면, 일부 요소만 구조 분해하고 나머지는 개체로 전달받을 수 있습니다.
+
+```javascript
+const obj = {
+    name: 'Kim',
+    addr: 'Seoul',
+    age: 10
+};
+
+const {name, ...etc} = obj;
+console.log('...을 이용하면 나머지를 개체로 전달받을 수 있습니다.', name === 'Kim', etc.addr === 'Seoul', etc.age === 10);
+```
+
+**swap**
+
+임시로 배열로 만든뒤 순서를 바꿔 구조 분해하면, swap한 효과를 얻을 수 있습니다.
+
+```javascript
+let x = 10;
+let y = 20;
+[y, x] = [x, y]; // 임시로 배열로 만들고 순서를 바꿔 구조 분해 합니다.
+
+console.log('임시로 배열로 만들고 순서를 바꿔 구조 분해하면, swap한 효과를 얻을 수 있습니다.', x === 20, y === 10);
+```
+**entries()를 이용한 속성명, 값 나열**
+
+`Object.entries()`는 개체의 속성명-값 쌍을 배열로 변환하므로, 구조 분해와 혼합하면, 개체의 각 속성의 key와 value를 손쉽게 분해해서 사용할 수 있습니다.
+
+```javascript
+const obj = {
+    name: 'Kim',
+    addr: 'Seoul',
+    age: 10
+};
+
+for (let [key, value] of Object.entries(obj)) {
+    console.log('개체의 각 속성을 key, value로 분해했습니다.', key, value); 
+}
+```
+
+
+
+
+
+
+

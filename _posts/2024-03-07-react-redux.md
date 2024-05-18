@@ -499,7 +499,7 @@ export default MySlice;
 
 다음은 [combineReducers()](https://tango1202.github.io/react/react-redux/#combinereducers)의 예를 [immer](https://tango1202.github.io/react/react-redux/#immer)를 이용하여 리팩토링한 예입니다.
 
-1. #1 : [리덕스 설치](??)를 하면 [immer](https://tango1202.github.io/react/react-redux/#immer)도 같이 설치되는 데요, 혹시 설치되지 않았다면, `npm install -D immer` 를 하면 됩니다.
+1. #1 : [리덕스 설치](https://tango1202.github.io/react/react-redux/#%EB%A6%AC%EB%8D%95%EC%8A%A4-%EC%84%A4%EC%B9%98)를 하면 [immer](https://tango1202.github.io/react/react-redux/#immer)도 같이 설치되는 데요, 혹시 설치되지 않았다면, `npm install -D immer` 를 하면 됩니다.
 2. #2 : `produce()`함수를 이용하여 `state`를 수정하는 함수를 사용합니다.
 
 ```tsx
@@ -535,7 +535,7 @@ dispatch({
 });
 ```
 
-[redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)을 사용하면 [createSlice()](??)처럼 액션을 함수화하여 호출할 수 있으며, 좀더 구조적으로 카테고리화하여 액션을 관리할 수 있습니다. 다만 타입스크립트와는 궁합이 좀 안맞는 부분이 있어서, 좀 억지스럽게 `any`를 사용할 수도 있습니다.
+[redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)을 사용하면 [createSlice()](https://tango1202.github.io/react/react-redux/#createslice)처럼 액션을 함수화하여 호출할 수 있으며, 좀더 구조적으로 카테고리화하여 액션을 관리할 수 있습니다. 다만 타입스크립트와는 궁합이 좀 안맞는 부분이 있어서, 좀 억지스럽게 `any`를 사용할 수도 있습니다.
 
 **설치**
 
@@ -729,9 +729,9 @@ export default MyReduxActions;
 
 # Redux DevTools
 
-[Redux DevTools](??)를 이용하면 브라우저 개발자 도구에서 액션 실행에 따른 리덕스의 상태 변화를 쉽게 확인 할 수 있습니다.
+[Redux DevTools](https://tango1202.github.io/react/react-redux/#redux-devtools)를 이용하면 브라우저 개발자 도구에서 액션 실행에 따른 리덕스의 상태 변화를 쉽게 확인 할 수 있습니다.
 
-1. 각 브라우저 스토어에서 [Redux DevTools](??)를 설치합니다.
+1. 각 브라우저 스토어에서 [Redux DevTools](https://tango1202.github.io/react/react-redux/#redux-devtools)를 설치합니다.
 
     |항목|내용|
     |--|--|
@@ -742,12 +742,12 @@ export default MyReduxActions;
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/ee78ee7e-6c67-47d8-9b85-4951e5529af0)
 
-3. 그러면 다음과 같이 [Redux DevTools](??)가 표시됩니다.
+3. 그러면 다음과 같이 [Redux DevTools](https://tango1202.github.io/react/react-redux/#redux-devtools)가 표시됩니다.
  
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/78810159-b096-420a-b5cf-0e0eda90a283)
 
  
-4. [redux-actions](??)에서 작성한 예제에 `이몽룡`을 입력하고 `추가`버튼을 클릭하면, 실행된 액션이 목록으로 표시되고, `diff`탭에 변화된 상태값이 표시됩니다.
+4. [redux-actions](https://tango1202.github.io/react/react-redux/#redux-actions)에서 작성한 예제에 `이몽룡`을 입력하고 `추가`버튼을 클릭하면, 실행된 액션이 목록으로 표시되고, `diff`탭에 변화된 상태값이 표시됩니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/72b8e0e7-cba3-488b-bac6-b982f9b497a8)
 

@@ -12,8 +12,7 @@ sidebar:
 
 함수는 #1의 함수 선언 방식과, #2의 함수 표현식 방식이 있습니다. 함수 표현식일 때는 관례적으로 함수명을 생략해서 사용합니다.(*함수명도 변수처럼 관습적으로 카멜 표기법을 사용합니다.*)
 
-어느 방식으로 사용하던 함수 호출 방식은 동일합니다. 가독성 측면에서는 #1이 좋지만, #2는 [함수 호이스팅](??)이 되지 않고, [타입스크립트](https://tango1202.github.io/categories/typescript/)와 함께 사용할때 리턴값에 
-함수 [인터페이스](https://tango1202.github.io/typescript/typescript-basic/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 지정할 수 있는 장점이 있어, 저는 #2를 선호합니다.
+어느 방식으로 사용하던 함수 호출 방식은 동일합니다. 가독성 측면에서는 #1이 좋지만, #2는 [함수 호이스팅](https://tango1202.github.io/javascript/javascript-function/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이 되지 않고, [타입스크립트](https://tango1202.github.io/categories/typescript/)와 함께 사용할때 함수 [인터페이스](https://tango1202.github.io/typescript/typescript-basic/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 지정할 수 있는 장점이 있어, 저는 #2를 선호합니다.
 
 #3과 같이 변수에 대입하여 호출할 수도 있습니다. 
 
@@ -61,9 +60,18 @@ console.log('즉시 실행 함수',
 })();
 ```
 
+[화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)를 이용하면 다음과 같습니다.
+
+```javascript
+(() => {
+    const myApp = {};
+    console.log('화살표 함수를 이용한 즉시 실행 함수', myApp); 
+})();
+```
+
 # 함수 호이스팅
 
-변수 호이스팅처럼 함수도 호이스팅됩니다. 따라서 함수 선언 전에 사용할 수 있습니다.
+[변수 호이스팅](https://tango1202.github.io/javascript/javascript-basic/#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)처럼 함수도 호이스팅됩니다. 따라서 함수 선언 전에 사용할 수 있습니다.
 
 ```javascript
 console.log("함수 호이스팅", myHoisting(1, 2)); // 3. 함수 선언 전에 사용할 수 있습니다.
@@ -73,7 +81,7 @@ function myHoisting(a, b) {
 }
 ```
 
-함수 표현식은 변수 호이스팅을 합니다. 따라서, 호이스팅되었어도 `undefined`이기 때문에 사용할 수 없습니다.
+함수 표현식은 변수 호이스팅을 합니다. 따라서, 호이스팅되었어도 `undefined`이기 때문에 사용할 수 없습니다. 함수간의 종속성에 예민하셔서 함수 종속성 순서로 함수를 선언하시는 분들은 함수 표현식 형태로 사용하시면, 함수 호이스팅을 하지 않으므로 종속성 확인을 할 수 있습니다.
 
 ```javascript
 console.log("함수 표현식 호이스팅", myHoisting(1, 2)); // (X) 오류 발생. 함수 표현식은 변수 호이스팅을 합니다. 따라서 undefined 입니다.
@@ -110,12 +118,12 @@ console.log("함수 속성", add.data);
 
 |항목|내용|
 |--|--|
-|`arguments`|전달된 인수를 나열할 수 있는 [유사 배열](??)입니다. 함수 외부에서는 사용할 수 없습니다. 가변 인자인 경우에 활용할 수 있습니다. ECMAScript6부터는 [나머지 인자](??)를 사용합니다.|
+|`arguments`|전달된 인수를 나열할 수 있는 [유사 배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)입니다. 함수 외부에서는 사용할 수 없습니다. 가변 인자인 경우에 활용할 수 있습니다. ECMAScript6부터는 [나머지 인자](https://tango1202.github.io/javascript/javascript-function/#%EB%82%98%EB%A8%B8%EC%A7%80-%EC%9D%B8%EC%9E%90ecmascript6)를 사용합니다.|
 |`caller`|자신을 호출한 함수를 가리킵니다. 브라우저에서 실행하면 `null`을 리턴합니다.|
 |`length`|선언시 사용한 인자의 갯수입니다. (*arguments.length는 함수 호출시 전달한 인수의 갯수입니다.*)|
 |`name`|함수의 이름입니다.|
 |`__proto__`|모든 개체는 `[[Prototype]]`이라는 내부 개체가 있으며 기본적으로 `Object.prototype`과 동일합니다. `__proto__`는 이에 접근하기 위한 속성입니다. `[[Prototype]]` 개체는 상속을 구현하기 위해 사용되며, 다른 개체에 공유 속성을 제공합니다.|
-|`prototype`|함수 개체만 있는 속성입니다.(*일반 개체에는 없습니다.*) 개체를 생성하는 [생성자 함수](??)로 사용될때 함수가 생성한 개체의 `__proto__` 개체를 가리킵니다.|
+|`prototype`|함수 개체만 있는 속성입니다.(*일반 개체에는 없습니다.*) 개체를 생성하는 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)로 사용될때 함수가 생성한 개체의 `__proto__` 개체를 가리킵니다.|
 
 # 중첩 함수
 
@@ -227,7 +235,7 @@ f(1, 2, 3);
 
 일반적인 인자와 나머지 인자를 섞어 쓰면, 일반적인 인자에 인수를 할당한뒤 남은 것만 나머지 인자에 할당합니다.
 
-다음은 전달된 인수들의 합을 구하는 예입니다. 첫번째 인수를 뺀 나머지들을 다시 재귀적으로 호출하여 값을 누적합니다. 나머지 인자의 갯수가 1이면, 재귀 호출을 하지 않고 그냥 더합니다. `sum()`함수를 재귀 호출할때 `sum(...rest)`와 같이 호출했는데요, 이는 [Spread](??)로서 배열을 다시 분리하는 역할을 합니다. 즉, `sum(rest[0], rest[1], ... , rest[N - 1])`처럼 호출합니다. 
+다음은 전달된 인수들의 합을 구하는 예입니다. 첫번째 인수를 뺀 나머지들을 다시 재귀적으로 호출하여 값을 누적합니다. 나머지 인자의 갯수가 1이면, 재귀 호출을 하지 않고 그냥 더합니다. `sum()`함수를 재귀 호출할때 `sum(...rest)`와 같이 호출했는데요, 이는 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)로서 배열을 다시 분리하는 역할을 합니다. 즉, `sum(rest[0], rest[1], ... , rest[N - 1])`처럼 호출합니다. 
 
 
 ```javascript
@@ -240,7 +248,7 @@ console.log('나머지 인자를 재귀적으로 호출합니다', sum(1, 2, 3) 
 
 # 이벤트 핸들러
 
-HTML DOM 엘리먼트의 이벤트가 발생했을때, [이벤트 핸들러](??)를 통해 이벤트를 전달받을 수 있습니다.
+HTML DOM 엘리먼트의 이벤트가 발생했을때, [이벤트 핸들러](https://tango1202.github.io/javascript/javascript-function/#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%ED%95%B8%EB%93%A4%EB%9F%AC)를 통해 이벤트를 전달받을 수 있습니다.
 
 다음은 HTML DOM 엘리먼트의 이벤트를 전달받는 예입니다.
 
