@@ -214,9 +214,9 @@ const inc = a => a + 1;
 함수 인자에 기본값을 주면, 인수가 전달되지 않았을때 사용합니다.
 
 ```javascript
-function add(a = 1, b = 2) {
+const add = (a = 1, b = 2) => {
     return a + b;
-}
+};
 console.log('인수를 전달하면, 전달한 값을 사용합니다', add(10, 20) === 30);
 console.log('인수가 없으면, 기본값을 사용합니다', add() === 3);
 ```
@@ -226,10 +226,10 @@ console.log('인수가 없으면, 기본값을 사용합니다', add() === 3);
 함수 인자에 `...`을 붙여 선언하면, 전달된 인수들을 배열로 전달받습니다. 비슷한 용도로 제공되는 `arguments`는 [유사 배열](https://tango1202.github.io/javascript/javascript-basic/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)이며, 화살표 함수에서는 사용할 수 없다고 하네요. 또한 ECMAScript3부터 deprecate되었다고 합니다. 이제 나머지 인자를 사용하세요.
 
 ```javascript
-function f(...params) {
+const f = (...params) => {
     console.log('...params는 배열입니다', Array.isArray(params));
     params.forEach((param) => console.log('param은 배열 요소입니다', param));
-}
+};
 f(1, 2, 3);
 ```
 
@@ -239,9 +239,9 @@ f(1, 2, 3);
 
 
 ```javascript
-function sum(first, ...rest) {
+const sum = (first, ...rest) => {
     return first + ((rest.length === 1) ? rest[0] : sum(...rest)); // ...rest는 배열을 다시 분리하여 나열합니다. spread 참고
-}
+};
 
 console.log('나머지 인자를 재귀적으로 호출합니다', sum(1, 2, 3) === 1 + 2 + 3);
 ```
@@ -313,4 +313,27 @@ alert(result1); // 확인시 true, 취소시 false 입니다.
 const result2 = prompt('제목입니다.', '내용을 입력하세요.'); // input을 통해 내용을 입력받습니다.
 alert(result2); // 확인 클릭시 입력받은 내용입니다. 취소시 null 입니다.
 ```
+
+# setTimeout(), setInterval(), clearTimeout()
+
+`setTimeout()`는 지정한 밀리초 뒤에 함수를 1회 실행하며, `setInterval()`은 지정한 밀리초 간격으로 함수를 실행합니다. 각 함수는 `timerId`를 리턴하는데요, 이를 `clearTimeout()`에 인수로 전달하여 타이머를 삭제할 수 있습니다.
+
+```javascript
+const f = () => {
+    console.log('1초 뒤에 출력합니다.');
+};
+setTimeout(f, 1000);
+
+const intervalFunc = () => {
+    console.log('1초 간격으로 출력합니다.');
+};
+
+const timerId = setInterval(intervalFunc, 1000);
+setTimeout(() => {
+    clearTimeout(timerId);
+    console.log('타이머를 멈춥니다.');
+}, 5000); // 5초 뒤에 timer를 삭제합니다.
+```
+
+
 

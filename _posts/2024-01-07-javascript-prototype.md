@@ -110,9 +110,9 @@ console.log('user2.addr은 Seoul 입니다', user2.addr === 'Seoul');
 사용자 개체 외에 기본 타입의 프로토타입도 수정할 수 있습니다. 다음은 기본 타입인 `String`의 `prototype`에 `add` 메서드를 추가한 예입니다.
 
 ```javascript
-String.prototype.add = function(a, b) {
+String.prototype.add = (a, b) => {
     return a + b;
-}
+};
 console.log('기본타입인 String에 add 함수를 추가했습니다. String.add(1, 2)', 'test'.add(1, 2)); // 3
 ```
 
@@ -151,7 +151,7 @@ console.log(user2.name === 'Lee' && user2.addr === 'Busan');
 [개체의 생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)에서 생성자 함수를 이용하면 메서드가 중복 생성된다고 언급했었는데요,
 
 ```javascript
-function User(name) {
+fuction User(name) {
     this.name = name; 
     this.getName = function() { // 생성하는 개체마다 메서드 선언이 중복됩니다.
         return this.name; 
@@ -282,7 +282,7 @@ function PrototypeUser(name) {
 }
 PrototypeUser.prototype.getName = function() {
     return this.name; // 해당 메서드를 호출한 개체입니다.
-}
+};
 var user5 = new PrototypeUser('Kim');
 var user6 = new PrototypeUser('Lee');
 

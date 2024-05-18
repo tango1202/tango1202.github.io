@@ -16,10 +16,10 @@ sidebar:
 
 ```javascript
 const Module = (() => { // 즉시 실행 함수입니다.
-    function privateFunc(a, b) { // 외부에서 접근할 방법이 없습니다.
+    const privateFunc = (a, b) => { // 외부에서 접근할 방법이 없습니다.
         return a + b;
-    }
-    function publicFunc(a, b) { // 외부에서 접근할 수 있도록 리턴합니다.
+    };
+    const publicFunc = (a, b) => { // 외부에서 접근할 수 있도록 리턴합니다.
         return privateFunc(a, b);
     }; 
 
@@ -41,7 +41,7 @@ Module.privateFunc(a, b); // (X) 오류 발생. 접근할 수 없습니다.
 const User = (() => { // 즉시 실행 함수입니다.
     function User(name) { // #1
         this.name = name;
-    }
+    };
     User.prototype.getName = function() { // 메서드는 프로토타입에 선언합니다.
         return this.name;
     }; 
@@ -85,16 +85,16 @@ const user1 = {name: 'Kim'};
 const user2 = {name: 'Lee'};
 
 const MixInModule = (() => {
-    function getNameMixIn(obj) {
+    const getNameMixIn = (obj) => {
         obj.getName = function() {
             return this.name;
         };
-    }
-    function printNameMixIn(obj) {
+    };
+    const printNameMixIn = (obj) => {
         obj.printName = function() {
             console.log(this.name);
         };
-    }
+    };
 
     // MixIn 함수 선언들로 구성된 개체를 리턴합니다.
     return {
@@ -124,7 +124,7 @@ const User = (() => {
         return this.name;
     }; 
 
-    User.staticFunc = function(msg) { // 생성자 함수의 속성 메서드 입니다.
+    User.staticFunc = (msg) => { // 생성자 함수의 속성 메서드 입니다.
         console.log(msg);
     };
     
@@ -149,13 +149,13 @@ User.staticFunc('생성자 함수의 속성 메서드입니다. 정적 함수와
 function Counter() {
     let count = 0; // 외부에서 접근 할 수 없는 변수입니다. 마치 private와 유사합니다.
 
-    this.inc = function () {
+    this.inc = () => {
         return ++count;
     };
-    this.dec = function() {
+    this.dec = () => {
         return --count;
-    }
-}
+    };
+};
 
 const counter = new Counter();
 

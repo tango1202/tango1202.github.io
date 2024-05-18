@@ -172,7 +172,7 @@ console.log("JSON으로 하위 개체도 복제 user2.detail.addr === 'Busan'", 
 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 이용하여 개체를 생성하면, 내부적으로 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)를 사용하는데요, `assign()`이나 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)로 복제하면 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)가 `Object`로 초기화 되어 버립니다. 만약 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)도 동일하게 하려면, `Object.create()`를 함께 이용해야 합니다.(*[prototype](https://tango1202.github.io/javascript/javascript-prototype/) 참고*)
 
 ```javascript
-function User(name) { // 생성자 함수
+function User(name) { // 생성자 함수.
     this.name = name;
 }
 const user1 = new User('Lee'); 
@@ -203,6 +203,18 @@ console.log('JSON으로 만든 문자열', str === '{"x":10,"y":20,"value":"문�
 
 const result = JSON.parse(str);
 console.log('JSON 문자열로부터 개체 생성', result.x === 10 && result.y === 20 && result.value === '문자열' && result.datas[0] === 1 && result.datas[1] === 2 && result.datas[2] === 3);
+```
+
+개체에 `toJSON()` 함수가 구현되어 있다면, `stringify()` 호출시 `toJSON()`을 호출합니다.
+
+```javascript
+const obj = {
+    name: 'Lee',
+    toJSON: function() {
+        return `name is ${this.name}`
+    }
+};
+console.log('toJSON을 이용합니다.', JSON.stringify(obj) === '"name is Lee"');
 ```
 
 
@@ -261,7 +273,7 @@ console.log('user2.getName()', user2.getName()); // Lee
 2. `this`는 전역 개체이므로 전역 개체에 `name`속성을 추가합니다.
 
 ```javascript
-function User(name) { 
+function User (name) { 
     this.name = name; 
 }
 const user = User('Kim'); 

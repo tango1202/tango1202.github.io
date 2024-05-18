@@ -157,7 +157,7 @@ const Base = (() => {
 })();
 
 const Derived = (() => {  
-    function Derived(baseProperty, derivedProperty) {
+    function Derived(baseProperty, derivedProperty)  {
         Base.call(this, baseProperty); // #1. Base 생성자 함수를 호출합니다. 리턴하려는 this개체를 Base()함수 내의 this로 바인딩합니다.(Base 속성을 this에 추가합니다.)
         this.derivedProperty = derivedProperty;   
     }

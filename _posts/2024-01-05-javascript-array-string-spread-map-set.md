@@ -318,9 +318,9 @@ console.log('배열을 join() 함수로 문자열로 만듭니다.', arr.join(''
 배열등 [이터러블](https://tango1202.github.io/javascript/javascript-basic/#%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94%EA%B3%BC-for-ofecmascript6) 개체에 `...`을 붙이면, 대상을 개별 요소로 분리합니다.
 
 ```javascript
-function f(a, b, c) {
+const f = (a, b, c) => {
     return a + b + c;
-}
+};
 
 console.log('배열 [1, 2, 3]을 나열해서 전달합니다', f(...[1, 2, 3]) === 1 + 2 + 3); 
 ```
@@ -342,6 +342,8 @@ console.log('기존 배열에 새로운 배열을 추가한 새로운 배열 리
 ```javascript
 console.log('개체를 복제하지만, prototype은 복제되지 않습니다', {...{ x: 1, y: 2 } }); // { x: 1, y: 2 } 
 console.log('개체를 합성하여 새 개체를 생성합니다', { x: 1, y: 2, ...{ a: 3, b: 4 } }); // {x: 1, y: 2, a: 3, b: 4 }
+console.log('기존 개체의 특정 속성값을 변경한 새 개체를 생성합니다.', { ...{x: 1, y: 2}, y: 3 }); // {x: 1, y: 3 }
+
 console.log('두 개체를 합성하여 새로운 개체를 생성합니다. 중복된 속성값은 덮어씁니다', { ...{ x: 1, y: 2 }, ...{ y: 100, z: 3 } }); // { x: 1, y: 100, z: 3 }
 console.log('속성을 추가한 새 개체를 생성합니다', { ...{ x: 1, y: 2 }, z: 3 }); // { x: 1, y: 2, z: 3 }
 ```

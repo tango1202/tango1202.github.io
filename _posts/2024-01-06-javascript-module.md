@@ -17,10 +17,10 @@ sidebar:
 * `export` : 모듈에서 개체나 함수를 내보냅니다.
 
     ```javascript
-    export const plus = function (a, b) {
+    export const plus = (a, b) => {
         return a + b;
     };
-    export const minus = function (a, b) {
+    export const minus = (a, b) => {
         return a - b;
     };
     ```
@@ -28,10 +28,10 @@ sidebar:
     혹은 하나의 개체로 구성해서 한번에 내보낼 수 있습니다.
 
     ```javascript
-    const plus = function (a, b) {
+    const plus = (a, b) => {
         return a + b;
     };
-    const minus = function (a, b) {
+    const minus = (a, b) => {
         return a - b;
     };
     
@@ -41,10 +41,10 @@ sidebar:
     1개만 `export`할 경우에는 `default`를 사용할 수 있습니다.
 
     ```javascript
-    const plus = function (a, b) {
+    const plus = (a, b) => {
         return a + b;
     };
-    const minus = function (a, b) {
+    const minus = (a, b) => {
         return a - b;
     };
 
@@ -92,18 +92,18 @@ sidebar:
 다음은 모듈을 구현한 `myModule.js`입니다. `privateFunc`은 내보내지 않았습니다.
 
 ```javascript
-const privateFunc = function() {
+const privateFunc = () => {
     console.log('모듈에서 사용하는 privateFunc입니다');
 };
 
-const publicFunc = function() {
+const publicFunc = () => {
     privateFunc(); // 모듈에서만 사용하는 privateFunc을 호출합니다.
 }
 
-const plus = function (a, b) {
+const plus = (a, b) => {
     return a + b;
 };
-const minus = function (a, b) {
+const minus = (a, b) => {
     return a - b;
 };
 
