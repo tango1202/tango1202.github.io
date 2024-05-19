@@ -107,6 +107,38 @@ for (let prop in arr) { // 배열 요소와 추가 속성이 나열됩니다.
 }
 ```
 
+# defineProperty(), getOwnPropertyDescriptor()
+
+개체의 속성은 세부적으로 다음과 같은 플래그가 있습니다.
+
+|항목|내용|
+|--|--|
+|`writable`|`true`이면 읽기/쓰기가 가능하고, `false`이면 읽기만 가능합니다.|
+|`enumerable`|`true`이면 `for-in`으로 나열이 가능합니다.
+|`configurable`|이면 속성 삭제나 플래그 수정이 가능합니다. 하지만 `false`이면 속성이나 플래그 수정이 불가능 합니다. `writable`, `enumerable`도 `false`로 만들며 다시 수정할 수 없게 만듭니다.|
+
+다음 예는 `defineProperty`를 이용해서 `name`속성을 열거되지 않게 하는 예입니다.
+
+```javascript
+const user = {
+    name: 'Lee',
+    addr: 'Seoul'
+};
+
+for (let prop in user) {
+    console.log('속성명 :' + prop , '속성값 :' + user[prop]); // name과 addr이 열거됩니다.
+}
+
+Object.defineProperty(user, 'name', {
+    enumerable: false // name은 열거되지 않게 합니다.
+});
+for (let prop in user) {
+    console.log('name은 열거되지 않습니다. 속성명 :' + prop , '속성값 :' + user[prop]);
+}
+
+const descriptor = Object.getOwnPropertyDescriptor(user, 'name');
+console.log('name의 enumerable은 false 입니다.', descriptor.enumerable === false);
+```
 # 개체 복제/동결
 
 개체는 기본적으로 얕은 복사를 하며, 동일 개체를 참조합니다. 따라서, `user2 = user1`은 사실 동일 개체를 참조하게 되며, `user2`를 수정하면, `user1`도 수정됩니다.
@@ -185,6 +217,39 @@ console.log('create()와 assign()으로 복제했습니다.', user3 instanceof U
 ```
 
 `Object.freeze()`로 개체를 수정할 수 없게끔 동결시킬 수 있습니다. 하지만, 하위 개체에는 적용되지 않습니다.
+
+이외에도 개체 수정을 제한하는 다음과 같은 메서드 들이 있습니다.
+
+|항목|내용|
+|--|--|
+|`preventExtensions()`|개체에 새로운 속성 추가를 막습니다.|
+|`seal()`|새로운 속성 추가나 기존 속성 삭제를 막습니다.|
+|`freeze()`|새로운 속성 추가나 기존 속성 삭제, 속성값 수정을 막습니다.|
+|`isExtensible()`|`preventExtensions()`인지 확인합니다.|
+|`isSealed()`|`seal()`인지 확인합니다.|
+|`isFrozen()`|`freeze()`인지 확인합니다.|
+
+# getter, setter(ECMAScript5)
+
+`getter` 와 `setter`를 이용하면 속성에 값을 저장하거나 불러올때 메서드를 통할 수 있습니다.
+
+이에 따라 속성에 대한 접근 통제나 유효성 검사를 좀더 캡슐화할 수 있습니다.
+
+```javascript
+    const user = {
+    _name: '', // 실제 name 값을 저장합니다.
+    get name() {
+        return this._name;
+    }, 
+    set name(name) {
+        // 값을 설정하기 전에 유효성 검사를 할 수 있고, 수정할 수도 있습니다.
+        this._name = 'name is ' + name;
+    }
+};
+
+user.name = 'Lee';
+console.log('setter로 이름을 수정했습니다.', user.name === 'name is Lee');
+```
 
 # JSON
 
@@ -387,3 +452,4 @@ const toYYYYMMDD = (date) => {
 console.log('기본 형태', date); 
 console.log('yyyy-mm-dd', toYYYYMMDD(date) === '2024-05-06'); 
 ```
+

@@ -190,7 +190,8 @@ console.log('프로토타입 메서드 호출', user2.getName()); // Lee
 5. 중첩 함수 : `this`는 전역 개체입니다.
 6. 화살표 함수 : 화살표 함수는 `this`가 없습니다. 상위 개체에 `this`가 있다면 이를 따릅니다. 
 
-    * 메서드를 화살표 함수로 사용하면 `this`는 상위 환경인 전역 개체입니다. 따라서 메서드는 화살표 함수로 선언하지 마세요.
+    * ***메서드를 화살표 함수로 사용하면 `this`는 상위 환경인 전역 개체입니다. 따라서 메서드와 생성자 함수는 화살표 함수로 선언하지 마세요.***
+
     * 메서드 내의 중첩 함수로 화살표 함수를 사용하면, `this`는 상위 환경인 메서드의 `this`입니다. 즉, 호출한 개체입니다.
 
 7. `prototype` : `this`는 호출한 개체입니다.
@@ -289,5 +290,4 @@ var user6 = new PrototypeUser('Lee');
 console.log('프로토타입 메서드에서 this는 user5입니다', user5.getName() === 'Kim'); // this는 user5입니다.
 console.log('프로토타입 메서드에서 this는 user6입니다', user6.getName() === 'Lee'); // this는 user6입니다.
 ```
-
 

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [Javascript] 상속"
+title: "#9. [Javascript] 상속, 클래스"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false
@@ -204,7 +204,7 @@ overridingDerived.baseMethod(); // Overriding 입니다 base from derived
 
 # 클래스를 이용한 상속(ECMAScript6)
 
-ECMAScript6 부터는 `class`문법이 도입되어 [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)보다 간결하게 코드를 작성할 수 있습니다. 실제로 C++같은 클래스를 제공하는 것은 아니며, [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)의 좀더 쉬운 코딩법을 제공할 뿐입니다. 
+ECMAScript6 부터는 `class`문법이 도입되어 [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)보다 간결하게 코드를 작성할 수 있습니다. 실제로 C++같은 클래스를 제공하는 것은 아니며, [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)의 좀더 쉬운 코딩법을 제공할 뿐입니다. 
 
 1. `constructor`는 생성자 함수의 역할을 합니다. 생성자 함수처럼 속성들을 초기화합니다.
 2. 메서드는 알아서 프로토타입에 선언됩니다.
@@ -283,5 +283,99 @@ myClass.yVal = 20;
 console.log('setter를 이용하여 속성처럼 데이터를 수정할 수 있습니다', myClass.xVal === 10 && myClass.yVal === 20);
 
 console.log(MyClass.staticMethod()); // 정적 함수 입니다
+```
+
+# protected, private(ECMAScript10)
+
+자바스크립트에서는 `protected`를 지원하지 않습니다. 관습적으로 속성앞에 `_`를 붙여 사용합니다.
+
+```javascript
+class Base {
+    _protectedVal = 0; // _는 관습적일 뿐, 실제 접근 통제를 하지 못합니다.
+    get val() {
+        return this._protectedVal;
+    } 
+    set val(val) {
+        this._protectedVal = val;
+    }
+};
+class Derived extends Base {
+    inc() {
+        this._protectedVal += 1;
+    }
+};
+
+const data = new Derived();
+data._protectedVal = 10; // 접근이 가능합니다.
+data.inc();
+console.log('protected는 지원하지 않습니다.', data.val === 11);
+```
+
+하지만 `private`는 지원합니다. 속성명 앞에 `#`을 붙이면 접근이 통제됩니다.
+
+```javascript
+class Base {
+    #privateVal = 0; // #은 자기 자신 외에는 접근할 수 없습니다.
+    get val() {
+        return this.#privateVal;
+    } 
+    set val(val) {
+        this.#privateVal = val;
+    }
+};
+class Derived extends Base {
+    inc() {
+        // this.#privateVal += 1; // (X) 자식 클래스에서도 접근할 수 없습니다.
+        this.val += 1;
+    }
+};
+
+const data = new Derived();
+// data.#privateVal = 10; // (X) 외부에서 접근할 수 없습니다.
+data.inc();
+console.log('getter, setter로만 접근할 수 있습니다.', data.val === 1);
+```
+
+# 클래스 MixIn
+
+(코딩 패턴 - MixIn을 이용한 메서드 동적 추가)[https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---mixin%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A9%94%EC%84%9C%EB%93%9C-%EB%8F%99%EC%A0%81-%EC%B6%94%EA%B0%80]에서 기존 개체에 다른 메서드를 속성으로 추가하는 패턴을 보여드렸는데요, 클래스에서도 이 기법을 활용하여 메서드를 추가할 수 있습니다.
+
+다음 예는 `Data`에 `BasicOperationMixIn` 개체의 메서드들을 추가하는 예입니다. `new Data()`로 생성된 `data1`에 MixIn 하면 `data1`개체에만 반영되지만, `Data.prototype`에 반영하면 모든 개체에 반영되는 걸 알 수 있습니다.
+
+```javascript
+class Data {
+    constructor(a, b) { 
+        this.a = a;
+        this.b = b;
+    } 
+};
+
+const BasicOperationMixIn = {
+    plus: function() { // this를 사용하므로 화살표 함수를 사용하지 않습니다.
+        return this.a + this.b;
+    },
+    minus: function() {
+        return this.a - this.b;
+    },
+    multiply: function() {
+        return this.a * this.b;
+    },
+    divide: function() {
+        return this.a / this.b;
+    } 
+};
+
+const data1 = new Data(1, 2);
+// data1.plus(); // (X) plus 메서드가 없으므로 오류
+
+Object.assign(data1, BasicOperationMixIn); // data1 개체에 사칙 연산 추가
+console.log('개체에 MixIn', data1.plus() === 1 + 2);
+
+const data2 = new Data(3, 4);
+// data2.plus(); // (X) data1에만 사칙연산을 추가 했으므로 data2는 plus 메서드가 없으므로 오류
+Object.assign(Data.prototype, BasicOperationMixIn); // 프로토타입 개체에 사칙 연산 추가
+console.log('프로타입에 MixIn', data2.plus() === 3 + 4);
+
+console.log('프로타입에 MixIn했으므로, 이후로 생성되는 모든 개체에 적용됨', (new Data(5, 6)).plus() === 5 + 6);  
 ```
 
