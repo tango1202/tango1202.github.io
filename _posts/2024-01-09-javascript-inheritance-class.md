@@ -338,7 +338,7 @@ console.log('getter, setter로만 접근할 수 있습니다.', data.val === 1);
 
 # 클래스 MixIn
 
-(코딩 패턴 - MixIn을 이용한 메서드 동적 추가)[https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---mixin%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A9%94%EC%84%9C%EB%93%9C-%EB%8F%99%EC%A0%81-%EC%B6%94%EA%B0%80]에서 기존 개체에 다른 메서드를 속성으로 추가하는 패턴을 보여드렸는데요, 클래스에서도 이 기법을 활용하여 메서드를 추가할 수 있습니다.
+[코딩 패턴 - MixIn을 이용한 메서드 동적 추가](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---mixin%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A9%94%EC%84%9C%EB%93%9C-%EB%8F%99%EC%A0%81-%EC%B6%94%EA%B0%80)에서 기존 개체에 다른 메서드를 추가하는 패턴을 보여드렸는데요, 클래스에서도 이 기법을 활용하여 메서드를 추가할 수 있습니다.
 
 다음 예는 `Data`에 `BasicOperationMixIn` 개체의 메서드들을 추가하는 예입니다. `new Data()`로 생성된 `data1`에 MixIn 하면 `data1`개체에만 반영되지만, `Data.prototype`에 반영하면 모든 개체에 반영되는 걸 알 수 있습니다.
 
