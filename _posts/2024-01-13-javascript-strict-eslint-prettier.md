@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#12. [Javascript] strict mode, ESLint, Prettier"
+title: "#13. [Javascript] strict mode, ESLint, Prettier"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false

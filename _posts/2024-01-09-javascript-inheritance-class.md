@@ -10,16 +10,16 @@ sidebar:
 
 # 자바스크립트에서 상속이 필요한가?
 
-자바스크립트는 C++와 같은 상속을 지원하지 않습니다. 하지만, 프로토타입을 이용하여 상속한 것처럼 만들 수는 있는데요, 억지로 상속한 것처럼 만들다 보니 쓸데없이 부모 개체의 속성을 복제하는 등 비효율적입니다.
+자바스크립트는 C++와 같은 상속을 지원하지 않습니다. 하지만, 프로토타입을 이용하여 상속한 것처럼 만들 수는 있는데요, 억지로 상속한 것처럼 만들다 보니 쓸데없이 부모 개체의 속성을 복제하기 때문에 좀 비효율적입니다.
 
 공통된 기능은 상속보다는 [즉시 실행 함수를 이용한 모듈 개체](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%93%88%ED%99%94)를 통해 위임을 하도록 논리를 만드는게 좋습니다. [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)처럼요. 
 
-혹은 프로토타입 체인을 이용할 수도 있습니다.
+즉, 프로토타입 체인을 이용하는 건데요,
 
 C++에서는 `Base`로부터 상속한 `Derived` 클래스로 개체를 인스턴스화 하면, 속성과 메서드를 물려받게 됩니다.
 따라서 각 개체는 각각 `baseProperty, derivedProperty`를 갖게 되고, `baseMethed(), derivedMethod()`를 제공합니다. 메서드 정의는 `Base` 클래스와 `Derived` 클래스에서 제공하고요.
 
-다음은 C++의 상속과 자바스크립트의 프로토타입 체인의 비교 그림입니다. C++은 `baseProperty`가 각각 정의되는데, 자바스크립트는 `Obj1`과 `Obj2`가 동일한 `baseProperty`와 `baseMethod()`를 참조합니다. 근본 개념부터 다른 겁니다. 
+다음은 C++의 상속과 자바스크립트의 프로토타입 체인을 비교한 그림입니다. C++은 `baseProperty`가 각각 정의되는데, 자바스크립트는 `Obj1`과 `Obj2`가 동일한 `baseProperty`와 `baseMethod()`를 참조합니다. 근본 개념부터 다른 겁니다. 
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c222deb6-23e9-4250-bd7d-b1b1d8426a49)
 
@@ -94,6 +94,8 @@ for(int i = 0; i < 2; ++i) {
 1. 배열에 아무 타입이나 들어가니 굳이 Shape으로 추상화할 필요가 없습니다.
 2. 그냥 `draw()`를 호출하면 됩니다. 인터페이스로 만들 필요가 없습니다.
 
+코딩 계약은 좀 느슨해 보입니다만, 잘 동작합니다.
+
 ```javascript
 const Rectangle = (() => {  
     function Rectangle(l, t, w, h) { 
@@ -140,9 +142,9 @@ shapes.forEach(
 
     이 코드는 생성자 함수 `Base`를 `Base(baseProperty);`와 같이 일반 함수처럼 호출(*[생성자 함수] 참고*)합니다. 또한 `Base`함수의 `this`를 `Derived` 생성자 함수의 `this`(*리턴하는 개체*)로 바인딩 합니다. 즉, `Derived`가 리턴하는 개체에 `Base`의 속성을 추가하는 효과가 있습니다.
 
-2. `Object.setPrototypeOf`는 `Base.prototype`을 `Derived.prototype`에 복제합니다. 다만 `constructor`는 변경하지 않습니다. 이때 `Derived.prototype.__proto__`는 `Base.prototype`을 참조하여, `Derived.prototype`에 속성/메서드가 없다면, `Base.prototype`에서 찾게 합니다.
+2. `Object.setPrototypeOf()`는 `Base.prototype`을 `Derived.prototype`에 복제합니다. 다만 `constructor()`는 변경하지 않습니다. 이때 `Derived.prototype.__proto__`는 `Base.prototype`을 참조하여, `Derived.prototype`에 속성/메서드가 없다면, `Base.prototype`에서 찾게 합니다.
 
-실행 결과를 보면, `derived` 객체는 `baseProperty`, 복제하여 사용하고 있고, `Derived.prototype`은 `baseMethod()`를 복제하여 사용하고 있습니다.
+실행 결과를 보면, `derived` 객체는 `baseProperty`를 복제하여 사용하고 있고, `Derived.prototype`은 `baseMethod()`를 복제하여 사용하고 있습니다.
 
 ```javascript
 const Base = (() => {  
@@ -204,7 +206,7 @@ overridingDerived.baseMethod(); // Overriding 입니다 base from derived
 
 # 클래스를 이용한 상속(ECMAScript6)
 
-ECMAScript6 부터는 `class`문법이 도입되어 [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)보다 간결하게 코드를 작성할 수 있습니다. 실제로 C++같은 클래스를 제공하는 것은 아니며, [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)의 좀더 쉬운 코딩법을 제공할 뿐입니다. 
+ECMAScript6 부터는 `class`문법이 도입되어 [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)보다 간결하게 상속을 구현할 수 있습니다. 실제로 C++같은 클래스를 제공하는 것은 아니며, [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)의 좀더 쉬운 코딩법을 제공할 뿐입니다. 
 
 1. `constructor`는 생성자 함수의 역할을 합니다. 생성자 함수처럼 속성들을 초기화합니다.
 2. 메서드는 알아서 프로토타입에 선언됩니다.
@@ -311,7 +313,7 @@ data.inc();
 console.log('protected는 지원하지 않습니다.', data.val === 11);
 ```
 
-하지만 `private`는 지원합니다. 속성명 앞에 `#`을 붙이면 접근이 통제됩니다.
+하지만 `private`는 지원합니다. 속성명 앞에 `#`을 붙이면 접근이 통제되어 자기 자신에서만 사용할 수 있습니다.
 
 ```javascript
 class Base {
@@ -338,7 +340,7 @@ console.log('getter, setter로만 접근할 수 있습니다.', data.val === 1);
 
 # 클래스 MixIn
 
-[코딩 패턴 - MixIn을 이용한 메서드 동적 추가](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---mixin%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A9%94%EC%84%9C%EB%93%9C-%EB%8F%99%EC%A0%81-%EC%B6%94%EA%B0%80)에서 기존 개체에 다른 메서드를 추가하는 패턴을 보여드렸는데요, 클래스에서도 이 기법을 활용하여 메서드를 추가할 수 있습니다.
+[코딩 패턴 - MixIn을 이용한 메서드 동적 추가](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---mixin%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A9%94%EC%84%9C%EB%93%9C-%EB%8F%99%EC%A0%81-%EC%B6%94%EA%B0%80)에서 기존 개체에 다른 메서드를 추가하여 기능을 확장하는 패턴을 보여드렸는데요, 클래스에서도 이 기법을 활용하여 메서드를 추가할 수 있습니다. 
 
 다음 예는 `Data`에 `BasicOperationMixIn` 개체의 메서드들을 추가하는 예입니다. `new Data()`로 생성된 `data1`에 MixIn 하면 `data1`개체에만 반영되지만, `Data.prototype`에 반영하면 모든 개체에 반영되는 걸 알 수 있습니다.
 

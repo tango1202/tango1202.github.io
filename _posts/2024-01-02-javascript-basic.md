@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [Javascript] 기본 문법"
+title: "#2. [Javascript] 기본 문법(변수, 타입, 리터럴, 연산자, 형변환, 제어문, nullish, 옵셔널 체이닝"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false
@@ -19,7 +19,7 @@ sidebar:
 
 # 변수
 
-자바스크립트는 동적 타입 언어입니다. 따라서 변수의 타입은 동적으로 결정되는데요, 숫자형 변수로 사용하다가 문자열형 변수로 바꿔서 사용할 수도 있습니다.
+자바스크립트는 동적 타입 언어입니다. 따라서 변수의 타입이 동적으로 결정되는데요, 숫자형 변수로 사용하다가 문자열형 변수로 바꿔서 사용할 수도 있습니다.
 
 변수명은 관습적으로 카멜 표기법을 따르며, 문자, 숫자, `$`, `_`로 구성할 수 있고, 숫자의 경우 첫글자로 사용할 수 없습니다.
 
@@ -57,11 +57,11 @@ sidebar:
     z = 4; // #5. 선언하지 않고 사용. 전역 개체의 변수로 선언됩니다.
     ```
 
-엄청 유연합니다만, 코딩 계약이 엉망진창이 되버려 대규모 프로젝트에서는 오류를 찾아내기 힘들어 집니다. 따라서 [타입스크립트](https://tango1202.github.io/categories/typescript/)를 사용하시길 추천드립니다.
+엄청 유연합니다만, 코딩 계약이 엉망진창이 되버려 대규모 프로젝트에서는 오류를 찾아내기 힘들어 집니다. 따라서 [타입 스크립트](https://tango1202.github.io/categories/typescript/)를 사용하시길 추천드립니다.
 
 # 변수 호이스팅
 
-선언하지 않은 변수를 사용했을때, 변수 선언이 유효 범위의 시작점에 있는 것처럼 이동시켜 처리합니다. 이를 변수 호이스팅이라 하는데요, 초기값이 대입되지 않은 것처럼 선언되어 값이 할당되기 전까지는 `undefined`입니다.
+선언하지 않은 변수를 사용했을때, 변수 선언이 유효 범위의 시작점에 있는 것처럼 이동시켜 처리합니다. 이를 [변수 호이스팅](https://tango1202.github.io/javascript/javascript-basic/#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이라 하는데요, 초기값이 대입되지 않은 것처럼 선언되어 값이 할당되기 전까지는 `undefined`입니다.
 
 ```javascript
 console.log('변수 호이스팅', myHoistingVar); // undefined. hoisting되어 상단에 선언되고 값을 지정하지 않아 undefined 입니다.
@@ -91,7 +91,7 @@ console.log('변수 유효 범위', val); // 1
 
 # let과 const(ECMAScript6)
 
-`var`의 유연함과 유효 범위 문제는 대규모 프로젝트를 진행할 때 찾기 힘든 오류를 유발합니다. 이러한 문제를 보완하도록 EMAScript6 부터 `let`과 `const`가 보강되었습니다. 이제 `var`대신 `let`과 `const`를 쓰세요.
+`var`의 유연함과 [유효 범위](https://tango1202.github.io/javascript/javascript-basic/#%EB%B3%80%EC%88%98-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84) 문제는 대규모 프로젝트를 진행할 때 찾기 힘든 오류가 됩니다. 이러한 문제를 보완하도록 EMAScript6 부터 [let](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6)과 [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6)가 보강되었습니다. 이제 `var`대신 [let](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6)과 [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6)를 쓰세요.
 
 **let**
 
@@ -117,7 +117,7 @@ console.log('변수 유효 범위', val); // 1
     let val = 20; // (X) 오류 발생
     ```
 
-4. 변수 호이스팅시 오류가 발생합니다.
+4. [변수 호이스팅](https://tango1202.github.io/javascript/javascript-basic/#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)시 오류가 발생합니다.
 
     ```javascript
     console.log(val); // (X) 오류 발생
@@ -126,16 +126,16 @@ console.log('변수 유효 범위', val); // 1
 
 **const**
 
-1. `let`과 동일하나 변하지 않는 값을 선언합니다.
-2. `let`과 달리 선언과 동시에 초기화해야 합니다.
+1. [let](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6)과 동일하나 변하지 않는 값을 선언합니다.
+2. [let](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6)과 달리 선언과 동시에 초기화해야 합니다.
 
     ```javascript
     // const val; // (X) 오류 발생. 선언과 동시에 초기화해야 합니다.
     const val = 0; 
     ```
 
-3. 상수는 예외 발생 확률이 낮으므로 최대한 `const`로 사용하는게 좋습니다.
-4. `const` 개체 자체는 수정할 수 없지만, 개체의 속성은 수정할 수 있습니다.
+3. 상수는 예외 발생 확률이 낮으므로 최대한 [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6)로 사용하는게 좋습니다.
+4. [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6) 개체 자체는 수정할 수 없지만, ***개체의 속성은 수정할 수 있습니다.*** 즉, 하위 내용은 수정할 수 있어서 진정한 불변 개체(immutable)는 아닙니다.
 
     ```javascript
     const obj1 = {x: 1, y: 2};
@@ -177,11 +177,12 @@ console.log('변수 유효 범위', val); // 1
     * 문자열 내에 문자열 기호를 사용하고 싶은 경우에는 `'문자열 기호는 ""과 \'\' 입니다.'` 와 같이 `''`와 `""`쌍을 교차하여 사용하거나 `\`로 이스케이프 문자(*[https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String) 참고*)를 사용하면 됩니다. 
 
 4. `null`은 값이 할당되지 않았다는 의미로 개발자가 의도적으로 설정한 값입니다.
-5. `undefined`는 값이 할당되지 않아 자바스크립트에서 미리 초기화 한 값입니다. 다른 언어에서는 쓰레기값 이라고도 하죠. `var a = undefined;`와 같이 `undefined`를 사용하는건 권장되지 않습니다. `null`을 사용하세요.
-6. `{}` 안에 속성명을 주어 개체를 선언합니다.
-7. `[]` 안에 값을 나열하여 배열을 선언합니다. 이때 타입이 서로 다를 수도 있습니다.
+5. `undefined`는 값이 할당되지 않아 자바스크립트에서 미리 초기화 한 값입니다. 개체가 아예 선언되지 않았다라는 의미로 사용합니다.
+ `var a = undefined;`와 같이 `undefined`를 사용하는건 권장되지 않습니다. 왜냐면 이미 `a`를 선언했기 때문이죠. 이런 경우는 `null`을 사용하세요.
+6. `{}` 안에 속성명을 주어 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 선언합니다.
+7. `[]` 안에 값을 나열하여 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 선언합니다. 이때 타입이 서로 다를 수도 있습니다.
 8. `//`사이에 정규표현식을 사용할 수 있습니다.
-9. 래퍼 개체를 이용하여 기본 타입의 속성이나 메서드를 호출할 수 있습니다.
+9. 래퍼 개체를 이용하여 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)의 속성이나 메서드를 호출할 수 있습니다.
 
 ```javascript
 const num1 = 10.5; // #1. 실수
@@ -227,7 +228,7 @@ console.log('기본 타입에 .을 찍고 wrapper 개체의 속성이나 메서�
 
 # BigInt(ECMAScript11)
 
-(-2<sup>53</sup> - 1) ~ (2<sup>53</sup> - 1)범위보다 큰 정수를 저장합니다. 리터럴 끝에 `n`을 붙이면 됩니다.
+[number](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)의 범위인 (-2<sup>53</sup> - 1) ~ (2<sup>53</sup> - 1)범위보다 큰 정수를 저장합니다. 리터럴 끝에 `n`을 붙이면 됩니다.
 
 ```javascript
 const bigInt = 1234567890123456789012345678901234567890n;
@@ -244,7 +245,7 @@ console.log('bigInt : ', bigInt);
 console.log("'1' + '2'", '1' + '2' === '12'); // true
 ```
 
-또한 `+` 부호 연산자는 특별히 문자열을 숫자로 바꿀 수 있습니다.
+또한 `+` 부호 연산자는 특별히 문자열을 숫자로 바꿀 수 있습니다. `+'1'`은 숫자 `1`입니다.
 
 ```javascript
 function add(a, b) {
@@ -256,14 +257,16 @@ console.log("add('1', 2) 는 '12'", add('1', 2)); // '12'. 문자열을 더하�
 console.log("add(+'1', 2) 는 3", add(+'1', 2)); // 3. '1'을 숫자로 바꾸고 더함
 ```
 
-`==`비교는 값이 같은지 다른지를 검사할때 적극적으로 형변환 하기 때문에 의도치 않은 결과가 나올 수도 있습니다. 따라서 형변환 없이 비교하려면 `===`을 사용해야 합니다. 
+`==`비교는 값이 같은지 다른지를 검사할때 적극적으로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하기 때문에 의도치 않은 결과가 나올 수도 있습니다. 따라서 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 없이 비교하려면 `===`을 사용해야 합니다. 
 
 ```javascript
-console.log("1 == '1' 는 true", 1 === '1'); // true
+console.log("1 == '1' 는 적극적으로 형변환하여 true", 1 === '1'); // true
 console.log("1 === '1' 는 false", 1 === '1'); // false
 ```
 
-특히 `null` 검사시 뜻하지 않게 형변환되어 잘못 검사될 수 있으니 꼭 `===`을 사용하세요. 다음 예에서 `undefinedVal`은 `undefined` 값인데, `undefinedVal == null`로 검사하면 `true`가 되버립니다.
+특히 `null` 검사시 뜻하지 않게 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)되어 잘못 검사될 수 있으니 꼭 `===`을 사용하세요. 
+
+다음 예에서 `undefinedVal`은 `undefined` 값인데, `undefinedVal == null`로 검사하면 `true`가 되버립니다.
 
 ```javascript
 let undefinedVal;
@@ -326,24 +329,27 @@ console.log('toFixed() - 소수점 정밀도 오차 보정', 0.1 + 0.2, (0.1 + 0
 
 # 형변환
 
-자바스크립트는 값을 비교할때 적극적으로 형변환하기 때문에 뜻하지 않은 곳에서 오동작을 할 수 있습니다. 형변환은 타입에 기반한 **코딩 계약** 을 위반하기 때문에 형변환 하는건 언제나 좋지 않습니다. 최선을 다해서 형변환 하지 마세요.
+자바스크립트는 값을 비교할때 적극적으로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)하기 때문에 뜻하지 않은 곳에서 오동작을 할 수 있습니다. [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)은 타입에 기반한 **코딩 계약** 을 위반하기 때문에 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하는건 언제나 좋지 않습니다. 최선을 다해서 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하지 마세요.
 
 |항목|Number|Boolean|string|
 |--|--|--|--|
 |`null`|`0`|`false`|`'null'`|
 |`undefined`|`NaN`|`false`|`'undefined'`|
-|문자열 `'0'`|`0`|`true`|`'0'`|
 |숫자 `0`|`0`|`false`|`'0'`|
 |`NaN`|`NaN`|`false`|`'NaN'`|
+|문자열 `'0'`|`0`|`true`|`'0'`|
+|빈 문자열 `''`|`0`|`false`|`''`|
+|빈 배열 `''`|`0`|`true`|`''`|
 
-명시적으로 형변환 하고 싶은 경우에는 `Number()`, `String()`, `toString()`, `parseInt()`, `parseFloat()`등을 사용합니다.
+명시적으로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하고 싶은 경우에는 `Number()`, `String()`, `toString()`, `parseInt()`, `parseFloat()`등을 사용합니다.
 
 ```javascript
 console.log('null 형변환', Number(null) === 0, (!!null) === false, String(null) === 'null');
 console.log('undefined 형변환', isNaN(Number(undefined)), (!!undefined) === false, String(undefined) === 'undefined');
-console.log("문자열 '0' 형변환", Number('0') === 0, (!!'0') === true, String('0') === '0');
 console.log("숫자 0 형변환", Number(0) === 0, (!!0) === false, String(0) === '0');
 console.log("NaN 형변환", isNaN(Number(NaN)), (!!NaN) === false, String(NaN) === 'NaN');
+console.log("빈 문자열 형변환", Number('') === 0, (!!'') === false, String('') === '');
+console.log("빈 배열 형변환", Number([]) === 0, (!![]) === true, String([]) === '');
 
 console.log("Number('1') === 1", Number('1') === 1); // true. Number(), String()등을 이용하여 명시적으로 형변환 할 수 있습니다. 
 
@@ -400,6 +406,82 @@ MY_Label for () {
 continue; // 현지점에서 진행을 중단하고, 다시 조건식 부터 재실행
 ```
 
+# 개체 할당 축약 표현
+
+조건에 따라 값을 할당하는게 달라지면 다음과 같이 `if()`를 이용할 수 있습니다. 이때 #1과 같이 할당받을 변수에 미리 값을 초기화해야 합니다.
+
+```javascript
+let val = ''; // #1. 미리 선언합니다.
+const a = 'a';
+const b = 'b';
+
+const condition = true;
+if (condition) {
+    val = a;
+}
+else {
+    val = b;
+}
+
+console.log('조건이 참이므로 a 입니다.', val === a);
+```
+
+삼항 연산자를 이용하면, 선언과 동시에 초기화 할 수 있으며, 코드를 좀더 단순화 할 수 있습니다.
+
+```javascript
+const a = 'a';
+const b = 'b';
+
+const condition = true;
+const val = condition ? a : b; // 선언과 동시에 초기화할 수 있습니다.
+
+console.log('조건이 참이므로 a 입니다.', val === a);
+```
+
+주어진 값이 유효할 때만 사용하고, 그렇지 않은 경우는 기본값을 사용하는 논리도 많이 사용되는데요, 이런 경우도 #1, #2, #3, #4와 같이 삼항 연산자를 이용할 수 있습니다. 이때 #1, #2는 직접적으로 `null`인지만 검사하는데, #3과 #4는 `undefined`, 숫자 `0`, `NaN`, `빈 문자열`인 경우도 검사해 주니 주의하시고요(*[형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 참고*), #4가 기본값이 뒤에 있어 가독성이 좋습니다. 
+
+```javascript
+const a = null;
+
+const val1 = a === null ? 'default' : a; // #1
+console.log('a가 null 입니다.', val1 === 'default');
+
+const val2 = a !== null ? a : 'default';  // #2
+console.log('a가 null 입니다.', val2 === 'default');
+
+const val3 = !a ? 'default' : a; // #3. undefined, 숫자 0, NaN, 빈 문자열도 검사합니다. 
+console.log('a가 null 입니다.', val3 === 'default');
+
+const val4 = a ? a : 'default'; // #4. undefined, 숫자 0, NaN, 빈 문자열도 검사합니다. 기본값이 뒤에 있어 가독성이 좋습니다. 
+console.log('a가 null 입니다.', val4 === 'default');
+```
+
+기본값 설정을 삼항 연산자로 할 수도 있지만 논리 연산자를 이용하면 더 가독성 좋게 작성할 수 있습니다. 아주 많은 부분에서 사용되니 ***공식처럼 외워두세요***.
+
+다음 코드의 #1에서 `a || 'default'` 는 `a`를 평가하여 `true`이면 더이상의 평가는 중단하고, `false`이면, `||` 다음을 평가하라는 의미입니다. 즉, `a ? a : 'default'`와 결과가 같습니다. 주어진 값이 무효한 값이면 기본값을 사용할 때 좋습니다.
+
+한편 #2인 `a && 'default'`는 `a`를 평가하여 `true`이면 `&&` 다음을 평가하고, `false`이면 더이상의 평가는 중단하라는 의미입니다. 즉, `!a ? a : 'default'` 와 결과가 같습니다. 말이 좀 복잡한데요, 
+
+```javascript
+const a = null;
+
+const val1 = a || 'default'; // #1 
+console.log('a가 null 이면 다음식을 평가합니다.', val1 === 'default');
+
+const val2 = a && 'default'; // #2 
+console.log('a가 null 이면 다음식을 평가하지 않습니다.', val2 === a);
+```
+
+`a && 'default'`를 좀더 쉽게 풀어쓰면, 주어진 값이 유효할때에만 기본동작을 수행하게 할 때 좋습니다. `a && doSomething();` 처럼요.  
+
+```javascript
+const a = 'defalut';
+function doSomething() {
+    return 'something';
+}
+console.log('a가 true인 경우만 다음식을 평가합니다.', (a && doSomething()) === 'something');
+```
+
 # nullish(ECMAScript11)
 
 주어진 값의 유효성을 확인할때 `if()`등을 이용하여 조건 검사를 합니다.
@@ -428,7 +510,7 @@ function getColor2(obj) {
 }
 ```
 
-`null`과 `undefined`가 `boolean`으로 형변환하면 `false`이니 다음과 같이 간소화시킬 수도 있는데요,
+`null`과 `undefined`가 `boolean`으로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)하면 `false`이니 다음과 같이 간소화시킬 수도 있는데요,
 
 ```javascript
 function getColor3(obj) {
@@ -436,7 +518,7 @@ function getColor3(obj) {
 }
 ```
 
-하지만 `getColor3()`은 `obj.color === 0`인 경우 검은색 그대로 사용해야 하는데, `false`로 형변환되어 오동작을 하게 됩니다. 
+하지만 `getColor3()`은 `obj.color === 0`인 경우 검은색 그대로 사용해야 하는데, `false`로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)되어 오동작을 하게 됩니다. 
 
 ```javascript
 const parent = {

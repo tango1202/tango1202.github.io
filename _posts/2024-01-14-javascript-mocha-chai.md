@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#13. [Javascript] 자바스크립트 단위 테스트 구축(Mocha, Chai)"
+title: "#14. [Javascript] 자바스크립트 단위 테스트 구축(Mocha, Chai)"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false

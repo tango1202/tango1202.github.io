@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [Javascript] 배열, 문자열, Spread, 맵, 셋, Symbol"
+title: "#5. [Javascript] 배열, 문자열, Spread, 맵, 셋, Symbol, 구조 분해"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false
@@ -315,7 +315,7 @@ console.log('배열을 join() 함수로 문자열로 만듭니다.', arr.join(''
 
 # Spread(ECMAScript6) 
 
-배열등 [이터러블](https://tango1202.github.io/javascript/javascript-basic/#%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94%EA%B3%BC-for-ofecmascript6) 개체에 `...`을 붙이면, 대상을 개별 요소로 분리합니다.
+배열등 [이터러블](https://tango1202.github.io/javascript/javascript-basic/#%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94%EA%B3%BC-for-ofecmascript6) 개체에 `...`을 붙이면, 대상을 개별 요소로 분리하여 나열합니다.
 
 ```javascript
 const f = (a, b, c) => {
