@@ -75,6 +75,26 @@ name = 'Kim';
 expect(name).toBe('Kim');
 ```
 
+# Non-null 단언 연산자 !
+
+정적 타입 검사를 하다보면 `null` 이 아닌 상황임에도, 타입이 달라서 할당할 수 없다는 타입 오류가 발생할 수 있습니다.
+
+이러한 경우 `!`을 사용하여 `null`이 아님을 단언할 수 있습니다.
+
+```typescript
+let a: number | null = null; // 일반 변수
+
+const b = 10;
+if (b === 10) { // 상수 연산이므로 a는 null이 아닙니다.
+    a = 10; 
+}
+
+// const c: number = a; // (X) 컴파일 오류. Type 'number | null' is not assignable to type 'number'
+const c: number = a!; // (O) !으로 null이 아님을 단정합니다.
+
+expect(c).toBe(10);
+```
+
 # 함수 선언
 
 인자명 뒤에 `: 인자 타입`을 작성하고, 괄호 뒤에 `: 리턴 타입`을 작성합니다.

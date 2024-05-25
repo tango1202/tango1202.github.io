@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [Javascript] 기본 문법(변수, 타입, 리터럴, 연산자, 형변환, 제어문, nullish, 옵셔널 체이닝"
+title: "#2. [Javascript] 기본 문법(변수, 타입, 리터럴, 연산자, 형변환, 제어문, nullish, 옵셔널 체이닝)"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false
@@ -51,7 +51,7 @@ sidebar:
     x = 'Hello'; // #4. 타입을 바꿔서 할당할 수 있습니다.
     ```
 
-5. 아예 선언하지 않고 사용할 수 있습니다. 이 경우 전역 개체의 변수로 선언됩니다.
+5. 아예 선언하지 않고 사용할 수 있습니다. 이 경우 전역 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 변수로 선언됩니다.
 
     ```javascript
     z = 4; // #5. 선언하지 않고 사용. 전역 개체의 변수로 선언됩니다.
@@ -135,7 +135,7 @@ console.log('변수 유효 범위', val); // 1
     ```
 
 3. 상수는 예외 발생 확률이 낮으므로 최대한 [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6)로 사용하는게 좋습니다.
-4. [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6) 개체 자체는 수정할 수 없지만, ***개체의 속성은 수정할 수 있습니다.*** 즉, 하위 내용은 수정할 수 있어서 진정한 불변 개체(immutable)는 아닙니다.
+4. [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-constecmascript6) [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 자체는 수정할 수 없지만, ***[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성은 수정할 수 있습니다.*** 즉, 하위 내용은 수정할 수 있어서 진정한 불변(*immutable*)은 아닙니다. 이러한 특징 때문에 리액트 [개체/배열 State](https://tango1202.github.io/react/react-basic/#%EA%B0%9C%EC%B2%B4%EB%B0%B0%EC%97%B4-state) 관리에 주의가 필요합니다. 
 
     ```javascript
     const obj1 = {x: 1, y: 2};
@@ -154,7 +154,7 @@ console.log('변수 유효 범위', val); // 1
 
 # 타입과 리터럴
 
-`number, boolean, string, null, undefined, bigint, symbol`의 기본 타입(*Primitive Type*)이 있으며, 개체와 배열을 사용할 수 있습니다.
+`number, boolean, string, null, undefined, bigint, symbol`의 기본 타입(*Primitive Type*)이 있으며, [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)와 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 사용할 수 있습니다.
 
 1. 숫자형은 정수와 실수를 표현합니다.
 
@@ -177,12 +177,12 @@ console.log('변수 유효 범위', val); // 1
     * 문자열 내에 문자열 기호를 사용하고 싶은 경우에는 `'문자열 기호는 ""과 \'\' 입니다.'` 와 같이 `''`와 `""`쌍을 교차하여 사용하거나 `\`로 이스케이프 문자(*[https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String) 참고*)를 사용하면 됩니다. 
 
 4. `null`은 값이 할당되지 않았다는 의미로 개발자가 의도적으로 설정한 값입니다.
-5. `undefined`는 값이 할당되지 않아 자바스크립트에서 미리 초기화 한 값입니다. 개체가 아예 선언되지 않았다라는 의미로 사용합니다.
+5. `undefined`는 값이 할당되지 않아 자바스크립트에서 미리 초기화 한 값입니다. 개[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 아예 선언되지 않았다라는 의미로 사용합니다.
  `var a = undefined;`와 같이 `undefined`를 사용하는건 권장되지 않습니다. 왜냐면 이미 `a`를 선언했기 때문이죠. 이런 경우는 `null`을 사용하세요.
 6. `{}` 안에 속성명을 주어 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 선언합니다.
 7. `[]` 안에 값을 나열하여 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 선언합니다. 이때 타입이 서로 다를 수도 있습니다.
 8. `//`사이에 정규표현식을 사용할 수 있습니다.
-9. 래퍼 개체를 이용하여 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)의 속성이나 메서드를 호출할 수 있습니다.
+9. 래퍼 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 이용하여 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)의 속성이나 메서드를 호출할 수 있습니다.
 
 ```javascript
 const num1 = 10.5; // #1. 실수
@@ -296,16 +296,16 @@ console.log('isFinite(infinity) === false', isFinite(infinity) === false); // is
 |비교 연산자|`==, !=, <, >, <=, >=`|
 |일치 연산자|`===, !==`|
 |논리 연산자|`||, &&, !`<br/>* 논리 연산자는 단축 평가 됩니다. 예를 들어 `A || B` 시 `A`가 `true`이면 어짜피 논리 연산의 결과는 `true`이기 때문에 `B`는 실행되지 않습니다.|
-|삼항 연산자|`조건식 ? 표현식1 : 표현식2`<br/>* 표현식1 : 조건식이 `true`인 경우 실행합니다.<br/>* 표현식2 : 조건식이 `false`인 경우 실행|
+|삼항 연산자|`조건식 ? 표현식1 : 표현식2`<br/>* 표현식1 : 조건식이 `true`인 경우 실행합니다.<br/>* 표현식2 : 조건식이 `false`인 경우 실행합니다.|
 |쉼표 연산자|왼쪽부터 차례로 표현식을 실행하고, 마지막에 가장 오른쪽 표현식을 리턴합니다.|
 |괄호|괄호안의 연산 우선순위를 최우선으로 높입니다.|
-|`typeof`|피 연산자의 타입을 문자열(*`number, string, boolean, undefined, symbol, object, fuction`*)로 리턴합니다. `null`과 배열은 모두 `object`로 리턴됩니다.|
-|`instanceof`|주어진 개체가 프로토타입 체인중 일치하는 타입이 있는지 검사합니다.|
-|`in`|`'x' in obj`와 같이 사용시 `obj`개체안에 `x`속성이 있는지 검사합니다.|
+|`typeof`|피 연산자의 타입을 문자열(*`number, string, boolean, undefined, symbol, object, fuction`*)로 리턴합니다. `null`과 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 모두 `object`로 리턴됩니다.|
+|`instanceof`|주어진 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 [프로토타입](https://tango1202.github.io/javascript/javascript-prototype/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85) 체인중 일치하는 타입이 있는지 검사합니다.|
+|`in`|`'x' in obj`와 같이 사용시 `obj`[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)안에 `x`속성이 있는지 검사합니다.|
 
 # 수치 처리 - Math, toFixed()
 
-`Math` 개체를 이용하면, `min(), max(), floor(), ceil(), round()`등의 기본적인 수치 처리와 `pow(), log(), sqrt(), sin()`등의 수학 함수를 사용할 수 있습니다.  
+[Math](https://tango1202.github.io/javascript/javascript-basic/#%EC%88%98%EC%B9%98-%EC%B2%98%EB%A6%AC---math-tofixed)를 이용하면, `min(), max(), floor(), ceil(), round()`등의 기본적인 수치 처리와 `pow(), log(), sqrt(), sin()`등의 수학 함수를 사용할 수 있습니다.  
 
 ```javascript
 console.log('Math.min()', Math.min(1, 2, 3) === 1); // 인자로 전달한 값중 최소값
@@ -319,7 +319,7 @@ console.log('소수점 4째자리 반올림', Math.round(3.141592 * 1000) / 1000
 ```
 
 실수 연산은 정밀도에 따라 미세하게 다른 값이 될 수 있습니다. 
-예를 들어 `0.1 + 0.2`는 `0.3`이 아니라  `0.30000000000000004`가 됩니다. 
+예를 들어 `0.1 + 0.2`는 `0.3`이 아니라  `0.30000000000000001`이 될 수 있습니다. 
 
 이런 경우 `toFixed()`를 이용하여 고정된 자리수 만큼만 사용할 수 있습니다. 단, `toFixed()`는 문자열로 리턴하므로, 이를 다시 숫자로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)해주어야 합니다.
 
@@ -331,6 +331,8 @@ console.log('toFixed() - 소수점 정밀도 오차 보정', 0.1 + 0.2, (0.1 + 0
 
 자바스크립트는 값을 비교할때 적극적으로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)하기 때문에 뜻하지 않은 곳에서 오동작을 할 수 있습니다. [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)은 타입에 기반한 **코딩 계약** 을 위반하기 때문에 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하는건 언제나 좋지 않습니다. 최선을 다해서 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하지 마세요.
 
+특히 `boolean`은 조건식에 광범위하게 사용되기 때문에 변환 규칙을 잘 알아두셔야 합니다.(*저 같은 경우는 빈 문자열이 `false`로 변환되는걸 뒤늦게 알고 코드를 재점검하느라 고생한 적이 있습니다.*)
+
 |항목|Number|Boolean|string|
 |--|--|--|--|
 |`null`|`0`|`false`|`'null'`|
@@ -339,9 +341,7 @@ console.log('toFixed() - 소수점 정밀도 오차 보정', 0.1 + 0.2, (0.1 + 0
 |`NaN`|`NaN`|`false`|`'NaN'`|
 |문자열 `'0'`|`0`|`true`|`'0'`|
 |빈 문자열 `''`|`0`|`false`|`''`|
-|빈 배열 `''`|`0`|`true`|`''`|
-
-명시적으로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하고 싶은 경우에는 `Number()`, `String()`, `toString()`, `parseInt()`, `parseFloat()`등을 사용합니다.
+|빈 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) `''`|`0`|`true`|`''`|
 
 ```javascript
 console.log('null 형변환', Number(null) === 0, (!!null) === false, String(null) === 'null');
@@ -350,7 +350,11 @@ console.log("숫자 0 형변환", Number(0) === 0, (!!0) === false, String(0) ==
 console.log("NaN 형변환", isNaN(Number(NaN)), (!!NaN) === false, String(NaN) === 'NaN');
 console.log("빈 문자열 형변환", Number('') === 0, (!!'') === false, String('') === '');
 console.log("빈 배열 형변환", Number([]) === 0, (!![]) === true, String([]) === '');
+```
 
+명시적으로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하고 싶은 경우에는 `Number()`, `String()`, `toString()`, `parseInt()`, `parseFloat()`등을 사용합니다.
+
+```javascript
 console.log("Number('1') === 1", Number('1') === 1); // true. Number(), String()등을 이용하여 명시적으로 형변환 할 수 있습니다. 
 
 const val = 10;
@@ -408,7 +412,7 @@ continue; // 현지점에서 진행을 중단하고, 다시 조건식 부터 재
 
 # 개체 할당 축약 표현
 
-조건에 따라 값을 할당하는게 달라지면 다음과 같이 `if()`를 이용할 수 있습니다. 이때 #1과 같이 할당받을 변수에 미리 값을 초기화해야 합니다.
+조건에 따라 값을 할당하는게 달라지면 다음과 같이 `if()`를 이용할 수 있습니다. 이때 #1과 같이 할당받을 변수를 미리 선언해야 합니다.
 
 ```javascript
 let val = ''; // #1. 미리 선언합니다.
@@ -426,7 +430,7 @@ else {
 console.log('조건이 참이므로 a 입니다.', val === a);
 ```
 
-삼항 연산자를 이용하면, 선언과 동시에 초기화 할 수 있으며, 코드를 좀더 단순화 할 수 있습니다.
+[삼항 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하면, 선언과 동시에 초기화 할 수 있으며, 코드를 좀더 단순화 할 수 있습니다.
 
 ```javascript
 const a = 'a';
@@ -438,7 +442,7 @@ const val = condition ? a : b; // 선언과 동시에 초기화할 수 있습니
 console.log('조건이 참이므로 a 입니다.', val === a);
 ```
 
-주어진 값이 유효할 때만 사용하고, 그렇지 않은 경우는 기본값을 사용하는 논리도 많이 사용되는데요, 이런 경우도 #1, #2, #3, #4와 같이 삼항 연산자를 이용할 수 있습니다. 이때 #1, #2는 직접적으로 `null`인지만 검사하는데, #3과 #4는 `undefined`, 숫자 `0`, `NaN`, `빈 문자열`인 경우도 검사해 주니 주의하시고요(*[형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 참고*), #4가 기본값이 뒤에 있어 가독성이 좋습니다. 
+주어진 값이 유효할 때만 사용하고, 그렇지 않은 경우는 기본값을 사용하는 논리도 많이 사용되는데요, 이런 경우도 다음 코드의 #1, #2, #3, #4와 같이 삼항 연산자를 이용할 수 있습니다. 이때 #1, #2는 직접적으로 `null`인지만 검사하는데, #3과 #4는 `undefined`, 숫자 `0`, `NaN`, `빈 문자열`인 경우도 검사하니 주의하시고요(*[형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 참고*), #4가 기본값이 뒤에 있어 가독성이 좋습니다. 
 
 ```javascript
 const a = null;
@@ -449,16 +453,18 @@ console.log('a가 null 입니다.', val1 === 'default');
 const val2 = a !== null ? a : 'default';  // #2
 console.log('a가 null 입니다.', val2 === 'default');
 
-const val3 = !a ? 'default' : a; // #3. undefined, 숫자 0, NaN, 빈 문자열도 검사합니다. 
+const val3 = !a ? 'default' : a; // #3. null, undefined, 숫자 0, NaN, 빈 문자열도 검사합니다. 
 console.log('a가 null 입니다.', val3 === 'default');
 
-const val4 = a ? a : 'default'; // #4. undefined, 숫자 0, NaN, 빈 문자열도 검사합니다. 기본값이 뒤에 있어 가독성이 좋습니다. 
+const val4 = a ? a : 'default'; // #4. null, undefined, 숫자 0, NaN, 빈 문자열도 검사합니다. 기본값이 뒤에 있어 가독성이 좋습니다. 
 console.log('a가 null 입니다.', val4 === 'default');
 ```
 
-기본값 설정을 삼항 연산자로 할 수도 있지만 논리 연산자를 이용하면 더 가독성 좋게 작성할 수 있습니다. 아주 많은 부분에서 사용되니 ***공식처럼 외워두세요***.
+기본값 설정을 [삼항 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)로 할 수도 있지만 [논리 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하면 더 가독성 좋게 작성할 수 있습니다. 아주 많은 부분에서 사용되니 꼭 이해하고 ***공식처럼 외워두세요***.
 
-다음 코드의 #1에서 `a || 'default'` 는 `a`를 평가하여 `true`이면 더이상의 평가는 중단하고, `false`이면, `||` 다음을 평가하라는 의미입니다. 즉, `a ? a : 'default'`와 결과가 같습니다. 주어진 값이 무효한 값이면 기본값을 사용할 때 좋습니다.
+다음 코드의 #1에서 `a || 'default'` 는 `a`를 평가하여 `true`이면 더이상의 평가는 중단하고, `false`이면 `||` 다음을 평가하라는 의미입니다. 
+
+즉, `a ? a : 'default'`와 결과가 같습니다. 주어진 값이 무효한 값이면 기본값을 사용할 때 좋습니다.
 
 한편 #2인 `a && 'default'`는 `a`를 평가하여 `true`이면 `&&` 다음을 평가하고, `false`이면 더이상의 평가는 중단하라는 의미입니다. 즉, `!a ? a : 'default'` 와 결과가 같습니다. 말이 좀 복잡한데요, 
 
@@ -472,7 +478,7 @@ const val2 = a && 'default'; // #2
 console.log('a가 null 이면 다음식을 평가하지 않습니다.', val2 === a);
 ```
 
-`a && 'default'`를 좀더 쉽게 풀어쓰면, 주어진 값이 유효할때에만 기본동작을 수행하게 할 때 좋습니다. `a && doSomething();` 처럼요.  
+`a && 'default'`를 좀더 쉽게 풀어쓰면, 주어진 값이 유효할때에만 기본동작을 수행하라라는 의미로 해석하셔도 됩니다. `a && doSomething();` 처럼요.  
 
 ```javascript
 const a = 'defalut';
@@ -484,11 +490,11 @@ console.log('a가 true인 경우만 다음식을 평가합니다.', (a && doSome
 
 # nullish(ECMAScript11)
 
-주어진 값의 유효성을 확인할때 `if()`등을 이용하여 조건 검사를 합니다.
+[개체 할당 축약 표현](https://tango1202.github.io/javascript/javascript-basic/#%EA%B0%9C%EC%B2%B4-%ED%95%A0%EB%8B%B9-%EC%B6%95%EC%95%BD-%ED%91%9C%ED%98%84)에서 '||'을 사용하는 것이 간결하긴 하지만, 오동작을 할때가 있습니다.
 
-예를 들어 어떤 개체의 `color`값이 유효하지 않다면, `parant`의 `color`값을 이용한다고 해봅시다. 
+예를 들어 어떤 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 `color`값이 유효하지 않다면, `parant`의 `color`값을 이용한다고 해봅시다. 
 
-대략, 다음과 같이 작성할 수 있는데요,
+대략, `if()`로는 다음과 같이 작성할 수 있고,
 
 ```javascript
 
@@ -502,7 +508,7 @@ function getColor1(obj) {
 }
 ```
 
-혹은 다음과 같이 삼중 연산자를 이용할 수도 있습니다.
+[삼항 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)로는 다음과 같이 작성할 수 있고,
 
 ```javascript
 function getColor2(obj) {
@@ -510,7 +516,7 @@ function getColor2(obj) {
 }
 ```
 
-`null`과 `undefined`가 `boolean`으로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)하면 `false`이니 다음과 같이 간소화시킬 수도 있는데요,
+`null`과 `undefined`가 `boolean`으로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)하면 `false`이니 다음과 같이 [논리 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)로 간소화시킬 수도 있는데요,
 
 ```javascript
 function getColor3(obj) {
@@ -541,9 +547,9 @@ console.log('자기 자신의 color를 사용합니다.',
 ); 
 ```
 
-이러한 경우 `??` 연산자를 사용할 수 있습니다.
+이러한 경우 [?? 연산자](https://tango1202.github.io/javascript/javascript-basic/#nullishecmascript11)를 사용할 수 있습니다.
 
-`a ?? b`는 `a`가 `null` 도 아니고, `undefined`도 아니면, `a`를 사용하고, 그렇지 않으면, `b`를 사용합니다.
+`a ?? b`는 `a`의 `null`과 `undefined`여부만 검사합니다. 값이 `0`인지는 검사하지 않습니다. 따라서 `a`가 `null` 도 아니고, `undefined`도 아니면, `a`를 사용하고, 그렇지 않으면, `b`를 사용합니다. 
 
 ```javascript
 function getColor4(obj) {
@@ -558,7 +564,7 @@ console.log('자기 자신의 color를 사용합니다.',
 
 # 옵셔널 체이닝(ECMAScript11)
 
-주어진 개체가 유효한 경우 특정 속성을 사용하거나 메서드를 호출하고 싶은 경우가 있습니다. 이런 경우에도 `if()`를 이용하여 조건을 검사하는데요, depth가 많아질수록 코드가 좀 지저분해 집니다.
+주어진 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 유효한 경우 특정 속성을 사용하거나 메서드를 호출하고 싶은 경우가 있습니다. 이런 경우에도 `if()`를 이용하여 조건을 검사하는데요, depth가 많아질수록 코드가 좀 지저분해 집니다.
 
 ```javascript
 
@@ -590,7 +596,7 @@ console.log('person 속성은 지원하지 않습니다.', getName({person: 'lee
 console.log('null로부터 이름을 구합니다.', getName(null) === undefined);
 ```
 
-또한, `?.()`이나 `?.[]`와 함께 사용하여 주어진 `method()`나 배열이 있을때에만 사용 할 수 있습니다.
+또한, `?.()`이나 `?.[]`와 함께 사용하여 주어진 `method()`나 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)이 있을때에만 사용 할 수 있습니다.
 
 ```javascript
 obj.method?.(); // obj에 method가 선언되어 있으면 호출합니다.

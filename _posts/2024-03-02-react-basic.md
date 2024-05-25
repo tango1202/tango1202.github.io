@@ -285,7 +285,7 @@ export default MyState;
 
 `setter`로 수정할 때는 복제본을 사용해야 합니다. 그래야 [State](https://tango1202.github.io/react/react-basic/#state)가 원본에서 변경된 것을 알 수 있습니다. `number`와 같은 기본 타입인 경우 대입시 알아서 복제본이 사용됩니다만, 개체나 배열을 사용할 경우, 명시적으로 복제본을 사용해야 합니다.
 
-만약 개체나 배열을 다음과 같이 `const arr2 = arr1;`로 단순 대입하여 같은 개체를 참조하게 한 후 `arr2`를 `push()`하여 수정해 봈자 여전히 `arr1 === arr2`입니다. [State](https://tango1202.github.io/react/react-basic/#state)가 원본에서 변경된 것을 감지 하지 못하기 때문에 다시 렌더링하지 못합니다. 
+만약 개체나 배열을 다음과 같이 `const arr2 = arr1;`로 단순 대입하여 같은 개체를 참조하게 한 후 `arr2`를 `push()`하여 수정해 봤자 여전히 `arr1 === arr2`입니다. [State](https://tango1202.github.io/react/react-basic/#state)가 원본에서 변경된 것을 감지 하지 못하기 때문에 다시 렌더링하지 못합니다. 
 
 ```typescript
 const arr1 = [1, 2, 3];
