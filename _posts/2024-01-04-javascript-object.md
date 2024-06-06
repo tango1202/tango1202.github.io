@@ -10,13 +10,13 @@ sidebar:
 
 # 개체
 
-개체는 속성의 집합이며, 속성명(*키*)으로 속성값에 접근할 수 있습니다. 자바스크립트의 모든 것들은 개체이며, 심지어 함수도 개체입니다. 개체는 대입시 얕은 복사를 합니다.
+[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)는 속성의 집합이며, 속성명(*키*)으로 속성값에 접근할 수 있습니다. 자바스크립트의 모든 것들은 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이며, 심지어 함수도 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)입니다. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)는 대입시 얕은 복사를 합니다.
 
-1. 함수를 속성으로 사용할 수 있으며, 개체의 속성으로 사용되는 함수를 특별히 메서드라고 합니다.
-2. `this`를 사용하여 개체 자신을 나타낼 수 있습니다.
-3. `alert()`를 사용하면 `object Object`로 출력되고, `console.log()`를 사용하면 트리를 확장하여 개체의 속성명과 속성값을 확인할 수 있습니다.
-4. `new Object()`를 이용하여 생성한뒤 뒤늦게 개체의 속성들을 설정하는 방식도 있으나 코딩 계약에 좋지 않아 잘 사용하지 않습니다.
-5. 개체 내부에서만 사용하는 속성(*메서드*)는 관례적으로 밑줄(*_*)을 접두어로 사용합니다.
+1. 함수를 속성으로 사용할 수 있으며, [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성으로 사용되는 함수를 특별히 메서드라고 합니다.
+2. [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)를 사용하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 자신을 나타낼 수 있습니다.
+3. `alert()`를 사용하면 `object Object`로 출력되고, `console.log()`를 사용하면 트리를 확장하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성명과 속성값을 확인할 수 있습니다.
+4. `new Object()`를 이용하여 생성한뒤 뒤늦게 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성들을 설정하는 방식도 있으나 코딩 계약에 좋지 않아 잘 사용하지 않습니다.
+5. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 내부에서만 사용하는 속성(*메서드*)는 관례적으로 밑줄(*_*)을 접두어로 사용합니다.
 
 ```javascript
 const empty = {}; // 빈 개체
@@ -49,7 +49,7 @@ console.log('개체 메서드 호출 user2.getName()', user2.getName()); // Lee
 
 각 속성은 마침표로 접근할 수 있으며, 숫자나 `-`, 공백 문자를 사용한 경우에는 `[]`로 접근할 수 있습니다. 
 
-심지어, `for`, `let`과 같은 예약어를 사용할 수 있으며, `__proto__`만 사용할 수 없습니다.
+심지어, `for`, `let`과 같은 예약어를 사용할 수 있으며, [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)만 사용할 수 없습니다.
 
 ```javascript
 const user = {
@@ -81,7 +81,7 @@ console.log("속성 삭제 후 user.name === undefined", user.name === undefined
 
 # 속성 나열 : for-in
 
-`for-in`으로 속성명을 나열할 수 있고, 이를 개체의 키로 사용하면 속성값을 확인할 수 있습니다.
+`for-in`으로 속성명을 나열할 수 있고, 이를 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 키로 사용하면 속성값을 확인할 수 있습니다.
 
 ```javascript
 const user = {
@@ -109,7 +109,7 @@ for (let prop in arr) { // 배열 요소와 추가 속성이 나열됩니다.
 
 # defineProperty(), getOwnPropertyDescriptor()
 
-개체의 속성은 세부적으로 다음과 같은 플래그가 있습니다.
+[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성은 세부적으로 다음과 같은 플래그가 있습니다.
 
 |항목|내용|
 |--|--|
@@ -141,7 +141,7 @@ console.log('name의 enumerable은 false 입니다.', descriptor.enumerable === 
 ```
 # 개체 복제/동결
 
-개체는 기본적으로 얕은 복사를 하며, 동일 개체를 참조합니다. 따라서, `user2 = user1`은 사실 동일 개체를 참조하게 되며, `user2`를 수정하면, `user1`도 수정됩니다.
+[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)는 기본적으로 얕은 복사를 하며, 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 참조합니다. 따라서, `user2 = user1`은 사실 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 참조하게 되며, `user2`를 수정하면, `user1`도 수정됩니다.
 
 ```javascript
 const user1 = {name: 'Lee'};
@@ -181,7 +181,7 @@ console.log("하위 개체는 여전히 참조 user2.detail.addr === 'Incheon'",
 
 ```
 
-하위 개체까지 복제하고 싶으면, 하위 개체도 일일이 `Object.assign()`을 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 일일이 복제해야 합니다. 좀 번거롭죠. 대안으로 속도 성능은 떨어지지만, [JSON](https://tango1202.github.io/javascript/javascript-object/#json)을 이용하여 다음처럼 간편하게 복제할 수 있습니다.
+하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)까지 복제하고 싶으면, 하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)도 일일이 `Object.assign()`을 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 일일이 복제해야 합니다. 좀 번거롭죠. 대안으로 속도 성능은 떨어지지만, [JSON](https://tango1202.github.io/javascript/javascript-object/#json)을 이용하여 다음처럼 간편하게 복제할 수 있습니다.
 
 ```javascript
 const user1 = {
@@ -201,7 +201,7 @@ console.log("JSON으로 하위 개체도 복제 user1.detail.addr === 'Seoul'", 
 console.log("JSON으로 하위 개체도 복제 user2.detail.addr === 'Busan'", user2.detail.addr === 'Busan');    
 ```
 
-[생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 이용하여 개체를 생성하면, 내부적으로 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)를 사용하는데요, `assign()`이나 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)로 복제하면 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)가 `Object`로 초기화 되어 버립니다. 만약 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)도 동일하게 하려면, `Object.create()`를 함께 이용해야 합니다.(*[prototype](https://tango1202.github.io/javascript/javascript-prototype/) 참고*)
+[생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 이용하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 생성하면, 내부적으로 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)를 사용하는데요, `assign()`이나 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)로 복제하면 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)가 `Object`로 초기화 되어 버립니다. 만약 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)도 동일하게 하려면, `Object.create()`를 함께 이용해야 합니다.(*[prototype](https://tango1202.github.io/javascript/javascript-prototype/) 참고*)
 
 ```javascript
 function User(name) { // 생성자 함수.
@@ -216,13 +216,13 @@ console.log('spread로 개체 속성을 복제한 개체입니다.', user2 insta
 console.log('create()와 assign()으로 복제했습니다.', user3 instanceof User); // Object.create()를 이용하면 user개체로 복제됩니다.
 ```
 
-`Object.freeze()`로 개체를 수정할 수 없게끔 동결시킬 수 있습니다. 하지만, 하위 개체에는 적용되지 않습니다.
+`Object.freeze()`로 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 수정할 수 없게끔 동결시킬 수 있습니다. 하지만, 하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)에는 적용되지 않습니다.
 
-이외에도 개체 수정을 제한하는 다음과 같은 메서드 들이 있습니다.
+이외에도 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 수정을 제한하는 다음과 같은 메서드 들이 있습니다.
 
 |항목|내용|
 |--|--|
-|`preventExtensions()`|개체에 새로운 속성 추가를 막습니다.|
+|`preventExtensions()`|[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)에 새로운 속성 추가를 막습니다.|
 |`seal()`|새로운 속성 추가나 기존 속성 삭제를 막습니다.|
 |`freeze()`|새로운 속성 추가나 기존 속성 삭제, 속성값 수정을 막습니다.|
 |`isExtensible()`|`preventExtensions()`인지 확인합니다.|
@@ -253,7 +253,7 @@ console.log('setter로 이름을 수정했습니다.', user.name === 'name is Le
 
 # JSON
 
-`JSON`을 이용하면, `stringify()`함수로 개체를 문자열로 만들고, `parse()`함수로 문자열을 개체로 만들 수 있습니다.
+`JSON`을 이용하면, `stringify()`함수로 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 문자열로 만들고, `parse()`함수로 문자열을 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)로 만들 수 있습니다.
 
 ```javascript
 const obj = {
@@ -285,7 +285,7 @@ console.log('toJSON을 이용합니다.', JSON.stringify(obj) === '"name is Lee"
 
 # 개체의 생성자 함수
 
-동일한 구조의 개체를 여러개 생성하고자 할때 매번 리터럴 방식으로 생성하면, 속성값 선언이나 메서드 선언 코드가 중복 될 수 있습니다. 
+동일한 구조의 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 여러개 생성하고자 할때 매번 리터럴 방식으로 생성하면, 속성값 선언이나 메서드 선언 코드가 중복 될 수 있습니다. 
 
 ```javascript
 const user1 = {
@@ -300,12 +300,12 @@ const user2 = {
 };
 ```
 
-이러한 경우에는 생성자 함수를 통해 개체를 생성할 수 있습니다.
+이러한 경우에는 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 통해 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 생성할 수 있습니다.
 
 1. 일반 함수와 구분하기 위해 관습적으로 Pascal 표기법을 사용합니다.
-2. `this`는 생성해서 리턴되는 개체를 지칭합니다.
+2. [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)는 생성해서 리턴되는 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 지칭합니다.
 3. `new`로 함수를 호출합니다.
-4. 암시적으로 `this`개체를 생성하여 리턴하는 함수라고 이해하셔도 됩니다.
+4. 암시적으로 [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)를 생성하여 리턴하는 함수라고 이해하셔도 됩니다.
 
 ```javascript
 function User(name, number) { // #1. 일반 함수와 구분하기 위해 Pascal 표기법을 사용합니다.
@@ -324,7 +324,7 @@ console.log('user1.getName()', user1.getName()); // Kim
 console.log('user2.getName()', user2.getName()); // Lee
 ```
 
-`name`이나 `number`같은 데이터는 당연히 개체마다 따로 존재해야 하지만, 메서드까지 따로 존재합니다. 코드 중복은 해결되지만, 메모리에 중복 생성되는 거죠.
+`name`이나 `number`같은 데이터는 당연히 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)마다 따로 존재해야 하지만, 메서드까지 따로 존재합니다. 코드 중복은 해결되지만, 메모리에 중복 생성되는 거죠.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/62b04234-9868-4a15-ac4d-6ef78230347d)
 
@@ -332,10 +332,10 @@ console.log('user2.getName()', user2.getName()); // Lee
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d3cdbd51-a101-45a3-aa1f-36db27feb44f)
 
-또한, 생성자 함수를 호출할때 `new`를 사용하지 않는다면, 일반 함수처럼 호출되니 주의해야 합니다.
+또한, [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 호출할때 `new`를 사용하지 않는다면, 일반 함수처럼 호출되니 주의해야 합니다.
 
 1. 함수내에서 직접적인 `return`이 없으므로 `user`는 `undefined`입니다.
-2. `this`는 전역 개체이므로 전역 개체에 `name`속성을 추가합니다.
+2. [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)는 전역 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이므로 전역 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)에 `name`속성을 추가합니다.
 
 ```javascript
 function User (name) { 
@@ -348,7 +348,7 @@ console.log('this는 전역 개체이므로 전역 개체에 name을 저장합�
 ```
 # 속성 축약 표현(ECMAScript6)
 
-개체에 사용하는 변수가 속성명과 같은 경우 축약하여 표현할 수 있습니다.
+[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)에 사용하는 변수가 속성명과 같은 경우 축약하여 표현할 수 있습니다.
 
 즉,
 
@@ -374,7 +374,7 @@ console.log('속성 축약 표현', obj.x === 10 && obj.y === 20);
 ```
 # 속성명 동적 생성(ECMAScript6)
 
-리터럴 방식으로 개체 생성시 속성명(*키*)을 동적으로 생성할 수 있습니다. 이때 속성명 표현식은 `[]`로 묶습니다.
+리터럴 방식으로 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 생성시 속성명(*키*)을 동적으로 생성할 수 있습니다. 이때 속성명 표현식은 `[]`로 묶습니다.
 
 ```javascript
 const index = 10;
@@ -386,7 +386,7 @@ console.log('속성명 동적 생성', obj['myData-11'] === 1);
 
 # 메서드 축약 표현(ECMAScript6)
 
-개체의 메서드 선언시 `function`을 생략할 수 있습니다. 
+[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 메서드 선언시 `function`을 생략할 수 있습니다. 
 
 ```javascript
 const obj1 = {
@@ -401,7 +401,7 @@ const obj2 = {
 
 # Date
 
-`Date` 개체를 사용하면 날짜를 처리할 수 있습니다. 
+`Date 개체`를 사용하면 날짜를 처리할 수 있습니다. 
 
 내부적으로는 UTC 1970년 1월 1일 0시 0분 0초 이후의 밀리초로 데이터를 관리하는데요, 이때 `month`는 0 base 여서 0이면 1월이고, 1이면 2월이고 그렇습니다.
 

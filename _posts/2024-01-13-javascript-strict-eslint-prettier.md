@@ -27,7 +27,7 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 
 4. `with`문을 차단합니다.
 
-5. 일반 함수의 `this`를 `undefined`로 바인딩합니다.
+5. 일반 함수의 [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)를 `undefined`로 바인딩합니다.
 
 # ESLint
 

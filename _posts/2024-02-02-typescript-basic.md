@@ -118,7 +118,7 @@ expect(add3(1, 2)).toBe(3);
 
 # 타입 추론
 
-초기값으로부터 타입을 추론할 수 있다면, 굳이 타입을 명시할 필요는 없습니다. 타입스크립트가 추론하는게 더 정확하므로, 어지간하면 타입 명시없이 사용하는게 좋습니다.(*C++로 이와 비슷하게 `auto`를 선호합니다. [auto의 장점](https://tango1202.github.io/cpp/modern-cpp-auto-decltype/#auto%EC%9D%98-%EC%9E%A5%EC%A0%9)을 참고하세요.*)
+초기값으로부터 타입을 추론할 수 있다면, 굳이 타입을 명시할 필요는 없습니다. 타입스크립트가 추론하는게 더 정확하므로, 어지간하면 타입 명시없이 사용하는게 좋습니다.(*C++도 이와 비슷하게 `auto`를 선호합니다. [auto의 장점](https://tango1202.github.io/cpp/modern-cpp-auto-decltype/#auto%EC%9D%98-%EC%9E%A5%EC%A0%9)을 참고하세요.*)
 
 ```typescript
 const val = 'Kim'; // val은 string 타입입니다.

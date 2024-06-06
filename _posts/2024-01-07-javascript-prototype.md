@@ -14,7 +14,7 @@ sidebar:
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0a87cb27-0f62-41ec-8c49-49b795853e17)
 
-다음과 같이 `console.dir()`을 사용하면 브라우저 개발자 도구에서 개체의 프로토타입 개체(*`[[Prototype]]`*)를 확인할 수 있습니다.
+다음과 같이 `console.dir()`을 사용하면 브라우저 개발자 도구에서 개체의 프로토타입 개체(*[[[Prototype]]](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)*)를 확인할 수 있습니다.
 
 ```javascript
 const user = {
@@ -25,7 +25,7 @@ console.dir(user);
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/4a9a87fd-05ba-48e6-b17b-93f9454cb3b1)
 
-`[[Prototype]]`은 `__proto__` 속성으로 접근할 수 있으며, 초기에는 `Object.prototype`을 가리킵니다. 
+[[[Prototype]]](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)은 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor) 속성으로 접근할 수 있으며, 초기에는 `Object.prototype`을 가리킵니다. 
 
 ```javascript
 const user = {
@@ -35,13 +35,13 @@ const user = {
 console.log('프로토타입 user.__proto__ === Object.prototype', user.__proto__ === Object.prototype); // true
 ```
 
-# `[[Prototype]]`과 __proto__와 prototype과 constructor
+# [[Prototype]]과 __proto__와 prototype과 constructor
 
-생성자 함수로 생성한 개체와 프로토타입 개체를 체인으로 연결하기 위해 각 개체는 다음과 같이 구성됩니다.
+[생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)로 생성한 개체와 프로토타입 개체를 체인으로 연결하기 위해 각 개체는 다음과 같이 구성됩니다.
 
-* `prototype` : 함수 개체에만 있습니다. 생성자 함수인 경우 자신이 생성한 개체의 프로토타입 개체를 가리킵니다.
-* `[[Prototype]]` : 자신에게 해당 속성/메서드가 없는 경우 호출되는 프로토타입 개체입니다. `__proto__`로 접근합니다.
-* `constructor` : 프로토타입 개체에만 있습니다. 자신을 생성한 생성자 함수를 가리킵니다.
+* `prototype` : 함수 개체에만 있습니다. [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)인 경우 자신이 생성한 개체의 프로토타입 개체를 가리킵니다.
+* [[[Prototype]]](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor) : 자신에게 해당 속성/메서드가 없는 경우 호출되는 프로토타입 개체입니다. [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)로 접근합니다.
+* `constructor` : 프로토타입 개체에만 있습니다. 자신을 생성한 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 가리킵니다.
 
 ```javascript
 function User(name) { // 생성자 함수
@@ -58,7 +58,7 @@ console.log('프로토타입 개체의 constructor는 생성자 함수입니다.
 
 # 프로토타입 체인을 이용한 속성 참조
 
-다음은 개체의 속성/메서드에 접근할때 해당 속성/메서드가 없으면 프로토타입의 속성/메서드에 접근하는 예입니다. 생성자 함수인 `User`의 `prototype`에 `addr`속성을 추가하였고, `user.addr` 속성이 없으므로, `User.prototype.addr`을 사용합니다.
+다음은 개체의 속성/메서드에 접근할때 해당 속성/메서드가 없으면 프로토타입의 속성/메서드에 접근하는 예입니다. [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)인 `User`의 `prototype`에 `addr`속성을 추가하였고, `user.addr` 속성이 없으므로, `User.prototype.addr`을 사용합니다.
 
 ```javascript
 function User(name) {
@@ -122,7 +122,7 @@ console.log('기본타입인 String에 add 함수를 추가했습니다. String.
 
 # 프로토타입 변경
 
-프로토타입을 다른 개체로 변경할 수도 있습니다. 이때 `constructor`가 덮어써지므로, 생성자 함수로 설정해 줘야 합니다.
+프로토타입을 다른 개체로 변경할 수도 있습니다. 이때 `constructor`가 덮어써지므로, [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)로 설정해 줘야 합니다.
 
 ```javascript
 function User(name) {
@@ -148,7 +148,7 @@ console.log(user2.name === 'Lee' && user2.addr === 'Busan');
 
 # 프로토타입을 이용한 메서드 구현
 
-[개체의 생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)에서 생성자 함수를 이용하면 메서드가 중복 생성된다고 언급했었는데요,
+[개체의 생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)에서 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 이용하면 메서드가 중복 생성된다고 언급했었는데요,
 
 ```javascript
 fuction User(name) {
@@ -181,20 +181,20 @@ console.log('프로토타입 메서드 호출', user2.getName()); // Lee
 
 # 함수 호출 방식에 따른 this 변경
 
-`this`를 사용하여 개체 자신을 나타낼 수 있습니다만, 함수 호출 방식에 따라 약간씩 다르므로 주의해야 합니다. 
+[this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)를 사용하여 개체 자신을 나타낼 수 있습니다만, 함수 호출 방식에 따라 약간씩 다르므로 주의해야 합니다. 
 
-1. 일반 함수 : `this`는 전역 개체입니다.
-2. `call(), apply(), bind()` : `this`는 지정한 개체입니다.
-3. 개체 메서드 : `this`는 호출한 개체입니다.
-4. 생성자 함수 : `this`는 리턴하는 개체입니다.
-5. 중첩 함수 : `this`는 전역 개체입니다.
-6. 화살표 함수 : 화살표 함수는 `this`가 없습니다. 상위 개체에 `this`가 있다면 이를 따릅니다. 
+1. 일반 함수 : [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)는 전역 개체입니다.
+2. `call(), apply(), bind()` : [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)는 지정한 개체입니다.
+3. 개체 메서드 : [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)는 호출한 개체입니다.
+4. [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98) : [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)는 리턴하는 개체입니다.
+5. [중첩 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98) : [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)는 전역 개체입니다.
+6. [화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6) : [화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)는 [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)가 없습니다. 상위 개체에 [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)가 있다면 이를 따릅니다. 
 
-    * ***메서드를 화살표 함수로 사용하면 `this`는 상위 환경인 전역 개체입니다. 따라서 메서드와 생성자 함수는 화살표 함수로 선언하지 마세요.***
+    * ***메서드를 [화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)로 사용하면 [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)는 상위 환경인 전역 개체입니다. 따라서 메서드와 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)는 [화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)로 선언하지 마세요.***
 
-    * 메서드 내의 중첩 함수로 화살표 함수를 사용하면, `this`는 상위 환경인 메서드의 `this`입니다. 즉, 호출한 개체입니다.
+    * 메서드 내의 [중첩 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)로 [화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)를 사용하면, [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)는 상위 환경인 메서드의 [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)입니다. 즉, 호출한 개체입니다.
 
-7. `prototype` : `this`는 호출한 개체입니다.
+7. `prototype` : [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)는 호출한 개체입니다.
 
 ```javascript
 var name = 'Global'; // 전역 변수

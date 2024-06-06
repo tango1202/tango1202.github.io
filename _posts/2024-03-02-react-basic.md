@@ -57,7 +57,7 @@ sidebar:
     export default App;
     ```
 
-2. 컴포넌트는 관습적으로 파스칼 표기법으로 작성하며, 다음과 같이 화살표 함수를 사용할 수도 있습니다.
+2. 컴포넌트는 관습적으로 파스칼 표기법으로 작성하며, 다음과 같이 [화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)를 사용할 수도 있습니다.
 
     ```tsx
     const MyDiv = () => {
@@ -408,7 +408,7 @@ const MyProps = () => {
 export default MyProps;
 ```
 
-또한 기본값을 사용할 수도 있습니다.
+또한 [기본값](https://tango1202.github.io/javascript/javascript-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90ecmascript6)을 사용할 수도 있습니다.
 
 ```tsx
 const User = ({id, name = 'Kim'}: IProps) => {

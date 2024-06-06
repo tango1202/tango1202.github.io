@@ -38,7 +38,7 @@ npm install -D redux react-redux @reduxjs/toolkit
     };
     ```
 
-2. #4 : `state`의 기본값 인자로 초기값을 전달해야 합니다. 전달하지 않으면 `configureStore()`시 타입 오류가 발생합니다.
+2. #4 : `state`의 [기본값 인자](https://tango1202.github.io/javascript/javascript-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90ecmascript6)로 초기값을 전달해야 합니다. 전달하지 않으면 `configureStore()`시 타입 오류가 발생합니다.
 3. #6 : 리덕스의 `store` 개체를 생성합니다. `preloadedState`를 통해 초기값을 전달할 수 있습니다. 생성한 `store`는 #6-1와 같이 `Provider`에 전달합니다.
 4. #7, #8 : 각 컴포넌트에서 리덕스를 이용하므로 [Props](https://tango1202.github.io/react/react-basic/#props)를 사용할 필요가 없습니다.
 5. #7-1 : 리덕스 액션을 실행하기 위해 `dispatch`를 구합니다.

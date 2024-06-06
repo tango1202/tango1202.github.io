@@ -74,7 +74,7 @@ sidebar:
     ```
 
 * 모듈은 [strict mode](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#strict-mode)로 실행됩니다.
-* 모듈은 자신만의 유효 범위를 사용합니다. `export`되지 않은 것은 외부에서 사용할 수 없습니다.
+* 모듈은 자신만의 [유효 범위](https://tango1202.github.io/javascript/javascript-basic/#%EB%B3%80%EC%88%98-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84)를 사용합니다. `export`되지 않은 것은 외부에서 사용할 수 없습니다.
 * 여러곳에서 모듈을 사용하더라도 최초 호출시 단 한번만 실행됩니다. 따라서 모듈을 사용하는 곳이 여러곳일때 한곳에서 수정하면, 다른 곳에서 수정된 내용을 참조할 수 있습니다.
 
 다음은 모듈을 테스트하는 코드입니다.

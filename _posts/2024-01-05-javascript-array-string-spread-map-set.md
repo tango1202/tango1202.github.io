@@ -37,7 +37,7 @@ console.log('다차원 배열',
 ); 
 ```
 
-`Array()`생성자 함수로 생성할 수 있습니다.
+`Array()` [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)로 생성할 수 있습니다.
 
 ```javascript
 const arr = new Array(2); // 요소가 2개인 배열을 생성합니다.
@@ -198,7 +198,7 @@ console.log('[...arr]은 arr 요소들로 새로운 배열을 만듭니다. 값�
 |`arr.unshift()`|배열의 첫요소를 추가하고, 배열 갯수를 리턴합니다.|
 |`arr.shift()`|배열의 첫요소를 제거하고, 제거한 요소를 리턴합니다. 빈 배열이면 `undefined`를 리턴합니다.|
 |`arr.reverse()`|배열의 순서를 반대로 정렬합니다.|
-|`arr.slice(start = 0, end = this.length)`|`arr`에서 `[start ~ end)`인 요소를 배열로 만들어 리턴합니다.<br/>`start`가 음수이면 뒤에서부터의 인덱스입니다.<br/>기본값을 사용하면 원본 배열을 복제합니다.|
+|`arr.slice(start = 0, end = this.length)`|`arr`에서 `[start ~ end)`인 요소를 배열로 만들어 리턴합니다.<br/>`start`가 음수이면 뒤에서부터의 인덱스입니다.<br/>[기본값](https://tango1202.github.io/javascript/javascript-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90ecmascript6)을 사용하면 원본 배열을 복제합니다.|
 |`arr.splice(start, deleteCount = this.length - start, ...items)`|`arr`에서 `start`부터 `deleteCount` 만큼 삭제하고, 삭제한 요소들로 구성된 배열을 리턴합니다. 이때 `items`를 전달하면, 삭제한 위치에 추가합니다.|
 |`forEach(func)`|배열 요소를 순회하여 `func(value[, index[, array]])`을 호출합니다. `func()`함수는 배열 요소, 배열 인덱스, 원본 배열이 전달되며, 주로 `func(value)`와 같이 배열 요소만 사용합니다.|
 |`filter(func)`|배열 요소가 `func(value[, index[, array]]) === true`인 항목으로 구성된 배열을 리턴합니다. `func()`함수는 배열 요소, 배열 인덱스, 원본 배열이 전달되며, 주로 `func(value)`와 같이 배열 요소만 사용합니다.|
@@ -543,7 +543,7 @@ console.log('중첩 개체도 분해해서 읽습니다', name === 'Kim' && addr
 
 **기본값**
 
-구조 분해시 기본값을 설정할 수 있습니다.
+구조 분해시 [기본값](https://tango1202.github.io/javascript/javascript-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90ecmascript6)을 설정할 수 있습니다.
 
 ```javascript
 const obj = {
@@ -568,7 +568,7 @@ console.log('obj.x를 left에, obj.y를 top에 저장합니다.', left === 1 && 
 
 **함수 인자**
 
-함수의 인자에 구조 분해를 사용할 수 있습니다. 이럴 경우 기본값 설정의 자유도가 높아지고, 함수 호출 부에서는 인수의 순서가 아닌 속성명으로 인자를 매칭하기 때문에 가독성이 높아집니다.
+함수의 인자에 구조 분해를 사용할 수 있습니다. 이럴 경우 [기본값 인자](https://tango1202.github.io/javascript/javascript-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90ecmascript6) 설정의 자유도가 높아지고, 함수 호출 부에서는 인수의 순서가 아닌 속성명으로 인자를 매칭하기 때문에 가독성이 높아집니다.
 
 ```javascript
 // 함수에서는 기본값을 설정하면, 다음에 선언된 모든 인자에 기본값을 주어야 하지만,
