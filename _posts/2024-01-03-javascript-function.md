@@ -10,7 +10,7 @@ sidebar:
 
 # 함수
 
-함수는 #1의 함수 선언 방식과, #2의 함수 표현식 방식이 있습니다. 함수 표현식일 때는 관례적으로 함수명을 생략해서 사용합니다.(*함수명도 변수처럼 관습적으로 카멜 표기법을 사용합니다.*)
+[함수](https://tango1202.github.io/javascript/javascript-function/)는 #1의 함수 선언 방식과, #2의 함수 표현식 방식이 있습니다. 함수 표현식일 때는 관례적으로 함수명을 생략해서 사용합니다.(*함수명도 변수처럼 관습적으로 카멜 표기법을 사용합니다.*)
 
 어느 방식으로 사용하던 함수 호출 방식은 동일합니다. 가독성 측면에서는 #1이 좋지만, 저는 #2를 선호합니다. #2는 [함수 호이스팅](https://tango1202.github.io/javascript/javascript-function/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이 되지 않고, [타입스크립트](https://tango1202.github.io/categories/typescript/)와 함께 사용할때 함수 [인터페이스](https://tango1202.github.io/typescript/typescript-basic/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 지정할 수 있거든요.
 

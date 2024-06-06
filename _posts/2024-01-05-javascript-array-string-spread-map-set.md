@@ -10,13 +10,13 @@ sidebar:
 
 # 배열
 
-배열은 여러개의 값을 순차적으로 표현합니다. 대입시 얕은 복사를 합니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 여러개의 값을 순차적으로 표현합니다. 대입시 얕은 복사를 합니다.
 
-1. #1 : `[]`로 빈 배열을 생성합니다.
-2. #2 : `[]`에 각 요소를 쉼표로 구분하여 배열을 생성합니다. 다른 언어와 달리 타입이 다르더라도 하나의 배열로 사용할 수 있습니다.
+1. #1 : `[]`로 빈 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 생성합니다.
+2. #2 : `[]`에 각 요소를 쉼표로 구분하여 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 생성합니다. 다른 언어와 달리 타입이 다르더라도 하나의 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)로 사용할 수 있습니다.
 3. #3 : `length`로 길이를 구할 수 있습니다.
 4. #4 : `[]`로 각 요소에 접근하여 값을 수정할 수 있습니다.
-5. #5 : `[[], []]`로 다차원 배열을 생성하고 `[][]`로 접근할 수 있습니다.
+5. #5 : `[[], []]`로 다차원 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 생성하고 `[][]`로 접근할 수 있습니다.
 
 ```javascript
 const empty = []; // #1. 빈 배열입니다.
@@ -46,13 +46,13 @@ console.log("Array()로 생성할 수 있습니다", arr.length === 2);
 
 # 배열 요소 추가/삭제
 
-C++언어등에서는 배열의 크기가 컴파일 타임에 정적으로 결정되지만, 자바스크립트에서는 동적으로 크기가 정해지는 컨테이너입니다. 
+C++언어등에서는 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)의 크기가 컴파일 타임에 정적으로 결정되지만, 자바스크립트에서는 크기가 동적으로 결정됩니다. 
 
-또한 C++언어등에서는 배열 크기가 확정된 후 배열 크기 내에서 요소를 수정했는데요, 자바스크립트에서는 요소 추가에 따라 배열 크기가 결정됩니다.
+또한 C++언어등에서는 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기가 확정된 후 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기 내에서 요소를 수정할 수 있지만, 자바스크립트에서는 이런 제약이 없습니다. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기와 상관없이 아무곳에나 요소를 대입할 수 있고 그에 따라 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기가 결정됩니다.
 
-1. #1 : 주어진 인덱스 요소가 없다면 추가합니다. 이때 #1-1과 같이 배열 크기가 조정되며, #1-2와 같이 나머지 요소는 `undefined`로 추가됩니다. 하지만, 이런 방법으로 사용하는 건 좋지 않습니다. 배열답게 여러개의 데이터를 순차적으로 저장하세요.
+1. #1 : 주어진 인덱스 요소가 없다면 추가합니다. 이때 #1-1과 같이 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기가 조정되며, #1-2와 같이 나머지 요소는 `undefined`로 추가됩니다. 하지만, 이런 방법으로 사용하는 건 좋지 않습니다. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 답게 여러개의 데이터를 순차적으로 저장하세요.
 
-2. #2 : `delete`로 삭제할 수는 있으나, 배열 요소 크기는 변경하지 않고, `undefineed`로 만들어 줍니다.
+2. #2 : `delete`로 삭제할 수는 있으나, [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기는 조정되지 않으며, `undefineed`로 만들어 줍니다.
 
 ```javascript
 const arr = []; // 빈 배열입니다.
@@ -65,7 +65,9 @@ console.log('3번 인덱스를 delete 했지만 크기는 4입니다', arr.lengt
 console.log('3번 인덱스는 delete 되어 undefined입니다', arr[3] === undefined);
 ```
 
-배열의 끝에 요소를 추가하기 위해서 `push()`를 이용하거나 `length` 위치에 직접 대입하는 방법이 있습니다. `push()`는 여러개의 요소도 추가할 수 있어서, 1개만 추가할때에는 `length`를 사용하는게 성능상 좋습니다. 배열의 마지막 요소는 `pop()`을 이용하여 삭제할 수 있습니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)의 끝에 요소를 추가하기 위해서 `push()`를 이용하거나 `length` 위치에 직접 대입하는 방법이 있습니다. `push()`는 여러개의 요소도 추가할 수 있어서, 1개만 추가할때에는 `length`를 사용하는게 성능상 좋습니다. 
+
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)의 마지막 요소는 `pop()`을 이용하여 삭제할 수 있습니다.
 
 ```javascript
 const arr = []; 
@@ -82,7 +84,7 @@ const removed = arr.pop();
 console.log('배열의 마지막 요소를 제거합니다.', arr.length === 4 && removed == 200);
 ```
 
-`unshift()`와 `shift()`를 이용하면 배열의 앞에 요소를 추가/삭제할 수 있습니다. 이때 전체 배열 요소의 인덱스를 재지정해야 하기 때문에 속도 성능은 떨어집니다.
+`unshift()`와 `shift()`를 이용하면 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)의 앞에 요소를 추가/삭제할 수 있습니다. 이때 전체 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 요소의 인덱스를 재지정해야 하기 때문에 속도 성능은 떨어집니다.
 
 ```javascript
 const arr = [0, 1, 2, 3]; 
@@ -92,7 +94,7 @@ const removed = arr.shift();
 console.log('shift로 제거합니다.', arr.length === 4 && arr[0] === 0 && removed === 100);
 ```
 
-`splice()`를 이용하면 배열의 중간에 추가와 삭제를 할 수 있습니다. 삭제된 요소들로 구성된 배열을 리턴합니다.
+`splice()`를 이용하면 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)의 중간에 요소를 추가/삭제할 수 있으며, 삭제된 요소들로 구성된 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 리턴합니다.
 
 ```javascript
 const arr = [0, 1, 2, 3]; 
@@ -102,7 +104,7 @@ removed = arr.splice(1, 0, 10, 20); // 1번 index 부터 0개 요소를 지운�
 console.log('splice로 추가합니다.', arr.length === 4 && arr[0] === 0 && arr[1] === 10 && arr[2] === 20 && arr[3] === 3, removed.length === 0);
 ```
 
-`filter()`를 이용해서 주어진 조건에 맞는 요소로 구성된 배열을 구할 수 있습니다. 즉, 조건에 맞지 않은 배열 요소는 삭제한 효과를 볼 수 있습니다.
+`filter()`를 이용해서 주어진 조건에 맞는 요소로 구성된 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 구할 수 있습니다. 즉, 조건에 맞지 않은 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 요소는 삭제한 효과를 볼 수 있습니다.
 
 ```javascript
 const arr = [0, 1, 2, 3]; 
@@ -112,7 +114,7 @@ console.log('filter로 2보다 작은 것만 필터링합니다.', filtered.leng
 
 # 배열 요소 나열
 
-다음의 5가지 방법이 있습니다. [for-in](https://tango1202.github.io/javascript/javascript-object/#%EC%86%8D%EC%84%B1-%EB%82%98%EC%97%B4--for-in)은 속성명을 나열하는 용도입니다. 배열 요소 나열에는 성능이 떨어지니 사용하지 마세요. 
+다음의 5가지 방법이 있습니다. 이중 [for-in](https://tango1202.github.io/javascript/javascript-object/#%EC%86%8D%EC%84%B1-%EB%82%98%EC%97%B4--for-in)은 원래 속성명을 나열하는 용도로 사용하는 것입니다. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 요소 나열에는 성능이 떨어지니 사용하지 마세요. 
 
 ```javascript
 const arr = [1, 2, 3];
@@ -138,7 +140,7 @@ console.log('reduce()로 요소 합계 계산', result === 1 + 2 + 3);
 
 # 배열 변형
 
-`map()`을 이용하면, 배열에 각 요소에 함수를 적용하고, 함수의 결과값으로 구성된 배열을 얻을 수 있습니다.
+`map()`을 이용하면, [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)의 각 요소에 [함수](https://tango1202.github.io/javascript/javascript-function/)를 적용하고, [함수](https://tango1202.github.io/javascript/javascript-function/)의 리턴값으로 구성된 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 얻을 수 있습니다.
 
 ```javascript
 const arr = [1, 2, 3];
@@ -146,7 +148,7 @@ const result = arr.map((item) => item * 10);
 console.log('map으로 각 요소에 10을 곱함', result[0] === 10 && result[1] === 20 && result[2] === 30);
 ```
 
-`filter()`와 함께 결합하여 사용할 수도 있습니다. 다음은 `data`의 `value`가 `10`보다 큰 것들의 `id`들로 구성된 배열을 리턴한 예입니다.
+`filter()`와 함께 결합하여 사용할 수도 있습니다. 다음은 `data`의 `value`가 `10`보다 큰 것들의 `id`들로 구성된 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 리턴한 예입니다.
 
 ```javascript
 const datas = [
@@ -162,7 +164,7 @@ console.log('filter후 map을 적용', result[0] === 11 && result[1] === 12);
 
 # 배열 복제
 
-배열은 얕은 복사를 합니다. 따라서, `const other1 = arr;`를 하면, `other1`과 `arr`은 같은 개체를 참조합니다. 요소를 복제하려면 다음과 같이 `from()`이나 `slice()`를 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용합니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 얕은 복사를 합니다. 따라서, `const other1 = arr;`를 하면, `other1`과 `arr`은 같은 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 참조합니다. 요소를 복제하려면 다음과 같이 `from()`이나 `slice()`를 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용합니다.
 
 ```javascript
 const arr = [1, 2, 3];
@@ -208,7 +210,7 @@ console.log('[...arr]은 arr 요소들로 새로운 배열을 만듭니다. 값�
 
 # 개체와 배열간 변환
 
-`Object.entries()`와 `Object.fromEntries()`를 이용하면 개체와 배열간 변환을 손쉽게 할 수 있습니다.
+`Object.entries()`와 `Object.fromEntries()`를 이용하면 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)와 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)간 변환을 손쉽게 할 수 있습니다.
 
 |항목|내용|
 |--|--|
@@ -230,7 +232,7 @@ console.log('fromEntries()로 개체를 만듭니다.', Object.fromEntries([['na
 
 # 유사 배열
 
-배열은 아니지만 배열처럼 `length`와 `[]`을 사용할 수 있는 개체를 유사 배열이라고 합니다. 대표적으로는 문자열이 있습니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 아니지만 배열처럼 `length`와 `[]`을 사용할 수 있는 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 [유사 배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)이라고 합니다. 대표적으로는 [문자열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%AC%B8%EC%9E%90%EC%97%B4)이 있습니다.
 
 ```javascript
 const str = 'Kim';
@@ -242,9 +244,9 @@ for (let i = 0; i < str.length; ++i) {
 
 # 문자열
 
-문자열은 `length`와 `[]`을 제공하는 [유사 배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)이어서 배열과 관련한 함수들을 이용할 수 있으며 `for of`를 이용하여 나열할 수 있습니다.
+[문자열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%AC%B8%EC%9E%90%EC%97%B4)은 `length`와 `[]`을 제공하는 [유사 배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)이어서 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)과 관련한 [함수](https://tango1202.github.io/javascript/javascript-function/#%ED%95%A8%EC%88%98)들을 이용할 수 있으며 [for of](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C-%EB%82%98%EC%97%B4)를 이용하여 나열할 수 있습니다.
 
-주요 함수들은 다음과 같습니다.
+주요 [함수](https://tango1202.github.io/javascript/javascript-function/#%ED%95%A8%EC%88%98)들은 다음과 같습니다.
 
 |항목|내용|
 |--|--|
@@ -298,7 +300,7 @@ const result3 = datas.split(/,| /).filter((data) => data != '');
 console.log('파싱 후 필터링', result3[0] === '홍길동' && result3[1] === '성춘향' && result3[2] === '이몽룡'); // #3
 ```
 
-문자열에서 특정 위치의 문자를 `[]`로 접근하여 수정할 수 없습니다. 다음처럼 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 문자 배열로 만든 후 수정하고, 이를 다시 `join()`을 이용하여 문자열로 만들어야 합니다.
+[문자열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%AC%B8%EC%9E%90%EC%97%B4)에서 특정 위치의 문자를 `[]`로 접근하여 수정할 수 없습니다. 다음처럼 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 문자 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)로 만든 후 수정하고, 이를 다시 `join()`을 이용하여 [문자열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%AC%B8%EC%9E%90%EC%97%B4)로 만들어야 합니다.
 
 ```javascript
 const str = 'abc';
@@ -315,7 +317,7 @@ console.log('배열을 join() 함수로 문자열로 만듭니다.', arr.join(''
 
 # Spread(ECMAScript6) 
 
-배열등 [이터러블](https://tango1202.github.io/javascript/javascript-basic/#%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94%EA%B3%BC-for-ofecmascript6) 개체에 `...`을 붙이면, 대상을 개별 요소로 분리하여 나열합니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)등 [이터러블](https://tango1202.github.io/javascript/javascript-basic/#%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94%EA%B3%BC-for-ofecmascript6) 개체에 `...`을 붙이면, 대상을 개별 요소로 분리하여 나열합니다.
 
 ```javascript
 const f = (a, b, c) => {
@@ -325,7 +327,7 @@ const f = (a, b, c) => {
 console.log('배열 [1, 2, 3]을 나열해서 전달합니다', f(...[1, 2, 3]) === 1 + 2 + 3); 
 ```
 
-Spread를 이용하면 배열 처리를 좀더 단순하게 할 수 있습니다. 
+[Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하면 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 처리를 좀더 단순하게 할 수 있습니다. 
 
 ```javascript
 const arr = [1, 2, 3];
@@ -337,7 +339,7 @@ console.log('기존 배열에 새로운 값들을 추가한 새로운 배열 리
 console.log('기존 배열에 새로운 배열을 추가한 새로운 배열 리턴', [...arr, [6, 7]]); // [1, 2, 3, 4, 5, [6, 7]]
 ```
 
-배열뿐만 아니라 개체도 분해해서 나열할 수 있습니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)뿐만 아니라 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)도 분해해서 나열할 수 있습니다.
 
 ```javascript
 console.log('개체를 복제하지만, prototype은 복제되지 않습니다', {...{ x: 1, y: 2 } }); // { x: 1, y: 2 } 
@@ -350,7 +352,7 @@ console.log('속성을 추가한 새 개체를 생성합니다', { ...{ x: 1, y:
 
 # Symbol(ECMAScript6)
 
-[Symbol](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#symbolecmascript6)은 ECMAScript6에 추가된 타입으로서 유일한 Id로 사용될 값을 생성할때 사용합니다. 서로 다른 값임을 보장하며, 문자열로 변환시에는 그냥 `Symbol()`로 변환되기 때문에 서로 다른 값인지 확인할 수 없습니다. 또한 `Symbol('my')`와 같이 특정 설명을 주어 주어진 설명에 대해 유일한 값을 생성할 수 있습니다.
+[Symbol](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#symbolecmascript6)은 ECMAScript6에 추가된 타입으로서 유일한 Id로 사용될 값을 생성할때 사용합니다. 서로 다른 값임을 보장하며, [문자열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%AC%B8%EC%9E%90%EC%97%B4)로 변환시에는 그냥 `Symbol()`로 변환되기 때문에 서로 다른 값인지 확인할 수 없습니다. 또한 `Symbol('my')`와 같이 특정 설명을 주어 주어진 설명에 대해 유일한 값을 생성할 수 있습니다.
 
 ```javascript
 const val1 = Symbol();
@@ -363,7 +365,7 @@ const val4 = Symbol('my');
 console.log('my로 구분한 Symbol입니다.', val3 != val4); 
 ```
 
-`Symbol.for()`를 이용하면 전역적인 `Symbol`을 만들며, 주어진 `key`에 대해 동일한 `Symbol`을 구합니다. 이를 이용하면, 전역적인 데이터를 관리할 수 있습니다. 
+`Symbol.for()`를 이용하면 전역적인 [Symbol](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#symbolecmascript6)을 만들며, 주어진 `key`에 대해 동일한 [Symbol](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#symbolecmascript6)을 구합니다. 이를 이용하면, 전역적인 데이터를 관리할 수 있습니다. 
 
 다음은 `myData`를 키로 하여 `globalObj`의 속성에 값을 저장하고 불러오는 예입니다.
 
@@ -405,13 +407,13 @@ console.log('hint로 default 사용하여 변환합니다.', user + 100); // def
 
 # iterable과 for-of(ECMAScript6)
 
-배열이나 문자열은 `for of`를 이용하여 각 요소를 나열할 수 있었는데요, 이렇게 나열할 수 있는 개체를 `iterable`이라고 합니다. `iterable`이 되려면 특별히 `Symbol.iterator` 속성인 메서드가 제공되어야 합니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)이나 [문자열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%AC%B8%EC%9E%90%EC%97%B4)은 [for of](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C-%EB%82%98%EC%97%B4)를 이용하여 각 요소를 나열할 수 있었는데요, 이렇게 나열할 수 있는 개체를 [iterable](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#iterable%EA%B3%BC-for-ofecmascript6)이라고 합니다. [iterable](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#iterable%EA%B3%BC-for-ofecmascript6)이 되려면 특별히 `Symbol.iterator` 속성인 메서드가 제공되어야 합니다.
 
-다음은 `myData`에 `iterable`을 구현한 예입니다.
+다음은 `myData`에 [iterable](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#iterable%EA%B3%BC-for-ofecmascript6)을 구현한 예입니다.
 
 1. #1 : `Symbol.iterator`인 메서드를 만듭니다.
 2. #2 : `next()`가 있는 개체를 리턴합니다.
-3. #3 : `next()`는 `for of`시 순회하며 호출됩니다. 리턴시 `done`과 `value`로 구성된 개체를 리턴하는데요, `done`은 순회가 끝났는지의 여부를 나타내고, `value`는 순회중인 항목의 값을 나타냅니다.
+3. #3 : `next()`는 [for of](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C-%EB%82%98%EC%97%B4)시 순회하며 호출됩니다. 리턴시 `done`과 `value`로 구성된 개체를 리턴하는데요, `done`은 순회가 끝났는지의 여부를 나타내고, `value`는 순회중인 항목의 값을 나타냅니다.
 
 ```javascript
 const myData = {
@@ -439,7 +441,7 @@ for (const item of myData) {
 }
 ```
 
-`iterable`개체는 `Array.from()`을 이용하여 배열로 만들 수 있습니다.
+[iterable 개체](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#iterable%EA%B3%BC-for-ofecmascript6)는 `Array.from()`을 이용하여 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)로 만들 수 있습니다.
 
 ```javascript
 const arr = Array.from(myData);
@@ -448,7 +450,7 @@ console.log('Array.from()으로 배열로 만들 수 있습니다.', Array.isArr
 
 # Map(ECMAScript6)
 
-Map은 키와 값을 쌍으로 관리하는 자료구조 입니다. `set()`으로 값을 저장하고, `get()`으로 값을 구합니다. 개체를 키로 사용할 수도 있으며, `forEach()`로 나열할 수 있습니다.
+[Map](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#mapecmascript6)은 키와 값을 쌍으로 관리하는 자료구조 입니다. `set()`으로 값을 저장하고, `get()`으로 값을 구합니다. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 키로 사용할 수도 있으며, `forEach()`로 나열할 수 있습니다.
 
 ```javascript
 const map = new Map();
@@ -466,7 +468,7 @@ console.log('값이 동일한 다른 개체로는 참조할 수 없습니다. un
 map.forEach((value, key) => console.log('Map을 forEach로 나열합니다.', key, value));
 ```
 
-`Object.entries()`를 이용하면, 개체를 Map으로 바꿀 수 있으며, `Object.fromEntries()`를 이용하여 Map을 개체로 변경할 수 있습니다.
+`Object.entries()`를 이용하면, [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 [Map](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#mapecmascript6)으로 바꿀 수 있으며, `Object.fromEntries()`를 이용하여 [Map](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#mapecmascript6)을 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)로 변경할 수 있습니다.
 
 ```javascript
 const obj = {
@@ -496,7 +498,7 @@ console.log('fromEntries()로 Map을 개체로 변환합니다.', obj2.name === 
 
 # Set(ECMAScript6)
 
-Set은 중복되지 않는 값을 관리하는 자료구조 입니다. `add()`으로 값을 추가하고, `delete()`으로 값을 삭제합니다. `forEach(), keys(), values(), entries()`가 제공되며, Map과의 호환성을 위해, `key`대신 `value`가 전달됩니다.
+[Set](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#setecmascript6)은 중복되지 않는 값을 관리하는 자료구조 입니다. `add()`으로 값을 추가하고, `delete()`으로 값을 삭제합니다. `forEach(), keys(), values(), entries()`가 제공되며, [Map](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#mapecmascript6)과의 호환성을 위해, `key`대신 `value`가 전달됩니다.
 
 |항목|내용|
 |--|--|
@@ -506,13 +508,13 @@ Set은 중복되지 않는 값을 관리하는 자료구조 입니다. `add()`�
 |`delete(value)`|`value`를 삭제합니다.|
 |`clear()`|모든 요소를 삭제합니다.|
 |`forEach()`|Set을 나열합니다.|
-|`keys()`|`value`로 구성된 이터러블 개체를 리턴합니다.|
-|`values()`|`keys()`와 동일합니다. `value`로 구성된 이터러블 개체를 리턴합니다.|
-|`entries()`|`[value, value]`쌍으로 구성된 이터러블 개체를 리턴합니다.|
+|`keys()`|`value`로 구성된 [iterable 개체](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#iterable%EA%B3%BC-for-ofecmascript6)를 리턴합니다.|
+|`values()`|`keys()`와 동일합니다. `value`로 구성된  [iterable 개체](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#iterable%EA%B3%BC-for-ofecmascript6)를 리턴합니다.|
+|`entries()`|`[value, value]`쌍으로 구성된  [iterable 개체](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#iterable%EA%B3%BC-for-ofecmascript6)를 리턴합니다.|
 
 # 구조 분해(ECMAScript6)
 
-배열과 개체의 각 요소를 `[]`과 `{}`로 분해하여 처리할 수 있습니다. 이때 필요한 부분만 추출할 수도 있습니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)과 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 각 요소를 `[]`과 `{}`로 분해하여 처리할 수 있습니다. 이때 필요한 부분만 추출할 수도 있습니다.
 
 ```javascript
 const arr = [1, 2, 3];
@@ -543,7 +545,7 @@ console.log('중첩 개체도 분해해서 읽습니다', name === 'Kim' && addr
 
 **기본값**
 
-구조 분해시 [기본값](https://tango1202.github.io/javascript/javascript-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90ecmascript6)을 설정할 수 있습니다.
+[구조 분해](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)시 [기본값](https://tango1202.github.io/javascript/javascript-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90ecmascript6)을 설정할 수 있습니다.
 
 ```javascript
 const obj = {
@@ -555,7 +557,7 @@ console.log('obj에 y가 없으므로 기본값 0이 할당됩니다.', x === 1 
 
 **이름 변경**
 
-구조 분해한 속성의 이름을 변경할 수 있습니다.
+[구조 분해](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)한 속성의 이름을 변경할 수 있습니다.
 
 ```javascript
 const obj = {
@@ -568,7 +570,7 @@ console.log('obj.x를 left에, obj.y를 top에 저장합니다.', left === 1 && 
 
 **함수 인자**
 
-함수의 인자에 구조 분해를 사용할 수 있습니다. 이럴 경우 [기본값 인자](https://tango1202.github.io/javascript/javascript-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90ecmascript6) 설정의 자유도가 높아지고, 함수 호출 부에서는 인수의 순서가 아닌 속성명으로 인자를 매칭하기 때문에 가독성이 높아집니다.
+[함수](https://tango1202.github.io/javascript/javascript-function/)의 인자에 [구조 분해](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)를 사용할 수 있습니다. 이럴 경우 [기본값 인자](https://tango1202.github.io/javascript/javascript-function/#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EC%9D%B8%EC%9E%90ecmascript6) 설정의 자유도가 높아지고, [함수](https://tango1202.github.io/javascript/javascript-function/) 호출 부에서는 인수의 순서가 아닌 속성명으로 인자를 매칭하기 때문에 가독성이 높아집니다.
 
 ```javascript
 // 함수에서는 기본값을 설정하면, 다음에 선언된 모든 인자에 기본값을 주어야 하지만,
@@ -583,7 +585,7 @@ console.log('인수 전달시 이름으로 매칭되기 때문에 순서를 준�
 
 **나머지 인자**
 
-[나머지 인자](https://tango1202.github.io/javascript/javascript-function/#%EB%82%98%EB%A8%B8%EC%A7%80-%EC%9D%B8%EC%9E%90ecmascript6)를 사용하면, 일부 요소만 구조 분해하고 나머지는 개체로 전달받을 수 있습니다.
+[나머지 인자](https://tango1202.github.io/javascript/javascript-function/#%EB%82%98%EB%A8%B8%EC%A7%80-%EC%9D%B8%EC%9E%90ecmascript6)를 사용하면, 일부 요소만 [구조 분해](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)하고 나머지는 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)로 전달받을 수 있습니다.
 
 ```javascript
 const obj = {
@@ -598,7 +600,7 @@ console.log('...을 이용하면 나머지를 개체로 전달받을 수 있습�
 
 **swap**
 
-임시로 배열로 만든뒤 순서를 바꿔 구조 분해하면, swap한 효과를 얻을 수 있습니다.
+임시로 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)로 만든뒤 순서를 바꿔 [구조 분해](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)하면, `swap`한 효과를 얻을 수 있습니다.
 
 ```javascript
 let x = 10;
@@ -609,7 +611,7 @@ console.log('임시로 배열로 만들고 순서를 바꿔 구조 분해하면,
 ```
 **entries()를 이용한 속성명, 값 나열**
 
-`Object.entries()`는 개체의 속성명-값 쌍을 배열로 변환하므로, 구조 분해와 혼합하면, 개체의 각 속성의 key와 value를 손쉽게 분해해서 사용할 수 있습니다.
+`Object.entries()`는 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성명-값 쌍을 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)로 변환하므로, [구조 분해](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)와 혼합하면, [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 각 속성의 `key`와 `value`를 손쉽게 분해해서 사용할 수 있습니다.
 
 ```javascript
 const obj = {
