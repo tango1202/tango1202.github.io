@@ -223,7 +223,7 @@ console.log('인수가 없으면, 기본값을 사용합니다', add() === 3);
 
 # 나머지 인자(ECMAScript6)
 
-함수 인자에 `...`을 붙여 선언하면, 전달된 인수들을 배열로 전달받습니다. 비슷한 용도로 제공되는 `arguments`는 [유사 배열](https://tango1202.github.io/javascript/javascript-basic/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)이며, [화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)에서는 사용할 수 없다고 하네요. 또한 ECMAScript3부터 deprecate되었다고 합니다. 이제 [나머지 인자](https://tango1202.github.io/javascript/javascript-function/#%EB%82%98%EB%A8%B8%EC%A7%80-%EC%9D%B8%EC%9E%90ecmascript6)를 사용하세요.
+함수 인자에 `...`을 붙여 선언하면, 전달된 인수들을 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)로 전달받습니다. 비슷한 용도로 제공되는 `arguments`는 [유사 배열](https://tango1202.github.io/javascript/javascript-basic/#%EC%9C%A0%EC%82%AC-%EB%B0%B0%EC%97%B4)이며, [화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)에서는 사용할 수 없다고 하네요. 또한 ECMAScript3부터 deprecate되었다고 합니다. 이제 [나머지 인자](https://tango1202.github.io/javascript/javascript-function/#%EB%82%98%EB%A8%B8%EC%A7%80-%EC%9D%B8%EC%9E%90ecmascript6)를 사용하세요.
 
 ```javascript
 const f = (...params) => {
@@ -237,7 +237,7 @@ f(1, 2, 3);
 
 다음은 전달된 인수들의 합을 구하는 예입니다. 첫번째 인수를 뺀 나머지들을 다시 재귀적으로 호출하여 값을 누적합니다. [나머지 인자](https://tango1202.github.io/javascript/javascript-function/#%EB%82%98%EB%A8%B8%EC%A7%80-%EC%9D%B8%EC%9E%90ecmascript6)의 갯수가 1이면, 재귀 호출을 하지 않고 그냥 더합니다. 
 
-`sum()`함수를 재귀 호출할때 `sum(...rest)`와 같이 호출했는데요, 이는 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)로서 배열을 다시 분리하는 역할을 합니다. 즉, `sum(rest[0], rest[1], ... , rest[N - 1])`처럼 호출합니다. 
+`sum()`함수를 재귀 호출할때 `sum(...rest)`와 같이 호출했는데요, 이는 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)로서 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 다시 분리하는 역할을 합니다. 즉, `sum(rest[0], rest[1], ... , rest[N - 1])`처럼 호출합니다. 
 
 
 ```javascript
@@ -250,7 +250,9 @@ console.log('나머지 인자를 재귀적으로 호출합니다', sum(1, 2, 3) 
 
 # 이벤트 핸들러
 
-HTML DOM 엘리먼트 이벤트가 발생했을때, [이벤트 핸들러](https://tango1202.github.io/javascript/javascript-function/#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%ED%95%B8%EB%93%A4%EB%9F%AC)를 통해 이벤트를 전달받을 수 있습니다.
+이벤트가 발생했을때 실행하는 함수를 특별히 [이벤트 핸들러](https://tango1202.github.io/javascript/javascript-function/#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%ED%95%B8%EB%93%A4%EB%9F%AC)라고 합니다. 어떤 개체가 자기 할일을 하기 전이나 하고 나서, 현 상태를 통지하는 용도로 사용합니다. 즉, 개체 입장에서 [이벤트 핸들러](https://tango1202.github.io/javascript/javascript-function/#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%ED%95%B8%EB%93%A4%EB%9F%AC)는 있어도 그만, 없어도 그만인 것들입니다. 만약, 단순 통지가 아니라 외부에서 어떤 실행을 꼭 해야하고 리턴 결과가 필요하다면, [이벤트 핸들러](https://tango1202.github.io/javascript/javascript-function/#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%ED%95%B8%EB%93%A4%EB%9F%AC)를 실행하여 리턴값을 사용하기 보다는 [Strategy 패턴](https://tango1202.github.io/pattern/pattern-strategy/)으로 의존성을 주입하는게 가독성이나 일관성 측면에서 좋습니다.
+
+![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/699f8321-763f-491e-b791-b27c0d2d0264)
 
 다음은 HTML DOM 엘리먼트의 이벤트를 전달받는 예입니다.
 
@@ -341,7 +343,7 @@ setTimeout(() => {
 
 함수 호출 인터페이스를 맞추기 위해 인자를 조정해야 할 때가 있습니다. 
 
-예를 들어 커맨드 패턴으로 호출되는 함수를 구현한다면, 모든 함수가 아마도 `run()`와 같이 인자 없이 호출되어야 할 것입니다. 이러한 경우 어디선가 인자에 해당하는 값을 주섬주섬 가져와서, 다음 처럼 만들어야 겠죠.
+예를 들어 [커맨드 패턴](https://tango1202.github.io/pattern/pattern-command/)으로 호출되는 함수를 구현한다면, 모든 함수가 아마도 `run()`과 같이 인자 없이 호출되어야 할 것입니다. 이러한 경우 어디선가 인자에 해당하는 값을 주섬주섬 가져와서, 다음처럼 만들어야 겠죠.
 
 ```javascript
 const run = () => {
@@ -349,7 +351,7 @@ const run = () => {
 };
 ```
 
-상기 처럼 함수 바인딩을 할 수도 있지만, `bind()`함수를 직접 이용할 수도 있습니다.
+상기 처럼 함수 바인딩을 직접 만들 수도 있지만, `bind()`함수를 직접 이용할 수도 있습니다.
 
 다음은 인자 2개짜리 `sum()` 함수를 1개짜리 함수로 변경한 예입니다.
 

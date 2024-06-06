@@ -112,7 +112,7 @@ console.log('filter로 2보다 작은 것만 필터링합니다.', filtered.leng
 
 # 배열 요소 나열
 
-다음의 5가지 방법이 있습니다. `for-in`은 속성명을 나열하는 용도입니다. 배열 요소 나열에는 성능이 떨어지니 사용하지 마세요. 
+다음의 5가지 방법이 있습니다. [for-in](https://tango1202.github.io/javascript/javascript-object/#%EC%86%8D%EC%84%B1-%EB%82%98%EC%97%B4--for-in)은 속성명을 나열하는 용도입니다. 배열 요소 나열에는 성능이 떨어지니 사용하지 마세요. 
 
 ```javascript
 const arr = [1, 2, 3];
