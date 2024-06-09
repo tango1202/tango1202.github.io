@@ -139,6 +139,28 @@ for (let prop in user) {
 const descriptor = Object.getOwnPropertyDescriptor(user, 'name');
 console.log('name의 enumerable은 false 입니다.', descriptor.enumerable === false);
 ```
+
+# 개체 비교
+
+[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)나 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 `===`비교를 할때 동일한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)인지 검사합니다. 값이 동일한 지 검사하는게 아니라 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)체 자체가 동일한지를 검사합니다.
+
+따라서, 값이 동일한지를 검사하려면, #1과 같이 하위 속성을 모두 뒤져서 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)끼리 검사해야 합니다.
+
+`=`로 대입하면 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)입니다. 한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 새로운 별칭은 만든 셈입니다. 동일한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이므로 `===` 비교시 `true`이며, 한쪽의 속성을 바꾸더라도, 다른쪽에 변경사항이 반영됩니다.
+
+```javascript
+const user1 = {name: 'Lee'};
+const user2 = {name: 'Lee'};
+
+console.log('값은 같지만 다른 개체입니다. user1 !== user2', user1 !== user2); 
+console.log('개체의 하위 속성을 모두 뒤져서 기본 타입끼리  검사해야 합니다. user1.name === user2.name', user1.name === user2.name); // #1
+
+const user3 = user1; // #2. 대입하면 동일 개체입니다.
+console.log('개체를 대입하면 동일 개체입니다. user1 === user3', user1 === user3);
+user1.name = 'Kim';
+console.log('user1을 수정하면, 동일 개체인 user3도 반영됩니다.', user3.name === 'Kim');
+```
+
 # 개체 복제/동결
 
 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)는 기본적으로 얕은 복사를 하며, 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 참조합니다. 따라서, `user2 = user1`은 사실 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 참조하며, `user2`를 수정하면, `user1`도 수정됩니다.
@@ -350,6 +372,25 @@ const user = User('Kim');
 console.log('리턴값이 없으므로 user는 undefined 입니다', user === undefined); // #1
 console.log('this는 전역 개체이므로 전역 개체에 name을 저장합니다.', name === 'Kim'); // #2
 ```
+
+[기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)도 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)로 생성할 수 있습니다.
+
+하지만 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이다 보니 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)과 직접 비교 할 수 없어 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하여야 하며, 값이 같더라도 `===` 비교시 다른 값으로 평가됩니다.(*[개체 비교](??) 참고*)
+
+```javascript
+const num1 = new Number(1);
+const num2 = new Number(1);
+
+console.log('Number()로 기본타입 개체를 생성합니다. 기본 타입과 검사하려먼 형변환 해야 합니다. 개체이므로 실제값은 동일하지만 === 이진 않습니다.', num1 !== 1 && Number(num1) === 1, num1 !== num2);
+
+const str1 = new String('Kim');
+const str2 = new String('Kim');  
+
+console.log('String()으로 기본타입 개체를 생성합니다. 기본타입과 검사하려면 형변환 해야 합니다. 개체이므로 실제값은 동일하지만 === 이진 않습니다.', str1 !== 'Kim', String(str2) === 'Kim', str1 !== str2);
+
+```
+
+
 # 속성 축약 표현(ECMAScript6)
 
 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)에 사용하는 변수가 속성명과 같은 경우 축약하여 표현할 수 있습니다.
