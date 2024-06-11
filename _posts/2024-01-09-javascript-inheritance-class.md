@@ -10,16 +10,15 @@ sidebar:
 
 # 자바스크립트에서 상속이 필요한가?
 
-자바스크립트는 C++와 같은 상속을 지원하지 않습니다. 하지만, 프로토타입을 이용하여 상속한 것처럼 만들 수는 있는데요, 억지로 상속한 것처럼 만들다 보니 쓸데없이 부모 개체의 속성을 복제하기 때문에 좀 비효율적입니다.
+자바스크립트는 C++와 같은 상속을 지원하지 않습니다. 하지만, [프로토타입](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)을 이용하여 상속한 것처럼 만들 수는 있는데요, 억지로 상속한 것처럼 만들다 보니 쓸데없이 부모 개체의 속성을 복제하기 때문에 좀 비효율적입니다.
 
-공통된 기능은 상속보다는 [즉시 실행 함수를 이용한 모듈 개체](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%93%88%ED%99%94)를 통해 위임을 하도록 논리를 만드는게 좋습니다. [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)처럼요. 
-
-즉, 프로토타입 체인을 이용하는 건데요,
+공통된 기능은 상속보다는 [즉시 실행 함수를 이용한 모듈 개체](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%93%88%ED%99%94)를 통해 위임을 하도록 논리를 만드는게 좋습니다. [Chain of Responsibility](https://tango1202.github.io/pattern/pattern-chain-of-responsibility/)처럼 [프로토타입 체인](https://tango1202.github.io/javascript/javascript-prototype/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%B2%B4%EC%9D%B8%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%86%8D%EC%84%B1-%EC%B0%B8%EC%A1%B0)을 이용하는 거죠.
 
 C++에서는 `Base`로부터 상속한 `Derived` 클래스로 개체를 인스턴스화 하면, 속성과 메서드를 물려받게 됩니다.
 따라서 각 개체는 각각 `baseProperty, derivedProperty`를 갖게 되고, `baseMethed(), derivedMethod()`를 제공합니다. 메서드 정의는 `Base` 클래스와 `Derived` 클래스에서 제공하고요.
 
-다음은 C++의 상속과 자바스크립트의 프로토타입 체인을 비교한 그림입니다. C++은 `baseProperty`가 각각 정의되는데, 자바스크립트는 `Obj1`과 `Obj2`가 동일한 `baseProperty`와 `baseMethod()`를 참조합니다. 근본 개념부터 다른 겁니다. 
+다음은 C++의 상속과 자바스크립트의 [프로토타입 체인](https://tango1202.github.io/javascript/javascript-prototype/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%B2%B4%EC%9D%B8%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%86%8D%EC%84%B1-%EC%B0%B8%EC%A1%B0)을 이용하는 거죠.
+을 비교한 그림입니다. C++은 `baseProperty`가 각각 정의되는데, 자바스크립트는 `Obj1`과 `Obj2`가 동일한 `baseProperty`와 `baseMethod()`를 참조합니다. 그림을 보면 근본적인 구조부터 다른걸 알 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c222deb6-23e9-4250-bd7d-b1b1d8426a49)
 
@@ -28,10 +27,10 @@ C++에서는 `Base`로부터 상속한 `Derived` 클래스로 개체를 인스�
 |항목|자바스크립트의 대처 방안|
 |--|--|
 |인터페이스를 만들어 단단한 코딩 계약을 만들고 싶습니다.|자바클래스는 너무도 유연합니다. 단단한 코딩 계약을 맺을 수 없으며, 대안으로 [타입스크립트](https://tango1202.github.io/categories/typescript/)를 이용할 수 있습니다.|
-|추상 클래스를 만들어 일부 기능은 부모 클래스에서 제공하고, 순가상 함수를 이용하여 자식 클래스에서는 일부 기능을 강제로 구현하게 하고 싶습니다.|부모 개체를 속성으로 저장하고 기능을 위임합니다. 자식 개체의 기능을 강제하는 것은 [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)로 넘겨줍니다.(*콜백 함수를 사용합니다.*) |
-|[Template Method](https://tango1202.github.io/pattern/pattern-template-method/)로 부모 클래스에서 자식 클래스에게 기능을 요청하고 싶습니다.|부모 개체가 필요로 하는 기능을 [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)로 넘겨줍니다.(*콜백 함수를 사용합니다.*)|
+|추상 클래스를 만들어 일부 기능은 부모 클래스에서 제공하고, 순가상 함수를 이용하여 자식 클래스에서는 일부 기능을 강제로 구현하게 하고 싶습니다.|부모 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 속성으로 저장하고 기능을 위임합니다. 자식 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 기능을 강제하는 것은 [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)로 넘겨줍니다.(*콜백 함수를 사용합니다.*) |
+|[Template Method](https://tango1202.github.io/pattern/pattern-template-method/)로 부모 클래스에서 자식 클래스에게 기능을 요청하고 싶습니다.|부모 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 필요로 하는 기능을 [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)로 넘겨줍니다.(*콜백 함수를 사용합니다.*)|
 |`is-a`관계를 만들고, 부모 개체에서 호출시 자식 개체들이 다형적으로 동작하게 하고 싶습니다.|변수는 아무 타입이나 받을 수 있으므로, 이미 `is-a`관계라고 생각하셔도 됩니다. 메서드명만 동일하면 호출되므로, 동일한 메서드명이면 다형적으로 동작한다고 생각해도 됩니다.|
-|기존의 코드를 재활용하고 싶습니다.|자바스크립트는 모든 것이 개체입니다. 함수까지도요. 따라서 개체를 재활용하고 위임하면 됩니다.|
+|기존의 코드를 재활용하고 싶습니다.|자바스크립트는 모든 것이 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)입니다. [함수](https://tango1202.github.io/javascript/javascript-function/)까지도요. 따라서 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 재활용하고 위임하면 됩니다.|
 
 즉, 상속이 필요한 항목이 아에 불필요하거나 위임으로 전환될 수 있습니다.
 
@@ -91,7 +90,7 @@ for(int i = 0; i < 2; ++i) {
 
 자바스크립트에서는 다음과 같이 할 수 있습니다.
 
-1. 배열에 아무 타입이나 들어가니 굳이 Shape으로 추상화할 필요가 없습니다.
+1. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)에 아무 타입이나 들어가니 굳이 Shape으로 추상화할 필요가 없습니다.
 2. 그냥 `draw()`를 호출하면 됩니다. 인터페이스로 만들 필요가 없습니다.
 
 코딩 계약은 좀 느슨해 보입니다만, 잘 동작합니다.
@@ -134,13 +133,17 @@ shapes.forEach(
 
 # 프로토타입을 이용한 상속
 
-그럼에도 불구하고, 굳이 상속이 필요하다면, 다음과 같이 기반이 되는 `Base`의 프로토타입 개체의 메서드들과 `baseObj`의 속성들을 복제해서 사용할 수 있습니다.
+그럼에도 불구하고, 굳이 상속이 필요하다면, 다음과 같이 기반이 되는 `Base`의 [프로토타입 개체](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)의 메서드들과 `baseObj`의 속성들을 복제해서 사용할 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6866c646-778a-40f0-b4ac-76da85214fc2)
 
 1. `Derived` [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)에서 `Base.call(this, baseProperty);`를 실행합니다. 
 
-    이 코드는 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98) `Base`를 `Base(baseProperty);`와 같이 일반 함수처럼 호출(*[생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98) 참고*)합니다. 또한 `Base`함수의 [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)를 `Derived` [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)의 [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)(*리턴하는 개체*)로 바인딩 합니다. 즉, `Derived`가 리턴하는 개체에 `Base`의 속성을 추가하는 효과가 있습니다.
+    이 코드는 내부적으로 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98) `Base`를 `Base(baseProperty);`와 같이 일반 [함수](https://tango1202.github.io/javascript/javascript-function/)처럼 호출(*[생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98) 참고*)해 줍니다. 이렇게 되면, [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 생성하는 것이 아니라 `this`에 속성을 추가하는 [함수](https://tango1202.github.io/javascript/javascript-function/)가 되죠.
+    
+    또한 `Base`함수의 [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)를 `Derived` [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)의 [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)(*리턴하는 개체*)로 바인딩 합니다. 
+    
+    즉, `Derived`가 리턴하는 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)에 `Base`의 속성을 추가하는 효과가 있습니다.
 
 2. `Object.setPrototypeOf()`는 `Base.prototype`을 `Derived.prototype`에 복제합니다. 다만 `constructor()`는 변경하지 않습니다. 이때 `Derived.prototype.__proto__`는 `Base.prototype`을 참조하여, `Derived.prototype`에 속성/메서드가 없다면, `Base.prototype`에서 찾게 합니다.
 
@@ -209,7 +212,7 @@ overridingDerived.baseMethod(); // Overriding 입니다 base from derived
 ECMAScript6 부터는 `class`문법이 도입되어 [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)보다 간결하게 상속을 구현할 수 있습니다. 실제로 C++같은 클래스를 제공하는 것은 아니며, [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)의 좀더 쉬운 코딩법을 제공할 뿐입니다. 
 
 1. `constructor`는 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)의 역할을 합니다. [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)처럼 속성들을 초기화합니다.
-2. 메서드는 알아서 프로토타입에 선언됩니다.
+2. 메서드는 알아서 [프로토타입](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)에 선언됩니다.
 3. `extends`는 상속을 표현합니다. 아마도 내부적으로 `setPrototypeOf()`를 호출할 겁니다.
 4. `super()`는 상위 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 호출합니다. 아마도, `Base.call()`을 호출할 겁니다.
 5. `Derived`용 메서드를 추가할 수 있습니다. 또한 `Base`의 메서드와 동일한 이름으로 재정의하면 오버라이딩 됩니다.
@@ -249,9 +252,9 @@ derived.derivedMethod(); // derivedMethod 입니다 derived
 
 # 클래스 getter/setter/static(ECMAScript6)
 
-`get`과 `set`을 이용하여 속성처럼 사용할 수 있는 getter와 setter를 만들 수 있습니다.
+`get`과 `set`을 이용하여 속성처럼 사용할 수 있는 [getter](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%81%B4%EB%9E%98%EC%8A%A4-gettersetterstaticecmascript6)와 [setter](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%81%B4%EB%9E%98%EC%8A%A4-gettersetterstaticecmascript6)를 만들 수 있습니다.
 
-또한 `static`을 사용하면 [정적 함수](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A0%95%EC%A0%81-%ED%95%A8%EC%88%98)를 만들 수 있습니다. [정적 함수](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A0%95%EC%A0%81-%ED%95%A8%EC%88%98)는 클래스 명으로 호출합니다.
+또한 [static](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%81%B4%EB%9E%98%EC%8A%A4-gettersetterstaticecmascript6)을 사용하면 [정적 함수](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A0%95%EC%A0%81-%ED%95%A8%EC%88%98)를 만들 수 있습니다. [정적 함수](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A0%95%EC%A0%81-%ED%95%A8%EC%88%98)는 클래스 명으로 호출합니다.
 
 ```javascript
 class MyClass { 
@@ -289,7 +292,7 @@ console.log(MyClass.staticMethod()); // 정적 함수 입니다
 
 # protected, private(ECMAScript10)
 
-자바스크립트에서는 `protected`를 지원하지 않습니다. 관습적으로 속성앞에 `_`를 붙여 사용합니다.
+자바스크립트에서는 [protected](https://tango1202.github.io/javascript/javascript-inheritance-class/#protected-privateecmascript10)를 지원하지 않습니다. 외부에 노출하지 않는 것은 관습적으로 속성앞에 `_`를 붙여 사용할 뿐입니다.
 
 ```javascript
 class Base {
@@ -313,7 +316,7 @@ data.inc();
 console.log('protected는 지원하지 않습니다.', data.val === 11);
 ```
 
-하지만 `private`는 지원합니다. 속성명 앞에 `#`을 붙이면 접근이 통제되어 자기 자신에서만 사용할 수 있습니다.
+하지만 [private](https://tango1202.github.io/javascript/javascript-inheritance-class/#protected-privateecmascript10)는 지원합니다. 속성명 앞에 `#`을 붙이면 접근이 통제되어 자기 자신에서만 사용할 수 있습니다.
 
 ```javascript
 class Base {

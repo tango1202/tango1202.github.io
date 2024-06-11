@@ -10,9 +10,9 @@ sidebar:
 
 # 코딩 패턴 - 즉시 실행 함수를 이용한 모듈화
 
-연관있는 일련의 함수들을 모아 모듈화를 하면, 구조적이고 계층적으로 코드를 관리를 할 수 있어 가독성과 생산성이 좋아집니다. 기본적으로 [클로저와 정보 은닉](https://tango1202.github.io/javascript/javascript-function/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89)을 사용하므로 `private` 함수와 `public` 함수로 구분할 수도 할 수 있습니다.
+연관있는 일련의 [함수](https://tango1202.github.io/javascript/javascript-function/)들을 모아 [모듈화](https://tango1202.github.io/javascript/javascript-module/)를 하면, 구조적이고 계층적으로 코드를 관리를 할 수 있어 가독성과 생산성이 좋아집니다. 기본적으로 [클로저와 정보 은닉](https://tango1202.github.io/javascript/javascript-function/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89)을 사용하므로 `private` 함수와 `public` 함수로 구분할 수도 할 수 있습니다.
 
-다음에서 `Module`은 `publicFunc` 함수를 메서드로 가진 개체를 리턴합니다. `privateFunc`은 담지 않고요. `privateFunc`은 외부에서 접근할 방법이 없어 사용할 수 없고, `publicFunc`만 리턴된 개체를 통해 사용할 수 있습니다. 또한 `publicFunc`함수가 사용되는 한 `Module`내의 실행 환경이 소멸되지 않고 유지되므로, `publicFunc`에서는 `privateFunc`을 안심하고 사용할 수 있습니다.(*[클로저와 정보 은닉](https://tango1202.github.io/javascript/javascript-function/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89) 참고*)
+다음에서 `Module`은 즉시 실행되어 `publicFunc` 함수를 메서드로 가진 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 리턴합니다. `privateFunc`은 빼고요. 이렇게 하면 `privateFunc`은 외부에서 접근할 방법이 없어 사용할 수 없고, `publicFunc`만 리턴된 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 통해 사용할 수 있습니다. 또한 `publicFunc`이 사용되는 한 `Module`내의 실행 환경이 소멸되지 않고 유지되므로, `publicFunc`에서는 `privateFunc`을 안심하고 사용할 수 있습니다.(*[클로저와 정보 은닉](https://tango1202.github.io/javascript/javascript-function/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89) 참고*)
 
 ```javascript
 const Module = (() => { // 즉시 실행 함수입니다.
@@ -35,7 +35,7 @@ Module.privateFunc(a, b); // (X) 오류 발생. 접근할 수 없습니다.
 
 # 코딩 패턴 - 즉시 실행 함수를 이용한 개체 선언
 
-[개체의 생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)와 메서드를 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)를 이용하여 응집하면 코드의 가독성이 좋아집니다.
+[개체의 생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)와 메서드들을 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)를 이용하여 응집하면 코드의 가독성이 좋아집니다.
 
 ```javascript
 const User = (() => { // 즉시 실행 함수입니다.
@@ -58,7 +58,7 @@ console.log('즉시 실행 함수를 이용한 개체 선언', user2.getName());
 
 # 코딩 패턴 - MixIn을 이용한 메서드 동적 추가
 
-개체에 메서드를 선언할때 `mixIn` 헬퍼 함수를 이용할 수 있습니다.
+`mixIn` 헬퍼 [함수](https://tango1202.github.io/javascript/javascript-function/)를 이용하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 메서드를 추가할 수 있습니다.
 
 ```javascript
 const user1 = {name: 'Kim'};
@@ -78,7 +78,7 @@ console.log('MixIn으로 추가된 메서드', user1.getName()); // Kim
 console.log('MixIn으로 추가된 메서드', user2.getName()); // Lee
 ```
 
-`mixIn`들을 모아 모듈 개체로 리턴하면 주어진 `mixIn`들중에서 필요한 것만 선택해서 결합할 수 있습니다.
+`mixIn`들을 모아 [즉시 실행 함수를 이용한 모듈 개체](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%93%88%ED%99%94)로 리턴하면 주어진 `mixIn`들중에서 필요한 것만 선택해서 결합할 수 있습니다.
 
 ```javascript
 const user1 = {name: 'Kim'};
@@ -111,7 +111,7 @@ console.log('MixInModule에서 추가된 메서드', user1.getName()); // Kim
 user2.printName(); // Lee 출력
 ```
 
-또다른 방법으로는 MixIn용 개체를 만들고 `Object.assign()`으로 추가할 수 있습니다.
+또다른 방법으로는 `MixIn`용 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 만들고 `Object.assign()`으로 메서드를 추가할 수 있습니다.
 
 ```javascript
 const user1 = {name: 'Kim'};
@@ -136,7 +136,7 @@ user2.printName(); // Lee 출력
 
 # 코딩 패턴 - 정적 함수
 
-정적 함수는 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)의 속성 기능을 이용하여 구현 할 수 있습니다.
+[정적 함수](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A0%95%EC%A0%81-%ED%95%A8%EC%88%98)는 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)의 속성 기능을 이용하여 구현 할 수 있습니다.
 
 ```javascript
 const User = (() => { 
@@ -164,9 +164,9 @@ User.staticFunc('생성자 함수의 속성 메서드입니다. 정적 함수와
 
 # 코딩 패턴 - 클로저를 이용한 캡슐화
 
-클로저를 이용하면, C++에서 클래스의 멤버 변수를 `private`로 은닉하듯이 감출 수 있습니다.
+[클로저](https://tango1202.github.io/javascript/javascript-function/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89)를 이용하면, C++에서 클래스의 멤버 변수를 `private`로 은닉하듯이 감출 수 있습니다.
 
-다음 예에서 `count` 변수는 함수 내부에서만 사용할 수 있는 변수이지만, [중첩 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)를 통해 내부에서만 사용할 수 있습니다.
+다음 예에서 `count` 변수는 [함수](https://tango1202.github.io/javascript/javascript-function/) 내부에서만 사용할 수 있는 변수이지만, [중첩 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)를 통해 내부에서만 사용할 수 있습니다.
 
 ```javascript
 function Counter() {
