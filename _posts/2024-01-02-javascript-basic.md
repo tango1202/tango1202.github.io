@@ -177,7 +177,7 @@ console.log('변수 유효 범위', val); // 1
     * 문자열 내에 문자열 기호를 사용하고 싶은 경우에는 `'문자열 기호는 ""과 \'\' 입니다.'` 와 같이 `''`와 `""`쌍을 교차하여 사용하거나 `\`로 이스케이프 문자(*[https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String) 참고*)를 사용하면 됩니다. 
 
 4. `null`은 값이 할당되지 않았다는 의미로 개발자가 의도적으로 설정한 값입니다.
-5. `undefined`는 값이 할당되지 않아 자바스크립트에서 미리 초기화 한 값입니다. 개[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 아예 선언되지 않았다라는 의미로 사용합니다.
+5. `undefined`는 값이 할당되지 않아 자바스크립트에서 미리 초기화 한 값입니다. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 아예 선언되지 않았다라는 의미로 사용합니다.
  `var a = undefined;`와 같이 `undefined`를 사용하는건 권장되지 않습니다. 왜냐면 이미 `a`를 선언했기 때문이죠. 이런 경우는 `null`을 사용하세요.
 6. `{}` 안에 속성명을 주어 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 선언합니다.
 7. `[]` 안에 값을 나열하여 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 선언합니다. 이때 타입이 서로 다를 수도 있습니다.
