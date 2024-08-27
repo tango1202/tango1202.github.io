@@ -184,7 +184,7 @@ sidebar:
       </div>
       ```
 
-  8. 삼항 연산자나 `&&`을 이용하여 조건부 작성을 할 수 있습니다.
+  8. 삼항 연산자나 `&&`을 이용하여 조건부 작성을 할 수 있습니다.(*[개체 할당 축약 표현](https://tango1202.github.io/javascript/javascript-basic/#%EA%B0%9C%EC%B2%B4-%ED%95%A0%EB%8B%B9-%EC%B6%95%EC%95%BD-%ED%91%9C%ED%98%84) 참고*)
 
       ```tsx
       <div> 

@@ -17,8 +17,7 @@ sidebar:
 C++에서는 `Base`로부터 상속한 `Derived` 클래스로 개체를 인스턴스화 하면, 속성과 메서드를 물려받게 됩니다.
 따라서 각 개체는 각각 `baseProperty, derivedProperty`를 갖게 되고, `baseMethed(), derivedMethod()`를 제공합니다. 메서드 정의는 `Base` 클래스와 `Derived` 클래스에서 제공하고요.
 
-다음은 C++의 상속과 자바스크립트의 [프로토타입 체인](https://tango1202.github.io/javascript/javascript-prototype/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%B2%B4%EC%9D%B8%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%86%8D%EC%84%B1-%EC%B0%B8%EC%A1%B0)을 이용하는 거죠.
-을 비교한 그림입니다. C++은 `baseProperty`가 각각 정의되는데, 자바스크립트는 `Obj1`과 `Obj2`가 동일한 `baseProperty`와 `baseMethod()`를 참조합니다. 그림을 보면 근본적인 구조부터 다른걸 알 수 있습니다.
+다음은 C++의 상속과 자바스크립트의 [프로토타입 체인](https://tango1202.github.io/javascript/javascript-prototype/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%B2%B4%EC%9D%B8%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%86%8D%EC%84%B1-%EC%B0%B8%EC%A1%B0)을 비교한 그림입니다. C++은 `baseProperty`가 각각 정의되는데, 자바스크립트는 `Obj1`과 `Obj2`가 동일한 `baseProperty`와 `baseMethod()`를 참조합니다. 그림을 보면 근본적인 구조부터 다른걸 알 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c222deb6-23e9-4250-bd7d-b1b1d8426a49)
 

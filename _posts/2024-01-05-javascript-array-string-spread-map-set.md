@@ -52,7 +52,7 @@ C++언어등에서는 [배열](https://tango1202.github.io/javascript/javascript
 
 1. #1 : 주어진 인덱스 요소가 없다면 추가합니다. 이때 #1-1과 같이 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기가 조정되며, #1-2와 같이 나머지 요소는 `undefined`로 추가됩니다. 하지만, 이런 방법으로 사용하는 건 좋지 않습니다. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 답게 여러개의 데이터를 순차적으로 저장하세요.
 
-2. #2 : `delete`로 삭제할 수는 있으나, [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기는 조정되지 않으며, `undefineed`로 만들어 줍니다.
+2. #2 : `delete`로 삭제할 수는 있으나, [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기는 조정되지 않으며, `undefined`로 만들어 줍니다.
 
 ```javascript
 const arr = []; // 빈 배열입니다.

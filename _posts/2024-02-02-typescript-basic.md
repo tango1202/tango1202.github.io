@@ -589,6 +589,3 @@ expect(getId(user)).toBe(0);
 expect(getId(product)).toBe(1);
 ```
 
-# 제네릭 종속성(작성중)
-
-제네릭 설계의 좋은 방법. 유추되는 근본 타입을 지정할 것

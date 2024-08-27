@@ -142,7 +142,7 @@ console.log('name의 enumerable은 false 입니다.', descriptor.enumerable === 
 
 # 개체 비교
 
-[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)나 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 `===`비교를 할때 동일한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)인지 검사합니다. 값이 동일한 지 검사하는게 아니라 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)체 자체가 동일한지를 검사합니다.
+[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)나 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 `===`비교를 할때 동일한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)인지 검사합니다. 값이 동일한 지 검사하는게 아니라 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 자체가 동일한지를 검사합니다.
 
 따라서, 값이 동일한지를 검사하려면, #1과 같이 하위 속성을 모두 뒤져서 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)끼리 검사해야 합니다.
 
