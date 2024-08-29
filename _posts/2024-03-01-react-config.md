@@ -18,7 +18,7 @@ sidebar:
 
 1. [개발 환경 구축](https://tango1202.github.io/javascript/javascript-config/)을 참고하여 다음을 설치합니다.
     * [Node.js(https://nodejs.org/)](https://nodejs.org/)
-    * [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
+    * [VSCode(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
 
 2. `create-react-app`을 실행합니다.
 
@@ -279,16 +279,16 @@ sidebar:
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/f50bb593-bb9f-42b5-9873-bce2991e48e1)
 
-# Jest(Visual Studio Code Extensions) 사용하기
+# Jest(VSCode Extensions) 사용하기
 
 1. `Activity Bar`의 `Extensions`을 클릭하여 `Jest`를 설치합니다.
 
-2. `Activity Bar`의 `Testing`을 클릭하면 `Jest`가 표시됩니다. UI를 통해 각 테스트를 별개로 실행할 수 있습니다. 만약 보이지 않는다면 Visual Studio Code 를 재실행 해보세요.(*혹은 Ctrl+Shift+P 후 Reload Window를 하셔도 됩니다.*)
+2. `Activity Bar`의 `Testing`을 클릭하면 `Jest`가 표시됩니다. UI를 통해 각 테스트를 별개로 실행할 수 있습니다. 만약 보이지 않는다면 VSCode 를 재실행 해보세요.(*혹은 Ctrl+Shift+P 후 Reload Window를 하셔도 됩니다.*)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/5035e4f6-e573-40f0-ab58-9ae7b7cf6075)
 
 
-# ESLint(Visual Studio Code Extensions) 사용하기
+# ESLint(VSCode Extensions) 사용하기
 
 `create-react-app`을 이용하면 `ESLint`가 함께 설치됩니다.  
 
@@ -303,9 +303,9 @@ sidebar:
 },
 ```
 
-1. Visual Studio Code 에서 `Activity Bar`의 `Extensions`을 클릭하여 `ESLint`를 설치합니다.
+1. VSCode 에서 `Activity Bar`의 `Extensions`을 클릭하여 `ESLint`를 설치합니다.
 
-2. 잘 설치되었는지 확인하기 위해 `const testVal = 0;`을 추가하고 밑줄 표시가 나오면 마우스로 hover해 봅니다. 만약 `Lint` 메시지가 나오지 않는다면 Visual Studio Code를 재실행 해보세요.(*혹은 Ctrl+Shift+P 후 Reload Window를 하셔도 됩니다.*)
+2. 잘 설치되었는지 확인하기 위해 `const testVal = 0;`을 추가하고 밑줄 표시가 나오면 마우스로 hover해 봅니다. 만약 `Lint` 메시지가 나오지 않는다면 VSCode를 재실행 해보세요.(*혹은 Ctrl+Shift+P 후 Reload Window를 하셔도 됩니다.*)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/588af30d-989f-45ef-b6fa-b780a7282d99)
 
@@ -333,7 +333,7 @@ sidebar:
     }
     ```
 
-3. `Visual Studio Code` 에서 `Activity Bar`의 `Extensions`을 클릭하여 `Prettier - Code formatter`를 설치합니다.
+3. `VSCode` 에서 `Activity Bar`의 `Extensions`을 클릭하여 `Prettier - Code formatter`를 설치합니다.
 
 4. 프로젝트 루트 폴더에 `.vscode`폴더를 만든뒤 `settings.json`파일을 만들고,(*Live Server나 기타 다른 세팅에 따라 이미 있을 수 있습니다.*) 다음 내용을 작성하여 파일 저장시 `prettier` 규칙으로 변경되게 합니다. (*`File/Preferences/Settings`에서 수정하면 모든 프로젝트에 반영될 수 있으니 현재 프로젝트에만 반영될 수 있도록 `.vscode`폴더에 작성하시는걸 추천합니다.*)
 

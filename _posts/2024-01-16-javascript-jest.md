@@ -16,7 +16,7 @@ sidebar:
 
 1. [개발 환경 구축](https://tango1202.github.io/javascript/javascript-config/)을 참고하여 다음을 설치합니다.
     * [Node.js(https://nodejs.org/)](https://nodejs.org/)
-    * [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
+    * [VSCode(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
 
 2. 다음 명령을 이용하여 기본적인 `node.js`프로젝트를 생성합니다. 물어보는 것들은 기본적으로 `Enter`하여 지나갑니다.
 
@@ -82,15 +82,15 @@ sidebar:
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6ec0699f-bf15-4edf-bf39-262c1287cadf)
 
-# Jest(Visual Studio Code Extensions) 사용하기
+# Jest(VSCode Extensions) 사용하기
 
 1. `Activity Bar`의 `Extensions`을 클릭하여 `Jest`를 설치합니다.
 
-2. `Activity Bar`의 `Testing`을 클릭하면 `Jest`가 표시됩니다. UI를 통해 각 테스트를 별개로 실행할 수 있습니다. 만약 보이지 않는다면 Visual Studio Code 를 재실행 해보세요.(*혹은 Ctrl+Shift+P 후 Reload Window를 하셔도 됩니다.*)
+2. `Activity Bar`의 `Testing`을 클릭하면 `Jest`가 표시됩니다. UI를 통해 각 테스트를 별개로 실행할 수 있습니다. 만약 보이지 않는다면 VSCode 를 재실행 해보세요.(*혹은 Ctrl+Shift+P 후 Reload Window를 하셔도 됩니다.*)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/074da04b-24a0-4d76-92a1-6f88b360df9b)
 
-# Jest(Visual Studio Code Extensions) 사용하기
+# Jest(VSCode Extensions) 사용하기
 
 파일을 저장하면 모든 테스트가 실행되어 오히려 번거로울 수 있습니다.
 

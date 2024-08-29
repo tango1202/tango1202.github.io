@@ -2,7 +2,7 @@
 layout: single
 title: "#5. [개발설정] Github를 원격 레포지토리로 사용하기"
 categories: "dev-setting"
-tag: ["개발설정", "Visual Studio Code", "Git", "Github", "Windows"]
+tag: ["개발설정", "VSCode", "Git", "Github", "Windows"]
 author_profile: false
 sidebar: 
     nav: "docs"

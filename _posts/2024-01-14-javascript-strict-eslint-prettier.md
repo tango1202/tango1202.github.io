@@ -35,8 +35,8 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 
 1. [개발 환경 구축](https://tango1202.github.io/javascript/javascript-config/)을 참고하여 다음을 설치합니다.
     * [Node.js(https://nodejs.org/)](https://nodejs.org/)
-    * [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
-    * [Visual Studio Code 익스텐션](https://tango1202.github.io/javascript/javascript-config/#visual-studio-code-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98)(*Code Runner, Live Server*)
+    * [VSCode(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
+    * [VSCode 익스텐션](https://tango1202.github.io/javascript/javascript-config/#visual-studio-code-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98)(*Code Runner, Live Server*)
 
 2. 터미널에서 다음 명령을 입력하여 `ESlint`를 설치합니다.(*`-D`옵션을 주면 현 프로젝트에 설치되며, 생략하면 글로벌로 설치됩니다.*) 
 
@@ -77,7 +77,7 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1df2b64a-517a-4cac-bfbe-ae8aaf0f2ea5)
 
-4. Visual Studio Code 에서 `Activity Bar`의 `Extensions`을 클릭하여 `ESLint`를 설치합니다.
+4. VSCode 에서 `Activity Bar`의 `Extensions`을 클릭하여 `ESLint`를 설치합니다.
 
 5. `test.js` 새파일을 만들고 테스트 코드를 입력합니다.
 
@@ -140,13 +140,13 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
 
 [Prettier](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#prettier)는 코드 레이아웃을 일관되게 작성할 수 있도록 도와주는 도구입니다. [ESLint](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#eslint)와 함께 사용하며, 파일 저장시에 자동 포맷팅을 지원합니다.
 
-다만, [ESLint](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#eslint)의 스타일 설정과 [Prettier](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#prettier)의 설정이 충돌이 날 수 있기 때문에, `eslint-config-prettier`를 함께 설치하고, `Visual Studio Code`에서 복잡한 환경 설정을 해주어야 합니다.
+다만, [ESLint](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#eslint)의 스타일 설정과 [Prettier](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#prettier)의 설정이 충돌이 날 수 있기 때문에, `eslint-config-prettier`를 함께 설치하고, `VSCode`에서 복잡한 환경 설정을 해주어야 합니다.
 
 1. [개발 환경 구축](https://tango1202.github.io/javascript/javascript-config/)을 참고하여 다음을 설치합니다.
 
     * [Node.js(https://nodejs.org/)](https://nodejs.org/)
-    * [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
-    * [Visual Studio Code 익스텐션](https://tango1202.github.io/javascript/javascript-config/#visual-studio-code-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98)(*Code Runner, Live Server*)
+    * [VSCode(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
+    * [VSCode 익스텐션](https://tango1202.github.io/javascript/javascript-config/#visual-studio-code-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98)(*Code Runner, Live Server*)
 
 2. [ESLint](https://tango1202.github.io/javascript/javascript-strict-eslint-prettier/#eslint)를 참고하여 설치합니다.
 
@@ -172,7 +172,7 @@ x = 3.14; // Uncaught ReferenceEffor : x is not defined
     }
     ```
 
-5. `Visual Studio Code` 에서 `Activity Bar`의 `Extensions`을 클릭하여 `Prettier - Code formatter`를 설치합니다.
+5. `VSCode` 에서 `Activity Bar`의 `Extensions`을 클릭하여 `Prettier - Code formatter`를 설치합니다.
 
 6. 프로젝트 루트 폴더에 `.vscode`폴더를 만든뒤 `settings.json`파일을 만들고,(*Live Server나 기타 다른 세팅에 따라 이미 있을 수 있습니다.*) 다음 내용을 작성하여 파일 저장시 `prettier` 규칙으로 변경되게 합니다. (*`File/Preferences/Settings`에서 수정하면 모든 프로젝트에 반영될 수 있으니 현재 프로젝트에만 반영될 수 있도록 `.vscode`폴더에 작성하시는걸 추천합니다.*)
 

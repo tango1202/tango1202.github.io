@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [개발설정] Visual Studio Code 에서 C++ 단위 테스트 구축(GoogleTest, TestMate)"
+title: "#8. [개발설정] VSCode 에서 C++ 단위 테스트 구축(GoogleTest, TestMate)"
 categories: "dev-setting"
 tag: ["개발설정", "visual studio code", "C++", "GoogleTest", "TestMate", "CMake"]
 author_profile: false
@@ -19,7 +19,7 @@ sidebar:
 
 테스트 주도 개발(Test-Driven Development, TDD)을 적용하여, **작동하는 깔끔한 코드(Clean Code That Works)** 를 개발하시기 바랍니다. **빨강-초록-리팩토링** 의 마법같은 습관으로 코딩 성취감을 맛볼 수 있고, 디버깅의 지옥에서 벗어날 수 있습니다.
 
-Visual Studio Code + CMake + C++ 환경의 단위 테스트 구축시에는 GoogleTest가 적합하고, GoogleTest 유틸리티로 C++ TestMate 가 좋습니다.
+VSCode + CMake + C++ 환경의 단위 테스트 구축시에는 GoogleTest가 적합하고, GoogleTest 유틸리티로 C++ TestMate 가 좋습니다.
 
 |항목|내용|
 |--|--|
@@ -32,11 +32,11 @@ Visual Studio Code + CMake + C++ 환경의 단위 테스트 구축시에는 Goog
 
 |항목|내용|
 |--|--|
-|Visual Studio Code|[Visual Studio Code 설치](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-%EC%84%A4%EC%B9%98)|
-|Visual Studio Code Extension(C/C++ Extension Pack)|[Visual Studio Code Extension 설치(C/C++ Extension Pack)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-extension-%EC%84%A4%EC%B9%98cc-extension-pack)|
+|VSCode|[VSCode 설치](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-%EC%84%A4%EC%B9%98)|
+|VSCode Extension(C/C++ Extension Pack)|[VSCode Extension 설치(C/C++ Extension Pack)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-extension-%EC%84%A4%EC%B9%98cc-extension-pack)|
 |MinGW-w64|[MinGW-w64 설치(GNU C++ 컴파일러)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#mingw-w64-%EC%84%A4%EC%B9%98gnu-c-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC)|
 |CMake|[CMake 설치](https://tango1202.github.io/dev-setting/dev-vscode-cmake/#cmake-%EC%84%A4%EC%B9%98)|
-|Visual Studio Code Extension(CMake, CMake Tools)|[Visual Studio Code Extension 설치(CMake, CMake Tools)](https://tango1202.github.io/dev-setting/dev-vscode-cmake/#visual-studio-code-extension-%EC%84%A4%EC%B9%98cmake-cmake-tools)|
+|VSCode Extension(CMake, CMake Tools)|[VSCode Extension 설치(CMake, CMake Tools)](https://tango1202.github.io/dev-setting/dev-vscode-cmake/#visual-studio-code-extension-%EC%84%A4%EC%B9%98cmake-cmake-tools)|
 
 # 테스트 환경 구축
 
@@ -44,7 +44,7 @@ Visual Studio Code + CMake + C++ 환경의 단위 테스트 구축시에는 Goog
 
 2. `language_test` 하위에 `cpp` 폴더를 만들고, 그 하위에 `src` 폴더(소스코드가 작성될 곳)를 만듭니다.
 
-3. Visual Studio Code 에서 `File/Open Folder` 를 실행하여 `language_test` 폴더를 엽니다.
+3. VSCode 에서 `File/Open Folder` 를 실행하여 `language_test` 폴더를 엽니다.
 
 4. `language_test/cpp/src` 폴더에 하기 4개의 파일을 작성합니다.
 
@@ -322,7 +322,7 @@ GoogleTest 소스코드가 포함된 프로젝트의 빌드는 다음과 같이 
 
 CTest는 테스트케이스를 조직화 하여 표시하지 않으므로, 테스트케이스가  많아지면 관리가 어렵습니다. 
 
-Visual Studio Code 익스텐션중 C++ TestMate를 이용하면, 테스트케이스가 트리로 조직화되어 표시되고, 테스트케이스 코드 위치로 이동할 수 있게 합니다. 또한 특정 테스트케이스만 실행할 수 있어, 필요한 테스트만 빠르게 확인할 수 있습니다.
+VSCode 익스텐션중 C++ TestMate를 이용하면, 테스트케이스가 트리로 조직화되어 표시되고, 테스트케이스 코드 위치로 이동할 수 있게 합니다. 또한 특정 테스트케이스만 실행할 수 있어, 필요한 테스트만 빠르게 확인할 수 있습니다.
 
 1. `Activity Bar`의 `Extensions`을 클릭하여 `C++ TestMate`를 설치합니다. 설치후 정상적인 반영을 위해 `View/Command Palette`(Ctrl+Shift+P)에서 `Developer: Reload Window`를 합니다.
 

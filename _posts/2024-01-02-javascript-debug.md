@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [Javascript] Visual Studio에서 Debug하기"
+title: "#2. [Javascript] VSCode 에서 디버깅"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false
@@ -8,7 +8,7 @@ sidebar:
     nav: "docs"
 ---
 
-JavaScript Debugger (Nightly) 를 이용하면 Visual Studio Code 에서 직접 디버깅을 할 수 있습니다.
+JavaScript Debugger (Nightly) 를 이용하면 VSCode 에서 직접 디버깅을 할 수 있습니다.
 
 1. `Active Bar`의 `Extentions`을 클릭하여 `JavaScript Debugger (Nightly)`를 설치합니다.
 

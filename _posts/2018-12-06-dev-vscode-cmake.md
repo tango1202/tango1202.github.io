@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [개발설정] Visual Studio Code 에서 CMake 환경 구성"
+title: "#6. [개발설정] VSCode 에서 CMake 환경 구성"
 categories: "dev-setting"
 tag: ["개발설정", "visual studio code", "CMake", "Windows"]
 author_profile: false
@@ -9,7 +9,7 @@ sidebar:
 ---
 
 # 개요
-C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환경을 구축해야 해야 합니다. Makefile을 직접 작성하는 방법도 있지만, 손쉬운 유지관리를 위해 CMake를 사용하는 방법이 좋습니다. CMake를 사용하려면, CMake 설치와 Visual Studio Code Extensions에서 CMake, CMake Tools를 설치해야 합니다.
+C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환경을 구축해야 해야 합니다. Makefile을 직접 작성하는 방법도 있지만, 손쉬운 유지관리를 위해 CMake를 사용하는 방법이 좋습니다. CMake를 사용하려면, CMake 설치와 VSCode Extensions에서 CMake, CMake Tools를 설치해야 합니다.
 
 |항목|내용|
 |--|--|
@@ -23,8 +23,8 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
 
 |항목|내용|
 |--|--|
-|Visual Studio Code|[Visual Studio Code 설치](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-%EC%84%A4%EC%B9%98)|
-|Visual Studio Code Extension(C/C++ Extension Pack)|[Visual Studio Code Extension 설치(C/C++ Extension Pack)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-extension-%EC%84%A4%EC%B9%98cc-extension-pack)|
+|VSCode|[VSCode 설치](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-%EC%84%A4%EC%B9%98)|
+|VSCode Extension(C/C++ Extension Pack)|[VSCode Extension 설치(C/C++ Extension Pack)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-extension-%EC%84%A4%EC%B9%98cc-extension-pack)|
 |MinGW-w64|[MinGW-w64 설치(GNU C++ 컴파일러)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#mingw-w64-%EC%84%A4%EC%B9%98gnu-c-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC)|
 |Git|[Git 설치](https://tango1202.github.io/dev-setting/dev-git/#git-%EC%84%A4%EC%B9%98)|
 
@@ -36,7 +36,7 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
 
 1. 탐색기에서 `language_test` 폴더를 생성합니다.
 
-2. Visual Studio Code 에서 `File/Open Folder` 를 실행하여 `language_test` 폴더를 엽니다.
+2. VSCode 에서 `File/Open Folder` 를 실행하여 `language_test` 폴더를 엽니다.
 
 3. [Git 초기화](https://tango1202.github.io/dev-setting/dev-git/#git-%EC%B4%88%EA%B8%B0%ED%99%94)를 참고하여, `git config`로 이메일과 이름을 등록하고, `Side Bar(SOURCE CONTROL)/Initialize Repository` 를 실행합니다.
 
@@ -126,9 +126,9 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6e6a8cdf-d1e3-466f-9865-01035106afb2)
 
-# Visual Studio Code Extension 설치(CMake, CMake Tools)
+# VSCode Extension 설치(CMake, CMake Tools)
 
-1. [Visual Studio Code Extension 설치(C/C++ Extension Pack)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-extension-%EC%84%A4%EC%B9%98cc-extension-pack)에서 `C/C++ Extension Pack`을 설치하면, `CMake`와 `CMake Tools` 가 함께 설치됩니다.
+1. [VSCode Extension 설치(C/C++ Extension Pack)](https://tango1202.github.io/dev-setting/dev-vscode-cpp/#visual-studio-code-extension-%EC%84%A4%EC%B9%98cc-extension-pack)에서 `C/C++ Extension Pack`을 설치하면, `CMake`와 `CMake Tools` 가 함께 설치됩니다.
 
 2. 설치되어 있지 않다면 `CMake`로 검색하여 설치하면 됩니다.
 
@@ -261,7 +261,7 @@ include(CPack) # 기본적으로 build 경로에 실행파일을 생성함
 
 # CMake 상태 표시줄
 
-Visual Studio Code 하단의 `Status Bar`를 보면 CMake 관련 명령들이 제공됩니다.
+VSCode 하단의 `Status Bar`를 보면 CMake 관련 명령들이 제공됩니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c9b366bf-cd1b-4fec-a679-fcc94e579d6c)
 

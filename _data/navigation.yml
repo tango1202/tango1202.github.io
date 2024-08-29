@@ -14,7 +14,7 @@ main:
   url: /categories/cpp-stl/          
 - title: "C++ 코딩 패턴"
   url: /categories/cpp-coding-pattern/
-- title: "Visual Studio Code로 C++ 개발환경 구축하기"
+- title: "VSCode로 C++ 개발환경 구축하기"
   url: /categories/dev-setting/    
 - title: "디자인 패턴"
   url: /categories/pattern/
@@ -64,7 +64,7 @@ docs:
 - title: "카테고리"
   url: /categories/
   children:
-  - title: "Visual Studio Code로 C++ 개발환경 구축하기"
+  - title: "VSCode로 C++ 개발환경 구축하기"
     url: /categories/dev-setting/ 
     category: "dev-setting"  
   - title: "디자인 패턴"

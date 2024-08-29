@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [개발설정] Visual Studio Code 에서 터미널 변경"
+title: "#7. [개발설정] VSCode 에서 터미널 변경"
 categories: "dev-setting"
 tag: ["개발설정", "visual studio code", "terminal", "Git Bash"]
 author_profile: false
@@ -9,7 +9,7 @@ sidebar:
 ---
 
 # 개요
-Windows용 Visual Studio Code의 기본 터미널은 PowerShell 입니다. 기호에 따라 다른 터미널로 변경할 수 있습니다.
+Windows용 VSCode의 기본 터미널은 PowerShell 입니다. 기호에 따라 다른 터미널로 변경할 수 있습니다.
 
 # Git Bash 로 터미널 변경
 

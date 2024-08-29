@@ -53,9 +53,9 @@ Node.js는 Chrome의 V8 자바스크립트 엔진을 이용한 런타임 환경�
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/7c1064ae-89f9-4a62-8d81-69cb6d860d78)
 
-# Visual Studio Code 이용하기
+# VSCode 이용하기
 
-1. [Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download) 에서 다운로드 받고 설치합니다.
+1. [VSCode(https://code.visualstudio.com/download)](https://code.visualstudio.com/download) 에서 다운로드 받고 설치합니다.
 
 2. `test.js` 새파일을 만들고 테스트 코드를 입력합니다.
 
@@ -69,7 +69,7 @@ Node.js는 Chrome의 V8 자바스크립트 엔진을 이용한 런타임 환경�
 
     <img width="690" alt="image" src="https://github.com/tango1202/tango1202.github.io/assets/133472501/f0e489f4-0818-49a9-aaf6-63d839b6208d">
 
-# Visual Studio Code 익스텐션
+# VSCode 익스텐션
 
 **Code Runner**
 

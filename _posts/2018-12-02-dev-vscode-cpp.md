@@ -1,30 +1,30 @@
 ---
 layout: single
-title: "#2. [개발설정] Visual Studio Code 로 Cpp 개발환경 구축"
+title: "#2. [개발설정] VSCode 로 Cpp 개발환경 구축"
 categories: "dev-setting"
-tag: ["개발설정", "Visual Studio Code", "C++", "Windows"]
+tag: ["개발설정", "VSCode", "C++", "Windows"]
 author_profile: false
 sidebar: 
     nav: "docs"
 ---
 
 # 개요
-Visual Studio Code 는 에디터이기 때문에, C++ 을 이용한 개발을 하려면 MinGW-w64(Minimalist GNU for Windows)와 Visual Studio Extension의 C/C++ Extension Pack 설치가 필요합니다.
+VSCode 는 에디터이기 때문에, C++ 을 이용한 개발을 하려면 MinGW-w64(Minimalist GNU for Windows)와 Visual Studio Extension의 C/C++ Extension Pack 설치가 필요합니다.
 
 |항목|내용|
 |--|--|
 |MinGW-w64|C++ 컴파일러, 디버거|
 |Visual Studio Extension의 C/C++ Extension Pack|에디터의 C++ intelliSence 지원, 에디터의 C++ UI 테마 지원, CMake 지원|
 
-# Visual Studio Code 설치
+# VSCode 설치
 
-다음 링크에서 Visual Studio Code 를 다운로드 받고 설치합니다.
+다음 링크에서 VSCode 를 다운로드 받고 설치합니다.
 
-[Visual Studio Code(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
+[VSCode(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
 
-# Visual Studio Code 사용자 인터페이스
+# VSCode 사용자 인터페이스
 
-Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
+VSCode는 다음과 같은 인터페이스를 제공합니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/73f52133-ffa0-46cf-b4c7-072ae90c0533)
 
@@ -39,7 +39,7 @@ Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
 
 자세한 사용자 인터페이스는 하기 링크를 참고하시기 바랍니다.
 
-[Visual Studio Code 사용자 인터페이스(https://code.visualstudio.com/docs/getstarted/userinterface)](https://code.visualstudio.com/docs/getstarted/userinterface)
+[VSCode 사용자 인터페이스(https://code.visualstudio.com/docs/getstarted/userinterface)](https://code.visualstudio.com/docs/getstarted/userinterface)
 
 # MinGW-w64 설치(GNU C++ 컴파일러)
 
@@ -65,14 +65,14 @@ Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/1893d24b-2cc0-40e9-8213-5fb095543b49)
 
-# Visual Studio Code Extension 설치(C/C++ Extension Pack)
+# VSCode Extension 설치(C/C++ Extension Pack)
 
 1. `Activity Bar`에서 `Extensions`(Ctrl+Shift+X)을 클릭하여 Extension을 실행합니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/b8516461-6468-401d-95eb-b70d5c251c80)
 
 2. `Side Bar(EXTENSIONS)`에서 `C++`로 검색하고 `C/C++ Extension Pack`의 `install` 버튼을 클릭하여 설치합니다. 그뒤 정상적인 반영을 위해 
-`Command Palette`(Ctrl+Shift+P)에서 `Developer: Reload Window`를 합니다.(혹은 Visual Studio Code 를 재실행 합니다.)
+`Command Palette`(Ctrl+Shift+P)에서 `Developer: Reload Window`를 합니다.(혹은 VSCode 를 재실행 합니다.)
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/19a9a392-405e-4d93-b305-831f9d3269fc)
 
@@ -84,7 +84,7 @@ Visual Studio Code는 다음과 같은 인터페이스를 제공합니다.
 
 1. 탐색기에서 `language_test` 폴더를 생성합니다.
 
-2. Visual Studio Code 에서 `File/Open Folder` 를 실행하여 `language_test` 폴더를 엽니다.
+2. VSCode 에서 `File/Open Folder` 를 실행하여 `language_test` 폴더를 엽니다.
 
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c86250d0-95ec-436f-90f6-bf0a620b711c)
 

@@ -1,5 +1,5 @@
 ---
-title: "Visual Studio Code로 C++ 개발환경 구축하기"
+title: "VSCode로 C++ 개발환경 구축하기"
 layout: archive
 permalink: categories/dev-setting/
 author_profile: true
