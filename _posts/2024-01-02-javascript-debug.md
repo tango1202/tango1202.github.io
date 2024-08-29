@@ -26,7 +26,7 @@ JavaScript Debugger (Nightly) 를 이용하면 VSCode 에서 직접 디버깅을
 
     ![image](https://github.com/user-attachments/assets/51ed7bb2-56e2-4cc9-9f42-c18b5a73117e)
 
-5.  `"url": "http://localhost:8080",`에서 개발 환경에 맞게 포트를 수정합니다.(*제 경우는 `5500`입니다.*)
+5.  `launch.json`파일에서 `"url": "http://localhost:8080",`의 포트를 개발 환경에 맞게 수정합니다.(*제 경우는 `5500`입니다.*)
 
     `"url": "http://localhost:5500",`
 
@@ -34,6 +34,6 @@ JavaScript Debugger (Nightly) 를 이용하면 VSCode 에서 직접 디버깅을
 
     ![image](https://github.com/user-attachments/assets/87938749-e061-46a6-9e0a-af0f9266e24b)
     
-7. 중단점이 설정되어 있다면 Visual Studio 창에서 해당 위치가 표시되며, 상단 디버깅 툴바를 이용하여 `Step Over(F10)`, `Step Info(F11)` 등을 수행할 수 있습니다. 
+7. 중단점이 설정되어 있다면 VSCode 에디터 창에서 해당 위치가 표시되며, 상단 디버깅 툴바를 이용하여 `Step Over(F10)`, `Step Info(F11)` 등을 수행할 수 있습니다. 
 
     ![image](https://github.com/user-attachments/assets/1d643658-edfd-4bfc-9997-a0522d5ec3e2)

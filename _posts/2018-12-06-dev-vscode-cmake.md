@@ -14,8 +14,8 @@ C++ 에서는 프로젝트를 구성하는 파일이 여러개 라면 Make 환�
 |항목|내용|
 |--|--|
 |CMake|Makefile 생성 지원|
-|Visual Studio Extension의 CMake|에디터의 CMake intelliSence 지원, C/C++ Extension Pack 설치시 포함됨|
-|Visual Studio Extension의 CMake Tools|빠른 시작, CMake 기반 빌드 환경, C/C++ Extension Pack 설치시 포함됨|
+|VSCode Extension의 CMake|에디터의 CMake intelliSence 지원, C/C++ Extension Pack 설치시 포함됨|
+|VSCode Extension의 CMake Tools|빠른 시작, CMake 기반 빌드 환경, C/C++ Extension Pack 설치시 포함됨|
 
 # 사전 설치
 

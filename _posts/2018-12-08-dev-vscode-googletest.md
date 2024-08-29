@@ -24,7 +24,7 @@ VSCode + CMake + C++ 환경의 단위 테스트 구축시에는 GoogleTest가 �
 |항목|내용|
 |--|--|
 |GoogleTest|C++ 단위 테스트 프레임워크|
-|Visual Studio Extension의 C++ TestMate|Catch2, GoogleTest, doctest 탐색기|
+|VSCode Extension의 C++ TestMate|Catch2, GoogleTest, doctest 탐색기|
 
 # 사전 설치
 

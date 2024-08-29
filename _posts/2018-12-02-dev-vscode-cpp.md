@@ -9,12 +9,12 @@ sidebar:
 ---
 
 # 개요
-VSCode 는 에디터이기 때문에, C++ 을 이용한 개발을 하려면 MinGW-w64(Minimalist GNU for Windows)와 Visual Studio Extension의 C/C++ Extension Pack 설치가 필요합니다.
+VSCode 는 에디터이기 때문에, C++ 을 이용한 개발을 하려면 MinGW-w64(Minimalist GNU for Windows)와 VSCode Extension의 C/C++ Extension Pack 설치가 필요합니다.
 
 |항목|내용|
 |--|--|
 |MinGW-w64|C++ 컴파일러, 디버거|
-|Visual Studio Extension의 C/C++ Extension Pack|에디터의 C++ intelliSence 지원, 에디터의 C++ UI 테마 지원, CMake 지원|
+|VSCode Extension의 C/C++ Extension Pack|에디터의 C++ intelliSence 지원, 에디터의 C++ UI 테마 지원, CMake 지원|
 
 # VSCode 설치
 
