@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#5. [Javascript] 배열, 문자열, Spread, 맵, 셋, Symbol, 구조 분해"
+title: "#6. [Javascript] 배열, 문자열, Spread, 맵, 셋, Symbol, 구조 분해"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false

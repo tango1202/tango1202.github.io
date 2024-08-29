@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#7. [Javascript] prototype, this"
+title: "#8. [Javascript] prototype, this"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false

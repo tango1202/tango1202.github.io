@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#8. [Javascript] 코딩 패턴"
+title: "#9. [Javascript] 코딩 패턴"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false

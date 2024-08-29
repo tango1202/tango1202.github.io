@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#11. [Javascript] Promise(작성중)"
+title: "#13. [Javascript] Generation(작성중)"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false

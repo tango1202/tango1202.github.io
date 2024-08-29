@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#2. [Javascript] 기본 문법(변수, 타입, 리터럴, 연산자, 형변환, 제어문, nullish, 옵셔널 체이닝)"
+title: "#3. [Javascript] 기본 문법(변수, 타입, 리터럴, 연산자, 형변환, 제어문, nullish, 옵셔널 체이닝)"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false

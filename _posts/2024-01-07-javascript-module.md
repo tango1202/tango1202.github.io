@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#6. [Javascript] 모듈"
+title: "#7. [Javascript] 모듈"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false

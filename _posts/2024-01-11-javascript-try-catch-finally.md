@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#10. [Javascript] 예외 처리(try-catch-finally)"
+title: "#11. [Javascript] 예외 처리(try-catch-finally)"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false

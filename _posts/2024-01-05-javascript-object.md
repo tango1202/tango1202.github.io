@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#4. [Javascript] 개체"
+title: "#5. [Javascript] 개체"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false

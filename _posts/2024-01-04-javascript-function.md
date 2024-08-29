@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#3. [Javascript] 함수"
+title: "#4. [Javascript] 함수"
 categories: "javascript"
 tag: ["javascript"]
 author_profile: false
