@@ -285,7 +285,7 @@ export default MyState;
 
 `setter`로 수정할 때는 복제본을 사용해야 합니다. 그래야 [State](https://tango1202.github.io/react/react-basic/#state)가 원본에서 변경된 것을 알 수 있습니다. `number`와 같은 기본 타입인 경우 대입시 알아서 복제본이 사용됩니다만, 개체나 배열을 사용할 경우, 명시적으로 복제본을 사용해야 합니다.
 
-만약 개체나 배열을 다음과 같이 `const arr2 = arr1;`로 단순 대입하여 같은 개체를 참조하게 한 후 `arr2`를 `push()`하여 수정해 봤자 여전히 `arr1 === arr2`입니다. [State](https://tango1202.github.io/react/react-basic/#state)가 원본에서 변경된 것을 감지 하지 못하기 때문에 다시 렌더링하지 못합니다. 
+만약 개체나 배열을 다음과 같이 `const arr2 = arr1;`로 단순 대입하여 같은 개체를 참조하게 한 후 `arr2`를 `push()`하여 수정해 봤자 여전히 `arr1 === arr2`입니다. 즉, [State](https://tango1202.github.io/react/react-basic/#state)가 원본에서 변경된 것을 감지 하지 못하기 때문에 다시 렌더링하지 못합니다. 
 
 ```typescript
 const arr1 = [1, 2, 3];
@@ -295,7 +295,7 @@ arr2.push(4);
 console.log(arr1 === arr2); // true입니다.
 ```
 
-다음은 [State](https://tango1202.github.io/react/react-basic/#state)로 배열을 사용한 예입니다. 배열의 복제본을 사용해야 다시 렌더링 하는 것을 확인할 수 있습니다.
+따라서 [State](https://tango1202.github.io/react/react-basic/#state)에서 배열을 사용할 때에는 다음처럼 배열의 복제본을 사용해야 됩니다.
 
 1. #1 : `arr[0]`요소의 `x`를 직접 수정하면 렌더링을 다시 하지 않습니다.
 2. #2 : `arr[0]`을 수정하고 `setArr(arr)`을 하더라도 렌더링을 다시 하지 않습니다.
