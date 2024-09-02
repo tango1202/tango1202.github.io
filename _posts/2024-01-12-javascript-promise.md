@@ -219,6 +219,6 @@ console.log('async 호출전입니다.'); // #1
     console.log('Promise가 실행된 결과 입니다.', result); // #6. 이전에는 then()에서 작성했습니다.
 
 })();
-console.log('async 호출후입니다.'); //#2
+console.log('async 호출후입니다.'); // #2
 ```
 
