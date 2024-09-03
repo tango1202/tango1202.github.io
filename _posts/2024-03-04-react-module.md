@@ -91,9 +91,45 @@ function App() {
 그러면 다음과 같이 `src` 하위부터 절대 경로로 사용할 수 있습니다.
 
 ```tsx
-import MyComponent1 from 'myModule/comonent/lib/MyComponent1';
-import MyComponent2 from 'myModule/comonent/lib/MyComponent2';
-import { IMyData } from 'myModule/comonent/lib/MyData';
+import MyComponent1 from 'myModule/component/lib/MyComponent1';
+import MyComponent2 from 'myModule/component/lib/MyComponent2';
+import { IMyData } from 'myModule/component/lib/MyData';
+```
+
+# 다른 프로젝트의 외부 모듈
+
+현 프로젝트 하위의 모듈이 아닌 다른 프로젝트의 모듈도 경로를 설정하여 사용할 수 있습니다. 공통 모듈을 별도의 프로젝트로 구성하고 이를 사용할때 유용합니다.
+
+다음과 같이 `baseUrl`과 `paths`와 `include`를 설정해 줍니다. 이때 `otherModule`의 경로는 `baseUrl`의 상대 경로입니다.(*하기는 `../../otherModule`인 예입니다.*)
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+  },
+  "paths": {
+    "otherModule/*": ["../../otherModule/*"]
+  },
+  "include": [
+    "src",
+    "../../otherModule/**/*.ts", 
+    "../../otherModule/**/*.tsx",
+  ]
+}
+```
+
+그러면 다음과 같이 `otherModule` 하위부터 절대 경로로 사용할 수 있습니다.
+
+```tsx
+import OtherComponent from 'otherModule/component/lib/OtherComponent';
+```
+
+혹시나 `import`시 `import/no-unresolved` 린트 오류가 발생하면, `.eslintrc.ts`의 `rules`에 다음과 같이 `amd: true`를 추가합니다.
+
+```json
+rules: {
+  amd: true
+}
 ```
 
 # export용 index.ts 파일
