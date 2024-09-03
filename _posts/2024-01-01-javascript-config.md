@@ -41,7 +41,7 @@ sidebar:
 
 # Node.js 이용하기
 
-Node.js는 Chrome의 V8 자바스크립트 엔진을 이용한 런타임 환경입니다. 이를 이용하면 브라우저외 환경에서 자바스크립트를 실행할 수 있으며, 서버 애플리케이션등에 많이 사용됩니다.
+Node.js는 Chrome의 V8 자바스크립트 엔진을 이용한 런타임 환경입니다. 브라우저가 아닌 환경에서도 자바스크립트를 실행할 수 있으며, 서버 애플리케이션 개발에도 사용됩니다.
 
 1. [Node.js(https://nodejs.org/)](https://nodejs.org/)에서 다운로드 받고 설치합니다.
 
@@ -55,7 +55,9 @@ Node.js는 Chrome의 V8 자바스크립트 엔진을 이용한 런타임 환경�
 
 # VSCode 이용하기
 
-1. [VSCode(https://code.visualstudio.com/download)](https://code.visualstudio.com/download) 에서 다운로드 받고 설치합니다.
+VSCode를 이용하면 intellisence와 다양한 [익스텐션](https://tango1202.github.io/javascript/javascript-config/#vscode-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98)들이 제공되므로 좀 더 쾌적하게 개발할 수 있습니다.
+
+1. [VSCode(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)를 다운로드 받고 설치합니다.
 
 2. `test.js` 새파일을 만들고 테스트 코드를 입력합니다.
 
