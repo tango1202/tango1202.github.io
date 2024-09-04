@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#9. [React] 개발 환경 구축(vite, yarn)"
+title: "#10. [React] 개발 환경 구축(vite, yarn)"
 categories: "react"
 tag: ["react"]
 author_profile: false
