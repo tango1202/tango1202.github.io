@@ -46,13 +46,14 @@ npm install -D react-router-dom
 
 ```typescript
 <Routes>
+  {/* #1. 정의하지 않으면, No routes matched location 경고 발생 */}
   {/* http://localhost:3000 */}
   <Route path='/' element={<Navigate replace to={"/"} />}/> 
 
   {/* http://localhost:3000/List */}
   <Route path='/list' element={<List />}/>
 
-  {/* #1 */}
+  {/* #2 */}
   {/* http://localhost:3000/Desc/id-01 */}
   {/* http://localhost:3000/Desc/id-02 */}
   <Route path='/desc/:id' element={<Desc />}/>
@@ -62,7 +63,9 @@ npm install -D react-router-dom
 </Routes>
 ```
 
-상기의 #1을 보면 `path='/Desc/:id'`와 같이 특별히 `:id`를 붙였는데요, 이는 지정한 컴포넌트에서 Url의 파라메터를 읽기 위함입니다.
+상기의 #1을 보면, `/`에 `<Navigate replace to={"/"} />`을 지정하여, `/` 경로를 `/` 로 이동시키게 했습니다. 이 코드가 없으면, `No routes matched location "/"` 경고가 발생하기 때문에, 억지로 작성해 두었습니다.(*경고 발생 원인은 좀더 확인해 봐야겠습니다.*)
+
+또한, 상기의 #2를 보면 `path='/Desc/:id'`와 같이 특별히 `:id`를 붙였는데요, 이는 지정한 컴포넌트에서 Url의 파라메터를 읽기 위함입니다.
 
 예를 들어 `http://localhost:3000/Desc/id-01`와 같이 `:id`영역에 `id-01`을 전달하면, 이값을 읽어서 처리 할 수 있습니다.
 
@@ -136,13 +139,14 @@ const MyRouter = () => {
         <Link to ='/about'><button>{'About'}</button></Link>
       </div>
       <Routes>
+        {/* #1 */}
         {/* http://localhost:3000 */}
         <Route path='/' element={<Navigate replace to={"/"} />}/> 
 
         {/* http://localhost:3000/List */}
         <Route path='/list' element={<List />}/>
 
-        {/* #1 */}
+        {/* #2 */}
         {/* http://localhost:3000/Desc/id-01 */}
         {/* http://localhost:3000/Desc/id-02 */}
         <Route path='/desc/:id' element={<Desc />}/>
