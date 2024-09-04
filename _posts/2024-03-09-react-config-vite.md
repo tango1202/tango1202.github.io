@@ -38,7 +38,7 @@ sidebar:
 
     ![image](https://github.com/user-attachments/assets/2e2350af-3478-4ba7-8ab9-54031f7101cd)
 
-5. 그러면 다음과 같이 언어를 선택하는 목록이 표시되는데, `TypeScript`를 선택합니다.
+5. 마지막으로 다음과 같이 언어를 선택하는 목록이 표시되는데, `TypeScript`를 선택합니다.
 
     ![image](https://github.com/user-attachments/assets/7b629ed0-56b0-4858-9fb8-db7e277f358f)
 
@@ -88,7 +88,7 @@ yarn install
     plugins: [react()],
     })
     ```
-2. `yarn dev`를 실행하면 브라우저에 실행 결과가 표시됩니다.
+2. 콘솔에서 `yarn dev`를 실행하면 브라우저에 실행 결과가 표시됩니다.
 
     ![image](https://github.com/user-attachments/assets/c09c2626-80d7-4a80-a3e4-637ca6a47ae9)
 
@@ -115,7 +115,7 @@ yarn install
     yarn add prettier-eslint
     ```
 
-    2. 프로젝트 root에 `.prettierrc` 파일을 생성하고 다음과 같이 코드 레이아웃 규칙을 작성합니다.
+2. 프로젝트 root에 `.prettierrc` 파일을 생성하고 다음과 같이 코드 레이아웃 규칙을 작성합니다.
 
     ```json
     {
