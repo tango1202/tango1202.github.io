@@ -10,7 +10,7 @@ sidebar:
 
 # 개요
 
-리액트는 SPA(*Single Page Application*)을 개발하는 프레임워크입니다. 하지만, `react-router-dom`를 이용하면, 여러 페이지를 이동하는 프로그램을 만들 수 있으며, 브라우저 히스토리에 저장되기 때문에, 이전 페이지나 다음 페이지로 이동할 수 있습니다.
+리액트는 SPA(*Single Page Application*)을 개발하는 프레임워크입니다. 하지만, `react-router-dom`를 이용하면, 여러 페이지를 이동하는 프로그램을 만들 수 있으며, 페이지 이동 이력은 브라우저 히스토리에 저장되기 때문에, 이전 페이지나 다음 페이지로 이동할 수 있습니다.
 
 # react-router-dom 설치
 
