@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "#1. [React] 개발 환경 구축"
+title: "#1. [React] 개발 환경 구축(create-react-app)"
 categories: "react"
 tag: ["react"]
 author_profile: false
