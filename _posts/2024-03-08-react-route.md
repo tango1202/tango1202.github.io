@@ -89,7 +89,7 @@ const Desc = () => {
 ```typescript
 import { BrowserRouter, Link, Navigate, Route, Routes, useParams } from "react-router-dom";
 
-// id 목록을 표시합니다.
+// id 목록을 표시하고 클릭시 해당 desc 페이지로 이동합니다.
 // localhost:3000/list
 const List = () => {
   return (
