@@ -32,7 +32,7 @@ sidebar:
 
 # 종료
 
-작업 관리자에서 프로세스를 강제 종료하거나, `nginx.exe` 가 설치된 폴더에서 `cmd`로 터미널을 열고 다음을 입력합니다.
+작업 관리자에서 프로세스를 강제 종료하거나, 관리자 모드로 `cmd` 를 실행후 `nginx.exe` 가 설치된 폴더에서 다음을 실행합니다.
 
 ```
 nginx.exe -s stop
@@ -46,7 +46,7 @@ nginx.exe -s stop
     yarn build
     ```
 
-    그러면 다음과 같이 `dist`폴더가 생성되며,
+    그러면 다음과 같이 `dist`폴더가 생성되는데요,
 
     ![image](https://github.com/user-attachments/assets/3dba0e8f-dc07-4394-8ec0-41066c5716af)
 
@@ -56,7 +56,6 @@ nginx.exe -s stop
 
 
 2. `nginx.exe` 가 설치된 폴더 하위의 `conf/nginx.conf` 파일을 엽니다.
-
 
 3. 다음 server 부분을 
 
@@ -82,7 +81,7 @@ nginx.exe -s stop
     }
     ```
 
-4. 그러면 브라우저에서 `127.0.0.1:4000`으로 접근시 웹 서비스가 표시되는 걸 확인할 수 있습니다.
+4. 그러면 브라우저로 `127.0.0.1:4000`에서 웹 서비스가 되는 걸 확인할 수 있습니다.
 
     ![image](https://github.com/user-attachments/assets/fb8b9c7d-1c5c-483b-a9ec-50f1112bb676)
 
@@ -104,6 +103,6 @@ nginx.exe -s stop
 
     ![image](https://github.com/user-attachments/assets/1e1ada00-c6ab-4b74-a34f-56e1b9dec09c)
 
-4. `services.msc`를 실행하여 Windows 서비스 상태를 확인합니다. 그러면 다음과 같이 `NginX`가 `자동`으로 등록되어 있는 것을 확인할 수 있습니다. 시작 유형이 `자동`이므로 시스템 재시작시 항상 자동으로 `NginX`가 실행되어 웹 서비스가 시작됩니다.
+4. `services.msc`를 실행하여 Windows 서비스 상태를 확인합니다. 그러면 다음과 같이 `NginX`가 `자동`으로 등록되어 있는 것을 확인할 수 있습니다. 시작 유형이 `자동`이므로 시스템 재시작시 항상 `NginX`가 실행되어 웹 서비스가 시작됩니다.
 
     ![image](https://github.com/user-attachments/assets/fb273bbd-c680-4f62-a693-7b5ad50d67c9)
