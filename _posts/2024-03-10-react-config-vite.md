@@ -25,24 +25,30 @@ sidebar:
     * [Node.js(https://nodejs.org/)](https://nodejs.org/)
     * [VSCode(https://code.visualstudio.com/download)](https://code.visualstudio.com/download)
 
-2. `yarn` 으로 `vite` 프로젝트를 생성합니다.(이때 프로젝트를 하위 폴더로 생성하므로, 상위 폴더에서 명령을 실행합니다.)
+2. `yarn` 을 설치합니다.(*`yarn`은 패키지 관리 도구 이므로 모든 프로젝트에서 사용할 수 있도록 `-g`옵션을 주어 글로벌로 설치합니다.*) 
+
+    ```
+    npm install -g yarn
+    ```
+
+3. `yarn` 으로 `vite` 프로젝트를 생성합니다.(이때 프로젝트를 하위 폴더로 생성하므로, 상위 폴더에서 명령을 실행합니다.)
 
     ```
     yarn create vite
     ```
     
-3. 프로젝트 폴더명을 입력합니다.(*`react_vite_test` 로 입력하는 것으로 가정합니다.*)
+4. 프로젝트 폴더명을 입력합니다.(*`react_vite_test` 로 입력하는 것으로 가정합니다.*)
     ![image](https://github.com/user-attachments/assets/360da808-5694-46ac-8372-da3d000052a1)
 
-4. 그러면 프레임워크를 선택하는 목록이 표시되는데, 방향키와 `Enter`로 `React`를 선택합니다.
+5. 그러면 프레임워크를 선택하는 목록이 표시되는데, 방향키와 `Enter`로 `React`를 선택합니다.
 
     ![image](https://github.com/user-attachments/assets/2e2350af-3478-4ba7-8ab9-54031f7101cd)
 
-5. 마지막으로 다음과 같이 언어를 선택하는 목록이 표시되는데, `TypeScript`를 선택합니다.
+6. 마지막으로 다음과 같이 언어를 선택하는 목록이 표시되는데, `TypeScript`를 선택합니다.
 
     ![image](https://github.com/user-attachments/assets/7b629ed0-56b0-4858-9fb8-db7e277f358f)
 
-6. 그러면 프로젝트 구성이 끝났다는 메시지가 표시됩니다.
+7. 그러면 프로젝트 구성이 끝났다는 메시지가 표시됩니다.
 
     ![image](https://github.com/user-attachments/assets/cda6e368-8a75-4f0c-9095-cd15377901bd)
 
