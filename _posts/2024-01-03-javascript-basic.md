@@ -341,7 +341,7 @@ console.log('toFixed() - 소수점 정밀도 오차 보정', 0.1 + 0.2, (0.1 + 0
 |`NaN`|`NaN`|`false`|`'NaN'`|
 |문자열 `'0'`|`0`|`true`|`'0'`|
 |빈 문자열 `''`|`0`|`false`|`''`|
-|빈 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) `''`|`0`|`true`|`''`|
+|빈 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) `[]`|`0`|`true`|`''`|
 
 ```javascript
 console.log('null 형변환', Number(null) === 0, (!!null) === false, String(null) === 'null');

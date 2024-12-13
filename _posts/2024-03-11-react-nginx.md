@@ -26,7 +26,7 @@ sidebar:
 
 4. 뭔가 순식간에 팝업이 나타나고 사라집니다.(*실행된 것입니다. 작업 관리자의 프로세스를 확인하세요.*)
 
-5. 브라우저의 주소창에 `127.0.0.1`에 접근하면, `nginx`의 기본 index.html이 웹 서비스 되는 것을 확인 할 수 있습니다.
+5. 브라우저의 주소창에 `127.0.0.1`에 접근하면, `nginx`의 기본 index.html이 웹 서비스 되는 것을 확인 할 수 있습니다.(*`nginx.exe`설치 폴더 하위의 `html/index.html`이 표시됩니다.*)
 
     ![image](https://github.com/user-attachments/assets/0053705b-22d4-448c-b433-f85531328a6f)
 
