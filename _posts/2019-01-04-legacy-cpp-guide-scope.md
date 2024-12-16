@@ -79,7 +79,7 @@ void f() {
 }
 ```
 
-[유효 범위](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-scope/)를 짧게 해서 블록화 해보세요.
+[유효 범위](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-scope/)를 짧아지도록 다음처럼 블록화 해보세요.
 
 ```cpp
 
@@ -97,4 +97,4 @@ void f() {
 }
 ```
 
-깔끔하게 나눠졌다면, 각 블록을 [함수화](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/) 하시길 바랍니다.
+깔끔하게 나눠졌다면, 각 블록을 [함수화](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-function/) 하시는 것도 좋습니다.

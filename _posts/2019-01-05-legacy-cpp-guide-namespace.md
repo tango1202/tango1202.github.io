@@ -285,7 +285,9 @@ namespace My {
 
 [using 선언](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8) 이나 [using 지시문](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8)의 암시적 사용성은 [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)를 코드의 버전 관리나 OS별 관리 용도로도 사용할 수 있게 해줍니다.
 
-다음 코드는 `MyLib`을 OS별로 구성하고, `YourLib`에서 버전을 선택해서 사용하는 예입니다. [using 지시문](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8)만 변경하여 `Windows`용과 `Linux`용을 쉽게 교체할 수 있습니다.
+다음 코드는 `MyLib`을 OS별로 구성하고, `YourLib`에서 버전을 선택해서 사용하는 예입니다.
+
+다음에서 `using namespace MyLib::Windows;` 와 같이 [using 지시문](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8)을 사용하여 `Windows`용 `f()`를 호출하는데요, 이를 `using namespace MyLib::Linux;`로 변경한다면 `Linux`용 `f()`를 호출하도록 쉽게 변경할 수 있습니다.
 
 ```cpp
 namespace MyLib {
