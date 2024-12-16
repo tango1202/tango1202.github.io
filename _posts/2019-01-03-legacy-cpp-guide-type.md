@@ -122,7 +122,7 @@ EXPECT_TRUE(std::numeric_limits<int>::min() == -2147483648);
 그래서 `==` 나 대소 비교가 부정확합니다. 손실되면 안되는 민감 정보나, ***정확한 계산을 필요로 하는 경우에는 정수형을 사용***하셔야 합니다.(*[로지컬 단위](https://tango1202.github.io/cpp-coding-pattern/cpp-coding-pattern-logical/) 참고*) 
 
 
-다음처럼 오차 범위를 고려하여 비교할 수는 있지만, 권장하지는 않습니다.
+다음처럼 `epsilon()`을 이용하여 오차 범위를 고려해 비교할 수는 있지만, 권장하지는 않습니다.
 
 ```cpp
 bool Equals(double a, double b) {
