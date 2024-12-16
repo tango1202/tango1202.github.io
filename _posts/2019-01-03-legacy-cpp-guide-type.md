@@ -90,7 +90,8 @@ ClassT<int>::ConstType constVal = 20;
 
 # 타입 크기
 
-[sizeof()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하면 개체 용량을 byte 단위로 구할 수 있습니다. 단, [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)의 경우 참조하는 개체와 동일 크기가 리턴됩니다.
+[sizeof()](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-operators/#sizeof-%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하면 개체 용량을 byte 단위로 구할 수 있습니다.  [포인터](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/)의 경우는 32bit 시스템에서는 4byte,
+64bit 시스템에서는 8byte이고, [참조자](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-pointer-reference/#%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%B0%B8%EC%A1%B0%EC%9E%90)의 경우는 참조하는 개체와 동일 크기를 리턴합니다.
 
 ```cpp
 class MyClass {
