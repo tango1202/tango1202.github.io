@@ -283,7 +283,7 @@ namespace My {
 
 # 네임스페이스를 이용한 코드 관리
 
-[using 선언](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8) 이나 [using 지시문](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8)의 암시적 사용성은 [네임스페이스](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/)를 코드의 버전 관리나 OS별 관리 용도로도 사용할 수 있게 해줍니다.
+[using 선언](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/#using-%EC%84%A0%EC%96%B8) 이나 [using 지시문](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-namespace/#using-%EC%A7%80%EC%8B%9C%EB%AC%B8)의 암시적 사용성을 활용하면, 코드의 버전 관리나 OS별 관리가 좀더 편리해집니다.
 
 다음 코드는 `MyLib`을 OS별로 구성하고, `YourLib`에서 버전을 선택해서 사용하는 예입니다.
 
