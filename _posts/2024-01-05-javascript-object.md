@@ -15,7 +15,7 @@ sidebar:
 ```javascript
 const empty = {}; // 빈 개체
 const user = {
-    name: 'Lee'
+    name: 'Lee' // name 속성이 있는 개체
 };
 console.log('개체 속성 접근, . 사용', user.name === 'Lee');
 console.log('개체 속성 접근, 속성명 사용', user['name'] === 'Lee');
@@ -27,11 +27,9 @@ console.log('개체 속성 접근, 속성명 사용', user['name'] === 'Lee');
 2. [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)를 사용하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 자신을 나타낼 수 있습니다.
 3. `alert()`를 사용하면 `object Object`로 출력됩니다. 하지만, `console.log()`를 사용하면 트리를 확장하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성명과 속성값을 확인할 수 있습니다.
 4. `new Object()`로 생성한뒤 뒤늦게 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성들을 설정하는 방식도 있으나 코딩 계약에 좋지 않아 잘 사용하지 않습니다.
-5. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 내부에서만 사용하는 속성(*특히 메서드*)는 관례적으로 밑줄(*_*)을 접두어로 사용합니다.
+5. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 내부에서만 사용하는 속성은 관례적으로 밑줄(*_*)을 접두어로 사용합니다. 설계자가 캡슐화를 위해 조치한 것이니(*언어적 차원에서 막을 수 있다면 더 좋았겠지만, 방도가 마땅치 않아서 한 조치이니*) 밑줄(*_*) 접두어가 있다면, 외부에서는 직접 사용하지 마세요.
 
 ```javascript
-const empty = {}; // 빈 개체
-
 // 리터럴 방식 개체 생성
 const user1 = {
     name: 'Lee',
@@ -52,6 +50,16 @@ user2.getName = function() {
     return this.name;
 }; 
 console.log('개체 메서드 호출 user2.getName()', user2.getName()); // Lee
+
+// #5. 내부에서만 사용하는 속성은 관습적으로 _을 붙임
+const user3 = {
+    _name1: 'Bruce', // 외부에서 사용하지 마세요.
+    _name2: 'Lee', // 외부에서 사용하지 마세요.
+    getName: function() {
+        return `${this._name1} ${this._name2}`
+    }
+} 
+console.log('개체 메서드 호출 user3.getName()', user3.getName()); // Bruce Lee
 ```
 
 # 개체 속성 접근
