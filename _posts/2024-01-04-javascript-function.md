@@ -14,7 +14,7 @@ sidebar:
 
 어느 방식으로 사용하던 함수 호출 방식은 동일합니다. 가독성 측면에서는 #1이 좋지만, 저는 #2를 선호합니다. #2는 [함수 호이스팅](https://tango1202.github.io/javascript/javascript-function/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이 되지 않고, [타입스크립트](https://tango1202.github.io/categories/typescript/)와 함께 사용할때 함수 [인터페이스](https://tango1202.github.io/typescript/typescript-basic/#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4)를 지정할 수 있거든요.
 
-아무튼, #1이던 #2이던 함수를 선언하면, `add()`, `addFunc()` 와 같이 괄호와 인자를 작성하여 호출할 수 있으며, #3과 같이 변수에 대입하여 호출할 수도 있습니다.
+아무튼, #1이던 #2이던 함수를 선언하면, `add(arg1, arg2)`, `addFunc(arg1, arg2)` 와 같이 괄호안에 인수를 작성하여 호출할 수 있으며, #3과 같이 변수에 대입하여 호출할 수도 있습니다.
 
 ```javascript
 // #1. 함수 선언
@@ -39,7 +39,7 @@ console.log('addVar2(1, 2)', addVar2(1, 2)); // 3
 
 # 즉시 실행 함수를 이용한 유효 범위 한정
 
-`function add(a, b) {return a + b;}(1, 2);`와 같이 함수 선언후 `(1, 2)`처럼 `(arg1, arg2, ...)`을 붙이면, 선언과 동시에 호출하는 구문이 됩니다. 이때 표현식으로 파싱되지 않을 수도 있어 함수 선언부를 괄호로 감쌉니다.
+`function add(a, b) {return a + b;}(1, 2);`와 같이 함수 선언후 `(1, 2)`처럼 `(arg1, arg2, ...)`을 붙이면, 선언과 동시에 호출하는 구문이 됩니다. 이를 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)라 하는데요, 이때 표현식으로 파싱되지 않을 수도 있어 함수 선언부를 괄호로 감쌉니다.
 
 ```javascript
 console.log('즉시 실행 함수', 
@@ -51,7 +51,7 @@ console.log('즉시 실행 함수',
 ); // 3
 ```
 
-[즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)를 활용하면 [유효 범위](https://tango1202.github.io/javascript/javascript-basic/#%EB%B3%80%EC%88%98-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84)를 한정하고 실행할 수 있어, 전역 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 최소화 할 뿐만 아니라 이름 충돌을 최소화할 수 있습니다.
+[즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)를 활용하면 [유효 범위](https://tango1202.github.io/javascript/javascript-basic/#%EB%B3%80%EC%88%98-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84)를 함수의 블록 내부로 한정하기 때문에, 전역 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 최소화 할 뿐만 아니라 이름 충돌도 최소화할 수 있습니다.
 
 ```javascript
 (function() {
@@ -60,7 +60,7 @@ console.log('즉시 실행 함수',
 })();
 ```
 
-[화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)를 이용하면 다음처럼 작성할 수 있습니다.
+[화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)를 이용한 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)는 다음과 같습니다.
 
 ```javascript
 (() => {
@@ -114,7 +114,7 @@ add.data = 'Lee'; // 개체처럼 함수도 속성을 갖습니다.
 console.log("함수 속성", add.data);
 ```
 
-기본적으로 다음의 속성을 갖고 있습니다.(*`console.dir(함수 개체)`을 이용하면 상호 작용이 가능한 트리 형태로 [함수 속성](https://tango1202.github.io/javascript/javascript-function/#%ED%95%A8%EC%88%98-%EC%86%8D%EC%84%B1)을 확인할 수 있습니다.*)
+함수의 기본 속성은 다음과 같습니다.(*`console.dir(함수 개체)`을 이용하면 상호 작용이 가능한 트리 형태로 [함수 속성](https://tango1202.github.io/javascript/javascript-function/#%ED%95%A8%EC%88%98-%EC%86%8D%EC%84%B1)을 확인할 수 있습니다.*)
 
 |항목|내용|
 |--|--|
