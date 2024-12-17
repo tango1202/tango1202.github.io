@@ -172,7 +172,7 @@ user2.name = 'Kim';
 console.log("동일 개체를 참조합니다 user1.name === 'Kim'", user1.name === 'Kim'); // true. user2를 수정했지만, user1도 수정되었습니다.
 ```
 
-이러한 경우 내부 속성들을 일일이 복제해야 하며 `Object.assign()`(*ECMAScript6*)을 이용하면 됩니다.(*또한 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 개체 속성을 복제할 수도 있습니다.*) 하지만 하위 개체는 여전히 얕은 복사를 하니 주의해야 합니다. 다음 예에서 `name`은 복제되었지만, `addr`은 하위 개체이기 때문에 복제되지 않고 여전히 같은 개체를 참조합니다.
+복제본을 만드려면 내부 속성들을 일일이 복제해야 하며, `Object.assign()`(*ECMAScript6*)을 이용할 수 있습니다.(*또한 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 개체 속성을 복제할 수도 있습니다.*) 하지만 하위 개체는 여전히 얕은 복사를 하니 주의해야 합니다. 다음 예에서 `name`은 복제되었지만, `addr`은 하위 개체이기 때문에 복제되지 않고 여전히 같은 개체를 참조합니다.
 
 ```javascript
 const user1 = {
