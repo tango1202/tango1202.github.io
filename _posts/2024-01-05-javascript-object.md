@@ -34,7 +34,7 @@ console.log('개체 속성 접근, 속성명 사용', user['name'] === 'Lee');
     ![image](https://github.com/user-attachments/assets/4dcaeebd-554f-4cd9-ab9f-dac252dde10d)
 
 4. `new Object()`로 생성한뒤 뒤늦게 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성들을 설정하는 방식도 있으나 코딩 계약에 좋지 않아 잘 사용하지 않습니다.
-5. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 내부에서만 사용하는 속성은 관례적으로 밑줄(*_*)을 접두어로 사용합니다. 설계자가 캡슐화를 위해 조치한 것이니(*언어적 차원에서 막을 수 있다면 더 좋았겠지만, 방도가 마땅치 않아서 한 조치이니*) 밑줄(*_*) 접두어가 있다면, 외부에서는 직접 사용하지 마세요.
+5. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 내부에서만 사용하는 속성은 관례적으로 밑줄(*_*)을 접두어로 사용합니다. 설계자가 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 조치한 것이니(*언어적 차원에서 막을 수 있다면 더 좋았겠지만, 방도가 마땅치 않아서 한 조치이니*) 밑줄(*_*) 접두어가 있다면, 외부에서는 직접 사용하지 마세요.
 
 ```javascript
 // 리터럴 방식 개체 생성
@@ -132,6 +132,10 @@ for (let prop in arr) { // 배열 요소와 추가 속성이 나열됩니다.
     console.log('속성명 :' + prop , '속성값 :' + arr[prop]);
 }
 ```
+
+상기 코드를 실행하면, 다음처럼 배열 요소와 `extraData`가 나열되는 것을 확인할 수 있습니다.
+
+![image](https://github.com/user-attachments/assets/1102b3ef-24b1-424a-8b65-6df75c5c1cc3)
 
 # defineProperty(), getOwnPropertyDescriptor()
 
