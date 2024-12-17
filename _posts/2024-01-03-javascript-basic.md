@@ -61,19 +61,17 @@ sidebar:
 
 # 변수 호이스팅
 
-선언하지 않은 변수를 사용했을때, 변수 선언이 유효 범위의 시작점에 있는 것처럼 이동시켜 처리합니다. 이를 [변수 호이스팅](https://tango1202.github.io/javascript/javascript-basic/#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이라 하는데요, 초기값이 대입되지 않은 것처럼 선언되어 값이 할당되기 전까지는 `undefined`입니다.
+선언하지 않은 변수를 사용했을때, 변수 선언이 유효 범위의 시작점에 있는 것처럼 이동시켜 처리합니다. 이를 [변수 호이스팅](https://tango1202.github.io/javascript/javascript-basic/#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)이라 하는데요, 초기값이 대입되지 않은 것처럼 선언되기 때문에 값이 할당되기 전까지는 `undefined`입니다.
 
 ```javascript
 console.log('변수 호이스팅', myHoistingVar); // undefined. hoisting되어 상단에 선언되고 값을 지정하지 않아 undefined 입니다.
-var myHoistingVar = 100;
+var myHoistingVar = 100; // 값이 할당되면, 할당된 값이 사용됩니다.
 console.log('변수 호이스팅', myHoistingVar); // 100
 ```
 
 # 변수 유효 범위
 
-`var`는 함수 레벨에서 유효합니다. 다음에서 #2는 함수 유효 범위에 #1이 있으므로 `val` 변수를 새롭게 생성하지 않고 #1을 사용합니다.
-
-따라서 함수내에서는 이름이 중복되지 않게 주의해야 하는데요, 이러한 복잡함을 없애고자 ECMAScript6 부터 [let](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-const)과 [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-const)를 제공합니다.
+`var`는 함수 레벨에서 유효합니다. 다음에서 #2는 함수 유효 범위에 #1이 있으므로 `val` 변수를 새롭게 생성하지 않고 #1을 사용합니다. 
 
 ```javascript
 var val = 1;
@@ -88,6 +86,10 @@ function myFunc() {
 console.log('변수 유효 범위', myFunc() === 20); // true
 console.log('변수 유효 범위', val); // 1
 ```
+
+#2에서 생성했는데, #1의 것이 바뀌다니 혼란스럽습니다. 따라서 함수내에서는 이름이 중복되지 않게 주의해야 하는데요, 아무리 주의해도 휴먼 에러를 피하기 힘듭니다. 상당히 골치 아픈 일이죠. 
+
+이러한 복잡함을 없애고자 ECMAScript6 부터 블록 레벨에서 유효한 [let](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-const)과 [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-const)를 제공합니다.
 
 # let과 const(ECMAScript6)
 
