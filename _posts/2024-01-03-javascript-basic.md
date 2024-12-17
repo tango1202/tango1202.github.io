@@ -57,7 +57,7 @@ sidebar:
     z = 4; // #5. 선언하지 않고 사용. 전역 개체의 변수로 선언됩니다.
     ```
 
-엄청 유연합니다만, 코딩 계약이 엉망진창이 되버려 대규모 프로젝트에서는 오류를 찾아내기 힘들어 집니다. 따라서 [타입 스크립트](https://tango1202.github.io/categories/typescript/)를 사용하시길 추천드립니다.
+엄청 유연합니다만, 코딩 계약이 엉망진창이 되버려 대규모 프로젝트에서는 오류를 찾아내기 힘들어 집니다. 따라서 이젠 사용하지 마시고요, [let](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-const)과 [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-const)나 [타입 스크립트](https://tango1202.github.io/categories/typescript/)를 사용하시길 추천드립니다.
 
 # 변수 호이스팅
 
