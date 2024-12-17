@@ -87,7 +87,7 @@ console.log("개체 속성 접근 user['my number'] === '123-4567'", user['my nu
 
 # 개체 속성 추가/삭제
 
-동적으로 속성을 추가/삭제 할 수 있습니다.
+속성을 동적으로 추가/삭제 할 수 있습니다.
 
 ```javascript
 const user = {};
@@ -116,7 +116,7 @@ for (let prop in user) { // prop은 속성명, user[prop]은 속성값
 }
 ```
 
-[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)에도 사용할 수 있지만 [배열 요소](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C-%EC%B6%94%EA%B0%80%EC%82%AD%EC%A0%9C)외에 다른 속성이 있다면 함께 나열되기 때문에, [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)에서는 잘 사용하지 않습니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)에도 사용할 수 있지만, [배열 요소](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C-%EC%B6%94%EA%B0%80%EC%82%AD%EC%A0%9C)외에 다른 속성이 있다면 함께 나열되기 때문에, [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)에서는 잘 사용하지 않습니다.
 
 ```javascript
 const arr = ['one', 'two', 'three'];
