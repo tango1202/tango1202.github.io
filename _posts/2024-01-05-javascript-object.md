@@ -12,10 +12,10 @@ sidebar:
 
 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)는 속성의 집합이며, 속성명(*키*)으로 속성값에 접근할 수 있습니다. 자바스크립트의 모든 것들은 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이며, 심지어 함수도 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)입니다. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)는 대입시 얕은 복사를 합니다.
 
-1. [함수](https://tango1202.github.io/javascript/javascript-function/)를 속성으로 사용할 수 있으며, [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성으로 사용되는 [함수](https://tango1202.github.io/javascript/javascript-function/)를 특별히 ***메서드***라고 합니다.
+1. [함수](https://tango1202.github.io/javascript/javascript-function/)를 속성으로 사용할 수 있으며, 이러한 [함수](https://tango1202.github.io/javascript/javascript-function/)를 특별히 ***메서드***라고 합니다.
 2. [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)를 사용하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 자신을 나타낼 수 있습니다.
-3. `alert()`를 사용하면 `object Object`로 출력되고, `console.log()`를 사용하면 트리를 확장하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성명과 속성값을 확인할 수 있습니다.
-4. `new Object()`를 이용하여 생성한뒤 뒤늦게 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성들을 설정하는 방식도 있으나 코딩 계약에 좋지 않아 잘 사용하지 않습니다.
+3. `alert()`를 사용하면 `object Object`로 출력됩니다. 하지만, `console.log()`를 사용하면 트리를 확장하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성명과 속성값을 확인할 수 있습니다.
+4. `new Object()`로 생성한뒤 뒤늦게 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성들을 설정하는 방식도 있으나 코딩 계약에 좋지 않아 잘 사용하지 않습니다.
 5. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 내부에서만 사용하는 속성(*특히 메서드*)는 관례적으로 밑줄(*_*)을 접두어로 사용합니다.
 
 ```javascript
