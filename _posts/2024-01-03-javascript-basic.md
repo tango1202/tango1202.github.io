@@ -444,7 +444,9 @@ const val = condition ? a : b; // 선언과 동시에 초기화할 수 있습니
 console.log('조건이 참이므로 a 입니다.', val === a);
 ```
 
-주어진 값이 유효할 때만 사용하고, 그렇지 않은 경우는 기본값을 사용하는 논리도 많이 사용되는데요, 이런 경우도 다음 코드의 #1, #2, #3, #4와 같이 삼항 연산자를 이용할 수 있습니다. 이때 #1, #2는 직접적으로 `null`인지만 검사하는데, #3과 #4는 `undefined`, 숫자 `0`, `NaN`, `빈 문자열`인 경우도 검사하니 주의하시고요(*[형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 참고*), #4가 기본값이 뒤에 있어 가독성이 좋습니다. 
+주어진 값이 유효할 때만 사용하고, 그렇지 않은 경우는 기본값을 사용하는 논리도 많이 사용되는데요, 이런 경우도 다음 코드의 #1, #2, #3, #4와 같이 삼항 연산자를 이용할 수 있습니다. 이때 #1, #2는 직접적으로 `null`인지만 검사하는데, #3과 #4는 `undefined`, 숫자 `0`, `NaN`, `빈 문자열`인 경우도 검사하니 주의하시고요(*[형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 참고*), 
+
+개인적으론 #4(`a ? a : 'default';`)처럼, 조건식이 단순하고 기본값이 뒤에 있는 형태가 가독성이 좋아 선호하고 있습니다. 
 
 ```javascript
 const a = null;
@@ -462,7 +464,9 @@ const val4 = a ? a : 'default'; // #4. null, undefined, 숫자 0, NaN, 빈 문�
 console.log('a가 null 입니다.', val4 === 'default');
 ```
 
-기본값 설정을 [삼항 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)로 할 수도 있지만 [논리 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하면 더 가독성 좋게 작성할 수 있습니다. 아주 많은 부분에서 사용되니 꼭 이해하고 ***공식처럼 외워두세요***.
+기본값 설정을 [삼항 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)로 할 수도 있지만 [논리 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하면 더 가독성 좋게 작성할 수 있습니다. 
+
+자바스크립트에서는 아주 많은 부분에서 사용되니 꼭 이해하고 ***공식처럼 외워두는게 좋습니다***.
 
 다음 코드의 #1에서 `a || 'default'` 는 `a`를 평가하여 `true`이면 더이상의 평가는 중단하고, `false`이면 `||` 다음을 평가하라는 의미입니다. 
 
