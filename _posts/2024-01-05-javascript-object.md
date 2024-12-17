@@ -64,11 +64,11 @@ console.log('개체 메서드 호출 user3.getName()', user3.getName()); // Bruc
 
 # 개체 속성 접근
 
-속성명은 변수명에서 사용할 수 없는 숫자나 `-`, 공백 문자를 사용할 수 있으며, 문자열 형태로 지정할 수 있습니다.
-
-각 속성은 마침표로 접근할 수 있으며, 숫자나 `-`, 공백 문자를 사용한 경우에는 `[]`로 접근할 수 있습니다. 
+속성명은 변수명에서 사용할 수 없는 숫자나 `-`, 공백 문자 조차도 사용할 수 있습니다.
 
 심지어, `for`, `let`과 같은 예약어를 사용할 수 있으며, [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)만 사용할 수 없습니다.
+
+각 속성은 보통 마침표로 접근할 수 있는데요, 숫자나 `-`, 공백 문자를 사용한 경우에는 `[]`에 속성명(*키*)을 이용해야 접근할 수 있습니다. 
 
 ```javascript
 const user = {
@@ -87,7 +87,7 @@ console.log("개체 속성 접근 user['my number'] === '123-4567'", user['my nu
 
 # 개체 속성 추가/삭제
 
-속성을 동적으로 추가/삭제 할 수 있습니다.
+속성을 동적으로 추가/삭제 할 수도 있습니다.
 
 ```javascript
 const user = {};
