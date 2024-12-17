@@ -135,12 +135,12 @@ console.log("함수 속성", add.data);
 ```javascript
 function outer(a, b) {
     function nestFunc(param1, param2) {
-        return param1 + param2; // 상위 함수의 변수에 접근 가능합니다.
+        return param1 + param2 + a + b; // 상위 함수의 변수인 a, b에도 접근 가능합니다.
     }
 
-    return nestFunc(1, 2);
+    return nestFunc(a, b);
 }
-console.log('중첩 함수', outer(1, 2)); // 3
+console.log('중첩 함수', outer(1, 2)); // 6    
 ```
 
 # 클로저와 정보 은닉
@@ -159,7 +159,7 @@ console.log('중첩 함수', outer(1, 2)); // 3
 
 ```javascript
 const counter = (function() { // #1. 함수를 즉시 실행합니다. 중첩된 함수인 #3함수를 리턴합니다.
-    var count = 0; // #2. 함수의 지역 변수입니다. 외부에서 직접 접근할 수 없습니다.
+    let count = 0; // #2. 함수의 지역 변수입니다. 외부에서 직접 접근할 수 없습니다.
     return function() { // #3. 중첩된 함수입니다.
         return ++count; // #4. count 변수는 #2입니다. #3 함수가 참조하므로 #1함수가 소멸되더라도 #2는 소멸되지 않습니다.
     };
