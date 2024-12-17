@@ -21,7 +21,7 @@ console.log('개체 속성 접근, . 사용', user.name === 'Lee');
 console.log('개체 속성 접근, 속성명 사용', user['name'] === 'Lee');
 ```
 
-자바스크립트의 모든 것들은 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이며, 심지어 함수도 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)입니다. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)는 대입시 얕은 복사를 합니다.
+자바스크립트의 모든 것들은 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이며, 심지어 함수도 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)입니다.
 
 1. [함수](https://tango1202.github.io/javascript/javascript-function/)를 속성으로 사용할 수 있으며, 이러한 [함수](https://tango1202.github.io/javascript/javascript-function/)를 특별히 ***메서드***라고 합니다.
 2. [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)를 사용하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 자신을 나타낼 수 있습니다.
@@ -159,13 +159,13 @@ const descriptor = Object.getOwnPropertyDescriptor(user, 'name');
 console.log('name의 enumerable은 false 입니다.', descriptor.enumerable === false);
 ```
 
-# 개체 비교
+# 개체 비교와 대입
 
 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)나 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 `===`비교를 할때 동일한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)인지 검사합니다. 값이 동일한 지 검사하는게 아니라 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 자체가 동일한지를 검사합니다.
 
 따라서, 값이 동일한지를 검사하려면, #1과 같이 하위 속성을 모두 뒤져서 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)끼리 검사해야 합니다.
 
-`=`로 대입하면 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)입니다. 한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 새로운 별칭은 만든 셈입니다. 동일한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이므로 `===` 비교시 `true`이며, 한쪽의 속성을 바꾸더라도, 다른쪽에 변경사항이 반영됩니다.
+`=`로 대입하면 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)입니다. 한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 새로운 별칭은 만든 셈입니다.(*이를 얕은 복사라 합니다.*) 동일한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이므로 `===` 비교시 `true`이며, 한쪽의 속성을 바꾸더라도, 다른쪽에 변경사항이 반영됩니다.
 
 ```javascript
 const user1 = {name: 'Lee'};
