@@ -87,7 +87,7 @@ console.log('변수 유효 범위', myFunc() === 20); // true
 console.log('변수 유효 범위', val); // 1
 ```
 
-#2에서 생성했는데, #1의 것이 바뀌다니 혼란스럽습니다. 따라서 함수내에서는 이름이 중복되지 않게 주의해야 하는데요, 아무리 주의해도 휴먼 에러를 피하기 힘듭니다. 상당히 골치 아픈 일이죠. 
+#2에서 생성했는데, #1의 것이 사용되다니 혼란스럽습니다. 따라서 함수내에서는 이름이 중복되지 않게 주의해야 하는데요, 아무리 주의해도 휴먼 에러를 피하기 힘듭니다. 코드의 규모가 커지면 커질수록 상당히 복잡하고 골치 아픈 문제가 됩니다. 
 
 이러한 복잡함을 없애고자 ECMAScript6 부터 블록 레벨에서 유효한 [let](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-const)과 [const](https://tango1202.github.io/javascript/javascript-basic/#let%EA%B3%BC-const)를 제공합니다.
 
@@ -156,9 +156,9 @@ console.log('변수 유효 범위', val); // 1
 
 # 타입과 리터럴
 
-`number, boolean, string, null, undefined, bigint, symbol`의 기본 타입(*Primitive Type*)이 있으며, [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)와 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 사용할 수 있습니다.
+자바스크립트는 `number, boolean, string, null, undefined, bigint, symbol`의 기본 타입(*Primitive Type*)이 있으며, [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)와 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 사용할 수 있습니다.
 
-1. 숫자형은 정수와 실수를 표현합니다.
+1. `number` : 숫자형은 정수와 실수를 표현합니다.
 
     (-2<sup>53</sup> - 1) ~ (2<sup>53</sup> - 1)를 표현합니다.
     
@@ -170,21 +170,21 @@ console.log('변수 유효 범위', val); // 1
     |`-infinity`|음의 무한대|   
     |`NaN`|연산 불가|
 
-2. `true`와 `false`로 참, 거짓을 표현합니다.
+2. `boolean` : `true`와 `false`로 참, 거짓을 표현합니다.
 
-3. 큰따옴표, 작은 따옴표, 백틱(*ECMAScript6*)으로 문자열을 표현합니다. 특히 백틱은 **템플릿 리터럴**인데요, 문자열내에서 다른 변수를 사용하여 합성할 수 있으며, 여러줄의 문자열을 `\n`없이 직관적으로 표현할 수 있습니다.
+3. `string` : 큰따옴표, 작은 따옴표, 백틱(*ECMAScript6*)으로 문자열을 표현합니다. 특히 백틱은 **템플릿 리터럴**인데요, 문자열내에서 다른 변수를 사용하여 합성할 수 있으며, 여러줄의 문자열을 `\n`없이 직관적으로 표현할 수 있습니다.
 
     * 문자열은 [UTF-16](https://tango1202.github.io/legacy-cpp-guide/legacy-cpp-guide-string/#utf-16-%EC%9D%B8%EC%BD%94%EB%94%A9)을 사용하며, 일반적으로 작은 따옴표를 사용합니다.
 
     * 문자열 내에 문자열 기호를 사용하고 싶은 경우에는 `'문자열 기호는 ""과 \'\' 입니다.'` 와 같이 `''`와 `""`쌍을 교차하여 사용하거나 `\`로 이스케이프 문자(*[https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String) 참고*)를 사용하면 됩니다. 
 
-4. `null`은 값이 할당되지 않았다는 의미로 개발자가 의도적으로 설정한 값입니다.
-5. `undefined`는 값이 할당되지 않아 자바스크립트에서 미리 초기화 한 값입니다. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 아예 선언되지 않았다라는 의미로 사용합니다.
+4. `null` : 값이 할당되지 않았다는 의미로 개발자가 의도적으로 설정한 값입니다.
+5. `undefined` : 값이 할당되지 않아 자바스크립트에서 미리 초기화 한 값입니다. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 아예 선언되지 않았다라는 의미로 사용합니다.
  `var a = undefined;`와 같이 `undefined`를 사용하는건 권장되지 않습니다. 왜냐면 이미 `a`를 선언했기 때문이죠. 이런 경우는 `null`을 사용하세요.
-6. `{}` 안에 속성명을 주어 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 선언합니다.
-7. `[]` 안에 값을 나열하여 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 선언합니다. 이때 타입이 서로 다를 수도 있습니다.
-8. `//`사이에 정규표현식을 사용할 수 있습니다.
-9. 래퍼 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 이용하여 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)의 속성이나 메서드를 호출할 수 있습니다.
+6. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) : `{}` 안에 속성명을 주어 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 선언합니다.
+7. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) : `[]` 안에 값을 나열하여 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 선언합니다. 이때 타입이 서로 다를 수도 있습니다.
+8. #8 : `//`사이에 정규표현식을 사용할 수 있습니다.
+9. #9 : 래퍼 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 이용하여 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)의 속성이나 메서드를 호출할 수 있습니다.
 
 ```javascript
 const num1 = 10.5; // #1. 실수
@@ -432,7 +432,7 @@ else {
 console.log('조건이 참이므로 a 입니다.', val === a);
 ```
 
-[삼항 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하면, 선언과 동시에 초기화 할 수 있으며, 코드를 좀더 단순화 할 수 있습니다.
+[삼항 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하면, 할당받을 변수를 미리 선언할 필요없이 선언과 동시에 초기화 할 수 있습니다. 코드를 좀더 단순화 할 수 있죠.
 
 ```javascript
 const a = 'a';
