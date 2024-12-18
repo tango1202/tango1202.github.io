@@ -354,7 +354,7 @@ console.log('속성을 추가한 새 개체를 생성합니다', { ...{ x: 1, y:
 
 # Symbol(ECMAScript6)
 
-[Symbol](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#symbolecmascript6)은 ECMAScript6에 추가된 타입으로서 유일한 Id로 사용될 값을 생성할때 사용합니다. 서로 다른 값임을 보장하며, [문자열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%AC%B8%EC%9E%90%EC%97%B4)로 변환시에는 그냥 `Symbol()`로 변환되기 때문에 서로 다른 값인지 확인할 수 없습니다. 또한 `Symbol('my')`와 같이 특정 설명을 주어 주어진 설명에 대해 유일한 값을 생성할 수 있습니다.
+[Symbol](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#symbolecmascript6)은 ECMAScript6에 추가된 타입으로서 유일한 Id로 사용될 값을 생성할때 사용합니다. 서로 다른 값임을 보장하며, [문자열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%AC%B8%EC%9E%90%EC%97%B4)로 변환시에는 그냥 `Symbol()`로 변환되기 때문에 서로 다른 값인지 확인할 수 없습니다. 또한 `Symbol('my')`와 같이 특정 설명을 줄 수 있으며, 주어진 설명에 대해 유일한 값을 생성할 수 있습니다.
 
 ```javascript
 const val1 = Symbol();
