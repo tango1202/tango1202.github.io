@@ -386,7 +386,7 @@ console.log('user2.getName()', user2.getName()); // Lee
 
 `name`이나 `number`같은 데이터를 저장한 속성은 당연히 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)마다 따로 존재해야 하지만, 메서드까지 따로 존재할 필요는 없죠. 
 
-쓸데없이 메모리를 차지하게 되니 메서드는 [프로토타입](https://tango1202.github.io/javascript/javascript-prototype/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85)을 이용하는게 좋습니다.(*[즉시 실행 함수를 이용한 개체 선언](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B0%9C%EC%B2%B4-%EC%84%A0%EC%96%B8) 참고*)
+쓸데없이 메모리를 차지하게 되니 메서드는 [프로토타입](https://tango1202.github.io/javascript/javascript-prototype/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85) 개체를 이용하는게 좋습니다. 자세한 방법은 [즉시 실행 함수를 이용한 개체 선언](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B0%9C%EC%B2%B4-%EC%84%A0%EC%96%B8)을 참고 하세요.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d3cdbd51-a101-45a3-aa1f-36db27feb44f)
 
@@ -429,8 +429,6 @@ console.log('String()으로 기본타입 개체를 생성합니다. 기본타입
 # 속성 축약 표현(ECMAScript6)
 
 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성명과 변수가 이름이 같은 경우 축약하여 표현할 수 있습니다.
-
-즉,
 
 ```javascript
 const x = 10;
@@ -481,7 +479,7 @@ const obj2 = {
 
 # Date
 
-`Date 개체`를 사용하면 날짜를 처리합니다. 
+`Date 개체`는 날짜를 처리합니다. 
 
 내부적으로는 UTC 1970년 1월 1일 0시 0분 0초 이후의 밀리초로 데이터를 관리하는데요, 이때 `month`는 0 base 여서 0이면 1월이고, 1이면 2월이고 그렇습니다.
 
