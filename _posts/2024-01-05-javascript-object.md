@@ -25,16 +25,16 @@ console.log('개체 속성 접근, 속성명 사용', user['name'] === 'Lee');
 
 1. [함수](https://tango1202.github.io/javascript/javascript-function/)를 속성으로 사용할 수도 있으며, 이러한 [함수](https://tango1202.github.io/javascript/javascript-function/)를 특별히 ***메서드***라고 합니다.
 2. [this](https://tango1202.github.io/javascript/javascript-prototype/#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EB%B0%A9%EC%8B%9D%EC%97%90-%EB%94%B0%EB%A5%B8-this-%EB%B3%80%EA%B2%BD)를 사용하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 자신을 나타낼 수 있습니다.
-3. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 `alert()` 로 출력하면 `object Object`만 표시됩니다. 
+3. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 `alert()`으로 출력하면 `object Object`만 표시됩니다. 
 
     ![image](https://github.com/user-attachments/assets/e8e18d3a-dc32-438b-8824-744fd1a9a837)
 
-    하지만, `console.log()`로 출력하면 트리를 확장하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성명과 속성값을 확인할 수 있습니다.
+    하지만, `console.log()`로 출력하면 트리 형태로 표시되는데요, 이를 확장하면 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성명과 속성값을 확인할 수 있습니다.
 
     ![image](https://github.com/user-attachments/assets/4dcaeebd-554f-4cd9-ab9f-dac252dde10d)
 
-4. `new Object()`로 생성한뒤 뒤늦게 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성들을 설정하는 방식도 있으나 코딩 계약에 좋지 않아 잘 사용하지 않습니다.
-5. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 내부에서만 사용하는 속성은 관례적으로 밑줄(*_*)을 접두어로 사용합니다. 설계자가 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 조치한 것이니(*언어적 차원에서 막을 수 있다면 더 좋았겠지만, 방도가 마땅치 않아서 한 조치이니*) 밑줄(*_*) 접두어가 있다면, 외부에서는 직접 사용하지 마세요.
+4. `new Object()`로 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 생성한뒤 뒤늦게 속성들을 설정하는 방식도 있으나, 코딩 계약에 좋지 않아 잘 사용하지 않습니다.
+5. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 내부에서만 사용하는 속성은 관례적으로 밑줄(*_*)을 접두어로 사용합니다. 설계자가 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 위해 조치한 것이니(*언어적 차원에서 막을 수 있다면 더 좋았겠지만, 방도가 마땅치 않아서 한 조치이니*), 밑줄(*_*) 접두어가 있다면 외부에서는 사용하지 마세요.
 
 ```javascript
 // 리터럴 방식 개체 생성
