@@ -10,7 +10,7 @@ sidebar:
 
 # 배열
 
-[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 여러개의 값을 순차적으로 표현합니다. 대입시 얕은 복사를 합니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 여러개의 값을 순차적으로 표현합니다. [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)처럼 `=`로 대입시 얕은 복사를 합니다.
 
 1. #1 : `[]`로 빈 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 생성합니다.
 2. #2 : `[]`에 각 요소를 쉼표로 구분하여 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 생성합니다. 다른 언어와 달리 타입이 다르더라도 하나의 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)로 사용할 수 있습니다.
@@ -50,7 +50,7 @@ C++언어등에서는 [배열](https://tango1202.github.io/javascript/javascript
 
 또한 C++언어등에서는 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기가 확정된 후 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기 내에서 요소를 수정할 수 있지만, 자바스크립트에서는 이런 제약이 없습니다. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기와 상관없이 아무곳에나 요소를 대입할 수 있고 그에 따라 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기가 결정됩니다.
 
-1. #1 : 주어진 인덱스 요소가 없다면 추가합니다. 이때 #1-1과 같이 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기가 조정되며, #1-2와 같이 나머지 요소는 `undefined`로 추가됩니다. 하지만, 이런 방법으로 사용하는 건 좋지 않습니다. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 답게 여러개의 데이터를 순차적으로 저장하세요.
+1. #1 : 주어진 인덱스 요소가 없다면 추가합니다.(*C++ 언어등에서 이런 짓을 하면 컴파일 오류죠.*) 이때 #1-1과 같이 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기가 조정되며, #1-2와 같이 나머지 요소는 `undefined`로 추가됩니다. 되기는 합니다만, 이런 방법으로 사용하는 건 좋지 않습니다. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 답게 여러개의 데이터를 순차적으로 저장하세요.
 
 2. #2 : `delete`로 삭제할 수는 있으나, [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 크기는 조정되지 않으며, `undefined`로 만들어 줍니다.
 
@@ -164,7 +164,9 @@ console.log('filter후 map을 적용', result[0] === 11 && result[1] === 12);
 
 # 배열 복제
 
-[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)은 얕은 복사를 합니다. 따라서, `const other1 = arr;`를 하면, `other1`과 `arr`은 같은 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 참조합니다. 요소를 복제하려면 다음과 같이 `from()`이나 `slice()`를 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용합니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)도 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)처럼 얕은 복사를 합니다. 따라서, `const other1 = arr;`를 하면, `other1`과 `arr`은 같은 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)을 참조합니다. 
+
+요소를 복제하려면 다음과 같이 `from()`이나 `slice()`를 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용합니다.
 
 ```javascript
 const arr = [1, 2, 3];
