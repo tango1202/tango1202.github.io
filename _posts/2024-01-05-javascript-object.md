@@ -193,7 +193,9 @@ console.log('user1을 수정하면, 동일 개체인 user3도 반영됩니다.',
 
 # 개체 복제/동결
 
-[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)는 기본적으로 얕은 복사를 하며, 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 참조합니다. 따라서, `user2 = user1`은 사실 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 참조하며, `user2`를 수정하면, `user1`도 수정됩니다.
+[개체 비교와 대입](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4-%EB%B9%84%EA%B5%90%EC%99%80-%EB%8C%80%EC%9E%85)에서 언급한 것처럼 `=`로 대입하면 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)는 얕은 복사를 하며, 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 참조합니다. 
+
+다음 코드에서, `user2 = user1`은 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 참조하며, `user2`를 수정하면, `user1`도 수정됩니다.
 
 ```javascript
 const user1 = {name: 'Lee'};
@@ -233,7 +235,7 @@ console.log("하위 개체는 여전히 참조 user2.detail.addr === 'Incheon'",
 
 ```
 
-하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)까지 복제하고 싶으면, 하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)도 일일이 `Object.assign()`을 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 일일이 복제해야 합니다. 좀 번거롭죠. 그래서 대안으로 속도 성능은 떨어지지만, [JSON](https://tango1202.github.io/javascript/javascript-object/#json)을 이용하여 간편하게 복제할 수 있습니다.
+하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)까지 복제하고 싶으면, 하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)도 일일이 `Object.assign()`을 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 일일이 복제해야 합니다. 좀 번거롭죠. 그래서 대안으로 속도 성능은 떨어지지만, [JSON](https://tango1202.github.io/javascript/javascript-object/#json)을 이용하면 하위 개체도 복제할 수 있습니다.
 
 ```javascript
 const user1 = {
@@ -285,7 +287,7 @@ console.log('create()와 assign()으로 복제했습니다.', user3 instanceof U
 
 # getter, setter(ECMAScript5)
 
-`getter` 와 `setter`를 이용하면 속성에 값을 저장하거나 불러올때 [함수](https://tango1202.github.io/javascript/javascript-function/)인 메서드를 사용할 수 있고, 속성에 대한 접근 통제나 유효성 검사를 좀 더 캡슐화할 수 있습니다.
+`getter` 와 `setter`를 이용하면 속성에 값을 저장하거나 불러올때 메서드 형태로 사용할 수 있고, 속성에 대한 접근 통제나 유효성 검사를 좀 더 캡슐화할 수 있습니다.
 
 ```javascript
     const user = {
@@ -305,7 +307,7 @@ console.log('setter로 이름을 수정했습니다.', user.name === 'name is Le
 
 # JSON
 
-[JSON](https://tango1202.github.io/javascript/javascript-object/#json)은 자바스크립트 객체 문법으로 구조화된 데이터를 표현하기 위한 문자 기반의 표준 포맷입니다.
+[JSON](https://tango1202.github.io/javascript/javascript-object/#json)은 "자바스크립트 객체 문법으로 구조화된 데이터를 표현"하기 위한 표준 포맷입니다.
 
 [JSON](https://tango1202.github.io/javascript/javascript-object/#json)을 이용하면, `stringify()`함수로 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 문자열로 만들고, `parse()`함수로 문자열을 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)로 만들 수 있습니다.
 
@@ -324,13 +326,13 @@ const result = JSON.parse(str);
 console.log('JSON 문자열로부터 개체 생성', result.x === 10 && result.y === 20 && result.value === '문자열' && result.datas[0] === 1 && result.datas[1] === 2 && result.datas[2] === 3);
 ```
 
-개체에 `toJSON()` 함수가 구현되어 있다면, `stringify()` 호출시 `toJSON()`을 호출합니다.
+개체에 `toJSON()` 함수가 구현되어 있다면, `stringify()` 호출시 개체에 구현된 `toJSON()`을 호출하므로, 개체마다 커스터마이징 할 수 있습니다.
 
 ```javascript
 const obj = {
     name: 'Lee',
     toJSON: function() {
-        return `name is ${this.name}`
+        return `name is ${this.name}`;
     }
 };
 console.log('toJSON을 이용합니다.', JSON.stringify(obj) === '"name is Lee"');
@@ -368,7 +370,7 @@ function User(name, number) { // #1. 일반 함수와 구분하기 위해 Pascal
     this.getName = function() {
         return this.name;
     };
-    // 암시적으로 this 개체를 리턴합니다.
+    // #4. 암시적으로 this 개체를 리턴합니다.
 }
 
 const user1 = new User('Kim', '123-4567'); // #3. new로 함수를 호출합니다.
@@ -399,11 +401,13 @@ console.log('user2.getName()', user2.getName()); // Lee
 function User (name) { 
     this.name = name; 
 }
-const user = User('Kim'); 
+const user = User('Kim'); // new를 생략했습니다.
 
 console.log('리턴값이 없으므로 user는 undefined 입니다', user === undefined); // #1
 console.log('this는 전역 개체이므로 전역 개체에 name을 저장합니다.', name === 'Kim'); // #2
 ```
+
+상기처럼 의도치 않게 동작하니 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)호출시 `new`를 빼먹지 않도록 주의해야 합니다.
 
 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)도 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)로 생성할 수 있습니다.
 
@@ -422,10 +426,9 @@ console.log('String()으로 기본타입 개체를 생성합니다. 기본타입
 
 ```
 
-
 # 속성 축약 표현(ECMAScript6)
 
-[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)에 사용하는 변수가 속성명과 같은 경우 축약하여 표현할 수 있습니다.
+[개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성명과 변수가 이름이 같은 경우 축약하여 표현할 수 있습니다.
 
 즉,
 
