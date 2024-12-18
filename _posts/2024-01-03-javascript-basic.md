@@ -532,7 +532,9 @@ function getColor3(obj) {
 }
 ```
 
-하지만 `getColor3()`은 `obj.color === 0`인 경우 검은색 그대로 사용해야 하는데, `false`로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)되어 오동작을 하게 됩니다. 
+`getColor3()`은 언뜻 보면 잘 되는것 처럼 보이지만, `obj.color === 0`인 경우에는 오동작을 하게 됩니다. `obj.color === 0`이므로 검은색을 사용해야 하는데, `false`로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)되어 `obj.parent.color`를 사용하게 됩니다. 
+
+다음 코드를 실행시켜 보면, `getColor3()`은 `parent` 의 `color`인 `0xFF0000`을 사용하는 걸 확인할 수 있습니다.
 
 ```javascript
 const parent = {
@@ -555,9 +557,9 @@ console.log('자기 자신의 color를 사용합니다.',
 ); 
 ```
 
-이러한 경우 [?? 연산자](https://tango1202.github.io/javascript/javascript-basic/#nullishecmascript11)를 사용할 수 있습니다.
+이러한 경우 [?? 연산자](https://tango1202.github.io/javascript/javascript-basic/#nullishecmascript11)를 사용하면 간단하게 문제를 해결할 수 있습니다.
 
-`a ?? b`는 `a`의 `null`과 `undefined`여부만 검사합니다. 값이 `0`인지는 검사하지 않습니다. 따라서 `a`가 `null` 도 아니고, `undefined`도 아니면, `a`를 사용하고, 그렇지 않으면, `b`를 사용합니다. 
+`a ?? b`로 사용하면 `??`는 `a`의 `null`과 `undefined`여부만 검사합니다. 값이 `0`인지는 검사하지 않습니다. 따라서 `a`가 `null` 도 아니고, `undefined`도 아니면, `a`를 사용하고, 그렇지 않으면, `b`를 사용하기 때문에, `obj.color === 0`인 경우에도 `obj.color`가 사용됩니다.
 
 ```javascript
 function getColor4(obj) {
