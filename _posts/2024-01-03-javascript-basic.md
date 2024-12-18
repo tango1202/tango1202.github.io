@@ -489,7 +489,7 @@ console.log('a가 null 이면 다음식을 평가하지 않습니다.', val2 ===
 `a && 'default'`를 좀더 쉽게 풀어쓰면, **주어진 값이 유효할때에만 기본동작을 수행**하라라는 의미로 해석하셔도 됩니다. `a && doSomething();` 처럼요.  
 
 ```javascript
-const a = 'defalut';
+const a = 'default';
 function doSomething() {
     return 'something';
 }
@@ -498,7 +498,7 @@ console.log('a가 true인 경우만 다음식을 평가합니다.', (a && doSome
 
 # nullish(ECMAScript11)
 
-[개체 할당 축약 표현](??)에서 '`||`'을 사용하는 것이 간결하긴 하지만, 오동작을 할때가 있습니다.
+[논리 연산자를 이용한 개체 할당 축약 표현](https://tango1202.github.io/javascript/javascript-basic/#%EB%85%BC%EB%A6%AC-%EC%97%B0%EC%82%B0%EC%9E%90%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B0%9C%EC%B2%B4-%ED%95%A0%EB%8B%B9-%EC%B6%95%EC%95%BD-%ED%91%9C%ED%98%84)에서 '`||`'을 사용하는 것이 간결하긴 하지만, 오동작을 할때가 있습니다.
 
 예를 들어 어떤 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 `color`값이 유효하지 않다면, `parant`의 `color`값을 이용한다고 해봅시다. 
 
