@@ -114,7 +114,7 @@ console.log('filter로 2보다 작은 것만 필터링합니다.', filtered.leng
 
 # 배열 요소 나열
 
-다음의 5가지 방법이 있습니다. 이중 [for-in](https://tango1202.github.io/javascript/javascript-object/#%EC%86%8D%EC%84%B1-%EB%82%98%EC%97%B4--for-in)은 원래 속성명을 나열하는 용도로 사용하는 것입니다. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 요소 나열에는 성능이 떨어지니 사용하지 마세요. 
+다음의 5가지 방법이 있습니다. 다른 것들은 다 괜찮은데, [for-in](https://tango1202.github.io/javascript/javascript-object/#%EC%86%8D%EC%84%B1-%EB%82%98%EC%97%B4--for-in)은 원래 속성명을 나열하는 용도로 사용하는 것이어서 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 요소 나열시 성능이 떨어집니다. 특별한 경우가 아니라면 사용하지 마세요. 
 
 ```javascript
 const arr = [1, 2, 3];
@@ -124,7 +124,7 @@ for (let i = 0; i < arr.length; ++i) {
 for (const item of arr) {
     console.log('for of 로 요소 나열', item);    
 }
-for (let prop in arr) { // 배열 요소와 추가 속성이 나열됩니다. 성능일 떨어지니 사용하지 마세요.
+for (let prop in arr) { // 배열 요소와 추가 속성이 나열됩니다. 성능이 떨어지니 사용하지 마세요.
     console.log('for in 으로 요소 나열', arr[prop]);
 }
 arr.forEach(
