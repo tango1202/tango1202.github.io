@@ -60,7 +60,7 @@ console.log('즉시 실행 함수',
 })();
 ```
 
-[화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)를 이용한 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)는 다음과 같습니다.
+[화살표 함수](https://tango1202.github.io/javascript/javascript-function/#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98ecmascript6)도 다음처럼 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)를 만들 수 있습니다.
 
 ```javascript
 (() => {
@@ -127,7 +127,7 @@ console.log("함수 속성", add.data);
 
 # 중첩 함수
 
-함수내에 다른 함수를 중첩해서 선언할 수 있습니다. 
+함수 내부에 다른 함수를 중첩해서 선언할 수 있습니다. 
 
 * [중첩 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)는 상위 함수의 변수에 접근 가능합니다.(*반대로 상위 함수는 [중첩 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)의 변수에 접근할 수 없습니다.*)
 * 외부에서는 [중첩 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)에 접근할 수 없습니다.
@@ -147,7 +147,7 @@ console.log('중첩 함수', outer(1, 2)); // 6
 
 [클로저](https://tango1202.github.io/javascript/javascript-function/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89)는 함수와 그 함수가 호출되었을때의 환경과의 조합입니다. 이 환경은 함수가 사용중이라면 소멸되지 않고 사용할 수 있습니다.
 
-이 특징을 이용하면, [중첩 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)를 이용하여 특정 정보를 은닉하는 캡슐화를 할 수 있습니다.(*[클로저를 이용한 캡슐화](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%ED%81%B4%EB%A1%9C%EC%A0%80%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%BA%A1%EC%8A%90%ED%99%94) 참고*) 또한 [모듈화](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%93%88%ED%99%94)에서도 사용하는 개념이니 만큼 잘 알아 두셔야 합니다.
+이 특징을 이용하면, [중첩 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)를 이용하여 특정 정보를 은닉하는 [캡슐화](https://tango1202.github.io/principle/principle-encapsulation/)를 할 수 있습니다.(*[클로저를 이용한 캡슐화](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%ED%81%B4%EB%A1%9C%EC%A0%80%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%BA%A1%EC%8A%90%ED%99%94) 참고*) 또한 [모듈화](https://tango1202.github.io/javascript/javascript-coding-pattern/#%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4---%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%93%88%ED%99%94)에서도 사용하는 개념이니 만큼 잘 알아 두셔야 합니다.
 
 다음은 함수의 지역 변수인 `count`를 은닉하고, [중첩 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)를 이용하여 `count`에 접근하는 예입니다.
 
@@ -192,7 +192,7 @@ const add = (a, b) => {
 console.log('화살표 함수', add(1, 2)); // 3
 ```
 
-와 같이 간소하게 표현할 수 있습니다.
+와 같이 간략하게 표현할 수 있습니다.
 
 1줄짜리라면 `return`과 중괄호를 생략하여 더 간략하게 표현할 수 있습니다.
 

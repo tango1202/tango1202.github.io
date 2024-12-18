@@ -147,7 +147,7 @@ for (let prop in arr) { // 배열 요소와 추가 속성이 나열됩니다.
 |`enumerable`|`true`이면 [for-in](https://tango1202.github.io/javascript/javascript-object/#%EC%86%8D%EC%84%B1-%EB%82%98%EC%97%B4--for-in)으로 나열이 가능합니다.
 |`configurable`|`true` 이면 속성 삭제나 플래그 수정이 가능하고, `false`이면 불가능 합니다. `writable`, `enumerable`도 `false`로 만들며 다시 수정할 수 없게 만듭니다.|
 
-다음 예는 `defineProperty`를 이용해서 `name`속성이 열거되지 않게 하는 예입니다.
+다음은 `user`의 `name`속성이 열거되지 않도록 `defineProperty()`를 이용해서 `enumerable`을 설정한 예입니다.
 
 ```javascript
 const user = {
@@ -176,7 +176,7 @@ console.log('name의 enumerable은 false 입니다.', descriptor.enumerable === 
 
 따라서, 값이 동일한지를 검사하려면, #1과 같이 하위 속성을 모두 뒤져서 [기본 타입](https://tango1202.github.io/javascript/javascript-basic/#%ED%83%80%EC%9E%85%EA%B3%BC-%EB%A6%AC%ED%84%B0%EB%9F%B4)끼리 검사해야 합니다.
 
-`=`로 대입하면 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)입니다. 한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 새로운 별칭은 만든 셈입니다.(*이를 얕은 복사라 합니다.*) 동일한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이므로 `===` 비교시 `true`이며, 한쪽의 속성을 바꾸더라도, 다른쪽에 변경사항이 반영됩니다.
+#2와 같이 `=`로 대입하면 동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 됩니다. 한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 새로운 별칭은 만든 셈입니다.(*이를 얕은 복사라 합니다.*) 동일한 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)이므로 `===` 비교시 `true`이며, 한쪽의 속성을 바꾸더라도, 다른쪽에 변경사항이 반영됩니다.
 
 ```javascript
 const user1 = {name: 'Lee'};
@@ -202,7 +202,7 @@ user2.name = 'Kim';
 console.log("동일 개체를 참조합니다 user1.name === 'Kim'", user1.name === 'Kim'); // true. user2를 수정했지만, user1도 수정되었습니다.
 ```
 
-복제본을 만드려면 내부 속성들을 일일이 복제해야 하며, `Object.assign()`(*ECMAScript6*)을 이용할 수 있습니다.(*또한 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 개체 속성을 복제할 수도 있습니다.*) 하지만 하위 개체는 여전히 얕은 복사를 하니 주의해야 합니다. 다음 예에서 `name`은 복제되었지만, `addr`은 하위 개체이기 때문에 복제되지 않고 여전히 같은 개체를 참조합니다.
+동일 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 아니라 값이 동일한 복제본을 만드려면, 내부 속성들을 일일이 복제해야 하며, `Object.assign()`(*ECMAScript6*)을 이용할 수 있습니다.(*또한 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 개체 속성을 복제할 수도 있습니다.*) 하지만 하위 개체는 여전히 얕은 복사를 하니 주의해야 합니다. 다음 예에서 `name`은 복제되었지만, `addr`은 하위 개체이기 때문에 복제되지 않고 여전히 같은 개체를 참조합니다.
 
 ```javascript
 const user1 = {
@@ -233,7 +233,7 @@ console.log("하위 개체는 여전히 참조 user2.detail.addr === 'Incheon'",
 
 ```
 
-하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)까지 복제하고 싶으면, 하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)도 일일이 `Object.assign()`을 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 일일이 복제해야 합니다. 좀 번거롭죠. 대안으로 속도 성능은 떨어지지만, [JSON](https://tango1202.github.io/javascript/javascript-object/#json)을 이용하여 다음처럼 간편하게 복제할 수 있습니다.
+하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)까지 복제하고 싶으면, 하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)도 일일이 `Object.assign()`을 이용하거나, [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 일일이 복제해야 합니다. 좀 번거롭죠. 그래서 대안으로 속도 성능은 떨어지지만, [JSON](https://tango1202.github.io/javascript/javascript-object/#json)을 이용하여 간편하게 복제할 수 있습니다.
 
 ```javascript
 const user1 = {
@@ -253,7 +253,9 @@ console.log("JSON으로 하위 개체도 복제 user1.detail.addr === 'Seoul'", 
 console.log("JSON으로 하위 개체도 복제 user2.detail.addr === 'Busan'", user2.detail.addr === 'Busan');    
 ```
 
-[생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 이용하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 생성하면, 내부적으로 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)를 사용하는데요, `assign()`이나 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)로 복제하면 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)가 `Object`로 초기화 되어 버립니다. 만약 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)도 동일하게 하려면, `Object.create()`를 함께 이용해야 합니다.(*[prototype](https://tango1202.github.io/javascript/javascript-prototype/) 참고*)
+하위 속성까지 꼼꼼하게 복제하면 개체의 진정한 복제본이 될까요? 아쉽지만 아닙니다. [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)가 남아 있습니다.
+
+[생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 이용하여 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 생성하면, 내부적으로 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)가 생성되는데요, `assign()`이나 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)로 복제하면 #1처럼 [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)가 `Object`로 초기화 되어 버립니다. [`__proto__`](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)도 동일하게 하려면, #2처럼 `Object.create()`를 함께 이용해야 합니다.(*[prototype](https://tango1202.github.io/javascript/javascript-prototype/) 참고*)
 
 ```javascript
 function User(name) { // 생성자 함수.
@@ -261,11 +263,11 @@ function User(name) { // 생성자 함수.
 }
 const user1 = new User('Lee'); 
 const user2 = {...user1}; 
-const user3 = Object.assign(Object.create(User.prototype), user1); // 동일한 prototype을 사용할 수 있도록 Object.create()를 이용합니다.
+const user3 = Object.assign(Object.create(User.prototype), user1); // #2. 동일한 prototype을 사용할 수 있도록 Object.create()를 이용합니다.
 
 console.log('생성자 함수 User로 생성했습니다.', user1 instanceof User);
-console.log('spread로 개체 속성을 복제한 개체입니다.', user2 instanceof Object); // Object로 초기화 되어 있습니다.
-console.log('create()와 assign()으로 복제했습니다.', user3 instanceof User); // Object.create()를 이용하면 user개체로 복제됩니다.
+console.log('spread로 개체 속성을 복제한 개체입니다.', user2 instanceof Object); // #1. Object로 초기화 되어 있습니다.
+console.log('create()와 assign()으로 복제했습니다.', user3 instanceof User); // #2. Object.create()를 이용하면 user개체로 복제됩니다.
 ```
 
 `Object.freeze()`로 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 수정할 수 없게끔 동결시킬 수 있습니다. 하지만, 하위 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)에는 적용되지 않습니다.
