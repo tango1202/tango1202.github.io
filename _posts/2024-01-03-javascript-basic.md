@@ -323,7 +323,7 @@ console.log('소수점 4째자리 반올림', Math.round(3.141592 * 1000) / 1000
 실수 연산은 정밀도에 따라 미세하게 다른 값이 될 수 있습니다. 
 예를 들어 `0.1 + 0.2`는 `0.3`이 아니라  `0.30000000000000001`이 될 수 있습니다. 
 
-이런 경우 `toFixed()`를 이용하여 고정된 자리수 만큼만 사용할 수 있습니다. 단, `toFixed()`는 문자열로 리턴하므로, 이를 다시 숫자로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)해주어야 합니다.
+이런 경우 `toFixed()`를 이용하여 고정된 자리수 만큼만 사용할 수 있습니다. 단, `toFixed()`는 문자열로 리턴하므로 문자열과 비교해야 합니다.
 
 ```javascript
 console.log('toFixed() - 소수점 정밀도 오차 보정', 0.1 + 0.2, (0.1 + 0.2).toFixed(4) === '0.3000'); 
@@ -333,7 +333,7 @@ console.log('toFixed() - 소수점 정밀도 오차 보정', 0.1 + 0.2, (0.1 + 0
 
 자바스크립트는 값을 비교할때 적극적으로 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)하기 때문에 뜻하지 않은 곳에서 오동작을 할 수 있습니다. [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98)은 타입에 기반한 **코딩 계약** 을 위반하기 때문에 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하는건 언제나 좋지 않습니다. 최선을 다해서 [형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 하지 마세요.
 
-특히 `boolean`은 조건식에 광범위하게 사용되기 때문에 변환 규칙을 잘 알아두셔야 합니다.(*저 같은 경우는 빈 문자열이 `false`로 변환되는걸 뒤늦게 알고 코드를 재점검하느라 고생한 적이 있습니다.*)
+특히 `boolean`은 조건식에서 광범위하게 사용되기 때문에 변환 규칙을 잘 알아두셔야 합니다.(*저 같은 경우는 빈 문자열이 `false`로 변환되는걸 뒤늦게 알고 코드를 재점검하느라 고생한 적이 있습니다.*)
 
 |항목|Number|Boolean|string|
 |--|--|--|--|
@@ -412,7 +412,7 @@ MY_Label for () {
 continue; // 현지점에서 진행을 중단하고, 다시 조건식 부터 재실행
 ```
 
-# 개체 할당 축약 표현
+# 삼항 연산자를 이용한 개체 할당 축약 표현
 
 조건에 따라 값을 할당하는게 달라지면 다음과 같이 `if()`를 이용할 수 있습니다. 이때 #1과 같이 할당받을 변수를 미리 선언해야 합니다.
 
@@ -444,9 +444,9 @@ const val = condition ? a : b; // 선언과 동시에 초기화할 수 있습니
 console.log('조건이 참이므로 a 입니다.', val === a);
 ```
 
-주어진 값이 유효할 때만 사용하고, 그렇지 않은 경우는 기본값을 사용하는 논리도 많이 사용되는데요, 이런 경우도 다음 코드의 #1, #2, #3, #4와 같이 삼항 연산자를 이용할 수 있습니다. 이때 #1, #2는 직접적으로 `null`인지만 검사하는데, #3과 #4는 `undefined`, 숫자 `0`, `NaN`, `빈 문자열`인 경우도 검사하니 주의하시고요(*[형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 참고*), 
+주어진 값이 유효할 때만 사용하고, 그렇지 않은 경우는 기본값을 사용하는 논리도 많이 사용되는데요, 이런 경우도 다음 코드의 #1, #2, #3, #4와 같이 삼항 연산자를 이용할 수 있습니다. 이때 #1, #2는 직접적으로 `null`인지만 검사하는데, #3과 #4는 `undefined`, 숫자 `0`, `NaN`, `빈 문자열`인 경우도 검사하니 주의하시거나 잘 활용하시고요(*[형변환](https://tango1202.github.io/javascript/javascript-basic/#%ED%98%95%EB%B3%80%ED%99%98) 참고*), 
 
-개인적으론 #4(`a ? a : 'default';`)처럼, 조건식이 단순하고 기본값이 뒤에 있는 형태가 가독성이 좋아 선호하고 있습니다. 
+개인적으론 #4(`a ? a : 'default';`)가 조건식이 단순하고 기본값이 뒤에 있는 형태여서 가독성이 좋아 선호하고 있습니다. 
 
 ```javascript
 const a = null;
@@ -463,6 +463,8 @@ console.log('a가 null 입니다.', val3 === 'default');
 const val4 = a ? a : 'default'; // #4. null, undefined, 숫자 0, NaN, 빈 문자열도 검사합니다. 기본값이 뒤에 있어 가독성이 좋습니다. 
 console.log('a가 null 입니다.', val4 === 'default');
 ```
+
+# 논리 연산자를 이용한 개체 할당 축약 표현
 
 기본값 설정을 [삼항 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)로 할 수도 있지만 [논리 연산자](https://tango1202.github.io/javascript/javascript-basic/#%EC%97%B0%EC%82%B0%EC%9E%90)를 이용하면 더 가독성 좋게 작성할 수 있습니다. 
 
@@ -496,7 +498,7 @@ console.log('a가 true인 경우만 다음식을 평가합니다.', (a && doSome
 
 # nullish(ECMAScript11)
 
-[개체 할당 축약 표현](https://tango1202.github.io/javascript/javascript-basic/#%EA%B0%9C%EC%B2%B4-%ED%95%A0%EB%8B%B9-%EC%B6%95%EC%95%BD-%ED%91%9C%ED%98%84)에서 '`||`'을 사용하는 것이 간결하긴 하지만, 오동작을 할때가 있습니다.
+[개체 할당 축약 표현](??)에서 '`||`'을 사용하는 것이 간결하긴 하지만, 오동작을 할때가 있습니다.
 
 예를 들어 어떤 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 `color`값이 유효하지 않다면, `parant`의 `color`값을 이용한다고 해봅시다. 
 
