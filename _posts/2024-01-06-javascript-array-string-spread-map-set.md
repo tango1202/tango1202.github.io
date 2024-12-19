@@ -329,7 +329,7 @@ const f = (a, b, c) => {
 console.log('배열 [1, 2, 3]을 나열해서 전달합니다', f(...[1, 2, 3]) === 1 + 2 + 3); 
 ```
 
-[Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하면 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 처리를 좀더 단순하게 할 수 있습니다. 
+[Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하면 [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4) 처리(*배열 복제, 배열에 항목 추가등*)를 좀더 단순하게 할 수 있습니다. 
 
 ```javascript
 const arr = [1, 2, 3];
@@ -341,7 +341,7 @@ console.log('기존 배열에 새로운 값들을 추가한 새로운 배열 리
 console.log('기존 배열에 새로운 배열을 추가한 새로운 배열 리턴', [...arr, [6, 7]]); // [1, 2, 3, 4, 5, [6, 7]]
 ```
 
-[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)뿐만 아니라 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)도 분해해서 나열할 수 있습니다.
+[배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)뿐만 아니라 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4) 처리(*개체 복제, 개체 합성, 개체 속성값 변경, 개체 속성 추가등*)도 좀더 단순하게 할 수 있습니다.
 
 ```javascript
 console.log('개체를 복제하지만, prototype은 복제되지 않습니다', {...{ x: 1, y: 2 } }); // { x: 1, y: 2 } 

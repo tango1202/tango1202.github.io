@@ -91,7 +91,7 @@ sidebar:
 </html>
 ```
 
-다음은 [모듈](https://tango1202.github.io/javascript/javascript-module/#%EB%AA%A8%EB%93%88ecmascript6)을 구현한 `myModule.js`입니다. `privateFunc`은 내보내지 않았습니다.
+다음은 [모듈](https://tango1202.github.io/javascript/javascript-module/#%EB%AA%A8%EB%93%88ecmascript6)을 구현한 `myModule.js`입니다. `privateFunc`은 내보내지 않았기 때문에 외부에서 사용할 수 없으며, `publicFunc()`, `plus()`, `minus()`만 외부에서 사용할 수 있습니다. 
 
 ```javascript
 const privateFunc = () => {
