@@ -86,7 +86,7 @@ sidebar:
 <!DOCTYPE html>
 <html>
     <body>
-        <script type="module" src="/module_-_test.js"></script>
+        <script type="module" src="/module-test.js"></script>
     </body>
 </html>
 ```
