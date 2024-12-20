@@ -35,25 +35,25 @@ Module.privateFunc(a, b); // (X) 오류 발생. 접근할 수 없습니다.
 
 # 코딩 패턴 - 즉시 실행 함수를 이용한 개체 선언
 
-[개체의 생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)와 메서드들을 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)를 이용하여 응집하면 코드의 가독성이 좋아집니다.
+[개체의 생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)와 [프로토타입](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)의 메서드들을 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)를 이용하여 응집하면 코드의 가독성이 좋아집니다.
 
 ```javascript
-const User = (() => { // 즉시 실행 함수입니다.
-    function User(name) { // #1
+const User = (() => { // #1. 즉시 실행 함수입니다.
+    function User(name) { // #2. 생성자 함수
         this.name = name;
-    };
+    }
     User.prototype.getName = function() { // 메서드는 프로토타입에 선언합니다.
         return this.name;
     }; 
     
-    return User; // #1. 생성자 함수를 리턴합니다.
+    return User; // #3. #2 생성자 함수를 리턴합니다.
 })();
 
-const user1 = new User('Kim');
+const user1 = new User('Kim'); // #4. #1 개체의 리턴값인 #3을 new () 형태로 실행합니다. 즉, #2 생성자 함수를 호출합니다.
 const user2 = new User('Lee');
 
 console.log('즉시 실행 함수를 이용한 개체 선언', user1.getName()); // Kim
-console.log('즉시 실행 함수를 이용한 개체 선언', user2.getName()); // Lee 
+console.log('즉시 실행 함수를 이용한 개체 선언', user2.getName()); // Lee     
 ```
 
 # 코딩 패턴 - MixIn을 이용한 메서드 동적 추가
