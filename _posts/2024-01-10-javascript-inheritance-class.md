@@ -17,7 +17,7 @@ sidebar:
 C++에서는 `Base`로부터 상속한 `Derived` 클래스로 개체를 인스턴스화 하면, 속성과 메서드를 물려받게 됩니다.
 따라서 각 개체는 각각 `baseProperty, derivedProperty`를 갖게 되고, `baseMethed(), derivedMethod()`를 제공합니다. 메서드 정의는 `Base` 클래스와 `Derived` 클래스에서 제공하고요.
 
-다음은 C++의 상속과 자바스크립트의 [프로토타입 체인](https://tango1202.github.io/javascript/javascript-prototype/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%B2%B4%EC%9D%B8%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%86%8D%EC%84%B1-%EC%B0%B8%EC%A1%B0)을 비교한 그림입니다. C++은 `baseProperty`가 각각 정의되는데, 자바스크립트는 `Obj1`과 `Obj2`가 동일한 `baseProperty`와 `baseMethod()`를 참조합니다. 그림을 보면 근본적인 구조부터 다른걸 알 수 있습니다.
+다음은 C++의 상속과 자바스크립트의 [프로토타입 체인](https://tango1202.github.io/javascript/javascript-prototype/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%B2%B4%EC%9D%B8%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%86%8D%EC%84%B1-%EC%B0%B8%EC%A1%B0)을 비교한 그림입니다. C++은 `baseProperty`가 각각의 개체에 정의되는데, 자바스크립트는 `Obj1`과 `Obj2`가 동일한 `baseProperty`와 `baseMethod()`를 참조합니다. 그림을 보면 근본적인 구조부터 다른걸 알 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/c222deb6-23e9-4250-bd7d-b1b1d8426a49)
 
@@ -25,7 +25,7 @@ C++에서는 `Base`로부터 상속한 `Derived` 클래스로 개체를 인스�
 
 |항목|자바스크립트의 대처 방안|
 |--|--|
-|인터페이스를 만들어 단단한 코딩 계약을 만들고 싶습니다.|자바클래스는 너무도 유연합니다. 단단한 코딩 계약을 맺을 수 없으며, 대안으로 [타입스크립트](https://tango1202.github.io/categories/typescript/)를 이용할 수 있습니다.|
+|인터페이스를 만들어 단단한 코딩 계약을 만들고 싶습니다.|자바스크립트의 클래스는 너무도 유연합니다. 단단한 코딩 계약을 맺을 수 없으며, 대안으로 [타입스크립트](https://tango1202.github.io/categories/typescript/)를 이용할 수 있습니다.|
 |추상 클래스를 만들어 일부 기능은 부모 클래스에서 제공하고, 순가상 함수를 이용하여 자식 클래스에서는 일부 기능을 강제로 구현하게 하고 싶습니다.|부모 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 속성으로 저장하고 기능을 위임합니다. 자식 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 기능을 강제하는 것은 [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)로 넘겨줍니다.(*콜백 함수를 사용합니다.*) |
 |[Template Method](https://tango1202.github.io/pattern/pattern-template-method/)로 부모 클래스에서 자식 클래스에게 기능을 요청하고 싶습니다.|부모 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)가 필요로 하는 기능을 [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)로 넘겨줍니다.(*콜백 함수를 사용합니다.*)|
 |`is-a`관계를 만들고, 부모 개체에서 호출시 자식 개체들이 다형적으로 동작하게 하고 싶습니다.|변수는 아무 타입이나 받을 수 있으므로, 이미 `is-a`관계라고 생각하셔도 됩니다. 메서드명만 동일하면 호출되므로, 동일한 메서드명이면 다형적으로 동작한다고 생각해도 됩니다.|
