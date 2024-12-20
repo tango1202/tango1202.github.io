@@ -37,6 +37,8 @@ Module.privateFunc(a, b); // (X) 오류 발생. 접근할 수 없습니다.
 
 [개체의 생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)와 [프로토타입](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)의 메서드들을 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)를 이용하여 응집하면 코드의 가독성이 좋아집니다.
 
+다음에서 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)인 `User`(*#1*)는 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)인 `User`(*#2*)를 #3과 같이 리턴하는데요, #4에서 #1의 리턴값인 #2 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 호출하고 있습니다.
+
 ```javascript
 const User = (() => { // #1. 즉시 실행 함수입니다.
     function User(name) { // #2. 생성자 함수
