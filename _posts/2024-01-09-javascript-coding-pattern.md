@@ -12,7 +12,11 @@ sidebar:
 
 연관있는 일련의 [함수](https://tango1202.github.io/javascript/javascript-function/)들을 모아 [모듈화](https://tango1202.github.io/javascript/javascript-module/)를 하면, 구조적이고 계층적으로 코드를 관리를 할 수 있어 가독성과 생산성이 좋아집니다. 기본적으로 [클로저와 정보 은닉](https://tango1202.github.io/javascript/javascript-function/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89)을 사용하므로 `private` 함수와 `public` 함수로 구분할 수도 할 수 있습니다.
 
-다음에서 `Module`은 즉시 실행되어 `publicFunc` 함수(*`privateFunc`은 빼고요*)를 메서드로 가진 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 리턴합니다. 이렇게 하면 `privateFunc`은 외부에서 접근할 방법이 없어 사용할 수 없고, `publicFunc`만 리턴된 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 통해 사용할 수 있습니다. 또한 `publicFunc`이 사용되는 한 `Module`내의 실행 환경이 소멸되지 않고 유지되므로, `publicFunc`에서는 `privateFunc`을 안심하고 사용할 수 있습니다.(*[클로저와 정보 은닉](https://tango1202.github.io/javascript/javascript-function/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89) 참고*)
+다음에서 `Module`은 [즉시 실행 함수](https://tango1202.github.io/javascript/javascript-function/#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8-%EB%B2%94%EC%9C%84-%ED%95%9C%EC%A0%95)입니다. 
+
+즉시 실행되어 `publicFunc` 함수(*`privateFunc`은 빼고요*)를 메서드로 가진 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 리턴합니다. 
+
+이렇게 하면 `privateFunc`은 외부에서 접근할 방법이 없어 사용할 수 없고, `publicFunc`만 리턴된 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 통해 사용할 수 있습니다. 또한 `publicFunc`이 사용되는 한 `Module`내의 실행 환경이 소멸되지 않고 유지되므로, `publicFunc`에서는 `privateFunc`을 안심하고 사용할 수 있습니다.(*[클로저와 정보 은닉](https://tango1202.github.io/javascript/javascript-function/#%ED%81%B4%EB%A1%9C%EC%A0%80%EC%99%80-%EC%A0%95%EB%B3%B4-%EC%9D%80%EB%8B%89) 참고*)
 
 ```javascript
 const Module = (() => { // 즉시 실행 함수입니다.

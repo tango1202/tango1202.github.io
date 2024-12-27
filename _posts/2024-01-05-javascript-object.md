@@ -390,7 +390,7 @@ console.log('user2.getName()', user2.getName()); // Lee
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/d3cdbd51-a101-45a3-aa1f-36db27feb44f)
 
-또한, [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 호출할때 `new`를 사용하지 않는다면, 일반 [함수](https://tango1202.github.io/javascript/javascript-function/)처럼 호출되니 주의해야 합니다.
+또한, [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)를 호출할때 `new`를 사용하지 않는다면, 일반 [함수](https://tango1202.github.io/javascript/javascript-function/)처럼 호출되니 주의해야 합니다.(*하지만 이를 이용해서 상속을 구현하기도 합니다. [프로토타입을 이용한 상속](https://tango1202.github.io/javascript/javascript-inheritance-class/#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D) 참고*)
 
 만약 `new`를 생략한다면,
 

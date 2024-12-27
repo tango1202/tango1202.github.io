@@ -31,7 +31,7 @@ C++에서는 `Base`로부터 상속한 `Derived` 클래스로 개체를 인스�
 |`is-a`관계를 만들고, 부모 개체에서 호출시 자식 개체들이 다형적으로 동작하게 하고 싶습니다.|변수는 아무 타입이나 받을 수 있으므로, 이미 `is-a`관계라고 생각하셔도 됩니다. 메서드명만 동일하면 호출되므로, 동일한 메서드명이면 다형적으로 동작한다고 생각해도 됩니다.|
 |기존의 코드를 재활용하고 싶습니다.|자바스크립트는 모든 것이 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)입니다. [함수](https://tango1202.github.io/javascript/javascript-function/)까지도요. 따라서 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 재활용하고 위임하면 됩니다.|
 
-즉, 상속이 필요한 항목이 아에 불필요하거나 위임으로 전환될 수 있습니다.
+즉, 상속이 필요한 항목들이 [Strategy](https://tango1202.github.io/pattern/pattern-strategy/)를 이용한 의존성 주입(*[의존성 역전 원칙](https://tango1202.github.io/principle/principle-dependency-inversion/) 참고*)이나 위임으로 전환될 수 있습니다.
 
 다음은 `IDrawable` 인터페이스를 만들고, 이를 상속한 `Shape`클래스를 만들어 기본적인 속성인 `m_Left, m_Top, m_Width, m_Height`속성을 구현하고, `Shape`을 상속한 `Rectangle`과 `Ellipse`에서 `Draw`시 다형적으로 그려주는 C++의 예입니다.
 
@@ -92,7 +92,7 @@ for(int i = 0; i < 2; ++i) {
 1. [배열](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EB%B0%B0%EC%97%B4)에 아무 타입이나 들어가니 굳이 Shape으로 추상화할 필요가 없습니다.
 2. 그냥 `draw()`를 호출하면 됩니다. 인터페이스로 만들 필요가 없습니다.
 
-코딩 계약은 좀 느슨해 보입니다만, 잘 동작합니다.
+코딩 계약은 좀 느슨합니다만, 잘 동작합니다.
 
 ```javascript
 const Rectangle = (() => {  
@@ -132,11 +132,13 @@ shapes.forEach(
 
 # 프로토타입을 이용한 상속
 
-그럼에도 불구하고, 굳이 상속이 필요하다면, 다음과 같이 기반이 되는 `Base`의 [프로토타입 개체](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)의 메서드들과 `baseObj`의 속성들을 복제해서 사용할 수 있습니다.
+그럼에도 불구하고, 상속이 필요하다면, 다음 그림처럼 기반이 되는 `Base`의 [프로토타입 개체](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)의 메서드들과 `baseObj`의 속성들을 복제해서 사용할 수 있습니다.
 
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6866c646-778a-40f0-b4ac-76da85214fc2)
 
-1. `Derived` [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)에서 `Base.call(this, baseProperty);`를 실행합니다. 
+다음은 상기 그림을 코드로 구현한 예입니다.
+
+1. #1: `Derived` [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98)에서 `Base.call(this, baseProperty);`를 실행합니다. 
 
     이 코드는 내부적으로 [생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98) `Base`를 `Base(baseProperty);`와 같이 일반 [함수](https://tango1202.github.io/javascript/javascript-function/)처럼 호출(*[생성자 함수](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98) 참고*)해 줍니다. 이렇게 되면, [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)를 생성하는 것이 아니라 `this`에 속성을 추가하는 [함수](https://tango1202.github.io/javascript/javascript-function/)가 되죠.
     
@@ -144,7 +146,7 @@ shapes.forEach(
     
     즉, `Derived`가 리턴하는 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)에 `Base`의 속성을 추가하는 효과가 있습니다.
 
-2. `Object.setPrototypeOf()`는 `Base.prototype`을 `Derived.prototype`에 복제합니다. 다만 `constructor()`는 변경하지 않습니다. 이때 `Derived.prototype.__proto__`는 `Base.prototype`을 참조하여, `Derived.prototype`에 속성/메서드가 없다면, `Base.prototype`에서 찾게 합니다.
+2. #2 : `Object.setPrototypeOf()`는 `Base.prototype`을 `Derived.prototype__proto__`에 복제하여, `Derived.prototype`에 속성/메서드가 없다면 `Base.prototype`에서 찾게 합니다.
 
 실행 결과를 보면, `derived` 객체는 `baseProperty`를 복제하여 사용하고 있고, `Derived.prototype`은 `baseMethod()`를 복제하여 사용하고 있습니다.
 

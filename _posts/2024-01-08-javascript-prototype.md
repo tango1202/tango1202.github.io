@@ -54,13 +54,15 @@ console.log('User.prototype과 user.__proto__ 는 동일한 프로토타입 개�
 console.log('프로토타입 개체의 constructor는 생성자 함수입니다.', user.__proto__.constructor === User); 
 ```
 
+상기를 그림으로 보면 다음과 같습니다.
+
 ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/6800bf95-cb1d-4d3a-b980-8a278b3d4caf)
 
 # 프로토타입 체인을 이용한 속성 참조
 
 다음 예는 [개체](https://tango1202.github.io/javascript/javascript-object/#%EA%B0%9C%EC%B2%B4)의 속성/메서드에 접근할때 해당 속성/메서드가 없으면 [프로토타입 개체](https://tango1202.github.io/javascript/javascript-prototype/#prototype%EA%B3%BC-__proto__%EC%99%80-prototype%EA%B3%BC-constructor)의 속성/메서드에 접근하는 것을 보여줍니다. 
 
-`User`에 `addr` 속성이 없고 `User`의 `prototype`에 `addr`속성이 추가되었으므로, `user1.addr`이나 `user2.addr`시 `User.prototype.addr`에 접근하여 `'Seoul'`이 사용됩니다.
+`User`에는 `addr` 속성이 없고 `User`의 `prototype`에 `addr`속성이 추가되었으므로, `user1.addr`이나 `user2.addr`을 하면, `User.prototype.addr`에 접근하여 `'Seoul'`이 사용됩니다.
 
 ```javascript
 function User(name) {
