@@ -254,8 +254,9 @@ expect(base2 instanceof Derived).toBe(true);
 `abstract`를 이용하여 추상 클래스와 추상 메서드를 작성할 수 있습니다. `new`로 생성할 수 없으며 꼭 상속해서 추상 메서드를 구현해서 사용해야 합니다.
 
 ```typescript
+// 추상 클래스입니다.
 abstract class Shape {
-    // 추상 클래스입니다.
+
     width: number;
     height: number;
 

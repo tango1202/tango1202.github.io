@@ -100,7 +100,7 @@ sidebar:
       export default MyVal; 
       ```
 
-      데이터를 기반으로 마크업을 만들 수 있습니다. 이때 동적으로 생성되는 마크업은 꼭 유일한 값으로 구분되는 `key` 속성이 있어야 합니다.
+      데이터를 기반으로 마크업을 만들 수 있습니다. 이때 동적으로 생성되는 목록형 마크업은 꼭 유일한 값으로 구분되는 `key` 속성이 있어야 합니다.
 
       ```tsx
       const MyUserList = () => {
@@ -112,7 +112,7 @@ sidebar:
         ];
 
         // 데이터로 마크업을 만듭니다.
-        // 동적으로 생성되는 마크업은 꼭 유일한 값으로 구분되는 key 속성이 있어야 합니다.
+        // 동적으로 생성되는 목록형 마크업은 꼭 유일한 값으로 구분되는 key 속성이 있어야 합니다.
         const listItems = users.map((user) => {
           return <li key={user.id}>{user.name}</li>;
         });
@@ -299,11 +299,11 @@ console.log(arr1 === arr2); // true입니다.
 
 1. #1 : `arr[0]`요소의 `x`를 직접 수정하면 렌더링을 다시 하지 않습니다.
 2. #2 : `arr[0]`을 수정하고 `setArr(arr)`을 하더라도 렌더링을 다시 하지 않습니다.
-3. #3 : 배열을 복제합니다. 이때 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 얕은 복사 합니다.
+3. #3 : 배열을 복제합니다. 이때 [Spread](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#spreadecmascript6)를 이용하여 ***얕은 복사***를 합니다.
   
     ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/0985674e-28c5-4c82-895a-5b314cfeaa96)
 
-4. #4 : 배열의 복제본을 만들어 `setArr()`을 호출하면 렌더링을 다시 합니다. 
+4. #4 : 배열의 요소가 ***얕은 복사***된 복제본으로 `setArr()`을 호출하면 렌더링을 다시 합니다. 
 
 ```tsx
 import { useState } from 'react';
@@ -341,7 +341,7 @@ const MyArrayState = () => {
 export default MyArrayState;
 ```
 
-정리하면 배열은 다음처럼 복제본을 사용합니다.
+정리하면 배열은 다음처럼 배열의 각 요소가 얕은 복사된 복제본을 사용합니다.
 
 ```typescript
 setArr(arr.concat(item)); // item을 추가한 새로운 배열
@@ -352,7 +352,7 @@ setArr(arr.map(user) => user.id === id ? user.name = changedName : user); // use
 setArr(arr.filter(user => user.id !== id)); // user.id !== id로 구성된 새로운 배열. 즉, id인 것만 삭제된 배열
 ```
 
-개체의 경우는 다음처럼 복제본을 사용합니다.
+개체의 경우는 다음처럼 개체의 각 하위 속성을 복사한 복제본을 사용합니다.(*만약 하위 속성이 기본 타입이 아닌 배열이나 개체라면 얕은 복사한 복제본을 사용합니다.*)
 
 ```typescript
 setObj({x: 1, y: 2}); // 새로운 개체값으로 변경
@@ -365,7 +365,7 @@ setObj({...obj, y: 2}); // 개체의 기존값을 그대로 사용하되 y만 2�
 
 1. #1 : 컴포넌트 [Props](https://tango1202.github.io/react/react-basic/#props)의 인터페이스를 선언합니다.
 2. #2 : [Props](https://tango1202.github.io/react/react-basic/#props)는 인자로 전달받습니다. 관습적으로 `props`라는 이름을 사용합니다.
-3. #3 : [Props](https://tango1202.github.io/react/react-basic/#props)는 관습적으로 [구조 분해](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)해서 사용합니다.
+3. #3 : [Props](https://tango1202.github.io/react/react-basic/#props)는 관습적으로 [구조 분해](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)해서 사용합니다. #3-1과 같이 함수 인자 선언시 바로 [구조 분해](https://tango1202.github.io/javascript/javascript-array-string-spread-map-set/#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4ecmascript6)할 수 있습니다.
 4. #4 : [Props](https://tango1202.github.io/react/react-basic/#props)는 수정할 수 있으나, 컴포넌트 내부에서 수정하는건 좋지 않습니다. 
 
     컴포넌트는 전달된 [Props](https://tango1202.github.io/react/react-basic/#props)로 단지 렌더링만 하는 [단일 책임]((https://tango1202.github.io/principle/principle-single-responsibility/))만 갖는게 좋습니다. 만약 내부에서 [Props](https://tango1202.github.io/react/react-basic/#props)를 수정하면, 외부에서 동일한 데이터를 전달했을때 다르게 렌더링 될 수 있습니다. 이렇게 되면, 리액트에서 가상 DOM으로 부터 HTML DOM을 생성할때 최적화가 제대로 되지 않아 쓸데없는 화면 갱신이 빈번해 질 수 있습니다.(*[주요 개념 정리](https://tango1202.github.io/react/react-basic/#%EC%A3%BC%EC%9A%94-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC) 참고*)
@@ -392,7 +392,7 @@ const User = (props: IProps) => {
   );
 };
 
-// 함수 인자 선언시 바로 구조 분해할 수 있습니다.
+// #3-1. 함수 인자 선언시 바로 구조 분해할 수 있습니다.
 // const User = ({id, name}: IProps) => {
 //   return (
 //     <div>
@@ -557,7 +557,7 @@ export default MyCounterCallback;
 
 * 순수함(*Pure*) : 동일한 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)에서는 동일한 결과가 리턴되어야 합니다. 
 
-    이와 같이 입력값에 대해 동일한 결과를 리턴하는 함수를 `Pure Function`이라고 합니다. 리액트는 동일한 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)일때 동일한 JSX를 리턴한다고 가정하고 성능 최적화하기 때문에, 꼭 준수해야 합니다. 준수하지 않으면, 뜻하지 않게 화면이 쉼없이 재 렌더링 되거나, 아예 렌더링을 안할 수 있습니다.
+    이와 같이 입력값에 대해 동일한 결과를 리턴하는 함수를 ***Pure Function***이라고 합니다. 리액트는 동일한 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)일때 동일한 JSX를 리턴한다고 가정하고 성능 최적화하기 때문에, 꼭 준수해야 합니다. 준수하지 않으면, 뜻하지 않게 화면이 쉼없이 재 렌더링 되거나, 아예 렌더링을 안할 수 있습니다.
 
 * 데이터 기반 렌더링 : 렌더링은 [Props](https://tango1202.github.io/react/react-basic/#props)나 [State](https://tango1202.github.io/react/react-basic/#state)변경에 따라 재시도 되고, 가상 DOM을 이용하여 동적으로 렌더링 요소들을 구성한뒤 변경된 것만 갱신합니다.
 
