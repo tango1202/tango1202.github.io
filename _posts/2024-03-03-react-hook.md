@@ -10,7 +10,7 @@ sidebar:
 
 # 스냅샷 상태
 
-[State](https://tango1202.github.io/react/react-basic/#state)를 변경하면 [State](https://tango1202.github.io/react/react-basic/#state)값을 수정하고 JSX를 다시 렌더링합니다. 이때 다시 렌더링되기 전까지는 현 스코프에서 이전 [State](https://tango1202.github.io/react/react-basic/#state)값이 사용됩니다. 이 상황을 스냅샷 [State](https://tango1202.github.io/react/react-basic/#state)라고 합니다.
+[State](https://tango1202.github.io/react/react-basic/#state)를 변경하면 [State](https://tango1202.github.io/react/react-basic/#state)값을 수정하고 JSX를 다시 렌더링합니다. 이때 다시 렌더링되기 전까지는 이전 [State](https://tango1202.github.io/react/react-basic/#state)값이 사용됩니다. 이 상황을 스냅샷 [State](https://tango1202.github.io/react/react-basic/#state)라고 합니다.
 
 1. #1 : `countState + 1`을 한 값으로 [State](https://tango1202.github.io/react/react-basic/#state)를 변경하고 렌더링을 요청합니다.
 
