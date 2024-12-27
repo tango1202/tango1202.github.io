@@ -128,7 +128,7 @@ sidebar:
 
 5. 그뒤 `accept`버튼을 클릭합니다.
 
-![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cd31038f-91d8-46d0-80b8-9d418cc00f49)
+    ![image](https://github.com/tango1202/tango1202.github.io/assets/133472501/cd31038f-91d8-46d0-80b8-9d418cc00f49)
 
 6. 이제 저장하는 테스트 파일만 자동 테스트를 수행합니다.
 

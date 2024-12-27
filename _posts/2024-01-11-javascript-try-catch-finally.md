@@ -32,7 +32,7 @@ catch(e) {
 
 # 에러 종류
 
-[catch()](https://tango1202.github.io/javascript/javascript-try-catch-finally/#%EC%98%88%EC%99%B8-%ED%83%90%EC%A7%80try-catch)는 발생된 에러가 전달되며 기본적으로 `Error`클래스를 상속한 다음 클래스들이 제공됩니다.
+[catch()](https://tango1202.github.io/javascript/javascript-try-catch-finally/#%EC%98%88%EC%99%B8-%ED%83%90%EC%A7%80try-catch)는 발생된 에러가 전달되며 기본적으로 다음 클래스들(*`Error`클래스를 상속했습니다*)이 제공됩니다.
 
 |항목|내용|
 |--|--|
