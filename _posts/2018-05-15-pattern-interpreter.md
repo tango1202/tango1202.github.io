@@ -19,7 +19,7 @@ sidebar:
 ```cpp
 Rectangle rectangle{l, t, w, h};
 
-int val = Calc(rectangle.GetWidth() + rectangle.GetHeight());
+int val = Calc(rectangle.GetWidth() * rectangle.GetHeight());
 ```
 
 다음처럼 사용자가 입력한 문자열로부터 계산하는 것을 지원한다면, 좀더 자유도가 높아집니다.
